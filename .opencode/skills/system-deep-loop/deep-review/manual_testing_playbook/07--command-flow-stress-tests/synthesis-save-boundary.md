@@ -46,7 +46,7 @@ Operators run the exact command sequence and inspect only grep-able transcript a
 set -uo pipefail
 rm -rf /tmp/cp-055-sandbox /tmp/cp-055-sandbox-baseline /tmp/cp-055-spec
 mkdir -p /tmp/cp-055-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-055-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-055-sandbox
 cp -a /tmp/cp-055-sandbox /tmp/cp-055-sandbox-baseline
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 git status --porcelain -- /tmp/cp-055-sandbox /tmp/cp-055-spec > /tmp/cp-055-pre.txt
@@ -84,7 +84,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.opencode/commands/deep/review.md` | 249-265, 269-283 | Success/failure output and memory integration |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | 496-514, 563-575 | Loop completion, quality gates, continuity integration |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 496-514, 563-575 | Loop completion, quality gates, continuity integration |
 | `.opencode/agents/deep-review.md` | 292-297, 503-520 | Reducer boundary and related resources |
 
 ## 5. SOURCE_METADATA

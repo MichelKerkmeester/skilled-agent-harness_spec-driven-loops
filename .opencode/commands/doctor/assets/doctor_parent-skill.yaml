@@ -57,7 +57,7 @@ parent_skill_doctor_invariant: |
 upstream_assets:
   contract: "local command design contract"
   audit_script: ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
-  reference_implementation: ".opencode/skills/deep-loop-workflows"
+  reference_implementation: ".opencode/skills/system-deep-loop"
   reference_doc: ".opencode/skills/sk-doc/create-skill/references/README.md"
 
 # ─────────────────────────────────────────────────────────────────
@@ -72,7 +72,7 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   defaults:
-    parent_skill_dir_empty: ".opencode/skills/deep-loop-workflows"
+    parent_skill_dir_empty: ".opencode/skills/system-deep-loop"
   validation:
     execution_mode_must_be: INTERACTIVE
     parent_skill_dir_must_be_existing_directory: true

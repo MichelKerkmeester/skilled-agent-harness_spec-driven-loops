@@ -47,7 +47,7 @@ two executors are specified, no fan-out dispatch happens silently.
 3. Confirm `step_fanout_merge` calls `fanout-merge.cjs --loop-type research` and has `skip_when: "config.fanout is absent"`.
 4. `bash: grep -n "fanout_executors\|--executor\|--executors\|--concurrency\|config.fanout\|config.executor" .opencode/commands/deep/research.md | head -20`
 5. Confirm default policy: 2+ `--executor` → `config.fanout`.
-6. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/fanout-run.vitest.ts`
+6. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../runtime//tests/unit/fanout-run.vitest.ts`
 7. Confirm 5/5 pass (pool dispatch + lineage isolation confirmed by unit tests).
 
 ### RECOMMENDED ORCHESTRATION PROCESS
@@ -77,15 +77,15 @@ Source inspection confirms dispatch chain. Unit tests confirm pool isolation and
 |---|---|
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | `step_fanout_spawn`, `step_fanout_merge`, `step_resolve_artifact_root` |
 | `.opencode/commands/deep/research.md` | `--executor` flag docs, default policy, fan-out examples |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Pool driver for CLI lineages |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Research dedup merge |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Pool driver for CLI lineages |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Research dedup merge |
 
 ### Validation
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts` | CLI lineage spawn + isolation |
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Research registry dedup |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | CLI lineage spawn + isolation |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Research registry dedup |
 
 ---
 

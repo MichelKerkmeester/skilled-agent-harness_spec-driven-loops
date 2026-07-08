@@ -1,6 +1,6 @@
 ---
 title: "Deep Mode Session Hierarchy"
-description: "Session -> topic -> round structure for deep-ai-council with state files, cost guards and deep-loop-runtime integration."
+description: "Session -> topic -> round structure for deep-ai-council with state files, cost guards and runtime/ integration."
 trigger_phrases:
   - "deep mode session hierarchy"
   - "session topic round structure"
@@ -31,7 +31,7 @@ Use deep mode when you need multi-topic council sessions with cost controls and 
 
 - Session orchestration: `scripts/orchestrate-session.cjs`
 - Topic orchestration: `scripts/orchestrate-topic.cjs`
-- Cost guards: `../../deep-loop-runtime/lib/council/cost-guards.cjs`
+- Cost guards: `../../runtime//lib/council/cost-guards.cjs`
 
 ---
 
@@ -125,7 +125,7 @@ Guards merge from session state and executor config. Executor config overrides s
 
 ### Required Modules
 
-Deep mode imports council primitives from deep-loop-runtime:
+Deep mode imports council primitives from runtime/:
 
 - `round-state-jsonl.cjs` for state file writes
 - `cost-guards.cjs` for guard evaluation
@@ -186,5 +186,5 @@ const result = await orchestrateSession({
 
 - State format: `references/structure/state_format.md`
 - Findings registry: `references/scoring/findings_registry.md`
-- Cost guards: `../../deep-loop-runtime/lib/council/cost-guards.cjs`
-- Session hierarchy: `../../deep-loop-runtime/lib/council/session-state-hierarchy.cjs`
+- Cost guards: `../../runtime//lib/council/cost-guards.cjs`
+- Session hierarchy: `../../runtime//lib/council/session-state-hierarchy.cjs`

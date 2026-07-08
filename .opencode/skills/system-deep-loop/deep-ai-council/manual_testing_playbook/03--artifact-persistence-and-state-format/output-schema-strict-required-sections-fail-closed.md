@@ -46,7 +46,7 @@ Lossy persistence would make council artifacts look complete while hiding missin
 
 ### Commands
 
-1. `bash: node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <missing-required-section.md>; echo "exit=$?"`
+1. `bash: node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <missing-required-section.md>; echo "exit=$?"`
 
 ### Expected
 
@@ -67,7 +67,7 @@ Check `references/structure/output_schema.md`, parser requiredness matrix, and f
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-007 | Output schema strictness | Verify fail-closed required sections | `Try to persist this incomplete council report and tell me whether it is accepted.` | `bash: node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <missing-required-section.md>; echo "exit=$?"` | Exit 1 and missing-section message | Command output | PASS if no writes occur | Check output schema |
+| DAC-007 | Output schema strictness | Verify fail-closed required sections | `Try to persist this incomplete council report and tell me whether it is accepted.` | `bash: node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <missing-required-section.md>; echo "exit=$?"` | Exit 1 and missing-section message | Command output | PASS if no writes occur | Check output schema |
 
 ---
 
@@ -84,8 +84,8 @@ Check `references/structure/output_schema.md`, parser requiredness matrix, and f
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/output_schema.md` | Requiredness contract |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs` | Parser entrypoint |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output_schema.md` | Requiredness contract |
+| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` | Parser entrypoint |
 
 ---
 

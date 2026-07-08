@@ -37,14 +37,9 @@
         "context": "provides co-resident MCP registration and extraction parent"
       },
       {
-        "target": "deep-loop-workflows",
+        "target": "system-deep-loop",
         "weight": 0.7,
-        "context": "provides spec-folder packet context and memory-save workflows for council artifact handoff"
-      },
-      {
-        "target": "deep-loop-runtime",
-        "weight": 0.7,
-        "context": "provides zod, sqlite, TSX loader, command YAML consumers for consumer deep-loop skills"
+        "context": "provides spec-folder packet context and memory-save workflows for council artifact handoff; provides zod, sqlite, TSX loader, command YAML consumers for consumer deep-loop skills"
       }
     ]
   },
@@ -54,8 +49,7 @@
       "sk-doc",
       "sk-code",
       "sk-git",
-      "deep-loop-workflows",
-      "deep-loop-workflows"
+      "system-deep-loop"
     ]
   },
   "domains": [

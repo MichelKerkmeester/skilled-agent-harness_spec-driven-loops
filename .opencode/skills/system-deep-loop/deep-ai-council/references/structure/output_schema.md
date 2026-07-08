@@ -18,7 +18,7 @@ Markdown contract for AI Council report sections and the persistence helper pars
 
 ## 1. OVERVIEW
 
-This document is the single source of truth for the `@deep-ai-council` §8 OUTPUT FORMAT. The agent body uses §8 to tell the planning LEAF what report to return; `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs` uses this contract to parse that report and persist packet-local `ai-council/` artifacts.
+This document is the single source of truth for the `@deep-ai-council` §8 OUTPUT FORMAT. The agent body uses §8 to tell the planning LEAF what report to return; `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` uses this contract to parse that report and persist packet-local `ai-council/` artifacts.
 
 The report remains markdown, not JSON. The helper accepts normal heading variation, extracts the strict-required sections, and degrades gracefully for optional narrative sections.
 
@@ -26,7 +26,7 @@ Cross-references:
 
 - Agent body: `.opencode/agents/ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
 - Runtime mirror: `.claude/agents/ai-council.md`
-- Helper: `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs`
+- Helper: `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
 
 ---
 
@@ -128,7 +128,7 @@ Changes to this schema require lockstep updates in the same commit:
 
 1. Update this `output_schema.md` contract.
 2. Update `@deep-ai-council` agent body §8 in all four runtime mirrors.
-3. Update `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs`.
+3. Update `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`.
 4. Update fixtures and `ai-council-persist-artifacts.vitest.ts` when parser behavior changes.
 5. Run the mirror parity test and helper fixture test.
 

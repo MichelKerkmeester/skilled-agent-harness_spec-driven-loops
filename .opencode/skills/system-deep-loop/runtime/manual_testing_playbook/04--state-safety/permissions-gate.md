@@ -1,6 +1,6 @@
 ---
 title: "DLR-009 -- Permissions gate"
-description: "Manual validation scenario for Permissions gate in the deep-loop-runtime skill."
+description: "Manual validation scenario for Permissions gate in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ Deep loops mutate long-lived packet state across iterations. The state-safety pr
 
 - Objective: Confirm permissions gate behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: state safety runtime.
-- Real user request: `Validate Permissions gate and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Permissions gate and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Deterministic mutation safety evidence from source and unit tests.
 - Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep loops mutate long-lived packet state across iterations. The state-safety pr
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/04--state-safety/permissions-gate.md`.
 
 ### Steps

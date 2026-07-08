@@ -45,10 +45,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the ideas backlog lifecycle across agent rules, JSONL docs, reducer promotion, YAML checks, and tests.
 ### Commands
-1. `bash: rg -n 'idea_observed|idea_promoted|idea_rejected|minIdeaObservations' .opencode/agents/deep-research.md .opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md`
-2. `bash: rg -n 'resolveMinIdeaObservations|derivePromotedIdeas|appendIdeaPromotionEvents|idea_promoted|suppressedIdeas' .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs`
+1. `bash: rg -n 'idea_observed|idea_promoted|idea_rejected|minIdeaObservations' .opencode/agents/deep-research.md .opencode/skills/system-deep-loop/deep-research/references/state/state_jsonl.md .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md`
+2. `bash: rg -n 'resolveMinIdeaObservations|derivePromotedIdeas|appendIdeaPromotionEvents|idea_promoted|suppressedIdeas' .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
 3. `bash: rg -n 'step_ideas_backlog_lifecycle|minIdeaObservations|idea_promoted|idea_rejected' .opencode/commands/deep/assets/deep_research_auto.yaml`
-4. `bash: rg -n 'promotes observed ideas|idea_promoted|suppressedIdeas|minIdeaObservations' .opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts`
+4. `bash: rg -n 'promotes observed ideas|idea_promoted|suppressedIdeas|minIdeaObservations' .opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts`
 ### Expected
 Leaf agents emit observed-only idea events, reducer promotes after the configured threshold, and rejected ideas are suppressed from promoted ideas and candidates.
 ### Evidence
@@ -74,11 +74,11 @@ Privilege `.opencode/agents/deep-research.md` for leaf permissions and `reduce-s
 | File | Role |
 |---|---|
 | `.opencode/agents/deep-research.md` | Leaf agent idea-event permissions |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md` | Idea event schemas |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Ideas lifecycle and candidate rules |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Promotion, ranking, and suppression implementation |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_jsonl.md` | Idea event schemas |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Ideas lifecycle and candidate rules |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Promotion, ranking, and suppression implementation |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow lifecycle step and threshold reads |
-| `.opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for promotion and rejection behavior |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for promotion and rejection behavior |
 
 ---
 

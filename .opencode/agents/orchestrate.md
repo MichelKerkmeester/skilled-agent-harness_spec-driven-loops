@@ -160,7 +160,7 @@ Before every Task tool dispatch, compare the selected route, loaded agent defini
 | @markdown | `.opencode/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @deep-research | `.opencode/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-review | `.opencode/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
-| @ai-council | `.opencode/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). |
+| @ai-council | `.opencode/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). |
 | @review   | `.opencode/agents/review.md`   | Codebase-agnostic quality scoring                                                      |
 | @debug    | `.opencode/agents/debug.md`    | Isolated by design (no conversation context)                                           |
 | @code     | `.opencode/agents/code.md`     | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
@@ -182,7 +182,7 @@ TASK #N: [Descriptive Title]
 ├─ Scope: [Explicit inclusions AND exclusions]
 ├─ Boundary: [What this agent MUST NOT do]
 ├─ Agent: @code | @context | @markdown | @deep-research | @deep-review | @ai-council | @review | @debug
-├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.opencode/skills/deep-loop-workflows/mode-registry.json | none]
+├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.opencode/skills/system-deep-loop/mode-registry.json | none]
 ├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
 ├─ Agent Definition: [.opencode/agents/<name>.md — MUST be read and included in prompt | "built-in" for @general]
 ├─ Skills: [Specific skills the agent should use]
@@ -203,7 +203,7 @@ TASK #N: [Descriptive Title]
 └─ Est. Tool Calls: [N] ([breakdown]) → [Single agent | Split: M agents × ~K calls] (§8 TCB)
 ```
 
-**`Deep Route:` resolution rule (registry-backed, not judgment):** for any of the 4 `@deep-*`/`@ai-council` agents, `mode`, `target_agent`, and `execution` MUST be looked up directly from that agent's matching entry in `.opencode/skills/deep-loop-workflows/mode-registry.json` (`workflowMode`, `agent`, and the entry's own execution semantics) — never inferred or guessed. A reviewer must be able to verify correctness by diffing the emitted `Deep Route:` line against the registry entry. If the registry has no matching entry for the requested mode, stop before dispatch rather than fabricating a route.
+**`Deep Route:` resolution rule (registry-backed, not judgment):** for any of the 4 `@deep-*`/`@ai-council` agents, `mode`, `target_agent`, and `execution` MUST be looked up directly from that agent's matching entry in `.opencode/skills/system-deep-loop/mode-registry.json` (`workflowMode`, `agent`, and the entry's own execution semantics) — never inferred or guessed. A reviewer must be able to verify correctness by diffing the emitted `Deep Route:` line against the registry entry. If the registry has no matching entry for the requested mode, stop before dispatch rather than fabricating a route.
 
 Optional dispatch header:
 

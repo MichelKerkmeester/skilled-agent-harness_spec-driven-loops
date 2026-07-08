@@ -292,7 +292,7 @@ The rule flags physical-direction CSS (`margin-left`, `margin-right`, `padding-l
 
 ## 6. ADOPT-IF-BETTER
 
-Fan-out or delegated recommendations are candidates until merged, attributed, and gated. Before adopting a lineage recommendation into canonical skill files, use the promotion discipline in `../../deep-loop-workflows/deep-improvement/references/shared/promotion_gate_contract.md`: score the candidate, validate it against fixtures or miss cases, check repeatability, respect the manifest boundary, and require explicit operator approval.
+Fan-out or delegated recommendations are candidates until merged, attributed, and gated. Before adopting a lineage recommendation into canonical skill files, use the promotion discipline in `../../system-deep-loop/deep-improvement/references/shared/promotion_gate_contract.md`: score the candidate, validate it against fixtures or miss cases, check repeatability, respect the manifest boundary, and require explicit operator approval.
 
 ---
 

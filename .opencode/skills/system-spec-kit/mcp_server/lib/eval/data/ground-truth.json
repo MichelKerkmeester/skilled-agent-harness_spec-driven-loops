@@ -792,12 +792,12 @@
     },
     {
       "id": 80,
-      "query": "give me the full set of deep-loop-workflows consolidation phase specs",
+      "query": "give me the full set of system-deep-loop consolidation phase specs",
       "intentType": "understand",
       "complexityTier": "complex",
       "category": "thematic_multi_target",
       "source": "manual",
-      "expectedResultDescription": "All nine deep-loop-workflows phase specs (parity baseline through old-skill deletion).",
+      "expectedResultDescription": "All nine system-deep-loop phase specs (parity baseline through old-skill deletion).",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {
@@ -957,7 +957,7 @@
       "complexityTier": "moderate",
       "category": "hard_negative",
       "source": "manual",
-      "expectedResultDescription": "Archived context loop foundation (9916). Decoy EXCLUDED: 19258 deep-loop-workflows parity baseline — 'deep' + 'loop' overlap, different program.",
+      "expectedResultDescription": "Archived context loop foundation (9916). Decoy EXCLUDED: 19258 system-deep-loop parity baseline — 'deep' + 'loop' overlap, different program.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {

@@ -6,7 +6,7 @@ import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { acquireLoopLock, releaseLoopLock } from '../../../deep-loop-runtime/lib/deep-loop/loop-lock.js';
+import { acquireLoopLock, releaseLoopLock } from '../../../runtime//lib/deep-loop/loop-lock.js';
 import { BoundedMap, TtlMap } from '../lib/memory/bounded-cache.js';
 import { listRotatedAuditFiles, rotateIfNeeded } from '../lib/memory/audit-rotation.js';
 import { clearAllTimers, getRegisteredTimerCount, registerInterval } from '../lib/runtime/timer-registry.js';

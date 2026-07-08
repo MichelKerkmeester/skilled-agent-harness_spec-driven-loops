@@ -34,15 +34,15 @@ The orchestrator writes a machine `skill-benchmark-report.json` and renders a hu
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/build-report.cjs` | Reporting | `renderReport` renders `skill-benchmark-report.md` purely from the report object; anti-drift, only writer of the markdown. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/remediation_taxonomy.json` | Reference asset | Maps each finding class to `severity`/`targetFile`/`locus`/`oneLineFix`/`handoffLane`; validated by test, not consumed by report code. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs` | Reporting | `renderReport` renders `skill-benchmark-report.md` purely from the report object; anti-drift, only writer of the markdown. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/remediation_taxonomy.json` | Reference asset | Maps each finding class to `severity`/`targetFile`/`locus`/`oneLineFix`/`handoffLane`; validated by test, not consumed by report code. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `renderReport` renders the title and `Verdict: PASS` from an aggregated report and that the end-to-end run emits both `skill-benchmark-report.json` and `.md`. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts` | Automated test | Validates the model-benchmark remediation hardening fixes (dispatcher cwd, criteria-exec gate, grader clamp, pause sentinel). |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `renderReport` renders the title and `Verdict: PASS` from an aggregated report and that the end-to-end run emits both `skill-benchmark-report.json` and `.md`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts` | Automated test | Validates the model-benchmark remediation hardening fixes (dispatcher cwd, criteria-exec gate, grader clamp, pause sentinel). |
 
 ---
 

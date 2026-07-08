@@ -42,13 +42,13 @@ Package an AI system benchmark for a non-dev AI system.
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the three command-bridge entries.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the three command-bridge entries.
 2. Skill advisor is callable.
 
 ### Exact Command Sequence
 
 1. **Run bare advisor probes**: run the skill advisor once for each bare prompt and append output to `/tmp/dlw-AI-003/bare-advisor.jsonl`.
-2. **Invoke hub with bare prompts**: invoke `Skill(deep-loop-workflows, "<prompt>")` once for each prompt.
+2. **Invoke hub with bare prompts**: invoke `Skill(system-deep-loop, "<prompt>")` once for each prompt.
 3. **Invoke command prompts**: rerun each scenario with its exact `/deep:*` command and save output to `/tmp/dlw-AI-003/command-routes.txt`.
 4. **Compare to registry**: confirm specialized lanes activate only through command surfaces.
 
@@ -75,8 +75,8 @@ Package an AI system benchmark for a non-dev AI system.
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - improvement family routing rule.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - command-bridge entries and contract definition.
+- `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - command-bridge entries and contract definition.
 
 ## 5. SOURCE METADATA
 

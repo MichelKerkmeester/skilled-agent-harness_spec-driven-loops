@@ -1,6 +1,6 @@
 ---
 title: "DLR-044 -- Fallback-router typed reroute"
-description: "Manual validation scenario for Fallback-router typed reroute in the deep-loop-runtime skill."
+description: "Manual validation scenario for Fallback-router typed reroute in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm Fallback-router typed reroute behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: executor runtime.
-- Real user request: `Validate Fallback-router typed reroute and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Fallback-router typed reroute and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Route trace metadata, preflight validation errors, cycle detection, and same-scope routing coverage.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/01--executor/fallback-router-typed-reroute.md`.
 
 ### Steps
@@ -81,6 +81,6 @@ Fallback-router typed reroute matches the documented current reality, the source
 - Playbook ID: DLR-044
 - Feature catalog entry: `feature_catalog/01--executor/fallback-router-typed-reroute.md`
 - Scenario file path: `manual_testing_playbook/01--executor/fallback-router-typed-reroute.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//015-fallback-router-typed-reroute`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

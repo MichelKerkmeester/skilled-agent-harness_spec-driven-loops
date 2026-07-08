@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the autonomous deep-review entrypoint and report whether docs, command routing, YAML, and expected artifacts agree.
 ### Commands
-1. `bash: rg -n '/deep:review:auto|review/review-report.md|review/iterations' .opencode/skills/deep-loop-workflows/deep-review/README.md .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md`
+1. `bash: rg -n '/deep:review:auto|review/review-report.md|review/iterations' .opencode/skills/system-deep-loop/deep-review/README.md .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md`
 2. `bash: sed -n '1,220p' .opencode/commands/deep/review.md`
 3. `bash: sed -n '1,260p' .opencode/commands/deep/assets/deep_review_auto.yaml`
 ### Expected
@@ -71,8 +71,8 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` and `ANCHOR:configuration` |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` and `ANCHOR:state-files` |
+| `.opencode/skills/system-deep-loop/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` and `ANCHOR:configuration` |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` and `ANCHOR:state-files` |
 | `.opencode/commands/deep/review.md` | Markdown setup and mode routing, use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Autonomous workflow contract, inspect `state_paths`, `phase_init`, and `phase_loop` |
 
@@ -84,4 +84,4 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 - Playbook ID: DRV-001
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `01--entry-points-and-modes/auto-mode-deep-review-kickoff.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

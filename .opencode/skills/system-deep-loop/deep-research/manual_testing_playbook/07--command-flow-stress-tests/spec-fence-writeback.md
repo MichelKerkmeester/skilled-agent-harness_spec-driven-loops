@@ -46,7 +46,7 @@ Operators run the exact command sequence for `CP-047` and confirm only grep-chec
 ```bash
 rm -rf /tmp/cp-047-sandbox /tmp/cp-047-sandbox-baseline /tmp/cp-047-spec
 mkdir -p /tmp/cp-047-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-047-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-047-sandbox
 cp -a /tmp/cp-047-sandbox /tmp/cp-047-sandbox-baseline
 cat > /tmp/cp-047-spec/spec.md <<'EOF'
 ---
@@ -96,7 +96,7 @@ diff /tmp/cp-047-pre.txt /tmp/cp-047-post.txt > /tmp/cp-047-tripwire.diff; echo 
 | `.opencode/commands/deep/research.md:35-38` | lock and spec_check_protocol note |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml:298-360` | pre-init spec classification and validation |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml:973-996` | generated findings fence writeback |
-| `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:343-350` | exact generated-fence contract |
+| `.opencode/skills/system-deep-loop/deep-research/SKILL.md:343-350` | exact generated-fence contract |
 | `.opencode/agents/deep-research.md:51-55` | agent may not repair reducer or control files |
 
 ## 5. SOURCE METADATA

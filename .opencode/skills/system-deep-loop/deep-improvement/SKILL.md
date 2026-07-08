@@ -369,7 +369,7 @@ The reusable benchmark contract ships with the skill, not with each spec packet:
 - Materializer: `scripts/shared/materialize-benchmark-fixtures.cjs`
 - Runner: `scripts/model-benchmark/run-benchmark.cjs`
 
-The command workflow first materializes static fixture JSON into outputs under `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir .opencode/skills/sk-prompt-models/benchmarks/{run_label}`. The runner writes `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
+The command workflow first materializes static fixture JSON into outputs under `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir .opencode/skills/sk-prompt-models/benchmarks/{run_label}`. The runner writes `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
 
 Benchmark outputs are always written to the sk-prompt-models hub at `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`. There is no spec-local output path. `run_label` is a required identifier that distinguishes benchmark runs in the hub (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`).
 
@@ -451,7 +451,7 @@ Journal emission is orchestrator-only. The target agent being evaluated never wr
 The CLI contract is:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
 ```
 
 The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.

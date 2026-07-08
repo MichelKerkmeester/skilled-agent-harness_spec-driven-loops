@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Check whether this council 
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `03--artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-006.
 
-Current behavior is grounded in `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md`, which the scenario identifies as state event contract. Validation is anchored by `manual_testing_playbook/03--artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md`, which the scenario identifies as state event contract. Validation is anchored by `manual_testing_playbook/03--artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify final state includes council_complete. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,8 +40,8 @@ The user-visible contract is concrete: Verify final state includes council_compl
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md` | Reference | State event contract |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/advise-council-completion.cjs` | Script | Completion advisory |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md` | Reference | State event contract |
+| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs` | Script | Completion advisory |
 
 ### Validation And Tests
 

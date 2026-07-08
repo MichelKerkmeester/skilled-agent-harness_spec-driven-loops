@@ -68,7 +68,7 @@ concrete evidence of the pasted-inline case above.
   - `spec_folder`
   - `execution_mode`
 - **PLANNING BOUNDARY**: deep council writes packet-local `ai-council/**` artifacts only. Implementation remains with the caller or follow-on implementation agents.
-- **GRAPH BOUNDARY**: derived council graph replay uses `deep-loop-runtime` CLI scripts with `--loop-type council`; `ai-council/**` artifacts remain authoritative.
+- **GRAPH BOUNDARY**: derived council graph replay uses `runtime/` CLI scripts with `--loop-type council`; `ai-council/**` artifacts remain authoritative.
 - **ONE CLI PER ROUND**: all seats in a round use one executor boundary. Different CLIs are separate rounds, not mixed seats.
 
 > **Canonical mode syntax:** use attached command suffixes (`/deep:ai-council:auto`, `/deep:ai-council:confirm`) and keep AGENTS, skills, command references, and runtime mirrors synchronized to this entrypoint.
@@ -121,6 +121,6 @@ The following content lives only in `.opencode/commands/deep/assets/deep_ai-coun
 
 ## 6. WORKFLOW SUMMARY
 
-The YAML workflow runs a bounded multi-topic AI Council session under `{spec_folder}/ai-council/`: it initializes session state, runs topic loops with findings-registry priors, evaluates adjudicator-verdict stability, synthesizes per-topic and session reports, and refreshes packet continuity. Convergence uses the council-specific 0.20 default on adjudicator-verdict stability; do not transfer sibling defaults from deep-review or deep-research. Packet-local `ai-council/**` artifacts remain canonical, and derived council graph replay uses `deep-loop-runtime` CLI scripts with `--loop-type council`.
+The YAML workflow runs a bounded multi-topic AI Council session under `{spec_folder}/ai-council/`: it initializes session state, runs topic loops with findings-registry priors, evaluates adjudicator-verdict stability, synthesizes per-topic and session reports, and refreshes packet continuity. Convergence uses the council-specific 0.20 default on adjudicator-verdict stability; do not transfer sibling defaults from deep-review or deep-research. Packet-local `ai-council/**` artifacts remain canonical, and derived council graph replay uses `runtime/` CLI scripts with `--loop-type council`.
 
 For single-round planning, use the regular `ai-council` agent behavior. After a successful deep council session, continue to implementation planning or the next packet phase.

@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate confirm mode approval checkpoints without changing deep-research's core loop or artifacts.
 ### Commands
-1. `bash: rg -n ':confirm|approval|interactive' .opencode/commands/deep/research.md .opencode/skills/deep-loop-workflows/deep-research/README.md`
+1. `bash: rg -n ':confirm|approval|interactive' .opencode/commands/deep/research.md .opencode/skills/system-deep-loop/deep-research/README.md`
 2. `bash: sed -n '1,300p' .opencode/commands/deep/assets/deep_research_confirm.yaml`
 3. `bash: rg -n 'gate_init_approval|phase_loop|phase_synthesis|research_output|research/iterations' .opencode/commands/deep/assets/deep_research_confirm.yaml`
 ### Expected
@@ -73,7 +73,7 @@ Inspect `gate_init_approval` first, then compare `phase_loop` and `state_paths` 
 |---|---|
 | `.opencode/commands/deep/research.md` | Mode routing and workflow overview; use `## 0. UNIFIED SETUP PHASE` and `## 3. WORKFLOW OVERVIEW` |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Interactive workflow contract; inspect `gate_init_approval`, iteration approval steps, and `state_paths` |
-| `.opencode/skills/deep-loop-workflows/deep-research/README.md` | User-facing execution modes; use `ANCHOR:features` |
+| `.opencode/skills/system-deep-loop/deep-research/README.md` | User-facing execution modes; use `ANCHOR:features` |
 
 ---
 
@@ -83,4 +83,4 @@ Inspect `gate_init_approval` first, then compare `phase_loop` and `state_paths` 
 - Playbook ID: DR-002
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `01--entry-points-and-modes/confirm-mode-checkpointed-execution.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

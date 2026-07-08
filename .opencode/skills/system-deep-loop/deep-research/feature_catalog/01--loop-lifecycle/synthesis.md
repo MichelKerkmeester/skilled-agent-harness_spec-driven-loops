@@ -36,8 +36,8 @@ Negative knowledge is part of the live contract here. Synthesis must consolidate
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the synthesis phase steps, required output shape, and terminal event contract. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Reference | Defines the `research/research.md` lifecycle and progressive update rules. |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the synthesis phase steps, required output shape, and terminal event contract. |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Reference | Defines the `research/research.md` lifecycle and progressive update rules. |
 | `.opencode/commands/deep/research.md` | Command | Publishes the synth phase as a canonical command output. |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow | Drives the autonomous synthesis phase and config-status update. |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Workflow | Mirrors the same synthesis phase with confirm-mode review gates. |
@@ -46,8 +46,8 @@ Negative knowledge is part of the live contract here. Synthesis must consolidate
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies final synthesis and the handoff into save behavior. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies negative knowledge is consolidated into the final research output. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies final synthesis and the handoff into save behavior. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies negative knowledge is consolidated into the final research output. |
 
 ---
 

@@ -10,7 +10,7 @@ meta:
     warning: "Generated from review_mode_contract.yaml. Do not manually edit generated sections."
     beginMarker: "<!-- BEGIN GENERATED: review-mode-contract -->"
     endMarker: "<!-- END GENERATED: review-mode-contract -->"
-  sourceOfTruth: .opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml
+  sourceOfTruth: .opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml
 
 # Core contract definitions consumed by workflows, agents, docs, and validators.
 contract:
@@ -429,7 +429,7 @@ render:
         - cross-reference-protocols
         - outputs
     - id: quick-reference-review-mode
-      path: .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md
+      path: .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md
       ownership: mixed
       format: markdown
       markers:
@@ -442,7 +442,7 @@ render:
         - quality-gates
         - outputs
     - id: review-contract-snapshot
-      path: .opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract_snapshot.md
+      path: .opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract_snapshot.md
       ownership: generated
       format: markdown
       markers:

@@ -1,6 +1,6 @@
 ---
 title: "DLR-022 -- Session state hierarchy"
-description: "Manual validation scenario for Session state hierarchy in the deep-loop-runtime skill."
+description: "Manual validation scenario for Session state hierarchy in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ This is the council state-shape contract. If it drifts, downstream tools that tr
 
 - Objective: Confirm session state hierarchy behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: council state shape.
-- Real user request: `Validate Session state hierarchy and report whether the current id shape, validator rules, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Session state hierarchy and report whether the current id shape, validator rules, and tests agree with the runtime/ contract.`
 - Expected signals: 3-level session/topic/round shape; topic ids `topic-NNN-slug`; round ids `round-NNN`; validator rejects malformed/duplicate/out-of-order ids.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ This is the council state-shape contract. If it drifts, downstream tools that tr
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/08--council/session-state-hierarchy.md`.
 
 ### Steps

@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Try to upsert nothing into 
 
 The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/council-graph-upsert-empty-input-no-op-success.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-020.
 
-Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs`, which the scenario identifies as runtime CLI script: explicit empty-input no-op branch (p1-001 remediation). Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering test: "treats empty upsert as an explicit no-op success".
+Current behavior is grounded in `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs`, which the scenario identifies as runtime CLI script: explicit empty-input no-op branch (p1-001 remediation). Validation is anchored by `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`, covering test: "treats empty upsert as an explicit no-op success".
 
 The user-visible contract is concrete: Verify runtime upsert CLI returns explicit no-op success on empty input. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,14 +40,14 @@ The user-visible contract is concrete: Verify runtime upsert CLI returns explici
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs` | Handler | runtime CLI script: explicit empty-input no-op branch (P1-001 remediation) |
+| `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Handler | runtime CLI script: explicit empty-input no-op branch (P1-001 remediation) |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual_testing_playbook/08--council-graph-integration/council-graph-upsert-empty-input-no-op-success.md` | Automated test | Manual scenario contract |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Test: "treats empty upsert as an explicit no-op success" |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Test: "treats empty upsert as an explicit no-op success" |
 | Internal design notes | Automated test | CHK-020 lists this behavior |
 
 ---

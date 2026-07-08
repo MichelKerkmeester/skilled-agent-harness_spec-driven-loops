@@ -159,7 +159,7 @@ Advisory rules:
 
 ## 7. Evidence Group
 
-Optional evidence fields let a load-bearing claim carry its proof in a fixed, machine-checkable shape at the dispatch boundary. This is the structural backstop for the doctrine that a finding is a hypothesis until verified: a claim either names its class and what would confirm it, or the missing piece is surfaced as an advisory. The schema is owned by `deep-loop-runtime` (`lib/deep-loop/evidence-contract.ts`); that module is the source of truth for allowed values, and this doc cites it rather than redefining them.
+Optional evidence fields let a load-bearing claim carry its proof in a fixed, machine-checkable shape at the dispatch boundary. This is the structural backstop for the doctrine that a finding is a hypothesis until verified: a claim either names its class and what would confirm it, or the missing piece is surfaced as an advisory. The schema is owned by `runtime/` (`lib/deep-loop/evidence-contract.ts`); that module is the source of truth for allowed values, and this doc cites it rather than redefining them.
 
 ```text
 AGENT_IO_EVIDENCE v1
@@ -171,7 +171,7 @@ scope_state: in_scope | out_of_scope | scope_expanded
 child_result_verified: true | false
 ```
 
-> **Representation (where this actually lives).** Unlike §2-§6, this block is NOT a free-standing `AGENT_IO_EVIDENCE` text envelope that agents append to their output — no agent currently emits one, and nothing parses one. The Evidence Group is carried as the structured `evidence` field on a deep-loop JSONL iteration record, and the only consumer validates it as a structured object via `validateEvidenceContract(record.evidence)` (`deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts`). The fenced shape above is the documented field schema (keys + allowed values), not a literal text format to emit. Producing it as a text block appended to agent output would not be validated.
+> **Representation (where this actually lives).** Unlike §2-§6, this block is NOT a free-standing `AGENT_IO_EVIDENCE` text envelope that agents append to their output — no agent currently emits one, and nothing parses one. The Evidence Group is carried as the structured `evidence` field on a deep-loop JSONL iteration record, and the only consumer validates it as a structured object via `validateEvidenceContract(record.evidence)` (`runtime//lib/deep-loop/post-dispatch-validate.ts`). The fenced shape above is the documented field schema (keys + allowed values), not a literal text format to emit. Producing it as a text block appended to agent output would not be validated.
 
 Evidence rules:
 

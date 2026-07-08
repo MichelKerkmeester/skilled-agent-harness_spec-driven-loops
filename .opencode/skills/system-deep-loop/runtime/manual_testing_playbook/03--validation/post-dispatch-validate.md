@@ -1,6 +1,6 @@
 ---
 title: "DLR-005 -- Post-dispatch validate"
-description: "Manual validation scenario for Post-dispatch validate in the deep-loop-runtime skill."
+description: "Manual validation scenario for Post-dispatch validate in the runtime/ skill."
 version: 1.4.0.5
 ---
 
@@ -24,7 +24,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 
 - Objective: Confirm post-dispatch validate behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: validation runtime.
-- Real user request: `Validate Post-dispatch validate and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Post-dispatch validate and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Runtime behavior matches the source contract and primary regression test.
 - Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/03--validation/post-dispatch-validate.md`.
 
 ### Steps

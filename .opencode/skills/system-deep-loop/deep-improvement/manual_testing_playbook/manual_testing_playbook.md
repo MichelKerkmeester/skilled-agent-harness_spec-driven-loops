@@ -875,7 +875,7 @@ Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` 
 
 ## 17. NON-DEV-AI-SYSTEM MODE
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane D (Non-Dev-AI-System): the packaging-owned guarded refine loop, synthetic-deficit promotion evidence, red-team gauntlet behavior, and the deep-loop-runtime self-target profile guard. See `SKILL.md` "Lane D: Non-Dev-AI-System Refine" and `references/non_dev_ai_system/loop_contract.md` for the source-of-truth contract.
+This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane D (Non-Dev-AI-System): the packaging-owned guarded refine loop, synthetic-deficit promotion evidence, red-team gauntlet behavior, and the runtime/ self-target profile guard. See `SKILL.md` "Lane D: Non-Dev-AI-System Refine" and `references/non_dev_ai_system/loop_contract.md` for the source-of-truth contract.
 
 ### PR-001 | Synthetic-Deficit Promotion And Red-Team Gauntlet
 
@@ -893,10 +893,10 @@ Expected signals: dry-run exits 0 with gap analysis and zero dispatches; gauntle
 ### PR-002 | Self-Target Packaging Profile
 
 #### Description
-The deep-loop-runtime self-target profile freezes scorer and harness surfaces, allows only technique-doc edits, keeps self-target schema fields optional for legacy packagings, and documents the command-level `--self-target` guard.
+The runtime/ self-target profile freezes scorer and harness surfaces, allows only technique-doc edits, keeps self-target schema fields optional for legacy packagings, and documents the command-level `--self-target` guard.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the Lane D self-target packaging profile for deep-loop-runtime. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+Prompt summary: As a manual-testing orchestrator, validate the Lane D self-target packaging profile for runtime/. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
 Expected signals: editable docs exist and are allowed; frozen surfaces exist and are not allowed; schema fields exist but are not required; command and contract docs contain the dry-run default, clean-tree live guard, single-writer lock, explicit `--parallel`, and non-forwarding to `loop-host.cjs`.
 
@@ -911,34 +911,34 @@ The manual scenarios exercise the operator-visible behavior. Runtime helper cove
 
 | Runtime Test | Covered Runtime Surface |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Benchmark stability helpers used by RT-026 and low-sample validation |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/candidate-lineage.vitest.ts` | Candidate lineage graph helpers used by E2E-021 and replay-consumer validation |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/improvement-journal.vitest.ts` | Journal emission and taxonomy helpers used by RT-022, RT-023, and RT-029 |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Mutation coverage and trajectory helpers used by E2E-019 and RT-027 |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Trade-off and insufficient-data helpers used by E2E-020 and RT-030 |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts` | Benchmark delta emission and ledger coverage used by MB-049 |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts` | Benchmark-mode promotion gates, accept/ship split, rollback, and preserved-branch events used by MB-049 and E2E-050 |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts` | Lane mix and benchmark delta reducer summaries used by MB-049 |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Skill-benchmark router-replay, D5 connectivity, scoring, and dual-report helpers used by SB-043..SB-048 |
-| `.opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts` | Lane D self-target profile, schema, command, and contract coverage used by PR-002 |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Benchmark stability helpers used by RT-026 and low-sample validation |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/candidate-lineage.vitest.ts` | Candidate lineage graph helpers used by E2E-021 and replay-consumer validation |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/improvement-journal.vitest.ts` | Journal emission and taxonomy helpers used by RT-022, RT-023, and RT-029 |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Mutation coverage and trajectory helpers used by E2E-019 and RT-027 |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Trade-off and insufficient-data helpers used by E2E-020 and RT-030 |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts` | Benchmark delta emission and ledger coverage used by MB-049 |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts` | Benchmark-mode promotion gates, accept/ship split, rollback, and preserved-branch events used by MB-049 and E2E-050 |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts` | Lane mix and benchmark delta reducer summaries used by MB-049 |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Skill-benchmark router-replay, D5 connectivity, scoring, and dual-report helpers used by SB-043..SB-048 |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts` | Lane D self-target profile, schema, command, and contract coverage used by PR-002 |
 
 ---
 
 ## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-The feature catalog root is `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/feature_catalog.md`. Use it as the current-state capability index when a scenario needs source-of-truth feature context beyond the command transcript.
+The feature catalog root is `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/feature_catalog.md`. Use it as the current-state capability index when a scenario needs source-of-truth feature context beyond the command transcript.
 
 | Playbook Category | Feature Catalog Cross-Reference |
 |---|---|
-| Integration Scanner | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/02--integration-scanning/surface-discovery.md`, `02-runtime-mirrors.md`, `03-command-dispatch.md` |
-| Profile Generator | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/03--scoring-system/dynamic-profiling.md` |
-| 5-Dimension Scorer | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/03--scoring-system/five-dimension-rubric.md`, `03-deterministic-scoring.md` |
+| Integration Scanner | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/02--integration-scanning/surface-discovery.md`, `02-runtime-mirrors.md`, `03-command-dispatch.md` |
+| Profile Generator | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/03--scoring-system/dynamic-profiling.md` |
+| 5-Dimension Scorer | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/03--scoring-system/five-dimension-rubric.md`, `03-deterministic-scoring.md` |
 | Benchmark Integration | No one-to-one catalog file; validate against the script anchors in the per-feature files and the scoring-system catalog root. |
-| Reducer Dimensions | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/03--scoring-system/dimensional-progress.md` |
-| End-to-End Loop | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/01--evaluation-loop/initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md`, `two-phase-promotion-and-rollback.md` |
+| Reducer Dimensions | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/03--scoring-system/dimensional-progress.md` |
+| End-to-End Loop | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/01--evaluation-loop/initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md`, `two-phase-promotion-and-rollback.md` |
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
-| Model-Benchmark Mode | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/04--model-benchmark-mode/mode-switch.md`, `model-dispatcher.md`, `opt-in-5dim-scorer.md`, `mode-records-and-gates.md`, `score-delta-benchmark-gates.md` |
-| Skill-Benchmark Mode | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/05--skill-benchmark/mode-wiring.md`, `02-contamination-gate-and-fixtures.md`, `03-router-replay-and-advisor-probe.md`, `04-d5-connectivity-gate.md`, `05-scoring-and-funnel.md`, `06-dual-report-and-remediation.md` |
-| Non-Dev-AI-System Mode | `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/06--non-dev-ai-system/guarded-refine-loop.md`, `self-target-packaging-profile.md` |
+| Model-Benchmark Mode | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/04--model-benchmark-mode/mode-switch.md`, `model-dispatcher.md`, `opt-in-5dim-scorer.md`, `mode-records-and-gates.md`, `score-delta-benchmark-gates.md` |
+| Skill-Benchmark Mode | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/05--skill-benchmark/mode-wiring.md`, `02-contamination-gate-and-fixtures.md`, `03-router-replay-and-advisor-probe.md`, `04-d5-connectivity-gate.md`, `05-scoring-and-funnel.md`, `06-dual-report-and-remediation.md` |
+| Non-Dev-AI-System Mode | `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/06--non-dev-ai-system/guarded-refine-loop.md`, `self-target-packaging-profile.md` |
 
 Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model_benchmark/evaluator_contract.md`, `references/agent_improvement/integration_scanning.md`, and `references/shared/quick_reference.md`.

@@ -40,7 +40,7 @@ This scenario verifies that the non-developer AI-system lane is not hosted by th
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `ai-system-improvement` mode entry.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `ai-system-improvement` mode entry.
 2. The orchestrator can accept `/deep:ai-system-improvement` command prompts.
 
 ### Exact Command Sequence
@@ -71,8 +71,8 @@ This scenario verifies that the non-developer AI-system lane is not hosted by th
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - backend discriminator.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `ai-system-improvement` backend fields.
+- `.opencode/skills/system-deep-loop/SKILL.md` - backend discriminator.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-system-improvement` backend fields.
 
 ## 5. SOURCE METADATA
 

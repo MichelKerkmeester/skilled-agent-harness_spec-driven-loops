@@ -93,10 +93,10 @@ If duplicates appear, inspect `lib/council/council-graph-db.ts` `upsertNodes`/`u
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs` | runtime CLI script: idempotent upsert + self-loop rejection |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Storage layer: unique constraints |
-| `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs` | Runtime CLI validation and edge normalization |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Test: "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
+| `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` | runtime CLI script: idempotent upsert + self-loop rejection |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts` | Storage layer: unique constraints |
+| `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Runtime CLI validation and edge normalization |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Test: "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
 
 ---
 

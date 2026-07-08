@@ -39,7 +39,7 @@ The deep-improvement Lane C harness benchmarks `sk-design` against its own `manu
 ## 2. RE-RUNNING
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
   --skill .opencode/skills/sk-design \
   --outputs-dir /tmp/skd-bench \
   --trace-mode router \

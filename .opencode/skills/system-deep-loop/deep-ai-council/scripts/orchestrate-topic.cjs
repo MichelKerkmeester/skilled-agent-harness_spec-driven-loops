@@ -1,7 +1,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ orchestrate-topic                                                        ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Topic-local council round loop using deep-loop-runtime council primitives║
+// ║ Topic-local council round loop using runtime/ council primitives║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';

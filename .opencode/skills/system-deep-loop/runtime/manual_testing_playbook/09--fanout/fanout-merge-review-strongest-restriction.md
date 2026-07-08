@@ -42,7 +42,7 @@ Without this, a clean lineage could dilute a blocking lineage's P0 finding.
 ### Steps
 
 1. Inspect `scripts/fanout-merge.cjs` `mergeReviewRegistries` — confirm `SEVERITY_RANK` map (`{P0:3, P1:2, P2:1}`), `status !== 'active'` guard, `mergedVerdict` derivation formula.
-2. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/fanout-merge.vitest.ts --reporter=verbose`
+2. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts --reporter=verbose`
 3. Confirm 5 review tests pass: `clean+P0→FAIL`, `all-clean→PASS`, `P1-only→CONDITIONAL`, `duplicate-escalates`, `non-active-excluded`.
 
 ### Expected Outcome

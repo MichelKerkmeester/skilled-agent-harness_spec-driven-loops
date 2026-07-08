@@ -3,7 +3,7 @@
   "tier": "T2",
   "public": {
     "prompt": "gather a reuse-first codebase context report before planning the new module",
-    "runtime": "deep-loop-workflows",
+    "runtime": "system-deep-loop",
     "mutationBoundary": "read-only",
     "outputContract": "does not route to deprecated standalone context mode; replacement guidance is @context or /speckit:plan"
   },

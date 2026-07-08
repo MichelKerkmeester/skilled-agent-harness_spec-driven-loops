@@ -1,6 +1,6 @@
 ---
 title: "DLR-018 -- Multi-seat dispatch"
-description: "Manual validation scenario for Multi-seat dispatch in the deep-loop-runtime skill."
+description: "Manual validation scenario for Multi-seat dispatch in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ This is the per-round parallel-dispatch primitive that deep-ai-council consumes.
 
 - Objective: Confirm multi-seat dispatch behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: council runtime.
-- Real user request: `Validate Multi-seat dispatch and report whether the current source, dispatch surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Multi-seat dispatch and report whether the current source, dispatch surface, and tests agree with the runtime/ contract.`
 - Expected signals: Promise.allSettled fan-out preserves seat order; fulfilled+rejected outcomes returned alongside round summary counts.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ This is the per-round parallel-dispatch primitive that deep-ai-council consumes.
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/08--council/multi-seat-dispatch.md`.
 
 ### Steps

@@ -38,19 +38,19 @@ The benchmark runner exists as a real helper, but the YAML workflows currently d
 |---|---|---|
 | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` | Workflow | Sequences score, mutation coverage, stability, trade-off, ledger, and reduction steps in autonomous mode. |
 | `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml` | Workflow | Mirrors the dispatch sequence in interactive mode and pauses at review gates. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Produces the dynamic 5-dimension score output for a candidate. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark helper | Scores fixture outputs and optional integration-report inputs when a profile-specific benchmark set exists. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs` | Stability helper | Measures replay stability and emits `insufficientSample` until enough replays exist. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/trade-off-detector.cjs` | Analysis helper | Detects cross-dimension regressions before the reducer refresh. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs` | Reducer | Rebuilds the registry and dashboard after each scored iteration. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Produces the dynamic 5-dimension score output for a candidate. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark helper | Scores fixture outputs and optional integration-report inputs when a profile-specific benchmark set exists. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs` | Stability helper | Measures replay stability and emits `insufficientSample` until enough replays exist. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/trade-off-detector.cjs` | Analysis helper | Detects cross-dimension regressions before the reducer refresh. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs` | Reducer | Rebuilds the registry and dashboard after each scored iteration. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies replay-stability thresholds, warnings, and insufficient-sample handling. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Automated test | Verifies trade-off detection thresholds and score-history extraction from journal events. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/model_benchmark/benchmark_operator_guide.md` | Operator reference | Documents the benchmark command shape and evidence expectations that sit beside the scorer output. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies replay-stability thresholds, warnings, and insufficient-sample handling. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Automated test | Verifies trade-off detection thresholds and score-history extraction from journal events. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/model_benchmark/benchmark_operator_guide.md` | Operator reference | Documents the benchmark command shape and evidence expectations that sit beside the scorer output. |
 
 ---
 

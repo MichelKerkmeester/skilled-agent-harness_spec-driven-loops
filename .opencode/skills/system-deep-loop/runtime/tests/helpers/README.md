@@ -1,6 +1,6 @@
 ---
 title: "Test Helpers"
-description: "Shared test-fixture utilities reused across deep-loop-runtime test suites."
+description: "Shared test-fixture utilities reused across runtime/ test suites."
 ---
 
 # Test Helpers
@@ -19,4 +19,4 @@ vitest fixture helpers reused across multiple test files. Renamed from `_helpers
 
 ## 3. RELATED RESOURCES
 
-- Parent tests README: `.opencode/skills/deep-loop-runtime/tests/README.md`
+- Parent tests README: `.opencode/skills/system-deep-loop/runtime/tests/README.md`

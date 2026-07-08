@@ -39,14 +39,14 @@ The YAML workflows own when candidate generation happens. Autonomous mode runs t
 | `.opencode/agents/deep-improvement.md` | Proposal agent | Defines the proposal-only contract, required inputs, and runtime-only write boundary. |
 | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` | Workflow | Dispatches the candidate-generation step on each autonomous iteration. |
 | `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml` | Workflow | Gates candidate generation behind operator approval in interactive mode. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` | Skill orchestration | Describes the bounded-candidate rule and the packet-local `candidates/` directory contract. |
+| `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Skill orchestration | Describes the bounded-candidate rule and the packet-local `candidates/` directory contract. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/loop_protocol.md` | Reference | Documents the proposal-first sequence and runtime-only candidate path. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md` | Safety reference | Stops the loop when mutator and scorer boundaries blur or scope broadens. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/loop_protocol.md` | Reference | Documents the proposal-first sequence and runtime-only candidate path. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/promotion_rules.md` | Safety reference | Stops the loop when mutator and scorer boundaries blur or scope broadens. |
 
 ---
 

@@ -78,7 +78,7 @@ function probeAdvisor({ prompt, advisorPy, timeoutMs }) {
  * deep-* discriminator onto registry workflowMode names and returns the winning
  * mode plus per-mode scores. This is separate from {@link probeAdvisor}: that
  * call ranks SKILLS (the D1-inter gate); this one resolves the MODE within the
- * merged deep-loop-workflows skill. Deterministic (SQLite scorer, no LLM).
+ * merged system-deep-loop skill. Deterministic (SQLite scorer, no LLM).
  *
  * @param {Object} params - Probe parameters.
  * @param {string} params.prompt - Public prompt text to route.

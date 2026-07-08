@@ -45,11 +45,11 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate single-weak-source guards override STOP when an answer depends on one tentative source.
 ### Commands
-1. `bash: sed -n '104,139p' .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md`
-2. `bash: rg -n 'single_weak_source\|tentative\|sourceStrength' .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md`
-3. `bash: sed -n '183,195p' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
-4. `bash: rg -n 'guard_violation\|single_weak_source' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
-5. `bash: sed -n '97,107p' .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md`
+1. `bash: sed -n '104,139p' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+2. `bash: rg -n 'single_weak_source\|tentative\|sourceStrength' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+3. `bash: sed -n '183,195p' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md`
+4. `bash: rg -n 'guard_violation\|single_weak_source' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md`
+5. `bash: sed -n '97,107p' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md`
 6. `bash: sed -n '236,243p' .opencode/commands/deep/assets/deep_research_auto.yaml`
 ### Expected
 guard_violation event logged with guard="single_weak_source", STOP decision overridden to CONTINUE, violated question targeted for stronger sourcing in next iteration.
@@ -74,9 +74,9 @@ Privilege convergence.md §2.4 for the canonical guard definition and state_form
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | JSONL event schema; use guard_violation event definition and sourceStrength field classification |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | JSONL event schema; use guard_violation event definition and sourceStrength field classification |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` guard override logic |
 
 ---
@@ -87,4 +87,4 @@ Privilege convergence.md §2.4 for the canonical guard definition and state_form
 - Playbook ID: DR-022
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `04--convergence-and-recovery/quality-guard-no-single-weak-source.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

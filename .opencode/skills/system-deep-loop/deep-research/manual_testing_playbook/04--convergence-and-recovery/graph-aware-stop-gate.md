@@ -50,7 +50,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate graph-aware stop gates use reducer graph convergence output before the inline stop vote.
 
 ### Commands
-1. `bash: node .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs {spec_folder}`
+1. `bash: node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}`
 2. `bash: cat {spec_folder}/research/findings-registry.json | jq '.graphConvergenceScore, .graphDecision, .graphBlockers'`
 3. `bash: grep -A 3 "GRAPH CONVERGENCE" {spec_folder}/research/deep-research-dashboard.md`
 4. `bash: grep -n "deep_loop_graph_upsert\\|deep_loop_graph_convergence" .opencode/commands/deep/assets/deep_research_auto.yaml`
@@ -81,8 +81,8 @@ Privilege reducer-owned registry output for surfaced state and the workflow YAML
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Canonical reducer implementation; surfaces `graphConvergenceScore`, `graphDecision`, `graphBlockers`, and dashboard `GRAPH CONVERGENCE` |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Research state contract; defines reducer-owned graph convergence fields and dashboard rendering expectations |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Canonical reducer implementation; surfaces `graphConvergenceScore`, `graphDecision`, `graphBlockers`, and dashboard `GRAPH CONVERGENCE` |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Research state contract; defines reducer-owned graph convergence fields and dashboard rendering expectations |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Live research auto workflow; invokes `deep_loop_graph_upsert` and `deep_loop_graph_convergence` before the inline 3-signal vote |
 
 ---
@@ -93,4 +93,4 @@ Privilege reducer-owned registry output for surfaced state and the workflow YAML
 - Playbook ID: DR-033
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `04--convergence-and-recovery/graph-aware-stop-gate.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-04-11.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-04-11.

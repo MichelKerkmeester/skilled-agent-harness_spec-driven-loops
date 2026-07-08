@@ -36,7 +36,7 @@ function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, 'utf8')) as T;
 }
 
-describe('meta-loop Lane D deep-loop-runtime packaging', () => {
+describe('meta-loop Lane D runtime/ packaging', () => {
   it('defines a self-target profile whose editable docs are allowed and frozen surfaces are not', () => {
     const profile = readJson<SelfTargetProfile>(PROFILE_PATH);
     const allowed = new Set(profile.allowedDiffRelpaths);

@@ -40,12 +40,12 @@ For an agent-improvement run, resolve the mode through the registry and state th
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `agent-improvement` mode entry.
-2. `.opencode/skills/deep-loop-workflows/SKILL.md` contains the backend and NEVER-infer rules.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `agent-improvement` mode entry.
+2. `.opencode/skills/system-deep-loop/SKILL.md` contains the backend and NEVER-infer rules.
 
 ### Exact Command Sequence
 
-1. **Invoke hub**: `Skill(deep-loop-workflows, "For an agent-improvement run, resolve the mode through the registry and state the backend, runtime loop type, loop host mode, command, agent, and artifact root before starting.")`.
+1. **Invoke hub**: `Skill(system-deep-loop, "For an agent-improvement run, resolve the mode through the registry and state the backend, runtime loop type, loop host mode, command, agent, and artifact root before starting.")`.
 2. **Capture route**: save output to `/tmp/dlw-RB-003/response.txt`.
 3. **Compare backend fields**: confirm null runtime loop type and loop host mode.
 
@@ -71,8 +71,8 @@ For an agent-improvement run, resolve the mode through the registry and state th
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - backend and NEVER-infer rules.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `agent-improvement` backend fields.
+- `.opencode/skills/system-deep-loop/SKILL.md` - backend and NEVER-infer rules.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `agent-improvement` backend fields.
 
 ## 5. SOURCE METADATA
 

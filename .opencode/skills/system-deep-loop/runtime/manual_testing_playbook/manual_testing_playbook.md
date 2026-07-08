@@ -1,14 +1,14 @@
 ---
-title: "deep-loop-runtime: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the deep-loop-runtime skill."
+title: "runtime/: Manual Testing Playbook"
+description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
 version: 1.4.0.15
 ---
 
-# deep-loop-runtime: Manual Testing Playbook
+# runtime/: Manual Testing Playbook
 
 > **EXECUTION POLICY**: Every scenario MUST be executed against real files, scripts, and test fixtures. Use SKIP only when a concrete sandbox blocker prevents execution.
 
-This document combines the operator-facing manual validation contract for the `deep-loop-runtime` skill into a single reference. The root playbook acts as the directory, review protocol, and orchestration guide while per-feature files carry scenario-specific execution truth.
+This document combines the operator-facing manual validation contract for the `runtime/` skill into a single reference. The root playbook acts as the directory, review protocol, and orchestration guide while per-feature files carry scenario-specific execution truth.
 
 ---
 
@@ -31,7 +31,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 52 deterministic scenarios across 12 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 52 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -45,7 +45,7 @@ This playbook provides 52 deterministic scenarios across 12 categories validatin
 
 ## 2. GLOBAL PRECONDITIONS
 
-- `deep-loop-runtime` exists at `.opencode/skills/deep-loop-runtime/`.
+- `runtime/` exists at `.opencode/skills/system-deep-loop/runtime/`.
 - Runtime libraries exist under `lib/deep-loop/` and `lib/coverage-graph/`.
 - Direct scripts exist under `scripts/` and emit JSON-only stdout.
 - Runtime tests exist under `tests/{unit,integration,lifecycle}/`.
@@ -68,7 +68,7 @@ This playbook provides 52 deterministic scenarios across 12 categories validatin
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - Bash commands are shown as `bash: <command>`.
-- Script invocations use `node .opencode/skills/deep-loop-runtime/scripts/<name>.cjs ...`.
+- Script invocations use `node .opencode/skills/system-deep-loop/runtime/scripts/<name>.cjs ...`.
 - Source inspections use `rg` and `sed` from the repository root.
 - Test invocations use the existing Vitest surface when available.
 - `->` separates sequential steps.
@@ -113,7 +113,7 @@ This category covers 4 scenarios while the linked feature files remain the canon
 Parses and normalizes per-iteration executor configuration for native and CLI-backed deep-loop dispatch.
 
 #### Scenario Contract
-Prompt: `Validate Executor config and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Executor config and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
@@ -126,7 +126,7 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 Records executor provenance and guards recursive external-CLI dispatch inside iteration state logs.
 
 #### Scenario Contract
-Prompt: `Validate Executor audit and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Executor audit and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
@@ -139,7 +139,7 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 Chooses whether a failed model should fall back to a configured target or fail fast.
 
 #### Scenario Contract
-Prompt: `Validate Fallback router and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Fallback router and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
@@ -154,7 +154,7 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 Adds typed fallback-route metadata, route trace fields, and startup graph validation for executor fallback routing.
 
 #### Scenario Contract
-Prompt: `Validate Fallback-router typed reroute and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Fallback-router typed reroute and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Route trace metadata, preflight validation errors, cycle detection, and same-scope routing coverage.
 
@@ -173,7 +173,7 @@ This category covers 1 scenario while the linked feature files remain the canoni
 Renders prompt-pack templates with checked placeholder variables.
 
 #### Scenario Contract
-Prompt: `Validate Prompt pack and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Prompt pack and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
@@ -192,7 +192,7 @@ This category covers 3 scenarios while the linked feature files remain the canon
 Validates iteration artifacts after dispatch and appends degraded verification events when optional checks fail.
 
 #### Scenario Contract
-Prompt: `Validate Post-dispatch validate and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Post-dispatch validate and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
@@ -207,7 +207,7 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 Hardens LLM judge validation with retries, dual timeouts, format-strip parsing, neutral fallback cards, and quarantine gating.
 
 #### Scenario Contract
-Prompt: `Validate LLM-judge hardening and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate LLM-judge hardening and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Retry behavior, neutral fallback card shape, quarantine skip paths, and non-quarantined success coverage.
 
@@ -241,7 +241,7 @@ This category covers 10 scenarios while the linked feature files remain the cano
 Writes JSON state files through temp-file, fsync, rename, and cleanup semantics.
 
 #### Scenario Contract
-Prompt: `Validate Atomic state and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Atomic state and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Deterministic mutation safety evidence from source and unit tests.
 
@@ -254,7 +254,7 @@ Expected signals: Deterministic mutation safety evidence from source and unit te
 Repairs corrupted JSONL tails and appends valid records without preserving partial trailing lines.
 
 #### Scenario Contract
-Prompt: `Validate JSONL repair and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate JSONL repair and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Deterministic mutation safety evidence from source and unit tests.
 
@@ -267,7 +267,7 @@ Expected signals: Deterministic mutation safety evidence from source and unit te
 Provides a single-writer lock with stale-lock detection, heartbeat refresh, and owner-scoped release.
 
 #### Scenario Contract
-Prompt: `Validate Loop lock and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Loop lock and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Deterministic mutation safety evidence from source and unit tests.
 
@@ -280,7 +280,7 @@ Expected signals: Deterministic mutation safety evidence from source and unit te
 Evaluates pre-dispatch tool calls against packet-local, repo-wide, and external permission rules.
 
 #### Scenario Contract
-Prompt: `Validate Permissions gate and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Permissions gate and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Deterministic mutation safety evidence from source and unit tests.
 
@@ -295,7 +295,7 @@ Expected signals: Deterministic mutation safety evidence from source and unit te
 Adds `writeStateIfChangedAtomic()` so snapshot writers skip fsync and rename when canonical serialized state has not changed.
 
 #### Scenario Contract
-Prompt: `Validate Atomic-state serialize-diff and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Atomic-state serialize-diff and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Compare-before-write behavior from source plus unit coverage for first write, unchanged skip, and changed-state rewrite.
 
@@ -308,7 +308,7 @@ Expected signals: Compare-before-write behavior from source plus unit coverage f
 Adds SHA-256 integrity helpers for object and registry JSON without applying the contract to append-only JSONL.
 
 #### Scenario Contract
-Prompt: `Validate Atomic-state integrity helpers and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Atomic-state integrity helpers and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Integrity hash, stamping, stable key order, and mismatch warning behavior from unit tests.
 
@@ -321,7 +321,7 @@ Expected signals: Integrity hash, stamping, stable key order, and mismatch warni
 Adds a per-path deferred atomic writer that coalesces superseded snapshot writes while keeping JSONL appends immediate.
 
 #### Scenario Contract
-Prompt: `Validate Atomic-state deferred writer and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Atomic-state deferred writer and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Debounce, superseded-write coalescing, dirty-again reflush, flushNow, and close coverage in atomic-state unit tests.
 
@@ -334,7 +334,7 @@ Expected signals: Debounce, superseded-write coalescing, dirty-again reflush, fl
 Adds a lock-held JSONL merge path for fan-out salvage so recovered events are deduplicated before atomic rewrite.
 
 #### Scenario Contract
-Prompt: `Validate JSONL lock-held merge and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate JSONL lock-held merge and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Merge dedupe, reread-under-lock behavior, atomic rewrite, and fanout-salvage integration tests.
 
@@ -347,7 +347,7 @@ Expected signals: Merge dedupe, reread-under-lock behavior, atomic rewrite, and 
 Hardens loop-lock ownership with TTL-aware heartbeat refresh plus phase and last-activity metadata.
 
 #### Scenario Contract
-Prompt: `Validate Loop-lock heartbeat hardening and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Loop-lock heartbeat hardening and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Heartbeat refresh updates, metadata preservation, stale holder replacement, and loop-lock unit coverage.
 
@@ -360,7 +360,7 @@ Expected signals: Heartbeat refresh updates, metadata preservation, stale holder
 Adds opt-in host-local single-flight acquisition so concurrent acquire attempts for one lock collapse behind one live holder.
 
 #### Scenario Contract
-Prompt: `Validate Loop-lock single-flight decision and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Loop-lock single-flight decision and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Default file-lock behavior remains unchanged while opt-in host-local same-lock attempts refuse the second live holder.
 
@@ -379,7 +379,7 @@ This category covers 2 scenarios while the linked feature files remain the canon
 Scores executor reliability and decides when enough evidence supports demotion.
 
 #### Scenario Contract
-Prompt: `Validate Bayesian scorer and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Bayesian scorer and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
@@ -394,7 +394,7 @@ Expected signals: Runtime behavior matches the source contract and primary regre
 Adds a convergence score-delta signal comparing the current graph score with the prior snapshot.
 
 #### Scenario Contract
-Prompt: `Validate Convergence score-delta and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Convergence score-delta and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: First-iteration null delta, prior-snapshot delta, graph output bindings, and improvement-effect trace coverage.
 
@@ -413,7 +413,7 @@ This category covers 6 scenarios while the linked feature files remain the canon
 Owns the SQLite schema, namespace scoping, node and edge mutations, snapshots, and connection lifecycle.
 
 #### Scenario Contract
-Prompt: `Validate Coverage graph DB and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Coverage graph DB and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Session-scoped graph behavior, schema/query/signal outputs, and matching integration or lifecycle evidence.
 
@@ -426,7 +426,7 @@ Expected signals: Session-scoped graph behavior, schema/query/signal outputs, an
 Builds coverage-gap, contradiction, provenance-chain, unverified-claim, and hot-node read models.
 
 #### Scenario Contract
-Prompt: `Validate Coverage graph query and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Coverage graph query and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Session-scoped graph behavior, schema/query/signal outputs, and matching integration or lifecycle evidence.
 
@@ -439,7 +439,7 @@ Expected signals: Session-scoped graph behavior, schema/query/signal outputs, an
 Computes convergence signals, node centrality signals, snapshots, and momentum for research and review graphs.
 
 #### Scenario Contract
-Prompt: `Validate Coverage graph signals and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Coverage graph signals and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Session-scoped graph behavior, schema/query/signal outputs, and matching integration or lifecycle evidence.
 
@@ -454,7 +454,7 @@ Expected signals: Session-scoped graph behavior, schema/query/signal outputs, an
 Adds a default-off minimum-observations guard that blocks stop or promotion decisions until leading evidence repeats enough times.
 
 #### Scenario Contract
-Prompt: `Validate Observation-threshold guard and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Observation-threshold guard and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Default-off parity, configured threshold parsing, sub-threshold STOP blocking, and passing-threshold evidence coverage.
 
@@ -467,7 +467,7 @@ Expected signals: Default-off parity, configured threshold parsing, sub-threshol
 Adds optional time-decay weighting to coverage-graph signal ranking while preserving raw historical coverage counts.
 
 #### Scenario Contract
-Prompt: `Validate Coverage-graph time decay and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Coverage-graph time decay and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: No-decay full weight, half-life decay math, ranking integration, and convergence parity coverage.
 
@@ -480,7 +480,7 @@ Expected signals: No-decay full weight, half-life decay math, ranking integratio
 Adds deterministic fuzzy-merge query helpers for near-duplicate coverage nodes without mutating graph rows.
 
 #### Scenario Contract
-Prompt: `Validate Coverage-graph fuzzy merge and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Coverage-graph fuzzy merge and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Similarity thresholding, category guard, bounded namespace behavior, and query-only consolidation candidate tests.
 
@@ -499,7 +499,7 @@ This category covers 4 scenarios while the linked feature files remain the canon
 Computes graph-aware CONTINUE, STOP_ALLOWED, or STOP_BLOCKED decisions for a session namespace.
 
 #### Scenario Contract
-Prompt: `Validate convergence.cjs and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate convergence.cjs and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
 
@@ -512,7 +512,7 @@ Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for
 Stores coverage graph nodes and edges from JSON arrays or iteration graph event files.
 
 #### Scenario Contract
-Prompt: `Validate upsert.cjs and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate upsert.cjs and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
 
@@ -525,7 +525,7 @@ Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for
 Reads session-scoped coverage graph views through a direct JSON stdout script interface.
 
 #### Scenario Contract
-Prompt: `Validate query.cjs and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate query.cjs and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
 
@@ -538,7 +538,7 @@ Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for
 Reports session-scoped coverage graph health, counts, schema version, and current signals.
 
 #### Scenario Contract
-Prompt: `Validate status.cjs and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate status.cjs and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
 
@@ -701,7 +701,7 @@ Expected signals: `if_absent` command unchanged; `step_fanout_spawn` and `step_f
 Records fixed-rate scheduling overruns without replaying missed slots or violating single-flight dispatch semantics.
 
 #### Scenario Contract
-Prompt: `Validate Fixed-rate overrun accounting and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Fixed-rate overrun accounting and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Fast-slot zero skip, overrun skip count, slot duration persistence, and no catch-up dispatch behavior.
 
@@ -714,7 +714,7 @@ Expected signals: Fast-slot zero skip, overrun skip count, slot duration persist
 Adds an opt-in fan-out stall watchdog that aborts and requeues lineages when pending lag crosses a configured ceiling.
 
 #### Scenario Contract
-Prompt: `Validate Fan-out stall watchdog and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Fan-out stall watchdog and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: No-op default behavior, lag-ceiling event emission, abort-and-requeue handling, and required positive threshold validation.
 
@@ -727,7 +727,7 @@ Expected signals: No-op default behavior, lag-ceiling event emission, abort-and-
 Persists a pre-dispatch wait checkpoint and resumes waiting state before dispatch after a crash restart.
 
 #### Scenario Contract
-Prompt: `Validate Persisted-wait crash resume and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Persisted-wait crash resume and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Wait checkpoint persistence, resume-waiting startup branch, null legacy migration behavior, and fanout-run unit coverage.
 
@@ -746,7 +746,7 @@ This category covers 2 scenarios while the linked feature files remain the canon
 Adds an abortable chunked sleep primitive for cancellable waits and executor-boundary abort-signal composition.
 
 #### Scenario Contract
-Prompt: `Validate Abortable chunked sleep and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Abortable chunked sleep and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Sleep resolves after chunked waits, rejects on abort, removes listeners, and supports composed abort-signal cancellation.
 
@@ -759,7 +759,7 @@ Expected signals: Sleep resolves after chunked waits, rejects on abort, removes 
 Promotes loop lifecycle status and stop-reason taxonomy with legal transitions and a one-shot paused-wait resume gate.
 
 #### Scenario Contract
-Prompt: `Validate Lifecycle taxonomy guards and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Lifecycle taxonomy guards and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Taxonomy export, legal-transition map, backward-compatible literals, and one-shot resume gate coverage.
 
@@ -778,7 +778,7 @@ This category covers 3 scenarios while the linked feature files remain the canon
 Stamps seekable byte-region metadata on iteration records and surfaces those offsets in the deep-research dashboard.
 
 #### Scenario Contract
-Prompt: `Validate Byte-offset log regions and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Byte-offset log regions and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Stamped offset fields, readable byte slices, schema fields, and reducer dashboard output coverage.
 
@@ -791,7 +791,7 @@ Expected signals: Stamped offset fields, readable byte slices, schema fields, an
 Adds single-loop telemetry heartbeat rows for started, progress, and terminal lifecycle events with no-change write suppression.
 
 #### Scenario Contract
-Prompt: `Validate Single-loop telemetry heartbeat and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Single-loop telemetry heartbeat and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Started/progress/terminal heartbeat producers, single-loop row shape, no-change suppression, and YAML parse coverage.
 
@@ -804,7 +804,7 @@ Expected signals: Started/progress/terminal heartbeat producers, single-loop row
 Adds a unified observability event envelope and routes core runtime emitters through it without migrating legacy rows.
 
 #### Scenario Contract
-Prompt: `Validate Unified observability event envelope and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Unified observability event envelope and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Envelope normalization, append behavior, core emitter wiring, and status/convergence parity coverage.
 
@@ -823,7 +823,7 @@ This category covers 2 scenarios while the linked feature files remain the canon
 Adds shared hermetic test environments so runtime tests can run in parallel without touching real HOME, temp, or database paths.
 
 #### Scenario Contract
-Prompt: `Validate Hermetic test isolation and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Hermetic test isolation and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Per-test HOME/DB/temp isolation, child-env injection, cleanup behavior, and parallel fanout-run test coverage.
 
@@ -836,7 +836,7 @@ Expected signals: Per-test HOME/DB/temp isolation, child-env injection, cleanup 
 Adds record/replay helpers for script-level cassette regressions with redaction and hermetic environment integration.
 
 #### Scenario Contract
-Prompt: `Validate Record-replay cassette harness and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+Prompt: `Validate Record-replay cassette harness and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 
 Expected signals: Cassette recording, deterministic replay, redacted path/timestamp placeholders, and convergence/fanout regression coverage.
 

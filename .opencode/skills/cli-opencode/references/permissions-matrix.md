@@ -166,7 +166,7 @@ configuration operations blocked.
 
 The implementation lives at:
 
-`.opencode/skills/deep-loop-runtime/lib/deep-loop/permissions-gate.ts`
+`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts`
 
 Primary function:
 

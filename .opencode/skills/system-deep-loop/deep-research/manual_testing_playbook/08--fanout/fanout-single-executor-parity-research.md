@@ -44,7 +44,7 @@ If any `skip_when` guard is missing or `if_absent` was modified, every existing 
 3. Confirm `step_fanout_spawn:` has `skip_when: "config.fanout is absent"`.
 4. Confirm `step_fanout_merge:` has `skip_when: "config.fanout is absent"`.
 5. Repeat for `deep_research_confirm.yaml`.
-6. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/`
+6. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../runtime//tests/unit/`
 7. Confirm 197/197 pass.
 
 ### RECOMMENDED ORCHESTRATION PROCESS

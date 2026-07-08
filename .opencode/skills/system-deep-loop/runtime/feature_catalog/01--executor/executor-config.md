@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Parses and normalizes per-iteration executor configuration for native and CLI-backed deep-loop dispatch.
 
-This feature belongs to the executor group and is catalogued as F001 in the `deep-loop-runtime` inventory.
+This feature belongs to the executor group and is catalogued as F001 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the executor group and is catalogued as F001 in the `dee
 
 Schema, parsing, defaults, supported flags, sandbox and permission-mode normalization.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

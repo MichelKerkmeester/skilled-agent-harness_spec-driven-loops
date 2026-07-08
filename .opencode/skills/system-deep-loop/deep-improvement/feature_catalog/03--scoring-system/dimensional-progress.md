@@ -36,18 +36,18 @@ The reducer accepts more than one "good enough" label. It counts both `candidate
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs` | Reducer | Rebuilds the registry, dashboard, stop status, and dimensional trend summary from the ledger. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/mutation-coverage.cjs` | Coverage tracker | Records mutation attempts and per-dimension trajectory points consumed by reducer-side summaries. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/improvement-journal.cjs` | Journal helper | Stores typed lifecycle events, stop reasons, and session outcomes for replay consumers. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/candidate-lineage.cjs` | Lineage helper | Tracks parent-child candidate relationships and the active lineage leaf. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs` | Reducer | Rebuilds the registry, dashboard, stop status, and dimensional trend summary from the ledger. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/mutation-coverage.cjs` | Coverage tracker | Records mutation attempts and per-dimension trajectory points consumed by reducer-side summaries. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs` | Journal helper | Stores typed lifecycle events, stop reasons, and session outcomes for replay consumers. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/candidate-lineage.cjs` | Lineage helper | Tracks parent-child candidate relationships and the active lineage leaf. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Automated test | Verifies trajectory recording and convergence eligibility rules. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/improvement-journal.vitest.ts` | Automated test | Verifies event validation, stop-reason enums, and journal replay helpers. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/candidate-lineage.vitest.ts` | Automated test | Verifies lineage recording, ancestry lookup, and wave filtering. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Automated test | Verifies trajectory recording and convergence eligibility rules. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/improvement-journal.vitest.ts` | Automated test | Verifies event validation, stop-reason enums, and journal replay helpers. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/candidate-lineage.vitest.ts` | Automated test | Verifies lineage recording, ancestry lookup, and wave filtering. |
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "DLR-019 -- Round-state JSONL"
-description: "Manual validation scenario for Round-state JSONL in the deep-loop-runtime skill."
+description: "Manual validation scenario for Round-state JSONL in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ Council rounds must survive partial-write crashes. If round-state-jsonl drifts, 
 
 - Objective: Confirm round-state JSONL behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: council runtime durability primitives.
-- Real user request: `Validate Round-state JSONL and report whether the current source, persistence surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Round-state JSONL and report whether the current source, persistence surface, and tests agree with the runtime/ contract.`
 - Expected signals: lockfile guard prevents concurrent writers; jsonl-repair runs before append; fsync forces durability; reader API rehydrates round state.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Council rounds must survive partial-write crashes. If round-state-jsonl drifts, 
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/08--council/round-state-jsonl.md`.
 
 ### Steps

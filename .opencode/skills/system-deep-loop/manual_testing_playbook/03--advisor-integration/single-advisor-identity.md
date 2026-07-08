@@ -1,6 +1,6 @@
 ---
 title: "AI-001: Single Advisor Identity"
-description: "Verify positive deep-loop controls surface deep-loop-workflows as the parent hub identity instead of separate discoverable child skills."
+description: "Verify positive deep-loop controls surface system-deep-loop as the parent hub identity instead of separate discoverable child skills."
 version: "1.1.0.0"
 ---
 
@@ -8,7 +8,7 @@ version: "1.1.0.0"
 
 ## 1. OVERVIEW
 
-This scenario verifies the hub identity rule: positive deep-loop prompts should surface `deep-loop-workflows` as the public advisor-routable identity, with the hub then resolving the mode through the registry.
+This scenario verifies the hub identity rule: positive deep-loop prompts should surface `system-deep-loop` as the public advisor-routable identity, with the hub then resolving the mode through the registry.
 
 ## 2. SCENARIO CONTRACT
 
@@ -19,7 +19,7 @@ This scenario verifies the hub identity rule: positive deep-loop prompts should 
 Use deep research to investigate registry drift and write a research summary.
 ```
 
-**Additional advisor probes** (each must surface the same `deep-loop-workflows` hub identity):
+**Additional advisor probes** (each must surface the same `system-deep-loop` hub identity):
 ```
 Run a deep review and report P0/P1/P2 findings with a verdict.
 Run an AI council deliberation with multiple planning seats and converge on a recommendation.
@@ -27,14 +27,14 @@ Evaluate and score an agent candidate for promotion or rollback.
 ```
 
 **Expected route**:
-- Public advisor identity: `deep-loop-workflows`
+- Public advisor identity: `system-deep-loop`
 - Resolved modes: `research`, `review`, `ai-council`, `agent-improvement`
 - Commands: `/deep:research`, `/deep:review`, `/deep:ai-council`, `/deep:agent-improvement`
 - Agents: `deep-research`, `deep-review`, `ai-council`, `deep-improvement`
 
 **Why this route is expected**:
-- Hub source: the hub says `deep-loop-workflows` is the public, advisor-routable home for active deep-loop personas.
-- Hub source: the advisor routes any deep-loop query to the single identity `deep-loop-workflows`; the hub then picks the mode.
+- Hub source: the hub says `system-deep-loop` is the public, advisor-routable home for active deep-loop personas.
+- Hub source: the advisor routes any deep-loop query to the single identity `system-deep-loop`; the hub then picks the mode.
 - Registry evidence: the four tested modes contain `advisorRouting.routingClass` values `"lexical"`, `"lexical"`, `"lexical"`, and `"alias-fold"` respectively.
 - Registry evidence: the commands and agents are `"/deep:research"` with `"deep-research"`, `"/deep:review"` with `"deep-review"`, `"/deep:ai-council"` with `"ai-council"`, and `"/deep:agent-improvement"` with `"deep-improvement"`.
 
@@ -44,14 +44,14 @@ Evaluate and score an agent candidate for promotion or rollback.
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/SKILL.md` states the single advisor identity rule.
-2. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the four tested mode entries.
+1. `.opencode/skills/system-deep-loop/SKILL.md` states the single advisor identity rule.
+2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the four tested mode entries.
 3. Skill advisor is callable.
 
 ### Exact Command Sequence
 
 1. **Run advisor probes**: run the skill advisor once for each prompt and append output to `/tmp/dlw-AI-001/advisor.jsonl`.
-2. **Invoke hub**: invoke `Skill(deep-loop-workflows, "<prompt>")` once for each prompt.
+2. **Invoke hub**: invoke `Skill(system-deep-loop, "<prompt>")` once for each prompt.
 3. **Capture routes**: save mode-level responses to `/tmp/dlw-AI-001/routes.txt`.
 4. **Compare to registry**: confirm each response matches the expected mode entry.
 
@@ -59,7 +59,7 @@ Evaluate and score an agent candidate for promotion or rollback.
 
 | Step | Signal |
 |---|---|
-| 1 | Advisor output surfaces `deep-loop-workflows` or a documented legacy identity folded into the hub. |
+| 1 | Advisor output surfaces `system-deep-loop` or a documented legacy identity folded into the hub. |
 | 2 | Hub resolves exactly one primary `workflowMode` per prompt. |
 | 3 | No child packet advertises itself as a separate public advisor identity. |
 | 4 | Each command and agent pair matches `mode-registry.json`. |
@@ -67,7 +67,7 @@ Evaluate and score an agent candidate for promotion or rollback.
 ### Pass/Fail Criteria
 
 - **PASS** iff one public advisor identity is observed and all four resolved modes match the registry.
-- **PARTIAL** iff routing is correct but advisor output exposes a legacy identity in addition to the hub and the transcript clearly folds it back to `deep-loop-workflows`.
+- **PARTIAL** iff routing is correct but advisor output exposes a legacy identity in addition to the hub and the transcript clearly folds it back to `system-deep-loop`.
 - **FAIL** iff a child packet is treated as an independent public skill identity, a prompt resolves to multiple modes, or a route contradicts the registry.
 
 ### Failure Triage
@@ -78,8 +78,8 @@ Evaluate and score an agent candidate for promotion or rollback.
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - public advisor identity and hub routing rule.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - advisor routing projection and mode fields.
+- `.opencode/skills/system-deep-loop/SKILL.md` - public advisor identity and hub routing rule.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - advisor routing projection and mode fields.
 
 ## 5. SOURCE METADATA
 

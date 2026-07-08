@@ -4,7 +4,7 @@ description: "Adds an opt-in fan-out stall watchdog that aborts and requeues lin
 trigger_phrases:
   - "fan-out stall watchdog"
   - "fanout-stall-watchdog"
-  - "fan-out stall watchdog deep-loop-runtime"
+  - "fan-out stall watchdog runtime"
   - "fan-out fan-out stall watchdog"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds an opt-in fan-out stall watchdog that aborts and requeues lineages when pending lag crosses a configured ceiling.
 
-This feature belongs to the fan-out group and is catalogued as F044 in the `deep-loop-runtime` inventory.
+This feature belongs to the fan-out group and is catalogued as F044 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the fan-out group and is catalogued as F044 in the `deep
 
 `fanout-pool.cjs` accepts `lagCeilingMs` plus `lagCeilingAction:"abort-requeue"`, attaches abort handles per active slot, emits timeout failure-class ledger events, and leaves default pool behavior unchanged.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F044
 - Feature file path: `09--fanout/fanout-stall-watchdog.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/017-fanout-stall-watchdog`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//017-fanout-stall-watchdog`
 - Primary sources: `scripts/fanout-pool.cjs`, `tests/unit/fanout-pool.vitest.ts`
 Related references:
 - [fanout](../09--fanout/) — Fan-out category

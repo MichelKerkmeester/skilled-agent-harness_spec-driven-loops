@@ -18,7 +18,7 @@ This scenario validates that `runtime query CLI mode='hot_nodes'` materially bea
 
 Operators reviewing complex multi-round councils need to know which claims/decisions are the center of gravity. Without graph: the operator counts cross-references between artifacts by hand — easy to miss, easy to weight wrong. With graph: edge-degree ranking surfaces high-connectivity nodes (most SUPPORTS + CONTRADICTS + EVIDENCE_FOR) in one runtime CLI call.
 
-> **Automated test anchor:** `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-031 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json`.
+> **Automated test anchor:** `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-031 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/system-deep-loop/runtime/tests/council-graph-value-report.json`.
 
 ---
 
@@ -98,9 +98,9 @@ If wrong nodes appear in top-3, inspect `lib/council/council-graph-query.ts` `ge
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | runtime CLI script |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `getHotNodes` ranking helper |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/graph_support.md` §3 | Documents edge kinds counted toward hotness |
+| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | runtime CLI script |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | `getHotNodes` ranking helper |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` §3 | Documents edge kinds counted toward hotness |
 
 ---
 

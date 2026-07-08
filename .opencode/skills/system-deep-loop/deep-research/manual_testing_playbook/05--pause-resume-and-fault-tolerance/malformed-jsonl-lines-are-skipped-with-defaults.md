@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate malformed JSONL lines are skipped with defaults and warnings instead of crashing the loop.
 ### Commands
-1. `bash: rg -n 'Fault Tolerance|skip malformed|defaults|Warning:' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md`
-2. `bash: rg -n 'missing_newInfoRatio|malformed|skipped' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
-3. `bash: rg -n 'State file corrupt|Validate JSONL' .opencode/skills/deep-loop-workflows/deep-research/README.md`
+1. `bash: rg -n 'Fault Tolerance|skip malformed|defaults|Warning:' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+2. `bash: rg -n 'missing_newInfoRatio|malformed|skipped' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md`
+3. `bash: rg -n 'State file corrupt|Validate JSONL' .opencode/skills/system-deep-loop/deep-research/README.md`
 ### Expected
 Per-line parse protection exists, defaults are specified, skipped-line warnings are documented, and convergence operates on valid entries only.
 ### Evidence
@@ -71,9 +71,9 @@ Use the state-format reference as the primary source and the convergence referen
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Fault tolerance and event schema; use `ANCHOR:state-log` |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Defensive JSONL reading; use `ANCHOR:signal-definitions` |
-| `.opencode/skills/deep-loop-workflows/deep-research/README.md` | Troubleshooting language; use `ANCHOR:troubleshooting` |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Fault tolerance and event schema; use `ANCHOR:state-log` |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Defensive JSONL reading; use `ANCHOR:signal-definitions` |
+| `.opencode/skills/system-deep-loop/deep-research/README.md` | Troubleshooting language; use `ANCHOR:troubleshooting` |
 
 ---
 
@@ -83,4 +83,4 @@ Use the state-format reference as the primary source and the convergence referen
 - Playbook ID: DR-017
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `05--pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

@@ -47,7 +47,7 @@ Operators run the exact command sequence and judge only grep-checkable signals.
 set -uo pipefail
 rm -rf /tmp/cp-052-sandbox /tmp/cp-052-sandbox-baseline /tmp/cp-052-spec
 mkdir -p /tmp/cp-052-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-052-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-052-sandbox
 cp -a /tmp/cp-052-sandbox /tmp/cp-052-sandbox-baseline
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 git status --porcelain -- /tmp/cp-052-sandbox /tmp/cp-052-spec > /tmp/cp-052-pre.txt
@@ -82,7 +82,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.opencode/commands/deep/review.md` | 7-25, 43-160, 238-245 | Setup-first command contract and YAML handoff |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | 43-61, 253-346 | Command-only invocation and three-layer workflow |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 253-346 | Command-only invocation and three-layer workflow |
 | `.opencode/agents/deep-review.md` | 23-33, 218-238 | Agent is single-iteration target and mirrors are read-only |
 
 ## 5. SOURCE_METADATA

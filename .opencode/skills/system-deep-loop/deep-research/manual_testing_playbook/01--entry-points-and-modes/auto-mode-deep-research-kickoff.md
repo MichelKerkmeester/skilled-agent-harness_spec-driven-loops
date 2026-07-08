@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research auto mode across docs, command entrypoint, YAML workflow, and expected artifacts.
 ### Commands
-1. `bash: rg -n '/deep:research:auto|research/research.md|research/iterations' .opencode/skills/deep-loop-workflows/deep-research/README.md .opencode/skills/deep-loop-workflows/deep-research/references/guides/quick_reference.md`
+1. `bash: rg -n '/deep:research:auto|research/research.md|research/iterations' .opencode/skills/system-deep-loop/deep-research/README.md .opencode/skills/system-deep-loop/deep-research/references/guides/quick_reference.md`
 2. `bash: sed -n '1,220p' .opencode/commands/deep/research.md`
 3. `bash: sed -n '1,260p' .opencode/commands/deep/assets/deep_research_auto.yaml`
 ### Expected
@@ -71,8 +71,8 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/README.md` | User-facing examples; use `ANCHOR:quick-start` and `ANCHOR:configuration` |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/guides/quick_reference.md` | Cheat-sheet command contract; use `ANCHOR:commands` and `ANCHOR:state-files` |
+| `.opencode/skills/system-deep-loop/deep-research/README.md` | User-facing examples; use `ANCHOR:quick-start` and `ANCHOR:configuration` |
+| `.opencode/skills/system-deep-loop/deep-research/references/guides/quick_reference.md` | Cheat-sheet command contract; use `ANCHOR:commands` and `ANCHOR:state-files` |
 | `.opencode/commands/deep/research.md` | Markdown setup and mode routing; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 3. WORKFLOW OVERVIEW` |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Autonomous workflow contract; inspect `state_paths`, `phase_init`, and `phase_loop` |
 
@@ -84,4 +84,4 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 - Playbook ID: DR-001
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `01--entry-points-and-modes/auto-mode-deep-research-kickoff.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

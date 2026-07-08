@@ -456,4 +456,4 @@ Key integrations:
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/cli_reference.md`, `references/integration_patterns.md`, `assets/prompt_quality_card.md`, `assets/prompt_templates.md`, `references/agent_delegation.md`, `references/opencode_tools.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
-Related skills: `cli-claude-code` and `cli-opencode` for sibling cross-AI dispatch; `system-spec-kit` for handback; `sk-code` plus the selected overlay for generated code; `deep-loop-workflows` for loop execution (its `research` and `review` modes); and `mcp-code-mode` for MCP-backed tools.
+Related skills: `cli-claude-code` and `cli-opencode` for sibling cross-AI dispatch; `system-spec-kit` for handback; `sk-code` plus the selected overlay for generated code; `system-deep-loop` for loop execution (its `research` and `review` modes); and `mcp-code-mode` for MCP-backed tools.

@@ -1,6 +1,6 @@
 ---
 title: "DLR-032 -- Atomic-state deferred writer"
-description: "Manual validation scenario for Atomic-state deferred writer in the deep-loop-runtime skill."
+description: "Manual validation scenario for Atomic-state deferred writer in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm Atomic-state deferred writer behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: state safety runtime.
-- Real user request: `Validate Atomic-state deferred writer and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Atomic-state deferred writer and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Debounce, superseded-write coalescing, dirty-again reflush, flushNow, and close coverage in atomic-state unit tests.
 - Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/04--state-safety/atomic-state-deferred-writer.md`.
 
 ### Steps
@@ -92,7 +92,7 @@ Atomic-state deferred writer matches the documented current reality, the source 
 
 ### Adversarial Steps
 
-1. Run `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
+1. Run `cd .opencode/skills/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
 2. Confirm `tests/unit/atomic-state.vitest.ts` asserts `surfaces timer flush failures through close without an unhandled rejection`.
 3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
 
@@ -110,6 +110,6 @@ Atomic-state deferred writer matches the documented current reality, the source 
 - Playbook ID: DLR-032
 - Feature catalog entry: `feature_catalog/04--state-safety/atomic-state-deferred-writer.md`
 - Scenario file path: `manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/003-atomic-state-deferred-writer`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//003-atomic-state-deferred-writer`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

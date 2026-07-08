@@ -41,11 +41,11 @@ This playbook provides 50 deterministic scenarios across 9 categories validating
 
 ## 2. GLOBAL PRECONDITIONS
 
-- `deep-review` skill exists at `.opencode/skills/deep-loop-workflows/deep-review/`.
+- `deep-review` skill exists at `.opencode/skills/system-deep-loop/deep-review/`.
 - `/deep:review` command exists at `.opencode/commands/deep/review.md`.
 - `@deep-review` agent definition exists at `.opencode/agents/deep-review.md` plus runtime variants.
 - Review YAML workflows exist at `.opencode/commands/deep/assets/deep_review_auto.yaml` and `.opencode/commands/deep/assets/deep_review_confirm.yaml`.
-- `review_mode_contract.yaml` exists at `.opencode/skills/deep-loop-workflows/deep-review/assets/`.
+- `review_mode_contract.yaml` exists at `.opencode/skills/system-deep-loop/deep-review/assets/`.
 
 ---
 
@@ -594,18 +594,18 @@ Expected signals: Findings are compared across iterations by location and descri
 
 No dedicated automated test suite currently exists for `deep-review`. This playbook anchors directly to the live `deep-review` docs plus the active command and runtime definitions.
 
-- `SKILL.md`: `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md`
-- `README.md`: `.opencode/skills/deep-loop-workflows/deep-review/README.md`
+- `SKILL.md`: `.opencode/skills/system-deep-loop/deep-review/SKILL.md`
+- `README.md`: `.opencode/skills/system-deep-loop/deep-review/README.md`
 - `Command`: `.opencode/commands/deep/review.md`
 - `Auto YAML`: `.opencode/commands/deep/assets/deep_review_auto.yaml`
 - `Confirm YAML`: `.opencode/commands/deep/assets/deep_review_confirm.yaml`
 - `Agent (OpenCode)`: `.opencode/agents/deep-review.md`
 - `Agent (Claude)`: `.claude/agents/deep-review.md`
-- `Review Contract`: `.opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml`
-- `Loop Protocol`: `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md`
-- `Convergence`: `.opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md`
-- `State Format`: `.opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md`
-- `Quick Reference`: `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md`
+- `Review Contract`: `.opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml`
+- `Loop Protocol`: `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop_protocol.md`
+- `Convergence`: `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+- `State Format`: `.opencode/skills/system-deep-loop/deep-review/references/state/state_format.md`
+- `Quick Reference`: `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md`
 
 ---
 

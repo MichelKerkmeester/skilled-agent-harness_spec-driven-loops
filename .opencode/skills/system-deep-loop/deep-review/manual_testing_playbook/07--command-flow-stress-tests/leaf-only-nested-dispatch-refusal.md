@@ -46,13 +46,13 @@ Operators run the exact command sequence and judge only transcript, artifact, an
 set -uo pipefail
 rm -rf /tmp/cp-056-sandbox /tmp/cp-056-sandbox-baseline /tmp/cp-056-spec
 mkdir -p /tmp/cp-056-spec/review/iterations /tmp/cp-056-spec/review/deltas
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-056-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-056-sandbox
 cat > /tmp/cp-056-spec/review/deep-review-config.json <<'JSON'
 {"mode":"review","sessionId":"cp-056","generation":1,"lineageMode":"new","reviewTarget":"targets/review-target.js","reviewTargetType":"files","reviewDimensions":["security"],"specFolder":"/tmp/cp-056-spec"}
 JSON
 printf '%s\n' '{"type":"config","mode":"review","sessionId":"cp-056","generation":1,"reviewTarget":"targets/review-target.js","reviewDimensions":["security"],"specFolder":"/tmp/cp-056-spec"}' > /tmp/cp-056-spec/review/deep-review-state.jsonl
 printf '%s\n' '{"openFindings":[],"findingsBySeverity":{"P0":0,"P1":0,"P2":0}}' > /tmp/cp-056-spec/review/deep-review-findings-registry.json
-cp /tmp/cp-056-sandbox/.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md /tmp/cp-056-spec/review/deep-review-strategy.md
+cp /tmp/cp-056-sandbox/.opencode/skills/system-deep-loop/deep-review/assets/deep_review_strategy.md /tmp/cp-056-spec/review/deep-review-strategy.md
 cp -a /tmp/cp-056-sandbox /tmp/cp-056-sandbox-baseline
 cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 git status --porcelain -- /tmp/cp-056-sandbox /tmp/cp-056-spec > /tmp/cp-056-pre.txt
@@ -93,7 +93,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.opencode/commands/deep/review.md` | 169-188, 361-365 | Command owns loop dispatch, agent is one iteration |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | 43-61, 90-95 | Command-only loop invocation and LEAF invariant |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 90-95 | Command-only loop invocation and LEAF invariant |
 | `.opencode/agents/deep-review.md` | 37-48, 388-404 | Illegal nesting hard block and never rules |
 
 ## 5. SOURCE_METADATA

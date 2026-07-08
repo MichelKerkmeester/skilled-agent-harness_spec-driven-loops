@@ -20,7 +20,7 @@ const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fr
 
 // BEGIN GENERATED DEEP ROUTING PROJECTION
 /** Hash of the generated deep-loop routing projection embedded below. */
-export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:5c22ac993d9fb60ec1efcd4688cdf0452eb000ccb8108d581911155e5e9a7d02';
+export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:54ee3696fdffc06d5f32a6707be19841fcc0b4b5964e6e7a2ebf802e7d212fd9';
 
 const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'deep-ai-council': [
@@ -94,19 +94,19 @@ export function skillInAliasSet(actual: string, expected: readonly string[]): bo
 //
 // The active legacy deep-loop modes (deep-research, deep-review,
 // deep-ai-council, deep-improvement) are folded into one public skill,
-// deep-loop-workflows, discriminated by workflowMode (see
-// deep-loop-workflows/mode-registry.json). canonicalSkillId above is
+// system-deep-loop, discriminated by workflowMode (see
+// system-deep-loop/mode-registry.json). canonicalSkillId above is
 // deliberately UNCHANGED: an alias still resolves to its mode-level legacy id
 // (e.g. 'spec_kit:deep-review' -> 'deep-review') so existing callers and the
 // alias contract keep working. This layer adds the SECOND projection — legacy
 // mode-level id -> (merged skill, workflowMode) — that routers use to land on
-// deep-loop-workflows with the right mode once the old skill nodes leave the
+// system-deep-loop with the right mode once the old skill nodes leave the
 // graph.
 //
 // The removed standalone context route is intentionally absent from
 // DEEP_MODE_BY_CANONICAL and no longer appears in active registry routing.
 // Use @context for retrieval and research/review bounded snapshots for loops.
-export const MERGED_DEEP_SKILL_ID = 'deep-loop-workflows';
+export const MERGED_DEEP_SKILL_ID = 'system-deep-loop';
 
 const ALIAS_TO_MODE = new Map<string, string>(
   Object.entries(RAW_ALIAS_GROUPS).flatMap(([canonical, aliases]) => {
@@ -156,7 +156,7 @@ export function modeForPromptAlias(prompt: string): string | null {
 }
 
 /**
- * Resolve any deep-loop alias to the merged skill id (deep-loop-workflows) when
+ * Resolve any deep-loop alias to the merged skill id (system-deep-loop) when
  * it names a folded mode, else fall back to the plain canonical id. Non-deep
  * skills are returned unchanged.
  */

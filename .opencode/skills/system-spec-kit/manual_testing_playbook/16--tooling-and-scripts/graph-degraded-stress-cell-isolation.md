@@ -54,7 +54,7 @@ Vitest exits 0 with all 4 bucket assertions passing and the dedicated live-DB gu
 No test files found, exiting with code 1
 
 filter: tests/code-graph-degraded-sweep.vitest.ts
-include: mcp_server/tests/**/*.{vitest,test}.ts, ../deep-loop-runtime/tests/**/*.{vitest,test}.ts, scripts/tests/**/*.{vitest,test}.ts
+include: mcp_server/tests/**/*.{vitest,test}.ts, ../runtime//tests/**/*.{vitest,test}.ts, scripts/tests/**/*.{vitest,test}.ts
 exclude:  mcp_server/tests/memory-save.vitest.ts, mcp_server/tests/archive/**
 ```
 

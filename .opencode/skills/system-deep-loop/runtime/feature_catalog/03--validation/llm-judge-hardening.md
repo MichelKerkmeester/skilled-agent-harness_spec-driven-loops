@@ -4,7 +4,7 @@ description: "Hardens LLM judge validation with retries, dual timeouts, format-s
 trigger_phrases:
   - "llm-judge hardening"
   - "llm-judge-hardening"
-  - "llm-judge hardening deep-loop-runtime"
+  - "llm-judge hardening runtime"
   - "validation llm-judge hardening"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Hardens LLM judge validation with retries, dual timeouts, format-strip parsing, neutral fallback cards, and quarantine gating.
 
-This feature belongs to the validation group and is catalogued as F043 in the `deep-loop-runtime` inventory.
+This feature belongs to the validation group and is catalogued as F043 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the validation group and is catalogued as F043 in the `d
 
 `post-dispatch-validate.ts` retries transient judge failures, strips markdown fences before fallback, emits a neutral `quarantined:true` card after exhausted parsing, and blocks quarantined cards from persistence, convergence, and coverage writes.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F043
 - Feature file path: `03--validation/llm-judge-hardening.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/016-llm-judge-hardening`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//016-llm-judge-hardening`
 - Primary sources: `lib/deep-loop/post-dispatch-validate.ts`, `tests/unit/post-dispatch-validate.vitest.ts`
 Related references:
 - [validation](../03--validation/) — Validation category

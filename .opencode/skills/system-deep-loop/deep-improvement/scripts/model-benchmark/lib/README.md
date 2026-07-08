@@ -103,9 +103,9 @@ Main flow:
 Run from the repository root.
 
 ```bash
-npx vitest run .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/sweep-foundation.vitest.ts
-npx vitest run .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/sweep-stats-ci.vitest.ts
-npx vitest run .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/sweep-acceptance.vitest.ts
+npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/sweep-foundation.vitest.ts
+npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/sweep-stats-ci.vitest.ts
+npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/sweep-acceptance.vitest.ts
 ```
 
 Expected result: the sweep foundation, stats-CI, and acceptance suites pass.

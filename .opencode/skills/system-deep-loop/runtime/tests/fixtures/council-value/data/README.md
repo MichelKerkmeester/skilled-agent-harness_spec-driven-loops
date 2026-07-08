@@ -52,7 +52,7 @@ Current state:
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../runtime//tests/integration/council-graph-value-scenarios.vitest.ts
 ```
 
 Expected result: exit code 0, all 6 tests pass.

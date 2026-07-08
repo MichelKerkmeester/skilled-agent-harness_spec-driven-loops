@@ -285,7 +285,7 @@ describe('advisor_recommend handler', () => {
   it('publishes workflowMode for generated deep-loop aliases', async () => {
     mockReadAdvisorStatus.mockReturnValue(status('live'));
     mockScoreAdvisorPrompt.mockReturnValue(scoreResult([
-      recommendation({ skill: 'deep-loop-workflows' }),
+      recommendation({ skill: 'system-deep-loop' }),
     ]));
 
     const response = parseResponse(await handleAdvisorRecommend({
@@ -294,7 +294,7 @@ describe('advisor_recommend handler', () => {
 
     expect(response.data.recommendations).toEqual([
       expect.objectContaining({
-        skillId: 'deep-loop-workflows',
+        skillId: 'system-deep-loop',
         workflowMode: 'review',
       }),
     ]);

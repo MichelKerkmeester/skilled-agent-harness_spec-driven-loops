@@ -119,7 +119,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
 
    Validation hook:
-   - `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` runs at config-write time
+   - `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
    - Invalid combinations fail fast with clear errors, including `cli-opencode` without `--model` and reserved-but-unwired executor kinds
 
 4. Search for related spec folders across alias roots:
@@ -293,16 +293,16 @@ STATUS=FAIL ERROR="[message]"
 
 ### Skill Reference
 
-Full protocol documentation: `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md`
+Full protocol documentation: `.opencode/skills/system-deep-loop/deep-research/SKILL.md`
 
 Key references:
-- Loop protocol: `deep-loop-workflows/deep-research/references/protocol/loop_protocol.md`
-- Spec check protocol: `deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md`
-- State formats: `deep-loop-workflows/deep-research/references/state/state_format.md`
-- Convergence: `deep-loop-workflows/deep-research/references/convergence/convergence.md`
-- Quick reference: `deep-loop-workflows/deep-research/references/guides/quick_reference.md`
+- Loop protocol: `system-deep-loop/deep-research/references/protocol/loop_protocol.md`
+- Spec check protocol: `system-deep-loop/deep-research/references/protocol/spec_check_protocol.md`
+- State formats: `system-deep-loop/deep-research/references/state/state_format.md`
+- Convergence: `system-deep-loop/deep-research/references/convergence/convergence.md`
+- Quick reference: `system-deep-loop/deep-research/references/guides/quick_reference.md`
 
-For code review, see `deep-review` skill (`.opencode/skills/deep-loop-workflows/deep-review/SKILL.md`).
+For code review, see `deep-review` skill (`.opencode/skills/system-deep-loop/deep-review/SKILL.md`).
 
 ### Examples
 
@@ -371,4 +371,4 @@ Convergence thresholds and recovery settings used by this command are a governed
 **References:**
 - Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`
-- Convergence reference: `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md`
+- Convergence reference: `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`

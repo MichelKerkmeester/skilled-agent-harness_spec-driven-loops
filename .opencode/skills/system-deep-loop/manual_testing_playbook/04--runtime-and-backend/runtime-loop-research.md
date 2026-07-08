@@ -39,12 +39,12 @@ For a deep research run, resolve the mode through the registry and state the bac
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `research` mode entry.
-2. `.opencode/skills/deep-loop-workflows/SKILL.md` contains the backend routing rule.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
+2. `.opencode/skills/system-deep-loop/SKILL.md` contains the backend routing rule.
 
 ### Exact Command Sequence
 
-1. **Invoke hub**: `Skill(deep-loop-workflows, "For a deep research run, resolve the mode through the registry and state the backend, runtime loop type, command, agent, and artifact root before starting.")`.
+1. **Invoke hub**: `Skill(system-deep-loop, "For a deep research run, resolve the mode through the registry and state the backend, runtime loop type, command, agent, and artifact root before starting.")`.
 2. **Capture route**: save output to `/tmp/dlw-RB-001/response.txt`.
 3. **Compare backend fields**: confirm backend and runtime loop type match the registry.
 
@@ -70,8 +70,8 @@ For a deep research run, resolve the mode through the registry and state the bac
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - backend routing rule.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `research` backend fields.
+- `.opencode/skills/system-deep-loop/SKILL.md` - backend routing rule.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `research` backend fields.
 
 ## 5. SOURCE METADATA
 

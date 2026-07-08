@@ -186,14 +186,14 @@ Reference snippet showing a partially populated strategy file mid-review. Use th
 
 ```markdown
 ## 1. REVIEW CHARTER
-- Target: .opencode/skills/deep-loop-workflows/deep-research (skill, v1.4.0)
+- Target: .opencode/skills/system-deep-loop/deep-research (skill, v1.4.0)
 - Dimensions: correctness, test-coverage, cross-runtime-parity, observability
 - Stop conditions: rolling newInfoRatio < 0.08 for 2 iterations OR all dimensions converged OR max=7 reached
 - Success criteria: zero P0 in correctness; test-coverage P0 resolved or deferred with rationale
 
 ## 4. NEXT FOCUS
 - Dimension: test-coverage
-- Files: .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs, .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts
+- Files: .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs, .opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts
 - Why: Iteration 2 surfaced a P0 (convergence-path coverage gap); needs a focused follow-up before correctness can terminate PASS.
 
 ## 9. COVERAGE MATRIX

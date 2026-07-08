@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research iterations follow Next Focus and avoid exhausted or blocked approaches.
 ### Commands
-1. `bash: rg -n 'Next Focus|Exhausted Approaches|What Worked|What Failed' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md`
+1. `bash: rg -n 'Next Focus|Exhausted Approaches|What Worked|What Failed' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md`
 2. `bash: rg -n 'Exhausted Approaches|MANDATORY PRE-CHECK|RECOVERY' .opencode/agents/deep-research.md`
 3. `bash: rg -n 'least_explored|next_focus|remaining_questions_list' .opencode/commands/deep/assets/deep_research_auto.yaml .opencode/commands/deep/assets/deep_research_confirm.yaml`
 ### Expected
@@ -71,8 +71,8 @@ If wording differs between docs, privilege the runtime pre-check plus the state-
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Strategy file requirements; use `ANCHOR:strategy-file` |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Ideas backlog and recovery focus; use `ANCHOR:phase-iteration-loop` |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Strategy file requirements; use `ANCHOR:strategy-file` |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Ideas backlog and recovery focus; use `ANCHOR:phase-iteration-loop` |
 | `.opencode/agents/deep-research.md` | Exhausted-approach discipline and focus selection; inspect `Step 2: Determine Focus` |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Loop focus extraction |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Loop focus extraction |
@@ -85,4 +85,4 @@ If wording differs between docs, privilege the runtime pre-check plus the state-
 - Playbook ID: DR-009
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `03--iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

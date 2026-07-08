@@ -73,7 +73,7 @@ Enumerate all possible partial-state combinations (config only, JSONL only, stra
 |---|---|
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Session classification and migration, inspect `step_classify_session` and `step_migrate_legacy_review_state` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Session classification, inspect `step_classify_session` |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Phase detection guidance, use `ANCHOR:smart-routing` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance, use `ANCHOR:smart-routing` |
 
 ---
 
@@ -83,4 +83,4 @@ Enumerate all possible partial-state combinations (config only, JSONL only, stra
 - Playbook ID: DRV-006
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `02--initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

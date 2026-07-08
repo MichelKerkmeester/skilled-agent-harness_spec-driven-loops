@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep research stops once all tracked key questions are answered.
 ### Commands
-1. `bash: rg -n 'all questions answered|countUnanswered|coverage' .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md .opencode/skills/deep-loop-workflows/deep-research/README.md`
+1. `bash: rg -n 'all questions answered|countUnanswered|coverage' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md .opencode/skills/system-deep-loop/deep-research/README.md`
 2. `bash: rg -n 'remaining_questions == 0|all_questions_answered|answered_count|total_questions' .opencode/commands/deep/assets/deep_research_auto.yaml .opencode/commands/deep/assets/deep_research_confirm.yaml`
-3. `bash: rg -n 'Questions:|coverage|all questions answered' .opencode/skills/deep-loop-workflows/deep-research/references/guides/quick_reference.md`
+3. `bash: rg -n 'Questions:|coverage|all questions answered' .opencode/skills/system-deep-loop/deep-research/references/guides/quick_reference.md`
 ### Expected
 Question completion is a named hard stop and is reflected in the convergence and usage docs.
 ### Evidence
@@ -71,11 +71,11 @@ Check the convergence pseudocode first, then verify the loop extracts `answered_
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Question-coverage hard stop; use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Question-coverage hard stop; use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Remaining-question stop check; inspect `step_read_state` and `step_check_convergence` |
-| `.opencode/skills/deep-loop-workflows/deep-research/README.md` | Question-coverage framing; use `ANCHOR:usage-examples` |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/guides/quick_reference.md` | Coverage visualization; use `ANCHOR:progress-visualization` |
+| `.opencode/skills/system-deep-loop/deep-research/README.md` | Question-coverage framing; use `ANCHOR:usage-examples` |
+| `.opencode/skills/system-deep-loop/deep-research/references/guides/quick_reference.md` | Coverage visualization; use `ANCHOR:progress-visualization` |
 
 ---
 
@@ -85,4 +85,4 @@ Check the convergence pseudocode first, then verify the loop extracts `answered_
 - Playbook ID: DR-012
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `04--convergence-and-recovery/stop-when-all-key-questions-are-answered.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

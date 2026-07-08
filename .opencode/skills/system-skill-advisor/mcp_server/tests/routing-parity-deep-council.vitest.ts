@@ -2,7 +2,7 @@
 // MODULE: Deep AI Council Routing Parity Tests
 // ───────────────────────────────────────────────────────────────────
 //
-// Council-specific structural signals route to the merged deep-loop-workflows
+// Council-specific structural signals route to the merged system-deep-loop
 // skill in its ai-council mode. Each invariant asserts BOTH the merged skill AND
 // the ai-council mode — flat skill equality is insufficient because it would
 // hide a collapsed mode discriminator.
@@ -25,7 +25,7 @@ const advisorScript = resolve(
 type DeepMode = 'research' | 'review' | 'ai-council';
 
 interface RoutingResult {
-  readonly skill: 'deep-loop-workflows';
+  readonly skill: 'system-deep-loop';
   readonly mode: DeepMode;
   readonly scores: Record<DeepMode, number>;
   readonly winner: DeepMode;
@@ -104,10 +104,10 @@ function scoreRouting(prompt: string, packetContext: Record<string, unknown>): R
 
 describe('routing-parity-deep-council', () => {
   for (const invariant of invariants) {
-    it(`${invariant.id}: routes council-specific structural signal to deep-loop-workflows ai-council mode`, () => {
+    it(`${invariant.id}: routes council-specific structural signal to system-deep-loop ai-council mode`, () => {
       const result = scoreRouting(invariant.prompt, councilPacketContext);
 
-      expect(result.skill).toBe('deep-loop-workflows');
+      expect(result.skill).toBe('system-deep-loop');
       expect(result.mode).toBe('ai-council');
       expect(result.winner).toBe('ai-council');
       expect(result.confidence).toBeGreaterThanOrEqual(invariant.minConfidence);

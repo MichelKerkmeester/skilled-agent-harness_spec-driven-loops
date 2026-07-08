@@ -274,7 +274,7 @@ CONSTRAINT: Target files are READ-ONLY -- never modify code under review
 
 #### Executor Resolution (spec 018 + 019)
 
-Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
+Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
 - `native` (spec 018): dispatch `@deep-review` agent with model Opus.
 - `cli-opencode` (spec 018): pipe rendered prompt via stdin to `opencode run --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.
@@ -751,7 +751,7 @@ Non-native executor runs append an `executor` block with model and runtime setti
 
 ### Template And Config Surface
 
-The executor-agnostic iteration prompt lives at `assets/prompt_pack_iteration.md.tmpl`, rendered by `prompt-pack.ts` before dispatch and either injected as the agent's context (native) or piped to `opencode run` stdin (cli-opencode). Config is in `assets/deep_review_config.json` under the `executor` key; schema in `deep-loop-runtime/lib/deep-loop/executor-config.ts`. CLI flag precedence: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
+The executor-agnostic iteration prompt lives at `assets/prompt_pack_iteration.md.tmpl`, rendered by `prompt-pack.ts` before dispatch and either injected as the agent's context (native) or piped to `opencode run` stdin (cli-opencode). Config is in `assets/deep_review_config.json` under the `executor` key; schema in `runtime//lib/deep-loop/executor-config.ts`. CLI flag precedence: `--executor/--model/--reasoning-effort/--service-tier/--executor-timeout > config file > schema default`.
 
 ### What Never Changes Regardless Of Executor Route
 

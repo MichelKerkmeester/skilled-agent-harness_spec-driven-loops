@@ -13,7 +13,7 @@ version: 1.4.0.2
 
 # Deep Loop Runtime Script Interface Contract
 
-Formal contract for the direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`.
+Formal contract for the direct `.cjs` script entry points under `.opencode/skills/system-deep-loop/runtime/scripts/`.
 
 ---
 
@@ -73,7 +73,7 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 
 ### convergence.cjs
 
-Source: `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`
+Source: `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`
 
 Additional args: `--iteration`, `--persist-snapshot`.
 
@@ -83,7 +83,7 @@ Behavior: Returns `CONTINUE` for empty graphs, `STOP_BLOCKED` when blocking guar
 
 ### upsert.cjs
 
-Source: `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs`
+Source: `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs`
 
 Additional args: `--nodes`, `--edges`, or `--events`.
 
@@ -93,7 +93,7 @@ Behavior: Requires at least one node or edge, validates kinds and relations by l
 
 ### query.cjs
 
-Source: `.opencode/skills/deep-loop-runtime/scripts/query.cjs`
+Source: `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs`
 
 Additional args: `--query-type`, optional `--limit`, `--node-id`, `--max-depth`.
 
@@ -103,7 +103,7 @@ Behavior: Supports uncovered questions, coverage gaps, unverified claims, contra
 
 ### status.cjs
 
-Source: `.opencode/skills/deep-loop-runtime/scripts/status.cjs`
+Source: `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs`
 
 Additional args: none beyond namespace args.
 

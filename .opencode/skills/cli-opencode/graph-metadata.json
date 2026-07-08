@@ -28,8 +28,7 @@
     ],
     "related_to": [
       "cli-claude-code",
-      "deep-loop-workflows",
-      "deep-loop-workflows",
+      "system-deep-loop",
       "mcp-code-mode"
     ]
   },

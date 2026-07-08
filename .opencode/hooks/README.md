@@ -49,7 +49,7 @@ git commit
         │    ├─ staged agent files = git diff --cached --diff-filter=ACMD
         │    │                        filtered to ^\.(opencode|claude)/agents/
         │    ├─ none staged               → skip gate (most commits)
-        │    └─ else run .opencode/skills/deep-loop-workflows/deep-improvement/scripts/check-agent-mirror-sync.cjs
+        │    └─ else run .opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs
         │          ├─ mirrors desynced       → print BLOCKED → exit 1 (commit aborted)
         │          └─ node/checker missing   → warn → skip gate (fail-open)
         │

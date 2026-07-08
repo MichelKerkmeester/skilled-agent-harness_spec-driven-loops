@@ -4,7 +4,7 @@ description: "Adds single-loop telemetry heartbeat rows for started, progress, a
 trigger_phrases:
   - "single-loop telemetry heartbeat"
   - "single-loop-telemetry-heartbeat"
-  - "single-loop telemetry heartbeat deep-loop-runtime"
+  - "single-loop telemetry heartbeat runtime"
   - "observability single-loop telemetry heartbeat"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds single-loop telemetry heartbeat rows for started, progress, and terminal lifecycle events with no-change write suppression.
 
-This feature belongs to the observability group and is catalogued as F046 in the `deep-loop-runtime` inventory.
+This feature belongs to the observability group and is catalogued as F046 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the observability group and is catalogued as F046 in the
 
 `deep_research_auto.yaml` emits heartbeat rows tagged `label:"single"` with fan-out-shaped gauges, while `atomic-state.ts` suppresses unchanged telemetry rows through serialized-diff gating.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

@@ -38,8 +38,8 @@ The YAML workflow owns lifecycle orchestration, `@deep-research` executes LEAF i
 The deep research loop has 4 phases: initialization, iteration (repeated), synthesis, and save.
 
 Runtime capability matrix references for parity-sensitive loop behavior:
-- Human-readable matrix: `.opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md`
-- Machine-readable matrix: `.opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json`
+- Human-readable matrix: `.opencode/skills/system-deep-loop/deep-research/references/guides/capability_matrix.md`
+- Machine-readable matrix: `.opencode/skills/system-deep-loop/deep-research/assets/runtime_capabilities.json`
 
 ```text
 ┌──────────┐     ┌──────────────────────────┐     ┌───────────────────────┐     ┌──────────┐
@@ -269,7 +269,7 @@ CONSTRAINT: LEAF agent -- do NOT dispatch sub-agents
 
 #### Executor Resolution (spec 018 + 019)
 
-Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
+Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
 - `native` (spec 018): dispatch `@deep-research` agent with model Opus.
 - `cli-opencode` (spec 018): pipe rendered prompt via stdin to `opencode run --model X -c model_reasoning_effort=Y -c service_tier=Z -c approval_policy=never --sandbox workspace-write`.

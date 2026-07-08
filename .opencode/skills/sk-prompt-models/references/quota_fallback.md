@@ -145,7 +145,7 @@ return fallback(target.id);
 The production helper is:
 
 ```text
-.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts
+.opencode/skills/system-deep-loop/runtime/lib/deep-loop/fallback-router.ts
 ```
 
 That helper consumes a normalized projection where `quota_pool` is derived from

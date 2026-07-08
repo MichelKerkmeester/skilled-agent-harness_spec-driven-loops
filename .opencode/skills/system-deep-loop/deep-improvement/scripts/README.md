@@ -161,7 +161,7 @@ Expected result: every suite under `*/tests/**/*.vitest.ts` passes (suites live 
 List the source files from the repository root.
 
 ```bash
-rg --files .opencode/skills/deep-loop-workflows/deep-improvement/scripts -g '!node_modules'
+rg --files .opencode/skills/system-deep-loop/deep-improvement/scripts -g '!node_modules'
 ```
 
 ---

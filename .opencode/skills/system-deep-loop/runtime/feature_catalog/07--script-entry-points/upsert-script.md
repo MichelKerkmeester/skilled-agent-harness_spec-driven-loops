@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Stores coverage graph nodes and edges from JSON arrays or iteration graph event files.
 
-This feature belongs to the script entry points group and is catalogued as F015 in the `deep-loop-runtime` inventory.
+This feature belongs to the script entry points group and is catalogued as F015 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the script entry points group and is catalogued as F015 
 
 Direct replacement for `deep_loop_graph_upsert`; validates kinds, relations, and self-loops.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

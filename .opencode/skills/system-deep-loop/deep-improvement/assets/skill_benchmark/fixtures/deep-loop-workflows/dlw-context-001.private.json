@@ -1,7 +1,7 @@
 {
   "scenarioId": "dlw-context-001",
   "expected": {
-    "skillId": "deep-loop-workflows",
+    "skillId": "system-deep-loop",
     "routeOutcome": "defer",
     "workflowMode": [],
     "forbiddenWorkflowModes": ["context"],

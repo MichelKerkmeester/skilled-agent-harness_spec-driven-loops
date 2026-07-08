@@ -189,7 +189,7 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 
 ### Adapting to Your Stack
 
-This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, the `deep-loop-workflows` loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
+This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, the `system-deep-loop` loops, `runtime/`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
@@ -392,7 +392,7 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **L7** | Maintenance     | 7      | 1,000        | Memory index scans (run/status/cancel), async ingest and learning history    |
 | **L8** | Embedder        | 3      | 400          | Embedder list, set and status                                                |
 | **L9** | Task            | 2      | 300          | Task preflight and postflight                                                |
-| **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `deep-loop-runtime` CLI scripts (not MCP tools) |
+| **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `runtime/` CLI scripts (not MCP tools) |
 |        | **Total**       | **41** | **~8,300**   |                                                                              |
 
 Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 41 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
@@ -778,7 +778,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 
 ### 🔄 Deep Loop
 
-The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Five loop families (context, research, review, AI council, improvement) live as nested mode packets inside one parent skill, `deep-loop-workflows`, and all run on one shared runtime, `deep-loop-runtime`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries four co-equal lanes (agent improvement, model benchmark, skill benchmark, non-dev AI system refine), giving eight `/deep:*` loop commands in total.
+The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Five loop families (context, research, review, AI council, improvement) live as nested mode packets inside one parent skill, `system-deep-loop`, and all run on one shared runtime, `runtime/`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries four co-equal lanes (agent improvement, model benchmark, skill benchmark, non-dev AI system refine), giving eight `/deep:*` loop commands in total.
 
 #### How It Works
 
@@ -858,14 +858,14 @@ Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs
 &nbsp;
 #### Agent Improvement & Benchmarking
 
-Four co-equal lanes in the `deep-loop-workflows` improvement mode. Lane A reviews and upgrades any of your agents: `/deep:agent-improvement` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:model-benchmark`. Lane C diagnoses a skill's real-world routing, discovery, efficiency and usefulness: `/deep:skill-benchmark`. Lane D benchmarks an AI-system packaging and auto-refines its technique docs behind hard guardrails: `/deep:ai-system-improvement`.
+Four co-equal lanes in the `system-deep-loop` improvement mode. Lane A reviews and upgrades any of your agents: `/deep:agent-improvement` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:model-benchmark`. Lane C diagnoses a skill's real-world routing, discovery, efficiency and usefulness: `/deep:skill-benchmark`. Lane D benchmarks an AI-system packaging and auto-refines its technique docs behind hard guardrails: `/deep:ai-system-improvement`.
 - **Objective scoring:** rates an agent across five dimensions with fixed, repeatable checks, not another AI's opinion
 - **Sees the whole footprint:** finds every place the agent lives (definition, mirrors, commands, workflows, skills) before changing anything
 - **Never breaks the original:** changes go to a sandbox copy and only get promoted after they pass scoring, benchmarks and your approval, with rollback if they don't
 - **Knows when to stop:** ends once the scores stop improving
 - **Benchmarks too (Lanes B/C/D):** models and prompt frameworks against fixtures with pattern or 5-dimension scoring (deterministic or graded), skills against real routing and discovery behavior, and non-dev AI-system packagings against a correctness-gated gauntlet
 
-For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runtime/README.md), or the [deep-loop-workflows README](.opencode/skills/deep-loop-workflows/README.md), which documents each mode.
+For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.opencode/skills/system-deep-loop/README.md), which documents each mode.
 
 ---
 
@@ -909,7 +909,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 &nbsp;
 #### DEEP LOOP
 
-Two skills power the autonomous loops described in [Deep Loop](#deep-loop) above: **`deep-loop-runtime`**, the shared MCP-free execution engine every active loop runs on, and **`deep-loop-workflows`**, the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`). Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:sk-skill-parent`.
+Two skills power the autonomous loops described in [Deep Loop](#deep-loop) above: **`runtime/`**, the shared MCP-free execution engine every active loop runs on, and **`system-deep-loop`**, the parent skill routing to active nested modes (`deep-research`, `deep-review`, `ai-council`, `deep-improvement`). Use `@context` separately for one-shot retrieval. This parent-nested-skill pattern is the reusable standard behind `/create:sk-skill-parent`.
 
 &nbsp;
 #### CROSS-AI CLI
@@ -1108,7 +1108,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 **Parent Skill**
 - Scaffolds a parent skill with nested mode packets — one hub identity plus a `mode-registry.json` source of truth the modes project from
 - Generates the routing-only `SKILL.md`, single hub `graph-metadata.json`, N mode packets and a non-discoverable `shared/`
-- The reusable pattern behind `deep-loop-workflows`. Modes: `:auto`, `:confirm`
+- The reusable pattern behind `system-deep-loop`. Modes: `:auto`, `:confirm`
 
 **Agent**
 - Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions
@@ -1297,7 +1297,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-design`                               | ✅ Codebase-agnostic                        | Design-family parent hub: routes to five design-judgment modes (`interface`, `foundations`, `motion`, `audit`, `md-generator`) plus a nested Open Design transport mode (`design-mcp-open-design`). Grounds against real design systems and shipped-UI references (Mobbin/Refero via Code Mode). Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
-| `deep-loop-runtime` / `deep-loop-workflows` | ✅ Codebase-agnostic                        | Shared runtime plus the unified deep-loop skill (context, research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking). Work for any topic / target.     |
+| `runtime/` / `system-deep-loop` | ✅ Codebase-agnostic                        | Shared runtime plus the unified deep-loop skill (context, research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking). Work for any topic / target.     |
 | `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
 | `cli-*` (claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |

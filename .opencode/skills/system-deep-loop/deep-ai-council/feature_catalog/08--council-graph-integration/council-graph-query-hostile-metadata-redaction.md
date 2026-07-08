@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Query the council graph aft
 
 The shipped surface is anchored by `runtime upsert CLI`, `runtime query CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/council-graph-query-hostile-metadata-redaction.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-021.
 
-Current behavior is grounded in `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts`, which the scenario identifies as allowlist + length bounds (p1-003 remediation). Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering test: "redacts arbitrary metadata from prompt-safe query output".
+Current behavior is grounded in `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts`, which the scenario identifies as allowlist + length bounds (p1-003 remediation). Validation is anchored by `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`, covering test: "redacts arbitrary metadata from prompt-safe query output".
 
 The user-visible contract is concrete: Verify runtime query CLI redacts arbitrary metadata keys and bounds string lengths in its response. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,16 +40,16 @@ The user-visible contract is concrete: Verify runtime query CLI redacts arbitrar
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | Allowlist + length bounds (P1-003 remediation) |
-| `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Handler | runtime CLI script: prompt-safe query envelope |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/graph_support.md` | Reference | Documents the allowlist contract |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | Library | Allowlist + length bounds (P1-003 remediation) |
+| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | Handler | runtime CLI script: prompt-safe query envelope |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` | Reference | Documents the allowlist contract |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual_testing_playbook/08--council-graph-integration/council-graph-query-hostile-metadata-redaction.md` | Automated test | Manual scenario contract |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Test: "redacts arbitrary metadata from prompt-safe query output" |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Test: "redacts arbitrary metadata from prompt-safe query output" |
 
 ---
 

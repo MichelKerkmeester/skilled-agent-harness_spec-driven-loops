@@ -163,12 +163,12 @@ code-graph.sqlite
 .opencode/skills/system-code-graph/mcp_server/database/bad-apply-*/
 
 # ───────────────────────────────────────────
-# Database: deep-loop-runtime
+# Database: system-deep-loop/runtime
 # ───────────────────────────────────────────
-.opencode/skills/deep-loop-runtime/database/*.sqlite
-.opencode/skills/deep-loop-runtime/database/*.sqlite-shm
-.opencode/skills/deep-loop-runtime/database/*.sqlite-wal
-.opencode/skills/deep-loop-runtime/database/*.sqlite.bak*
+.opencode/skills/system-deep-loop/runtime/database/*.sqlite
+.opencode/skills/system-deep-loop/runtime/database/*.sqlite-shm
+.opencode/skills/system-deep-loop/runtime/database/*.sqlite-wal
+.opencode/skills/system-deep-loop/runtime/database/*.sqlite.bak*
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Runtime artifacts & data files

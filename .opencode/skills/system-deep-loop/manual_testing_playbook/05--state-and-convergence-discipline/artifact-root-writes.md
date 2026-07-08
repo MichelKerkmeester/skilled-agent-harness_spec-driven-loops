@@ -39,12 +39,12 @@ Before starting an AI council deliberation, resolve the mode through the registr
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `ai-council` mode entry.
-2. `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md` documents packet-local council artifact persistence.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `ai-council` mode entry.
+2. `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` documents packet-local council artifact persistence.
 
 ### Exact Command Sequence
 
-1. **Invoke hub**: `Skill(deep-loop-workflows, "Before starting an AI council deliberation, resolve the mode through the registry and state exactly where council artifacts should be written.")`.
+1. **Invoke hub**: `Skill(system-deep-loop, "Before starting an AI council deliberation, resolve the mode through the registry and state exactly where council artifacts should be written.")`.
 2. **Capture response**: save output to `/tmp/dlw-SC-002/response.txt`.
 3. **Compare artifact root**: confirm the response names `ai-council/` exactly.
 
@@ -71,9 +71,9 @@ Before starting an AI council deliberation, resolve the mode through the registr
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - packet artifact ownership.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `ai-council` artifact root.
-- `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md` - council artifact persistence.
+- `.opencode/skills/system-deep-loop/SKILL.md` - packet artifact ownership.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-council` artifact root.
+- `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` - council artifact persistence.
 
 ## 5. SOURCE METADATA
 

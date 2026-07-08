@@ -18,7 +18,7 @@ This scenario validates that `runtime query CLI mode='convergence_blockers'` mat
 
 When `max_rounds` is reached without convergence, `council-report.md` carries `convergence: false` per `convergence_signals.md`, but it does not rank what to fix first. The operator must re-read all critiques and disagreements to prioritize. The graph computes a structured blocker list ranked by severity + evidence-depth + node-centrality in one call.
 
-> **Automated test anchor:** `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-030 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json`.
+> **Automated test anchor:** `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-030 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/system-deep-loop/runtime/tests/council-graph-value-report.json`.
 
 ---
 
@@ -100,9 +100,9 @@ If `d1` is not first, inspect `lib/council/council-graph-query.ts` `getConvergen
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | runtime CLI script |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `getConvergenceBlockers` helper |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/convergence/convergence_signals.md` | Documents `max_rounds` escape hatch |
+| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | runtime CLI script |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | `getConvergenceBlockers` helper |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence_signals.md` | Documents `max_rounds` escape hatch |
 
 ---
 

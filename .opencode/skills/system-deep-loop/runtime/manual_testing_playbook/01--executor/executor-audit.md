@@ -1,6 +1,6 @@
 ---
 title: "DLR-002 -- Executor audit"
-description: "Manual validation scenario for Executor audit in the deep-loop-runtime skill."
+description: "Manual validation scenario for Executor audit in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 
 - Objective: Confirm executor audit behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: executor runtime.
-- Real user request: `Validate Executor audit and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Executor audit and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Runtime behavior matches the source contract and primary regression test.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/01--executor/executor-audit.md`.
 
 ### Steps

@@ -1,0 +1,31 @@
+{
+  "dataset": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/labeled-prompts.jsonl",
+  "rows": 193,
+  "advisor": {
+    "total": 193,
+    "correct": 71,
+    "accuracy": 0.3679,
+    "missed_skill_fires": 29,
+    "wrong_skill_fires": 83,
+    "false_fires_on_none": 10
+  },
+  "gate3": {
+    "tp": 125,
+    "fp": 4,
+    "fn": 2,
+    "tn": 62,
+    "precision": 0.969,
+    "recall": 0.9843,
+    "f1": 0.9766,
+    "historical_false_positive_regressions": []
+  },
+  "joint": {
+    "TT": 68,
+    "TF": 119,
+    "FT": 3,
+    "FF": 3
+  },
+  "semantic_enabled": false,
+  "threshold_failures": [],
+  "overall_pass": true
+}

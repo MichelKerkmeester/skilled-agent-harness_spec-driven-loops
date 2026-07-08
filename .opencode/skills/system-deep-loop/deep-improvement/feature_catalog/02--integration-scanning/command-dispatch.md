@@ -45,8 +45,8 @@ The real dispatch authority lives in the YAML assets. Both workflow files rescan
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/loop_protocol.md` | Workflow reference | Documents the expected propose, score, benchmark, reduce, and promote sequence. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/quick_reference.md` | Operator reference | Provides the shortest command surface and runtime-path reminder for the loop. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/loop_protocol.md` | Workflow reference | Documents the expected propose, score, benchmark, reduce, and promote sequence. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/quick_reference.md` | Operator reference | Provides the shortest command surface and runtime-path reminder for the loop. |
 
 ---
 

@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the confirm-mode deep-review entrypoint and report whether approval gates appear at every phase transition.
 ### Commands
-1. `bash: rg -n '/deep:review:confirm|approval|multi_gate' .opencode/skills/deep-loop-workflows/deep-review/README.md .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md`
+1. `bash: rg -n '/deep:review:confirm|approval|multi_gate' .opencode/skills/system-deep-loop/deep-review/README.md .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md`
 2. `bash: rg -n 'confirm|approval|gate|pause' .opencode/commands/deep/review.md`
 3. `bash: rg -n 'approvals|approval_gate|wait_for_approval|interactive' .opencode/commands/deep/assets/deep_review_confirm.yaml`
 ### Expected
@@ -71,8 +71,8 @@ Compare the auto and confirm YAMLs side by side to verify the confirm variant ad
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` |
+| `.opencode/skills/system-deep-loop/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` |
 | `.opencode/commands/deep/review.md` | Markdown setup and mode routing, use `## 0. UNIFIED SETUP PHASE` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Confirm workflow contract, inspect `operating_mode`, `approvals`, and approval gate steps |
 
@@ -84,4 +84,4 @@ Compare the auto and confirm YAMLs side by side to verify the confirm variant ad
 - Playbook ID: DRV-002
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `01--entry-points-and-modes/confirm-mode-checkpointed-review.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

@@ -64,16 +64,16 @@ context_loading:
 # SKILL REFERENCE
 # ─────────────────────────────────────────────────────────────────
 skill_reference:
-  skill: deep-loop-workflows
-  skill_md: .opencode/skills/deep-loop-workflows/deep-research/SKILL.md
+  skill: system-deep-loop
+  skill_md: .opencode/skills/system-deep-loop/deep-research/SKILL.md
   references:
-    loop_protocol: .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md
-    spec_check_protocol: .opencode/skills/deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md
-    state_format: .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md
-    convergence: .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md
+    loop_protocol: .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md
+    spec_check_protocol: .opencode/skills/system-deep-loop/deep-research/references/protocol/spec_check_protocol.md
+    state_format: .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md
+    convergence: .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md
   templates:
-    config: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json
-    strategy: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md
+    config: .opencode/skills/system-deep-loop/deep-research/assets/deep_research_config.json
+    strategy: .opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md
 
 # ─────────────────────────────────────────────────────────────────
 # AGENT CONFIGURATION
@@ -157,7 +157,7 @@ workflow:
         description: "Spawn all CLI lineages in capped worker pool"
         skip_when: "no entries in config.fanout.executors with kind != 'native'"
         command: |
-          node .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs \
+          node .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
             --spec-folder {spec_folder} \
             --loop-type research \
             --research-topic "{research_topic}" \
@@ -226,21 +226,21 @@ workflow:
 
       step_acquire_lock:
         action: "Acquire the single-writer advisory lock before session classification"
-        command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder}"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder}"
         on_acquire: "Capture ownerPid from the JSON output and reuse it for every release below. If acquired=false, fail closed — another deep-research run already holds this packet."
-        note: "Uses the promoted deep-loop-runtime loop-lock CLI (single source of truth: stale-lock reclaim, clean owner-scoped release). macOS/BSD locking is advisory — best-effort single-writer, not a hard mutex across host calls; stale-lock override is confirm-only or explicit recovery-only."
+        note: "Uses the promoted runtime/ loop-lock CLI (single source of truth: stale-lock reclaim, clean owner-scoped release). macOS/BSD locking is advisory — best-effort single-writer, not a hard mutex across host calls; stale-lock override is confirm-only or explicit recovery-only."
         # Lock-cleanup contract: the lock file MUST be released on every terminal exit path that follows acquisition.
         # Runtimes honoring step_acquire_lock are required to perform this cleanup before halting or pausing.
         on_halt:
           action: "Release the lock before any terminal halt branch returns control"
           applies_to: ["step_classify_session.on_invalid_state", "step_classify_session.on_completed_session", "step_preinit_spec_branch.conflict-detected"]
-          command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; failures here are logged but do not block the halt"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; failures here are logged but do not block the halt"
         on_cancel:
           action: "Release the lock on user cancel or pause-sentinel detection before sentinel processing"
-          command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; cancel completes regardless of cleanup result"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; cancel completes regardless of cleanup result"
         on_workflow_exit:
           action: "Release the lock as the final step of any workflow exit path (success or failure)"
-          command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; idempotent — safe to invoke when already released"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}; idempotent — safe to invoke when already released"
 
       step_classify_session:
         action: "Classify the session before writing files"
@@ -295,7 +295,7 @@ workflow:
 
       step_create_config:
         action: "Create deep-research-config.json from template"
-        template: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json
+        template: .opencode/skills/system-deep-loop/deep-research/assets/deep_research_config.json
         populate:
           topic: "{research_topic}"
           maxIterations: "{max_iterations}"
@@ -331,7 +331,7 @@ workflow:
 
       step_create_strategy:
         action: "Create strategy file from template with initial questions"
-        template: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md
+        template: .opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md
         populate:
           topic: "{research_topic}"
           key_questions: "Derive 3-5 key questions from the research topic"
@@ -374,7 +374,7 @@ workflow:
 
       step_preinit_spec_branch:
         action: "Run the bounded pre-init spec branch required by spec_check_protocol"
-        protocol_reference: ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md"
+        protocol_reference: ".opencode/skills/system-deep-loop/deep-research/references/protocol/spec_check_protocol.md"
         branches:
           no-spec:
             create: "{spec_folder}/spec.md"
@@ -429,8 +429,8 @@ workflow:
           node --experimental-strip-types --input-type=module <<'EOF'
           import { readFileSync } from 'node:fs';
 
-          import { appendJsonlIfChangedAtomic } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts';
-          import observabilityEvents from './.opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs';
+          import { appendJsonlIfChangedAtomic } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts';
+          import observabilityEvents from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs';
 
           const { appendObservabilityEvent } = observabilityEvents;
           const config = JSON.parse(readFileSync('{state_paths.config}', 'utf8'));
@@ -613,7 +613,7 @@ workflow:
 
       step_graph_convergence:
         action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
-        bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"'
+        bash: 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"'
         note: "Run before the inline vote. STOP from the inline 3-signal vote is allowed only when the graph decision is STOP_ALLOWED or absent."
         outputs:
           - graph_decision: "Tool decision value (CONTINUE | STOP_ALLOWED | STOP_BLOCKED), else null when unavailable"
@@ -820,7 +820,7 @@ workflow:
         action: "Dispatch one iteration via the selected executor"
         resolve_executor:
           source: "config.executor"
-          loader: ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+          loader: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
         pre_dispatch:
           generate_summary: |
             STATE SUMMARY (auto-generated):
@@ -831,8 +831,8 @@ workflow:
             {memory_context_prompt_line}
             Next focus: {next_focus}
           render_prompt_pack:
-            template_path: ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl"
-            renderer: ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
+            template_path: ".opencode/skills/system-deep-loop/deep-research/assets/prompt_pack_iteration.md.tmpl"
+            renderer: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
             variables:
               state_summary: "{state_summary}"
@@ -851,7 +851,7 @@ workflow:
               state_paths_delta_pattern: "{state_paths.delta_pattern}"
         pre_dispatch_audit:
           skip_when: "config.executor.type == 'native'"
-          call: ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
+          call: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
           args:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
@@ -869,8 +869,8 @@ workflow:
             import { readFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
 
-            import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveClaudePermissionMode } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts';
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveClaudePermissionMode } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
 
             const executor = {
               kind: 'cli-claude-code',
@@ -942,7 +942,7 @@ workflow:
             import { readFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
 
-            import { runAuditedExecutorCommand } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts';
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
 
             const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
             const executor = {
@@ -1015,8 +1015,8 @@ workflow:
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         post_dispatch_validate:
-          validator: ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
-          command: "node .opencode/skills/deep-loop-runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir {artifact_dir} --iteration {current_iteration}"
+          validator: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir {artifact_dir} --iteration {current_iteration}"
           command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (iteration_file_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing). The script enforces the artifact + route-proof contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
@@ -1104,7 +1104,7 @@ workflow:
 
       step_reduce_state:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
-        command: "node .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs {spec_folder}"
+        command: "node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}"
         inputs:
           latestJSONLDelta: "Latest JSONL records written since the previous iteration"
           newIterationFile: "{state_paths.iteration_pattern}"
@@ -1133,7 +1133,7 @@ workflow:
           - graph_upsert_edges_json: "Map latest_graph_events where type == 'edge' to edge payloads with source -> sourceId, target -> targetId, relation -> uppercase(relation), and preserve remaining edge fields"
           - graph_upsert_event_count: "Count mapped node and edge events"
         if_graph_events_present:
-          bash: "node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"research\" --session-id \"{config.lineage.sessionId}\" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'"
+          bash: "node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"research\" --session-id \"{config.lineage.sessionId}\" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'"
           note: "Skip silently when graphEvents is missing or empty."
         if_graph_events_missing:
           proceed: true
@@ -1190,8 +1190,8 @@ workflow:
           node --experimental-strip-types --input-type=module <<'EOF'
           import { existsSync, readFileSync } from 'node:fs';
 
-          import { appendJsonlIfChangedAtomic } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts';
-          import observabilityEvents from './.opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs';
+          import { appendJsonlIfChangedAtomic } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts';
+          import observabilityEvents from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs';
 
           const { appendObservabilityEvent } = observabilityEvents;
           const stateLogPath = '{state_paths.state_log}';
@@ -1265,7 +1265,7 @@ workflow:
           - "{state_paths.state_log}"
           - "{state_paths.registry}"
           - "{state_paths.strategy}"
-        template: .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_dashboard.md
+        template: .opencode/skills/system-deep-loop/deep-research/assets/deep_research_dashboard.md
         output: "{state_paths.dashboard}"
         note: "Auto-generated from JSONL + reducer registry + strategy. Never manually edited."
 
@@ -1291,7 +1291,7 @@ workflow:
         description: "Merge N lineage registries into one consolidated registry; skip when single-executor"
         skip_when: "config.fanout is absent"
         command: |
-          node .opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs \
+          node .opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs \
             --loop-type research \
             --artifact-dir {artifact_dir}
         working_directory: "{repo_root}"
@@ -1325,7 +1325,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged research deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
+        command: "node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"
@@ -1545,8 +1545,8 @@ workflow:
           node --experimental-strip-types --input-type=module <<'EOF'
           import { existsSync, readFileSync } from 'node:fs';
 
-          import { appendJsonlIfChangedAtomic } from './.opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts';
-          import observabilityEvents from './.opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs';
+          import { appendJsonlIfChangedAtomic } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts';
+          import observabilityEvents from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs';
 
           const { appendObservabilityEvent } = observabilityEvents;
           const stateLogPath = '{state_paths.state_log}';
@@ -1669,7 +1669,7 @@ workflow:
 
       step_release_lock:
         action: "Release the single-writer lock after save, skip-save, or cancellation cleanup has resolved"
-        command: "node .opencode/skills/deep-loop-runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid}"
         append_to_jsonl: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"save","timestamp":"{ISO_8601_NOW}"}'
 
   # ═══════════════════════════════════════════════════════════════

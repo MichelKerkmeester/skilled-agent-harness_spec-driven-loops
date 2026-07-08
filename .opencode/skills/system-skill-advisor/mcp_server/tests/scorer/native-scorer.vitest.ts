@@ -392,14 +392,14 @@ describe('027/003 native scorer units', () => {
     expect(result.topSkill).toBe('sk-code');
   });
 
-  it('routes natural council deliberation prompts to deep-loop-workflows despite compare wording', () => {
+  it('routes natural council deliberation prompts to system-deep-loop despite compare wording', () => {
     // The five legacy deep-loop skills (including the former deep-ai-council)
-    // are folded into the single merged deep-loop-workflows node, discriminated
+    // are folded into the single merged system-deep-loop node, discriminated
     // by workflowMode. Council vocabulary routes to that merged skill; the
     // fixture exposes the merged node accordingly.
     const projection = createFixtureProjection([
       skill({
-        id: 'deep-loop-workflows',
+        id: 'system-deep-loop',
         description: 'AI Council deliberation workflow for multi-seat planning and council artifact persistence.',
         domains: ['planning', 'deliberation', 'ai-council', 'artifact-persistence'],
         intentSignals: ['ai council', 'council deliberation', 'persist council artifacts'],
@@ -413,7 +413,7 @@ describe('027/003 native scorer units', () => {
       projection,
     });
 
-    expect(result.topSkill).toBe('deep-loop-workflows');
+    expect(result.topSkill).toBe('system-deep-loop');
     expect(result.recommendations[0].confidence).toBeGreaterThanOrEqual(0.8);
   });
 

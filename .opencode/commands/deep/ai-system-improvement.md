@@ -1,6 +1,6 @@
 ---
 description: "Benchmark an AI-system packaging with an independent grader and auto-refine its technique docs behind hard guardrails (Lane D). Dry-run default; --live runs the guarded loop. Use --self-target <profile> for guarded self-improvement setup. Modes :auto, :confirm."
-skill: deep-loop-workflows
+skill: system-deep-loop
 ---
 
 # /deep:ai-system-improvement
@@ -34,7 +34,7 @@ ad hoc instructions for a worker to follow (that worker should follow its own
 dispatch prompt, not re-run this command's full setup contract)?
 
 ├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Read `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` and `references/non_dev_ai_system/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
+│   └─ general_agent_verified = TRUE → Read `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` and `references/non_dev_ai_system/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
 │
 └─ NO, with concrete evidence this file's content was pasted inline rather than
    invoked as the command itself:
@@ -71,7 +71,7 @@ concrete evidence of the pasted-inline case above.
 
 Resolve:
 - **packaging root** (required) — must implement the `_loop/loop.py` contract (see the operator guide's Contract Conformance Checklist; pilot: `…/AI_Systems/Barter/Copywriter`).
-- **self target** (optional) — `--self-target <profile>` is a router-owned setup shortcut. A bare profile ID resolves under `.opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/`; a path resolves directly. The profile JSON must validate against `.opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json` and must define `frozenSurfaces`, `editableTechDocs`, `allowedDiffRelpaths`, and `excludedSessionPrefixes`.
+- **self target** (optional) — `--self-target <profile>` is a router-owned setup shortcut. A bare profile ID resolves under `.opencode/skills/system-deep-loop/deep-improvement/assets/non_dev_ai_system/profiles/`; a path resolves directly. The profile JSON must validate against `.opencode/skills/system-deep-loop/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json` and must define `frozenSurfaces`, `editableTechDocs`, `allowedDiffRelpaths`, and `excludedSessionPrefixes`.
 - **live** — default FALSE (dry-run: gates + grader-family guard + gap analysis, zero dispatches). `--live` dispatches models and may promote into an isolated worktree branch; it requires a clean tree (the loop refuses uncommitted knowledge-base or shared-global-doc changes).
 - **max iters** — live-loop ceiling (default 1 for a first run).
 - **fixtures / variants / held-out / samples** — optional overrides of the packaging's defaults; held-out fixtures must be non-interactive (deliverable-producing) and the proposer never sees them.
@@ -99,7 +99,7 @@ The self-target flag is not forwarded to `loop-host.cjs`. It compiles to the exi
 ## RUN
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=non-dev-ai-system-refine \
   --packaging-root <path> \
   [--live] [--max-iters <n>] [--fixtures <a,b>] [--variants <a,b>] \
@@ -109,7 +109,7 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-h
 Router-only self-target setup:
 
 ```bash
-/deep:ai-system-improvement --self-target deep-loop-runtime [--live] [--parallel]
+/deep:ai-system-improvement --self-target runtime/ [--live] [--parallel]
 ```
 
 The adapter (`scripts/non-dev-ai-system/run-non-dev-ai-system.cjs`) validates the contract and spawns the packaging-owned loop host; all guarded-loop logic (frozen scoring surface, kill-switches, worktree promote-N, resume) lives with the packaging.

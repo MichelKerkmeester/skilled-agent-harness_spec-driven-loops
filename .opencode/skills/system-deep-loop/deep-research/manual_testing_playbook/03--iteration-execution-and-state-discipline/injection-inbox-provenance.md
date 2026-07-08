@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-research inbox provenance path from strategy docs through reducer output and tests.
 ### Commands
-1. `bash: sed -n '30,70p' .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md`
-2. `bash: rg -n 'INBOX_FILE_NAME|readInboxQuestions|legacy-import|origin|injectedAtIteration' .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs`
-3. `bash: rg -n 'promotes inbox questions|legacy-import|inbox.jsonl|origin' .opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts`
+1. `bash: sed -n '30,70p' .opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md`
+2. `bash: rg -n 'INBOX_FILE_NAME|readInboxQuestions|legacy-import|origin|injectedAtIteration' .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
+3. `bash: rg -n 'promotes inbox questions|legacy-import|inbox.jsonl|origin' .opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts`
 ### Expected
 Inbox records are documented, reducer-read, and carried into generated question state with provenance; direct markdown edits remain a legacy-import compatibility path.
 ### Evidence
@@ -72,9 +72,9 @@ Privilege `reduce-state.cjs` for live behavior and `deep_research_strategy.md` f
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md` | Operator-facing inbox schema and legacy-import guidance |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Inbox parser and provenance projection |
-| `.opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for inbox provenance output |
+| `.opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md` | Operator-facing inbox schema and legacy-import guidance |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Inbox parser and provenance projection |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for inbox provenance output |
 
 ---
 

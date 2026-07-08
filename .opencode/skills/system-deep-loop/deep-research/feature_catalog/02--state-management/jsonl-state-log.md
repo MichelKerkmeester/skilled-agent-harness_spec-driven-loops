@@ -36,8 +36,8 @@ The log is append-only by contract. The agent may add one iteration line, the wo
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Reference | Defines the JSONL schema for config, iteration, and event lines. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Reference | Defines how convergence readers parse JSONL safely and interpret stuck, insight, and thought statuses. |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Reference | Defines the JSONL schema for config, iteration, and event lines. |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines how convergence readers parse JSONL safely and interpret stuck, insight, and thought statuses. |
 | `.opencode/agents/deep-research.md` | Agent | Defines the one-line iteration append contract and required JSONL fields. |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow | Appends workflow-owned events such as `graph_convergence` and `blocked_stop`. |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Workflow | Mirrors the same event-writing path in confirm mode. |
@@ -46,9 +46,9 @@ The log is append-only by contract. The agent may add one iteration line, the wo
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/novelty-justification-in-jsonl.md` | Manual playbook | Verifies `noveltyJustification` is present and aligned with the iteration record. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md` | Manual playbook | Verifies tolerant parsing of malformed JSONL lines. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/jsonl-reconstruction-from-iteration-files.md` | Manual playbook | Verifies state reconstruction when JSONL is damaged. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/novelty-justification-in-jsonl.md` | Manual playbook | Verifies `noveltyJustification` is present and aligned with the iteration record. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md` | Manual playbook | Verifies tolerant parsing of malformed JSONL lines. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/jsonl-reconstruction-from-iteration-files.md` | Manual playbook | Verifies state reconstruction when JSONL is damaged. |
 
 ---
 

@@ -13,7 +13,7 @@ Output: JSON array of skill recommendations with confidence scores
 Options:
     --stdin      Read the single prompt from stdin instead of argv
     --stdin-preferred  Prefer stdin for the single-prompt mode, falling back to argv when stdin is empty
-    --deep-skill-routing-json  Score deep-loop-workflows mode routing (research|review|ai-council) from JSON stdin
+    --deep-skill-routing-json  Score system-deep-loop mode routing (research|review|ai-council) from JSON stdin
     --health      Run health check diagnostics
     --validate-only  Run strict skill-graph validation
     --threshold   Confidence threshold used by default dual-threshold filtering (default: 0.8)
@@ -80,7 +80,7 @@ NATIVE_GENERATION_MODULE = os.path.join(
     "freshness",
     "generation.js",
 )
-MODE_REGISTRY_PATH = os.path.join(SKILLS_DIR, "deep-loop-workflows", "mode-registry.json")
+MODE_REGISTRY_PATH = os.path.join(SKILLS_DIR, "system-deep-loop", "mode-registry.json")
 ALIASES_TS_PATH = os.path.join(
     SKILLS_DIR,
     "system-skill-advisor",
@@ -288,7 +288,7 @@ SKILL_ALIAS_TO_CANONICAL = {
     for alias in {canonical, *aliases}
 }
 # BEGIN GENERATED DEEP ROUTING PROJECTION HASH
-DEEP_ROUTING_PROJECTION_HASH = "sha256:5c22ac993d9fb60ec1efcd4688cdf0452eb000ccb8108d581911155e5e9a7d02"
+DEEP_ROUTING_PROJECTION_HASH = "sha256:54ee3696fdffc06d5f32a6707be19841fcc0b4b5964e6e7a2ebf802e7d212fd9"
 # END GENERATED DEEP ROUTING PROJECTION HASH
 STRICT_TOPOLOGY_HEADERS = (
     ("DEPENDENCY CYCLE ERRORS", "dependency cycles"),
@@ -346,7 +346,7 @@ def _load_mode_registry_projection(classes: Set[str]) -> List[Dict[str, Any]]:
 def _projection_hash(entries: List[Dict[str, Any]]) -> str:
     """Hash the generated advisor projection payload."""
     return _json_hash({
-        "skill": "deep-loop-workflows",
+        "skill": "system-deep-loop",
         "entries": entries,
     })
 
@@ -1922,15 +1922,15 @@ PHRASE_INTENT_BOOSTERS = {
     "release readiness review": [("deep-review", 2.0)],
     "spec folder review": [("deep-review", 2.0), ("sk-code", 0.8)],
     "review convergence": [("deep-review", 2.5)],
-    "auto review release readiness": [("deep-review", 7.0), ("deep-loop-workflows", 7.0)],
+    "auto review release readiness": [("deep-review", 7.0), ("system-deep-loop", 7.0)],
     "auto review security audit": [("deep-review", 2.5)],
     "auto review audit": [("deep-review", 2.2)],
     "auto review loop": [("deep-review", 2.5)],
-    ":start-review-loop": [("deep-loop-workflows", 3.0)],
-    ":start-review-loop:auto": [("deep-loop-workflows", 3.0)],
-    ":start-review-loop:confirm": [("deep-loop-workflows", 3.0)],
-    ":review:auto": [("deep-loop-workflows", 3.0)],
-    ":review:confirm": [("deep-loop-workflows", 3.0)],
+    ":start-review-loop": [("system-deep-loop", 3.0)],
+    ":start-review-loop:auto": [("system-deep-loop", 3.0)],
+    ":start-review-loop:confirm": [("system-deep-loop", 3.0)],
+    ":review:auto": [("system-deep-loop", 3.0)],
+    ":review:confirm": [("system-deep-loop", 3.0)],
     "mcp server code": [("sk-code", 1.8)],
     "system code style guidance": [("sk-code", 1.7)],
     "python shell json standards": [("sk-code", 1.9)],
@@ -2568,15 +2568,15 @@ def _apply_memory_save_file_operation_cap(
 DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 
 # The active legacy deep-loop modes are folded into one public skill,
-# deep-loop-workflows, discriminated by workflowMode. The Candidate-3 internal
+# system-deep-loop, discriminated by workflowMode. The Candidate-3 internal
 # discriminator keys below stay spelled as the legacy skill ids because the
 # regex pattern groups and prior-art matchers key off them and match live
 # artifact/agent names still present across the live agent and artifact surfaces;
 # DEEP_ROUTING_MODE_BY_KEY projects each onto the merged skill's workflowMode so
-# the routing contract emits {skill: deep-loop-workflows, mode}. The removed
+# the routing contract emits {skill: system-deep-loop, mode}. The removed
 # standalone context route is intentionally not a Candidate-3 discriminator, so
 # DEEP_ROUTING_SKILLS stays 3.
-MERGED_DEEP_SKILL_ID = "deep-loop-workflows"
+MERGED_DEEP_SKILL_ID = "system-deep-loop"
 # BEGIN GENERATED DEEP ROUTING LEXICAL PROJECTION
 DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
 DEEP_ROUTING_MODE_BY_KEY = {
@@ -2764,7 +2764,7 @@ def _deep_routing_confidence_band(max_score: float) -> str:
 def _deep_routing_clarifying_question(prompt_lower: str, winner: str, runner_up: str) -> str:
     """Return the targeted clarification for low-confidence deep-loop mode routing.
 
-    `winner`/`runner_up` are deep-loop-workflows workflowMode names
+    `winner`/`runner_up` are system-deep-loop workflowMode names
     (research|review|ai-council), not legacy skill ids.
     """
     if "architecture" in prompt_lower or "decision" in prompt_lower or "strategy" in prompt_lower:
@@ -2777,12 +2777,12 @@ def _deep_routing_clarifying_question(prompt_lower: str, winner: str, runner_up:
 def deep_skill_routing_payload(prompt: str, packet_context: dict) -> Dict[str, Any]:
     """Return the merged deep-loop routing payload with LOW-confidence clarification.
 
-    The five legacy deep-loop skills are collapsed into deep-loop-workflows, so
-    the contract is {skill: deep-loop-workflows, mode: <workflowMode>} plus
+    The five legacy deep-loop skills are collapsed into system-deep-loop, so
+    the contract is {skill: system-deep-loop, mode: <workflowMode>} plus
     mode-keyed scores. Internal scoring still discriminates per mode; this layer
     projects the legacy discriminator keys onto registry workflowMode names so a
     prompt that used to win "deep-research" now resolves to
-    (deep-loop-workflows, research) WITHOUT flattening the mode distinction.
+    (system-deep-loop, research) WITHOUT flattening the mode distinction.
     """
     scores = score_deep_skill_routing(prompt, packet_context)
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
@@ -2833,7 +2833,7 @@ def _apply_deep_skill_routing_layer(
     for recommendation in recommendations:
         skill = recommendation.get("skill")
         # Resolve which mode's confidence to blend in. The merged node
-        # (deep-loop-workflows) carries the winning mode; legacy mode-level ids
+        # (system-deep-loop) carries the winning mode; legacy mode-level ids
         # still present mid-migration carry their own mode. Anything else is
         # left untouched.
         if skill == MERGED_DEEP_SKILL_ID:
@@ -4269,7 +4269,7 @@ Examples:
     parser.add_argument('--deep-skill-routing-json', action='store_true',
                         help='Read {"prompt": str, "packet_context": object} from stdin and emit Candidate-3 deep routing.')
     parser.add_argument('--dump-routing-maps', action='store_true',
-                        help='Dump the hardcoded deep-loop-workflows routing projection maps as JSON (consumed by the registry drift-guard test).')
+                        help='Dump the hardcoded system-deep-loop routing projection maps as JSON (consumed by the registry drift-guard test).')
     parser.add_argument('--emit-routing-projection', action='store_true',
                         help='Regenerate embedded advisor routing projection constants from mode-registry.json.')
     parser.add_argument('--check-routing-projection', action='store_true',

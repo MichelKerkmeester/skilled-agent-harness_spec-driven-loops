@@ -43,7 +43,7 @@ The dry-run control layer defines halt hooks for dispatch, state mutation, reduc
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/01--entry-points-and-modes/loop-wide-dry-run.md` | Manual playbook | Verifies dry-run reads, previews, and mutation-boundary halts. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/01--entry-points-and-modes/loop-wide-dry-run.md` | Manual playbook | Verifies dry-run reads, previews, and mutation-boundary halts. |
 
 ---
 

@@ -92,7 +92,7 @@ Each log entry is a single-line JSON object with the following fields:
 
 ### Script: generate-profile.cjs
 
-The profile-selection logging is implemented in `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/generate-profile.cjs`.
+The profile-selection logging is implemented in `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs`.
 
 ### Logging Code Pattern
 
@@ -162,5 +162,5 @@ grep '"chosen_profile":"strict"' improvement/profile-selection.log
 
 ## 7. Related References
 
-- `generate-profile.cjs`: `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/generate-profile.cjs`
-- `typed-errors.cjs`: `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/lib/typed-errors.cjs`
+- `generate-profile.cjs`: `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/generate-profile.cjs`
+- `typed-errors.cjs`: `.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/typed-errors.cjs`

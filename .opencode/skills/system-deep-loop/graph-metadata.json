@@ -131,7 +131,7 @@
       },
       {
         "name": "runtime",
-        "kind": "infrastructure",
+        "kind": "reference",
         "path": ".opencode/skills/system-deep-loop/runtime/README.md",
         "source": "derived"
       }

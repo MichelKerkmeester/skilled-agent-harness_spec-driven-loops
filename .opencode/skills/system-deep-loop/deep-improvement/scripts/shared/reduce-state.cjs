@@ -115,7 +115,7 @@ function repairJsonlTailInline(filePath) {
   return { repaired: true, droppedBytes };
 }
 
-// Prefer the deep-loop-runtime state-safety helpers (single source of truth for
+// Prefer the runtime/ state-safety helpers (single source of truth for
 // the atomic-write + jsonl-repair contracts) loaded in-process via the tsx CJS
 // register; fall back to the contract-equivalent inline implementations above so
 // the reducer stays runnable when the TS toolchain is absent.

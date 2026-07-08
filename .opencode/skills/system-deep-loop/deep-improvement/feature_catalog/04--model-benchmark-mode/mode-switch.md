@@ -36,17 +36,17 @@ Mode resolution is closed-set. `VALID_MODES` holds only `agent-improvement` and 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs` | Mode router | Parses `--mode`, resolves the closed mode set, and plans the agent-improvement or model-benchmark step sequence. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Receives the agent-improvement route unchanged when no mode flag is set. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` | Materializer | First step of the model-benchmark plan, writing packet-local markdown from static fixtures. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Second step of the model-benchmark plan, scoring materialized outputs and writing the report. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs` | Mode router | Parses `--mode`, resolves the closed mode set, and plans the agent-improvement or model-benchmark step sequence. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Receives the agent-improvement route unchanged when no mode flag is set. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` | Materializer | First step of the model-benchmark plan, writing packet-local markdown from static fixtures. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Second step of the model-benchmark plan, scoring materialized outputs and writing the report. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/loop-host.vitest.ts` | Automated test | Verifies `parseArgs`, `resolveMode`, the closed `VALID_MODES` set, the two-step model-benchmark plan, and the unknown-mode stderr fallback. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` | Skill contract | Documents Lane B entry-point routing and the unknown-mode fallback as the source of truth. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/loop-host.vitest.ts` | Automated test | Verifies `parseArgs`, `resolveMode`, the closed `VALID_MODES` set, the two-step model-benchmark plan, and the unknown-mode stderr fallback. |
+| `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Skill contract | Documents Lane B entry-point routing and the unknown-mode fallback as the source of truth. |
 
 ---
 

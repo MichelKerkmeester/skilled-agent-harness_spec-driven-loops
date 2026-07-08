@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate JSONL state can be reconstructed from iteration-NNN.md files and logged.
 ### Commands
-1. `bash: rg -n 'State Recovery from Iteration Files|state_reconstructed|iterationsRecovered' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
-2. `bash: rg -n 'State file missing|Reconstruct from iteration files' .opencode/commands/speckit/deep-research.md .opencode/skills/deep-loop-workflows/deep-research/README.md`
-3. `bash: rg -n 'iteration-{NNN}|reconstructed' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md`
+1. `bash: rg -n 'State Recovery from Iteration Files|state_reconstructed|iterationsRecovered' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md`
+2. `bash: rg -n 'State file missing|Reconstruct from iteration files' .opencode/commands/speckit/deep-research.md .opencode/skills/system-deep-loop/deep-research/README.md`
+3. `bash: rg -n 'iteration-{NNN}|reconstructed' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
 ### Expected
 The reconstruction algorithm scans iteration files, extracts assessment data, writes reconstructed records, and logs a `state_reconstructed` event.
 ### Evidence
@@ -71,10 +71,10 @@ Use the detailed state-format reconstruction algorithm as primary truth and trea
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Reconstruction algorithm and event schema; use `ANCHOR:state-log` |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Reconstruction algorithm and event schema; use `ANCHOR:state-log` |
 | `.opencode/commands/speckit/deep-research.md` | Error handling summary; use `## 10. ERROR HANDLING` |
-| `.opencode/skills/deep-loop-workflows/deep-research/README.md` | Troubleshooting and FAQ recovery language; use `ANCHOR:troubleshooting` and `ANCHOR:faq` |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Valid-entry behavior during convergence; use `ANCHOR:signal-definitions` |
+| `.opencode/skills/system-deep-loop/deep-research/README.md` | Troubleshooting and FAQ recovery language; use `ANCHOR:troubleshooting` and `ANCHOR:faq` |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Valid-entry behavior during convergence; use `ANCHOR:signal-definitions` |
 
 ---
 
@@ -84,4 +84,4 @@ Use the detailed state-format reconstruction algorithm as primary truth and trea
 - Playbook ID: DR-018
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `05--pause-resume-and-fault-tolerance/jsonl-reconstruction-from-iteration-files.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

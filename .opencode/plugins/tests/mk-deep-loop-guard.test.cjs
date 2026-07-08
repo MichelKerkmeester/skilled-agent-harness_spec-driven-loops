@@ -22,7 +22,7 @@ const REJECT_LOOP_ENV = 'MK_DEEP_LOOP_GUARD_REJECT_LOOP';
 const GUARD_LOG_RELATIVE = ['.opencode', 'skills', '.loop-guard-state', 'guard-warnings.log'];
 
 function writeFixtureRegistry(dir) {
-  const registryDir = path.join(dir, '.opencode', 'skills', 'deep-loop-workflows');
+  const registryDir = path.join(dir, '.opencode', 'skills', 'system-deep-loop');
   fs.mkdirSync(registryDir, { recursive: true });
   fs.writeFileSync(
     path.join(registryDir, 'mode-registry.json'),
@@ -102,7 +102,7 @@ async function main() {
   delete process.env[REJECT_ENV];
 
   // Fail-open: registry unreadable, mismatch present, reject mode on -- must not throw.
-  fs.rmSync(path.join(tmpDir, '.opencode', 'skills', 'deep-loop-workflows', 'mode-registry.json'));
+  fs.rmSync(path.join(tmpDir, '.opencode', 'skills', 'system-deep-loop', 'mode-registry.json'));
   process.env[REJECT_ENV] = '1';
   await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' } });
   delete process.env[REJECT_ENV];

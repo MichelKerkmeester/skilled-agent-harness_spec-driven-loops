@@ -4,7 +4,7 @@ description: "Promotes loop lifecycle status and stop-reason taxonomy with legal
 trigger_phrases:
   - "lifecycle taxonomy guards"
   - "lifecycle-taxonomy-guards"
-  - "lifecycle taxonomy guards deep-loop-runtime"
+  - "lifecycle taxonomy guards runtime"
   - "lifecycle lifecycle taxonomy guards"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Promotes loop lifecycle status and stop-reason taxonomy with legal transitions and a one-shot paused-wait resume gate.
 
-This feature belongs to the lifecycle group and is catalogued as F032 in the `deep-loop-runtime` inventory.
+This feature belongs to the lifecycle group and is catalogued as F032 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the lifecycle group and is catalogued as F032 in the `de
 
 `lifecycle-taxonomy.cjs` exports `LoopActiveStatus`, `LoopStopReason`, `LEGAL_TRANSITIONS`, and `createPausedWaitGate()` so consumers share the same active-state, terminal-reason, and resume-resolution contract.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F032
 - Feature file path: `10--lifecycle/lifecycle-taxonomy-guards.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//005-lifecycle-taxonomy-guards`
 - Primary sources: `lib/deep-loop/lifecycle-taxonomy.cjs`, `tests/unit/lifecycle-taxonomy-guards.vitest.ts`
 Related references:
 - [lifecycle](../10--lifecycle/) — Lifecycle category

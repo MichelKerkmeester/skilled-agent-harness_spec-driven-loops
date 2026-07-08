@@ -1,6 +1,6 @@
 ---
 title: "DLR-010 -- Bayesian scorer"
-description: "Manual validation scenario for Bayesian scorer in the deep-loop-runtime skill."
+description: "Manual validation scenario for Bayesian scorer in the runtime/ skill."
 version: 1.4.0.5
 ---
 
@@ -24,7 +24,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 
 - Objective: Confirm bayesian scorer behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: scoring runtime.
-- Real user request: `Validate Bayesian scorer and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Bayesian scorer and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Runtime behavior matches the source contract and primary regression test.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/05--scoring/bayesian-scorer.md`.
 
 ### Steps

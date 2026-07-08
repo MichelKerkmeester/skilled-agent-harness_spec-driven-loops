@@ -31,8 +31,8 @@
     "manifest": "improvement/target_manifest.jsonc",
     "candidates": "improvement/candidates",
     "benchmarkRoot": "improvement/benchmark-runs",
-    "targetProfiles": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/target-profiles",
-    "fixtureCatalog": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/fixtures"
+    "targetProfiles": ".opencode/skills/system-deep-loop/deep-improvement/assets/agent_improvement/target-profiles",
+    "fixtureCatalog": ".opencode/skills/system-deep-loop/deep-improvement/assets/fixtures"
   },
   "targets": {
     "activeProfile": "dynamic",

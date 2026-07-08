@@ -3,7 +3,7 @@ title: "system-deep-loop/runtime"
 description: "Shared runtime library the active system-deep-loop modes ride: executor dispatch, prompt-pack rendering, atomic state, coverage-graph storage, Bayesian convergence scoring and council durability, consumed through TypeScript imports and direct .cjs script calls."
 trigger_phrases:
   - "deep-loop runtime"
-  - "deep-loop-runtime"
+  - "runtime/"
   - "executor config"
   - "prompt pack"
   - "coverage graph"
@@ -16,7 +16,7 @@ version: 1.5.0.1
 
 # system-deep-loop / runtime
 
-> The shared foundation every active deep-loop mode rides. Not a loop you invoke directly, and not independently advisor-routable (no `graph-metadata.json` of its own) — it is nested infrastructure inside the `system-deep-loop` skill, consumed via TypeScript imports and direct `.cjs` script calls from the sibling mode packets. Formerly the separate `deep-loop-runtime` skill, merged into this hub 2026-07-08.
+> The shared foundation every active deep-loop mode rides. Not a loop you invoke directly, and not independently advisor-routable (no `graph-metadata.json` of its own) — it is nested infrastructure inside the `system-deep-loop` skill, consumed via TypeScript imports and direct `.cjs` script calls from the sibling mode packets. Formerly the separate `runtime/` skill, merged into this hub 2026-07-08.
 
 ---
 
@@ -26,7 +26,7 @@ version: 1.5.0.1
 |---|---|
 | **Use it for** | The runtime infrastructure every deep loop needs: executor dispatch, atomic state, coverage-graph storage, Bayesian convergence scoring and council durability |
 | **Invoke with** | `import` from `lib/` in TypeScript, or `node scripts/<name>.cjs` in a workflow YAML block. No MCP tools, no slash commands. |
-| **Works on** | The one consumer skill that imports it, `deep-loop-workflows`, across active modes: `research`, `review`, `ai-council` and `improvement`. Legacy `context` parsing remains only for historical artifacts. |
+| **Works on** | The one consumer skill that imports it, `system-deep-loop`, across active modes: `research`, `review`, `ai-council` and `improvement`. Legacy `context` parsing remains only for historical artifacts. |
 | **Produces** | Typed convergence decisions, JSONL state logs, session-scoped coverage graphs, multi-seat dispatch outcomes and scored adjudicator verdicts |
 
 ---
@@ -41,7 +41,7 @@ The consolidation moved the shared runtime into this peer skill. The MCP tools a
 
 ### What It Does
 
-`deep-loop-runtime` provides three component families through TypeScript imports under `lib/` and `.cjs` script entry points under `scripts/`, plus shared lifecycle, observability, and test-harness helpers surfaced in the catalog. The deep-loop family owns executor config, prompt-pack rendering, post-dispatch validation, atomic state, JSONL repair, loop locking, permissions gating, Bayesian scoring and fallback routing. It also hosts the shared backend contracts the consumer modes ride: a parameterized capability resolver, the artifact-topology seam (`resolveArtifactRoot`), the terminal lifecycle taxonomy (seven `stopReason` plus four `sessionOutcome` values) and a CLI adapter over the loop lock. The coverage-graph family owns the SQLite schema, query builders and convergence-signal extraction. The council family owns multi-seat dispatch, round-state JSONL, adjudicator-verdict scoring, cost guards, session-state hierarchy and the council graph. The workflow modes import what they need. No mode invokes this skill directly, and none of these contracts register an MCP tool. It is the foundation they ride.
+`runtime/` provides three component families through TypeScript imports under `lib/` and `.cjs` script entry points under `scripts/`, plus shared lifecycle, observability, and test-harness helpers surfaced in the catalog. The deep-loop family owns executor config, prompt-pack rendering, post-dispatch validation, atomic state, JSONL repair, loop locking, permissions gating, Bayesian scoring and fallback routing. It also hosts the shared backend contracts the consumer modes ride: a parameterized capability resolver, the artifact-topology seam (`resolveArtifactRoot`), the terminal lifecycle taxonomy (seven `stopReason` plus four `sessionOutcome` values) and a CLI adapter over the loop lock. The coverage-graph family owns the SQLite schema, query builders and convergence-signal extraction. The council family owns multi-seat dispatch, round-state JSONL, adjudicator-verdict scoring, cost guards, session-state hierarchy and the council graph. The workflow modes import what they need. No mode invokes this skill directly, and none of these contracts register an MCP tool. It is the foundation they ride.
 
 ---
 
@@ -50,7 +50,7 @@ The consolidation moved the shared runtime into this peer skill. The MCP tools a
 **Step 1: Call a script from your workflow YAML.** The `.cjs` entry points accept `--spec-folder`, `--loop-type` and `--session-id`. They write JSON to stdout and exit with a uniform code.
 
 ```bash
-node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs \
+node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs \
   --spec-folder "specs/my-feature" \
   --loop-type research \
   --session-id "abc123"
@@ -61,9 +61,9 @@ Expected output: a JSON wrapper with `status`, `data`, and workflow-facing field
 **Step 2: Import a runtime module from your TypeScript loop code.**
 
 ```typescript
-import { acquireLoopLock, releaseLoopLock } from '../../deep-loop-runtime/lib/deep-loop/loop-lock.js';
-import { renderPromptPack } from '../../deep-loop-runtime/lib/deep-loop/prompt-pack.js';
-import { validateIterationOutputs } from '../../deep-loop-runtime/lib/deep-loop/post-dispatch-validate.js';
+import { acquireLoopLock, releaseLoopLock } from '../../runtime//lib/deep-loop/loop-lock.js';
+import { renderPromptPack } from '../../runtime//lib/deep-loop/prompt-pack.js';
+import { validateIterationOutputs } from '../../runtime//lib/deep-loop/post-dispatch-validate.js';
 
 const lock = await acquireLoopLock(specFolder);
 try {
@@ -78,7 +78,7 @@ try {
 **Step 3: Run the runtime tests to confirm your environment works.**
 
 ```bash
-pnpm --dir .opencode/skills/system-spec-kit/mcp_server exec vitest run ../../deep-loop-runtime/tests
+pnpm --dir .opencode/skills/system-spec-kit/mcp_server exec vitest run ../../runtime//tests
 ```
 
 Expected output: the vitest runner discovers the unit, integration and lifecycle tests through the cross-package glob in `system-spec-kit/mcp_server/vitest.config.ts`. A green run confirms the runtime is wired correctly.
@@ -149,7 +149,7 @@ A: Before the consolidation, executor config, atomic state, coverage-graph stora
 
 **Q: Which skill consumes this runtime?**
 
-A: One: `deep-loop-workflows`, across active modes (`research`, `review`, `ai-council` and `improvement`). Each mode imports the modules it needs and calls the `.cjs` scripts from its workflow YAML. The deprecated context loop is not an active consumer; retained `context` handling is for historical artifacts only. The runtime itself has no user-facing command and registers no MCP tools.
+A: One: `system-deep-loop`, across active modes (`research`, `review`, `ai-council` and `improvement`). Each mode imports the modules it needs and calls the `.cjs` scripts from its workflow YAML. The deprecated context loop is not an active consumer; retained `context` handling is for historical artifacts only. The runtime itself has no user-facing command and registers no MCP tools.
 
 **Q: What does the coverage graph provide?**
 
@@ -182,7 +182,7 @@ The skill ships a feature catalog and a manual testing playbook that together co
 `manual_testing_playbook/` provides deterministic scenarios across the same domains. The root playbook defines preconditions, expected signals and pass, fail or partial verdict rules. Each scenario maps to a dedicated feature file with the canonical invocation and live source anchors.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-loop-runtime/README.md --type readme
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/runtime/README.md --type readme
 ```
 
 Expected output: zero issues reported.

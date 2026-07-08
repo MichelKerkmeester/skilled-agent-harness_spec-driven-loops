@@ -508,4 +508,4 @@ The router discovers reference and markdown asset docs dynamically. Start with `
 
 Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 
-Related skills: `deep-review` for iterative audit loops, `deep-loop-runtime` for shared executor/state/coverage-graph runtime, and `system-spec-kit` for command-owned state, packet anchoring, and continuity saves.
+Related skills: `deep-review` for iterative audit loops, and `system-spec-kit` for command-owned state, packet anchoring, and continuity saves. Shared executor/state/coverage-graph runtime lives in this hub's own `runtime/` infrastructure layer, not a separate skill.

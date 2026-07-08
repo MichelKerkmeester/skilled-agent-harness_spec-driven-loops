@@ -34,7 +34,7 @@
   },
   "graph_projection": {
     "enabled": false,
-    "owner": "deep-loop-runtime",
+    "owner": "runtime",
     "loop_type": "council",
     "rebuild_from_artifacts": true
   },

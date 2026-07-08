@@ -1,6 +1,6 @@
 ---
 title: "Lifecycle Tests"
-description: "Database open/close + writer-lock lifecycle verification for the deep-loop-runtime coverage graph."
+description: "Database open/close + writer-lock lifecycle verification for the runtime/ coverage graph."
 ---
 
 # Lifecycle Tests
@@ -19,5 +19,5 @@ Verifies the SQLite connection lifecycle invariant: the DB is opened inside a `t
 
 ## 3. RELATED RESOURCES
 
-- Parent tests README: `.opencode/skills/deep-loop-runtime/tests/README.md`
-- Coverage-graph schema: `.opencode/skills/deep-loop-runtime/references/coverage_graph_schema.md`
+- Parent tests README: `.opencode/skills/system-deep-loop/runtime/tests/README.md`
+- Coverage-graph schema: `.opencode/skills/system-deep-loop/runtime/references/coverage_graph_schema.md`

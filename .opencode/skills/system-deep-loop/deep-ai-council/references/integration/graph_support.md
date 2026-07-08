@@ -1,6 +1,6 @@
 ---
 title: "AI Council Graph Support"
-description: "Derived council graph support boundaries, deep-loop-runtime CLI surface, and recovery rules."
+description: "Derived council graph support boundaries, runtime/ CLI surface, and recovery rules."
 trigger_phrases:
   - "deep-ai-council graph support"
   - "council graph"
@@ -13,7 +13,7 @@ version: 2.3.0.8
 
 # AI Council Graph Support
 
-Dedicated council graph support is available as a derived `deep-loop-runtime` CLI projection. It does not replace packet-local `ai-council/**` artifacts or append-only state.
+Dedicated council graph support is available as a derived `runtime/` CLI projection. It does not replace packet-local `ai-council/**` artifacts or append-only state.
 
 ---
 
@@ -37,12 +37,12 @@ If graph rows disagree with artifacts, the artifacts win and graph rows should b
 
 Dedicated graph operations run through the shared deep-loop runtime scripts with `--loop-type council`:
 
-- `deep-loop-runtime/scripts/upsert.cjs --loop-type council` writes derived nodes and edges.
-- `deep-loop-runtime/scripts/query.cjs --loop-type council` reads unresolved disagreements, evidence chains, decision support, convergence blockers, and hot nodes.
-- `deep-loop-runtime/scripts/status.cjs --loop-type council` reports readiness, counts, schema version, and current signals.
-- `deep-loop-runtime/scripts/convergence.cjs --loop-type council` computes council-specific convergence decisions.
+- `runtime//scripts/upsert.cjs --loop-type council` writes derived nodes and edges.
+- `runtime//scripts/query.cjs --loop-type council` reads unresolved disagreements, evidence chains, decision support, convergence blockers, and hot nodes.
+- `runtime//scripts/status.cjs --loop-type council` reports readiness, counts, schema version, and current signals.
+- `runtime//scripts/convergence.cjs --loop-type council` computes council-specific convergence decisions.
 
-Do not use research/review graph namespaces for council data. Council has its own runtime-owned SQLite projection under `deep-loop-runtime`.
+Do not use research/review graph namespaces for council data. Council has its own runtime-owned SQLite projection under `runtime/`.
 
 ---
 
@@ -114,6 +114,6 @@ Never rewrite historical `ai-council-state.jsonl` rows to fit the graph.
 - State format: `references/structure/state_format.md`
 - Folder layout: `references/structure/folder_layout.md`
 - Convergence signals: `references/convergence/convergence_signals.md`
-- Runtime implementation: `.opencode/skills/deep-loop-runtime/lib/council/`
-- Graph replay script: `scripts/replay-graph-from-artifacts.cjs` (derives the council payload from `ai-council-state.jsonl` and writes it through `deep-loop-runtime/scripts/upsert.cjs --loop-type council`; run it after deleting stale derived rows during recovery)
+- Runtime implementation: `.opencode/skills/system-deep-loop/runtime/lib/council/`
+- Graph replay script: `scripts/replay-graph-from-artifacts.cjs` (derives the council payload from `ai-council-state.jsonl` and writes it through `runtime//scripts/upsert.cjs --loop-type council`; run it after deleting stale derived rows during recovery)
 - Deep-mode state hierarchy: `references/convergence/deep_mode.md`

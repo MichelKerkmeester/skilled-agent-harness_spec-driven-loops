@@ -36,16 +36,16 @@ The rollback helper is deliberately narrow. It does not emit journal rows, re-ru
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs` | Rollback helper | Restores the archived backup after validating the runtime config and canonical manifest target. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Creates the archived backup that rollback later restores. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/rollback_runbook.md` | Runbook | Defines the operator steps around rollback and post-rollback proof. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs` | Rollback helper | Restores the archived backup after validating the runtime config and canonical manifest target. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Creates the archived backup that rollback later restores. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/rollback_runbook.md` | Runbook | Defines the operator steps around rollback and post-rollback proof. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/mirror_drift_policy.md` | Policy reference | Separates rollback from later mirror-review work. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md` | Policy reference | Defines when rollback-ready evidence must exist before promotion proceeds. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/agent_improvement/mirror_drift_policy.md` | Policy reference | Separates rollback from later mirror-review work. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/promotion_rules.md` | Policy reference | Defines when rollback-ready evidence must exist before promotion proceeds. |
 
 ---
 

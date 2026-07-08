@@ -42,8 +42,8 @@ If the loop is paused, the workflow emits `run_now_rejected` with reason `loop_p
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts` | Vitest | Verifies accepted, rejected, and restored run-now event behavior. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/run-now-control.md` | Manual playbook | Verifies operator-visible forced-run sentinel behavior. |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts` | Vitest | Verifies accepted, rejected, and restored run-now event behavior. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/run-now-control.md` | Manual playbook | Verifies operator-visible forced-run sentinel behavior. |
 
 ---
 

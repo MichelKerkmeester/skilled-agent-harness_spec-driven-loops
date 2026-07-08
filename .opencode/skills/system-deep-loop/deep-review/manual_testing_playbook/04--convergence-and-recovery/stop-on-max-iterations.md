@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-review hard iteration cap and report whether synthesis still runs after maxIterations stops the loop.
 ### Commands
-1. `bash: rg -n 'maxIterations|hard.stop|HARD_STOP|max_iterations|iteration.*cap' .opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md`
+1. `bash: rg -n 'maxIterations|hard.stop|HARD_STOP|max_iterations|iteration.*cap' .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
 2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml`
-3. `bash: rg -n 'maxIterations|max-iterations|default.*7|hard stop' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-loop-workflows/deep-review/SKILL.md .opencode/skills/deep-loop-workflows/deep-review/README.md`
+3. `bash: rg -n 'maxIterations|max-iterations|default.*7|hard stop' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
 ### Evidence
@@ -71,12 +71,12 @@ Privilege the convergence reference for exact algorithm and use YAML workflow st
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md` | Canonical convergence math including hard stop rules |
+| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math including hard stop rules |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Workflow algorithm, inspect `step_check_convergence` for hard stop enforcement |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Workflow algorithm, inspect `step_check_convergence` for hard stop enforcement |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | User-facing parameter defaults, use `ANCHOR:commands` and `ANCHOR:convergence` |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Skill rules and convergence documentation, use `ANCHOR:rules` |
-| `.opencode/skills/deep-loop-workflows/deep-review/README.md` | Feature summary and configuration defaults |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | User-facing parameter defaults, use `ANCHOR:commands` and `ANCHOR:convergence` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Skill rules and convergence documentation, use `ANCHOR:rules` |
+| `.opencode/skills/system-deep-loop/deep-review/README.md` | Feature summary and configuration defaults |
 
 ---
 
@@ -86,4 +86,4 @@ Privilege the convergence reference for exact algorithm and use YAML workflow st
 - Playbook ID: DRV-030
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `04--convergence-and-recovery/stop-on-max-iterations.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

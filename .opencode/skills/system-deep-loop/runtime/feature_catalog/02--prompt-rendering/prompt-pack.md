@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Renders prompt-pack templates with checked placeholder variables.
 
-This feature belongs to the prompt rendering group and is catalogued as F004 in the `deep-loop-runtime` inventory.
+This feature belongs to the prompt rendering group and is catalogued as F004 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the prompt rendering group and is catalogued as F004 in 
 
 Template token extraction, strict variable names, missing-token failures, and render output.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

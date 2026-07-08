@@ -101,7 +101,7 @@ Required resources:
 - `references/patterns/seat_diversity_patterns.md`
 - `references/scoring/scoring_rubric.md`
 - `assets/prompt_pack_round.md`
-- `.opencode/skills/deep-loop-workflows/shared/progress/progress-record.cjs` (additive `progress_record` type + pair validator)
+- `.opencode/skills/system-deep-loop/shared/progress/progress-record.cjs` (additive `progress_record` type + pair validator)
 
 Acceptance criteria: every seat has a named lens, a distinct mandate, and enough evidence for critique; the completed `progress_record` count equals the number of seats persisted when the host uses the stepwise writer.
 
@@ -133,14 +133,14 @@ Acceptance criteria: the report can explain both the chosen plan and the stronge
 The caller, not the council seat, persists artifacts:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> \
   --input-file <report> --strict-output
 ```
 
 Then verify completion:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/advise-council-completion.cjs <packet>
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <packet>
 ```
 
 Required resources:

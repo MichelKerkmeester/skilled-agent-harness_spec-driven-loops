@@ -39,12 +39,12 @@ For an AI council deliberation, resolve the mode through the registry and state 
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `ai-council` mode entry.
-2. `.opencode/skills/deep-loop-workflows/SKILL.md` contains the three-tier discriminator section.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `ai-council` mode entry.
+2. `.opencode/skills/system-deep-loop/SKILL.md` contains the three-tier discriminator section.
 
 ### Exact Command Sequence
 
-1. **Invoke hub**: `Skill(deep-loop-workflows, "For an AI council deliberation, resolve the mode through the registry and state the backend, runtime loop type, command, agent, and artifact root before starting.")`.
+1. **Invoke hub**: `Skill(system-deep-loop, "For an AI council deliberation, resolve the mode through the registry and state the backend, runtime loop type, command, agent, and artifact root before starting.")`.
 2. **Capture route**: save output to `/tmp/dlw-RB-002/response.txt`.
 3. **Compare backend fields**: confirm `runtimeLoopType: council` exactly.
 
@@ -70,8 +70,8 @@ For an AI council deliberation, resolve the mode through the registry and state 
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - three-tier discriminator and council mapping.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `ai-council` backend fields.
+- `.opencode/skills/system-deep-loop/SKILL.md` - three-tier discriminator and council mapping.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-council` backend fields.
 
 ## 5. SOURCE METADATA
 

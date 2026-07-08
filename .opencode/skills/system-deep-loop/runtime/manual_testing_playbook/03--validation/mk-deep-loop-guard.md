@@ -1,6 +1,6 @@
 ---
 title: "DLR-052 -- mk-deep-loop-guard"
-description: "Manual validation scenario for mk-deep-loop-guard in the deep-loop-runtime skill."
+description: "Manual validation scenario for mk-deep-loop-guard in the runtime/ skill."
 version: 1.1.0.0
 ---
 

@@ -12,7 +12,7 @@ version: 1.2.0.10
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-> **STATUS (arc-118):** `deep_loop_graph_status` is NOT a registered MCP tool. It is an internal deep-loop-runtime `.cjs` script (under `.opencode/skills/deep-loop-runtime/scripts/`) and is not routed through system-spec-kit / mk-spec-memory. MCP routing for the `deep_loop_graph_*` family was removed in arc-118. The code-graph MCP surface is 8 tools and does NOT include this script.
+> **STATUS (arc-118):** `deep_loop_graph_status` is NOT a registered MCP tool. It is an internal runtime/ `.cjs` script (under `.opencode/skills/system-deep-loop/runtime/scripts/`) and is not routed through system-spec-kit / mk-spec-memory. MCP routing for the `deep_loop_graph_*` family was removed in arc-118. The code-graph MCP surface is 8 tools and does NOT include this script.
 
 ## 1. OVERVIEW
 
@@ -38,7 +38,7 @@ Empty graphs return zero counts and null signals. Use upsert-enabled deep loops 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/status.cjs` | Implementation | CLI script (argv-parsed via `parseArgs`); invoked directly from the deep YAMLs, NOT an MCP tool |
+| `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs` | Implementation | CLI script (argv-parsed via `parseArgs`); invoked directly from the deep YAMLs, NOT an MCP tool |
 | `.opencode/commands/deep/assets/deep_ai-council_auto.yaml` and `deep_ai-council_confirm.yaml` | Call site | invoked as the `graph_status` step (`--loop-type council`) in the ai-council workflows |
 | `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Tool surface | intentionally omits coverage-graph dispatch; this tool family is CLI-invoked and NOT registered as MCP tools |
 

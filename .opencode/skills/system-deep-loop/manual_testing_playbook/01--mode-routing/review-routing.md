@@ -1,6 +1,6 @@
 ---
 title: "MR-002: Review Mode Routing"
-description: "Verify an iterative review request resolves to the review mode through the deep-loop-workflows hub."
+description: "Verify an iterative review request resolves to the review mode through the system-deep-loop hub."
 version: "1.1.0.0"
 ---
 
@@ -39,8 +39,8 @@ Run a deep review of the current routing changes, iterate until findings converg
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/SKILL.md` is readable.
-2. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `review` mode entry.
+1. `.opencode/skills/system-deep-loop/SKILL.md` is readable.
+2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
 3. Skill advisor is callable if the operator chooses an advisor probe.
 
 ### Exact Command Sequence
@@ -49,7 +49,7 @@ Run a deep review of the current routing changes, iterate until findings converg
    ```bash
    python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict." --threshold 0.8 > /tmp/dlw-MR-002/advisor.txt
    ```
-2. **Invoke hub**: `Skill(deep-loop-workflows, "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict.")`.
+2. **Invoke hub**: `Skill(system-deep-loop, "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict.")`.
 3. **Capture route**: save the AI response to `/tmp/dlw-MR-002/response.txt`.
 4. **Compare to registry**: confirm the response matches the `review` registry entry.
 
@@ -57,7 +57,7 @@ Run a deep review of the current routing changes, iterate until findings converg
 
 | Step | Signal |
 |---|---|
-| 1 | Advisor top skill is `deep-loop-workflows` or the transcript shows the legacy review identity folding into the hub. |
+| 1 | Advisor top skill is `system-deep-loop` or the transcript shows the legacy review identity folding into the hub. |
 | 2 | Hub selects `workflowMode: review`. |
 | 3 | Response names `/deep:review`, agent `deep-review`, backend `runtime-loop-type`, and artifact root `review/`. |
 | 4 | Response does not route to `research` solely because the word "iterate" appears. |
@@ -76,8 +76,8 @@ Run a deep review of the current routing changes, iterate until findings converg
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - hub routing rule and mode table.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `review` mode source of truth.
+- `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule and mode table.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `review` mode source of truth.
 
 ## 5. SOURCE METADATA
 

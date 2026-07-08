@@ -363,7 +363,7 @@ The `@deep-improvement` subagent must:
 After generation, the candidate is scored via `scripts/agent-improvement/score-candidate.cjs`:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/score-candidate.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs \
   --candidate={spec_folder}/improvement/candidates/{candidate_id}.md \
   --target={canonical_target_path} \
   --manifest=assets/agent_improvement/target_manifest.jsonc

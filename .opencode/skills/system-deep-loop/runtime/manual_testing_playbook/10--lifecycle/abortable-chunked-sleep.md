@@ -1,6 +1,6 @@
 ---
 title: "DLR-033 -- Abortable chunked sleep"
-description: "Manual validation scenario for Abortable chunked sleep in the deep-loop-runtime skill."
+description: "Manual validation scenario for Abortable chunked sleep in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm Abortable chunked sleep behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: lifecycle runtime.
-- Real user request: `Validate Abortable chunked sleep and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Abortable chunked sleep and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Sleep resolves after chunked waits, rejects on abort, removes listeners, and supports composed abort-signal cancellation.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/10--lifecycle/abortable-chunked-sleep.md`.
 
 ### Steps
@@ -81,6 +81,6 @@ Abortable chunked sleep matches the documented current reality, the source ancho
 - Playbook ID: DLR-033
 - Feature catalog entry: `feature_catalog/10--lifecycle/abortable-chunked-sleep.md`
 - Scenario file path: `manual_testing_playbook/10--lifecycle/abortable-chunked-sleep.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//004-abortable-chunked-sleep`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

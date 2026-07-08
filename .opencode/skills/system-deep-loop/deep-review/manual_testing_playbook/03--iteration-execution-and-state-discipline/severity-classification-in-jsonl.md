@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review JSONL severity classification for findingsSummary, findingsNew, and convergence severity weights.
 ### Commands
-1. `bash: rg -n 'findingsSummary|findingsNew|Rule 11|severity counts' .opencode/skills/deep-loop-workflows/deep-review/SKILL.md`
+1. `bash: rg -n 'findingsSummary|findingsNew|Rule 11|severity counts' .opencode/skills/system-deep-loop/deep-review/SKILL.md`
 2. `bash: rg -n 'findingsSummary|findingsNew|severity_weights|p0_override|newFindingsRatio' .opencode/commands/deep/assets/deep_review_auto.yaml`
-3. `bash: rg -n 'findingsSummary|findingsNew|P0.*10|P1.*5|P2.*1|severity.*weight' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md`
+3. `bash: rg -n 'findingsSummary|findingsNew|P0.*10|P1.*5|P2.*1|severity.*weight' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md .opencode/skills/system-deep-loop/deep-review/references/state/state_format.md`
 ### Expected
 Rule 11 mandates the fields. The YAML dispatch constrains them. The convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0. The P0 override sets newFindingsRatio >= 0.50.
 ### Evidence
@@ -71,11 +71,11 @@ Check the on_missing_outputs fallback JSONL template to verify it also includes 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Rule 11: severity counts mandate, use `ANCHOR:rules` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Rule 11: severity counts mandate, use `ANCHOR:rules` |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Dispatch constraints, severity_weights, and P0 override, inspect `step_dispatch_review_agent`, `severity_weights`, and `on_missing_outputs` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Dispatch constraints, inspect `step_dispatch_review_agent` |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Convergence signals, use `ANCHOR:convergence` |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md` | Shared JSONL schema, inspect iteration record fields |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Convergence signals, use `ANCHOR:convergence` |
+| `.opencode/skills/system-deep-loop/deep-review/references/state/state_format.md` | Shared JSONL schema, inspect iteration record fields |
 
 ---
 
@@ -85,4 +85,4 @@ Check the on_missing_outputs fallback JSONL template to verify it also includes 
 - Playbook ID: DRV-014
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `03--iteration-execution-and-state-discipline/severity-classification-in-jsonl.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

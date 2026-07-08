@@ -1,6 +1,6 @@
 ---
 title: "DLR-020 -- Adjudicator verdict scoring"
-description: "Manual validation scenario for Adjudicator verdict scoring in the deep-loop-runtime skill."
+description: "Manual validation scenario for Adjudicator verdict scoring in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ This is the council convergence saturation primitive. If the weights drift from 
 
 - Objective: Confirm adjudicator verdict scoring behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: council convergence math.
-- Real user request: `Validate Adjudicator verdict scoring and report whether the current source weights, score range, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Adjudicator verdict scoring and report whether the current source weights, score range, and tests agree with the runtime/ contract.`
 - Expected signals: 5-component weighted scoring with ADR-003 weights; output in [0,1]; consumed by council convergence check.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ This is the council convergence saturation primitive. If the weights drift from 
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/08--council/adjudicator-verdict-scoring.md`.
 
 ### Steps

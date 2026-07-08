@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Writes JSON state files through temp-file, fsync, rename, and cleanup semantics.
 
-This feature belongs to the state safety group and is catalogued as F006 in the `deep-loop-runtime` inventory.
+This feature belongs to the state safety group and is catalogued as F006 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the state safety group and is catalogued as F006 in the 
 
 Atomic JSON serialization, temp-file writes, fsync, rename, and cleanup on failure.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

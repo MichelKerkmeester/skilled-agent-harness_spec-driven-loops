@@ -45,11 +45,11 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the dashboard regenerates after each deep-research iteration with progress, question status, risks, and next focus.
 ### Commands
-1. `bash: rg -n 'Step 4a\|Generate Dashboard\|dashboard_generated' .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md`
-2. `bash: sed -n '/ANCHOR:dashboard/,/\/ANCHOR:dashboard/p' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
-3. `bash: cat .opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_dashboard.md`
+1. `bash: rg -n 'Step 4a\|Generate Dashboard\|dashboard_generated' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md`
+2. `bash: sed -n '/ANCHOR:dashboard/,/\/ANCHOR:dashboard/p' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md`
+3. `bash: cat .opencode/skills/system-deep-loop/deep-research/assets/deep_research_dashboard.md`
 4. `bash: rg -n 'step_reduce_state\|step_generate_dashboard\|reduce-state.cjs' .opencode/commands/deep/assets/deep_research_auto.yaml .opencode/commands/deep/assets/deep_research_confirm.yaml`
-5. `bash: rg -n 'renderDashboard\|dashboardPath' .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs`
+5. `bash: rg -n 'renderDashboard\|dashboardPath' .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
 ### Expected
 `research/deep-research-dashboard.md` exists after iteration evaluation; contains iteration table, question status (X/Y answered), trend (last 3 ratios with direction), dead ends (from ruledOut), next focus (from strategy.md), and active risks; file is overwritten (not appended) each iteration; dashboard generation is reducer-owned and idempotent.
 ### Evidence
@@ -73,10 +73,10 @@ Privilege the loop protocol Step 4a for the generation contract, the reducer scr
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Loop protocol; inspect Step 4a (Generate Dashboard) under `ANCHOR:phase-iteration-loop` |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | State format; inspect `ANCHOR:dashboard` for content sections, lifecycle, and file protection rules |
-| `.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_dashboard.md` | Dashboard template; structural reference for all required sections (Status, Progress, Questions, Trend, Dead Ends, Next Focus, Active Risks) |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Reducer script; `renderDashboard` generates the dashboard content; `reduceResearchState` writes it to disk |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Loop protocol; inspect Step 4a (Generate Dashboard) under `ANCHOR:phase-iteration-loop` |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | State format; inspect `ANCHOR:dashboard` for content sections, lifecycle, and file protection rules |
+| `.opencode/skills/system-deep-loop/deep-research/assets/deep_research_dashboard.md` | Dashboard template; structural reference for all required sections (Status, Progress, Questions, Trend, Dead Ends, Next Focus, Active Risks) |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer script; `renderDashboard` generates the dashboard content; `reduceResearchState` writes it to disk |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Automated verification; proves reducer idempotency and dashboard content correctness |
@@ -89,4 +89,4 @@ Privilege the loop protocol Step 4a for the generation contract, the reducer scr
 - Playbook ID: DR-024
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `03--iteration-execution-and-state-discipline/dashboard-generation-after-iteration.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-24.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-24.

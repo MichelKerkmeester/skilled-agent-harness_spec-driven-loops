@@ -18,7 +18,7 @@ This scenario validates that `runtime status CLI` materially beats the no-graph 
 
 The append-only `ai-council-state.jsonl` captures every state transition, including `council_complete`. When the process is interrupted before `council_complete`, the operator must determine the last completed round, what artifacts persisted, and whether to resume or roll back. Without graph: parse the JSONL line-by-line, cross-reference filesystem artifacts. With graph: `runtime status CLI` returns counts + readiness + namespace-scoped `recovery` payload in one call.
 
-> **Automated test anchor:** `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-032 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json`.
+> **Automated test anchor:** `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-032 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/system-deep-loop/runtime/tests/council-graph-value-report.json`.
 
 ---
 
@@ -101,10 +101,10 @@ If recovery payload missing, inspect `scripts/status.cjs` for the P2-001 remedia
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/status.cjs` | runtime CLI script with `recovery` field (P2-001 remediation) |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Storage layer: namespace-scoped recovery query |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md` | Documents append-only `ai-council-state.jsonl` event contract |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/graph_support.md` §5 | Documents the recovery + replay contract |
+| `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs` | runtime CLI script with `recovery` field (P2-001 remediation) |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts` | Storage layer: namespace-scoped recovery query |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md` | Documents append-only `ai-council-state.jsonl` event contract |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` §5 | Documents the recovery + replay contract |
 
 ---
 

@@ -14,7 +14,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
-const reducerPath = path.resolve(TEST_DIR, '../../../deep-loop-workflows/deep-research/scripts/reduce-state.cjs');
+const reducerPath = path.resolve(TEST_DIR, '../../../system-deep-loop/deep-research/scripts/reduce-state.cjs');
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const reducer = fs.existsSync(reducerPath) ? require(reducerPath) as {

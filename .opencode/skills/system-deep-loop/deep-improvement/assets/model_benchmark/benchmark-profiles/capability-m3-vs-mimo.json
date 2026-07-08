@@ -4,7 +4,7 @@
   "version": "1.0",
   "family": "deep-improvement",
   "mode": "model-vs-model",
-  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": [
     "hard-merge-intervals",
     "hard-parse-csv-line",

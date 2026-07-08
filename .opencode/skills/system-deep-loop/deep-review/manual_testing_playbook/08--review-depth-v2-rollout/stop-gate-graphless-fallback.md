@@ -28,7 +28,7 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 
 ### Prerequisites
 
-- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/deep-loop-runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
+- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/system-deep-loop/runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
 - A standard or complex v2 session can set `graphCoverageMode` to `graphless_fallback`.
 - The session can leave `searchLedger` empty for the gate to trip.
 
@@ -55,8 +55,8 @@ With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the rev
 
 - Workflow YAML: `.opencode/commands/deep/assets/deep_review_auto.yaml` (`step_check_convergence` legal-stop decision tree, graphlessFallbackGate branch).
 - Confirm mirror: `.opencode/commands/deep/assets/deep_review_confirm.yaml`.
-- Schema: `.opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md` (`graphCoverageMode` enum + fallback-method conventions).
-- Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
+- Schema: `.opencode/skills/system-deep-loop/deep-review/references/state/state_format.md` (`graphCoverageMode` enum + fallback-method conventions).
+- Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
 
 ## 5. SOURCE_METADATA

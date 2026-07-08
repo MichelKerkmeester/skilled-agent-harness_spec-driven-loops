@@ -40,7 +40,7 @@ This scenario verifies that the skill benchmark lane is reached by its command b
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `skill-benchmark` mode entry.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `skill-benchmark` mode entry.
 2. The orchestrator can accept `/deep:skill-benchmark` command prompts.
 
 ### Exact Command Sequence
@@ -72,8 +72,8 @@ This scenario verifies that the skill benchmark lane is reached by its command b
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - improvement family routing rule.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `skill-benchmark` source of truth.
+- `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `skill-benchmark` source of truth.
 
 ## 5. SOURCE METADATA
 

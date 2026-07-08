@@ -40,12 +40,12 @@ For deep research, explain how convergence detection ends the loop and which pac
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `research` mode entry.
-2. `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md` documents convergence threshold semantics.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
+2. `.opencode/skills/system-deep-loop/deep-research/SKILL.md` documents convergence threshold semantics.
 
 ### Exact Command Sequence
 
-1. **Invoke hub**: `Skill(deep-loop-workflows, "For deep research, explain how convergence detection ends the loop and which packet owns the convergence math before starting any iterations.")`.
+1. **Invoke hub**: `Skill(system-deep-loop, "For deep research, explain how convergence detection ends the loop and which packet owns the convergence math before starting any iterations.")`.
 2. **Capture response**: save output to `/tmp/dlw-SC-003/response.txt`.
 3. **Compare discipline**: confirm convergence ownership is assigned to the packet, not the hub.
 
@@ -72,9 +72,9 @@ For deep research, explain how convergence detection ends the loop and which pac
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - convergence backend and packet-owned convergence rule.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `research` runtime loop fields.
-- `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md` - deep-research convergence semantics.
+- `.opencode/skills/system-deep-loop/SKILL.md` - convergence backend and packet-owned convergence rule.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `research` runtime loop fields.
+- `.opencode/skills/system-deep-loop/deep-research/SKILL.md` - deep-research convergence semantics.
 
 ## 5. SOURCE METADATA
 

@@ -4,7 +4,7 @@ description: "Hardens loop-lock ownership with TTL-aware heartbeat refresh plus 
 trigger_phrases:
   - "loop-lock heartbeat hardening"
   - "loop-lock-heartbeat-hardening"
-  - "loop-lock heartbeat hardening deep-loop-runtime"
+  - "loop-lock heartbeat hardening runtime"
   - "state safety loop-lock heartbeat hardening"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Hardens loop-lock ownership with TTL-aware heartbeat refresh plus phase and last-activity metadata.
 
-This feature belongs to the state safety group and is catalogued as F034 in the `deep-loop-runtime` inventory.
+This feature belongs to the state safety group and is catalogued as F034 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the state safety group and is catalogued as F034 in the 
 
 `startHeartbeat()` and `stopHeartbeat()` refresh the held lock on a cadence, write `phase` and `lastActivityIso`, and stop the heartbeat when refresh can no longer prove ownership.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F034
 - Feature file path: `04--state-safety/loop-lock-heartbeat-hardening.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//007-loop-lock-heartbeat-hardening`
 - Primary sources: `lib/deep-loop/loop-lock.ts`, `tests/unit/loop-lock.vitest.ts`
 Related references:
 - [state safety](../04--state-safety/) — State safety category

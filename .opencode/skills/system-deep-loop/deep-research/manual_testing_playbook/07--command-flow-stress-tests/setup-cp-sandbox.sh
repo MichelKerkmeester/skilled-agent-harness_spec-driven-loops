@@ -87,7 +87,7 @@ copy_file() {
 require_path "${REPO_ROOT}/.opencode/commands/deep/research.md"
 require_path "${REPO_ROOT}/.opencode/commands/deep/assets/deep_research_auto.yaml"
 require_path "${REPO_ROOT}/.opencode/commands/deep/assets/deep_research_confirm.yaml"
-require_path "${REPO_ROOT}/.opencode/skills/deep-loop-workflows/deep-research"
+require_path "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-research"
 require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit"
 require_path "${REPO_ROOT}/.opencode/agents/deep-research.md"
 require_path "${REPO_ROOT}/.claude/agents/deep-research.md"
@@ -98,7 +98,7 @@ rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"
 
 copy_dir "${REPO_ROOT}/.opencode/commands/speckit" "${SANDBOX_DIR}/.opencode/commands/speckit"
-copy_dir "${REPO_ROOT}/.opencode/skills/deep-loop-workflows/deep-research" "${SANDBOX_DIR}/.opencode/skills/deep-loop-workflows/deep-research"
+copy_dir "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-research" "${SANDBOX_DIR}/.opencode/skills/system-deep-loop/deep-research"
 copy_dir "${REPO_ROOT}/.opencode/skills/system-spec-kit" "${SANDBOX_DIR}/.opencode/skills/system-spec-kit"
 
 copy_file "${REPO_ROOT}/.opencode/agents/deep-research.md" "${SANDBOX_DIR}/.opencode/agents/deep-research.md"

@@ -36,16 +36,16 @@ Grader selection is separate from scorer selection. `--grader noop` is the defau
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Resolves `--scorer` and `--grader`, runs the default pattern matcher, and stamps `scoringMethod` on the report. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs` | 5-dim scorer | Ported five-dimension scorer reached only under `--scorer 5dim`. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs` | Grader harness | Hosts the pluggable `noop`, `mock`, and `llm` grader paths the 5-dim scorer consumes. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Resolves `--scorer` and `--grader`, runs the default pattern matcher, and stamps `scoringMethod` on the report. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs` | 5-dim scorer | Ported five-dimension scorer reached only under `--scorer 5dim`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs` | Grader harness | Hosts the pluggable `noop`, `mock`, and `llm` grader paths the 5-dim scorer consumes. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/optin-scorer.vitest.ts` | Automated test | Verifies pattern-default parity, `--scorer 5dim` routing, grader selection, and `scoringMethod` stamping end to end. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts` | Automated test | Verifies the five-dimension scorer module behavior in isolation. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/optin-scorer.vitest.ts` | Automated test | Verifies pattern-default parity, `--scorer 5dim` routing, grader selection, and `scoringMethod` stamping end to end. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts` | Automated test | Verifies the five-dimension scorer module behavior in isolation. |
 
 ---
 

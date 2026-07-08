@@ -16,7 +16,7 @@ This scenario verifies the architectural boundary of the parent skill. The hub r
 
 **Exact prompt**:
 ```
-Explain whether the deep-loop-workflows hub owns convergence, state, synthesis, or artifact logic, then resolve a review request through the registry.
+Explain whether the system-deep-loop hub owns convergence, state, synthesis, or artifact logic, then resolve a review request through the registry.
 ```
 
 **Expected route**:
@@ -40,12 +40,12 @@ Explain whether the deep-loop-workflows hub owns convergence, state, synthesis, 
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/SKILL.md` contains the routing-only and packet-owned behavior rules.
-2. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `review` mode entry.
+1. `.opencode/skills/system-deep-loop/SKILL.md` contains the routing-only and packet-owned behavior rules.
+2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
 
 ### Exact Command Sequence
 
-1. **Invoke hub**: `Skill(deep-loop-workflows, "Explain whether the deep-loop-workflows hub owns convergence, state, synthesis, or artifact logic, then resolve a review request through the registry.")`.
+1. **Invoke hub**: `Skill(system-deep-loop, "Explain whether the system-deep-loop hub owns convergence, state, synthesis, or artifact logic, then resolve a review request through the registry.")`.
 2. **Capture response**: save output to `/tmp/dlw-SC-004/response.txt`.
 3. **Compare boundary**: confirm the response states hub routing-only behavior and packet ownership.
 
@@ -72,9 +72,9 @@ Explain whether the deep-loop-workflows hub owns convergence, state, synthesis, 
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - routing-only boundary and packet ownership rules.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `review` route fields.
-- `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` - review packet behavior ownership.
+- `.opencode/skills/system-deep-loop/SKILL.md` - routing-only boundary and packet ownership rules.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `review` route fields.
+- `.opencode/skills/system-deep-loop/deep-review/SKILL.md` - review packet behavior ownership.
 
 ## 5. SOURCE METADATA
 

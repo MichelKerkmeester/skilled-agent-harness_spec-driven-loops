@@ -1,22 +1,22 @@
 ---
-title: "deep-loop-runtime: Feature Catalog"
-description: "Unified reference combining the complete feature inventory and current-reality source anchors for the deep-loop-runtime skill."
+title: "runtime/: Feature Catalog"
+description: "Unified reference combining the complete feature inventory and current-reality source anchors for the runtime/ skill."
 trigger_phrases:
-  - "deep-loop-runtime feature catalog"
+  - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
 version: 1.4.0.15
 ---
 
-# deep-loop-runtime: Feature Catalog
+# runtime/: Feature Catalog
 
-This document combines the current feature inventory for the `deep-loop-runtime` skill into a single reference. The root catalog acts as the system-level directory for the shared executor, prompt, validation, state-safety, scoring, coverage-graph, and script-entry surfaces.
+This document combines the current feature inventory for the `runtime/` skill into a single reference. The root catalog acts as the system-level directory for the shared executor, prompt, validation, state-safety, scoring, coverage-graph, and script-entry surfaces.
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 50 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 50 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
@@ -821,7 +821,7 @@ See [`11--observability/unified-observability-event-envelope.md`](11--observabil
 
 ## 13. TESTING
 
-These entries cover shared deep-loop-runtime test harnesses used to keep script and fan-out behavior reproducible.
+These entries cover shared runtime/ test harnesses used to keep script and fan-out behavior reproducible.
 
 ### Hermetic test isolation
 

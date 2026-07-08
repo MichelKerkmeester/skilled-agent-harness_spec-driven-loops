@@ -36,15 +36,15 @@ When the recent trend is flat for the configured window, the reducer can emit a 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Reducer | Defines `renderSparkline()`, renders the dashboard trend section, and emits flatline advisory events. |
-| `.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_dashboard.md` | Asset | Documents the dashboard trend section shape. |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Defines `renderSparkline()`, renders the dashboard trend section, and emits flatline advisory events. |
+| `.opencode/skills/system-deep-loop/deep-research/assets/deep_research_dashboard.md` | Asset | Documents the dashboard trend section shape. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs` | Node test | Verifies growth, decay, and flat sparkline rendering. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/dashboard-sparkline-trend.md` | Manual playbook | Verifies dashboard trend rendering and advisory flatline evidence. |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` | Node test | Verifies growth, decay, and flat sparkline rendering. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/dashboard-sparkline-trend.md` | Manual playbook | Verifies dashboard trend rendering and advisory flatline evidence. |
 
 ---
 

@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Reads session-scoped coverage graph views through a direct JSON stdout script interface.
 
-This feature belongs to the script entry points group and is catalogued as F016 in the `deep-loop-runtime` inventory.
+This feature belongs to the script entry points group and is catalogued as F016 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the script entry points group and is catalogued as F016 
 
 Direct replacement for `deep_loop_graph_query`; serves gaps, claims, contradictions, provenance, and hot nodes.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

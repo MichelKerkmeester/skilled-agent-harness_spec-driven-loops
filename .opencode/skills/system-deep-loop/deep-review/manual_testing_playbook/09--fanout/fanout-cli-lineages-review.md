@@ -48,7 +48,7 @@ zero counts from the empty base artifact dir state log and produces an incorrect
 3. Confirm `step_fanout_spawn_cli` calls `fanout-run.cjs` with `--loop-type review`.
 4. `bash: grep -n "fanout_executors\|--executor\|strongest.restriction\|merged FAIL" .opencode/commands/deep/review.md | head -15`
 5. Confirm strongest-restriction note in review command docs.
-6. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/fanout-merge.vitest.ts --reporter=verbose`
+6. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts --reporter=verbose`
 7. Confirm 10/10 pass (5 review tests + 3 research tests + 2 e2e tests).
 
 ### RECOMMENDED ORCHESTRATION PROCESS
@@ -78,13 +78,13 @@ Source inspection confirms `bind_from_output` mapping is present. Review command
 |---|---|
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | `step_fanout_spawn`, `step_fanout_merge` (with `bind_from_output`), `step_resolve_artifact_root` |
 | `.opencode/commands/deep/review.md` | `--executor` flag docs, strongest-restriction note |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Review strongest-restriction merge |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Review strongest-restriction merge |
 
 ### Validation
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | 10 tests including 5 review strongest-restriction |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | 10 tests including 5 review strongest-restriction |
 
 ---
 

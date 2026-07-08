@@ -116,9 +116,9 @@ mutating: read-only
 gate3_location: "n/a (read-only diagnostic; reads coverage + council graphs and iteration folders + ai-council artifacts, never upserts)"
 mcp_tools: []
 script_invocations:
-  - 'node .opencode/skills/deep-loop-runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
-  - 'node .opencode/skills/deep-loop-runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}"'
-  - 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
+  - 'node .opencode/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
+  - 'node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}"'
+  - 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
 ```
 
 - Phase 4 / gold-battery asset check:
@@ -132,27 +132,27 @@ $ grep -n "phase_4\|gold_battery\|minimum_iterations\|convergence_signal_require
 - Status script output:
 
 ```text
-$ node .opencode/skills/deep-loop-runtime/scripts/status.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph
+$ node .opencode/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph
 {"status":"ok","data":{"namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","notes":["Status metrics were computed from the session-scoped subgraph only."],"totalNodes":0,"totalEdges":0,"nodesByKind":{},"edgesByRelation":{},"lastIteration":null,"schemaVersion":4,"dbFileSize":1880064,"signals":null,"momentum":null},"schemaVersion":4,"rowCount":0}
 ```
 
 - Query script outputs:
 
 ```text
-$ node .opencode/skills/deep-loop-runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type coverage_gaps --limit 50
+$ node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type coverage_gaps --limit 50
 {"status":"ok","data":{"queryType":"coverage_gaps","namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","gaps":[],"totalGaps":0}}
 
-$ node .opencode/skills/deep-loop-runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type uncovered_questions --limit 50
+$ node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type uncovered_questions --limit 50
 {"status":"ok","data":{"queryType":"uncovered_questions","namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","gaps":[],"totalGaps":0}}
 
-$ node .opencode/skills/deep-loop-runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type unverified_claims --limit 50
+$ node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --query-type unverified_claims --limit 50
 {"status":"ok","data":{"queryType":"unverified_claims","namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","claims":[],"totalUnverified":0}}
 ```
 
 - `deep_loop_graph_convergence(...)` script-equivalent response:
 
 ```text
-$ node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --iteration 24 --persist-snapshot false
+$ node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph --loop-type research --session-id 2026-06-16-028-002-code-graph --iteration 24 --persist-snapshot false
 {"status":"ok","data":{"decision":"CONTINUE","reason":"Graph is empty; insufficient data for convergence assessment","scoreDelta":null,"scoreDeltaNote":"no prior snapshot","signals":null,"blockers":[],"trace":[],"namespace":{"specFolder":".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph","loopType":"research","sessionId":"2026-06-16-028-002-code-graph"},"scopeMode":"session","nodeCount":0,"edgeCount":0},"graph_decision":"CONTINUE","graph_decision_json":"\"CONTINUE\"","graph_signals_json":{},"graph_blockers_json":[],"graph_blockers_csv":"","graph_stop_blocked":false,"graph_trace_json":[],"graph_convergence_score":0,"graph_score_delta":null,"graph_score_delta_json":"null"}
 ```
 

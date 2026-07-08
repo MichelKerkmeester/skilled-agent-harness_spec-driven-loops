@@ -46,7 +46,7 @@ Operators run the exact command sequence for `CP-050` and grade only concrete ar
 ```bash
 rm -rf /tmp/cp-050-sandbox /tmp/cp-050-sandbox-baseline /tmp/cp-050-spec
 mkdir -p /tmp/cp-050-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-050-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-050-sandbox
 cp -a /tmp/cp-050-sandbox /tmp/cp-050-sandbox-baseline
 cat > /tmp/cp-050-spec/spec.md <<'EOF'
 ---
@@ -61,7 +61,7 @@ description: "Sandbox spec for leaf citation and JSONL discipline."
 ## Open Questions
 - Which body-level rules require cited iteration output?
 ## Research Context
-- The sandbox contains .opencode/agents/deep-research.md and .opencode/skills/deep-loop-workflows/deep-research/SKILL.md.
+- The sandbox contains .opencode/agents/deep-research.md and .opencode/skills/system-deep-loop/deep-research/SKILL.md.
 EOF
 git status --porcelain > /tmp/cp-050-pre.txt
 cat > /tmp/cp-050-task.txt <<'EOF'
@@ -98,7 +98,7 @@ diff /tmp/cp-050-pre.txt /tmp/cp-050-post.txt > /tmp/cp-050-tripwire.diff; echo 
 | `.opencode/agents/deep-research.md:177-220` | required iteration file sections |
 | `.opencode/agents/deep-research.md:231-260` | exactly one JSONL record and fields |
 | `.opencode/agents/deep-research.md:275-287` | output verification |
-| `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:450-459` | per-iteration quality gate criteria |
+| `.opencode/skills/system-deep-loop/deep-research/SKILL.md:450-459` | per-iteration quality gate criteria |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml:794-817` | post-dispatch schema validation |
 
 ## 5. SOURCE METADATA

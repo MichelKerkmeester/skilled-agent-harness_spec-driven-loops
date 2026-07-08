@@ -4,7 +4,7 @@ description: "Adds shared hermetic test environments so runtime tests can run in
 trigger_phrases:
   - "hermetic test isolation"
   - "hermetic-test-isolation"
-  - "hermetic test isolation deep-loop-runtime"
+  - "hermetic test isolation runtime"
   - "testing hermetic test isolation"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds shared hermetic test environments so runtime tests can run in parallel without touching real HOME, temp, or database paths.
 
-This feature belongs to the testing group and is catalogued as F048 in the `deep-loop-runtime` inventory.
+This feature belongs to the testing group and is catalogued as F048 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the testing group and is catalogued as F048 in the `deep
 
 `createHermeticEnv()` returns an isolated HOME, DB path, tmp dir, child process environment, and cleanup function; fanout-run tests inject that environment per test and clean it after execution.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

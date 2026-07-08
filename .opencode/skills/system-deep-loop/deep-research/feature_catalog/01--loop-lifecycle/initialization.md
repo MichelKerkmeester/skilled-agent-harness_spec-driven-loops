@@ -39,18 +39,18 @@ Lineage handling is narrower than some older drafts. The runtime supports `new`,
 | `.opencode/commands/deep/research.md` | Command | Defines the init phase inputs, packet outputs, and setup contract before the YAML workflow loads. |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow | Creates canonical state files and applies the autonomous initialization path. |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Workflow | Mirrors the init path with confirm-mode charter review and state checks. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Reference | Documents session classification, canonical names, and the resumed or restarted lifecycle event contract. |
-| `.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json` | Asset | Supplies the default config shape written during initialization. |
-| `.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md` | Asset | Supplies the initial strategy structure and anchor layout. |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Reference | Documents session classification, canonical names, and the resumed or restarted lifecycle event contract. |
+| `.opencode/skills/system-deep-loop/deep-research/assets/deep_research_config.json` | Asset | Supplies the default config shape written during initialization. |
+| `.opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md` | Asset | Supplies the initial strategy structure and anchor layout. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/02--initialization-and-state-setup/fresh-initialization-creates-canonical-state-files.md` | Manual playbook | Verifies fresh initialization creates the canonical packet files. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/02--initialization-and-state-setup/resume-classification-from-valid-prior-state.md` | Manual playbook | Verifies resume classification and restart-safe continuation from valid state. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/02--initialization-and-state-setup/invalid-or-contradictory-state-halts-for-repair.md` | Manual playbook | Verifies contradictory packet state halts instead of guessing. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/02--initialization-and-state-setup/research-charter-validation.md` | Manual playbook | Verifies the research charter sections exist before the loop proceeds. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/02--initialization-and-state-setup/fresh-initialization-creates-canonical-state-files.md` | Manual playbook | Verifies fresh initialization creates the canonical packet files. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/02--initialization-and-state-setup/resume-classification-from-valid-prior-state.md` | Manual playbook | Verifies resume classification and restart-safe continuation from valid state. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/02--initialization-and-state-setup/invalid-or-contradictory-state-halts-for-repair.md` | Manual playbook | Verifies contradictory packet state halts instead of guessing. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/02--initialization-and-state-setup/research-charter-validation.md` | Manual playbook | Verifies the research charter sections exist before the loop proceeds. |
 
 ---
 

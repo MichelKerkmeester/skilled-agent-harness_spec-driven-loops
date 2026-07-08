@@ -57,7 +57,7 @@ function councilReport(overrides: Record<string, unknown> = {}): string {
 | seat-002 | Performance | Runtime Efficiency | Focus on latency |
 `;
   const recommendedPlan = overrides.recommendedPlan || `
-- Extend deep-loop-runtime with council primitives
+- Extend runtime with council primitives
 - Add cost guard validation
 `;
   const planConfidence = overrides.planConfidence || `
@@ -90,7 +90,7 @@ describe('deep-ai-council persist-artifacts', () => {
       lens: 'Architectural',
       vantage: 'System Design',
     });
-    expect(parsed.recommendedPlan).toContain('Extend deep-loop-runtime');
+    expect(parsed.recommendedPlan).toContain('Extend runtime');
     expect(parsed.planConfidence).toBe(85);
   });
 
@@ -114,7 +114,7 @@ describe('deep-ai-council persist-artifacts', () => {
       spec_folder: '/path/to/packet',
       completion_status: 'complete',
     });
-    expect(payload.decisions).toContain('Extend deep-loop-runtime with council primitives');
+    expect(payload.decisions).toContain('Extend runtime with council primitives');
     expect(payload.decisions).toContain('Add cost guard validation');
   });
 

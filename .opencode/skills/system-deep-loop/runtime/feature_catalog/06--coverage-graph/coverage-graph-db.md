@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Owns the SQLite schema, namespace scoping, node and edge mutations, snapshots, and connection lifecycle.
 
-This feature belongs to the coverage graph group and is catalogued as F011 in the `deep-loop-runtime` inventory.
+This feature belongs to the coverage graph group and is catalogued as F011 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the coverage graph group and is catalogued as F011 in th
 
 Schema v2, node and edge CRUD, snapshots, stats, composite namespace keys, and DB lifecycle.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

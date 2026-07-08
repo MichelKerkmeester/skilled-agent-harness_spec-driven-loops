@@ -4,7 +4,7 @@ description: "Adds a default-off minimum-observations guard that blocks stop or 
 trigger_phrases:
   - "observation-threshold guard"
   - "observation-threshold-guard"
-  - "observation-threshold guard deep-loop-runtime"
+  - "observation-threshold guard runtime"
   - "coverage graph observation-threshold guard"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds a default-off minimum-observations guard that blocks stop or promotion decisions until leading evidence repeats enough times.
 
-This feature belongs to the coverage graph group and is catalogued as F039 in the `deep-loop-runtime` inventory.
+This feature belongs to the coverage graph group and is catalogued as F039 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the coverage graph group and is catalogued as F039 in th
 
 `convergence.cjs` reads `minObservations` from argv/config/env, `coverage-graph-signals.ts` exposes observation signals, and sub-threshold leading findings are flagged as blockers without changing default parity.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -56,7 +56,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F039
 - Feature file path: `06--coverage-graph/observation-threshold-guard.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/012-observation-threshold-guard`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//012-observation-threshold-guard`
 - Primary sources: `lib/coverage-graph/coverage-graph-signals.ts`, `scripts/convergence.cjs`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/convergence-score-delta.vitest.ts`, `tests/unit/coverage-graph-signals.vitest.ts`
 Related references:
 - [coverage graph](../06--coverage-graph/) — Coverage graph category

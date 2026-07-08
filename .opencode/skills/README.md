@@ -54,8 +54,8 @@ Each skill name links to its own README. The one-line descriptions come from the
 
 | Skill | What it does |
 |---|---|
-| [`deep-loop-workflows`](deep-loop-workflows/README.md) | The unified deep-loop skill: routes a request to one of five modes (context, research, review, ai-council, improvement) over the shared runtime |
-| [`deep-loop-runtime`](deep-loop-runtime/README.md) | The shared foundation every deep loop rides, a runtime library rather than a loop you invoke directly |
+| [`system-deep-loop`](system-deep-loop/README.md) | The unified deep-loop skill: routes a request to one of five modes (context, research, review, ai-council, improvement) over the shared runtime |
+| [`runtime/`](runtime//README.md) | The shared foundation every deep loop rides, a runtime library rather than a loop you invoke directly |
 
 ### mcp-*: External Tool Surfaces
 

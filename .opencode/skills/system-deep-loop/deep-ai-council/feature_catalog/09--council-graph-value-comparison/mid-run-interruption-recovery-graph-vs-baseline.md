@@ -28,7 +28,7 @@ Operators use this feature when the real request is: This council process got ki
 
 The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `09--council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-032.
 
-Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/status.cjs`, which the scenario identifies as runtime CLI script with `recovery` field (p2-001 remediation). Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts`, covering automated test name: dac-032 graph beats no-graph baseline.
+Current behavior is grounded in `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs`, which the scenario identifies as runtime CLI script with `recovery` field (p2-001 remediation). Validation is anchored by `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts`, covering automated test name: dac-032 graph beats no-graph baseline.
 
 The user-visible contract is concrete: Demonstrate runtime status CLI returns structured recovery context where the baseline requires manual JSONL parsing. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,17 +40,17 @@ The user-visible contract is concrete: Demonstrate runtime status CLI returns st
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-loop-runtime/scripts/status.cjs` | Handler | runtime CLI script with `recovery` field (P2-001 remediation) |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Library | Storage layer: namespace-scoped recovery query |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md` | Reference | Documents append-only `ai-council-state.jsonl` event contract |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/graph_support.md 5` | Reference | Documents the recovery + replay contract |
+| `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs` | Handler | runtime CLI script with `recovery` field (P2-001 remediation) |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts` | Library | Storage layer: namespace-scoped recovery query |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md` | Reference | Documents append-only `ai-council-state.jsonl` event contract |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md 5` | Reference | Documents the recovery + replay contract |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual_testing_playbook/09--council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md` | Automated test | Manual scenario contract |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | Automated test | Automated test name: DAC-032 graph beats no-graph baseline |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | Automated test | Automated test name: DAC-032 graph beats no-graph baseline |
 
 ---
 

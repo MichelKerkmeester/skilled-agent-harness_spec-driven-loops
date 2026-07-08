@@ -45,10 +45,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate rejected-pattern suppression across JSONL events, loop protocol, reducer filtering, YAML candidate checks, and tests.
 ### Commands
-1. `bash: rg -n 'idea_rejected|idea_rejected_removed|idea_rejected_reset|rejected-pattern' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md`
-2. `bash: rg -n 'deriveRejectedPatternIndex|findRejectedPatternMatch|filterRejectedIdeaCandidates|suppressedCandidates|MAX_REJECTED_PATTERNS' .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs`
+1. `bash: rg -n 'idea_rejected|idea_rejected_removed|idea_rejected_reset|rejected-pattern' .opencode/skills/system-deep-loop/deep-research/references/state/state_jsonl.md .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md`
+2. `bash: rg -n 'deriveRejectedPatternIndex|findRejectedPatternMatch|filterRejectedIdeaCandidates|suppressedCandidates|MAX_REJECTED_PATTERNS' .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
 3. `bash: rg -n 'step_rejected_pattern_cache|rejectedPatternIndex|suppressedCandidates|All next-focus' .opencode/commands/deep/assets/deep_research_auto.yaml`
-4. `bash: rg -n 'suppresses an exact rejected|re-admits a pattern|bounded rejected-pattern|fuzzy matching' .opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts`
+4. `bash: rg -n 'suppresses an exact rejected|re-admits a pattern|bounded rejected-pattern|fuzzy matching' .opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts`
 ### Expected
 Rejected patterns are stored, bounded, exact/fuzzy matched, surfaced in suppressed-candidate diagnostics, and reversible through removal or reset events.
 ### Evidence
@@ -73,11 +73,11 @@ Privilege reducer behavior for active suppression and `state_jsonl.md` for event
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md` | Rejected-pattern event schema |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Candidate suppression order and overflow policy |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Rejected-pattern index derivation and candidate filtering |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_jsonl.md` | Rejected-pattern event schema |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Candidate suppression order and overflow policy |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Rejected-pattern index derivation and candidate filtering |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Runtime candidate check before dispatch |
-| `.opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for exact, fuzzy, removal, and reset behavior |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for exact, fuzzy, removal, and reset behavior |
 
 ---
 

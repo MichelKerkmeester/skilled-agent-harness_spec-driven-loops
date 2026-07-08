@@ -40,15 +40,15 @@ After the agent finishes, the loop does not treat the strategy, dashboard, or fi
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow | Dispatches the LEAF agent, checks the pause sentinel, and runs the reducer after each iteration. |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Workflow | Mirrors dispatch flow with confirm-mode pause and review gates. |
 | `.opencode/agents/deep-research.md` | Agent | Defines the single-iteration read, research, write, and progressive-synthesis rules. |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Reducer | Synchronizes strategy, findings registry, and dashboard from iteration artifacts and events. |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Synchronizes strategy, findings registry, and dashboard from iteration artifacts and events. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/iteration-reads-state-before-research.md` | Manual playbook | Verifies every iteration reads state before researching. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/iteration-writes-iteration-jsonl-and-strategy-update.md` | Manual playbook | Verifies the iteration file and JSONL append contract. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach discipline. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/iteration-reads-state-before-research.md` | Manual playbook | Verifies every iteration reads state before researching. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/iteration-writes-iteration-jsonl-and-strategy-update.md` | Manual playbook | Verifies the iteration file and JSONL append contract. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach discipline. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer sync writes stable registry, strategy, and dashboard outputs from iteration state. |
 
 ---

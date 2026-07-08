@@ -4,7 +4,7 @@ description: "Adds a unified observability event envelope and routes core runtim
 trigger_phrases:
   - "unified observability event envelope"
   - "unified-observability-event-envelope"
-  - "unified observability event envelope deep-loop-runtime"
+  - "unified observability event envelope runtime"
   - "observability unified observability event envelope"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds a unified observability event envelope and routes core runtime emitters through it without migrating legacy rows.
 
-This feature belongs to the observability group and is catalogued as F047 in the `deep-loop-runtime` inventory.
+This feature belongs to the observability group and is catalogued as F047 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the observability group and is catalogued as F047 in the
 
 `observability-events.cjs` normalizes payloads into `schema_version`, `event_id`, `producer`, `stream`, `subject`, `event`, `status`, and native `payload`; fanout-run, convergence, status, council round-state, and research YAML producers append through it.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

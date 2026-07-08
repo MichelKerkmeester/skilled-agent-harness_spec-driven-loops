@@ -41,13 +41,13 @@ deep-ai-council: run a planning council and converge on a recommendation.
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `research`, `review`, and `ai-council` entries.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research`, `review`, and `ai-council` entries.
 2. Skill advisor is callable.
 
 ### Exact Command Sequence
 
 1. **Run advisor probes**: run the skill advisor once for each prompt and append output to `/tmp/dlw-AI-002/advisor.jsonl`.
-2. **Invoke hub**: invoke `Skill(deep-loop-workflows, "<prompt>")` once for each prompt.
+2. **Invoke hub**: invoke `Skill(system-deep-loop, "<prompt>")` once for each prompt.
 3. **Capture routes**: save responses to `/tmp/dlw-AI-002/routes.txt`.
 4. **Compare to registry**: confirm each lexical mode maps to its expected command and agent.
 
@@ -74,8 +74,8 @@ deep-ai-council: run a planning council and converge on a recommendation.
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - hub routing rule.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - lexical advisor routing fields.
+- `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - lexical advisor routing fields.
 
 ## 5. SOURCE METADATA
 

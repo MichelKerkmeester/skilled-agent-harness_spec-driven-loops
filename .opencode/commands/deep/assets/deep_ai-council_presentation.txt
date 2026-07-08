@@ -319,10 +319,10 @@ STATUS=CANCELLED PATH=[spec-folder-path]
 
 ### Skill Reference
 
-Full protocol documentation: `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md` Section "Deep Mode (Iterative Multi-Topic)".
+Full protocol documentation: `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` Section "Deep Mode (Iterative Multi-Topic)".
 
 Key references:
 
 - Command workflow assets: `.opencode/commands/deep/assets/deep_ai-council_auto.yaml` and `.opencode/commands/deep/assets/deep_ai-council_confirm.yaml`
-- Skill package: `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md`
+- Skill package: `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md`
 - State hierarchy ADR: `.opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture/decision-record.md`

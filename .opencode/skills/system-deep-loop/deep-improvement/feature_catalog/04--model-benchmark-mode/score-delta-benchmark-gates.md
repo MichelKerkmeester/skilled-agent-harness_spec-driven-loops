@@ -36,17 +36,17 @@ Promotion treats the delta contract as a safety gate. `promote-candidate.cjs` re
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Builds `fixtureDeltas[]`, `fixtureDeltaSummary`, and `outcomeScoreDelta`; persists them in the report and `benchmark_run` ledger row. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs` | Reducer | Aggregates benchmark delta rows into registry and dashboard summaries: runs with deltas, missing deltas, helped/hurt/unchanged/missing-baseline counts. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Blocks negative outcome deltas, missing baselines without `--no-baseline-ok`, and hurt fixtures without `--allow-hurt-fixtures`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Builds `fixtureDeltas[]`, `fixtureDeltaSummary`, and `outcomeScoreDelta`; persists them in the report and `benchmark_run` ledger row. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs` | Reducer | Aggregates benchmark delta rows into registry and dashboard summaries: runs with deltas, missing deltas, helped/hurt/unchanged/missing-baseline counts. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Blocks negative outcome deltas, missing baselines without `--no-baseline-ok`, and hurt fixtures without `--allow-hurt-fixtures`. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts` | Automated test | Asserts benchmark reports and state rows include `outcomeScoreDelta`, per-fixture helped/hurt rows, and the fixture delta summary. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts` | Automated test | Asserts promotion rejects negative deltas, missing baselines, and hurt fixtures unless the explicit override flag is supplied. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts` | Automated test | Asserts reducer registry and dashboard output summarize benchmark score-delta counts. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts` | Automated test | Asserts benchmark reports and state rows include `outcomeScoreDelta`, per-fixture helped/hurt rows, and the fixture delta summary. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts` | Automated test | Asserts promotion rejects negative deltas, missing baselines, and hurt fixtures unless the explicit override flag is supplied. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts` | Automated test | Asserts reducer registry and dashboard output summarize benchmark score-delta counts. |
 
 ---
 

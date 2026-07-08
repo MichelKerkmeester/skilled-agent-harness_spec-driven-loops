@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate invalid deep-research state halts for repair instead of guessing through partial or contradictory artifacts.
 ### Commands
-1. `bash: rg -n 'invalid-state|halt for repair|contradictory|guessing' .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md .opencode/skills/deep-loop-workflows/deep-research/SKILL.md`
+1. `bash: rg -n 'invalid-state|halt for repair|contradictory|guessing' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md .opencode/skills/system-deep-loop/deep-research/SKILL.md`
 2. `bash: rg -n 'on_invalid_state|halt: true|incomplete or contradictory' .opencode/commands/deep/assets/deep_research_auto.yaml .opencode/commands/deep/assets/deep_research_confirm.yaml`
-3. `bash: rg -n 'State file corrupt|repair|recover' .opencode/skills/deep-loop-workflows/deep-research/README.md`
+3. `bash: rg -n 'State file corrupt|repair|recover' .opencode/skills/system-deep-loop/deep-research/README.md`
 ### Expected
 Invalid-state is a named class, both YAML files halt with a repair message, and the docs do not promise silent guessing for contradictory state.
 ### Evidence
@@ -71,11 +71,11 @@ Distinguish invalid-state from recoverable JSONL corruption and verify both YAML
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Invalid-state contract; use `ANCHOR:phase-initialization` |
-| `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md` | Rule-level guardrails; use `ANCHOR:rules` |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Invalid-state contract; use `ANCHOR:phase-initialization` |
+| `.opencode/skills/system-deep-loop/deep-research/SKILL.md` | Rule-level guardrails; use `ANCHOR:rules` |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Halt behavior; inspect `step_classify_session` |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Halt behavior; inspect `step_classify_session` |
-| `.opencode/skills/deep-loop-workflows/deep-research/README.md` | Troubleshooting boundary; use `ANCHOR:troubleshooting` |
+| `.opencode/skills/system-deep-loop/deep-research/README.md` | Troubleshooting boundary; use `ANCHOR:troubleshooting` |
 
 ---
 
@@ -85,4 +85,4 @@ Distinguish invalid-state from recoverable JSONL corruption and verify both YAML
 - Playbook ID: DR-006
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `02--initialization-and-state-setup/invalid-or-contradictory-state-halts-for-repair.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

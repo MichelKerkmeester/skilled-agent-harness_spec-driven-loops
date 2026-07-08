@@ -28,7 +28,7 @@ Operators use this feature when the real request is: This council looks like it 
 
 The shipped surface is anchored by `runtime upsert CLI`, `runtime convergence CLI`, `deep-ai-council`. The playbook scenario `09--council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-029.
 
-Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, which the scenario identifies as three-state decision logic. Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering "blocks convergence for empty derived graphs instead of returning false-safe success" + stop_blocked branch test.
+Current behavior is grounded in `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`, which the scenario identifies as three-state decision logic. Validation is anchored by `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`, covering "blocks convergence for empty derived graphs instead of returning false-safe success" + stop_blocked branch test.
 
 The user-visible contract is concrete: Demonstrate the graph provides a safety guarantee (block on unresolved critical) that the two-of-three baseline does not. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,17 +40,17 @@ The user-visible contract is concrete: Demonstrate the graph provides a safety g
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Handler | Three-state decision logic |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Library | `unresolvedCriticalDisagreements` calculator |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/convergence/convergence_signals.md` | Reference | Documents the baseline two-of-three rule |
+| `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Handler | Three-state decision logic |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | Library | `unresolvedCriticalDisagreements` calculator |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence_signals.md` | Reference | Documents the baseline two-of-three rule |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual_testing_playbook/09--council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md` | Automated test | Manual scenario contract |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | "blocks convergence for empty derived graphs instead of returning false-safe success" + STOP_BLOCKED branch test |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | Automated test | Automated test name: DAC-029 graph beats no-graph baseline |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | "blocks convergence for empty derived graphs instead of returning false-safe success" + STOP_BLOCKED branch test |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | Automated test | Automated test name: DAC-029 graph beats no-graph baseline |
 
 ---
 

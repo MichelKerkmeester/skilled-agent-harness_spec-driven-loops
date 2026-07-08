@@ -92,11 +92,11 @@ If a mode errors with "unknown mode", inspect `scripts/query.cjs` mode dispatch 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | runtime CLI script: per-mode dispatch |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Per-mode query helpers |
-| `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | Runtime query-type dispatch for `unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, and `hot_nodes` |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Test: "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/graph_support.md` | Documents the five query modes |
+| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | runtime CLI script: per-mode dispatch |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | Per-mode query helpers |
+| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | Runtime query-type dispatch for `unresolved_disagreements`, `evidence_chain`, `decision_support`, `convergence_blockers`, and `hot_nodes` |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Test: "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` | Documents the five query modes |
 
 ---
 

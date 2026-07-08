@@ -37,7 +37,7 @@ The save rules also reject manual writes under `memory/`. The command entrypoint
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/commands/deep/research.md` | Command | Defines the save phase and memory integration notes for the command entrypoint. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the save phase and its verification step. |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the save phase and its verification step. |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow | Runs `generate-context.js` in autonomous mode and marks manual memory authoring as invalid. |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Workflow | Runs the same save flow with confirm-mode review gates. |
 
@@ -45,7 +45,7 @@ The save rules also reject manual writes under `memory/`. The command entrypoint
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies the save phase uses the supported continuity path after synthesis. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies the save phase uses the supported continuity path after synthesis. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Vitest | Verifies the command assets stay aligned on reducer execution and canonical deep-research packet references. |
 
 ---

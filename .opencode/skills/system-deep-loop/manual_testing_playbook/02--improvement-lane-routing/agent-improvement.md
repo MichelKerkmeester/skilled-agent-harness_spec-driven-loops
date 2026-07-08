@@ -41,7 +41,7 @@ Evaluate and score the code agent candidate, compare it against the current base
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `agent-improvement` mode entry.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `agent-improvement` mode entry.
 2. The skill advisor is callable if the operator chooses an advisor probe.
 
 ### Exact Command Sequence
@@ -50,7 +50,7 @@ Evaluate and score the code agent candidate, compare it against the current base
    ```bash
    python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change." --threshold 0.8 > /tmp/dlw-IL-001/advisor.txt
    ```
-2. **Invoke hub**: `Skill(deep-loop-workflows, "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change.")`.
+2. **Invoke hub**: `Skill(system-deep-loop, "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change.")`.
 3. **Capture route**: save the AI response to `/tmp/dlw-IL-001/response.txt`.
 4. **Compare to registry**: confirm the response matches the `agent-improvement` registry entry.
 
@@ -58,7 +58,7 @@ Evaluate and score the code agent candidate, compare it against the current base
 
 | Step | Signal |
 |---|---|
-| 1 | Advisor transcript surfaces `deep-loop-workflows` or legacy `deep-improvement` folding into the hub. |
+| 1 | Advisor transcript surfaces `system-deep-loop` or legacy `deep-improvement` folding into the hub. |
 | 2 | Hub selects `workflowMode: agent-improvement`. |
 | 3 | Response names `/deep:agent-improvement`, agent `deep-improvement`, backend `improvement-host`, and loop host mode `agent-improvement`. |
 | 4 | Response keeps `runtimeLoopType` as null and does not invent an improvement runtime loop type. |
@@ -77,8 +77,8 @@ Evaluate and score the code agent candidate, compare it against the current base
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - improvement family routing rule.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `agent-improvement` source of truth.
+- `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `agent-improvement` source of truth.
 
 ## 5. SOURCE METADATA
 

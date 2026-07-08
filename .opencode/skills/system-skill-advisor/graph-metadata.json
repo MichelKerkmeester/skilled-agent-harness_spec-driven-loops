@@ -32,16 +32,6 @@
         "context": "routes frontend and system-code requests via sk-code stack detection"
       },
       {
-        "target": "deep-loop-workflows",
-        "weight": 0.7,
-        "context": "routes autonomous research requests"
-      },
-      {
-        "target": "deep-loop-workflows",
-        "weight": 0.7,
-        "context": "routes autonomous review requests"
-      },
-      {
         "target": "sk-doc",
         "weight": 0.7,
         "context": "routes documentation requests"
@@ -50,11 +40,6 @@
         "target": "sk-git",
         "weight": 0.7,
         "context": "routes git workflow requests"
-      },
-      {
-        "target": "deep-loop-workflows",
-        "weight": 0.7,
-        "context": "routes agent improvement requests"
       },
       {
         "target": "sk-prompt",
@@ -72,11 +57,9 @@
         "context": "routes opencode delegation requests"
       },
       {
-        "target": "deep-loop-workflows",
+        "target": "system-deep-loop",
         "weight": 0.7,
-        "context": "routes deep-ai-council delegation requests",
-        "auto_added_at": "2026-05-15T14:10:44.259Z",
-        "auto_added_reason": "family-inference:0.45 + asset-shape:0.30 + sibling-transitivity:0.15"
+        "context": "routes autonomous research requests; routes autonomous review requests; routes agent improvement requests; routes deep-ai-council delegation requests"
       }
     ],
     "siblings": [],

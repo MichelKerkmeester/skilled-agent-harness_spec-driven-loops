@@ -71,7 +71,7 @@ Deep mode iterates over multiple topics, each with its own rounds, and converges
 **Step 2: Persist the report.** The `@ai-council` agent is scoped-write and persists the canonical packet-local `ai-council/**` artifact set directly. The CLI helper remains available as a fallback for non-council callers that already have a captured report.
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs specs/042-pipeline \
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs specs/042-pipeline \
   --input-file /tmp/council-report.md
 ```
 
@@ -80,7 +80,7 @@ Expected result: a packet-local `ai-council/` tree with `ai-council-state.jsonl`
 **Step 3: Verify completion before you hand off.**
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/advise-council-completion.cjs specs/042-pipeline
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs specs/042-pipeline
 ```
 
 Expected result: confirmation that `ai-council-state.jsonl` ends with a `council_complete` event.
@@ -125,7 +125,7 @@ The council is planning only. It recommends a plan and persists the reasoning. I
 
 ### Sibling Deep Loops
 
-The council shares the `deep-loop-runtime` with the other active deep-loop families. The current active roster is research, review, ai-council and improvement; each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory. Use `@context` or `/speckit:plan` for codebase context before council work.
+The council shares the `runtime/` with the other active deep-loop families. The current active roster is research, review, ai-council and improvement; each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory. Use `@context` or `/speckit:plan` for codebase context before council work.
 
 | Skill | Relationship |
 |---|---|
@@ -142,7 +142,7 @@ The council shares the `deep-loop-runtime` with the other active deep-loop famil
 | Skill | Relationship |
 |---|---|
 | `system-spec-kit` | Owns the packet folder where `ai-council/` artifacts live. Validation, resume and continuity all run through it. |
-| `deep-loop-runtime` | Shared runtime for the active deep-loop families. Council graph support is a derived projection rebuilt from artifacts through the runtime's CLI scripts. |
+| `runtime/` | Shared runtime for the active deep-loop families. Council graph support is a derived projection rebuilt from artifacts through the runtime's CLI scripts. |
 
 ---
 
@@ -191,8 +191,8 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-loop-workflows/deep-ai-council/README.md --type readme` reports zero issues |
-| Skill package structure | `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-loop-workflows/deep-ai-council` exits 0 |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-ai-council/README.md --type readme` reports zero issues |
+| Skill package structure | `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/system-deep-loop/deep-ai-council` exits 0 |
 | Playbook scenarios | Run the scenarios under `manual_testing_playbook/` across its nine categories: runtime routing, council deliberation, artifact persistence, convergence and rollback, scope boundaries, depth and failure handling, the writer-library contract, council-graph integration and council-graph value comparison |
 
 ---

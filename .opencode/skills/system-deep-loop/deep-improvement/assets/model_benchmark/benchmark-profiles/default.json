@@ -4,7 +4,7 @@
   "version": "1.0",
   "family": "deep-improvement",
   "targetPath": ".opencode/agents/deep-improvement.md",
-  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": ["fixture-baseline", "fixture-improved", "fixture-edge"],
   "outputsDir": "{spec_folder}/improvement/benchmark-outputs",
   "metrics": ["score", "delta", "pass_rate"],

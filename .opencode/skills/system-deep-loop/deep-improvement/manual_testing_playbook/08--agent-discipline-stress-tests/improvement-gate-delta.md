@@ -56,7 +56,7 @@ Operators run the exact prompt and command sequence for `CP-036` and confirm the
 ```bash
 rm -rf /tmp/cp-036-sandbox /tmp/cp-036-sandbox-baseline /tmp/cp-036-spec
 mkdir -p /tmp/cp-036-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-036-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-036-sandbox
 cp -a /tmp/cp-036-sandbox /tmp/cp-036-sandbox-baseline
 git status --porcelain > /tmp/cp-036-pre.txt
 cat > /tmp/cp-036-task.txt <<'EOF'
@@ -96,9 +96,9 @@ grep -Ec 'promoted|stopReason":"converged"' /tmp/cp-036-B-combined.txt | tee /tm
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Baseline/current score comparison |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Baseline/current score comparison |
 | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` | Workflow score invocation |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` | Improvement gate contract |
+| `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Improvement gate contract |
 
 ## 5. SOURCE METADATA
 

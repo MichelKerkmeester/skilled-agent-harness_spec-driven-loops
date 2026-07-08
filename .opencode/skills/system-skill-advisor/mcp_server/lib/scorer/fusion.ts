@@ -498,7 +498,7 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   if (skillId === 'system-spec-kit' && /\b(packet|spec folder|save memory|phase|continuation prompts|resume handling)\b/.test(promptLower)) {
     return true;
   }
-  if (skillId === 'deep-loop-workflows' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
+  if (skillId === 'system-deep-loop' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
     return true;
   }
   if (skillId === 'mcp-chrome-devtools' && /\b(\.opencode\/agents|state log|predictions schema|current labels|gate-3-classifier\.ts)\b/.test(promptLower)) {
@@ -572,7 +572,7 @@ function primaryIntentBonus(
   // Colon-command review-loop syntax (":review:auto") invokes the deep-review
   // loop; rank it above single-pass code review.
   if (/:review:(auto|confirm)\b/.test(promptLower)) {
-    if (recommendation.skill === 'deep-loop-workflows') return R.reviewLoopDeepReviewBonus;
+    if (recommendation.skill === 'system-deep-loop') return R.reviewLoopDeepReviewBonus;
     if (recommendation.skill === 'sk-code') return R.deepReviewSkCodeReviewPenalty;
   }
   // Auditing recommendation quality is a review task, not an advisor-self task.
@@ -594,7 +594,7 @@ function primaryIntentBonus(
   if (/\bcreate (a )?(test|testing) playbook\b/.test(promptLower) || promptLower.includes('/create:manual-testing-playbook')) {
     if (recommendation.skill === 'create:manual-testing-playbook' || recommendation.skill === 'command-create-manual-testing-playbook') return R.createTestingPlaybookBonus;
     if (recommendation.skill === 'sk-doc') return R.createTestingPlaybookSkDocPenalty;
-    if (recommendation.skill === 'deep-loop-workflows') return R.createTestingPlaybookOtherSkillsPenalty;
+    if (recommendation.skill === 'system-deep-loop') return R.createTestingPlaybookOtherSkillsPenalty;
   }
   if (/\bphase folder\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.phaseFolderSpecKitBonus;

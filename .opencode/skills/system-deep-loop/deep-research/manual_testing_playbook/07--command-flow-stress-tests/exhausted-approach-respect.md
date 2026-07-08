@@ -46,7 +46,7 @@ Operators run the exact command sequence for `CP-051` and grade only file and gr
 ```bash
 rm -rf /tmp/cp-051-sandbox /tmp/cp-051-sandbox-baseline /tmp/cp-051-spec
 mkdir -p /tmp/cp-051-spec/research/iterations /tmp/cp-051-spec/research/deltas /tmp/cp-051-spec/research/prompts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-051-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-051-sandbox
 cp -a /tmp/cp-051-sandbox /tmp/cp-051-sandbox-baseline
 cat > /tmp/cp-051-spec/spec.md <<'EOF'
 ---
@@ -115,7 +115,7 @@ diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo 
 | `.opencode/agents/deep-research.md:77-97` | read state and hard-block missing state |
 | `.opencode/agents/deep-research.md:113-130` | focus selection and exhausted approach handling |
 | `.opencode/agents/deep-research.md:399-428` | always and never rules for state discipline |
-| `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:367-383` | skill-level state and exhausted approach rules |
+| `.opencode/skills/system-deep-loop/deep-research/SKILL.md:367-383` | skill-level state and exhausted approach rules |
 
 ## 5. SOURCE METADATA
 

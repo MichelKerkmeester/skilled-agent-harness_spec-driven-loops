@@ -37,17 +37,17 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Shared script | Normalizes review evidence and renders the ten-category resource map. |
-| `.opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs` | Reducer | Adds the `--emit-resource-map` path and honors `config.resource_map.emit`. |
+| `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs` | Reducer | Adds the `--emit-resource-map` path and honors `config.resource_map.emit`. |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Workflow | Triggers emission during synthesis after the final adjudication pass. |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Workflow | Mirrors the same synthesis-time emission path in confirm mode. |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md` | Reference | Documents the convergence-to-synthesis emission step and operator opt-out. |
+| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Reference | Documents the convergence-to-synthesis emission step and operator opt-out. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | Vitest | Covers review-shape normalization, category classification, and deterministic output. |
-| `.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` | Manual playbook | Verifies synthesis emits the review resource map and that opt-out skips cleanly. |
+| `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` | Manual playbook | Verifies synthesis emits the review resource map and that opt-out skips cleanly. |
 
 ---
 
@@ -56,7 +56,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 - Group: Loop lifecycle
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--loop-lifecycle/resource-map-emission.md`
-- Primary sources: `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`, `.opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs`, `.opencode/commands/deep/assets/deep_review_auto.yaml`, `.opencode/commands/deep/assets/deep_review_confirm.yaml`
+- Primary sources: `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs`, `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs`, `.opencode/commands/deep/assets/deep_review_auto.yaml`, `.opencode/commands/deep/assets/deep_review_confirm.yaml`
 Related references:
 - [memory-save.md](memory-save.md) — Memory save
 - [resource-map-coverage-gate.md](resource-map-coverage-gate.md) — Resource Map Coverage Gate

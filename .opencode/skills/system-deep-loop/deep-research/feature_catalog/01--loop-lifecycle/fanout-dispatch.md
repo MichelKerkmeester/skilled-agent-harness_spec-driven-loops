@@ -65,15 +65,15 @@ Default policy: 0–1 executor → `config.executor`; 2+ / `--executors` / `coun
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | `step_resolve_artifact_root` (if_present/if_absent branches), `step_fanout_spawn`, `step_fanout_merge` |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Same steps (confirm variant) |
 | `.opencode/commands/deep/research.md` | `--executor`/`--executors`/`--concurrency` flag docs, default policy, fan-out examples |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | CLI lineage pool driver called by `step_fanout_spawn_cli` |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Cross-lineage merger called by `step_fanout_merge` |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | CLI lineage pool driver called by `step_fanout_spawn_cli` |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Cross-lineage merger called by `step_fanout_merge` |
 
 ### Validation
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts` | Pool dispatch + lineage dir isolation |
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Research registry dedup + attribution |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Pool dispatch + lineage dir isolation |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Research registry dedup + attribution |
 
 ---
 

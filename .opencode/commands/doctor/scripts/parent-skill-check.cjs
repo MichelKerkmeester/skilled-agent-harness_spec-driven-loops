@@ -73,7 +73,7 @@ const SURFACE_FORBIDDEN_TOOLS = ['Write', 'Edit', 'Task'];
 // Directories allowed at a hub root without being a registered packet.
 const DIRECTORY_ALLOWLIST = new Set([
   'shared', 'changelog', 'benchmark', 'manual_testing_playbook', 'feature_catalog',
-  'references', 'assets', 'node_modules', 'scripts', 'templates', 'dist',
+  'references', 'assets', 'node_modules', 'scripts', 'templates', 'dist', 'runtime',
 ]);
 
 // The deep-loop reference drift-guard. A hub with lexical/alias-fold modes must
@@ -92,9 +92,9 @@ const ADVISOR_SCRIPT_ABS = path.resolve(REPO_ROOT, ADVISOR_SCRIPT);
 // dynamic 4b equality check applies to it; every other hub gets the inert-route
 // coverage check (4c) instead. This is interpretation, not a gate — all hubs
 // still run the check.
-const GLOBAL_MAP_OWNER = 'deep-loop-workflows';
+const GLOBAL_MAP_OWNER = 'system-deep-loop';
 
-const DEFAULT_TARGET = '.opencode/skills/deep-loop-workflows';
+const DEFAULT_TARGET = '.opencode/skills/system-deep-loop';
 
 // Canon checks are FAIL by default now that every parent hub carries the canon
 // fields (packetKind, toolSurface, grandfatheredFolderMismatch, hub-router,

@@ -47,7 +47,7 @@ Validate deep-review traceability cross-reference checks and confirm the configu
 ### Commands
 1. `bash: rg -n 'crossReference|cross_reference|spec_code|checklist_evidence|skill_agent|agent_cross_runtime|feature_catalog_code|playbook_capability' .opencode/commands/deep/assets/deep_review_auto.yaml`
 2. `bash: rg -n 'traceability|cross.reference|TRACEABILITY PROTOCOLS' .opencode/commands/deep/assets/deep_review_auto.yaml`
-3. `bash: rg -n 'cross.reference|traceability|spec_code|checklist_evidence' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml`
+3. `bash: rg -n 'cross.reference|traceability|spec_code|checklist_evidence' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md .opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml`
 ### Expected
 The config includes crossReference with core and overlay protocols. The dispatch prompt includes traceability constraints. The quality guards require cross-reference checks before convergence.
 ### Evidence
@@ -72,9 +72,9 @@ Check the review_mode_contract.yaml for the full cross-reference protocol defini
 | File | Role |
 |---|---|
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Config creation and dispatch, inspect `step_create_config` crossReference block and dispatch traceability constraints |
-| `.opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml` | Cross-reference protocol definitions, inspect `cross_reference_protocols` |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Quality guards, use `ANCHOR:quality-guards` and `ANCHOR:review-dimensions` |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Traceability dimension documentation |
+| `.opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml` | Cross-reference protocol definitions, inspect `cross_reference_protocols` |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Quality guards, use `ANCHOR:quality-guards` and `ANCHOR:review-dimensions` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Traceability dimension documentation |
 
 ---
 
@@ -84,4 +84,4 @@ Check the review_mode_contract.yaml for the full cross-reference protocol defini
 - Playbook ID: DRV-011
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `03--iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

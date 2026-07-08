@@ -3,16 +3,16 @@
   "id": "deep/review",
   "command": "/deep:review",
   "version": 1,
-  "generatedBy": ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs",
+  "generatedBy": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/review.md",
-      "sha256": "1832858fd7081288b43f49e7391dc95fdd375a2d3c06adc5a914b65b66aec021",
+      "sha256": "bad1c2bdfc0e903a83df0fa094e3715658d3de2bbaf00a97270aca3be1f1e7d6",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_presentation.txt",
-      "sha256": "ae7d3eea6a1af0e0fb6b456afcc5aa14472154d60d7f25fa214a13b3f0c515e0",
+      "sha256": "d7e2e95928e4d1cf025dd944fbe515b1da0f723a9e2ba6395543364e77eb8c82",
       "section": "full"
     },
     {
@@ -22,71 +22,71 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
-      "sha256": "640375c6c767461e2d869fad812c28d16ffd00e2444fed1325b90c90086a374a",
+      "sha256": "107fba9d8591235c1339e077e072aef18678acace24b67c29f3892f987495310",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_confirm.yaml",
-      "sha256": "30acc93a317893371c5be6fd2387466dd6e10d52b4453e2cfa5dacfc7e980b9d",
+      "sha256": "95cf6636f4bdab9fd20cdee221d0b3a5a49ba06de02311b3c30ef0cbdfe69d16",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
-      "sha256": "790d462884619d320352d957ada7a6b40be2f79dfc70db7e1ba5830825c846fb",
+      "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+      "sha256": "1293ff04fdc5529fc969a36cc64d918d2e96303287ada37d5b0a6d0a61cb3e47",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
-      "sha256": "75d26ab439f8fab2b9a667e9fab4b1c7a42201e61f2ed823f502ba4be0313a75",
+      "path": ".opencode/skills/system-deep-loop/SKILL.md",
+      "sha256": "46d1f01bd81c2dcfa1dd37a146899cffce712e682ed4ef12d603e9d3be9729ba",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
-      "sha256": "44dbbe7cae5fbf72fdf7694f265ae5533f8cc68474f3de75f451a252cc892065",
+      "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      "sha256": "900b00a565be2a6664e6e85857744a633eb8643d9bdaa206634d9a69e54e8d6b",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md",
-      "sha256": "bef3be883307c40b5df3ab196ef0168fabd67e4edc27f31678ef9b8a74320143",
+      "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop_protocol.md",
+      "sha256": "d79a317dfc40450c9f3596fc82c2fb7be953787ef9149416c69925f31b212f10",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md",
-      "sha256": "c9f0a84bc95ae1d9414d18a9fcef0fd7ab7ee7bdaac9ac97d4749035c5795258",
+      "path": ".opencode/skills/system-deep-loop/deep-review/references/state/state_format.md",
+      "sha256": "5c3c6372046e3a998bdfa4c8f286cf18e3e9f1ad994f66f27fb876f84c393fba",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml",
-      "sha256": "1c8ebec5333127036af7f4b6b59510a8dcaa3308863fa162a0bdcc5df48a1519",
+      "path": ".opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml",
+      "sha256": "e7f1c54f14ee3508381eaeabda3f47dd0e560be06ecda4b791953135b104a551",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md",
+      "path": ".opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
       "sha256": "d4f0c3df7fc7883c8f80796f39bc2091eb50be878540ee03a19e396166e87171",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json",
-      "sha256": "7b1517d1efc19eaec9be1ab75181228b422f953feabfd58f5ade086b611c4b3a",
+      "path": ".opencode/skills/system-deep-loop/deep-review/assets/deep_review_config.json",
+      "sha256": "4f3dc6d35061aa3018f9332a9cd087ffdd91024642c80728375b7bb1e62ac4ed",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
+      "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl",
       "sha256": "cb2c88a32d68bbc135a0767e7689d42e4289a275d35cac9a25f6511b090ea51b",
       "section": "full"
     },
     {
       "path": ".opencode/agents/deep-review.md",
-      "sha256": "d36a6ea58c997ff8706ea42b392bc8fd5f77ac1b4d6808636e3869161cb684ed",
+      "sha256": "82df29316fd93cbc55d25ea968c665f58dc8e593ea1b868e30b0034fabf855dd",
       "section": "full"
     },
     {
-      "path": ".opencode/skills/deep-loop-workflows/shared/rollout/resolve-injection-mode.cjs",
+      "path": ".opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
       "sha256": "3c801fbecbc5bb01a99a7578243a823b791368cc229966b930418cfb468500df",
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "d10af6a798156fde6df665f55d1c607accd9e881573f5648f35eb2ceca381f9b"
+  "compiledBodyDigest": "defb775ce5d5ae76749a84f76af5eac864960b08a8a782ed4dfc215fddfef639"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -114,17 +114,17 @@ Your job is to DISPATCH `deep-review` to run the review loop over the bound targ
 3. `.opencode/skills/system-spec-kit/references/workflows/auto_mode_contract.md`
 4. `.opencode/commands/deep/assets/deep_review_auto.yaml`
 5. `.opencode/commands/deep/assets/deep_review_confirm.yaml`
-6. `.opencode/skills/deep-loop-workflows/mode-registry.json`
-7. `.opencode/skills/deep-loop-workflows/SKILL.md`
-8. `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md`
-9. `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md`
-10. `.opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md`
-11. `.opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml`
-12. `.opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md`
-13. `.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json`
-14. `.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl`
+6. `.opencode/skills/system-deep-loop/mode-registry.json`
+7. `.opencode/skills/system-deep-loop/SKILL.md`
+8. `.opencode/skills/system-deep-loop/deep-review/SKILL.md`
+9. `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop_protocol.md`
+10. `.opencode/skills/system-deep-loop/deep-review/references/state/state_format.md`
+11. `.opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml`
+12. `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+13. `.opencode/skills/system-deep-loop/deep-review/assets/deep_review_config.json`
+14. `.opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl`
 15. `.opencode/agents/deep-review.md`
-16. `.opencode/skills/deep-loop-workflows/shared/rollout/resolve-injection-mode.cjs`
+16. `.opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
 
 ## gate3Precedence
 
@@ -297,7 +297,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
 
    Validation hook:
-   - `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` runs at config-write time
+   - `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
    - Invalid combinations fail fast with clear errors, including `cli-opencode` without `--model` and reserved-but-unwired executor kinds
 
 4. Search for related spec folders across alias roots:
@@ -417,7 +417,7 @@ confirmWorkflow: .opencode/commands/deep/assets/deep_review_confirm.yaml
 
 ```yaml
 block: outputTemplate
-promptPackPath: .opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl
+promptPackPath: .opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl
 requiredArtifacts:
   - "{state_paths_iteration_pattern} iteration narrative markdown"
   - "{state_paths_state_log} append-only canonical JSONL iteration record"
@@ -468,11 +468,11 @@ rules:
 ```yaml
 block: refs
 dispatchReceipt:
-  writer: .opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts
-  validator: .opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts
+  writer: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts
+  validator: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts
   rule: "Reference the existing intent/completion receipt pair and validator; do not copy receipt logic into the command contract."
 progressRecord:
-  writer: .opencode/skills/deep-loop-workflows/shared/progress/progress-record.cjs
+  writer: .opencode/skills/system-deep-loop/shared/progress/progress-record.cjs
   rule: "Reference additive started/completed progress records as liveness evidence; progress records are not iteration, convergence, or completion records."
 ```
 

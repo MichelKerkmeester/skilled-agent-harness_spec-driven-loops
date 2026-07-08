@@ -126,7 +126,7 @@ The promotion gate contract defines the five required gates that must pass befor
 ### Step 1: Accept Candidate
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs \
   --phase=accept \
   --candidate={spec_folder}/improvement/candidates/{candidate_id}.md \
   --target={canonical_target_path} \
@@ -154,7 +154,7 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promot
 ### Step 2: Ship Accepted Candidate
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs \
   --phase=ship \
   --acceptance-file={spec_folder}/improvement/archive/{target_name}.{timestamp}.accepted.json \
   --approve
@@ -194,7 +194,7 @@ Rollback is triggered when:
 ### Rollback Execution
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs \
   --target={canonical_target_path} \
   --backup={backup_path} \
   --config={config_path} \
@@ -204,7 +204,7 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollba
 When rolling back a two-phase promotion, the accepted-state file can supply those paths:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs \
   --acceptance-file={acceptance_file_path}
 ```
 

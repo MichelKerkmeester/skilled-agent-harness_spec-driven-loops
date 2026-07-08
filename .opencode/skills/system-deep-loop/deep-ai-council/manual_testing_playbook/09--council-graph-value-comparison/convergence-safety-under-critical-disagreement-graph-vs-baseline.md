@@ -18,7 +18,7 @@ This scenario validates that `runtime convergence CLI` provides a safety guarant
 
 The two-of-three convergence rule is documented in `references/convergence/convergence_signals.md` and is the no-graph baseline for stop decisions. But "2 of 3 agree" can mask unresolved critical issues: seats A and B may both endorse Plan X while seat C's unresolved security concern about Plan X gets lost. Without graph: convergence triggers and the issue ships. With graph: `unresolvedCriticalDisagreements` is a hard `STOP_BLOCKED` signal — graph prevents premature convergence.
 
-> **Automated test anchor:** `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-029 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json`.
+> **Automated test anchor:** `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-029 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/system-deep-loop/runtime/tests/council-graph-value-report.json`.
 
 ---
 
@@ -99,10 +99,10 @@ If graph returns `STOP_ALLOWED`, inspect `scripts/convergence.cjs` for the `unre
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Three-state decision logic |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `unresolvedCriticalDisagreements` calculator |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | "blocks convergence for empty derived graphs instead of returning false-safe success" + STOP_BLOCKED branch test |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/convergence/convergence_signals.md` | Documents the baseline two-of-three rule |
+| `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Three-state decision logic |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | `unresolvedCriticalDisagreements` calculator |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | "blocks convergence for empty derived graphs instead of returning false-safe success" + STOP_BLOCKED branch test |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence_signals.md` | Documents the baseline two-of-three rule |
 
 ---
 

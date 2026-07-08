@@ -44,7 +44,7 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 
 1. Inspect `scripts/fanout-run.cjs` — confirm `SPECKIT_STATE_ENV_BY_KIND` map, `computeLineageTimeoutMs` formula, `buildLineageCommand` per-kind branch.
 2. Verify `extraEnv` in the worker sets both `SPECKIT_FANOUT_LINEAGE_ID` and the kind-specific state dir var.
-3. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/fanout-run.vitest.ts`
+3. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../runtime//tests/unit/fanout-run.vitest.ts`
 4. Confirm 5 tests pass. Note: the 2-lineage stub test verifies dirs, ledger, and summary; the lockfile-isolation test verifies `.executor-state` paths are distinct for same-kind replicas.
 
 ### Expected Outcome

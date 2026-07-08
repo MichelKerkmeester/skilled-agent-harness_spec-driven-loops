@@ -30,7 +30,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 
 ```yaml
 PRE-BOUND SETUP ANSWERS:
-  profile_path: .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json  # optional; default profile when omitted
+  profile_path: .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json  # optional; default profile when omitted
   spec_folder: specs/121/008  # required spec folder path or explicit runtime folder
   run_label: minimax-tidd-ec  # required; identifies the benchmark run in the hub (e.g. "minimax-tidd-ec", "mimo-costar")
   execution_mode: AUTONOMOUS  # from :auto suffix
@@ -48,7 +48,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default,
 | Field | Required | Resolves Via | Default | Tier-2 Candidate |
 |-------|----------|--------------|---------|------------------|
 | `lane` | Y | fixed by command | `model-benchmark` | N |
-| `profile_path` | Y | `$ARGUMENTS` profile path, or marker `profile_path` | `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json` | N |
+| `profile_path` | Y | `$ARGUMENTS` profile path, or marker `profile_path` | `.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json` | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or requires-ask | none | Y |
 | `run_label` | Y | flag `--run-label`, marker `run_label`, or requires-ask | none | Y |
 | `outputs_dir` | Y | derived from `run_label` | `.opencode/skills/sk-prompt-models/benchmarks/{run_label}` | N |
@@ -94,7 +94,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    └─ IF missing → scoring_method = pattern (default), grader = noop (default), max_iterations = 5 (default)
 
 6. List available benchmark profiles for Q0:
-   $ ls .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/*.json
+   $ ls .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/*.json
 
 7. List recent spec folders for Q1:
    $ ls -d specs/*/ 2>/dev/null | tail -10
@@ -207,7 +207,7 @@ This command drives the model-benchmark lane only. To improve an agent definitio
 The model-benchmark loop runs through `loop-host.cjs` in model-benchmark mode:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=model-benchmark \
   --profile {profile_path} \
   --outputs-dir {outputs_dir} \
@@ -224,9 +224,9 @@ node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-h
 
 ### Default Profile and Fixtures
 
-- Default profile: `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json`
-- Reviewer-regression profile (the shipped reviewer-scoring profile): `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/reviewer-regression.json` — bundles the four `reviewer-*` fixtures; run with `--scorer reviewer` and `SPECKIT_REVIEWER_BENCHMARKS` on (e.g. `/deep:model-benchmark .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/reviewer-regression.json --scorer reviewer`).
-- Fixtures: `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`; reviewer fixtures use the `reviewer-*` shape: `reviewer-stale-verdict`, `reviewer-softened-fail`, `reviewer-over-read`, `reviewer-ac-coverage`)
+- Default profile: `.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json`
+- Reviewer-regression profile (the shipped reviewer-scoring profile): `.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/reviewer-regression.json` — bundles the four `reviewer-*` fixtures; run with `--scorer reviewer` and `SPECKIT_REVIEWER_BENCHMARKS` on (e.g. `/deep:model-benchmark .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/reviewer-regression.json --scorer reviewer`).
+- Fixtures: `.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`; reviewer fixtures use the `reviewer-*` shape: `reviewer-stale-verdict`, `reviewer-softened-fail`, `reviewer-over-read`, `reviewer-ac-coverage`)
 
 ### User Input
 
@@ -268,7 +268,7 @@ $ARGUMENTS
 #### Step 1: Load deep-improvement Skill
 
 ```
-Read(".opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md")
+Read(".opencode/skills/system-deep-loop/deep-improvement/SKILL.md")
 ```
 
 Focus on §4 LANE B: MODEL-BENCHMARK for the canonical contract.
@@ -277,7 +277,7 @@ Focus on §4 LANE B: MODEL-BENCHMARK for the canonical contract.
 
 Confirm `profile_path` exists. When the user did not supply one, use the default profile:
 ```bash
-ls .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json
+ls .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json
 ```
 
 #### Step 3: Initialize Runtime
@@ -332,7 +332,7 @@ REVIEWER_BENCHMARK: fixture reviewer-stale-verdict expected FAIL, got PASS — r
 Model Benchmark Loop Complete
 ─────────────────────────────
 
-Profile: .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json
+Profile: .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json
 Scoring: pattern
 Grader:  noop
 Mode:    model-benchmark
@@ -400,7 +400,7 @@ FOR WORKFLOW VIOLATIONS:
 
 Lane B promotes from the benchmark report, not from an agent-scored candidate file. When evidence and approval allow it:
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs --benchmark-report .opencode/skills/sk-prompt-models/benchmarks/{run_label}/report.json ...
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs --benchmark-report .opencode/skills/sk-prompt-models/benchmarks/{run_label}/report.json ...
 ```
 When `--benchmark-report` is supplied, `promote-candidate.cjs` runs its benchmark-mode promotion path. It promotes on the report basis when the report carries `status: benchmark-complete` with a `benchmark-pass` recommendation, bypassing the agent-scored-file requirement that the agent-improvement path uses. Promotion stays guarded by the benchmark aggregate gate, repeatability, and operator approval, and it refuses to act while the runtime config is still proposal-only.
 
@@ -416,7 +416,7 @@ Uses the default profile, `--scorer pattern`, `--grader noop`. Outputs go to `.o
 #### Explicit Profile, 5-Dimension Scorer (Interactive)
 
 ```
-/deep:model-benchmark ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json" :confirm --scorer=5dim --run-label=mimo-costar
+/deep:model-benchmark ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json" :confirm --scorer=5dim --run-label=mimo-costar
 ```
 Setup asks the remaining questions. Grader stays `noop` unless changed. Outputs go to `.opencode/skills/sk-prompt-models/benchmarks/mimo-costar/`.
 
@@ -443,7 +443,7 @@ Setup phase lists available profiles, defaults the profile to `default.json`, an
 
 ### Notes
 
-- **Skill dependency**: Requires `deep-improvement` at `.opencode/skills/deep-loop-workflows/deep-improvement/`
+- **Skill dependency**: Requires `deep-improvement` at `.opencode/skills/system-deep-loop/deep-improvement/`
 - **Lane**: This command fixes `lane = model-benchmark`. It never mutates a canonical agent file. Use `/deep:agent-improvement` for the agent-improvement lane.
 - **Entry point**: `scripts/shared/loop-host.cjs --mode=model-benchmark` runs `materialize-benchmark-fixtures.cjs` then `run-benchmark.cjs` in that order. Required flags: `--profile`, `--outputs-dir`.
 - **Output location**: Benchmark outputs are always written to the sk-prompt-models hub at `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`. There is no spec-local output option. `run_label` is a required identifier (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`) that distinguishes benchmark runs in the hub.
@@ -452,7 +452,7 @@ Setup phase lists available profiles, defaults the profile to `default.json`, an
 - **Mode-aware records**: every state record carries `mode: model-benchmark` and benchmark reports carry `scoringMethod: pattern|5dim|reviewer` for downstream attribution.
 - **Promotion**: Lane B promotes via `promote-candidate.cjs --benchmark-report`, which runs a benchmark-mode promotion path that gates on a `benchmark-complete` report with a `benchmark-pass` recommendation instead of an agent-scored candidate file. It stays guarded by the benchmark aggregate gate, repeatability, and operator approval.
 - **Hub convention**: Benchmark outputs are written to `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/` by convention. The hub is the single canonical location for all model and framework benchmark runs. There is no spec-local default and no override path.
-- **Canonical source of truth**: `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK.
+- **Canonical source of truth**: `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK.
 
 ### Related Commands
 

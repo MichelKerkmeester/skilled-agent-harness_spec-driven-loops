@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Reports session-scoped coverage graph health, counts, schema version, and current signals.
 
-This feature belongs to the script entry points group and is catalogued as F017 in the `deep-loop-runtime` inventory.
+This feature belongs to the script entry points group and is catalogued as F017 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the script entry points group and is catalogued as F017 
 
 Direct replacement for `deep_loop_graph_status`; reports counts, schema, DB size, and signals.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

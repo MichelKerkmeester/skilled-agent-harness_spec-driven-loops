@@ -72,13 +72,13 @@ Run direct `deep_loop_graph_status` before and after an upsert fixture.
 Command 1: Inspect `.opencode/commands/deep/assets/deep_research_auto.yaml` `step_graph_upsert`.
 
 ```text
-`step_graph_upsert` conditionally invokes `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs` when research graph events exist.
+`step_graph_upsert` conditionally invokes `node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` when research graph events exist.
 ```
 
 Command 2: Inspect `.opencode/commands/deep/assets/deep_review_auto.yaml` `step_graph_upsert`.
 
 ```text
-`step_graph_upsert` conditionally invokes `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs` when review graph events exist. `step_seed_coverage_graph` is the earlier review seed upsert path.
+`step_graph_upsert` conditionally invokes `node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` when review graph events exist. `step_seed_coverage_graph` is the earlier review seed upsert path.
 ```
 
 Command 3: Run or inspect a fixture with and without `graphEvents`.
@@ -93,4 +93,4 @@ Not run. The stable YAML anchors confirm the conditional CLI invocation, and thi
 
 PASS
 
-An earlier capture cited YAML line ranges that have since drifted. The stable `step_graph_upsert` anchors in both deep auto YAML workflows conditionally call `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs` when `graphEvents` exist, and the review workflow also has the earlier `step_seed_coverage_graph` upsert call.
+An earlier capture cited YAML line ranges that have since drifted. The stable `step_graph_upsert` anchors in both deep auto YAML workflows conditionally call `node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` when `graphEvents` exist, and the review workflow also has the earlier `step_seed_coverage_graph` upsert call.

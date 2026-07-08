@@ -18,7 +18,7 @@ This scenario validates that `runtime query CLI mode='decision_support'` (and `m
 
 When a stakeholder, reviewer, or post-mortem asks "why did the council recommend Plan B?", the answer must be traceable to specific evidence and seat claims. Without graph: the answer requires re-reading the council report, every deliberation, every critique, then manually building a justification narrative. With graph: a structured edge traversal returns DECISION → SUPPORTS → EVIDENCE → SEAT in one call.
 
-> **Automated test anchor:** `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-028 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json`.
+> **Automated test anchor:** `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts` test name `DAC-028 graph beats no-graph baseline`. Measured baseline-vs-graph ratios live in `.opencode/skills/system-deep-loop/runtime/tests/council-graph-value-report.json`.
 
 ---
 
@@ -100,9 +100,9 @@ If graph response misses evidence, inspect `lib/council/council-graph-query.ts` 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/query.cjs` | runtime CLI script |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | `getDecisionSupport` helper |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/graph_support.md` §3 | Documents SUPPORTS / PROPOSES / RECOMMENDS edges |
+| `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` | runtime CLI script |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | `getDecisionSupport` helper |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` §3 | Documents SUPPORTS / PROPOSES / RECOMMENDS edges |
 
 ---
 

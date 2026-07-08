@@ -67,15 +67,15 @@ active P0 → merged FAIL.
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | `step_resolve_artifact_root` (if_present/if_absent), `step_fanout_spawn`, `step_fanout_merge` (with `bind_from_output` for p0/p1/p2 counts) |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Same steps (confirm variant) |
 | `.opencode/commands/deep/review.md` | `--executor`/`--executors`/`--concurrency` flag docs, strongest-restriction note, fan-out examples |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | CLI lineage pool driver called by `step_fanout_spawn_cli` |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Strongest-restriction merger called by `step_fanout_merge` |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | CLI lineage pool driver called by `step_fanout_spawn_cli` |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Strongest-restriction merger called by `step_fanout_merge` |
 
 ### Validation
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts` | Pool dispatch + lineage dir isolation |
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Review strongest-restriction (5 tests) + attribution |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Pool dispatch + lineage dir isolation |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Review strongest-restriction (5 tests) + attribution |
 
 ---
 

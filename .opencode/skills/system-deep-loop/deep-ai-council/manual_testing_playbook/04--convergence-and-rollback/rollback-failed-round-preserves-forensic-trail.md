@@ -85,9 +85,9 @@ Inspect rollback helper behavior, state append policy, and folder layout.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/lib/rollback.js` | Rollback behavior |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/folder_layout.md` | Failed folder layout |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md` | Rollback state events |
+| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.js` | Rollback behavior |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder_layout.md` | Failed folder layout |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md` | Rollback state events |
 
 ---
 

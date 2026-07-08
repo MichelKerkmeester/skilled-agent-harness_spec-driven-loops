@@ -1,6 +1,6 @@
 ---
 title: "DLR-014 -- convergence.cjs"
-description: "Manual validation scenario for convergence.cjs in the deep-loop-runtime skill."
+description: "Manual validation scenario for convergence.cjs in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ Consumer YAML depends on this direct script interface. A drift in args, stdout J
 
 - Objective: Confirm convergence.cjs behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: script entry points runtime.
-- Real user request: `Validate convergence.cjs and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate convergence.cjs and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Consumer YAML depends on this direct script interface. A drift in args, stdout J
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/07--script-entry-points/convergence-script.md`.
 
 ### Steps

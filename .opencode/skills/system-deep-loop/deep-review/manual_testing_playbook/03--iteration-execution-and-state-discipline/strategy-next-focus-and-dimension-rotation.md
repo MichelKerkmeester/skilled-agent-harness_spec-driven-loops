@@ -46,8 +46,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review dimension rotation through strategy Next Focus and skipped exhausted dimensions.
 ### Commands
 1. `bash: rg -n 'next_dimension|next_focus|dimensions_covered|dimension_queue|Next Focus' .opencode/commands/deep/assets/deep_review_auto.yaml`
-2. `bash: rg -n 'Next Focus|dimension.*rotation|dimension.*coverage|exhausted' .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md`
-3. `bash: rg -n 'Dimension Coverage|dimensions.*covered|minStabilization' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md`
+2. `bash: rg -n 'Next Focus|dimension.*rotation|dimension.*coverage|exhausted' .opencode/skills/system-deep-loop/deep-review/assets/deep_review_strategy.md`
+3. `bash: rg -n 'Dimension Coverage|dimensions.*covered|minStabilization' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md`
 ### Expected
 The read-state step extracts the next uncovered dimension. The dispatch step injects it as the focus. The strategy template has a "Next Focus" section. Convergence requires all dimensions covered.
 ### Evidence
@@ -72,9 +72,9 @@ Check the strategy template for explicit dimension tracking sections and verify 
 | File | Role |
 |---|---|
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Loop dimension extraction and dispatch, inspect `step_read_state` and `step_dispatch_review_agent` |
-| `.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md` | Strategy template, inspect "Next Focus" and dimension tracking sections |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Convergence signals, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |
+| `.opencode/skills/system-deep-loop/deep-review/assets/deep_review_strategy.md` | Strategy template, inspect "Next Focus" and dimension tracking sections |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Convergence signals, use `ANCHOR:convergence` and `ANCHOR:review-dimensions` |
+| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Shared convergence algorithm, inspect dimension coverage signal |
 
 ---
 
@@ -84,4 +84,4 @@ Check the strategy template for explicit dimension tracking sections and verify 
 - Playbook ID: DRV-010
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `03--iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

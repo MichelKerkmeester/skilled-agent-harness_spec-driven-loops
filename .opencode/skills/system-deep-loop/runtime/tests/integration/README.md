@@ -1,6 +1,6 @@
 ---
 title: "Integration Tests"
-description: "Script-invocation, council-graph, and review-depth fixture tests exercising the deep-loop-runtime .cjs entry points end to end."
+description: "Script-invocation, council-graph, and review-depth fixture tests exercising the runtime/ .cjs entry points end to end."
 ---
 
 # Integration Tests
@@ -27,5 +27,5 @@ End-to-end coverage that spawns the `.cjs` script entry points as child processe
 
 ## 3. RELATED RESOURCES
 
-- Parent tests README: `.opencode/skills/deep-loop-runtime/tests/README.md`
-- Script interface contract: `.opencode/skills/deep-loop-runtime/references/script_interface_contract.md`
+- Parent tests README: `.opencode/skills/system-deep-loop/runtime/tests/README.md`
+- Script interface contract: `.opencode/skills/system-deep-loop/runtime/references/script_interface_contract.md`

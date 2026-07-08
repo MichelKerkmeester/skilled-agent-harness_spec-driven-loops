@@ -1,6 +1,6 @@
 ---
 title: "DLR-036 -- Loop-lock heartbeat hardening"
-description: "Manual validation scenario for Loop-lock heartbeat hardening in the deep-loop-runtime skill."
+description: "Manual validation scenario for Loop-lock heartbeat hardening in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm Loop-lock heartbeat hardening behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: state safety runtime.
-- Real user request: `Validate Loop-lock heartbeat hardening and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Loop-lock heartbeat hardening and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Heartbeat refresh updates, metadata preservation, stale holder replacement, and loop-lock unit coverage.
 - Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/04--state-safety/loop-lock-heartbeat-hardening.md`.
 
 ### Steps
@@ -81,6 +81,6 @@ Loop-lock heartbeat hardening matches the documented current reality, the source
 - Playbook ID: DLR-036
 - Feature catalog entry: `feature_catalog/04--state-safety/loop-lock-heartbeat-hardening.md`
 - Scenario file path: `manual_testing_playbook/04--state-safety/loop-lock-heartbeat-hardening.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/007-loop-lock-heartbeat-hardening`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//007-loop-lock-heartbeat-hardening`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

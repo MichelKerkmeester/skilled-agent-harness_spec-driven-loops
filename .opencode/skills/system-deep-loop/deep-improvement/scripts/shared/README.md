@@ -143,13 +143,13 @@ Main flow:
 Run from the repository root.
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs --candidate=.opencode/agents/code.md
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs --candidate=.opencode/agents/code.md
 ```
 
 Expected result: agent-improvement scoring runs and prints a `scored` JSON result.
 
 ```bash
-npx vitest run --config .opencode/skills/deep-loop-workflows/deep-improvement/scripts/vitest.config.mjs
+npx vitest run --config .opencode/skills/system-deep-loop/deep-improvement/scripts/vitest.config.mjs
 ```
 
 Expected result: the lane and router vitest suites pass, including the loop-host backward-compatibility identity checks.

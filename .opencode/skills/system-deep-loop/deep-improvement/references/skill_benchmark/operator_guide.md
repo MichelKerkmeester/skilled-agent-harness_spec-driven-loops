@@ -32,7 +32,7 @@ Run Lane C with `loop-host.cjs --mode=skill-benchmark` (or `/deep:skill-benchmar
 ```bash
 # Mode A (router-replay, deterministic — the CI gate). Run on a skill that has an
 # INTENT_SIGNALS + RESOURCE_MAP smart router in its SKILL.md.
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark \
   --skill=<skill-id-or-root> \
   --outputs-dir=<path> \
@@ -46,7 +46,7 @@ For the opt-in, paid **D4-R task-outcome** usefulness signal (live only):
 ```bash
 # advisory D4_task_outcome over routine scenarios — requires --trace-mode live
 SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high GRADER_MODEL=claude-sonnet-4-5 \
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
   --skill=<skill-id-or-root> --outputs-dir=<path> --trace-mode live \
   --scenarios <routine-ids> --d4 [--d4-scenarios <ids>] [--grader-mode real|mock]
 ```

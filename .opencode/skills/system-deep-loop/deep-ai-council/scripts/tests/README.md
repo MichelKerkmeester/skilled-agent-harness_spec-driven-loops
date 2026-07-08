@@ -25,11 +25,11 @@ vitest harnesses validating deep-ai-council orchestration and registry behavior.
 ```bash
 cd .opencode/skills/system-spec-kit/mcp_server
 node_modules/.bin/vitest run --no-coverage \
-  /absolute/path/to/.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/<filename>.vitest.ts
+  /absolute/path/to/.opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/<filename>.vitest.ts
 ```
 
 ## 4. RELATED RESOURCES
 
-- `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md` - skill overview
-- `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs` - primary subject under test
-- `.opencode/skills/deep-loop-runtime/lib/council/` - primitives consumed by orchestrators
+- `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` - skill overview
+- `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs` - primary subject under test
+- `.opencode/skills/system-deep-loop/runtime/lib/council/` - primitives consumed by orchestrators

@@ -4,7 +4,7 @@ description: "Adds deterministic fuzzy-merge query helpers for near-duplicate co
 trigger_phrases:
   - "coverage-graph fuzzy merge"
   - "coverage-graph-fuzzy-merge"
-  - "coverage-graph fuzzy merge deep-loop-runtime"
+  - "coverage-graph fuzzy merge runtime"
   - "coverage graph coverage-graph fuzzy merge"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds deterministic fuzzy-merge query helpers for near-duplicate coverage nodes without mutating graph rows.
 
-This feature belongs to the coverage graph group and is catalogued as F041 in the `deep-loop-runtime` inventory.
+This feature belongs to the coverage graph group and is catalogued as F041 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the coverage graph group and is catalogued as F041 in th
 
 `findSimilarNodes()` compares names inside one namespace and category, while `findConsolidationCandidates()` returns candidate clusters and leftovers; callers decide whether to merge results.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F041
 - Feature file path: `06--coverage-graph/coverage-graph-fuzzy-merge.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/014-coverage-graph-fuzzy-merge`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//014-coverage-graph-fuzzy-merge`
 - Primary sources: `lib/coverage-graph/coverage-graph-query.ts`, `tests/unit/coverage-graph-query.vitest.ts`
 Related references:
 - [coverage graph](../06--coverage-graph/) — Coverage graph category

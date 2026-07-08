@@ -4,7 +4,7 @@ description: "Adds a per-path deferred atomic writer that coalesces superseded s
 trigger_phrases:
   - "atomic-state deferred writer"
   - "atomic-state-deferred-writer"
-  - "atomic-state deferred writer deep-loop-runtime"
+  - "atomic-state deferred writer runtime"
   - "state safety atomic-state deferred writer"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds a per-path deferred atomic writer that coalesces superseded snapshot writes while keeping JSONL appends immediate.
 
-This feature belongs to the state safety group and is catalogued as F030 in the `deep-loop-runtime` inventory.
+This feature belongs to the state safety group and is catalogued as F030 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the state safety group and is catalogued as F030 in the 
 
 `createDeferredAtomicWriter()` debounces writes, flushes the newest pending state, performs a dirty-again reflush if content changes during an in-flight fsync, and exposes `flushNow()` plus `close()` for deterministic draining.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F030
 - Feature file path: `04--state-safety/atomic-state-deferred-writer.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/003-atomic-state-deferred-writer`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//003-atomic-state-deferred-writer`
 - Primary sources: `lib/deep-loop/atomic-state.ts`, `tests/unit/atomic-state.vitest.ts`
 Related references:
 - [state safety](../04--state-safety/) — State safety category

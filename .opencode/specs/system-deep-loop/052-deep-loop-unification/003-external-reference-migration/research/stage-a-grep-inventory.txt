@@ -1,0 +1,60 @@
+Stage A baseline — captured 2026-07-08, post-002 (system-deep-loop/ exists, 2 compat symlinks in place)
+
+rg -l 'deep-loop-workflows|deep-loop-runtime' excluding node_modules, specs, .worktrees, dist:
+  Total files with hits: 716
+  Total match count (lines): 3244
+
+Breakdown by top-level dir:
+  676 .opencode/skills
+   30 .opencode/commands
+    5 .opencode/agents
+    2 .opencode/plugins
+    2 .opencode/hooks
+    1 README.md
+
+.opencode/skills breakdown:
+  579 system-deep-loop     (internal self-refs — changelog, migration prose, historical)
+   39 system-spec-kit
+   30 system-skill-advisor
+    8 system-code-graph
+    6 sk-code
+    4 cli-opencode
+    3 sk-prompt-models
+    3 sk-design
+    2 sk-doc
+    1 sk-prompt
+    1 .opencode/skills/README.md
+
+External-facing only (excludes system-deep-loop's own tree):
+  Files: 137
+  Matches: 911  (closely matches 001-reference-research's "~948" estimate — 4% drift,
+                 plausibly from phase 002's own edits already touching a few boundary files)
+
+Advisor accuracy baseline (score-routing-corpus.py, pre-Stage-C-through-I):
+  rows: 193
+  advisor.accuracy: 0.3679 (71/193 correct)
+  gate3.f1: 0.9766
+  overall_pass: true
+  Full JSON: stage-a-advisor-baseline.json
+
+Pre-existing bug fixed to unblock this capture (out of Stage C's file list, pulled forward,
+same category as 002's council-playbook-anchor-integrity.vitest.ts fix):
+  .opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/gate3-corpus-runner.mjs
+  Import path was '../../../../shared/dist/gate-3-classifier.js' (resolves to nonexistent
+  .opencode/skills/shared/dist/...) — missing the 'system-spec-kit' segment. Fixed to
+  '../../../../system-spec-kit/shared/dist/gate-3-classifier.js'. Confirmed via git log this
+  predates my session (last touched 262b3cd3ba / 62fa08ef47, unrelated to system-deep-loop) and
+  was never touched by commit 6323b84342.
+
+--- CORRECTION (post-hoc, found via GPT verification agent 2) ---
+Original rg command silently skipped .claude/** entirely: ripgrep's default hidden-dir
+filter (Ignore(IgnoreMatch(Hidden)) per --debug) excludes .claude at the repo root during
+a whole-tree walk. No .rgignore/.ignore/RIPGREP_CONFIG_PATH found to explain why .opencode
+wasn't equally affected — empirically confirmed via --debug output, root cause not fully
+resolved, but the fix is confirmed: add --hidden to any repo-root rg invocation for this work.
+Corrected total (excluding node_modules/specs/.worktrees/dist/.git, WITH --hidden): 723 files
+(vs 716 without --hidden) — +7, includes 5 .claude/agents/*.md files GPT found via targeted
+search (orchestrate.md, deep-research.md, ai-council.md, deep-review.md, deep-improvement.md,
+all real independent files confirmed via ls -la + readlink, not symlinks) plus ~2 more.
+These 5 need the identical Stage F treatment already planned for their .opencode/agents/
+counterparts.

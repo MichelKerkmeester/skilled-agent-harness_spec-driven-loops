@@ -12,7 +12,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": false,
-  "specFolder": ".opencode/skills/deep-loop-workflows/deep-review/scripts/tests/fixtures/blocked-stop-session",
+  "specFolder": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures/blocked-stop-session",
   "createdAt": "2026-04-11T12:00:00Z",
   "status": "running",
   "releaseReadinessState": "in-progress",

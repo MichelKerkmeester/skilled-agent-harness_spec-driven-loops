@@ -4,7 +4,7 @@ description: "Adds record/replay helpers for script-level cassette regressions w
 trigger_phrases:
   - "record-replay cassette harness"
   - "record-replay-cassette-harness"
-  - "record-replay cassette harness deep-loop-runtime"
+  - "record-replay cassette harness runtime"
   - "testing record-replay cassette harness"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds record/replay helpers for script-level cassette regressions with redaction and hermetic environment integration.
 
-This feature belongs to the testing group and is catalogued as F049 in the `deep-loop-runtime` inventory.
+This feature belongs to the testing group and is catalogued as F049 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the testing group and is catalogued as F049 in the `deep
 
 `recordScriptRun()` captures normalized argv/stdin/stdout/exit envelopes, `replayScriptRun()` compares current script behavior against a cassette, and convergence/fanout tests use the helpers for pinned regressions.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

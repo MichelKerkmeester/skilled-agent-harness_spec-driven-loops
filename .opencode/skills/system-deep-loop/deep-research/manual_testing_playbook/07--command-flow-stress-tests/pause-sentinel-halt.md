@@ -46,7 +46,7 @@ Operators run the exact command sequence for `CP-049` and confirm expected stop 
 ```bash
 rm -rf /tmp/cp-049-sandbox /tmp/cp-049-sandbox-baseline /tmp/cp-049-spec
 mkdir -p /tmp/cp-049-spec/research
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-049-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-049-sandbox
 cp -a /tmp/cp-049-sandbox /tmp/cp-049-sandbox-baseline
 cat > /tmp/cp-049-spec/spec.md <<'EOF'
 ---
@@ -100,7 +100,7 @@ diff /tmp/cp-049-pre.txt /tmp/cp-049-post.txt > /tmp/cp-049-tripwire.diff; echo 
 | `.opencode/commands/deep/assets/deep_research_auto.yaml:400-408` | pause sentinel check |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml:513-521` | stop reason normalization |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml:179-195` | lock cleanup applies to halt paths |
-| `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:287-309` | packet-local state location and sentinel |
+| `.opencode/skills/system-deep-loop/deep-research/SKILL.md:287-309` | packet-local state location and sentinel |
 | `.opencode/agents/deep-research.md:43-55` | leaf agent boundary stays unrelated to pause lifecycle |
 
 ## 5. SOURCE METADATA

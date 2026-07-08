@@ -27,8 +27,8 @@
       "promptHash": "sha256:4798f04a421656a90c29b49d7b311ceb8a335d940e9f353b66fbd3df32baf5e0",
       "gold": "deep-ai-council",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
@@ -87,8 +87,8 @@
       "promptHash": "sha256:cc947e1c460b25d76a4884caceac1efd2dccf8be65762a9f4749d0b5bf5a57c3",
       "gold": "system-spec-kit",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "divergence captured 2026-07-06: local abstains at strict thresholds where native routes to deep-loop-workflows",
+      "nativeTop": "system-deep-loop",
+      "reason": "divergence captured 2026-07-06: local abstains at strict thresholds where native routes to system-deep-loop",
       "approvedAt": "2026-07-06"
     },
     {
@@ -117,8 +117,8 @@
       "promptHash": "sha256:40cdda6ce8f89f707df2e961a1050f2270e7e5b75d49fb744dbed65adadf535f",
       "gold": "system-code-graph",
       "localTop": "system-code-graph",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-code-graph, native=deep-loop-workflows)",
+      "nativeTop": "system-deep-loop",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-code-graph, native=system-deep-loop)",
       "approvedAt": "2026-07-06"
     },
     {
@@ -155,20 +155,20 @@
       "id": "rr-iter2-025",
       "corpus": "labeled",
       "promptHash": "sha256:43de25b4b33d11bd03e6b36e3746b74b10bd684481affb9622d9ebba8633f2ee",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter2-028",
       "corpus": "labeled",
       "promptHash": "sha256:f9690ab10a2661b33c183c9981d910a50aa40f5f675e9559f7c9fcf4379b05e5",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
@@ -225,27 +225,27 @@
       "id": "rr-iter2-041",
       "corpus": "labeled",
       "promptHash": "sha256:d8b52f3665a438dfdcf2eae8a93422387d2a5e981cd70d795d8238b9f26fa30c",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "deep-research",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter2-044",
       "corpus": "labeled",
       "promptHash": "sha256:1c4f38b1953cdca9c0bff1c279a79b941e619dcfc90be55a43ac568996547cf8",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "system-spec-kit",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-spec-kit, native=deep-loop-workflows)",
+      "nativeTop": "system-deep-loop",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-spec-kit, native=system-deep-loop)",
       "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter2-046",
       "corpus": "labeled",
       "promptHash": "sha256:565345fe2413c2a915d1448a744fb0e662fc563bfa5bbf9d4035e9fa5117fd8a",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "deep-review",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=deep-review, native=system-spec-kit)",
@@ -260,16 +260,6 @@
       "nativeTop": "sk-doc",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=create:manual-testing-playbook, native=sk-doc)",
       "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "rr-iter2-060",
-      "corpus": "labeled",
-      "promptHash": "sha256:a29b1d14f01431eaa8a62dadef5b8820b0b14c040bc875bf99230d11d319b13c",
-      "gold": "system-code-graph",
-      "localTop": "system-code-graph",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=system-code-graph, native=deep-loop-workflows)",
-      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter3-061",
@@ -287,8 +277,8 @@
       "promptHash": "sha256:e353fb9c08cf2f6e81de879a065bc453561494bb106a1934fd3c5c6fc0c27037",
       "gold": "system-spec-kit",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
@@ -386,10 +376,10 @@
       "corpus": "labeled",
       "promptHash": "sha256:433b2a8def53d97bc86523b18cd64dd722c3001fb57b7620b548884d4b1e26df",
       "gold": "system-spec-kit",
-      "localTop": "none",
+      "localTop": "sk-design",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
-      "approvedAt": "2026-06-13"
+      "reason": "divergence re-baselined 2026-07-08: local now routes to sk-design where native routes to system-spec-kit (previously local abstained)",
+      "approvedAt": "2026-07-08"
     },
     {
       "id": "rr-iter3-078",
@@ -472,16 +462,6 @@
       "approvedAt": "2026-06-13"
     },
     {
-      "id": "rr-iter3-093",
-      "corpus": "labeled",
-      "promptHash": "sha256:2b3fccb873c32cdb627a51b6e5fd1b741ccaa7a6493d6b14328e9e77e06c177b",
-      "gold": "sk-code",
-      "localTop": "sk-code",
-      "nativeTop": "sk-prompt",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=sk-prompt)",
-      "approvedAt": "2026-07-06"
-    },
-    {
       "id": "rr-iter3-094",
       "corpus": "labeled",
       "promptHash": "sha256:96b4b1686aca76b0402baaa0c44d4e66c534dcca55a515689962a7f3cb18eff8",
@@ -505,7 +485,7 @@
       "id": "rr-iter3-099",
       "corpus": "labeled",
       "promptHash": "sha256:bce428e713650d8b3a47bf4ebd48806cf17c7cee1764558e31bccc9de045e7db",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "sk-prompt",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=system-spec-kit)",
@@ -515,21 +495,21 @@
       "id": "rr-iter3-110",
       "corpus": "labeled",
       "promptHash": "sha256:4aea2da081bd8447f7721f64dbcf61ed0e9b7c646acb17036ed0f1108b15f464",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter3-113",
       "corpus": "labeled",
       "promptHash": "sha256:c20d922623f538929eccdd760a462bb2bb0b2e5abb564412b722ecece34095d1",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "none",
-      "nativeTop": "deep-loop-runtime",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
-      "approvedAt": "2026-06-15"
+      "nativeTop": "sk-code",
+      "reason": "system-deep-loop rename re-baseline 2026-07-08: native top-1 for this resume-state prompt shifted from system-deep-loop to sk-code post-rename (pre-existing miss vs gold both before and after \u2014 net accuracy unchanged); recorded as approved local-vs-native divergence",
+      "approvedAt": "2026-07-08"
     },
     {
       "id": "rr-iter3-115",
@@ -545,7 +525,7 @@
       "id": "rr-iter3-119",
       "corpus": "labeled",
       "promptHash": "sha256:b0e07ccfcfdf4e8737e8d31839aaf531f63930e40261240fcd8e325baac96aab",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "none",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
@@ -555,10 +535,10 @@
       "id": "rr-iter3-125",
       "corpus": "labeled",
       "promptHash": "sha256:cf4b224328d8c77499c0302598a6533fe072d4a7fe5eab95206e399e574855be",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
@@ -567,8 +547,8 @@
       "promptHash": "sha256:ace041eb8e66b8c152f930136917a194479452ce4610f6f28360e7b4197db7d9",
       "gold": "system-spec-kit",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
@@ -597,8 +577,8 @@
       "promptHash": "sha256:5d7779286e5c66b55c15f1e959b60ed8ce2ee3203e7bc8961633aa941a750b7f",
       "gold": "system-spec-kit",
       "localTop": "sk-code",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=deep-loop-workflows)",
+      "nativeTop": "system-deep-loop",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=system-deep-loop)",
       "approvedAt": "2026-07-06"
     },
     {
@@ -645,47 +625,37 @@
       "id": "rr-iter3-149",
       "corpus": "labeled",
       "promptHash": "sha256:7835647650813b6bfab37b922c629cc9396e9f75301a894e0cae02f0545bfe37",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "deep-research",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
-      "approvedAt": "2026-06-15"
-    },
-    {
-      "id": "rr-iter3-151",
-      "corpus": "labeled",
-      "promptHash": "sha256:0775864f3a2b1f244a249656d35b1d6e8cb20061a207e594c2eda43240f33664",
-      "gold": "deep-loop-workflows",
-      "localTop": "system-spec-kit",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter3-154",
       "corpus": "labeled",
       "promptHash": "sha256:e5ca59e6aaf93b62c8922d5384b116cd2b5e32e2c39ff60c2ce3532353d41ad0",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "deep-review",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter3-160",
       "corpus": "labeled",
       "promptHash": "sha256:9c0ef30e791f6058c04f75e92dae3ff2dc4c029a5e84ee8f78873fbaf995021e",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter3-163",
       "corpus": "labeled",
       "promptHash": "sha256:fdbff56355f1f78508a39aca210cc297428bbc93c7803c31d45b13a9310ee4f2",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "memory:save",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=memory:save, native=system-spec-kit)",
@@ -695,40 +665,40 @@
       "id": "rr-iter3-165",
       "corpus": "labeled",
       "promptHash": "sha256:5576f5ea921dd63d46f93b988a6b31b973957d9805326aac406fabf100b925cb",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "none",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter3-167",
       "corpus": "labeled",
       "promptHash": "sha256:7d89049b6428bcdb285e51bf06e87b83b15faed2f6f6d3cc965394ed86e79972",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "system-spec-kit",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter3-168",
       "corpus": "labeled",
       "promptHash": "sha256:0ea500718ab50a26e8c9e21c9a72d5929bb57c199ae5e6f1123c7097315f8de7",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "deep-research",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into deep-loop-workflows shifted native top-1; recorded as approved local-vs-native divergence",
+      "nativeTop": "system-deep-loop",
+      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence",
       "approvedAt": "2026-06-15"
     },
     {
       "id": "rr-iter3-170",
       "corpus": "labeled",
       "promptHash": "sha256:881587736ed278087a3dd786c181efc5a57dc6d7c094e849e3fedd696441fb17",
-      "gold": "deep-loop-workflows",
+      "gold": "system-deep-loop",
       "localTop": "sk-code",
-      "nativeTop": "deep-loop-workflows",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=deep-loop-workflows)",
+      "nativeTop": "system-deep-loop",
+      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=system-deep-loop)",
       "approvedAt": "2026-07-06"
     },
     {

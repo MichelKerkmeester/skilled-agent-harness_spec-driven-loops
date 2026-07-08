@@ -38,7 +38,7 @@ A single-pass review reads the diff once and calls it done. Whichever dimension 
 
 `deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer updates the strategy, findings registry and dashboard after each pass. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, producing a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
 
-It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`), compare competing plans (`deep-ai-council`) or run evaluator-first improvement lanes (`deep-improvement`). A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `deep-loop-runtime` for executors, state handling and coverage graphs.
+It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`), compare competing plans (`deep-ai-council`) or run evaluator-first improvement lanes (`deep-improvement`). A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `runtime/` for executors, state handling and coverage graphs.
 
 ---
 
@@ -64,7 +64,7 @@ Expected output: a review report at `{spec_folder}/review/review-report.md` with
 **Step 3: Verify the reducer output after the loop finishes.**
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs <spec-folder>
+node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs <spec-folder>
 ```
 
 Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iterationsCompleted`, `findings` and convergence fields.
@@ -115,7 +115,7 @@ Skip it for a single-pass review, where `sk-code`'s code-review mode is faster. 
 
 ### Sibling Deep Loops
 
-`deep-review` shares the `deep-loop-runtime` with the other active deep-loop families. Each owns a different phase and none crosses into another's territory.
+`deep-review` shares the `runtime/` with the other active deep-loop families. Each owns a different phase and none crosses into another's territory.
 
 | Skill | Relationship |
 |---|---|
@@ -183,7 +183,7 @@ The `feature_catalog/` covers every capability across its categories: loop lifec
 Deterministic scenarios under `manual_testing_playbook/` cover loop lifecycle, state management, convergence and recovery and review output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/deep-loop-workflows/deep-review/README.md --type readme
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-deep-loop/deep-review/README.md --type readme
 ```
 
 Expected output: zero issues reported.

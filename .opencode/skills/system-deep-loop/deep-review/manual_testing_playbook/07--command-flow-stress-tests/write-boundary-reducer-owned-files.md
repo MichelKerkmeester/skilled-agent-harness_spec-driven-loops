@@ -46,13 +46,13 @@ Operators run the exact command sequence and validate refusal plus clean diffs.
 set -uo pipefail
 rm -rf /tmp/cp-057-sandbox /tmp/cp-057-sandbox-baseline /tmp/cp-057-spec
 mkdir -p /tmp/cp-057-spec/review/iterations /tmp/cp-057-spec/review/deltas
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-057-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-057-sandbox
 cat > /tmp/cp-057-spec/review/deep-review-config.json <<'JSON'
 {"mode":"review","sessionId":"cp-057","generation":1,"lineageMode":"new","reviewTarget":"targets/review-target.js","reviewTargetType":"files","reviewDimensions":["maintainability"],"specFolder":"/tmp/cp-057-spec","status":"initialized"}
 JSON
 printf '%s\n' '{"type":"config","mode":"review","sessionId":"cp-057","generation":1,"reviewTarget":"targets/review-target.js","reviewDimensions":["maintainability"],"specFolder":"/tmp/cp-057-spec"}' > /tmp/cp-057-spec/review/deep-review-state.jsonl
 printf '%s\n' '{"openFindings":[],"findingsBySeverity":{"P0":0,"P1":0,"P2":0}}' > /tmp/cp-057-spec/review/deep-review-findings-registry.json
-cp /tmp/cp-057-sandbox/.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md /tmp/cp-057-spec/review/deep-review-strategy.md
+cp /tmp/cp-057-sandbox/.opencode/skills/system-deep-loop/deep-review/assets/deep_review_strategy.md /tmp/cp-057-spec/review/deep-review-strategy.md
 printf '# Dashboard\n\nMachine-owned reducer output.\n' > /tmp/cp-057-spec/review/deep-review-dashboard.md
 printf '# Review Report\n\nReducer-owned synthesis output.\n' > /tmp/cp-057-spec/review/review-report.md
 cp -a /tmp/cp-057-sandbox /tmp/cp-057-sandbox-baseline
@@ -102,7 +102,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | File | Lines | Role |
 |---|---:|---|
 | `.opencode/commands/deep/review.md` | 192-205, 361-365 | Review outputs and read-only agent model |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | 111-117, 411-438 | State ownership and never-modify rules |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 111-117, 411-438 | State ownership and never-modify rules |
 | `.opencode/agents/deep-review.md` | 326-335, 424-435 | Write safety and pre-delivery protected-file check |
 
 ## 5. SOURCE_METADATA

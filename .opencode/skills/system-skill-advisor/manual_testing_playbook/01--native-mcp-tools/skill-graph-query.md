@@ -77,7 +77,7 @@ Tool response transcript excerpt:
     "skills": [
       { "node": { "id": "sk-code", "family": "sk-code", "category": "code-quality", "schemaVersion": 2 }, "inboundCount": 10 },
       { "node": { "id": "system-spec-kit", "family": "system", "category": "system", "schemaVersion": 2 }, "inboundCount": 9 },
-      { "node": { "id": "deep-loop-workflows", "family": "deep-loop", "category": "workflow", "schemaVersion": 2 }, "inboundCount": 7 },
+      { "node": { "id": "system-deep-loop", "family": "deep-loop", "category": "workflow", "schemaVersion": 2 }, "inboundCount": 7 },
       { "node": { "id": "sk-design", "family": "sk-code", "category": "design", "schemaVersion": 2 }, "inboundCount": 6 },
       { "node": { "id": "cli-opencode", "family": "cli", "category": "cli-orchestrator", "schemaVersion": 2 }, "inboundCount": 5 },
       { "node": { "id": "mcp-figma", "family": "mcp", "category": "mcp-tool", "schemaVersion": 2 }, "inboundCount": 5 },

@@ -92,10 +92,10 @@ If recovery payload missing, inspect `scripts/status.cjs` for the P2-001 remedia
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/status.cjs` | runtime CLI script: counts/schema/signals + recovery payload (P2-001 remediation) |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Storage layer: counts + namespace filter |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Test: "blocks convergence for empty derived graphs instead of returning false-safe success" |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/graph_support.md` §5 | Documents the recovery contract |
+| `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs` | runtime CLI script: counts/schema/signals + recovery payload (P2-001 remediation) |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts` | Storage layer: counts + namespace filter |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Test: "blocks convergence for empty derived graphs instead of returning false-safe success" |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` §5 | Documents the recovery contract |
 
 ---
 

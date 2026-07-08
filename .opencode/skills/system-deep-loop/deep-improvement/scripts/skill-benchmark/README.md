@@ -182,9 +182,9 @@ Main flow:
 Run from the repository root.
 
 ```bash
-npx vitest run .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts
-npx vitest run .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/playbook-mode.vitest.ts
-npx vitest run .opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts
+npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts
+npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/playbook-mode.vitest.ts
+npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts
 ```
 
 Expected result: all three Lane C suites pass.

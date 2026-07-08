@@ -16,7 +16,7 @@ describe('deep-review auto restart command contract', () => {
     const command = readWorkspaceFile('.opencode/commands/deep/review.md');
     const presentation = readWorkspaceFile('.opencode/commands/deep/assets/deep_review_presentation.txt');
     const autoWorkflow = readWorkspaceFile('.opencode/commands/deep/assets/deep_review_auto.yaml');
-    const fanoutRun = readWorkspaceFile('.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs');
+    const fanoutRun = readWorkspaceFile('.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
     expect(command).toContain('--restart|--lineage-mode=restart');
     expect(command).toContain('--stop-policy=convergence|max-iterations');

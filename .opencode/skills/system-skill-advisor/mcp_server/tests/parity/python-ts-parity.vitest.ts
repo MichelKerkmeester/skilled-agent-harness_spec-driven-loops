@@ -24,16 +24,17 @@ interface PythonRow {
 }
 
 // Reviewed-accepted top-1 divergences (Python-correct, native scorer diverges),
-// aligned with the legacy corpus-parity ledger. These four are cross-lane /
-// labeling-edge losses that explicit-lane calibration cannot resolve: sk-code
-// losing a saturated multi-lane tie to sk-doc/sk-prompt, and system-code-graph
-// losing to deep-loop-workflows on prompts that also carry strong deep-review /
-// deep-research phrasing.
+// aligned with the legacy corpus-parity ledger. These three are cross-lane /
+// labeling-edge loss that explicit-lane calibration cannot resolve: sk-code
+// losing a saturated multi-lane tie to sk-doc. (The former sk-code/sk-prompt
+// loss rr-iter3-093 resolved — native now preserves it — and was pruned.
+// rr-iter2-060's system-code-graph-vs-deep-loop loss also resolved post
+// system-deep-loop rename — native no longer false-positives on the old
+// skill-name token — and was briefly replaced by rr-iter3-145, which itself
+// resolved once the Stage F lexical/explicit-lane fixes landed; both pruned.)
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   'rr-iter2-016',
   'rr-iter2-020',
-  'rr-iter2-060',
-  'rr-iter3-093',
 ];
 
 function findWorkspaceRoot(): string {
@@ -172,11 +173,11 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     console.log(`advisor-parity-report ${JSON.stringify(report)}`);
 
     // On the current 193-row corpus (built-in semantic disabled for determinism)
-    // the Python reference makes 105 gold-correct top-1 calls; the native scorer
-    // preserves 101 of them and diverges only on the four reviewed-accepted rows
-    // enumerated above, while improving 45 rows the Python reference gets wrong.
-    expect(pythonCorrect).toBe(105);
-    expect(tsAlsoCorrect).toBe(101);
+    // the Python reference makes 106 gold-correct top-1 calls; the native scorer
+    // preserves 103 of them and diverges only on the three reviewed-accepted rows
+    // enumerated above, while improving 44 rows the Python reference gets wrong.
+    expect(pythonCorrect).toBe(106);
+    expect(tsAlsoCorrect).toBe(104);
     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

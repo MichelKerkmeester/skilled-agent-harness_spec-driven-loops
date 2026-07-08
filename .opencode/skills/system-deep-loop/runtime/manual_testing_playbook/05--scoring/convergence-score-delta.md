@@ -1,6 +1,6 @@
 ---
 title: "DLR-040 -- Convergence score-delta"
-description: "Manual validation scenario for Convergence score-delta in the deep-loop-runtime skill."
+description: "Manual validation scenario for Convergence score-delta in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm Convergence score-delta behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: scoring runtime.
-- Real user request: `Validate Convergence score-delta and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Convergence score-delta and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: First-iteration null delta, prior-snapshot delta, graph output bindings, and improvement-effect trace coverage.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/05--scoring/convergence-score-delta.md`.
 
 ### Steps
@@ -83,6 +83,6 @@ Convergence score-delta matches the documented current reality, the source ancho
 - Playbook ID: DLR-040
 - Feature catalog entry: `feature_catalog/05--scoring/convergence-score-delta.md`
 - Scenario file path: `manual_testing_playbook/05--scoring/convergence-score-delta.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/011-convergence-score-delta`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//011-convergence-score-delta`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

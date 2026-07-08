@@ -1,9 +1,9 @@
 ---
-title: "deep-loop-runtime Tests"
-description: "Test harnesses for deep-loop-runtime primitives. Grouped by library domain: council, coverage-graph, deep-loop."
+title: "runtime/ Tests"
+description: "Test harnesses for runtime/ primitives. Grouped by library domain: council, coverage-graph, deep-loop."
 ---
 
-# deep-loop-runtime Tests
+# runtime/ Tests
 
 ---
 
@@ -30,10 +30,10 @@ Shared utilities live at `helpers/`, renamed from `_helpers` per no-underscore c
 ```bash
 cd .opencode/skills/system-spec-kit/mcp_server
 node_modules/.bin/vitest run --no-coverage \
-  /absolute/path/to/.opencode/skills/deep-loop-runtime/tests/<subdir-or-file>
+  /absolute/path/to/.opencode/skills/system-deep-loop/runtime/tests/<subdir-or-file>
 ```
 
 ## 5. RELATED RESOURCES
 
-- Library being tested: `.opencode/skills/deep-loop-runtime/lib/`
+- Library being tested: `.opencode/skills/system-deep-loop/runtime/lib/`
 - vitest config: `.opencode/skills/system-spec-kit/mcp_server/vitest.config.ts`

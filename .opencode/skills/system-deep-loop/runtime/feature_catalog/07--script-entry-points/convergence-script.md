@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Computes graph-aware CONTINUE, STOP_ALLOWED, or STOP_BLOCKED decisions for a session namespace.
 
-This feature belongs to the script entry points group and is catalogued as F014 in the `deep-loop-runtime` inventory.
+This feature belongs to the script entry points group and is catalogued as F014 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the script entry points group and is catalogued as F014 
 
 Direct replacement for `deep_loop_graph_convergence`; emits graph decision bindings.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

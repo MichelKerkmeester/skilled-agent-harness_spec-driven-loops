@@ -35,7 +35,7 @@ Validate the SpecKit autopilot lifecycle, including mode routing, task metadata,
 ### Commands
 
 1. Inspect `.opencode/commands/speckit/complete.md`, `.opencode/commands/speckit/plan.md`, `.opencode/commands/speckit/implement.md`, and `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`.
-2. Run `bash: cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/speckit-autopilot-contract.vitest.ts` and require EXIT 0.
+2. Run `bash: cd .opencode/skills/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/speckit-autopilot-contract.vitest.ts` and require EXIT 0.
 3. In a disposable branch-backed packet, invoke `/speckit:plan <request> --unattended` and confirm executable task rows include `agent`, `deps`, and `touched-files` metadata.
 4. Invoke `/speckit:implement <packet> --unattended` or `/speckit:complete <request> --unattended` with a controlled verification failure.
 5. Capture the terminal result line and verify the prefix is `SPECKIT_AUTOPILOT_RESULT`.
@@ -67,7 +67,7 @@ Inspect the three Speckit command routers first. If they route correctly, inspec
 - Source: `.opencode/commands/speckit/plan.md`
 - Source: `.opencode/commands/speckit/implement.md`
 - Source: `.opencode/commands/speckit/assets/speckit_complete_auto.yaml`
-- Test: `.opencode/skills/deep-loop-runtime/tests/unit/speckit-autopilot-contract.vitest.ts`
+- Test: `.opencode/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts`
 
 ---
 

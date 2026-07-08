@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Records executor provenance and guards recursive external-CLI dispatch inside iteration state logs.
 
-This feature belongs to the executor group and is catalogued as F002 in the `deep-loop-runtime` inventory.
+This feature belongs to the executor group and is catalogued as F002 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the executor group and is catalogued as F002 in the `dee
 
 Recursion guard, executor audit record writing, dispatch-failure emission, and audited command spawning.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

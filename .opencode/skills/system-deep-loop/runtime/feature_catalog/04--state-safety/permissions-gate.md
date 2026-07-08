@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Evaluates pre-dispatch tool calls against packet-local, repo-wide, and external permission rules.
 
-This feature belongs to the state safety group and is catalogued as F009 in the `deep-loop-runtime` inventory.
+This feature belongs to the state safety group and is catalogued as F009 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the state safety group and is catalogued as F009 in the 
 
 Tool operation mapping, path resolution, glob specificity, default-deny, and allow/deny reasons.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

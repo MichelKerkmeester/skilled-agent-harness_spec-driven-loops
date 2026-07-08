@@ -36,19 +36,19 @@ That reducer stop check is not the only stability signal. `mutation-coverage.cjs
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs` | Reducer | Computes stop status from ties, infra failures, benchmark failures, drift ambiguity, and exact-score plateaus. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/mutation-coverage.cjs` | Coverage tracker | Records per-dimension score history and checks convergence eligibility from stable trajectories. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/trade-off-detector.cjs` | Analysis helper | Refuses to analyze trade-offs until enough trajectory points exist and flags meaningful regressions when they do. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs` | Stability helper | Measures replay variance and refuses verdicts until the minimum replay count is met. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/improvement_config.json` | Runtime config | Supplies the plateau window and stop-rule thresholds consumed by the reducer. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs` | Reducer | Computes stop status from ties, infra failures, benchmark failures, drift ambiguity, and exact-score plateaus. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/mutation-coverage.cjs` | Coverage tracker | Records per-dimension score history and checks convergence eligibility from stable trajectories. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/trade-off-detector.cjs` | Analysis helper | Refuses to analyze trade-offs until enough trajectory points exist and flags meaningful regressions when they do. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs` | Stability helper | Measures replay variance and refuses verdicts until the minimum replay count is met. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent_improvement/improvement_config.json` | Runtime config | Supplies the plateau window and stop-rule thresholds consumed by the reducer. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Automated test | Verifies the three-point convergence rule and unstable-dimension reporting. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Automated test | Verifies insufficient-data handling and hard versus soft regression thresholds. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies insufficient-sample handling, stability coefficients, and warning thresholds. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Automated test | Verifies the three-point convergence rule and unstable-dimension reporting. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Automated test | Verifies insufficient-data handling and hard versus soft regression thresholds. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies insufficient-sample handling, stability coefficients, and warning thresholds. |
 
 ---
 

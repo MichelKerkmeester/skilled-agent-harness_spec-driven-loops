@@ -12,7 +12,7 @@ version: 1.2.0.13
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-> **STATUS (arc-118):** `deep_loop_graph_upsert` is NOT a registered MCP tool. It is an internal deep-loop-runtime `.cjs` script (under `.opencode/skills/deep-loop-runtime/scripts/`) and is not routed through system-spec-kit / mk-spec-memory. MCP routing for the `deep_loop_graph_*` family was removed in arc-118. The code-graph MCP surface is 8 tools and does NOT include this script.
+> **STATUS (arc-118):** `deep_loop_graph_upsert` is NOT a registered MCP tool. It is an internal runtime/ `.cjs` script (under `.opencode/skills/system-deep-loop/runtime/scripts/`) and is not routed through system-spec-kit / mk-spec-memory. MCP routing for the `deep_loop_graph_*` family was removed in arc-118. The code-graph MCP surface is 8 tools and does NOT include this script.
 
 ## 1. OVERVIEW
 
@@ -22,7 +22,7 @@ version: 1.2.0.13
 
 ### Trigger / Invocation Path
 
-Command-owned deep-research/deep-review YAML, conditional on `graphEvents`, invokes the internal deep-loop-runtime `.cjs` script. There is no MCP routing.
+Command-owned deep-research/deep-review YAML, conditional on `graphEvents`, invokes the internal runtime/ `.cjs` script. There is no MCP routing.
 
 ### Class
 
@@ -38,7 +38,7 @@ No `graphEvents` means no upsert. The workflow skip is intentional and should no
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs` | Implementation | CLI script (argv-parsed via `parseArgs`); invoked directly from the deep YAMLs, NOT an MCP tool |
+| `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` | Implementation | CLI script (argv-parsed via `parseArgs`); invoked directly from the deep YAMLs, NOT an MCP tool |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` `step_graph_upsert` | Call site | conditionally calls upsert for research graph events |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` `step_seed_coverage_graph` and `step_graph_upsert` | Call site | seeds and conditionally upserts review graph events |
 

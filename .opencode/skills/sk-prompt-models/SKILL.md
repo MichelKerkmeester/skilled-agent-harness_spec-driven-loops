@@ -98,7 +98,7 @@ assets/
 Executor MECHANICS and runtime code live elsewhere — a profile points at them, never restates them:
 
 - `.opencode/skills/cli-opencode/references/` and `assets/` (flags, wrappers, permissions)
-- `.opencode/skills/deep-loop-runtime/lib/deep-loop/` (runtime helpers)
+- `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/` (runtime helpers)
 
 ### Resource Loading Levels
 

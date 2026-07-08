@@ -36,17 +36,17 @@ The config also points at the runtime capability matrix and resolver script. `ru
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json` | Asset | Defines the default config fields, reducer paths, file protections, and optimizer-managed knobs. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Reference | Defines the config schema, field meanings, and file-protection map. |
-| `.opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json` | Asset | Defines the machine-readable runtime capability matrix for supported mirrors. |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs` | Script | Loads and validates the capability matrix and resolves runtime records by ID. |
-| `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md` | Skill | Publishes the live lifecycle modes, capability-path references, and optimizer-managed config fields. |
+| `.opencode/skills/system-deep-loop/deep-research/assets/deep_research_config.json` | Asset | Defines the default config fields, reducer paths, file protections, and optimizer-managed knobs. |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Reference | Defines the config schema, field meanings, and file-protection map. |
+| `.opencode/skills/system-deep-loop/deep-research/assets/runtime_capabilities.json` | Asset | Defines the machine-readable runtime capability matrix for supported mirrors. |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs` | Script | Loads and validates the capability matrix and resolves runtime records by ID. |
+| `.opencode/skills/system-deep-loop/deep-research/SKILL.md` | Skill | Publishes the live lifecycle modes, capability-path references, and optimizer-managed config fields. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/01--entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md` | Manual playbook | Verifies runtime flags reach the live config surface. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/01--entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md` | Manual playbook | Verifies runtime flags reach the live config surface. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Vitest | Verifies canonical artifacts, command assets, and runtime capability matrix references stay aligned. |
 
 ---

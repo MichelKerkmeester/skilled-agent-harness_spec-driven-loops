@@ -22,7 +22,7 @@ version: 1.2.0.0
 
 Detection-layer enforcement for Task-tool dispatches targeting deep-loop sub-agents, with two independent checks. **Check 1 (mode-mismatch)**: on every `task` dispatch, the plugin resolves the real target agent (see Identity resolution below) against `mode-registry.json` and compares it to any `mode=X` value declared in the dispatch prompt's Deep Route header; a mismatch is flagged. **Check 2 (loop-repeat)**: the plugin also tracks, per session, how many times `orchestrate` has hand-dispatched the same command-owned loop executor (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`) without a command-driven iteration marker in the prompt; repeated hand-offs are flagged as loop-like.
 
-This feature belongs to the validation group and is catalogued as F050 in the `deep-loop-runtime` inventory. It complements `post-dispatch-validate.ts` (F005) from the opposite direction: that validator inspects the JSONL record a dispatch already produced; this plugin inspects the dispatch args *before* the call executes.
+This feature belongs to the validation group and is catalogued as F050 in the `runtime/` inventory. It complements `post-dispatch-validate.ts` (F005) from the opposite direction: that validator inspects the JSONL record a dispatch already produced; this plugin inspects the dispatch args *before* the call executes.
 
 ---
 

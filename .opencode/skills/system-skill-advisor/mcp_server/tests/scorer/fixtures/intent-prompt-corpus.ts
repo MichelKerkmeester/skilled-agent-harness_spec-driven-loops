@@ -66,7 +66,7 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
   },
   {
     prompt: 'Use deep-ai-council for a multi-seat planning council with persistent artifacts.',
-    expectedSkill: 'deep-loop-workflows',
+    expectedSkill: 'system-deep-loop',
     category: 'today-correct',
   },
   {
@@ -126,7 +126,7 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
   },
   {
     prompt: 'Compare several planning perspectives, converge on one design, and save the deliberation artifacts.',
-    expectedSkill: 'deep-loop-workflows',
+    expectedSkill: 'system-deep-loop',
     category: 'intent-described',
   },
 ];

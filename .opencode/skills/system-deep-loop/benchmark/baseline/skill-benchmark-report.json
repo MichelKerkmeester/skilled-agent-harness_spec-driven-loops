@@ -5,8 +5,8 @@
   "scoringMethod": "mode-a-router-replay",
   "traceMode": "router",
   "targetSkill": {
-    "id": "deep-loop-workflows",
-    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows"
+    "id": "system-deep-loop",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop"
   },
   "verdict": "CONDITIONAL",
   "aggregateScore": 71,
@@ -251,7 +251,7 @@
     {
       "scenarioId": "SC-004",
       "leaks": [
-        "deep-loop-workflows",
+        "system-deep-loop",
         "deep-loop",
         "review"
       ]
@@ -1854,7 +1854,7 @@
           "ai-system-improvement"
         ],
         "matchedAliases": [
-          "deep-loop-workflows",
+          "system-deep-loop",
           "deep-loop"
         ],
         "defaultApplied": false,

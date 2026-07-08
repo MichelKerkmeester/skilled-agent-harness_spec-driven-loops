@@ -26,8 +26,8 @@ Canonical runtime contract for `deep-research`. This matrix defines what every r
 
 ### Machine-Readable Source of Truth
 
-- Data: `.opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json`
-- Resolver: `.opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs`
+- Data: `.opencode/skills/system-deep-loop/deep-research/assets/runtime_capabilities.json`
+- Resolver: `.opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs`
 
 ---
 

@@ -297,5 +297,5 @@ describe('red-team probe gate', () => {
     expect(didEscapeRecallWrapper(rendered)).toBe(false);
   });
 
-  it.todo('adds the sibling prompt-pack renderer probe once this phase is allowed to edit deep-loop-runtime');
+  it.todo('adds the sibling prompt-pack renderer probe once this phase is allowed to edit runtime/');
 });

@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Computes convergence signals, node centrality signals, snapshots, and momentum for research and review graphs.
 
-This feature belongs to the coverage graph group and is catalogued as F013 in the `deep-loop-runtime` inventory.
+This feature belongs to the coverage graph group and is catalogued as F013 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the coverage graph group and is catalogued as F013 in th
 
 Node degree/depth, research signals, review signals, snapshots, and momentum.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

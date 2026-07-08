@@ -132,7 +132,7 @@ defaults:
   description_filename: description.json
   graph_metadata_filename: graph-metadata.json
   shared_dirname: shared
-  packet_prefix: "[hub-prefix]-  # derived from the hub (e.g. deep- for deep-loop-workflows, code- for sk-code); NEVER hardcode deep-"
+  packet_prefix: "[hub-prefix]-  # derived from the hub (e.g. code- for sk-code); NEVER hardcode deep-. Exception: system-deep-loop's packets keep the deep- prefix (matching the /deep:* command namespace, not the hub folder name) — the folder-prefix/command-namespace-prefix equivalence has this one documented exception."
   surface_packet_naming: "bare noun, no prefix (e.g. webflow)"
   execution_mode: :auto
   dqi_hard_minimum: 75

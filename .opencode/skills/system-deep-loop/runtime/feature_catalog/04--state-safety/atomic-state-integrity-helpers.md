@@ -4,7 +4,7 @@ description: "Adds SHA-256 integrity helpers for object and registry JSON withou
 trigger_phrases:
   - "atomic-state integrity helpers"
   - "atomic-state-integrity-helpers"
-  - "atomic-state integrity helpers deep-loop-runtime"
+  - "atomic-state integrity helpers runtime"
   - "state safety atomic-state integrity helpers"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds SHA-256 integrity helpers for object and registry JSON without applying the contract to append-only JSONL.
 
-This feature belongs to the state safety group and is catalogued as F029 in the `deep-loop-runtime` inventory.
+This feature belongs to the state safety group and is catalogued as F029 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the state safety group and is catalogued as F029 in the 
 
 `computeIntegrityHash()` hashes canonical JSON, `stampIntegrity()` writes `_integrity`, and `verifyIntegrity()` recomputes the digest, warns on mismatch, and returns `false` without fail-fast blocking.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F029
 - Feature file path: `04--state-safety/atomic-state-integrity-helpers.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/002-atomic-state-integrity-helpers`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//002-atomic-state-integrity-helpers`
 - Primary sources: `lib/deep-loop/atomic-state.ts`, `tests/unit/atomic-state.vitest.ts`
 Related references:
 - [state safety](../04--state-safety/) — State safety category

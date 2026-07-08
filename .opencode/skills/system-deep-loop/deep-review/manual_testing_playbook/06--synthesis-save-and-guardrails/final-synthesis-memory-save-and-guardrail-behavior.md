@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review finalization, memory-save routing, LEAF-only behavior, and read-only target handling.
 ### Commands
-1. `bash: rg -n 'generate-context.js|memory.*save|synthesis_complete|review-report|memory' .opencode/commands/deep/review.md .opencode/skills/deep-loop-workflows/deep-review/SKILL.md .opencode/skills/deep-loop-workflows/deep-review/README.md`
-2. `bash: rg -n 'LEAF-only|Task tool|NEVER.*sub|NEVER.*dispatch|read.only|NEVER.*modify|observation.*only' .claude/agents/deep-review.md .opencode/agents/deep-review.md .opencode/skills/deep-loop-workflows/deep-review/SKILL.md`
+1. `bash: rg -n 'generate-context.js|memory.*save|synthesis_complete|review-report|memory' .opencode/commands/deep/review.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md`
+2. `bash: rg -n 'LEAF-only|Task tool|NEVER.*sub|NEVER.*dispatch|read.only|NEVER.*modify|observation.*only' .claude/agents/deep-review.md .opencode/agents/deep-review.md .opencode/skills/system-deep-loop/deep-review/SKILL.md`
 3. `bash: rg -n 'phase_synthesis|phase_save|generate-context.js|synthesis_complete|memory_save|review-report' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml`
 ### Expected
 Synthesis produces `review/review-report.md`, memory save calls `generate-context.js`, agent is LEAF-only, target files are read-only.
@@ -72,8 +72,8 @@ Privilege the agent definitions for LEAF-only behavior and the skill rules for r
 | File | Role |
 |---|---|
 | `.opencode/commands/deep/review.md` | Command entrypoint, synthesis and memory integration contract |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Memory save rule (Rule 8), read-only rule (Rule 9), LEAF-only rule (NEVER 1), use `ANCHOR:rules` |
-| `.opencode/skills/deep-loop-workflows/deep-review/README.md` | Feature summary for memory save and guardrails |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Memory save rule (Rule 8), read-only rule (Rule 9), LEAF-only rule (NEVER 1), use `ANCHOR:rules` |
+| `.opencode/skills/system-deep-loop/deep-review/README.md` | Feature summary for memory save and guardrails |
 | `.claude/agents/deep-review.md` | Claude runtime agent, LEAF-only enforcement and tool permissions |
 | `.opencode/agents/deep-review.md` | OpenCode runtime agent, LEAF-only enforcement and tool permissions |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Final synthesis/save steps and workflow events |
@@ -87,4 +87,4 @@ Privilege the agent definitions for LEAF-only behavior and the skill rules for r
 - Playbook ID: DRV-027
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

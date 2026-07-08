@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // sanitizeDerivedMetadata bundles `entities` with the plain string-array keys and
 // filters every element to `typeof entry === 'string'`, so the object-shaped entities
-// that sk-design and deep-loop-workflows ship ({name, kind, path, source}) are silently
+// that sk-design and system-deep-loop ship ({name, kind, path, source}) are silently
 // dropped — they never reach the SQLite index or the scorer's derivedKeywords. The fix
 // (flatten object entities to their `name`) changes indexed content and therefore shifts
 // advisor scoring, so it must co-land with the 193-row parity re-baseline, not before.

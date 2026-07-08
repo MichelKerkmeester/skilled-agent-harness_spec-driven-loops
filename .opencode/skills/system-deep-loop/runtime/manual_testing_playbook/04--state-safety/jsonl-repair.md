@@ -1,6 +1,6 @@
 ---
 title: "DLR-007 -- JSONL repair"
-description: "Manual validation scenario for JSONL repair in the deep-loop-runtime skill."
+description: "Manual validation scenario for JSONL repair in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ Deep loops mutate long-lived packet state across iterations. The state-safety pr
 
 - Objective: Confirm jsonl repair behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: state safety runtime.
-- Real user request: `Validate JSONL repair and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate JSONL repair and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Deterministic mutation safety evidence from source and unit tests.
 - Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep loops mutate long-lived packet state across iterations. The state-safety pr
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/04--state-safety/jsonl-repair.md`.
 
 ### Steps
@@ -92,7 +92,7 @@ JSONL repair matches the documented current reality, the source anchors are accu
 
 ### Adversarial Steps
 
-1. Run `cd .opencode/skills/deep-loop-runtime && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/jsonl-repair.vitest.ts` and require EXIT 0.
+1. Run `cd .opencode/skills/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/jsonl-repair.vitest.ts` and require EXIT 0.
 2. Confirm `tests/unit/jsonl-repair.vitest.ts` asserts `appends records without rewriting existing content` and `strips corrupt trailing lines even when the corrupt line ends with a newline`.
 3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
 

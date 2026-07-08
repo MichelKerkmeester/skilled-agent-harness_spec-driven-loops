@@ -40,7 +40,7 @@ This playbook provides 53 deterministic scenarios across 8 categories validating
 
 ## 2. GLOBAL PRECONDITIONS
 
-- `deep-research` skill exists at `.opencode/skills/deep-loop-workflows/deep-research/`.
+- `deep-research` skill exists at `.opencode/skills/system-deep-loop/deep-research/`.
 - `/deep:research` command exists at `.opencode/commands/deep/research.md`.
 - `@deep-research` agent definition exists at `.opencode/agents/deep-research.md` plus runtime variants.
 - Deep-research YAML workflows and reducer/runtime assets are available in the repository.
@@ -538,7 +538,7 @@ Expected signals: `SOURCE_DIVERSITY_THRESHOLD = 0.4`; `evaluateGraphGates()` fai
 verify that a research packet with at least one `blocked_stop` event surfaces that event into reducer-owned `blockedStopHistory`, the `BLOCKED STOPS` dashboard section, and the strategy `next-focus` anchor.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate blocked-stop reducer surfacing for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify running node .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs <spec-folder> on a research packet with at least one blocked_stop event populates blockedStopHistory, renders BLOCKED STOPS in the dashboard, and rewrites the strategy next-focus anchor with the recovery strategy. Return a concise operator-facing verdict.
+Prompt summary: As a manual-testing orchestrator, validate blocked-stop reducer surfacing for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify running node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> on a research packet with at least one blocked_stop event populates blockedStopHistory, renders BLOCKED STOPS in the dashboard, and rewrites the strategy next-focus anchor with the recovery strategy. Return a concise operator-facing verdict.
 
 Expected signals: `blockedStopHistory` is non-empty; each entry exposes `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp`; `BLOCKED STOPS` renders the same blocked-stop data; the strategy `next-focus` anchor includes the recovery hint from the latest blocked-stop event.
 
@@ -797,4 +797,4 @@ Expected signals: `if_absent` command unchanged; both fan-out steps have `skip_w
 
 ## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-No dedicated `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/`. Use the live source anchors inside each per-feature file as the canonical implementation cross-reference surface.
+No dedicated `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/`. Use the live source anchors inside each per-feature file as the canonical implementation cross-reference surface.

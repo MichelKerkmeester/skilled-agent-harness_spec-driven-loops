@@ -40,7 +40,7 @@ Schema validation rejects malformed tool calls before handler execution for regi
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:60-100` | Tool surface | dispatches those names to handlers |
 | `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:19-216` | Schema | defines code graph, detect_changes and structural schemas |
 | `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Tool surface | intentionally omits coverage-graph dispatch; this tool family is CLI-invoked and NOT registered as MCP tools |
-| `.opencode/skills/deep-loop-runtime/scripts/*.cjs` | Implementation | deep-loop coverage-graph CLI scripts: convergence/upsert fire from the research/review `*_auto.yaml` steps, status from the ai-council workflows, query is invoked directly |
+| `.opencode/skills/system-deep-loop/runtime/scripts/*.cjs` | Implementation | deep-loop coverage-graph CLI scripts: convergence/upsert fire from the research/review `*_auto.yaml` steps, status from the ai-council workflows, query is invoked directly |
 
 ### Validation And Tests
 

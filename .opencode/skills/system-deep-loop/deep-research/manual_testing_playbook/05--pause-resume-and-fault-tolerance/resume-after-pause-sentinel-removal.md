@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate removing pause sentinels logs resumed events and continues from state reads.
 ### Commands
-1. `bash: rg -n 'On resume|resumed|Continue from step_read_state|review/.deep-research-pause' .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
+1. `bash: rg -n 'On resume|resumed|Continue from step_read_state|review/.deep-research-pause' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md`
 2. `bash: rg -n 'resumed|on_resume|skip_to: phase_loop|skip_to: gate_init_approval|review/.deep-research-pause|research/.deep-research-pause' .opencode/commands/deep/assets/deep_research_auto.yaml .opencode/commands/deep/assets/deep_research_confirm.yaml .opencode/commands/deep/assets/deep_research_review_auto.yaml .opencode/commands/deep/assets/deep_research_review_confirm.yaml`
-3. `bash: rg -n 'Delete the file to resume|Auto-resume|review/.deep-research-pause' .opencode/skills/deep-loop-workflows/deep-research/README.md`
+3. `bash: rg -n 'Delete the file to resume|Auto-resume|review/.deep-research-pause' .opencode/skills/system-deep-loop/deep-research/README.md`
 ### Expected
 The loop logs `resumed`, continues from state read, and does not recreate config or strategy files during a valid resume in either research or review mode.
 ### Evidence
@@ -71,11 +71,11 @@ Check both the pause subsection and the broader auto-resume classification rules
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Pause-resume flow; use `ANCHOR:phase-iteration-loop` and `ANCHOR:phase-initialization` |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Resumed event schema; use `ANCHOR:state-log` |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Pause-resume flow; use `ANCHOR:phase-iteration-loop` and `ANCHOR:phase-initialization` |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Resumed event schema; use `ANCHOR:state-log` |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Resume branch behavior |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Resume branch behavior |
-| `.opencode/skills/deep-loop-workflows/deep-research/README.md` | User-facing pause and resume language; use `ANCHOR:faq` |
+| `.opencode/skills/system-deep-loop/deep-research/README.md` | User-facing pause and resume language; use `ANCHOR:faq` |
 
 ---
 
@@ -85,4 +85,4 @@ Check both the pause subsection and the broader auto-resume classification rules
 - Playbook ID: DR-016
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `05--pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

@@ -25,18 +25,19 @@ interface ParityRegression {
   readonly hook_top_1: string | null;
 }
 
-// Reviewed-accepted top-1 divergences: rows the Python reference gets right but
-// the native scorer does not, ordered as they occur in the corpus. The remaining
-// four are fusion-level or labeling-edge losses that single-lane explicit
+// Reviewed-accepted top-1 divergence: a row the Python reference gets right but
+// the native scorer does not, ordered as it occurs in the corpus. The remaining
+// one is a fusion-level or labeling-edge loss that single-lane explicit
 // calibration does not cleanly resolve: sk-code losing a saturated multi-lane tie
-// to sk-doc/sk-prompt, and system-code-graph losing to deep-loop-workflows on
-// prompts that also carry strong deep-review / deep-research phrasing. Prune
+// to sk-doc. The former sk-code/sk-prompt loss rr-iter3-093 resolved (native now
+// preserves it) and was pruned. rr-iter2-060's system-code-graph-vs-deep-loop loss
+// also resolved post system-deep-loop rename (native no longer false-positives on
+// the old skill-name token) and was briefly replaced by rr-iter3-145, which itself
+// resolved once the Stage F lexical/explicit-lane fixes landed; both pruned. Prune
 // entries here as targeted cross-lane work resolves them.
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   'rr-iter2-016',
   'rr-iter2-020',
-  'rr-iter2-060',
-  'rr-iter3-093',
 ];
 
 const workspaceRoot = findAdvisorWorkspaceRoot(import.meta.dirname);
@@ -132,12 +133,12 @@ describe('advisor 193-prompt corpus regression-protection parity', () => {
       }
 
       // On the current 193-row corpus the Python reference scorer (built-in
-      // semantic disabled for determinism) makes 105 gold-correct top-1 calls;
-      // the native/hook scorer preserves 101 of them. The remaining Python-correct
+      // semantic disabled for determinism) makes 106 gold-correct top-1 calls;
+      // the native/hook scorer preserves 103 of them. The remaining Python-correct
       // rows the native scorer diverges on are enumerated and reviewed-accepted
       // below.
-      expect(pythonCorrect).toBe(105);
-      expect(hookPreservedPythonCorrect).toBe(101);
+      expect(pythonCorrect).toBe(106);
+      expect(hookPreservedPythonCorrect).toBe(104);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

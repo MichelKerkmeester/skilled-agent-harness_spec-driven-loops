@@ -1,6 +1,6 @@
 ---
 title: "DLR-013 -- Coverage graph signals"
-description: "Manual validation scenario for Coverage graph signals in the deep-loop-runtime skill."
+description: "Manual validation scenario for Coverage graph signals in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ Graph state is the convergence evidence layer for deep-review and deep-research.
 
 - Objective: Confirm coverage graph signals behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: coverage graph runtime.
-- Real user request: `Validate Coverage graph signals and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Coverage graph signals and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Session-scoped graph behavior, schema/query/signal outputs, and matching integration or lifecycle evidence.
 - Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Graph state is the convergence evidence layer for deep-review and deep-research.
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/06--coverage-graph/coverage-graph-signals.md`.
 
 ### Steps

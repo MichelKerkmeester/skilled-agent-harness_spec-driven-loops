@@ -36,16 +36,16 @@ The dispatcher forwards `cwd` to every executor so spawned CLIs run against the 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/dispatch-model.cjs` | Dispatcher | Routes a prompt to one of three executor CLIs, forwards `cwd`, and applies non-busy rate-limit backoff. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Consumes dispatcher output on the model-benchmark path before scoring. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs` | Mode router | Gates the dispatcher behind `--mode=model-benchmark` so it loads only on that path. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs` | Dispatcher | Routes a prompt to one of three executor CLIs, forwards `cwd`, and applies non-busy rate-limit backoff. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Consumes dispatcher output on the model-benchmark path before scoring. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs` | Mode router | Gates the dispatcher behind `--mode=model-benchmark` so it loads only on that path. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts` | Automated test | Exercises dispatcher behavior alongside the model-benchmark remediation fixes. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` | Skill contract | Documents the dispatcher as the model-agnostic seam loaded only on the model-benchmark path. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts` | Automated test | Exercises dispatcher behavior alongside the model-benchmark remediation fixes. |
+| `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Skill contract | Documents the dispatcher as the model-agnostic seam loaded only on the model-benchmark path. |
 
 ---
 

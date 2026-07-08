@@ -22,7 +22,7 @@ This catalog is the current feature inventory for `.opencode/skills/system-code-
 
 The catalog covers 18 runtime features across 8 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
 
-**Feature-to-tool granularity (F013/F014).** The 17 runtime features (excluding the CLI fallback surface, which mirrors the whole tool set) map to **8 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` bundles the query operations `outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to` and `blast_radius` under shared query features rather than one catalog entry per operation. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
+**Feature-to-tool granularity (F013/F014).** The 17 runtime features (excluding the CLI fallback surface, which mirrors the whole tool set) map to **8 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` bundles the query operations `outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to` and `blast_radius` under shared query features rather than one catalog entry per operation. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/system-deep-loop/runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
 
 | Group | Count | Scope |
 | --- | ---: | --- |
@@ -177,7 +177,7 @@ See [`04--context-retrieval/context-handler.md`](04--context-retrieval/context-h
 
 ## 6. COVERAGE GRAPH
 
-> **Note (arc 118):** The four `mcp__mk_spec_memory__deep_loop_graph_*` MCP tools were removed in arc 118 (FULL_ISOLATE_NO_MCP). Each tool was replaced by a direct `.cjs` script entry point under `.opencode/skills/deep-loop-runtime/scripts/`. Catalog entries below are retained as historical reference; the script paths under each entry's "Current Reality" are the live invocation surface.
+> **Note (arc 118):** The four `mcp__mk_spec_memory__deep_loop_graph_*` MCP tools were removed in arc 118 (FULL_ISOLATE_NO_MCP). Each tool was replaced by a direct `.cjs` script entry point under `.opencode/skills/system-deep-loop/runtime/scripts/`. Catalog entries below are retained as historical reference; the script paths under each entry's "Current Reality" are the live invocation surface.
 
 ### deep_loop_graph_query
 
@@ -187,11 +187,11 @@ Coverage-graph read tool for research/review deep-loop graph state. Inspects unc
 
 #### How It Works
 
-Manual (class: manual). Direct `.cjs` invocation: `node .opencode/skills/deep-loop-runtime/scripts/query.cjs --spec-folder <path> --loop-type <review|research> --session-id <id>`. Reads are session-scoped.
+Manual (class: manual). Direct `.cjs` invocation: `node .opencode/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder <path> --loop-type <review|research> --session-id <id>`. Reads are session-scoped.
 
 #### Source Files
 
-See [`05--coverage-graph/deep-loop-graph-query.md`](05--coverage-graph/deep-loop-graph-query.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/query.cjs` (replaced MCP tool in arc 118).
+See [`05--coverage-graph/deep-loop-graph-query.md`](05--coverage-graph/deep-loop-graph-query.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/query.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -203,11 +203,11 @@ Session-scoped coverage-graph health report returning node/edge counts, relation
 
 #### How It Works
 
-Manual (class: manual). Direct `.cjs` invocation: `node .opencode/skills/deep-loop-runtime/scripts/status.cjs ...`. Empty graphs return zero counts and null signals, so use upsert-enabled deep loops to populate graph events first.
+Manual (class: manual). Direct `.cjs` invocation: `node .opencode/skills/system-deep-loop/runtime/scripts/status.cjs ...`. Empty graphs return zero counts and null signals, so use upsert-enabled deep loops to populate graph events first.
 
 #### Source Files
 
-See [`05--coverage-graph/deep-loop-graph-status.md`](05--coverage-graph/deep-loop-graph-status.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/status.cjs` (replaced MCP tool in arc 118).
+See [`05--coverage-graph/deep-loop-graph-status.md`](05--coverage-graph/deep-loop-graph-status.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/status.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -219,11 +219,11 @@ Coverage-graph write tool that stores nodes and edges for deep research/review l
 
 #### How It Works
 
-Half-auto (class: half). Command-owned deep-research/deep-review YAML calls `node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs` conditionally on `graphEvents`. No `graphEvents` means no upsert, and the workflow skip is intentional.
+Half-auto (class: half). Command-owned deep-research/deep-review YAML calls `node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` conditionally on `graphEvents`. No `graphEvents` means no upsert, and the workflow skip is intentional.
 
 #### Source Files
 
-See [`05--coverage-graph/deep-loop-graph-upsert.md`](05--coverage-graph/deep-loop-graph-upsert.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs` (replaced MCP tool in arc 118).
+See [`05--coverage-graph/deep-loop-graph-upsert.md`](05--coverage-graph/deep-loop-graph-upsert.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -235,11 +235,11 @@ Coverage-graph convergence tool that computes typed decisions (CONTINUE, STOP_AL
 
 #### How It Works
 
-Auto inside command workflows (class: auto). deep-research and deep-review YAML call `node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs` before the inline stop vote. Empty graphs return CONTINUE.
+Auto inside command workflows (class: auto). deep-research and deep-review YAML call `node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` before the inline stop vote. Empty graphs return CONTINUE.
 
 #### Source Files
 
-See [`05--coverage-graph/deep-loop-graph-convergence.md`](05--coverage-graph/deep-loop-graph-convergence.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` (replaced MCP tool in arc 118).
+See [`05--coverage-graph/deep-loop-graph-convergence.md`](05--coverage-graph/deep-loop-graph-convergence.md) for historical implementation. Current surface: `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -249,7 +249,7 @@ See [`05--coverage-graph/deep-loop-graph-convergence.md`](05--coverage-graph/dee
 
 #### Description
 
-MCP registration and dispatch surface for the `mk-code-index` runtime. Exposes `code_graph_*` and `detect_changes` names through the code graph dispatcher. Deep-loop coverage graph tools are no longer MCP tools; arc 118 replaced them with direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`.
+MCP registration and dispatch surface for the `mk-code-index` runtime. Exposes `code_graph_*` and `detect_changes` names through the code graph dispatcher. Deep-loop coverage graph tools are no longer MCP tools; arc 118 replaced them with direct `.cjs` script entry points under `.opencode/skills/system-deep-loop/runtime/scripts/`.
 
 #### How It Works
 

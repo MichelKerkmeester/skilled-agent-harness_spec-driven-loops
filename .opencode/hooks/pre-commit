@@ -37,7 +37,7 @@ fi
 # Agents are authored in .opencode/agents/ and mirrored to .claude.
 # Block a commit that desyncs the mirrors. Only STAGED agent files are checked,
 # so commits that touch no agents are never affected by this gate.
-MIRROR_CHECKER="$REPO_ROOT/.opencode/skills/deep-loop-workflows/deep-improvement/scripts/check-agent-mirror-sync.cjs"
+MIRROR_CHECKER="$REPO_ROOT/.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
 
 STAGED_AGENTS=()
 while IFS= read -r file; do

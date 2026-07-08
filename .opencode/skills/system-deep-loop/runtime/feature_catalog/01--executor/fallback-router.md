@@ -20,7 +20,7 @@ version: 1.4.0.5
 
 Chooses whether a failed model should fall back to a configured target or fail fast.
 
-This feature belongs to the executor group and is catalogued as F003 in the `deep-loop-runtime` inventory.
+This feature belongs to the executor group and is catalogued as F003 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the executor group and is catalogued as F003 in the `dee
 
 Model registry lookup, fallback target selection, disabled fallback, and fail-fast reasons.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

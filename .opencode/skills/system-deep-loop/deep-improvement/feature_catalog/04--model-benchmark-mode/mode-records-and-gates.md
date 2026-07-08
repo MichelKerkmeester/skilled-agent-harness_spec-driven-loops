@@ -36,16 +36,16 @@ Two environment gates harden the five-dimension scorer, and both default to the 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Stamps `mode: model-benchmark` and `scoringMethod` on benchmark reports and `benchmark_run` records. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs` | 5-dim scorer | Honors `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs` | Grader | Honors `DEEP_AGENT_GRADER_CACHE_RAW=0` by redacting raw grader output before it is written to the on-disk cache (`scorer/lib/cache.cjs` stores whatever the harness passes). |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Stamps `mode: model-benchmark` and `scoringMethod` on benchmark reports and `benchmark_run` records. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs` | 5-dim scorer | Honors `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs` | Grader | Honors `DEEP_AGENT_GRADER_CACHE_RAW=0` by redacting raw grader output before it is written to the on-disk cache (`scorer/lib/cache.cjs` stores whatever the harness passes). |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/optin-scorer.vitest.ts` | Automated test | Verifies `scoringMethod` stamping across the pattern and 5dim paths. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts` | Automated test | Verifies 5-dim scorer behavior under the criteria-exec and grader-cache gates. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/optin-scorer.vitest.ts` | Automated test | Verifies `scoringMethod` stamping across the pattern and 5dim paths. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts` | Automated test | Verifies 5-dim scorer behavior under the criteria-exec and grader-cache gates. |
 
 ---
 

@@ -146,7 +146,7 @@ Found 20 matches
   Line 3:   "skill_id": "mcp-figma",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/graph-metadata.json:
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/runtime/graph-metadata.json:
   Line 4:   "skill_id": "deep-loop-runtime",
 
 
@@ -174,8 +174,8 @@ Found 20 matches
   Line 3:   "skill_id": "system-skill-advisor",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/graph-metadata.json:
-  Line 4:   "skill_id": "deep-loop-workflows",
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/graph-metadata.json:
+  Line 4:   "skill_id": "system-deep-loop",
 ```
 
 MCP advisor recommendation call made during routing/precondition validation:

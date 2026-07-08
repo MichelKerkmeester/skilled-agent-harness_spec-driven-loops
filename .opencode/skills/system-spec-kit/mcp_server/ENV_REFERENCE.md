@@ -732,11 +732,11 @@ Cascade-probe timing overrides for the embedder auto-selection cascade. Defaults
 
 ## DEEP-LOOP RUNTIME
 
-Runtime overrides for the shared deep-loop fan-out merge. These read from the deep-loop-runtime scripts, not the memory server.
+Runtime overrides for the shared deep-loop fan-out merge. These read from the runtime/ scripts, not the memory server.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_FANOUT_NEAR_DUP_DEDUP` | `false` | boolean (opt-in `1`/`true`/`yes`/`on`) | Near-duplicate finding collapse in the fan-out merge. Default OFF keeps exact-id bucketing only. Set an enabled value to also collapse near-duplicate findings by content key. | `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` |
+| `SPECKIT_FANOUT_NEAR_DUP_DEDUP` | `false` | boolean (opt-in `1`/`true`/`yes`/`on`) | Near-duplicate finding collapse in the fan-out merge. Default OFF keeps exact-id bucketing only. Set an enabled value to also collapse near-duplicate findings by content key. | `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` |
 
 ---
 

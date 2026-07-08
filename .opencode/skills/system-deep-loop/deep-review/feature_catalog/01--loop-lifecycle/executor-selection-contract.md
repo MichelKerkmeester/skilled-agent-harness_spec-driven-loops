@@ -24,7 +24,7 @@ The contract lets the same review loop run on different model backends without c
 
 ### Entry Point & Routing
 
-Before each dispatch, the workflow resolves the executor via `parseExecutorConfig` from `deep-loop-runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects one of three dispatch branches:
+Before each dispatch, the workflow resolves the executor via `parseExecutorConfig` from `runtime//lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects one of three dispatch branches:
 
 | Kind | Dispatch |
 |---|---|
@@ -48,7 +48,7 @@ Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_F
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` | Runtime | `parseExecutorConfig`, `EXECUTOR_KIND_FLAG_SUPPORT`, `ExecutorConfigError`. |
+| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Runtime | `parseExecutorConfig`, `EXECUTOR_KIND_FLAG_SUPPORT`, `ExecutorConfigError`. |
 | `references/protocol/loop_protocol.md` | Protocol | Executor Resolution section: per-kind dispatch branches and shared steps. |
 | `SKILL.md` | Skill contract | Executor Selection Contract and Cross-CLI Delegation subsections. |
 
@@ -66,7 +66,7 @@ Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_F
 - Group: Loop lifecycle
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `01--loop-lifecycle/executor-selection-contract.md`
-- Primary sources: `references/protocol/loop_protocol.md`, `SKILL.md`, `deep-loop-runtime/lib/deep-loop/executor-config.ts`
+- Primary sources: `references/protocol/loop_protocol.md`, `SKILL.md`, `runtime//lib/deep-loop/executor-config.ts`
 Related references:
 - [resource-map-coverage-gate.md](resource-map-coverage-gate.md) — Resource Map Coverage Gate
 - [fanout-dispatch.md](fanout-dispatch.md) — Fan-out loop dispatch

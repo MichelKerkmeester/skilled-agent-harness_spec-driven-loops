@@ -17,7 +17,7 @@ trigger_phrases:
 `tests/` holds the vitest suite for the whole `model-benchmark/` surface — both the original deep-improvement Lane B grader and the config-driven *sweep* framework built on top of it. The suite is additive: the Lane B baseline stays green while every sweep feature lands behind its own spec file. Run the whole suite from the skill's `scripts/` root:
 
 ```bash
-cd .opencode/skills/deep-loop-workflows/deep-improvement/scripts && npx vitest run model-benchmark/tests/
+cd .opencode/skills/system-deep-loop/deep-improvement/scripts && npx vitest run model-benchmark/tests/
 ```
 
 Current state:

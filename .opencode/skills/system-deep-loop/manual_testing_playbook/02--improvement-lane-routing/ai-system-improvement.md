@@ -41,7 +41,7 @@ This scenario verifies that the non-developer AI-system improvement lane is reac
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `ai-system-improvement` mode entry.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `ai-system-improvement` mode entry.
 2. The orchestrator can accept `/deep:ai-system-improvement` command prompts.
 
 ### Exact Command Sequence
@@ -73,8 +73,8 @@ This scenario verifies that the non-developer AI-system improvement lane is reac
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - improvement family routing rule.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `ai-system-improvement` source of truth.
+- `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-system-improvement` source of truth.
 
 ## 5. SOURCE METADATA
 

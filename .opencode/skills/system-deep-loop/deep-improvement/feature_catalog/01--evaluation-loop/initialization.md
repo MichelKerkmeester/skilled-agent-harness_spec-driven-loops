@@ -39,17 +39,17 @@ The runtime templates still use the `improvement_*` asset names in the skill fol
 | `.opencode/commands/deep/agent-improvement.md` | Command | Collects target path, spec folder, mode, and iteration inputs before the loop starts. |
 | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` | Workflow | Creates the runtime directories, scans integration, generates the dynamic profile, and records the baseline in autonomous mode. |
 | `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml` | Workflow | Mirrors the init path in interactive mode and adds approval gates before baseline recording. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/improvement_config.json` | Runtime template | Defines runtime paths, scoring weights, stop rules, and file protection defaults. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/improvement_charter.md` | Runtime template | Freezes the mission, policy boundary, audit-trail requirements, and legal-stop gates for the run. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/improvement_strategy.md` | Runtime template | Splits operator-owned hypothesis fields from reducer-owned progress fields. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/target_manifest.jsonc` | Runtime template | Carries target classification, dynamic-profile hooks, and fixed or forbidden surfaces. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent_improvement/improvement_config.json` | Runtime template | Defines runtime paths, scoring weights, stop rules, and file protection defaults. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent_improvement/improvement_charter.md` | Runtime template | Freezes the mission, policy boundary, audit-trail requirements, and legal-stop gates for the run. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent_improvement/improvement_strategy.md` | Runtime template | Splits operator-owned hypothesis fields from reducer-owned progress fields. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/agent_improvement/target_manifest.jsonc` | Runtime template | Carries target classification, dynamic-profile hooks, and fixed or forbidden surfaces. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/loop_protocol.md` | Reference | Describes the initialization sequence and copied runtime artifacts. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/quick_reference.md` | Reference | Confirms the packet-local runtime layout and runtime file naming. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/loop_protocol.md` | Reference | Describes the initialization sequence and copied runtime artifacts. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/shared/quick_reference.md` | Reference | Confirms the packet-local runtime layout and runtime file naming. |
 
 ---
 

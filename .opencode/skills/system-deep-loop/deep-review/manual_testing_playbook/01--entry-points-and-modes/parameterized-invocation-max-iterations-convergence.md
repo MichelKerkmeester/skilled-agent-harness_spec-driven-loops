@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.
 ### Commands
-1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md`
+1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md`
 2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/commands/deep/review.md`
 3. `bash: rg -n 'max_iterations|convergence_threshold|maxIterations|convergenceThreshold' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml`
 ### Expected
@@ -71,11 +71,11 @@ Cross-reference the quick reference parameter table with the YAML `step_create_c
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Parameter defaults table, use `ANCHOR:commands` |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Parameter defaults table, use `ANCHOR:commands` |
 | `.opencode/commands/deep/review.md` | Command argument-hint and setup phase |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Auto workflow user_inputs and config creation, inspect `user_inputs` and `step_create_config` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Confirm workflow user_inputs, inspect `user_inputs` |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Skill-level parameter documentation, use `ANCHOR:how-it-works` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Skill-level parameter documentation, use `ANCHOR:how-it-works` |
 
 ---
 
@@ -85,4 +85,4 @@ Cross-reference the quick reference parameter table with the YAML `step_create_c
 - Playbook ID: DRV-003
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `01--entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

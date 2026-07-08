@@ -1,6 +1,6 @@
 ---
 title: "Unit Tests"
-description: "Per-module unit tests for deep-loop-runtime libraries, CLI guards, fan-out, council graph, and runtime contracts."
+description: "Per-module unit tests for runtime/ libraries, CLI guards, fan-out, council graph, and runtime contracts."
 ---
 
 # Unit Tests
@@ -50,5 +50,5 @@ Isolated per-module regression coverage for runtime libraries under `lib/deep-lo
 
 ## 3. RELATED RESOURCES
 
-- Parent tests README: `.opencode/skills/deep-loop-runtime/tests/README.md`
-- Feature catalog: `.opencode/skills/deep-loop-runtime/feature_catalog/feature_catalog.md`
+- Parent tests README: `.opencode/skills/system-deep-loop/runtime/tests/README.md`
+- Feature catalog: `.opencode/skills/system-deep-loop/runtime/feature_catalog/feature_catalog.md`

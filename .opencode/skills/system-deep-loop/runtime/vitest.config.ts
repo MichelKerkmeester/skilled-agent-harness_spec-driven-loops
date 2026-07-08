@@ -1,4 +1,4 @@
-// MODULE: deep-loop-runtime Vitest Config
+// MODULE: runtime/ Vitest Config
 //
 // Self-contained discovery config so the runtime suite runs from this skill
 // root (npm test) without borrowing the system-spec-kit MCP server config.

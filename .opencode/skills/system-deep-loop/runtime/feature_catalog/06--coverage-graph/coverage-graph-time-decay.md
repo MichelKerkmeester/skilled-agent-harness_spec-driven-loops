@@ -4,7 +4,7 @@ description: "Adds optional time-decay weighting to coverage-graph signal rankin
 trigger_phrases:
   - "coverage-graph time decay"
   - "coverage-graph-time-decay"
-  - "coverage-graph time decay deep-loop-runtime"
+  - "coverage-graph time decay runtime"
   - "coverage graph coverage-graph time decay"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds optional time-decay weighting to coverage-graph signal ranking while preserving raw historical coverage counts.
 
-This feature belongs to the coverage graph group and is catalogued as F040 in the `deep-loop-runtime` inventory.
+This feature belongs to the coverage graph group and is catalogued as F040 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the coverage graph group and is catalogued as F040 in th
 
 `timeDecayWeight()` applies half-life decay when `decayDays` is enabled and returns full weight when disabled; signal ranking multiplies edge weight by the decay result without mutating stored graph counts.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F040
 - Feature file path: `06--coverage-graph/coverage-graph-time-decay.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/013-coverage-graph-time-decay`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//013-coverage-graph-time-decay`
 - Primary sources: `lib/coverage-graph/coverage-graph-signals.ts`, `tests/unit/coverage-graph-signals.vitest.ts`
 Related references:
 - [coverage graph](../06--coverage-graph/) — Coverage graph category

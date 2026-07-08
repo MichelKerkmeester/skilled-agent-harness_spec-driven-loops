@@ -56,7 +56,7 @@ Current state:
 Run from the repository root.
 
 ```bash
-node -e "JSON.parse(require('fs').readFileSync('.opencode/skills/deep-loop-workflows/deep-improvement/assets/agent_improvement/improvement_config.json','utf8'))"
+node -e "JSON.parse(require('fs').readFileSync('.opencode/skills/system-deep-loop/deep-improvement/assets/agent_improvement/improvement_config.json','utf8'))"
 ```
 
 Expected result: the command exits 0, confirming `improvement_config.json` is valid JSON. (`target_manifest.jsonc` carries comments and is parsed by the JSONC-aware loaders in `scripts/agent-improvement/`.)

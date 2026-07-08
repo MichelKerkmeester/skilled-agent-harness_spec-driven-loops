@@ -1,9 +1,9 @@
 ---
-title: "deep-loop-runtime Scripts"
+title: "runtime/ Scripts"
 description: "CLI entry points for deep-loop runtime operations: convergence detection, graph upsert, query, status, fan-out, and loop locking."
 ---
 
-# deep-loop-runtime Scripts
+# runtime/ Scripts
 
 ---
 
@@ -32,11 +32,11 @@ CLI invocation surface for deep-loop runtime operations. Consumed by active `/de
 ## 4. USAGE
 
 ```bash
-node .opencode/skills/deep-loop-runtime/scripts/<script-name>.cjs <args>
+node .opencode/skills/system-deep-loop/runtime/scripts/<script-name>.cjs <args>
 ```
 
 ## 5. RELATED RESOURCES
 
-- Parent SKILL.md: `.opencode/skills/deep-loop-runtime/SKILL.md`
-- Domain library: `.opencode/skills/deep-loop-runtime/lib/`
-- Tests: `.opencode/skills/deep-loop-runtime/tests/`
+- Parent SKILL.md: `.opencode/skills/system-deep-loop/runtime/SKILL.md`
+- Domain library: `.opencode/skills/system-deep-loop/runtime/lib/`
+- Tests: `.opencode/skills/system-deep-loop/runtime/tests/`

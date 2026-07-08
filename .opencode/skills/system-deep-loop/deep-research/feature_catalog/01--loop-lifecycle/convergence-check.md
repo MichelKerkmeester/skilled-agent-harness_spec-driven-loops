@@ -36,8 +36,8 @@ That legal-stop bundle is workflow-visible, not only prose guidance. The YAML wo
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Reference | Defines the hard stops, weighted signals, legal-stop bundle, and stop labels. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the loop ordering, guard step, and blocked-stop persistence contract. |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines the hard stops, weighted signals, legal-stop bundle, and stop labels. |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the loop ordering, guard step, and blocked-stop persistence contract. |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow | Runs convergence evaluation, graph convergence calls, and blocked-stop emission in autonomous mode. |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Workflow | Mirrors the same convergence and blocked-stop flow with confirm-mode approvals. |
 
@@ -45,9 +45,9 @@ That legal-stop bundle is workflow-visible, not only prose guidance. The YAML wo
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/04--convergence-and-recovery/composite-convergence-stop-behavior.md` | Manual playbook | Verifies the composite convergence stop behavior. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/04--convergence-and-recovery/convergence-passes-guard-fails-override.md` | Manual playbook | Verifies that a nominated stop is overridden when the legal-stop guards fail. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/04--convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop events surface through reducer-owned packet outputs. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/04--convergence-and-recovery/composite-convergence-stop-behavior.md` | Manual playbook | Verifies the composite convergence stop behavior. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/04--convergence-and-recovery/convergence-passes-guard-fails-override.md` | Manual playbook | Verifies that a nominated stop is overridden when the legal-stop guards fail. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/04--convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop events surface through reducer-owned packet outputs. |
 
 ---
 

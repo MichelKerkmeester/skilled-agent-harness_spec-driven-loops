@@ -47,7 +47,7 @@ Validate the deep-review per-iteration write contract for iteration markdown, JS
 ### Commands
 1. `bash: rg -n 'iteration-NNN\|iteration-{NNN}\|iteration_pattern\|Write.*iteration' .opencode/commands/deep/assets/deep_review_auto.yaml`
 2. `bash: rg -n 'step_validate_iteration\|iteration_file_written\|jsonl_appended\|strategy_updated\|on_missing_outputs' .opencode/commands/deep/assets/deep_review_auto.yaml`
-3. `bash: rg -n 'iteration-NNN\|JSONL\|strategy\|Write.*findings\|P0.*P1.*P2' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md`
+3. `bash: rg -n 'iteration-NNN\|JSONL\|strategy\|Write.*findings\|P0.*P1.*P2' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md`
 ### Expected
 The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy. The post-dispatch validation checks for all three. The quick reference checklist documents the same outputs.
 ### Evidence
@@ -73,7 +73,7 @@ Inspect the on_missing_outputs fallback to verify that error handling still appe
 |---|---|
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Dispatch and validation, inspect `step_dispatch_review_agent` and `step_validate_iteration` |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Iteration checklist, use `ANCHOR:agent-iteration-checklist` |
 | `.opencode/agents/deep-review.md` | Agent write contract, inspect iteration output requirements |
 | `.claude/agents/deep-review.md` | Agent write contract, inspect iteration output requirements |
 
@@ -85,4 +85,4 @@ Inspect the on_missing_outputs fallback to verify that error handling still appe
 - Playbook ID: DRV-009
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `03--iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

@@ -24,7 +24,7 @@
     }
   },
   "validation": {
-    "quickValidate": "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-loop-workflows/deep-ai-council --json",
-    "completionAdvisory": "node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/advise-council-completion.cjs <packet>"
+    "quickValidate": "python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/system-deep-loop/deep-ai-council --json",
+    "completionAdvisory": "node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <packet>"
   }
 }

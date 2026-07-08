@@ -507,8 +507,8 @@ description: Fixture helper for routing tests
             )
             by_skill = {r.get("skill"): r for r in recs if isinstance(r, dict)}
             # The legacy deep-research skill is folded into the merged
-            # deep-loop-workflows node; the research mode surfaces under it.
-            dr = by_skill.get("deep-loop-workflows") or by_skill.get("deep-research")
+            # system-deep-loop node; the research mode surfaces under it.
+            dr = by_skill.get("system-deep-loop") or by_skill.get("deep-research")
             cr = by_skill.get("sk-code")
             if not dr or not cr:
                 margin_failures.append(f"{prompt!r} missing dr={bool(dr)} cr={bool(cr)}")
@@ -539,8 +539,8 @@ description: Fixture helper for routing tests
             )
             by_skill = {r.get("skill"): r for r in recs if isinstance(r, dict)}
             # The legacy deep-review skill is folded into the merged
-            # deep-loop-workflows node; the review mode surfaces under it.
-            drv = by_skill.get("deep-loop-workflows") or by_skill.get("deep-review")
+            # system-deep-loop node; the review mode surfaces under it.
+            drv = by_skill.get("system-deep-loop") or by_skill.get("deep-review")
             cr = by_skill.get("sk-code")
             if not drv or not cr:
                 review_failures.append(f"{prompt!r} missing drv={bool(drv)} cr={bool(cr)}")

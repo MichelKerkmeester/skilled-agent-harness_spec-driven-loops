@@ -37,15 +37,15 @@ The reducer and synthesis phases keep that information alive. `reduce-state.cjs`
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/agents/deep-research.md` | Agent | Requires `Ruled Out` and `Dead Ends` sections in iteration files and records ruled-out paths in JSONL. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Reference | Defines the `ruledOut` JSONL payload and iteration-file requirements. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the `Eliminated Alternatives` synthesis contract. |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Reducer | Promotes ruled-out directions into synchronized strategy and registry state. |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Reference | Defines the `ruledOut` JSONL payload and iteration-file requirements. |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Reference | Defines the `Eliminated Alternatives` synthesis contract. |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Promotes ruled-out directions into synchronized strategy and registry state. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies ruled-out directions survive into final synthesis. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies ruled-out directions survive into final synthesis. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer output retains ruled-out directions in the synchronized packet surfaces. |
 
 ---

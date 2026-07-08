@@ -49,8 +49,8 @@ Operators run the exact prompt and command sequence for `DAC-016` and confirm th
 
 ### Commands
 
-1. `bash: rg -n "HUNTER|SKEPTIC|REFEREE" .opencode/skills/deep-loop-workflows/deep-ai-council/references/scoring/scoring_rubric.md`
-2. `bash: rg -n "Pre-Critique|Post-Critique" .opencode/skills/deep-loop-workflows/deep-ai-council/references/scoring/scoring_rubric.md`
+1. `bash: rg -n "HUNTER|SKEPTIC|REFEREE" .opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring_rubric.md`
+2. `bash: rg -n "Pre-Critique|Post-Critique" .opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring_rubric.md`
 
 ### Expected
 
@@ -71,7 +71,7 @@ Restore `scoring_rubric.md` §4 from agent §6 adversarial cross-critique conten
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-016 | Hunter Skeptic Referee | Verify cross-critique roles and adjustment | `Apply the Hunter / Skeptic / Referee critique pattern to a hypothetical close-score council and show the score adjustment.` | `bash: rg -n "HUNTER\|SKEPTIC\|REFEREE" .opencode/skills/deep-loop-workflows/deep-ai-council/references/scoring/scoring_rubric.md` -> `bash: rg -n "Pre-Critique\|Post-Critique" .opencode/skills/deep-loop-workflows/deep-ai-council/references/scoring/scoring_rubric.md` | Role names and pre/post rows present | Grep output | PASS if all roles and adjustment rule exist | Restore critique section |
+| DAC-016 | Hunter Skeptic Referee | Verify cross-critique roles and adjustment | `Apply the Hunter / Skeptic / Referee critique pattern to a hypothetical close-score council and show the score adjustment.` | `bash: rg -n "HUNTER\|SKEPTIC\|REFEREE" .opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring_rubric.md` -> `bash: rg -n "Pre-Critique\|Post-Critique" .opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring_rubric.md` | Role names and pre/post rows present | Grep output | PASS if all roles and adjustment rule exist | Restore critique section |
 
 ---
 
@@ -88,7 +88,7 @@ Restore `scoring_rubric.md` §4 from agent §6 adversarial cross-critique conten
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/scoring/scoring_rubric.md` | Cross-critique reference |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/scoring/scoring_rubric.md` | Cross-critique reference |
 | `.opencode/agents/ai-council.md` | Authoritative synthesis protocol |
 
 ---

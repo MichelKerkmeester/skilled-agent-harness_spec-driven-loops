@@ -12,14 +12,14 @@ CommonJS helpers shared by sibling deep-improvement CLI scripts.
 
 ## 1. OVERVIEW
 
-This directory holds reusable helper modules for the lane scripts under `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/` (`agent-improvement/`, `model-benchmark/`, `shared/`).
+This directory holds reusable helper modules for the lane scripts under `.opencode/skills/system-deep-loop/deep-improvement/scripts/` (`agent-improvement/`, `model-benchmark/`, `shared/`).
 The modules are consumed by those sibling scripts only and are not a cross-skill import surface.
 
 ## 2. LIBRARY CONTENTS
 
 | File | Purpose |
 |---|---|
-| `typed-errors.cjs` | Typed error wrappers for `FILE_NOT_FOUND`, `PARSE_ERROR`, and `SCRIPT_CRASH`, mirroring deep-loop-runtime's CLI guard pattern. |
+| `typed-errors.cjs` | Typed error wrappers for `FILE_NOT_FOUND`, `PARSE_ERROR`, and `SCRIPT_CRASH`, mirroring runtime/'s CLI guard pattern. |
 | `promotion-gates.cjs` | Promotion thresholds and gate evaluators, including weighted score, benchmark aggregate, and per-dimension gate values. |
 | `mirror-sync-verify.cjs` | Three-runtime agent mirror sync verifier for Claude, OpenCode, and OpenCode. It handles OpenCode TOML body-only token comparison while Markdown mirrors use extracted body equivalence. |
 | `profile-resolve.cjs` | Single source of truth for the benchmark profiles-dir default and `fixturePathFor`, shared by `materialize-benchmark-fixtures.cjs` and `run-benchmark.cjs` so the F-P1-4b "resolves identically in both steps" invariant is structural, not a hand-aligned copy. |

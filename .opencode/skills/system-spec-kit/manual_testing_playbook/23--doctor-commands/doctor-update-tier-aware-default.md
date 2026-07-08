@@ -73,7 +73,7 @@ The command loads `doctor_update.yaml` and uses tier-aware interactive mode. Sho
 100:     - ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite"  # structural code graph DB (skill-local)
 102:     - "mcp_server/database/context-index.sqlite"  # canonical memory DB
 104:     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
-106:     - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
+106:     - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
 108:     - "mcp_server/database/speckit-eval.db"  # eval/ablation DB
 110:     - "mcp_server/database/.doctor-update.flock"  # single-instance lock
 112:     - "mcp_server/database/.doctor-update.last-run.json"  # orchestrator state log

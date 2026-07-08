@@ -56,7 +56,7 @@ Operators run the exact prompt and command sequence for `CP-035` and confirm the
 ```bash
 rm -rf /tmp/cp-035-sandbox /tmp/cp-035-sandbox-baseline /tmp/cp-035-spec
 mkdir -p /tmp/cp-035-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-035-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-035-sandbox
 cp -a /tmp/cp-035-sandbox /tmp/cp-035-sandbox-baseline
 git status --porcelain > /tmp/cp-035-pre.txt
 cat > /tmp/cp-035-task.txt <<'EOF'
@@ -99,7 +99,7 @@ grep -c "gate_evaluation" /tmp/cp-035-B-combined.txt | tee /tmp/cp-035-B-generic
 |---|---|
 | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` | Auto workflow journal boundary |
 | `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml` | Confirm workflow journal boundary |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` | Legal-stop gate contract |
+| `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Legal-stop gate contract |
 
 ## 5. SOURCE METADATA
 

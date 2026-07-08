@@ -4,7 +4,7 @@ description: "Adds an abortable chunked sleep primitive for cancellable waits an
 trigger_phrases:
   - "abortable chunked sleep"
   - "abortable-chunked-sleep"
-  - "abortable chunked sleep deep-loop-runtime"
+  - "abortable chunked sleep runtime"
   - "lifecycle abortable chunked sleep"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds an abortable chunked sleep primitive for cancellable waits and executor-boundary abort-signal composition.
 
-This feature belongs to the lifecycle group and is catalogued as F031 in the `deep-loop-runtime` inventory.
+This feature belongs to the lifecycle group and is catalogued as F031 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the lifecycle group and is catalogued as F031 in the `de
 
 `abortableSleep()` waits in `SLEEP_CHUNK_MS` slices, clears pending timeouts on abort, removes listeners on completion, rejects with `signal.reason`, and accepts composed abort signals for executor-run cancellation.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F031
 - Feature file path: `10--lifecycle/abortable-chunked-sleep.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/004-abortable-chunked-sleep`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//004-abortable-chunked-sleep`
 - Primary sources: `lib/deep-loop/sleep.ts`, `tests/unit/sleep.vitest.ts`
 Related references:
 - [lifecycle](../10--lifecycle/) — Lifecycle category

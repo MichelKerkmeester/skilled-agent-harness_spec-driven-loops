@@ -42,8 +42,8 @@ Before the next dispatch prompt is rendered, `step_refresh_memory_context` calls
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Vitest | Verifies step ordering, non-fatal behavior, and prompt context injection. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/per-iteration-memory-upsert.md` | Manual playbook | Verifies incremental memory persistence and context refresh behavior. |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Vitest | Verifies step ordering, non-fatal behavior, and prompt context injection. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/per-iteration-memory-upsert.md` | Manual playbook | Verifies incremental memory persistence and context refresh behavior. |
 
 ---
 

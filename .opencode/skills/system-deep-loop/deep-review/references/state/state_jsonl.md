@@ -59,7 +59,7 @@ Append-only JSON Lines file. One JSON object per line.
   "type": "iteration", "mode": "review", "run": 3, "status": "complete",
   "focus": "D3 Traceability - skill/runtime alignment",
   "dimensions": ["traceability", "maintainability"],
-  "filesReviewed": [".opencode/skills/deep-loop-workflows/deep-research/README.md"],
+  "filesReviewed": [".opencode/skills/system-deep-loop/deep-research/README.md"],
   "sessionId": "rvw-2026-04-03T12-00-00Z",
   "parentSessionId": null,
   "lineageMode": "resume",

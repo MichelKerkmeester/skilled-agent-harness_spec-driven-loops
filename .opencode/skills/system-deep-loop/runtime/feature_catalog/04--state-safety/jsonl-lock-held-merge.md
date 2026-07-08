@@ -4,7 +4,7 @@ description: "Adds a lock-held JSONL merge path for fan-out salvage so recovered
 trigger_phrases:
   - "jsonl lock-held merge"
   - "jsonl-lock-held-merge"
-  - "jsonl lock-held merge deep-loop-runtime"
+  - "jsonl lock-held merge runtime"
   - "state safety jsonl lock-held merge"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds a lock-held JSONL merge path for fan-out salvage so recovered events are deduplicated before atomic rewrite.
 
-This feature belongs to the state safety group and is catalogued as F033 in the `deep-loop-runtime` inventory.
+This feature belongs to the state safety group and is catalogued as F033 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the state safety group and is catalogued as F033 in the 
 
 `mergeJsonlUnderLock()` rereads current JSONL, unions incoming records by stable identity, writes the merged file atomically under the lock, and `fanout-salvage.cjs` uses it instead of bare append.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -54,7 +54,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F033
 - Feature file path: `04--state-safety/jsonl-lock-held-merge.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//006-jsonl-lock-held-merge`
 - Primary sources: `lib/deep-loop/jsonl-repair.ts`, `scripts/fanout-salvage.cjs`, `tests/unit/jsonl-repair.vitest.ts`
 Related references:
 - [state safety](../04--state-safety/) — State safety category

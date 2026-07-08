@@ -64,8 +64,8 @@ Barter Copywriter (`.../AI_Systems/Barter/Copywriter`) served as the pilot packa
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs` | Orchestration | Resolves `--mode=non-dev-ai-system-refine`, validates against `VALID_MODES`, plans the single adapter step pointing at `run-non-dev-ai-system.cjs`. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/non-dev-ai-system/run-non-dev-ai-system.cjs` | Adapter | Thin env/argv shim: maps loop-host flags to `benchmark/_loop/loop.py` surface, decides `--dry-run` vs `--run`, spawns `python3`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs` | Orchestration | Resolves `--mode=non-dev-ai-system-refine`, validates against `VALID_MODES`, plans the single adapter step pointing at `run-non-dev-ai-system.cjs`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/non-dev-ai-system/run-non-dev-ai-system.cjs` | Adapter | Thin env/argv shim: maps loop-host flags to `benchmark/_loop/loop.py` surface, decides `--dry-run` vs `--run`, spawns `python3`. |
 | `<packaging-root>/benchmark/_loop/loop.py` | Loop host (packaging-owned) | Pre-flight gates, N-sample benchmark, blind re-grade, gap analysis, worktree propose, guarded promote-N, converge. |
 | `<packaging-root>/benchmark/_gates/gates.py` | Scoring surface (packaging-owned) | Freeze / check the frozen scoring surface. |
 | `<packaging-root>/benchmark/_gates/derive.py` | Derived copies (packaging-owned) | Derive / check derived copies from source of truth. |
@@ -74,9 +74,9 @@ Barter Copywriter (`.../AI_Systems/Barter/Copywriter`) served as the pilot packa
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/loop-host.vitest.ts` | Automated test | Asserts `VALID_MODES` includes `non-dev-ai-system-refine`, that the plan is a single `run-non-dev-ai-system.cjs` step, that it fails closed without `--packaging-root`, and that Lane A–C plans stay byte-identical. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/non-dev-ai-system/run-non-dev-ai-system.cjs` | Automated test | Verifies `parseArgs`, `ENV_FORWARD` mapping, `--dry-run` default, and failure on missing `benchmark/_loop/loop.py`. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/operator_guide.md` | Documentation | Canonical invocation, guardrails, contract conformance checklist, pilot notes. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/loop-host.vitest.ts` | Automated test | Asserts `VALID_MODES` includes `non-dev-ai-system-refine`, that the plan is a single `run-non-dev-ai-system.cjs` step, that it fails closed without `--packaging-root`, and that Lane A–C plans stay byte-identical. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/non-dev-ai-system/run-non-dev-ai-system.cjs` | Automated test | Verifies `parseArgs`, `ENV_FORWARD` mapping, `--dry-run` default, and failure on missing `benchmark/_loop/loop.py`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/non_dev_ai_system/operator_guide.md` | Documentation | Canonical invocation, guardrails, contract conformance checklist, pilot notes. |
 
 ---
 

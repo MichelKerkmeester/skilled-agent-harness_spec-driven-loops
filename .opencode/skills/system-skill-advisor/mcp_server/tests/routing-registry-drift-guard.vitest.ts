@@ -23,7 +23,7 @@ const advisorScript = resolve(
   repoRoot,
   '.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py',
 );
-const registryPath = resolve(repoRoot, '.opencode/skills/deep-loop-workflows/mode-registry.json');
+const registryPath = resolve(repoRoot, '.opencode/skills/system-deep-loop/mode-registry.json');
 
 type RoutingClass = 'lexical' | 'alias-fold' | 'metadata' | 'command-bridge';
 
@@ -73,7 +73,7 @@ function registryProjectionEntries(classes: readonly RoutingClass[]): Projection
 
 function projectionHash(entries: readonly ProjectionEntry[]): string {
   const canonical = JSON.stringify({
-    skill: 'deep-loop-workflows',
+    skill: 'system-deep-loop',
     entries: entries.map((entry) => ({
       legacyAdvisorId: entry.legacyAdvisorId,
       workflowMode: entry.workflowMode,

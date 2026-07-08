@@ -20,7 +20,7 @@ version: 1.4.0.5
 
 Validates iteration artifacts after dispatch and appends degraded verification events when optional checks fail.
 
-This feature belongs to the validation group and is catalogued as F005 in the `deep-loop-runtime` inventory.
+This feature belongs to the validation group and is catalogued as F005 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the validation group and is catalogued as F005 in the `d
 
 Iteration markdown, JSONL, delta validation, review-depth v2 enforcement, and verification confidence scoring.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

@@ -20,7 +20,7 @@ version: 1.4.0.5
 
 Scores executor reliability and decides when enough evidence supports demotion.
 
-This feature belongs to the scoring group and is catalogued as F010 in the `deep-loop-runtime` inventory.
+This feature belongs to the scoring group and is catalogued as F010 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the scoring group and is catalogued as F010 in the `deep
 
 Smoothed success scoring and demotion threshold checks.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

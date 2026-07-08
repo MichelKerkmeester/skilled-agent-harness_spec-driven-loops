@@ -48,15 +48,15 @@ The scenario `modeAScore` is the weighted mean (×100, rounded) over D1-intra, D
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs` | Scoring | Per-scenario D1-intra/D2/D3 vs gold (`scoreScenario`), D1-inter via the probe, D5 from connectivity, weighted `modeAScore`, funnel + headline bottleneck, verdict, bottlenecks (`aggregate`). |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/advisor-probe.cjs` | Utility (imported) | Supplies `scoreD1Inter` folded into the scenario score. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/default_profile.json` | Reference profile | Documents weights and verdict bands; reference only, not consumed at runtime per its own `notes`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs` | Scoring | Per-scenario D1-intra/D2/D3 vs gold (`scoreScenario`), D1-inter via the probe, D5 from connectivity, weighted `modeAScore`, funnel + headline bottleneck, verdict, bottlenecks (`aggregate`). |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/advisor-probe.cjs` | Utility (imported) | Supplies `scoreD1Inter` folded into the scenario score. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/default_profile.json` | Reference profile | Documents weights and verdict bands; reference only, not consumed at runtime per its own `notes`. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a full-match scenario yields `verdict: PASS` and D1-intra > 0.9, a negative scenario that leaks the suppressed resource scores D1-intra 0 and D3 0, and end-to-end the `deep-improvement` fixture produces a scored scenario row. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a full-match scenario yields `verdict: PASS` and D1-intra > 0.9, a negative scenario that leaks the suppressed resource scores D1-intra 0 and D3 0, and end-to-end the `deep-improvement` fixture produces a scored scenario row. |
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "scenarioId": "dlw-aicouncil-001",
   "expected": {
-    "skillId": "deep-loop-workflows",
+    "skillId": "system-deep-loop",
     "mode": "ai-council",
     "advisorLane": "deep-ai-council",
     "intentKeys": [],
@@ -10,7 +10,7 @@
   },
   "rubric": {
     "usefulnessChecks": [
-      "routing lands on deep-loop-workflows + ai-council mode"
+      "routing lands on system-deep-loop + ai-council mode"
     ],
     "harmChecks": [
       "does not route to a sibling mode"
@@ -22,5 +22,5 @@
       "ai-council/topics/topic-001/council-report.md"
     ]
   },
-  "notes": "Parent-skill routing dogfood: skill-level gold is deep-loop-workflows; mode-level precision is additionally enforced by the advisor routing-parity fixtures + the registry drift-guard."
+  "notes": "Parent-skill routing dogfood: skill-level gold is system-deep-loop; mode-level precision is additionally enforced by the advisor routing-parity fixtures + the registry drift-guard."
 }

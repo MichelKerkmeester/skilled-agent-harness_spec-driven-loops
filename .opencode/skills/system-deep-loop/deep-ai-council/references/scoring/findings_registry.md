@@ -263,7 +263,7 @@ const finding = appendFinding('/path/to/packet', {
   topic_slug: 'runtime-boundary',
   round_id: 'round-002',
   finding_type: 'topic-final-verdict',
-  claim: 'Extend deep-loop-runtime with council primitives',
+  claim: 'Extend runtime/ with council primitives',
   stance: 'support',
   confidence: 0.82,
   source_artifacts: ['ai-council/topics/topic-001-runtime/rounds/round-002/deliberation.md'],

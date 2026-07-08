@@ -1,4 +1,4 @@
-# Skill Benchmark Report — deep-loop-workflows
+# Skill Benchmark Report — system-deep-loop
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-a-router-replay` · trace mode: `router`.
 
@@ -76,7 +76,7 @@ _Playbook prompts intentionally carry trigger words; these are reported as drift
 - SC-001: review
 - SC-002: ai council deliberation
 - SC-003: research
-- SC-004: deep-loop-workflows, deep-loop, review
+- SC-004: system-deep-loop, deep-loop, review
 
 ## Methodology / caveats
 

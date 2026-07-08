@@ -34,16 +34,16 @@ Lane C is reached by resolving `--mode=skill-benchmark` in `loop-host.cjs`, whic
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs` | Orchestration | Resolves `--mode`, validates against `VALID_MODES`, plans the single `skill-benchmark` step pointing at `run-skill-benchmark.cjs`. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs` | Orchestration | Lane C pipeline: D5 gate, per-scenario contamination-lint + router-replay, optional advisor probe, scoring, dual report. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/_args.cjs` | Utility | Shared `--key=value` / `--key value` / bare-flag arg parser for Lane C scripts. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs` | Orchestration | Resolves `--mode`, validates against `VALID_MODES`, plans the single `skill-benchmark` step pointing at `run-skill-benchmark.cjs`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs` | Orchestration | Lane C pipeline: D5 gate, per-scenario contamination-lint + router-replay, optional advisor probe, scoring, dual report. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/_args.cjs` | Utility | Shared `--key=value` / `--key value` / bare-flag arg parser for Lane C scripts. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `VALID_MODES` includes all three modes, that the skill-benchmark plan is a single `run-skill-benchmark.cjs` step, that it fails closed without required args, and the Lane A default plan stays byte-identical. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/loop-host.vitest.ts` | Automated test | Verifies `parseArgs`, `resolveMode`, `resolveScriptPath` lane mapping, and the closed mode set. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `VALID_MODES` includes all three modes, that the skill-benchmark plan is a single `run-skill-benchmark.cjs` step, that it fails closed without required args, and the Lane A default plan stays byte-identical. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/loop-host.vitest.ts` | Automated test | Verifies `parseArgs`, `resolveMode`, `resolveScriptPath` lane mapping, and the closed mode set. |
 
 ---
 

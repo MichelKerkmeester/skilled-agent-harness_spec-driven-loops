@@ -4,7 +4,7 @@ description: "Adds typed fallback-route metadata, route trace fields, and startu
 trigger_phrases:
   - "fallback-router typed reroute"
   - "fallback-router-typed-reroute"
-  - "fallback-router typed reroute deep-loop-runtime"
+  - "fallback-router typed reroute runtime"
   - "executor fallback-router typed reroute"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds typed fallback-route metadata, route trace fields, and startup graph validation for executor fallback routing.
 
-This feature belongs to the executor group and is catalogued as F042 in the `deep-loop-runtime` inventory.
+This feature belongs to the executor group and is catalogued as F042 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the executor group and is catalogued as F042 in the `dee
 
 Fallback routes can declare success and failure targets, every decision can carry `routeGroupId` and `hopIndex`, and `validateFallbackGraph()` checks missing targets, cycles, scope widening, and hop limits before dispatch.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -53,7 +53,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F042
 - Feature file path: `01--executor/fallback-router-typed-reroute.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/015-fallback-router-typed-reroute`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//015-fallback-router-typed-reroute`
 - Primary sources: `lib/deep-loop/fallback-router.ts`, `tests/unit/fallback-router.vitest.ts`
 Related references:
 - [executor](../01--executor/) — Executor category

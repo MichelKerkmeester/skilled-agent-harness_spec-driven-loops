@@ -11,7 +11,7 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 
 const REPLAY_HELPER = join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs',
+  '.opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs',
 );
 const TEST_COUNCIL_MATRIX = join(
   WORKSPACE_ROOT,

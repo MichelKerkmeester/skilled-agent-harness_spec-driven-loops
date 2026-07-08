@@ -25,7 +25,7 @@ const { orchestrateTopic, roundStatePath } = require('../orchestrate-topic.cjs')
 };
 
 const baseVerdict = {
-  recommended_option: 'extend-deep-loop-runtime',
+  recommended_option: 'extend-runtime',
   confidence: 0.82,
   blocking_disagreements: [],
   material_risks: ['threshold leakage'],
@@ -128,7 +128,7 @@ describe('deep-ai-council topic orchestration', () => {
         },
         {
           ...baseVerdict,
-          recommended_option: 'extend-deep-loop-runtime',
+          recommended_option: 'extend-runtime',
           confidence: 0.9,
           blocking_disagreements: ['operator cost unresolved'],
           material_risks: ['threshold leakage', 'operator cost'],

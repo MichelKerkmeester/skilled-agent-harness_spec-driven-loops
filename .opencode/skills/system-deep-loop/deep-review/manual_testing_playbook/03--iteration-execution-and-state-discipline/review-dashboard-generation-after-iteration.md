@@ -46,8 +46,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review dashboard generation after each iteration from JSONL and strategy state.
 ### Commands
 1. `bash: rg -n 'step_generate_dashboard|dashboard' .opencode/commands/deep/assets/deep_review_auto.yaml`
-2. `bash: sed -n '1,220p' .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_dashboard.md`
-3. `bash: rg -n 'dashboard|deep-review-dashboard' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md .opencode/commands/deep/assets/deep_review_confirm.yaml`
+2. `bash: sed -n '1,220p' .opencode/skills/system-deep-loop/deep-review/assets/deep_review_dashboard.md`
+3. `bash: rg -n 'dashboard|deep-review-dashboard' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md .opencode/commands/deep/assets/deep_review_confirm.yaml`
 ### Expected
 The step_generate_dashboard runs after validation. It reads JSONL and strategy. It writes deep-review-dashboard.md. The output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 ### Evidence
@@ -73,8 +73,8 @@ Compare the dashboard template in assets/ with the YAML step_generate_dashboard 
 |---|---|
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Dashboard generation step, inspect `step_generate_dashboard` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Dashboard generation step, inspect `step_generate_dashboard` |
-| `.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_dashboard.md` | Dashboard template |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | State files table, use `ANCHOR:state-files` |
+| `.opencode/skills/system-deep-loop/deep-review/assets/deep_review_dashboard.md` | Dashboard template |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | State files table, use `ANCHOR:state-files` |
 
 ---
 
@@ -84,4 +84,4 @@ Compare the dashboard template in assets/ with the YAML step_generate_dashboard 
 - Playbook ID: DRV-013
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `03--iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

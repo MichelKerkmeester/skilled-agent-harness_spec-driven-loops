@@ -46,7 +46,7 @@ Council output must survive beyond chat as inspectable packet-local artifacts.
 
 ### Commands
 
-1. `bash: node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>`
+1. `bash: node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>`
 
 ### Expected
 
@@ -67,7 +67,7 @@ Check required headings in the report, packet path, and write permissions.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-005 | Persist artifacts | Verify packet-local tree | `Persist this council report for the current packet and show the artifact tree that was written.` | `bash: node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>` | Helper exits 0 and writes tree | Command output and tree | PASS if artifacts land under packet | Check report schema |
+| DAC-005 | Persist artifacts | Verify packet-local tree | `Persist this council report for the current packet and show the artifact tree that was written.` | `bash: node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>` | Helper exits 0 and writes tree | Command output and tree | PASS if artifacts land under packet | Check report schema |
 
 ---
 
@@ -84,8 +84,8 @@ Check required headings in the report, packet path, and write permissions.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs` | CLI wrapper |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/folder_layout.md` | Artifact layout |
+| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` | CLI wrapper |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder_layout.md` | Artifact layout |
 
 ---
 

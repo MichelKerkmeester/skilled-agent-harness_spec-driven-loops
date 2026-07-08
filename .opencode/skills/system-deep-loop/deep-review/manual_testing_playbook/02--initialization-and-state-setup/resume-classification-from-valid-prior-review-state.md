@@ -47,7 +47,7 @@ Validate deep-review resume classification from existing review state and report
 ### Commands
 1. `bash: rg -n 'step_classify_session|classify:|fresh|resume|invalid.state|completed.session' .opencode/commands/deep/assets/deep_review_auto.yaml`
 2. `bash: rg -n 'step_classify_session|resume|skip_to' .opencode/commands/deep/assets/deep_review_confirm.yaml`
-3. `bash: rg -n 'resume|prior state|existing state|pick up' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-loop-workflows/deep-review/SKILL.md`
+3. `bash: rg -n 'resume|prior state|existing state|pick up' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md`
 ### Expected
 The classify step checks for config, JSONL, and strategy presence. Classifies as "resume" when all three exist and are consistent. And skips to phase_loop.
 ### Evidence
@@ -73,8 +73,8 @@ Verify the classify step inspects all three state files (config, JSONL, strategy
 |---|---|
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Session classification logic, inspect `step_classify_session` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Session classification logic, inspect `step_classify_session` |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Resume behavior documentation, use `ANCHOR:troubleshooting` |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Phase detection guidance, use `ANCHOR:smart-routing` |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Resume behavior documentation, use `ANCHOR:troubleshooting` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Phase detection guidance, use `ANCHOR:smart-routing` |
 
 ---
 
@@ -84,4 +84,4 @@ Verify the classify step inspects all three state files (config, JSONL, strategy
 - Playbook ID: DRV-005
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `02--initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

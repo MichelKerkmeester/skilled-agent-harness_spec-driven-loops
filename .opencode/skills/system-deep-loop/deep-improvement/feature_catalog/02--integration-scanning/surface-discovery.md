@@ -36,17 +36,17 @@ The discovery map includes the consolidated advisor script at `.opencode/skills/
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/scan-integration.cjs` | Scanner | Walks the repo and collects canonical, mirror, command, YAML, skill, global-doc, and skill-advisor surfaces. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md` | Reference | Documents the intended scan taxonomy and output summary fields. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs` | Scanner | Walks the repo and collects canonical, mirror, command, YAML, skill, global-doc, and skill-advisor surfaces. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/agent_improvement/integration_scanning.md` | Reference | Documents the intended scan taxonomy and output summary fields. |
 | `.opencode/commands/deep/agent-improvement.md` | Command | Uses the integration report as part of loop setup and review. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scoring consumer | Converts the scan results into the integration dimension score. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scoring consumer | Converts the scan results into the integration dimension score. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/model_benchmark/evaluator_contract.md` | Contract reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/target_onboarding.md` | Operator reference | Requires the integration scan before new targets enter the loop. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/model_benchmark/evaluator_contract.md` | Contract reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/agent_improvement/target_onboarding.md` | Operator reference | Requires the integration scan before new targets enter the loop. |
 
 ---
 

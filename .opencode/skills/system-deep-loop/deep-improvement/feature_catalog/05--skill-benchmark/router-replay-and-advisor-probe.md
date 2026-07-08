@@ -34,14 +34,14 @@ Mode A routing is reproduced deterministically. `router-replay.cjs` parses the t
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs` | Routing | Deterministic Mode A replay of the skill's own `INTENT_SIGNALS` / `RESOURCE_MAP` substring routing; emits D1-intra + D2 signals via `routeSkillResources`. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/advisor-probe.cjs` | Discovery probe | Opt-in, read-only `skill_advisor.py` probe (`probeAdvisor`) + rank-weighted `scoreD1Inter` for D1-inter. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs` | Routing | Deterministic Mode A replay of the skill's own `INTENT_SIGNALS` / `RESOURCE_MAP` substring routing; emits D1-intra + D2 signals via `routeSkillResources`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/advisor-probe.cjs` | Discovery probe | Opt-in, read-only `skill_advisor.py` probe (`probeAdvisor`) + rank-weighted `scoreD1Inter` for D1-inter. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `routeSkillResources` routes a REVIEW prompt on `cli-opencode` to expected resources, `selectIntents` keeps near-tied intents, an unparseable router returns `parseable:false`, `scoreD1Inter` rank-weighting (1.0 / 0.75 / 0 / null) and negative-scenario inversion, and that `probeAdvisor` returns a ranked list deterministically. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `routeSkillResources` routes a REVIEW prompt on `cli-opencode` to expected resources, `selectIntents` keeps near-tied intents, an unparseable router returns `parseable:false`, `scoreD1Inter` rank-weighting (1.0 / 0.75 / 0 / null) and negative-scenario inversion, and that `probeAdvisor` returns a ranked list deterministically. |
 
 ---
 

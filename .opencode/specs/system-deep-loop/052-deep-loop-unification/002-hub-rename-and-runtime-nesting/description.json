@@ -15,12 +15,10 @@
     "skill",
     "folder"
   ],
-  "lastUpdated": "2026-07-08T06:03:41.981Z",
+  "lastUpdated": "2026-07-08T07:10:46.207Z",
   "specId": "002",
   "folderSlug": "hub-rename-and-runtime-nesting",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-deep-loop",
     "052-deep-loop-unification"
   ],

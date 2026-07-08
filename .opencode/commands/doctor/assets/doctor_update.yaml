@@ -103,8 +103,8 @@ mutation_boundaries:
     - "mcp_server/database/context-index.sqlite.pre-doctor-update.*.bak"
     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite.pre-doctor-update.*.bak"
-    - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
-    - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
+    - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
+    - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
     - "mcp_server/database/speckit-eval.db"  # eval/ablation DB
     - "mcp_server/database/speckit-eval.db.pre-doctor-update.*.bak"
     - "mcp_server/database/.doctor-update.flock"  # single-instance lock

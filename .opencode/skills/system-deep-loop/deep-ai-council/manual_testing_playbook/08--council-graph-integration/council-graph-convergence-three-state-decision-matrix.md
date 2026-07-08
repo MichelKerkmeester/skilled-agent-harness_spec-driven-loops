@@ -93,10 +93,10 @@ If CONTINUE missing, inspect `scripts/convergence.cjs` for the P1-002 remediatio
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | runtime CLI script: three-state decision logic |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts` | Per-signal helpers (`agreementRatio`, `dissentDensity`, etc.) |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs..." |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/graph_support.md` §4 | Documents the convergence signals |
+| `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs` | runtime CLI script: three-state decision logic |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-query.ts` | Per-signal helpers (`agreementRatio`, `dissentDensity`, etc.) |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs..." |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` §4 | Documents the convergence signals |
 
 ---
 

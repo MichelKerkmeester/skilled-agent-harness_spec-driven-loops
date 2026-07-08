@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review report synthesis and confirm review-report.md contains all 9 required sections.
 ### Commands
-1. `bash: rg -n 'Executive Summary|Planning Trigger|Active Finding Registry|Remediation Workstreams|Spec Seed|Plan Seed|Traceability Status|Deferred Items|Audit Appendix|review-report' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md`
+1. `bash: rg -n 'Executive Summary|Planning Trigger|Active Finding Registry|Remediation Workstreams|Spec Seed|Plan Seed|Traceability Status|Deferred Items|Audit Appendix|review-report' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md`
 2. `bash: rg -n 'review-report|synthesis|9.*section|Executive Summary|Planning Trigger|Active Finding|Remediation|Spec Seed|Plan Seed|Traceability|Deferred|Audit Appendix' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml`
-3. `bash: rg -n 'review-report|synthesis|9.*section|report.*section|Executive Summary|verdict|hasAdvisories' .opencode/skills/deep-loop-workflows/deep-review/SKILL.md .opencode/skills/deep-loop-workflows/deep-review/README.md .opencode/commands/deep/review.md`
+3. `bash: rg -n 'review-report|synthesis|9.*section|report.*section|Executive Summary|verdict|hasAdvisories' .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md .opencode/commands/deep/review.md`
 ### Expected
 All 9 section headers present, Executive Summary contains verdict and P0/P1/P2 counts, Active Finding Registry has deduplicated findings, Audit Appendix includes convergence data.
 ### Evidence
@@ -71,12 +71,12 @@ Privilege the quick reference section table as the canonical list and verify the
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Canonical 9-section table, use `ANCHOR:review-report-sections` |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Canonical 9-section table, use `ANCHOR:review-report-sections` |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Synthesis step producing review-report.md |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Synthesis step producing review-report.md |
 | `.opencode/commands/deep/review.md` | Command entrypoint, output format documentation |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Review report structure and verdict rules, use `ANCHOR:how-it-works` |
-| `.opencode/skills/deep-loop-workflows/deep-review/README.md` | Feature summary for review report synthesis |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Review report structure and verdict rules, use `ANCHOR:how-it-works` |
+| `.opencode/skills/system-deep-loop/deep-review/README.md` | Feature summary for review report synthesis |
 
 ---
 
@@ -86,4 +86,4 @@ Privilege the quick reference section table as the canonical list and verify the
 - Playbook ID: DRV-025
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `06--synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

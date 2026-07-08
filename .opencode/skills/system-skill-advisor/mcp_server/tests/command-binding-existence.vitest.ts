@@ -41,7 +41,7 @@ const ALLOWLIST: Record<string, string> = {
     'authoring the doc:quality command set is a tracked follow-up (fix over ratchet, deferred).',
 };
 
-const HUBS = ['sk-code', 'sk-design', 'sk-doc', 'deep-loop-workflows'] as const;
+const HUBS = ['sk-code', 'sk-design', 'sk-doc', 'system-deep-loop'] as const;
 
 function declaredCommandIds(): Array<{ id: string; source: string }> {
   const out: Array<{ id: string; source: string }> = [];

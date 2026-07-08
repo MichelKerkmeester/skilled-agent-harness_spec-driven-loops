@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Creates and validates the ADR-002 session->topic->round state shape, including stable topic-NNN-slug and round-NNN ids.
 
-This feature belongs to the council group and is catalogued as F022 in the `deep-loop-runtime` inventory.
+This feature belongs to the council group and is catalogued as F022 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the council group and is catalogued as F022 in the `deep
 
 Three-level hierarchy: session contains N topics; each topic contains N rounds; each round contains N seat outputs. Topic ids use stable `topic-NNN-slug` form (3-digit numeric + dash + lowercase-kebab slug); round ids use `round-NNN`. Validator rejects malformed ids, duplicate slugs within a session, and out-of-order round numbering. Schema-conformant state hands off to round-state-jsonl for persistence.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/council/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/council/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

@@ -151,9 +151,9 @@ This is a phase-parent; the concrete file-change tables live in each child's own
 
 | Phase | Folder | Status | Summary |
 |-------|--------|--------|---------|
-| 1 | `001-reference-research` | Planned | 20-iteration multi-model `/deep:research` fanout validating the merge design |
-| 2 | `002-hub-rename-and-runtime-nesting` | Planned | The irreversible structural move: rename + nest + repair bidirectional path coupling |
-| 3 | `003-external-reference-migration` | Planned | Migrate every external reference (commands, agents, READMEs, advisor corpus) |
+| 1 | `001-reference-research` | Complete | 20-iteration multi-model `/deep:research` fanout validating the merge design |
+| 2 | `002-hub-rename-and-runtime-nesting` | Complete | The irreversible structural move: rename + nest + repair bidirectional path coupling |
+| 3 | `003-external-reference-migration` | Complete | Migrate every external reference (commands, agents, READMEs, advisor corpus) |
 | 4 | `004-fallback-router-wiring` | Planned — optional | Wire `fallback-router.ts` into the fan-out dispatcher (operator-gated) |
 | 5 | `005-validation-and-closeout` | Planned | Recursive strict validation + commit/push closeout |
 

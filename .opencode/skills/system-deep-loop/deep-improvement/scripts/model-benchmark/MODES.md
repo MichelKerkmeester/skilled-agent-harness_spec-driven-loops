@@ -32,7 +32,7 @@ Everything below is the **profile delta** for each mode. Shared keys (`fixtureDi
   "version": "1.0",
   "family": "deep-improvement",
   "mode": "model-vs-model",
-  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": ["t3-lower-bound", "t3-compare-versions"],
   "frameworks": ["rcaf"],
   "models": [
@@ -61,7 +61,7 @@ Everything below is the **profile delta** for each mode. Shared keys (`fixtureDi
   "version": "1.0",
   "family": "deep-improvement",
   "mode": "framework-bakeoff",
-  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": ["t3-lower-bound", "t3-compare-versions"],
   "frameworks": ["rcaf", "race", "cidi", "tidd-ec", "costar"],
   "models": [
@@ -88,7 +88,7 @@ Everything below is the **profile delta** for each mode. Shared keys (`fixtureDi
   "version": "1.0",
   "family": "deep-improvement",
   "mode": "reasoning-ablation",
-  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": ["t3-lower-bound", "t3-compare-versions"],
   "frameworks": ["tidd-ec"],
   "models": [
@@ -116,7 +116,7 @@ Everything below is the **profile delta** for each mode. Shared keys (`fixtureDi
   "version": "1.0",
   "family": "deep-improvement",
   "mode": "prompt-vs-prompt",
-  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": ["t3-lower-bound", "t3-compare-versions"],
   "frameworks": ["rcaf", "costar"],
   "models": [
@@ -145,7 +145,7 @@ Everything below is the **profile delta** for each mode. Shared keys (`fixtureDi
   "version": "1.0",
   "family": "deep-improvement",
   "mode": "regression",
-  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": ["t1-echo", "t3-lower-bound", "t3-compare-versions"],
   "frameworks": ["rcaf"],
   "models": [
@@ -174,7 +174,7 @@ Everything below is the **profile delta** for each mode. Shared keys (`fixtureDi
   "version": "1.0",
   "family": "deep-improvement",
   "mode": "capability-profile",
-  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": ["t1-echo", "t3-lower-bound", "t3-compare-versions", "t4-tokenize-expr"],
   "fixtureSelection": {
     "filters": { "tier": ["T1", "T3", "T4"] }

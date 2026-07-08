@@ -5,7 +5,7 @@
   "family": "deep-improvement",
   "mode": "framework-bakeoff",
   "_note": "Discriminating re-run of the kimi-k2.7-code framework bakeoff. Run 006 (kimi-k2.7-frameworks.json) used easy T3 fixtures that saturated a frontier model (all frameworks correctness 1.0 -> TIE). This profile uses the invalid-dominant strict-validator pack (the fixtures README's designed discriminators) so a lax solution scores <1.0 and correctness VARIES by framework, plus more samples for CI power. correctnessGate.threshold is lowered to 0.0 so frameworks are ranked on graded correctness_pass_rate rather than filtered.",
-  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtureDir": ".opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures",
   "fixtures": ["validate-ipv4", "validate-date", "validate-semver", "hard-roman-to-int"],
   "fixtureSelection": {
     "include": ["validate-ipv4", "validate-date", "validate-semver", "hard-roman-to-int"],

@@ -1,4 +1,4 @@
-# deep-loop-workflows routing-precision probe (reproducible)
+# system-deep-loop routing-precision probe (reproducible)
 
 A re-inspectable advisor-probe scorecard for the parent-skill routing dogfood.
 It scores per-mode routing for the three **lexical** modes via the advisor's
@@ -21,9 +21,9 @@ probe "deliberate across multi-seat strategy options until the architecture deci
 
 | prompt | expected `{skill, mode}` |
 |--------|--------------------------|
-| research loop / convergence | `deep-loop-workflows`, `research` |
-| review loop / p0-p1 stabilize | `deep-loop-workflows`, `review` |
-| multi-seat deliberation | `deep-loop-workflows`, `ai-council` |
+| research loop / convergence | `system-deep-loop`, `research` |
+| review loop / p0-p1 stabilize | `system-deep-loop`, `review` |
+| multi-seat deliberation | `system-deep-loop`, `ai-council` |
 
 ## Coverage note
 

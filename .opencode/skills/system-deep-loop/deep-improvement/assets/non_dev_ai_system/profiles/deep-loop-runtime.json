@@ -53,7 +53,7 @@
     "loopType must be \"research\", \"review\", \"council\", or \"context\"",
     "loop-lock"
   ],
-  "manifest_note": "Immutable deep-loop-runtime scorer and harness surfaces for self-target runs.",
+  "manifest_note": "Immutable runtime/ scorer and harness surfaces for self-target runs.",
   "derive_source_root": "references",
   "technique_doc_map": {
     "S": "references/state_format.md",
@@ -105,7 +105,7 @@
     ]
   },
   "worktree_prefix": "deep-loop-runtime-loop-",
-  "worktree_subdir": "deep-loop-runtime",
+  "worktree_subdir": "runtime",
   "packaging_root_env": "DLR_ROOT",
   "frozenSurfaces": [
     {

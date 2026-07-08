@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Provides a single-writer lock with stale-lock detection, heartbeat refresh, and owner-scoped release.
 
-This feature belongs to the state safety group and is catalogued as F008 in the `deep-loop-runtime` inventory.
+This feature belongs to the state safety group and is catalogued as F008 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the state safety group and is catalogued as F008 in the 
 
 Lock file schema, live-holder refusal, stale replacement, heartbeat refresh, and owner-only release.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

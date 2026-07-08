@@ -1,6 +1,6 @@
 ---
 title: "DLR-021 -- Cost guards"
-description: "Manual validation scenario for Cost guards in the deep-loop-runtime skill."
+description: "Manual validation scenario for Cost guards in the runtime/ skill."
 version: 1.4.0.4
 ---
 
@@ -24,7 +24,7 @@ Cost guards bound council session cost a priori. If they drift, sessions can blo
 
 - Objective: Confirm cost guards behave as documented and remain aligned with their implementation and tests.
 - Layer partition: council cost discipline.
-- Real user request: `Validate Cost guards and report whether the current default values, cap enforcement, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Cost guards and report whether the current default values, cap enforcement, and tests agree with the runtime/ contract.`
 - Expected signals: ADR-004 defaults applied on session start; configs exceeding caps rejected; budget calculator matches the documented formula.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Cost guards bound council session cost a priori. If they drift, sessions can blo
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/08--council/cost-guards.md`.
 
 ### Steps

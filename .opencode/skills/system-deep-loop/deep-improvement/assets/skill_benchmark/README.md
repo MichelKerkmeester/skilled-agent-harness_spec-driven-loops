@@ -88,8 +88,8 @@ Main flow:
 Run from the repository root.
 
 ```bash
-node -e "for (const f of ['default_profile.json','remediation_taxonomy.json','fixtures/deep-improvement/agent-improve-001.public.json','fixtures/deep-improvement/agent-improve-001.private.json']) { JSON.parse(require('fs').readFileSync('.opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/'+f,'utf8')); console.log('ok',f); }"
-npx vitest run .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts
+node -e "for (const f of ['default_profile.json','remediation_taxonomy.json','fixtures/deep-improvement/agent-improve-001.public.json','fixtures/deep-improvement/agent-improve-001.private.json']) { JSON.parse(require('fs').readFileSync('.opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/'+f,'utf8')); console.log('ok',f); }"
+npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts
 ```
 
 Expected result: each JSON file parses (`ok <file>` printed for all four) and the remediation taxonomy suite passes.

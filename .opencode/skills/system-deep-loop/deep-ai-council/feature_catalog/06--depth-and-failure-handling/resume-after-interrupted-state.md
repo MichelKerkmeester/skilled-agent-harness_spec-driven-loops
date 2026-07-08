@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Resume an interrupted counc
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `06--depth-and-failure-handling/resume-after-interrupted-state.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-018.
 
-Current behavior is grounded in `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md`, which the scenario identifies as resume semantics reference. Validation is anchored by `manual_testing_playbook/06--depth-and-failure-handling/resume-after-interrupted-state.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md`, which the scenario identifies as resume semantics reference. Validation is anchored by `manual_testing_playbook/06--depth-and-failure-handling/resume-after-interrupted-state.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify an interrupted council run can resume from the last completed JSONL event and continue toward council_complete. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,7 +40,7 @@ The user-visible contract is concrete: Verify an interrupted council run can res
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md` | Reference | Resume semantics reference |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md` | Reference | Resume semantics reference |
 | `.opencode/agents/ai-council.md` | Runtime Mirror | Authoritative invocation and resume contract |
 
 ### Validation And Tests

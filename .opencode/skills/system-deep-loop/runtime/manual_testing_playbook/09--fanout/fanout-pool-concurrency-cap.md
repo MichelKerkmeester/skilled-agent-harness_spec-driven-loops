@@ -42,7 +42,7 @@ weak executor cancels all other lineages.
 ### Steps
 
 1. Inspect `scripts/fanout-pool.cjs` — confirm `runCappedPool` pump loop clamps concurrency to ≥1 and pre-sizes results array.
-2. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/fanout-pool.vitest.ts`
+2. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../runtime//tests/unit/fanout-pool.vitest.ts`
 3. Confirm 10 tests pass.
 4. Note: gated-worker test verifies `maxActive()` ≤ concurrency; failure-isolation test verifies pool continues when one item throws.
 

@@ -45,10 +45,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate source-diversity guards override STOP when answered questions lack independent sources.
 ### Commands
-1. `bash: sed -n '104,139p' .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md`
-2. `bash: rg -n 'source_diversity\|guard_violation\|collectSources' .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md`
-3. `bash: sed -n '97,107p' .opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md`
-4. `bash: rg -n 'guard_violation\|source_diversity' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
+1. `bash: sed -n '104,139p' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+2. `bash: rg -n 'source_diversity\|guard_violation\|collectSources' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+3. `bash: sed -n '97,107p' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md`
+4. `bash: rg -n 'guard_violation\|source_diversity' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md`
 5. `bash: sed -n '236,243p' .opencode/commands/deep/assets/deep_research_auto.yaml`
 ### Expected
 guard_violation event logged with guard="source_diversity", STOP decision overridden to CONTINUE, violated question targeted in next iteration focus.
@@ -73,9 +73,9 @@ Privilege convergence.md §2.4 for the canonical guard definition; use loop_prot
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | JSONL event schema; use guard_violation event definition and sourceStrength field |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical quality guard definitions; use §2.4 Quality Guard Protocol |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Loop orchestration; use Step 2c: Quality Guard Check |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | JSONL event schema; use guard_violation event definition and sourceStrength field |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow algorithm; inspect `step_check_convergence` guard override logic |
 
 ---
@@ -86,4 +86,4 @@ Privilege convergence.md §2.4 for the canonical guard definition; use loop_prot
 - Playbook ID: DR-020
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `04--convergence-and-recovery/quality-guard-source-diversity.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-19.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.

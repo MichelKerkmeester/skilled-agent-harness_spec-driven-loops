@@ -36,10 +36,10 @@ The reducer consumes the newest `graph_convergence` event and surfaces its verdi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Reference | Defines the graph-aware convergence model and graph-specific stop support signals. |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Reference | Defines the graph-aware convergence model and graph-specific stop support signals. |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow | Calls the graph convergence tool and appends `graph_convergence` events in autonomous mode. |
 | `.opencode/commands/deep/assets/deep_research_confirm.yaml` | Workflow | Mirrors the same graph convergence call path in confirm mode. |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Reducer | Reads the latest graph event and exposes graph score, decision, and blockers. |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Reads the latest graph event and exposes graph score, decision, and blockers. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts` | MCP handler | Produces the graph convergence verdict that the workflow records and the reducer consumes. |
 
 ### Validation And Tests
@@ -47,8 +47,8 @@ The reducer consumes the newest `graph_convergence` event and surfaces its verdi
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts` | Vitest | Verifies graph convergence events reach the reducer and dashboard correctly. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/04--convergence-and-recovery/graph-convergence-signals.md` | Manual playbook | Verifies graph convergence signals are derived and exposed correctly. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/04--convergence-and-recovery/graph-aware-stop-gate.md` | Manual playbook | Verifies graph-aware stop gates can block or allow synthesis. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/04--convergence-and-recovery/graph-convergence-signals.md` | Manual playbook | Verifies graph convergence signals are derived and exposed correctly. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/04--convergence-and-recovery/graph-aware-stop-gate.md` | Manual playbook | Verifies graph-aware stop gates can block or allow synthesis. |
 
 ---
 

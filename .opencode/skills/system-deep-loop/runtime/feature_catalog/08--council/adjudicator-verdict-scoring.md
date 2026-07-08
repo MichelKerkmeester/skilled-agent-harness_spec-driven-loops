@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for option change, confidence delta, material-risk Jaccard delta, axis flip rate, and blocking-disagreement delta.
 
-This feature belongs to the council group and is catalogued as F020 in the `deep-loop-runtime` inventory.
+This feature belongs to the council group and is catalogued as F020 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the council group and is catalogued as F020 in the `deep
 
 Five-component weighted delta score per ADR-003: option_change (binary, weight 0.30), confidence_delta (numeric, 0.20), material_risk_jaccard_delta (set distance, 0.20), axis_flip_rate (per-axis change rate, 0.15), blocking_disagreement_delta (signed count, 0.15). Output is a single saturation score in [0,1] consumed by the council convergence check.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/council/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/council/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

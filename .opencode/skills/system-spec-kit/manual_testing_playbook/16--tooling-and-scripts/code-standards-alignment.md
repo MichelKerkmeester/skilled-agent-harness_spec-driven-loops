@@ -52,11 +52,11 @@ Command 1, inspect affected files:
 ```text
 $ git diff --name-only
 .opencode/skills/.goal-state/7365735f306463616135393733666665726954414658627031394f6e6d33.json
-.opencode/skills/deep-loop-runtime/database/observability-events.jsonl
-.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts
-.opencode/skills/deep-loop-runtime/scripts/convergence.cjs
-.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs
-.opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts
+.opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl
+.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts
+.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs
+.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+.opencode/skills/system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts
 .opencode/skills/system-spec-kit/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl
 .opencode/skills/system-spec-kit/:memory:
 .opencode/skills/system-spec-kit/:memory:.lock

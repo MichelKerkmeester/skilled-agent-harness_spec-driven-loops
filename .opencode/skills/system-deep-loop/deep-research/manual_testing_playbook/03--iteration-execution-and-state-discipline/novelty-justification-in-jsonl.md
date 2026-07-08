@@ -45,8 +45,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate JSONL iteration records include newInfoRatio and a human-readable noveltyJustification.
 ### Commands
-1. `bash: rg -n 'noveltyJustification\|Novelty Justification' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
-2. `bash: rg -n 'rule.*11\|novelty.*justification\|newInfoRatio.*novelty' .opencode/skills/deep-loop-workflows/deep-research/SKILL.md`
+1. `bash: rg -n 'noveltyJustification\|Novelty Justification' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md`
+2. `bash: rg -n 'rule.*11\|novelty.*justification\|newInfoRatio.*novelty' .opencode/skills/system-deep-loop/deep-research/SKILL.md`
 3. `bash: rg -n 'noveltyJustification\|Required fields' .opencode/agents/deep-research.md`
 ### Expected
 JSONL record has both `newInfoRatio` and `noveltyJustification` fields; justification is a human-readable sentence (e.g., "2 new findings on reconnection backoff, 1 refinement of prior keepalive finding"); field is listed as required in v1.1.0 agent instructions (Step 6); ALWAYS rule 11 mandates both.
@@ -71,8 +71,8 @@ Privilege the SKILL.md ALWAYS rules as the normative contract; use state_format.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | State format; inspect `Novelty Justification` subsection under `ANCHOR:state-log` for field definition and example |
-| `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md` | Skill rules; inspect ALWAYS rule 11: "Report newInfoRatio + 1-sentence novelty justification" |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | State format; inspect `Novelty Justification` subsection under `ANCHOR:state-log` for field definition and example |
+| `.opencode/skills/system-deep-loop/deep-research/SKILL.md` | Skill rules; inspect ALWAYS rule 11: "Report newInfoRatio + 1-sentence novelty justification" |
 | `.opencode/agents/deep-research.md` | Agent instructions; inspect Step 6 (Append State) for required fields (v1.1.0) including `noveltyJustification` |
 
 ---
@@ -83,4 +83,4 @@ Privilege the SKILL.md ALWAYS rules as the normative contract; use state_format.
 - Playbook ID: DR-025
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `03--iteration-execution-and-state-discipline/novelty-justification-in-jsonl.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-03-24.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-24.

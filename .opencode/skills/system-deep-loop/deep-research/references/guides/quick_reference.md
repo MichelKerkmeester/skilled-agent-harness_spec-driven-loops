@@ -96,7 +96,7 @@ Operator contract source of truth for this page:
 
 > **Canonical pause sentinel:** `research/.deep-research-pause`
 
-> **Runtime capability matrix:** `.opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md` and `.opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json`
+> **Runtime capability matrix:** `.opencode/skills/system-deep-loop/deep-research/references/guides/capability_matrix.md` and `.opencode/skills/system-deep-loop/deep-research/assets/runtime_capabilities.json`
 
 ---
 

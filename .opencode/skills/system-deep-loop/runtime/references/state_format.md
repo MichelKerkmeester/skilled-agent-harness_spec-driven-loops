@@ -1,6 +1,6 @@
 ---
 title: Deep Loop Runtime State Format
-description: JSONL state, atomic write, repair, lock, validation, and graph event formats used by deep-loop-runtime.
+description: JSONL state, atomic write, repair, lock, validation, and graph event formats used by runtime/.
 trigger_phrases:
   - "deep-loop state format"
   - "jsonl repair"
@@ -20,7 +20,7 @@ State file and event formats used by the shared deep-loop runtime primitives.
 
 ## 1. OVERVIEW
 
-`deep-loop-runtime` does not own the full deep-review or deep-research packet schema. It owns shared primitives used by those packets:
+`runtime/` does not own the full deep-review or deep-research packet schema. It owns shared primitives used by those packets:
 
 - atomic JSON state writes
 - append-safe JSONL records

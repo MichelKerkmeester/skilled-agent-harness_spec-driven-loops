@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `DAC-025` and confirm th
 2. Snapshot `runtime status CLI` counts.
 3. Snapshot artifact mtimes: `bash: stat -f '%m %N' <spec-folder>**/*`.
 4. Delete derived rows scoped to `(sandbox/dac-025, dac-025-run-01)` via direct SQL or `runtime status CLI` `recovery` payload guidance.
-5. Replay upserts with `node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <spec-folder> --session-id dac-025-run-01`, then pipe the emitted payload to `runtime upsert CLI`.
+5. Replay upserts with `node .opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <spec-folder> --session-id dac-025-run-01`, then pipe the emitted payload to `runtime upsert CLI`.
 6. Re-run `runtime status CLI`; compare counts to step 2.
 7. Re-snapshot artifact mtimes; compare to step 3.
 
@@ -55,7 +55,7 @@ Operators run the exact prompt and command sequence for `DAC-025` and confirm th
 1. `tool: runtime status CLI({ specFolder: 'sandbox/dac-025', sessionId: 'dac-025-run-01' })`
 2. `bash: stat -f '%m %N' <spec-folder>**/* | sort > /tmp/dac-025-pre-mtimes.txt`
 3. `bash: # delete derived rows scoped to namespace (helper script or direct SQL per recovery payload guidance)`
-4. `bash: node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <spec-folder> --session-id dac-025-run-01 > /tmp/dac-025-upsert.json`
+4. `bash: node .opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs --spec-folder <spec-folder> --session-id dac-025-run-01 > /tmp/dac-025-upsert.json`
 5. `tool: runtime status CLI({ specFolder: 'sandbox/dac-025', sessionId: 'dac-025-run-01' })`
 6. `bash: stat -f '%m %N' <spec-folder>**/* | sort > /tmp/dac-025-post-mtimes.txt`
 7. `bash: diff /tmp/dac-025-pre-mtimes.txt /tmp/dac-025-post-mtimes.txt`
@@ -98,8 +98,8 @@ If counts diverge, inspect the replay loop for missing event types or out-of-ord
 |---|---|
 | Internal design notes | ADR-001 derived-projection contract |
 | Internal design notes | CHK-028 rollback path |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/integration/graph_support.md` §5 | Recovery and rollback contract |
-| `.opencode/skills/deep-loop-runtime/lib/council/council-graph-db.ts` | Namespace-scoped delete + upsert |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/integration/graph_support.md` §5 | Recovery and rollback contract |
+| `.opencode/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts` | Namespace-scoped delete + upsert |
 
 ---
 

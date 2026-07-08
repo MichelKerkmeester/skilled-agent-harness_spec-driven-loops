@@ -1,6 +1,6 @@
 ---
 title: "DLR-035 -- JSONL lock-held merge"
-description: "Manual validation scenario for JSONL lock-held merge in the deep-loop-runtime skill."
+description: "Manual validation scenario for JSONL lock-held merge in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm JSONL lock-held merge behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: state safety runtime.
-- Real user request: `Validate JSONL lock-held merge and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate JSONL lock-held merge and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Merge dedupe, reread-under-lock behavior, atomic rewrite, and fanout-salvage integration tests.
 - Pass/fail: PASS only if the matching test command exits 0 and source inspection confirms the documented behavior; FAIL if the test is not run, exits non-zero, or expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/04--state-safety/jsonl-lock-held-merge.md`.
 
 ### Steps
@@ -83,6 +83,6 @@ JSONL lock-held merge matches the documented current reality, the source anchors
 - Playbook ID: DLR-035
 - Feature catalog entry: `feature_catalog/04--state-safety/jsonl-lock-held-merge.md`
 - Scenario file path: `manual_testing_playbook/04--state-safety/jsonl-lock-held-merge.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/006-jsonl-lock-held-merge`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//006-jsonl-lock-held-merge`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

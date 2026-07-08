@@ -4,7 +4,7 @@ description: "Adds a convergence score-delta signal comparing the current graph 
 trigger_phrases:
   - "convergence score-delta"
   - "convergence-score-delta"
-  - "convergence score-delta deep-loop-runtime"
+  - "convergence score-delta runtime"
   - "scoring convergence score-delta"
 version: 1.4.0.15
 ---
@@ -19,7 +19,7 @@ version: 1.4.0.15
 
 Adds a convergence score-delta signal comparing the current graph score with the prior snapshot.
 
-This feature belongs to the scoring group and is catalogued as F038 in the `deep-loop-runtime` inventory.
+This feature belongs to the scoring group and is catalogued as F038 in the `runtime/` inventory.
 
 ---
 
@@ -27,7 +27,7 @@ This feature belongs to the scoring group and is catalogued as F038 in the `deep
 
 `convergence.cjs` reads the prior snapshot before creating the new one, emits `scoreDelta` and `scoreDeltaNote`, and can add an opt-in `improvementEffect` trace when requested.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 
@@ -54,7 +54,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.o
 - Canonical catalog source: `feature_catalog.md`
 - Feature ID: F038
 - Feature file path: `05--scoring/convergence-score-delta.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/011-convergence-score-delta`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//011-convergence-score-delta`
 - Primary sources: `scripts/convergence.cjs`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/convergence-score-delta.vitest.ts`
 Related references:
 - [scoring](../05--scoring/) — Scoring category

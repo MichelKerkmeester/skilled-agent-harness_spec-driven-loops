@@ -6,9 +6,9 @@ last_confirmed: "2026-06-07"
 last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   # deep skill
-  - deep-loop-workflows
+  - system-deep-loop
   # deep mode + legacy agent/skill trigger aliases
-  - deep-loop-workflows
+  - system-deep-loop
   - deep-research
   - deep-review
   - deep-ai-council
@@ -40,7 +40,7 @@ triggerPhrases:
 
 ## Rule
 
-**When a task calls for a deep workflow (the `deep-loop-workflows` skill's active modes: `research`, `review`, `ai-council`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement`), you MUST invoke its actual command, agent or workflow.** Use the active `/deep:*` command or the `@ai-council` agent at depth. **NEVER hand-roll a manual substitute** — backgrounded `gtimeout ... opencode run --model ... &` dispatches, hand-written seat prompts, hand-extracted JSONL, or hand-synthesized iteration state. If a plan names the deep workflow, it is frozen like scope (see AGENTS.md §1 PLAN-WORKFLOW LOCK).
+**When a task calls for a deep workflow (the `system-deep-loop` skill's active modes: `research`, `review`, `ai-council`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement`), you MUST invoke its actual command, agent or workflow.** Use the active `/deep:*` command or the `@ai-council` agent at depth. **NEVER hand-roll a manual substitute** — backgrounded `gtimeout ... opencode run --model ... &` dispatches, hand-written seat prompts, hand-extracted JSONL, or hand-synthesized iteration state. If a plan names the deep workflow, it is frozen like scope (see AGENTS.md §1 PLAN-WORKFLOW LOCK).
 
 ## Why
 

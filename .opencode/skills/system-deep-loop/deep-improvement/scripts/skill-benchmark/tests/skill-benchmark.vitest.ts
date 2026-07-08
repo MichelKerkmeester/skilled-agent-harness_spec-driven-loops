@@ -522,7 +522,7 @@ describe('Lane C — D1-inter advisor scoring', () => {
 describe('Lane C — mode-precision advisory signal (non-gating)', () => {
   const { scoreModePrecision } = require(join(SB, 'advisor-probe.cjs'));
   const baseRouter = { parseable: true, intents: ['X'], resources: ['references/a.md'], missingResources: [], scores: [] };
-  const baseExpected = { skillId: 'deep-loop-workflows', mode: 'research', intentKeys: [], resources: ['references/a.md'] };
+  const baseExpected = { skillId: 'system-deep-loop', mode: 'research', intentKeys: [], resources: ['references/a.md'] };
 
   it('scoreModePrecision is unscored without a mode-routing probe', () => {
     const r = scoreModePrecision({ expectedMode: 'research' });
@@ -553,7 +553,7 @@ describe('Lane C — mode-precision advisory signal (non-gating)', () => {
 
   it('aggregate surfaces modePrecision in advisorySignals, outside the weighted aggregate', () => {
     const row = scoreScenario({ scenarioId: 'm3', tier: 'T1', routerResult: baseRouter, expected: baseExpected, modeRouting: { ok: true, mode: 'research' } });
-    const report = aggregate({ skillId: 'deep-loop-workflows', skillRoot: '/x', scenarioRows: [row], connectivity: { score: 90, gateFailed: false, findings: [] }, traceMode: 'router' });
+    const report = aggregate({ skillId: 'system-deep-loop', skillRoot: '/x', scenarioRows: [row], connectivity: { score: 90, gateFailed: false, findings: [] }, traceMode: 'router' });
     expect(report.advisorySignals.modePrecision.score).toBe(100);
     // The advisory signal is not listed as a weighted dimension.
     expect(report.dimensionScores.modePrecision).toBeUndefined();

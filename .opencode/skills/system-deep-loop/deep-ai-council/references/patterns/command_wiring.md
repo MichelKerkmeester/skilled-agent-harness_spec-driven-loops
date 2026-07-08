@@ -19,7 +19,7 @@ This reference defines the canonical post-dispatch wiring for callers that run `
 
 ## 1. OVERVIEW
 
-`@deep-ai-council` is planning-only. It returns a council report and cannot write, edit, patch, or run shell commands. The dispatching parent owns persistence by invoking `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs` after the report is captured.
+`@deep-ai-council` is planning-only. It returns a council report and cannot write, edit, patch, or run shell commands. The dispatching parent owns persistence by invoking `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` after the report is captured.
 
 Future `/speckit:*` consumers and CLI-skill playbooks should use the same helper invocation so council artifacts, state JSONL, and optional memory-save payloads stay consistent.
 
@@ -62,7 +62,7 @@ PAYLOAD="/tmp/council-payload.json"
 
 # 1. Run council through the caller-owned dispatch mechanism and write report text.
 # 2. Persist packet-local ai-council artifacts and emit optional memory payload.
-node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs "$PACKET" \
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs "$PACKET" \
   --input-file "$REPORT" \
   --memory-save-payload-out "$PAYLOAD"
 
@@ -96,7 +96,7 @@ steps:
   - id: step_persist_council
     uses: shell.exec
     command: >
-      node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs
+      node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs
       "${packet.spec_folder}"
       --input-file "${runtime.tmp}/council-report.md"
       --memory-save-payload-out "${runtime.tmp}/council-payload.json"
@@ -148,7 +148,7 @@ The helper exits `1` when required report sections are missing. It exits `2` whe
 The advisory checker remains informational:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/advise-council-completion.cjs "$PACKET"
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs "$PACKET"
 ```
 
 It always exits `0` and is not part of `validate.sh --strict`.
@@ -158,7 +158,7 @@ It always exits `0` and is not part of `validate.sh --strict`.
 ## 8. CROSS-REFERENCES
 
 - Agent body §16: `.opencode/agents/ai-council.md`
-- Output schema: `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/output_schema.md`
-- State format: `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md`
-- Persistence helper: `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs`
+- Output schema: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/output_schema.md`
+- State format: `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md`
+- Persistence helper: `.opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
 - Memory save entrypoint: `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`

@@ -123,7 +123,7 @@ manual_testing_playbook/**/*.md
 - `assets/` contains council config, round strategy, dashboard, prompt-pack, and runtime capability templates. Markdown assets are routable; JSON/TMPL assets are operator/runtime inputs.
 - `manual_testing_playbook/` contains operator validation scenarios for routing, deliberation, persistence, convergence, rollback, scope boundaries, council-graph integration, and council-graph value comparison (32 scenarios across 9 categories).
 - `feature_catalog/` mirrors the playbook 1:1 with one user-facing feature entry per scenario (32 entries) — start here for "what does DAC-NNN actually do" lookups.
-- `scripts/` contains deterministic helpers; scripts are invoked explicitly and are not markdown-routed. Notable entries: `persist-artifacts.cjs` (artifact writer CLI), `replay-graph-from-artifacts.cjs` (DAC-025 derived-projection rebuild — reads `ai-council-state.jsonl` and writes through `deep-loop-runtime/scripts/upsert.cjs --loop-type council`, with `--dry-run` for payload inspection).
+- `scripts/` contains deterministic helpers; scripts are invoked explicitly and are not markdown-routed. Notable entries: `persist-artifacts.cjs` (artifact writer CLI), `replay-graph-from-artifacts.cjs` (DAC-025 derived-projection rebuild — reads `ai-council-state.jsonl` and writes through `runtime//scripts/upsert.cjs --loop-type council`, with `--dry-run` for payload inspection).
 
 ### Resource Loading Levels
 
@@ -324,8 +324,8 @@ STEP 3: Persist And Hand Off
 **Scripts**:
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>
-node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/advise-council-completion.cjs <packet>
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet> --input-file <report>
+node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs <packet>
 ```
 
 **References**: load `quick_reference.md` first, then intent-specific references through Section 3. Load `output_schema.md` before persistence or report validation.
@@ -387,7 +387,7 @@ node .opencode/skills/deep-loop-workflows/deep-ai-council/scripts/advise-council
    - Compatibility requires explicit user direction.
 
 4. **ESCALATE IF a caller asks the council agent itself to mutate graph storage**
-   - Graph updates belong to caller-owned `deep-loop-runtime` CLI reducers, not council-seat deliberation.
+   - Graph updates belong to caller-owned `runtime/` CLI reducers, not council-seat deliberation.
 
 ---
 
@@ -408,7 +408,7 @@ Ordered by load priority — most-loaded intent first.
 - `references/patterns/seat_diversity_patterns.md` - seat lens and vantage diversity rules.
 - `references/convergence/convergence_signals.md` - convergence and escape-hatch rules.
 - `references/integration/graph_support.md` - derived council graph boundaries, tool surface, and recovery behavior.
-- `references/convergence/deep_mode.md` - deep-mode session/topic/round hierarchy, state files, cost guards and the deep-loop-runtime dependency.
+- `references/convergence/deep_mode.md` - deep-mode session/topic/round hierarchy, state files, cost guards and the runtime/ dependency.
 - `references/scoring/findings_registry.md` - cross-topic findings registry, fingerprint dedup and filesystem locking.
 - `assets/deep_ai_council_strategy.md` - operator-maintained round strategy template.
 - `assets/deep_ai_council_dashboard.md` - council status dashboard template.
@@ -454,7 +454,7 @@ Council alignment is complete when:
 
 ### Validation Workflow Integration
 
-Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims when spec docs are updated. Skill package structure is checked with `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/deep-loop-workflows/deep-ai-council`.
+Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims when spec docs are updated. Skill package structure is checked with `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/system-deep-loop/deep-ai-council`.
 
 ### Cross-Workflow Contracts
 
@@ -480,7 +480,7 @@ The council is a planning LEAF. It hands recommendations, risk analysis, and pac
 - `references/convergence/depth_dispatch.md` - adaptive dispatch guidance.
 - `references/convergence/failure_handling.md` - failure and rollback treatment.
 - `references/patterns/anti_patterns.md` - quality anti-pattern detection and recovery.
-- `references/integration/graph_support.md` - derived graph support and deep-loop-runtime CLI boundary.
+- `references/integration/graph_support.md` - derived graph support and runtime/ CLI boundary.
 - `references/structure/folder_layout.md` - artifact shape and rollback layout.
 - `references/patterns/seat_diversity_patterns.md` - lens selection.
 - `references/structure/state_format.md` - state event semantics.

@@ -1,5 +1,5 @@
 {
-  "skill": "deep-loop-workflows",
+  "skill": "system-deep-loop",
   "version": "2.0.0.0",
   "routerPolicy": {
     "defaultMode": "research",
@@ -51,7 +51,7 @@
   },
   "vocabularyClasses": {
     "hub-identity": {
-      "keywords": ["deep-loop-workflows", "deep-loop", "deep loop", "mode-registry", "workflowmode", "runtimeloop-type", "backendkind", "convergence-detection", "externalized-state", "runtime-loop", "improvement-host"]
+      "keywords": ["system-deep-loop", "deep-loop", "deep loop", "mode-registry", "workflowmode", "runtimeloop-type", "backendkind", "convergence-detection", "externalized-state", "runtime-loop", "improvement-host"]
     },
     "research-aliases": {
       "keywords": ["deep-research", "research loop", "iterative investigation workflow", "research convergence detection", "autoresearch", "iterative-research"]

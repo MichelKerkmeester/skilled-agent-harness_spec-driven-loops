@@ -40,13 +40,13 @@ Operators run the exact prompt and command sequence for `CP-032` and confirm the
   - **Call A (@Task)**: May summarize or edit directly.
   - **Call B (`/deep:agent-improvement` command flow)**: Transcript or artifacts contain `scan-integration.cjs`, `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `candidate_generated`, and `candidate_scored`. Candidate path is under `/tmp/cp-032-spec/improvement/candidates/`. Canonical target diff is empty. Project tripwire is empty.
 - Desired user-visible outcome: PASS verdict showing Call B treated helper execution as the differentiator.
-- Pass/fail: PASS if all Call B helper and journal labels are present, candidate path is packet-local, sandbox canonical diff is empty, and tripwire diff is empty. FAIL if only `Read(".opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md")` appears or Call B edits canonical target.
+- Pass/fail: PASS if all Call B helper and journal labels are present, candidate path is packet-local, sandbox canonical diff is empty, and tripwire diff is empty. FAIL if only `Read(".opencode/skills/system-deep-loop/deep-improvement/SKILL.md")` appears or Call B edits canonical target.
 
 ## 3. TEST EXECUTION
 
 ### Recommended Orchestration Process
 
-1. Run the packet setup helper to seed `/tmp/cp-032-sandbox/` with `.opencode/commands/deep/`, `.opencode/skills/deep-loop-workflows/deep-improvement/`, and the fixture target/mirrors.
+1. Run the packet setup helper to seed `/tmp/cp-032-sandbox/` with `.opencode/commands/deep/`, `.opencode/skills/system-deep-loop/deep-improvement/`, and the fixture target/mirrors.
 2. Write the shared task body once.
 3. Run Call A with `As @Task:`.
 4. Reset the sandbox from `/tmp/cp-032-sandbox-baseline/`.
@@ -58,7 +58,7 @@ Operators run the exact prompt and command sequence for `CP-032` and confirm the
 ```bash
 rm -rf /tmp/cp-032-sandbox /tmp/cp-032-sandbox-baseline /tmp/cp-032-spec
 mkdir -p /tmp/cp-032-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-032-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-032-sandbox
 cp -a /tmp/cp-032-sandbox /tmp/cp-032-sandbox-baseline
 git status --porcelain > /tmp/cp-032-pre.txt
 cat > /tmp/cp-032-task.txt <<'EOF'
@@ -80,7 +80,7 @@ cat /tmp/cp-032-B-command.txt /tmp/cp-032-B-artifacts.txt > /tmp/cp-032-B-combin
 git status --porcelain > /tmp/cp-032-post.txt
 diff /tmp/cp-032-pre.txt /tmp/cp-032-post.txt > /tmp/cp-032-tripwire.diff; echo "TRIPWIRE_DIFF_EXIT=$?" | tee /tmp/cp-032-tripwire-exit.txt
 for label in "scan-integration.cjs" "generate-profile.cjs" "score-candidate.cjs" "reduce-state.cjs" "candidate_generated" "candidate_scored" "/tmp/cp-032-spec/improvement/candidates"; do grep -c "$label" /tmp/cp-032-B-combined.txt; done | tee /tmp/cp-032-B-field-counts.txt
-grep -c 'Read(".opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md")' /tmp/cp-032-B-combined.txt | tee /tmp/cp-032-B-skill-load-only-count.txt
+grep -c 'Read(".opencode/skills/system-deep-loop/deep-improvement/SKILL.md")' /tmp/cp-032-B-combined.txt | tee /tmp/cp-032-B-skill-load-only-count.txt
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
@@ -100,9 +100,9 @@ grep -c 'Read(".opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md")'
 | File | Role |
 |---|---|
 | `.opencode/agents/deep-improvement.md` | Proposal-only mutator contract |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` | Protocol execution contract |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Required scoring helper |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/test-fixtures/060-stress-test/` | Fixture source |
+| `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Protocol execution contract |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Required scoring helper |
+| `.opencode/skills/system-deep-loop/deep-improvement/test-fixtures/060-stress-test/` | Fixture source |
 
 ## 5. SOURCE METADATA
 

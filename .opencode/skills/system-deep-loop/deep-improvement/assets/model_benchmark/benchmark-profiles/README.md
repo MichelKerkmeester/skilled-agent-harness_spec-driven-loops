@@ -55,7 +55,7 @@ Shared top-level keys (all three): `profileId`/`id`, `version`, `family`, `fixtu
 Run from the repository root.
 
 ```bash
-node -e "for(const f of ['default','framework-bakeoff','model-vs-model']){const p=require('./.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/'+f+'.json');console.log(f, p.profileId, p.mode||'(no mode)')}"
+node -e "for(const f of ['default','framework-bakeoff','model-vs-model']){const p=require('./.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/'+f+'.json');console.log(f, p.profileId, p.mode||'(no mode)')}"
 ```
 
 Expected result: all three profiles parse as valid JSON and print their `profileId` and mode (`default (no mode)`, `framework-bakeoff framework-bakeoff`, `model-vs-model model-vs-model`).

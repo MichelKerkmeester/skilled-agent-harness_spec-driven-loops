@@ -9,7 +9,7 @@ trigger_phrases:
 version: 1.1.0.0
 ---
 
-# deep-loop-workflows
+# system-deep-loop
 
 > One skill that routes to every active deep-loop workflow: research, review, AI Council and improvement.
 
@@ -20,7 +20,7 @@ version: 1.1.0.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Running an iterative deep-loop workflow: autonomous research, code review, multi-seat AI Council planning or evaluator-first improvement. |
-| **Invoke with** | `Skill(deep-loop-workflows)`, the `/deep:*` commands or the deep agents. |
+| **Invoke with** | `Skill(system-deep-loop)`, the `/deep:*` commands or the deep agents. |
 | **Works on** | A spec packet or a scoped target, with externalized state kept under the packet. |
 | **Produces** | The mode's artifacts (for example research.md, review-report.md, council artifacts or improvement proposals) plus convergence state. |
 
@@ -34,7 +34,7 @@ The deep-loop workflows used to ship as five separate sibling skills over one ba
 
 ### What It Does
 
-`Skill(deep-loop-workflows)` loads the hub, and the hub routes by `workflowMode` through `mode-registry.json` to one active mode packet. The hub holds no per-mode logic. Each packet keeps its own convergence math, state shape, artifacts and tool-permission guards. The shared backend, `deep-loop-runtime`, does the executor configuration, prompt-pack rendering, validation, atomic state, coverage graph and scoring.
+`Skill(system-deep-loop)` loads the hub, and the hub routes by `workflowMode` through `mode-registry.json` to one active mode packet. The hub holds no per-mode logic. Each packet keeps its own convergence math, state shape, artifacts and tool-permission guards. The shared backend, `runtime/`, does the executor configuration, prompt-pack rendering, validation, atomic state, coverage graph and scoring.
 
 ---
 
@@ -59,7 +59,7 @@ The hub resolves `workflowMode: review` to the `deep-review` packet and runs its
 Every mode is described once in `mode-registry.json` by a three-tier discriminator, and no router re-derives that mapping:
 
 - **`workflowMode`** is the public key used by commands, the advisor and the registry, for example `research`, `ai-council` or `agent-improvement`.
-- **`runtimeLoopType`** is the graph-backed convergence key for `deep-loop-runtime`, one of `research`, `review` or `council` for active modes. It is an explicit `null` for the four improvement lanes and is never guessed from `workflowMode`.
+- **`runtimeLoopType`** is the graph-backed convergence key for `runtime/`, one of `research`, `review` or `council` for active modes. It is an explicit `null` for the four improvement lanes and is never guessed from `workflowMode`.
 - **`backendKind`** is what actually runs the mode: a runtime convergence loop, the improvement host or an external adapter.
 
 A router reads the registry, loads the mode packet, and either calls the runtime convergence loop (when `runtimeLoopType` is set) or the improvement host or external adapter (when it is `null`).
@@ -90,7 +90,7 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review`, `deep
 
 | Skill | Relationship |
 |---|---|
-| `deep-loop-runtime` | The frozen, MCP-free backend the modes run on. |
+| `runtime/` | The frozen, MCP-free backend the modes run on. |
 | `system-spec-kit` | Owns the spec packets and memory continuity the modes read and write. |
 
 ---

@@ -1,14 +1,14 @@
 ---
-title: "deep-loop-workflows: Manual Testing Playbook"
-description: "Operator-facing reference for manually validating deep-loop-workflows hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
+title: "system-deep-loop: Manual Testing Playbook"
+description: "Operator-facing reference for manually validating system-deep-loop hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
 version: "1.1.0.0"
 ---
 
-# deep-loop-workflows: Manual Testing Playbook
+# system-deep-loop: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed against the live `deep-loop-workflows` skill and its real `mode-registry.json` source of truth. No mocks, no stubs, and no invented routing behavior. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a documented sandbox blocker.
+> **EXECUTION POLICY**: Every scenario MUST be executed against the live `system-deep-loop` skill and its real `mode-registry.json` source of truth. No mocks, no stubs, and no invented routing behavior. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a documented sandbox blocker.
 
-This document combines the manual-validation contract for the `deep-loop-workflows` parent-skill hub into a single operator reference. The root playbook acts as the directory, review protocol, and orchestration guide. Per-feature files provide the deeper execution contract for each scenario, including the user request, expected mode, command, agent, backend, artifact root, registry evidence, and binary validation criteria.
+This document combines the manual-validation contract for the `system-deep-loop` parent-skill hub into a single operator reference. The root playbook acts as the directory, review protocol, and orchestration guide. Per-feature files provide the deeper execution contract for each scenario, including the user request, expected mode, command, agent, backend, artifact root, registry evidence, and binary validation criteria.
 
 ---
 
@@ -26,19 +26,19 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 20 deterministic scenarios across 5 categories validating the `deep-loop-workflows` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 20 deterministic scenarios across 5 categories validating the `system-deep-loop` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note: the playbook covers the hub's registry-driven routing at version `1.1.0.0`. It exercises:
 - Dominant-intent routing for the lexical modes: `research`, `review`, and `ai-council`.
 - Explicit mode-hint override routing, such as `research: <request>`.
 - The four improvement lanes that share the `deep-improvement` packet: `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `ai-system-improvement`.
-- Advisor integration: the single advisor identity `deep-loop-workflows`, lexical scoring, alias-fold default behavior, command-bridge behavior, and no false fire on ordinary code-edit prompts.
+- Advisor integration: the single advisor identity `system-deep-loop`, lexical scoring, alias-fold default behavior, command-bridge behavior, and no false fire on ordinary code-edit prompts.
 - The three-tier discriminator: `workflowMode`, `runtimeLoopType`, and `backendKind`.
 - State and convergence discipline: externalized state, artifact-root writes, convergence stop behavior, and hub logic boundaries.
 
 ### Realistic Test Model
 
-1. A realistic user request is given to an orchestrator that has the `deep-loop-workflows` skill registered.
+1. A realistic user request is given to an orchestrator that has the `system-deep-loop` skill registered.
 2. The orchestrator consults the skill advisor, command router, or explicit Skill invocation and decides whether to invoke the hub, a `/deep:*` command surface, another skill, or no deep-loop workflow.
 3. The operator captures: which skill won the advisor vote, which `workflowMode` was selected, which command and agent surface would be used, which backend was resolved, which artifact root was named, and what the AI's response actually was.
 4. The scenario passes only when the routing matches `mode-registry.json`, the source evidence is quoted or cited, and the user-visible outcome is sound for a real operator.
@@ -57,11 +57,11 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
-2. The hub skill is present at `.opencode/skills/deep-loop-workflows/`.
-3. `.opencode/skills/deep-loop-workflows/SKILL.md` states that `mode-registry.json` is the single source of truth and that the hub holds no per-mode convergence, state, or synthesis logic.
-4. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains exactly 7 active modes in its `modes` array.
+2. The hub skill is present at `.opencode/skills/system-deep-loop/`.
+3. `.opencode/skills/system-deep-loop/SKILL.md` states that `mode-registry.json` is the single source of truth and that the hub holds no per-mode convergence, state, or synthesis logic.
+4. `.opencode/skills/system-deep-loop/mode-registry.json` contains exactly 7 active modes in its `modes` array.
 5. The skill advisor at `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py` is callable when advisor scenarios are executed.
-6. The orchestrator runtime can invoke `Skill(deep-loop-workflows)` and can run `/deep:*` command prompts, or the operator can capture equivalent dry-run routing transcripts.
+6. The orchestrator runtime can invoke `Skill(system-deep-loop)` and can run `/deep:*` command prompts, or the operator can capture equivalent dry-run routing transcripts.
 7. Operator evidence is written under `/tmp/dlw-<SCENARIO-ID>/` and never into project source paths unless a scenario explicitly states the mode's real artifact-root contract.
 8. Multi-scenario waves cap at 5 parallel advisor probes. Command-bridge and state-discipline checks that may create artifacts run serially.
 
@@ -83,10 +83,10 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - Skill advisor probe: `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "<prompt>" --threshold 0.8`.
-- Skill hub invocation: `Skill(deep-loop-workflows, "<prompt>")`.
+- Skill hub invocation: `Skill(system-deep-loop, "<prompt>")`.
 - Command-surface invocation: enter the exact `/deep:*` command and prompt into the orchestrator runtime.
-- Registry check: read `.opencode/skills/deep-loop-workflows/mode-registry.json` and compare the selected mode to the matching `modes[]` entry.
-- Resource path notation: paths shown relative to `.opencode/skills/deep-loop-workflows/` unless explicitly stated otherwise.
+- Registry check: read `.opencode/skills/system-deep-loop/mode-registry.json` and compare the selected mode to the matching `modes[]` entry.
+- Resource path notation: paths shown relative to `.opencode/skills/system-deep-loop/` unless explicitly stated otherwise.
 - All evidence files live under `/tmp/dlw-<SCENARIO-ID>/`.
 
 ---
@@ -163,7 +163,7 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `AI-001` | Single Advisor Identity | Positive deep-loop controls surface `deep-loop-workflows` as the hub identity | `03--advisor-integration/single-advisor-identity.md` | Yes |
+| `AI-001` | Single Advisor Identity | Positive deep-loop controls surface `system-deep-loop` as the hub identity | `03--advisor-integration/single-advisor-identity.md` | Yes |
 | `AI-002` | Lexical Mode Scoring | Lexical modes are scored through their `legacyAdvisorId` entries | `03--advisor-integration/lexical-mode-scoring.md` | No |
 | `AI-003` | Command-Bridge Guard | Command-bridge modes do not fire from bare advisor aliases | `03--advisor-integration/command-bridge-guard.md` | No |
 | `AI-004` | No False Fire | Plain code-edit prompt routes to `sk-code`, not deep-loop | `03--advisor-integration/no-false-fire-code-edit.md` | Yes |

@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Runs seat executors in parallel for one council round; preserves seat result order; returns fulfilled or rejected per-seat outcomes plus round summary counts.
 
-This feature belongs to the council group and is catalogued as F018 in the `deep-loop-runtime` inventory.
+This feature belongs to the council group and is catalogued as F018 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the council group and is catalogued as F018 in the `deep
 
 Promise.allSettled-based fan-out across N seats per council round. Each seat receives the round prompt and an isolated workspace; results are preserved in seat order regardless of completion order. Per-round summary counts (fulfilled / rejected / total) emitted to the round JSONL alongside per-seat outcomes.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/council/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/council/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

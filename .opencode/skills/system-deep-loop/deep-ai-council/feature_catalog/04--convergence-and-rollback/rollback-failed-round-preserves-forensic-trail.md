@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Roll back this failed counc
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-010.
 
-Current behavior is grounded in `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/lib/rollback.js`, which the scenario identifies as rollback behavior. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.js`, which the scenario identifies as rollback behavior. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify failed rounds move under failed/ and state records rollback events. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,9 +40,9 @@ The user-visible contract is concrete: Verify failed rounds move under failed/ a
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/lib/rollback.js` | Library | Rollback behavior |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/folder_layout.md` | Reference | Failed folder layout |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/state_format.md` | Reference | Rollback state events |
+| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.js` | Library | Rollback behavior |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder_layout.md` | Reference | Failed folder layout |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md` | Reference | Rollback state events |
 
 ### Validation And Tests
 

@@ -48,8 +48,8 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-research graphEvents stay flat in iteration records and use active event types.
 ### Commands
-1. `bash: rg -n 'graphEvents|Graph Events|type \\| \"question\"|type \\| \"finding\"|type \\| \"source\"|type \\| \"edge\"' .opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md`
-2. `bash: rg -n 'graphEvents|iteration records|graph-aware convergence' .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md`
+1. `bash: rg -n 'graphEvents|Graph Events|type \\| \"question\"|type \\| \"finding\"|type \\| \"source\"|type \\| \"edge\"' .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md`
+2. `bash: rg -n 'graphEvents|iteration records|graph-aware convergence' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
 3. `bash: rg -n \"type: 'question'|type: 'finding'|type: 'source'\" .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts`
 ### Expected
 `graphEvents` documented as iteration-record input; the state-format example uses flat `type` values; active graph tests use `question`, `finding`, and `source` node types.
@@ -73,8 +73,8 @@ Privilege `references/state/state_format.md` for the payload contract, `referenc
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_format.md` | Canonical flat `graphEvents` payload example and field table |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Graph-aware research convergence contract; documents `graphEvents` as iteration-record input |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Canonical flat `graphEvents` payload example and field table |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Graph-aware research convergence contract; documents `graphEvents` as iteration-record input |
 | `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Active graph tests using flat `question` / `finding` / `source` node types |
 
 ---
@@ -85,4 +85,4 @@ Privilege `references/state/state_format.md` for the payload contract, `referenc
 - Playbook ID: DR-029
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `03--iteration-execution-and-state-discipline/graph-events-emission.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-04-10.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-04-10.

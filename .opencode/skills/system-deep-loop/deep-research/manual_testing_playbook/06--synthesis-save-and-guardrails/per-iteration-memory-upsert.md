@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate per-iteration memory upsert ordering and non-fatal memory context refresh behavior.
 ### Commands
 1. `bash: rg -n 'step_memory_upsert_iteration|step_refresh_memory_context|memory_save\\(|memory_context\\(|memory_context_prompt_line|non-fatal' .opencode/commands/deep/assets/deep_research_auto.yaml`
-2. `bash: sed -n '55,95p' .opencode/skills/deep-loop-runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts`
+2. `bash: sed -n '55,95p' .opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts`
 ### Expected
 The workflow upserts the canonical iteration evidence file, refreshes focused memory context before the next prompt, and treats MCP errors or timeouts as non-fatal advisory conditions.
 ### Evidence
@@ -72,7 +72,7 @@ Privilege the auto YAML for live ordering and the unit test for required step se
 | File | Role |
 |---|---|
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Iteration memory upsert and focused memory-context refresh steps |
-| `.opencode/skills/deep-loop-runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Unit coverage for step ordering, invocation, and advisory errors |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts` | Unit coverage for step ordering, invocation, and advisory errors |
 
 ---
 

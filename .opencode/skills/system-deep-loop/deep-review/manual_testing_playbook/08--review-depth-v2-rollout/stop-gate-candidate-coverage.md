@@ -28,7 +28,7 @@ Without the gate, a review can terminate with PASS verdict even though the agent
 
 ### Prerequisites
 
-- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/deep-loop-runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
+- `review-depth-convergence.vitest.ts` exists under `.opencode/skills/system-deep-loop/runtime/tests/integration/` (note: marked `it.todo` pending workflow-runner integration, manual harness required today).
 - A standard or complex v2 session can set `searchCoverage` with uncovered required bug classes.
 - Reducer state can expose `candidateCoverage` and `searchDebt`.
 
@@ -55,8 +55,8 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 
 - Workflow YAML: `.opencode/commands/deep/assets/deep_review_auto.yaml` (`step_check_convergence` legal-stop decision tree).
 - Confirm mirror: `.opencode/commands/deep/assets/deep_review_confirm.yaml`.
-- Reducer: `.opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
-- Fixture: `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
+- Reducer: `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
+- Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
 
 ## 5. SOURCE_METADATA

@@ -52,7 +52,7 @@ sqlite3 .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sq
 ### Expected Signals
 
 - Scan result carries `docs` counters (~355 scanned / 84 indexed on the 2026-06-11 corpus; grows as the frontmatter campaign lands) and `skill_docs` row count matches.
-- The recommend response ranks `deep-loop-runtime` carrying `matchedDocs: ["references/script_interface_contract.md"]` with `doc_reference_signal` evidence.
+- The recommend response ranks `runtime/` carrying `matchedDocs: ["references/script_interface_contract.md"]` with `doc_reference_signal` evidence.
 - A doc-only match at `normal` tier stays below the 0.8 pass threshold (assists ranking, cannot hard-route alone).
 - Memory returns zero skill-doc results (skill docs are advisor-owned; memory never indexes them).
 - Flag-off: no `docs` counters, `skill_docs` empty, no `matchedDocs` field, scores identical to pre-feature.

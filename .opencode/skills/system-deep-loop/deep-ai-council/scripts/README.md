@@ -1,6 +1,6 @@
 ---
 title: "deep ai council scripts: Code README"
-description: "Code-facing README for .opencode/skills/deep-loop-workflows/deep-ai-council/scripts."
+description: "Code-facing README for .opencode/skills/system-deep-loop/deep-ai-council/scripts."
 trigger_phrases:
   - "deep-ai-council scripts"
   - "code README"
@@ -16,7 +16,7 @@ Operator and maintenance scripts for this skill.
 
 ### Purpose
 
-This README documents the code-bearing folder `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.opencode/skills/system-deep-loop/deep-ai-council/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -36,12 +36,12 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 **Step 1: Confirm the owner.**
 
-Start with `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md` for runtime routing and workflow boundaries.
+Start with `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` for runtime routing and workflow boundaries.
 
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .opencode/skills/deep-loop-workflows/deep-ai-council/scripts
+rg --files .opencode/skills/system-deep-loop/deep-ai-council/scripts
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -88,7 +88,7 @@ Run individual scripts from the repository root with the documented arguments.
 **Audit this folder**
 
 ```text
-User request: Check .opencode/skills/deep-loop-workflows/deep-ai-council/scripts for sk-code and README coverage.
+User request: Check .opencode/skills/system-deep-loop/deep-ai-council/scripts for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the 026 audit report.
 ```

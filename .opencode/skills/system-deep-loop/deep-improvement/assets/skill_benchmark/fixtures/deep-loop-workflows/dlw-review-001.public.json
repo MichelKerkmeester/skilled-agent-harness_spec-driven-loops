@@ -3,9 +3,9 @@
   "tier": "T2",
   "public": {
     "prompt": "continue the iterative review loop until the p0 and p1 findings stabilize",
-    "runtime": "deep-loop-workflows",
+    "runtime": "system-deep-loop",
     "mutationBoundary": "read-only",
-    "outputContract": "routes to deep-loop-workflows review mode"
+    "outputContract": "routes to system-deep-loop review mode"
   },
   "provenance": {
     "promptAuthor": "pattern-dogfood",

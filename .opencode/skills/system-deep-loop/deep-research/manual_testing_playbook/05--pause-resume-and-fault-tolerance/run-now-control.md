@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the run-now sentinel lifecycle against auto YAML and its unit tests.
 ### Commands
 1. `bash: rg -n 'run_now_sentinel|step_run_now_check|run_now_requested|run_now_accepted|run_now_rejected|run_now_restored' .opencode/commands/deep/assets/deep_research_auto.yaml`
-2. `bash: sed -n '90,185p' .opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts`
+2. `bash: sed -n '90,185p' .opencode/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts`
 ### Expected
 The sentinel is detected at the loop boundary, accepted runs consume it before dispatch, pause emits `run_now_rejected` while preserving the file, and recreated sentinels are restored for the next boundary.
 ### Evidence
@@ -72,7 +72,7 @@ Privilege `deep_research_auto.yaml` for live workflow behavior and `run-now-yaml
 | File | Role |
 |---|---|
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Run-now sentinel path, consume-once branch, pause rejection, and restore detection |
-| `.opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts` | Unit coverage for accepted, rejected, and restored sentinel behavior |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts` | Unit coverage for accepted, rejected, and restored sentinel behavior |
 
 ---
 

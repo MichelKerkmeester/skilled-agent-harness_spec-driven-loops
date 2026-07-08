@@ -36,17 +36,17 @@ This feature covers the JSON outputs that later gates, dashboards, and manual de
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Emits the current dynamic score payload and recommendation labels. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Scores fixture outputs and optional integration-report data against a loaded profile. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/model_benchmark/evaluator_contract.md` | Contract reference | Documents the scorer output schema, benchmark schema, and recommendation threshold. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/references/model_benchmark/benchmark_operator_guide.md` | Operator reference | Defines the benchmark command shape, repeatability rule, and integration-benchmark fields. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Emits the current dynamic score payload and recommendation labels. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Scores fixture outputs and optional integration-report data against a loaded profile. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/model_benchmark/evaluator_contract.md` | Contract reference | Documents the scorer output schema, benchmark schema, and recommendation threshold. |
+| `.opencode/skills/system-deep-loop/deep-improvement/references/model_benchmark/benchmark_operator_guide.md` | Operator reference | Defines the benchmark command shape, repeatability rule, and integration-benchmark fields. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies the replay-stability helper that sits beside benchmark verdicts. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/README.md` | Package reference | Mirrors the current weighted-score threshold and benchmark expectations for operators. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies the replay-stability helper that sits beside benchmark verdicts. |
+| `.opencode/skills/system-deep-loop/deep-improvement/README.md` | Package reference | Mirrors the current weighted-score threshold and benchmark expectations for operators. |
 
 ---
 

@@ -46,7 +46,7 @@ Operators run the exact command sequence for `CP-046` and confirm the expected s
 ```bash
 rm -rf /tmp/cp-046-sandbox /tmp/cp-046-sandbox-baseline /tmp/cp-046-spec
 mkdir -p /tmp/cp-046-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-046-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-046-sandbox
 cp -a /tmp/cp-046-sandbox /tmp/cp-046-sandbox-baseline
 cat > /tmp/cp-046-spec/spec.md <<'EOF'
 ---
@@ -96,7 +96,7 @@ diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo 
 | `.opencode/commands/deep/research.md:7-23` | Markdown setup must resolve inputs before YAML load |
 | `.opencode/commands/deep/research.md:46-149` | single setup prompt and required bindings |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml:143-150` | preflight rejects missing bindings |
-| `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md:46-64` | command-owned workflow is mandatory |
+| `.opencode/skills/system-deep-loop/deep-research/SKILL.md:46-64` | command-owned workflow is mandatory |
 | `.opencode/agents/deep-research.md:34-39` | agent body hard-blocks missing state |
 
 ## 5. SOURCE METADATA

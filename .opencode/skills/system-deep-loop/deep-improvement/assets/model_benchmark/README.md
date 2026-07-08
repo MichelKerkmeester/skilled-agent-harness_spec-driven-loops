@@ -109,8 +109,8 @@ Run from the repository root.
 
 ```bash
 node -e 'for (const f of process.argv.slice(1)) JSON.parse(require("fs").readFileSync(f,"utf8"))' \
-  .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/*.json \
-  .opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/*.json && echo OK
+  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/*.json \
+  .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/*.json && echo OK
 ```
 
 Expected result: every fixture and profile parses as valid JSON and the command prints `OK`.

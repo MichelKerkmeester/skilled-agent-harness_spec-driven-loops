@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review resume after pause removal and report whether the next iteration resumes without replay.
 ### Commands
-1. `bash: rg -n 'resume|re-read|read.state|iteration.*count|last.*iteration|Delete.*pause|sentinel.*removal' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md .opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md`
+1. `bash: rg -n 'resume|re-read|read.state|iteration.*count|last.*iteration|Delete.*pause|sentinel.*removal' .opencode/skills/system-deep-loop/deep-review/references/protocol/loop_protocol.md .opencode/skills/system-deep-loop/deep-review/references/state/state_format.md`
 2. `bash: rg -n 'resume|read_state|re_read|iteration_count|last_iteration|pause.*removed|sentinel.*delete' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml`
-3. `bash: rg -n 'resume|pause.*delete|pick up|restart|continue.*review' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-loop-workflows/deep-review/SKILL.md .opencode/skills/deep-loop-workflows/deep-review/README.md .opencode/commands/deep/review.md`
+3. `bash: rg -n 'resume|pause.*delete|pick up|restart|continue.*review' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md .opencode/commands/deep/review.md`
 ### Expected
 Removing sentinel triggers loop re-entry, JSONL re-read determines last iteration, strategy.md provides dimension state, no iterations re-run, and resume event logged.
 ### Evidence
@@ -71,13 +71,13 @@ Privilege the loop protocol for resume flow and the state format reference for J
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md` | Resume and pause sentinel lifecycle, use the lifecycle branch table |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md` | JSONL state schema for iteration counting on resume, use the state log section |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop_protocol.md` | Resume and pause sentinel lifecycle, use the lifecycle branch table |
+| `.opencode/skills/system-deep-loop/deep-review/references/state/state_format.md` | JSONL state schema for iteration counting on resume, use the state log section |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | State re-read and resume logic in loop entry |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | State re-read and resume logic in loop entry |
 | `.opencode/commands/deep/review.md` | Command entrypoint, resume documentation |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | Troubleshooting and state files, use `ANCHOR:state-files` and `ANCHOR:troubleshooting` |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Rules for state reading, use `ANCHOR:rules` Rule 1 |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | Troubleshooting and state files, use `ANCHOR:state-files` and `ANCHOR:troubleshooting` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Rules for state reading, use `ANCHOR:rules` Rule 1 |
 
 ---
 
@@ -87,4 +87,4 @@ Privilege the loop protocol for resume flow and the state format reference for J
 - Playbook ID: DRV-022
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `05--pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

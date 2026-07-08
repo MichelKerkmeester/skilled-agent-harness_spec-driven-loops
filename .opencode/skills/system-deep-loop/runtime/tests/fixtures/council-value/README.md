@@ -24,8 +24,8 @@ Current state:
 - Six scenario fixture files (`dac-027.ts` through `dac-032.ts`) each export a fixture constant implementing the `ScenarioFixture` interface.
 - `seed-helpers.ts` is the shared utility module providing runtime CLI seeding, artifact tree creation, baseline file counting and `buildScenarioFixture` construction.
 - Each scenario fixture loads test data from `data/scenarios.cjs`, which defines graph seeds (nodes and edges), artifact trees and expected answers.
-- Fixtures call `deep-loop-runtime/scripts/{upsert,query,status,convergence}.cjs --loop-type council` through the shared script helper, with direct DB reads only for fixture-side ranking normalization.
-- The consumer test `tests/integration/council-graph-value-scenarios.vitest.ts` compares `graph.runtimeCalls` against `baseline.fileReads` and writes its performance metrics report to a temp path by default. Set `COUNCIL_VALUE_REPORT_PATH=.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json` only when intentionally refreshing the tracked report.
+- Fixtures call `runtime//scripts/{upsert,query,status,convergence}.cjs --loop-type council` through the shared script helper, with direct DB reads only for fixture-side ranking normalization.
+- The consumer test `tests/integration/council-graph-value-scenarios.vitest.ts` compares `graph.runtimeCalls` against `baseline.fileReads` and writes its performance metrics report to a temp path by default. Set `COUNCIL_VALUE_REPORT_PATH=.opencode/skills/system-deep-loop/runtime/tests/council-graph-value-report.json` only when intentionally refreshing the tracked report.
 - External imports include `node:fs`, `node:path`, `node:url` and `node:module` for filesystem and CommonJS interop operations.
 
 ---
@@ -63,7 +63,7 @@ Current state:
 Run from the repository root.
 
 ```bash
-cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts
+cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../runtime//tests/integration/council-graph-value-scenarios.vitest.ts
 ```
 
 Expected result: exit code 0, all 6 tests pass.
@@ -71,7 +71,7 @@ Expected result: exit code 0, all 6 tests pass.
 To refresh the tracked metrics report intentionally:
 
 ```bash
-COUNCIL_VALUE_REPORT_PATH=.opencode/skills/deep-loop-runtime/tests/council-graph-value-report.json \
+COUNCIL_VALUE_REPORT_PATH=.opencode/skills/system-deep-loop/runtime/tests/council-graph-value-report.json \
   npm run --prefix .opencode/skills/system-spec-kit/mcp_server test:council
 ```
 

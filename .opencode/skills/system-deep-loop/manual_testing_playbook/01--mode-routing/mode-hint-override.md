@@ -40,12 +40,12 @@ research: Investigate whether our deep review findings are repeating because the
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/SKILL.md` contains the mode-hint override rule.
-2. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `research` mode entry.
+1. `.opencode/skills/system-deep-loop/SKILL.md` contains the mode-hint override rule.
+2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
 
 ### Exact Command Sequence
 
-1. **Invoke hub with hint**: `Skill(deep-loop-workflows, "research: Investigate whether our deep review findings are repeating because the source context is stale, and write a research summary before any audit verdict.")`.
+1. **Invoke hub with hint**: `Skill(system-deep-loop, "research: Investigate whether our deep review findings are repeating because the source context is stale, and write a research summary before any audit verdict.")`.
 2. **Capture route**: save the AI response to `/tmp/dlw-MR-004/response.txt`.
 3. **Compare to registry**: confirm the response matches the `research` registry entry.
 
@@ -72,8 +72,8 @@ research: Investigate whether our deep review findings are repeating because the
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - mode-hint override rule.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `research` mode source of truth.
+- `.opencode/skills/system-deep-loop/SKILL.md` - mode-hint override rule.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `research` mode source of truth.
 
 ## 5. SOURCE METADATA
 

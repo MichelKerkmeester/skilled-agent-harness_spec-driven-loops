@@ -36,17 +36,17 @@ The workflow surfaces those disagreements through `question_conflict` JSONL even
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Reducer | Resolves inbox and registry conflicts and emits conflict records. |
-| `.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md` | Asset | Marks key questions as a generated reducer projection and documents conflict handling. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_reducer_registry.md` | Reference | Documents inbox, registry, and reducer ownership boundaries. |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Resolves inbox and registry conflicts and emits conflict records. |
+| `.opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md` | Asset | Marks key questions as a generated reducer projection and documents conflict handling. |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_reducer_registry.md` | Reference | Documents inbox, registry, and reducer ownership boundaries. |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow | Records reducer-discovered `question_conflict` events in the loop state. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies conflict records, operator decisions, and event payload fields. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/question-conflict-ownership.md` | Manual playbook | Verifies conflict ownership and generated key-question behavior. |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies conflict records, operator decisions, and event payload fields. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/question-conflict-ownership.md` | Manual playbook | Verifies conflict ownership and generated key-question behavior. |
 
 ---
 

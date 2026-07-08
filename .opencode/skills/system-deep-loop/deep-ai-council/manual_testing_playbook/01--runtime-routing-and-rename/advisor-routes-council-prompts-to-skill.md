@@ -87,7 +87,7 @@ Check advisor aliases, explicit scorer lane, and native scorer fixtures.
 | File | Role |
 |---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Advisor regression |
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/SKILL.md` | Skill routing metadata |
+| `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` | Skill routing metadata |
 
 ---
 

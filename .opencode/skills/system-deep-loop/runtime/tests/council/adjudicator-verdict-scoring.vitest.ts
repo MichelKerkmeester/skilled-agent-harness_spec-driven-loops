@@ -17,7 +17,7 @@ const { scoreVerdictDelta, scoreVerdictProgression } = require('../../lib/counci
 };
 
 const baseVerdict = {
-  recommended_option: 'extend-deep-loop-runtime',
+  recommended_option: 'extend-runtime',
   confidence: 0.82,
   blocking_disagreements: [],
   material_risks: ['threshold leakage'],

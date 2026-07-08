@@ -56,7 +56,7 @@ Operators run the exact prompt and command sequence for `CP-037` and confirm the
 ```bash
 rm -rf /tmp/cp-037-sandbox /tmp/cp-037-sandbox-baseline /tmp/cp-037-spec
 mkdir -p /tmp/cp-037-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-037-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-037-sandbox
 cp -a /tmp/cp-037-sandbox /tmp/cp-037-sandbox-baseline
 git status --porcelain > /tmp/cp-037-pre.txt
 cat > /tmp/cp-037-task.txt <<'EOF'
@@ -108,9 +108,9 @@ diff /tmp/cp-037-pre.txt /tmp/cp-037-post.txt > /tmp/cp-037-tripwire.diff; echo 
 |---|---|
 | `.opencode/commands/deep/assets/deep_agent-improvement_auto.yaml` | Benchmark-completed event path |
 | `.opencode/commands/deep/assets/deep_agent-improvement_confirm.yaml` | Benchmark-completed event path |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json` | Static benchmark profile |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/*.json` | Static benchmark fixtures |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` | Fixture materializer |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json` | Static benchmark profile |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-fixtures/*.json` | Static benchmark fixtures |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` | Fixture materializer |
 
 ## 5. SOURCE METADATA
 

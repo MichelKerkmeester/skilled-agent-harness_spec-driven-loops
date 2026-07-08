@@ -3,9 +3,9 @@
   "tier": "T2",
   "public": {
     "prompt": "resume the autonomous research loop and check newinforatio convergence on the original investigation topic",
-    "runtime": "deep-loop-workflows",
+    "runtime": "system-deep-loop",
     "mutationBoundary": "read-only",
-    "outputContract": "routes to deep-loop-workflows research mode"
+    "outputContract": "routes to system-deep-loop research mode"
   },
   "provenance": {
     "promptAuthor": "pattern-dogfood",

@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate that new P0 findings block deep-review convergence by forcing a high newFindingsRatio.
 ### Commands
-1. `bash: rg -n 'P0.*override|P0.*block|P0.*convergence|newFindingsRatio.*0\.50|severity.*override|P0.*ratio' .opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md`
+1. `bash: rg -n 'P0.*override|P0.*block|P0.*convergence|newFindingsRatio.*0\.50|severity.*override|P0.*ratio' .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
 2. `bash: rg -n 'P0|severity_override|newFindingsRatio|p0_override|p0_block' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml`
-3. `bash: rg -n 'P0 override|P0.*block.*convergence|newFindingsRatio.*0\.50|severity.*override' .opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md .opencode/skills/deep-loop-workflows/deep-review/SKILL.md .opencode/skills/deep-loop-workflows/deep-review/README.md`
+3. `bash: rg -n 'P0 override|P0.*block.*convergence|newFindingsRatio.*0\.50|severity.*override' .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 P0 finding sets `newFindingsRatio >= 0.50`, this blocks the rolling average signal, the composite score cannot reach 0.60, and the review continues.
 ### Evidence
@@ -71,12 +71,12 @@ Privilege the convergence reference for the exact P0 override rule and verify it
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md` | Canonical convergence math, P0 override rule in severity-weighted section |
+| `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, P0 override rule in severity-weighted section |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | P0 override note, use `ANCHOR:convergence` |
-| `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Severity classification and P0 blocking rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
-| `.opencode/skills/deep-loop-workflows/deep-review/README.md` | Feature summary for P0 override behavior |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | P0 override note, use `ANCHOR:convergence` |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | Severity classification and P0 blocking rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
+| `.opencode/skills/system-deep-loop/deep-review/README.md` | Feature summary for P0 override behavior |
 
 ---
 
@@ -86,4 +86,4 @@ Privilege the convergence reference for the exact P0 override rule and verify it
 - Playbook ID: DRV-017
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `04--convergence-and-recovery/p0-override-blocks-convergence.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

@@ -116,7 +116,7 @@ def _pid_alive(pid: Optional[int]) -> bool:
 
 
 def acquire_lock():
-    """Single-writer lock (mirrors deep-loop-runtime's loop-lock contract): refuse a second
+    """Single-writer lock (mirrors runtime/'s loop-lock contract): refuse a second
     concurrent run; evict a stale lock (dead pid or TTL exceeded)."""
     os.makedirs(STATE_DIR, exist_ok=True)
     for _ in range(3):

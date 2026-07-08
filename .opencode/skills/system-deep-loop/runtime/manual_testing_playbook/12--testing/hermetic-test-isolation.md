@@ -1,6 +1,6 @@
 ---
 title: "DLR-050 -- Hermetic test isolation"
-description: "Manual validation scenario for Hermetic test isolation in the deep-loop-runtime skill."
+description: "Manual validation scenario for Hermetic test isolation in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm Hermetic test isolation behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: testing runtime.
-- Real user request: `Validate Hermetic test isolation and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Hermetic test isolation and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Per-test HOME/DB/temp isolation, child-env injection, cleanup behavior, and parallel fanout-run test coverage.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/12--testing/hermetic-test-isolation.md`.
 
 ### Steps

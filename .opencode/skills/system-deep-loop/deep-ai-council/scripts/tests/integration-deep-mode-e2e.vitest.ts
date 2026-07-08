@@ -219,7 +219,7 @@ describe('deep-ai-council deep mode e2e orchestration', () => {
     await withTempPacket(async (packetSpecFolder) => {
       const captures: DispatchCapture[] = [];
       const divergentVerdicts = [
-        verdictFor('extend-deep-loop-runtime', 0.90),
+        verdictFor('extend-runtime', 0.90),
         verdictFor('create-council-runtime', 0.42, {
           blocking_disagreements: ['runtime ownership unresolved'],
           material_risks: ['package duplication'],

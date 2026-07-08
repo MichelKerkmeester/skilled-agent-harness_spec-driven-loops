@@ -36,17 +36,17 @@ Candidate filtering checks exact normalized text first, then applies category-co
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Reducer | Derives the bounded rejected-pattern index and filters rejected candidates. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md` | Reference | Defines rejected-pattern lifecycle event records. |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md` | Reference | Documents suppression ordering, fuzzy matching, and overflow policy. |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Derives the bounded rejected-pattern index and filters rejected candidates. |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state_jsonl.md` | Reference | Defines rejected-pattern lifecycle event records. |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Reference | Documents suppression ordering, fuzzy matching, and overflow policy. |
 | `.opencode/commands/deep/assets/deep_research_auto.yaml` | Workflow | Runs the rejected-pattern check before candidate selection. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies exact suppression, removal, reset, bounded derivation, and fuzzy category matching. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/rejected-pattern-cache.md` | Manual playbook | Verifies rejected candidates stay out until removed or reset. |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies exact suppression, removal, reset, bounded derivation, and fuzzy category matching. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/rejected-pattern-cache.md` | Manual playbook | Verifies rejected candidates stay out until removed or reset. |
 
 ---
 

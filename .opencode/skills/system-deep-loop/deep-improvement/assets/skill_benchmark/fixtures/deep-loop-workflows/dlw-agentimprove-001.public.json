@@ -3,9 +3,9 @@
   "tier": "T2",
   "public": {
     "prompt": "score this agent candidate and promote it only if the evaluation improves",
-    "runtime": "deep-loop-workflows",
+    "runtime": "system-deep-loop",
     "mutationBoundary": "improvement-mutation-scripts-only",
-    "outputContract": "routes to deep-loop-workflows agent-improvement mode"
+    "outputContract": "routes to system-deep-loop agent-improvement mode"
   },
   "provenance": {
     "promptAuthor": "pattern-dogfood",

@@ -1,6 +1,6 @@
 ---
 title: "DLR-034 -- Lifecycle taxonomy guards"
-description: "Manual validation scenario for Lifecycle taxonomy guards in the deep-loop-runtime skill."
+description: "Manual validation scenario for Lifecycle taxonomy guards in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm Lifecycle taxonomy guards behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: lifecycle runtime.
-- Real user request: `Validate Lifecycle taxonomy guards and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Lifecycle taxonomy guards and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Taxonomy export, legal-transition map, backward-compatible literals, and one-shot resume gate coverage.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/10--lifecycle/lifecycle-taxonomy-guards.md`.
 
 ### Steps
@@ -81,6 +81,6 @@ Lifecycle taxonomy guards matches the documented current reality, the source anc
 - Playbook ID: DLR-034
 - Feature catalog entry: `feature_catalog/10--lifecycle/lifecycle-taxonomy-guards.md`
 - Scenario file path: `manual_testing_playbook/10--lifecycle/lifecycle-taxonomy-guards.md`
-- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime/005-lifecycle-taxonomy-guards`
+- Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//005-lifecycle-taxonomy-guards`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

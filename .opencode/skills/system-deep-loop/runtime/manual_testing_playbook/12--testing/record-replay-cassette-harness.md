@@ -1,6 +1,6 @@
 ---
 title: "DLR-051 -- Record-replay cassette harness"
-description: "Manual validation scenario for Record-replay cassette harness in the deep-loop-runtime skill."
+description: "Manual validation scenario for Record-replay cassette harness in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm Record-replay cassette harness behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: testing runtime.
-- Real user request: `Validate Record-replay cassette harness and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Record-replay cassette harness and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Cassette recording, deterministic replay, redacted path/timestamp placeholders, and convergence/fanout regression coverage.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/12--testing/record-replay-cassette-harness.md`.
 
 ### Steps

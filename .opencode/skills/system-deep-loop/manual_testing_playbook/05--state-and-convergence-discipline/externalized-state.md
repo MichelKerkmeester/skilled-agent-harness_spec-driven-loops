@@ -40,12 +40,12 @@ Before running deep review, explain where iteration state is owned and confirm w
 
 ### Preconditions
 
-1. `.opencode/skills/deep-loop-workflows/mode-registry.json` contains the `review` mode entry.
-2. `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` contains the forbidden invocation patterns and state ownership rules.
+1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
+2. `.opencode/skills/system-deep-loop/deep-review/SKILL.md` contains the forbidden invocation patterns and state ownership rules.
 
 ### Exact Command Sequence
 
-1. **Invoke hub**: `Skill(deep-loop-workflows, "Before running deep review, explain where iteration state is owned and confirm whether I can manually write prompts to /tmp and dispatch them in a loop.")`.
+1. **Invoke hub**: `Skill(system-deep-loop, "Before running deep review, explain where iteration state is owned and confirm whether I can manually write prompts to /tmp and dispatch them in a loop.")`.
 2. **Capture response**: save output to `/tmp/dlw-SC-001/response.txt`.
 3. **Compare discipline**: confirm the response rejects manual `/tmp` iteration state and names command-owned state.
 
@@ -72,9 +72,9 @@ Before running deep review, explain where iteration state is owned and confirm w
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/deep-loop-workflows/SKILL.md` - packet-owned state and hub logic boundary.
-- `.opencode/skills/deep-loop-workflows/mode-registry.json` - `review` route fields.
-- `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` - forbidden manual state and command-owned workflow rules.
+- `.opencode/skills/system-deep-loop/SKILL.md` - packet-owned state and hub logic boundary.
+- `.opencode/skills/system-deep-loop/mode-registry.json` - `review` route fields.
+- `.opencode/skills/system-deep-loop/deep-review/SKILL.md` - forbidden manual state and command-owned workflow rules.
 
 ## 5. SOURCE METADATA
 

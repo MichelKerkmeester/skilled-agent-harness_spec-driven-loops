@@ -28,7 +28,7 @@ Operators use this feature when the real request is: Check whether this council 
 
 The shipped surface is anchored by `deep-ai-council`. The playbook scenario `04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-008.
 
-Current behavior is grounded in `.opencode/skills/deep-loop-workflows/deep-ai-council/references/convergence/convergence_signals.md`, which the scenario identifies as convergence rule. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence_signals.md`, which the scenario identifies as convergence rule. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify two-of-three agreement triggers convergence. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -40,7 +40,7 @@ The user-visible contract is concrete: Verify two-of-three agreement triggers co
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/deep-loop-workflows/deep-ai-council/references/convergence/convergence_signals.md` | Reference | Convergence rule |
+| `.opencode/skills/system-deep-loop/deep-ai-council/references/convergence/convergence_signals.md` | Reference | Convergence rule |
 
 ### Validation And Tests
 

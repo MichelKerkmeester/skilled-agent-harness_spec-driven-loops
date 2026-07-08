@@ -481,11 +481,11 @@ See [`06--non-dev-ai-system/guarded-refine-loop.md`](06--non-dev-ai-system/guard
 
 #### Description
 
-Defines a deep-loop-runtime Lane D self-target profile and command-level `--self-target` guard.
+Defines a runtime/ Lane D self-target profile and command-level `--self-target` guard.
 
 #### How It Works
 
-`deep-loop-runtime.json` freezes scorer and harness surfaces, allows only selected technique-doc paths, and excludes deep-loop-runtime loop/scoring/merge/diagnostic session prefixes. The schema recognizes the self-target fields, `loop_contract.md` documents the allow-list invariant, and `/deep:ai-system-improvement --self-target <profile>` validates the profile before compiling to the existing `non-dev-ai-system-refine` adapter invocation.
+`deep-loop-runtime.json` freezes scorer and harness surfaces, allows only selected technique-doc paths, and excludes runtime/ loop/scoring/merge/diagnostic session prefixes. The schema recognizes the self-target fields, `loop_contract.md` documents the allow-list invariant, and `/deep:ai-system-improvement --self-target <profile>` validates the profile before compiling to the existing `non-dev-ai-system-refine` adapter invocation.
 
 #### Source Files
 

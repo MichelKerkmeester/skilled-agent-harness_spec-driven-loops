@@ -1,6 +1,6 @@
 ---
 title: "DAC-026 -- Council graph MCP surface retired"
-description: "This scenario validates that the council graph MCP tools are absent from the live mk-spec-memory registry and that council graph operations route through deep-loop-runtime --loop-type council."
+description: "This scenario validates that the council graph MCP tools are absent from the live mk-spec-memory registry and that council graph operations route through runtime/ --loop-type council."
 version: 2.3.0.7
 ---
 
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the post-migration boundary: mk-spec-memory no longer exposes a dedicated council graph MCP family, and council graph writes/queries/status/convergence run through `deep-loop-runtime` CLI scripts with `--loop-type council`.
+This scenario validates the post-migration boundary: mk-spec-memory no longer exposes a dedicated council graph MCP family, and council graph writes/queries/status/convergence run through `runtime/` CLI scripts with `--loop-type council`.
 
 ### Why This Matters
 
@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `DAC-026` and confirm th
 
 - Objective: Verify the council graph MCP surface is retired and runtime CLI council support is present.
 - Real user request: Confirm council graph operations no longer consume MCP tool slots.
-- Prompt: `As a council-graph integration validator, assert that mk-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the deep-loop-runtime council CLI scripts for upsert, query, status, and convergence support.`
+- Prompt: `As a council-graph integration validator, assert that mk-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the runtime/ council CLI scripts for upsert, query, status, and convergence support.`
 - Expected execution process: Import `TOOL_DEFINITIONS` or inspect the source registry, grep live MCP source files for the escaped council graph tool-name pattern, then run runtime council script coverage.
 - Expected signals: `TOOL_DEFINITIONS.length === 36`; no live MCP registry/schema/dispatcher entries match `council[_]graph_(upsert|query|status|convergence)`; runtime council integration tests pass.
 - Desired user-visible outcome: The user sees that council graph behavior remains available while the MCP surface is smaller.
@@ -44,13 +44,13 @@ Operators run the exact prompt and command sequence for `DAC-026` and confirm th
 
 ### Prompt
 
-`As a council-graph integration validator, assert that mk-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the deep-loop-runtime council CLI scripts for upsert, query, status, and convergence support.`
+`As a council-graph integration validator, assert that mk-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the runtime/ council CLI scripts for upsert, query, status, and convergence support.`
 
 ### Commands
 
 1. `bash: node --import .opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs -e "import('./.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts').then(({TOOL_DEFINITIONS}) => console.log(JSON.stringify({count: TOOL_DEFINITIONS.length, council: TOOL_DEFINITIONS.filter((tool) => /council[_]graph/.test(tool.name)).map((tool) => tool.name)})))"`
 2. `bash: rg -n 'council[_]graph_(upsert|query|status|convergence)' .opencode/skills/system-spec-kit/mcp_server/tools/index.ts .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts .opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
-3. `bash: cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run --no-coverage ../../deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`
+3. `bash: cd .opencode/skills/system-spec-kit/mcp_server && ./node_modules/.bin/vitest run --no-coverage ../../runtime//tests/integration/council-graph-script.vitest.ts`
 
 ### Expected
 
@@ -67,11 +67,11 @@ Capture tool-definition import output, grep output, and runtime council integrat
 
 ### Failure Triage
 
-If a council graph MCP entry remains, inspect `tools/index.ts`, `tool-schemas.ts`, and `schemas/tool-input-schemas.ts` for stale registry/schema rows. If runtime CLI coverage fails, inspect `deep-loop-runtime/scripts/{upsert,query,status,convergence}.cjs` and `lib/council/**`.
+If a council graph MCP entry remains, inspect `tools/index.ts`, `tool-schemas.ts`, and `schemas/tool-input-schemas.ts` for stale registry/schema rows. If runtime CLI coverage fails, inspect `runtime//scripts/{upsert,query,status,convergence}.cjs` and `lib/council/**`.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-026 | Council graph MCP surface retired | Verify MCP removal plus runtime CLI replacement | `As a council-graph integration validator, assert that mk-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the deep-loop-runtime council CLI scripts for upsert, query, status, and convergence support.` | import tool definitions -> grep live MCP files -> run runtime council integration test | 35 tools, no council graph MCP entries, runtime council tests pass | Import output + grep output + Vitest result | PASS if retired from MCP and covered in runtime CLI | Inspect MCP registry/schema files or runtime scripts |
+| DAC-026 | Council graph MCP surface retired | Verify MCP removal plus runtime CLI replacement | `As a council-graph integration validator, assert that mk-spec-memory exposes 36 tools with no council graph MCP entries, then run or inspect the runtime/ council CLI scripts for upsert, query, status, and convergence support.` | import tool definitions -> grep live MCP files -> run runtime council integration test | 35 tools, no council graph MCP entries, runtime council tests pass | Import output + grep output + Vitest result | PASS if retired from MCP and covered in runtime CLI | Inspect MCP registry/schema files or runtime scripts |
 
 ---
 
@@ -90,7 +90,7 @@ If a council graph MCP entry remains, inspect `tools/index.ts`, `tool-schemas.ts
 |---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Live MCP tool inventory |
 | `.opencode/skills/system-spec-kit/mcp_server/tools/index.ts` | Live MCP dispatcher registry |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Runtime council CLI coverage |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Runtime council CLI coverage |
 
 ---
 

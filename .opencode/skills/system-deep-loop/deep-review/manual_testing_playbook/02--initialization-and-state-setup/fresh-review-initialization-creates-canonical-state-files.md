@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate fresh deep-review initialization and report whether all canonical review state files are created from live templates.
 ### Commands
 1. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_findings_registry|step_create_strategy' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml`
-2. `bash: sed -n '1,220p' .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json && sed -n '1,220p' .opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md`
+2. `bash: sed -n '1,220p' .opencode/skills/system-deep-loop/deep-review/assets/deep_review_config.json && sed -n '1,220p' .opencode/skills/system-deep-loop/deep-review/assets/deep_review_strategy.md`
 3. `bash: rg -n 'state_paths|config:|state_log:|findings_registry:|strategy:|iteration_pattern' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml`
 ### Expected
 The review/ directory is created, config comes from the shared config template, the findings registry comes from the reducer contract, strategy comes from the deep-review strategy template, and the JSONL begins with a config record.
@@ -73,9 +73,9 @@ Check both YAML variants, verify the JSONL init step writes a config record, con
 |---|---|
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Autonomous init steps, inspect `phase_init` and `state_paths` |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Confirm init steps, inspect `phase_init` |
-| `.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json` | Config template |
-| `.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md` | Strategy template |
-| `.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md` | State files table, use `ANCHOR:state-files` |
+| `.opencode/skills/system-deep-loop/deep-review/assets/deep_review_config.json` | Config template |
+| `.opencode/skills/system-deep-loop/deep-review/assets/deep_review_strategy.md` | Strategy template |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md` | State files table, use `ANCHOR:state-files` |
 
 ---
 
@@ -85,4 +85,4 @@ Check both YAML variants, verify the JSONL init step writes a config record, con
 - Playbook ID: DRV-004
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `02--initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-review/` as of 2026-03-28.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.

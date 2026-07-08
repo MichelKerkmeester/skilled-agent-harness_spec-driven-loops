@@ -26,12 +26,12 @@ Runtime primitives consumed by deep-ai-council orchestrators for iterative multi
 
 ## 3. CONSUMERS
 
-- `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs`
-- `.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs`
-- `.opencode/skills/deep-loop-runtime/scripts/{upsert,query,status,convergence}.cjs` for `loopType=council` graph operations
+- `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs`
+- `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs`
+- `.opencode/skills/system-deep-loop/runtime/scripts/{upsert,query,status,convergence}.cjs` for `loopType=council` graph operations
 
 ## 4. TESTS
 
-- `.opencode/skills/deep-loop-runtime/tests/council/`
-- `.opencode/skills/deep-loop-runtime/tests/unit/council-graph-query.vitest.ts`
-- `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`
+- `.opencode/skills/system-deep-loop/runtime/tests/council/`
+- `.opencode/skills/system-deep-loop/runtime/tests/unit/council-graph-query.vitest.ts`
+- `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts`

@@ -20,7 +20,7 @@ version: 1.4.0.4
 
 Repairs corrupted JSONL tails and appends valid records without preserving partial trailing lines.
 
-This feature belongs to the state safety group and is catalogued as F007 in the `deep-loop-runtime` inventory.
+This feature belongs to the state safety group and is catalogued as F007 in the `runtime/` inventory.
 
 ---
 
@@ -28,7 +28,7 @@ This feature belongs to the state safety group and is catalogued as F007 in the 
 
 Valid-prefix detection, corrupt-tail truncation, byte accounting, and append-after-repair.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/deep-loop-runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
 ---
 

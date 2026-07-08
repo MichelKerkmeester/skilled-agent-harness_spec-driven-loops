@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "stopPolicy": "fail-closed",
-  "docPath": ".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md",
-  "resolverScript": ".opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs",
+  "docPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability_matrix.md",
+  "resolverScript": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
   "runtimes": [
     {
       "id": "opencode",

@@ -146,7 +146,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
 
    Validation hook:
-   - `parseExecutorConfig` from `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` runs at config-write time
+   - `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
    - Invalid combinations fail fast with clear errors, including `cli-opencode` without `--model` and reserved-but-unwired executor kinds
 
 4. Search for related spec folders across alias roots:
@@ -323,13 +323,13 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 
 ### Skill Reference
 
-Full protocol documentation: `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md`
+Full protocol documentation: `.opencode/skills/system-deep-loop/deep-review/SKILL.md`
 
 Key references:
-- Review contract: `deep-loop-workflows/deep-review/assets/review_mode_contract.yaml`
-- Review strategy template: `deep-loop-workflows/deep-review/assets/deep_review_strategy.md`
-- Review dashboard template: `deep-loop-workflows/deep-review/assets/deep_review_dashboard.md`
-- Review config template: `deep-loop-workflows/deep-review/assets/deep_review_config.json`
+- Review contract: `system-deep-loop/deep-review/assets/review_mode_contract.yaml`
+- Review strategy template: `system-deep-loop/deep-review/assets/deep_review_strategy.md`
+- Review dashboard template: `system-deep-loop/deep-review/assets/deep_review_dashboard.md`
+- Review config template: `system-deep-loop/deep-review/assets/deep_review_config.json`
 
 ## 3. Results Display
 
@@ -411,7 +411,7 @@ Convergence thresholds and recovery settings used by this command are a governed
 **References:**
 - Optimizer configuration: `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json`
 - Tunable thresholds: `convergenceThreshold`, `stuckThreshold`, `maxIterations`, `compositeStopScore`
-- Convergence reference: `.opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md`
+- Convergence reference: `.opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
 
 ## 4. Next-Step Suggestions
 

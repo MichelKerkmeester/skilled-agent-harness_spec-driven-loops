@@ -90,8 +90,8 @@ If the call errors, inspect `scripts/upsert.cjs` for the empty-input branch (add
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs` | runtime CLI script: explicit empty-input no-op branch (P1-001 remediation) |
-| `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Test: "treats empty upsert as an explicit no-op success" |
+| `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` | runtime CLI script: explicit empty-input no-op branch (P1-001 remediation) |
+| `.opencode/skills/system-deep-loop/runtime/tests/integration/council-graph-script.vitest.ts` | Test: "treats empty upsert as an explicit no-op success" |
 | Internal design notes | CHK-020 lists this behavior |
 
 ---

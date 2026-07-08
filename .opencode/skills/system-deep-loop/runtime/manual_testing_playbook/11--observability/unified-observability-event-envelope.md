@@ -1,6 +1,6 @@
 ---
 title: "DLR-049 -- Unified observability event envelope"
-description: "Manual validation scenario for Unified observability event envelope in the deep-loop-runtime skill."
+description: "Manual validation scenario for Unified observability event envelope in the runtime/ skill."
 version: 1.4.0.15
 ---
 
@@ -24,7 +24,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 
 - Objective: Confirm Unified observability event envelope behaves as documented and remains aligned with its implementation and tests.
 - Layer partition: observability runtime.
-- Real user request: `Validate Unified observability event envelope and report whether the current source, script surface, and tests agree with the deep-loop-runtime contract.`
+- Real user request: `Validate Unified observability event envelope and report whether the current source, script surface, and tests agree with the runtime/ contract.`
 - Expected signals: Envelope normalization, append behavior, core emitter wiring, and status/convergence parity coverage.
 - Pass/fail: PASS if source inspection and matching tests prove the documented behavior; FAIL if expected signals are absent or contradicted.
 
@@ -35,7 +35,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Prerequisites
 
 - Working directory is repository root.
-- `deep-loop-runtime` source tree is present.
+- `runtime/` source tree is present.
 - Feature catalog entry exists at `feature_catalog/11--observability/unified-observability-event-envelope.md`.
 
 ### Steps

@@ -34,16 +34,16 @@ Fixtures live under `assets/skill_benchmark/fixtures/<skill-id>/` as `<id>.publi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/contamination-lint.cjs` | Fixture gate | `buildBannedVocab` (name, frontmatter triggers, `INTENT_SIGNALS`, `RESOURCE_MAP`, private gold) + `lintFixture` substring leak check. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/fixtures/deep-improvement/agent-improve-001.public.json` | Fixture | Hint-free public prompt (`public.prompt`) the benchmark sees. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/fixtures/deep-improvement/agent-improve-001.private.json` | Fixture | Scorer-only gold: `expected.{skillId,advisorLane,intentKeys,resources,negativeActivation}` + `rubric`. |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs` | Utility (imported) | Supplies `parseRouter` used to derive banned router keyword / intent-key / resource tokens. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/contamination-lint.cjs` | Fixture gate | `buildBannedVocab` (name, frontmatter triggers, `INTENT_SIGNALS`, `RESOURCE_MAP`, private gold) + `lintFixture` substring leak check. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/deep-improvement/agent-improve-001.public.json` | Fixture | Hint-free public prompt (`public.prompt`) the benchmark sees. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/deep-improvement/agent-improve-001.private.json` | Fixture | Scorer-only gold: `expected.{skillId,advisorLane,intentKeys,resources,negativeActivation}` + `rubric`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs` | Utility (imported) | Supplies `parseRouter` used to derive banned router keyword / intent-key / resource tokens. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a prompt leaking the skill name is flagged (`passed:false`, `hardLeaks` non-empty), a domain-language prompt passes, and the malformed-fixture row degrades to `unparseable-fixture` with a `loadError`. |
+| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a prompt leaking the skill name is flagged (`passed:false`, `hardLeaks` non-empty), a domain-language prompt passes, and the malformed-fixture row degrades to `unparseable-fixture` with a `loadError`. |
 
 ---
 

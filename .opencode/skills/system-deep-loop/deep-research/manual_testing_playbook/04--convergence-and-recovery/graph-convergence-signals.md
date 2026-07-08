@@ -49,7 +49,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate source-diversity threshold blocks STOP and records blockedStop persistence.
 ### Commands
 1. `bash: rg -n 'SOURCE_DIVERSITY_THRESHOLD|evaluateGraphGates|sourceDiversityGate|allPass' .opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`
-2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md`
+2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
 3. `bash: rg -n 'sourceDiversity|threshold: 0.4|blocking' .opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts`
 ### Expected
 `SOURCE_DIVERSITY_THRESHOLD = 0.4`; low `sourceDiversity` fails the guard; deep-research convergence persists blocked-stop state when legal-stop gates fail.
@@ -74,7 +74,7 @@ Privilege `coverage-graph-convergence.cjs` for the enforcement contract and `ref
 | File | Role |
 |---|---|
 | `.opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs` | Canonical graph stop-guard helper; threshold constants and `evaluateGraphGates()` |
-| `.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md` | Deep-research legal-stop and blocked-stop contract, including graph-aware convergence |
+| `.opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Deep-research legal-stop and blocked-stop contract, including graph-aware convergence |
 | `.opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Cross-layer threshold assertions for graph stop-guard behavior |
 
 ---
@@ -85,4 +85,4 @@ Privilege `coverage-graph-convergence.cjs` for the enforcement contract and `ref
 - Playbook ID: DR-031
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `04--convergence-and-recovery/graph-convergence-signals.md`
-- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/deep-loop-workflows/deep-research/` as of 2026-04-10.
+- Feature catalog status: No `feature_catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-04-10.

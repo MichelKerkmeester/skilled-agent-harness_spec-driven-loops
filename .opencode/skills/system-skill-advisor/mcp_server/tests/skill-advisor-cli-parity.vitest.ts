@@ -37,7 +37,7 @@ const canonicalSkillGraphDb = join(
 
 const parityPrompts: ReadonlyArray<{ readonly skill: string; readonly prompt: string }> = [
   { skill: 'sk-code', prompt: 'Use sk-code to implement a TypeScript test and run the code verification gate.' },
-  { skill: 'sk-code-review', prompt: 'Use sk-code-review to inspect this pull request for blocker findings first.' },
+  { skill: 'sk-code', prompt: 'Use sk-code code-review to inspect this pull request for blocker findings first.' },
   { skill: 'system-spec-kit', prompt: 'Use system-spec-kit for the approved spec folder and update implementation tracking.' },
   { skill: 'system-code-graph', prompt: 'Use system-code-graph for structural callers, imports, and blast-radius analysis.' },
   { skill: 'sk-doc', prompt: 'Use sk-doc to rewrite this install guide with clean markdown headings and examples.' },
@@ -45,7 +45,7 @@ const parityPrompts: ReadonlyArray<{ readonly skill: string; readonly prompt: st
   { skill: 'sk-prompt', prompt: 'Use sk-prompt to improve this prompt and score it with the CLEAR rubric.' },
   { skill: 'mcp-code-mode', prompt: 'Use mcp-code-mode for external MCP orchestration with search_tools, list_tools, and call_tool_chain.' },
   { skill: 'mcp-chrome-devtools', prompt: 'Use mcp-chrome-devtools to inspect the local page and capture console failures.' },
-  { skill: 'deep-loop-workflows', prompt: 'Use deep-loop-workflows for a multi-seat planning council with persisted artifacts.' },
+  { skill: 'system-deep-loop', prompt: 'Use system-deep-loop for a multi-seat planning council with persisted artifacts.' },
 ];
 
 function pythonFixtureUnavailableReason(): string | null {

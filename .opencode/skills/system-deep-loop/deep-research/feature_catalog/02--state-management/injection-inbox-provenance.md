@@ -36,15 +36,15 @@ Direct edits to the strategy key-question block still work as compatibility inpu
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Reducer | Reads `inbox.jsonl`, normalizes provenance, and carries origins into registry-derived question state. |
-| `.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md` | Asset | Documents the inbox schema and legacy-import compatibility behavior. |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer | Reads `inbox.jsonl`, normalizes provenance, and carries origins into registry-derived question state. |
+| `.opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md` | Asset | Documents the inbox schema and legacy-import compatibility behavior. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies inbox questions appear with provenance in registry, strategy, and dashboard output. |
-| `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/injection-inbox-provenance.md` | Manual playbook | Verifies late-question provenance and legacy-import behavior. |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Vitest | Verifies inbox questions appear with provenance in registry, strategy, and dashboard output. |
+| `.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/injection-inbox-provenance.md` | Manual playbook | Verifies late-question provenance and legacy-import behavior. |
 
 ---
 

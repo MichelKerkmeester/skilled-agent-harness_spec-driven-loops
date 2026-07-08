@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "stopPolicy": "fail-closed",
-  "docPath": ".opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md",
-  "resolverScript": ".opencode/skills/deep-loop-workflows/deep-review/scripts/runtime-capabilities.cjs",
+  "docPath": ".opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md",
+  "resolverScript": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
   "runtimes": [
     {
       "id": "opencode",

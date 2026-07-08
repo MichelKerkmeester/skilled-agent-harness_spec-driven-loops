@@ -40,7 +40,7 @@ function finding(overrides: Record<string, unknown> = {}): Record<string, unknow
     topic_slug: 'runtime-boundary',
     round_id: 'round-002',
     finding_type: 'topic-final-verdict',
-    claim: 'Extend deep-loop-runtime with council primitives',
+    claim: 'Extend runtime with council primitives',
     stance: 'support',
     confidence: 0.82,
     source_artifacts: ['ai-council/topics/topic-001-runtime-boundary/rounds/round-002/deliberation.md'],
@@ -54,7 +54,7 @@ describe('deep-ai-council findings registry', () => {
       const appended = appendFinding(packetPath, finding(), { now: '2026-05-23T09:30:00.000Z' });
 
       expect(appended).toMatchObject({
-        fingerprint: 'council:runtime-boundary:extend-deep-loop-runtime-with-council-primitives',
+        fingerprint: 'council:runtime-boundary:extend-runtime-with-council-primitives',
         topic_id: 'topic-001-runtime-boundary',
         finding_type: 'topic-final-verdict',
         source_iter: 'round-002',

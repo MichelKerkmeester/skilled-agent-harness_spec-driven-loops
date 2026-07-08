@@ -1,6 +1,6 @@
 ---
 description: "Benchmark a skill's real-world routing, discovery, efficiency, and usefulness (Lane C). Emits a ranked, remediable Skill Benchmark Report. Modes :auto, :confirm."
-skill: deep-loop-workflows
+skill: system-deep-loop
 ---
 
 # /deep:skill-benchmark
@@ -34,7 +34,7 @@ instructions for a worker to follow (that worker should follow its own dispatch
 prompt, not re-run this command's full setup contract)?
 
 ├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Read `.opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md` and `references/skill_benchmark/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
+│   └─ general_agent_verified = TRUE → Read `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` and `references/skill_benchmark/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
 │
 └─ NO, with concrete evidence this file's content was pasted inline rather than
    invoked as the command itself:
@@ -80,7 +80,7 @@ Resolve:
 ## RUN
 
 ```bash
-node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark \
   --skill=<skill-id-or-root> \
   --outputs-dir=<path> \

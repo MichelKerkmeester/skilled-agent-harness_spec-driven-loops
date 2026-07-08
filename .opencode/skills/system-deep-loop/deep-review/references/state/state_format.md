@@ -413,8 +413,8 @@ Embed the packet inside the iteration file for each new P0/P1 finding. The orche
   "findingId": "F003",
   "claim": "Coverage-graph upsert identity is bare `id`, so cross-session collisions overwrite prior rows.",
   "evidenceRefs": [
-    ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts:154",
-    ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts:292-302"
+    ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:154",
+    ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts:292-302"
   ],
   "counterevidenceSought": "Grepped the module for compound-key upserts, checked migration scripts, and inspected session-isolation.vitest.ts for a collision regression, none found.",
   "alternativeExplanation": "Could be intentional single-tenant design, but REQ-024 explicitly requires session isolation, so this is rejected.",

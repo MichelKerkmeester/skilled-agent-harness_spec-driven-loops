@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../../../../.." && pwd)"
 SANDBOX_DIR="/tmp/cp-improve-sandbox"
-FIXTURE_ROOT="${REPO_ROOT}/.opencode/skills/deep-loop-workflows/deep-improvement/test-fixtures/060-stress-test"
+FIXTURE_ROOT="${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-improvement/test-fixtures/060-stress-test"
 
 usage() {
   echo "Usage: setup-cp-sandbox.sh [--sandbox-dir PATH]"
@@ -86,7 +86,7 @@ copy_file() {
 }
 
 require_path "${REPO_ROOT}/.opencode/commands/deep"
-require_path "${REPO_ROOT}/.opencode/skills/deep-loop-workflows/deep-improvement"
+require_path "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-improvement"
 require_path "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.toml"
@@ -97,7 +97,7 @@ rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"
 
 copy_dir "${REPO_ROOT}/.opencode/commands/deep" "${SANDBOX_DIR}/.opencode/commands/deep"
-copy_dir "${REPO_ROOT}/.opencode/skills/deep-loop-workflows/deep-improvement" "${SANDBOX_DIR}/.opencode/skills/deep-loop-workflows/deep-improvement"
+copy_dir "${REPO_ROOT}/.opencode/skills/system-deep-loop/deep-improvement" "${SANDBOX_DIR}/.opencode/skills/system-deep-loop/deep-improvement"
 
 copy_file "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.md" "${SANDBOX_DIR}/.opencode/agents/cp-improve-target.md"
 copy_file "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md" "${SANDBOX_DIR}/.claude/agents/cp-improve-target.md"

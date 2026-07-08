@@ -72,8 +72,8 @@ The command loads `doctor_update.yaml` and renders the cross-subsystem dashboard
 103:     - "mcp_server/database/context-index.sqlite.pre-doctor-update.*.bak"
 104:     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
 105:     - ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite.pre-doctor-update.*.bak"
-106:     - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
-107:     - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
+106:     - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
+107:     - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
 108:     - "mcp_server/database/speckit-eval.db"  # eval/ablation DB
 109:     - "mcp_server/database/speckit-eval.db.pre-doctor-update.*.bak"
 110:     - "mcp_server/database/.doctor-update.flock"  # single-instance lock
