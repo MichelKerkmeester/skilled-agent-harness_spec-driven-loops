@@ -590,11 +590,12 @@ function primaryIntentBonus(
     if (recommendation.skill === 'mcp-code-mode') return R.mcpToolchainCodeModeBonus;
     if (recommendation.skill === 'sk-code') return R.mcpToolchainSkCodePenalty;
   }
-  // A "code audit" is a code-review task, not a deep-review loop. On the
-  // near-tie this phrase produces, prefer sk-code over deep-review.
+  // A "code audit" is a single-pass code-review task, not a deep-review loop, so
+  // sk-code should win the near-tie this phrase produces. The sk-code bonus
+  // carries that; the deep-loop skills intentionally hold no "code audit"
+  // vocabulary, so they need no counter-penalty here.
   if (/\bcode audit\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code') return R.codeAuditCodeReviewBonus;
-    if (recommendation.skill === 'deep-review' || recommendation.skill === 'deep-loop-workflows') return R.codeAuditDeepReviewPenalty;
   }
   // Colon-command review-loop syntax (":review:auto") invokes the deep-review
   // loop; rank it above single-pass code review.

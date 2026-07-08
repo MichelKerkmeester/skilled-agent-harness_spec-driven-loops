@@ -127,10 +127,9 @@ export interface RoutingCalibration {
   // prompts toward mcp-code-mode rather than the generic code skill.
   readonly mcpToolchainCodeModeBonus: number;
   readonly mcpToolchainSkCodePenalty: number;
-  // "code audit" review-target intent: a code audit is a code-review task, so
-  // it must beat the deep-review loop skill on the near-tie.
+  // "code audit" review-target intent: a code audit is a single-pass code-review
+  // task, so sk-code must beat the deep-review loop skill on the near-tie.
   readonly codeAuditCodeReviewBonus: number;
-  readonly codeAuditDeepReviewPenalty: number;
   // review-loop colon syntax (":review:auto"): rank the deep-review loop above
   // single-pass code review (the direct anchor already lifts its confidence).
   readonly reviewLoopDeepReviewBonus: number;
@@ -216,7 +215,6 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
     mcpToolchainCodeModeBonus: 0.5,
     mcpToolchainSkCodePenalty: -0.18,
     codeAuditCodeReviewBonus: 0.2,
-    codeAuditDeepReviewPenalty: -0.2,
     reviewLoopDeepReviewBonus: 0.5,
     auditRecsCodeReviewBonus: 0.35,
     // Sole defense against advisor self-recommendation on audit prompts; see the
