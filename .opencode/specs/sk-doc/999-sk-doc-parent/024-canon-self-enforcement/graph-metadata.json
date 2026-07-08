@@ -192,7 +192,7 @@
         "source": "derived"
       },
       {
-        "name": "Execute Phase",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Canon is declared once in each hub's `mode-registry.json` and then hand-copied into ~12 consumer dialects that must agree but are only kept in sync by discipline",
     "created_at": "2026-07-07T20:30:08.079Z",
-    "last_save_at": "2026-07-08T03:42:41.865Z",
+    "last_save_at": "2026-07-08T04:03:24.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71c8d6484ff3aa8366b2378d450a1063c6e55d77677fde4f960dec0015acbe8d",
+    "source_fingerprint": "sha256:ee44959575824d2f863cf4a6e4378b9b2911059acd2d64b5c730970fbba09ccf",
     "source_doc_hashes": {
-      "spec.md": "123c9911c4b0bbb1325bcfef5bfccdb76bd482eb634f708e0e05118635f6567d",
-      "plan.md": "aac311d186ba509e013c3a5c4ff3a8322c722937c7bc08b350b377bc90c274d3",
-      "tasks.md": "5dec89cb86273a8e11c918b7f5d69b6e8bbe92c3a199f446394350aaf33f1870",
-      "checklist.md": "3ec5da46bbee46433f9918907fd05bda53f71f554a356babd16fdc4169ed8969",
-      "decision-record.md": "e345986d5eac6b4cc8ae8d6a7c16b1a3d0bc7cd8643c7a9d1b677ff4c83ff44a",
-      "implementation-summary.md": "44dd3de858c2bb30892e55e8aa98dfa42d240ae561ce113af9ac2da2c98859dd"
+      "spec.md": "21d7f1b97924e5f66d602932a548147b388b4d925bd20051fb04063855c75569",
+      "plan.md": "34743b7ea8470d14d37c7e39f39292a2211143a084a4efb4a0ee92792e5bc3fd",
+      "tasks.md": "81fb299f4d450968bac040dc7b6ff47dd37159a1e4cf009c0c6fbb5a4469e9ff",
+      "checklist.md": "4198281f9555f7e2895a19451d50d8a555ff5bc64a4f3fc5936aedc5a963700b",
+      "decision-record.md": "2eb5fdeaaeeaa530919c675425efc827f4c16c1f0bd17e2017207489c1bc38d6",
+      "implementation-summary.md": "aaf8b9ef63e9c9cf28059ed48b45e0f5a1fae2a9832b9af7c574d0c33b7aa812"
     },
     "last_active_child_id": null,
     "last_active_at": null

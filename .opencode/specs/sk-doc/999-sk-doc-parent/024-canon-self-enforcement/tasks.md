@@ -9,18 +9,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-sk-doc-parent/024-canon-self-enforcement"
-    last_updated_at: "2026-07-08T03:42:41Z"
+    last_updated_at: "2026-07-08T04:03:24Z"
     last_updated_by: "claude-opus"
-    recent_action: "Phase 2 trio landed: WU1 CI+CWD, WU3 edge_type, WU12a, WU2 battery"
-    next_safe_action: "Execute Phase 3 DO-NOW: WU4 cmd-binding, WU5 panel, WU6/7/9, WU12bcd"
-    blockers: []
+    recent_action: "Phase 3 DO-NOW done: WU4-7,9,12ab shipped; 4/4; 28 tests green"
+    next_safe_action: "Gate-adjacent WU8/10/11/12c await operator opening the scorer lane"
+    blockers:
+      - "Gate-adjacent tranche (WU8-fix, WU10, WU11, WU12c) gated on the advisor scorer lane + 193-row re-baseline"
     key_files:
       - ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 55
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -74,12 +75,12 @@ _memory:
 - [x] T009 WU2 Cross-language vocabulary-agreement battery; 2 gated sites subset-flagged — `5c61c13f5d`→`84924bd848` (5/5, RED-proven)
 
 **DO-NOW hardening batch**
-- [ ] T010 WU4 [P] [D1] Command-binding existence gate vitest; RED on `/doc:quality` (`sk-doc/mode-registry.json:145`; `.opencode/commands/**`)
-- [ ] T011 WU5 [P] [D2] Read-only doctor freshness panel (3-way graph diff; report-only)
-- [ ] T012 WU6 [P] Checker fixture harness (execFileSync golden+mutant); delete dead `VALID_BACKEND_KINDS` (`parent-skill-check.cjs:58`)
-- [ ] T013 WU7 [P] Discovery-pipeline parity fixtures (TS recursive vs Python depth-1)
-- [ ] T014 WU9 [P] description.json guard — checker rule 8b (no registry-owned `modes`/`backend_kinds`)
-- [ ] T015 WU12(b-d) command-frontmatter⊆toolSurface rule; `importance_tier` reconciliation; surface the family fork (D3)
+- [x] T010 WU4 [P] [D1] Command-binding existence gate; /doc:quality allowlisted (tracked) — `f900e902d3` (RED-proven)
+- [x] T011 WU5 [P] [D2] Read-only doctor freshness panel (names zombie/ghost/family-stall) — `a0efc35c3c`
+- [x] T012 WU6 [P] Checker fixture harness (golden + 6 mutants); deleted dead `VALID_BACKEND_KINDS` — `0f6b6b280a`
+- [x] T013 WU7 [P] Discovery-pipeline parity (TS vs Python; nested divergence locked) — `c476e28b47`
+- [x] T014 WU9 [P] description.json guard rule 8b — `bc96286894`
+- [x] T015 WU12(b,d) 3k command⊆toolSurface rule (RED-proven) + ADR-005 family fork — `7047b9fd0e`. WU12(a) template `84924bd848`. WU12(c) importance_tier → [B] below (docTierWeight reader = scoring shift)
 
 **Gate-adjacent (deferred — advisor scorer lane + 193-row re-baseline)**
 - [B] T016 WU8-fix Flatten object entities (`metadata-sanitizer.ts:60-68`) — shifts scoring; co-lands with re-baseline
@@ -92,10 +93,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T019 `parent-skill-check.cjs` 4/4 (0 warnings) on all four hubs after every DO-NOW unit
-- [ ] T020 Each new vitest green (vocab battery, edge_type CHECK, command-binding, checker fixtures, discovery parity)
-- [ ] T021 A synthetic PR touching a non-deep-loop hub registry triggers the CI gate; checker run from a subdir passes 4a
-- [ ] T022 `validate.sh --strict` on this packet + every touched spec folder
+- [x] T019 `parent-skill-check.cjs` 4/4 (0 warnings) on all four hubs — final sweep clean
+- [x] T020 Each new vitest green — 6 files, 28 passed + 1 expected-fail (WU8 guard); drift-guard 7/7
+- [x] T021 CI glob-enrolls every hub registry; checker from /tmp passes 4a/4b (WU1, proven)
+- [x] T022 `validate.sh --strict` on this packet — exit 0
 - [B] T023 Post-gate: advisor drift-guard + parity vitests green; re-baseline is one committed event
 <!-- /ANCHOR:phase-3 -->
 
@@ -104,11 +105,11 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All twelve council opportunities mapped to work units with real anchors; three forks surfaced
-- [ ] Foundational trio (WU1+WU2+WU3) landed and 4/4 maintained
-- [ ] DO-NOW batch (WU4-7, WU9, WU12) shipped; each carries a green gate
-- [ ] GATE-ADJ tranche (WU8-fix, WU10, WU11) held PREP-only until the operator opens the lane
-- [ ] `validate.sh --strict` clean on this folder (exit 0)
+- [x] All twelve council opportunities mapped to work units with real anchors; three forks surfaced
+- [x] Foundational trio (WU1+WU2+WU3) landed and 4/4 maintained
+- [x] DO-NOW batch (WU4-7, WU9, WU12a/b) shipped; each carries a green gate (WU12c moved gate-adjacent)
+- [x] GATE-ADJ tranche (WU8-fix, WU10, WU11, WU12c) held PREP-only until the operator opens the lane
+- [x] `validate.sh --strict` clean on this folder (exit 0)
 <!-- /ANCHOR:completion -->
 
 ---
