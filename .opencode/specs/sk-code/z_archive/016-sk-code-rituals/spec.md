@@ -1,12 +1,11 @@
 ---
-title: "Feature Specification: sk-code engineering rituals: mutation-check, verification ladder with named blind spots, and decision-economy plus fail-closed-by-construction doctrine [template:level_2/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: sk-code engineering rituals: mutation-check, verification ladder with named blind spots, and decision-economy plus fail-closed-by-construction doctrine"
+description: "Adds mutation-check/claim-falsifier discipline (break the code after green to prove the test bites, distinguish true-RED from compile-RED), a unit-to-in-memory-to-on-server-to-live verification ladder with each rung's blind spot named, and decision-economy plus fail-closed-by-construction doctrine (named seams instead of bare TODOs, never a dead control) to sk-code's SKILL.md Phase 3 verification guidance, without touching smart-router routing."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "sk-code engineering rituals"
+  - "mutation check claim falsifier"
+  - "verification ladder named blind spots"
+  - "decision economy fail closed by construction"
 importance_tier: "normal"
 contextType: "general"
 _memory:

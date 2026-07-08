@@ -4,7 +4,7 @@ description: "Apply the canonical reference/asset frontmatter contract to deep-a
 trigger_phrases:
   - "deep-ai-council frontmatter alignment"
   - "deep-ai-council reference frontmatter"
-  - "skill frontmatter standardization"
+  - "deep-ai-council skill frontmatter standardization"
 importance_tier: "normal"
 contextType: "general"
 _memory:
@@ -48,6 +48,7 @@ FAILURE MODES:
 | **Status** | Complete |
 | **Created** | 2026-06-11 |
 | **Branch** | `scaffold/005-deep-ai-council` |
+| **Related work** | One-fifth of the skill-frontmatter-standardization campaign; siblings: `047-deep-improvement-frontmatter-alignment`, `048-deep-loop-runtime-frontmatter-alignment`, `049-deep-research-frontmatter-alignment`, `050-deep-review-frontmatter-alignment`. Source ledger: `system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/spec.md` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 22 |
 | **Predecessor** | 004-cli-opencode |

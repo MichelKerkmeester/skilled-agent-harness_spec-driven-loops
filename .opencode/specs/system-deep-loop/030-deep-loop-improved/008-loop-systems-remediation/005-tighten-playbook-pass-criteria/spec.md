@@ -3,7 +3,7 @@ title: "Feature Specification: Tighten Playbook Pass Criteria"
 description: "Close the inspection-only pass loophole in high-risk deep-loop-runtime manual testing scenarios."
 trigger_phrases:
   - "tighten playbook pass criteria"
-  - "manual testing playbook"
+  - "deep-loop playbook pass-criteria tightening"
   - "inspection-only loophole"
   - "deep-loop-runtime"
 importance_tier: "high"

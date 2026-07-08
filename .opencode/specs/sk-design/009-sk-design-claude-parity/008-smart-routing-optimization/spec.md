@@ -12,7 +12,7 @@ importance_tier: "high"
 contextType: "spec"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/sk-design/009-sk-design-claude-parity/008-smart-routing-optimization/"
+    packet_pointer: "sk-design/009-sk-design-claude-parity/008-smart-routing-optimization"
     last_updated_at: "2026-07-06"
     last_updated_by: "markdown-leaf-agent"
     recent_action: "Created planned Level 2 smart routing optimization docs."

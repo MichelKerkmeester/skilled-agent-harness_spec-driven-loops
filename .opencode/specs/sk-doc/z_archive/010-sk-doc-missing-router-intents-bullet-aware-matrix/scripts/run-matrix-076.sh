@@ -7,7 +7,7 @@ set -u
 
 REPO_ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
 PB="$REPO_ROOT/.opencode/skills/sk-doc/manual_testing_playbook"
-PHASE2="$REPO_ROOT/.opencode/specs/skilled-agent-orchestration/076-sk-doc-missing-router-intents-bullet-aware-matrix"
+PHASE2="$REPO_ROOT/.opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix"
 LOGS="$PHASE2/logs"
 DELTAS="$PHASE2/deltas"
 

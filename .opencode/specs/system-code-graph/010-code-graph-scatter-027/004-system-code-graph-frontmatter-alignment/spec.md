@@ -4,7 +4,7 @@ description: "Apply the canonical reference/asset frontmatter contract to system
 trigger_phrases:
   - "system-code-graph frontmatter alignment"
   - "system-code-graph reference frontmatter"
-  - "skill frontmatter standardization"
+  - "system-code-graph skill frontmatter standardization"
 importance_tier: "normal"
 contextType: "general"
 _memory:

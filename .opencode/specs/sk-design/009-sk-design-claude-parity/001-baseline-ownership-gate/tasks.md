@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate/"
+    packet_pointer: "sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate"
     last_updated_at: "2026-07-05"
     last_updated_by: "openai-gpt-5.5"
     recent_action: "Executed Phase 001 tasks through evidence capture, decisions, and gate handoff."

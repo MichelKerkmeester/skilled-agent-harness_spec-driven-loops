@@ -39,6 +39,8 @@ _memory:
 ## 1. METADATA
 
 A sub-phase of the 010 graduation follow-ups packet covering the two deep-loop gaps the 009 validation left open: undefined production gauge defaults and an under-scaled dedup proof. Both are measurement-and-decision tasks, not feature changes to shared code.
+
+**Related work**: `039-deep-loop-finding-dedup` covers the same three fanout flags at 17-record scale; this packet's FIX 2 refines its title-only false-collapse-rate result to production scale.
 <!-- /ANCHOR:metadata -->
 
 ---

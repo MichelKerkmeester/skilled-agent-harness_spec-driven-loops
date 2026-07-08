@@ -3,7 +3,7 @@ title: "Feature Specification: Reorganize sk-doc/assets - promote heavy-traffic 
 description: "Phase parent for Reorganize sk-doc/assets - promote heavy-traffic templates to assets root, propagate references across 4 runtimes"
 trigger_phrases:
   - "068-sk-doc-organization"
-  - "phase parent"
+  - "sk-doc assets reorganization phase parent"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

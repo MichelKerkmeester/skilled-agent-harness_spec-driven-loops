@@ -3,7 +3,7 @@ title: "Feature Specification: deep-review P1+P2 remediation"
 description: "Resolve the 7 P1 and 9 P2 findings from the 102 phase-parent deep-review."
 trigger_phrases:
   - "102 p1 p2 remediation"
-  - "deep-review remediation"
+  - "sk-doc deep-review remediation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

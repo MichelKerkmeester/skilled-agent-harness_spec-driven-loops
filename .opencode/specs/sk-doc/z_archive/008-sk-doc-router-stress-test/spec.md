@@ -3,7 +3,7 @@ title: "Feature Specification: sk-doc smart router stress test (15 scenarios x 3
 description: "Phase parent for sk-doc smart router stress test (15 scenarios x 3 CLIs = 45 cell matrix)"
 trigger_phrases:
   - "071-sk-doc-router-stress-test"
-  - "phase parent"
+  - "sk-doc router stress test phase parent"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -2,7 +2,7 @@
 title: "Feature Specification: Release-Readiness Synthesis (Code Graph Playbook 003)"
 description: "Aggregate all 22 code-graph playbook verdicts into a single release-readiness matrix and triage any FAIL/SKIP."
 trigger_phrases:
-  - "release readiness synthesis"
+  - "code-graph release readiness synthesis"
   - "code graph playbook matrix"
   - "029 phase 003 synthesis"
 importance_tier: "normal"

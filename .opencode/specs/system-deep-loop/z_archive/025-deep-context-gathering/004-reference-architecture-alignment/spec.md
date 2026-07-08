@@ -4,7 +4,7 @@ description: "The deep-context skill ships only two flat reference files and a n
 trigger_phrases:
   - "deep-context references"
   - "reference architecture alignment"
-  - "smart router alignment"
+  - "deep-context smart router alignment"
   - "reference subfolders"
   - "sibling reference parity"
 importance_tier: "high"

@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/sk-design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell/"
+    packet_pointer: "sk-design/009-sk-design-claude-parity/002-parent-hub-compatibility-shell"
     last_updated_at: "2026-07-05T22:14:30Z"
     last_updated_by: "openai-gpt-5.5"
     recent_action: "Closed hub shell plan."

@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness/"
+    packet_pointer: "sk-design/009-sk-design-claude-parity/010-feature-catalog-completeness"
     last_updated_at: "2026-07-06"
     last_updated_by: "markdown-agent"
     recent_action: "Marked all T001-T030 tasks complete with real evidence."

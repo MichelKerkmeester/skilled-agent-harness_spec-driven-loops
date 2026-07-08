@@ -3,7 +3,7 @@ title: "Feature Specification: sk-deep-research [system-deep-loop/z_archive/003-
 description: "sk-deep-research ships protocol and command docs but no manual testing playbook package. This spec locks the approved greenfield implementation plan: a 19-scenario playbook across 6 categories, with no feature catalog in place yet."
 trigger_phrases:
   - "sk-deep-research testing playbook"
-  - "manual testing playbook"
+  - "sk-deep-research manual testing playbook"
   - "deep research playbook"
   - "greenfield playbook creation"
 importance_tier: "important"

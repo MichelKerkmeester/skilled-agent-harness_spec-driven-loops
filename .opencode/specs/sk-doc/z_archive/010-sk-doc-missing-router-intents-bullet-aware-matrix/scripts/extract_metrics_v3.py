@@ -19,11 +19,11 @@ from pathlib import Path
 
 REPO = Path("/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public")
 PB = REPO / ".opencode/skills/sk-doc/manual_testing_playbook"
-LOGS_071 = REPO / ".opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/002-matrix-execute/logs"
-DELTAS_071 = REPO / ".opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/002-matrix-execute/deltas"
-LOGS_076 = REPO / ".opencode/specs/skilled-agent-orchestration/076-sk-doc-missing-router-intents-bullet-aware-matrix/logs"
-DELTAS_076 = REPO / ".opencode/specs/skilled-agent-orchestration/076-sk-doc-missing-router-intents-bullet-aware-matrix/deltas"
-PACKET_076 = REPO / ".opencode/specs/skilled-agent-orchestration/076-sk-doc-missing-router-intents-bullet-aware-matrix"
+LOGS_071 = REPO / ".opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute/logs"
+DELTAS_071 = REPO / ".opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute/deltas"
+LOGS_076 = REPO / ".opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/logs"
+DELTAS_076 = REPO / ".opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix/deltas"
+PACKET_076 = REPO / ".opencode/specs/sk-doc/z_archive/010-sk-doc-missing-router-intents-bullet-aware-matrix"
 MATRIX_V3 = PACKET_076 / "matrix_v3.csv"
 
 INTENTS = ["DOC_QUALITY", "OPTIMIZATION", "SKILL_CREATION", "AGENT_COMMAND",

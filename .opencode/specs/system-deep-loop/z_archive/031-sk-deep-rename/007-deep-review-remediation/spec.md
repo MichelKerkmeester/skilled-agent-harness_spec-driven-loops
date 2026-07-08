@@ -3,7 +3,7 @@ title: "Feature Specification: Phase 007 Deep Review Remediation"
 description: "Remediate Packet 070 deep review findings by restoring source-side sk-deep-* rename narratives, replacing stale changelog symlinks, tuning advisor review-loop routing, and documenting approved deferrals."
 trigger_phrases:
   - "070 phase 007"
-  - "deep review remediation"
+  - "deep-loop deep-review remediation"
   - "sk-deep-review to deep-review"
   - "sk-deep-research to deep-research"
   - "iterative review loop"

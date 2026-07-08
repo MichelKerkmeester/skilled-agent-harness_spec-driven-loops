@@ -155,7 +155,7 @@ Add SD-016 (OPTIMIZATION) and SD-017 (INSTALL_GUIDE) scenario files, run the mat
 | Risk | n=17 still small for cross-CLI ranking claims | Low | review-report-v3.md frames numbers as descriptive, not significance-tested |
 | Risk | Bullet-aware parser changes per-CLI numbers in unexpected directions | Med | Run v2 + v3 side-by-side; document delta in review-report-v3.md |
 | Risk | cli-copilot's hallucination behavior is the same on OPTIMIZATION/INSTALL_GUIDE | Low | Confirms 072 finding; reinforces 075 caveat — not a new risk |
-| Dependency | 071 logs at `.opencode/specs/skilled-agent-orchestration/071-.../logs/` still exist | Green |  |
+| Dependency | 071 logs at `.opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute/logs/` still exist | Green |  |
 | Dependency | 071 deltas JSONL still parseable | Green |  |
 <!-- /ANCHOR:risks -->
 

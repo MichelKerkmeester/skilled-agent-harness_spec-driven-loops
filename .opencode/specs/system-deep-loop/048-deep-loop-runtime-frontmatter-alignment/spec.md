@@ -4,7 +4,7 @@ description: "Apply the canonical reference/asset frontmatter contract to deep-l
 trigger_phrases:
   - "deep-loop-runtime frontmatter alignment"
   - "deep-loop-runtime reference frontmatter"
-  - "skill frontmatter standardization"
+  - "deep-loop-runtime skill frontmatter standardization"
 importance_tier: "normal"
 contextType: "general"
 _memory:
@@ -48,6 +48,7 @@ FAILURE MODES:
 | **Status** | Complete |
 | **Created** | 2026-06-11 |
 | **Branch** | `scaffold/008-deep-loop-runtime` |
+| **Related work** | One-fifth of the skill-frontmatter-standardization campaign; siblings: `046-deep-ai-council-frontmatter-alignment`, `047-deep-improvement-frontmatter-alignment`, `049-deep-research-frontmatter-alignment`, `050-deep-review-frontmatter-alignment`. Source ledger: `system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/spec.md` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 8 of 22 |
 | **Predecessor** | 007-deep-improvement |

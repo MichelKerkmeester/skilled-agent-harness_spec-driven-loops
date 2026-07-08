@@ -5,7 +5,7 @@ trigger_phrases:
   - "018-xce-feature-adoption-advisor-codegraph"
   - "advisor 027 feature adoption"
   - "code graph 027 feature adoption"
-  - "phase parent"
+  - "advisor codegraph shared features phase parent"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

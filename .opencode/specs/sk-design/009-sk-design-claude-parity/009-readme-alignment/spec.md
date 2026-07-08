@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "spec"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/sk-design/009-sk-design-claude-parity/009-readme-alignment/"
+    packet_pointer: "sk-design/009-sk-design-claude-parity/009-readme-alignment"
     last_updated_at: "2026-07-06T05:10:00Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Verified all six README edits; validator and canon check pass clean"

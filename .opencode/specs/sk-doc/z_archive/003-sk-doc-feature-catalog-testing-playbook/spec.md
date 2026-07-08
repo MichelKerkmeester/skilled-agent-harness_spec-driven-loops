@@ -3,7 +3,7 @@ title: "Feature Specification: sk-doc Feature [03--commands-and-skills/021-sk-do
 description: "Align system-spec-kit and mcp-coco-index documentation around the shipped feature-catalog and manual-testing-playbook contracts, then update sk-doc templates, references, and routing docs to match the final structure."
 trigger_phrases:
   - "feature catalog"
-  - "manual testing playbook"
+  - "sk-doc manual testing playbook"
   - "sk-doc templates"
   - "references/global"
   - "references/specific"

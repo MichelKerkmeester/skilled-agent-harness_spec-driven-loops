@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: sk-code multi-stack scaffolding (Webflow live + Next.js + Go stubs)"
 description: "Bring sk-code from a single live Webflow stack to a three-stack smart router: WEBFLOW (live), NEXTJS (stub — Next.js 14 + vanilla-extract + motion v12 + react-hook-form/zod + react-aria + Untitled UI), GO (stub — gin + sqlc + Postgres + golang-jwt). Includes naming reconciliation, kerkmeester scrub, sk-doc smart-router alignment, anchor removal, and per-stack reference scaffolding."
-trigger_phrases: ["sk-code multi-stack", "sk-code nextjs go", "056 sk-code", "smart router alignment", "stack scaffolding"]
+trigger_phrases: ["sk-code multi-stack", "sk-code nextjs go", "056 sk-code", "sk-code smart router alignment", "stack scaffolding"]
 importance_tier: "high"
 contextType: "general"
 _memory:

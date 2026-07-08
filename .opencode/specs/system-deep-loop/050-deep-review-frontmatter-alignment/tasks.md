@@ -95,7 +95,7 @@ _memory:
 - **Verification evidence**: See `implementation-summary.md`
 - **Contract origin**: `../001-frontmatter-benefit-investigation/research.md`
 - **Pilot recipe**: `../008-deep-loop-runtime/implementation-summary.md`
-- **Consumer + checker packet**: `skilled-agent-orchestration/145-advisor-doc-trigger-harvest`
+- **Consumer + checker packet**: `skilled-agent-orchestration/z_archive/112-advisor-doc-trigger-harvest`
 <!-- /ANCHOR:cross-refs -->
 
 ---

@@ -9,10 +9,10 @@ from pathlib import Path
 
 REPO = Path("/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public")
 PB = REPO / ".opencode/skills/sk-doc/manual_testing_playbook"
-PHASE2 = REPO / ".opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/002-matrix-execute"
+PHASE2 = REPO / ".opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/002-matrix-execute"
 LOGS = PHASE2 / "logs"
 DELTAS = PHASE2 / "deltas"
-PHASE3 = REPO / ".opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/003-synthesize"
+PHASE3 = REPO / ".opencode/specs/sk-doc/z_archive/008-sk-doc-router-stress-test/003-synthesize"
 MATRIX_CSV = PHASE3 / "matrix.csv"
 
 INTENTS = ["DOC_QUALITY", "OPTIMIZATION", "SKILL_CREATION", "AGENT_COMMAND",

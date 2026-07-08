@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "spec"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment/"
+    packet_pointer: "sk-design/009-sk-design-claude-parity/011-manual-testing-playbook-alignment"
     last_updated_at: "2026-07-06T09:07:56Z"
     last_updated_by: "opencode-gpt-5-5"
     recent_action: "phase-011-complete"

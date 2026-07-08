@@ -8559,23 +8559,18 @@
     },
     {
       "specFolder": "sk-code/z_archive/016-sk-code-rituals",
-      "description": "`sk-code` Phase 3 (`.opencode/skills/sk-code/SKILL.md` lines 41, 208-214) tells the agent to \"run surface verification commands and record evidence,\"",
+      "description": "Adds mutation-check/claim-falsifier discipline, a unit-to-in-memory-to-on-server-to-live verification ladder with named blind spots, and decision-economy plus fail-closed-by-construction doctrine to sk-code's SKILL.md Phase 3 verification guidance.",
       "keywords": [
         "sk-code",
-        "phase",
-        "opencode",
-        "skills",
-        "skill",
-        "lines",
-        "208-214",
-        "tells",
-        "agent",
-        "run",
-        "surface",
-        "verification",
-        "commands",
-        "record",
-        "evidence"
+        "engineering-rituals",
+        "mutation-check",
+        "claim-falsifier",
+        "verification-ladder",
+        "blind-spots",
+        "decision-economy",
+        "fail-closed-by-construction",
+        "true-red",
+        "compile-red"
       ],
       "lastUpdated": "2026-06-23T03:49:48.516Z"
     },
@@ -43626,17 +43621,14 @@
     },
     {
       "specFolder": "system-code-graph/z_archive/008-tree-sitter-migration",
-      "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
+      "description": "Phase 015 laid the tree-sitter adapter and regex-based migration foundation; tree-sitter WASM and default-parser follow-through landed later in Phase 017, with regex retained as fallback.",
       "keywords": [
-        "phase",
-        "addresses",
-        "concrete",
-        "context-preservation",
-        "code-graph",
-        "reliability",
-        "gaps",
-        "tracked",
-        "packet"
+        "tree-sitter",
+        "wasm",
+        "parser-migration",
+        "default-parser",
+        "regex-fallback",
+        "code-graph"
       ],
       "lastUpdated": "2026-07-07T16:12:48.109Z"
     },
