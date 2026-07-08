@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/042-skill-readme-standardization/003-deep-improvement-readme",
+  "description": "The deep-improvement README is a tabular reference card with no problem-first entry point, and its stats carry stale facts (a feature-catalog count of",
+  "keywords": [
+    "deep-improvement",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "stats",
+    "carry",
+    "stale",
+    "facts",
+    "feature-catalog",
+    "count"
+  ],
+  "lastUpdated": "2026-07-08T05:56:44.910Z",
+  "specId": "003",
+  "folderSlug": "deep-improvement-readme",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "042-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

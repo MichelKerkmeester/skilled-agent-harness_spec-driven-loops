@@ -21,12 +21,8 @@
     "system-deep-loop/043-deep-loop-workflow-integrity-audit",
     "system-deep-loop/044-deep-loop-locks-state-and-recovery",
     "system-deep-loop/045-deep-loop-fanout-reliability",
-    "system-deep-loop/046-deep-ai-council-frontmatter-alignment",
-    "system-deep-loop/047-deep-improvement-frontmatter-alignment",
-    "system-deep-loop/048-deep-loop-runtime-frontmatter-alignment",
-    "system-deep-loop/049-deep-research-frontmatter-alignment",
-    "system-deep-loop/050-deep-review-frontmatter-alignment",
     "system-deep-loop/051-deep-loop-parent-skill-alignment",
+    "system-deep-loop/053-skill-frontmatter-standardization",
     "system-deep-loop/z_archive"
   ],
   "manual": {

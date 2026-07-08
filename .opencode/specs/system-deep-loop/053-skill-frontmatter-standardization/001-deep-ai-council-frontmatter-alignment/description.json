@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "parent_id": "system-deep-loop/053-skill-frontmatter-standardization",
+  "specFolder": "system-deep-loop/053-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment",
+  "description": "deep-ai-council reference/asset frontmatter is inconsistent with the repo-wide contract: 15 of 15 references and 2 of 3 assets carry the detailed",
+  "keywords": [
+    "deep-ai-council",
+    "reference",
+    "asset",
+    "frontmatter",
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed"
+  ],
+  "lastUpdated": "2026-07-08T05:58:22.429Z",
+  "specId": "001",
+  "folderSlug": "deep-ai-council-frontmatter-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "053-skill-frontmatter-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

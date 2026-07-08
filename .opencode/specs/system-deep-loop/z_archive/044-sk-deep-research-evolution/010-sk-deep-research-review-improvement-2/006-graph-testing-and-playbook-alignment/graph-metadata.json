@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/044-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
+  "spec_folder": "system-deep-loop/z_archive/044-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment",
+  "parent_id": "system-deep-loop/z_archive/044-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "042.006",
+      "graph testing",
+      "playbook alignment",
+      "coverage graph integration",
+      "graph stress tests",
+      "graph testing plan",
+      "playbook alignment plan",
+      "graph testing tasks",
+      "graph testing checklist",
+      "graph testing implementation summary"
+    ],
+    "key_topics": [
+      "042",
+      "006",
+      "graph",
+      "testing",
+      "playbook",
+      "alignment",
+      "coverage",
+      "integration",
+      "stress",
+      "tests",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "coverage-graph-integration.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-stress.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Testing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 introduced the coverage-graph runtime, but the supporting verification surface was incomplete",
+    "created_at": "2026-04-12T09:02:50.196Z",
+    "last_save_at": "2026-06-23T03:49:49.251Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4a8a5e6a1af2352b6a3784c4cfdd01bd8e26c10722417aa531b520d607fb4852",
+    "source_doc_hashes": {
+      "spec.md": "dda7669a41b659bedeff31593e4a809c6d2b7b1f143c982f8395f229d410953f",
+      "plan.md": "f2b2b9851a17133b562ca06698b4c87b90675ce63043c95bef753b74ef71e15b",
+      "tasks.md": "6c99ddccc5da2e70d3fdb375a2343824af073d89db59d2934567555249aa07cd",
+      "checklist.md": "8455d083d170d5adbdbb3431b7f6d90e800df39428a334e70600ab4283553d6e",
+      "implementation-summary.md": "f6c3eb88bfc18714316eb869e7e4ea8cd37e7547f4731043fcbdbdb954827773"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

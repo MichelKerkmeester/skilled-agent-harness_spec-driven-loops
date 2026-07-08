@@ -1,0 +1,40 @@
+{
+  "specFolder": "system-deep-loop/z_archive/044-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2",
+  "description": "The deep-loop stack still needs stronger runtime truth, better semantic coverage signals, bounded large-target orchestration, and safer offline tuning",
+  "keywords": [
+    "deep-loop",
+    "stack",
+    "still",
+    "needs",
+    "stronger",
+    "runtime",
+    "truth",
+    "better",
+    "semantic",
+    "coverage",
+    "signals",
+    "bounded",
+    "large-target",
+    "orchestration",
+    "safer",
+    "offline",
+    "tuning"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.215Z",
+  "specId": "010",
+  "folderSlug": "sk-deep-research-review-improvement-2",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "044-sk-deep-research-evolution"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "10-04-26_14-14__comprehensive-deep-skills-optimization-session.md",
+    "10-04-26_20-49__massive-implementation-session-5-phases-of-042.md",
+    "10-04-26_21-18__epic-implementation-session-6-phases-of-042-spec.md",
+    "11-04-26_10-29__20-iteration-codex-driven-deep-research-session.md",
+    "11-04-26_15-40__10-iteration-codex-driven-deep-review-gpt-5-4.md"
+  ],
+  "level": "3"
+}

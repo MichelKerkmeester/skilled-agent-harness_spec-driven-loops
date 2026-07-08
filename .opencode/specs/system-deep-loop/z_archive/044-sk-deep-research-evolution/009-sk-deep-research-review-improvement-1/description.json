@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/z_archive/044-sk-deep-research-evolution/009-sk-deep-research-review-improvement-1",
+  "description": "`sk-deep-research` and `sk-deep-review` had sound packet-first loop architectures but implicit contracts: lineage and lifecycle branches were",
+  "keywords": [
+    "sk-deep-research",
+    "sk-deep-review",
+    "sound",
+    "packet-first",
+    "loop",
+    "architectures",
+    "implicit",
+    "contracts",
+    "lineage",
+    "lifecycle",
+    "branches"
+  ],
+  "lastUpdated": "2026-07-08T05:23:49.506Z",
+  "specId": "009",
+  "folderSlug": "sk-deep-research-review-improvement-1",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "044-sk-deep-research-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,33 @@
+{
+  "specFolder": "system-deep-loop/z_archive/044-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
+  "description": "The current deep-loop stack is functional, but it still treats \"converged\" as a mostly inferred state instead of a strongly explained runtime truth",
+  "keywords": [
+    "current",
+    "deep-loop",
+    "stack",
+    "functional",
+    "still",
+    "treats",
+    "converged",
+    "mostly",
+    "inferred",
+    "state",
+    "instead",
+    "strongly",
+    "explained",
+    "runtime",
+    "truth"
+  ],
+  "lastUpdated": "2026-06-23T03:49:49.222Z",
+  "specId": "001",
+  "folderSlug": "runtime-truth-foundation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "044-sk-deep-research-evolution",
+    "010-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

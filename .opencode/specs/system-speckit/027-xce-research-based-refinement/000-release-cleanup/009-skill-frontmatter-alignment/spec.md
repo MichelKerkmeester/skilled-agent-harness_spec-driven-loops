@@ -119,12 +119,12 @@ Planned future implementation scope for audit only. Per-phase detail lives in ea
 | 2 | 002-cli-claude-code/ | Apply the canonical contract to cli-claude-code (0/4 references, 0/2 assets carry the detailed block). | Complete |
 | 3 | 003-cli-codex/ | Apply the canonical contract to cli-codex (1/5 references, 0/2 assets carry the detailed block). | Complete |
 | 4 | 004-cli-opencode/ | Apply the canonical contract to cli-opencode (0/7 references, 0/2 assets carry the detailed block). | Complete |
-| 5 | 005-deep-ai-council/ | Apply the canonical contract to deep-ai-council (15/15 references, 2/3 assets carry the detailed block). | Moved to `system-deep-loop/046-deep-ai-council-frontmatter-alignment/` |
+| 5 | 005-deep-ai-council/ | Apply the canonical contract to deep-ai-council (15/15 references, 2/3 assets carry the detailed block). | Moved to `system-deep-loop/053-skill-frontmatter-standardization/001-deep-ai-council-frontmatter-alignment/` |
 | 6 | 006-deep-context/ | Apply the canonical contract to deep-context (0/10 references, 0/1 assets carry the detailed block). | Complete |
-| 7 | 007-deep-improvement/ | Apply the canonical contract to deep-improvement (17/23 references, 8/11 assets carry the detailed block). | Moved to `system-deep-loop/047-deep-improvement-frontmatter-alignment/` |
-| 8 | 008-deep-loop-runtime/ | Apply the canonical contract to deep-loop-runtime (4/4 references carry the detailed block; no assets). | Moved to `system-deep-loop/048-deep-loop-runtime-frontmatter-alignment/` |
-| 9 | 009-deep-research/ | Apply the canonical contract to deep-research (0/13 references, 0/2 assets carry the detailed block). | Moved to `system-deep-loop/049-deep-research-frontmatter-alignment/` |
-| 10 | 010-deep-review/ | Apply the canonical contract to deep-review (3/10 references, 0/2 assets carry the detailed block). | Moved to `system-deep-loop/050-deep-review-frontmatter-alignment/` |
+| 7 | 007-deep-improvement/ | Apply the canonical contract to deep-improvement (17/23 references, 8/11 assets carry the detailed block). | Moved to `system-deep-loop/053-skill-frontmatter-standardization/002-deep-improvement-frontmatter-alignment/` |
+| 8 | 008-deep-loop-runtime/ | Apply the canonical contract to deep-loop-runtime (4/4 references carry the detailed block; no assets). | Moved to `system-deep-loop/053-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment/` |
+| 9 | 009-deep-research/ | Apply the canonical contract to deep-research (0/13 references, 0/2 assets carry the detailed block). | Moved to `system-deep-loop/053-skill-frontmatter-standardization/004-deep-research-frontmatter-alignment/` |
+| 10 | 010-deep-review/ | Apply the canonical contract to deep-review (3/10 references, 0/2 assets carry the detailed block). | Moved to `system-deep-loop/053-skill-frontmatter-standardization/005-deep-review-frontmatter-alignment/` |
 | 11 | 011-mcp-chrome-devtools/ | Apply the canonical contract to mcp-chrome-devtools (0/3 references carry the detailed block; no assets). | Complete |
 | 12 | 012-mcp-click-up/ | Apply the canonical contract to mcp-click-up (3/3 references carry the detailed block; no assets). | Complete |
 | 13 | 013-mcp-code-mode/ | Apply the canonical contract to mcp-code-mode (0/5 references, 0/2 assets carry the detailed block). | Complete |

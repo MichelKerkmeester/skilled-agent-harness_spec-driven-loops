@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/044-sk-deep-research-evolution/002-sk-deep-research-refinement",
+  "spec_folder": "system-deep-loop/z_archive/044-sk-deep-research-evolution/002-sk-deep-research-refinement",
+  "parent_id": "system-deep-loop/z_archive/044-sk-deep-research-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "deep",
+      "research",
+      "refinement",
+      "spec",
+      "024",
+      "implementation",
+      "plan",
+      "tasks",
+      "via",
+      "verification"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "deep",
+      "research",
+      "refinement",
+      "spec",
+      "024",
+      "implementation",
+      "plan",
+      "tasks",
+      "via",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "scratch/improvement-proposals-v3.md",
+      "scratch/wave1-cross-runtime-audit.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".claude/agents/deep-research.md",
+      ".opencode/agents/deep-research.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "improvement-proposals-v3.md",
+        "kind": "doc",
+        "path": "scratch/improvement-proposals-v3.md",
+        "source": "derived"
+      },
+      {
+        "name": "wave1-cross-runtime-audit.md",
+        "kind": "doc",
+        "path": "scratch/wave1-cross-runtime-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Meta",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Agent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-deep-research system (v1) is functional but has 18 documented improvement proposals (from spec 023) that need rigorous validation, prioritization refinement, and implementation-ready specifications before they can be executed",
+    "created_at": "2026-04-12T09:02:50.173Z",
+    "last_save_at": "2026-07-08T06:06:53.112Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:97a2ea99583c962f2e5ca317e3417f7f08957ac1676efb37a521aa7d74d93aff",
+    "source_doc_hashes": {
+      "spec.md": "1d5606f0b492dcac018e21b018faadc9ef20bbbd350afe55748c330fca839f42",
+      "plan.md": "015ee03821b8da297304c561741e1c8b2c475c840c61b4c65a6cf084a2bc772e",
+      "tasks.md": "78b48f3c7bc68770452ff84870d61fe7fcb00f7de5d20e0bc6fb2dbaf0e53feb",
+      "checklist.md": "6ba3a8bfca2282d15fac4b3d7d23ca95d546f963f6ff81f39e11f529d4af2644",
+      "implementation-summary.md": "d34f7817725a7be065d86ea9fb79ba82a147a310768271036fa988a4fc8cf441",
+      "research/research.md": "39ff7dd8c3578e02dfb5881085cf4b003761a1ac7468450f9dd426695a9e3e8c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

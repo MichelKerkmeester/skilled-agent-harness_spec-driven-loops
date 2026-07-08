@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "parent_id": "system-deep-loop/053-skill-frontmatter-standardization",
+  "specFolder": "system-deep-loop/053-skill-frontmatter-standardization/003-deep-loop-runtime-frontmatter-alignment",
+  "description": "deep-loop-runtime reference/asset frontmatter is inconsistent with the repo-wide contract: 4 of 4 references and 0 of 0 assets carry the detailed",
+  "keywords": [
+    "deep-loop-runtime",
+    "reference",
+    "asset",
+    "frontmatter",
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed"
+  ],
+  "lastUpdated": "2026-07-08T05:58:22.759Z",
+  "specId": "003",
+  "folderSlug": "deep-loop-runtime-frontmatter-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "053-skill-frontmatter-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "parent_id": "system-deep-loop/053-skill-frontmatter-standardization",
+  "specFolder": "system-deep-loop/053-skill-frontmatter-standardization/002-deep-improvement-frontmatter-alignment",
+  "description": "deep-improvement reference/asset frontmatter is inconsistent with the repo-wide contract: 17 of 23 references and 8 of 11 assets carry the detailed",
+  "keywords": [
+    "deep-improvement",
+    "reference",
+    "asset",
+    "frontmatter",
+    "inconsistent",
+    "repo-wide",
+    "contract",
+    "references",
+    "assets",
+    "carry",
+    "detailed"
+  ],
+  "lastUpdated": "2026-07-08T05:58:22.571Z",
+  "specId": "002",
+  "folderSlug": "deep-improvement-frontmatter-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "053-skill-frontmatter-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

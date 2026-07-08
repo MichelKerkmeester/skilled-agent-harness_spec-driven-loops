@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/044-sk-deep-research-evolution/004-sk-deep-research-first-upgrade",
+  "spec_folder": "system-deep-loop/z_archive/044-sk-deep-research-evolution/004-sk-deep-research-first-upgrade",
+  "parent_id": "system-deep-loop/z_archive/044-sk-deep-research-evolution",
+  "children_ids": [
+    "system-deep-loop/z_archive/044-sk-deep-research-evolution/004-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "029",
+      "deep research",
+      "first upgrade",
+      "researcherskill",
+      "autoresearch",
+      "deep research plan",
+      "first upgrade plan",
+      "deep research tasks",
+      "first upgrade tasks",
+      "implementation",
+      "summary",
+      "deep"
+    ],
+    "key_topics": [
+      "029",
+      "deep",
+      "research",
+      "first",
+      "upgrade",
+      "researcherskill",
+      "autoresearch",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "sk-deep-research"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/research.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "First Upgrade",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Capture",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The first sk-deep-research upgrade needed grounded input from comparable autonomous research systems",
+    "created_at": "2026-04-12T09:02:50.176Z",
+    "last_save_at": "2026-07-08T06:06:53.337Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:3ddae02f2097b7a60701999758aa82b4559c1eeaf7c6f6809c0a3f35ff50c07e",
+    "source_doc_hashes": {
+      "spec.md": "4d27ee87537d4ec6b8a03eae9f12ce65cf9acfdbf0ae53b2c4d9ae2ac9b3da12",
+      "plan.md": "04372a304c978feebbf56b5f383282b6da22c3e72606927d3243458d6e8473d9",
+      "tasks.md": "b85766d7bfb99d03177ac7ea9caa603615f9f786601ffb678f29caf725f27009",
+      "implementation-summary.md": "3932f1fefdd06edea450d62b8967e915afc94f889f8a217715f07acc5722b52c",
+      "research/research.md": "685df80f8e8fbdd903b45b99cb02c632ae1ef6cad33537c53cc1294ca96ac14a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
