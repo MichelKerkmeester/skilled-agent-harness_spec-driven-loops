@@ -168,6 +168,21 @@ routes:
       - "mode-registry drift guard"
       - "single graph-metadata identity"
 
+  - target: skill-graph-freshness
+    yaml: doctor_skill-graph-freshness.yaml
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; 3-way diffs the skill-graph representations and reports drift, writes nothing)"
+    mcp_tools: []   # script-only read; no MCP calls
+    script_invocations:
+      - 'node .opencode/commands/doctor/scripts/skill-graph-freshness.cjs'
+    trigger_phrases:
+      - "skill graph freshness"
+      - "skill-graph zombie ghost nodes"
+      - "compiled vs sqlite vs disk graph drift"
+      - "reindex staleness check"
+
   - target: fable-mode
     yaml: doctor_fable-mode.yaml
     setup_vars: [execution_mode, target_dir]
