@@ -490,6 +490,24 @@ function main() {
             softFail(`3i: mode "${label}" grants Write but is mutatesWorkspace:false with no writeScopeNote (Write mutates the workspace — set mutatesWorkspace:true or annotate a non-project Write scope)`);
           }
         }
+
+        // 3k — a bound command's frontmatter must not grant tools beyond the mode's
+        // toolSurface.allowed; the command is an entrypoint into the mode, and a wider grant
+        // silently escalates the mode's declared tool contract (3j covers the hub frontmatter).
+        if (typeof mode.command === 'string' && ts && typeof ts === 'object' && Array.isArray(ts.allowed)) {
+          const cm = mode.command.match(/^\/([a-z][a-z0-9-]*):([a-z0-9-]+)$/);
+          const cmdFile = cm ? path.join(REPO_ROOT, '.opencode', 'commands', cm[1], `${cm[2]}.md`) : null;
+          if (cmdFile && fs.existsSync(cmdFile)) {
+            const fm = fs.readFileSync(cmdFile, 'utf8').match(/^allowed-tools:\s*\[([^\]]*)\]/m);
+            if (fm) {
+              const modeAllowed = new Set(ts.allowed);
+              const over = fm[1].split(',').map((t) => t.trim()).filter(Boolean).filter((t) => !modeAllowed.has(t));
+              if (over.length > 0) {
+                softFail(`3k: command ${mode.command} frontmatter grants tool(s) [${over.join(', ')}] beyond mode "${label}" toolSurface.allowed`);
+              }
+            }
+          }
+        }
       }
 
       if (packetOk) pass('3c: every mode packet resolves to an existing sub-directory');
