@@ -5,7 +5,7 @@ description: "Unified deep-loop workflow skill: routes active requests to resear
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
 
-<!-- Keywords: deep-loop-workflows, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, context-gathering, reuse-catalog, autoresearch, iterative-research, review-loop, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, skill-benchmark, non-dev-ai-system, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
+<!-- Keywords: deep-loop-workflows, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, context-gathering, reuse-catalog, autoresearch, iterative-research, review-loop, deep-review-wave, release-readiness, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, skill-benchmark, non-dev-ai-system, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
 
 # Deep Loop Workflows
 

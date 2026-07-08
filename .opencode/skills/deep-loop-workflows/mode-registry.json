@@ -67,7 +67,7 @@
       "command": "/deep:review",
       "agent": "deep-review",
       "artifactRoot": "review/",
-      "aliases": ["deep-review", "review loop", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness"],
+      "aliases": ["deep-review", "review loop", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave"],
       "advisorRouting": {
         "routingClass": "lexical",
         "legacyAdvisorId": "deep-review",

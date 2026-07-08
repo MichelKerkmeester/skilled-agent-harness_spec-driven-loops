@@ -57,7 +57,7 @@
       "keywords": ["deep-research", "research loop", "iterative investigation workflow", "research convergence detection", "autoresearch", "iterative-research"]
     },
     "review-aliases": {
-      "keywords": ["deep-review", "review loop", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness"]
+      "keywords": ["deep-review", "review loop", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave"]
     },
     "ai-council-aliases": {
       "keywords": ["deep-ai-council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council"]
