@@ -46,6 +46,49 @@ describe('skill-advisor embedder schema', () => {
     });
   });
 
+  it('round-trips the provider alongside name and dim when supplied', () => {
+    const database = memoryDb();
+
+    setActiveEmbedder(database, 'nomic-embed-text-v1.5', 768, 'ollama');
+
+    expect(getActiveEmbedder(database)).toEqual({
+      name: 'nomic-embed-text-v1.5',
+      dim: 768,
+      provider: 'ollama',
+    });
+  });
+
+  it('omits provider from the returned pointer when set without one', () => {
+    const database = memoryDb();
+
+    setActiveEmbedder(database, 'nomic-embed-text-v1.5', 768);
+
+    const active = getActiveEmbedder(database);
+    expect(active).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
+    expect(active).not.toHaveProperty('provider');
+  });
+
+  it('preserves an already-persisted provider when a later 3-arg call omits it', () => {
+    const database = memoryDb();
+
+    setActiveEmbedder(database, 'nomic-embed-text-v1.5', 768, 'ollama');
+    expect(getActiveEmbedder(database)).toEqual({
+      name: 'nomic-embed-text-v1.5',
+      dim: 768,
+      provider: 'ollama',
+    });
+
+    // The 3-arg form omits provider entirely — it must NOT clobber the
+    // already-persisted value with an empty-string sentinel.
+    setActiveEmbedder(database, 'nomic-embed-text-v1.5', 768);
+
+    expect(getActiveEmbedder(database)).toEqual({
+      name: 'nomic-embed-text-v1.5',
+      dim: 768,
+      provider: 'ollama',
+    });
+  });
+
   it('creates vec_768 idempotently', () => {
     const database = memoryDb();
 

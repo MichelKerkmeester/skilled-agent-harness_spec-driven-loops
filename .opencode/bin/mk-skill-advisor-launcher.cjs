@@ -125,6 +125,12 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_LAUNCHER_BRIDGE_DISABLED',
   'SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN',
   'SPECKIT_MAX_SECONDARY_CLIENTS',
+  // Dedicated skill-advisor-namespaced override for the child's MEMORY_DB_PATH
+  // pointer; see createChildEnv() for why the bare MEMORY_DB_PATH name is
+  // deliberately NOT in this allowlist (its repo-wide established meaning is
+  // mk-spec-memory's own database, so blindly forwarding it would silently
+  // reopen the cross-server DB-path leak createChildEnv() closes).
+  'MK_SKILL_ADVISOR_MEMORY_DB_PATH',
 ]);
 let childProcess = null;
 let leaseStartedAt = null;
@@ -235,9 +241,24 @@ function debug(message) {
 }
 
 function createChildEnv(sourceEnv = process.env) {
-  return Object.fromEntries(
+  const filtered = Object.fromEntries(
     Object.entries(sourceEnv).filter(([key, value]) => CHILD_ENV_ALLOWLIST.has(key) && typeof value === 'string'),
   );
+  // Without an explicit MEMORY_DB_PATH, shared/embeddings/factory.ts's
+  // resolveConfiguredDatabaseCandidates() falls back to walking up from its own
+  // on-disk realpath, which resolves through the @spec-kit/shared symlink to
+  // mk-spec-memory's package root — not this advisor's own database. Compute
+  // the child's MEMORY_DB_PATH explicitly from the dedicated skill-advisor
+  // override var (never from a blindly-forwarded ambient MEMORY_DB_PATH — that
+  // name's repo-wide established meaning is mk-spec-memory's own database, so
+  // treating it as "already configured for skill-advisor" would silently
+  // reopen the exact leak this pointer exists to prevent).
+  const explicitOverride = typeof sourceEnv.MK_SKILL_ADVISOR_MEMORY_DB_PATH === 'string'
+    && sourceEnv.MK_SKILL_ADVISOR_MEMORY_DB_PATH.length > 0
+    ? sourceEnv.MK_SKILL_ADVISOR_MEMORY_DB_PATH
+    : undefined;
+  filtered.MEMORY_DB_PATH = explicitOverride ?? advisorDbPath();
+  return filtered;
 }
 
 function refreshPaths() {
@@ -1369,6 +1390,7 @@ if (require.main === module) {
 module.exports = {
   acquireBootstrapLock,
   acquireOwnerLeaseFile,
+  advisorDbPath,
   artifactsReady,
   bridgeStdioThroughSessionProxy,
   classifyOwnerLease,

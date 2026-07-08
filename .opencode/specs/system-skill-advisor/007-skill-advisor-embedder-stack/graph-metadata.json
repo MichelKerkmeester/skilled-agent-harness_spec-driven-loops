@@ -12,7 +12,8 @@
     "system-skill-advisor/007-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory",
     "system-skill-advisor/007-skill-advisor-embedder-stack/006-skill-advisor-zombie-launcher-fix",
     "system-skill-advisor/007-skill-advisor-embedder-stack/007-skill-advisor-compat-contract-consolidation",
-    "system-skill-advisor/007-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars"
+    "system-skill-advisor/007-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars",
+    "system-skill-advisor/007-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2"
   ],
   "manual": {
     "depends_on": [],

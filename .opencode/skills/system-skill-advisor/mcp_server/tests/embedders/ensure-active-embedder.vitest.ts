@@ -11,6 +11,9 @@
 //   3. Pointer is orphan (embeddinggemma-300m, post-purge) → cascade fires
 //      → winner persisted (migration safety net).
 //   4. `contentType` parameter is plumbed through to the cascade.
+//   5. Pointer is valid but has no persisted provider row (pre-existing or
+//      set via the bare 3-arg call) → provider is backfilled without
+//      re-running the cascade.
 // ───────────────────────────────────────────────────────────────
 
 import Database from 'better-sqlite3';
@@ -54,8 +57,8 @@ describe('ensureActiveEmbedder', () => {
     const result = await ensureActiveEmbedder(db, { autoSelect });
 
     expect(autoSelect).toHaveBeenCalledTimes(1);
-    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
-    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
+    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
+    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
   });
 
   it('skips the cascade when a concrete known pointer is already persisted', async () => {
@@ -67,7 +70,22 @@ describe('ensureActiveEmbedder', () => {
     const result = await ensureActiveEmbedder(db, { autoSelect });
 
     expect(autoSelect).not.toHaveBeenCalled();
-    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
+    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
+  });
+
+  it('backfills provider on a valid pre-existing pointer with no persisted provider row', async () => {
+    const db = memoryDb();
+    // Old-shape 3-arg call — no provider persisted.
+    setActiveEmbedder(db, 'nomic-embed-text-v1.5', 768);
+    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
+
+    const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));
+
+    const result = await ensureActiveEmbedder(db, { autoSelect });
+
+    expect(autoSelect).not.toHaveBeenCalled();
+    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
+    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
   });
 
   it('runs the cascade when pointer references a manifest no longer in the registry', async () => {
@@ -80,8 +98,8 @@ describe('ensureActiveEmbedder', () => {
     const result = await ensureActiveEmbedder(db, { autoSelect });
 
     expect(autoSelect).toHaveBeenCalledTimes(1);
-    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
-    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
+    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
+    expect(getActiveEmbedder(db)).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
   });
 
   it('passes contentType through to the cascade (defaults to text)', async () => {
@@ -113,6 +131,6 @@ describe('ensureActiveEmbedder', () => {
 
     expect(autoSelect).toHaveBeenCalledTimes(1);
     expect(first).toEqual(second);
-    expect(first).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
+    expect(first).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' });
   });
 });

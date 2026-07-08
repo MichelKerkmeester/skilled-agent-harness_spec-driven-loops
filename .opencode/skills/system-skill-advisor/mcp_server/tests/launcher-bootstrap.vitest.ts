@@ -11,10 +11,12 @@ import { initDb, getDb, closeDb, resolveSkillGraphDbDir } from '../lib/skill-gra
 import { isLeaseHeld, acquireSkillGraphLease, openLeaseDatabase } from '../lib/daemon/lease.js';
 import { rebuildAdvisorIndex } from '../handlers/advisor-rebuild.js';
 import type { AdvisorStatusOutput } from '../schemas/advisor-tool-schemas.js';
+import { resolveProvider } from '@spec-kit/shared/embeddings/factory.js';
 
 const require = createRequire(import.meta.url);
 const launcher = require('../../../../bin/mk-skill-advisor-launcher.cjs') as {
   acquireBootstrapLock: (options?: { staleMs?: number; timeoutMs?: number; retrySleepMs?: number }) => Promise<boolean>;
+  advisorDbPath: () => string;
   artifactsReady: () => boolean;
   configureLauncherPathsForTesting: (paths: { mcpDir: string; dbDir: string; lockDir: string; stateFile: string }) => void;
   createChildEnv: (sourceEnv?: NodeJS.ProcessEnv) => Record<string, string>;
@@ -70,6 +72,8 @@ describe('mk-skill-advisor launcher bootstrap', () => {
   });
 
   it('filters parent environment before spawning npm or the advisor server', () => {
+    configureTempLauncher();
+    const memoryDbPath = launcher.advisorDbPath();
     expect(launcher.createChildEnv({
       PATH: '/bin',
       HOME: '/tmp/home',
@@ -80,10 +84,13 @@ describe('mk-skill-advisor launcher bootstrap', () => {
       PATH: '/bin',
       HOME: '/tmp/home',
       MK_SKILL_ADVISOR_DB_DIR: '/tmp/db',
+      MEMORY_DB_PATH: memoryDbPath,
     });
   });
 
   it('passes the committed daemon trust default through to the advisor child env', () => {
+    configureTempLauncher();
+    const memoryDbPath = launcher.advisorDbPath();
     const opencodeConfig = JSON.parse(sourceText('../../../../../opencode.json')) as {
       mcp?: { mk_skill_advisor?: { environment?: Record<string, string> } };
     };
@@ -96,10 +103,13 @@ describe('mk-skill-advisor launcher bootstrap', () => {
       AWS_SECRET_ACCESS_KEY: 'should-not-leak',
     })).toEqual({
       MK_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
+      MEMORY_DB_PATH: memoryDbPath,
     });
   });
 
   it('passes advisor shadow feature flags through to the child env', () => {
+    configureTempLauncher();
+    const memoryDbPath = launcher.advisorDbPath();
     expect(launcher.createChildEnv({
       SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
       SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
@@ -107,12 +117,226 @@ describe('mk-skill-advisor launcher bootstrap', () => {
     })).toEqual({
       SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
       SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
+      MEMORY_DB_PATH: memoryDbPath,
     });
+  });
+
+  it('defaults the child MEMORY_DB_PATH to the advisor own database, not mk-spec-memory context-index.sqlite', () => {
+    configureTempLauncher();
+    const childEnv = launcher.createChildEnv({ PATH: '/bin' });
+
+    expect(childEnv.MEMORY_DB_PATH).toBe(launcher.advisorDbPath());
+    expect(childEnv.MEMORY_DB_PATH).toMatch(/skill-graph\.sqlite$/);
+    expect(childEnv.MEMORY_DB_PATH).not.toMatch(/context-index\.sqlite$/);
+  });
+
+  it('honors an explicit MK_SKILL_ADVISOR_MEMORY_DB_PATH override instead of the default', () => {
+    configureTempLauncher();
+    const explicitOverride = '/tmp/some-other-test-or-external-db/custom.sqlite';
+
+    const childEnv = launcher.createChildEnv({
+      PATH: '/bin',
+      MK_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
+    });
+
+    expect(childEnv.MEMORY_DB_PATH).toBe(explicitOverride);
+  });
+
+  it('009-REQ-004/005: ignores an ambient MEMORY_DB_PATH that was not set via the dedicated override var', () => {
+    configureTempLauncher();
+    const memoryDbPath = launcher.advisorDbPath();
+    // Mimics mk-spec-memory's own established use of this exact env var name —
+    // a legacy shell/script exporting it must not silently reopen the
+    // cross-server DB-path leak the advisor default protects against.
+    const ambientMemoryDbPath = '/tmp/some-other-service/context-index.sqlite';
+
+    const childEnv = launcher.createChildEnv({ PATH: '/bin', MEMORY_DB_PATH: ambientMemoryDbPath });
+
+    expect(childEnv.MEMORY_DB_PATH).toBe(memoryDbPath);
+    expect(childEnv.MEMORY_DB_PATH).not.toBe(ambientMemoryDbPath);
+  });
+
+  it('009-REQ-004: the dedicated override wins even when a hostile ambient MEMORY_DB_PATH is also present', () => {
+    configureTempLauncher();
+    const explicitOverride = '/tmp/some-other-test-or-external-db/custom.sqlite';
+    const ambientMemoryDbPath = '/tmp/some-other-service/context-index.sqlite';
+
+    const childEnv = launcher.createChildEnv({
+      PATH: '/bin',
+      MEMORY_DB_PATH: ambientMemoryDbPath,
+      MK_SKILL_ADVISOR_MEMORY_DB_PATH: explicitOverride,
+    });
+
+    expect(childEnv.MEMORY_DB_PATH).toBe(explicitOverride);
+  });
+});
+
+describe('mk-skill-advisor launcher end-to-end MEMORY_DB_PATH resolution (009-REQ-008)', () => {
+  const tempDirs: string[] = [];
+  const restoreKeys = ['MEMORY_DB_PATH', 'SPEC_KIT_DB_DIR', 'SPECKIT_DB_DIR', 'EMBEDDINGS_PROVIDER', 'VOYAGE_API_KEY', 'OPENAI_API_KEY'] as const;
+  const originalEnv: Partial<Record<(typeof restoreKeys)[number], string>> = {};
+  for (const key of restoreKeys) {
+    originalEnv[key] = process.env[key];
+  }
+
+  afterEach(() => {
+    for (const key of restoreKeys) {
+      const value = originalEnv[key];
+      if (value === undefined) {
+        delete process.env[key];
+      } else {
+        process.env[key] = value;
+      }
+    }
+    while (tempDirs.length > 0) {
+      const dir = tempDirs.pop();
+      if (dir) rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  // Provider resolution must be driven by the fixture DBs alone, not by
+  // whatever the ambient shell/CI environment happens to have set.
+  function clearNonDbProviderSignals(): void {
+    delete process.env.EMBEDDINGS_PROVIDER;
+    delete process.env.VOYAGE_API_KEY;
+    delete process.env.OPENAI_API_KEY;
+    delete process.env.SPEC_KIT_DB_DIR;
+    delete process.env.SPECKIT_DB_DIR;
+  }
+
+  function configureTempLauncherForE2e(): void {
+    const root = mkdtempSync(join(tmpdir(), 'mk-skill-advisor-e2e-'));
+    tempDirs.push(root);
+    const mcpDir = join(root, 'mcp_server');
+    const dbDir = join(mcpDir, 'database');
+    mkdirSync(join(mcpDir, 'dist/mcp_server'), { recursive: true });
+    mkdirSync(dbDir, { recursive: true });
+    launcher.configureLauncherPathsForTesting({
+      mcpDir,
+      dbDir,
+      lockDir: join(dbDir, '.mk-skill-advisor-launcher.lockdir'),
+      stateFile: join(dbDir, '.mk-skill-advisor-launcher.json'),
+    });
+  }
+
+  // A valid, resolvable ollama pointer: name/dim match the shared registry's
+  // sole real manifest, with the vec_<dim> + vec_memories_rowids tables the
+  // shared factory's active-Ollama gate requires before it will honor the
+  // pointer at all.
+  function createResolvableOllamaFixture(dbPath: string): void {
+    const DatabaseSync = loadNodeSqlite();
+    const db = new DatabaseSync(dbPath);
+    try {
+      db.prepare('CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL)').run();
+      const setMetadata = db.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)');
+      setMetadata.run('active_embedder_name', 'nomic-embed-text-v1.5');
+      setMetadata.run('active_embedder_dim', '768');
+      setMetadata.run('active_embedder_provider', 'ollama');
+      db.prepare('CREATE TABLE vec_768 (id INTEGER PRIMARY KEY, embedding BLOB NOT NULL)').run();
+      db.prepare("INSERT INTO vec_768 (id, embedding) VALUES (1, x'00')").run();
+      db.prepare('CREATE TABLE vec_memories_rowids (rowid INTEGER PRIMARY KEY, memory_id INTEGER NOT NULL)').run();
+      db.prepare('INSERT INTO vec_memories_rowids (rowid, memory_id) VALUES (1, 1)').run();
+    } finally {
+      db.close();
+    }
+  }
+
+  // A deliberately unresolvable pointer at a wrong-shaped DB: same manifest
+  // name but a dim that does not match the registry's known dim for it, so
+  // the shared factory's active-Ollama gate rejects it and falls through to
+  // hf-local. Stands in for "a DB that is not the advisor's own" without
+  // depending on any real repo state.
+  function createUnresolvableFixture(dbPath: string): void {
+    const DatabaseSync = loadNodeSqlite();
+    const db = new DatabaseSync(dbPath);
+    try {
+      db.prepare('CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL)').run();
+      const setMetadata = db.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)');
+      setMetadata.run('active_embedder_name', 'nomic-embed-text-v1.5');
+      setMetadata.run('active_embedder_dim', '512');
+      setMetadata.run('active_embedder_provider', 'ollama');
+    } finally {
+      db.close();
+    }
+  }
+
+  it('the real launcher-derived MEMORY_DB_PATH makes the real shared factory open the advisor own skill-graph.sqlite', () => {
+    configureTempLauncherForE2e();
+    const advisorDbPath = launcher.advisorDbPath();
+    mkdirSync(dirname(advisorDbPath), { recursive: true });
+    createResolvableOllamaFixture(advisorDbPath);
+
+    const childEnv = launcher.createChildEnv({ PATH: '/bin' });
+    expect(childEnv.MEMORY_DB_PATH).toBe(advisorDbPath);
+
+    clearNonDbProviderSignals();
+    process.env.MEMORY_DB_PATH = childEnv.MEMORY_DB_PATH;
+    const resolution = resolveProvider();
+
+    expect(resolution.name).toBe('ollama');
+    expect(resolution.reason).toContain('nomic-embed-text-v1.5');
+    expect(resolution.reason).toContain('768-dim');
+  });
+
+  it('regression: the real shared factory does NOT resolve the advisor sentinel when fed the pre-fix (un-computed) env value', () => {
+    configureTempLauncherForE2e();
+    const advisorDbPath = launcher.advisorDbPath();
+    mkdirSync(dirname(advisorDbPath), { recursive: true });
+    createResolvableOllamaFixture(advisorDbPath);
+
+    const decoyDir = mkdtempSync(join(tmpdir(), 'mk-skill-advisor-e2e-decoy-'));
+    tempDirs.push(decoyDir);
+    const decoyDbPath = join(decoyDir, 'context-index.sqlite');
+    createUnresolvableFixture(decoyDbPath);
+
+    // Simulates the exact leak this packet's F2 fix closes: an ambient
+    // MEMORY_DB_PATH pointing at a different service's own database, forwarded
+    // verbatim rather than computed by createChildEnv().
+    clearNonDbProviderSignals();
+    process.env.MEMORY_DB_PATH = decoyDbPath;
+    const preFixResolution = resolveProvider();
+
+    expect(preFixResolution.name).not.toBe('ollama');
+
+    // The real createChildEnv() ignores that same ambient value and computes
+    // the advisor's own path instead — feeding that (not the ambient value)
+    // to the real consumer resolves the advisor sentinel correctly.
+    const childEnv = launcher.createChildEnv({ PATH: '/bin', MEMORY_DB_PATH: decoyDbPath });
+    process.env.MEMORY_DB_PATH = childEnv.MEMORY_DB_PATH;
+    const postFixResolution = resolveProvider();
+
+    expect(postFixResolution.name).toBe('ollama');
+    expect(postFixResolution.reason).toContain('768-dim');
   });
 });
 
 function sourceText(relativePath: string): string {
   return readFileSync(new URL(relativePath, import.meta.url), 'utf8');
+}
+
+interface FixtureSqliteStatement {
+  run(...params: readonly unknown[]): unknown;
+}
+
+interface FixtureSqliteDatabase {
+  prepare(sql: string): FixtureSqliteStatement;
+  close(): void;
+}
+
+type FixtureDatabaseSyncConstructor = new (filename: string) => FixtureSqliteDatabase;
+
+// node:sqlite's DatabaseSync is used only for fixture setup here (writing
+// vec_metadata rows), never as the module under test — the assertions run
+// against the real shared factory's own sqlite reader.
+function loadNodeSqlite(): FixtureDatabaseSyncConstructor {
+  const sqliteModule = require('node:sqlite') as unknown;
+  const DatabaseSync = typeof sqliteModule === 'object' && sqliteModule !== null
+    ? (sqliteModule as { DatabaseSync?: unknown }).DatabaseSync
+    : undefined;
+  if (typeof DatabaseSync !== 'function') {
+    throw new Error('node:sqlite DatabaseSync is unavailable in this test runtime');
+  }
+  return DatabaseSync as FixtureDatabaseSyncConstructor;
 }
 
 function findDeadPid(): number {

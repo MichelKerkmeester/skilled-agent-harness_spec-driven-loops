@@ -1,25 +1,27 @@
 ---
-title: "Plan: shared embedder logic with spec-memory [template:level_1/plan.md]"
-description: "Plan to remove skill-advisor/spec-memory embedder factory drift."
+title: "Plan: shared embedder logic with spec-memory [template:level_2/plan.md]"
+description: "Plan to remove skill-advisor/spec-memory embedder factory drift, plus the 2026-07-08 Round 2 post-ship hardening pass."
 trigger_phrases:
   - "shared embedder logic skill-advisor"
   - "skill-advisor spec-memory embedder parity"
+  - "active embedder provider persistence"
+  - "MEMORY_DB_PATH cross-server leakage"
 importance_tier: "important"
 contextType: "architecture"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/007-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory"
-    last_updated_at: "2026-05-21T10:16:26Z"
-    last_updated_by: "codex"
-    recent_action: "Authored implementation plan stub"
-    next_safe_action: "Extract shared embedder factory and add parity regression"
+    last_updated_at: "2026-07-08T06:58:48Z"
+    last_updated_by: "claude"
+    recent_action: "Retro-documented Round 2 (2026-07-08) hardening phase; bumped Level 1 -> 2"
+    next_safe_action: "Operator: run the true production swap-runbook + cold-daemon live-smoke"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: shared embedder logic with spec-memory
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -34,6 +36,9 @@ Extract one shared embedder factory contract and make skill-advisor use it, with
 | B | Implement scoped changes | Source and tests updated only for this packet's requirements |
 | C | Run focused verification | Unit/integration/perf evidence captured in the packet |
 | D | Closeout | Strict-validate packet and update implementation summary |
+| E (Round 2, 2026-07-08) | Post-ship hardening: provider persistence, cross-server DB-path leakage fix, onnx shutdown-crash mitigation | 3 fixes shipped, live DB repaired, full regression re-run |
+
+**Note:** the original Quality Gates row below cites a stale pre-re-nest path (`system-spec-kit/026-.../003-skill-advisor-stack/006-...`) left over from before this packet moved to `system-skill-advisor/007-.../005-...`. The correct current command is the one this doc pass actually ran — see the end of §2.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -44,7 +49,7 @@ Extract one shared embedder factory contract and make skill-advisor use it, with
 - All P0 requirements in `spec.md` have direct test or command evidence.
 - The focused test command for this packet exits 0.
 - No production data, runtime DB, or operator-local config is changed without an explicit operator step.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/003-skill-advisor-stack/006-shared-embedder-logic-with-spec-memory --strict` exits 0.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-skill-advisor/007-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory --strict` exits 0 (current path, post re-nest; the path this doc pass actually validated against).
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -57,6 +62,12 @@ The shared contract surface (`adapter.ts`, `types.ts`, `registry.ts`, `adapters/
 The shared `auto-select.ts` cascade already exists with file-based locking. This work adds a `contentType: 'text' \| 'code'` parameter defaulting to `'text'`. CocoIndex stays in Python with its own code-tuned registry — the parameter preserves the text/code split conceptually even though there is no TS code consumer today.
 
 The parity test exercises both public skill surfaces (mk-spec-memory's embedder and skill-advisor's embedder via the same shared registry). It asserts identical Float32Array values for the same input, proving the registry behaves the same across consumers.
+
+### Round 2 Architecture Notes (2026-07-08)
+
+- **Provider persistence** stays inside `schema.ts`'s existing `vec_metadata` key-value table (adds one more row, `active_embedder_provider`) rather than a new column/table — consistent with how `active_embedder_name`/`active_embedder_dim` already work.
+- **The DB-path leakage was a direct side effect of this packet's own Step 1.** Promoting the shared contract surface to `.opencode/skills/system-spec-kit/shared/embeddings/` and re-exporting it through `node_modules/@spec-kit/shared` (a symlink into `system-spec-kit/shared`) meant any code inside `factory.ts` that resolves paths relative to its own `import.meta.url` now realpath-resolves through that symlink into mk-spec-memory's package root when Node's default (non-`--preserve-symlinks`) ESM loader runs. The launcher fix does not touch `factory.ts` itself (that file's `resolveConfiguredDatabaseCandidates()`/`resolveSpecKitPackageRoot()` are not exported, and touching shared code was out of scope for a launcher-boundary fix) — it closes the leak at the boundary that actually controls it: the child process's own environment.
+- **The onnx fix is scoped to `hf-model-server.cjs` only** (a shared binary at `.opencode/bin/`, used by both skills' cascades at the `hf-local` tier). It does not touch onnxruntime-node itself or `@huggingface/transformers`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -90,6 +101,14 @@ The parity test exercises both public skill surfaces (mk-spec-memory's embedder 
 1. Update `implementation-summary.md` from PRE-IMPLEMENTATION to the actual result.
 2. Run strict validation on this packet.
 3. Preserve any operator-side blockers in the summary.
+
+### Phase E - Round 2: Post-Ship Hardening (2026-07-08)
+
+1. **Provider persistence**: add `ACTIVE_EMBEDDER_PROVIDER_KEY`/allow-set to `schema.ts`; widen `setActiveEmbedder` to 4 args (all existing 3-arg call sites stay valid, `provider` optional); `getActiveEmbedder()` returns `provider` only when it is a known value; `ensureActiveEmbedder()` backfills provider on a valid pointer with no provider row, without invoking the cascade. 2 new + 1 new + 5 updated tests.
+2. **FIX-A — cross-server DB leakage**: add `MEMORY_DB_PATH` to `mk-skill-advisor-launcher.cjs`'s `CHILD_ENV_ALLOWLIST`; `createChildEnv()` defaults it to `advisorDbPath()` when the parent doesn't already set it; export `advisorDbPath` for testability. 2 new + 3 updated `launcher-bootstrap.vitest.ts` tests.
+3. **FIX-B — verify provider-validity backfill** (no code change): re-read `schema.ts` fresh and confirm the `ensureActiveEmbedder()` backfill from step 1 above already implements what a prior audit specified. Live-repair `skill-graph.sqlite`'s `vec_metadata` (was missing the `active_embedder_provider` row entirely): back up to `skill-graph.sqlite.pre-fix-a-b-backup`, insert `active_embedder_provider='ollama'`, cross-check against `getManifest('nomic-embed-text-v1.5').backend` and an independent live probe of `http://127.0.0.1:11434/api/tags`.
+4. **Onnx shutdown-crash mitigation**: replace `process.exit()` with `process.exitCode` + an unref'd 1500ms `SIGKILL` failsafe in `hf-model-server.cjs`'s `shutdown()` and top-level `main().catch()`; drop the dead darwin `'mps'` branch from `getOptimalDevice()`. Verify via live A/B (stash/pop the fix, run an identical spawn -> health-check -> embed -> shutdown drill 10x against the old code, 25x against the fixed code).
+5. Re-run the full regression suite; isolate any pre-existing/concurrent-drift failures by stashing this phase's changes and re-running the same failing files against the unmodified tree.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -100,6 +119,7 @@ The parity test exercises both public skill surfaces (mk-spec-memory's embedder 
 - `npm test` or targeted vitest for system-spec-kit embedder registry.
 - Targeted vitest for system-skill-advisor embedders and scorer smoke.
 - New parity test that compares vectors for identical input.
+- Round 2: `npx vitest run tests/embedders/` (23/23) + `tests/launcher-bootstrap.vitest.ts` and its 4 sibling launcher suites (43/43, verified in this doc pass) + `system-spec-kit/mcp_server`'s `tests/embedders/hf-model-server.vitest.ts` (18/18, unmodified, re-confirmed) + full `npm run test` in `system-skill-advisor/mcp_server` with pre-existing/concurrent-drift failures isolated via `git stash`.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -120,4 +140,9 @@ The parity test exercises both public skill surfaces (mk-spec-memory's embedder 
 1. Restore skill-advisor default registry to its prior implementation.
 2. Remove the shared-factory parity test if shared extraction is reverted.
 3. Leave documented decision notes in this packet summary.
+
+### Round 2 Rollback (2026-07-08)
+
+1. Code: `git checkout` the 6 changed files (`schema.ts`, `schema.vitest.ts`, `ensure-active-embedder.vitest.ts`, `mk-skill-advisor-launcher.cjs`, `launcher-bootstrap.vitest.ts`, `hf-model-server.cjs`).
+2. Live DB: `cp skill-graph.sqlite.pre-fix-a-b-backup skill-graph.sqlite` (safe with no daemon running; stop the daemon first if one is live).
 <!-- /ANCHOR:rollback -->

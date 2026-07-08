@@ -20,6 +20,7 @@ import { getManifest } from './registry.js';
 export interface ActiveEmbedder {
   readonly name: string;
   readonly dim: number;
+  readonly provider?: AutoSelectedEmbedderProvider;
 }
 
 interface MetadataRow {
@@ -42,6 +43,13 @@ export const DEFAULT_ACTIVE_EMBEDDER: ActiveEmbedder = Object.freeze({
 
 const ACTIVE_EMBEDDER_NAME_KEY = 'active_embedder_name';
 const ACTIVE_EMBEDDER_DIM_KEY = 'active_embedder_dim';
+const ACTIVE_EMBEDDER_PROVIDER_KEY = 'active_embedder_provider';
+const ACTIVE_EMBEDDER_PROVIDERS = new Set<AutoSelectedEmbedderProvider>([
+  'voyage',
+  'openai',
+  'ollama',
+  'hf-local',
+]);
 
 function validateDim(dim: number): void {
   if (!Number.isInteger(dim) || dim <= 0) {
@@ -80,8 +88,8 @@ function readActivePointerRows(db: Database.Database): Map<string, string> {
   const rows = db.prepare(`
     SELECT key, value
     FROM vec_metadata
-    WHERE key IN (?, ?)
-  `).all(ACTIVE_EMBEDDER_NAME_KEY, ACTIVE_EMBEDDER_DIM_KEY) as MetadataRow[];
+    WHERE key IN (?, ?, ?)
+  `).all(ACTIVE_EMBEDDER_NAME_KEY, ACTIVE_EMBEDDER_DIM_KEY, ACTIVE_EMBEDDER_PROVIDER_KEY) as MetadataRow[];
 
   return new Map(rows.map((row) => [row.key, row.value]));
 }
@@ -111,7 +119,12 @@ export function getActiveEmbedder(db: Database.Database): ActiveEmbedder {
     return DEFAULT_ACTIVE_EMBEDDER;
   }
 
-  return { name, dim };
+  const providerRaw = rows.get(ACTIVE_EMBEDDER_PROVIDER_KEY);
+  const provider = ACTIVE_EMBEDDER_PROVIDERS.has(providerRaw as AutoSelectedEmbedderProvider)
+    ? (providerRaw as AutoSelectedEmbedderProvider)
+    : undefined;
+
+  return provider ? { name, dim, provider } : { name, dim };
 }
 
 function setActiveEmbedderTransactional(
@@ -119,12 +132,19 @@ function setActiveEmbedderTransactional(
   name: string,
   dim: number,
   afterSchemaCreated?: () => void,
+  provider?: AutoSelectedEmbedderProvider,
 ): void {
   const trimmedName = name.trim();
   if (trimmedName.length === 0) {
     throw new TypeError('Active embedder name must be non-empty');
   }
   validateDim(dim);
+  // Distinguish "caller omitted provider" (undefined — preserve whatever is
+  // already persisted) from "caller explicitly wants it cleared" (an empty
+  // string is still a deliberate write). Only the omitted case skips the
+  // provider write entirely, so a bare 3-arg call can no longer clobber an
+  // already-persisted provider with an empty-string sentinel.
+  const providerWrite = provider === undefined ? undefined : provider.trim();
 
   const writeActiveEmbedder = db.transaction(() => {
     ensureVecMetadataTable(db);
@@ -142,13 +162,26 @@ function setActiveEmbedderTransactional(
       VALUES (?, ?)
       ON CONFLICT(key) DO UPDATE SET value = excluded.value
     `).run(ACTIVE_EMBEDDER_DIM_KEY, String(dim));
+
+    if (providerWrite !== undefined) {
+      db.prepare(`
+        INSERT INTO vec_metadata (key, value)
+        VALUES (?, ?)
+        ON CONFLICT(key) DO UPDATE SET value = excluded.value
+      `).run(ACTIVE_EMBEDDER_PROVIDER_KEY, providerWrite);
+    }
   });
 
   writeActiveEmbedder();
 }
 
-export function setActiveEmbedder(db: Database.Database, name: string, dim: number): void {
-  setActiveEmbedderTransactional(db, name, dim);
+export function setActiveEmbedder(
+  db: Database.Database,
+  name: string,
+  dim: number,
+  provider?: AutoSelectedEmbedderProvider,
+): void {
+  setActiveEmbedderTransactional(db, name, dim, undefined, provider);
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -226,6 +259,18 @@ export async function ensureActiveEmbedder(
 ): Promise<ActiveEmbedder> {
   const current = getActiveEmbedder(db);
   if (!pointerNeedsResolution(current)) {
+    if (current.provider === undefined) {
+      // Pre-existing pointer written before the provider column existed
+      // (or via a bare 3-arg `setActiveEmbedder` call). Backfill the
+      // provider from the manifest so future reads don't repeat this
+      // derivation, without re-running the cascade.
+      const manifest = getManifest(current.name);
+      if (manifest) {
+        const provider = backendToProvider(manifest.backend);
+        setActiveEmbedder(db, current.name, current.dim, provider);
+        return { ...current, provider };
+      }
+    }
     return current;
   }
 
@@ -248,7 +293,7 @@ export async function ensureActiveEmbedder(
       };
     },
     persistActiveEmbedder(embedder) {
-      setActiveEmbedder(db, embedder.name, embedder.dim);
+      setActiveEmbedder(db, embedder.name, embedder.dim, embedder.provider);
     },
   };
 
@@ -267,9 +312,9 @@ export async function ensureActiveEmbedder(
   // `metadataStore.persistActiveEmbedder`, but doing it here makes the
   // wiring obvious and keeps test mocks simple (they don't need to know
   // about the metadataStore round-trip).
-  setActiveEmbedder(db, result.name, result.dim);
+  setActiveEmbedder(db, result.name, result.dim, result.provider);
 
-  return { name: result.name, dim: result.dim };
+  return { name: result.name, dim: result.dim, provider: result.provider };
 }
 
 export const __embedderSchemaTestables = {

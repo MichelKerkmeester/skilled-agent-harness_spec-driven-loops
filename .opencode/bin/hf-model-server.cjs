@@ -42,6 +42,14 @@ const HEALTH_PATH = '/api/health';
 const EMBED_PATH = '/api/embed';
 const MAX_REQUEST_BYTES = 1024 * 1024;
 const DEFAULT_SELF_WARM_INPUT = 'test warmup query';
+// Fast-path failsafe when shutdown begins with nothing genuinely in-flight
+// (no pending model load, no active inference). Unchanged from the original
+// fixed value so idle daemon restarts stay just as fast.
+const SHUTDOWN_IDLE_FAILSAFE_MS = 1500;
+// Buffer added on top of dispose()'s own bounded waits (INFERENCE_DRAIN_TIMEOUT_MS,
+// MODEL_LOAD_TIMEOUT) for the busy-shutdown failsafe tiers below, covering
+// extractor.dispose()'s native teardown plus close()'s socket/fs cleanup.
+const SHUTDOWN_BUSY_FAILSAFE_MARGIN_MS = 2000;
 // Loopback hosts we permit binding without an explicit auth token. Any other host
 // exposes the embedding server (which loads + runs arbitrary model inference on
 // caller-supplied text) to the network, so it is refused unless the operator opts
@@ -345,9 +353,10 @@ async function listenHttpServer(server, target, options = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function getOptimalDevice() {
-  if (process.platform === 'darwin') {
-    return 'mps';
-  }
+  // transformers.js's deviceToExecutionProviders never emits a darwin GPU
+  // execution provider (only 'cpu'), so requesting 'mps' here is guaranteed
+  // to throw and silently fall back to CPU on every load. Skip the wasted
+  // attempt-and-fallback cycle entirely.
   return 'cpu';
 }
 
@@ -1066,24 +1075,81 @@ function createHfModelServer(options = {}) {
 // 6. CLI ENTRYPOINT
 // ─────────────────────────────────────────────────────────────────────────────
 
+// A fixed shutdown failsafe cannot know whether dispose() has real work to
+// wait for. Compute the failsafe duration from the app's own in-flight state
+// at the moment shutdown begins: loading and in-flight-inference are mutually
+// exclusive (embeds only start after getModel() resolves), so one of the two
+// busy tiers below always matches the actual wait dispose() is about to make.
+function computeShutdownFailsafeMs(app) {
+  const state = app.getState();
+  if (state.state === 'loading') {
+    return MODEL_LOAD_TIMEOUT + SHUTDOWN_BUSY_FAILSAFE_MARGIN_MS;
+  }
+  if (state.inFlight > 0) {
+    return INFERENCE_DRAIN_TIMEOUT_MS + SHUTDOWN_BUSY_FAILSAFE_MARGIN_MS;
+  }
+  return SHUTDOWN_IDLE_FAILSAFE_MS;
+}
+
+// Wires the process-signal handlers that trigger a graceful shutdown. Exported
+// (rather than inlined in main()) so tests can drive the exact same shutdown
+// logic against an app built with an injected loadModel, without needing the
+// real onnxruntime-node native module to reproduce the busy-shutdown timing.
+function installShutdownHandlers(app, options = {}) {
+  const signals = options.signals || ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT'];
+  const kill = options.kill || ((pid, signal) => process.kill(pid, signal));
+  const pid = options.pid ?? process.pid;
+  const write = options.write || ((chunk) => process.stderr.write(chunk));
+  // A second signal arriving while shutdown is already in progress must not
+  // re-arm a second failsafe timer (dispose() itself is already guarded via
+  // state.disposePromise, but that guard alone does not stop a second timer).
+  let shuttingDown = false;
+
+  const shutdown = (signal) => {
+    if (shuttingDown) {
+      return;
+    }
+    shuttingDown = true;
+    write(`[hf-model-server] received ${signal}; shutting down\n`);
+    // onnxruntime-node's native module holds global static state (its ORT
+    // Env/thread-pool singleton). Calling process.exit() forces
+    // node::Environment::Exit() to tear that down mid-microtask, which can
+    // abort inside the native module's C++ static destructors. Prefer
+    // process.exitCode + a natural event-loop drain (the documented Node.js
+    // pattern for native addons with global state); arm an unref'd SIGKILL
+    // failsafe so the process still terminates if the loop doesn't drain.
+    // The failsafe duration must not race ahead of a drain that is actually
+    // happening, so it is sized to the real in-flight state at this moment.
+    const failsafeMs = computeShutdownFailsafeMs(app);
+    const forceExitTimer = setTimeout(() => {
+      kill(pid, 'SIGKILL');
+    }, failsafeMs);
+    forceExitTimer.unref();
+    app.close({ disposeModel: true })
+      .then(() => {
+        clearTimeout(forceExitTimer);
+        process.exitCode = 0;
+      })
+      .catch((error) => {
+        clearTimeout(forceExitTimer);
+        write(`[hf-model-server] shutdown failed: ${getErrorMessage(error)}\n`);
+        process.exitCode = 1;
+      });
+  };
+
+  for (const signal of signals) {
+    process.once(signal, () => shutdown(signal));
+  }
+
+  return shutdown;
+}
+
 async function main() {
   const app = createHfModelServer();
   const handle = await app.listen();
   process.stderr.write(`[hf-model-server] listening at ${handle.endpoint}\n`);
 
-  const shutdown = (signal) => {
-    process.stderr.write(`[hf-model-server] received ${signal}; shutting down\n`);
-    app.close({ disposeModel: true })
-      .then(() => process.exit(0))
-      .catch((error) => {
-        process.stderr.write(`[hf-model-server] shutdown failed: ${getErrorMessage(error)}\n`);
-        process.exit(1);
-      });
-  };
-
-  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT']) {
-    process.once(signal, () => shutdown(signal));
-  }
+  installShutdownHandlers(app);
 }
 
 module.exports = {
@@ -1092,16 +1158,20 @@ module.exports = {
   INFERENCE_DRAIN_TIMEOUT_MS,
   LOOPBACK_BIND_HOSTS,
   MODEL_LOAD_TIMEOUT,
+  SHUTDOWN_BUSY_FAILSAFE_MARGIN_MS,
+  SHUTDOWN_IDLE_FAILSAFE_MS,
   SOCKET_FILE_NAME,
   SOCKET_RESIDENT_PROBE_TIMEOUT_MS,
   assertLoopbackBindAllowed,
   assertSingleSessionBeforeDispose,
   assertSocketDirOwnership,
+  computeShutdownFailsafeMs,
   createHfModelServer,
   defaultDbDir,
   getOptimalDevice,
   getSessionCount,
   importTransformers,
+  installShutdownHandlers,
   isLoopbackHost,
   listenHttpServer,
   loadHfModel,
@@ -1114,6 +1184,15 @@ module.exports = {
 if (require.main === module) {
   main().catch((error) => {
     process.stderr.write(`[hf-model-server] ${error.stack || getErrorMessage(error)}\n`);
-    process.exit(1);
+    // Same rationale as shutdown(): avoid process.exit() forcing teardown
+    // through onnxruntime-node's native static destructors; let the loop
+    // drain naturally, with an unref'd SIGKILL failsafe as a backstop. A
+    // startup failure can occur after the native module has already
+    // partially initialized global state, so the same risk applies here.
+    const forceExitTimer = setTimeout(() => {
+      process.kill(process.pid, 'SIGKILL');
+    }, 1500);
+    forceExitTimer.unref();
+    process.exitCode = 1;
   });
 }
