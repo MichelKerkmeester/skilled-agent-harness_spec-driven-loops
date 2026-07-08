@@ -1,6 +1,6 @@
 {
   "skill": "sk-design",
-  "version": "1.4.0.0",
+  "version": "1.4.3.0",
   "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for sk-design. The hub reads this file to resolve a mode; the advisor routes any design query to the single identity sk-design and the hub picks the mode. All six modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
@@ -24,7 +24,7 @@
     }
   },
   "transformVerbRouting": {
-    "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move.",
+    "note": "Transform verbs split by framing: audit asks whether the move should happen; interface applies the requested move. excludedAliases governs free-text transform-verb framing only (e.g. 'make it typeset'); command-metadata.json's taskProjections is a separate layer governing which mode owns the SAME verb under an explicit slash command (e.g. /design:foundations typeset). The two intentionally name the same verbs for different resolution paths -- this is not a collision.",
     "interfaceFrame": "make it",
     "auditFrame": "should it be",
     "interfaceAliases": ["bolder", "quieter", "distill", "clarify", "delight"],

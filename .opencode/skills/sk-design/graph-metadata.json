@@ -74,7 +74,10 @@
     "tokens.json fidelity",
     "spacing rhythm",
     "hierarchy and spacing review",
-    "confirmed versus inferred design evidence"
+    "confirmed versus inferred design evidence",
+    "design slop",
+    "anti-slop UI audit",
+    "contrast and keyboard focus"
   ],
   "derived": {
     "trigger_phrases": [

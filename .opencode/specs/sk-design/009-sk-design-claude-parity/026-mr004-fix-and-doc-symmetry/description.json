@@ -1,0 +1,33 @@
+{
+  "specFolder": "sk-design/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry",
+  "description": "Phase 025 closed `PB-002` but left four items explicitly open or deferred: `MR-004`'s newly-discovered live-daemon-path advisor conflict (out of that",
+  "keywords": [
+    "phase",
+    "025",
+    "closed",
+    "pb-002",
+    "left",
+    "four",
+    "items",
+    "explicitly",
+    "open",
+    "deferred",
+    "mr-004",
+    "newly-discovered",
+    "live-daemon-path",
+    "advisor",
+    "conflict"
+  ],
+  "lastUpdated": "2026-07-08T03:36:33.401Z",
+  "specId": "026",
+  "folderSlug": "mr004-fix-and-doc-symmetry",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "sk-design",
+    "009-sk-design-claude-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
