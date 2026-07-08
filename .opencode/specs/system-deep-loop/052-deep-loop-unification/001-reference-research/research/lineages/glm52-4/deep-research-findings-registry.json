@@ -1,0 +1,76 @@
+{
+  "openQuestions": [
+    "Q1: Is folding deep-loop-runtime INTO deep-loop-workflows (as system-deep-loop) mechanically safe, and where does each component land?",
+    "Q2: How many bidirectional path-couplings exist between the two skills, and what breaks silently if a coupling is not repaired?",
+    "Q3: How does the system-spec-kit tooling-borrow (node_modules reach-ins + artifact-root re-export) behave post-merge, and does artifact-root.cjs's own internal path survive the repair table?",
+    "Q4: What is the full reference-migration surface across commands/agents/READMEs/advisor-corpus, and what is the risk of incomplete migration?",
+    "Q5: Should fallback-router.ts be wired for real GLM-5.2 -> MiMo-v2.5-Pro fallback given it has zero callers today?"
+  ],
+  "resolvedQuestions": [
+    "Q1: Structural layout is mechanically sound; runtime nests as infrastructure, not a workflow mode; one fresh hub graph-metadata.",
+    "Q2: Directional path-repair rules are correct, but Class B inventory is incomplete (omits orchestrate-session.cjs, runtime-capabilities pair, deep-review/reduce-state) and misses an absolute-path form in replay-graph-from-artifacts.cjs.",
+    "Q3: Stage-3b package.json/tsconfig repairs are correct; artifact-root.cjs internal path.join + artifact-root.vitest.ts + dependency-seams.vitest.ts are a missed P0 load-bearing seam.",
+    "Q4: Migration surface is broad but bounded (33 commands + dual-runtime agents + 4 READMEs); advisor is highest-risk (no runtime registry read; 3 hardcoded constants + divergence-ledger field-vs-prose ratchet).",
+    "Q5: Wire fallback (optional/P2); router is reusable as-is; 004 plan needs slug→id adapter + quota/auth failure-class capture; independent of the structural merge."
+  ],
+  "keyFindings": [
+    {
+      "id": "F-P0-001",
+      "severity": "P0",
+      "title": "Detached fan-out boundary conflicts with YAML spec.md mutation — guard is one-sided",
+      "evidence": ["deep_research_auto.yaml:361 (step_detect_spec_present)", "deep_research_auto.yaml:1510 (step_writeback_spec_findings)", "fanout-run.cjs:1004-1017"]
+    },
+    {
+      "id": "F-P1-002",
+      "severity": "P1",
+      "title": "Class B reverse-coupling inventory incomplete (orchestrate-session.cjs + runtime-capabilities pair + deep-review/reduce-state omitted)",
+      "evidence": ["orchestrate-session.cjs:16-18", "11 distinct-file reverse require inventory vs 002 Class B table"]
+    },
+    {
+      "id": "F-P1-003",
+      "severity": "P1",
+      "title": "replay-graph-from-artifacts.cjs absolute-path form invisible to relative-require grep",
+      "evidence": ["replay-graph-from-artifacts.cjs:56", "replay-graph-from-artifacts.cjs:65"]
+    },
+    {
+      "id": "F-P0-002",
+      "severity": "P0",
+      "title": "artifact-root.cjs internal path.join + 2 test companions missed by 002 Stage-3b",
+      "evidence": ["artifact-root.cjs:17-18", "artifact-root.vitest.ts:11", "dependency-seams.vitest.ts:16-17"]
+    },
+    {
+      "id": "F-P1-004",
+      "severity": "P1",
+      "title": "Advisor does not read mode-registry.json at runtime — rename needs projection-map regen + 3 hardcoded-constant updates + drift-guard rerun",
+      "evidence": ["skill_advisor.py:83", "skill_advisor.py:2579", "aliases.ts:109", "routing-registry-drift-guard.vitest.ts"]
+    },
+    {
+      "id": "F-P1-005",
+      "severity": "P1",
+      "title": "Divergence ledger mixes identity fields with historical prose — blind replace corrupts reason narratives",
+      "evidence": ["local-native-approved-divergences.json:30-31", "local-native-approved-divergences.json:158-161"]
+    },
+    {
+      "id": "F-P1-006",
+      "severity": "P1",
+      "title": "Dual-runtime agent mirror (5 opencode + 5 claude) is a sync hazard — agent-mirror sync check is mandatory",
+      "evidence": ["rg deep-loop in .opencode/agents and .claude/agents — 5 each"]
+    },
+    {
+      "id": "F-P1-007",
+      "severity": "P1",
+      "title": "004 plan misses slug→registry-id model adapter (fan-out dispatches full provider slug, registry keys on bare id)",
+      "evidence": ["fanout-run.cjs:1349-1350", "model_profiles.json:190-299"]
+    },
+    {
+      "id": "F-P1-008",
+      "severity": "P1",
+      "title": "retry-exhausted-only fallback call site misses quota/auth failures (classified FATAL/non-retryable at cli-guards.cjs:188-196)",
+      "evidence": ["cli-guards.cjs:188-196", "004/plan.md Phase 2"]
+    }
+  ],
+  "ruledOutDirections": [
+    "Adding runtime as a mode-registry workflowMode (category error)",
+    "Detached replicas mutating shared {spec_folder}/spec.md"
+  ]
+}

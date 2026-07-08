@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/052-deep-loop-unification/003-external-reference-migration",
+  "description": "948 non-noise references to `deep-loop-workflows`/`deep-loop-runtime` exist outside the two skills' own folders — across `/deep:` commands (434 hits,",
+  "keywords": [
+    "948",
+    "non-noise",
+    "references",
+    "deep-loop-workflows",
+    "deep-loop-runtime",
+    "exist",
+    "outside",
+    "two",
+    "skills",
+    "own",
+    "folders",
+    "across",
+    "deep",
+    "commands",
+    "434",
+    "hits"
+  ],
+  "lastUpdated": "2026-07-08T05:23:49.481Z",
+  "specId": "003",
+  "folderSlug": "external-reference-migration",
+  "parentChain": [
+    "system-deep-loop",
+    "052-deep-loop-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

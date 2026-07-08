@@ -1,0 +1,27 @@
+{
+  "topic": "Validate and stress-test the merge design for folding deep-loop-runtime into deep-loop-workflows as system-deep-loop: structural layout, bidirectional path-coupling repair, the system-spec-kit tooling-borrow, reference migration across commands/agents/READMEs/advisor-corpus, and whether fallback-router.ts should be wired for real GLM-5.2 to MiMo-v2.5-Pro fallback.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "specFolder": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research",
+  "loopType": "research",
+  "stopPolicy": "convergence",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": "max"
+  },
+  "lineage": {
+    "label": "glm52-3",
+    "sessionId": "fanout-glm52-3-1783486518892-2qss01",
+    "fanoutLineage": true,
+    "artifactDir": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/glm52-3"
+  },
+  "antiConvergence": {
+    "minIterations": 3
+  },
+  "progressiveSynthesis": true,
+  "resource_map_present": false,
+  "status": "complete",
+  "createdAt": "2026-07-08T00:00:00Z"
+}

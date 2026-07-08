@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/052-deep-loop-unification/003-external-reference-migration",
+  "spec_folder": "system-deep-loop/052-deep-loop-unification/003-external-reference-migration",
+  "parent_id": "system-deep-loop/052-deep-loop-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "external reference migration deep loop",
+      "system-deep-loop reference migration",
+      "deep-loop-workflows rename references",
+      "external reference migration plan",
+      "external reference migration tasks",
+      "external reference migration checklist"
+    ],
+    "key_topics": [
+      "external",
+      "reference",
+      "migration",
+      "deep",
+      "loop",
+      "system-deep-loop",
+      "deep-loop-workflows",
+      "rename",
+      "references",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Reference Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Migrate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Grep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Capture Stage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "948 non-noise references to `deep-loop-workflows`/`deep-loop-runtime` exist outside the two skills' own folders — across `/deep:` commands (434 hits, 24 files), doctor (15 hits incl",
+    "created_at": "2026-07-08T04:36:15.645Z",
+    "last_save_at": "2026-07-08T04:43:09.215Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:7411ac2db51b968f90b7200d5fc4eec9821b3e86e584fd19e01b836b5c9013ba",
+    "source_doc_hashes": {
+      "spec.md": "7d2d6eab260aa19c6a685bc8435f0a827104d6d9cb286c461c7d2a8bd42e82c5",
+      "plan.md": "cfc35fca830e664dee53576a0f5525dfd06d3af0d6471f40afa8ff3b18f3ebb2",
+      "tasks.md": "2dc5ee1a5a4620f8a8719d1abfb937140280a5c32b4253874d84039f7f0f178a",
+      "checklist.md": "10958345aa6be9bd13a9d78db3825a3c326324dde64fd0c15be1038dbc1c9e3c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

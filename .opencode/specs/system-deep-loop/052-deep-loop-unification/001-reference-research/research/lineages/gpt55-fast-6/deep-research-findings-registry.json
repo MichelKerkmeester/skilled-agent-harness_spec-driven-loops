@@ -1,0 +1,201 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "question": "Is the proposed system-deep-loop/runtime/ structural layout correct, or does it create mode/skill identity ambiguity?",
+      "answer": "Yes, if runtime is kept as non-routable infrastructure under the hub and the unified skill has exactly one graph-metadata identity."
+    },
+    {
+      "question": "Are the Class A and Class B path-repair rules complete and directionally correct for live source files and tests?",
+      "answer": "The direction rules are correct, but the concrete phase-002 inventory should add replay-graph-from-artifacts, deep-review shims, and a classified runtime-test list."
+    },
+    {
+      "question": "Is the system-spec-kit tooling-borrow repair correctly scoped to phase 002, and are there hidden borrow paths beyond the four planned files?",
+      "answer": "The four listed borrow edits are phase-002 work, but the plan should add artifact-root.cjs, artifact-root.vitest.ts, and council-playbook-anchor-integrity.vitest.ts for the planned gates."
+    },
+    {
+      "question": "Is the external reference migration plan complete across commands, agents, READMEs, hooks, advisor corpus, skill graph, generated contracts, and examples?",
+      "answer": "The child 003 plan is directionally complete across the major live surfaces; it should preserve category staging, synchronize advisor codegen/drift guards, regenerate compiled command contracts, and dedupe literal graph-edge duplicates such as cli-opencode."
+    },
+    {
+      "question": "Should fallback-router.ts be wired now for GLM-5.2 to MiMo-v2.5-Pro fallback, or remain optional/deferred?",
+      "answer": "Keep it optional/deferred for the core merge. If the operator chooses to land it, amend child 004 so model substitution is implemented in fanout-run.cjs or through an explicit pool hook, with a fallback registry/config surface, attribution events, and a forced-failure GLM-to-MiMo integration test."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "gpt55-fast-6-f001",
+      "title": "Runtime should be nested infrastructure, not a workflow mode",
+      "summary": "The hub/runtime split already claims a single workflow identity over a consumed backend; merging runtime under system-deep-loop/runtime preserves that architecture.",
+      "sources": ["file:.opencode/skills/deep-loop-workflows/SKILL.md:12", "file:.opencode/skills/deep-loop-workflows/mode-registry.json:19"]
+    },
+    {
+      "id": "gpt55-fast-6-f002",
+      "title": "Fresh-authored unified graph metadata is safer than merging two graph files",
+      "summary": "Runtime graph metadata currently duplicates edges back to workflows; fresh authoring removes now-internal edges.",
+      "sources": ["file:.opencode/skills/deep-loop-runtime/graph-metadata.json:16", "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:101"]
+    },
+    {
+      "id": "gpt55-fast-6-f003",
+      "title": "Class A and Class B path-direction rules are correct",
+      "summary": "Runtime-to-workflows keeps hop count and deletes the sibling segment; workflows-to-runtime loses one hop and targets runtime/.",
+      "sources": ["file:.opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:8", "file:.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14"]
+    },
+    {
+      "id": "gpt55-fast-6-f004",
+      "title": "replay-graph-from-artifacts is an unlisted internal repair site",
+      "summary": "The council graph replay script hardcodes the runtime upsert path and should be repaired in phase 002 with internal executable paths.",
+      "sources": ["file:.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:21", "file:.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:51"]
+    },
+    {
+      "id": "gpt55-fast-6-f005",
+      "title": "Runtime unit-test inventory needs explicit classification",
+      "summary": "Ten unit-test files mention deep-loop-workflows; the plan should classify code-path fixtures separately from historical text.",
+      "sources": ["command:rg -l deep-loop-workflows .opencode/skills/deep-loop-runtime/tests/unit"]
+    },
+    {
+      "id": "gpt55-fast-6-f006",
+      "title": "artifact-root is a hidden system-spec-kit seam",
+      "summary": "artifact-root.cjs re-exports system-spec-kit/shared/review-research-paths.cjs through a depth-sensitive path and must be repaired in phase 002.",
+      "sources": ["file:.opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:16", "file:.opencode/skills/deep-loop-runtime/tests/unit/artifact-root.vitest.ts:10"]
+    },
+    {
+      "id": "gpt55-fast-6-f007",
+      "title": "test:council needs council-playbook-anchor-integrity path updates",
+      "summary": "The test:council script includes council-playbook-anchor-integrity, which hardcodes deep-loop-runtime test paths and regexes.",
+      "sources": ["file:.opencode/skills/system-spec-kit/mcp_server/package.json:31", "file:.opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts:27"]
+    },
+    {
+      "id": "gpt55-fast-6-f008",
+      "title": "External migration plan is directionally complete and category-driven",
+      "summary": "The 003 plan covers hardcoded constants, structured identity fields, codegen, command assets, docs, graph metadata, examples, advisor corpus, and final verification as separate categories.",
+      "sources": ["file:.opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:75", "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:106"]
+    },
+    {
+      "id": "gpt55-fast-6-f009",
+      "title": "Advisor projection migration must be synchronized",
+      "summary": "Python, TypeScript scorer files, and the drift guard all hardcode the merged deep skill identity and registry/projection contract.",
+      "sources": ["file:.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:83", "file:.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:109", "file:.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts:26"]
+    },
+    {
+      "id": "gpt55-fast-6-f010",
+      "title": "Hook, CI, plugin, and doctor surfaces are live migration targets",
+      "summary": "The mirror checker, GitHub workflow, loop guard, and parent-skill doctor checker all contain old deep-loop paths or assumptions.",
+      "sources": ["file:.opencode/hooks/pre-commit:40", "file:.github/workflows/agent-mirror-sync.yml:17", "file:.opencode/plugins/mk-deep-loop-guard.js:35", "file:.opencode/commands/doctor/scripts/parent-skill-check.cjs:79"]
+    },
+    {
+      "id": "gpt55-fast-6-f011",
+      "title": "Sibling graph migration should dedupe duplicate cli-opencode edges",
+      "summary": "The migration should preserve meaningful contextual edges while collapsing literal duplicate targets.",
+      "sources": ["file:.opencode/skills/cli-opencode/graph-metadata.json:31", "file:.opencode/skills/system-skill-advisor/graph-metadata.json:35", "file:.opencode/skills/sk-prompt/graph-metadata.json:22"]
+    },
+    {
+      "id": "gpt55-fast-6-f012",
+      "title": "fallback-router is shipped and validates fallback graphs",
+      "summary": "The router validates graph safety and resolves failed models to fallback or fail-fast decisions.",
+      "sources": ["file:.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:299", "file:.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:320", "file:.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:357"]
+    },
+    {
+      "id": "gpt55-fast-6-f013",
+      "title": "router unit tests do not prove fanout GLM/MiMo integration",
+      "summary": "Pure routing behavior is tested, but there is no forced-failure fanout test for GLM-5.2 to MiMo-v2.5-Pro.",
+      "sources": ["file:.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts:36", "file:.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts:109", "file:.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts:143"]
+    },
+    {
+      "id": "gpt55-fast-6-f014",
+      "title": "fanout-pool only requeues same-label retries",
+      "summary": "The retry branch increments retryCounts and pushes the same item index back to the queue.",
+      "sources": ["file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628", "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:650"]
+    },
+    {
+      "id": "gpt55-fast-6-f015",
+      "title": "model-aware fallback belongs in fanout-run or an explicit pool hook",
+      "summary": "fanout-run owns lineage model/kind, prompt, command construction, and failure context.",
+      "sources": ["file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1432", "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1534", "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1599"]
+    },
+    {
+      "id": "gpt55-fast-6-f016",
+      "title": "GLM to MiMo fallback is optional feature work, not merge-critical",
+      "summary": "The feature needs a registry/config surface and integration test, and the phase is explicitly P2 optional.",
+      "sources": ["file:.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:272", "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:90", "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:113"]
+    },
+    {
+      "id": "gpt55-fast-6-f017",
+      "title": "Legal convergence reached after all key questions answered",
+      "summary": "All five key questions are answered, no blocked stop remains, and the minimum iteration count is satisfied.",
+      "sources": ["file:.opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-6/deep-research-strategy.md:15", "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-6/deep-research-findings-registry.json:2", "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-6/deep-research-dashboard.md:13"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Make runtime a mode packet",
+      "reason": "The registry models public workflow modes only; runtime is backendKind infrastructure and packet-level graph metadata is prohibited."
+    },
+    {
+      "approach": "Blind repo-wide replacement for path coupling",
+      "reason": "Grep hits mix executable imports, fixture expectations, generated contract inputs, and historical/prose text."
+    },
+    {
+      "approach": "Decouple runtime from system-spec-kit compiler/typeRoots during the merge",
+      "reason": "Path repair is needed now; full compiler dependency decoupling is separate hardening and would conflate validation failures."
+    },
+    {
+      "approach": "Hand-edit compiled command contracts",
+      "reason": "Compiled contracts are generated output; source command assets and router files should be edited, then compile-command-contracts.cjs should regenerate the markdown."
+    },
+    {
+      "approach": "Treat fallback-router wiring as required for merge closeout",
+      "reason": "The phase is P2 optional and needs config/schema/integration-test work unrelated to rename/path/reference migration."
+    },
+    {
+      "approach": "Wire model substitution directly into the generic pool without a hook",
+      "reason": "fanout-pool.cjs only owns generic items/retries; model-aware command construction and lineage context live in fanout-run.cjs."
+    },
+    {
+      "approach": "Continue to max-10 after all questions are answered",
+      "reason": "The configured stop policy is convergence, the minimum iteration count is satisfied, and no blocked stop remains."
+    }
+  ],
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 17,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      ".opencode/skills/deep-loop-workflows/SKILL.md": 4,
+      ".opencode/skills/deep-loop-workflows/mode-registry.json": 3,
+      ".opencode/skills/deep-loop-runtime/graph-metadata.json": 2,
+      ".opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs": 1,
+      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs": 2,
+      ".opencode/skills/deep-loop-workflows/deep-review/scripts/runtime-capabilities.cjs": 1,
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs": 1,
+      ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts": 3,
+      ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md": 5,
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py": 3,
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts": 1,
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts": 1,
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts": 1,
+      ".opencode/hooks/pre-commit": 1,
+      ".github/workflows/agent-mirror-sync.yml": 1,
+      ".opencode/plugins/mk-deep-loop-guard.js": 1,
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs": 1,
+      ".opencode/skills/cli-opencode/graph-metadata.json": 1,
+      ".opencode/skills/system-skill-advisor/graph-metadata.json": 1,
+      ".opencode/skills/sk-prompt/graph-metadata.json": 1,
+      ".opencode/commands/deep/assets/compiled/deep_research.contract.md": 1,
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts": 4,
+      ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts": 4,
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs": 4,
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs": 5,
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts": 1,
+      ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md": 3,
+      ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md": 1
+    }
+  }
+}

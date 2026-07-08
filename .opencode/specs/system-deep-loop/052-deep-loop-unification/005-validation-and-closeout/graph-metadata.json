@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/052-deep-loop-unification/005-validation-and-closeout",
+  "spec_folder": "system-deep-loop/052-deep-loop-unification/005-validation-and-closeout",
+  "parent_id": "system-deep-loop/052-deep-loop-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop unification closeout",
+      "system-deep-loop validation",
+      "deep-loop merge final sweep",
+      "deep loop unification closeout plan",
+      "deep loop unification closeout tasks",
+      "deep loop unification closeout checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "unification",
+      "closeout",
+      "system-deep-loop",
+      "validation",
+      "deep-loop",
+      "merge",
+      "final",
+      "sweep",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 002-004 each carry their own exit gates, but nothing has yet confirmed the WHOLE packet is internally consistent, that the phase-parent's own `graph-metadata.json` reflects the final state, and that the merge is safely committed given a shared, actively-used dev tree with concurrent sessions (an established pattern in this repo — see the isolated-worktree commit-reconciliation approach used in prior sk-design phases)",
+    "created_at": "2026-07-08T04:36:15.936Z",
+    "last_save_at": "2026-07-08T04:43:09.737Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:8ec9573323649d7b648be160e121ddedac434cb39af9e5f175acfb9c1cc185b3",
+    "source_doc_hashes": {
+      "spec.md": "3f9598159cfdb50578571dd150845673bfa6bcc5bbb61b581e00414496dd68ae",
+      "plan.md": "8412f1471a07ffda8b62463f63c60a412fd8ba3526c0d249f9bc226e1f272a67",
+      "tasks.md": "725a2c8bf6725b26da43b0aa0c22a101f98e30e45d108887d58b0bfa4eabb039",
+      "checklist.md": "757ee117013d659ce860a1df933871deaa8ec099d65d04a6e76f46b8755d43bc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -7,4 +7,4 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__m
 
 # Deep Council
 
-!`node .opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs --command deep/ai-council -- '$ARGUMENTS'`
+!`node .opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs --command deep/ai-council -- '$ARGUMENTS'`

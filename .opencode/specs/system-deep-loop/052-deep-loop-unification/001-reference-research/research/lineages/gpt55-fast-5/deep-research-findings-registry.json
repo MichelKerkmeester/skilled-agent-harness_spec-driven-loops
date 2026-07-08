@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "deep-research-findings-registry.v1",
+  "lineage": "gpt55-fast-5",
+  "sessionId": "fanout-gpt55-fast-5-1783486518892-2qss01",
+  "updatedAt": "2026-07-08T05:01:50Z",
+  "metrics": {
+    "iterationsCompleted": 4,
+    "convergenceScore": 0.77,
+    "newInfoRatios": [1, 0.68, 0.42, 0.18],
+    "stopReason": "converged"
+  },
+  "keyFindings": [
+    {
+      "id": "G55F5-F001",
+      "iteration": 1,
+      "title": "Reference phase is read-only and artifact-scoped",
+      "summary": "The phase explicitly creates research outputs and lineage packets while excluding merge execution or runtime/workflow modifications.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/spec.md:68",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/spec.md:72",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/spec.md:76"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "G55F5-F005",
+      "iteration": 2,
+      "title": "Forward runtime-to-workflows coupling is explicitly mapped",
+      "summary": "Class A sites preserve hop count while deleting the old workflows segment after runtime nesting.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:68",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:72",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:75"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "G55F5-F006",
+      "iteration": 2,
+      "title": "Reverse workflows-to-runtime coupling needs different hop-count repair",
+      "summary": "Class B is a minus-one-hop rename problem and should not be handled by blind replacement.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:78",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:82",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:88"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "G55F5-F007",
+      "iteration": 2,
+      "title": "System-spec-kit tooling-borrow repair is load-bearing",
+      "summary": "The runtime typecheck and system-spec-kit council test paths cross the move boundary and belong in child 002 validation.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:90",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:94",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:99"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "G55F5-F010",
+      "iteration": 3,
+      "title": "Advisor projections and ledgers are migration-critical",
+      "summary": "The rename must cover advisor code constants, generated projections, tests, routing corpora, and approved-divergence ledgers.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:75",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:84",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:101",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts:30"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "G55F5-F011",
+      "iteration": 3,
+      "title": "Command contract migration must regenerate compiled outputs",
+      "summary": "Source YAML and router markdown should be edited, then compiled contracts regenerated rather than hand-edited.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:89",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:90",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:92",
+        ".opencode/commands/deep/assets/deep_ai-council_confirm.yaml:40"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "G55F5-F012",
+      "iteration": 3,
+      "title": "System-spec-kit is a high-risk migration consumer",
+      "summary": "Package scripts, vitest globs, workflow docs, and reducer tests still reference old deep-loop paths.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/package.json:31",
+        ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:20",
+        ".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:17",
+        ".opencode/skills/system-spec-kit/SKILL.md:127"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "G55F5-F013",
+      "iteration": 3,
+      "title": "Grandfather examples require semantic update, not just replacement",
+      "summary": "The `system-deep-loop` name creates a command-prefix exception that parent-skill examples need to state explicitly.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:99",
+        ".opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md:153"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "id": "G55F5-F015",
+      "iteration": 4,
+      "title": "Fanout retry exhaustion does not currently invoke fallback resolution",
+      "summary": "`fanout-pool.cjs` retries and then settles retry-exhausted failures; the optional plan adds the missing resolveFallback call site.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:650",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:653",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:43"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "G55F5-F016",
+      "iteration": 4,
+      "title": "GLM and MiMo are separate active pools, but no fallback edge is configured",
+      "summary": "The model profiles show `glm-5.2` and `mimo-v2.5-pro` active with distinct pools and both `fallback_target: null`.",
+      "evidence": [
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:190",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:203",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:204",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:255",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:268",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:269"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "G55F5-F017",
+      "iteration": 4,
+      "title": "Fallback wiring should remain optional unless scope changes",
+      "summary": "Child 004 is explicitly optional and awaiting operator decision; it should be called out but not used to block child 002/003.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:51",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:85",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:90",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/spec.md:124"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    { "id": "q-structural", "answer": "Child 002 covers both coupling directions, tooling-borrow, metadata consolidation, and validation gates." },
+    { "id": "q-references", "answer": "Child 003 covers advisor, command, docs, tests, ledgers, graph metadata, and examples with dependency ordering." },
+    { "id": "q-fallback", "answer": "Automatic GLM-to-MiMo fallback is not currently live." },
+    { "id": "q-scope", "answer": "Fallback wiring remains optional unless the operator expands scope." }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Treat GLM-to-MiMo fallback as already active during fan-out",
+      "reason": "Registry fallback targets are null and retry exhaustion does not call the fallback router."
+    },
+    {
+      "approach": "Block structural rename on fallback wiring",
+      "reason": "Child 004 is optional and operator-gated."
+    }
+  ]
+}

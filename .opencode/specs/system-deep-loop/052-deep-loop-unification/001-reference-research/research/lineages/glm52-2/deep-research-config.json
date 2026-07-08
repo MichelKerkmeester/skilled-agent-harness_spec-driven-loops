@@ -1,0 +1,79 @@
+{
+  "topic": "Validate and stress-test the merge design for folding deep-loop-runtime into deep-loop-workflows as system-deep-loop: structural layout, bidirectional path-coupling repair, the system-spec-kit tooling-borrow, reference migration across commands/agents/READMEs/advisor-corpus, and whether fallback-router.ts should be wired for real GLM-5.2 to MiMo-v2.5-Pro fallback.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research",
+  "createdAt": "2026-07-08T00:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "zai-coding-plan/glm-5.2",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm52-2-1783486518892-2qss01",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "lineageRole": "fanout-detached",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "label": "glm52-2",
+    "family": "glm52",
+    "familyIndex": 2
+  },
+  "fanout": {
+    "detachedLineage": true,
+    "artifactDirOverride": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/glm52-2",
+    "resolveArtifactRootSkipped": true,
+    "note": "step_resolve_artifact_root bound artifact_dir directly to config.fanout_lineage_artifact_dir override; resolveArtifactRoot node command NOT run per operator contract."
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "resource_map_present": false,
+  "capabilityMatrixPath": ".opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

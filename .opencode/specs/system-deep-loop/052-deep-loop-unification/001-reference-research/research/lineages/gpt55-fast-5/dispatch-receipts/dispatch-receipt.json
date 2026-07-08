@@ -1,0 +1,14 @@
+{
+  "lineage": "gpt55-fast-5",
+  "sessionId": "fanout-gpt55-fast-5-1783486518892-2qss01",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  },
+  "artifactDir": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-5",
+  "createdAt": "2026-07-08T04:59:40Z",
+  "completedAt": "2026-07-08T05:01:50Z",
+  "stopReason": "converged",
+  "iterationsCompleted": 4,
+  "writeBoundary": "artifact-dir-only"
+}

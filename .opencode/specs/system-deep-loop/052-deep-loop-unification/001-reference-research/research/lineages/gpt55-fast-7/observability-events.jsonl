@@ -1,0 +1,2 @@
+{"event":"started","producer":"deep-research-auto","stream":"single-loop-telemetry","subject":{"label":"single","sessionId":"fanout-gpt55-fast-7-1783486518892-2qss01","generation":1},"status":"running","at":"2026-07-08T05:12:24Z"}
+{"event":"completed","producer":"deep-research-auto","stream":"single-loop-telemetry","subject":{"label":"single","sessionId":"fanout-gpt55-fast-7-1783486518892-2qss01","generation":1},"status":"completed","at":"2026-07-08T05:12:24Z"}

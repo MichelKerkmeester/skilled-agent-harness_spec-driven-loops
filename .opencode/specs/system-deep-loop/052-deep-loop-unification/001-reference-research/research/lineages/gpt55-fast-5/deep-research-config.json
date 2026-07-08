@@ -1,0 +1,37 @@
+{
+  "type": "config",
+  "schemaVersion": "deep-research-lineage.v1",
+  "topic": "Validate the deep-loop-workflows plus deep-loop-runtime merge design before system-deep-loop execution",
+  "mode": "research",
+  "loopType": "research",
+  "sessionId": "fanout-gpt55-fast-5-1783486518892-2qss01",
+  "specFolder": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research",
+  "artifactDir": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-5",
+  "createdAt": "2026-07-08T04:59:40Z",
+  "updatedAt": "2026-07-08T04:59:40Z",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "stopPolicy": "convergence",
+  "antiConvergence": {
+    "minIterations": 3
+  },
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "xhigh",
+    "detachedParallel": true
+  },
+  "lineage": {
+    "label": "gpt55-fast-5",
+    "lineageMode": "new",
+    "parentSessionId": null,
+    "generation": 0
+  },
+  "resource_map_present": false,
+  "scope": {
+    "writeBoundary": "artifact-dir-only",
+    "allowedRoot": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-5",
+    "resolverBypass": true
+  }
+}

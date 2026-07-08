@@ -1,0 +1,154 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-layout",
+      "question": "Is the proposed system-deep-loop target layout structurally sound?",
+      "answer": "Yes, if runtime remains infrastructure-only and exactly one graph-metadata.json is fresh-authored at the hub.",
+      "sources": [
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:154",
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:169"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "q-coupling",
+      "question": "Are the forward and reverse path-coupling repair rules correct?",
+      "answer": "Yes. Forward runtime-to-workflows paths keep hop count and delete the old segment; reverse workflow-to-runtime paths remove one hop and target runtime/.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:11",
+        "file:.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "q-tooling-borrow",
+      "question": "Does the system-spec-kit tooling-borrow need same-phase repair?",
+      "answer": "Yes. Runtime typecheck/typeRoots and system-spec-kit council tests point across the old sibling boundary and must move with phase 002.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/package.json:11",
+        "file:.opencode/skills/system-spec-kit/mcp_server/package.json:31"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "q-reference-migration",
+      "question": "Is the external reference migration plan complete enough?",
+      "answer": "Mostly yes, with one recommended emphasis: explicitly verify the mk-deep-loop-guard plugin path because it fails open if stale.",
+      "sources": [
+        "file:.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2579",
+        "file:.opencode/plugins/mk-deep-loop-guard.js:353"
+      ],
+      "iteration": 3
+    },
+    {
+      "id": "q-fallback",
+      "question": "Should fallback-router.ts be wired now?",
+      "answer": "Not as a merge blocker. Keep phase 004 optional; run it before a GLM-heavy rerun only if automatic fallback is required.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628",
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/spec.md:80"
+      ],
+      "iteration": 4
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-001-layout",
+      "title": "Target layout is coherent if runtime stays infrastructure-only",
+      "summary": "The proposed layout keeps four workflow packets at hub level and nests former runtime under runtime/ with no mode-registry entry.",
+      "severity": "confirmation",
+      "iteration": 1,
+      "sources": ["file:.opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:154"]
+    },
+    {
+      "id": "f-002-forward-rule",
+      "title": "Forward coupling rule is correct",
+      "summary": "Runtime-to-workflows imports keep hop count and delete the deep-loop-workflows segment after nesting.",
+      "severity": "confirmation",
+      "iteration": 1,
+      "sources": ["file:.opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:11"]
+    },
+    {
+      "id": "f-003-reverse-rule",
+      "title": "Reverse coupling rule is correct",
+      "summary": "Workflow-to-runtime imports remove one hop and target runtime/ after nesting.",
+      "severity": "confirmation",
+      "iteration": 1,
+      "sources": ["file:.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14"]
+    },
+    {
+      "id": "f-006-tooling-borrow",
+      "title": "Tooling-borrow repair belongs in structural phase 002",
+      "summary": "runtime and system-spec-kit point at each other for typecheck/test discovery, so this is move-time repair.",
+      "severity": "confirmation",
+      "iteration": 2,
+      "sources": ["file:.opencode/skills/deep-loop-runtime/package.json:11", "file:.opencode/skills/system-spec-kit/mcp_server/package.json:31"]
+    },
+    {
+      "id": "f-010-reference-surface",
+      "title": "External reference migration is genuinely broad",
+      "summary": "Scoped live count found 764 old-name hits across 77 non-spec/non-dist files in external surfaces.",
+      "severity": "confirmation",
+      "iteration": 3,
+      "sources": ["command:rg-count:2026-07-08"]
+    },
+    {
+      "id": "f-013-plugin-fail-open",
+      "title": "mk-deep-loop-guard missing-path behavior is silent",
+      "summary": "The guard returns null when registry read/parse fails and skips mismatch checks; stale path can silently disable protection.",
+      "severity": "risk",
+      "iteration": 3,
+      "sources": ["file:.opencode/plugins/mk-deep-loop-guard.js:75", "file:.opencode/plugins/mk-deep-loop-guard.js:353"]
+    },
+    {
+      "id": "f-015-fallback-module-ready",
+      "title": "fallback-router.ts is ready but unused by fan-out",
+      "summary": "The pure router is implemented and tested, while fanout-pool currently settles retry-exhausted lineages without model substitution.",
+      "severity": "risk",
+      "iteration": 4,
+      "sources": ["file:.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:357", "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:650"]
+    },
+    {
+      "id": "f-018-convergence",
+      "title": "Legal convergence reached after 4 iterations",
+      "summary": "All tracked questions are answered, minIterations is satisfied, and source diversity/quality gates pass.",
+      "severity": "convergence",
+      "iteration": 4,
+      "sources": ["file:.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md:113"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Add runtime as a workflowMode",
+      "reason": "runtime/ is infrastructure, not invokable mode logic.",
+      "iteration": 1
+    },
+    {
+      "approach": "Blind repo-wide find/replace",
+      "reason": "Advisor corpus fields, prompt text, executable paths, docs, and historical specs have different safety rules.",
+      "iteration": 3
+    },
+    {
+      "approach": "Make fallback-router wiring a required merge blocker",
+      "reason": "It changes fan-out behavior and is explicitly tracked as optional phase 004.",
+      "iteration": 4
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 8,
+    "convergenceScore": 0.92,
+    "coverageBySources": {
+      "specs": 8,
+      "runtime-code": 8,
+      "workflow-code": 4,
+      "advisor-code": 5,
+      "plugin-code": 3,
+      "package-config": 4,
+      "commands": 2
+    }
+  }
+}

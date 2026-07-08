@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "skill_id": "system-deep-loop",
+  "family": "deep-loop",
+  "category": "workflow",
+  "importance_tier": "important",
+  "edges": {
+    "depends_on": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.7,
+        "context": "spec-folder workflow, artifact-root topology, command YAML consumers; runtime/ also borrows system-spec-kit's TypeScript tooling (tsc binary, @types) for its own typecheck"
+      }
+    ],
+    "enhances": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.6,
+        "context": "research and review modes provide bounded context outputs for spec-kit planning and implementation workflows"
+      }
+    ],
+    "siblings": [
+      {
+        "target": "sk-prompt",
+        "weight": 0.4,
+        "context": "improvement utility peer"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "manual": {
+    "depends_on": ["system-spec-kit"],
+    "related_to": ["system-spec-kit", "system-code-graph", "system-skill-advisor"]
+  },
+  "domains": [
+    "deep-loop",
+    "workflow",
+    "research",
+    "review-loop",
+    "ai-council",
+    "agent-improvement",
+    "convergence",
+    "coverage-graph",
+    "mode-registry",
+    "runtime"
+  ],
+  "intent_signals": [
+    "deep loop workflow",
+    "deep-research",
+    "deep-review",
+    "deep-ai-council",
+    "deep-improvement",
+    "research loop",
+    "iterative review loop",
+    "deep-review wave",
+    "release readiness",
+    "ai council deliberation",
+    "agent improvement benchmark"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop",
+      "deep-loop-workflows",
+      "deep loop workflows",
+      "deep research",
+      "research loop",
+      "iterative investigation workflow",
+      "deep-research",
+      "autoresearch",
+      "deep review",
+      "review loop",
+      "iterative review loop",
+      "severity weighted findings",
+      "deep-review",
+      "convergence review",
+      "deep-review wave",
+      "release readiness",
+      "deep-ai-council",
+      "ai council deliberation",
+      "multi-seat planning council",
+      "council convergence",
+      "improve agent",
+      "evaluate agent",
+      "score agent candidate",
+      "deep-improvement",
+      "agent-improvement",
+      "model benchmark",
+      "benchmark a model or prompt framework",
+      "skill benchmark",
+      "non-dev ai system"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "mode-registry",
+      "workflowMode",
+      "runtimeLoopType",
+      "backendKind",
+      "research-mode",
+      "review-mode",
+      "ai-council-mode",
+      "improvement-mode",
+      "agent-improvement",
+      "model-benchmark",
+      "skill-benchmark",
+      "non-dev-ai-system-refine",
+      "runtime-infrastructure"
+    ],
+    "key_files": [
+      ".opencode/skills/system-deep-loop/SKILL.md",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+      ".opencode/skills/system-deep-loop/shared/synthesis/resource-map.cjs",
+      ".opencode/skills/system-deep-loop/runtime/README.md"
+    ],
+    "entities": [
+      {
+        "name": "system-deep-loop",
+        "kind": "skill",
+        "path": ".opencode/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "runtime",
+        "kind": "infrastructure",
+        "path": ".opencode/skills/system-deep-loop/runtime/README.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "system-deep-loop is the single public skill that merges active deep-loop persona modes (deep-research, deep-review, deep-ai-council, deep-improvement) into one advisor identity with active mode packets, routed by workflowMode through mode-registry.json over a nested runtime/ infrastructure layer (frozen, MCP-free; formerly the separate deep-loop-runtime skill, merged 2026-07-08). @context owns one-shot retrieval while research and review carry bounded context snapshots. Per-mode convergence, state, artifacts, and tool-permission contracts are preserved unflattened; the three-tier discriminator (workflowMode / runtimeLoopType / backendKind) keeps graph-backed modes and improvement-host/external-adapter modes distinct. The prior deep-loop-workflows <-> deep-loop-runtime inter-skill relationship is now intra-skill structure; runtime/ has no graph-metadata.json of its own and is not independently advisor-routable.",
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "mode-registry.json",
+      "deep-research/SKILL.md",
+      "deep-review/SKILL.md",
+      "deep-ai-council/SKILL.md",
+      "deep-improvement/SKILL.md",
+      "runtime/README.md"
+    ],
+    "created_at": "2026-06-15T00:00:00Z",
+    "last_updated_at": "2026-07-08T00:00:00Z"
+  }
+}

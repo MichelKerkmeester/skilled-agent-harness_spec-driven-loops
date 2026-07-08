@@ -1,0 +1,384 @@
+{
+  "openQuestions": [
+    {
+      "id": "q-structural-layout",
+      "text": "Does the proposed system-deep-loop structural layout preserve the current workflow/runtime split without creating ambiguous ownership or broken relative paths?",
+      "checked": true,
+      "source": "strategy-init"
+    },
+    {
+      "id": "q-path-coupling",
+      "text": "Which bidirectional path couplings between deep-loop-workflows, deep-loop-runtime, commands, agents, docs, tests, and scripts must be repaired mechanically during the merge?",
+      "checked": true,
+      "source": "strategy-init"
+    },
+    {
+      "id": "q-speckit-borrow",
+      "text": "Which system-spec-kit tooling should be borrowed, wrapped, or left external instead of duplicated inside the merged deep-loop system?",
+      "checked": true,
+      "source": "strategy-init"
+    },
+    {
+      "id": "q-reference-migration",
+      "text": "What reference migration is required across commands, agents, READMEs, skill docs, feature catalogs, manual testing playbooks, specs, and advisor corpus entries?",
+      "checked": true,
+      "source": "strategy-init"
+    },
+    {
+      "id": "q-fallback-router",
+      "text": "Should fallback-router.ts be wired into real GLM-5.2 to MiMo-v2.5-Pro fallback now, or remain an offline/reference-only primitive for this phase?",
+      "checked": true,
+      "source": "strategy-init"
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q-structural-layout",
+      "text": "Does the proposed system-deep-loop structural layout preserve the current workflow/runtime split without creating ambiguous ownership or broken relative paths?",
+      "resolvedAtIteration": 1,
+      "answer": "Preserve workflows as public hub/mode packets and runtime as internal backend under the merged system root; do not flatten ownership.",
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/SKILL.md:12",
+        ".opencode/skills/deep-loop-runtime/README.md:23-30"
+      ]
+    },
+    {
+      "id": "q-path-coupling",
+      "text": "Which bidirectional path couplings between deep-loop-workflows, deep-loop-runtime, commands, agents, docs, tests, and scripts must be repaired mechanically during the merge?",
+      "resolvedAtIteration": 2,
+      "answer": "Rewrite command YAML and compiled contracts, doctor routes/assets, orchestrator/agent prompt contracts, advisor Python/TS/tests/metadata, system-spec-kit test/optimizer/docs, and runtime integration docs atomically with the move.",
+      "sources": [
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:64-77",
+        ".opencode/commands/doctor/_routes.yaml:100-110",
+        ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2570-2587"
+      ]
+    },
+    {
+      "id": "q-speckit-borrow",
+      "text": "Which system-spec-kit tooling should be borrowed, wrapped, or left external instead of duplicated inside the merged deep-loop system?",
+      "resolvedAtIteration": 3,
+      "answer": "Keep spec-folder topology, validation, templates, memory/context save, and canonical resource-map extraction under system-spec-kit. Consume them through narrow deep-loop seams and rewrite external consumer configs rather than duplicating the tooling.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/SKILL.md:61",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:4-18",
+        ".opencode/skills/deep-loop-workflows/shared/synthesis/resource-map.cjs:4-18"
+      ]
+    },
+    {
+      "id": "q-reference-migration",
+      "text": "What reference migration is required across commands, agents, READMEs, skill docs, feature catalogs, manual testing playbooks, specs, and advisor corpus entries?",
+      "resolvedAtIteration": 4,
+      "answer": "Update skill identity, structured routing fields, advisor constants/projections/corpus labels, generated command contracts, agent mirrors, hooks/plugins/CI, graph metadata edges, and live docs/playbooks/catalogs. Freeze /deep:* commands and agent names, leave historical specs alone, and close with residual-grep plus routing accuracy baselines.",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/spec.md:57-82",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:66-104"
+      ]
+    },
+    {
+      "id": "q-fallback-router",
+      "text": "Should fallback-router.ts be wired into real GLM-5.2 to MiMo-v2.5-Pro fallback now, or remain an offline/reference-only primitive for this phase?",
+      "resolvedAtIteration": 5,
+      "answer": "Keep fallback-router wiring optional/operator-gated and non-blocking for the core merge. If implemented, amend child 004 with an explicit fallback registry and canonical-to-provider slug mapping, model-aware substitution in fanout-run.cjs or a generic retry-exhausted hook, attribution events/labels, and forced-failure GLM-to-MiMo integration coverage.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:618-653",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1343-1375",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:35-62"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-001-structural-hub-backend",
+      "title": "Merged layout must preserve hub/backend separation",
+      "summary": "`deep-loop-workflows` is the public hub and `deep-loop-runtime` is a backend consumed through imports/scripts; merged `system-deep-loop` should keep those as distinct subdomains.",
+      "iteration": 1,
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/SKILL.md:12",
+        ".opencode/skills/deep-loop-runtime/README.md:23-30"
+      ]
+    },
+    {
+      "id": "f-001-mode-registry-load-bearing",
+      "title": "mode-registry is migration-critical",
+      "summary": "`mode-registry.json` owns workflowMode/runtimeLoopType/backendKind/advisor projection data; migration must keep it authoritative.",
+      "iteration": 1,
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/mode-registry.json:1-17",
+        ".opencode/skills/deep-loop-workflows/mode-registry.json:29-53"
+      ]
+    },
+    {
+      "id": "f-002-executable-path-couplings",
+      "title": "Executable path couplings require atomic rewrite",
+      "summary": "The move must update command YAML, compiled contracts, doctor routes, orchestrator/agent prompts, advisor code, and system-spec-kit verification paths together.",
+      "iteration": 2,
+      "sources": [
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:64-77",
+        ".opencode/commands/doctor/_routes.yaml:100-110",
+        ".opencode/agents/orchestrate.md:180-206"
+      ]
+    },
+    {
+      "id": "f-002-advisor-hardcoded-projection",
+      "title": "Advisor projection is a migration target",
+      "summary": "Python and TypeScript advisor paths hardcode the merged skill id and registry projection, so advisor source/tests/metadata must migrate with the hub.",
+      "iteration": 2,
+      "sources": [
+        ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2570-2587",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:95-165"
+      ]
+    },
+    {
+      "id": "f-002-speckit-verification-coupling",
+      "title": "system-spec-kit verification points at both old roots",
+      "summary": "Vitest discovery and optimizer manifests reference runtime tests and workflow configs, making system-spec-kit part of the migration surface.",
+      "iteration": 2,
+      "sources": [
+        ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:15-22",
+        ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:7-18"
+      ]
+    },
+    {
+      "id": "f-003-speckit-governance-external",
+      "title": "Spec-kit governance stays external",
+      "summary": "Spec validation, templates, generate-context continuity, and memory save remain system-spec-kit ownership; deep-loop should not duplicate them.",
+      "iteration": 3,
+      "sources": [
+        ".opencode/skills/system-spec-kit/SKILL.md:61",
+        ".opencode/skills/system-spec-kit/SKILL.md:414-418",
+        ".opencode/skills/system-spec-kit/SKILL.md:439"
+      ]
+    },
+    {
+      "id": "f-003-artifact-root-seam",
+      "title": "Artifact topology remains single-source via runtime seam",
+      "summary": "`artifact-root.cjs` re-exports the system-spec-kit topology resolver so deep-loop consumers use a backend seam without copying the artifact contract.",
+      "iteration": 3,
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:4-18",
+        ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs:166-214"
+      ]
+    },
+    {
+      "id": "f-003-resource-map-seam",
+      "title": "Resource-map rendering is workflow synthesis",
+      "summary": "The workflow shared synthesis seam re-exports the canonical system-spec-kit extractor because rendering resource-map markdown is workflow output, not runtime backend plumbing.",
+      "iteration": 3,
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/shared/synthesis/resource-map.cjs:4-18",
+        ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14-20"
+      ]
+    },
+    {
+      "id": "f-003-dev-tool-borrow",
+      "title": "Runtime has a narrow dev-tool dependency borrow",
+      "summary": "Runtime typecheck and type roots still point at system-spec-kit node_modules; this is package hygiene for the merge, not a reason to duplicate spec-kit governance.",
+      "iteration": 3,
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/package.json:10-17",
+        ".opencode/skills/deep-loop-runtime/tsconfig.json:12-14"
+      ]
+    },
+    {
+      "id": "f-004-reference-staging",
+      "title": "External reference migration needs staged identity/corpus/docs updates",
+      "summary": "The child 003 plan covers the major mutable surfaces and sequences constants, structured identity, codegen, docs, graph edges, corpus labels, and verification rather than a blind rewrite.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/spec.md:57-82",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:66-104"
+      ]
+    },
+    {
+      "id": "f-004-agent-mirrors",
+      "title": "Agent references must update both runtime mirrors",
+      "summary": "`.opencode/agents` and `.claude/agents` both contain old deep-loop paths and registry references, so mirror sync is a migration requirement.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/agents/orchestrate.md:185-206",
+        ".claude/agents/orchestrate.md:150-195"
+      ]
+    },
+    {
+      "id": "f-004-advisor-corpus-codegen",
+      "title": "Advisor migration is constants plus codegen plus corpus rebaseline",
+      "summary": "Advisor Python/TS constants, drift guard hash inputs, routing labels, and divergence ledger need synchronized update and accuracy re-baseline.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts:22-77",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/fixtures/intent-prompt-corpus.ts:67-130"
+      ]
+    },
+    {
+      "id": "f-004-guard-surfaces",
+      "title": "Plugin, hook, and CI paths are live migration targets",
+      "summary": "The loop guard plugin, pre-commit mirror checker, and agent-mirror GitHub workflow all hardcode old deep-loop paths.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/plugins/mk-deep-loop-guard.js:35",
+        ".opencode/hooks/pre-commit:36-45",
+        ".github/workflows/agent-mirror-sync.yml:14-23"
+      ]
+    },
+    {
+      "id": "f-004-graph-dedupe",
+      "title": "Sibling graph metadata needs rename plus dedupe",
+      "summary": "Sibling graph metadata carries old deep-loop skill IDs, including duplicate related_to entries that should collapse to one system-deep-loop relationship.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/skills/cli-opencode/graph-metadata.json:25-34",
+        ".opencode/skills/sk-code/graph-metadata.json:24-35",
+        ".opencode/skills/sk-prompt/graph-metadata.json:20-26"
+      ]
+    },
+    {
+      "id": "f-005-router-ready-zero-caller",
+      "title": "fallback-router is ready but has no fanout caller",
+      "summary": "The router validates fallback graphs and resolves fallback/fail-fast decisions, but the fanout pool currently retries the same lineage/model and never calls it.",
+      "iteration": 5,
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:299-324",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:618-653"
+      ]
+    },
+    {
+      "id": "f-005-model-id-gap",
+      "title": "Real GLM/MiMo fallback needs canonical-to-provider slug mapping",
+      "summary": "The planned registry uses canonical ids while live fanout dispatch passes provider-prefixed slugs to opencode, so wiring needs an explicit mapping layer.",
+      "iteration": 5,
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/plan.md:77-92",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:68-77",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1343-1375"
+      ]
+    },
+    {
+      "id": "f-005-profile-contracts-manual",
+      "title": "Current model profiles document no automatic fallback",
+      "summary": "GLM-5.2 and MiMo profiles both list null/no automatic fallback; GLM says defer on pool exhaustion, and MiMo direct provider is a manual reroute path.",
+      "iteration": 5,
+      "sources": [
+        ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md:139-158",
+        ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md:154-169"
+      ]
+    },
+    {
+      "id": "f-005-defer-core-merge",
+      "title": "Fallback wiring remains optional for the core merge",
+      "summary": "The parent and child specs mark fallback-router wiring as optional/operator-gated behavior work, not a structural merge closeout dependency.",
+      "iteration": 5,
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/spec.md:80-88",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:35-62"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Flatten runtime and workflow packets into one directory",
+      "reason": "Breaks documented hub/backend responsibilities.",
+      "iteration": 1,
+      "evidence": ".opencode/skills/deep-loop-workflows/SKILL.md:37-39; .opencode/skills/deep-loop-runtime/README.md:23-30"
+    },
+    {
+      "approach": "Move directories first and rely on generated contracts to catch up",
+      "reason": "Generated contracts are outputs; source YAML, advisor code, agents, and test configs must rewrite first.",
+      "iteration": 2,
+      "evidence": ".opencode/commands/deep/assets/compiled/deep_research.contract.md:1-80"
+    },
+    {
+      "approach": "Duplicate system-spec-kit governance tooling inside system-deep-loop",
+      "reason": "Spec-folder validation, continuity, memory save, and canonical templates are system-spec-kit ownership, not deep-loop runtime ownership.",
+      "iteration": 3,
+      "evidence": ".opencode/skills/system-spec-kit/SKILL.md:61; .opencode/skills/deep-loop-runtime/README.md:120-127"
+    },
+    {
+      "approach": "Repo-wide blind find/replace",
+      "reason": "Advisor fixtures need field-scoped label replacement, compiled command contracts need regeneration, graph edges need dedupe, and historical specs remain out of scope.",
+      "iteration": 4,
+      "evidence": ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/spec.md:77-82; .opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:101-106"
+    },
+    {
+      "approach": "Rename /deep commands or @agent names during reference migration",
+      "reason": "The child 003 decision freezes public command and agent surfaces; only skill identity and references migrate.",
+      "iteration": 4,
+      "evidence": ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/spec.md:143-149"
+    },
+    {
+      "approach": "Treat fallback-router wiring as mandatory merge closeout",
+      "reason": "It changes fan-out behavior and is already scoped as optional/operator-gated child 004.",
+      "iteration": 5,
+      "evidence": ".opencode/specs/system-deep-loop/052-deep-loop-unification/spec.md:80-88; .opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:35-62"
+    },
+    {
+      "approach": "Hardcode GLM-to-MiMo substitution inside generic fanout-pool.cjs",
+      "reason": "The generic pool only knows retry state; model policy belongs in fanout orchestration or an explicit callback seam.",
+      "iteration": 5,
+      "evidence": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:618-653; .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1343-1375"
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "blockedStopHistory": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "entries": [],
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "warnings": []
+  },
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "suppressedCandidates": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 18,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      ".opencode/skills/deep-loop-workflows/SKILL.md": 3,
+      ".opencode/skills/deep-loop-workflows/mode-registry.json": 2,
+      ".opencode/skills/deep-loop-runtime/README.md": 3,
+      ".opencode/commands/deep/assets/deep_research_auto.yaml": 9,
+      ".opencode/commands/deep/assets/compiled/deep_research.contract.md": 1,
+      ".opencode/commands/doctor/_routes.yaml": 1,
+      ".opencode/agents/orchestrate.md": 1,
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py": 1,
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts": 1,
+      ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts": 1,
+      ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json": 2,
+      ".opencode/skills/deep-loop-runtime/references/integration_points.md": 1,
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs": 1,
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs": 1,
+      ".opencode/skills/system-spec-kit/SKILL.md": 3,
+      ".opencode/skills/deep-loop-workflows/shared/synthesis/resource-map.cjs": 1,
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs": 1,
+      ".opencode/skills/deep-loop-runtime/SKILL.md": 1,
+      ".opencode/skills/deep-loop-runtime/package.json": 1,
+      ".opencode/skills/deep-loop-runtime/tsconfig.json": 1,
+      ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/spec.md": 2,
+      ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md": 2,
+      ".opencode/agents/orchestrate.md": 1,
+      ".claude/agents/orchestrate.md": 1,
+      ".opencode/plugins/mk-deep-loop-guard.js": 1,
+      ".opencode/hooks/pre-commit": 1,
+      ".github/workflows/agent-mirror-sync.yml": 1,
+      ".github/workflows/routing-registry-drift.yml": 1,
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts": 1,
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/fixtures/intent-prompt-corpus.ts": 1,
+      ".opencode/skills/cli-opencode/graph-metadata.json": 1,
+      ".opencode/skills/sk-code/graph-metadata.json": 1,
+      ".opencode/skills/sk-prompt/graph-metadata.json": 1,
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts": 2,
+      ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts": 1,
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs": 1,
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs": 2,
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts": 1,
+      ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md": 1,
+      ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md": 1,
+      ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md": 2,
+      ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md": 2
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "Q1", "resolution": "Mechanically safe: runtime relocates as self-contained runtime/ subtree with own tooling. THREE distinct path-repair mechanisms identified."},
+    {"id": "Q2", "resolution": "41 reverse grep hits = ~12 uniform code sites + 1 reverse-absolute shell-out + ~28 test-fixture/comment strings. Forward = ~40+ absolute-string + 1 relative require."},
+    {"id": "Q3", "resolution": "Net neutral. node_modules borrow already shipped; only artifact-root.cjs logic seam remains at +1 hop."},
+    {"id": "Q4", "resolution": "~780+ non-history lines. Advisor already has merge-identity layer; system-deep-loop is id-rename of MERGED_DEEP_SKILL_ID. Divergence-ledger reasons are historical narration (REQ-007 manual review). skill-graph.json generated."},
+    {"id": "Q5", "resolution": "DEFER. Zero production callers repo-wide; today's failure path is same-model retry-and-salvage not model-swap. Zero merge-blocking dependency, no router-contract debt. Keep optional child 004."}
+  ],
+  "keyFindings": [
+    {"id": "F1.1", "text": "Runtime folds as self-contained runtime/ subtree; no orphaned entry points."},
+    {"id": "F1.2", "text": "THREE+1 path-repair mechanisms: (A) absolute-string, (A') reverse absolute shell-out, (B) forward-relative segment-delete, (C) +1-hop tooling-borrow, (D) reverse-relative hop-reduce+rename."},
+    {"id": "F1.3", "text": "spec.md:132 asymmetry risk confirmed."},
+    {"id": "F2.1", "text": "Reverse coupling = ~12 code + 1 reverse-absolute shell-out + ~28 test-fixture strings."},
+    {"id": "F2.2", "text": "REQ-003 system-spec-kit surface ~9 sites/5 files, not 4."},
+    {"id": "F2.3", "text": "Tooling-borrow net neutral; node_modules borrow already shipped (stale claim)."},
+    {"id": "F3.2", "text": "Advisor already has merge-identity layer (aliases.ts:92-109); system-deep-loop is SECOND fold = id-rename of MERGED_DEEP_SKILL_ID."},
+    {"id": "F3.3", "text": "Divergence-ledger reason strings are historical narration; mechanical replace corrupts them (REQ-007 ratchet guard)."},
+    {"id": "F3.5", "text": "skill-graph.json generated; hand-edit trap; edit graph-metadata.json sources + re-scan."},
+    {"id": "F3.6", "text": "orchestrate.md hardcodes mode-registry.json path 3x x2 agent trees = 6 critical edits."},
+    {"id": "F4.2", "text": "Today's failure path is same-model retry-and-salvage (fanout-pool.cjs), not model-swap."},
+    {"id": "F4.4", "text": "DEFER fallback-router wiring: zero merge-blocking dependency, no router-contract debt."}
+  ],
+  "ruledOutDirections": [
+    {"id": "R1.1", "text": "Single mechanical find/replace."},
+    {"id": "R1.2", "text": "Reverse as larger per-site risk."},
+    {"id": "R2.1", "text": "Mechanism A forward-only."},
+    {"id": "R2.2", "text": "4 system-spec-kit edits suffice."},
+    {"id": "R2.3", "text": "tooling-borrow is net risk transfer."},
+    {"id": "R3.1", "text": "Advisor needs from-scratch merge layer."},
+    {"id": "R3.2", "text": "Hand-edit skill-graph.json."},
+    {"id": "R3.3", "text": "Mechanical full-file replace on divergence ledger."},
+    {"id": "R4.1", "text": "Wire fallback-router as part of the merge."},
+    {"id": "R4.2", "text": "The merge forces fallback-router changes."}
+  ]
+}

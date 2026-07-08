@@ -1,0 +1,34 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Q1: Is folding deep-loop-runtime INTO deep-loop-workflows (as system-deep-loop) mechanically safe, and where does each component land?",
+    "Q2: How many bidirectional path-couplings exist between the two skills, and what breaks silently if a coupling is not repaired?",
+    "Q3: How does the system-spec-kit tooling-borrow (node_modules reach-ins + artifact-root re-export) behave post-merge, and is merging a net simplification or a net risk transfer?",
+    "Q4: What is the full reference-migration surface across commands/agents/READMEs/advisor-corpus/test literals/named profile files, and what is the risk of incomplete migration?",
+    "Q5: Should fallback-router.ts be wired for real GLM-5.2 -> MiMo-v2.5-Pro fallback given it has zero callers today?"
+  ],
+  "keyFindings": [
+    {"id":"F-P0-001","severity":"P0","summary":"Detached fan-out lineage boundary conflicts with YAML spec.md mutation (not gated on fanout_lineage_artifact_dir).","iteration":1},
+    {"id":"F-P1-001","severity":"P1","summary":"Convergence-floor test (REQ-002 enforcer) hardcodes old skill name; Class A test-file count understated (7->10).","iteration":1},
+    {"id":"F-P1-002","severity":"P1","summary":"Class B reverse-coupling inventory incomplete: reduce-state/runtime-capabilities shims, orchestrate-session.cjs, continuity-thread require.","iteration":2},
+    {"id":"F-P1-003","severity":"P1","summary":"NEW third path-repair class: replay-graph-from-artifacts.cjs repo-root absolute existence-probe breaks silently.","iteration":2},
+    {"id":"F-P1-004","severity":"P1","summary":"Council test fixtures are semantic data, not path references; add to residual-grep allowlist.","iteration":2},
+    {"id":"F-P1-005","severity":"P1","summary":"test:council include glob can silently shrink the test set; needs non-empty-match assertion.","iteration":3},
+    {"id":"F-P1-006","severity":"P1","summary":"Divergence-ledger reason prose embeds old name; must update with structured fields.","iteration":3},
+    {"id":"F-P1-007","severity":"P1","summary":"Named benchmark profile deep-loop-runtime.json has ambiguous rename target.","iteration":3},
+    {"id":"F-P1-008","severity":"P1","summary":"classifyLineageFailure routes quota/auth to FATAL, making fallback wiring unreachable for GLM quota-out.","iteration":4},
+    {"id":"F-P1-009","severity":"P1","summary":"Registry id vs provider slug mismatch needs a normalizer before resolveFallback.","iteration":4},
+    {"id":"F-P1-010","severity":"P1","summary":"External-prose surface broad: 10 agent files + README + 5 sibling graphs needing edge-collapse.","iteration":5}
+  ],
+  "ruledOutDirections": [
+    "runtime/ as a mode-registry entry (category error)",
+    "Per-replica spec.md writeback in fan-out (races on generated fence)",
+    "replay-graph as a Class B relative-hop site (repo-root absolute probe)",
+    "Global find/replace of deep-loop-runtime in council tests (semantic data)",
+    "Decoupling runtime TS tooling during merge (failure modes indistinguishable)",
+    "Dynamic mode-registry reads on advisor hot path (intentional coupling avoidance)",
+    "Naive single-call-site fallback wiring (unreachable for quota/auth)",
+    "Same-provider cross-pool fallback (graph validation rejects)",
+    "Renaming /deep:* commands or public agent names (public surfaces stable)"
+  ]
+}

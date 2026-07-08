@@ -1,0 +1,3115 @@
+{
+  "mergedFrom": [
+    "glm52-1",
+    "glm52-2",
+    "glm52-3",
+    "glm52-4",
+    "glm52-5",
+    "gpt55-fast-1",
+    "gpt55-fast-10",
+    "gpt55-fast-2",
+    "gpt55-fast-3",
+    "gpt55-fast-4",
+    "gpt55-fast-5",
+    "gpt55-fast-6",
+    "gpt55-fast-7",
+    "gpt55-fast-8",
+    "gpt55-fast-9"
+  ],
+  "openQuestions": [
+    {
+      "id": "q-fallback-router",
+      "text": "Should fallback-router.ts be wired into real GLM-5.2 to MiMo-v2.5-Pro fallback now, or remain an offline/reference-only primitive for this phase?",
+      "checked": true,
+      "source": "strategy-init",
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "q-path-coupling",
+      "text": "Which bidirectional path couplings between deep-loop-workflows, deep-loop-runtime, commands, agents, docs, tests, and scripts must be repaired mechanically during the merge?",
+      "checked": true,
+      "source": "strategy-init",
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "q-reference-migration",
+      "text": "What reference migration is required across commands, agents, READMEs, skill docs, feature catalogs, manual testing playbooks, specs, and advisor corpus entries?",
+      "checked": true,
+      "source": "strategy-init",
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "q-speckit-borrow",
+      "text": "Which system-spec-kit tooling should be borrowed, wrapped, or left external instead of duplicated inside the merged deep-loop system?",
+      "checked": true,
+      "source": "strategy-init",
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "q-structural-layout",
+      "text": "Does the proposed system-deep-loop structural layout preserve the current workflow/runtime split without creating ambiguous ownership or broken relative paths?",
+      "checked": true,
+      "source": "strategy-init",
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "question": "Are bidirectional path-coupling repair rules complete after the move?",
+      "answeredIn": 2,
+      "answer": "The repair directions are correct, but the current table is incomplete and should explicitly include runtime-capability shims, council orchestrate-session, council replay graph, and classified runtime tests.",
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "question": "Are the Class A and Class B path-repair rules complete and directionally correct for live source files and tests?",
+      "answer": "The direction rules are correct, but the concrete phase-002 inventory should add replay-graph-from-artifacts, deep-review shims, and a classified runtime-test list.",
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "q-coupling",
+      "question": "Are the forward and reverse path-coupling repair rules correct?",
+      "answer": "Yes. Forward runtime-to-workflows paths keep hop count and delete the old segment; reverse workflow-to-runtime paths remove one hop and target runtime/.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:11",
+        "file:.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14"
+      ],
+      "iteration": 1,
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "question": "Is the external reference migration plan complete across commands, agents, READMEs, hooks, advisor corpus, skill graph, generated contracts, and examples?",
+      "answer": "The child 003 plan is directionally complete across the major live surfaces; it should preserve category staging, synchronize advisor codegen/drift guards, regenerate compiled command contracts, and dedupe literal graph-edge duplicates such as cli-opencode.",
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "q-layout",
+      "question": "Is the proposed system-deep-loop target layout structurally sound?",
+      "answer": "Yes, if runtime remains infrastructure-only and exactly one graph-metadata.json is fresh-authored at the hub.",
+      "sources": [
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:154",
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:169"
+      ],
+      "iteration": 1,
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "question": "Is the proposed system-deep-loop/runtime layout structurally coherent without duplicate skill identity or mode ambiguity?",
+      "answeredIn": 1,
+      "answer": "Yes, if system-deep-loop remains the single public hub and runtime is demoted to backend infrastructure without routable skill metadata.",
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "question": "Is the proposed system-deep-loop/runtime/ structural layout correct, or does it create mode/skill identity ambiguity?",
+      "answer": "Yes, if runtime is kept as non-routable infrastructure under the hub and the unified skill has exactly one graph-metadata identity.",
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "q-tooling-borrow",
+      "question": "Is the system-spec-kit tooling-borrow accounted for?",
+      "answer": "Yes, and it is load-bearing test/typecheck wiring scoped into 002.",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:73"
+      ],
+      "_lineages": [
+        "gpt55-fast-10",
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "question": "Is the system-spec-kit tooling-borrow repair complete beyond package and tsconfig files?",
+      "answeredIn": 3,
+      "answer": "The four planned edits are necessary, but phase 002 should also cover artifact-root, artifact-root tests, and test:council anchor fixtures; broader system-spec-kit references belong to child 003 unless their suites are run in phase 002.",
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "question": "Is the system-spec-kit tooling-borrow repair correctly scoped to phase 002, and are there hidden borrow paths beyond the four planned files?",
+      "answer": "The four listed borrow edits are phase-002 work, but the plan should add artifact-root.cjs, artifact-root.vitest.ts, and council-playbook-anchor-integrity.vitest.ts for the planned gates.",
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "question": "Should fallback-router.ts be wired now for GLM-5.2 to MiMo-v2.5-Pro fallback, or remain optional/deferred?",
+      "answer": "Keep it optional/deferred for the core merge. If the operator chooses to land it, amend child 004 so model substitution is implemented in fanout-run.cjs or through an explicit pool hook, with a fallback registry/config surface, attribution events, and a forced-failure GLM-to-MiMo integration test.",
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "question": "Should fallback-router.ts be wired now for GLM-5.2 to MiMo-v2.5-Pro fallback?",
+      "answeredIn": 5,
+      "answer": "Fallback routing is useful optional hardening but not required for the core merge. Keep child 004 operator-gated unless GLM-heavy fan-out reruns need automatic substitution before closeout.",
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "question": "What command, agent, README, graph metadata, advisor-corpus, and model-prompt references must migrate or remain stable?",
+      "answeredIn": 4,
+      "answer": "Executable command YAML, generated contracts, agent helper paths, README navigation, graph metadata, and advisor corpus/parity fixtures must migrate; /deep:* command names, OpenCode agent slugs, and sk-prompt-models model IDs/profile files should remain stable.",
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "id": "Q2",
+      "answer": "14 relative requires (workflows->runtime) break LOUDLY (MODULE_NOT_FOUND); 50 string literals (runtime->workflows in compile-command-contracts.cjs + 2 other scripts) break SILENTLY. check-contract-drift.cjs is the built-in migration gate.",
+      "iteration": 2,
+      "_lineages": [
+        "glm52-1",
+        "glm52-3",
+        "gpt55-fast-2"
+      ]
+    },
+    {
+      "id": "Q4",
+      "answer": "6 migration tiers by loudness. Advisor corpus highest-risk (MERGED_DEEP_SKILL_ID -> ~40 routing entries, coupled-pair atomic migration gated by drift-guard). .claude/agents mirror is silent trap. 2 automated guards bound risk; ungated prose needs grep pass.",
+      "iteration": 4,
+      "_lineages": [
+        "glm52-1",
+        "glm52-3",
+        "gpt55-fast-2"
+      ]
+    },
+    {
+      "id": "q-fallback",
+      "answer": "Automatic GLM-to-MiMo fallback is not currently live.",
+      "_lineages": [
+        "gpt55-fast-5",
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "q-structural",
+      "answer": "Child 002 covers both coupling directions, tooling-borrow, metadata consolidation, and validation gates.",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "q-references",
+      "answer": "Child 003 covers advisor, command, docs, tests, ledgers, graph metadata, and examples with dependency ordering.",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "Q5",
+      "answer": "Do NOT wire fallback-router during merge. Zero callers confirmed; wiring is 4-piece feature out of scope; approval-guard rejects unapproved MiMo swaps. Preserve router, track as post-merge follow-up.",
+      "iteration": 5,
+      "_lineages": [
+        "glm52-1",
+        "glm52-3",
+        "gpt55-fast-2"
+      ]
+    },
+    {
+      "id": "q-scope",
+      "answer": "Fallback wiring remains optional unless the operator expands scope.",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "q-fallback-router",
+      "text": "Should fallback-router.ts be wired into real GLM-5.2 to MiMo-v2.5-Pro fallback now, or remain an offline/reference-only primitive for this phase?",
+      "resolvedAtIteration": 5,
+      "answer": "Keep fallback-router wiring optional/operator-gated and non-blocking for the core merge. If implemented, amend child 004 with an explicit fallback registry and canonical-to-provider slug mapping, model-aware substitution in fanout-run.cjs or a generic retry-exhausted hook, attribution events/labels, and forced-failure GLM-to-MiMo integration coverage.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:618-653",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1343-1375",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:35-62"
+      ],
+      "_lineages": [
+        "gpt55-fast-1",
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "q-speckit-borrow",
+      "text": "Which system-spec-kit tooling should be borrowed, wrapped, or left external instead of duplicated inside the merged deep-loop system?",
+      "resolvedAtIteration": 3,
+      "answer": "Keep spec-folder topology, validation, templates, memory/context save, and canonical resource-map extraction under system-spec-kit. Consume them through narrow deep-loop seams and rewrite external consumer configs rather than duplicating the tooling.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/SKILL.md:61",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:4-18",
+        ".opencode/skills/deep-loop-workflows/shared/synthesis/resource-map.cjs:4-18"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "Q1",
+      "answer": "Mechanically safe IF nesting depth preserved. Runtime carries own node_modules/package.json/tsconfig as a unit. system-spec-kit path coupling is depth-invariant. No orphaned entry points. mode-registry.json + 3 command entry points are rename keystones.",
+      "iteration": 1,
+      "_lineages": [
+        "glm52-1",
+        "glm52-3",
+        "gpt55-fast-2"
+      ]
+    },
+    {
+      "id": "q-structural-layout",
+      "text": "Does the proposed system-deep-loop structural layout preserve the current workflow/runtime split without creating ambiguous ownership or broken relative paths?",
+      "resolvedAtIteration": 1,
+      "answer": "Preserve workflows as public hub/mode packets and runtime as internal backend under the merged system root; do not flatten ownership.",
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/SKILL.md:12",
+        ".opencode/skills/deep-loop-runtime/README.md:23-30"
+      ],
+      "_lineages": [
+        "gpt55-fast-1",
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "q-path-coupling",
+      "text": "Which bidirectional path couplings between deep-loop-workflows, deep-loop-runtime, commands, agents, docs, tests, and scripts must be repaired mechanically during the merge?",
+      "resolvedAtIteration": 2,
+      "answer": "Rewrite command YAML and compiled contracts, doctor routes/assets, orchestrator/agent prompt contracts, advisor Python/TS/tests/metadata, system-spec-kit test/optimizer/docs, and runtime integration docs atomically with the move.",
+      "sources": [
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:64-77",
+        ".opencode/commands/doctor/_routes.yaml:100-110",
+        ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2570-2587"
+      ],
+      "_lineages": [
+        "gpt55-fast-1",
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "q-reference-migration",
+      "text": "What reference migration is required across commands, agents, READMEs, skill docs, feature catalogs, manual testing playbooks, specs, and advisor corpus entries?",
+      "resolvedAtIteration": 4,
+      "answer": "Update skill identity, structured routing fields, advisor constants/projections/corpus labels, generated command contracts, agent mirrors, hooks/plugins/CI, graph metadata edges, and live docs/playbooks/catalogs. Freeze /deep:* commands and agent names, leave historical specs alone, and close with residual-grep plus routing accuracy baselines.",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/spec.md:57-82",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:66-104"
+      ],
+      "_lineages": [
+        "gpt55-fast-1",
+        "gpt55-fast-10",
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "Q3",
+      "answer": "system-spec-kit coupling is NEUTRAL to merge (3 depth-invariant intentional seams). Merge is net simplification on workflows<->runtime axis (15 requires + 50 literals become intra-skill). Do NOT inline review-research-paths.cjs.",
+      "iteration": 3,
+      "_lineages": [
+        "glm52-1",
+        "glm52-3",
+        "gpt55-fast-2"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f4-2",
+      "finding": ".claude/agents mirror (5 files x 2 runtimes) is silent-migration trap; ungated prose.",
+      "iteration": 4,
+      "confidence": "high",
+      "_lineages": [
+        "glm52-1"
+      ]
+    },
+    {
+      "id": "finding-003-gates-sufficient",
+      "title": "003 has the right dependency ordering and exit gates",
+      "summary": "The external migration plan requires baseline inventory, hardcoded constants first, generated projection/codegen, command-contract regeneration, corpus re-baseline, and full exit gates.",
+      "confidence": "high",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:67",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:106"
+      ],
+      "addedAtIteration": 9,
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "F-P1-007--e23a272c6844",
+      "severity": "P1",
+      "title": "004 plan misses slug→registry-id model adapter (fan-out dispatches full provider slug, registry keys on bare id)",
+      "evidence": [
+        "fanout-run.cjs:1349-1350",
+        "model_profiles.json:190-299"
+      ],
+      "_lineages": [
+        "glm52-4"
+      ],
+      "_conflictOf": "F-P1-007",
+      "_conflict_id": "F-P1-007--e23a272c6844",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-007",
+          "peerId": "F-P1-007--5a0cd16c09a3",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F4.4--1e35e942137f",
+      "tier": 2,
+      "type": "RISK",
+      "run": 4,
+      "severity": "low",
+      "summary": "11+ parity invariants hardcode skill id (loud guard, must move in lockstep)",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F4.4",
+      "_conflict_id": "F4.4--1e35e942137f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F4.4",
+          "peerId": "F4.4--ce417561ffac",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f2-1",
+      "finding": "14 workflows->runtime requires break loudly; repair is mechanical (depth + skill-name).",
+      "iteration": 2,
+      "confidence": "high",
+      "_lineages": [
+        "glm52-1"
+      ]
+    },
+    {
+      "id": "f2-2",
+      "finding": "50 runtime->workflows string literals in compile-command-contracts.cjs break SILENTLY — highest-risk coupling class.",
+      "iteration": 2,
+      "confidence": "high",
+      "_lineages": [
+        "glm52-1"
+      ]
+    },
+    {
+      "id": "f019-fallback-label-attribution",
+      "summary": "A fallback lineage needs a distinct label/artifact directory and status event to avoid mixing failed GLM retry state with MiMo replacement output.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1553",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:783"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "f011-eval-fixture-allowlist",
+      "summary": "Active system-spec-kit eval fixtures intentionally contain historical old-name queries/decoys and should be reviewed or allowlisted, not blindly renamed.",
+      "sources": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:795",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:960"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "gpt55-fast-4-F002",
+      "iteration": 1,
+      "category": "path-repair",
+      "severity": "medium",
+      "title": "Add replay-graph-from-artifacts.cjs to internal path-repair scope",
+      "claim": "A live deep-ai-council script hardcodes old deep-loop-runtime script paths and should be repaired during child 002 internal path rewrites.",
+      "evidence": [
+        ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:26",
+        ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:56",
+        ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:65"
+      ],
+      "recommendation": "Patch child 002 Stage 3a or its implementation checklist to include this script alongside other internal workflow-to-runtime path repairs.",
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-4"
+      ]
+    },
+    {
+      "id": "F-P1-004--82714281589e",
+      "severity": "P1",
+      "title": "Advisor does not read mode-registry.json at runtime — rename needs projection-map regen + 3 hardcoded-constant updates + drift-guard rerun",
+      "evidence": [
+        "skill_advisor.py:83",
+        "skill_advisor.py:2579",
+        "aliases.ts:109",
+        "routing-registry-drift-guard.vitest.ts"
+      ],
+      "_lineages": [
+        "glm52-4"
+      ],
+      "_conflictOf": "F-P1-004",
+      "_conflict_id": "F-P1-004--82714281589e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-004",
+          "peerId": "F-P1-004--a8ea6356a53a",
+          "peerLineages": [
+            "gpt55-fast-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-004",
+          "peerId": "F-P1-004--797ad9b0c855",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "gpt55-fast-4-F005",
+      "iteration": 3,
+      "category": "advisor-migration",
+      "severity": "high",
+      "title": "Advisor merged-skill identity is duplicated across Python and TypeScript",
+      "claim": "The old deep-loop-workflows identity appears in advisor path constants and merged-id aliases, so migration must update both implementations and regenerate projections.",
+      "evidence": [
+        ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:83",
+        ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2579",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:109",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts:26",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts:76"
+      ],
+      "recommendation": "Update Python, TypeScript, drift tests, generated projections, and corpus expectations as one advisor migration unit, followed by validation/rebaseline.",
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-4"
+      ]
+    },
+    {
+      "id": "f4-1",
+      "finding": "advisor MERGED_DEEP_SKILL_ID='deep-loop-workflows' propagates to ~40 routing entries; registry + maps are coupled-pair requiring atomic migration.",
+      "iteration": 4,
+      "confidence": "high",
+      "_lineages": [
+        "glm52-1"
+      ]
+    },
+    {
+      "id": "f-004-advisor-corpus-codegen",
+      "title": "Advisor migration is constants plus codegen plus corpus rebaseline",
+      "summary": "Advisor Python/TS constants, drift guard hash inputs, routing labels, and divergence ledger need synchronized update and accuracy re-baseline.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts:22-77",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/fixtures/intent-prompt-corpus.ts:67-130"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "finding-advisor-high-risk",
+      "title": "Advisor migration is the highest-risk reference area",
+      "summary": "The advisor has generated projection/hash surfaces, hand constants, lexical scoring boosts, graph edges, corpus, and divergence fixtures.",
+      "confidence": "high",
+      "sources": [
+        ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:83",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:21",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:109",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts:28"
+      ],
+      "addedAtIteration": 6,
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "F-P1-004--a8ea6356a53a",
+      "severity": "P1",
+      "title": "Advisor migration needs drift-guard plus accuracy re-baseline",
+      "summary": "The merged deep-loop identity is encoded in Python, TypeScript aliases, mode-registry projection tests, corpus rows, and approved divergence ledger entries. Rename must preserve the projection hash and meet the pre-change routing-accuracy baseline.",
+      "_lineages": [
+        "gpt55-fast-2"
+      ],
+      "_conflictOf": "F-P1-004",
+      "_conflict_id": "F-P1-004--a8ea6356a53a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-004",
+          "peerId": "F-P1-004--82714281589e",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-004",
+          "peerId": "F-P1-004--797ad9b0c855",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "g55f8-f004",
+      "iteration": 2,
+      "summary": "Advisor migration requires constants, generated projection, drift guard, corpus, and rebaseline work.",
+      "evidence": [
+        ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:83",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:109",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts:26"
+      ],
+      "_lineages": [
+        "gpt55-fast-8"
+      ]
+    },
+    {
+      "id": "f-002-advisor-hardcoded-projection",
+      "title": "Advisor projection is a migration target",
+      "summary": "Python and TypeScript advisor paths hardcode the merged skill id and registry projection, so advisor source/tests/metadata must migrate with the hub.",
+      "iteration": 2,
+      "sources": [
+        ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:2570-2587",
+        ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:95-165"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f009",
+      "title": "Advisor projection migration must be synchronized",
+      "summary": "Python, TypeScript scorer files, and the drift guard all hardcode the merged deep skill identity and registry/projection contract.",
+      "sources": [
+        "file:.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:83",
+        "file:.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:109",
+        "file:.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts:26"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "G55F5-F010",
+      "iteration": 3,
+      "title": "Advisor projections and ledgers are migration-critical",
+      "summary": "The rename must cover advisor code constants, generated projections, tests, routing corpora, and approved-divergence ledgers.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:75",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:84",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:101",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts:30"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "f-004-agent-mirrors",
+      "title": "Agent references must update both runtime mirrors",
+      "summary": "`.opencode/agents` and `.claude/agents` both contain old deep-loop paths and registry references, so mirror sync is a migration requirement.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/agents/orchestrate.md:185-206",
+        ".claude/agents/orchestrate.md:150-195"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "f-003-artifact-root-seam",
+      "title": "Artifact topology remains single-source via runtime seam",
+      "summary": "`artifact-root.cjs` re-exports the system-spec-kit topology resolver so deep-loop consumers use a backend seam without copying the artifact contract.",
+      "iteration": 3,
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:4-18",
+        ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs:166-214"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f006",
+      "title": "artifact-root is a hidden system-spec-kit seam",
+      "summary": "artifact-root.cjs re-exports system-spec-kit/shared/review-research-paths.cjs through a depth-sensitive path and must be repaired in phase 002.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:16",
+        "file:.opencode/skills/deep-loop-runtime/tests/unit/artifact-root.vitest.ts:10"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "F-P0-002--b588d3333f7d",
+      "severity": "P0",
+      "title": "artifact-root.cjs internal path.join + 2 test companions missed by 002 Stage-3b",
+      "evidence": [
+        "artifact-root.cjs:17-18",
+        "artifact-root.vitest.ts:11",
+        "dependency-seams.vitest.ts:16-17"
+      ],
+      "_lineages": [
+        "glm52-4"
+      ],
+      "_conflictOf": "F-P0-002",
+      "_conflict_id": "F-P0-002--b588d3333f7d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P0-002",
+          "peerId": "F-P0-002--4e04a8a204c5",
+          "peerLineages": [
+            "gpt55-fast-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F-P0-002--4e04a8a204c5",
+      "severity": "P0",
+      "title": "artifact-root.cjs is a missed system-spec-kit path seam",
+      "summary": "After runtime moves under system-deep-loop/runtime, artifact-root.cjs's relative require to system-spec-kit needs one more parent hop. Its test constant and dependency-seams guard also need updates or the validation surface becomes misleading.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:16-18",
+        ".opencode/skills/deep-loop-runtime/tests/unit/artifact-root.vitest.ts:10-25",
+        ".opencode/skills/deep-loop-runtime/tests/unit/dependency-seams.vitest.ts:16-18",
+        ".opencode/skills/deep-loop-runtime/tests/unit/dependency-seams.vitest.ts:46-52"
+      ],
+      "_lineages": [
+        "gpt55-fast-2"
+      ],
+      "_conflictOf": "F-P0-002",
+      "_conflict_id": "F-P0-002--4e04a8a204c5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P0-002",
+          "peerId": "F-P0-002--b588d3333f7d",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F3.5--c76f4c6b20d3",
+      "tier": 3,
+      "type": "CLARIFY",
+      "run": 3,
+      "summary": "Borrow has two natures: tooling (runtime->spec-kit) vs code (spec-kit tests->runtime)",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F3.5",
+      "_conflict_id": "F3.5--c76f4c6b20d3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F3.5",
+          "peerId": "F3.5--79b7b6b26447",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F3.3--5b7351999213",
+      "tier": 3,
+      "type": "CORRECTION",
+      "run": 3,
+      "summary": "Borrow surface ~6-8 sites, not 4",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F3.3",
+      "_conflict_id": "F3.3--5b7351999213",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F3.3",
+          "peerId": "F3.3--2cf6c661cbf3",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f2-3",
+      "finding": "check-contract-drift.cjs is a built-in migration-completeness gate if migrated first.",
+      "iteration": 2,
+      "confidence": "high",
+      "_lineages": [
+        "glm52-1"
+      ]
+    },
+    {
+      "id": "f021-child-002-needs-render-root-depth-amendment",
+      "summary": "Child 002's path plan is directionally correct but should add render-command-contract.cjs WORKSPACE_ROOT depth repair before implementation.",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:72",
+        ".opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:13"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "f022-child-003-needs-eval-allowlist-amendment",
+      "summary": "Child 003's residual-grep stage needs a reviewed allowlist for semantically historical active eval fixtures.",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:67",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:795"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "f015-fallback-callsite-too-narrow",
+      "summary": "Child 004's proposed fanout-pool-only call site is too narrow because fanout-run owns model-bearing lineages, prompt construction, command dispatch, and artifact validation.",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:90",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1534",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1599"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f003",
+      "title": "Class A and Class B path-direction rules are correct",
+      "summary": "Runtime-to-workflows keeps hop count and deletes the sibling segment; workflows-to-runtime loses one hop and targets runtime/.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:8",
+        "file:.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "gpt55-fast-9-f002",
+      "iteration": 2,
+      "summary": "Class A/Class B path-repair rules are directionally correct but child 002 needs a broader file inventory before the move.",
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs:16-18",
+        ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:21-66",
+        ".opencode/skills/deep-loop-workflows/deep-research/scripts/runtime-capabilities.cjs:4-19",
+        ".opencode/skills/deep-loop-runtime/tests/unit/runtime-capabilities.vitest.ts:10-12"
+      ],
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "id": "F-P1-002--87f972e5f38f",
+      "severity": "P1",
+      "title": "Class B reverse-coupling inventory incomplete (orchestrate-session.cjs + runtime-capabilities pair + deep-review/reduce-state omitted)",
+      "evidence": [
+        "orchestrate-session.cjs:16-18",
+        "11 distinct-file reverse require inventory vs 002 Class B table"
+      ],
+      "_lineages": [
+        "glm52-4"
+      ],
+      "_conflictOf": "F-P1-002",
+      "_conflict_id": "F-P1-002--87f972e5f38f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-002",
+          "peerId": "F-P1-002--172f078b1909",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F-P1-002--172f078b1909",
+      "severity": "P1",
+      "summary": "Class B reverse-coupling inventory incomplete: reduce-state/runtime-capabilities shims, orchestrate-session.cjs, continuity-thread require.",
+      "iteration": 2,
+      "_lineages": [
+        "glm52-5"
+      ],
+      "_conflictOf": "F-P1-002",
+      "_conflict_id": "F-P1-002--172f078b1909",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-002",
+          "peerId": "F-P1-002--87f972e5f38f",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F-P1-008--d10288120dac",
+      "severity": "P1",
+      "summary": "classifyLineageFailure routes quota/auth to FATAL, making fallback wiring unreachable for GLM quota-out.",
+      "iteration": 4,
+      "_lineages": [
+        "glm52-5"
+      ],
+      "_conflictOf": "F-P1-008",
+      "_conflict_id": "F-P1-008--d10288120dac",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-008",
+          "peerId": "F-P1-008--ff796c9d0e91",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "gpt55-fast-4-F008",
+      "iteration": 5,
+      "category": "verification",
+      "severity": "high",
+      "title": "Closeout must remove compatibility shims and pass full migration gates",
+      "claim": "Temporary compatibility paths are only acceptable during migration; parent success requires no old top-level skill folders and clean residual old-id grep outside allowlists.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/spec.md:100",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/spec.md:121",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:129"
+      ],
+      "recommendation": "Block completion on runtime tests, system-spec-kit council tests, advisor rebaseline, divergence ratchet, mirror sync, residual grep, and deletion of temporary symlinks/shims.",
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-4"
+      ]
+    },
+    {
+      "id": "G55F5-F011",
+      "iteration": 3,
+      "title": "Command contract migration must regenerate compiled outputs",
+      "summary": "Source YAML and router markdown should be edited, then compiled contracts regenerated rather than hand-edited.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:89",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:90",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:92",
+        ".opencode/commands/deep/assets/deep_ai-council_confirm.yaml:40"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "F4.6",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 4,
+      "summary": "Commands 434 hits, hash-guarded, correctly scoped to 003 Stage A",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "F2.4",
+      "tier": 1,
+      "type": "RISK",
+      "run": 2,
+      "severity": "medium",
+      "summary": "compile-command-contracts.cjs densest (~36 paths) + hash-cascade; use as forward exit gate",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "g55f8-f005",
+      "iteration": 2,
+      "summary": "Compiled command contracts must be regenerated, not hand-edited.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs:13",
+        ".opencode/skills/deep-loop-runtime/scripts/check-contract-drift.cjs:38",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:89"
+      ],
+      "_lineages": [
+        "gpt55-fast-8"
+      ]
+    },
+    {
+      "id": "F-P1-001",
+      "severity": "P1",
+      "summary": "Convergence-floor test (REQ-002 enforcer) hardcodes old skill name; Class A test-file count understated (7->10).",
+      "iteration": 1,
+      "_lineages": [
+        "glm52-5"
+      ]
+    },
+    {
+      "id": "F-P1-004--797ad9b0c855",
+      "severity": "P1",
+      "summary": "Council test fixtures are semantic data, not path references; add to residual-grep allowlist.",
+      "iteration": 2,
+      "_lineages": [
+        "glm52-5"
+      ],
+      "_conflictOf": "F-P1-004",
+      "_conflict_id": "F-P1-004--797ad9b0c855",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-004",
+          "peerId": "F-P1-004--82714281589e",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-004",
+          "peerId": "F-P1-004--a8ea6356a53a",
+          "peerLineages": [
+            "gpt55-fast-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-005-profile-contracts-manual",
+      "title": "Current model profiles document no automatic fallback",
+      "summary": "GLM-5.2 and MiMo profiles both list null/no automatic fallback; GLM says defer on pool exhaustion, and MiMo direct provider is a manual reroute path.",
+      "iteration": 5,
+      "sources": [
+        ".opencode/skills/sk-prompt-models/references/models/glm-5.2.md:139-158",
+        ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md:154-169"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "F-P0-001--6104ae56adfd",
+      "severity": "P0",
+      "title": "Detached fan-out boundary conflicts with YAML spec.md mutation — guard is one-sided",
+      "evidence": [
+        "deep_research_auto.yaml:361 (step_detect_spec_present)",
+        "deep_research_auto.yaml:1510 (step_writeback_spec_findings)",
+        "fanout-run.cjs:1004-1017"
+      ],
+      "_lineages": [
+        "glm52-4"
+      ],
+      "_conflictOf": "F-P0-001",
+      "_conflict_id": "F-P0-001--6104ae56adfd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P0-001",
+          "peerId": "F-P0-001--55fd798a7609",
+          "peerLineages": [
+            "gpt55-fast-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P0-001",
+          "peerId": "F-P0-001--5c0827e83f94",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F-P0-001--55fd798a7609",
+      "severity": "P0",
+      "title": "Detached fan-out lineage boundary conflicts with research YAML spec.md mutations",
+      "summary": "The lineage prompt says writes must stay inside the lineage directory, but deep_research_auto.yaml still edits spec_folder/spec.md during pre-init and post-synthesis. This can violate fan-out isolation or force each detached child to improvise a skip.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1004-1017",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:376-406",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:1510-1532"
+      ],
+      "_lineages": [
+        "gpt55-fast-2"
+      ],
+      "_conflictOf": "F-P0-001",
+      "_conflict_id": "F-P0-001--55fd798a7609",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P0-001",
+          "peerId": "F-P0-001--6104ae56adfd",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P0-001",
+          "peerId": "F-P0-001--5c0827e83f94",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F-P0-001--5c0827e83f94",
+      "severity": "P0",
+      "summary": "Detached fan-out lineage boundary conflicts with YAML spec.md mutation (not gated on fanout_lineage_artifact_dir).",
+      "iteration": 1,
+      "_lineages": [
+        "glm52-5"
+      ],
+      "_conflictOf": "F-P0-001",
+      "_conflict_id": "F-P0-001--5c0827e83f94",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P0-001",
+          "peerId": "F-P0-001--6104ae56adfd",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P0-001",
+          "peerId": "F-P0-001--55fd798a7609",
+          "peerLineages": [
+            "gpt55-fast-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "g55f8-f006",
+      "iteration": 3,
+      "summary": "Detached lineages must bind artifact_dir directly to the lineage override and should not run resolveArtifactRoot.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1010",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1015"
+      ],
+      "_lineages": [
+        "gpt55-fast-8"
+      ]
+    },
+    {
+      "id": "F-P1-005--4c54453ccb75",
+      "severity": "P1",
+      "title": "Divergence ledger mixes identity fields with historical prose — blind replace corrupts reason narratives",
+      "evidence": [
+        "local-native-approved-divergences.json:30-31",
+        "local-native-approved-divergences.json:158-161"
+      ],
+      "_lineages": [
+        "glm52-4"
+      ],
+      "_conflictOf": "F-P1-005",
+      "_conflict_id": "F-P1-005--4c54453ccb75",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-005",
+          "peerId": "F-P1-005--ee4d3b1d1531",
+          "peerLineages": [
+            "gpt55-fast-2"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-005",
+          "peerId": "F-P1-005--a5718e669ba0",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F-P1-006--18e93a624adc",
+      "severity": "P1",
+      "summary": "Divergence-ledger reason prose embeds old name; must update with structured fields.",
+      "iteration": 3,
+      "_lineages": [
+        "glm52-5"
+      ],
+      "_conflictOf": "F-P1-006",
+      "_conflict_id": "F-P1-006--18e93a624adc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-006",
+          "peerId": "F-P1-006--75be9be0bb43",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F4.2--1dd02da41bcd",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 4,
+      "summary": "Divergences ledger 40+ label-key entries; field-scoped rename correct",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F4.2",
+      "_conflict_id": "F4.2--1dd02da41bcd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F4.2",
+          "peerId": "F4.2--f9b62d0df2d2",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F4.5",
+      "tier": 2,
+      "type": "RISK",
+      "run": 4,
+      "severity": "low",
+      "summary": "Drift-guard self-references old path; REQ-001 ordering invariant confirmed",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "F-P1-006--75be9be0bb43",
+      "severity": "P1",
+      "title": "Dual-runtime agent mirror (5 opencode + 5 claude) is a sync hazard — agent-mirror sync check is mandatory",
+      "evidence": [
+        "rg deep-loop in .opencode/agents and .claude/agents — 5 each"
+      ],
+      "_lineages": [
+        "glm52-4"
+      ],
+      "_conflictOf": "F-P1-006",
+      "_conflict_id": "F-P1-006--75be9be0bb43",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-006",
+          "peerId": "F-P1-006--18e93a624adc",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-002-executable-path-couplings",
+      "title": "Executable path couplings require atomic rewrite",
+      "summary": "The move must update command YAML, compiled contracts, doctor routes, orchestrator/agent prompts, advisor code, and system-spec-kit verification paths together.",
+      "iteration": 2,
+      "sources": [
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:64-77",
+        ".opencode/commands/doctor/_routes.yaml:100-110",
+        ".opencode/agents/orchestrate.md:180-206"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "finding-command-agent-surfaces",
+      "title": "External migration is executable, not just prose",
+      "summary": "Doctor routes, deep command YAMLs, and both OpenCode/Claude agent mirrors carry old executable path references.",
+      "confidence": "high",
+      "sources": [
+        ".opencode/commands/doctor/_routes.yaml:108",
+        ".opencode/commands/deep/assets/deep_ai-council_confirm.yaml:40",
+        ".opencode/agents/orchestrate.md:185",
+        ".claude/agents/orchestrate.md:174"
+      ],
+      "addedAtIteration": 5,
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f008",
+      "title": "External migration plan is directionally complete and category-driven",
+      "summary": "The 003 plan covers hardcoded constants, structured identity fields, codegen, command assets, docs, graph metadata, examples, advisor corpus, and final verification as separate categories.",
+      "sources": [
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:75",
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:106"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "f-010-reference-surface",
+      "title": "External reference migration is genuinely broad",
+      "summary": "Scoped live count found 764 old-name hits across 77 non-spec/non-dist files in external surfaces.",
+      "severity": "confirmation",
+      "iteration": 3,
+      "sources": [
+        "command:rg-count:2026-07-08"
+      ],
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "f-004-reference-staging",
+      "title": "External reference migration needs staged identity/corpus/docs updates",
+      "summary": "The child 003 plan covers the major mutable surfaces and sequences constants, structured identity, codegen, docs, graph edges, corpus labels, and verification rather than a blind rewrite.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/spec.md:57-82",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:66-104"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "F-P1-010",
+      "severity": "P1",
+      "summary": "External-prose surface broad: 10 agent files + README + 5 sibling graphs needing edge-collapse.",
+      "iteration": 5,
+      "_lineages": [
+        "glm52-5"
+      ]
+    },
+    {
+      "id": "f-005-defer-core-merge",
+      "title": "Fallback wiring remains optional for the core merge",
+      "summary": "The parent and child specs mark fallback-router wiring as optional/operator-gated behavior work, not a structural merge closeout dependency.",
+      "iteration": 5,
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/spec.md:80-88",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:35-62"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "G55F5-F017",
+      "iteration": 4,
+      "title": "Fallback wiring should remain optional unless scope changes",
+      "summary": "Child 004 is explicitly optional and awaiting operator decision; it should be called out but not used to block child 002/003.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:51",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:85",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:90",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/spec.md:124"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "g55f8-f007",
+      "iteration": 3,
+      "summary": "Fallback-router is a viable optional reuse target, but fanout-pool currently only same-model retries.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:357",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:422"
+      ],
+      "_lineages": [
+        "gpt55-fast-8"
+      ]
+    },
+    {
+      "id": "f-005-router-ready-zero-caller",
+      "title": "fallback-router is ready but has no fanout caller",
+      "summary": "The router validates fallback graphs and resolves fallback/fail-fast decisions, but the fanout pool currently retries the same lineage/model and never calls it.",
+      "iteration": 5,
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:299-324",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:618-653"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f012",
+      "title": "fallback-router is shipped and validates fallback graphs",
+      "summary": "The router validates graph safety and resolves failed models to fallback or fail-fast decisions.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:299",
+        "file:.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:320",
+        "file:.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:357"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "gpt55-fast-9-f005",
+      "iteration": 5,
+      "summary": "fallback-router wiring is a low-risk optional child, not a core merge blocker; if pursued, wire the existing router into fanout-pool retry exhaustion with registry-driven GLM-to-MiMo attribution.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628-653",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:69-105",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:55-94"
+      ],
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "id": "F5.1",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 5,
+      "summary": "fallback-router zero live callers (grep scripts -> empty)",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "f-015-fallback-module-ready",
+      "title": "fallback-router.ts is ready but unused by fan-out",
+      "summary": "The pure router is implemented and tested, while fanout-pool currently settles retry-exhausted lineages without model substitution.",
+      "severity": "risk",
+      "iteration": 4,
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:357",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:650"
+      ],
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "gpt55-fast-4-F007",
+      "iteration": 4,
+      "category": "fallback-routing",
+      "severity": "medium",
+      "title": "fallback-router.ts is tested but effectively unwired",
+      "claim": "The fallback router has typed routing and tests, but current fanout retry handling requeues the same item/model and records retry_exhausted after max retries without substitution.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:299",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:422",
+        ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts:109",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:650"
+      ],
+      "recommendation": "Keep fallback-router wiring optional for the structural merge; if child 004 proceeds, let fanout-run own model fallback policy and integrate through a retry-exhausted seam.",
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-4"
+      ]
+    },
+    {
+      "id": "finding-fallback-optional-real-caller",
+      "title": "fallback-router.ts needs an explicit caller if 004 is accepted",
+      "summary": "The router enforces cross-pool and approved-model guards, while fanout-pool currently retries and marks retry exhaustion without resolving a fallback target.",
+      "confidence": "high",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:357",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:650"
+      ],
+      "addedAtIteration": 7,
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "f5-1",
+      "finding": "fallback-router.ts zero callers confirmed; dormant but valid. Wiring is 4-piece feature. Approval-guard rejects unapproved MiMo swaps.",
+      "iteration": 5,
+      "confidence": "high",
+      "_lineages": [
+        "glm52-1"
+      ]
+    },
+    {
+      "id": "G55F5-F015",
+      "iteration": 4,
+      "title": "Fanout retry exhaustion does not currently invoke fallback resolution",
+      "summary": "`fanout-pool.cjs` retries and then settles retry-exhausted failures; the optional plan adds the missing resolveFallback call site.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:650",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:653",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:43"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f014",
+      "title": "fanout-pool only requeues same-label retries",
+      "summary": "The retry branch increments retryCounts and pushes the same item index back to the queue.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:650"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "F2.5",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 2,
+      "summary": "fanout-run.cjs:942-943 absolute forward path confirmed",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "F3.1",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 3,
+      "summary": "Forward borrow (tsc, @types); one-more-.. correct",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "f-002-forward-rule",
+      "title": "Forward coupling rule is correct",
+      "summary": "Runtime-to-workflows imports keep hop count and delete the deep-loop-workflows segment after nesting.",
+      "severity": "confirmation",
+      "iteration": 1,
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:11"
+      ],
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "F2.2--b618cbc6a92e",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 2,
+      "summary": "Forward rule (hop-unchanged, delete segment) correct",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F2.2",
+      "_conflict_id": "F2.2--b618cbc6a92e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F2.2",
+          "peerId": "F2.2--37410ec210ad",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "G55F5-F005",
+      "iteration": 2,
+      "title": "Forward runtime-to-workflows coupling is explicitly mapped",
+      "summary": "Class A sites preserve hop count while deleting the old workflows segment after runtime nesting.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:68",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:72",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:75"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f002",
+      "title": "Fresh-authored unified graph metadata is safer than merging two graph files",
+      "summary": "Runtime graph metadata currently duplicates edges back to workflows; fresh authoring removes now-internal edges.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/graph-metadata.json:16",
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:101"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "finding-glm-mimo-fallback-needs-approval",
+      "title": "GLM and MiMo are separate active pools but no fallback is configured",
+      "summary": "MiMo and GLM model profiles both have active opencode executors but fallback_target is null for both; automatic routing would be new policy.",
+      "confidence": "high",
+      "sources": [
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:190",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:204",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:255",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:269"
+      ],
+      "addedAtIteration": 8,
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "G55F5-F016",
+      "iteration": 4,
+      "title": "GLM and MiMo are separate active pools, but no fallback edge is configured",
+      "summary": "The model profiles show `glm-5.2` and `mimo-v2.5-pro` active with distinct pools and both `fallback_target: null`.",
+      "evidence": [
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:190",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:203",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:204",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:255",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:268",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:269"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f016",
+      "title": "GLM to MiMo fallback is optional feature work, not merge-critical",
+      "summary": "The feature needs a registry/config surface and integration test, and the phase is explicitly P2 optional.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:272",
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:90",
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:113"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "F-P1-005--ee4d3b1d1531",
+      "severity": "P1",
+      "title": "GLM to MiMo fallback is useful but not a one-line call-site",
+      "summary": "fallback-router.ts is tested and has no non-test caller. Wiring it should happen, but only after a canonical id map, approved fallback target policy, and retry/fatal failure-class handling are designed.",
+      "_lineages": [
+        "gpt55-fast-2"
+      ],
+      "_conflictOf": "F-P1-005",
+      "_conflict_id": "F-P1-005--ee4d3b1d1531",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-005",
+          "peerId": "F-P1-005--4c54453ccb75",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-005",
+          "peerId": "F-P1-005--a5718e669ba0",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "g55f8-f008",
+      "iteration": 3,
+      "summary": "GLM to MiMo fallback should remain optional/operator-gated for the merge.",
+      "evidence": [
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:268",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:294",
+        ".opencode/skills/cli-opencode/references/cli_reference.md:231"
+      ],
+      "_lineages": [
+        "gpt55-fast-8"
+      ]
+    },
+    {
+      "id": "F5.5",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 5,
+      "summary": "glm->mimo edge already a recipe in sk-prompt-models",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "G55F5-F013",
+      "iteration": 3,
+      "title": "Grandfather examples require semantic update, not just replacement",
+      "summary": "The `system-deep-loop` name creates a command-prefix exception that parent-skill examples need to state explicitly.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:99",
+        ".opencode/skills/sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md:153"
+      ],
+      "confidence": "medium",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f010",
+      "title": "Hook, CI, plugin, and doctor surfaces are live migration targets",
+      "summary": "The mirror checker, GitHub workflow, loop guard, and parent-skill doctor checker all contain old deep-loop paths or assumptions.",
+      "sources": [
+        "file:.opencode/hooks/pre-commit:40",
+        "file:.github/workflows/agent-mirror-sync.yml:17",
+        "file:.opencode/plugins/mk-deep-loop-guard.js:35",
+        "file:.opencode/commands/doctor/scripts/parent-skill-check.cjs:79"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "F5.4",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 5,
+      "summary": "Intra-runtime import merge-stable",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "g55f8-f001",
+      "iteration": 1,
+      "summary": "Keep runtime as infrastructure under system-deep-loop/runtime, not a workflow mode.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:154",
+        ".opencode/skills/deep-loop-workflows/mode-registry.json:29"
+      ],
+      "_lineages": [
+        "gpt55-fast-8"
+      ]
+    },
+    {
+      "id": "gpt55-fast-4-F001",
+      "iteration": 1,
+      "category": "architecture",
+      "severity": "high",
+      "title": "Keep runtime nested as infrastructure, not a workflow mode",
+      "claim": "The target system-deep-loop layout is sound only if runtime remains out of mode-registry and does not carry nested graph metadata as a workflow packet.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:156",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:169"
+      ],
+      "recommendation": "Preserve runtime/ as an internal infrastructure subtree under system-deep-loop and keep workflow modes limited to deep-research, deep-review, deep-ai-council, and deep-improvement.",
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-4"
+      ]
+    },
+    {
+      "id": "f-018-convergence",
+      "title": "Legal convergence reached after 4 iterations",
+      "summary": "All tracked questions are answered, minIterations is satisfied, and source diversity/quality gates pass.",
+      "severity": "convergence",
+      "iteration": 4,
+      "sources": [
+        "file:.opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md:113"
+      ],
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f017",
+      "title": "Legal convergence reached after all key questions answered",
+      "summary": "All five key questions are answered, no blocked stop remains, and the minimum iteration count is satisfied.",
+      "sources": [
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-6/deep-research-strategy.md:15",
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-6/deep-research-findings-registry.json:2",
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-6/deep-research-dashboard.md:13"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "F5.2",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 5,
+      "summary": "Library real + ready; wiring feasible",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "F4.3",
+      "tier": 2,
+      "type": "RISK",
+      "run": 4,
+      "severity": "medium",
+      "summary": "local-native-approved-divergences.json:530 targets deep-loop-runtime directly (anomaly); needs decision",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "F3.4",
+      "tier": 1,
+      "type": "RISK",
+      "run": 3,
+      "severity": "medium",
+      "summary": "memory-runtime-retention.vitest.ts:9 active import = hard failure post-move, not silent hole",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "f3-1",
+      "finding": "Merge is net simplification on workflows<->runtime axis (cross-skill -> intra-skill) and NEUTRAL on system-spec-kit axis.",
+      "iteration": 3,
+      "confidence": "high",
+      "_lineages": [
+        "glm52-1"
+      ]
+    },
+    {
+      "id": "f-001-structural-hub-backend",
+      "title": "Merged layout must preserve hub/backend separation",
+      "summary": "`deep-loop-workflows` is the public hub and `deep-loop-runtime` is a backend consumed through imports/scripts; merged `system-deep-loop` should keep those as distinct subdomains.",
+      "iteration": 1,
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/SKILL.md:12",
+        ".opencode/skills/deep-loop-runtime/README.md:23-30"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "F4.1",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 4,
+      "summary": "MERGED_DEEP_SKILL_ID constant pair unguarded (skill_advisor.py + aliases.ts)",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "f-013-plugin-fail-open",
+      "title": "mk-deep-loop-guard missing-path behavior is silent",
+      "summary": "The guard returns null when registry read/parse fails and skips mismatch checks; stale path can silently disable protection.",
+      "severity": "risk",
+      "iteration": 3,
+      "sources": [
+        "file:.opencode/plugins/mk-deep-loop-guard.js:75",
+        "file:.opencode/plugins/mk-deep-loop-guard.js:353"
+      ],
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "f-001-mode-registry-load-bearing",
+      "title": "mode-registry is migration-critical",
+      "summary": "`mode-registry.json` owns workflowMode/runtimeLoopType/backendKind/advisor projection data; migration must keep it authoritative.",
+      "iteration": 1,
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/mode-registry.json:1-17",
+        ".opencode/skills/deep-loop-workflows/mode-registry.json:29-53"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f015",
+      "title": "model-aware fallback belongs in fanout-run or an explicit pool hook",
+      "summary": "fanout-run owns lineage model/kind, prompt, command construction, and failure context.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1432",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1534",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1599"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "F-P1-007--5a0cd16c09a3",
+      "severity": "P1",
+      "summary": "Named benchmark profile deep-loop-runtime.json has ambiguous rename target.",
+      "iteration": 3,
+      "_lineages": [
+        "glm52-5"
+      ],
+      "_conflictOf": "F-P1-007",
+      "_conflict_id": "F-P1-007--5a0cd16c09a3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-007",
+          "peerId": "F-P1-007--e23a272c6844",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F-P1-003--eb99b646245e",
+      "severity": "P1",
+      "summary": "NEW third path-repair class: replay-graph-from-artifacts.cjs repo-root absolute existence-probe breaks silently.",
+      "iteration": 2,
+      "_lineages": [
+        "glm52-5"
+      ],
+      "_conflictOf": "F-P1-003",
+      "_conflict_id": "F-P1-003--eb99b646245e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-003",
+          "peerId": "F-P1-003--34a976de4ce5",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-003",
+          "peerId": "F-P1-003--18dab43b5889",
+          "peerLineages": [
+            "gpt55-fast-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f1-1",
+      "finding": "node_modules tooling-borrow ALREADY RESOLVED: runtime ships own package.json with bare specifiers for zod/better-sqlite3/tsx. Only tsc borrowed at dev-time. 117-research '8 reach-ins' claim is STALE.",
+      "iteration": 1,
+      "confidence": "high",
+      "_lineages": [
+        "glm52-1"
+      ]
+    },
+    {
+      "id": "gpt55-fast-4-F006",
+      "iteration": 3,
+      "category": "agent-mirrors",
+      "severity": "medium",
+      "title": "OpenCode and Claude agent mirrors both carry old deep-loop paths",
+      "claim": "Mirrored agents need paired updates and mirror-sync validation after the skill identity and path migration.",
+      "evidence": [
+        ".opencode/agents/orchestrate.md:185",
+        ".claude/agents/orchestrate.md:174",
+        ".opencode/agents/ai-council.md:398",
+        ".claude/agents/ai-council.md:380"
+      ],
+      "recommendation": "Treat agent mirrors as a synchronized migration surface and run the mirror-sync gate before closeout.",
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-4"
+      ]
+    },
+    {
+      "id": "finding-asymmetric-coupling",
+      "title": "Path repair is intentionally asymmetric",
+      "summary": "Forward runtime-to-workflow references keep hop count and delete the old workflow segment; reverse workflow-to-runtime references move one hop nearer and rename the segment.",
+      "confidence": "high",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:173",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:174"
+      ],
+      "addedAtIteration": 3,
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "g55f8-f002",
+      "iteration": 1,
+      "summary": "Path repairs split into forward same-hop/delete-segment and reverse minus-one-hop/rename classes.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:8",
+        ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14"
+      ],
+      "_lineages": [
+        "gpt55-fast-8"
+      ]
+    },
+    {
+      "id": "f-004-guard-surfaces",
+      "title": "Plugin, hook, and CI paths are live migration targets",
+      "summary": "The loop guard plugin, pre-commit mirror checker, and agent-mirror GitHub workflow all hardcode old deep-loop paths.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/plugins/mk-deep-loop-guard.js:35",
+        ".opencode/hooks/pre-commit:36-45",
+        ".github/workflows/agent-mirror-sync.yml:14-23"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "finding-proceed-with-guardrails",
+      "title": "Proceed with 002 and 003, keep 004 optional",
+      "summary": "The merge/reference-migration design is sound. Fallback-router wiring is real hardening but should remain separate unless the operator opts in.",
+      "confidence": "high",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:77",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:123"
+      ],
+      "addedAtIteration": 10,
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "f-005-model-id-gap",
+      "title": "Real GLM/MiMo fallback needs canonical-to-provider slug mapping",
+      "summary": "The planned registry uses canonical ids while live fanout dispatch passes provider-prefixed slugs to opencode, so wiring needs an explicit mapping layer.",
+      "iteration": 5,
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/plan.md:77-92",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:68-77",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1343-1375"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "F5.3",
+      "tier": 2,
+      "type": "DECISION",
+      "run": 5,
+      "summary": "Recommend DEFER wiring to post-merge (004 independent)",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "gpt55-fast-9-f004",
+      "iteration": 4,
+      "summary": "Reference migration must preserve public /deep:* and agent surfaces while rewriting executable paths, graph/advisor identity, generated contracts, and README navigation to system-deep-loop.",
+      "sources": [
+        ".opencode/commands/deep/assets/deep_ai-council_confirm.yaml:39-52",
+        ".opencode/agents/orchestrate.md:161-206",
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/local-native-approved-divergences.json:525-531"
+      ],
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "id": "G55F5-F001",
+      "iteration": 1,
+      "title": "Reference phase is read-only and artifact-scoped",
+      "summary": "The phase explicitly creates research outputs and lineage packets while excluding merge execution or runtime/workflow modifications.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/spec.md:68",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/spec.md:72",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/spec.md:76"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "F-P1-009",
+      "severity": "P1",
+      "summary": "Registry id vs provider slug mismatch needs a normalizer before resolveFallback.",
+      "iteration": 4,
+      "_lineages": [
+        "glm52-5"
+      ]
+    },
+    {
+      "id": "f003-render-root-depth-missed",
+      "summary": "render-command-contract.cjs has a WORKSPACE_ROOT depth constant that must gain one more parent hop after nesting.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:13"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f004",
+      "title": "replay-graph-from-artifacts is an unlisted internal repair site",
+      "summary": "The council graph replay script hardcodes the runtime upsert path and should be repaired in phase 002 with internal executable paths.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:21",
+        "file:.opencode/skills/deep-loop-workflows/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:51"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "F-P1-003--34a976de4ce5",
+      "severity": "P1",
+      "title": "replay-graph-from-artifacts.cjs absolute-path form invisible to relative-require grep",
+      "evidence": [
+        "replay-graph-from-artifacts.cjs:56",
+        "replay-graph-from-artifacts.cjs:65"
+      ],
+      "_lineages": [
+        "glm52-4"
+      ],
+      "_conflictOf": "F-P1-003",
+      "_conflict_id": "F-P1-003--34a976de4ce5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-003",
+          "peerId": "F-P1-003--eb99b646245e",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-003",
+          "peerId": "F-P1-003--18dab43b5889",
+          "peerLineages": [
+            "gpt55-fast-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-003-resource-map-seam",
+      "title": "Resource-map rendering is workflow synthesis",
+      "summary": "The workflow shared synthesis seam re-exports the canonical system-spec-kit extractor because rendering resource-map markdown is workflow output, not runtime backend plumbing.",
+      "iteration": 3,
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/shared/synthesis/resource-map.cjs:4-18",
+        ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14-20"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "F-P1-008--ff796c9d0e91",
+      "severity": "P1",
+      "title": "retry-exhausted-only fallback call site misses quota/auth failures (classified FATAL/non-retryable at cli-guards.cjs:188-196)",
+      "evidence": [
+        "cli-guards.cjs:188-196",
+        "004/plan.md Phase 2"
+      ],
+      "_lineages": [
+        "glm52-4"
+      ],
+      "_conflictOf": "F-P1-008",
+      "_conflict_id": "F-P1-008--ff796c9d0e91",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-008",
+          "peerId": "F-P1-008--d10288120dac",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F3.2--f42851a35af6",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 3,
+      "summary": "Reverse borrow (vitest glob); expansion correct",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F3.2",
+      "_conflict_id": "F3.2--f42851a35af6",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F3.2",
+          "peerId": "F3.2--4d630b6585ed",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-003-reverse-rule",
+      "title": "Reverse coupling rule is correct",
+      "summary": "Workflow-to-runtime imports remove one hop and target runtime/ after nesting.",
+      "severity": "confirmation",
+      "iteration": 1,
+      "sources": [
+        "file:.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14"
+      ],
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "F2.1--f783569adfe2",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 2,
+      "summary": "Reverse rule (minus-one-hop, rename segment) correct",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F2.1",
+      "_conflict_id": "F2.1--f783569adfe2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F2.1",
+          "peerId": "F2.1--82cd84131b68",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "G55F5-F006",
+      "iteration": 2,
+      "title": "Reverse workflows-to-runtime coupling needs different hop-count repair",
+      "summary": "Class B is a minus-one-hop rename problem and should not be handled by blind replacement.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:78",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:82",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:88"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "F-P1-003--18dab43b5889",
+      "severity": "P1",
+      "title": "Reverse-coupling inventory is broader than the current table",
+      "summary": "The child 002 plan table is directionally right but incomplete. It should explicitly include research/review runtime-capability shims, review reducer, replay-graph absolute lookup, deep-improvement runtime self-profile, and runtime tests with workflow-relative imports.",
+      "_lineages": [
+        "gpt55-fast-2"
+      ],
+      "_conflictOf": "F-P1-003",
+      "_conflict_id": "F-P1-003--18dab43b5889",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-003",
+          "peerId": "F-P1-003--eb99b646245e",
+          "peerLineages": [
+            "glm52-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-003",
+          "peerId": "F-P1-003--34a976de4ce5",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f013",
+      "title": "router unit tests do not prove fanout GLM/MiMo integration",
+      "summary": "Pure routing behavior is tested, but there is no forced-failure fanout test for GLM-5.2 to MiMo-v2.5-Pro.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts:36",
+        "file:.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts:109",
+        "file:.opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts:143"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "F2.3--ff362a9f4f97",
+      "tier": 1,
+      "type": "CORRECTION",
+      "run": 2,
+      "summary": "Rule conflates absolute and relative paths; absolutes need separate string-rename",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F2.3",
+      "_conflict_id": "F2.3--ff362a9f4f97",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F2.3",
+          "peerId": "F2.3--3cb209285c8b",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "gpt55-fast-4-F003",
+      "iteration": 2,
+      "category": "tooling-coupling",
+      "severity": "medium",
+      "title": "Runtime dependency self-containment is partial",
+      "claim": "Runtime package dependencies are local, but TypeScript tooling and type roots still borrow system-spec-kit paths.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/package.json:11",
+        ".opencode/skills/deep-loop-runtime/package.json:14",
+        ".opencode/skills/deep-loop-runtime/package.json:20",
+        ".opencode/skills/deep-loop-runtime/tsconfig.json:12"
+      ],
+      "recommendation": "Keep the structural merge scoped to path-depth repair and avoid claiming full tooling decoupling until a separate cleanup packet owns it.",
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-4"
+      ]
+    },
+    {
+      "id": "F1.3--dec27c3e43a8",
+      "tier": 3,
+      "type": "CLARIFY",
+      "run": 1,
+      "summary": "Runtime doc families (feature_catalog/references/changelog/playbook) move as a unit",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F1.3",
+      "_conflict_id": "F1.3--dec27c3e43a8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F1.3",
+          "peerId": "F1.3--616e5d1a50cf",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-003-dev-tool-borrow",
+      "title": "Runtime has a narrow dev-tool dependency borrow",
+      "summary": "Runtime typecheck and type roots still point at system-spec-kit node_modules; this is package hygiene for the merge, not a reason to duplicate spec-kit governance.",
+      "iteration": 3,
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/package.json:10-17",
+        ".opencode/skills/deep-loop-runtime/tsconfig.json:12-14"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f001",
+      "title": "Runtime should be nested infrastructure, not a workflow mode",
+      "summary": "The hub/runtime split already claims a single workflow identity over a consumed backend; merging runtime under system-deep-loop/runtime preserves that architecture.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-workflows/SKILL.md:12",
+        "file:.opencode/skills/deep-loop-workflows/mode-registry.json:19"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "f005-tooling-borrow-load-bearing",
+      "summary": "Runtime typecheck and system-spec-kit council test discovery both rely on deep-loop-runtime paths and must be repaired in the structural phase.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/package.json:10",
+        ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:18"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f005",
+      "title": "Runtime unit-test inventory needs explicit classification",
+      "summary": "Ten unit-test files mention deep-loop-workflows; the plan should classify code-path fixtures separately from historical text.",
+      "sources": [
+        "command:rg -l deep-loop-workflows .opencode/skills/deep-loop-runtime/tests/unit"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "F1.2--2c234be78925",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 1,
+      "summary": "runtime-as-infrastructure (no graph-metadata.json, SKILL.md->README.md) correct",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F1.2",
+      "_conflict_id": "F1.2--2c234be78925",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F1.2",
+          "peerId": "F1.2--4aef437b2a10",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "finding-runtime-not-mode",
+      "title": "runtime/ must be infrastructure, not an eighth mode",
+      "summary": "The proposed tree nests the former runtime under system-deep-loop/runtime and explicitly says adding runtime as a mode-registry entry would be a category error.",
+      "confidence": "high",
+      "sources": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:157",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:169"
+      ],
+      "addedAtIteration": 2,
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "f012-graph-edge-collapse",
+      "summary": "Sibling graph metadata needs edge collapse from two old identities to one system-deep-loop identity.",
+      "sources": [
+        ".opencode/skills/system-skill-advisor/graph-metadata.json:35",
+        ".opencode/skills/system-spec-kit/graph-metadata.json:40"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "f-004-graph-dedupe",
+      "title": "Sibling graph metadata needs rename plus dedupe",
+      "summary": "Sibling graph metadata carries old deep-loop skill IDs, including duplicate related_to entries that should collapse to one system-deep-loop relationship.",
+      "iteration": 4,
+      "sources": [
+        ".opencode/skills/cli-opencode/graph-metadata.json:25-34",
+        ".opencode/skills/sk-code/graph-metadata.json:24-35",
+        ".opencode/skills/sk-prompt/graph-metadata.json:20-26"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f011",
+      "title": "Sibling graph migration should dedupe duplicate cli-opencode edges",
+      "summary": "The migration should preserve meaningful contextual edges while collapsing literal duplicate targets.",
+      "sources": [
+        "file:.opencode/skills/cli-opencode/graph-metadata.json:31",
+        "file:.opencode/skills/system-skill-advisor/graph-metadata.json:35",
+        "file:.opencode/skills/sk-prompt/graph-metadata.json:22"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "f-003-speckit-governance-external",
+      "title": "Spec-kit governance stays external",
+      "summary": "Spec validation, templates, generate-context continuity, and memory save remain system-spec-kit ownership; deep-loop should not duplicate them.",
+      "iteration": 3,
+      "sources": [
+        ".opencode/skills/system-spec-kit/SKILL.md:61",
+        ".opencode/skills/system-spec-kit/SKILL.md:414-418",
+        ".opencode/skills/system-spec-kit/SKILL.md:439"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "f001-runtime-not-mode",
+      "summary": "system-deep-loop/runtime should remain infrastructure, not a workflow mode.",
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/SKILL.md:12",
+        ".opencode/skills/deep-loop-workflows/mode-registry.json:19"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "gpt55-fast-9-f003",
+      "iteration": 3,
+      "summary": "System-spec-kit borrow repair needs hidden artifact-root and test:council fixture coverage beyond the four planned path edits.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:16-19",
+        ".opencode/skills/deep-loop-runtime/tests/unit/artifact-root.vitest.ts:10-25",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts:7-67"
+      ],
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "id": "gpt55-fast-4-F004",
+      "iteration": 2,
+      "category": "test-discovery",
+      "severity": "medium",
+      "title": "system-spec-kit council test discovery must move to nested runtime paths",
+      "claim": "system-spec-kit still references runtime council tests through old relative paths and must be updated after nesting.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/package.json:31",
+        ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:20"
+      ],
+      "recommendation": "Repair the reverse test-discovery paths in the same structural phase as runtime nesting and keep system-spec-kit council tests in the closeout gate.",
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-4"
+      ]
+    },
+    {
+      "id": "G55F5-F012",
+      "iteration": 3,
+      "title": "System-spec-kit is a high-risk migration consumer",
+      "summary": "Package scripts, vitest globs, workflow docs, and reducer tests still reference old deep-loop paths.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/package.json:31",
+        ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:20",
+        ".opencode/skills/system-spec-kit/scripts/tests/graph-aware-stop.vitest.ts:17",
+        ".opencode/skills/system-spec-kit/SKILL.md:127"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "f1-2",
+      "finding": "system-spec-kit path coupling is depth-invariant to rename: both old/new homes at skills/<skill>/lib/deep-loop/ depth.",
+      "iteration": 1,
+      "confidence": "high",
+      "_lineages": [
+        "glm52-1"
+      ]
+    },
+    {
+      "id": "G55F5-F007",
+      "iteration": 2,
+      "title": "System-spec-kit tooling-borrow repair is load-bearing",
+      "summary": "The runtime typecheck and system-spec-kit council test paths cross the move boundary and belong in child 002 validation.",
+      "evidence": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:90",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:94",
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:99"
+      ],
+      "confidence": "high",
+      "_lineages": [
+        "gpt55-fast-5"
+      ]
+    },
+    {
+      "id": "f-002-speckit-verification-coupling",
+      "title": "system-spec-kit verification points at both old roots",
+      "summary": "Vitest discovery and optimizer manifests reference runtime tests and workflow configs, making system-spec-kit part of the migration surface.",
+      "iteration": 2,
+      "sources": [
+        ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:15-22",
+        ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json:7-18"
+      ],
+      "_lineages": [
+        "gpt55-fast-1"
+      ]
+    },
+    {
+      "id": "f-001-layout",
+      "title": "Target layout is coherent if runtime stays infrastructure-only",
+      "summary": "The proposed layout keeps four workflow packets at hub level and nests former runtime under runtime/ with no mode-registry entry.",
+      "severity": "confirmation",
+      "iteration": 1,
+      "sources": [
+        "file:.opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:154"
+      ],
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "F1.1--39933678a5c0",
+      "tier": 3,
+      "type": "CONFIRM",
+      "run": 1,
+      "summary": "Target layout structurally correct (1:1 with live runtime tree)",
+      "_lineages": [
+        "glm52-2"
+      ],
+      "_conflictOf": "F1.1",
+      "_conflict_id": "F1.1--39933678a5c0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F1.1",
+          "peerId": "F1.1--7124954b2a5e",
+          "peerLineages": [
+            "glm52-3"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F-P1-005--a5718e669ba0",
+      "severity": "P1",
+      "summary": "test:council include glob can silently shrink the test set; needs non-empty-match assertion.",
+      "iteration": 3,
+      "_lineages": [
+        "glm52-5"
+      ],
+      "_conflictOf": "F-P1-005",
+      "_conflict_id": "F-P1-005--a5718e669ba0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-005",
+          "peerId": "F-P1-005--4c54453ccb75",
+          "peerLineages": [
+            "glm52-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F-P1-005",
+          "peerId": "F-P1-005--ee4d3b1d1531",
+          "peerLineages": [
+            "gpt55-fast-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "gpt55-fast-6-f007",
+      "title": "test:council needs council-playbook-anchor-integrity path updates",
+      "summary": "The test:council script includes council-playbook-anchor-integrity, which hardcodes deep-loop-runtime test paths and regexes.",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/package.json:31",
+        "file:.opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts:27"
+      ],
+      "_lineages": [
+        "gpt55-fast-6"
+      ]
+    },
+    {
+      "id": "f016-glm-mimo-edge-not-configured",
+      "summary": "The current model profile registry lists both GLM-5.2 and MiMo-V2.5-Pro with fallback_target null, so GLM-to-MiMo fallback would be new policy/configuration.",
+      "sources": [
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:204",
+        ".opencode/skills/sk-prompt-models/assets/model_profiles.json:269"
+      ],
+      "_lineages": [
+        "gpt55-fast-3"
+      ]
+    },
+    {
+      "id": "g55f8-f003",
+      "iteration": 1,
+      "summary": "The system-spec-kit borrow is load-bearing and should be path-repaired, not decoupled, in child 002.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:16",
+        ".opencode/skills/deep-loop-runtime/package.json:10",
+        ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:18"
+      ],
+      "_lineages": [
+        "gpt55-fast-8"
+      ]
+    },
+    {
+      "id": "gpt55-fast-9-f001",
+      "iteration": 1,
+      "summary": "The target layout is valid only with one public skill identity and a non-routable nested runtime.",
+      "sources": [
+        ".opencode/skills/deep-loop-workflows/SKILL.md:12",
+        ".opencode/skills/deep-loop-runtime/SKILL.md:14-17",
+        ".opencode/skills/deep-loop-workflows/SKILL.md:64-67"
+      ],
+      "_lineages": [
+        "gpt55-fast-9"
+      ]
+    },
+    {
+      "id": "finding-tooling-borrow-load-bearing",
+      "title": "The tooling-borrow is load-bearing",
+      "summary": "Runtime package scripts and tsconfig borrow system-spec-kit tooling, while system-spec-kit vitest includes runtime tests. Those paths must move in 002.",
+      "confidence": "high",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/package.json:11",
+        ".opencode/skills/deep-loop-runtime/tsconfig.json:12",
+        ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:18"
+      ],
+      "addedAtIteration": 4,
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "f-006-tooling-borrow",
+      "title": "Tooling-borrow repair belongs in structural phase 002",
+      "summary": "runtime and system-spec-kit point at each other for typecheck/test discovery, so this is move-time repair.",
+      "severity": "confirmation",
+      "iteration": 2,
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/package.json:11",
+        "file:.opencode/skills/system-spec-kit/mcp_server/package.json:31"
+      ],
+      "_lineages": [
+        "gpt55-fast-7"
+      ]
+    },
+    {
+      "id": "F1.4",
+      "tier": 3,
+      "type": "RISK",
+      "run": 1,
+      "severity": "low",
+      "summary": "Two package.json under one skill; sanity-check package_skill --check",
+      "_lineages": [
+        "glm52-2"
+      ]
+    },
+    {
+      "id": "F1.1--7124954b2a5e",
+      "text": "Runtime folds as self-contained runtime/ subtree; no orphaned entry points.",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F1.1",
+      "_conflict_id": "F1.1--7124954b2a5e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F1.1",
+          "peerId": "F1.1--39933678a5c0",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F1.2--4aef437b2a10",
+      "text": "THREE+1 path-repair mechanisms: (A) absolute-string, (A') reverse absolute shell-out, (B) forward-relative segment-delete, (C) +1-hop tooling-borrow, (D) reverse-relative hop-reduce+rename.",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F1.2",
+      "_conflict_id": "F1.2--4aef437b2a10",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F1.2",
+          "peerId": "F1.2--2c234be78925",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F1.3--616e5d1a50cf",
+      "text": "spec.md:132 asymmetry risk confirmed.",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F1.3",
+      "_conflict_id": "F1.3--616e5d1a50cf",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F1.3",
+          "peerId": "F1.3--dec27c3e43a8",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F2.1--82cd84131b68",
+      "text": "Reverse coupling = ~12 code + 1 reverse-absolute shell-out + ~28 test-fixture strings.",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F2.1",
+      "_conflict_id": "F2.1--82cd84131b68",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F2.1",
+          "peerId": "F2.1--f783569adfe2",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F2.2--37410ec210ad",
+      "text": "REQ-003 system-spec-kit surface ~9 sites/5 files, not 4.",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F2.2",
+      "_conflict_id": "F2.2--37410ec210ad",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F2.2",
+          "peerId": "F2.2--b618cbc6a92e",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F2.3--3cb209285c8b",
+      "text": "Tooling-borrow net neutral; node_modules borrow already shipped (stale claim).",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F2.3",
+      "_conflict_id": "F2.3--3cb209285c8b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F2.3",
+          "peerId": "F2.3--ff362a9f4f97",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F3.2--4d630b6585ed",
+      "text": "Advisor already has merge-identity layer (aliases.ts:92-109); system-deep-loop is SECOND fold = id-rename of MERGED_DEEP_SKILL_ID.",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F3.2",
+      "_conflict_id": "F3.2--4d630b6585ed",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F3.2",
+          "peerId": "F3.2--f42851a35af6",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F3.3--2cf6c661cbf3",
+      "text": "Divergence-ledger reason strings are historical narration; mechanical replace corrupts them (REQ-007 ratchet guard).",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F3.3",
+      "_conflict_id": "F3.3--2cf6c661cbf3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F3.3",
+          "peerId": "F3.3--5b7351999213",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F3.5--79b7b6b26447",
+      "text": "skill-graph.json generated; hand-edit trap; edit graph-metadata.json sources + re-scan.",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F3.5",
+      "_conflict_id": "F3.5--79b7b6b26447",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F3.5",
+          "peerId": "F3.5--c76f4c6b20d3",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F4.2--f9b62d0df2d2",
+      "text": "Today's failure path is same-model retry-and-salvage (fanout-pool.cjs), not model-swap.",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F4.2",
+      "_conflict_id": "F4.2--f9b62d0df2d2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F4.2",
+          "peerId": "F4.2--1dd02da41bcd",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F4.4--ce417561ffac",
+      "text": "DEFER fallback-router wiring: zero merge-blocking dependency, no router-contract debt.",
+      "_lineages": [
+        "glm52-3"
+      ],
+      "_conflictOf": "F4.4",
+      "_conflict_id": "F4.4--ce417561ffac",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F4.4",
+          "peerId": "F4.4--1e35e942137f",
+          "peerLineages": [
+            "glm52-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "F3.6",
+      "text": "orchestrate.md hardcodes mode-registry.json path 3x x2 agent trees = 6 critical edits.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-runtime-mode",
+      "direction": "Add runtime as workflowMode",
+      "reason": "runtime is infrastructure, not a mode.",
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "ruled-out-naive-replace",
+      "direction": "Naive global old-name replacement",
+      "reason": "Forward and reverse path repairs differ.",
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "ruled-out-silent-fallback",
+      "direction": "Silently bundle GLM-to-MiMo fallback into 002/003",
+      "reason": "Optional feature scope needs operator decision.",
+      "_lineages": [
+        "gpt55-fast-10"
+      ]
+    },
+    {
+      "id": "R1.1",
+      "text": "Single mechanical find/replace.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    },
+    {
+      "id": "R1.2",
+      "text": "Reverse as larger per-site risk.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    },
+    {
+      "id": "R2.1",
+      "text": "Mechanism A forward-only.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    },
+    {
+      "id": "R2.2",
+      "text": "4 system-spec-kit edits suffice.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    },
+    {
+      "id": "R2.3",
+      "text": "tooling-borrow is net risk transfer.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    },
+    {
+      "id": "R3.1",
+      "text": "Advisor needs from-scratch merge layer.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    },
+    {
+      "id": "R3.2",
+      "text": "Hand-edit skill-graph.json.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    },
+    {
+      "id": "R3.3",
+      "text": "Mechanical full-file replace on divergence ledger.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    },
+    {
+      "id": "R4.1",
+      "text": "Wire fallback-router as part of the merge.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    },
+    {
+      "id": "R4.2",
+      "text": "The merge forces fallback-router changes.",
+      "_lineages": [
+        "glm52-3"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 46,
+    "openQuestions": 5,
+    "resolvedQuestions": 27,
+    "keyFindings": 165,
+    "convergenceScore": 0.469,
+    "coverageBySources": {}
+  },
+  "schema_mismatch": [
+    {
+      "type": "schema_mismatch",
+      "severity": "warn",
+      "lineage": "glm52-2",
+      "message": "Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 25 entries.",
+      "aliasKey": "findings",
+      "canonicalKey": "keyFindings",
+      "coercedCount": 25
+    },
+    {
+      "type": "schema_mismatch",
+      "severity": "warn",
+      "lineage": "gpt55-fast-4",
+      "message": "Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 8 entries.",
+      "aliasKey": "findings",
+      "canonicalKey": "keyFindings",
+      "coercedCount": 8
+    }
+  ]
+}

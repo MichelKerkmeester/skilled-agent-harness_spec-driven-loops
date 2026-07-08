@@ -1,0 +1,407 @@
+{
+  "run_id": "1783486518892-2qss01",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research",
+  "base_artifact_dir": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research",
+  "total_cli_lineages": 20,
+  "orphaned_lineages": [
+    {
+      "label": "gpt55-fast-1",
+      "index": 0,
+      "started_at_iso": "2026-07-08T04:53:11.719Z"
+    },
+    {
+      "label": "gpt55-fast-2",
+      "index": 1,
+      "started_at_iso": "2026-07-08T04:53:11.722Z"
+    },
+    {
+      "label": "gpt55-fast-3",
+      "index": 2,
+      "started_at_iso": "2026-07-08T04:53:11.724Z"
+    },
+    {
+      "label": "gpt55-fast-4",
+      "index": 3,
+      "started_at_iso": "2026-07-08T04:53:11.725Z"
+    },
+    {
+      "label": "gpt55-fast-5",
+      "index": 4,
+      "started_at_iso": "2026-07-08T04:53:11.727Z"
+    },
+    {
+      "label": "gpt55-fast-6",
+      "index": 5,
+      "started_at_iso": "2026-07-08T04:53:11.729Z"
+    }
+  ],
+  "total": 20,
+  "succeeded": 15,
+  "failed": 5,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 5
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 5,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "gpt55-fast-4",
+      "state_log": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-4/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-08T04:55:18.902Z",
+        "end_at_iso": "2026-07-08T05:09:20.189Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 7,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 9
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-08T05:15:00Z",
+          "deltaMs": 219811
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-08T05:20:00Z",
+          "deltaMs": 519811
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-08T05:25:00Z",
+          "deltaMs": 819811
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-08T05:25:05Z",
+          "deltaMs": 824811
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-07-08T05:30:00Z",
+          "deltaMs": 1119811
+        }
+      ]
+    },
+    {
+      "label": "gpt55-fast-6",
+      "state_log": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-6/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-08T04:55:18.906Z",
+        "end_at_iso": "2026-07-08T05:21:16.235Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 7,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 8
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:01:00Z",
+          "deltaMs": 17538906
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:02:00Z",
+          "deltaMs": 17478906
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:03:00Z",
+          "deltaMs": 17418906
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:04:00Z",
+          "deltaMs": 17358906
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:05:00Z",
+          "deltaMs": 17298906
+        }
+      ]
+    },
+    {
+      "label": "gpt55-fast-9",
+      "state_log": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-9/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-08T05:28:56.346Z",
+        "end_at_iso": "2026-07-08T05:40:59.669Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 6,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 10
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T05:12:24Z",
+          "deltaMs": 872346
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T05:14:28Z",
+          "deltaMs": 748346
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T05:16:43Z",
+          "deltaMs": 613346
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T05:19:14Z",
+          "deltaMs": 462346
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T05:19:14Z",
+          "deltaMs": 462346
+        }
+      ]
+    },
+    {
+      "label": "glm52-1",
+      "state_log": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/glm52-1/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-08T05:20:16.391Z",
+        "end_at_iso": "2026-07-08T05:37:36.299Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 2,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:05:00Z",
+          "deltaMs": 18796391
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:12:00Z",
+          "deltaMs": 18376391
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:18:00Z",
+          "deltaMs": 18016391
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:25:00Z",
+          "deltaMs": 17596391
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:33:00Z",
+          "deltaMs": 17116391
+        }
+      ]
+    },
+    {
+      "label": "glm52-2",
+      "state_log": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/glm52-2/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-08T05:21:16.236Z",
+        "end_at_iso": "2026-07-08T05:40:39.330Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 9,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 10
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:00:05Z",
+          "deltaMs": 19151236
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:08:00Z",
+          "deltaMs": 18676236
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:16:00Z",
+          "deltaMs": 18196236
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:24:00Z",
+          "deltaMs": 17716236
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:32:00Z",
+          "deltaMs": 17236236
+        }
+      ]
+    },
+    {
+      "label": "glm52-3",
+      "state_log": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/glm52-3/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-08T05:22:45.462Z",
+        "end_at_iso": "2026-07-08T05:42:50.534Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 6,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:00:00Z",
+          "deltaMs": 19245462
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:00:00Z",
+          "deltaMs": 19245462
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:00:00Z",
+          "deltaMs": 19245462
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:00:00Z",
+          "deltaMs": 19245462
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:00:00Z",
+          "deltaMs": 19245462
+        }
+      ]
+    },
+    {
+      "label": "glm52-4",
+      "state_log": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/glm52-4/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-08T05:24:15.722Z",
+        "end_at_iso": "2026-07-08T05:51:41.752Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 8,
+        "unparseable": 0,
+        "total": 9
+      },
+      "sample": [
+        {
+          "index": 7,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:00:00Z",
+          "deltaMs": 19335722
+        }
+      ]
+    },
+    {
+      "label": "glm52-5",
+      "state_log": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/glm52-5/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-08T05:24:18.256Z",
+        "end_at_iso": "2026-07-08T05:47:24.553Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 9,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 10
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:00:00Z",
+          "deltaMs": 19338256
+        },
+        {
+          "index": 2,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:00:00Z",
+          "deltaMs": 19338256
+        },
+        {
+          "index": 3,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:05:00Z",
+          "deltaMs": 19038256
+        },
+        {
+          "index": 4,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:10:00Z",
+          "deltaMs": 18738256
+        },
+        {
+          "index": 5,
+          "reason": "before_window",
+          "timestamp": "2026-07-08T00:15:00Z",
+          "deltaMs": 18438256
+        }
+      ]
+    }
+  ]
+}

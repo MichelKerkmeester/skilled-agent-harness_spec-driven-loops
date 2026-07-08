@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "sessionId": "fanout-gpt55-fast-8-1783486518892-2qss01",
+  "lineageLabel": "gpt55-fast-8",
+  "generation": 1,
+  "status": "COMPLETE",
+  "stopReason": "converged",
+  "metrics": {
+    "iterationsCompleted": 3,
+    "keyFindings": 14,
+    "openQuestions": 0,
+    "resolvedQuestions": 8,
+    "averageNewInfoRatio": 0.6067
+  },
+  "resolvedQuestions": [
+    "Does the target system-deep-loop layout match the live hub/runtime contract?",
+    "Are the path-repair classes correct?",
+    "Is the system-spec-kit tooling-borrow load-bearing?",
+    "Which external references are load-bearing?",
+    "Does advisor routing require a staged rebaseline?",
+    "Can command contracts be hand-edited?",
+    "Does detached lineage execution require special artifact-root handling?",
+    "Should GLM to MiMo fallback be part of the merge?"
+  ],
+  "openQuestions": [],
+  "keyFindings": [
+    {
+      "id": "g55f8-f001",
+      "iteration": 1,
+      "summary": "Keep runtime as infrastructure under system-deep-loop/runtime, not a workflow mode.",
+      "evidence": [".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:154", ".opencode/skills/deep-loop-workflows/mode-registry.json:29"]
+    },
+    {
+      "id": "g55f8-f002",
+      "iteration": 1,
+      "summary": "Path repairs split into forward same-hop/delete-segment and reverse minus-one-hop/rename classes.",
+      "evidence": [".opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:8", ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs:14"]
+    },
+    {
+      "id": "g55f8-f003",
+      "iteration": 1,
+      "summary": "The system-spec-kit borrow is load-bearing and should be path-repaired, not decoupled, in child 002.",
+      "evidence": [".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:16", ".opencode/skills/deep-loop-runtime/package.json:10", ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:18"]
+    },
+    {
+      "id": "g55f8-f004",
+      "iteration": 2,
+      "summary": "Advisor migration requires constants, generated projection, drift guard, corpus, and rebaseline work.",
+      "evidence": [".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:83", ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:109", ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts:26"]
+    },
+    {
+      "id": "g55f8-f005",
+      "iteration": 2,
+      "summary": "Compiled command contracts must be regenerated, not hand-edited.",
+      "evidence": [".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs:13", ".opencode/skills/deep-loop-runtime/scripts/check-contract-drift.cjs:38", ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:89"]
+    },
+    {
+      "id": "g55f8-f006",
+      "iteration": 3,
+      "summary": "Detached lineages must bind artifact_dir directly to the lineage override and should not run resolveArtifactRoot.",
+      "evidence": [".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1010", ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1015"]
+    },
+    {
+      "id": "g55f8-f007",
+      "iteration": 3,
+      "summary": "Fallback-router is a viable optional reuse target, but fanout-pool currently only same-model retries.",
+      "evidence": [".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628", ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:357", ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:422"]
+    },
+    {
+      "id": "g55f8-f008",
+      "iteration": 3,
+      "summary": "GLM to MiMo fallback should remain optional/operator-gated for the merge.",
+      "evidence": [".opencode/skills/sk-prompt-models/assets/model_profiles.json:268", ".opencode/skills/sk-prompt-models/assets/model_profiles.json:294", ".opencode/skills/cli-opencode/references/cli_reference.md:231"]
+    }
+  ],
+  "ruledOutDirections": [
+    "Runtime as a workflowMode",
+    "Blind repo-wide find/replace",
+    "Silent GLM to MiMo substitution",
+    "Running stock resolveArtifactRoot for this detached lineage"
+  ],
+  "advisoryEvents": [],
+  "corruptionWarnings": []
+}

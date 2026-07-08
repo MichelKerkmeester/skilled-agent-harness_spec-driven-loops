@@ -1,0 +1,103 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "The system-deep-loop/runtime structural layout is correct and runtime should stay infrastructure, not a workflow mode.",
+    "The bidirectional path-coupling repair rule is correct, with a new correction for render-command-contract.cjs WORKSPACE_ROOT depth.",
+    "The system-spec-kit tooling-borrow repair is load-bearing and correctly scoped to child 002.",
+    "External reference migration is broadly complete if Stage A is live and historical active eval fixtures are allowlisted or reviewed.",
+    "Fallback-router wiring should remain optional/deferred for the structural merge unless the operator explicitly expands scope to behavior changes.",
+    "This lineage can synthesize with stopReason=converged after four iterations because all five key questions are evidence-backed."
+  ],
+  "keyFindings": [
+    {
+      "id": "f001-runtime-not-mode",
+      "summary": "system-deep-loop/runtime should remain infrastructure, not a workflow mode.",
+      "sources": [".opencode/skills/deep-loop-workflows/SKILL.md:12", ".opencode/skills/deep-loop-workflows/mode-registry.json:19"]
+    },
+    {
+      "id": "f003-render-root-depth-missed",
+      "summary": "render-command-contract.cjs has a WORKSPACE_ROOT depth constant that must gain one more parent hop after nesting.",
+      "sources": [".opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:13"]
+    },
+    {
+      "id": "f005-tooling-borrow-load-bearing",
+      "summary": "Runtime typecheck and system-spec-kit council test discovery both rely on deep-loop-runtime paths and must be repaired in the structural phase.",
+      "sources": [".opencode/skills/deep-loop-runtime/package.json:10", ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:18"]
+    },
+    {
+      "id": "f011-eval-fixture-allowlist",
+      "summary": "Active system-spec-kit eval fixtures intentionally contain historical old-name queries/decoys and should be reviewed or allowlisted, not blindly renamed.",
+      "sources": [".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:795", ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:960"]
+    },
+    {
+      "id": "f012-graph-edge-collapse",
+      "summary": "Sibling graph metadata needs edge collapse from two old identities to one system-deep-loop identity.",
+      "sources": [".opencode/skills/system-skill-advisor/graph-metadata.json:35", ".opencode/skills/system-spec-kit/graph-metadata.json:40"]
+    },
+    {
+      "id": "f015-fallback-callsite-too-narrow",
+      "summary": "Child 004's proposed fanout-pool-only call site is too narrow because fanout-run owns model-bearing lineages, prompt construction, command dispatch, and artifact validation.",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/plan.md:90", ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1534", ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1599"]
+    },
+    {
+      "id": "f016-glm-mimo-edge-not-configured",
+      "summary": "The current model profile registry lists both GLM-5.2 and MiMo-V2.5-Pro with fallback_target null, so GLM-to-MiMo fallback would be new policy/configuration.",
+      "sources": [".opencode/skills/sk-prompt-models/assets/model_profiles.json:204", ".opencode/skills/sk-prompt-models/assets/model_profiles.json:269"]
+    },
+    {
+      "id": "f019-fallback-label-attribution",
+      "summary": "A fallback lineage needs a distinct label/artifact directory and status event to avoid mixing failed GLM retry state with MiMo replacement output.",
+      "sources": [".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1553", ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:783"]
+    },
+    {
+      "id": "f021-child-002-needs-render-root-depth-amendment",
+      "summary": "Child 002's path plan is directionally correct but should add render-command-contract.cjs WORKSPACE_ROOT depth repair before implementation.",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/plan.md:72", ".opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs:13"]
+    },
+    {
+      "id": "f022-child-003-needs-eval-allowlist-amendment",
+      "summary": "Child 003's residual-grep stage needs a reviewed allowlist for semantically historical active eval fixtures.",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:67", ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:795"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Add runtime as a workflow mode",
+      "reason": "The live registry treats runtime as backend infrastructure.",
+      "evidence": ".opencode/skills/deep-loop-workflows/mode-registry.json:19",
+      "iterations": [1]
+    },
+    {
+      "approach": "Blind repo-wide find/replace of old skill names",
+      "reason": "Generated contracts, advisor fields, graph edges, and historical eval fixtures need different handling.",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:795",
+      "iterations": [2]
+    },
+    {
+      "approach": "Make child 004 mandatory inside the structural merge without an operator scope-expansion decision",
+      "reason": "Fallback wiring is behavior expansion requiring registry/schema, caller approval, model-id normalization, and attribution changes; it is not required for the rename/nesting/reference migration.",
+      "evidence": ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:42",
+      "iterations": [3]
+    },
+    {
+      "approach": "Continue to a fifth iteration",
+      "reason": "All key questions are answered, the minimum floor is met, and the convergence pass produced no new contradictions.",
+      "evidence": ".opencode/skills/deep-loop-workflows/deep-research/references/convergence/convergence.md:49",
+      "iterations": [4]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 0,
+    "resolvedQuestions": 6,
+    "keyFindings": 10,
+    "convergenceScore": 1,
+    "terminalStop": {
+      "stopReason": "converged",
+      "totalIterations": 4,
+      "answeredCount": 5,
+      "totalQuestions": 5
+    },
+    "coverageBySources": {}
+  }
+}

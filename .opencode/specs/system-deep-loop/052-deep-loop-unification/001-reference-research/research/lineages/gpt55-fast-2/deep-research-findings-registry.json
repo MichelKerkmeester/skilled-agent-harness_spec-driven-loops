@@ -1,0 +1,88 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "answer": "The target layout is sound if runtime remains nested infrastructure with no mode-registry entry and only one top-level graph-metadata.json."
+    },
+    {
+      "id": "Q2",
+      "answer": "The directional path rule is mostly correct, but the execution plan misses artifact-root/system-spec-kit code seams and several reverse-coupling files."
+    },
+    {
+      "id": "Q3",
+      "answer": "The external migration must be category-scoped and must re-baseline advisor accuracy, not just rename strings."
+    },
+    {
+      "id": "Q4",
+      "answer": "Wire GLM to MiMo fallback only with explicit approval, canonical model-id mapping, and failure classification that can reach the router on quota/auth/timeout cases."
+    },
+    {
+      "id": "Q5",
+      "answer": "Detached fan-out lineage prompts conflict with YAML spec.md mutation steps; fan-out lineages need an explicit skip/defer branch."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F-P0-001",
+      "severity": "P0",
+      "title": "Detached fan-out lineage boundary conflicts with research YAML spec.md mutations",
+      "summary": "The lineage prompt says writes must stay inside the lineage directory, but deep_research_auto.yaml still edits spec_folder/spec.md during pre-init and post-synthesis. This can violate fan-out isolation or force each detached child to improvise a skip.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:1004-1017",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:376-406",
+        ".opencode/commands/deep/assets/deep_research_auto.yaml:1510-1532"
+      ]
+    },
+    {
+      "id": "F-P0-002",
+      "severity": "P0",
+      "title": "artifact-root.cjs is a missed system-spec-kit path seam",
+      "summary": "After runtime moves under system-deep-loop/runtime, artifact-root.cjs's relative require to system-spec-kit needs one more parent hop. Its test constant and dependency-seams guard also need updates or the validation surface becomes misleading.",
+      "sources": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/artifact-root.cjs:16-18",
+        ".opencode/skills/deep-loop-runtime/tests/unit/artifact-root.vitest.ts:10-25",
+        ".opencode/skills/deep-loop-runtime/tests/unit/dependency-seams.vitest.ts:16-18",
+        ".opencode/skills/deep-loop-runtime/tests/unit/dependency-seams.vitest.ts:46-52"
+      ]
+    },
+    {
+      "id": "F-P1-003",
+      "severity": "P1",
+      "title": "Reverse-coupling inventory is broader than the current table",
+      "summary": "The child 002 plan table is directionally right but incomplete. It should explicitly include research/review runtime-capability shims, review reducer, replay-graph absolute lookup, deep-improvement runtime self-profile, and runtime tests with workflow-relative imports."
+    },
+    {
+      "id": "F-P1-004",
+      "severity": "P1",
+      "title": "Advisor migration needs drift-guard plus accuracy re-baseline",
+      "summary": "The merged deep-loop identity is encoded in Python, TypeScript aliases, mode-registry projection tests, corpus rows, and approved divergence ledger entries. Rename must preserve the projection hash and meet the pre-change routing-accuracy baseline."
+    },
+    {
+      "id": "F-P1-005",
+      "severity": "P1",
+      "title": "GLM to MiMo fallback is useful but not a one-line call-site",
+      "summary": "fallback-router.ts is tested and has no non-test caller. Wiring it should happen, but only after a canonical id map, approved fallback target policy, and retry/fatal failure-class handling are designed."
+    }
+  ],
+  "ruledOutDirections": [
+    "Do not add runtime as a new workflowMode; runtime is infrastructure.",
+    "Do not blindly replace every historical spec/worktree mention of old skill ids.",
+    "Do not wire fallback only at retry-exhaustion without handling fatal quota/auth exits.",
+    "Do not let detached lineages mutate spec.md outside their artifact_dir."
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 5,
+    "convergenceScore": 0.65,
+    "coverageBySources": {
+      "specs": 5,
+      "commands": 4,
+      "skills": 14,
+      "agents": 2,
+      "README": 1
+    }
+  }
+}

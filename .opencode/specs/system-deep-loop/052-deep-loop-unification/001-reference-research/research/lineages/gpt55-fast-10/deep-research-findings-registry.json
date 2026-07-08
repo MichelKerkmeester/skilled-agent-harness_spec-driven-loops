@@ -1,0 +1,142 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-structural-layout",
+      "question": "Is the structural layout sound?",
+      "answer": "Yes, if runtime remains infrastructure under system-deep-loop/runtime and is not added as a workflow mode.",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:157"]
+    },
+    {
+      "id": "q-path-coupling",
+      "question": "Are bidirectional path-coupling rules correct?",
+      "answer": "Yes. Forward and reverse directions require different relative-depth repairs.",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:173"]
+    },
+    {
+      "id": "q-tooling-borrow",
+      "question": "Is the system-spec-kit tooling-borrow accounted for?",
+      "answer": "Yes, and it is load-bearing test/typecheck wiring scoped into 002.",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:73"]
+    },
+    {
+      "id": "q-reference-migration",
+      "question": "Are external references and advisor surfaces covered?",
+      "answer": "Yes, if 003 treats advisor/codegen/corpus/fixtures as first-class gates, not prose cleanup.",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:75"]
+    },
+    {
+      "id": "q-fallback-router",
+      "question": "Should fallback-router.ts be wired for GLM-to-MiMo fallback?",
+      "answer": "Not as an implicit merge requirement. It is valuable optional hardening with separate operator approval.",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:115"]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-runtime-not-mode",
+      "title": "runtime/ must be infrastructure, not an eighth mode",
+      "summary": "The proposed tree nests the former runtime under system-deep-loop/runtime and explicitly says adding runtime as a mode-registry entry would be a category error.",
+      "confidence": "high",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:157", ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:169"],
+      "addedAtIteration": 2
+    },
+    {
+      "id": "finding-asymmetric-coupling",
+      "title": "Path repair is intentionally asymmetric",
+      "summary": "Forward runtime-to-workflow references keep hop count and delete the old workflow segment; reverse workflow-to-runtime references move one hop nearer and rename the segment.",
+      "confidence": "high",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:173", ".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:174"],
+      "addedAtIteration": 3
+    },
+    {
+      "id": "finding-tooling-borrow-load-bearing",
+      "title": "The tooling-borrow is load-bearing",
+      "summary": "Runtime package scripts and tsconfig borrow system-spec-kit tooling, while system-spec-kit vitest includes runtime tests. Those paths must move in 002.",
+      "confidence": "high",
+      "sources": [".opencode/skills/deep-loop-runtime/package.json:11", ".opencode/skills/deep-loop-runtime/tsconfig.json:12", ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts:18"],
+      "addedAtIteration": 4
+    },
+    {
+      "id": "finding-command-agent-surfaces",
+      "title": "External migration is executable, not just prose",
+      "summary": "Doctor routes, deep command YAMLs, and both OpenCode/Claude agent mirrors carry old executable path references.",
+      "confidence": "high",
+      "sources": [".opencode/commands/doctor/_routes.yaml:108", ".opencode/commands/deep/assets/deep_ai-council_confirm.yaml:40", ".opencode/agents/orchestrate.md:185", ".claude/agents/orchestrate.md:174"],
+      "addedAtIteration": 5
+    },
+    {
+      "id": "finding-advisor-high-risk",
+      "title": "Advisor migration is the highest-risk reference area",
+      "summary": "The advisor has generated projection/hash surfaces, hand constants, lexical scoring boosts, graph edges, corpus, and divergence fixtures.",
+      "confidence": "high",
+      "sources": [".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py:83", ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:21", ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts:109", ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts:28"],
+      "addedAtIteration": 6
+    },
+    {
+      "id": "finding-fallback-optional-real-caller",
+      "title": "fallback-router.ts needs an explicit caller if 004 is accepted",
+      "summary": "The router enforces cross-pool and approved-model guards, while fanout-pool currently retries and marks retry exhaustion without resolving a fallback target.",
+      "confidence": "high",
+      "sources": [".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts:357", ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:628", ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:650"],
+      "addedAtIteration": 7
+    },
+    {
+      "id": "finding-glm-mimo-fallback-needs-approval",
+      "title": "GLM and MiMo are separate active pools but no fallback is configured",
+      "summary": "MiMo and GLM model profiles both have active opencode executors but fallback_target is null for both; automatic routing would be new policy.",
+      "confidence": "high",
+      "sources": [".opencode/skills/sk-prompt-models/assets/model_profiles.json:190", ".opencode/skills/sk-prompt-models/assets/model_profiles.json:204", ".opencode/skills/sk-prompt-models/assets/model_profiles.json:255", ".opencode/skills/sk-prompt-models/assets/model_profiles.json:269"],
+      "addedAtIteration": 8
+    },
+    {
+      "id": "finding-003-gates-sufficient",
+      "title": "003 has the right dependency ordering and exit gates",
+      "summary": "The external migration plan requires baseline inventory, hardcoded constants first, generated projection/codegen, command-contract regeneration, corpus re-baseline, and full exit gates.",
+      "confidence": "high",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:67", ".opencode/specs/system-deep-loop/052-deep-loop-unification/003-external-reference-migration/plan.md:106"],
+      "addedAtIteration": 9
+    },
+    {
+      "id": "finding-proceed-with-guardrails",
+      "title": "Proceed with 002 and 003, keep 004 optional",
+      "summary": "The merge/reference-migration design is sound. Fallback-router wiring is real hardening but should remain separate unless the operator opts in.",
+      "confidence": "high",
+      "sources": [".opencode/specs/system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting/spec.md:77", ".opencode/specs/system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring/spec.md:123"],
+      "addedAtIteration": 10
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-naive-replace",
+      "direction": "Naive global old-name replacement",
+      "reason": "Forward and reverse path repairs differ."
+    },
+    {
+      "id": "ruled-out-runtime-mode",
+      "direction": "Add runtime as workflowMode",
+      "reason": "runtime is infrastructure, not a mode."
+    },
+    {
+      "id": "ruled-out-silent-fallback",
+      "direction": "Silently bundle GLM-to-MiMo fallback into 002/003",
+      "reason": "Optional feature scope needs operator decision."
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 9,
+    "convergenceScore": 0.7,
+    "coverageBySources": {
+      "specs": 5,
+      "runtime": 3,
+      "commands": 2,
+      "agents": 2,
+      "advisor": 4,
+      "modelProfiles": 1
+    }
+  },
+  "lastUpdated": "2026-07-08T05:41:43Z"
+}

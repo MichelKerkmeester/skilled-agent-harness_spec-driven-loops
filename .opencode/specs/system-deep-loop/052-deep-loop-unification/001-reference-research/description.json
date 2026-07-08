@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/052-deep-loop-unification/001-reference-research",
+  "description": "Three parallel sonnet-5 Plan agents already produced a concrete, file:line-grounded mechanical design for merging `deep-loop-workflows` +",
+  "keywords": [
+    "three",
+    "parallel",
+    "sonnet-5",
+    "plan",
+    "agents",
+    "already",
+    "produced",
+    "concrete",
+    "file",
+    "line-grounded",
+    "mechanical",
+    "design",
+    "merging",
+    "deep-loop-workflows"
+  ],
+  "lastUpdated": "2026-07-08T04:36:10.178Z",
+  "specId": "001",
+  "folderSlug": "reference-research",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-deep-loop",
+    "052-deep-loop-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

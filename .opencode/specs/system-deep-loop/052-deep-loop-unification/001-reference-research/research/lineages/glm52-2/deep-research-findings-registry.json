@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "lineage": "glm52-2",
+  "sessionId": "fanout-glm52-2-1783486518892-2qss01",
+  "specFolder": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research",
+  "questions": [
+    { "id": "Q1", "text": "Structural layout correct and complete?", "status": "answered", "answeredRun": 1, "answer": "Yes (CONFIRM); one clarification (doc families move as unit) + one low risk (two package.json)." },
+    { "id": "Q2", "text": "Directional path-repair rule correct at every site?", "status": "answered", "answeredRun": 2, "answer": "Correct for relative requires (CONFIRM); CORRECTION that absolute literals are a separate repair class; RISK on dense compile-command-contracts.cjs." },
+    { "id": "Q3", "text": "Tooling-borrow fully enumerated and re-pathed?", "status": "answered", "answeredRun": 3, "answer": "Both directions CONFIRM; CORRECTION surface is ~6-8 not 4; RISK live import is hard failure not silent hole." },
+    { "id": "Q4", "text": "External ref surface mapped, esp. advisor corpus?", "status": "answered", "answeredRun": 4, "answer": "CONFIRM highest-risk; NEW RISKS: runtime-target anomaly (530), parity-test volume (11+), drift-guard self-reference." },
+    { "id": "Q5", "text": "fallback-router zero callers; wire or defer?", "status": "answered", "answeredRun": 5, "answer": "Zero callers CONFIRM; recommend DEFER to post-merge (004)." }
+  ],
+  "findings": [
+    { "id": "F1.1", "tier": 3, "type": "CONFIRM", "run": 1, "summary": "Target layout structurally correct (1:1 with live runtime tree)" },
+    { "id": "F1.2", "tier": 3, "type": "CONFIRM", "run": 1, "summary": "runtime-as-infrastructure (no graph-metadata.json, SKILL.md->README.md) correct" },
+    { "id": "F1.3", "tier": 3, "type": "CLARIFY", "run": 1, "summary": "Runtime doc families (feature_catalog/references/changelog/playbook) move as a unit" },
+    { "id": "F1.4", "tier": 3, "type": "RISK", "run": 1, "severity": "low", "summary": "Two package.json under one skill; sanity-check package_skill --check" },
+    { "id": "F2.1", "tier": 3, "type": "CONFIRM", "run": 2, "summary": "Reverse rule (minus-one-hop, rename segment) correct" },
+    { "id": "F2.2", "tier": 3, "type": "CONFIRM", "run": 2, "summary": "Forward rule (hop-unchanged, delete segment) correct" },
+    { "id": "F2.3", "tier": 1, "type": "CORRECTION", "run": 2, "summary": "Rule conflates absolute and relative paths; absolutes need separate string-rename" },
+    { "id": "F2.4", "tier": 1, "type": "RISK", "run": 2, "severity": "medium", "summary": "compile-command-contracts.cjs densest (~36 paths) + hash-cascade; use as forward exit gate" },
+    { "id": "F2.5", "tier": 3, "type": "CONFIRM", "run": 2, "summary": "fanout-run.cjs:942-943 absolute forward path confirmed" },
+    { "id": "F3.1", "tier": 3, "type": "CONFIRM", "run": 3, "summary": "Forward borrow (tsc, @types); one-more-.. correct" },
+    { "id": "F3.2", "tier": 3, "type": "CONFIRM", "run": 3, "summary": "Reverse borrow (vitest glob); expansion correct" },
+    { "id": "F3.3", "tier": 3, "type": "CORRECTION", "run": 3, "summary": "Borrow surface ~6-8 sites, not 4" },
+    { "id": "F3.4", "tier": 1, "type": "RISK", "run": 3, "severity": "medium", "summary": "memory-runtime-retention.vitest.ts:9 active import = hard failure post-move, not silent hole" },
+    { "id": "F3.5", "tier": 3, "type": "CLARIFY", "run": 3, "summary": "Borrow has two natures: tooling (runtime->spec-kit) vs code (spec-kit tests->runtime)" },
+    { "id": "F4.1", "tier": 3, "type": "CONFIRM", "run": 4, "summary": "MERGED_DEEP_SKILL_ID constant pair unguarded (skill_advisor.py + aliases.ts)" },
+    { "id": "F4.2", "tier": 3, "type": "CONFIRM", "run": 4, "summary": "Divergences ledger 40+ label-key entries; field-scoped rename correct" },
+    { "id": "F4.3", "tier": 2, "type": "RISK", "run": 4, "severity": "medium", "summary": "local-native-approved-divergences.json:530 targets deep-loop-runtime directly (anomaly); needs decision" },
+    { "id": "F4.4", "tier": 2, "type": "RISK", "run": 4, "severity": "low", "summary": "11+ parity invariants hardcode skill id (loud guard, must move in lockstep)" },
+    { "id": "F4.5", "tier": 2, "type": "RISK", "run": 4, "severity": "low", "summary": "Drift-guard self-references old path; REQ-001 ordering invariant confirmed" },
+    { "id": "F4.6", "tier": 3, "type": "CONFIRM", "run": 4, "summary": "Commands 434 hits, hash-guarded, correctly scoped to 003 Stage A" },
+    { "id": "F5.1", "tier": 3, "type": "CONFIRM", "run": 5, "summary": "fallback-router zero live callers (grep scripts -> empty)" },
+    { "id": "F5.2", "tier": 3, "type": "CONFIRM", "run": 5, "summary": "Library real + ready; wiring feasible" },
+    { "id": "F5.3", "tier": 2, "type": "DECISION", "run": 5, "summary": "Recommend DEFER wiring to post-merge (004 independent)" },
+    { "id": "F5.4", "tier": 3, "type": "CONFIRM", "run": 5, "summary": "Intra-runtime import merge-stable" },
+    { "id": "F5.5", "tier": 3, "type": "CONFIRM", "run": 5, "summary": "glm->mimo edge already a recipe in sk-prompt-models" }
+  ],
+  "sourceDiversity": {
+    "skills": ["deep-loop-runtime", "deep-loop-workflows", "system-spec-kit", "system-skill-advisor", "sk-prompt-models"],
+    "files": 24,
+    "externalUrls": [],
+    "singleWeakSource": false
+  },
+  "lastReducedRun": 5,
+  "lastUpdated": "2026-07-08T00:41:00Z"
+}

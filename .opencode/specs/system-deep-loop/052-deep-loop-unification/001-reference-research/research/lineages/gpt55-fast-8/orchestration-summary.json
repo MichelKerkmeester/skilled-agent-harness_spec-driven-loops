@@ -1,0 +1,12 @@
+{
+  "label": "gpt55-fast-8",
+  "sessionId": "fanout-gpt55-fast-8-1783486518892-2qss01",
+  "executor": "cli-opencode",
+  "model": "openai/gpt-5.5-fast",
+  "status": "fulfilled",
+  "stopReason": "converged",
+  "iterationsCompleted": 3,
+  "newInfoRatioTrend": [0.92, 0.62, 0.28],
+  "artifactDir": ".opencode/specs/system-deep-loop/052-deep-loop-unification/001-reference-research/research/lineages/gpt55-fast-8",
+  "completedAt": "2026-07-08T05:16:33Z"
+}

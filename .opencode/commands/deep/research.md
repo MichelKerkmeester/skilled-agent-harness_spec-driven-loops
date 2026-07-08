@@ -6,4 +6,4 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, mcp__mk_spec
 
 # Deep Start Research Loop
 
-!`node .opencode/skills/deep-loop-runtime/scripts/render-command-contract.cjs --command deep/research -- '$ARGUMENTS'`
+!`node .opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs --command deep/research -- '$ARGUMENTS'`

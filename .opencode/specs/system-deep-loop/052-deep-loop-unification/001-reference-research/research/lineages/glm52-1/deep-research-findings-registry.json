@@ -1,0 +1,28 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "Q1", "answer": "Mechanically safe IF nesting depth preserved. Runtime carries own node_modules/package.json/tsconfig as a unit. system-spec-kit path coupling is depth-invariant. No orphaned entry points. mode-registry.json + 3 command entry points are rename keystones.", "iteration": 1},
+    {"id": "Q2", "answer": "14 relative requires (workflows->runtime) break LOUDLY (MODULE_NOT_FOUND); 50 string literals (runtime->workflows in compile-command-contracts.cjs + 2 other scripts) break SILENTLY. check-contract-drift.cjs is the built-in migration gate.", "iteration": 2},
+    {"id": "Q3", "answer": "system-spec-kit coupling is NEUTRAL to merge (3 depth-invariant intentional seams). Merge is net simplification on workflows<->runtime axis (15 requires + 50 literals become intra-skill). Do NOT inline review-research-paths.cjs.", "iteration": 3},
+    {"id": "Q4", "answer": "6 migration tiers by loudness. Advisor corpus highest-risk (MERGED_DEEP_SKILL_ID -> ~40 routing entries, coupled-pair atomic migration gated by drift-guard). .claude/agents mirror is silent trap. 2 automated guards bound risk; ungated prose needs grep pass.", "iteration": 4},
+    {"id": "Q5", "answer": "Do NOT wire fallback-router during merge. Zero callers confirmed; wiring is 4-piece feature out of scope; approval-guard rejects unapproved MiMo swaps. Preserve router, track as post-merge follow-up.", "iteration": 5}
+  ],
+  "keyFindings": [
+    {"id": "f1-1", "finding": "node_modules tooling-borrow ALREADY RESOLVED: runtime ships own package.json with bare specifiers for zod/better-sqlite3/tsx. Only tsc borrowed at dev-time. 117-research '8 reach-ins' claim is STALE.", "iteration": 1, "confidence": "high"},
+    {"id": "f1-2", "finding": "system-spec-kit path coupling is depth-invariant to rename: both old/new homes at skills/<skill>/lib/deep-loop/ depth.", "iteration": 1, "confidence": "high"},
+    {"id": "f2-1", "finding": "14 workflows->runtime requires break loudly; repair is mechanical (depth + skill-name).", "iteration": 2, "confidence": "high"},
+    {"id": "f2-2", "finding": "50 runtime->workflows string literals in compile-command-contracts.cjs break SILENTLY — highest-risk coupling class.", "iteration": 2, "confidence": "high"},
+    {"id": "f2-3", "finding": "check-contract-drift.cjs is a built-in migration-completeness gate if migrated first.", "iteration": 2, "confidence": "high"},
+    {"id": "f3-1", "finding": "Merge is net simplification on workflows<->runtime axis (cross-skill -> intra-skill) and NEUTRAL on system-spec-kit axis.", "iteration": 3, "confidence": "high"},
+    {"id": "f4-1", "finding": "advisor MERGED_DEEP_SKILL_ID='deep-loop-workflows' propagates to ~40 routing entries; registry + maps are coupled-pair requiring atomic migration.", "iteration": 4, "confidence": "high"},
+    {"id": "f4-2", "finding": ".claude/agents mirror (5 files x 2 runtimes) is silent-migration trap; ungated prose.", "iteration": 4, "confidence": "high"},
+    {"id": "f5-1", "finding": "fallback-router.ts zero callers confirmed; dormant but valid. Wiring is 4-piece feature. Approval-guard rejects unapproved MiMo swaps.", "iteration": 5, "confidence": "high"}
+  ],
+  "ruledOutDirections": [
+    {"approach": "Resolve 8 system-spec-kit node_modules reach-ins as part of merge", "reason": "Already resolved: bare specifiers + own package.json; only tsc borrowed at dev-time", "evidence": "package.json:1-25; executor-config.ts:5", "iterations": [1]},
+    {"approach": "Direction A (14 requires) as primary merge risk", "reason": "Loud MODULE_NOT_FOUND; 50 silent string literals are real exposure", "evidence": "compile-command-contracts.cjs:15-288", "iterations": [2]},
+    {"approach": "Inline review-research-paths.cjs into system-deep-loop during merge", "reason": "Intentional single-source seam; duplicating reintroduces drift", "evidence": "artifact-root.cjs:5-9", "iterations": [3]},
+    {"approach": "Migration uniform across all surfaces", "reason": "Tiered: 2 automated guards + ungated prose", "evidence": "mode-registry.json:16; aliases.ts:109", "iterations": [4]},
+    {"approach": "Wire fallback-router during the merge", "reason": "Out of scope + moving-target + approval-guard rejects unapproved swaps", "evidence": "spec.md:69-75; fallback-router.ts:411-420", "iterations": [5]}
+  ]
+}
