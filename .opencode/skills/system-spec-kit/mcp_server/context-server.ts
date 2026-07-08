@@ -70,7 +70,7 @@ import { getTokenBudget } from './lib/architecture/layer-definitions.js';
 import { createMCPErrorResponse, wrapForMCP } from './lib/response/envelope.js';
 
 // Startup checks (extracted from this file)
-import { detectNodeVersionMismatch, checkSqliteVersion } from './startup-checks.js';
+import { detectNodeVersionMismatch, checkSqliteVersion, checkJournalMode } from './startup-checks.js';
 import {
   getStartupEmbeddingDimension,
   resolveStartupEmbeddingConfig,
@@ -1983,6 +1983,20 @@ async function main(): Promise<void> {
         // instead of relaunching a doomed second writer.
         setImmediate(() => { void fatalShutdown(error.message, EXIT_DB_LOCK_HELD); });
       }
+      // Additive-only: names the sentinel and points to the manual recovery step before the
+      // unchanged re-throw below. Physical corruption is detected here, before a live database
+      // handle exists, so the automatic derived-artifact repair path further down the boot
+      // sequence can never run against it — this log line is the only signal an operator gets
+      // for this specific failure mode.
+      if (error && typeof error === 'object' && (error as { needsRebuildCorruption?: boolean }).needsRebuildCorruption) {
+        try {
+          const sentinelPath = vectorIndex.get_needs_rebuild_sentinel_path(vectorIndex.getDbPath() || DATABASE_PATH);
+          console.error(`[context-server] Physical database corruption detected; needs-rebuild sentinel written at: ${sentinelPath ?? '(unavailable)'}`);
+          console.error('[context-server] Automatic repair cannot run against a database this corrupt. See database/checkpoints/README.md for the manual checkpoint-restore procedure.');
+        } catch (_loggingError: unknown) {
+          // Best-effort; never let a logging failure mask the original error below.
+        }
+      }
       throw error;
     }
     console.error('[context-server] Database initialized');
@@ -2204,13 +2218,10 @@ async function main(): Promise<void> {
     // Check SQLite version meets minimum requirement (3.35.0+)
     checkSqliteVersion(database);
 
-    // Verify WAL mode is active for operational concurrency guarantees.
-    const walRow = database.prepare('PRAGMA journal_mode').get() as { journal_mode?: string } | undefined;
-    const journalMode = String(walRow?.journal_mode ?? '').toLowerCase();
-    if (journalMode !== 'wal') {
-      database.pragma('journal_mode = WAL');
-      console.warn('[context-server] journal_mode was not WAL; forcing WAL mode');
-    }
+    // Logs, but never mutates, journal_mode — WAL's memory-mapped index header can
+    // fault under concurrent access here, so the deliberately-chosen rollback
+    // journal (DELETE) must not be silently reverted back to WAL on boot.
+    checkJournalMode(database);
 
     const memoryCountRow = database.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as { cnt?: number } | undefined;
     const memoryCount = Number(memoryCountRow?.cnt ?? 0);

@@ -62,7 +62,9 @@
     "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
     "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival",
     "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research",
-    "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/032-boot-integrity-rebuild-maintenance-marker"
+    "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/032-boot-integrity-rebuild-maintenance-marker",
+    "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix",
+    "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/034-rebuild-sentinel-corruption-handling"
   ],
   "manual": {
     "depends_on": [],

@@ -4,6 +4,7 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 
 import {
   checkSqliteVersion,
+  checkJournalMode,
   detectNodeVersionMismatch,
   detectRuntimeMismatch,
   type NodeVersionMarker,
@@ -208,6 +209,79 @@ describe('Startup Checks', () => {
 
       expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('database offline'));
       warnSpy.mockRestore();
+    });
+  });
+
+  describe('checkJournalMode', () => {
+    it('takes no action when journal_mode is the deliberately-chosen delete', () => {
+      const pragmaSpy = vi.fn();
+      const mockDb = {
+        prepare: () => ({ get: () => ({ journal_mode: 'delete' }) }),
+        pragma: pragmaSpy,
+      };
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      checkJournalMode(mockDb);
+
+      expect(pragmaSpy).not.toHaveBeenCalled();
+      expect(warnSpy).not.toHaveBeenCalled();
+    });
+
+    it('takes no action when journal_mode is the legacy wal state', () => {
+      const pragmaSpy = vi.fn();
+      const mockDb = {
+        prepare: () => ({ get: () => ({ journal_mode: 'wal' }) }),
+        pragma: pragmaSpy,
+      };
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      checkJournalMode(mockDb);
+
+      expect(pragmaSpy).not.toHaveBeenCalled();
+      expect(warnSpy).not.toHaveBeenCalled();
+    });
+
+    it('warns but never mutates journal_mode for an unexpected value', () => {
+      const pragmaSpy = vi.fn();
+      const mockDb = {
+        prepare: () => ({ get: () => ({ journal_mode: 'truncate' }) }),
+        pragma: pragmaSpy,
+      };
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      checkJournalMode(mockDb);
+
+      expect(pragmaSpy).not.toHaveBeenCalled();
+      expect(pragmaSpy.mock.calls).not.toContainEqual(['journal_mode = WAL']);
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining("unexpected journal_mode 'truncate'"));
+    });
+
+    it('is case-insensitive when reading the current journal_mode', () => {
+      const pragmaSpy = vi.fn();
+      const mockDb = {
+        prepare: () => ({ get: () => ({ journal_mode: 'DELETE' }) }),
+        pragma: pragmaSpy,
+      };
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      checkJournalMode(mockDb);
+
+      expect(pragmaSpy).not.toHaveBeenCalled();
+      expect(warnSpy).not.toHaveBeenCalled();
+    });
+
+    it('treats a missing/undefined journal_mode result as unexpected and warns without mutating', () => {
+      const pragmaSpy = vi.fn();
+      const mockDb = {
+        prepare: () => ({ get: () => undefined }),
+        pragma: pragmaSpy,
+      };
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      checkJournalMode(mockDb);
+
+      expect(pragmaSpy).not.toHaveBeenCalled();
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining("unexpected journal_mode ''"));
     });
   });
 });

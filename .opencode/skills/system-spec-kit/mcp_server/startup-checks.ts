@@ -159,3 +159,26 @@ export function checkSqliteVersion(db: { prepare: (sql: string) => { get: () => 
     console.warn(`[spec-kit] Could not determine SQLite version: ${message}`);
   }
 }
+
+/* ───────────────────────────────────────────────────────────────
+   3. JOURNAL MODE CHECK
+──────────────────────────────────────────────────────────────── */
+
+/**
+ * Verify the active journal_mode is one of the two known-valid states and log,
+ * never mutate, on anything else.
+ *
+ * Rollback journal (DELETE) is memory-mapped WAL's deliberate replacement here: a
+ * memory-mapped WAL index header read can fault under concurrent access on this
+ * platform, so DELETE is the expected, healthy mode and must never be
+ * force-switched back to WAL by a startup check — doing so would silently reopen
+ * that exposure on every boot. WAL itself is tolerated as a legacy/back-compat
+ * state. Any other mode is unexpected and only logged, never mutated.
+ */
+export function checkJournalMode(db: { prepare: (sql: string) => { get: () => unknown } }): void {
+  const walRow = db.prepare('PRAGMA journal_mode').get() as { journal_mode?: string } | undefined;
+  const journalMode = String(walRow?.journal_mode ?? '').toLowerCase();
+  if (journalMode !== 'delete' && journalMode !== 'wal') {
+    console.warn(`[context-server] unexpected journal_mode '${journalMode}'; leaving as-is`);
+  }
+}

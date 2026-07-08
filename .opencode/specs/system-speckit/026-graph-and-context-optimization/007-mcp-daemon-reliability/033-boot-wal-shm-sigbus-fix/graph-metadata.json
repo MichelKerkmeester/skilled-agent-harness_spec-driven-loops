@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/034-rebuild-sentinel-corruption-handling",
+        "reason": "Sibling packet opened from the same test pass, independent root cause",
+        "source": "manual"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "boot wal shm sigbus fix",
+      "journal_mode force wal regression",
+      "walIndexReadHdr sigbus",
+      "journal_mode was not WAL forcing WAL mode",
+      "post-crash integrity probe sigbus",
+      "boot wal shm sigbus fix plan",
+      "journal_mode force wal regression plan",
+      "delete-aware journal mode check",
+      "boot wal shm sigbus fix tasks",
+      "journal_mode force wal regression tasks",
+      "boot wal shm sigbus fix status",
+      "033 complete"
+    ],
+    "key_topics": [
+      "boot",
+      "wal",
+      "shm",
+      "sigbus",
+      "fix",
+      "force",
+      "regression",
+      "walindexreadhdr",
+      "forcing",
+      "mode",
+      "post-crash",
+      "integrity"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/startup-checks.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/startup-checks.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tests/context-server.vitest.ts",
+      "dist/startup-checks.js",
+      "dist/context-server.js",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+      "implementation-summary.md",
+      "mcp_server/context-server.ts",
+      "tests/startup-checks.vitest.ts",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/startup-checks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/startup-checks.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.js",
+        "kind": "code",
+        "path": "dist/startup-checks.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Narrow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open   Questions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A boot-time health check in context-server.ts silently reverts the deliberate journal-mode-DELETE fix back to WAL on every daemon restart, re-exposing the WAL/mmap'd -shm SIGBUS class that fix was written to close",
+    "created_at": "2026-07-08T16:02:23Z",
+    "last_save_at": "2026-07-08T16:47:38.270Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:642addf0be42af3637fa90a28407bbe53122672e7ec4bdfbccc64ee38ccb4b1d",
+    "source_doc_hashes": {
+      "spec.md": "b0ee7efd8382841893730c10efa8d01e8f7ce959d012a9de82104bcd74d1dd64",
+      "plan.md": "0492ac63955e37e62aec35bc059417d6b5914cb15648a1c02811badd6e1f318f",
+      "tasks.md": "f5ce2dc6e472bfa8b77a26c910f07b2e130a4ea65f5b4e2dbdad678a27344829",
+      "implementation-summary.md": "ce79044ab6460fe7fcccf86c2cfcf4044db4c61e49f6af2469759e00496f662a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

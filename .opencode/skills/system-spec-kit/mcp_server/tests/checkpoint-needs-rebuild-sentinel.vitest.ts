@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import * as checkpoints from '../lib/storage/checkpoints';
 import { create_schema } from '../lib/search/vector-index-schema';
+import { NEEDS_REBUILD_SENTINEL_SOURCE } from '../lib/search/vector-index-types';
 
 const tempDirs: string[] = [];
 
@@ -164,6 +165,62 @@ describe('checkpoint needs-rebuild sentinel repair', () => {
       expect(result.summary?.failed.some((entry) => entry.name === 'auto-entities')).toBe(true);
       expect(result.summary?.skipped.some((entry) => entry.name === 'fts-rebuild')).toBe(true);
       expect(fs.existsSync(sentinelPathFor(dbPath))).toBe(true);
+    } finally {
+      db.close();
+    }
+  });
+
+  it('skips the derived rebuild and leaves the sentinel in place for a corruption-class sentinel', () => {
+    // Uses the HEALTHY fixture deliberately: if the skip were not source-driven, this
+    // database would rebuild and clear successfully (per the first test above), so a
+    // skip here proves the branch is gated on the sentinel's source, not on rebuild failure.
+    const tempDir = makeTempDir();
+    const dbPath = path.join(tempDir, 'memory.sqlite');
+    const db = createHealthyDatabase(dbPath);
+
+    try {
+      checkpoints.init(db);
+      checkpoints.writeNeedsRebuildSentinelForDatabase(db, {
+        source: NEEDS_REBUILD_SENTINEL_SOURCE.CORRUPTION,
+        reason: 'forced quick_check failure',
+      });
+
+      const result = checkpoints.repairNeedsRebuildSentinel(db, {
+        source: 'test_repair',
+        actor: 'mcp:test_repair',
+      });
+
+      expect(result.sentinelPresent).toBe(true);
+      expect(result.attempted).toBe(false);
+      expect(result.cleared).toBe(false);
+      expect(result.summary).toBeNull();
+      expect(fs.existsSync(sentinelPathFor(dbPath))).toBe(true);
+    } finally {
+      db.close();
+    }
+  });
+
+  it('does not skip for the pre-existing swap_done_recovery (derived-only) sentinel source', () => {
+    const tempDir = makeTempDir();
+    const dbPath = path.join(tempDir, 'memory.sqlite');
+    const db = createHealthyDatabase(dbPath);
+
+    try {
+      checkpoints.init(db);
+      checkpoints.writeNeedsRebuildSentinelForDatabase(db, {
+        source: NEEDS_REBUILD_SENTINEL_SOURCE.SWAP_RECOVERY,
+        reason: 'completed restore journal recovered without derived rebuild evidence',
+      });
+
+      const result = checkpoints.repairNeedsRebuildSentinel(db, {
+        source: 'test_repair',
+        actor: 'mcp:test_repair',
+      });
+
+      expect(result.sentinelPresent).toBe(true);
+      expect(result.attempted).toBe(true);
+      expect(result.cleared).toBe(true);
+      expect(fs.existsSync(sentinelPathFor(dbPath))).toBe(false);
     } finally {
       db.close();
     }

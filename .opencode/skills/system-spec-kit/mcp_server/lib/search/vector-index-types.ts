@@ -22,6 +22,20 @@ export const VectorIndexErrorCode = {
 export type VectorIndexErrorCode = typeof VectorIndexErrorCode[keyof typeof VectorIndexErrorCode];
 
 /**
+ * Discriminates the two failure classes that write the `.needs-rebuild` sentinel: a
+ * half-finished checkpoint restore (derived artifacts only, safe to rebuild against a live
+ * connection) versus physical page corruption detected by a post-crash integrity probe (the
+ * database itself may be unsound, so the derived-artifact rebuild path must not run against it).
+ */
+export const NEEDS_REBUILD_SENTINEL_SOURCE = {
+  CORRUPTION: 'post_crash_integrity_probe',
+  SWAP_RECOVERY: 'swap_done_recovery',
+} as const;
+
+/** Enumerates the string values used by {@link NEEDS_REBUILD_SENTINEL_SOURCE}. */
+export type NeedsRebuildSentinelSource = typeof NEEDS_REBUILD_SENTINEL_SOURCE[keyof typeof NEEDS_REBUILD_SENTINEL_SOURCE];
+
+/**
  * Escapes SQL LIKE metacharacters so a folder name containing % or _
  * cannot widen a scoped query. Every scope clause built from this MUST
  * pair with `ESCAPE '\'` in the SQL.

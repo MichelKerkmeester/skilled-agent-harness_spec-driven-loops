@@ -144,6 +144,7 @@ export {
   try_get_db,
   getDbPath,
   get_db_path,
+  get_needs_rebuild_sentinel_path,
   clearConstitutionalCache,
   validateFilePath,
   isVectorSearchAvailable,

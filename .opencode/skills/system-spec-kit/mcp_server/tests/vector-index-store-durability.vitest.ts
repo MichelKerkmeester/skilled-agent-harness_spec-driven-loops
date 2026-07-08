@@ -25,6 +25,7 @@ import {
   initializeDb,
   try_get_db,
 } from '../lib/search/vector-index-store.js';
+import { VectorIndexError } from '../lib/search/vector-index-types.js';
 
 const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
 const tmpDirs: string[] = [];
@@ -111,5 +112,54 @@ describe('DR-011: clean-shutdown marker durability on close_db', () => {
 
     // The DB did NOT close cleanly, so the "present == dirty" marker MUST remain.
     expect(fs.existsSync(marker)).toBe(true);
+  });
+});
+
+describe('needs-rebuild corruption tag on a forced quick_check failure', () => {
+  it('tags the thrown VectorIndexError with needsRebuildCorruption when the post-crash integrity probe fails', () => {
+    const dir = makeTmpDir();
+    const dbPath = path.join(dir, 'context-index.sqlite');
+    process.env.MEMORY_DB_PATH = dbPath;
+
+    // First open: creates the full schema, then a clean close so the module's
+    // connection cache and instance lock are released (a live cached connection
+    // would make the second initializeDb() below a no-op read of the old handle).
+    initializeDb(dbPath);
+    closeDb();
+    expect(fs.existsSync(markerPathFor(dbPath))).toBe(false);
+
+    // Simulate the prior holder dying without a clean close: manually recreate the
+    // "present == dirty" marker so the next open's post-crash probe actually runs.
+    fs.writeFileSync(markerPathFor(dbPath), '');
+    expect(fs.existsSync(markerPathFor(dbPath))).toBe(true);
+
+    // Physical corruption: overwrite a chunk of on-disk page data well past the
+    // 100-byte file header (so the file still opens) with garbage bytes, deep enough
+    // into the file to land inside a real b-tree page quick_check(1) will visit.
+    const fd = fs.openSync(dbPath, 'r+');
+    try {
+      const stats = fs.fstatSync(fd);
+      const corruptionStart = Math.min(8192, Math.max(200, Math.floor(stats.size / 2)));
+      const corruptionLength = Math.min(8192, stats.size - corruptionStart);
+      expect(corruptionLength).toBeGreaterThan(0);
+      fs.writeSync(fd, Buffer.alloc(corruptionLength, 0xff), 0, corruptionLength, corruptionStart);
+    } finally {
+      fs.closeSync(fd);
+    }
+
+    let thrown: unknown = null;
+    try {
+      initializeDb(dbPath);
+    } catch (error: unknown) {
+      thrown = error;
+    }
+
+    expect(thrown).not.toBeNull();
+    expect(thrown).toBeInstanceOf(VectorIndexError);
+    expect((thrown as { needsRebuildCorruption?: boolean }).needsRebuildCorruption).toBe(true);
+
+    // The corruption-class sentinel must exist alongside the tagged throw.
+    const sentinelPath = path.join(path.dirname(dbPath), 'checkpoints', '.needs-rebuild');
+    expect(fs.existsSync(sentinelPath)).toBe(true);
   });
 });

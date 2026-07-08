@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix",
+  "description": "A boot-time health check in context-server.ts silently reverts the deliberate journal-mode-DELETE fix back to WAL on every daemon restart, re-exposing",
+  "keywords": [
+    "journal_mode",
+    "wal",
+    "sigbus",
+    "walIndexReadHdr",
+    "delete",
+    "context-server",
+    "boot",
+    "mmap"
+  ],
+  "lastUpdated": "2026-07-08T16:02:23Z",
+  "specId": "033",
+  "folderSlug": "boot-wal-shm-sigbus-fix",
+  "parentChain": [
+    "system-speckit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

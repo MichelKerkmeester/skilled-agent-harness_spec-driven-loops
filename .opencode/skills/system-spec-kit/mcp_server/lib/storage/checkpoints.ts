@@ -31,6 +31,7 @@ import { snapshotDegrees } from '../graph/graph-signals.js';
 import { runLineageBackfill } from './lineage-state.js';
 import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../utils/index-scope.js';
 import { reopenActiveDatabase } from '../search/vector-index-store.js';
+import { NEEDS_REBUILD_SENTINEL_SOURCE } from '../search/vector-index-types.js';
 import { SCHEMA_VERSION } from '../search/vector-index-schema.js';
 import { sweepCausalEdges } from '../causal/sweep.js';
 import { BetterSqliteContentionPolicy } from './ports/contention-policy.js';
@@ -917,6 +918,25 @@ function getNeedsRebuildSentinelPathForDatabase(database: Database.Database): st
 function hasNeedsRebuildSentinel(database: Database.Database): boolean {
   const sentinelPath = getNeedsRebuildSentinelPathForDatabase(database);
   return sentinelPath !== null && fs.existsSync(sentinelPath);
+}
+
+/**
+ * Best-effort read of the sentinel's `source` discriminant. Treats the sentinel JSON as
+ * untrusted input: any missing file, read failure, or malformed/non-string `source` field
+ * fails safe to `null`, which callers must treat the same as the pre-existing default-attempt
+ * path (never as a reason to throw or to silently skip a legitimate repair).
+ */
+function readNeedsRebuildSentinelSource(database: Database.Database): string | null {
+  const sentinelPath = getNeedsRebuildSentinelPathForDatabase(database);
+  if (sentinelPath === null || !fs.existsSync(sentinelPath)) {
+    return null;
+  }
+  try {
+    const parsed = JSON.parse(fs.readFileSync(sentinelPath, 'utf-8')) as Partial<NeedsRebuildSentinelFile>;
+    return typeof parsed.source === 'string' ? parsed.source : null;
+  } catch (_error: unknown) {
+    return null;
+  }
 }
 
 function writeNeedsRebuildSentinelForDatabase(
@@ -2025,6 +2045,21 @@ function repairNeedsRebuildSentinel(
   if (!hasNeedsRebuildSentinel(database)) {
     return {
       sentinelPresent: false,
+      attempted: false,
+      cleared: false,
+      summary: null,
+      error: null,
+    };
+  }
+
+  // The derived-artifact rebuild below runs INSERT/rebuild SQL against tables that may
+  // themselves be physically corrupt when this sentinel's source is the post-crash integrity
+  // probe, not the half-finished-restore case this repair path was designed for. Skip it and
+  // leave the sentinel in place rather than run repair SQL against data already proven unsound.
+  if (readNeedsRebuildSentinelSource(database) === NEEDS_REBUILD_SENTINEL_SOURCE.CORRUPTION) {
+    console.warn(`[checkpoints] ${options.source} repair skipped: needs-rebuild sentinel is corruption-class, not derived-artifact-only; leaving sentinel in place`);
+    return {
+      sentinelPresent: true,
       attempted: false,
       cleared: false,
       summary: null,

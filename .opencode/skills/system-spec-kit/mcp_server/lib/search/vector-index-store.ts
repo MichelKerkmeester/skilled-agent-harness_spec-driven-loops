@@ -37,6 +37,7 @@ import { validateFilePath } from '../utils/path-security.js';
 import {
   get_error_code,
   get_error_message,
+  NEEDS_REBUILD_SENTINEL_SOURCE,
   parse_trigger_phrases,
   specFolderLikePattern,
   VectorIndexError,
@@ -1214,7 +1215,7 @@ function get_restore_journal_path(target_path: string): string | null {
   return path.join(path.dirname(target_path), 'checkpoints', RESTORE_JOURNAL_NAME);
 }
 
-function get_needs_rebuild_sentinel_path(target_path: string): string | null {
+export function get_needs_rebuild_sentinel_path(target_path: string): string | null {
   if (target_path === ':memory:') {
     return null;
   }
@@ -1337,7 +1338,7 @@ function write_needs_rebuild_sentinel_for_recovered_restore(target_path: string,
     fs.writeFileSync(temp_sentinel_path, `${JSON.stringify({
       formatVersion: 1,
       createdAt: new Date().toISOString(),
-      source: 'swap_done_recovery',
+      source: NEEDS_REBUILD_SENTINEL_SOURCE.SWAP_RECOVERY,
       reason: 'completed restore journal recovered without derived rebuild evidence',
       checkpointName: checkpoint_name,
     }, null, 2)}\n`, { mode: 0o600 });
@@ -1363,7 +1364,7 @@ function write_needs_rebuild_sentinel_for_corruption(target_path: string, detail
     fs.writeFileSync(temp_sentinel_path, `${JSON.stringify({
       formatVersion: 1,
       createdAt: new Date().toISOString(),
-      source: 'post_crash_integrity_probe',
+      source: NEEDS_REBUILD_SENTINEL_SOURCE.CORRUPTION,
       reason: detail,
     }, null, 2)}\n`, { mode: 0o600 });
     fsync_file_if_possible(temp_sentinel_path);
@@ -2171,7 +2172,13 @@ export function initialize_db(custom_path: string | null = null, options: Initia
           console.error('[vector-index] Wrote checkpoint needs-rebuild sentinel; the next boot rebuilds cleanly instead of serving corrupted data.');
           write_needs_rebuild_sentinel_for_corruption(target_path, probe_verdict);
           try { new_db.close(); } catch (_: unknown) { /* best-effort */ }
-          throw new VectorIndexError(msg, VectorIndexErrorCode.INTEGRITY_ERROR);
+          // Tagged (mirroring the speckitInitHardFail idiom) so the boot catch block can
+          // recognize this specific failure mode and log actionable recovery guidance,
+          // without every caller needing to duplicate the sentinel-source check.
+          throw Object.assign(
+            new VectorIndexError(msg, VectorIndexErrorCode.INTEGRITY_ERROR),
+            { needsRebuildCorruption: true },
+          );
         }
         // Record the passing probe for this on-disk state so a subsequent
         // crash-loop boot can skip the repeat probe while the DB is unchanged.
