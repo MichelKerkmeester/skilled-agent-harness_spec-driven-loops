@@ -66,14 +66,6 @@ const VALID_ROUTING_CLASSES = ['lexical', 'alias-fold', 'metadata', 'command-bri
 // declares the runtime-loop extension.
 const VALID_RUNTIME_LOOP_TYPES = ['research', 'review', 'council', null];
 
-// Which backend actually runs a mode. Covers both the runtime-loop family and
-// the 2-tier surface family; 'evidence-base' is the required kind for a surface
-// packet (read-only domain evidence, not a process).
-const VALID_BACKEND_KINDS = [
-  'runtime-loop-type', 'improvement-host', 'external-adapter',
-  'surface-router', 'review-cache', 'evidence-base',
-];
-
 // Read-only tool set a surface packet's toolSurface.allowed must stay within.
 const SURFACE_ALLOWED_TOOLS = ['Read', 'Bash', 'Grep', 'Glob'];
 const SURFACE_FORBIDDEN_TOOLS = ['Write', 'Edit', 'Task'];
