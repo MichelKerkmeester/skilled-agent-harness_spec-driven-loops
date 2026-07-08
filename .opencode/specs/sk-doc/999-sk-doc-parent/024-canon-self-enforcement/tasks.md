@@ -9,17 +9,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-sk-doc-parent/024-canon-self-enforcement"
-    last_updated_at: "2026-07-07T20:36:00Z"
+    last_updated_at: "2026-07-08T00:20:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored phase-024 tasks (twelve WU roadmap)"
-    next_safe_action: "Operator resolves D1-D3 then execute Phase 2 trio"
+    recent_action: "Phase 1 PREP done: WU8 guard (green) + WU11 seq doc; baseline 4/4"
+    next_safe_action: "Execute Phase 2 trio: WU1 CI gate, WU3 edge_type, WU12a, WU2 battery"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/specs/sk-doc/999-sk-doc-parent/024-canon-self-enforcement/references/wu11-dead-id-sequencing.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 30
     open_questions: []
     answered_questions: []
 ---
@@ -56,9 +57,9 @@ _memory:
 
 - [x] T001 Extract all twelve council opportunities; re-verify every file:line anchor against HEAD
 - [x] T002 Partition DO-NOW (WU1-7,9,12) vs GATE-ADJ (WU8,10,11) vs the three operator forks
-- [ ] T003 [P] Author the WU11 dead-id → live-replacement sequencing doc (gate-free PREP)
-- [ ] T004 [P] Author the WU8 `derived.entities` shape-break guard that fails today (gate-free PREP)
-- [ ] T005 Capture baseline (checker 4/4 x4; existing advisor vitest counts); confirm scorer lane quiet
+- [x] T003 [P] Author the WU11 dead-id → live-replacement sequencing doc (gate-free PREP) — `references/wu11-dead-id-sequencing.md`
+- [x] T004 [P] Author the WU8 `derived.entities` shape-break guard that fails today (gate-free PREP) — `tests/metadata-sanitizer-entities-guard.vitest.ts` (green: 1 expected-fail documents the drop)
+- [x] T005 Capture baseline (checker 4/4 x4; advisor vitest 8/8; scorer lane quiet — 0 uncommitted)
 <!-- /ANCHOR:phase-1 -->
 
 ---

@@ -49,6 +49,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "references/wu11-dead-id-sequencing.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -98,6 +99,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "wu11-dead-id-sequencing.md",
+        "kind": "doc",
+        "path": "references/wu11-dead-id-sequencing.md",
         "source": "derived"
       },
       {
@@ -185,13 +192,7 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Protocol",
+        "name": "Execute Phase",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "Canon is declared once in each hub's `mode-registry.json` and then hand-copied into ~12 consumer dialects that must agree but are only kept in sync by discipline",
     "created_at": "2026-07-07T20:30:08.079Z",
-    "last_save_at": "2026-07-07T20:37:15.055Z",
+    "last_save_at": "2026-07-08T03:22:24.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +211,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d575be304aee56ef2b98cccf772202832b6b309eec2b063dfcf0a4cb74b6e7cd",
+    "source_fingerprint": "sha256:85e6a144185d36b69cd6d16abeb50cf8858a4f8cedd34c29825992eca731e8eb",
     "source_doc_hashes": {
       "spec.md": "28c7108f3b45ad094038406ef3264b9f9f5d72d231bdfd80376291a23510d567",
       "plan.md": "6059847de4cc960a294588d512447ec6619ad03bc55ca0218d232dac1fe3b6d8",
-      "tasks.md": "4fa4daf68696ed190ba514dab6727aa2136dae6e2f86c2039015d502e5b85d51",
+      "tasks.md": "ce7c17db1ab472d0853bb81b5f081ba1d2faa1bdb03a149e5f7c47992987a7d1",
       "checklist.md": "38201d0e2351c28f9998c5c56fbf320b0408593ef056b99906110ebc376cd0a4",
       "decision-record.md": "5bb43cd7b117e426f22c22400abb26630f0ac2ce07243b64518054fc83fb8dca",
       "implementation-summary.md": "76458d32d91b3b4d4a40b36fb85b83d484368338edf7e09869f14468a347d9ac"
