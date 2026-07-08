@@ -871,7 +871,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 
 ### 🎯 Skills Library
 
-20 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+19 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### SYSTEM
 
@@ -941,10 +941,6 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **Manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing
 - **Agent-safe by design:** enforces per-list status resolution, dry-run before batch completion, `--json` output, and empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
 
-**mcp-open-design**
-- **Drive the installed Open Design desktop app from the terminal.** Reads and reuses local design systems (tokens, components) and commissions gated, multi-turn generation runs through the `od` CLI and a stdio MCP server, instead of the in-app chat
-- **Local-first and gated:** a socket-discovered daemon on a rotating port, read-only inspection that surfaces freely, and STOP-and-confirm mutating verbs (`start_run`, then the discovery-form answer that fires the build). Pairs with `sk-design` for the design judgment
-
 **mcp-figma**
 - **Drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context
 - **CLI-primary and gated:** a local daemon brokers every command, read-only inspection and exports are free, and authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Pairs with `sk-design` for the design judgment
@@ -952,15 +948,11 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 &nbsp;
 #### OTHER
 
-**sk-design (md-generator mode)**
-- **Capture a live site's real CSS into a `DESIGN.md`.** An embedded Playwright pipeline (extract → write → validate) crawls a URL across five viewports and emits a v3 **Style Reference** — named colour tokens, a semantic Type Scale, named components, Surfaces, and a copy-paste Quick Start (CSS + Tailwind) — with every hex, font, radius, and shadow copied verbatim from the running page
-- **Anti-hallucination by construction:** a script validator checks every value against the extracted `tokens.json` and hard-fails on phantom or content-layer (L4) colors. Captures dark mode, motion, icons, framework markers, and interaction states across the viewports
-- **The capture half of the `sk-design-*` family:** it documents what already exists; sibling `sk-design` invents new direction. Produces the authoritative reference that the transports (`mcp-open-design`, `mcp-figma`) and `sk-code` build against
-
 **sk-design**
-- **Design UI that does not look templated.** Aesthetic direction (palette, typography, layout, motion) grounded in the brief, with a critique pass that kills the default AI looks before any code is written
-- **Grounds against real references:** reads a real design system live (via `mcp-open-design`, as reuse-ground or critique-against) and real-world shipped UI (Mobbin and Refero via Code Mode, critique-against) to ground the work or name the category's real-world default and deviate from it. Never a style chooser or a copy source
-- **Pairs with `sk-code`:** this skill owns the look, sk-code builds and verifies it. Vendored from Anthropic's `frontend-design` skill (Apache-2.0)
+- **Design-family parent hub for the full design surface.** A single advisor-routable identity that routes any design query to five design-judgment modes via `mode-registry.json`: `interface` (new visual direction, anti-templated critique; vendored from Anthropic's `frontend-design` skill, Apache-2.0), `foundations` (color, typography, layout, spacing, hierarchy, design tokens), `motion` (animation, transitions, micro-interactions), `audit` (accessibility, performance, anti-slop detection, quality scoring), and `md-generator` (crawls a live URL across five viewports and emits a v3 Style Reference `DESIGN.md` — named tokens, Type Scale, Components, Quick Start CSS/Tailwind — every value copied verbatim and script-validated against `tokens.json`)
+- **Plus a nested transport mode:** `design-mcp-open-design` drives the installed Open Design desktop app from the terminal via the `od` CLI and a stdio MCP server (socket-discovered daemon, read-only inspection free, STOP-and-confirm mutating verbs), reached only through mandatory pairing with a design-judgment mode, never on its own
+- **Grounds against real references:** the Open Design transport and `md-generator`'s `DESIGN.md` output both feed the judgment modes real, measured ground truth; the modes also critique against real-world shipped UI (Mobbin and Refero via Code Mode). Never a style chooser or a copy source
+- **Pairs with `sk-code`:** the hub owns the look, sk-code builds and verifies it
 
 **sk-doc**
 - **Keep docs clean and on-template.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
@@ -1302,8 +1294,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | **`sk-code`**                                       | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres or React Native + Reanimated or Go + sqlc, etc.). Includes the findings-first `code-review` mode that reuses these surfaces as review evidence.   |
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
-| `sk-design (md-generator mode)`                            | ✅ Codebase-agnostic                        | Extracts a live website's real CSS into a v3 Style Reference `DESIGN.md` (named tokens, Type Scale, Components, Surfaces, Quick Start CSS/Tailwind) via an embedded extract→write→validate pipeline (every value verbatim, script-validated against `tokens.json`). The capture engine of the `sk-design-*` family; pairs with `sk-design`. Works for any project. |
-| `sk-design`                               | ✅ Codebase-agnostic                        | Visual-design direction (palette, typography, layout, motion) that avoids templated AI defaults; grounds against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode). Pairs with `sk-code` for the build. Works for any project. |
+| `sk-design`                               | ✅ Codebase-agnostic                        | Design-family parent hub: routes to five design-judgment modes (`interface`, `foundations`, `motion`, `audit`, `md-generator`) plus a nested Open Design transport mode (`design-mcp-open-design`). Grounds against real design systems and shipped-UI references (Mobbin/Refero via Code Mode). Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
 | `deep-loop-runtime` / `deep-loop-workflows` | ✅ Codebase-agnostic                        | Shared runtime plus the unified deep-loop skill (context, research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking). Work for any topic / target.     |
@@ -1311,7 +1302,6 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `cli-*` (claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 | `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
-| `mcp-open-design`                                   | ✅ Codebase-agnostic                        | Drives the installed Open Design desktop app from the terminal (read and reuse design systems, gated generation runs) via the `od` CLI + MCP. Requires the Open Design desktop app installed. Stack-independent. |
 | `mcp-figma`                                         | ✅ Codebase-agnostic                        | Drives Figma Desktop from the terminal (read, author, export designs, tokens, components) via the silships `figma-ds-cli`, with an optional Figma MCP. Requires Figma Desktop open. Stack-independent.   |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
@@ -1445,7 +1435,7 @@ git checkout -- opencode.json .claude/mcp.json .vscode/mcp.json
 
 ## 5. FAQ
 
-**Q: Do I need all 20 skills installed to use the framework?**
+**Q: Do I need all 19 skills installed to use the framework?**
 
 A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to your work. The two core documentation skills - `system-spec-kit` and `sk-doc` - cover most documentation workflows. The MCP and cross-AI CLI skills require additional local tooling or API keys depending on the surface.
 &nbsp;
@@ -1525,4 +1515,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.16 | Last updated: 2026-07-04 | Framework: 12 agents, 20 skills, 28 commands, 64 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.16 | Last updated: 2026-07-08 | Framework: 12 agents, 19 skills, 28 commands, 64 MCP tools (39 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
