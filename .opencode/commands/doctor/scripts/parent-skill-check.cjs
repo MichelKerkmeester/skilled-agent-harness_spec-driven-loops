@@ -37,6 +37,20 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
+// The checker's targets and helper paths are repo-root-relative. Resolve them against the
+// repo root (the directory containing .opencode), not process.cwd() — otherwise rule 4a and
+// the target dir resolve against wherever the checker is invoked, so a non-root working
+// directory silently false-FAILs the drift-guard check or misses the hub entirely.
+function findRepoRoot(start) {
+  let dir = start;
+  while (dir !== path.dirname(dir)) {
+    if (fs.existsSync(path.join(dir, '.opencode'))) return dir;
+    dir = path.dirname(dir);
+  }
+  return path.resolve(start, '../../../..');
+}
+const REPO_ROOT = findRepoRoot(__dirname);
+
 // Families the skill-graph compiler accepts for a discoverable identity.
 // Mirrors ALLOWED_FAMILIES in skill_graph_compiler.py / skill-graph-db.ts;
 // a family outside this set makes the hub undiscoverable.
@@ -80,6 +94,7 @@ const DEEP_LOOP_DRIFT_GUARD =
 // lexical projection against the live hardcoded map.
 const ADVISOR_SCRIPT =
   '.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py';
+const ADVISOR_SCRIPT_ABS = path.resolve(REPO_ROOT, ADVISOR_SCRIPT);
 
 // The single global advisor projection map only mirrors this hub, so the
 // dynamic 4b equality check applies to it; every other hub gets the inert-route
@@ -191,7 +206,7 @@ function symlinkedChangelogs(root) {
 
 function main() {
   const argTarget = process.argv[2] || DEFAULT_TARGET;
-  const target = path.resolve(argTarget);
+  const target = path.isAbsolute(argTarget) ? argTarget : path.resolve(REPO_ROOT, argTarget);
   const basename = path.basename(target);
 
   info(`Parent skill: ${argTarget}`);
@@ -596,7 +611,7 @@ function main() {
     info('4a: hub declares no lexical/alias-fold modes — no advisor drift-guard required');
   } else if (!declaredGuard) {
     fail(`4a: hub has ${projectedModes.length} lexical/alias-fold mode(s) [${projectedModes.join(', ')}] but declares no driftGuard path (advisorRoutingContract.driftGuard or advisor-projection extension)`);
-  } else if (fs.existsSync(path.resolve(declaredGuard))) {
+  } else if (fs.existsSync(path.resolve(REPO_ROOT, declaredGuard))) {
     pass(`4a: routing-registry drift-guard present at ${declaredGuard}`);
   } else {
     fail(`4a: declared drift-guard test missing at ${declaredGuard} — registry/maps parity is unguarded`);
@@ -605,12 +620,12 @@ function main() {
   // 4b/4c — optional dynamic cross-check against the live advisor map.
   if (Object.keys(lexicalIds).length === 0) {
     info('4b: registry declares no lexical modes; nothing to cross-check against the advisor');
-  } else if (!fs.existsSync(path.resolve(ADVISOR_SCRIPT))) {
+  } else if (!fs.existsSync(ADVISOR_SCRIPT_ABS)) {
     warn(`4b: advisor script not found at ${ADVISOR_SCRIPT}; skipping advisor coverage check`);
   } else {
     let dumped = null;
     try {
-      const raw = execFileSync('python3', [ADVISOR_SCRIPT, '--dump-routing-maps'], {
+      const raw = execFileSync('python3', [ADVISOR_SCRIPT_ABS, '--dump-routing-maps'], {
         encoding: 'utf8',
         stdio: ['ignore', 'pipe', 'ignore'],
         timeout: 15000,

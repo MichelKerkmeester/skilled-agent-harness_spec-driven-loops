@@ -8,16 +8,22 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/routing-registry-drift.yml'
-      - '.opencode/skills/deep-loop-workflows/mode-registry.json'
+      - '.opencode/skills/*/mode-registry.json'
+      - '.opencode/skills/*/hub-router.json'
       - '.opencode/skills/system-skill-advisor/mcp_server/**'
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
+      - '.opencode/skills/sk-doc/create-skill/assets/parent_skill/**'
+      - '.opencode/skills/sk-doc/create-skill/references/parent_skill/**'
   pull_request:
     branches: [main]
     paths:
       - '.github/workflows/routing-registry-drift.yml'
-      - '.opencode/skills/deep-loop-workflows/mode-registry.json'
+      - '.opencode/skills/*/mode-registry.json'
+      - '.opencode/skills/*/hub-router.json'
       - '.opencode/skills/system-skill-advisor/mcp_server/**'
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
+      - '.opencode/skills/sk-doc/create-skill/assets/parent_skill/**'
+      - '.opencode/skills/sk-doc/create-skill/references/parent_skill/**'
 
 jobs:
   routing-drift:
@@ -47,5 +53,13 @@ jobs:
             tests/routing-registry-drift-guard.vitest.ts \
             tests/routing-parity-deep-skills.vitest.ts \
             tests/routing-parity-deep-council.vitest.ts
-      - name: Parent-skill structural invariants (one identity, registry coverage)
-        run: node .opencode/commands/doctor/scripts/parent-skill-check.cjs
+      - name: Parent-skill structural invariants (one identity, registry coverage) — every hub
+        # Glob-enrolled: every skill carrying a mode-registry.json is a parent hub and is
+        # checked, so a fifth hub joins the gate automatically with no hand-maintained list.
+        run: |
+          set -euo pipefail
+          for registry in .opencode/skills/*/mode-registry.json; do
+            hub="$(dirname "$registry")"
+            echo "── parent-skill-check: $hub"
+            node .opencode/commands/doctor/scripts/parent-skill-check.cjs "$hub"
+          done
