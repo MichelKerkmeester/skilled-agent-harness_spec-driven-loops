@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/001-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename",
+  "spec_folder": "system-deep-loop/z_archive/001-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename",
+  "parent_id": "system-deep-loop/z_archive/001-sk-recursive-agent-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recursive agent command rename",
+      "041 phase 006",
+      "recursive agent command entrypoint",
+      "041 phase 006 plan",
+      "recursive agent command rename plan",
+      "041 phase 006 tasks",
+      "recursive agent command rename tasks",
+      "041 phase 006 checklist",
+      "recursive agent command rename checklist",
+      "041 phase 006 implementation summary",
+      "recursive agent command rename summary"
+    ],
+    "key_topics": [
+      "recursive",
+      "agent",
+      "command",
+      "rename",
+      "041",
+      "phase",
+      "006",
+      "entrypoint",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/specs/descriptions.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificati",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recursive Agent Command Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Previous Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phase `005`, the runtime mutator, skill package, and wrapper content all aligned on `agent-improver`, but the command entrypoint itself still carried the older `agent-improvement-loop` name",
+    "created_at": "2026-04-12T09:02:50.188Z",
+    "last_save_at": "2026-07-08T13:43:22.019Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34f05741e4356487843b35fe64c1b0005532240d4d2e21543f2ba5448e1635fd",
+    "source_doc_hashes": {
+      "spec.md": "c25685585bff466d0a09989743021b879971cae9805294b8835edc1d17e335fc",
+      "plan.md": "e64c0d76a44e5e3a68c0cfed120dc879e50ebfb592e54d4088658c27f9bc1134",
+      "tasks.md": "99b222aa83d3d21456867e2ee7fb70cbd8176f6d99f0eaa396cf9a3067b51aec",
+      "checklist.md": "d6d02ebdd79d3614ad5345e82106224154491e9dad31da6b6ba9d36fb3a3fe76",
+      "implementation-summary.md": "81c14d317f433e5e9f4b6bd20f581be7b95e3b1576a4a3016e6808af495f7cac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

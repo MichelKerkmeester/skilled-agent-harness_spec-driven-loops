@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/010-iterative-per-topic-multi-round",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/010-iterative-per-topic-multi-round",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "129 003 per-topic multi-round orchestration"
+    ],
+    "key_topics": [
+      "129",
+      "003",
+      "per-topic",
+      "multi-round",
+      "orchestration",
+      "implement",
+      "topic-local",
+      "loop",
+      "verdict-delta",
+      "convergence",
+      "max-round",
+      "handling"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Topic Multi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Round Orchestration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Per",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implement a topic-local multi-round loop with verdict-delta convergence and max-round handling",
+    "created_at": "2026-05-23T07:53:20Z",
+    "last_save_at": "2026-07-08T13:43:53.322Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:da506de51b9dab5834d08125672f5e75d9879dec041fc07698669f2c308390bd",
+    "source_doc_hashes": {
+      "spec.md": "bf3a93551e7ca8259ac61e523195ba2d96daaf4298dcab3b5188058610dc9b7d",
+      "plan.md": "aad50ca20852fde3ac22c2b07365a6a77da5bec5cf456084f9f424824c380c8e",
+      "tasks.md": "450f76c7363496de7a9fd50aaa37452845d51fd9ab2730dbb3d373875011f533",
+      "checklist.md": "5858110801182f4684921cd3e1a73abe11f57abdbfee0ceee61d9132dbca2e96",
+      "decision-record.md": "3885c946c39e5a7f67d762e19c4a24885cc856b1fce3b117cd85f97bbbe4a0b5",
+      "implementation-summary.md": "62f3d668bedc7fc84a2544f7f0901ef72299c934e3e6fe030378b428f29a4e57"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

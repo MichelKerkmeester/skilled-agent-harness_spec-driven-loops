@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/008-mixed-executor-adjudication",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/008-mixed-executor-adjudication",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-agent-improvement methodology",
+      "mixed-executor pattern",
+      "adjudication iter",
+      "128 deep-agent-improvement",
+      "implementation plan",
+      "mixed-executor",
+      "tasks",
+      "verification",
+      "checklist",
+      "decision",
+      "record",
+      "implementation"
+    ],
+    "key_topics": [
+      "deep-agent-improvement",
+      "methodology",
+      "mixed-executor",
+      "pattern",
+      "adjudication",
+      "iter",
+      "128",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Improvement Mixed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adjudication Methodology",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executor Dispatch",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep-agent-improvement currently lacks the methodology patterns proven in arc 119's deep-research uplift: (1) mixed-executor dispatch for multi-iter sweeps, and (2) adjudication-iter false-positive filtering",
+    "created_at": "2026-05-23T08:30:00.000Z",
+    "last_save_at": "2026-07-08T13:43:50.085Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d0bf81feb5f70d4dd9145ad093f5651980bc529c49c9c0ee1794d211c48883a9",
+    "source_doc_hashes": {
+      "spec.md": "eca925981af5d9b90af2dee31d7fe295b35fc9b1e41c573f0d572b2997bfbdbc",
+      "plan.md": "6caa67ed0cdec31a6ed536644ac4c3ad98888ca4892188da65c375aa3445945e",
+      "tasks.md": "f2ea19fe4d8d9d066fdb180f0792df7081fbdd4cab467cc105ba9b86e044189c",
+      "checklist.md": "c066c9cbe67644fe34bad66bbb811da285d136a52267088f93d2a2c10a067906",
+      "decision-record.md": "71387581b406c94a985d681394a46ca537066ba174288f1e404dd23894a898f8",
+      "implementation-summary.md": "e0e374fe94e4965d91b07f18c86e5db38e11db9d680df128f7069c42c4fdeb4a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

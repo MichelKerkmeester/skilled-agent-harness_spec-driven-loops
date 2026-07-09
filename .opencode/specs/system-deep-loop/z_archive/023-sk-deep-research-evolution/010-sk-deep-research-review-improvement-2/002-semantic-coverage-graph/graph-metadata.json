@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
+  "spec_folder": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
+  "parent_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "042.002",
+      "semantic coverage graph",
+      "deep-loop graph",
+      "deep_loop_graph_convergence",
+      "deep-loop-graph.sqlite",
+      "implementation plan",
+      "deep_loop_graph_query",
+      "tasks",
+      "deep loop graph",
+      "verification checklist",
+      "decision record",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "042",
+      "002",
+      "semantic",
+      "coverage",
+      "graph",
+      "deep-loop",
+      "deep-loop-graph",
+      "sqlite",
+      "implementation",
+      "plan",
+      "tasks",
+      "deep"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs",
+      ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs",
+      ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs",
+      ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts",
+      "lib/storage/causal-edges.ts",
+      "lib/graph/graph-signals.ts",
+      "lib/graph/contradiction-detection.ts",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-core.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-contradictions.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-core.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-signals.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-signals.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-convergence.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-signals.ts",
+        "kind": "code",
+        "path": "lib/graph/graph-signals.ts",
+        "source": "derived"
+      },
+      {
+        "name": "contradiction-detection.ts",
+        "kind": "code",
+        "path": "lib/graph/contradiction-detection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specifi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Coverage Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep research and deep review currently know a great deal about iteration counts, novelty, and state transitions, but they still lack a first-class semantic model of coverage",
+    "created_at": "2026-04-12T09:02:50.193Z",
+    "last_save_at": "2026-07-08T13:43:43.521Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d9e15b65cb9079a87354d2f85f46b809c7bd6029711a51c1e3a6c64aaf596b61",
+    "source_doc_hashes": {
+      "spec.md": "0bba741ca2a495d65abfa98f7fba882cf5467751b75d1210a67f273f5ce8deee",
+      "plan.md": "f5a77149d71bb6c63fd9a45fde7b3486e0d0c2db09887c588799d4c4cf02c090",
+      "tasks.md": "f65be502cfcc5fbfdd054dd5e9fb00093b2488925c95c38c525157af5fc25d2f",
+      "checklist.md": "7222472494956e748e7c621409cef9182e76b30ffdeb41db8bfdf7fa47c944db",
+      "decision-record.md": "1db6fca27a5aead470796125882d378e252e5c456fde3fc8772944a6c527c541",
+      "implementation-summary.md": "d786da15a3f62cb0ef56c72462da575d16ed18abfa38bd9313e2ad302e8199b6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

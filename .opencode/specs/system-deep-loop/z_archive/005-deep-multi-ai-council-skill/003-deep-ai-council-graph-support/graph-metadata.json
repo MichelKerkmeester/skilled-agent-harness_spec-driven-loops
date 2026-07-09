@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "spec_folder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "parent_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "101/003",
+      "deep-ai-council graph support",
+      "council graph",
+      "council convergence graph",
+      "ai council graph storage",
+      "101/003 plan",
+      "deep-ai-council graph plan",
+      "council graph support plan",
+      "101/003 tasks",
+      "deep-ai-council graph tasks",
+      "101/003 checklist",
+      "council graph verification"
+    ],
+    "key_topics": [
+      "101",
+      "003",
+      "deep-ai-council",
+      "graph",
+      "support",
+      "council",
+      "convergence",
+      "storage",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "tests/context-server.vitest.ts",
+      "tests/layer-definitions.vitest.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "layer-definitions.vitest.ts",
+        "kind": "test",
+        "path": "tests/layer-definitions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Graph Support",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dedicated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Council deliberation needs durable structural context beyond append-only artifacts, but the existing deep-loop coverage graph is specialized for research and review coverage",
+    "created_at": "2026-05-10T06:35:40Z",
+    "last_save_at": "2026-07-08T13:43:23.925Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:91f470100ab498de46381929ab3a55679670987bbdb16a176336bc4eff44ce38",
+    "source_doc_hashes": {
+      "spec.md": "d6533c88f9729de7bcf2d2716f49bc1dd4343826a79d5a5101eeb654ce5d3344",
+      "plan.md": "b0991082dbe79c383067d46fd5b47f0444f2c3debcd72f88accf2be00602e832",
+      "tasks.md": "c0ae92288ff87ccc1e7d20b8ed88787c835662fcf0e5916fcec6f0cad3919fea",
+      "checklist.md": "f298046d0e4373b2fd7f97540f3d92b248bed4021c229a6820d465a4eba36b60",
+      "decision-record.md": "b7c0758ea8f1cab7738930c13fd69684946785e94f68e33ea8d09541bff3bda2",
+      "implementation-summary.md": "d87806cf19d9a2d4ce43c61ae0d83df4500d3d2e3ba09c34441eb72bcadce7b8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/007-deep-review-release-cleanup",
+  "description": "The `deep-review` skill carries 540 lines of SKILL.md, 452 lines of README, 4 references (2,700 lines), 6 assets, 21 feature-catalog files, 45",
+  "keywords": [
+    "deep-review",
+    "skill",
+    "carries",
+    "540",
+    "lines",
+    "452",
+    "readme",
+    "references",
+    "700",
+    "assets",
+    "feature-catalog",
+    "files"
+  ],
+  "lastUpdated": "2026-07-08T13:07:14.379Z",
+  "specId": "007",
+  "folderSlug": "deep-review-release-cleanup",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "001-release-cleanup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "23-05-26_16-16__7-spec-docs-4-json-schemas-authored-mirrors.md",
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review"
+  ]
+}

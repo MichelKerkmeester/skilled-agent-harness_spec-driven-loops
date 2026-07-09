@@ -352,7 +352,68 @@ function resolveAllowedCanonicalTarget(manifestPath) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. MAIN
+// 5. WRITE-BOUNDARY CONTAINMENT
+// ─────────────────────────────────────────────────────────────────────────────
+// Defense-in-depth on top of the target===config.target / target===manifest
+// canonical-target equality gates above: even if config/manifest are generated
+// or pointed at the wrong path, the mutating copyFileSync calls below must not
+// be able to land outside the repo's real agent/skill target roots.
+
+const DEFAULT_ALLOWED_TARGET_ROOTS = Object.freeze([
+  '.opencode/agents',
+  '.claude/agents',
+  '.opencode/skills',
+]);
+
+// Resolve symlinks for whatever prefix of candidatePath already exists on
+// disk, then re-append the not-yet-created tail verbatim (a path segment
+// that doesn't exist yet cannot itself be a symlink escape).
+function realpathOrPlanned(candidatePath) {
+  const absolute = path.resolve(candidatePath);
+  if (fs.existsSync(absolute)) {
+    return fs.realpathSync(absolute);
+  }
+  const tail = [];
+  let current = absolute;
+  while (!fs.existsSync(current)) {
+    const parent = path.dirname(current);
+    if (parent === current) {
+      return absolute;
+    }
+    tail.unshift(path.basename(current));
+    current = parent;
+  }
+  return path.join(fs.realpathSync(current), ...tail);
+}
+
+// Throws (fail closed) when targetPath does not resolve under one of the
+// default allowed roots or an explicit `config.promotion.allowedTargetRoots`
+// allowlist entry.
+function assertWithinAllowedRoots(targetPath, config) {
+  const configuredRoots = Array.isArray(config?.promotion?.allowedTargetRoots)
+    ? config.promotion.allowedTargetRoots
+    : [];
+  const roots = [...DEFAULT_ALLOWED_TARGET_ROOTS, ...configuredRoots].map((root) => {
+    const absoluteRoot = path.resolve(root);
+    try {
+      return fs.realpathSync(absoluteRoot);
+    } catch (error) {
+      return absoluteRoot;
+    }
+  });
+  const resolvedTarget = realpathOrPlanned(targetPath);
+  const contained = roots.some(
+    (root) => resolvedTarget === root || resolvedTarget.startsWith(`${root}${path.sep}`),
+  );
+  if (!contained) {
+    throw new Error(
+      `Cannot promote: target ${targetPath} resolves outside the allowed target roots (${roots.join(', ')})`,
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 function main() {
@@ -510,6 +571,12 @@ function main() {
 
   if (target !== allowedCanonicalTarget) {
     failGate(`Cannot promote: target ${target} is not the single allowed canonical target ${allowedCanonicalTarget}`, { errorType: 'boundary_gate_failed' });
+  }
+
+  try {
+    assertWithinAllowedRoots(target, config);
+  } catch (error) {
+    failGate(error.message, { errorType: 'boundary_gate_failed' });
   }
 
   // The agent scored-file gates (candidate-better

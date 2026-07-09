@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation",
+  "spec_folder": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation",
+  "parent_id": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "123 phase 003 spawn isolation",
+      "artifact-dir-override lineages",
+      "123 fanout executor dispatch",
+      "fanout native dispatch decision",
+      "4A executor fan-out strategy"
+    ],
+    "key_topics": [
+      "123",
+      "phase",
+      "003",
+      "spawn",
+      "isolation",
+      "artifact-dir-override",
+      "lineages",
+      "fanout",
+      "executor",
+      "dispatch",
+      "native",
+      "decision"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out of scope",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Fan",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "headless",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "sequential YAML",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "its OWN",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run each lineage as the existing command (verbatim loop) into its own isolated sub-packet",
+    "created_at": "2026-05-30T10:12:01.127Z",
+    "last_save_at": "2026-07-08T13:43:27.485Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:602737e5dcb3d106b99d0e3181dee2620c887edd83ce8e804a6f9e1c7acf8299",
+    "source_doc_hashes": {
+      "spec.md": "16113727f805d2ca792fd2861a515ee631e9090534fe51fc0fc151622b4dcdc5",
+      "decision-record.md": "7c2a4092830cbde5792376f6e779a511c49736c17ed1ce0c0af03c441afcb37b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

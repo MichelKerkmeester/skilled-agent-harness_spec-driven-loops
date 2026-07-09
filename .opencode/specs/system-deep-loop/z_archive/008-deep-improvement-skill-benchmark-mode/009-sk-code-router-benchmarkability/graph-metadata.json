@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+  "spec_folder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+  "parent_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code router benchmarkability",
+      "skill-benchmark reference-following",
+      "router_unparseable sk-code",
+      "parseRouter referenced doc",
+      "sk-code router benchmarkability plan",
+      "reference-following parseRouter plan",
+      "sk-code router benchmarkability tasks",
+      "sk-code router benchmarkability checklist",
+      "sk-code router benchmarkability decision",
+      "3a-structured reference-following decision",
+      "sk-code router benchmarkability summary",
+      "reference-following implementation summary"
+    ],
+    "key_topics": [
+      "sk-code",
+      "router",
+      "benchmarkability",
+      "skill-benchmark",
+      "reference-following",
+      "parserouter",
+      "referenced",
+      "doc",
+      "plan",
+      "tasks",
+      "checklist",
+      "decision"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/benchmark/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Benchmarkability",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane C skill-benchmark harness parses a skill's router by literal-scanning `SKILL.md` for `INTENTSIGNALS = {` and `RESOURCEMAP = {`",
+    "created_at": "2026-06-01T10:15:07.917Z",
+    "last_save_at": "2026-07-08T13:43:15.304Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:68f0bd3fc465828702de61208907ff9f1cd4f2407b003a25a4867f4d236bba42",
+    "source_doc_hashes": {
+      "spec.md": "855f87cdb801705f1ac0b3719dff3e7b396ba944dcd843f78f322592afacc341",
+      "plan.md": "8451cbff259b56238ffc78759f8ba6ee1d9b79c01c7b62b4b9ab58d456c1730d",
+      "tasks.md": "eec6ae2ddd0996fdac476fbc54ed5bca3898288edb3313c570b66cd342dbb067",
+      "checklist.md": "d7c593915f142c0e24aaf3e1e966d4592b486d02d4b07c62c3560893a16ef4bd",
+      "decision-record.md": "76e4811d97e025d5e0287c5c2675a1b3a4152ba38dbfa39618c9c8bc650fae3e",
+      "implementation-summary.md": "cc6e9a1dd6d6c73fcaf98c2d39a9a480e5b3f1a780680753a0eba52a7e5525fc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

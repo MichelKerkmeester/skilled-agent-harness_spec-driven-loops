@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk_design_craft_locale_component_holdout_001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "interface",
+    "advisorLane": "sk-design",
+    "intentKeys": ["interface", "foundations"],
+    "resources": ["design-interface/SKILL.md", "design-foundations/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": ["interface", "foundations"],
+    "routeOutcome": "orderedBundle",
+    "forbiddenWorkflowModes": ["motion", "audit", "md-generator"],
+    "minimalPairGroup": "craft-locale-component-holdout-derived"
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes localized component craft to the expected ordered workflow bundle"],
+    "harmChecks": ["does not treat locale resilience as only a visual polish request"]
+  }
+}

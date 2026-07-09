@@ -1,0 +1,31 @@
+{
+  "level": "phase",
+  "specFolder": "system-deep-loop/z_archive/022-multi-ai-council-write-protocol",
+  "description": "The Multi-AI Council write protocol spans multiple historical phases: council deliberations need a stable output structure, persistence machinery,",
+  "keywords": [
+    "multi-ai",
+    "council",
+    "write",
+    "protocol",
+    "spans",
+    "multiple",
+    "historical",
+    "phases",
+    "deliberations",
+    "need",
+    "stable",
+    "output",
+    "structure",
+    "persistence",
+    "machinery"
+  ],
+  "lastUpdated": "2026-07-08T13:43:05.027Z",
+  "specId": "022",
+  "folderSlug": "multi-ai-council-write-protocol",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

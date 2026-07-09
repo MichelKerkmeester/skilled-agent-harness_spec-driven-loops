@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/003-rename-agent-4-runtime",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/003-rename-agent-4-runtime",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "115 003",
+      "agent runtime rename",
+      "ai-council agent",
+      "115 003 plan",
+      "115 003 tasks",
+      "115 003 impl summary"
+    ],
+    "key_topics": [
+      "115",
+      "003",
+      "agent",
+      "runtime",
+      "rename",
+      "ai-council",
+      "plan",
+      "tasks",
+      "impl",
+      "summary",
+      "deep-ai-council",
+      "slug"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".opencode/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Council",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "DoR: 001 rename-plan.json emitted",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `@deep-ai-council` agent slug uses the `deep-` prefix that conflates with the autonomous-loop family (deep-research, deep-review, deep-agent-improvement)",
+    "created_at": "2026-05-21T06:57:09Z",
+    "last_save_at": "2026-07-08T13:43:50.842Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:125fbb6f39b84ccab9b97f1a3730b8a0fc0a51b6725b444d22dba2d52b274b23",
+    "source_doc_hashes": {
+      "spec.md": "ae89497cfa1ae54526f6b0cf79164871e7b6e5ab1657efd1376d2503f1fa9ef8",
+      "plan.md": "c3038828d954b9d888303943c48754415a70446d690637a7078ddb7967c96038",
+      "tasks.md": "8beda7b7d8372dced2f27903da53d12a9bb364f2a89623d69418b82a9b28e562",
+      "implementation-summary.md": "d6fcc9b10683969099f7ed0003366b41efbf1ff406a981f2cbd84fd2e528b326"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

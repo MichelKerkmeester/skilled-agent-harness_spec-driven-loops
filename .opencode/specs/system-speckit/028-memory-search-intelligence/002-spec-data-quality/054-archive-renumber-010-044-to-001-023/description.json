@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-spec-data-quality/054-archive-renumber-010-044-to-001-023",
+  "description": "`.opencode/specs/system-deep-loop/zarchive/` numbers its 23 top-level archived packets `010, 012-014, 020-035, 042-044` — not the `001-023` a fresh",
+  "keywords": [
+    "opencode",
+    "specs",
+    "system-deep-loop",
+    "zarchive",
+    "numbers",
+    "top-level",
+    "archived",
+    "packets",
+    "010",
+    "012-014",
+    "020-035",
+    "042-044",
+    "001-023",
+    "fresh"
+  ],
+  "lastUpdated": "2026-07-08T13:24:24.794Z",
+  "specId": "054",
+  "folderSlug": "archive-renumber-010-044-to-001-023",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

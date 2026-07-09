@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
+  "spec_folder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
+  "parent_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-benchmark fidelity track",
+      "D4-R task-outcome instrument",
+      "deferred-asset scoring lane",
+      "D3 D4 measurement fidelity",
+      "skill-benchmark fidelity track plan",
+      "skill-benchmark fidelity track tasks",
+      "skill-benchmark fidelity track checklist",
+      "skill-benchmark fidelity track summary"
+    ],
+    "key_topics": [
+      "skill-benchmark",
+      "fidelity",
+      "track",
+      "d4-r",
+      "task-outcome",
+      "instrument",
+      "deferred-asset",
+      "scoring",
+      "lane",
+      "measurement",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fidelity Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Done",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The benchmark reports D3 50 / D4 49 for sk-code, but round-2 research showed those numbers do not measure what their names claim",
+    "created_at": "2026-06-02T04:30:36.784Z",
+    "last_save_at": "2026-07-08T13:43:18.067Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a36bc44d92be87f8646d751562d0b140706fcb39a3b7aae20c3be1fe824561ad",
+    "source_doc_hashes": {
+      "spec.md": "b87e028aeb21898db22c01f4be008fa371c6e22d13ae595580ee9de0bf8b64d2",
+      "plan.md": "243acbf897534f4621f7a060c6b526a2834ddfdf2da3fa3a1f702526bcc051d2",
+      "tasks.md": "0f95d4a1c6d1a210333e51a80f41c4ba2e7e4e76784559754e4be79af597e8d3",
+      "checklist.md": "8a3195b78a79308ee8a76e924d9a0dab85fb88c1758f188f016f74871f671008",
+      "implementation-summary.md": "a666fc6a35f597c16dc11e2e176095ed0f39f33e136f53ab28e34c40c2e804dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

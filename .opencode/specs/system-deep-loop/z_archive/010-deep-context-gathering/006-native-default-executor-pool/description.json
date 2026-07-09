@@ -1,0 +1,47 @@
+{
+  "title": "deep-context native-only default executor pool",
+  "trigger_phrases": [
+    "deep-context native default pool",
+    "deep-context executor pool default",
+    "native only pool deep-context",
+    "deep-context pool question",
+    "executor pool native default"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool",
+  "status": "complete",
+  "parent_id": "system-deep-loop/z_archive/010-deep-context-gathering",
+  "importance_tier": "normal",
+  "created_at": "2026-06-07T11:15:00Z",
+  "completed_at": "2026-06-07T11:30:00Z",
+  "is_phase_parent": false,
+  "children": [],
+  "specFolder": "system-deep-loop/z_archive/010-deep-context-gathering/006-native-default-executor-pool",
+  "description": "`/deep:start-context-loop` defaulted to a heterogeneous executor pool (`2 native + MiMo + gpt + deepseek`) wired in `deepcontextconfig.json`",
+  "keywords": [
+    "deep",
+    "start-context-loop",
+    "defaulted",
+    "heterogeneous",
+    "executor",
+    "pool",
+    "native",
+    "mimo",
+    "gpt",
+    "deepseek",
+    "wired",
+    "deepcontextconfig",
+    "json"
+  ],
+  "lastUpdated": "2026-07-08T13:43:38.757Z",
+  "specId": "006",
+  "folderSlug": "native-default-executor-pool",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "010-deep-context-gathering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

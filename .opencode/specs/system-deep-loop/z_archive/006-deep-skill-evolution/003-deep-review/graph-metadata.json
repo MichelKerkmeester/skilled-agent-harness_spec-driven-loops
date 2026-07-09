@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution",
+  "children_ids": [
+    "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/001-complexity-research-synthesis",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/002-complexity-seeded-fixture-harness",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/003-complexity-schema-prompt-contract",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/004-complexity-validator-v2-enforcement",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/005-complexity-search-ledger-persistence",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/006-complexity-candidate-saturation-gates",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/007-complexity-ledger-led-graph-vocab",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/008-complexity-playbooks-calibration"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-review complexity arc",
+      "deep-review schema v2",
+      "deep-review search ledger",
+      "deep-review candidate saturation"
+    ],
+    "key_topics": [
+      "deep-review",
+      "complexity",
+      "arc",
+      "schema",
+      "search",
+      "ledger",
+      "candidate",
+      "saturation",
+      "cluster",
+      "groups",
+      "sub-phases",
+      "share"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "001-complexity-research-synthesis/spec.md",
+      "002-complexity-seeded-fixture-harness/spec.md",
+      "003-complexity-schema-prompt-contract/spec.md",
+      "004-complexity-validator-v2-enforcement/spec.md",
+      "005-complexity-search-ledger-persistence/spec.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This cluster groups 8 sub-phases that share a single thematic focus",
+    "created_at": "2026-05-23T09:52:56.265976Z",
+    "last_save_at": "2026-07-08T13:43:41.863Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:7217e62d86b6b950119da51affd18e001d9f8b6ea385f8ecb7940e645be0fa0f",
+    "source_doc_hashes": {
+      "spec.md": "78230861c8609e8f7cafd1cdb1955dd9045d3db289d41c4033d4191be8dd4a03"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

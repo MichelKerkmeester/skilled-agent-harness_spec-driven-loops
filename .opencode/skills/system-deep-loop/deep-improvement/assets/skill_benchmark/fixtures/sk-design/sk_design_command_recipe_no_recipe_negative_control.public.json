@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk_design_command_recipe_no_recipe_negative_control",
+  "tier": "T1",
+  "public": {
+    "prompt": "redesign the ui for a dashboard shell",
+    "runtime": "opencode",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "recipe-corpus",
+    "goldAuthor": "recipe-corpus",
+    "blindToRouterKeywords": false
+  }
+}

@@ -29,7 +29,7 @@ Before each dispatch, the workflow resolves the executor via `parseExecutorConfi
 | Kind | Dispatch |
 |---|---|
 | `native` | `@deep-review` agent with model Opus |
-| `cli-opencode` | rendered prompt piped via stdin to `opencode run` with reasoning-effort, service-tier, and `--sandbox workspace-write` |
+| `cli-opencode` | rendered prompt piped via stdin to `opencode run --dangerously-skip-permissions`, granting full OS-level workspace write access. There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT honored. The only real containment is the prompt-level "ALLOWED WRITE PATHS"/"BANNED OPERATIONS" contract (model-obeyed, not OS-enforced) plus post-dispatch validation. Review targets must be treated as potentially adversarial content. |
 | `cli-claude-code` | `claude -p` with `--permission-mode acceptEdits` (overriding the read-only `plan` default so iteration writes succeed) |
 
 ### Core Behavior

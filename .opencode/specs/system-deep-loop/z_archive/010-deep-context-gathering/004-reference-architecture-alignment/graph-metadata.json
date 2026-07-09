@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/010-deep-context-gathering/004-reference-architecture-alignment",
+  "spec_folder": "system-deep-loop/z_archive/010-deep-context-gathering/004-reference-architecture-alignment",
+  "parent_id": "system-deep-loop/z_archive/010-deep-context-gathering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context references",
+      "reference architecture alignment",
+      "deep-context smart router alignment",
+      "reference subfolders",
+      "sibling reference parity",
+      "reference alignment plan",
+      "smart router rewrite plan",
+      "reference subfolder move",
+      "citation sweep plan",
+      "sibling layout parity",
+      "reference alignment tasks",
+      "smart router rewrite tasks"
+    ],
+    "key_topics": [
+      "deep-context",
+      "references",
+      "reference",
+      "architecture",
+      "alignment",
+      "smart",
+      "router",
+      "subfolders",
+      "sibling",
+      "parity",
+      "plan",
+      "rewrite"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "spec.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sibling",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Report",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-context skill is structurally behind its three mature siblings",
+    "created_at": "2026-06-07T07:05:28Z",
+    "last_save_at": "2026-07-08T13:43:39.421Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:63198edac07cad60b65280634b0756ddf8f2cb28303022f520189d80bda51ce8",
+    "source_doc_hashes": {
+      "spec.md": "37c5554b1e7a0f65237813c7a4ccd5840527669d48a0f411c99f21579358322a",
+      "plan.md": "29af5044ee7506cd61eab578e9915f3e7d4992a0c3a6e83cd602b795cae7599b",
+      "tasks.md": "1b51fa1f659b984720cbda58e64ea149ae9dc2f33b9cb75b3136767509b4e72d",
+      "checklist.md": "06c97601cf81f257a0423da584b71d55c1e1bb9ca9dabb9df3ecd24d0220b2e9",
+      "decision-record.md": "a28af58cab79d07cbf950a35c51f41bf7147653e6a95d5f4e7d8a67e179fe529",
+      "implementation-summary.md": "003d969e00d8517734bcab25cf4d8e860c94db59307b0f2ed0840fa9cf93ec33"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

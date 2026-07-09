@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting",
+  "description": "Some deep- work does not belong to any single skill: auditing where the skills' use cases overlap, relocating the shared `deep:` command assets, and",
+  "keywords": [
+    "deep",
+    "work",
+    "belong",
+    "single",
+    "skill",
+    "auditing",
+    "skills",
+    "use",
+    "cases",
+    "overlap",
+    "relocating",
+    "shared",
+    "command",
+    "assets"
+  ],
+  "lastUpdated": "2026-07-08T13:06:50.897Z",
+  "specId": "007",
+  "folderSlug": "deep-stack-cross-cutting",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

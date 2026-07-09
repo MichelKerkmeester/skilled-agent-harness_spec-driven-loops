@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/006-rename-reindex-validate",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/006-rename-reindex-validate",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "115 006",
+      "reindex validate",
+      "advisor smoke 115",
+      "115 006 plan",
+      "115 006 tasks",
+      "115 006 impl summary"
+    ],
+    "key_topics": [
+      "115",
+      "006",
+      "reindex",
+      "validate",
+      "advisor",
+      "smoke",
+      "plan",
+      "tasks",
+      "impl",
+      "summary",
+      "002-005",
+      "land"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+      "spec.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      "tasks.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Compile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Final",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "incidental-fix",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 002-005 land file edits, the compiled skill-graph.json + advisor cache need to be refreshed so the advisor surfaces the renamed identities",
+    "created_at": "2026-05-21T06:57:11Z",
+    "last_save_at": "2026-07-08T13:43:52.821Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9264fb4f54cc400b3d4ceec2a16a7b5d4633424bb2d46d91853c5515ee8d9718",
+    "source_doc_hashes": {
+      "spec.md": "bb396808854f4ccbffe16fc34cb5c0cb0747a2f70bfa9f65829a37f89c2a748c",
+      "plan.md": "cf19be8aadf1e57a2aa9a4be63b167abfe58819c47a4287a22c3af12ad4ea620",
+      "tasks.md": "6ca915819d01daf72898c8c554c00639cbf2715b66cd46f34148a5c04d735f23",
+      "implementation-summary.md": "dfa50222c79d8b707259aaa1c0ad17529406becdb74c5d56b2fdc0e03e97bdcb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/004-deep-research-scenarios",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/004-deep-research-scenarios",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research scenarios",
+      "deep research playbook run",
+      "007 phase 004 deep-research",
+      "deep-research scenarios plan",
+      "deep research playbook plan",
+      "007 phase 004 plan",
+      "deep-research scenarios tasks",
+      "deep research playbook tasks",
+      "007 phase 004 tasks",
+      "deep-research checklist",
+      "deep research verdict ledger",
+      "007 phase 004 checklist"
+    ],
+    "key_topics": [
+      "deep-research",
+      "scenarios",
+      "deep",
+      "research",
+      "playbook",
+      "run",
+      "007",
+      "phase",
+      "004",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "scratch/evidence/dr-01-02.txt",
+      "scratch/evidence/dr-03-iteration.txt",
+      "scratch/evidence/dr-04-convergence.txt",
+      "scratch/evidence/dr-05-06.txt",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dr-01-02.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dr-01-02.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dr-03-iteration.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dr-03-iteration.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dr-04-convergence.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dr-04-convergence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dr-05-06.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dr-05-06.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-research` is the autonomous iterative-investigation loop built on the shared `deep-loop-runtime` foundation (executor, prompt-pack, post-dispatch validation, atomic state, JSONL repair, pause sentinel, convergence detection, quality guards, graph-aware stop gates, progressive synthesis, dashboard, and the command-flow surface)",
+    "created_at": "2026-05-27T07:08:08.395Z",
+    "last_save_at": "2026-07-08T13:43:55.983Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7a408e806734893519e5ed1f95c2f908f8dce9e8003bf14b2f766179227aa081",
+    "source_doc_hashes": {
+      "spec.md": "b0c148795308cfd590b1564b6be6d9693dd8b5f118045d06845e4d11986293b1",
+      "plan.md": "99cbd107e2bc1a7b324bb4b21815b42e7b7575ad215fed9df51190f311da5353",
+      "tasks.md": "6e0af5c0e955222a338584494d542a787b47dece32eca8f711c1119c34ec3c83",
+      "checklist.md": "a83f10b99091473a628b20507e995883a2645f3dca95b9ddda2ab714c0df084d",
+      "implementation-summary.md": "0fd3c34e30e5ad5620111f216fa6fff790eebaf2e100778530ba9fb1e3f5279b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

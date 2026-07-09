@@ -48,7 +48,11 @@ The deep review loop uses 8 state files under the resolved `{artifact_dir}/` own
     ...
 ```
 
-`{artifact_dir}` comes from `resolveArtifactRoot(specFolder, 'review')`. Root-spec runs resolve directly to `{spec_folder}/review/`. Child-phase and sub-phase runs use **flat-first**: a first run with an empty `review/` resolves directly to `{spec_folder}/review/` (no `pt-NN` wrapper). A `pt-NN` packet is allocated only when prior content for a non-matching target already exists. Continuation runs reuse the existing flat artifact (or matching `pt-NN` packet).
+`{artifact_dir}` comes from `resolveArtifactRoot(specFolder, 'review')`. Root-spec runs resolve directly to `{spec_folder}/review/`. Child-phase and sub-phase runs use **flat-first**: a first run with an empty `review/` resolves directly to `{spec_folder}/review/` (no `pt-NN` wrapper). A `pt-NN` packet is allocated only when prior content for a non-matching target already exists. Continuation runs reuse the existing flat artifact (or matching `pt-NN` packet). This avoids the unnecessary `pt-01` wrapper on first runs.
+
+Example (first run on a child phase): `.../026-graph.../006-continuity-refactor-gates/003-gate-c-writer-ready/` → `003-gate-c-writer-ready/review/` (flat, no subfolder).
+
+Example (subsequent run with prior content for a different target): `003-gate-c-writer-ready/review/003-gate-c-writer-ready-pt-02/` (`pt-NN` allocated as a sibling to the prior content; subfolder name is `{basename(spec_folder)}-pt-{NN}`).
 
 ### When to Use
 

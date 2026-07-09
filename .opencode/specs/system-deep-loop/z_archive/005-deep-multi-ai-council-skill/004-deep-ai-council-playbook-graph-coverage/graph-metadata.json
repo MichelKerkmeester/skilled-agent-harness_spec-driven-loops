@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage",
+  "spec_folder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage",
+  "parent_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council playbook graph",
+      "council graph playbook",
+      "DAC-019",
+      "DAC-026",
+      "council_graph integration scenarios",
+      "101/004 plan",
+      "deep-ai-council playbook graph plan",
+      "council graph scenarios plan",
+      "101/004 tasks",
+      "deep-ai-council playbook graph tasks",
+      "101/004 summary",
+      "deep-ai-council playbook graph summary"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "playbook",
+      "graph",
+      "council",
+      "dac-019",
+      "dac-026",
+      "integration",
+      "scenarios",
+      "101",
+      "004",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Playbook Graph Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "forward-pointer",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 of `101-deep-multi-ai-council-skill` shipped a dedicated council graph (4 MCP tools, 8 node kinds, 10 relation kinds, 5 query modes, 3 convergence buckets) backed by `council-graph.sqlite` and verified by `tests/council-graph.vitest.ts`",
+    "created_at": "2026-05-11T05:27:10Z",
+    "last_save_at": "2026-07-08T13:43:24.421Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cdcc9589b71d32e0c641fad3fc1c0f5ed4f042846364aaec4d4b2909d01e44e7",
+    "source_doc_hashes": {
+      "spec.md": "af599f054188c26f939a35575f05719c7eb302bb148e2408d463c453baab74e6",
+      "plan.md": "8bc6aae301da1eff785c06f0be4909c2849152c183db8da130b8a8b5c9d1bcde",
+      "tasks.md": "f0ce5fe3693e53eae050a8b24c0f9fb0c9975e9fc226df0b70b0448df23878a8",
+      "implementation-summary.md": "395f588dacd8b7e35a2499a0468b6643ea682d187678c262c96e5a868ab04fce"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

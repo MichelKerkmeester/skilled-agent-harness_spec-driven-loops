@@ -1,0 +1,29 @@
+{
+  "title": "Feature Specification: reorganize references and assets for two-lane workflow",
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/010-reorganize-two-lane-references-assets",
+  "description": "The skill now has two co-equal lanes (agent-improvement and model-benchmark) in its prose, but `references/` and `assets/` are still",
+  "keywords": [
+    "skill",
+    "now",
+    "two",
+    "co-equal",
+    "lanes",
+    "agent-improvement",
+    "model-benchmark",
+    "prose",
+    "references",
+    "assets",
+    "still"
+  ],
+  "lastUpdated": "2026-07-08T13:06:45.561Z",
+  "specId": "010",
+  "folderSlug": "reorganize-two-lane-references-assets",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "007-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

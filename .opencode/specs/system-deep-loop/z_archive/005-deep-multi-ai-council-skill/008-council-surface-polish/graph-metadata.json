@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/008-council-surface-polish",
+  "spec_folder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/008-council-surface-polish",
+  "parent_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "council surface polish",
+      "deep-ai-council changelog v1.1",
+      "council helpers smoke vitest",
+      "101/008",
+      "101/008 plan",
+      "101/008 tasks",
+      "101/008 summary",
+      "deep-ai-council surface polish summary"
+    ],
+    "key_topics": [
+      "council",
+      "surface",
+      "polish",
+      "deep-ai-council",
+      "changelog",
+      "helpers",
+      "smoke",
+      "vitest",
+      "101",
+      "008",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/council-helpers-smoke.vitest.ts",
+      "tests/council-helpers-smoke.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      "spec.md",
+      "mcp_server/tests/council-helpers-smoke.vitest.ts",
+      "mcp_server/package.json",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "council-helpers-smoke.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/council-helpers-smoke.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Surface Polish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Discovery",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Resources",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 101/007 closed the six earlier residual gaps, three smaller items remained: (1) SKILL.md does not reference the new artifacts shipped in 007 (`CONTRIBUTING.md`, `featurecatalog/`, `scripts/replay-graph-from-artifacts.cjs`), so a fresh consumer reading the skill entry point wouldn't discover them; (2) the `changelog/` directory only carries `v1.0.0.0.md` covering 101/001 and 101/003 — there's no published changelog entry for the 101/001..007 series as a whole; (3) the replay helper and bash matrix runner have no automated regression tests, so JSONL-mapping or shell-command-shape",
+    "created_at": "2026-05-11T11:35:00Z",
+    "last_save_at": "2026-07-08T13:43:23.448Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e5f998fb786f9ab238588c75848f0472738fdf827f7d22772779c67bfaf0d9cb",
+    "source_doc_hashes": {
+      "spec.md": "6e62ddaa94de49ca52188a94e5410647e69eb8c4a6f2f5c0000760ff74aaefcb",
+      "plan.md": "2d837489fb0df04ead3b0e40c4dc53188fd61b1211aba915a9576ac1de909ff8",
+      "tasks.md": "2ef0dae830e273d9bf3b4d1370b768f268476fc3ffedb7918f09c7e9cdbe1dc7",
+      "implementation-summary.md": "ccf30203e89093ed7610b21091e54787b5e2a8245fb4d2a438bcbfd6802da7b9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

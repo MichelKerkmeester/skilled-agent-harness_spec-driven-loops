@@ -1048,13 +1048,24 @@ function buildGraphConvergenceRollup(records) {
       score: 0,
       decision: null,
       blockers: [],
+      signals: {},
     };
   }
+
+  // Persist the raw signal payload (dimensionCoverage, findingStability,
+  // p0ResolutionRate, evidenceDensity, hotspotSaturation -- see
+  // references/state/state_jsonl.md "Graph Convergence Event") alongside the
+  // blended score, so downstream analysis can replay WHY the decision was
+  // made, not just THAT it was made.
+  const signals = (latest.signals && typeof latest.signals === 'object' && !Array.isArray(latest.signals))
+    ? latest.signals
+    : {};
 
   return {
     score: computeGraphConvergenceScore(latest.signals),
     decision: normalizeText(latest.decision || '') || null,
     blockers: Array.isArray(latest.blockers) ? latest.blockers : [],
+    signals,
   };
 }
 
@@ -1334,13 +1345,24 @@ function validateReviewRecordFields(records) {
           || record.newFindingsRatio < 0 || record.newFindingsRatio > 1)) {
         warnings.push({ index, rule: 'newFindingsRatio-range', detail: 'newFindingsRatio must be 0.0-1.0' });
       }
-      for (const field of ['findingsSummary', 'findingsNew']) {
-        const value = record[field];
-        if (value !== undefined) {
-          if (!value || typeof value !== 'object' || Array.isArray(value)
-            || !severityBuckets.every((key) => key in value)) {
-            warnings.push({ index, rule: `${field}-severity-keys`, detail: `${field} must contain P0, P1, P2 keys` });
-          }
+      if (record.findingsSummary !== undefined) {
+        const value = record.findingsSummary;
+        if (!value || typeof value !== 'object' || Array.isArray(value)
+          || !severityBuckets.every((key) => key in value)) {
+          warnings.push({ index, rule: 'findingsSummary-severity-keys', detail: 'findingsSummary must contain P0, P1, P2 keys' });
+        }
+      }
+      // findingsNew is contractually polymorphic: prompt_pack_iteration.md.tmpl documents it
+      // as an array of new-finding entries, while legacy records emit a {P0,P1,P2} count
+      // object (state_jsonl.md). Both shapes are genuinely valid -- mirror the same
+      // tolerance post-dispatch-validate.ts already applies via hasPositiveSeverityCount().
+      if (record.findingsNew !== undefined) {
+        const value = record.findingsNew;
+        const isValidArray = Array.isArray(value);
+        const isValidSeverityObject = !isValidArray && value && typeof value === 'object'
+          && severityBuckets.every((key) => key in value);
+        if (!isValidArray && !isValidSeverityObject) {
+          warnings.push({ index, rule: 'findingsNew-shape', detail: 'findingsNew must be an array of findings or an object with P0, P1, P2 keys' });
         }
       }
       if (record.findingDetails !== undefined && !Array.isArray(record.findingDetails)) {
@@ -1407,6 +1429,7 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
     graphConvergenceScore: graphConvergence.score,
     graphDecision: graphConvergence.decision,
     graphBlockers: graphConvergence.blockers,
+    graphSignals: graphConvergence.signals,
     candidateCoverage: searchLedgerState.candidateCoverage,
     searchDebt: searchLedgerState.searchDebt,
     ruledOutCandidates: searchLedgerState.ruledOutCandidates,

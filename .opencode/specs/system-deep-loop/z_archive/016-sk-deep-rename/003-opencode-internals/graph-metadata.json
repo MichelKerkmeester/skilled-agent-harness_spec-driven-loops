@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/016-sk-deep-rename/003-opencode-internals",
+  "spec_folder": "system-deep-loop/z_archive/016-sk-deep-rename/003-opencode-internals",
+  "parent_id": "system-deep-loop/z_archive/016-sk-deep-rename",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "070 phase 003",
+      "opencode internal references",
+      "sk-deep-review -> deep-review",
+      "sk-deep-research -> deep-research",
+      "070 phase 003 plan",
+      "opencode internal reference plan",
+      "graph metadata edge fix",
+      "070 phase 003 tasks",
+      "opencode internal reference tasks",
+      "070 phase 003 checklist",
+      "opencode internal reference verification",
+      "070 phase 003 implementation summary"
+    ],
+    "key_topics": [
+      "070",
+      "phase",
+      "003",
+      "opencode",
+      "internal",
+      "references",
+      "sk-deep-review",
+      "deep-review",
+      "sk-deep-research",
+      "deep-research",
+      "plan",
+      "reference"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal References",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Render Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep-research`",
+    "created_at": "2026-05-05T20:00:00Z",
+    "last_save_at": "2026-07-08T13:43:26.909Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-05T20:00:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:848a582765300a2102edc341dce708592c8bea67cf2f813b9344dcd2f0cad8e9",
+    "source_doc_hashes": {
+      "spec.md": "5d1d1563f6c21a3374e52407b852bb17b3aec87c62c8131d3f69be9ed465ed39",
+      "plan.md": "617a7df61b9fcbf35c2b24b998b0a1dc9851b1eacfbfecb07047e789bf0ce8c0",
+      "tasks.md": "27c3a5bf2a896edf114befb0813346e9938ef8e6f161bf95e703b4e05095c991",
+      "checklist.md": "0d537f59b0722c18b7dfe5d4cfe62637f34f0a476af4f564f71cc0119ea2686a",
+      "implementation-summary.md": "1616bc146d11f27264212983a03393321ff6cd1cd793426bc5fdecf799fad1d1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

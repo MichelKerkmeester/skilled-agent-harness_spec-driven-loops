@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk_design_mp_ui_build_002",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "audit",
+    "advisorLane": "sk-design",
+    "intentKeys": ["audit"],
+    "resources": ["design-audit/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "audit",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "md-generator"],
+    "minimalPairGroup": "mp-ui-build-vs-critique"
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes this minimal-pair arm to the expected workflow mode"],
+    "harmChecks": ["does not collapse onto the paired build outcome"]
+  }
+}

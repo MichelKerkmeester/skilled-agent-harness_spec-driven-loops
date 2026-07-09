@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/003-followup-research",
+  "spec_folder": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/003-followup-research",
+  "parent_id": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "060/003",
+      "060 followup research",
+      "improve sk-improve-agent further",
+      "060/003 plan",
+      "060/003 tasks",
+      "060/003 checklist",
+      "060/003 ADRs",
+      "060/003 implementation summary",
+      "060/003 handover",
+      "060/003 resource map"
+    ],
+    "key_topics": [
+      "060",
+      "003",
+      "followup",
+      "research",
+      "improve",
+      "sk-improve-agent",
+      "plan",
+      "tasks",
+      "checklist",
+      "adrs",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "implementation-summary.md",
+      "handover.md",
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Followup Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OVERVIEW",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. STAGE 1 — SCAFFOLD + STATE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. STAGE 2 — 10-ITER LOOP + SYNTHESIS",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 1 — Scaffold + State",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 2 — 10-iter Loop + Synthesis",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks: 060/003 — Followup Research",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "R1 produced two distinct artifacts:",
+    "created_at": "2026-05-02T11:15:18.846Z",
+    "last_save_at": "2026-07-08T13:43:13.291Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:dfc8ebbf5d8a8e1c40a42bbba3f1f0317a692a49857154c3e0bbeaa8f322062d",
+    "source_doc_hashes": {
+      "spec.md": "41c818e1caf7c9eef359a83df92ab3c32fe5d58db925ac73ce8f61ab6d17dc8b",
+      "plan.md": "8a138cfe5a4d9d4eb09b987a8883c7843cd763170a9bb20204792052ffa1ee60",
+      "tasks.md": "99cccaa401b8814ec0f91da3a915c8c3bfff053e4adc35e3f3bada7b482ad643",
+      "checklist.md": "2a7f3017f65e685a883bcdc37411d21f1c75c43be0b46b1d9ae7159f8a40dfc7",
+      "decision-record.md": "56980789ea37ff0671758ea6bed095dd994cb3604c2f58dc812cf23e0d8092f8",
+      "implementation-summary.md": "8072c2c5e7992fdbf90867026c74c39a69c698ac700c0f022a43eb14b72e8177",
+      "research/research.md": "6fdd8c953357b818a9098161a6481c83b0a6eaffc57d4aaf2b5de7e7a1a3cfec",
+      "handover.md": "ca9568fd8770c9bbd1fa527c96a19fd9af5584445235a33f0440b67c7d09c422",
+      "resource-map.md": "cc276605ddaf6907095f69df2ee82228aa108438d2bf6b8bbf4a812b03e7114e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

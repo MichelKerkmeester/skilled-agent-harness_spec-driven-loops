@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/012-deep-improvement-guarded-refine-hardening/003-anti-goodhart-cross-lane-adoption",
+  "description": "Phase 003: Anti-Goodhart Cross-Lane Adoption",
+  "keywords": [
+    "phase",
+    "003",
+    "anti-goodhart",
+    "cross-lane",
+    "adoption"
+  ],
+  "lastUpdated": "2026-07-08T13:43:28.883Z",
+  "specId": "003",
+  "folderSlug": "anti-goodhart-cross-lane-adoption",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "012-deep-improvement-guarded-refine-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

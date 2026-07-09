@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/007-cp-sandbox-speckit-path-fix",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/007-cp-sandbox-speckit-path-fix",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cp sandbox speckit path fix",
+      "007 phase 007 remediation",
+      "setup-cp-sandbox spec_kit speckit",
+      "cp sandbox speckit path fix plan",
+      "007 phase 007 plan",
+      "cp sandbox speckit path fix tasks",
+      "007 phase 007 tasks",
+      "cp sandbox speckit path fix summary",
+      "007 phase 007 implementation summary"
+    ],
+    "key_topics": [
+      "sandbox",
+      "speckit",
+      "path",
+      "fix",
+      "007",
+      "phase",
+      "remediation",
+      "setup-cp-sandbox",
+      "plan",
+      "tasks",
+      "summary",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Remediated",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/commands/speckit` was renamed to `.opencode/commands/speckit`, but two CP-stress `setup-cp-sandbox.sh` scripts still reference the old `speckit` path: deep-review `07/setup-cp-sandbox.sh` (lines 61 `requirepath` + 73 `copydir`) and deep-research `07/setup-cp-sandbox.sh` (line 74 `copydir`)",
+    "created_at": "2026-05-27T20:00:00.000Z",
+    "last_save_at": "2026-07-08T13:43:56.793Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:088fbc427c615d58b16c60829da80054265ab2aff48ea28d7838c4234fd8405d",
+    "source_doc_hashes": {
+      "spec.md": "a090001ebd8aec9a3b65d73b544f78350565259c05afe668d80b996870f4d4bf",
+      "plan.md": "0b09b9d40a7c6617fac6b01465e4c1621e2887d0a82e2a0b48cd46ff1622bd06",
+      "tasks.md": "c6df23673ec5cf40722015de71754351718ac38da8fb5a4376ce109db799d792",
+      "implementation-summary.md": "4305214245fe62f84da7f5130af51c875e937785fb82bf91928d279927dd6159"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

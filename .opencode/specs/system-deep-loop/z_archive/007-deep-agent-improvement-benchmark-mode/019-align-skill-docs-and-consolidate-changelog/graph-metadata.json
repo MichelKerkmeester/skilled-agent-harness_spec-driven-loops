@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog",
+  "spec_folder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog",
+  "parent_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill doc alignment",
+      "121 changelog consolidation",
+      "deep-agent-improvement readme alignment",
+      "two-lane readme",
+      "mode 4 to lane b",
+      "skill doc alignment plan",
+      "121 changelog consolidation plan",
+      "two-lane readme alignment",
+      "skill doc alignment tasks",
+      "121 changelog consolidation tasks",
+      "skill doc alignment summary",
+      "121 changelog consolidation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "doc",
+      "alignment",
+      "121",
+      "changelog",
+      "consolidation",
+      "deep-agent-improvement",
+      "readme",
+      "two-lane",
+      "mode",
+      "lane",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "scripts/README.md",
+      "scripts/tests/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Two Lanes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Stream",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 121 reshaped the skill into two co-equal lanes, the skill `README.md` still described the pre-121 flat single-lane layout (wrong `references/` subdirs, flat script tree, miscounts, no Lane B or `/deep:start-model-benchmark-loop`), and 10 \"Mode 4\" labels survived pointing at a `SKILL.md` section that was renamed to §4 Lane B",
+    "created_at": "2026-05-30T06:29:13Z",
+    "last_save_at": "2026-07-08T13:43:34.863Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0f695d21d81f8f5d6c3fef0b3dfba6a698c24ada62c979740bf4d0c9b5d9fbaf",
+    "source_doc_hashes": {
+      "spec.md": "a3a423252269884fd5ffed4cd0c3b72ba4f0169db9af538326c6f949a5239e0d",
+      "plan.md": "ac99018b4a1edd8f4bc98d30172f7d22892fc0061f5971e7b539497bf5206917",
+      "tasks.md": "880c692c742d8dff93baf453e6d97dd019b485bfa496ff0c6aabcf697a3d1305",
+      "implementation-summary.md": "45b3474e634faa01512a2afdfeb073f5a87fdfbaaa1ae2a14c9e9ab4bd8e45e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

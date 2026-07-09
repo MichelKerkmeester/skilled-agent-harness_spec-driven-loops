@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/001-rename-preflight-and-plan",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/001-rename-preflight-and-plan",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "preflight scope-map",
+      "115 preflight",
+      "rename plan emission",
+      "resource map",
+      "115 preflight plan",
+      "cli-devin dispatch plan 115",
+      "115 preflight tasks",
+      "rename plan tasks",
+      "115 preflight checklist",
+      "115 preflight summary",
+      "direction flipped rename plan",
+      "rename plan emitted"
+    ],
+    "key_topics": [
+      "preflight",
+      "scope-map",
+      "115",
+      "rename",
+      "plan",
+      "emission",
+      "resource",
+      "map",
+      "cli-devin",
+      "dispatch",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "scratch/resource-map.md",
+      "scratch/rg/rg-baseline-before-files.txt",
+      "scratch/rename-plan.json",
+      ".opencode/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "rg-baseline-before-files.txt",
+        "kind": "file",
+        "path": "scratch/rg/rg-baseline-before-files.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rename-plan.json",
+        "kind": "config",
+        "path": "scratch/rename-plan.json",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Without",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "EVIDENCE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Without a comprehensive surface map + rename-plan contract, phases 002-005 cannot run in parallel safely",
+    "created_at": "2026-05-21T06:57:07Z",
+    "last_save_at": "2026-07-08T13:43:53.827Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3482d944b672d88119ab37411dd5549b3762a96bfac814c384c388abfd814094",
+    "source_doc_hashes": {
+      "spec.md": "c14678409324ab78251d1be4c34dccbba32bf58c752b8ae02c894b2b53897dc7",
+      "plan.md": "94c570508d474a341f163211cb71b7c2e3e5ad5c00afb3f6973c12f4934fc0ee",
+      "tasks.md": "229a5e2dcc9c0a8e3256af35ae341939f28a00154504e43e8c51005b9735e0b8",
+      "checklist.md": "e6834c0553ac02c17a3a8492876bda65ca726b0051f5f3638e3d26d84a3bfbe3",
+      "implementation-summary.md": "3e6cbaa2c0aa4866cecf013581266456eba4967afb1dc0824ee730aca7d7dc5f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

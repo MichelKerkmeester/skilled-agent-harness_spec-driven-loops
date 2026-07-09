@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution/008-sk-deep-research-review-split",
+  "spec_folder": "system-deep-loop/z_archive/023-sk-deep-research-evolution/008-sk-deep-research-review-split",
+  "parent_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research review split",
+      "sk-deep-review split",
+      "deep-review command",
+      "split review mode from deep research",
+      "deep-review split plan",
+      "review mode split implementation",
+      "036 plan",
+      "036 tasks",
+      "deep-review split tasks",
+      "review mode split task list",
+      "036 checklist",
+      "deep-review split verification"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "review",
+      "split",
+      "sk-deep-review",
+      "deep-review",
+      "command",
+      "mode",
+      "plan",
+      "implementation",
+      "036",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Separate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "any",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-deep-research` previously handled both investigation workflows and iterative review-mode auditing",
+    "created_at": "2026-04-12T09:02:50.180Z",
+    "last_save_at": "2026-07-08T13:43:29.508Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa3c704b6195aafaec3953ec10e4bc18d5f9cb5fcfeaa9da057d0ea9406d092e",
+    "source_doc_hashes": {
+      "spec.md": "6faa90e186858fa7bde69779ba818454b616f6c5899b249754dc6108f73a41cf",
+      "plan.md": "620368062060c99d300ae9bc848696295c267ae106b39dc5d3147b200ee64748",
+      "tasks.md": "ac49921295cb0e6ed044dcb0eeb166f0bb7339cb36d7346bd1434bcacc2857ba",
+      "checklist.md": "d318e2e0504b9f2cd034be51213913ebe1a4f194b18fbaf2732d7a85d3c8c5fe",
+      "implementation-summary.md": "5f7aebce17d49dcf0558c616091bf0bc8f48ee4672804c5a83e58151028c36d6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -31,10 +31,10 @@ function readJson(p: string): any {
 }
 
 // Fixtures are keyed by internal `id`, which differs from the filename:
-// t3-bugfix-in-context.json carries id "t3-lower-bound", and
-// t3-strict-acceptance.json carries id "t3-compare-versions".
-const FX_LOWER_BOUND = readJson(path.join(FIXTURE_DIR, 't3-bugfix-in-context.json'));
-const FX_COMPARE_VERSIONS = readJson(path.join(FIXTURE_DIR, 't3-strict-acceptance.json'));
+// t3_bugfix_in_context.json carries id "t3-lower-bound", and
+// t3_strict_acceptance.json carries id "t3-compare-versions".
+const FX_LOWER_BOUND = readJson(path.join(FIXTURE_DIR, 't3_bugfix_in_context.json'));
+const FX_COMPARE_VERSIONS = readJson(path.join(FIXTURE_DIR, 't3_strict_acceptance.json'));
 
 // A correct binary-search lowerBound: leftmost insertion index, half-open upper
 // bound, collapses to the left on an equal element (so duplicate runs return the
@@ -120,8 +120,8 @@ describe('code-task-scorer: dimension vector for one cell', () => {
 });
 
 describe('sweep matrix expansion: pure config, one code path', () => {
-  const bakeoff = readJson(path.join(PROFILE_DIR, 'framework-bakeoff.json'));
-  const mvm = readJson(path.join(PROFILE_DIR, 'model-vs-model.json'));
+  const bakeoff = readJson(path.join(PROFILE_DIR, 'framework_bakeoff.json'));
+  const mvm = readJson(path.join(PROFILE_DIR, 'model_vs_model.json'));
 
   it('expands framework-bakeoff to 1 model x N frameworks x M fixtures cells', () => {
     const r = sweep.runSweep(bakeoff, {
@@ -197,7 +197,7 @@ describe('sweep matrix expansion: pure config, one code path', () => {
 });
 
 describe('sweep mock end-to-end: saturation scenario', () => {
-  const bakeoff = readJson(path.join(PROFILE_DIR, 'framework-bakeoff.json'));
+  const bakeoff = readJson(path.join(PROFILE_DIR, 'framework_bakeoff.json'));
   const correctResponder = (cell: any) => CORRECT_BY_FN[cell.fixture.fn_name];
 
   // The correct-code sweep runs each fixture's full visible+hidden oracle in an

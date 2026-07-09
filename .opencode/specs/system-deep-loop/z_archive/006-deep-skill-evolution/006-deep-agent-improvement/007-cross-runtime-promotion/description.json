@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/007-cross-runtime-promotion",
+  "description": "Level 3 specification for hard four-runtime agent mirror verification and partial mirror recovery semantics.",
+  "keywords": [
+    "level",
+    "specification",
+    "hard",
+    "four-runtime",
+    "agent",
+    "mirror",
+    "verification",
+    "partial",
+    "recovery",
+    "semantics"
+  ],
+  "lastUpdated": "2026-07-08T13:06:58.469Z",
+  "specId": "007",
+  "folderSlug": "cross-runtime-promotion",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "006-deep-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

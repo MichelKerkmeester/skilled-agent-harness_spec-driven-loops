@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/015-post-remediation-deep-review",
+  "spec_folder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/015-post-remediation-deep-review",
+  "parent_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post-remediation deep review",
+      "dual-model deep review deep-improvement",
+      "mimo minimax deep review",
+      "post-remediation deep review plan",
+      "post-remediation deep review tasks",
+      "post-remediation deep review checklist",
+      "post-remediation deep review summary"
+    ],
+    "key_topics": [
+      "post-remediation",
+      "deep",
+      "review",
+      "dual-model",
+      "deep-improvement",
+      "mimo",
+      "minimax",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "remediation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "remediation/gpt5-report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "gpt5-report.md",
+        "kind": "doc",
+        "path": "remediation/gpt5-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Dual",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pass Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Xiaomi Token Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Token Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Get",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Done",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The v1.11.1.0 remediation made substantial changes to the grader (dimension-awareness, `--append-system-prompt`), the live executor (truncation cap, brace-balanced scan), and refactored `scoreScenario`",
+    "created_at": "2026-06-02T00:00:00.000Z",
+    "last_save_at": "2026-07-08T13:43:17.802Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e22b279c1bf0f3a76fec425063ed0bdb5582590ca556d9fcf4e9731ce5ab3eb0",
+    "source_doc_hashes": {
+      "spec.md": "109216de4c4df5e0a6ce86b56338812f933adf251fcfe944e83b2b212b3cee03",
+      "plan.md": "f7855f26aeff5255ab6952789654456aba388db1a380a9e1fcd46def800ca765",
+      "tasks.md": "9b5318cf9fa8d683d506c1dbddaa01a4d982d3c8786cfd52659f093aab01485d",
+      "checklist.md": "795f65c7135ac5fee3d48597a83332eb1caaad48fb4aaf57e598376fcb65494c",
+      "implementation-summary.md": "53dbbf83d0ef9400caf9282600394270dc8d066318e867c2253a928eeea4f0e1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

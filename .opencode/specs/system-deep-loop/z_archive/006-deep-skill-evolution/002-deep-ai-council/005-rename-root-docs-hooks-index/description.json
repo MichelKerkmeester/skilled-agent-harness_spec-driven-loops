@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/005-rename-root-docs-hooks-index",
+  "description": "Root docs still reference old names post-002/003 rename",
+  "keywords": [
+    "root",
+    "docs",
+    "still",
+    "reference",
+    "old",
+    "names",
+    "post-002",
+    "003",
+    "rename"
+  ],
+  "lastUpdated": "2026-07-08T13:07:01.901Z",
+  "specId": "005",
+  "folderSlug": "rename-root-docs-hooks-index",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "002-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/005-rename-root-docs-hooks-index"
+  ]
+}

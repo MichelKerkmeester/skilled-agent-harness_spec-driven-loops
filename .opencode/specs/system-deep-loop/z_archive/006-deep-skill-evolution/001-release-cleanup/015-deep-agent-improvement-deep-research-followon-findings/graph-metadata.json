@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/015-deep-agent-improvement-deep-research-followon-findings",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/015-deep-agent-improvement-deep-research-followon-findings",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "resolve 005 deep-research followons",
+      "009 followon findings",
+      "LG-0001 correction cli-devin recipe drift cross-skill evergreen",
+      "resolve 005 deep-research followons plan",
+      "009 followon plan",
+      "resolve 005 deep-research followons tasks",
+      "009 followon tasks",
+      "resolve 005 deep-research followons summary",
+      "009 followon summary"
+    ],
+    "key_topics": [
+      "resolve",
+      "005",
+      "deep-research",
+      "followons",
+      "009",
+      "followon",
+      "findings",
+      "lg-0001",
+      "correction",
+      "cli-devin",
+      "recipe",
+      "drift"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dimension Trajectory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "targeted",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Four",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Closes the remaining follow-ons from the 005-deep-agent-improvement deep-research loop: correct the SKILL.md trajectory description (a 005 reword was wrong), clean vestigial target-profiles config + add the missing vitest config, strip cli-devin recipe fields the strict parser rejects, and sweep 2 evergreen citations in sibling deep-* skills.",
+    "created_at": "2026-05-24T04:54:39.168Z",
+    "last_save_at": "2026-07-08T13:43:57.373Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:05b0dad91c8c0ce0f559dd77256fb9b9d8c33904a79762d50d95dc229d106bac",
+    "source_doc_hashes": {
+      "spec.md": "99d2ac43dbca1390aefec8b1ec74bbcffe8548ee8fba02faf2f3b03a9c727a87",
+      "plan.md": "0fc3feb5bf6492e778f0fa92eb52f7e305f4140df9de5f73492d5af1aad74ce8",
+      "tasks.md": "05cf910adef3f61e457623d0369a8e6a0cc425781cdba79cde671e811ceab2e3",
+      "implementation-summary.md": "3c401d284acad82ce002e3ba5444dad672c4e4372791f895b261f8cfed55b9f2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

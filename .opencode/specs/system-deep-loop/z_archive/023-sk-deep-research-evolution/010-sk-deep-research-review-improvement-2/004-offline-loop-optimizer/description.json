@@ -1,0 +1,34 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/004-offline-loop-optimizer",
+  "description": "The deep-loop products now have richer runtime state, but tuning them is still largely manual: convergence thresholds, stuck detection, recovery",
+  "keywords": [
+    "deep-loop",
+    "products",
+    "now",
+    "richer",
+    "runtime",
+    "state",
+    "tuning",
+    "them",
+    "still",
+    "largely",
+    "manual",
+    "convergence",
+    "thresholds",
+    "stuck",
+    "detection",
+    "recovery"
+  ],
+  "lastUpdated": "2026-07-08T13:43:45.632Z",
+  "specId": "004",
+  "folderSlug": "offline-loop-optimizer",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "023-sk-deep-research-evolution",
+    "010-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

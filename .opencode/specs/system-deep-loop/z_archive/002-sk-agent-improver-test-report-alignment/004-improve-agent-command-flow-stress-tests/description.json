@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests",
+  "description": "After 062, the executable wiring is in place but the existing CP-040..045 stress scenarios still dispatch via prepend-agent-body",
+  "keywords": [
+    "062",
+    "executable",
+    "wiring",
+    "place",
+    "existing",
+    "cp-040",
+    "045",
+    "stress",
+    "scenarios",
+    "still",
+    "dispatch",
+    "via",
+    "prepend-agent-body"
+  ],
+  "lastUpdated": "2026-07-08T13:06:52.853Z",
+  "specId": "004",
+  "folderSlug": "improve-agent-command-flow-stress-tests",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "002-sk-agent-improver-test-report-alignment"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

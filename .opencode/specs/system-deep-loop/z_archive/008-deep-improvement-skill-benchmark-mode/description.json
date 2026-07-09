@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode",
+  "description": "Phase parent: rename deep-agent-improvement to deep-improvement and add Lane C (skill-benchmark) measuring a skill's real-world routing, unprompted",
+  "keywords": [
+    "phase",
+    "parent",
+    "rename",
+    "deep-agent-improvement",
+    "deep-improvement",
+    "add",
+    "lane",
+    "skill-benchmark",
+    "measuring",
+    "skill",
+    "real-world",
+    "routing",
+    "unprompted"
+  ],
+  "lastUpdated": "2026-07-08T13:06:20.778Z",
+  "specId": "008",
+  "folderSlug": "deep-improvement-skill-benchmark-mode",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "31-05-26_07-58__manual-context-save.md"
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt",
+  "spec_folder": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt",
+  "parent_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "042.007",
+      "skill rename",
+      "sk-improve-agent",
+      "sk-improve-prompt",
+      "rename closeout",
+      "skill rename plan",
+      "skill rename tasks",
+      "skill rename checklist",
+      "skill rename decision record",
+      "improve-agent",
+      "skill rename implementation summary"
+    ],
+    "key_topics": [
+      "042",
+      "007",
+      "skill",
+      "rename",
+      "sk-improve-agent",
+      "sk-improve-prompt",
+      "closeout",
+      "plan",
+      "tasks",
+      "checklist",
+      "decision",
+      "record"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Rename Closeout",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Before",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The two improver skills were renamed from `sk-agent-improver` and `sk-prompt-improver` to `sk-improve-agent` and `sk-improve-prompt`, but the closeout docs still carried stale metadata, old runtime-agent references, and missing template markers",
+    "created_at": "2026-04-12T09:02:50.196Z",
+    "last_save_at": "2026-07-08T13:43:44.015Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:92a66b387c0265d1869775eae51406b730a01c184fdcdbbc2ebb3a367b9de98b",
+    "source_doc_hashes": {
+      "spec.md": "3397579b7300d0e43b92ac7bd7f2a38bfa73ad01354acc56509bda3f2aff04a1",
+      "plan.md": "dce9b53eff9fa4c299289d3e10e5835e7546360ba71d4ab938c2ea4d8ad1fd58",
+      "tasks.md": "7eb021dd60d6f4c142e333c6de414f35fac3d45ae98fc8747f3916c1c103307f",
+      "checklist.md": "427328cdfff7af9d03f3199786f34bfc0137cc21fcdd90b453ebc3641dfe27a5",
+      "decision-record.md": "7ee306abe54b9789b40225dfd85549c6699cc54dfaab3e042dc0072d84c8e886",
+      "implementation-summary.md": "bdeed1e950e4ad34db71ebbf21c63995c7540f2ab38ffd7eaef670586f345cc7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

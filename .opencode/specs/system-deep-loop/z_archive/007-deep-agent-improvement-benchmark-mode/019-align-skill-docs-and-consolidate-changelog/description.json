@@ -1,0 +1,33 @@
+{
+  "title": "Feature Specification: align skill docs and consolidate changelog",
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog",
+  "description": "After 121 reshaped the skill into two co-equal lanes, the skill `README.md` still described the pre-121 flat single-lane layout (wrong `references/`",
+  "keywords": [
+    "121",
+    "reshaped",
+    "skill",
+    "two",
+    "co-equal",
+    "lanes",
+    "readme",
+    "still",
+    "described",
+    "pre-121",
+    "flat",
+    "single-lane",
+    "layout",
+    "wrong",
+    "references"
+  ],
+  "lastUpdated": "2026-07-08T13:06:45.065Z",
+  "specId": "019",
+  "folderSlug": "align-skill-docs-and-consolidate-changelog",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "007-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

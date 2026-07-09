@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/004-deep-loop-runtime-reference-asset-alignment",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/004-deep-loop-runtime-reference-asset-alignment",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep skills reference asset alignment",
+      "deep-ai-council asset alignment",
+      "deep-research reference alignment",
+      "deep-review reference alignment",
+      "sk-doc skill template alignment",
+      "deep skills alignment plan",
+      "reference asset alignment plan",
+      "rcaf deep skills plan",
+      "deep skills alignment tasks",
+      "deep skills alignment checklist",
+      "deep skills alignment decisions",
+      "deep skills alignment summary"
+    ],
+    "key_topics": [
+      "deep",
+      "skills",
+      "reference",
+      "asset",
+      "alignment",
+      "deep-ai-council",
+      "deep-research",
+      "deep-review",
+      "sk-doc",
+      "skill",
+      "template",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "schemas/iteration-output.schema.json",
+      "prompts/iteration-rcaf.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-output.schema.json",
+        "kind": "config",
+        "path": "schemas/iteration-output.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-rcaf.md",
+        "kind": "doc",
+        "path": "prompts/iteration-rcaf.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Skills Reference And Asset Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approval Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approve Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Skills",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Owner",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three deep skills now share a runtime family but their references and assets were uneven",
+    "created_at": "2026-05-25T06:37:29.559Z",
+    "last_save_at": "2026-07-08T13:43:49.085Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:823720325a9a0e656f3c78e1922dfe701daf1e60c7b56cbf31f3c3b51cd58d85",
+    "source_doc_hashes": {
+      "spec.md": "e164cda365a4f8761fe1dfe8b68c7ee598c2b44b7cabeac0a6c5d5cbece33d04",
+      "plan.md": "4037a7f34b53e249adf4cdb6a7215392cd5cefbed03c5d0518a3b7a6ae282639",
+      "tasks.md": "4c6680d135a729f2d614ce021fd16c9f8ac67512567d6b98a082e7c4625fb30c",
+      "checklist.md": "8287542a31bb4a0b2d85cbeb6f56ecc90db14028f73ae503206f404acaa0fc09",
+      "decision-record.md": "5ce0ecefcd60c925f297588f6fb16225d3eeb86734c175ef15fca73756fb72f6",
+      "implementation-summary.md": "a1e7140e5b1ed2e9616490cf7fcb5049a6d36dc9f438d90dd41828e40e4d2826"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

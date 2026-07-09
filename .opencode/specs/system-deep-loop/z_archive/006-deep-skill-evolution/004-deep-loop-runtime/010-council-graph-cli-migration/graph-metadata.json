@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/010-council-graph-cli-migration",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/010-council-graph-cli-migration",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "council graph CLI migration",
+      "council_graph_ MCP removal",
+      "deep-loop-runtime council loopType",
+      "010 council graph CLI migration handover",
+      "deep-loop-runtime council loopType resume",
+      "131/003/010 handover"
+    ],
+    "key_topics": [
+      "council",
+      "graph",
+      "cli",
+      "migration",
+      "mcp",
+      "removal",
+      "deep-loop-runtime",
+      "looptype",
+      "010",
+      "handover",
+      "resume",
+      "131"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
+      "tools/index.ts",
+      "schemas/tool-input-schemas.ts",
+      "mcp_server/tools/index.ts",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "layer-definitions.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/layer-definitions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-fixes.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "council-playbook-anchor-integrity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prior deep-loop-runtime arc removed the four `deeploopgraph` MCP tools and replaced them with direct CLI scripts, but the council graph family remains in `system-spec-kit/mcpserver/`",
+    "created_at": "2026-05-24T05:40:34Z",
+    "last_save_at": "2026-07-08T13:44:01.639Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:5838fa39ac441b4d74fccafbe20583f5a7b2da28e2cedecf299253416f4da78e",
+    "source_doc_hashes": {
+      "spec.md": "6ac63e322de401093b2bf1abd6d8901cca5b405a02e4a47c5b27fca6485746c7",
+      "plan.md": "4c9acdc1f8e3a6f71019730d2737ee623f557cdb39319bd2e7ed3713fab6f461",
+      "tasks.md": "b69bdc6d60ef88fb86041e2fc6520c35915ced67df844631f812b0a7b251dbf8",
+      "checklist.md": "fda410bc20743ed57b03d34845c582f5851f52091bf2cf37e2da17731cb3d93b",
+      "decision-record.md": "b2ff3b16633ba1bd4bc382aae0f8f1010d9037133ea3f92c092487495dcca45e",
+      "implementation-summary.md": "e751e84169af54ab7ab1a418882d2d8a02d9154b89c31947ab8de2e4b5bd668e",
+      "handover.md": "2577504008aea588e26157ee5a0f9c801545b595702594582419acba2ef6f145"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

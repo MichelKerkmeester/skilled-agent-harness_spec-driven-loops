@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring",
+  "spec_folder": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring",
+  "parent_id": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "062 executable wiring",
+      "sk-improve-agent benchmark wiring",
+      "legal-stop nested gateResults",
+      "benchmark materializer static assets",
+      "062 plan",
+      "062 tasks",
+      "062 checklist",
+      "062 ADRs",
+      "062 implementation summary",
+      "062 handover",
+      "062 resource map"
+    ],
+    "key_topics": [
+      "062",
+      "executable",
+      "wiring",
+      "sk-improve-agent",
+      "benchmark",
+      "legal-stop",
+      "nested",
+      "gateresults",
+      "materializer",
+      "static",
+      "assets",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      "implementation-summary.md",
+      "handover.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executable Wiring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "nested",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-REQ",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. OVERVIEW",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Static Assets",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "template",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 1 — Scaffold",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 2 — Static Assets + Materializer",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 3 — Run-Benchmark + YAML Lockstep",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 060/002, sk-improve-agent has CRITIC PASS in the agent body (4 runtime mirrors), score-candidate baseline+delta wiring, scan-integration `.gemini/agents` fix, and YAML emissions for `legalstopevaluated`/`benchmarkcompleted`/`blockedstop`",
+    "created_at": "2026-05-02T14:00:00Z",
+    "last_save_at": "2026-07-08T13:43:14.058Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:b034a97d27f8ba50ffeef47bb44cda745076faf79f60d281e711f04ba676dfc4",
+    "source_doc_hashes": {
+      "spec.md": "34ef4ad27e9d9f6a621711952e5e3816866a6133cd459159a81bd10b309c277d",
+      "plan.md": "3366c47babeb6b6e719ab357363b28fb1d920c6d9e4d3ed05e4f802514b23ec9",
+      "tasks.md": "b6c5e63eccb23e55f77f6c8de57914de8c09a270236fea902cc3718a4e5dfbd3",
+      "checklist.md": "d66143c6bda7128bdd1c1f88d34b50006c15759f719de37ad497e62ee1393fda",
+      "decision-record.md": "66e6fbff6b504daedfd2e4f5605d95428819747948b7b1723e3f536ffc0eac12",
+      "implementation-summary.md": "8a988271bdacecf3c22bc4d33f99c5adc99acbb38293babf84913244bffb59f7",
+      "handover.md": "453aa0fe0b8446478c076cd3a9e060dfcb43a371173b2c96707187cda7fa33b6",
+      "resource-map.md": "c9f25cfc028e982a6a873fcb1a0b64775a35b0f9072604c612d8b4e260f43514"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

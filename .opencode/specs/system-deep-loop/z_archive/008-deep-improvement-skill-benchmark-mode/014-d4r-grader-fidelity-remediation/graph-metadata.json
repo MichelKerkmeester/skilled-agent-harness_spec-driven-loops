@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation",
+  "spec_folder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation",
+  "parent_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "d4r grader fidelity remediation",
+      "deep-improvement review fixes",
+      "apply deep review findings",
+      "d4r remediation plan",
+      "d4r remediation tasks",
+      "d4r remediation checklist",
+      "d4r remediation summary"
+    ],
+    "key_topics": [
+      "d4r",
+      "grader",
+      "fidelity",
+      "remediation",
+      "deep-improvement",
+      "review",
+      "fixes",
+      "apply",
+      "deep",
+      "findings",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "proposals/REMEDIATION.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "REMEDIATION.md",
+        "kind": "doc",
+        "path": "proposals/REMEDIATION.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Grader Fidelity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Reconciliation Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Done",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "full-suite",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The D4-R task-outcome instrument and the v1.11.0.0 doc reconciliation shipped functional and suite-green, but a deep review found 8 should-fix and 20 advisory issues",
+    "created_at": "2026-06-02T00:00:00.000Z",
+    "last_save_at": "2026-07-08T13:43:16.665Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:49197bd4b2b1303b5726d6394118acb6090d061e9e003a355a9a6c541606b85c",
+    "source_doc_hashes": {
+      "spec.md": "180c0d67bc278fc8019d85b1aeb5b6e95a1a4d0bf1fe623a83015f803f41a060",
+      "plan.md": "5d910697567ae304348a565f7fa96cc3d96f51d1d1da5617e1f78217e341d8f6",
+      "tasks.md": "b11f0650b2540046deca2850f3ff3595d0eec5b0463da475cab5a4dc588e9580",
+      "checklist.md": "6d46fabc911745b8133205d4e69fcf57d01ba00a92558d0532a0a86b629c941d",
+      "implementation-summary.md": "7e1a161580acf9b2347b82d32a1e12becac4d2b0ad515f939a36ece3f208492f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

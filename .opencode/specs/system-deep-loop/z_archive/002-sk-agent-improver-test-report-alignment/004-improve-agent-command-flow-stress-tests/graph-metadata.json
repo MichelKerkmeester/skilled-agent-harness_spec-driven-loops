@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests",
+  "spec_folder": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests",
+  "parent_id": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "061 command-flow stress tests",
+      "sk-improve-agent command-flow CP",
+      "command-capable temp root",
+      "CP-040 CP-043 CP-044 CP-045 rerun",
+      "061 plan",
+      "061 tasks",
+      "061 checklist",
+      "061 ADRs",
+      "061 implementation summary",
+      "061 handover",
+      "061 resource map"
+    ],
+    "key_topics": [
+      "061",
+      "command-flow",
+      "stress",
+      "tests",
+      "sk-improve-agent",
+      "command-capable",
+      "temp",
+      "root",
+      "cp-040",
+      "cp-043",
+      "cp-044",
+      "cp-045"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flow Stress Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Switch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stages",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-copilot",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "targeted",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "transcript",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 1",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 2",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 3",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 4",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stage 5",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Stage",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After 062, the executable wiring is in place but the existing CP-040..045 stress scenarios still dispatch via prepend-agent-body",
+    "created_at": "2026-05-02T15:00:00Z",
+    "last_save_at": "2026-07-08T13:43:14.300Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:9511de85e56203e0467e72176af548e92ed24b99d936d9908033c7af09d554a1",
+    "source_doc_hashes": {
+      "spec.md": "9676c3419b17d9c22e4c49efc91a7fa98da36400a18813f8c458b2068dd3880d",
+      "plan.md": "f285ab601f87b9871cf7b5e4369e0e64bcadafb70b2d3cdd6833d806afe24cc8",
+      "tasks.md": "e2fa64a955e9aa857614b49f1f378582c2dc9794c4defd6e414aec78210694e2",
+      "checklist.md": "4463be23d692846048a1824372ece56464c960a32e596ed8a30b6b7864b4a967",
+      "decision-record.md": "2e9ded593032245af49d0f52b0fc94fd969e554d0724701df0185e3117111b64",
+      "implementation-summary.md": "b38b6df056e8fa2fd91d286350fdefb9e814aad810010e46188d524024423662",
+      "handover.md": "8b2152bbe51ddbf41c528aa9aba681f3e4e02b970152fadb901fc7120e01597e",
+      "resource-map.md": "3d4080e7c394df8e93891e47ab6c197c60d763f19e5965c1605451932d6218d4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

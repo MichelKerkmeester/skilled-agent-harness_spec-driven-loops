@@ -1,0 +1,24 @@
+{
+  "scenarioId": "sk_design_dispatch_boundary_present_001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "interface",
+    "advisorLane": "sk-design",
+    "intentKeys": ["interface"],
+    "resources": ["design-interface/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "interface",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["foundations", "motion", "audit", "md-generator"],
+    "minimalPairGroup": "sk-design-dispatch-boundary-proof",
+    "requiresDesignBoundaryProof": true,
+    "boundaryProof": {
+      "verdict": "valid",
+      "findingCodes": []
+    }
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes the design prompt to the expected workflow mode", "retains a valid design boundary proof"],
+    "harmChecks": ["does not weaken the boundary envelope", "does not select a sibling workflow mode"]
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/001-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment",
+  "spec_folder": "system-deep-loop/z_archive/001-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment",
+  "parent_id": "system-deep-loop/z_archive/001-sk-recursive-agent-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "recursive agent doc alignment",
+      "sk-improve-agent sk-doc alignment",
+      "041 phase 003",
+      "recursive agent doc alignment plan",
+      "041 phase 003 plan",
+      "041 phase 003 tasks",
+      "recursive agent doc alignment tasks",
+      "041 phase 003 checklist",
+      "recursive agent doc alignment checklist",
+      "041 phase 003 implementation summary",
+      "recursive agent doc alignment summary"
+    ],
+    "key_topics": [
+      "recursive",
+      "agent",
+      "doc",
+      "alignment",
+      "sk-improve-agent",
+      "sk-doc",
+      "041",
+      "phase",
+      "003",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/specs/descriptions.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificatio",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recursive Agent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Previous Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet `041-sk-improve-agent-loop` already completed the functional agent-improver work, but the package still had structural drift against `sk-doc` rules",
+    "created_at": "2026-04-12T09:02:50.186Z",
+    "last_save_at": "2026-07-08T13:43:21.016Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ff415061087ad9fa54b50bc06770f2d4659dbb5be4b4c3dd893fb9f6f58b0090",
+    "source_doc_hashes": {
+      "spec.md": "8f5b57230a8a71204771d5bae86bb8d73964116e03c5263b4e6dbfa37993505c",
+      "plan.md": "060b855cb034b0c5e3a2619719facadf4d4a7579c9891396b76d1c6334509d75",
+      "tasks.md": "4825f253168e1522dba86941471f2232cc07247633fed541aa09b505dddcbe17",
+      "checklist.md": "49b4a3031642356a1f087b019572e0b069294fe8bd996e5d831947f89fbe0884",
+      "implementation-summary.md": "0f2200f820595abc7556c945ddbfe4dabcb26c3ffa7abf5de46cf5a4243b9a02"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

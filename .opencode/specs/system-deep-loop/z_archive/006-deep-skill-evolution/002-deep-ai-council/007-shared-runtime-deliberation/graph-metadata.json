@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/007-shared-runtime-deliberation",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/007-shared-runtime-deliberation",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-ai-council shared runtime deliberation",
+      "ai-council runtime extraction",
+      "council runtime hybrid",
+      "124 sk-ai-council council",
+      "124 sk-ai-council plan",
+      "ai-council runtime deliberation plan",
+      "124 sk-ai-council tasks",
+      "ai-council runtime deliberation tasks",
+      "124 sk-ai-council checklist",
+      "ai-council runtime deliberation checklist",
+      "124 sk-ai-council decision",
+      "ai-council runtime ADR"
+    ],
+    "key_topics": [
+      "sk-ai-council",
+      "shared",
+      "runtime",
+      "deliberation",
+      "ai-council",
+      "extraction",
+      "council",
+      "hybrid",
+      "124",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "ai-council/council-report.md",
+      "ai-council/seats/round-001/seat-04-adjudicator.md",
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "ai-council/ai-council-strategy.md",
+      "ai-council/seats/round-001/seat-01-advocate-extract.md",
+      "scratch/.gitkeep",
+      "ai-council/ai-council-state.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "seat-04-adjudicator.md",
+        "kind": "doc",
+        "path": "ai-council/seats/round-001/seat-04-adjudicator.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council-strategy.md",
+        "kind": "doc",
+        "path": "ai-council/ai-council-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "seat-01-advocate-extract.md",
+        "kind": "doc",
+        "path": "ai-council/seats/round-001/seat-01-advocate-extract.md",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council-state.jsonl",
+        "kind": "file",
+        "path": "ai-council/ai-council-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Runtime Deliberation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Planning",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-ai-council` already contains runtime-like helpers for artifact persistence, append-only JSONL state, graph replay, and convergence guidance",
+    "created_at": "2026-05-23T05:04:55Z",
+    "last_save_at": "2026-07-08T13:43:53.584Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-23T05:04:55Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:38e1178b77171b6b43458c351f5b0e2d14896b8d11c9220629c34ef4e5f47770",
+    "source_doc_hashes": {
+      "spec.md": "3f43711546882de8db2bfea073cbfe3cbcf2a15c08f7a621f4e66ed0436ac213",
+      "plan.md": "ed4e992895d66aae1b813087fac2e390e80933a2edce05a9e354247440ed81b7",
+      "tasks.md": "a39534c02db8f17486dc6d517e179ed19862c92d98c6c5646d2ace49f823ba0c",
+      "checklist.md": "563bea9480bd97ffbd629147d765fd99f345c8c0c4dd7b8aa517e4151b13b1a5",
+      "decision-record.md": "71a154173bd8ae7d4b529366dc5e842706deceb70afb5fce2add4ff7ce0495c5",
+      "implementation-summary.md": "6be3be1f84748252ecaf7303851868d9c0db883ade4168dc80f72caf9e8fd92d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

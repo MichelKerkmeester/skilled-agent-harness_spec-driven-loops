@@ -1,0 +1,15 @@
+{
+  "scenarioId": "dlw_agentimprove_001",
+  "tier": "T2",
+  "public": {
+    "prompt": "score this agent candidate and promote it only if the evaluation improves",
+    "runtime": "system-deep-loop",
+    "mutationBoundary": "improvement-mutation-scripts-only",
+    "outputContract": "routes to system-deep-loop agent-improvement mode"
+  },
+  "provenance": {
+    "promptAuthor": "pattern-dogfood",
+    "goldAuthor": "pattern-dogfood",
+    "blindToRouterKeywords": false
+  }
+}

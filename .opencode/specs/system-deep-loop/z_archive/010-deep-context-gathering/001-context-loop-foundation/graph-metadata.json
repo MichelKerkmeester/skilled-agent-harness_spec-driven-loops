@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/010-deep-context-gathering/001-context-loop-foundation",
+  "spec_folder": "system-deep-loop/z_archive/010-deep-context-gathering/001-context-loop-foundation",
+  "parent_id": "system-deep-loop/z_archive/010-deep-context-gathering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context",
+      "context gathering",
+      "context report",
+      "reuse catalog",
+      "deep loop",
+      "deep-context plan",
+      "context loop plan",
+      "coverage graph context",
+      "heterogeneous parallel sweep",
+      "reuse catalog report",
+      "deep-context tasks",
+      "context loop tasks"
+    ],
+    "key_topics": [
+      "deep-context",
+      "context",
+      "gathering",
+      "report",
+      "reuse",
+      "catalog",
+      "deep",
+      "loop",
+      "plan",
+      "coverage",
+      "graph",
+      "heterogeneous"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "specs/system-deep-loop/z_archive/010-deep-context-gathering/001-context-loop-foundation/research/research.md",
+      "decision-record.md",
+      "scripts/README.md",
+      "research/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/agents/context.md",
+      "research/deep-research-state.jsonl",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "specs/system-deep-loop/z_archive/010-deep-context-gathering/001-context-loop-foundation/research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Code Graph",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement There",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Added Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase",
+    "created_at": "2026-06-06T14:09:09.974Z",
+    "last_save_at": "2026-07-08T13:43:38.377Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a9871a447cfb9dcc06513177bf85a73c1b76d81ad672603ab3bf59ba8db0e1d6",
+    "source_doc_hashes": {
+      "spec.md": "4cf86493d725b4e6fe350228cce0a78f95965ff1ae5781949c4a30d7c8a00f98",
+      "plan.md": "244030f790d41ceb86b6df0bd234b87528e697bdaf730324005cdfaaf79a9937",
+      "tasks.md": "3c80cd506e8ff228b20bd714f5fd1f84d6aaedaae93581d41f0e3bf130fd8ac0",
+      "checklist.md": "c7d5db338021e08642fafbd0083f96e9f6c9e3a1734374fb3099fdeb5e92312f",
+      "decision-record.md": "6e54f7aff129f55f1a97a5f872035f45f76f6c40a45b8e308db17c6aabf9c0b1",
+      "implementation-summary.md": "5c194e9f6f23eecafcd604cd16fb241600c3d72ef36fb883ecd99556a93f738a",
+      "research/research.md": "667691b2407452078297f737d74fc2b2d4dba1c1f4f78ecef7a7ac983f8bf3f0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

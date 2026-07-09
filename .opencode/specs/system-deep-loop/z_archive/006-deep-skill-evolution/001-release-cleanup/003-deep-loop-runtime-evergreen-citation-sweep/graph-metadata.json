@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "full strict evergreen sweep deep skills",
+      "010 evergreen citation sweep",
+      "drop packet phase arc citations runtime docs",
+      "full strict evergreen sweep plan",
+      "010 evergreen sweep plan",
+      "full strict evergreen sweep tasks",
+      "010 evergreen sweep tasks",
+      "full strict evergreen sweep summary",
+      "010 evergreen sweep summary"
+    ],
+    "key_topics": [
+      "full",
+      "strict",
+      "evergreen",
+      "sweep",
+      "deep",
+      "skills",
+      "010",
+      "citation",
+      "drop",
+      "packet",
+      "phase",
+      "arc"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Boundary Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope All",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-skill",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rewrites every transient packet/arc/phase/spec-path citation in the runtime docs, code comments, feature catalogs, playbooks, and tests of deep-loop-runtime, deep-research, deep-review, deep-ai-council, and deep-agent-improvement to present-tense evergreen form. ADR names are kept as stable anchors; only the mutable packet/phase prefixes are dropped. Changelogs and machine-regenerated metadata are exempt.",
+    "created_at": "2026-05-24T05:20:07.210Z",
+    "last_save_at": "2026-07-08T13:43:47.089Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bd708312932019198a2e30e9fe59477a65766e58a90d63301c21198174886d57",
+    "source_doc_hashes": {
+      "spec.md": "7032c0ed1de1bf73681ed3398047ea81fe05f2aebf901b158064c42db72f650e",
+      "plan.md": "543cb44f46f18687efbe0263ef51de45d5a82a99b9e34b2e88ca8a83d987f5f5",
+      "tasks.md": "9ee02b10968505a42cd8f96ad30d00c0e4fd299fce3a7c048e9c3efd9ab8ab9d",
+      "implementation-summary.md": "f48a79b8399d7d44c1a2f4049294780f28084c5ad6d541f63cacd5fdcb587bd0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

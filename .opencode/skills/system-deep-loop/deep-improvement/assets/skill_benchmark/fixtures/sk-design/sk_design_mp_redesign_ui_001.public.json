@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk_design_mp_redesign_ui_001",
+  "tier": "T3",
+  "public": {
+    "prompt": "redesign the ui",
+    "runtime": "opencode",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": false
+  }
+}

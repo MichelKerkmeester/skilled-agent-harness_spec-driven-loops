@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/001-complexity-research-synthesis",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/001-complexity-research-synthesis",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-review complexity",
+      "deep review surface level",
+      "deep-research bug finding",
+      "review workflow depth",
+      "deep-loop review quality",
+      "deep-review complexity plan",
+      "deep-research bug finding plan",
+      "review depth research plan",
+      "deep-review complexity tasks",
+      "deep-review research tasks",
+      "deep-review complexity checklist",
+      "deep-review research verification"
+    ],
+    "key_topics": [
+      "deep-review",
+      "complexity",
+      "deep",
+      "review",
+      "surface",
+      "level",
+      "deep-research",
+      "bug",
+      "finding",
+      "workflow",
+      "depth",
+      "deep-loop"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/iterations/iteration-001.md",
+      "research/deltas/iter-001.jsonl",
+      "research/deep-research-state.jsonl",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      ".opencode/agents/deep-review.md",
+      "research/deep-research-config.json",
+      "implementation-summary.md",
+      "research/iterations/iteration-015.md",
+      "research/deltas/iter-015.jsonl",
+      "research/deep-research-dashboard.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-015.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-015.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-015.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-015.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Complexity Research Synthesis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Complexity Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-review workflow should be the strongest bug-finding path for iterative audits, but user experience indicates focused deep-research loops can surface more defects when prompted to look for bugs",
+    "created_at": "2026-05-22T05:50:19Z",
+    "last_save_at": "2026-07-08T13:43:55.435Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:16dfdfc36c3915d2308341d094f6fff9d3c9df044b2f9160f2b029c235ae5d73",
+    "source_doc_hashes": {
+      "spec.md": "799957ca05115ff6e33d9e0a68892d464c5c493bb2d51938a701ba06abd181a0",
+      "plan.md": "fad020b490c6853d7a3bc850f501c4e61197655e5e3ec5d19c7551c218de4e30",
+      "tasks.md": "cad1b37ee612e8b1e227c67838fb2464cf32195ef0803104e25ab72abac307ef",
+      "checklist.md": "6e55dda3710bbb07a4f1e466436ca722e338971b4d26b52737305fcc913b0b77",
+      "decision-record.md": "8e2c070825a35e9e9c584f8c874e163b71ae8ff0adbfb9cbd2fd0b36d7622afb",
+      "implementation-summary.md": "9bcb7908f28b1e9bed98c839c114874949f40685ea30881bf3002df0819739d1",
+      "research/research.md": "96b71bced8f52519eb49c47731b27a3644d9f7b950adfea8688ca27774842b5a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

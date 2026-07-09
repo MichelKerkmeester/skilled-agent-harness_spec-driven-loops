@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/002-stress-test-implementation",
+  "spec_folder": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/002-stress-test-implementation",
+  "parent_id": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "060 phase 002",
+      "sk-improve-agent stress test implementation",
+      "CP-040 CP-045 implementation",
+      "060/002 plan",
+      "stress test implementation plan",
+      "060/002 tasks",
+      "060/002 checklist",
+      "060/002 ADRs",
+      "060/002 implementation summary",
+      "060/002 close-out",
+      "CP-040 CP-045 final score",
+      "060/002 handover"
+    ],
+    "key_topics": [
+      "060",
+      "phase",
+      "002",
+      "sk-improve-agent",
+      "stress",
+      "test",
+      "implementation",
+      "cp-040",
+      "cp-045",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "draft",
+    "key_files": [
+      "implementation-summary.md",
+      "handover.md",
+      "stress-runs/stage4-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage4-summary.md",
+        "kind": "doc",
+        "path": "stress-runs/stage4-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Matters",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apply Diff Sketches",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Round Stress Runs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Dependencies",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 060 phase 001 found that sk-improve-agent has serious evaluator machinery (proposal-only candidates, 5-dimension deterministic scoring, journals, benchmarks, mirror-drift policy, legal-stop vocabulary) but lacks the part that made packet 059's @code campaign effective: same-task A/B stress scenarios that force one failure-path claim at a time, reset the sandbox between calls, and judge only grep-checkable signals",
+    "created_at": "2026-05-02T09:47:05.342Z",
+    "last_save_at": "2026-07-08T13:43:13.556Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:2f0f5ef161a1fbe632ad5e26889e4bfa90a5cea36f8a3e0b2197078e875bcd4e",
+    "source_doc_hashes": {
+      "spec.md": "9bee524ed0615d36c3d28dcf9cab4a4f5b0eb2c79318916bd92202b9b9e7970e",
+      "plan.md": "e807d38154e56a1fd76ae075623c3538072ac9c78e70aeab57e8d59745289e17",
+      "tasks.md": "d012c9fe230cbed853defc5832e2467cd3e1b3528ef79bcc090bd3a0129c1cf8",
+      "checklist.md": "4affc1a6c1bf00b535e0d83dcfd5b34640b9028612b62ff04de451034c457038",
+      "decision-record.md": "c6afa19aed420d58970999005e6807d689f192c53e9e38d7a0a95580981492dd",
+      "implementation-summary.md": "900a0b2d21467340c96760dc626a7c0d33e334defca546cab78a2c8782dfecc3",
+      "handover.md": "6158094105761dc78ceead30951a92991b6c0ccc755abeab8564fa0a807350f3",
+      "resource-map.md": "4a180e8dedfeb8db3f229cf9a98e0c8e8300dc83b6561e4c293b9a100b9de4d9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

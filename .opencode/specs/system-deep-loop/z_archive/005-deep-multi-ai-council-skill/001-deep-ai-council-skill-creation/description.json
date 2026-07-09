@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation",
+  "description": "Council planning is a specialized multi-agent workflow, but its references, persistence scripts, and routing language currently live under",
+  "keywords": [
+    "council",
+    "planning",
+    "specialized",
+    "multi-agent",
+    "workflow",
+    "references",
+    "persistence",
+    "scripts",
+    "routing",
+    "language",
+    "currently",
+    "live"
+  ],
+  "lastUpdated": "2026-07-08T13:06:41.294Z",
+  "specId": "001",
+  "folderSlug": "deep-ai-council-skill-creation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "005-deep-multi-ai-council-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

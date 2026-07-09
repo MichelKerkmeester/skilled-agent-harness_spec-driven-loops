@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/004-correctness-fixes",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/004-correctness-fixes",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "packet 124",
+      "deep-agent-improvement correctness fixes",
+      "DAI-009",
+      "DAI-010",
+      "DAI-021",
+      "packet 124 plan",
+      "deep-agent-improvement plan",
+      "DAI correctness plan",
+      "packet 124 tasks",
+      "DAI tasks",
+      "packet 124 checklist",
+      "DAI verification"
+    ],
+    "key_topics": [
+      "packet",
+      "124",
+      "deep-agent-improvement",
+      "correctness",
+      "fixes",
+      "dai-009",
+      "dai-010",
+      "dai-021",
+      "plan",
+      "dai",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Skill",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Workflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Handoff",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Level 3 specification for closing 5 P0 and 3 P1 deep-agent-improvement correctness findings.",
+    "created_at": "2026-05-23T05:48:51.754Z",
+    "last_save_at": "2026-07-08T13:43:49.619Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6505e9c28b1aa74c3d033c4342eb449e54c17ce6d066f2f960a8127f958f92c0",
+    "source_doc_hashes": {
+      "spec.md": "b296814ed173f8408114732f0ef79e17008afdba8c061d3bd3c8b7bcf071bf08",
+      "plan.md": "4200dd900b6d5d8856e5ba0b7d6fd679e72463fa95656caf268034f1e5f35dd8",
+      "tasks.md": "cd7bce7bb4d146dac1b05f7e587cf7155e4d45fb88e794ade5778c886535d9ca",
+      "checklist.md": "e77b3d1d470fd7f08796642cd81aa6ec0040ec4dbc99edaa237b073633ccbf49",
+      "decision-record.md": "787e002c92f5c9866818a10001ba09ebaee7aba0fbb243db2232139a3b1a6aee",
+      "implementation-summary.md": "2ccfce7e7a6e05e872822367b3a2589f89829eef3cb1a1687f9732fb88dec360"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

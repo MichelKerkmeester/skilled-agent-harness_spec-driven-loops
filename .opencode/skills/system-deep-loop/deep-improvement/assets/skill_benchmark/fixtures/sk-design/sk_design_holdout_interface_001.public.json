@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk_design_holdout_interface_001",
+  "tier": "T2",
+  "public": {
+    "prompt": "this landing page feels generic and templated; give it a point of view",
+    "runtime": "opencode",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": true
+  }
+}

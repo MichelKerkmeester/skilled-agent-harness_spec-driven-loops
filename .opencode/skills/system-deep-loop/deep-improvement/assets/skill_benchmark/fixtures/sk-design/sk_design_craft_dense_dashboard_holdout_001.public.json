@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk_design_craft_dense_dashboard_holdout_001",
+  "tier": "T2",
+  "public": {
+    "prompt": "shape a product dashboard grid for high-volume data tables, chart type choices, filters, and empty states without adding decorative whitespace",
+    "runtime": "opencode",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": true
+  }
+}

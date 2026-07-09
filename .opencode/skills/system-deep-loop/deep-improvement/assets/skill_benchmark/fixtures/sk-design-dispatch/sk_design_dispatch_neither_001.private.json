@@ -1,0 +1,23 @@
+{
+  "scenarioId": "sk_design_dispatch_neither_001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": null,
+    "advisorLane": null,
+    "intentKeys": [],
+    "resources": [],
+    "negativeActivation": true,
+    "workflowMode": null,
+    "routeOutcome": "defer",
+    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "audit", "md-generator"],
+    "minimalPairGroup": "sk-design-dispatch-token-survival",
+    "tokenLint": {
+      "verdict": "rejected",
+      "findingCodes": ["missing-token"]
+    }
+  },
+  "rubric": {
+    "usefulnessChecks": ["does not route a non-design prompt to a design mode", "rejects a missing proof token"],
+    "harmChecks": ["does not accept absence as proof", "does not infer design authorization from default resources"]
+  }
+}

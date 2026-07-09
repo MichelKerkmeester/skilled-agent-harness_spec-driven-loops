@@ -23,12 +23,12 @@ Fixtures are organized by a **difficulty tier** (T1 smoke → T4 adversarial) so
 
 Current state:
 
-- Legacy agent fixtures (`fixture-*`) feed the Lane B pattern scorer (no tier, no oracle cases).
+- Legacy agent fixtures (`fixture_*`) feed the Lane B pattern scorer (no tier, no oracle cases).
 - The tiered taxonomy (`t1`/`t3`/`t4`) seeds the smoke → adversarial range.
 - The **hard pack** (computational, T4) discriminates code quality at the oracle level but tends to saturate frontier models.
 - The **harder pack** (T4) confirmed the saturation finding — frontier models ace these too.
-- The **validation pack** (`validate-*`, T4) is the discriminator: invalid-dominant validators where occasional catastrophic failures surface a real, reproducible reliability gap. Every oracle value is generated from a verified reference impl (reference scores 1.0; a lax impl scores < 1.0), never hand-authored.
-- Reviewer fixtures (`reviewer-*`) seed reviewer-prompt regression cases for stale evidence, softened failure, read-budget overuse, and acceptance coverage shortfall.
+- The **validation pack** (`validate_*`, T4) is the discriminator: invalid-dominant validators where occasional catastrophic failures surface a real, reproducible reliability gap. Every oracle value is generated from a verified reference impl (reference scores 1.0; a lax impl scores < 1.0), never hand-authored.
+- Reviewer fixtures (`reviewer_*`) seed reviewer-prompt regression cases for stale evidence, softened failure, read-budget overuse, and acceptance coverage shortfall.
 
 ---
 
@@ -36,25 +36,25 @@ Current state:
 
 | Fixture | Tier | Fn | Cases | Purpose |
 |---|---|---|---|---|
-| `fixture-baseline.json` / `fixture-improved.json` / `fixture-edge.json` | — | agent | — | Legacy Lane B agent fixtures (pattern scorer, no oracle cases). |
-| `t1-smoke-echo.json` | T1 | `echo` | 10 | Smoke: confirms the dispatch + scoring path end-to-end. |
-| `t3-bugfix-in-context.json` | T3 | `lowerBound` | 11 | Mid-difficulty bugfix-in-context. |
-| `t3-strict-acceptance.json` | T3 | `compareVersions` | 12 | Mid-difficulty strict acceptance. |
-| `t4-adversarial-tokenizer.json` | T4 | `tokenize` | 15 | Adversarial tokenizer. |
-| `hard-merge-intervals.json` | T4 | `mergeIntervals` | 16 | Hard computational pack (partial-credit). |
-| `hard-parse-csv-line.json` | T4 | `parseCsvLine` | 17 | Hard computational pack. |
-| `hard-roman-to-int.json` | T4 | `romanToInt` | 17 | Hard pack — the one that consistently discriminates (roman-numeral validation edge cases). |
-| `hard-eval-expr.json` | T4 | `evalExpr` | 18 | Hard computational pack. |
-| `harder-semver-compare.json` | T4 | `semverCompare` | 24 | Harder pack (precedence rules) — saturated frontier models. |
-| `harder-normalize-path.json` | T4 | `normalizePath` | 24 | Harder pack (path resolution) — saturated. |
-| `harder-int-to-words.json` | T4 | `intToWords` | 24 | Harder pack (number→words) — saturated. |
-| `validate-ipv4.json` | T4 | `isValidIPv4` | 27 | Validation pack — strict dotted-decimal, leading-zero/range/format; ~74% invalid. |
-| `validate-date.json` | T4 | `isValidDate` | 26 | Validation pack — strict ISO date, leap-year + days-per-month; ~73% invalid. |
-| `validate-semver.json` | T4 | `isValidSemver` | 28 | Validation pack — strict SemVer grammar, numeric-id leading-zero + empty-identifier; ~64% invalid. |
-| `reviewer-stale-verdict.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for stale completion evidence after a changed command or asset. |
-| `reviewer-softened-fail.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for active blockers relabeled as conditional or partial success. |
-| `reviewer-over-read.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for unjustified full or repeat reads. |
-| `reviewer-ac-coverage.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for acceptance coverage shortfall. |
+| `fixture_baseline.json` / `fixture_improved.json` / `fixture_edge.json` | — | agent | — | Legacy Lane B agent fixtures (pattern scorer, no oracle cases). |
+| `t1_smoke_echo.json` | T1 | `echo` | 10 | Smoke: confirms the dispatch + scoring path end-to-end. |
+| `t3_bugfix_in_context.json` | T3 | `lowerBound` | 11 | Mid-difficulty bugfix-in-context. |
+| `t3_strict_acceptance.json` | T3 | `compareVersions` | 12 | Mid-difficulty strict acceptance. |
+| `t4_adversarial_tokenizer.json` | T4 | `tokenize` | 15 | Adversarial tokenizer. |
+| `hard_merge_intervals.json` | T4 | `mergeIntervals` | 16 | Hard computational pack (partial-credit). |
+| `hard_parse_csv_line.json` | T4 | `parseCsvLine` | 17 | Hard computational pack. |
+| `hard_roman_to_int.json` | T4 | `romanToInt` | 17 | Hard pack — the one that consistently discriminates (roman-numeral validation edge cases). |
+| `hard_eval_expr.json` | T4 | `evalExpr` | 18 | Hard computational pack. |
+| `harder_semver_compare.json` | T4 | `semverCompare` | 24 | Harder pack (precedence rules) — saturated frontier models. |
+| `harder_normalize_path.json` | T4 | `normalizePath` | 24 | Harder pack (path resolution) — saturated. |
+| `harder_int_to_words.json` | T4 | `intToWords` | 24 | Harder pack (number→words) — saturated. |
+| `validate_ipv4.json` | T4 | `isValidIPv4` | 27 | Validation pack — strict dotted-decimal, leading-zero/range/format; ~74% invalid. |
+| `validate_date.json` | T4 | `isValidDate` | 26 | Validation pack — strict ISO date, leap-year + days-per-month; ~73% invalid. |
+| `validate_semver.json` | T4 | `isValidSemver` | 28 | Validation pack — strict SemVer grammar, numeric-id leading-zero + empty-identifier; ~64% invalid. |
+| `reviewer_stale_verdict.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for stale completion evidence after a changed command or asset. |
+| `reviewer_softened_fail.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for active blockers relabeled as conditional or partial success. |
+| `reviewer_over_read.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for unjustified full or repeat reads. |
+| `reviewer_ac_coverage.json` | reviewer | `reviewer-scorer.cjs` | 2 | Expected-`fail` reviewer regression for acceptance coverage shortfall. |
 
 ---
 
@@ -62,4 +62,4 @@ Current state:
 
 Reviewer fixtures are detected by shape: `kind: "reviewer-prompt"`, a string `prompt_template`, and an `expectedVerdict` in `pass`/`fail`/`block`. They carry `tests[]` and `hidden_tests[]` just like code-task fixtures, but the oracle is a verdict plus expected finding tokens rather than function return values.
 
-See [`reviewer-schema.md`](./reviewer-schema.md) for the full schema, deterministic replay field, and how-to-add steps.
+See [`reviewer_schema.md`](./reviewer_schema.md) for the full schema, deterministic replay field, and how-to-add steps.

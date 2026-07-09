@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector",
+  "spec_folder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector",
+  "parent_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-agent-improvement benchmark mode",
+      "model-benchmark mode design",
+      "prompt-framework benchmark skill",
+      "mode selector deep-agent-improvement",
+      "benchmark mode build plan",
+      "mode selector implementation plan",
+      "port 120/003 rig",
+      "benchmark mode build tasks",
+      "mode selector tasks",
+      "port rig tasks",
+      "benchmark mode design checklist",
+      "mode selector verification"
+    ],
+    "key_topics": [
+      "deep-agent-improvement",
+      "benchmark",
+      "mode",
+      "model-benchmark",
+      "design",
+      "prompt-framework",
+      "skill",
+      "selector",
+      "build",
+      "plan",
+      "implementation",
+      "port"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement We",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Strategy",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "We now have two near-identical evaluation loops: `deep-agent-improvement` (mutate + score an agent definition, promote the best) and the 120/003 benchmark rig (run a model against fixtures under prompt-framework variants, score, pick the best)",
+    "created_at": "2026-05-28T13:38:37Z",
+    "last_save_at": "2026-07-08T13:43:34.388Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a9a7ff58c06a6319a62c9bb3d46b662bfadc4693c1944f739e5635f23d18a265",
+    "source_doc_hashes": {
+      "spec.md": "80b64b4863784d2cbb8f4bfd604763290d077ab8437ffa718942d5c6899862fe",
+      "plan.md": "e274f5abde74ff078481c460da83eaf8412171dcd31feba0369cd3c804d2fd99",
+      "tasks.md": "d842ece37a22243740310679580031ab11154115eda98ec73355d186e26d5c18",
+      "checklist.md": "da96aa850d06b3cb4cd69aa71f57fb1fe4174a6068f71c219f05f15639231ce4",
+      "decision-record.md": "b08782b1cc111a1f143e5a7563ba397f9b7246f8a150cb66c443795bfca80107",
+      "implementation-summary.md": "dea9bb8d319cbed3fa7af5c091692129525897035a3f414d4de38955668f5aae"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

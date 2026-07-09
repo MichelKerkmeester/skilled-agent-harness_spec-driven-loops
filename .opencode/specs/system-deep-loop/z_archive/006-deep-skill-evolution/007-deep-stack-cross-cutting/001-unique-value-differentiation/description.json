@@ -1,0 +1,37 @@
+{
+  "level": "3",
+  "status": "draft",
+  "manual": {
+    "depends_on": [],
+    "related_to": [
+      "skilled-agent-orchestration/116-deep-skill-evolution"
+    ]
+  },
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/001-unique-value-differentiation",
+  "description": "deep-review, deep-research, and the proposed deep-ai-council all rest on deep-loop-runtime and share iteration + saturation semantics",
+  "keywords": [
+    "deep-review",
+    "deep-research",
+    "proposed",
+    "deep-ai-council",
+    "rest",
+    "deep-loop-runtime",
+    "share",
+    "iteration",
+    "saturation",
+    "semantics"
+  ],
+  "lastUpdated": "2026-07-08T13:07:17.655Z",
+  "specId": "001",
+  "folderSlug": "unique-value-differentiation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "007-deep-stack-cross-cutting"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation"
+  ]
+}

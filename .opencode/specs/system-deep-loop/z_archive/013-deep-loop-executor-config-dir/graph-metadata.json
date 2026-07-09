@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/013-deep-loop-executor-config-dir",
+  "spec_folder": "system-deep-loop/z_archive/013-deep-loop-executor-config-dir",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "deep-loop-runtime",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "deep-review",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "deep-research",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop configDir",
+      "CLAUDE_CONFIG_DIR fanout",
+      "cli-claude-code config-dir",
+      "deep-loop configDir plan",
+      "Claude config-dir fanout plan",
+      "deep-loop configDir tasks",
+      "Claude config-dir fanout tasks",
+      "deep-loop configDir checklist",
+      "CLAUDE_CONFIG_DIR verification",
+      "deep-loop configDir implementation",
+      "Fable Claude account routing"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "configdir",
+      "fanout",
+      "cli-claude-code",
+      "config-dir",
+      "plan",
+      "claude",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation",
+      "fable"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Allow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Schema",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep-loop fan-out can dispatch `cli-claude-code` seats with a selected model, but it had no per-executor way to select a Claude account directory",
+    "created_at": "2026-06-10T16:35:59Z",
+    "last_save_at": "2026-07-08T13:43:10.758Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-06-10T16:50:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e3deeab422f77b23e03928281e39ce01ae564e3fc92d8ff8131fcfd7acec470a",
+    "source_doc_hashes": {
+      "spec.md": "dd59dd4b7291c47d06b3f116d225785688e7976ee58b4b3fd33bf68b8d618a65",
+      "plan.md": "d51bf9b58fe4b5476571d9882537a1a3835a01111dbfa5ee4b9a943edda8f030",
+      "tasks.md": "7554fde43da11abaa402a7ed72ef930151aaa67cd89fba7970ebf9ad77806524",
+      "checklist.md": "994e9b6b975f504c984f18039ed2b2ca3d10b5cab9a720cf238ca41e7477a645",
+      "implementation-summary.md": "c9201e1729146d31bb4382784134dfb7462f71643ac50bbdec3a61df9b1846aa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

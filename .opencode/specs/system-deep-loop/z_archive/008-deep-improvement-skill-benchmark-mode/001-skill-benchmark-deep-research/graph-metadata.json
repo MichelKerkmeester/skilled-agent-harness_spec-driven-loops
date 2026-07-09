@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
+  "spec_folder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
+  "parent_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-benchmark deep research",
+      "122 phase 001",
+      "multi-model deep research skill benchmark",
+      "122 phase 001 implementation summary",
+      "skill-benchmark deep research results"
+    ],
+    "key_topics": [
+      "skill-benchmark",
+      "deep",
+      "research",
+      "122",
+      "phase",
+      "001",
+      "multi-model",
+      "skill",
+      "benchmark",
+      "implementation",
+      "summary",
+      "results"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/orchestration-status.log",
+      "spec.md",
+      ".opencode/skills/README.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/specs/descriptions.json",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-status.log",
+        "kind": "file",
+        "path": "research/orchestration-status.log",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Report",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "consistent",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "RQ1",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activation Accuracy",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unprompted Reference",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Asset Discovery",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Structural Connectivity",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "20-iteration multi-model deep research (5x MiniMax-2.7, 5x DeepSeek-v4-pro, 5x GPT-5.5-xhigh-fast, 5x Opus-4.8-native) investigating Lane C skill-benchmark design and the deep-agent-improvement->deep-improvement rename impact map.",
+    "created_at": "2026-05-30T07:27:05.679Z",
+    "last_save_at": "2026-07-08T13:43:15.028Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:d7f79f94dfed7ee2a5e0592c7e191e1fb7dea714707ec1e4420e6cf8cf8716c0",
+    "source_doc_hashes": {
+      "spec.md": "7c0a4e535ba819ad33fb71894dc95eb4a0879aed149bcc7571f4a7a9c0e3e327",
+      "plan.md": "3c7b5e628c53df93242b8e56277f4372b3ef1f6d45d2e10d6862419ac6954df8",
+      "tasks.md": "a840a26b8751d38c42315b6d154084e08ee7704f85408b8cda4f379520c3a39b",
+      "implementation-summary.md": "69a1bc71279f79c4624b20bef0326fb492afb228d0aad7149192656b63ee07ed",
+      "research/research.md": "b5a0d0e2161604b2dd891a36f8115830af5e1275754ed16fb0656349c5fed567"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

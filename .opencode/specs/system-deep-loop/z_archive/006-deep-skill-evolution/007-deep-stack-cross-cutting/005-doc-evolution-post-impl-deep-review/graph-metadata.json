@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 post-implementation deep-review",
+      "deep-skill doc-evolution review",
+      "deep-* docs review verdict",
+      "008 deep-review plan",
+      "deep-skill doc review plan",
+      "post-impl review plan",
+      "008 deep-review tasks",
+      "deep-skill doc review tasks",
+      "post-impl review tasks",
+      "008 deep-review outcome",
+      "deep-skill doc review verdict",
+      "post-impl review result"
+    ],
+    "key_topics": [
+      "008",
+      "post-implementation",
+      "deep-review",
+      "deep-skill",
+      "doc-evolution",
+      "review",
+      "deep",
+      "docs",
+      "verdict",
+      "plan",
+      "doc",
+      "post-impl"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "review/review-report.md",
+      "review/deep-review-state.jsonl",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-review-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 008 deep-skill doc-evolution ship (commit 5f3e0a2f53) reworked the 5 deep- skills' documentation substantially",
+    "created_at": "2026-05-25T19:30:00.000Z",
+    "last_save_at": "2026-07-08T13:44:03.396Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f16eb6ea7aa181af3f9abb0d635670e0350085850c9f911a2dfff3475784236",
+    "source_doc_hashes": {
+      "spec.md": "6f4a34a3bb6d5d1f6b1b488d21a6242e1c6628e04d2f31495ca2d8705357de7e",
+      "plan.md": "2db27cab1f0ceb7a0ea3f40a24407d17214ac04fa9649b3b67502a2a05fb5291",
+      "tasks.md": "ebd4ff8a37cb5a02a4f8afd5b2ede2654c2993f1b56f83c25c4d4f3f7df8598b",
+      "implementation-summary.md": "9215a0584e384947d1ca312dfe51ec083fbb46bc2479568c4387d3252591260a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

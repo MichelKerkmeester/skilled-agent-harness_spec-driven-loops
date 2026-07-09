@@ -19,7 +19,7 @@ version: 2.3.0.13
 
 ## 1. OVERVIEW
 
-Every council run MUST close with a `council_complete` event appended after `writeReport(...)` lands `council-report.md`. Runs that exit before `council_complete` are incomplete and should be resumed or rolled back before completion is claimed.
+Every council run MUST include a `council_complete` event once the round completes and convergence is known. Runs that exit before `council_complete` is written are incomplete and should be resumed or rolled back before completion is claimed. `council_complete` is not necessarily the final line in the file: each artifact write that follows it (the state log itself, config, strategy, deliberation, report, and seat files) appends its own `artifact_written` audit event — see §5.1.
 
 ```ts
 type RoundStart = {
@@ -164,7 +164,7 @@ v1.2 adds audit events to the same append-only JSONL. Each artifact write record
 {"schema_version":"1.2","protocol":"ai-council","producer":"persist-artifacts@1.2.0","event":"artifact_superseded","original_path":"seats/round-001/seat-001-cli-opencode.md","round_id":"round-001","rollback_event_id":"rollback-round-001-20260508T223100Z","superseded_by":"rollback","timestamp":"2026-05-08T22:31:00.000Z"}
 ```
 
-v1 readers must ignore `artifact_written`, `rollback`, and `artifact_superseded` events without error. v1.2 readers use them for completeness summaries, checksum verification, and rollback forensics.
+v1 readers must ignore `artifact_written`, `rollback`, and `artifact_superseded` events without error. v1.2 readers use them for completeness summaries, checksum verification, and rollback forensics. Outside of rollback scenarios, a normal completed run also appends an `artifact_written` event after `council_complete` for every artifact write that follows it (the state log itself, config, strategy, deliberation, report, and seat files); `council_complete` marks a run as done, but it is not guaranteed to be the last line in the file.
 
 ---
 

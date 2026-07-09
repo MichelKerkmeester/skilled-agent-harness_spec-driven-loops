@@ -83,8 +83,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/deep/review.md` | 249-265, 269-283 | Success/failure output and memory integration |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 496-514, 563-575 | Loop completion, quality gates, continuity integration |
+| `.opencode/commands/deep/assets/deep_review_presentation.txt` | 306-322, 345-361 | Success/failure output and memory integration |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 414-420, 430-434 | Loop completion, quality gates, continuity integration |
 | `.opencode/agents/deep-review.md` | 292-297, 503-520 | Reducer boundary and related resources |
 
 ## 5. SOURCE_METADATA

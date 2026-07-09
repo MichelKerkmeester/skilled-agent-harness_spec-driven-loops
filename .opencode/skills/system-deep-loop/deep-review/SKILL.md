@@ -274,58 +274,25 @@ Detect the current review phase from dispatch context to load appropriate resour
 
 ### Resource Map Coverage Gate
 
-When `{spec_folder}/resource-map.md` exists at init, deep review treats it as a first-class audit input instead of optional prompt wiring.
-
-- Persist `resource_map_present: true` in `deep-review-config.json`.
-- Add a resource-map snapshot to `Known Context` so later iterations inherit the packet inventory baseline.
-- Promote `Resource Map Coverage` to a first-class audit angle alongside correctness, regression risk, test coverage, cross-runtime parity, observability, and docs-vs-code drift.
-- Reserve at least one loop iteration to cross-check `target_files` from `{spec_folder}/applied/T-*.md` against `resource-map.md`.
-- Treat that pass as mandatory coverage work, not an optional traceability extra.
-- Classify results into three buckets: entries touched, entries not touched (`expected-by-scope` vs `gap`), and implementation paths absent from the map.
-- Findings emitted from that audit use the `resource-map-coverage` category.
-- Synthesis inserts `## Resource Map Coverage Gate` into `review-report.md` when the map was present at init.
-- Convergence also emits `{artifact_dir}/resource-map.md` from review delta evidence unless the operator passes `--no-resource-map`.
-
-When `{spec_folder}/resource-map.md` is absent at init:
-
-- Persist `resource_map_present: false`.
-- Log `resource-map.md not present. Skipping coverage gate` in `Known Context`.
-- Skip the coverage-gate pass and omit the report section without failing the loop.
+When `{spec_folder}/resource-map.md` exists at init, deep review treats it as a mandatory audit input: `resource_map_present` is persisted in config, a map snapshot seeds `Known Context`, at least one iteration audits `target_files` coverage against the map (touched / not-touched `expected-by-scope`-vs-`gap` / absent-from-map, findings tagged `resource-map-coverage`), and synthesis adds the `## Resource Map Coverage Gate` report section plus a converged `resource-map.md` (disable via `--no-resource-map`). Absent at init, the gate and section are skipped without failing the loop. Full sequencing: `references/protocol/loop_protocol.md` (init 9a, iteration 3b, synthesis 4); schema: `references/state/state_format.md`.
 
 ### Bounded Context Snapshot Replacement
 
-During initialization, capture a bounded, pointer-based context snapshot in `deep-review-strategy.md` `Known Context` before the first review dimension runs.
-
-The snapshot must include:
-
-- Review target pointers: files, specs, symbols, or resource-map entries in scope.
-- Claimed behavior and relevant acceptance criteria to verify.
-- Reuse or convention pointers that affect review expectations.
-- Risk areas, missing context, stale graph/memory caveats, and explicit out-of-scope areas.
-
-The snapshot must not create a context-loop report or widen review scope beyond the declared target. Use `@context` for quick retrieval and `/speckit:plan` only when review findings require implementation planning.
+During initialization, capture a bounded, pointer-based context snapshot in `deep-review-strategy.md` `Known Context` before the first dimension runs: target pointers (files, specs, symbols, resource-map entries), claimed behavior/acceptance criteria to verify, reuse/convention pointers, and risk areas, missing context, stale-graph caveats, and out-of-scope areas. It must not create a context-loop report or widen scope beyond the declared target; use `@context` for quick retrieval and `/speckit:plan` only when findings require implementation planning.
 
 ### Architecture
 
-`/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL.
+`/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL. Full 4-phase lifecycle: `references/protocol/loop_protocol.md`.
 
 ### State Packet Location
 
-The review state packet always lives under the target spec's local `review/` folder. Root-spec targets use `{spec_folder}/review/` directly. Child-phase and sub-phase targets use **flat-first**: a first run with an empty `review/` directory writes flat at `{spec_folder}/review/`. A `pt-NN` subfolder (`{basename(spec_folder)}-pt-{NN}`) is allocated only when prior content already exists in `review/` for a non-matching target (continuation runs reuse the existing flat artifact or matching `pt-NN` packet). This avoids the unnecessary `pt-01` wrapper on first runs.
-
-Example (first run on a child phase): `.../026-graph.../006-continuity-refactor-gates/003-gate-c-writer-ready/` → `003-gate-c-writer-ready/review/` (flat, no subfolder).
-
-Example (subsequent run with prior content for a different target): `003-gate-c-writer-ready/review/003-gate-c-writer-ready-pt-02/` (pt-NN allocated as a sibling to the prior content).
+The review state packet always lives under the target spec's local `review/` folder. Root-spec targets use `{spec_folder}/review/` directly; child-phase and sub-phase targets use **flat-first** placement (first run writes flat, a `pt-NN` sibling packet is allocated only when prior content already exists for a different target). Full resolution rule and worked examples: `references/state/state_format.md` §1.
 
 Core artifacts: `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `.deep-review-pause`, `resource-map.md`, `review-report.md`, and `iterations/iteration-NNN.md`.
 
 ### Core Innovation: Fresh Context Per Iteration
 
-Each agent dispatch gets a fresh context window. State continuity comes from files, not memory. This solves context degradation in long review sessions where accumulated findings would otherwise bias subsequent dimensions.
-
-### Data Flow
-
-Init creates config, strategy, and JSONL state. Each loop reads state, checks convergence, dispatches one dimension, records findings, and reduces state. Synthesis compiles the final report and saves continuity.
+Each agent dispatch gets a fresh context window; state continuity comes from files, not memory, preventing accumulated findings from biasing later dimensions. Init writes config/strategy/JSONL; each loop reads state, checks convergence, dispatches one dimension, records findings, and reduces state; synthesis compiles the report and saves continuity.
 
 ### Review Dimensions
 
@@ -333,10 +300,10 @@ The four primary review dimensions (configured in `assets/review_mode_contract.y
 
 | Dimension | Focus | Key Questions |
 |-----------|-------|---------------|
-| **Correctness** | Logic, behavior, error handling | Does the code do what it claims? Are edge cases handled? |
-| **Security** | Vulnerabilities, exposure, trust boundaries | Are inputs validated? Are credentials exposed? |
-| **Spec-Alignment / Traceability** | Spec vs. implementation fidelity | Does code match spec.md? Are all planned items present? |
-| **Completeness / Maintainability** | Coverage, dead code, documentation | Are TODOs resolved? Is the code self-documenting? |
+| **Correctness** | Logic, behavior, error handling | Behavior matches claims? Edge cases handled? |
+| **Security** | Vulnerabilities, exposure, trust boundaries | Inputs validated? Credentials exposed? |
+| **Spec-Alignment / Traceability** | Spec vs. implementation fidelity | Code matches spec.md? Planned items present? |
+| **Completeness / Maintainability** | Coverage, dead code, documentation | TODOs resolved? Code self-documenting? |
 
 ### Lifecycle + Reducer Contract
 
@@ -358,17 +325,13 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 | **CONDITIONAL** | P1 findings present, remediation plan included in report |
 | **FAIL** | Any P0 finding confirmed after adversarial self-check |
 
-### Verdict Lock and Advisory Risk Score
-
-Always emit exactly one parseable verdict. A confirmed active P0 locks the verdict to `FAIL`; do not soften it to `CONDITIONAL`, `partial`, or any other phrasing. Truncated or partial iteration output is not a valid substitute for the final verdict line. Review narratives and JSONL details may include an optional advisory `riskScore` for relative risk calibration, but it never changes the `PASS|CONDITIONAL|FAIL` mapping.
-
 ### Acceptance-Coverage Signal
 
-When the review target is a spec folder, deep review reflects the `AC_COVERAGE` validation signal in synthesis for Level 2+ folders only after both lifecycle conditions are true: `checklist.md` exists and `implementation-summary.md` is in-progress or later. Level 1 folders and fresh scaffolds are exempt. The signal is advisory while the validation rule remains INFO/default-off; it can add traceability context and planning-seed work, but it must not alter the exact iteration final-line contract below unless a later enforcement rollout explicitly changes severity.
+When the review target is a spec folder, deep review reflects the `AC_COVERAGE` validation signal in synthesis for Level 2+ folders, and only once `checklist.md` exists and `implementation-summary.md` is in-progress or later (Level 1 folders and fresh scaffolds are exempt). The signal is advisory while the validation rule stays INFO/default-off -- it can add traceability context and planning-seed work, but must not alter the iteration final-line contract below unless a later enforcement rollout explicitly changes severity.
 
 ### Iteration Final-Line Contract (MANDATORY)
 
-Every `iteration-NNN.md` MUST end with exactly one of the following plain-text lines as the **absolute final line** (no trailing whitespace, no variation):
+Every `iteration-NNN.md` MUST end with exactly one of the following plain-text lines as the **absolute final line** (no trailing whitespace, no variation), and every review MUST emit exactly one parseable verdict:
 
 ```
 Review verdict: PASS
@@ -384,13 +347,13 @@ Review verdict: FAIL
 
 **Mapping rule:** PASS if no P0 or P1 findings in this iteration. CONDITIONAL if any P1 (but no P0) findings. FAIL if any P0 findings. P2-only findings → PASS.
 
-**VERDICT_LOCK:** Any confirmed active P0 forces the exact final line `Review verdict: FAIL`. Do not relabel that state as conditional, partial, mixed, or advisory.
+**VERDICT_LOCK:** Any confirmed active P0 forces the exact final line `Review verdict: FAIL` -- never relabel that state as conditional, partial, mixed, or advisory, and truncated/partial output is not a valid substitute for the final line. An optional advisory `riskScore` may appear in narratives/JSONL for relative risk calibration but never changes the `PASS|CONDITIONAL|FAIL` mapping.
 
 Downstream automation (including the synthesis phase and CI gate parser) parses this final line via exact string match, do not vary the format.
 
 ### Executor Selection Contract
 
-Executor settings are owned by the YAML workflow and rendered prompt pack. Do not bypass the workflow by hand-dispatching review iterations; each iteration stays LEAF-only and produces the required markdown plus JSONL delta. The full contract -- per-iteration invariants, failure modes, JSONL audit field, config surface and precedence, executor-invariant guarantees, and the four-value code-graph readiness TrustState surface -- lives in `references/protocol/loop_protocol.md`.
+Executor settings are owned by the YAML workflow and rendered prompt pack -- never hand-dispatch review iterations; each iteration stays LEAF-only and produces the required markdown plus JSONL delta. Full contract (per-iteration invariants, failure modes, JSONL audit field, config surface/precedence, TrustState surface): `references/protocol/loop_protocol.md`.
 
 ---
 
@@ -404,7 +367,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack. Do no
 4. Cite every finding with `[SOURCE: file:line]`. Reject inference-only findings.
 5. Re-read cited code before recording any P0.
 6. Keep target files read-only.
-7. Use `generate-context.js` for continuity saves. **Owner**: the YAML workflow (`deep_review_{auto,confirm}.yaml`) calls `generate-context.js` at the save phase. The reducer (`scripts/reduce-state.cjs`) does NOT call it directly. Operators should not invoke the reducer expecting continuity-save side effects.
+7. Use `generate-context.js` for continuity saves. **Owner**: the YAML workflow (`deep_review_{auto,confirm}.yaml`) calls it at the save phase, not the reducer (`scripts/reduce-state.cjs`) directly — don't expect continuity-save side effects from the reducer alone.
 8. Emit setup `BINDING:` lines before workflow output.
 9. Refuse nested dispatch with: `REFUSE: nested Task tool dispatch is forbidden for LEAF agents. Returning partial findings instead.`
 
@@ -442,7 +405,7 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Scripts: `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.
 
-Detailed contracts: `references/protocol/loop_protocol.md` (executor invariants, failure modes, config surface) and `references/state/state_reducer_registry.md` (two-tier content-hash dedup).
+Detailed contracts: `references/protocol/loop_protocol.md` (executor invariants, failure modes, config surface), `references/protocol/loop_state_and_gates.md` (state transitions, error handling, STOP-decision gates), `references/protocol/completion_criteria.md` (full loop-completion/quality-gate/validation-success checklist), and `references/state/state_reducer_registry.md` (two-tier content-hash dedup).
 
 Related skills: `deep-research` for investigation loops, `sk-code`'s code-review mode for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
 
@@ -450,42 +413,11 @@ Related skills: `deep-research` for investigation loops, `sk-code`'s code-review
 
 ## 6. SUCCESS CRITERIA
 
-### Loop Completion
+A review loop is complete only when convergence and every quality gate agree: the composite stop score clears `compositeStopScore` (or `maxIterations` is hit without a false-positive STOP), every configured dimension plus required traceability protocols (`spec_code`, `checklist_evidence`) have at least one full iteration of coverage, all canonical state files exist and parse cleanly (`deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, one `iterations/iteration-NNN.md` per dispatched iteration), `review-report.md` carries all 9 core sections plus the conditional `## Resource Map Coverage Gate`, and continuity is saved via `generate-context.js`.
 
-A review loop is considered complete when every item below holds:
+Nine binary quality gates must all pass before STOP is legal: config validity + lineage match, strategy initialization completeness, state/registry consistency, iteration completeness (markdown + JSONL delta), severity-field coverage on every finding (`severity`/`category`/`file:line`/`content_hash`), the advisory-only `riskScore` never gating verdict logic, adversarial P0 replay, dimension/protocol coverage stability, acceptance-coverage (advisory `AC_COVERAGE` signal when the spec-folder lifecycle predicate is active), and the security-sensitive override (`minStabilizationPasses=2` + fix-completeness replay) when the target touches security, path handling, env precedence, schema boundaries, persistence, or shared policy. Full gate-by-gate criteria and rationale: `references/protocol/completion_criteria.md`.
 
-- The loop reached convergence (composite stop score above `compositeStopScore`, with required gates green) OR hit `maxIterations` without false-positive STOP.
-- Every configured review dimension has at least one full iteration of coverage recorded in `deep-review-state.jsonl` and reflected in `deep-review-strategy.md`.
-- Required traceability protocols (`spec_code`, `checklist_evidence`) executed at least once. Overlay protocols that apply to the target type ran or were explicitly marked N/A.
-- All canonical state files exist and parse cleanly: `deep-review-config.json`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, and one `iterations/iteration-NNN.md` per dispatched iteration.
-- `review/resource-map.md` was emitted from converged delta evidence unless `config.resource_map.emit == false` (operator flag `--no-resource-map`).
-- `review/review-report.md` carries all 9 core sections (Executive Summary, Planning Trigger, Active Finding Registry, Remediation Workstreams, Spec Seed, Plan Seed, Traceability Status, Deferred Items, Audit Appendix) plus the conditional `## Resource Map Coverage Gate` section when `resource_map_present == true`.
-- Canonical continuity surfaces updated via `generate-context.js` (description.json, graph-metadata.json, indexed memory entries).
-
-### Quality Gates
-
-Each gate is binary: pass or block. STOP cannot be legal until every gate passes.
-
-- **Config validity**: `deep-review-config.json` parses, names every required field, and lineage block matches the current run (`sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`).
-- **Strategy initialization**: `deep-review-strategy.md` carries the Files Under Review table, Cross-Reference Status grouped by core vs overlay, Known Context, and Review Boundaries.
-- **State consistency**: `deep-review-state.jsonl` opens with the config record and appends one iteration record per dispatched iteration. Reducer-owned fields in `deep-review-findings-registry.json` reconcile against JSONL totals.
-- **Iteration completeness**: every dispatched iteration produced both an `iterations/iteration-NNN.md` (non-empty, ending with the canonical `Review verdict: PASS|CONDITIONAL|FAIL` line) AND a JSONL delta record with `findingDetails[]`, `findingsSummary`, `newFindingsRatio`.
-- **Severity coverage**: every reported finding carries `severity` in {P0, P1, P2}, `category`, `file:line` evidence, `finding_class`, and a `content_hash` for synthesis dedup.
-- **Advisory numeric score**: `riskScore` may appear in finding details as non-gating context only; verdict logic must ignore it.
-- **Adversarial replay**: every P0 finding survived adversarial self-check. Rejected P0s downgraded with rationale recorded in the iteration narrative.
-- **Coverage threshold**: `dimensions_covered_count == configured_dimensions_count` AND required traceability protocols covered, stable for at least `minStabilizationPasses` iterations.
-- **Acceptance coverage**: when the spec-folder lifecycle predicate is active, the final report records `AC_COVERAGE` status, covered/total, floor, and next action; default-off INFO output is advisory and does not by itself block STOP.
-- **Security-sensitive override**: when the run targets security, path handling, env precedence, schema boundaries, persistence, or shared policy, the gates from `references/convergence/convergence.md` "Security-Sensitive Fix Overrides" apply (`minStabilizationPasses=2`, closed-finding replay required, fix-completeness gate enforced).
-
-### Validation Success
-
-The release-readiness handoff is valid when:
-
-- The final report records stop reason, iteration count, dimension coverage, severity counts (P0/P1/P2), verdict (PASS / CONDITIONAL / FAIL), and release-readiness state (`in-progress`, `converged`, `release-blocking`).
-- Verdict logic matches: PASS = no P0/P1 findings (P2 advisories permitted with `hasAdvisories: true`). CONDITIONAL = P1 findings present with remediation plan. FAIL = any P0 confirmed after adversarial self-check.
-- `resource-map.md` Phase-5 Augmentation section (if present) lists novel logic gaps with iteration source links, or explicitly records the empty-result case.
-- `skill_advisor.py "run a deep review loop" --threshold 0.8` still surfaces the skill after any graph-metadata edits.
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` exits 0 on the target spec folder.
+Validate a completed run with `skill_advisor.py "run a deep review loop" --threshold 0.8` (skill still surfaces) and `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` (exits 0).
 
 ---
 
@@ -498,16 +430,9 @@ This skill operates within the behavioral framework defined in the active runtim
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` (keywords: deep review, convergence review, iterative review)
 - **Gate 3**: File modifications require spec folder question per the root doc Gate 3. The spec folder determines the `{spec_folder}/review/` state packet location
-- **Continuity**: `/speckit:resume` is the operator-facing recovery surface. Canonical packet continuity is written via `generate-context.js`
+- **Continuity**: `/speckit:resume` is the operator-facing recovery surface, resolving context in the order `handover.md -> _memory.continuity -> spec docs`. During review, the agent writes iteration, strategy, and JSONL state; after synthesis, run `generate-context.js` to write canonical packet continuity
 - **Command**: `/deep:review` is the primary invocation point
-
-### Continuity Integration
-
-Recover context via `/speckit:resume` in the order `handover.md -> _memory.continuity -> spec docs`. During review, the agent writes iteration, strategy, and JSONL state. After synthesis, run `generate-context.js`.
 
 ### Code Graph Integration
 
-`code_graph_query + Grep` is available to `@deep-review` for semantic code search when Grep/Glob exact matching is insufficient. Use for:
-- Finding all usages of a pattern by concept/intent
-- Locating implementations when exact symbol names are unknown
-- Cross-referencing behavior across unfamiliar code paths
+`code_graph_query + Grep` is available to `@deep-review` for semantic code search when Grep/Glob exact matching is insufficient: finding usages by concept/intent, locating implementations when exact symbol names are unknown, and cross-referencing behavior across unfamiliar code paths.

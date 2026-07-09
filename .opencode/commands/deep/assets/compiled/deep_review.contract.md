@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_presentation.txt",
-      "sha256": "d7e2e95928e4d1cf025dd944fbe515b1da0f723a9e2ba6395543364e77eb8c82",
+      "sha256": "8422819c5bdaa5e6fcdf6824c5a4367a07a574b44e5a824401807e1616284324",
       "section": "full"
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "1293ff04fdc5529fc969a36cc64d918d2e96303287ada37d5b0a6d0a61cb3e47",
+      "sha256": "6d41d1cfeff3b422ef5686c839c7e64118a3e0cfdf9eeced58166ef7486447a3",
       "section": "full"
     },
     {
@@ -42,17 +42,17 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "900b00a565be2a6664e6e85857744a633eb8643d9bdaa206634d9a69e54e8d6b",
+      "sha256": "8c50be061a45bc8e8e74ef723ddd77a35a52fe3016e15dfe0f7b1a6129cfeee1",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop_protocol.md",
-      "sha256": "d79a317dfc40450c9f3596fc82c2fb7be953787ef9149416c69925f31b212f10",
+      "sha256": "56f4d581e3b02611dc3f703033128f3c0984d9c15de6593302f7e1a786b734bf",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/references/state/state_format.md",
-      "sha256": "5c3c6372046e3a998bdfa4c8f286cf18e3e9f1ad994f66f27fb876f84c393fba",
+      "sha256": "27370a8ca9ab8915102e1e22fc87d55e40a3871d50a706153c6d94da5f49affd",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "defb775ce5d5ae76749a84f76af5eac864960b08a8a782ed4dfc215fddfef639"
+  "compiledBodyDigest": "274a380721b570ffc988456bf7402b38b0218b9e1b2760f212060c94a15f3885"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -101,11 +101,11 @@ You were invoked via `opencode run --command deep/review` with the `:auto` suffi
 
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
-- PROCEED immediately: load the auto workflow YAML and dispatch the `deep-review` agent to run the review loop over the bound target.
-- DISPATCH ONLY: you dispatch `deep-review` to run the loop; you do NOT read, edit, patch, or run the review loop over the target yourself. The `deep-review` leaf owns the loop and every artifact write — mixing your own inline work with the dispatch is a route violation.
+- PROCEED immediately: load the auto workflow YAML and dispatch the `deep-review` agent to run ONE iteration of the review loop over the bound target.
+- DISPATCH ONLY: you dispatch `deep-review` to run one iteration; you do NOT read, edit, patch, or run the review loop over the target yourself. The auto workflow YAML owns the loop itself — setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis, and all loop-level artifact writes; the `deep-review` leaf owns only its own single-iteration artifacts — mixing your own inline work with the dispatch is a route violation.
 - ROUTE PROOF: dispatch through the auto workflow with its prompt pack so `deep-review` writes each iteration state record with the route-proof fields present — `target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "review"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
 
-Your job is to DISPATCH `deep-review` to run the review loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. This contract is your instruction set; the review target is the bound spec_folder/target named in your message, never this document.
+Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. The auto workflow YAML owns the loop itself (setup, dispatch-per-iteration, reducer sync, convergence, synthesis, and loop-level writes). This contract is your instruction set; the review target is the bound spec_folder/target named in your message, never this document.
 
 ## sourceAuthority
 

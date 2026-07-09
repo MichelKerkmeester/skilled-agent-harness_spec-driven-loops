@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement/009-command-surface-relocation",
+  "description": "The legacy agent-improvement command was moved to the deep command family and renamed, while the legacy prompt-improvement command was moved to root",
+  "keywords": [
+    "legacy",
+    "agent-improvement",
+    "command",
+    "moved",
+    "deep",
+    "family",
+    "renamed",
+    "while",
+    "prompt-improvement",
+    "root"
+  ],
+  "lastUpdated": "2026-07-08T13:06:58.214Z",
+  "specId": "009",
+  "folderSlug": "command-surface-relocation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "006-deep-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

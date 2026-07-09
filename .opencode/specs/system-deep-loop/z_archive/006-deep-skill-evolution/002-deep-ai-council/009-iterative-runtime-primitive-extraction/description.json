@@ -1,0 +1,37 @@
+{
+  "level": "2",
+  "status": "complete",
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/008-iterative-research-and-architecture"
+    ],
+    "related_to": []
+  },
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/009-iterative-runtime-primitive-extraction",
+  "description": "Extract council-compatible shared primitives from deep-loop-runtime without creating a peer council-runtime package",
+  "keywords": [
+    "extract",
+    "council-compatible",
+    "shared",
+    "primitives",
+    "deep-loop-runtime",
+    "without",
+    "creating",
+    "peer",
+    "council-runtime",
+    "package"
+  ],
+  "lastUpdated": "2026-07-08T13:07:01.150Z",
+  "specId": "009",
+  "folderSlug": "iterative-runtime-primitive-extraction",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "002-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/009-iterative-runtime-primitive-extraction"
+  ]
+}

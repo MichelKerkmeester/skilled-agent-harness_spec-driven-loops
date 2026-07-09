@@ -1,0 +1,33 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/001-complexity-research-synthesis",
+  "description": "The deep-review workflow should be the strongest bug-finding path for iterative audits, but user experience indicates focused deep-research loops can",
+  "keywords": [
+    "deep-review",
+    "workflow",
+    "strongest",
+    "bug-finding",
+    "path",
+    "iterative",
+    "audits",
+    "user",
+    "experience",
+    "indicates",
+    "focused",
+    "deep-research",
+    "loops"
+  ],
+  "lastUpdated": "2026-07-08T13:07:05.390Z",
+  "specId": "001",
+  "folderSlug": "complexity-research-synthesis",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "003-deep-review"
+  ],
+  "memorySequence": 116,
+  "memoryNameHistory": [
+    "deep-review-complexity"
+  ]
+}

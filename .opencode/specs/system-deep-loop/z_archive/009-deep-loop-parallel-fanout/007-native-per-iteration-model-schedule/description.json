@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule",
+  "description": "Design (spec only) a first-class, contract-compliant way for an operator to request a fixed-count heterogeneous per-iteration model schedule through",
+  "keywords": [
+    "design",
+    "spec",
+    "only",
+    "first-class",
+    "contract-compliant",
+    "way",
+    "operator",
+    "request",
+    "fixed-count",
+    "heterogeneous",
+    "per-iteration",
+    "model",
+    "schedule"
+  ],
+  "lastUpdated": "2026-07-08T13:06:57.260Z",
+  "specId": "007",
+  "folderSlug": "native-per-iteration-model-schedule",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "009-deep-loop-parallel-fanout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

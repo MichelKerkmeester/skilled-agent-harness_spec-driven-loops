@@ -1,0 +1,27 @@
+{
+  "level": "phase",
+  "specFolder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill",
+  "description": "The council workflow currently belongs to `system-spec-kit`, but it is a specialized multi-agent planning workflow with its own agent persona,",
+  "keywords": [
+    "council",
+    "workflow",
+    "currently",
+    "belongs",
+    "system-spec-kit",
+    "specialized",
+    "multi-agent",
+    "planning",
+    "own",
+    "agent",
+    "persona"
+  ],
+  "lastUpdated": "2026-07-08T13:06:19.529Z",
+  "specId": "005",
+  "folderSlug": "deep-multi-ai-council-skill",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

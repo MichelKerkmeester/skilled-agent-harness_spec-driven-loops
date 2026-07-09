@@ -113,15 +113,15 @@ Five escalating tiers, attempted in order:
 
 ## 4. REVIEW QUALITY GATES
 
-Three binary gates must pass before a STOP decision is finalized. These gates are defined in `review_mode_contract.yaml` under `qualityGates` and are evaluated after the composite convergence score exceeds the `compositeStopScore` threshold.
+Evidence, Scope, and Coverage are the contract-level binary gates defined in `review_mode_contract.yaml` under `qualityGates`, evaluated after the composite convergence score exceeds the `compositeStopScore` threshold. They are necessary but not sufficient on their own: the review-specific legal-stop decision expands them into a **9-gate bundle** (`convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, `graphlessFallbackGate`) emitted by `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`. STOP is legal only when the full 9-gate bundle passes together. The authoritative gate model, event shape, and evaluation pseudocode live in `references/convergence/convergence.md` §6 "Legal-Stop Gate Bundle"; the 3-gate table and pseudocode below illustrate the contract-level layer only, not the complete STOP-legality check.
 
 ### Gate Definitions
 
 | Gate | Rule | Fail Action |
 |------|------|-------------|
-| **Evidence** | Every active finding has concrete `file:line` evidence and is not inference-only | Block STOP, log `guard_violation`, continue loop |
-| **Scope** | Findings and reviewed files stay within the declared review scope | Block STOP, log `guard_violation`, continue loop |
-| **Coverage** | Configured dimensions and required traceability protocols must be covered before STOP is allowed | Block STOP, log `guard_violation`, continue loop |
+| **Evidence** | Every active finding has concrete `file:line` evidence and is not inference-only | Block STOP, continue loop (persisted via the `blocked_stop` event below) |
+| **Scope** | Findings and reviewed files stay within the declared review scope | Block STOP, continue loop (persisted via the `blocked_stop` event below) |
+| **Coverage** | Configured dimensions and required traceability protocols must be covered before STOP is allowed | Block STOP, continue loop (persisted via the `blocked_stop` event below) |
 
 ### Gate Evaluation Pseudocode
 
@@ -155,10 +155,12 @@ function checkReviewQualityGates(state, config, coverage):
   return { passed: true }
 ```
 
-When any gate fails, the STOP is overridden to CONTINUE and each violation is logged:
+The contract-level check above is illustrative; it is the review-specific 9-gate bundle that actually gates STOP. When that bundle fails, the workflow does not silently override STOP to CONTINUE -- it persists a first-class `blocked_stop` event with the failing gate names and the full `gateResults` bundle:
 
 ```json
-{"type":"event","event":"guard_violation","gate":"<name>","iteration":N,"detail":"<reason>"}
+{"type":"event","event":"blocked_stop","mode":"review","run":N,"blockedBy":["<gate-name>", "..."],"gateResults":{"...":"..."},"recoveryStrategy":"<reason>","timestamp":"<ISO-8601>","sessionId":"<session-id>","generation":N}
 ```
+
+Full event shape and the complete 9-gate `gateResults` schema: `references/state/state_jsonl.md` "Blocked-Stop Event" and `references/convergence/convergence.md` §6.
 
 ---

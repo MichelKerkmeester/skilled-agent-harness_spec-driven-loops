@@ -1,0 +1,150 @@
+{
+  "sessionId": "2026-07-08T14:06:02.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [],
+  "resolvedFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Seven regenerated description.json records still carry stale parentChain ancestry",
+      "file": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research/001-uplift-research-deep-review-changes/description.json",
+      "line": 19,
+      "description": "All affected identity metadata was corrected after the TOP_MAP bug fix.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "correctness",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "openFindingsCount": 0,
+  "resolvedFindingsCount": 2,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [
+    {
+      "index": 1,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 4,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 7,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 10,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 13,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

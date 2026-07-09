@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+  "description": "sk-code routes to the correct surface and resources, but over-loads: the live run read 2-4x the resources the scenario needed (D3 42), and the D4",
+  "keywords": [
+    "sk-code",
+    "routes",
+    "correct",
+    "surface",
+    "resources",
+    "over-loads",
+    "live",
+    "run",
+    "read",
+    "2-4x",
+    "scenario",
+    "needed"
+  ],
+  "lastUpdated": "2026-07-08T13:06:53.340Z",
+  "specId": "011",
+  "folderSlug": "sk-code-routing-efficiency-remediation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "008-deep-improvement-skill-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

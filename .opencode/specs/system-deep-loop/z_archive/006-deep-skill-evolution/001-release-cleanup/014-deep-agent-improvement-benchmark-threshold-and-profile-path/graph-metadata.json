@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/014-deep-agent-improvement-benchmark-threshold-and-profile-path",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/014-deep-agent-improvement-benchmark-threshold-and-profile-path",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix benchmark threshold and profile path",
+      "008 deep-agent-improvement remediation",
+      "LG-0004 LG-0006",
+      "run-benchmark profilesDir default",
+      "fix benchmark threshold and profile path plan",
+      "008 remediation plan",
+      "fix benchmark threshold and profile path tasks",
+      "008 remediation tasks",
+      "fix benchmark threshold and profile path summary",
+      "008 remediation summary"
+    ],
+    "key_topics": [
+      "fix",
+      "benchmark",
+      "threshold",
+      "profile",
+      "path",
+      "008",
+      "deep-agent-improvement",
+      "remediation",
+      "lg-0004",
+      "lg-0006",
+      "run-benchmark",
+      "profilesdir"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remediation of the two code/config gaps the 005-deep-agent-improvement phase-5 deep-research loop surfaced and escalated: align the dynamic-profile benchmark threshold (75 -> 80) and fix the run-benchmark default profilesDir (target-profiles -> benchmark-profiles).",
+    "created_at": "2026-05-24T04:32:12.188Z",
+    "last_save_at": "2026-07-08T13:43:58.505Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a6d7d2b09c8a3c65357b204bb00c5c6534ece653cf6c70c604969269a51fe522",
+    "source_doc_hashes": {
+      "spec.md": "4b97ce064a2ee2ea98a881c19b1ef50e631f56dd5d1962ff3b4e4ca5dc456847",
+      "plan.md": "022ccb3ecfe54021b40ca02d7e62ff4c0318226c14ffb38a37ab85a91d08122b",
+      "tasks.md": "3c289e99334bb5b275df3f79aa5af9b950f2846b22b74098bb9eec982310a3d0",
+      "implementation-summary.md": "a4b971d52203b151e2ec5b6226859859e176d3fb46a04e0c871720e6f383202c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

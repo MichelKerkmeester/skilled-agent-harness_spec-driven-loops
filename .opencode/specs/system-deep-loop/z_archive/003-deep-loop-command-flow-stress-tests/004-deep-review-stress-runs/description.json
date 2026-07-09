@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs",
+  "description": "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology.",
+  "keywords": [
+    "sub-phase",
+    "062-deep-loop-command-flow-stress-tests",
+    "apply",
+    "060",
+    "004",
+    "methodology"
+  ],
+  "lastUpdated": "2026-07-08T13:06:39.339Z",
+  "specId": "004",
+  "folderSlug": "deep-review-stress-runs",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "003-deep-loop-command-flow-stress-tests"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

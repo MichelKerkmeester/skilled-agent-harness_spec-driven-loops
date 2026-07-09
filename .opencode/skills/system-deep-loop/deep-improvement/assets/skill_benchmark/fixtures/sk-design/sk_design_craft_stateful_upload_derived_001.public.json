@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk_design_craft_stateful_upload_derived_001",
+  "tier": "T1",
+  "public": {
+    "prompt": "polish a document uploader with micro-interactions for pending, progress, retry, and complete states",
+    "runtime": "opencode",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": false
+  }
+}

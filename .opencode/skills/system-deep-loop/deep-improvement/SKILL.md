@@ -54,29 +54,10 @@ Use this skill when:
 
 ### Primary Use Cases
 
-#### Bounded Agent Improvement
-
-Use this skill to set up a proposal-first loop for any bounded agent file, write packet-local candidates, and record append-only evidence.
-
-#### Benchmark-Backed Evaluation
-
-Use this skill when candidate quality must be judged by produced artifacts and repeatability reports, not just by how a prompt file reads in isolation.
-
-#### Promotion and Rollback Verification
-
-Use this skill when you need to prove that guarded promotion, validation, rollback, and post-rollback comparison all work end to end without leaving hidden drift behind.
-
-#### Model and Prompt Benchmarking
-
-Use Lane B (model-benchmark) when the thing under test is a model or prompt framework rather than an agent definition. It runs the same loop shape against a benchmark profile and scores produced outputs, sharing the candidate, dispatcher, and scorer seams with the agent-improvement path. See §4 below.
-
-#### Skill Benchmarking
-
-Use Lane C (skill-benchmark) when the thing under test is a *skill* — to measure whether AIs actually get routed to it, discover its references/assets unprompted, use it efficiently, and benefit from it. It emits a ranked, remediable Skill Benchmark Report and is diagnostic by default (it does not mutate the target skill). See `references/skill_benchmark/operator_guide.md`.
-
-#### Packaging Benchmark and Guarded Refine
-
-Use Lane D (non-dev-ai-system-refine) when the thing under test is an *AI-system packaging* (one prompt system shipped as CLI runtime, claude.ai Project and native skill) and the goal is to close measured quality gaps automatically. It benchmarks N-sample averaged outputs, re-grades them with an independent different-family grader (self-reported scores are not a safe target), proposes bounded technique-doc edits, and promotes only inside an isolated worktree when held-out grades do not regress. The frozen scoring surface, derivation and kill-switch logic live with the packaging (`benchmark/_loop/loop.py` contract); dry-run is the default. New packagings onboard via the kit: `assets/non_dev_ai_system/` (config schema + parameterized templates) rendered by `scripts/non-dev-ai-system/init_packaging.py`, never by copy-editing a sibling. See `references/non_dev_ai_system/operator_guide.md` (contract: `loop_contract.md`, teachings: `guardrails_teachings.md`).
+- **Lane A** — proposal-first loop for any bounded agent file: packet-local candidates, dynamic 5-dimension scoring, append-only evidence, guarded promotion/rollback with drift review kept separate. See §3.
+- **Lane B** — benchmarks a model or prompt framework (not an agent file) against a benchmark profile, scoring produced outputs; shares the candidate, dispatcher, and scorer seams with Lane A. See §4.
+- **Lane C** — diagnoses whether a *skill* is well-routed, discoverable, efficient, and useful in practice; emits a ranked Skill Benchmark Report and is diagnostic by default (no target mutation). See `references/skill_benchmark/operator_guide.md`.
+- **Lane D** — benchmarks an *AI-system packaging* (one prompt system shipped as CLI runtime, claude.ai Project, and native skill) with N-sample averaged outputs re-graded by an independent different-family grader (self-reported scores are not a safe target), proposes bounded technique-doc edits, and promotes only inside an isolated worktree when held-out grades do not regress. Dry-run is the default; new packagings onboard via the `assets/non_dev_ai_system/` kit, never by copy-editing a sibling. See `references/non_dev_ai_system/operator_guide.md`.
 
 ### When NOT to Use
 
@@ -140,12 +121,12 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "QUICK_REFERENCE": ["references/shared/quick_reference.md"],
-    "LOOP_EXECUTION": ["references/shared/loop_protocol.md", "references/model_benchmark/benchmark_operator_guide.md"],
+    "LOOP_EXECUTION": ["references/shared/loop_protocol.md", "references/model_benchmark/benchmark_operator_guide.md", "references/shared/runtime_truth_contracts.md"],
     "EVALUATION_POLICY": ["references/model_benchmark/evaluator_contract.md", "references/shared/promotion_rules.md"],
-    "PROMOTION_OPERATIONS": ["references/shared/rollback_runbook.md", "references/agent_improvement/mirror_drift_policy.md", "references/shared/promotion_rules.md"],
+    "PROMOTION_OPERATIONS": ["references/shared/rollback_runbook.md", "references/agent_improvement/mirror_drift_policy.md", "references/shared/promotion_rules.md", "references/agent_improvement/stress_test_protocol.md"],
     "TARGET_ONBOARDING": ["references/agent_improvement/target_onboarding.md"],
     "INTEGRATION_SCAN": ["references/agent_improvement/integration_scanning.md", "references/model_benchmark/evaluator_contract.md"],
-    "MODEL_BENCHMARK": ["references/model_benchmark/benchmark_operator_guide.md", "references/model_benchmark/evaluator_contract.md"],
+    "MODEL_BENCHMARK": ["references/model_benchmark/benchmark_operator_guide.md", "references/model_benchmark/evaluator_contract.md", "references/model_benchmark/lane_b_mechanics.md"],
     "SKILL_BENCHMARK": ["references/skill_benchmark/operator_guide.md", "references/skill_benchmark/scoring_contract.md", "references/skill_benchmark/scenario_authoring.md"],
     "NON_DEV_AI_SYSTEM": ["references/non_dev_ai_system/operator_guide.md", "references/non_dev_ai_system/loop_contract.md", "references/non_dev_ai_system/guardrails_teachings.md"],
     "FULL_SETUP": ["assets/agent_improvement/improvement_charter.md", "assets/agent_improvement/improvement_strategy.md"],
@@ -242,56 +223,13 @@ def route_recursive_agent_resources(task):
 
 ## 3. LANE A: AGENT-IMPROVEMENT
 
-Lane A improves a bounded agent `.md` file. Command: `/deep:agent-improvement`. It runs the proposal-first loop in three modes (initialization, proposal and evaluation, promotion and recovery) and scores candidates with dynamic-mode 5-dimension scoring.
+Lane A improves a bounded agent `.md` file. Command: `/deep:agent-improvement`. It runs the proposal-first loop in three modes (initialization, proposal and evaluation, promotion and recovery) and scores candidates with dynamic-mode 5-dimension scoring across structural integrity (0.20), rule coherence (0.25), integration consistency (0.25), output quality (0.15), and system fitness (0.15) — profiles are generated on the fly per target via `scripts/agent-improvement/generate-profile.cjs`; no static profiles ship.
 
-### Mode 1: Runtime Initialization
+1. **Init**: confirm spec folder/target/mode/profile, create `{spec_folder}/improvement/` plus `candidates/`, `benchmark-runs/`, `archive/`, copy in runtime templates, record baseline in the append-only ledger.
+2. **Propose + evaluate**: read charter/boundary/profile/target, run `scan-integration.cjs`, write exactly one bounded candidate under `candidates/`, score it with `score-candidate.cjs` (dynamic 5-dimension, the sole supported path), benchmark it with `run-benchmark.cjs`, append results to the ledger, refresh state with `reduce-state.cjs`.
+3. **Promote + recover**: promote only when scoring, benchmark status, repeatability, boundary, and approval gates all pass, via `promote-candidate.cjs`; roll back with `rollback-candidate.cjs` plus direct comparison evidence; treat mirror drift as separate downstream work via `check-mirror-drift.cjs`.
 
-1. Confirm the spec folder, target path, execution mode, and active target profile.
-2. Create `{spec_folder}/improvement/` plus the packet-local `candidates/`, `benchmark-runs/`, and `archive/` directories when needed.
-3. Copy in the runtime config, charter, strategy, and boundary templates.
-4. Record baseline state in the append-only ledger before the first candidate run.
-
-### Mode 2: Proposal and Evaluation
-
-1. Read the charter, boundary file, target profile, and canonical target surface.
-2. Run `scripts/agent-improvement/scan-integration.cjs` to discover all surfaces the target agent touches.
-3. Write exactly one bounded candidate under the packet-local `candidates/` directory.
-4. Run `scripts/agent-improvement/score-candidate.cjs` to evaluate the candidate via dynamic-mode 5-dimension scoring (the sole supported path).
-5. Run `scripts/model-benchmark/run-benchmark.cjs` to measure produced outputs against the active fixture set.
-6. Append score and benchmark results to the packet-local ledger.
-7. Run `scripts/shared/reduce-state.cjs` to refresh the dashboard and experiment registry.
-
-### Mode 2A: Stress-Test Failure Paths Before Promotion Claims
-
-For changes that alter agent discipline, run at least one same-task A/B stress scenario before recommending promotion:
-
-1. Call A: a generic improvement attempt against an isolated sandbox copy of the target.
-2. Reset the sandbox to its baseline copy.
-3. Call B: the disciplined `/deep:agent-improvement` path against the identical prompt and files.
-4. Judge only grep/file/diff/exit-code signals: helper invocation, packet-local candidate boundary, no canonical or mirror mutation before promotion, benchmark journal boundary, legal-stop gate keys, and stop-reason correctness.
-
-Do not treat `Read(SKILL.md)` or `skill(deep-improvement)` as evidence that this protocol executed.
-
-### 5-Dimension Evaluation Framework
-
-Dynamic mode is the only scoring path. Scoring evaluates five dimensions:
-
-| Dimension | Weight | What It Measures |
-| --- | --- | --- |
-| Structural Integrity | 0.20 | Agent template compliance (required sections present) |
-| Rule Coherence | 0.25 | ALWAYS/NEVER rules align with workflow steps |
-| Integration Consistency | 0.25 | Mirrors in sync, commands reference agent, skills reference agent |
-| Output Quality | 0.15 | Output verification items present, no placeholder content |
-| System Fitness | 0.15 | Permission alignment, resource references valid, frontmatter complete |
-
-Profiles are generated on the fly from any agent file via `scripts/agent-improvement/generate-profile.cjs`. No static profiles are shipped. Every target is evaluated against its own derived structure and rules.
-
-### Mode 3: Promotion and Recovery
-
-1. Promote only when prompt scoring, benchmark status, repeatability, boundary, and approval gates all pass.
-2. Use `scripts/shared/promote-candidate.cjs` for guarded canonical mutation.
-3. Use `scripts/agent-improvement/rollback-candidate.cjs` plus direct comparison evidence when the canonical target must be restored.
-4. Treat mirror drift as downstream packaging work and review it separately with `scripts/agent-improvement/check-mirror-drift.cjs`.
+For changes that alter agent discipline, run a same-task A/B stress scenario (isolated sandbox baseline vs. the disciplined path, judged only on grep/file/diff/exit-code signals) before recommending promotion — reading `SKILL.md` is not evidence the protocol executed. See `references/agent_improvement/stress_test_protocol.md` for the full procedure, `references/shared/loop_protocol.md` for the complete step-by-step INIT/PROPOSE/SCORE/PROMOTE lifecycle, and `references/agent_improvement/score_dimensions.md` for the full per-dimension scoring rubric.
 
 ---
 
@@ -299,11 +237,12 @@ Profiles are generated on the fly from any agent file via `scripts/agent-improve
 
 Lane B benchmarks a model or prompt framework instead of mutating an agent file. Command: `/deep:model-benchmark`. Runtime entry is `scripts/shared/loop-host.cjs --mode=model-benchmark`. It reuses the three pluggable seams (candidate-source, dispatcher, scorer) and keeps the default agent-improvement path byte-identical when no mode flag is set.
 
-1. **Entry point**: `scripts/shared/loop-host.cjs` resolves the mode. `--mode=agent-improvement` (or no flag) routes to `scripts/agent-improvement/score-candidate.cjs`. `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`. An unknown mode warns and falls back to agent-improvement.
-2. **Dispatcher**: `scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher (executor-routing map across cli-opencode, cli-claude-code, cli-opencode). It is loaded only on the model-benchmark path, never in agent-improvement mode.
-3. **Scorer selection**: `run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer (deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch. `--grader mock` or `--grader llm` select the stub or real grader.
-4. **Mode-aware records and promotion path**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`, and benchmark reports carry `scoringMethod: pattern|5dim`, so the reducer (`reduce-state.cjs`) and downstream consumers can attribute results per lane. Record-level mode metadata lives in the reducer, NOT in the promoter. Lane A promotes a scored candidate through the agent-scored gates in `promote-candidate.cjs`. Lane B promotes from the benchmark report: pass `promote-candidate.cjs --benchmark-report <report.json>`, and when the report status is `benchmark-complete` with a passing benchmark recommendation, the benchmark-report path drives promotion and bypasses the agent-scored-file requirement. The promoter is NOT otherwise lane-branching beyond this benchmark-report path, both lanes share the same single canonical-target guard, archive, and runtime-mirror sync.
-5. **Hardening env gates**: set `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution in the 5-dim scorer. When the gate is off, BOTH criteria-exec paths are refused: the deterministic-criterion `execSync` in `score-model-variant.cjs` AND the bundle-gate Layer-3 acceptance-command `execSync` in `bundle-gate.cjs`. Set `DEEP_AGENT_GRADER_CACHE_RAW=0` to redact raw grader output from the on-disk cache. Both default to the permissive value for backward-compat. **Trusted-author default rationale (DOCUMENT-ACCEPT)**: criteria commands originate only from benchmark profiles authored by the operator running the loop, and the deterministic criterion runs in the same trust domain as the loop itself, so the default-on behavior is an intended trusted-author boundary rather than an untrusted-input risk. A shipped backward-compat test asserts the criterion runs by default, so flipping the default would be a behavior change with test impact, not a silent hardening. Hardened or shared-runner deployments set `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to fail closed, and `DEEP_AGENT_GRADER_CACHE_RAW=0` to redact cached grader output.
+- **Entry + dispatch**: `loop-host.cjs` resolves `--mode=agent-improvement` (default) vs `--mode=model-benchmark`; the model-agnostic dispatcher `scripts/model-benchmark/dispatch-model.cjs` loads only on the model-benchmark path.
+- **Scoring**: `run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher; `--scorer 5dim` routes through the ported 120/003 five-dimension scorer with a pluggable `--grader noop|mock|llm` (default `noop`, deterministic).
+- **Promotion**: state records and reports carry `mode`/`scoringMethod` for lane attribution. Lane A promotes through the agent-scored gates in `promote-candidate.cjs`; Lane B promotes from the benchmark report via `promote-candidate.cjs --benchmark-report <report.json>` when status is `benchmark-complete` with a passing recommendation — both lanes still share one canonical-target guard, archive, and runtime-mirror sync.
+- **Hardening**: `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in both the 5-dim scorer and the bundle-gate Layer-3 acceptance command; `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the cache. Both default permissive (trusted-author boundary: criteria come only from operator-authored benchmark profiles in the same trust domain as the loop) — flip both for hardened/shared-runner deployments.
+
+Full dispatcher, scorer, promotion-path, and hardening-rationale detail: `references/model_benchmark/lane_b_mechanics.md`.
 
 ---
 
@@ -328,182 +267,20 @@ See `references/model_benchmark/mixed_executor_methodology.md` for the split mec
 
 ## 7. RUNTIME TRUTH CONTRACTS
 
-### Stop-Reason Taxonomy
+Every improvement session termination MUST produce both a `stopReason` (why) and a `sessionOutcome` (what happened), drawn from a small frozen enum validated by `scripts/shared/improvement-journal.cjs`:
 
-Every improvement session termination MUST produce both a `stopReason` (why) and a `sessionOutcome` (what happened).
+- **stopReason**: `converged` (all 5 legal-stop gate bundles pass + trajectory stable), `maxIterationsReached`, `blockedStop` (a gate bundle failed), `manualStop`, `error`, `stuckRecovery`
+- **sessionOutcome**: `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
 
-**stopReason** (WHY the session ended):
+Journal emission is orchestrator-only (ADR-001) — the target agent never writes journal rows. The append-only `improvement-journal.jsonl` records lifecycle events (`session_start`, `candidate_scored`, `gate_evaluation`, `legal_stop_evaluated`, `promotion_result`, `session_end`, etc.) via `scripts/shared/improvement-journal.cjs --emit <eventType> --journal <path> --details '<json>'`. A session may NOT claim `converged` unless all five gate bundles pass: `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, `improvementGate`.
 
-| Reason | Trigger Condition |
-| --- | --- |
-| `converged` | All legal-stop gate bundles pass and dimension trajectory is stable |
-| `maxIterationsReached` | Iteration counter equals `maxIterations` config |
-| `blockedStop` | One or more legal-stop gate bundles fail when convergence math would otherwise trigger stop |
-| `manualStop` | Operator cancels the session |
-| `error` | Infra failure, script crash, or unrecoverable condition |
-| `stuckRecovery` | Session detected stuck state and exhausted recovery options |
+**Resume caveat (current release):** sessions support only `new` lineage today. Every `/deep:agent-improvement` invocation starts a fresh session id and generation 1 — `resume`/`restart`/`fork`/`completed-continue` have no shipped runtime wiring despite appearing in earlier drafts. To continue evaluating an agent, archive the prior session folder and re-invoke the command; the reducer never carries ancestry across sessions.
 
-**sessionOutcome** (WHAT happened to the candidate):
+Static benchmark assets (profile, fixtures, materializer, runner) ship with the skill under `assets/model_benchmark/` and `scripts/shared/materialize-benchmark-fixtures.cjs` / `scripts/model-benchmark/run-benchmark.cjs`; benchmark outputs always land in the sk-prompt-models hub (`.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`), never spec-local. `scripts/shared/mutation-coverage.cjs` tracks explored/exhausted mutation types with a signature-based dedup (`DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1` bypasses it); `scripts/agent-improvement/trade-off-detector.cjs` blocks promotion on Pareto-dominated candidates; `scripts/agent-improvement/candidate-lineage.cjs` (disabled by default) and `scripts/agent-improvement/benchmark-stability.cjs` (advisory-only weight recommendations) round out the coverage/trajectory tooling. The reducer (`scripts/shared/reduce-state.cjs`) replays `improvement-journal.jsonl`, `candidate-lineage.json`, and `mutation-coverage.json` on every refresh into `journalSummary`, `candidateLineage`, and `mutationCoverage` registry fields, degrading gracefully to `null` when an artifact is missing.
 
-| Outcome | When Used |
-| --- | --- |
-| `keptBaseline` | Baseline was retained because candidate did not improve |
-| `promoted` | Candidate was promoted to canonical target |
-| `rolledBack` | Promoted candidate was rolled back to prior state |
-| `advisoryOnly` | Session completed for assessment only; no mutation attempted |
-
-### Audit Journal Protocol
-
-All journal emission is orchestrator-only (ADR-001). The journal (`improvement-journal.jsonl`) is an append-only JSONL file capturing lifecycle events. Separate from the existing `agent-improvement-state.jsonl` which tracks proposal/evaluation data.
-
-**Script**: `scripts/shared/improvement-journal.cjs`
-
-Event types: `session_start`, `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempt`, `promotion_result`, `rollback`, `rollback_result`, `trade_off_detected`, `mutation_proposed`, `mutation_outcome`, `session_ended`, `session_end`
-
-### Static Benchmark Assets
-
-The reusable benchmark contract ships with the skill, not with each spec packet:
-
-- Profile: `assets/model_benchmark/benchmark-profiles/default.json`
-- Fixtures: `assets/model_benchmark/benchmark-fixtures/*.json`
-- Materializer: `scripts/shared/materialize-benchmark-fixtures.cjs`
-- Runner: `scripts/model-benchmark/run-benchmark.cjs`
-
-The command workflow first materializes static fixture JSON into outputs under `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir .opencode/skills/sk-prompt-models/benchmarks/{run_label}`. The runner writes `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
-
-Benchmark outputs are always written to the sk-prompt-models hub at `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`. There is no spec-local output path. `run_label` is a required identifier that distinguishes benchmark runs in the hub (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`).
-
-`benchmark_completed` may be emitted only after `benchmarks/{run_label}/report.json` exists. Repeatability output from `benchmark-stability.cjs` is separate evidence and does not by itself prove benchmark completion.
-
-### Legal-Stop Gate Bundles
-
-A session may NOT claim `converged` unless all five gate bundles pass: `contractGate`, `behaviorGate`, `integrationGate`, `evidenceGate`, and `improvementGate`. The orchestrator emits `legal_stop_evaluated` with nested `details.gateResults` before any `session_end`. Failures emit `blocked_stop` with `failedGates[]` and `stopReason:"blockedStop"`.
-
-### Resume/Continuation Semantics (current release)
-
-Sessions support a single lineage mode today: `new`. Every invocation of the `/deep:agent-improvement` workflow starts a fresh session with a new session id and generation 1. Multi-generation lineage modes (`resume`, `restart`, `fork`, `completed-continue`) were described in earlier drafts but have no shipped runtime wiring in the deep-improvement workflow, reducer, or journal consumer.
-
-Operators who want to continue evaluating an agent after a prior session SHOULD archive the prior session folder (e.g. move `improve/` to `improve_archive/{timestamp}/`) and re-invoke the command, which starts a new `new`-mode session. The reducer treats each session independently and does not carry ancestry across sessions.
-
-If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_agent-improvement_{auto,confirm}.yaml`, reducer ancestry handling in `deep-improvement/scripts/shared/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
-
-### Mutation Coverage Graph
-
-**Script**: `scripts/shared/mutation-coverage.cjs`
-
-Tracks explored dimensions, tried mutation types per dimension, and exhausted mutation sets using `loop_type: "improvement"` namespace isolation (ADR-002). The orchestrator skips mutation types already in the exhausted log.
-
-#### Mutation Signature Dedup
-
-Each mutation entry in `mutation-coverage.json` carries a `signature` field computed as:
-
-```text
-signature = sha256(dimension + "\u001f" + mutationType + "\u001f" + targetSection + "\u001f" + normalizedBody64)
-```
-
-Where `normalizedBody64` = whitespace-collapsed, lowercased, first 64 characters of the mutation body.
-
-**Dedup behavior:**
-- Before proposing a new mutation, `isSignatureSeen()` scans existing `mutations[]` and `exhausted[]` arrays
-- If the signature matches, the candidate is skipped with `reason: "EXHAUSTED-FROM: iter-NNN"` recorded in `exhausted[]`
-- The `EXHAUSTED-FROM` format references the iteration where the original mutation was tried
-
-**Bypass:**
-```bash
-export DEEP_AGENT_IMPROVEMENT_SKIP_DEDUP=1  # Force re-evaluation of previously seen signatures
-```
-When set, `isSignatureSeen()` always returns `{ seen: false }`. Every mutation is considered fresh.
-
-**Backward compatibility:** Legacy `mutation-coverage.json` entries without `signature` field fall back to the existing `dimension::mutationType` dedup in the reducer. No migration required.
-
-**Authoritative storage:** `mutation-coverage.json` `mutations[]` array. `signature` is written by `recordMutation()` and read by `isSignatureSeen()` and `reduce-state.cjs`.
-
-### Dimension Trajectory
-
-Trajectory data records per-iteration dimension scores. Two distinct convergence signals run side by side and must not be conflated. `mutation-coverage.cjs` `checkConvergenceEligibility()` marks a profile convergence-eligible when it has at least 3 data points and every dimension delta across the last 3 points is within `DEFAULT_STABILITY_DELTA` (+/-2), a tolerance band. Separately, `reduce-state.cjs` `stopOnDimensionPlateau` fires the plateau stop only when a dimension's last 3 scores are identical (exact-repeat). The +/-2 trajectory eligibility and the exact-repeat plateau stop are different checks.
-
-Stop-condition counters (`maxConsecutiveTies`, `maxInfraFailuresPerProfile`, `maxWeakBenchmarkRunsPerProfile`) default to disabled, with no cap, unless the runtime config sets them. Only configured counters can trigger `blockedStop`.
-
-### Trade-Off Detection
-
-**Script**: `scripts/agent-improvement/trade-off-detector.cjs`
-
-Detects Pareto trade-offs: flags when improvement > +3 in one dimension causes regression < -3 in hard dimensions (structural, integration, systemFitness) or < -5 in soft dimensions (ruleCoherence, outputQuality). Blocks promotion for Pareto-dominated candidates.
-
-### Parallel Candidate Waves (Optional)
-
-**Script**: `scripts/agent-improvement/candidate-lineage.cjs`
-
-Disabled by default (`parallelWaves.enabled: false` in config, ADR-004). When enabled, spawns 2-3 candidates with different mutation strategies. Activation requires: exploration-breadth score above threshold, 3+ unresolved mutation families, and 2 consecutive tie/plateau iterations.
-
-### Weight Optimizer (Advisory Only)
-
-**Script**: `scripts/agent-improvement/benchmark-stability.cjs`
-
-Reads historical session data and emits a weight-recommendation report. Recommendations do NOT auto-apply (ADR-005). Requires minimum session count threshold before producing recommendations.
+Full stop-reason tables, the journal event-type list, the mutation-signature formula, dimension-trajectory vs. plateau distinctions, and orchestrator/reducer boundary ownership are documented in `references/shared/runtime_truth_contracts.md`.
 
 ---
-
-### Journal Wiring Contract
-
-Journal emission is orchestrator-only. The target agent being evaluated never writes journal rows directly. Only the visible YAML workflow or an operator-side wrapper invokes `scripts/shared/improvement-journal.cjs`.
-
-The CLI contract is:
-
-```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
-```
-
-The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
-
-### Boundary Points
-
-Journal boundaries are `session_start` after baseline setup, per-iteration candidate/scoring/gate events, and `session_end` after synthesis or terminal stop. Required details include session id, target, iteration/candidate paths, scores, stop reason, session outcome, and total iterations.
-
-### Frozen Helper Enums
-
-`improvement-journal.cjs` currently exports and validates the following enums:
-
-- `STOP_REASONS`: `converged`, `maxIterationsReached`, `blockedStop`, `manualStop`, `error`, `stuckRecovery`
-- `SESSION_OUTCOMES`: `keptBaseline`, `promoted`, `rolledBack`, `advisoryOnly`
-
-Keep session-end emissions aligned to those helper-owned values until the helper contract itself changes. Labels such as `convergedImprovement`, `plateau`, `benchmarkPlateau`, `rejected`, `deferred`, `blocked`, or `errored` are not accepted by the current CLI validator. Plateau detection is a reducer/stop-rule condition. It must reconcile to one of the canonical stop reasons above when emitted as `details.stopReason`.
-
-### Orchestrator Ownership
-
-- Auto mode emits `session_start` after `step_record_baseline`, then emits `candidate_generated`, `candidate_scored`, and `gate_evaluation` inside each loop iteration, and finally emits `session_end` after synthesis.
-- Confirm mode mirrors the same boundaries, with `gate_evaluation` emitted after the operator-facing approval gate is resolved.
-- Operators invoking the helper manually must use the same boundary order so replay and reducer consumers see a consistent journal shape.
-
-### Reducer Consumer Side
-
-The reducer is the consumer for replay artifacts on refresh. Every `scripts/shared/reduce-state.cjs` pass now attempts to read:
-
-- `improvement-journal.jsonl`
-- `candidate-lineage.json`
-- `mutation-coverage.json`
-
-These inputs remain optional. Missing files do not fail the reducer. The corresponding registry field is set to `null` so dashboard and registry refreshes still complete.
-
-For legal-stop replay, the reducer consumes `details.gateResults` from the latest `legal_stop_evaluated` event and surfaces it as `journalSummary.latestLegalStop.gateResults` in `experiment-registry.json` plus the dashboard's latest legal-stop table.
-
-### Journal Replay Consumer
-
-The reducer consumes replay artifacts instead of running a separate orchestrator-only synthesis step. During each refresh pass, `scripts/shared/reduce-state.cjs` reads the following artifacts when present:
-
-- `improvement-journal.jsonl` to summarize last session boundaries, total replayed events, per-event counts, and terminal `stopReason` / `sessionOutcome`
-- `candidate-lineage.json` to summarize lineage depth, total candidate count, and the latest candidate leaf
-- `mutation-coverage.json` to summarize mutation coverage ratio and uncovered mutations
-
-The reducer writes these summaries into new top-level registry fields:
-
-- `journalSummary`
-- `candidateLineage`
-- `mutationCoverage`
-
-Graceful degradation is required: if any artifact is missing, unreadable, or not yet generated for the current runtime, the reducer preserves the rest of the registry and records `null` for that field instead of throwing.
-
-The dashboard now also includes a dedicated **Sample Quality** section. This separates replay/stability sample sufficiency from benchmark failures so operators can tell the difference between a true regression and an iteration that simply lacked enough data for trade-off or replay-stability trust.
 
 ## 8. RULES
 

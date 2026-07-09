@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
+  "spec_folder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
+  "parent_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "empty archive folder",
+      "research_archive review_archive",
+      "deep loop archive dir",
+      "archive root mkdir lazy",
+      "deep loop archive plan",
+      "archive root lazy restart",
+      "deep-research init mkdir",
+      "deep loop archive tasks",
+      "archive dir cleanup tasks",
+      "empty archive fix tasks",
+      "deep loop archive summary",
+      "empty archive fixed"
+    ],
+    "key_topics": [
+      "empty",
+      "archive",
+      "folder",
+      "deep",
+      "loop",
+      "dir",
+      "root",
+      "mkdir",
+      "lazy",
+      "plan",
+      "restart",
+      "deep-research"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
+      "scripts/tests/deep-research-contract-parity.vitest.ts",
+      "scripts/tests/deep-review-contract-parity.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-research-contract-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-contract-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Declarative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research command init step `stepcreatedirectories` ran `mkdir -p … {statepaths.archiveroot}` on every fresh/resume run, but the archive root is only used on a `restart` move (rare) — so it almost always stayed empty, littering packets with empty `researcharchive/`",
+    "created_at": "2026-05-29T05:57:34.890Z",
+    "last_save_at": "2026-07-08T13:43:37.362Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a9fc1d739697debf3af84c244d6ebeedfdc763e9b87f77d19c00b0016452c836",
+    "source_doc_hashes": {
+      "spec.md": "9143c08f6049e60c77002d010879fe014a04a7dbe88d450f40844070a489918e",
+      "plan.md": "ec0ff9c69e60a896f34a6ccb9edbc4fbde44ea20e8c0a20ce24f8a214ed7f988",
+      "tasks.md": "32aa2f74fecdb32985b75c660339459e012386a4dd0326e392cf8faa9f7d4d17",
+      "implementation-summary.md": "d00c035c3057b76d1940397f31aaace5a5b4f81dcda3dc059f20b3cebf9bffc4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

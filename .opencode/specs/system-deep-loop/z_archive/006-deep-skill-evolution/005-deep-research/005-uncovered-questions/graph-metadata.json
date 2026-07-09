@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research/005-uncovered-questions",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research/005-uncovered-questions",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research",
+      "uncovered questions",
+      "DR-003",
+      "verification",
+      "ADR",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "deep-research",
+      "uncovered",
+      "questions",
+      "dr-003",
+      "verification",
+      "adr",
+      "implementation",
+      "summary",
+      "convergence",
+      "references",
+      "use",
+      "question"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-research-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Uncovered Questions Tracking",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Expose",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reducer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Uncovered Questions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep-research convergence references use question coverage as a saturation signal, but the operator dashboard did not show which questions remained uncovered",
+    "created_at": "2026-05-23T03:56:52.598Z",
+    "last_save_at": "2026-07-08T13:44:03.687Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c85ef8ffb581c38949ad22adf021c2af4f89ab3e31e1de44973907a170ad1ac",
+    "source_doc_hashes": {
+      "spec.md": "e8305c604314dac4c7e4611c0e129318857067aece38e4d37a88ec078e8a6f50",
+      "plan.md": "a24d1c06fa36e29fc8fd09d65cf8eb060b2629c218088e6ebca0efa9d6453d0a",
+      "tasks.md": "2f4942eb7329048788c3243e0dcf5dc511f7cbd2204c70b0d86c99cfdcb50913",
+      "checklist.md": "cf8ba51dd7ab05a757baf5b9131b92c2ddbf4fa4f6460ade43bbaf869036e652",
+      "decision-record.md": "79459690ec78e8b78c8ff4070313a261321a9da787575bef82e865b91e60d497",
+      "implementation-summary.md": "bb43bd957bbd361143be057da2a762b887370ff7a6fac5b5eef81d4e2b3e832d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

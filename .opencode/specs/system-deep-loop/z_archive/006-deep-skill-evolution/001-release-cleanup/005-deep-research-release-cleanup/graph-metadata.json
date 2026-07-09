@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/005-deep-research-release-cleanup",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/005-deep-research-release-cleanup",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research release cleanup",
+      "002-deep-research",
+      "skill audit",
+      "alignment validation gate",
+      "deep-research deep-research loop",
+      "sk-doc conformance",
+      "deep-research release cleanup plan",
+      "phase 1 spec creation",
+      "phase 2 skill audit",
+      "phase 3 readme rewrite",
+      "phase 4 alignment validation gate",
+      "phase 5 deep research and merge"
+    ],
+    "key_topics": [
+      "deep-research",
+      "release",
+      "cleanup",
+      "002-deep-research",
+      "skill",
+      "audit",
+      "alignment",
+      "validation",
+      "gate",
+      "loop",
+      "sk-doc",
+      "conformance"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "schemas/audit-finding.schema.json",
+      "schemas/changelog-entry.schema.json",
+      "schemas/validation-report.schema.json",
+      "schemas/iteration-output.schema.json",
+      "feature_catalog/feature_catalog.md",
+      "scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/system-spec-kit/templates/README.md",
+      ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
+      ".opencode/skills/system-spec-kit/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-finding.schema.json",
+        "kind": "config",
+        "path": "schemas/audit-finding.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-entry.schema.json",
+        "kind": "config",
+        "path": "schemas/changelog-entry.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.schema.json",
+        "kind": "config",
+        "path": "schemas/validation-report.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-output.schema.json",
+        "kind": "config",
+        "path": "schemas/iteration-output.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "level_specifications.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `deep-research` skill carries 412 lines of SKILL.md, 248 lines of README, 6 references (3,526 lines), 5 assets, 16 feature-catalog files, 43 manual-testing-playbook entries, and 16 changelog versions",
+    "created_at": "2026-05-23T14:11:44.282Z",
+    "last_save_at": "2026-07-08T13:43:46.823Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:0690eca7b3f03e024882d9442e034196a5672ae40e169de2f39aa74b5e55b8d6",
+    "source_doc_hashes": {
+      "spec.md": "b06cf7c7e2121c5bf05cd7cd11d32b21304275bb98bdb65e46ddadbd8b357624",
+      "plan.md": "ac3fe80ccfb25607000dc5cbb69d39d9e33f7504d25231a9431afd129af759eb",
+      "tasks.md": "cc3469aa0ff6584cd95a10d0c934dea52d8f90cf8424c2fa9331ce0c4df4cfb5",
+      "checklist.md": "be1314e6c6b4a71b09db04376b29b48b71c83eab9656e88db3715ec0d0db7da5",
+      "decision-record.md": "5aba0ce435e7cdb17294505a57b5484638f384e20294f1d3a41968d3580f6dfa",
+      "implementation-summary.md": "b66bf4a235d9bf856fd376f1563ba2f5cb67d6e8ce442c7e49d1bd0122dcc9ab",
+      "resource-map.md": "03131d452dd821667039a90b487bd4c3b5b9028722b01bdc330e54a582a65594"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

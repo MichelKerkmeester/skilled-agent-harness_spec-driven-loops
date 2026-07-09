@@ -80,7 +80,7 @@ Question ownership:
 
 When an inbox row targets an existing registry question by promoted question id or inbox id but carries different text, the reducer records a conflict instead of overwriting markdown. Conflict records use `operatorDecision` values of `accepted`, `rejected`, `superseded`, or `needs_decision`; the default unresolved decision is `needs_decision`. The emitted `question_conflict` JSONL event includes both `inboxValue` and `registryValue`.
 
-The currently documented live registry name is `deep-research-findings-registry.json` in command state paths, with `findings-registry.json` still appearing in older docs and packet examples. New docs should prefer the command state path and mention the older name only when explaining compatibility.
+The reducer writes the registry to `findings-registry.json`; this is the canonical live name. `deep-research-findings-registry.json` is a legacy read-fallback path only -- the reducer checks it when `findings-registry.json` is absent but never writes to it. New docs should reference `findings-registry.json` and mention the legacy name only when explaining read-compatibility.
 
 ---
 
@@ -141,7 +141,7 @@ The config may include:
     "deep-research-state.jsonl": "append-only",
     "deep-research-strategy.md": "mutable",
     "deep-research-dashboard.md": "auto-generated",
-    "deep-research-findings-registry.json": "auto-generated",
+    "findings-registry.json": "auto-generated",
     "iteration-*.md": "write-once",
     "research/research.md": "mutable"
   }

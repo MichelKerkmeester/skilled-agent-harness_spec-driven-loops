@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion",
+  "spec_folder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion",
+  "parent_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "101/004",
+      "deep-ai-council reference expansion",
+      "council scoring rubric",
+      "council depth dispatch",
+      "council failure handling",
+      "council anti-patterns",
+      "101/004 plan",
+      "deep-ai-council reference expansion plan",
+      "101/004 tasks",
+      "deep-ai-council reference expansion tasks",
+      "101/004 summary",
+      "deep-ai-council reference expansion summary"
+    ],
+    "key_topics": [
+      "101",
+      "004",
+      "deep-ai-council",
+      "reference",
+      "expansion",
+      "council",
+      "scoring",
+      "rubric",
+      "depth",
+      "dispatch",
+      "failure",
+      "handling"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "manual_testing_playbook/manual_testing_playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Reference Expansion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Expand",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The agent body now contains five substantial council subsystems with no focused skill references: scoring and synthesis, depth-aware dispatch, failure handling, anti-pattern detection, and expanded seat-diversity guidance",
+    "created_at": "2026-05-10T10:34:50Z",
+    "last_save_at": "2026-07-08T13:43:23.698Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5d42d168aaac475dc2adec26681cabceb35baa8276f6e3f6cb6c27239d273244",
+    "source_doc_hashes": {
+      "spec.md": "7ae161964b72979439cda3ed1f2a3e5d9429dbfa56921fba75b4ba1543ea1b44",
+      "plan.md": "4c9f9b86689e0b9ecff7a9f743f028936235cbef837f6137cac25f11d44bbeb6",
+      "tasks.md": "6edf691bce2f245232160e840debb0b19162f09358428f7c2db1ba0e500875ec",
+      "implementation-summary.md": "28fff0b722797075d2e0b1a3669be4536dcc35c8c5b9ded6b4e6788d5106ef0b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

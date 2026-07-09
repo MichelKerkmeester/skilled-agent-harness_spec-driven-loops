@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
+  "spec_folder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
+  "parent_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council fixups",
+      "council graph value comparison",
+      "DAC-027",
+      "DAC-032",
+      "claude translated frontmatter parity",
+      "101/005 plan",
+      "deep-ai-council fixups plan",
+      "graph value comparison plan",
+      "101/005 tasks",
+      "101/005 summary",
+      "deep-ai-council fixups summary",
+      "DAC-027..DAC-032 summary"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "fixups",
+      "council",
+      "graph",
+      "value",
+      "comparison",
+      "dac-027",
+      "dac-032",
+      "claude",
+      "translated",
+      "frontmatter",
+      "parity"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "multi-ai-council-runtime-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-persist-artifacts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Value Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When 101/004's playbook run validated all 26 scenarios, two pre-existing vitest failures surfaced:",
+    "created_at": "2026-05-11T08:10:00Z",
+    "last_save_at": "2026-07-08T13:43:24.939Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70413b89e0c10f89c17be8bdf6582e82d0ee4c01d9b3024b5899acbb32a308ef",
+    "source_doc_hashes": {
+      "spec.md": "46713bcbfe26eb0b25ac99d3c758a9b2e337b403ad95934ce6f80958bcb7890e",
+      "plan.md": "16e515cec537f0bca3cce73fb5f5829eeb825b081a0e0020472b9e6c5cc49ce9",
+      "tasks.md": "54a20acba3af5571e1db2bdb6ec8a6f89285714dc3746dee8c7f512a97549ac6",
+      "implementation-summary.md": "5079da5f1e9a486062ec4751e8d418ec7e8581f28bb2608373f4f4f533377e36"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

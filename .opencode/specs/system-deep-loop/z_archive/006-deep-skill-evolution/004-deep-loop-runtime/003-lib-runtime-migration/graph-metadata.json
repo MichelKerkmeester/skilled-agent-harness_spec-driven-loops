@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/003-lib-runtime-migration",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/003-lib-runtime-migration",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "118/002 lib runtime migration",
+      "deep-loop lib move",
+      "coverage-graph lib move",
+      "deep-loop-runtime lib population",
+      "118/002 plan",
+      "deep-loop lib move plan",
+      "git mv lib runtime",
+      "118/002 tasks",
+      "git mv deep-loop",
+      "git mv coverage-graph",
+      "118/002 checklist",
+      "lib move verification"
+    ],
+    "key_topics": [
+      "118",
+      "002",
+      "lib",
+      "runtime",
+      "migration",
+      "deep-loop",
+      "move",
+      "coverage-graph",
+      "deep-loop-runtime",
+      "population",
+      "plan",
+      "git"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lib Runtime Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Predecessor Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Successor Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Tree",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Tree",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Static Checks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Tree Cleanup Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 creates the `.opencode/skills/deep-loop-runtime/` scaffold (SKILL.md + `lib/` + `scripts/` + `storage/` + `tests/`) but leaves the 13 lib .ts files untouched at their old `.opencode/skills/system-spec-kit/mcpserver/lib/{deep-loop,coverage-graph}/` locations",
+    "created_at": "2026-05-22T19:50:00Z",
+    "last_save_at": "2026-07-08T13:44:00.422Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b1f76575f48e199c36a4d3cfe48f89f2dc1e091f286dedd2d953f4af22dcc20c",
+    "source_doc_hashes": {
+      "spec.md": "8dd3eb5e747c5e323a6a168cbc993f0324329738f71a592550110d48031f5156",
+      "plan.md": "5223d2fc955e80c950ff10d5aa349a2034b488b488383e63d6e502ebb041e3c1",
+      "tasks.md": "2493f24d8b69aca15e64d07375f559a64742d62f8b02adda9524070849464822",
+      "checklist.md": "e326ff8efd51754f315f77cbcb66b7e176358a2bfc9298ae2bf940ea8050478f",
+      "implementation-summary.md": "e70e3a679e910602fa3c8723cb9a5a6c415e5139c001a6d12134d49995b320a8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

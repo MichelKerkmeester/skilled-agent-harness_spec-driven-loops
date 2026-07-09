@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk_design_holdout_motion_001",
+  "tier": "T2",
+  "public": {
+    "prompt": "tune the easing so the drawer feels less abrupt when it opens",
+    "runtime": "opencode",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": true
+  }
+}

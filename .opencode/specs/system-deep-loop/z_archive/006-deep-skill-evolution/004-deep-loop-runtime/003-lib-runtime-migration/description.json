@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/003-lib-runtime-migration",
+  "description": "Phase 001 creates the `.opencode/skills/deep-loop-runtime/` scaffold (SKILL.md + `lib/` + `scripts/` + `storage/` + `tests/`) but leaves the 13 lib",
+  "keywords": [
+    "phase",
+    "001",
+    "creates",
+    "opencode",
+    "skills",
+    "deep-loop-runtime",
+    "scaffold",
+    "skill",
+    "lib",
+    "scripts",
+    "storage",
+    "tests",
+    "leaves"
+  ],
+  "lastUpdated": "2026-07-08T13:07:16.094Z",
+  "specId": "003",
+  "folderSlug": "lib-runtime-migration",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "004-deep-loop-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

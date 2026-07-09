@@ -1,0 +1,23 @@
+{
+  "level": "phase-child",
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research/003-uplift-recommendations",
+  "description": "3-packet follow-on roadmap closing the 5 actionable items from the 10-iter deep-research investigation. Outputs: uplift-roadmap.md with prioritized packet 120/121/122 plan.",
+  "keywords": [
+    "119/003",
+    "uplift-roadmap",
+    "packet-120",
+    "packet-121",
+    "packet-122"
+  ],
+  "lastUpdated": "2026-05-23T06:00:00.000Z",
+  "specId": "003",
+  "folderSlug": "003-uplift-recommendations",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "005-deep-research"
+  ],
+  "memorySequence": 119003,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/002-complexity-seeded-fixture-harness",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/002-complexity-seeded-fixture-harness",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-review seeded fixtures",
+      "review-depth fixture harness",
+      "116 seeded fixture plan",
+      "116 seeded fixture tasks",
+      "review-depth fixture tasks",
+      "116 seeded fixture checklist",
+      "review-depth fixture verification",
+      "116 seeded fixture summary",
+      "review-depth fixture handoff"
+    ],
+    "key_topics": [
+      "deep-review",
+      "seeded",
+      "fixtures",
+      "review-depth",
+      "fixture",
+      "harness",
+      "116",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "review-depth-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Seeded Fixture Harness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Populated Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Documentation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 found that `deep-review` can validate active findings while still failing to prove enough pre-finding candidate search",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-07-08T13:43:54.727Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b34eda761050db79fb206773831723c01942271253923459667bfda4310010df",
+    "source_doc_hashes": {
+      "spec.md": "41ae38fe6b3ad012c778a9f64b06f71d940e8693e5f46cd4ffedfdf34a3d1e81",
+      "plan.md": "cfc60b2ec897f5d4ed29a61f526555d1e698c1136644078779d5452b9b47aeed",
+      "tasks.md": "011ee69e093c16b26df620e5c0d26243c175b737bbe0bd3ce0cf5adb8d3fafa9",
+      "checklist.md": "f7d18e98e4c70885546ad0fe07ad698c7a86ffa16a837f56f8182fe2d4cfd2b3",
+      "implementation-summary.md": "96be8cf74f8c6a72236e9f2440154798e7a2d56570562aff0243b2487293744b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

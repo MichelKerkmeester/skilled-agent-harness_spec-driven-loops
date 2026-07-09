@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
+  "spec_folder": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
+  "parent_id": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "123 phase 002 pool",
+      "fanout-pool.cjs capped pool",
+      "123 phase 002 implementation summary",
+      "fanout-pool capped pool done"
+    ],
+    "key_topics": [
+      "123",
+      "phase",
+      "002",
+      "pool",
+      "fanout-pool",
+      "cjs",
+      "capped",
+      "implementation",
+      "summary",
+      "done",
+      "provide",
+      "concurrency-capped"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "timing",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "ordered",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tmpdir",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "never-throws",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "at",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "normalized",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "macrotask",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Provide the concurrency-capped fan-out orchestrator primitive (the one thing the council dispatcher lacks)",
+    "created_at": "2026-05-30T10:12:01.127Z",
+    "last_save_at": "2026-07-08T13:43:18.315Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:66b14907d0495ab6b09067a9272f18d99ba94a30cfdd15f90c7094a62d1c57d8",
+    "source_doc_hashes": {
+      "spec.md": "c8d376788569cf7844c1dfd267a03e57d010fbf28bf22b1fc92140c86e83a71c",
+      "plan.md": "ba0289dd677af319bbad598bae3fb1dc7e742800f809e1a5dd686b9b2284932e",
+      "tasks.md": "ca02931172e604cd256260e4c4a2d8ec48f4a0fe504a72d50c0bdab839eb8447",
+      "implementation-summary.md": "9066998c7e5ea15a1cb9ddf35c7bec0e87bd91de1efe493b4838ae9c755b2678"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

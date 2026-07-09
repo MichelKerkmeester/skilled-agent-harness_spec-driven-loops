@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/z_archive/001-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename",
+  "description": "After phase `005`, the runtime mutator, skill package, and wrapper content all aligned on `agent-improver`, but the command entrypoint itself still",
+  "keywords": [
+    "phase",
+    "005",
+    "runtime",
+    "mutator",
+    "skill",
+    "package",
+    "wrapper",
+    "content",
+    "aligned",
+    "agent-improver",
+    "command",
+    "entrypoint",
+    "itself",
+    "still"
+  ],
+  "lastUpdated": "2026-07-08T13:06:38.551Z",
+  "specId": "006",
+  "folderSlug": "sk-recursive-agent-command-rename",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "001-sk-recursive-agent-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode",
+  "spec_folder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode",
+  "parent_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-benchmark mode build",
+      "122 phase 004",
+      "Lane C skill benchmark",
+      "122 phase 004 implementation summary",
+      "lane c skill-benchmark build results"
+    ],
+    "key_topics": [
+      "skill-benchmark",
+      "mode",
+      "build",
+      "122",
+      "phase",
+      "004",
+      "lane",
+      "skill",
+      "benchmark",
+      "implementation",
+      "summary",
+      "results"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Built Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Report",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Build (reusing the three pluggable seams)",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "exported",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. What was done",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Files (all under `.opencode/skills/deep-improvement/`)",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Design and build Lane C (skill-benchmark) in the renamed deep-improvement skill: scenario fixtures, hint-free dispatcher capturing resource-load traces, routing/discovery/efficiency/usefulness scorer, ranked remediation report, and /deep:start-skill-benchmark-loop command.",
+    "created_at": "2026-05-30T07:27:05.680Z",
+    "last_save_at": "2026-07-08T13:43:16.924Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c7e6d83055fb63ec2b26c0e0a2e567c74bcc6c809fa95e99abd8c95c48fc7f08",
+    "source_doc_hashes": {
+      "spec.md": "bfd68355cf4f24a19ffdc22348e47abfa0a3767d4a636c9b7d1f9a9ef27c2c1e",
+      "implementation-summary.md": "3510e23fbe912c9997217557e83cb8ed1a0aba97264b303346d5ba974fd9ef4c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

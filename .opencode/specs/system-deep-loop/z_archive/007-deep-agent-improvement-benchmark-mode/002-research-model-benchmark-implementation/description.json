@@ -1,0 +1,34 @@
+{
+  "title": "Feature Specification: implement model-benchmark mode for deep-research",
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/002-research-model-benchmark-implementation",
+  "description": "The 001 design names the mode-selector approach + three seams at the ADR level, but the build packet needs sharper implementation detail: exact",
+  "keywords": [
+    "001",
+    "design",
+    "names",
+    "mode-selector",
+    "approach",
+    "three",
+    "seams",
+    "adr",
+    "level",
+    "build",
+    "packet",
+    "needs",
+    "sharper",
+    "implementation",
+    "detail",
+    "exact"
+  ],
+  "lastUpdated": "2026-07-08T13:06:46.354Z",
+  "specId": "002",
+  "folderSlug": "research-model-benchmark-implementation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "007-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

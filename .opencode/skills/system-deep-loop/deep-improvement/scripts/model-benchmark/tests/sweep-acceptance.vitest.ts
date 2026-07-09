@@ -80,8 +80,8 @@ function terseCorrect(fnName: string): string {
   return CORRECT_BY_FN[fnName];
 }
 
-const BAKEOFF = readJson(path.join(PROFILE_DIR, 'framework-bakeoff.json'));
-const MVM = readJson(path.join(PROFILE_DIR, 'model-vs-model.json'));
+const BAKEOFF = readJson(path.join(PROFILE_DIR, 'framework_bakeoff.json'));
+const MVM = readJson(path.join(PROFILE_DIR, 'model_vs_model.json'));
 
 describe('acceptance: both modes are config-only and run the same report path', () => {
   // Both profiles dispatch through ONE runSweep + report path; the only thing

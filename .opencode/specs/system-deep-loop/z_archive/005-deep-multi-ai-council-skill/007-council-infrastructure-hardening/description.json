@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/007-council-infrastructure-hardening",
+  "description": "After 101/006 shipped, six residual gaps remained: (1) no runnable council-test gate, so the 8-day test-rot window that surfaced in 101/004 can recur;",
+  "keywords": [
+    "101",
+    "006",
+    "shipped",
+    "six",
+    "residual",
+    "gaps",
+    "remained",
+    "runnable",
+    "council-test",
+    "gate",
+    "8-day",
+    "test-rot",
+    "window",
+    "surfaced",
+    "004",
+    "recur"
+  ],
+  "lastUpdated": "2026-07-08T13:06:41.786Z",
+  "specId": "007",
+  "folderSlug": "council-infrastructure-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "005-deep-multi-ai-council-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk_design_mp_menu_001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "motion",
+    "advisorLane": "sk-design",
+    "intentKeys": ["motion"],
+    "resources": ["design-motion/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "motion",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["interface", "foundations", "audit", "md-generator"],
+    "minimalPairGroup": "mp-menu-animate-vs-redesign"
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes this minimal-pair arm to the expected workflow mode"],
+    "harmChecks": ["does not collapse onto the paired redesign outcome"]
+  }
+}

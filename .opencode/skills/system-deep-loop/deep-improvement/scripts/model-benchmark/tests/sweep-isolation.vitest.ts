@@ -30,10 +30,10 @@ function readJson(p: string): any {
 }
 
 const HARD_IDS = [
-  'hard-merge-intervals',
-  'hard-parse-csv-line',
-  'hard-roman-to-int',
-  'hard-eval-expr',
+  'hard_merge_intervals',
+  'hard_parse_csv_line',
+  'hard_roman_to_int',
+  'hard_eval_expr',
 ];
 
 describe('sweep dispatch isolation: cwd is a throwaway temp dir, not the repo', () => {
@@ -204,11 +204,11 @@ describe('hard fixture pack: shape + adversarial oracle density', () => {
 });
 
 describe('capability profile: loads and selects the hard pack', () => {
-  it('capability-m3-vs-mimo.json is a valid model-vs-model profile over the 4 hard fixtures', () => {
+  it('capability_m3_vs_mimo.json is a valid model-vs-model profile over the 4 hard fixtures', () => {
     const validator = require(
       path.join(MB_ROOT, 'lib', 'profile-validator.cjs'),
     );
-    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo.json'));
     expect(validator.validateProfile(profile)).toEqual({ valid: true, errors: [] });
     expect(profile.mode).toBe('model-vs-model');
     expect(profile.models.length).toBe(2);
@@ -224,9 +224,9 @@ describe('capability profile: loads and selects the hard pack', () => {
 // expected value was generated from a reference impl that scores 1.0 through the
 // real code-task-scorer, with a deliberately-wrong impl confirmed strictly < 1.0.
 const HARDER_IDS = [
-  'harder-semver-compare',
-  'harder-normalize-path',
-  'harder-int-to-words',
+  'harder_semver_compare',
+  'harder_normalize_path',
+  'harder_int_to_words',
 ];
 
 describe('harder fixture pack: shape + de-saturation oracle density', () => {
@@ -267,13 +267,13 @@ describe('harder fixture pack: shape + de-saturation oracle density', () => {
 });
 
 describe('capability v2 profile: loads and selects the harder pack', () => {
-  const V2_FIXTURES = [...HARDER_IDS, 'hard-roman-to-int'];
+  const V2_FIXTURES = [...HARDER_IDS, 'hard_roman_to_int'];
 
-  it('capability-m3-vs-mimo-v2.json validates and selects the 3 harder + retained roman fixtures', () => {
+  it('capability_m3_vs_mimo_v2.json validates and selects the 3 harder + retained roman fixtures', () => {
     const validator = require(
       path.join(MB_ROOT, 'lib', 'profile-validator.cjs'),
     );
-    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v2.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo_v2.json'));
     expect(validator.validateProfile(profile)).toEqual({ valid: true, errors: [] });
     expect(profile.mode).toBe('model-vs-model');
     expect(profile.models.length).toBe(2);
@@ -285,7 +285,7 @@ describe('capability v2 profile: loads and selects the harder pack', () => {
   });
 
   it('every fixture the v2 profile references resolves on disk and parses', () => {
-    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v2.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo_v2.json'));
     for (const id of profile.fixtures) {
       const p = path.join(FIXTURE_DIR, id + '.json');
       expect(fs.existsSync(p)).toBe(true);
@@ -303,7 +303,7 @@ describe('capability v2 profile: loads and selects the harder pack', () => {
 // lands strictly below 1.0. Every oracle `expect` was generated from a reference
 // impl certified 1.0 through the real code-task-scorer, with a deliberately-lax
 // impl confirmed strictly < 1.0.
-const VALIDATION_IDS = ['validate-ipv4', 'validate-date', 'validate-semver'];
+const VALIDATION_IDS = ['validate_ipv4', 'validate_date', 'validate_semver'];
 
 describe('validation fixture pack: shape + adversarial-invalid dominance', () => {
   it('all three validation fixtures parse and carry the required code-task keys', () => {
@@ -356,13 +356,13 @@ describe('validation fixture pack: shape + adversarial-invalid dominance', () =>
 });
 
 describe('capability v3 profile: loads and selects the validation pack', () => {
-  const V3_FIXTURES = [...VALIDATION_IDS, 'hard-roman-to-int'];
+  const V3_FIXTURES = [...VALIDATION_IDS, 'hard_roman_to_int'];
 
-  it('capability-m3-vs-mimo-v3.json validates and selects the 3 validation + retained roman fixtures', () => {
+  it('capability_m3_vs_mimo_v3.json validates and selects the 3 validation + retained roman fixtures', () => {
     const validator = require(
       path.join(MB_ROOT, 'lib', 'profile-validator.cjs'),
     );
-    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v3.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo_v3.json'));
     expect(validator.validateProfile(profile)).toEqual({ valid: true, errors: [] });
     expect(profile.mode).toBe('model-vs-model');
     expect(profile.models.length).toBe(2);
@@ -375,7 +375,7 @@ describe('capability v3 profile: loads and selects the validation pack', () => {
   });
 
   it('every fixture the v3 profile references resolves on disk and parses', () => {
-    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v3.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'capability_m3_vs_mimo_v3.json'));
     for (const id of profile.fixtures) {
       const p = path.join(FIXTURE_DIR, id + '.json');
       expect(fs.existsSync(p)).toBe(true);

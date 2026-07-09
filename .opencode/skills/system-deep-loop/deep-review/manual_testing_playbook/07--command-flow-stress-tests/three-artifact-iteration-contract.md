@@ -82,8 +82,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | File | Lines | Role |
 |---|---:|---|
-| `.opencode/commands/deep/review.md` | 199-207, 361-365 | Workflow outputs and read-only agent model |
-| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 90-105, 496-514 | Executor invariants and quality gates |
+| `.opencode/commands/deep/assets/deep_review_presentation.txt` | 271-278, 396-400 | Workflow outputs and read-only agent model |
+| `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 354-356, 414-420 | Executor invariants and quality gates |
 | `.opencode/agents/deep-review.md` | 80-98, 177-195 | Single-iteration sequence and output verification |
 
 ## 5. SOURCE_METADATA

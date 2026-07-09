@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/011-deep-context-workflow-adoption",
+  "spec_folder": "system-deep-loop/z_archive/011-deep-context-workflow-adoption",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context workflow adoption",
+      "deep-context bypass root cause",
+      "why manual gather instead of deep-context command",
+      "deep-context workflow adoption plan",
+      "deep-context workflow adoption tasks",
+      "deep-context workflow adoption shipped",
+      "plan-workflow lock"
+    ],
+    "key_topics": [
+      "deep-context",
+      "workflow",
+      "adoption",
+      "bypass",
+      "root",
+      "cause",
+      "manual",
+      "gather",
+      "instead",
+      "command",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md",
+      "constitutional/deep-skill-workflow-required.md",
+      ".opencode/skills/system-spec-kit/constitutional/README.md",
+      "spec.md",
+      "plan.md",
+      "ai-council/council-report.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-skill-workflow-required.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/constitutional/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Across",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Use",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Council",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the CLAUDE.md",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Across packet 135 (24 phases of skill-README rewrites), the plan specified `/deep:start-context-loop:auto` with a `cli-opencode` executor pool for per-skill context gathering",
+    "created_at": "2026-06-07T18:08:04.597Z",
+    "last_save_at": "2026-07-08T13:43:10.493Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:26e86f2c8fd351f9c7ff73e8b6a5e09bfb786a2a605bb1a237a1b50f94afb2ce",
+    "source_doc_hashes": {
+      "spec.md": "2a2f09d6748a6ca3c39e9fcd8f850367c1059a4b9a1f9a1dff0d36716554988d",
+      "plan.md": "1d31697d2f553c647657dfec80bb3bfbccc7d67993a5622ab0928bc5d6da86f7",
+      "tasks.md": "cb16ab2941bafa61cffde0317165771dba0000a933ad5ac822e8fe125bda5a0b",
+      "implementation-summary.md": "3165b3732458e747029770c97b3217138b2039b894612d6874a9ff0364dacd98"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/016-sk-deep-rename/005-root-and-config",
+  "spec_folder": "system-deep-loop/z_archive/016-sk-deep-rename/005-root-and-config",
+  "parent_id": "system-deep-loop/z_archive/016-sk-deep-rename",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "070 phase 005",
+      "root docs config rename",
+      "sk-deep root references",
+      "deep-review deep-research root configs",
+      "070 phase 005 plan",
+      "root docs config rename plan",
+      "sk-deep root grep",
+      "070 phase 005 tasks",
+      "root docs config tasks",
+      "phase 005 verification",
+      "070 phase 005 checklist",
+      "root docs config verification"
+    ],
+    "key_topics": [
+      "070",
+      "phase",
+      "005",
+      "root",
+      "docs",
+      "config",
+      "rename",
+      "sk-deep",
+      "references",
+      "deep-review",
+      "deep-research",
+      "configs"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".claude/settings.json",
+      ".claude/settings.local.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Exact",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Created Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Filter Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Render Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
+    "created_at": "2026-05-05T19:30:00Z",
+    "last_save_at": "2026-07-08T13:43:26.371Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-05T19:45:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8f9f45691af643340be2da9c6374000ae2aab6ed65eaa3c5161640396f21899d",
+    "source_doc_hashes": {
+      "spec.md": "7629dcdca11a1e9bd7528712e0610823a0ff5763991084bc56c2b9f16ed169e1",
+      "plan.md": "caf45aff90c79b4667bf25c185e193ad7eaf5cd17c60d889c12f7bd11b473577",
+      "tasks.md": "31fa5258d0efabf77cb6c75f47b8ed9d31e274eec6ac98d4b1a84f0cc6d76ef1",
+      "checklist.md": "e7ad90f8838225301feda0cadb06071342d2ff4e532db58d9035e0875e01323f",
+      "implementation-summary.md": "b6255806b631a9d3c77dba1ccfa19ac449201ae061456e9de0c87fba96198f2d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution/007-sk-deep-research-path-migration",
+  "spec_folder": "system-deep-loop/z_archive/023-sk-deep-research-evolution/007-sk-deep-research-path-migration",
+  "parent_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-research path migration",
+      "research packet layout",
+      "review iterations folder",
+      "research packet root",
+      "review/iterations",
+      "deep-research migration plan",
+      "research packet implementation plan",
+      "review iterations migration",
+      "deep-research migration tasks",
+      "research packet task breakdown",
+      "deep-research path migration checklist",
+      "research packet verification"
+    ],
+    "key_topics": [
+      "deep-research",
+      "path",
+      "migration",
+      "research",
+      "packet",
+      "layout",
+      "review",
+      "iterations",
+      "folder",
+      "root",
+      "plan",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts",
+      ".opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts",
+      ".opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "scripts/common.sh",
+      "scripts/setup/check-prerequisites.sh",
+      "implementation-summary.md",
+      "mcp_server/lib/config/spec-doc-paths.ts",
+      "mcp_server/lib/parsing/memory-parser.ts",
+      "mcp_server/handlers/memory-index-discovery.ts",
+      "scripts/lib/frontmatter-migration.ts",
+      "shared/scoring/folder-scoring.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-paths.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/scoring/folder-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-deep-research-paths.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-research-paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "common.sh",
+        "kind": "script",
+        "path": "scripts/common.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-prerequisites.sh",
+        "kind": "script",
+        "path": "scripts/setup/check-prerequisites.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep research has an inconsistent packet contract",
+    "created_at": "2026-04-12T09:02:50.179Z",
+    "last_save_at": "2026-07-08T13:43:30.573Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:54e4e858e0fdeee1408bee13081bc463dd2a7917cc58a087c81bf40dd3dc19e0",
+    "source_doc_hashes": {
+      "spec.md": "6406371ea017502e92a89058b77d6a3eb701039c10f1029de376f95923bcbd09",
+      "plan.md": "30e167b556261b7b2cf8e285fb0f28fd7181991d5eeb936f77c191d6e8769e5a",
+      "tasks.md": "f446e366dbbc179b4ef59231056aead41689388ff7f1937ab8edacd9e1236a4b",
+      "checklist.md": "f9d9fb3e2d84a43e89dab3614c60d7e3f856bc47f08a65e1d90b60fbc98f07b5",
+      "decision-record.md": "911393a83c0149b7a33d68173a40d296406c03627e9cb0699635ebd72a4097e3",
+      "implementation-summary.md": "48e494cc5905f4ac8090c7554f2c1f0338fa05befcfa20395eea5b1e14987bdc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

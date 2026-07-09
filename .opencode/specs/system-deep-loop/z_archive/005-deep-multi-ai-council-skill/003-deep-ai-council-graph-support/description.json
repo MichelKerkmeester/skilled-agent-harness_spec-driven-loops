@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "description": "Council deliberation needs durable structural context beyond append-only artifacts, but the existing deep-loop coverage graph is specialized for",
+  "keywords": [
+    "council",
+    "deliberation",
+    "needs",
+    "durable",
+    "structural",
+    "context",
+    "beyond",
+    "append-only",
+    "artifacts",
+    "existing",
+    "deep-loop",
+    "coverage",
+    "graph",
+    "specialized"
+  ],
+  "lastUpdated": "2026-07-08T13:06:40.589Z",
+  "specId": "003",
+  "folderSlug": "deep-ai-council-graph-support",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "005-deep-multi-ai-council-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

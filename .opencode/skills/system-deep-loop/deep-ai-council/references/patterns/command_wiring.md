@@ -61,10 +61,20 @@ REPORT="/tmp/council-report.md"
 PAYLOAD="/tmp/council-payload.json"
 
 # 1. Run council through the caller-owned dispatch mechanism and write report text.
-# 2. Persist packet-local ai-council artifacts and emit optional memory payload.
+# 2. Check ai-council-config.json's current_round against max_rounds. If the round
+#    ceiling was reached without a converged report, pass --not-converged so the
+#    persisted council_complete event honestly records convergence:false instead of
+#    defaulting to true (the helper cannot infer max-round exhaustion on its own —
+#    that state lives in the config the caller already tracks).
+# 3. Persist packet-local ai-council artifacts and emit optional memory payload.
+CONVERGED_FLAG=""
+if [ "$(jq -r '.current_round >= .max_rounds' "$PACKET/ai-council-config.json")" = "true" ] && ! grep -q "converged" "$REPORT"; then
+  CONVERGED_FLAG="--not-converged"
+fi
 node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs "$PACKET" \
   --input-file "$REPORT" \
-  --memory-save-payload-out "$PAYLOAD"
+  --memory-save-payload-out "$PAYLOAD" \
+  $CONVERGED_FLAG
 
 # 3. Optional: route payload through the existing canonical memory save workflow.
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
@@ -95,11 +105,15 @@ steps:
 
   - id: step_persist_council
     uses: shell.exec
+    # Pass --not-converged when step_run_council exhausted max_rounds without a
+    # converged report — see §3's shell snippet for the equivalent config check.
+    # The helper cannot detect max-round exhaustion itself; the caller must tell it.
     command: >
       node .opencode/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs
       "${packet.spec_folder}"
       --input-file "${runtime.tmp}/council-report.md"
       --memory-save-payload-out "${runtime.tmp}/council-payload.json"
+      ${steps.step_run_council.outputs.max_rounds_exhausted && '--not-converged' || ''}
 
   - id: step_optional_memory_save
     uses: shell.exec

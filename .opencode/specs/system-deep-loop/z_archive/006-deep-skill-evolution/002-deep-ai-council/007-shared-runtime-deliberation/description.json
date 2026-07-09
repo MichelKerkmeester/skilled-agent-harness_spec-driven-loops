@@ -1,0 +1,36 @@
+{
+  "level": "3",
+  "status": "completed",
+  "decision": "HYBRID",
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/007-shared-runtime-deliberation",
+  "description": "`sk-ai-council` already contains runtime-like helpers for artifact persistence, append-only JSONL state, graph replay, and convergence guidance",
+  "keywords": [
+    "sk-ai-council",
+    "already",
+    "contains",
+    "runtime-like",
+    "helpers",
+    "artifact",
+    "persistence",
+    "append-only",
+    "jsonl",
+    "state",
+    "graph",
+    "replay",
+    "convergence",
+    "guidance"
+  ],
+  "lastUpdated": "2026-07-08T13:07:03.177Z",
+  "specId": "007",
+  "folderSlug": "shared-runtime-deliberation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "002-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/001-ai-council/007-shared-runtime-deliberation"
+  ]
+}

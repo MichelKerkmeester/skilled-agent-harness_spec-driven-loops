@@ -72,6 +72,10 @@ Child-phase and sub-phase targets use flat-first behavior:
 
 This avoids an unnecessary `pt-01` wrapper on first runs.
 
+**Example (first run on a child phase):** `.../026-graph.../019-system-hardening/001-initial-research/004-desc-regen/` writes to `004-desc-regen/research/` directly.
+
+**Example (subsequent run with prior content for a different target):** `004-desc-regen/research/004-desc-regen-pt-02/` (pt-NN allocated as a sibling to the prior content).
+
 ---
 
 ## 3. OWNERSHIP MODEL

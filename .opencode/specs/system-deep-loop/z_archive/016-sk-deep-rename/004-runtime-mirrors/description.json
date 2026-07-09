@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/z_archive/016-sk-deep-rename/004-runtime-mirrors",
+  "description": "Phase 001 found runtime mirror files in `.claude`, `.codex`, and `.gemini` that still reference the old deep-loop skill names",
+  "keywords": [
+    "phase",
+    "001",
+    "found",
+    "runtime",
+    "mirror",
+    "files",
+    "claude",
+    "codex",
+    "gemini",
+    "still",
+    "reference",
+    "old",
+    "deep-loop",
+    "skill",
+    "names"
+  ],
+  "lastUpdated": "2026-07-08T13:06:42.032Z",
+  "specId": "004",
+  "folderSlug": "runtime-mirrors",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "016-sk-deep-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

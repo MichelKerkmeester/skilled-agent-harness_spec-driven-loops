@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/022-multi-ai-council-write-protocol/002-multi-ai-council-persistence",
+  "description": "Packet 080 documents the `ai-council/` output protocol but provides no persistence machinery",
+  "keywords": [
+    "packet",
+    "080",
+    "documents",
+    "ai-council",
+    "output",
+    "protocol",
+    "provides",
+    "persistence",
+    "machinery"
+  ],
+  "lastUpdated": "2026-07-08T13:43:10.888Z",
+  "specId": "002",
+  "folderSlug": "multi-ai-council-persistence",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "022-multi-ai-council-write-protocol"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_18-28__packet-089-shipped-end-to-end-via-spec-kit.md"
+  ]
+}

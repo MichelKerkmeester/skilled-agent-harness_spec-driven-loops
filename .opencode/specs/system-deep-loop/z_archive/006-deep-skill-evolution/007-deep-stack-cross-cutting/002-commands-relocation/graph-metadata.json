@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/002-commands-relocation",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/002-commands-relocation",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep commands relocation",
+      "deep:review assets",
+      "deep:research assets",
+      "deep:ai-council assets",
+      "spec_kit deep-* migration",
+      "131/007",
+      "131/007 plan",
+      "deep commands relocation plan",
+      "wave 1 asset move",
+      "wave 2 reference update",
+      "131/007 tasks",
+      "deep commands relocation tasks"
+    ],
+    "key_topics": [
+      "deep",
+      "commands",
+      "relocation",
+      "review",
+      "assets",
+      "research",
+      "ai-council",
+      "migration",
+      "131",
+      "007",
+      "plan",
+      "wave"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commands Relocation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commands Moved",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clock Target",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Docs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Updates",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Asset Moves",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 3 deep- slash-command MD files moved to `.opencode/commands/deep/` and are registered as live skill names (`deep:review`, `deep:research`, `deep:ai-council`)",
+    "created_at": "2026-05-23T00:00:00Z",
+    "last_save_at": "2026-07-08T13:44:02.815Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f0ec15cc8b180d261bf34c22ad7c131945147b13cddb4c56894d1cf62539e7de",
+    "source_doc_hashes": {
+      "spec.md": "689a9b34ee27fc2494d4778a9c2bd647c049799357427034d27ffb8a5fdf7dc5",
+      "plan.md": "8d6e642774d97eadc4bd93803d0375086471411d6b90800b59c1c5834c79f601",
+      "tasks.md": "8cf8245136311de0355cb674cc369667fe0f0370bd9544f91e536356cd536cdf",
+      "checklist.md": "7b4e44bc4865766dfaef54cdc6a36e3268a56d0877d37dd3e927837f96926793",
+      "decision-record.md": "fd71bb3b967efffa304a22b45fb1a54e2b419a69d99cdfe01c50490fa57c7d1e",
+      "implementation-summary.md": "a3716b1a7ed7b418fcd9f2ffe717856659edeff37d57ac973b4abd226b6cc64d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

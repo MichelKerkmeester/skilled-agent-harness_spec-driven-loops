@@ -1,0 +1,44 @@
+{
+  "title": "deep-context loop",
+  "trigger_phrases": [
+    "deep-context",
+    "context gathering",
+    "context loop",
+    "reuse catalog",
+    "deep loop"
+  ],
+  "level": 3,
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-deep-context-gathering",
+  "status": "phase-parent",
+  "parent_id": "system-deep-loop/z_archive",
+  "importance_tier": "high",
+  "created_at": "2026-06-06T14:09:09Z",
+  "is_phase_parent": true,
+  "children": [
+    "001-context-loop-foundation",
+    "002-runtime-robustness-parity",
+    "003-runtime-feature-utilization",
+    "004-reference-architecture-alignment"
+  ],
+  "specFolder": "system-deep-loop/z_archive/010-deep-context-gathering",
+  "description": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase",
+  "keywords": [
+    "convergence-gated",
+    "loop",
+    "assembles",
+    "implementation-ready",
+    "context",
+    "existing",
+    "codebase"
+  ],
+  "lastUpdated": "2026-07-08T13:43:09.384Z",
+  "specId": "010",
+  "folderSlug": "deep-context-gathering",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

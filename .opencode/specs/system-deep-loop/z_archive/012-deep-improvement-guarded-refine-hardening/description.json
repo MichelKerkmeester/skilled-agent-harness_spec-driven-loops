@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/z_archive/012-deep-improvement-guarded-refine-hardening",
+  "description": "Feature Specification: Guarded Refine-Loop Hardening from Copywriter Pilot Teachings",
+  "keywords": [
+    "feature",
+    "specification",
+    "guarded",
+    "refine-loop",
+    "hardening",
+    "copywriter",
+    "pilot",
+    "teachings"
+  ],
+  "lastUpdated": "2026-07-08T13:43:08.371Z",
+  "specId": "012",
+  "folderSlug": "deep-improvement-guarded-refine-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

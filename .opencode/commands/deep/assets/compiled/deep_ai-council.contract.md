@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_ai-council_presentation.txt",
-      "sha256": "e4caec45400155a73348c37b97fb974dc026c96f0b8e77461da4f3d8813102ef",
+      "sha256": "8ae76e135526d1663efb3ac3d07eeef47607a31408356b5b1ac4635fc68ee216",
       "section": "full"
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "1293ff04fdc5529fc969a36cc64d918d2e96303287ada37d5b0a6d0a61cb3e47",
+      "sha256": "6d41d1cfeff3b422ef5686c839c7e64118a3e0cfdf9eeced58166ef7486447a3",
       "section": "full"
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "b3fd5d446a8c62a5011aef9d8298d8ea6287f9a30bb00b2fa4b21fde82bcf0df",
+      "sha256": "fb8f16f8ccb93f1a4dfc0a1b9f454d1db0767daedb3d89c33d69fbb4c67f3d61",
       "section": "full"
     },
     {
@@ -112,7 +112,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md",
-      "sha256": "99520c48c11b8c1068db9cac6e569296d04634d6a330bcef748cb5aadf15fe16",
+      "sha256": "621638b6911dc9c5adf88dd32f09a4b9974cdaac34c2f3a823f1679f261abfdb",
       "section": "full"
     },
     {

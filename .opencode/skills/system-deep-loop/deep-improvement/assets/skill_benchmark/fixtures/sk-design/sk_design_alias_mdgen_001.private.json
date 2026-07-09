@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk_design_alias_mdgen_001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "md-generator",
+    "advisorLane": "sk-design",
+    "intentKeys": ["md-generator"],
+    "resources": ["design-md-generator/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "md-generator",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "audit"],
+    "minimalPairGroup": null
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes the alias prompt to the expected workflow mode"],
+    "harmChecks": ["does not select a sibling workflow mode"]
+  }
+}

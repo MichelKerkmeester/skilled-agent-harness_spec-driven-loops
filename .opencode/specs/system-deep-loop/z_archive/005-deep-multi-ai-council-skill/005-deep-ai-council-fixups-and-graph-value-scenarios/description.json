@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
+  "description": "When 101/004's playbook run validated all 26 scenarios, two pre-existing vitest failures surfaced:",
+  "keywords": [
+    "101",
+    "004",
+    "playbook",
+    "run",
+    "validated",
+    "scenarios",
+    "two",
+    "pre-existing",
+    "vitest",
+    "failures",
+    "surfaced"
+  ],
+  "lastUpdated": "2026-07-08T13:06:41.529Z",
+  "specId": "005",
+  "folderSlug": "deep-ai-council-fixups-and-graph-value-scenarios",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "005-deep-multi-ai-council-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

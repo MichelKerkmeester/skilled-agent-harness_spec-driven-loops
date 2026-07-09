@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk_design_transform_bolder_alias",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "interface",
+    "advisorLane": "sk-design",
+    "intentKeys": ["interface"],
+    "resources": ["design-interface/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "interface",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["foundations", "motion", "audit", "md-generator"],
+    "minimalPairGroup": "transform-bolder-audit-interface"
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes the transform alias to the interface workflow mode"],
+    "harmChecks": ["does not select the audit workflow for an application-framed prompt"]
+  }
+}

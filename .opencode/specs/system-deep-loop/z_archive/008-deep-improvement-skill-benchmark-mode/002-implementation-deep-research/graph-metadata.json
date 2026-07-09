@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
+  "spec_folder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
+  "parent_id": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "implementation deep research",
+      "122 phase 002",
+      "deep-improvement implementation playbook",
+      "122 phase 002 implementation summary",
+      "implementation playbook results"
+    ],
+    "key_topics": [
+      "implementation",
+      "deep",
+      "research",
+      "122",
+      "phase",
+      "002",
+      "deep-improvement",
+      "playbook",
+      "summary",
+      "results",
+      "gpt-5",
+      "5-primary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/orchestration-status.log",
+      "research/gpt55/iterations/iteration-002.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-status.log",
+        "kind": "file",
+        "path": "research/orchestration-status.log",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/gpt55/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Opus",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "a Cross-checks",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "IQ1",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Two Opus",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Opus",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Playbook",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Executive summary — recommended build order",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "GPT-5.5-primary (xhigh-fast, cli-codex) implementation deep research with Opus 4.8 agent verification + synthesis, turning the converged 001 design into a build-ready implementation playbook for the deep-improvement rename + Lane C (skill-benchmark).",
+    "created_at": "2026-05-30T00:00:00Z",
+    "last_save_at": "2026-07-08T13:43:14.542Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:a25a1b51a50906493358141438d5d2f8b6e6b456ee7af3f767cb47a69db0a58b",
+    "source_doc_hashes": {
+      "spec.md": "3980685d9d8dbf1a462b90610a635fb65de3f622cea25ddd5e868e08265d0db0",
+      "plan.md": "086952d8747000063a5ddaf30078bc7bfdae15e350d4d5e41333ef8d20aef556",
+      "tasks.md": "cd27ea4c749359b0684b97ca7870eb514c1aa6a2c58dc1fbfc95e656d3fbb618",
+      "implementation-summary.md": "bf7d59b320c65f253ba7539677b84ac1173a6df3f6f04155d9c6e2a4d1c38f93",
+      "research/research.md": "69816f682fcf2dfbb17e8a9c38a0abb2f1b9f90378111bc1bd1e0f606766be04"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

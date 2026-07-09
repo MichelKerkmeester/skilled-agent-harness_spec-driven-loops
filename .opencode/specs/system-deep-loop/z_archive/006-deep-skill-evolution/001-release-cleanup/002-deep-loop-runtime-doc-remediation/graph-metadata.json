@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/002-deep-loop-runtime-doc-remediation",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/002-deep-loop-runtime-doc-remediation",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-runtime doc remediation",
+      "001-doc-remediation",
+      "phase 5 backlog closure",
+      "council surface expansion",
+      "cross-arc citation drift fix",
+      "deep-loop-runtime doc-remediation plan",
+      "batch a consolidated",
+      "batch b description drift",
+      "batch c council expansion",
+      "batch d test coverage",
+      "deep-loop-runtime doc-remediation tasks",
+      "finding to edit mapping"
+    ],
+    "key_topics": [
+      "deep-loop-runtime",
+      "doc",
+      "remediation",
+      "001-doc-remediation",
+      "phase",
+      "backlog",
+      "closure",
+      "council",
+      "surface",
+      "expansion",
+      "cross-arc",
+      "citation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "schemas/audit-finding.schema.json",
+      "schemas/changelog-entry.schema.json",
+      "schemas/validation-report.schema.json",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      "prompts/batch-a-prompt.md",
+      "logs/batch-a-stdout.txt",
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-finding.schema.json",
+        "kind": "config",
+        "path": "schemas/audit-finding.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-entry.schema.json",
+        "kind": "config",
+        "path": "schemas/changelog-entry.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.schema.json",
+        "kind": "config",
+        "path": "schemas/validation-report.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "batch-a-prompt.md",
+        "kind": "doc",
+        "path": "prompts/batch-a-prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "batch-a-stdout.txt",
+        "kind": "file",
+        "path": "logs/batch-a-stdout.txt",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the parent packet's Phase 1-5 release cleanup, 36 P1/P2 documentation findings remain open in `findings/audit-findings.jsonl` extension (DR-001..DR-037, with DR-037 superseding DR-029)",
+    "created_at": "2026-05-23T22:00:00Z",
+    "last_save_at": "2026-07-08T13:43:48.817Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a7566ad83efd5b7fbf3c8f13384c4994fd20bdce4b7674921a511afec06332ad",
+    "source_doc_hashes": {
+      "spec.md": "a9d6cbc9e42347ba662e99bb30d6846003cfb3e3e92f34173034668e1fdb97aa",
+      "plan.md": "7647c05bb1369c98bd80e6c64483a370f8204b9be4c9301d1f97e2d1807fde29",
+      "tasks.md": "13239d9c16cc0b483df178d7d1b49a03f8e918451bcf844ce4852d11c72dd3b9",
+      "checklist.md": "e272b4467f11f51a652c2bd7b062da5774532c58034e0c8264566bd1c68c4e3f",
+      "decision-record.md": "63908a8797315ddf90563d1f712ffc5e7b849d802d13cd99401da064cc8ed746",
+      "implementation-summary.md": "816b430d27b48f0c93448608bf61bf44f926fec1ef51d78c727f24bb01b35a76"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

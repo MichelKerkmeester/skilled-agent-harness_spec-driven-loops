@@ -79,7 +79,7 @@ Lifecycle controls now include [run-now control](./feature_catalog/01--loop-life
 
 ### Externalized State
 
-All continuity lives in packet files under `{spec_folder}/research/`, not in conversation memory. The config file (`deep-research-config.json`) holds settings. The append-only JSONL log (`deep-research-state.jsonl`) records every iteration, event and convergence signal. The strategy file (`deep-research-strategy.md`) tracks focus areas, what worked, what failed and exhausted approaches. The findings registry (`deep-research-findings-registry.json`) indexes every discovery. The dashboard (`deep-research-dashboard.md`) shows convergence trends. The reducer machine-owns the strategy sections, the registry and the dashboard. The agent writes only iteration files and JSONL records. The workflow owns the canonical `research.md`.
+All continuity lives in packet files under `{spec_folder}/research/`, not in conversation memory. The config file (`deep-research-config.json`) holds settings. The append-only JSONL log (`deep-research-state.jsonl`) records every iteration, event and convergence signal. The strategy file (`deep-research-strategy.md`) tracks focus areas, what worked, what failed and exhausted approaches. The findings registry (`findings-registry.json`) indexes every discovery. The dashboard (`deep-research-dashboard.md`) shows convergence trends. The reducer machine-owns the strategy sections, the registry and the dashboard. The agent writes only iteration files and JSONL records. The workflow owns the canonical `research.md`.
 
 Because state is on disk, a crashed run resumes from the packet files. Use `/deep:research:auto` again and the workflow picks up the active lineage.
 
@@ -148,7 +148,7 @@ A: A shared context window fills with stale findings that degrade reasoning qual
 
 **Q: Where do the findings live?**
 
-A: Iteration files go under `{spec_folder}/research/iterations/iteration-NNN.md`. The workflow synthesizes those into `research/research.md` when the loop stops. A findings registry at `deep-research-findings-registry.json` indexes every discovery. The dashboard at `deep-research-dashboard.md` shows the convergence trend.
+A: Iteration files go under `{spec_folder}/research/iterations/iteration-NNN.md`. The workflow synthesizes those into `research/research.md` when the loop stops. A findings registry at `findings-registry.json` indexes every discovery. The dashboard at `deep-research-dashboard.md` shows the convergence trend.
 
 **Q: What is the difference between `resume` and `restart`?**
 
@@ -213,3 +213,15 @@ Expected output: zero issues reported.
 | [`feature_catalog/`](./feature_catalog/) | Feature inventory across loop lifecycle, state management, convergence and research output |
 | [`manual_testing_playbook/`](./manual_testing_playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
 | [`behavior_benchmark/`](./behavior_benchmark/) | Executor-model behavior benchmark (RSB): what the model does at `/deep:research` under realistic prompts — dispatch evidence, presentation, latency vs Claude |
+
+### Maintainer Checklist: Adding or Changing a Research-Loop Feature
+
+A feature change to this skill typically touches more than one surface. Before calling a change complete, check each:
+
+- [ ] **`SKILL.md`** -- routing rules and the resource list stay in sync with the new or changed behavior
+- [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 9 table for which doc owns what)
+- [ ] **`feature_catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
+- [ ] **`manual_testing_playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict
+- [ ] **command YAML/tests** -- `.opencode/commands/deep/assets/deep_research_auto.yaml` and `deep_research_confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change
+- [ ] **`assets/`** -- templates (`deep_research_config.json`, `deep_research_strategy.md`, `deep_research_dashboard.md`, prompt pack) match the new shape
+- [ ] **`scripts/`** -- `reduce-state.cjs` and `runtime-capabilities.cjs` implement the change and stay idempotent

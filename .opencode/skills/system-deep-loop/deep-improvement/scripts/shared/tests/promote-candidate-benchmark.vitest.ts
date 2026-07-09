@@ -78,6 +78,11 @@ function buildBenchmarkPacket(opts: { recommendation: string; aggregateScore: nu
     promotionEnabled: true,
     branchPreservationPolicy: 'preserve-on-failure',
     scoring: { thresholdDelta: 1 },
+    // This fixture's canonical target intentionally lives outside the repo
+    // tree (in a hermetic tmpdir), so it must be explicitly allowlisted for
+    // the write-boundary containment check in promote-candidate.cjs /
+    // rollback-candidate.cjs.
+    promotion: { allowedTargetRoots: [work] },
   });
 
   // .jsonc manifest with a single canonical target equal to the requested target.
@@ -325,5 +330,55 @@ describe('promote-candidate benchmark mode', () => {
     expect(events[0].phase).toBe('ship');
     expect(events[0].preservedBranch).toBe('preserved/test');
     expect(events[0].details.errorType).toBe('canonical_target_changed');
+  });
+});
+
+// The target===config.target / target===manifest canonical equality gates
+// are necessary but not sufficient — they only prove internal consistency
+// between args, config, and manifest, none of which are independently
+// trustworthy. These tests pin the additional realpath-based containment
+// check: even when every equality gate agrees, a target that resolves
+// outside the allowed roots (and outside any explicit
+// config.promotion.allowedTargetRoots allowlist) must be refused and must
+// leave the canonical target untouched.
+describe('promote-candidate / rollback-candidate write-boundary containment', () => {
+  it('refuses to promote when the canonical target resolves outside the allowed roots, even though manifest/config agree', () => {
+    const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
+    // Strip the test-only allowlist the default fixture adds: the target
+    // lives in a hermetic tmpdir outside .opencode/agents, .claude/agents,
+    // and .opencode/skills, so without an explicit allowlist entry it must
+    // be refused even though target===config.target and target===manifest
+    // canonical target both still hold.
+    const config = readJson(p.config);
+    delete config.promotion;
+    writeJson(p.config, config);
+
+    const result = runPromote(p);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toMatch(/resolves outside the allowed target roots/);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
+  });
+
+  it('refuses rollback under the same unauthorized-root condition', () => {
+    const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
+    const acceptanceFile = path.join(p.archiveDir, 'accepted.json');
+    const accepted = runPromote(p, [
+      '--phase=accept',
+      `--acceptance-file=${acceptanceFile}`,
+    ]);
+    expect(accepted.status, accepted.stderr).toBe(0);
+
+    // Strip the allowlist after acceptance so the ensuing rollback sees an
+    // unauthorized target despite a valid, hash-verified acceptance record.
+    const config = readJson(p.config);
+    delete config.promotion;
+    writeJson(p.config, config);
+
+    const result = runRollback(acceptanceFile);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toMatch(/resolves outside the allowed target roots/);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
   });
 });

@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-deep-loop/z_archive/016-sk-deep-rename/001-discovery-impact-map",
+  "description": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`",
+  "keywords": [
+    "packet",
+    "070",
+    "rename",
+    "sk-deep-review",
+    "deep-review",
+    "sk-deep-research",
+    "deep-research"
+  ],
+  "lastUpdated": "2026-07-08T13:06:51.135Z",
+  "specId": "001",
+  "folderSlug": "discovery-impact-map",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "016-sk-deep-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

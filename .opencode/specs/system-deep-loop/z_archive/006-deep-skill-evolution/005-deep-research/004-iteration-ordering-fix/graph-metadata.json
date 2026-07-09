@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research/004-iteration-ordering-fix",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research/004-iteration-ordering-fix",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "DR-006 lexical sort fix",
+      "deep-research iteration ordering",
+      "120 deep-research",
+      "120 plan",
+      "120 tasks",
+      "120 checklist",
+      "120 impl summary"
+    ],
+    "key_topics": [
+      "dr-006",
+      "lexical",
+      "sort",
+      "fix",
+      "deep-research",
+      "iteration",
+      "ordering",
+      "120",
+      "plan",
+      "tasks",
+      "checklist",
+      "impl"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-research-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Iteration Ordering Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chronological State Correctness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Numeric Sort Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Procedure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "numeric",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "filter",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`reduce-state.cjs:874` uses default `.sort()` (lexical) on iteration filenames",
+    "created_at": "2026-05-23T05:45:00Z",
+    "last_save_at": "2026-07-08T13:44:04.494Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:acec450474f8c0624cb8402e610d9b5473c9c7277979a34b36f88e76e54f8d35",
+    "source_doc_hashes": {
+      "spec.md": "839f1a998eea903f0052d02da48286f8f7aee3a6487c19bc03d5878e596432ac",
+      "plan.md": "0754df54f27601a01a63c8d014c6e3eeaa3ac7cfcbb5a640cfe2b710e1eae740",
+      "tasks.md": "81a85fa7af838761ff8ce19bf5e94c4f501c9f71ec3f0b7c7e901199aa7443fe",
+      "checklist.md": "ce296188826013125ddfd110315a315687099d259b0dd04f5548c4938902943d",
+      "implementation-summary.md": "7c7f8eefc9f621be49892380178d8ace2f341d15d9d48eb832a5e2989038be14"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

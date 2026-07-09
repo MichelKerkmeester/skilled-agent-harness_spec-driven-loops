@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk_design_craft_locale_component_holdout_001",
+  "tier": "T2",
+  "public": {
+    "prompt": "polish a settings form for German and Arabic strings while choosing a font pairing that survives long labels, RTL, and mixed numerals",
+    "runtime": "opencode",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": true
+  }
+}

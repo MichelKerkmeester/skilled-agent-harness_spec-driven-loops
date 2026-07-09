@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/015-fix-deep-review-findings-for-two-lane-code",
+  "spec_folder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/015-fix-deep-review-findings-for-two-lane-code",
+  "parent_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fix deep-review findings for two-lane code",
+      "014 deep-review findings fix",
+      "Lane B command flag misparse fix",
+      "two-lane remediation plan",
+      "014 findings remediation plan",
+      "Lane B parser fix plan",
+      "two-lane remediation tasks",
+      "014 findings tasks",
+      "Lane B fix tasks",
+      "two-lane remediation checklist",
+      "014 findings verification",
+      "Lane B fix checklist"
+    ],
+    "key_topics": [
+      "fix",
+      "deep-review",
+      "findings",
+      "two-lane",
+      "code",
+      "014",
+      "lane",
+      "command",
+      "flag",
+      "misparse",
+      "remediation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remediate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Valid Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 014 deep review returned a CONDITIONAL verdict",
+    "created_at": "2026-05-29T10:49:24Z",
+    "last_save_at": "2026-07-08T13:43:35.617Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79f7d7ea1304470c40fcd9753b2a727ab517b139ff8990a0607a61c21cd4bdd4",
+    "source_doc_hashes": {
+      "spec.md": "cb6e11998690d137a33c72ed2a4061d7f5b4c040276f8a6d3b412ef2f0a25ab1",
+      "plan.md": "87872013138b1e51b31ab12953533bed42e937b07c6fa6854087f6e8c7b8c7da",
+      "tasks.md": "2659fe729b1ee853449e826477892ec363c3b1cfa2171a4878578709f8c7cb14",
+      "checklist.md": "15c93d8f3c5bc7c560bf46754da965c182b62114767adf662824b0ddb5358319",
+      "decision-record.md": "3ce6e87ddf2b384398b840b34bab0fadd6a324c088312819dd1bf1ef2035e68b",
+      "implementation-summary.md": "4f9fa9c339206e8434f856ffb06dfae4f1fc65c297ff0d6f7172ce75af3a689c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

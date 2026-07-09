@@ -54,7 +54,7 @@ const DEFAULT_REGISTRY_PATH = path.resolve(
 
 // ---------------------------------------------------------------------------
 // Fixture loading. Profiles reference fixtures by their internal `id`, which is
-// NOT guaranteed to match the filename (e.g. t3-bugfix-in-context.json carries
+// NOT guaranteed to match the filename (e.g. t3_bugfix_in_context.json carries
 // id "t3-lower-bound"). So the loader scans the fixtureDir once, parses every
 // JSON, and indexes by the parsed `id` — filename is only a fallback key.
 // ---------------------------------------------------------------------------

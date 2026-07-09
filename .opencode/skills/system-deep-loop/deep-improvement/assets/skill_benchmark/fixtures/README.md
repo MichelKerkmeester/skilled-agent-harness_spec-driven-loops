@@ -5,7 +5,7 @@ trigger_phrases:
   - "skill-benchmark fixtures"
   - "public private fixture split"
   - "Mode A fixtures-dir corpus"
-  - "agent-improve-001 fixture"
+  - "agent_improve_001 fixture"
 version: 1.17.0.1
 ---
 
@@ -19,7 +19,7 @@ version: 1.17.0.1
 
 Current state:
 
-- One skill directory exists: `deep-improvement/`, with the single scenario `agent-improve-001`.
+- One skill directory exists: `deep-improvement/`, with the single scenario `agent_improve_001`.
 - The scenario carries a `scenarioId`, a `tier` (`T2`), and a self-contained `public` block (`prompt`, `runtime`, `mutationBoundary`, `outputContract`) plus a `provenance` block.
 - The private half declares `expected` routing (`skillId`, `advisorLane`, `intentKeys`, `resources`, `negativeActivation`) and a `rubric` of `usefulnessChecks` / `harmChecks`.
 - `expected.intentKeys` and `expected.resources` are intentionally empty pending a router-extract pass; Mode A treats unknown gold as non-penalizing.
@@ -32,8 +32,8 @@ Current state:
 ```text
 fixtures/
 `-- deep-improvement/                   # One dir per skill under test (<skill-id>/)
-    +-- agent-improve-001.public.json   # Dispatch-boundary half: prompt + contract (crosses to the agent)
-    `-- agent-improve-001.private.json  # Scorer-only gold: expected routing + rubric (never dispatched)
+    +-- agent_improve_001.public.json   # Dispatch-boundary half: prompt + contract (crosses to the agent)
+    `-- agent_improve_001.private.json  # Scorer-only gold: expected routing + rubric (never dispatched)
 ```
 
 ---
@@ -42,8 +42,8 @@ fixtures/
 
 | File | Responsibility |
 |---|---|
-| `deep-improvement/agent-improve-001.public.json` | The only half that crosses the dispatch boundary. Holds `scenarioId`, `tier`, a `public` block (`prompt`, `runtime`, `mutationBoundary`, `outputContract`), and `provenance` (`promptAuthor`, `goldAuthor`, `blindToRouterKeywords`). |
-| `deep-improvement/agent-improve-001.private.json` | Scorer-only gold, withheld from the agent. Holds `scenarioId`, an `expected` routing block (`skillId`, `advisorLane`, `intentKeys`, `resources`, `negativeActivation`), a `rubric` (`usefulnessChecks`, `harmChecks`), and a `notes` field recording why `intentKeys`/`resources` stay empty. |
+| `deep-improvement/agent_improve_001.public.json` | The only half that crosses the dispatch boundary. Holds `scenarioId`, `tier`, a `public` block (`prompt`, `runtime`, `mutationBoundary`, `outputContract`), and `provenance` (`promptAuthor`, `goldAuthor`, `blindToRouterKeywords`). |
+| `deep-improvement/agent_improve_001.private.json` | Scorer-only gold, withheld from the agent. Holds `scenarioId`, an `expected` routing block (`skillId`, `advisorLane`, `intentKeys`, `resources`, `negativeActivation`), a `rubric` (`usefulnessChecks`, `harmChecks`), and a `notes` field recording why `intentKeys`/`resources` stay empty. |
 
 ---
 

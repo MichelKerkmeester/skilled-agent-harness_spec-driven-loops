@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "system-deep-loop/z_archive/021-skill-readme-standardization",
+  "description": "The archived deep-loop skill README standardization work spans six completed child phases, one for each deep-loop sub-skill README that needed a",
+  "keywords": [
+    "archived",
+    "deep-loop",
+    "skill",
+    "readme",
+    "standardization",
+    "work",
+    "spans",
+    "six",
+    "completed",
+    "child",
+    "phases",
+    "one",
+    "sub-skill",
+    "needed"
+  ],
+  "lastUpdated": "2026-07-08T13:43:08.865Z",
+  "specId": "021",
+  "folderSlug": "skill-readme-standardization",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

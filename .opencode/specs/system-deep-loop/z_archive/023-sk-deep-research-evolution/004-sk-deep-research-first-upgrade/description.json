@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/023-sk-deep-research-evolution/004-sk-deep-research-first-upgrade",
+  "description": "The first sk-deep-research upgrade needed grounded input from comparable autonomous research systems",
+  "keywords": [
+    "first",
+    "sk-deep-research",
+    "upgrade",
+    "needed",
+    "grounded",
+    "input",
+    "comparable",
+    "autonomous",
+    "research",
+    "systems"
+  ],
+  "lastUpdated": "2026-07-08T13:43:29.888Z",
+  "specId": "004",
+  "folderSlug": "sk-deep-research-first-upgrade",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "023-sk-deep-research-evolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

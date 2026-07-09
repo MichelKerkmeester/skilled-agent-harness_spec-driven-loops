@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review council improvement"
   - "deep-loop hub routing"
-version: 1.1.0.0
+version: 2.0.0.0
 ---
 
 # system-deep-loop
@@ -90,8 +90,9 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review`, `deep
 
 | Skill | Relationship |
 |---|---|
-| `runtime/` | The frozen, MCP-free backend the modes run on. |
 | `system-spec-kit` | Owns the spec packets and memory continuity the modes read and write. |
+
+`runtime/` is not a related skill — it is this hub's own nested, frozen infrastructure layer (executor config, prompt-pack rendering, validation, atomic state, coverage graph, scoring) that every mode consumes internally. It carries no `graph-metadata.json` of its own and is not independently advisor-routable (see Layout above).
 
 ---
 
@@ -102,3 +103,16 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review`, `deep
 | [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
 | [`mode-registry.json`](./mode-registry.json) | The three-tier discriminator for every mode. |
 | [`deep-ai-council/SKILL.md`](./deep-ai-council/SKILL.md) | An example mode packet. |
+
+---
+
+## 7. ADDING A WORKFLOW MODE
+
+Adding a 5th active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`, `deep-improvement`) touches every one of these surfaces — miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
+
+- [ ] **`mode-registry.json`** — add the mode's registry entry: `workflowMode`, `runtimeLoopType` (or explicit `null`), `backendKind`, `packet`, `packetKind`, `toolSurface`, `advisorRouting`, and `aliases`.
+- [ ] **`hub-router.json`** — add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.
+- [ ] **`SKILL.md`** — add a row to the §1 WHEN TO USE mode table (mode, use-it-for, packet, command, agent), and update the frontmatter `allowed-tools` if the new mode's `toolSurface.allowed` introduces a tool no existing mode grants (keep it equal to the union — see §2 SMART ROUTING).
+- [ ] **`README.md`** (this document) — add the mode to §1 AT A GLANCE / §4 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
+- [ ] **Drift-guard test** — `system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts` asserts the advisor's hardcoded projection maps equal the registry projection; update the maps it checks against or the test fails on the next run.
+- [ ] **`node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/system-deep-loop`** — re-run after all of the above; it validates registry shape, alias uniqueness, tool-surface union (3j), and hub-router consistency in one pass.

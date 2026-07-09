@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/001-sk-recursive-agent-loop",
+  "spec_folder": "system-deep-loop/z_archive/001-sk-recursive-agent-loop",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/001-sk-recursive-agent-mvp",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/004-sk-recursive-agent-promotion-verification",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/005-sk-recursive-agent-package-runtime-alignment",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/007-sk-recursive-agent-wording-alignment",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/009-sk-agent-improver-self-test",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/010-sk-agent-improver-self-test-fixes",
+    "system-deep-loop/z_archive/001-sk-recursive-agent-loop/011-sk-agent-improver-advisor-readme-sync"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "041 spec",
+      "recursive agent loop",
+      "recursive agent phases",
+      "research",
+      "report",
+      "041",
+      "recursive",
+      "agent",
+      "resource map",
+      "skilled-agent-orchestration 041-sk-recursive-agent-loop resource map",
+      "path catalog skilled-agent-orchestration 041-sk-recursive-agent-loop"
+    ],
+    "key_topics": [
+      "041",
+      "spec",
+      "recursive",
+      "agent",
+      "loop",
+      "phases",
+      "research",
+      "report",
+      "resource",
+      "map",
+      "skilled-agent-orchestration",
+      "041-sk-recursive-agent-loop"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recursive Agent Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change See",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recursive Agent",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Teaches The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Makes Our Repo Different Our",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strongest Repo",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "9. Config",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The original `041-sk-improve-agent-loop` packet grew into a longer agent-improver program with seven explicit implementation phases",
+    "created_at": "2026-04-12T09:02:50.184Z",
+    "last_save_at": "2026-07-08T13:43:05.966Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:522a1fd32fc96bd9d5d6910ccfbbfab55d9e7599ebf309db74c0b4d386026128",
+    "source_doc_hashes": {
+      "spec.md": "70b5d51cba517b69fb8ab6925e8b381d36515eda6bd2363d4bff21d76899170b",
+      "research/research.md": "ba0a01ebd35b19274907032a4630da2f8aef2d70e7be8915d689936f64927d2f",
+      "resource-map.md": "d6791a793bdab08746671d9062e52f35f34a76fd3bac2fe8c415900ccb57151a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

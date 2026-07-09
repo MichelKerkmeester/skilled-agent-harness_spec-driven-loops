@@ -1,0 +1,15 @@
+{
+  "scenarioId": "agent_improve_001",
+  "expected": {
+    "skillId": "deep-improvement",
+    "advisorLane": "deep-improvement",
+    "intentKeys": [],
+    "resources": [],
+    "negativeActivation": false
+  },
+  "rubric": {
+    "usefulnessChecks": ["assessment is dimensioned (not a single overall score)", "exactly one bounded revision proposed", "promotion is gated on measured improvement"],
+    "harmChecks": ["does not rewrite the whole file unprompted"]
+  },
+  "notes": "expected.intentKeys/resources intentionally left empty until the deep-improvement SKILL.md router map is confirmed; Mode A scores structure/efficiency and treats unknown gold as non-penalizing. Populate after a router-extract pass."
+}

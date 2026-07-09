@@ -38,6 +38,9 @@ const {
 const DEFAULT_TIMESTAMP = '1970-01-01T00:00:00.000Z';
 const DEFAULT_MAX_ROUNDS = 3;
 const MAX_SLUG_LENGTH = 80;
+// Required report language for an all-seat-failure round (references/convergence/failure_handling.md).
+// Detecting it lets renderArtifacts() avoid recording a fabricated converged council_complete event.
+const ALL_SEATS_FAILED_PATTERN = /all\s+council\s+seats\s+failed/i;
 const OPTIONAL_ALIASES = {
   crossReferences: ['cross-references', 'cross references'],
   droppedAlternatives: ['dropped alternatives'],
@@ -263,6 +266,7 @@ function rejectParentTraversal(relativePath, aiCouncilRoot) {
  */
 function parseCouncilReport(markdown) {
   const sectionsList = splitSections(markdown);
+  const allSeatsFailed = ALL_SEATS_FAILED_PATTERN.test(String(markdown || ''));
   const title = String(markdown || '').replace(/\r\n/g, '\n').split('\n').find((line) => /^#{1,2}\s+/.test(line));
   const composition = findSection(sectionsList, ['Council Composition']);
   const recommendedPlan = findSection(sectionsList, ['Recommended Plan']);
@@ -290,6 +294,7 @@ function parseCouncilReport(markdown) {
     planConfidence: parsePlanConfidence(planConfidence),
     optionalSections: collectOptionalSections(sectionsList),
     extraSections: collectExtraSections(sectionsList),
+    allSeatsFailed,
     rawMarkdown: String(markdown || '').replace(/\r\n/g, '\n').trim(),
   };
 }
@@ -438,12 +443,20 @@ ${parsed.recommendedPlan}
 ${parsed.planConfidence === null ? '[No numeric confidence captured]' : `${parsed.planConfidence}/100`}
 `;
 
+  // Never fabricate convergence (references/convergence/failure_handling.md,
+  // references/convergence/convergence_signals.md). An in-report "all seats failed"
+  // marker always wins and resolves false. Absent that marker, a caller that already
+  // knows a round exhausted max_rounds without reaching consensus can force false via
+  // `options.convergence`. Only a genuinely unflagged, unmarked report defaults to true.
+  const explicitConvergence = typeof options.convergence === 'boolean' ? options.convergence : null;
+  const convergence = parsed.allSeatsFailed ? false : (explicitConvergence !== null ? explicitConvergence : true);
+
   const stateEvents = [
     { event: 'round_start', round, timestamp, seats: parsed.seats.map((seat) => seat.id) },
     ...parsed.seats.map((seat) => ({ event: 'seat_returned', round, seat: seat.id, timestamp, status: 'ok' })),
     { event: 'deliberation_synthesized', round, timestamp, convergence_score: parsed.planConfidence },
     { event: 'round_end', round, timestamp, new_findings_count: parsed.extraSections.length },
-    { event: 'council_complete', timestamp, final_report_path: 'ai-council/council-report.md', convergence: true },
+    { event: 'council_complete', timestamp, final_report_path: 'ai-council/council-report.md', convergence },
   ].map(metadataEvent);
 
   const stateLog = `${stateEvents.map((event) => JSON.stringify(event)).join('\n')}\n`;
@@ -910,6 +923,7 @@ function parseArgs(argv) {
     seatLabel: null,
     lens: null,
     vantage: null,
+    notConverged: false,
   };
   const rest = [...argv];
   args.packetSpecFolder = rest.shift() || null;
@@ -924,10 +938,11 @@ function parseArgs(argv) {
     else if (flag === '--seat-label') args.seatLabel = rest.shift();
     else if (flag === '--lens') args.lens = rest.shift();
     else if (flag === '--vantage') args.vantage = rest.shift();
+    else if (flag === '--not-converged') args.notConverged = true;
     else throw new Error(`[ai-council] Unknown argument: ${flag}`);
   }
   if (!args.packetSpecFolder) {
-    throw new Error('Usage: node persist-artifacts.cjs <packet-spec-folder> [--round NNN] [--input-file FILE] [--memory-save-payload-out FILE] [--strict-output] [--force] [--seat [--seat-label L] [--lens L] [--vantage V]]');
+    throw new Error('Usage: node persist-artifacts.cjs <packet-spec-folder> [--round NNN] [--input-file FILE] [--memory-save-payload-out FILE] [--strict-output] [--force] [--not-converged] [--seat [--seat-label L] [--lens L] [--vantage V]]');
   }
   if (!args.seat && args.memorySavePayloadOut === undefined) {
     throw new Error('[ai-council] --memory-save-payload-out requires a file path');
@@ -978,6 +993,7 @@ function main(argv = process.argv.slice(2)) {
       round: args.round,
       strictOutput: args.strictOutput,
       specFolder: path.resolve(args.packetSpecFolder),
+      convergence: args.notConverged ? false : undefined,
     });
     const result = writeArtifacts(args.packetSpecFolder, rendered, { force: args.force });
     if (result.conflicts.length) {

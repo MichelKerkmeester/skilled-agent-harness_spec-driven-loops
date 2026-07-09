@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/003-wave-executor",
+  "spec_folder": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/003-wave-executor",
+  "parent_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "042.003",
+      "wave executor",
+      "segment planner",
+      "coordination board",
+      "parallel deep loop",
+      "implementation plan",
+      "tasks",
+      "verification checklist",
+      "decision record",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "042",
+      "003",
+      "wave",
+      "executor",
+      "segment",
+      "planner",
+      "coordination",
+      "board",
+      "parallel",
+      "deep",
+      "loop",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs",
+      ".opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs",
+      ".opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
+      ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs",
+      ".opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts",
+      "plan.md",
+      "decision-record.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "wave-segment-planner.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-planner.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "wave-lifecycle.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-lifecycle.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "wave-coordination-board.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-coordination-board.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "wave-segment-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-segment-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "wave-convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/wave-convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-wave-planner.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-planner.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-wave-executor.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-executor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-wave-merge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-wave-resume.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-loop-wave-resume.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wave Executor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop products are currently optimized for one iteration stream at a time",
+    "created_at": "2026-04-12T09:02:50.193Z",
+    "last_save_at": "2026-07-08T13:43:43.778Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8656aa0056dc946bf39090458ae1e13366f66f86aeb70f856aaa404baabd8773",
+    "source_doc_hashes": {
+      "spec.md": "7de181133150eeb5489ed61a412ee479eb337b952807f2b266ad2411c6df60de",
+      "plan.md": "022af9fc9bae9f45def9c37adae2e71e7f5e85dc484252e47f48ed307e48a865",
+      "tasks.md": "7923ff912d21c74d402dd91bce96bc8deed0ff7d2faf0344e40c8e2eadca6bea",
+      "checklist.md": "decb08ee82d7fa5b75c2f2bfd52164994c014ae49e0a48ab0751fc02deaffa3d",
+      "decision-record.md": "33776161fc8bd4ad1473a912021f70ca10f480b3b84205792f95745044d586c1",
+      "implementation-summary.md": "087ebdd7fc4c3417d98f0ea55a74138dc84d479da222b6ad205b6670f1357b55"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

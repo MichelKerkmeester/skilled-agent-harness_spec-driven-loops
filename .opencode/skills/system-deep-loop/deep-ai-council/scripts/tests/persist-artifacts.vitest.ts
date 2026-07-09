@@ -130,6 +130,44 @@ describe('deep-ai-council persist-artifacts', () => {
     expect(rendered.seats[0].path).toMatch(/^seats\/round-002\/seat-001-/);
     expect(rendered.deliberation).toContain('## Council Composition');
     expect(rendered.councilReport).toContain('# Multi-AI Council Report');
+    // Default (no failure marker, no explicit override): normal converged completion.
+    expect(rendered.stateLog).toContain('"event":"council_complete"');
+    const councilCompleteLine = rendered.stateLog.split('\n').find((line: string) => line.includes('"council_complete"'));
+    expect(JSON.parse(councilCompleteLine as string).convergence).toBe(true);
+  });
+
+  it('parseCouncilReport flags the required all-seats-failed report language', () => {
+    const failureReport = councilReport({ recommendedPlan: 'All council seats failed. Task may need reframing.' });
+    const parsed = parseCouncilReport(failureReport);
+
+    expect(parsed.ok).toBe(true);
+    expect(parsed.allSeatsFailed).toBe(true);
+  });
+
+  it('renderArtifacts never fabricates convergence for an all-seats-failed report', () => {
+    const failureReport = councilReport({ recommendedPlan: 'All council seats failed. Task may need reframing.' });
+    const parsed = parseCouncilReport(failureReport);
+    const rendered = renderArtifacts(parsed, { round: 1, specFolder: '/path/to/packet' });
+
+    const councilCompleteLine = rendered.stateLog.split('\n').find((line: string) => line.includes('"council_complete"'));
+    expect(JSON.parse(councilCompleteLine as string).convergence).toBe(false);
+  });
+
+  it('renderArtifacts records convergence:false when the caller declares a max-round escape', () => {
+    const parsed = parseCouncilReport(councilReport());
+    const rendered = renderArtifacts(parsed, { round: 3, specFolder: '/path/to/packet', convergence: false });
+
+    const councilCompleteLine = rendered.stateLog.split('\n').find((line: string) => line.includes('"council_complete"'));
+    expect(JSON.parse(councilCompleteLine as string).convergence).toBe(false);
+  });
+
+  it('renderArtifacts refuses to let an all-seats-failed marker be overridden to converged', () => {
+    const failureReport = councilReport({ recommendedPlan: 'All council seats failed. Task may need reframing.' });
+    const parsed = parseCouncilReport(failureReport);
+    const rendered = renderArtifacts(parsed, { round: 1, specFolder: '/path/to/packet', convergence: true });
+
+    const councilCompleteLine = rendered.stateLog.split('\n').find((line: string) => line.includes('"council_complete"'));
+    expect(JSON.parse(councilCompleteLine as string).convergence).toBe(false);
   });
 
   it('writeConfig writes ai-council-config.json with scoped write guard', async () => {

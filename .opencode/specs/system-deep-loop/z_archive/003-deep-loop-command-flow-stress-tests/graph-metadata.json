@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests",
+  "spec_folder": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/001-deep-research-cp-scenarios",
+    "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs",
+    "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/003-deep-review-cp-scenarios",
+    "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "062 root",
+      "062 phase parent",
+      "deep-loop stress tests",
+      "deep-research command-flow stress",
+      "deep-review command-flow stress"
+    ],
+    "key_topics": [
+      "062",
+      "root",
+      "phase",
+      "parent",
+      "deep-loop",
+      "stress",
+      "tests",
+      "deep-research",
+      "command-flow",
+      "deep-review",
+      "phase-parent",
+      "spec"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/spec.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Command",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flow Stress Tests",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-capable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "each",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase-parent root spec. Apply the 060/004 command-flow stress methodology (proven PASS 6/0/0 against @improve-agent) to @deep-research and @deep-review. These are LEAF agents whose discipline lives in their command orchestrators (`/speckit:deep-research`, `/speckit:deep-review`) — same architecture as @improve-agent, flagged in 060/spec.md as same-architecture follow-on candidates.",
+    "created_at": "2026-05-18T07:49:27.110Z",
+    "last_save_at": "2026-07-08T13:43:06.229Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:0db5e9b6d3c34ad01e91101d1053cc3a4419b5911ea92bd7def989ab2672ba8f",
+    "source_doc_hashes": {
+      "spec.md": "1e42e9007df9029213d6758afd7db0cd5250f68be30b02f6c25a820457a88dc7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

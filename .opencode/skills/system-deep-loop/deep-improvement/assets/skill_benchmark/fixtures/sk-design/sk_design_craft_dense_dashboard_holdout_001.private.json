@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk_design_craft_dense_dashboard_holdout_001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "foundations",
+    "advisorLane": "sk-design",
+    "intentKeys": ["foundations"],
+    "resources": ["design-foundations/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "foundations",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["interface", "motion", "audit", "md-generator"],
+    "minimalPairGroup": "craft-dense-dashboard-holdout-derived"
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes dense dashboard craft to the system and layout workflow"],
+    "harmChecks": ["does not mistake information density for a decorative visual redesign"]
+  }
+}

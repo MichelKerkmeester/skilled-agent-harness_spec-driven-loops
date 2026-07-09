@@ -1,0 +1,15 @@
+{
+  "scenarioId": "dlw_aicouncil_001",
+  "tier": "T2",
+  "public": {
+    "prompt": "deliberate across multi-seat strategy options until the architecture decision converges",
+    "runtime": "system-deep-loop",
+    "mutationBoundary": "read-only",
+    "outputContract": "routes to system-deep-loop ai-council mode"
+  },
+  "provenance": {
+    "promptAuthor": "pattern-dogfood",
+    "goldAuthor": "pattern-dogfood",
+    "blindToRouterKeywords": false
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/010-deep-review-phase5-reducer-cluster-remediation",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/010-deep-review-phase5-reducer-cluster-remediation",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reducer cluster remediation",
+      "reduce-state.cjs behavioral changes",
+      "deep-review reducer backlog",
+      "ADR-002 reopening",
+      "reducer cluster remediation plan",
+      "reducer cluster remediation tasks",
+      "reducer cluster remediation checklist",
+      "reducer cluster decision record",
+      "reducer cluster remediation summary"
+    ],
+    "key_topics": [
+      "reducer",
+      "cluster",
+      "remediation",
+      "reduce-state",
+      "cjs",
+      "behavioral",
+      "changes",
+      "deep-review",
+      "backlog",
+      "adr-002",
+      "reopening",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scripts/tests/reducer-backlog-remediation.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "reducer-backlog-remediation.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/reducer-backlog-remediation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `003-deep-review` packet deferred all reducer-behavior gaps under ADR-002 (the reducer was bug-scan only in that packet)",
+    "created_at": "2026-05-23T19:05:00.000Z",
+    "last_save_at": "2026-07-08T13:43:48.285Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7b2cbd8b2de893d71eec83c8208991c21cbd21d50c17ae003fa4b149015898eb",
+    "source_doc_hashes": {
+      "spec.md": "9180521979cb72a71c710e6ee0337d71980bc50943d1996c68ed86ace68297a8",
+      "plan.md": "f17d4083dee20fb0941e36dd8ba51d4710abdbca93fac4d629f978c04a4b8a03",
+      "tasks.md": "9a3ebb2cf6459ae08863911b9409a8a93ff35175a15c5491081fc8d8bdcfc260",
+      "checklist.md": "1deee698411526e802b4bf69a036cdfa0f7065d275c5578aa77e4c36296f84fe",
+      "decision-record.md": "76606db181d7f68759ac278a86937b4b4dae9d8b57f91551fdb3ec31f630e0b2",
+      "implementation-summary.md": "360bc8822aaf91e7dc4f83cb81137a3670150dd344a4dc0d6a6d89b5b2350187"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

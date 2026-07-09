@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/008-test-migration",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/008-test-migration",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 007 test migration",
+      "deep-loop runtime tests",
+      "mcp deep-loop test deletion",
+      "cjs script direct-invocation tests",
+      "phase 007 plan",
+      "test migration plan",
+      "deep-loop-runtime tests plan",
+      "phase 007 tasks",
+      "test migration tasks",
+      "deep-loop-runtime tests tasks",
+      "phase 007 checklist",
+      "test migration verification"
+    ],
+    "key_topics": [
+      "phase",
+      "007",
+      "test",
+      "migration",
+      "deep-loop",
+      "runtime",
+      "tests",
+      "mcp",
+      "deletion",
+      "cjs",
+      "script",
+      "direct-invocation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "mcp_server/vitest.config.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Package Manager",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Move Unit Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Move Integration",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 001-006 land, the test layout in `system-spec-kit/mcpserver/tests/deep-loop/` is out of sync with the runtime code's new home in `deep-loop-runtime/lib/`",
+    "created_at": "2026-05-22T20:05:00Z",
+    "last_save_at": "2026-07-08T13:44:01.329Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8597cd92ecea41d3b24640817f905628b18d227589362a0ae7ba091036386eaf",
+    "source_doc_hashes": {
+      "spec.md": "a1f20dfdb8fb603bc2ddce97397d438ff6cfd419d6602dadfafa3afd3e53bd23",
+      "plan.md": "e005623cf05b0234ab421405d8c4fb1019aa56a598c779348a6824624e2819b0",
+      "tasks.md": "0d7d1829436c27e9e8f9144fd8ff933e9fffb6d0a07e8a059bf13c541de1e864",
+      "checklist.md": "17e516fd2c4eec82ab43a02ba146ea46b4d201f900156a937060ab421b729153",
+      "implementation-summary.md": "aa295ee5f75bfe13f0be877d578cec9781bce26900162a194f9773c74bcd81bb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

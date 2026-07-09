@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/023-sk-deep-research-evolution",
+  "spec_folder": "system-deep-loop/z_archive/023-sk-deep-research-evolution",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/001-sk-deep-research-creation",
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/002-sk-deep-research-refinement",
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/003-sk-deep-research-testing-playbook",
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/004-sk-deep-research-first-upgrade",
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/005-sk-deep-research-review-mode",
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/006-sk-deep-research-review-folders",
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/007-sk-deep-research-path-migration",
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/008-sk-deep-research-review-split",
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/009-sk-deep-research-review-improvement-1",
+    "system-deep-loop/z_archive/023-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk deep research evolution",
+      "deep research evolution archive",
+      "sk-deep-research evolution series"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "evolution",
+      "archive",
+      "sk-deep-research",
+      "series",
+      "archived",
+      "history",
+      "spans",
+      "multiple",
+      "adjacent",
+      "packets"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Group",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The archived `sk-deep-research` history spans multiple adjacent packets that describe the skill's creation, refinement, testing surface, first upgrade research, review-mode work, path-layout migration, review split, and later runtime-improvement bundles",
+    "created_at": "2026-07-08T05:58:20.015Z",
+    "last_save_at": "2026-07-08T13:43:08.740Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1eeeb68610efacfc6951b60c80be14a7cdd4e61e7f4a56217818d93592149b9a",
+    "source_doc_hashes": {
+      "spec.md": "b540b83d7e2b59eb8a9a88d596ed69e5bac72b595d1ba748c349d653595685f7"
+    },
+    "last_active_child_id": "010-sk-deep-research-review-improvement-2",
+    "last_active_at": "2026-06-23T03:49:49.215Z"
+  }
+}

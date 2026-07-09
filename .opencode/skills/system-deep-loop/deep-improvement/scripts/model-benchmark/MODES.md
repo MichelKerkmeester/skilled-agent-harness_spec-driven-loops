@@ -15,7 +15,7 @@ The `mode` string is validated against a fixed enum in `lib/profile-validator.cj
 | **E** | `regression` | run-label (before/after) | profile + fixtures + model + prompt | `run_label` |
 | **F** | `capability-profile` | full tiered fixture taxonomy | one model + one prompt | `fixture` (often `category` × `tier`) |
 
-Everything below is the **profile delta** for each mode. Shared keys (`fixtureDir`, `scoring`, `sampling`, `benchmark`, `outputsDir`) are the same shape as the shipped example profiles in `../../assets/model_benchmark/benchmark-profiles/`. The two shipped examples — `framework-bakeoff.json` (mode B) and `model-vs-model.json` (mode A) — are runnable references; the C–F snippets follow the same contract.
+Everything below is the **profile delta** for each mode. Shared keys (`fixtureDir`, `scoring`, `sampling`, `benchmark`, `outputsDir`) are the same shape as the shipped example profiles in `../../assets/model_benchmark/benchmark-profiles/`. The two shipped examples — `framework_bakeoff.json` (mode B) and `model_vs_model.json` (mode A) — are runnable references; the C–F snippets follow the same contract.
 
 ---
 

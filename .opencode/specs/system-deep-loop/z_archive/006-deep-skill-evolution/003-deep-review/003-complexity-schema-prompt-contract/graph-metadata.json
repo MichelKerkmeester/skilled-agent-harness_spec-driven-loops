@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/003-complexity-schema-prompt-contract",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/003-complexity-schema-prompt-contract",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review depth schema",
+      "review depth prompt contract",
+      "searchLedger contract",
+      "116 review depth schema plan",
+      "review depth prompt contract plan",
+      "116 review depth schema tasks",
+      "searchLedger contract tasks",
+      "116 review depth checklist",
+      "searchLedger contract checklist",
+      "116 review depth ADR",
+      "reviewDepthSchemaVersion decision",
+      "116 review depth schema summary"
+    ],
+    "key_topics": [
+      "review",
+      "depth",
+      "schema",
+      "prompt",
+      "contract",
+      "searchledger",
+      "116",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr",
+      "reviewdepthschemaversion"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "checklist.md",
+      "decision-record.md",
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depth Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Contract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Populated Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Sources",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-review` records findings and graph events, but it has no versioned way to prove target selection, bug-class search coverage, ruled-out candidates, or remaining search debt before a no-finding or low-finding review counts as deep enough",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-07-08T13:43:54.949Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7f827380f7755d0724dc03733189ce360996484613e5569ff74154c2c66cadf1",
+    "source_doc_hashes": {
+      "spec.md": "1199598f4b3178992ab5a20095acba8e1d419ff1da195c0900546db6ab4f256b",
+      "plan.md": "123f03e464d5771b9384c4dd2b4eea3a353b03591e929b911550819aa4530d20",
+      "tasks.md": "ab352c59109a0011fc9ece485b69f51061335f5490e2b54806f62a5866d7e674",
+      "checklist.md": "ba8beb0b175cec86c93d329a31a50eb897e0055edaacbf0a457314e7e1efe98c",
+      "decision-record.md": "18e45ad26f68f49d2722a39663590414955feae98308e7d4e6139e87dda7ac24",
+      "implementation-summary.md": "02124ec31c1550ff9ab5d7a0d29c2d311e0f38693d9773ab64530fe8312d50bb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

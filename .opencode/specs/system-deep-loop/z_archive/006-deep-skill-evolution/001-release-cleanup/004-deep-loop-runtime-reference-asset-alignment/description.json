@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/004-deep-loop-runtime-reference-asset-alignment",
+  "description": "The three deep skills now share a runtime family but their references and assets were uneven",
+  "keywords": [
+    "three",
+    "deep",
+    "skills",
+    "now",
+    "share",
+    "runtime",
+    "family",
+    "references",
+    "assets",
+    "uneven"
+  ],
+  "lastUpdated": "2026-07-08T13:07:12.680Z",
+  "specId": "004",
+  "folderSlug": "deep-loop-runtime-reference-asset-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "001-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [
+    "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/003-reference-asset-alignment"
+  ]
+}

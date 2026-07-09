@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
+  "spec_folder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/002-research-model-benchmark-implementation",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/003-build-model-benchmark-mode-runtime",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/007-review-model-benchmark-mode-hardening",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/009-restructure-skill-md-two-lane",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/010-reorganize-two-lane-references-assets",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/011-add-agent-lane-awareness-note",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/012-label-catalog-playbook-and-advisor-lanes",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/013-reorganize-script-lane-folders",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/014-review-two-lane-workflow-implementation",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/015-fix-deep-review-findings-for-two-lane-code",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/016-add-readmes-for-script-subfolders",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/017-review-two-lane-workflow-with-opus",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/018-fix-opus-findings-for-two-lane-code",
+    "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "121-deep-agent-improvement-benchmark-mode",
+      "deep-agent-improvement benchmark mode",
+      "model-benchmark mode phase parent"
+    ],
+    "key_topics": [
+      "121-deep-agent-improvement-benchmark-mode",
+      "deep-agent-improvement",
+      "benchmark",
+      "mode",
+      "model-benchmark",
+      "phase",
+      "parent",
+      "120",
+      "003",
+      "rig",
+      "run",
+      "model"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 120/003 benchmark rig (run a model against fixtures under prompt-framework variants, score, hill-climb) is packet-local and one-off",
+    "created_at": "2026-05-28T00:00:00Z",
+    "last_save_at": "2026-07-08T13:43:09.261Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:74d2ce3926f6df3082747d1fa9ce74cf58e0915ff952259592cd8b7327419f7b",
+    "source_doc_hashes": {
+      "spec.md": "cfa6a98a536dcefbcad2e12cae52ca4625aecbd535f942cc4542c214c0dfa914"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk_design_alias_audit_001",
+  "tier": "T1",
+  "public": {
+    "prompt": "production hardening",
+    "runtime": "opencode",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": false
+  }
+}

@@ -9,6 +9,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 
 const MODE_CONFIG_FILE = {
@@ -163,6 +164,62 @@ function findExistingPacket(rootDir, specFolder, mode) {
   return matches.at(-1) || null;
 }
 
+// SCRIPT_DIR: .opencode/skills/system-spec-kit/shared -> repo root is 4 levels
+// up. Mirrors the REPO_ROOT convention already used by
+// scripts/migrate-deep-loop-local-owner.cjs, so this stays a portable,
+// __dirname-relative anchor rather than a hardcoded absolute path.
+const REPO_ROOT = path.resolve(__dirname, '../../../../');
+
+/**
+ * Canonicalize a path via realpath when possible, falling back to the plain
+ * resolved value when the path does not exist yet or cannot be canonicalized.
+ * Needed because macOS aliases `os.tmpdir()` under `/var/...` while
+ * `fs.realpathSync()` resolves it to `/private/var/...` — reducer unit tests
+ * use both forms depending on whether they realpath their own fixture root.
+ */
+function canonicalizeForContainment(target) {
+  try {
+    return fs.realpathSync(target);
+  } catch (_error) {
+    return path.resolve(target);
+  }
+}
+
+/** Prefix-match containment: true iff `candidate` is `root` itself or a descendant of it. */
+function isWithinRoot(root, candidate) {
+  if (candidate === root) {
+    return true;
+  }
+  const prefix = root.endsWith(path.sep) ? root : `${root}${path.sep}`;
+  return candidate.startsWith(prefix);
+}
+
+/**
+ * Allowed roots for resolveArtifactRoot() writes: this repo's two spec-folder
+ * roots (.opencode/specs, specs — the convention also used by
+ * normalizeSpecFolderReference() above and by migrate-deep-loop-local-owner.cjs),
+ * plus the OS temp dir. The temp dir is included because the reducer unit test
+ * suites (both here and under system-deep-loop/runtime) deliberately build
+ * isolated fixture trees under `os.tmpdir()` rather than the live repo tree —
+ * matching the same os.tmpdir()-as-allowed-root convention already used by
+ * shared/ipc/socket-server.ts's allowedSocketRoots().
+ */
+function getApprovedArtifactRoots() {
+  const roots = new Set();
+  roots.add(path.join(REPO_ROOT, '.opencode', 'specs'));
+  roots.add(canonicalizeForContainment(path.join(REPO_ROOT, '.opencode', 'specs')));
+  roots.add(path.join(REPO_ROOT, 'specs'));
+  roots.add(canonicalizeForContainment(path.join(REPO_ROOT, 'specs')));
+  roots.add(path.resolve(os.tmpdir()));
+  roots.add(canonicalizeForContainment(os.tmpdir()));
+  return [...roots];
+}
+
+function isWithinApprovedArtifactRoot(resolvedSpecFolder) {
+  const candidate = canonicalizeForContainment(resolvedSpecFolder);
+  return getApprovedArtifactRoots().some((root) => isWithinRoot(root, candidate));
+}
+
 /**
  * Resolve the canonical artifact directory for review or research output.
  *
@@ -214,6 +271,19 @@ function resolveArtifactRoot(specFolder, mode = 'review') {
   }
 
   const resolved = path.resolve(specFolder);
+
+  // Containment: refuse to hand back an artifact root outside the workspace's
+  // legitimate spec-folder roots (or the OS temp dir used by reducer unit
+  // tests — see getApprovedArtifactRoots()). Without this, a relative
+  // traversal (e.g. "../../etc") or an absolute path elsewhere on disk with
+  // no forbidden shell metacharacters would sail past the guard above and
+  // route workflow writes outside the intended packet.
+  if (!isWithinApprovedArtifactRoot(resolved)) {
+    throw new Error(
+      `resolveArtifactRoot: specFolder resolves outside the approved specs roots (.opencode/specs, specs) or the OS temp dir; refusing to proceed: ${resolved}`,
+    );
+  }
+
   const rootDir = path.join(resolved, mode);
   const artifactArchiveRoot = path.join(resolved, `${mode}_archive`);
   const ancestorSpecFolder = findAncestorSpecFolder(resolved);

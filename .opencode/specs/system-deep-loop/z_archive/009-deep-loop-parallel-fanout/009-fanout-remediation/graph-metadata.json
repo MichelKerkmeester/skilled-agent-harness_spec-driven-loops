@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/009-fanout-remediation",
+  "spec_folder": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/009-fanout-remediation",
+  "parent_id": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "123 phase 009 fanout remediation",
+      "fix fanout serial spawnSync",
+      "fanout false pass review gate",
+      "123 phase 009 plan",
+      "fanout remediation plan",
+      "fix fanout concurrency plan",
+      "123 phase 009 tasks",
+      "fanout remediation tasks",
+      "fanout fix task list",
+      "123 phase 009 checklist",
+      "fanout remediation checklist",
+      "fanout fix verification"
+    ],
+    "key_topics": [
+      "123",
+      "phase",
+      "009",
+      "fanout",
+      "remediation",
+      "fix",
+      "serial",
+      "spawnsync",
+      "false",
+      "pass",
+      "review",
+      "gate"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "resource-map.md",
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "dependencies",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "async",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verbatim",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 123 shipped a \"parallel multi-executor fan-out\" layer for `/deep:start-review-loop` and `/deep:start-research-loop`",
+    "created_at": "2026-05-31T14:05:02.650Z",
+    "last_save_at": "2026-07-08T13:43:18.558Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:db7901c22f7f70aaac60e80e49af0897d160efcd9507c5260837d04d372ee1fe",
+    "source_doc_hashes": {
+      "spec.md": "af74892660cc24836728a091cee99fbdf71d2850605f9222f08d73098a468c70",
+      "plan.md": "d7ffe458f654cbcc329c3ab30edd0554c5251daeb72bd8258ac42fc54c3227bf",
+      "tasks.md": "df4270a073d1c8fe56f01484b9e6b83e60d1cd39081073725df1dfd5c4051614",
+      "checklist.md": "5dd3ea3227fe1f5ad797523df8ec40505464e5bb4fb8fcd1f810025dd5bc57de",
+      "decision-record.md": "ab5ba8bc5593b30798733b1ad24aeae4d4796e05a32b23e990d05c495c368495",
+      "implementation-summary.md": "fce9b0fb4f4a5c618bf83293190be71cec93237c6f7d56bb693d1900ff04e45f",
+      "resource-map.md": "4941552e162a3b2bfc113bf73d32884dd57a964e9d9f82688e839262b5ffff3b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

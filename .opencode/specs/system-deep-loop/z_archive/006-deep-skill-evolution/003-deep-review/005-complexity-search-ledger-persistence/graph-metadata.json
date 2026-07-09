@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/005-complexity-search-ledger-persistence",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/005-complexity-search-ledger-persistence",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "search ledger persistence",
+      "reducer registry v2",
+      "search debt dashboard",
+      "116 search ledger persistence plan",
+      "116 search ledger persistence tasks",
+      "116 search ledger persistence checklist",
+      "reducer registry shape extension",
+      "116 search ledger persistence summary"
+    ],
+    "key_topics": [
+      "search",
+      "ledger",
+      "persistence",
+      "reducer",
+      "registry",
+      "debt",
+      "dashboard",
+      "116",
+      "plan",
+      "tasks",
+      "checklist",
+      "shape"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Ledger Persistence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Search Ledger",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Forbidden Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Risks",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reducer Registry Shape",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dashboard Verdict",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Render Search Debt",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Valid v2 ledger rows are not useful if the reducer drops them",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-07-08T13:43:55.171Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b9c97fb113c66c874dd92a3080c2cba60cd7ee0d14df2b608b8af88fdb99038a",
+    "source_doc_hashes": {
+      "spec.md": "0cadbd148a3fff05db20ef032519c30a9520fc1d989129e9d163506bcad2a3d7",
+      "plan.md": "13a9cd2183f0910ead6db2b4c1d9b99b208459fcbf875c1d0fdc22844b6beb12",
+      "tasks.md": "78987ac483f9b1e0113cf6184c98c581c92b7b4419b793e1452a43bcc9643146",
+      "checklist.md": "21a322325ea9f44aba6c5a3d3ebca764e46b9559116a9b218012b7d5cd5c8497",
+      "decision-record.md": "fea5ed260ec2b38ae6193e8696d08117fd18636bdd25e9286fe37b6e2299607c",
+      "implementation-summary.md": "6eb01848383935128aa9a43bf2c87e621ec5f573675b6d7cdd7f817392c1a0a7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

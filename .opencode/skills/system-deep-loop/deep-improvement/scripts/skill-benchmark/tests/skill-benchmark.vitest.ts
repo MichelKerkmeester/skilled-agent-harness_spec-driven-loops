@@ -582,7 +582,7 @@ describe('Lane C — end-to-end via run-skill-benchmark', () => {
   it('scores at least one real scenario end-to-end (deep-improvement ships a fixture)', () => {
     // cli-opencode ships no fixtures (scenarioRows === 0), so the artifact test
     // above cannot prove the scenario pipeline runs. deep-improvement ships
-    // agent-improve-001, so this asserts the full lint -> route -> score path
+    // agent_improve_001, so this asserts the full lint -> route -> score path
     // actually produced a scored row.
     const out = mkdtempSync(join(tmpdir(), 'lc-e2e-scored-'));
     e2eDirs.push(out);

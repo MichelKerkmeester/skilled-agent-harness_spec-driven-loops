@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/016-add-readmes-for-script-subfolders",
+  "spec_folder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/016-add-readmes-for-script-subfolders",
+  "parent_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "script subfolder readmes",
+      "code folder readme deep-agent-improvement",
+      "scripts lane readme",
+      "script subfolder readmes plan",
+      "code folder readme plan",
+      "scripts lane readme plan",
+      "script subfolder readmes tasks",
+      "code folder readme tasks",
+      "script subfolder readmes checklist",
+      "code folder readme checklist",
+      "script subfolder readmes summary",
+      "code folder readme summary"
+    ],
+    "key_topics": [
+      "script",
+      "subfolder",
+      "readmes",
+      "code",
+      "folder",
+      "readme",
+      "deep-agent-improvement",
+      "scripts",
+      "lane",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "scripts/README.md",
+      "lib/README.md",
+      "tests/README.md",
+      "shared/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The source script tree under `.opencode/skills/deep-agent-improvement/scripts/` is split into two lanes plus shared and a nested scorer subtree, but only `scripts/`, `scripts/lib/`, and `scripts/tests/` carry a README",
+    "created_at": "2026-05-29T13:17:54Z",
+    "last_save_at": "2026-07-08T13:43:36.836Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c5dea26cd89154871346d75d5de1566b3412fdced6e3ce72d8703471be0dc5cc",
+    "source_doc_hashes": {
+      "spec.md": "f8535b934fb3ed315e24bd6c7ef7ffe7a861017b1596950b6ed7f4314aa2e7b8",
+      "plan.md": "2e84404a14df8ba9d49e2b690de3825d1d13d45bc8edec9444744a8fb2e10ff6",
+      "tasks.md": "915a82e88574865ddcfbb85be6b1e7d0c64ecad9c37a0799b67d5a03c5954622",
+      "checklist.md": "84c62eeadc2e85e58f8565950cfa2fec5719719c8b090fc38392075a722d60f3",
+      "implementation-summary.md": "7444ab1b64790f12db9308d89cb31b1c948d1787ca88751a3e055bbbbe5239da"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

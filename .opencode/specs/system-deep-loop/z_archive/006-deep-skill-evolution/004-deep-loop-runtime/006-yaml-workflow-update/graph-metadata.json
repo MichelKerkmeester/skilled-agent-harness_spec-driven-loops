@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/006-yaml-workflow-update",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/006-yaml-workflow-update",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "118 yaml workflow update",
+      "deep-loop graph mcp removal yaml",
+      "deep-review yaml bash shim",
+      "deep-research yaml bash shim",
+      "118 yaml plan",
+      "deep-loop workflow yaml rewrite plan",
+      "118 yaml tasks",
+      "deep-loop yaml rewrite tasks",
+      "118 yaml checklist",
+      "deep-loop yaml verification",
+      "118 yaml implementation summary",
+      "deep-loop yaml rewrite summary"
+    ],
+    "key_topics": [
+      "118",
+      "yaml",
+      "workflow",
+      "update",
+      "deep-loop",
+      "graph",
+      "mcp",
+      "removal",
+      "deep-review",
+      "bash",
+      "shim",
+      "deep-research"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Workflow Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The four `speckitdeep-{review,research}{auto,confirm}.yaml` workflow files invoke graph convergence and graph upsert via the `mcptool:` block targeting `mcpmkspecmemorydeeploopgraphconvergence` and `mcpmkspecmemorydeeploopgraphupsert`",
+    "created_at": "2026-05-22T19:55:00Z",
+    "last_save_at": "2026-07-08T13:44:00.162Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1acf724b4d3187a03195f61a75ad6431b459c0902c769a6221f55e493b524148",
+    "source_doc_hashes": {
+      "spec.md": "dd0b448d53e5c172b9d3731de05c53e7fef5a385094860ab234b6230611ed6b4",
+      "plan.md": "29f85bacbbf9bc263afb2e0b48ec02a88db7721ecf723af994b03454e17e6e1b",
+      "tasks.md": "332c37bdbc5b1ff1854fb8b69c6eeffc3cafc1494799d8c4362d6e61b9944a62",
+      "checklist.md": "be72ac4b3318ba94f53285a2a45c3d55da6ed82e3cc793b9d4326824ff0ef9f8",
+      "implementation-summary.md": "45f409013747deecd54689b197d834f5476fbe533667c5309f9c5a378e4bf760"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

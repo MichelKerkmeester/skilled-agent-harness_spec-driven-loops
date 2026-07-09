@@ -1,0 +1,29 @@
+{
+  "title": "Feature Specification: review two-lane workflow with Opus",
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/017-review-two-lane-workflow-with-opus",
+  "description": "The two-lane program (008-013) was reviewed once by cli-codex gpt-5.5 in packet 014 (CONDITIONAL: 1 P0 + a P1 cluster) and all findings were",
+  "keywords": [
+    "two-lane",
+    "program",
+    "008-013",
+    "reviewed",
+    "cli-codex",
+    "gpt-5",
+    "packet",
+    "014",
+    "conditional",
+    "cluster",
+    "findings"
+  ],
+  "lastUpdated": "2026-07-08T13:06:44.048Z",
+  "specId": "017",
+  "folderSlug": "review-two-lane-workflow-with-opus",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "007-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/020-deep-agent-improvement-uplift",
+  "description": "deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension",
+  "keywords": [
+    "deep-agent-improvement",
+    "evaluates",
+    "candidate",
+    "agent",
+    "mutations",
+    "across",
+    "dimensions",
+    "multiple",
+    "mutation",
+    "types",
+    "per",
+    "dimension"
+  ],
+  "lastUpdated": "2026-07-08T13:43:10.130Z",
+  "specId": "020",
+  "folderSlug": "deep-agent-improvement-uplift",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,40 @@
+{
+  "trigger_phrases": [
+    "118/003 script shim",
+    "deep-loop script shim",
+    "deep-loop DB relocation",
+    "convergence.cjs upsert.cjs query.cjs status.cjs",
+    "deep-loop-runtime storage",
+    "118/003 plan",
+    "118/003 tasks",
+    "118/003 checklist",
+    "118/003 ADR-001",
+    "118/003 summary"
+  ],
+  "level": "3",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/004-script-shim-db-relocation",
+  "description": "The 4 `deeploopgraph` MCP tools (`deeploopgraphconvergence`, `deeploopgraphupsert`, `deeploopgraphquery`, `deeploopgraphstatus`) are dispatched by",
+  "keywords": [
+    "deeploopgraph",
+    "mcp",
+    "tools",
+    "deeploopgraphconvergence",
+    "deeploopgraphupsert",
+    "deeploopgraphquery",
+    "deeploopgraphstatus",
+    "dispatched"
+  ],
+  "lastUpdated": "2026-07-08T13:07:15.287Z",
+  "specId": "004",
+  "folderSlug": "script-shim-db-relocation",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "004-deep-loop-runtime"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

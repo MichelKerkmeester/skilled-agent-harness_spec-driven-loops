@@ -1,0 +1,15 @@
+{
+  "scenarioId": "dlw_review_001",
+  "tier": "T2",
+  "public": {
+    "prompt": "continue the iterative review loop until the p0 and p1 findings stabilize",
+    "runtime": "system-deep-loop",
+    "mutationBoundary": "read-only",
+    "outputContract": "routes to system-deep-loop review mode"
+  },
+  "provenance": {
+    "promptAuthor": "pattern-dogfood",
+    "goldAuthor": "pattern-dogfood",
+    "blindToRouterKeywords": false
+  }
+}

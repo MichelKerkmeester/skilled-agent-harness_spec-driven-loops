@@ -1,7 +1,7 @@
 ---
 title: "system-deep-loop: Manual Testing Playbook"
 description: "Operator-facing reference for manually validating system-deep-loop hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
-version: "1.1.0.0"
+version: "2.0.0.0"
 ---
 
 # system-deep-loop: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 This playbook provides 20 deterministic scenarios across 5 categories validating the `system-deep-loop` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note: the playbook covers the hub's registry-driven routing at version `1.1.0.0`. It exercises:
+Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`. It exercises:
 - Dominant-intent routing for the lexical modes: `research`, `review`, and `ai-council`.
 - Explicit mode-hint override routing, such as `research: <request>`.
 - The four improvement lanes that share the `deep-improvement` packet: `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `ai-system-improvement`.

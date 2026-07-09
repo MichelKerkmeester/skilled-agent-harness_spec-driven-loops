@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk_design_alias_motion_001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "motion",
+    "advisorLane": "sk-design",
+    "intentKeys": ["motion"],
+    "resources": ["design-motion/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "motion",
+    "routeOutcome": "single",
+    "forbiddenWorkflowModes": ["interface", "foundations", "audit", "md-generator"],
+    "minimalPairGroup": null
+  },
+  "rubric": {
+    "usefulnessChecks": ["routes the alias prompt to the expected workflow mode"],
+    "harmChecks": ["does not select a sibling workflow mode"]
+  }
+}

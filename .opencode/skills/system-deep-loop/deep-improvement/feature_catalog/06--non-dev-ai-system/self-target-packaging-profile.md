@@ -22,7 +22,7 @@ Lane D can now describe `runtime/` as a self-improvement target without letting 
 
 ## 2. HOW IT WORKS
 
-`assets/non_dev_ai_system/profiles/deep-loop-runtime.json` is the concrete self-target profile. It points at `.opencode/skills/runtime/`, freezes scorer and harness surfaces such as `run-benchmark.cjs`, `promote-candidate.cjs`, `convergence.cjs`, and `loop-lock.ts`, and only allows technique-doc edits under the runtime/ README and references.
+`assets/non_dev_ai_system/profiles/deep_loop_runtime.json` is the concrete self-target profile. It points at `.opencode/skills/runtime/`, freezes scorer and harness surfaces such as `run-benchmark.cjs`, `promote-candidate.cjs`, `convergence.cjs`, and `loop-lock.ts`, and only allows technique-doc edits under the runtime/ README and references.
 
 `packaging_config.schema.json` recognizes the self-target metadata fields without making them required for older Lane D packagings: `frozenSurfaces[]`, `editableTechDocs[]`, `allowedDiffRelpaths[]`, and `excludedSessionPrefixes[]`. `loop_contract.md` documents the same four-field contract and the invariant that every editable doc must be allowed while every frozen surface must be absent from the allowed diff list.
 
@@ -36,7 +36,7 @@ The command-level `--self-target <profile>` guard resolves a bare profile ID und
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-deep-loop/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json` | Profile | Defines the runtime/ packaging root, frozen scorer/harness surfaces, editable technique docs, allowed diff relpaths, and excluded session prefixes. |
+| `.opencode/skills/system-deep-loop/deep-improvement/assets/non_dev_ai_system/profiles/deep_loop_runtime.json` | Profile | Defines the runtime/ packaging root, frozen scorer/harness surfaces, editable technique docs, allowed diff relpaths, and excluded session prefixes. |
 | `.opencode/skills/system-deep-loop/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json` | Schema | Adds optional validation for `frozenSurfaces`, `editableTechDocs`, `allowedDiffRelpaths`, and `excludedSessionPrefixes`. |
 | `.opencode/skills/system-deep-loop/deep-improvement/references/non_dev_ai_system/loop_contract.md` | Contract reference | Documents the self-target packaging-profile contract and command-level guard behavior. |
 | `.opencode/commands/deep/ai-system-improvement.md` | Command router | Adds `--self-target <profile>` setup, dry-run default, clean-tree and lock requirements, serial default, and non-forwarding to loop-host. |

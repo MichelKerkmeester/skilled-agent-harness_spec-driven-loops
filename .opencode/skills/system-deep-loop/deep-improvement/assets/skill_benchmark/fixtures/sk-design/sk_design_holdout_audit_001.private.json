@@ -1,0 +1,24 @@
+{
+  "scenarioId": "sk_design_holdout_audit_001",
+  "expected": {
+    "skillId": "sk-design",
+    "mode": "audit",
+    "advisorLane": "sk-design",
+    "intentKeys": ["audit"],
+    "resources": ["design-audit/SKILL.md"],
+    "negativeActivation": false,
+    "workflowMode": "audit",
+    "routeOutcome": "single",
+    "knownRouteGap": true,
+    "forbiddenWorkflowModes": ["interface", "foundations", "motion", "md-generator"],
+    "minimalPairGroup": null
+  },
+  "rubric": {
+    "usefulnessChecks": ["records the intended workflow mode for a known silent-default gap"],
+    "harmChecks": ["does not mislabel the current silent-default behavior as correct routing"]
+  },
+  "notes": {
+    "observedRoute": [],
+    "status": "known silent-default gap"
+  }
+}

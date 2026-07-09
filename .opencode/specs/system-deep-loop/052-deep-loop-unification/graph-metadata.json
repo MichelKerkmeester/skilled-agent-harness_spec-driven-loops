@@ -8,7 +8,9 @@
     "system-deep-loop/052-deep-loop-unification/002-hub-rename-and-runtime-nesting",
     "system-deep-loop/052-deep-loop-unification/003-external-reference-migration",
     "system-deep-loop/052-deep-loop-unification/004-fallback-router-wiring",
-    "system-deep-loop/052-deep-loop-unification/005-validation-and-closeout"
+    "system-deep-loop/052-deep-loop-unification/005-validation-and-closeout",
+    "system-deep-loop/052-deep-loop-unification/006-skillmd-template-conformance",
+    "system-deep-loop/052-deep-loop-unification/007-comprehensive-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -91,7 +93,7 @@
     ],
     "causal_summary": "`deep-loop-workflows` (the public, advisor-routable parent hub — 4 mode packets, ~1.1.0.0) and `deep-loop-runtime` (its \"frozen, MCP-free backend\" — v1.5.0.1, no MCP tools, own build tooling) are two separate top-level skills today, even though `051-deep-loop-parent-skill-alignment` already established that `deep-loop-workflows` is the canonical parent-skill hub example and explicitly deferred merging runtime in (\"R4: runtime reconciliation.",
     "created_at": "2026-07-08T04:36:15.214Z",
-    "last_save_at": "2026-07-08T11:07:39.372Z",
+    "last_save_at": "2026-07-08T18:58:44.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

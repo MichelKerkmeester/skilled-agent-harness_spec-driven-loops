@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/003-deep-review-scenarios",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/003-deep-review-scenarios",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-review scenarios",
+      "deep review playbook run",
+      "007 phase 003 deep-review",
+      "deep-review scenarios plan",
+      "deep review playbook plan",
+      "007 phase 003 plan",
+      "deep-review scenarios tasks",
+      "deep review playbook tasks",
+      "007 phase 003 tasks",
+      "deep-review checklist",
+      "deep review verdict ledger",
+      "007 phase 003 checklist"
+    ],
+    "key_topics": [
+      "deep-review",
+      "scenarios",
+      "deep",
+      "review",
+      "playbook",
+      "run",
+      "007",
+      "phase",
+      "003",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "scratch/evidence/drv-01-02.txt",
+      "scratch/evidence/drv-03-iteration.txt",
+      "scratch/evidence/drv-04-convergence.txt",
+      "scratch/evidence/drv-05-06.txt",
+      "scratch/evidence/drv-08-depthv2.txt",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "drv-01-02.txt",
+        "kind": "file",
+        "path": "scratch/evidence/drv-01-02.txt",
+        "source": "derived"
+      },
+      {
+        "name": "drv-03-iteration.txt",
+        "kind": "file",
+        "path": "scratch/evidence/drv-03-iteration.txt",
+        "source": "derived"
+      },
+      {
+        "name": "drv-04-convergence.txt",
+        "kind": "file",
+        "path": "scratch/evidence/drv-04-convergence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "drv-05-06.txt",
+        "kind": "file",
+        "path": "scratch/evidence/drv-05-06.txt",
+        "source": "derived"
+      },
+      {
+        "name": "drv-08-depthv2.txt",
+        "kind": "file",
+        "path": "scratch/evidence/drv-08-depthv2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-review` is the autonomous iterative code-review loop built on the shared `deep-loop-runtime`: it owns review entry points and modes, canonical state initialization, per-iteration state discipline (read-before-review, three-artifact write contract, dimension rotation), convergence and recovery gates, pause/resume fault-tolerance, synthesis-save guardrails, and the review-depth v2 validator/reducer rollout",
+    "created_at": "2026-05-27T07:08:08.394Z",
+    "last_save_at": "2026-07-08T13:43:56.531Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a49fb683e0548e8b59741f105c64985d555cf17b2182d3def4b9dd1d1804404b",
+    "source_doc_hashes": {
+      "spec.md": "4598fd10c4b620fb09711acb811149fdcc2fc44afd540a3cb21882c258c10a05",
+      "plan.md": "f053dc2bba7448c66a25a597b41cafb4c27e9fb559d70d66c9f7be254111c1e5",
+      "tasks.md": "d9920117a9fe76dd4892f25a1332e5d2fc24c166f8ce282d024f3b044a380cfa",
+      "checklist.md": "d930c29fbf23dfd2908afca8b0d0aeb7fe76c4c8cdd15ac385e90b48739c7b3e",
+      "implementation-summary.md": "b465a02424471ea2e1517086677f8dd963f8b54a61fd34c890e9ae8b10f086a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/004-script-shim-db-relocation",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/004-script-shim-db-relocation",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "118/003 script shim",
+      "deep-loop script shim",
+      "deep-loop DB relocation",
+      "convergence.cjs upsert.cjs query.cjs status.cjs",
+      "deep-loop-runtime storage",
+      "118/003 plan",
+      "script shim plan",
+      "deep-loop DB relocation plan",
+      "118/003 tasks",
+      "script shim tasks",
+      "deep-loop DB relocation tasks",
+      "118/003 checklist"
+    ],
+    "key_topics": [
+      "118",
+      "003",
+      "script",
+      "shim",
+      "deep-loop",
+      "relocation",
+      "convergence",
+      "cjs",
+      "upsert",
+      "query",
+      "status",
+      "deep-loop-runtime"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Script Shim",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Library Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Pattern",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smoke Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Helper",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 4 `deeploopgraph` MCP tools (`deeploopgraphconvergence`, `deeploopgraphupsert`, `deeploopgraphquery`, `deeploopgraphstatus`) are dispatched by deep-review and deep-research workflow YAMLs through the MCP transport",
+    "created_at": "2026-05-22T19:50:00Z",
+    "last_save_at": "2026-07-08T13:43:59.602Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2aca0f8bb5f8446c4e79a6341b2fb08b63313e293eaa901255073c796ce37158",
+    "source_doc_hashes": {
+      "spec.md": "4f031a4ba55c95a62aae995ae5c1fa16247549c20ef3aa6b7a81fca712e0eb77",
+      "plan.md": "2acb5c3ab7bfcf83405403096edb150f80da11721d042294ea92bafbe8de8317",
+      "tasks.md": "314da40cbea4105309eaf6eb307e31b985b512a422d7a58dcb6b198d8c2831c2",
+      "checklist.md": "cde1ca3a93797d7b57e703cc14b842a4136a853ecedcfcfd2e0d869059808622",
+      "decision-record.md": "8c7da99c0a3953e07598933d4f2e006e0dfe3180cf7050185405622a05c366d0",
+      "implementation-summary.md": "eb1d291cfba9be088453dcaafa631f79ad2f675173fd4fb28417505951a8d2f5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/003-doc-evolution-spec-and-resource-map",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/003-doc-evolution-spec-and-resource-map",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-skill doc evolution spec",
+      "deep-skill resource-map",
+      "deep-skill delta reconciliation",
+      "008 phase 1 planning",
+      "deep-skill doc evolution plan",
+      "008 resource-map plan",
+      "deep-skill schemas plan",
+      "deep-skill doc evolution tasks",
+      "008 phase 1 tasks",
+      "deep-skill doc evolution checklist",
+      "008 phase 1 checklist",
+      "deep-skill doc evolution implementation summary"
+    ],
+    "key_topics": [
+      "deep-skill",
+      "doc",
+      "evolution",
+      "spec",
+      "resource-map",
+      "delta",
+      "reconciliation",
+      "008",
+      "phase",
+      "planning",
+      "plan",
+      "schemas"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "schemas/audit-finding.schema.json",
+      "schemas/validation-report.schema.json",
+      "schemas/changelog-entry.schema.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "audit-finding.schema.json",
+        "kind": "config",
+        "path": "schemas/audit-finding.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.schema.json",
+        "kind": "config",
+        "path": "schemas/validation-report.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-entry.schema.json",
+        "kind": "config",
+        "path": "schemas/changelog-entry.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "template",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 008 cluster improves documentation across five mature deep- skills, but a sibling cluster (`000-release-cleanup`) already shipped uneven per-skill cleanup",
+    "created_at": "2026-05-25T14:26:45.200Z",
+    "last_save_at": "2026-07-08T13:44:02.533Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:84348278150e3c7263de683a62aed15140c357d8857c74e11c3ed85c35cf1326",
+    "source_doc_hashes": {
+      "spec.md": "1221215d2cf076d0a29b593695ffcc9a887e552014bcc6e1a6e6809d16ff4bba",
+      "plan.md": "3b87137d0abe7a95e3ba92d15de8be321ef159153fc491b33e57926c3fb5c843",
+      "tasks.md": "9d60a50c23356a5cc547fd64a4990e4df6df2ce9765d97213522d456d57b14bd",
+      "checklist.md": "b24713b6e395bdc3338d84edce738821d733111917b8c2a541e258f05ed968ba",
+      "implementation-summary.md": "bbb5910d8adc338726e54b48a0f631e068738bbf08bc47805d0e59a68935776c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

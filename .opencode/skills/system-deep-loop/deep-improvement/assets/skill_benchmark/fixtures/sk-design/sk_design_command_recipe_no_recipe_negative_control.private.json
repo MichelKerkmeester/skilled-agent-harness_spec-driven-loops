@@ -1,0 +1,13 @@
+{
+  "scenarioId": "sk_design_command_recipe_no_recipe_negative_control",
+  "expected": {
+    "skillId": "sk-design",
+    "intentKeys": ["interface"],
+    "resources": ["design-interface/SKILL.md"],
+    "negativeActivation": false
+  },
+  "rubric": {
+    "usefulnessChecks": ["no recipe gold leaves D2 and D3 uncapped"],
+    "harmChecks": ["does not create route-gold applicability"]
+  }
+}

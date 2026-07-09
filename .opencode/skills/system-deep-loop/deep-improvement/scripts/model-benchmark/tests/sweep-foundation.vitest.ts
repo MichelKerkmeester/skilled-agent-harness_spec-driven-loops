@@ -38,7 +38,7 @@ const ALL_FRAMEWORK_IDS = ['rcaf', 'race', 'cidi', 'tidd-ec', 'costar'];
 
 describe('framework-renderer: slot interpolation', () => {
   const registry = renderer.loadRegistry(REGISTRY_PATH);
-  const fixture = readJson(path.join(FIXTURE_DIR, 't3-bugfix-in-context.json'));
+  const fixture = readJson(path.join(FIXTURE_DIR, 't3_bugfix_in_context.json'));
 
   it('loads the registry with all five frameworks', () => {
     const ids = registry.frameworks.map((f: any) => f.id);
@@ -95,7 +95,7 @@ describe('framework-renderer: slot interpolation', () => {
 
 describe('profile-validator: additive sweep-key validation', () => {
   it('accepts the framework-bakeoff example profile', () => {
-    const profile = readJson(path.join(PROFILE_DIR, 'framework-bakeoff.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'framework_bakeoff.json'));
     expect(validator.validateProfile(profile)).toEqual({
       valid: true,
       errors: [],
@@ -103,7 +103,7 @@ describe('profile-validator: additive sweep-key validation', () => {
   });
 
   it('accepts the model-vs-model example profile', () => {
-    const profile = readJson(path.join(PROFILE_DIR, 'model-vs-model.json'));
+    const profile = readJson(path.join(PROFILE_DIR, 'model_vs_model.json'));
     expect(validator.validateProfile(profile)).toEqual({
       valid: true,
       errors: [],

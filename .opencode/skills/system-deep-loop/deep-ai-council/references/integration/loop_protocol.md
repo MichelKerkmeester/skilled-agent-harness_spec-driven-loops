@@ -150,7 +150,7 @@ Required resources:
 - `references/patterns/command_wiring.md`
 - `assets/deep_ai_council_dashboard.md`
 
-Acceptance criteria: `ai-council-state.jsonl` ends with `council_complete`, the final report exists, and any failed rounds are preserved under `failed/`.
+Acceptance criteria: `ai-council-state.jsonl` contains a `council_complete` event — not necessarily the final line, since `artifact_written` audit events for the state log itself and each subsequent artifact write typically follow it (see `references/structure/state_format.md` §5.1) — the final report exists, and any failed rounds are preserved under `failed/`.
 
 ---
 

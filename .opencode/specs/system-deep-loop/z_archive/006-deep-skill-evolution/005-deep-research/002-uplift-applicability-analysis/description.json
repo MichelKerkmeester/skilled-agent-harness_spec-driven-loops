@@ -1,0 +1,23 @@
+{
+  "level": "phase-child",
+  "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research/002-uplift-applicability-analysis",
+  "description": "Applicability classification table for all 47 changes catalogued from arc 118. Outputs: applicability-table.md mapping each C-NNN to APPLY / SKIP / ADAPT / ALREADY-DONE.",
+  "keywords": [
+    "119/002",
+    "applicability",
+    "118-arc-changes",
+    "classification",
+    "uplift-mapping"
+  ],
+  "lastUpdated": "2026-05-23T06:00:00.000Z",
+  "specId": "002",
+  "folderSlug": "002-uplift-applicability-analysis",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "006-deep-skill-evolution",
+    "005-deep-research"
+  ],
+  "memorySequence": 119002,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Feature Specification: add READMEs for script subfolders",
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/016-add-readmes-for-script-subfolders",
+  "description": "The source script tree under `.opencode/skills/deep-agent-improvement/scripts/` is split into two lanes plus shared and a nested scorer subtree, but",
+  "keywords": [
+    "source",
+    "script",
+    "tree",
+    "opencode",
+    "skills",
+    "deep-agent-improvement",
+    "scripts",
+    "split",
+    "two",
+    "lanes",
+    "plus",
+    "shared",
+    "nested",
+    "scorer",
+    "subtree"
+  ],
+  "lastUpdated": "2026-07-08T13:06:47.069Z",
+  "specId": "016",
+  "folderSlug": "add-readmes-for-script-subfolders",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "007-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

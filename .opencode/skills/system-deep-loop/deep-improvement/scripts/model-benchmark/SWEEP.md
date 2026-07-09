@@ -29,10 +29,10 @@ For the six situational modes (A model-vs-model, B framework bake-off, C reasoni
 | `lib/correctness-gate.cjs` | Gates eligibility on `pass_rate ≥ threshold`, ranks survivors off correctness once saturated, flags `correctness_saturated`. |
 | `lib/sweep-reporter.cjs` | Builds `aggregate.json` (grouped + verdict) and `synthesis.md` (verdict + saturation, then leaderboard). |
 | `../../../sk-prompt/assets/framework-registry.json` | The 5 frameworks as data: `rcaf`, `race`, `cidi`, `tidd-ec`, `costar` (id / description / applies_to / template / slots / output_contract). |
-| `../../assets/model_benchmark/benchmark-profiles/framework-bakeoff.json` | Example profile — 5 frameworks × 1 model. |
-| `../../assets/model_benchmark/benchmark-profiles/model-vs-model.json` | Example profile — 1 framework × 3 models. |
-| `../../assets/model_benchmark/benchmark-fixtures/t3-bugfix-in-context.json` | T3 fixture (id `t3-lower-bound`), hidden deterministic oracle. |
-| `../../assets/model_benchmark/benchmark-fixtures/t3-strict-acceptance.json` | T3 fixture (id `t3-compare-versions`), hidden deterministic oracle. |
+| `../../assets/model_benchmark/benchmark-profiles/framework_bakeoff.json` | Example profile — 5 frameworks × 1 model. |
+| `../../assets/model_benchmark/benchmark-profiles/model_vs_model.json` | Example profile — 1 framework × 3 models. |
+| `../../assets/model_benchmark/benchmark-fixtures/t3_bugfix_in_context.json` | T3 fixture (id `t3-lower-bound`), hidden deterministic oracle. |
+| `../../assets/model_benchmark/benchmark-fixtures/t3_strict_acceptance.json` | T3 fixture (id `t3-compare-versions`), hidden deterministic oracle. |
 
 Profiles reference fixtures by their internal `id`, which is not required to match the filename — the loader scans the fixture dir and indexes by parsed `id` (filename is only a fallback key).
 
@@ -56,7 +56,7 @@ Example — a dry, deterministic bake-off into a scratch dir:
 
 ```bash
 node sweep-benchmark.cjs \
-  --profile ../../assets/model_benchmark/benchmark-profiles/framework-bakeoff.json \
+  --profile ../../assets/model_benchmark/benchmark-profiles/framework_bakeoff.json \
   --mock \
   --out-dir /tmp/sweep-out
 ```

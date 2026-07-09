@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-runtime scenarios",
+      "deep loop runtime playbook run",
+      "007 phase 001 deep-loop-runtime",
+      "deep-loop-runtime scenarios plan",
+      "deep loop runtime playbook plan",
+      "007 phase 001 plan",
+      "deep-loop-runtime scenarios tasks",
+      "deep loop runtime playbook tasks",
+      "007 phase 001 tasks",
+      "deep-loop-runtime checklist",
+      "deep loop runtime verdict ledger",
+      "007 phase 001 checklist"
+    ],
+    "key_topics": [
+      "deep-loop-runtime",
+      "scenarios",
+      "deep",
+      "loop",
+      "runtime",
+      "playbook",
+      "run",
+      "007",
+      "phase",
+      "001",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "scratch/evidence/dlr-01-executor.txt",
+      "scratch/evidence/dlr-02-05-lib-inspection.txt",
+      "scratch/evidence/dlr-06-08-gating.txt",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "dlr-01-executor.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dlr-01-executor.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dlr-02-05-lib-inspection.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dlr-02-05-lib-inspection.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dlr-06-08-gating.txt",
+        "kind": "file",
+        "path": "scratch/evidence/dlr-06-08-gating.txt",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Runtime Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verdict Ledger",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`deep-loop-runtime` is the shared foundation for the other four deep-loop skills (executor, prompt-pack, post-dispatch validation, atomic state, JSONL repair, loop lock, permissions gate, Bayesian scorer, coverage-graph DB/query/signals, the four `.cjs` script entry points, and council durability)",
+    "created_at": "2026-05-27T07:08:08.391Z",
+    "last_save_at": "2026-07-08T13:43:43.022Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:14df09050b8ba760d80c953a6af3ca5344b9c6127deda27f5af848a3319d6c0e",
+    "source_doc_hashes": {
+      "spec.md": "10ef21feb000379412b858e870f011977ac8e4e10caf79c8f052da9848cf8dcb",
+      "plan.md": "d1095ddc361634cc3ffa253b4d181459efc65605e70a01b3788230beed8be61a",
+      "tasks.md": "51f95f6d879128b7577a0473901b4322c55ba86346a8c7f4ed50362a15eebc33",
+      "checklist.md": "f8df83f70ab9cf337338f9412b3af9e499386cd0d411007443300ef40b20b257",
+      "implementation-summary.md": "f4ac503fe31807f41a19eb68dc8ffa9bdae123b0ea26775f6606e64dd2b273d7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

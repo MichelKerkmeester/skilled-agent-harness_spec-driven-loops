@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-deep-loop/z_archive/016-sk-deep-rename/002-skill-folder-rename",
+  "description": "Phase 001 measured 130 Phase 002 files: the two old skill folder roots and",
+  "keywords": [
+    "phase",
+    "001",
+    "measured",
+    "130",
+    "002",
+    "files",
+    "two",
+    "old",
+    "skill",
+    "folder",
+    "roots"
+  ],
+  "lastUpdated": "2026-07-08T13:06:51.611Z",
+  "specId": "002",
+  "folderSlug": "skill-folder-rename",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "016-sk-deep-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

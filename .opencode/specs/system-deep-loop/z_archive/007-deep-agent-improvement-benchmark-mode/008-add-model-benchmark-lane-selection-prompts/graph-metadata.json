@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
+  "spec_folder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
+  "parent_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command lane-asking",
+      "model-benchmark command entry",
+      "start-model-benchmark-loop",
+      "command lane-asking plan",
+      "model-benchmark command plan",
+      "lane resolution branch",
+      "command lane-asking tasks",
+      "model-benchmark command tasks",
+      "lane-asking task list",
+      "command lane-asking checklist",
+      "model-benchmark command checklist",
+      "lane-asking verification"
+    ],
+    "key_topics": [
+      "command",
+      "lane-asking",
+      "model-benchmark",
+      "entry",
+      "start-model-benchmark-loop",
+      "plan",
+      "lane",
+      "resolution",
+      "branch",
+      "tasks",
+      "task",
+      "list"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/commands/README.txt",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "aliases.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Two Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow User",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The model-benchmark lane of deep-agent-improvement runs end-to-end at the runtime layer (`loop-host.cjs --mode=model-benchmark`) but has no command entry, so a user cannot start a benchmark run without hand-writing the loop-host invocation",
+    "created_at": "2026-05-29T06:52:14Z",
+    "last_save_at": "2026-07-08T13:43:35.880Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:38b8f2b0ed276bf9bf967f5a4d64ff1df152e6ecd8a09377ecae50d388d3e7d1",
+    "source_doc_hashes": {
+      "spec.md": "1a95923cde05b6eab3a7f29fedbf8c79ac80b7d8425f72b3c09f1353dacfe9e9",
+      "plan.md": "f0c1fa1a836145abcb6cf3c9bf9ab11b49390c9d66dfe29c20ca458b805ea819",
+      "tasks.md": "2b57cd9e2af39d9475ebea1909e6592839d7ae04acc820672060448215df0673",
+      "checklist.md": "f4fdb3b0eb1d94318cc349882f833e335af4ae1b0d8431768e5d54e13a100e70",
+      "implementation-summary.md": "5f04c866e438aae3a114c0e9694aa42416951705647ebbbd1e9eebc49922a512"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

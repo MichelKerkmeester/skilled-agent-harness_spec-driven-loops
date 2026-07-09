@@ -27,7 +27,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify strategy.md contains Non-Goals and Stop Conditions sections after initialization.
 - Real user request: How do I set boundaries for what the research should NOT investigate?
 - Prompt: `Validate research charter initialization adds Non-Goals and Stop Conditions, then surfaces them in confirm mode.`
-- Expected execution process: Inspect the loop protocol Step 5a (Validate Research Charter), then the strategy template for sections 4 and 5, then confirm mode behavior.
+- Expected execution process: Inspect the loop protocol Step 7a (Validate Research Charter), then the strategy template for sections 4 and 5, then confirm mode behavior.
 - Desired user-visible outcome: The user can rely on strategy.md always having Non-Goals and Stop Conditions sections after initialization, providing a clear place to define research boundaries.
 - Expected signals: strategy.md has a "## 4. Non-Goals" section (may be empty but must exist); strategy.md has a "## 5. Stop Conditions" section (may be empty but must exist); if either section is missing, it is appended as an empty placeholder; in confirm mode, the charter (topic, key questions, non-goals, stop conditions) is presented for user review before proceeding.
 - Pass/fail posture: PASS if initialization consistently produces strategy.md with both sections present and confirm mode surfaces the charter for review; FAIL if either section is absent after initialization, or confirm mode skips the charter review gate.
@@ -45,17 +45,17 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate research charter initialization adds Non-Goals and Stop Conditions, then surfaces them in confirm mode.
 ### Commands
-1. `bash: rg -n 'Step 5a\|Validate Research Charter\|Non-Goals\|Stop Conditions\|charter' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md`
+1. `bash: rg -n 'Step 7a\|Validate Research Charter\|Non-Goals\|Stop Conditions\|charter' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md`
 2. `bash: sed -n '/ANCHOR:non-goals/,/\/ANCHOR:stop-conditions/p' .opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md`
 3. `bash: rg -n 'Non-Goals\|Stop Conditions\|charter' .opencode/skills/system-deep-loop/deep-research/README.md`
 ### Expected
 strategy.md has "## 4. Non-Goals" section (may be empty but must exist); strategy.md has "## 5. Stop Conditions" section (may be empty but must exist); missing sections are appended as empty placeholders; confirm mode presents the charter for user review before proceeding; auto mode accepts the charter automatically.
 ### Evidence
-Capture the loop protocol Step 5a excerpt, the strategy template sections 4 and 5 with their ANCHOR tags, and any README feature summary referencing charter validation.
+Capture the loop protocol Step 7a excerpt, the strategy template sections 4 and 5 with their ANCHOR tags, and any README feature summary referencing charter validation.
 ### Pass/Fail
 PASS if initialization consistently produces strategy.md with both sections present and confirm mode surfaces the charter for review; FAIL if either section is absent after initialization, or confirm mode skips the charter review gate.
 ### Failure Triage
-Privilege the loop protocol Step 5a for the canonical charter validation contract; use the strategy template as the structural reference for section numbering and anchor names.
+Privilege the loop protocol Step 7a for the canonical charter validation contract; use the strategy template as the structural reference for section numbering and anchor names.
 ---
 
 ## 4. SOURCE FILES
@@ -71,7 +71,7 @@ Privilege the loop protocol Step 5a for the canonical charter validation contrac
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Loop protocol; inspect Step 5a (Validate Research Charter) under `ANCHOR:phase-initialization` |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md` | Loop protocol; inspect Step 7a (Validate Research Charter) under `ANCHOR:phase-initialization` |
 | `.opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md` | Strategy template; inspect `ANCHOR:non-goals` (section 4) and `ANCHOR:stop-conditions` (section 5) |
 
 ---

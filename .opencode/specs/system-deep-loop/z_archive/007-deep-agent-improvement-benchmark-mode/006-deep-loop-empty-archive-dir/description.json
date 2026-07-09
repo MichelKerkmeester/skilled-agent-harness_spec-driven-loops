@@ -1,0 +1,35 @@
+{
+  "title": "Feature Specification: fix empty archive directory handling for deep-loop runtime",
+  "level": "1",
+  "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
+  "description": "The deep-research command init step `stepcreatedirectories` ran `mkdir -p … {statepaths.archiveroot}` on every fresh/resume run, but the archive root",
+  "keywords": [
+    "deep-research",
+    "command",
+    "init",
+    "step",
+    "stepcreatedirectories",
+    "ran",
+    "mkdir",
+    "statepaths",
+    "archiveroot",
+    "every",
+    "fresh",
+    "resume",
+    "run",
+    "archive",
+    "root"
+  ],
+  "lastUpdated": "2026-07-08T13:06:47.551Z",
+  "specId": "006",
+  "folderSlug": "deep-loop-empty-archive-dir",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "007-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "29-05-26_07-14__root-cause-deep-research-command-init-step-create.md"
+  ]
+}

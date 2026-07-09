@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution",
+  "parent_id": "system-deep-loop/z_archive",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/006-deep-agent-improvement",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting",
+    "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep skill evolution arc",
+      "deep stack consolidation",
+      "deep-ai-council rename + iterative",
+      "deep-loop runtime isolation",
+      "deep-research uplift + hygiene",
+      "deep-agent-improvement correctness + evaluator",
+      "deep-stack cross-cutting"
+    ],
+    "key_topics": [
+      "deep",
+      "skill",
+      "evolution",
+      "arc",
+      "stack",
+      "consolidation",
+      "deep-ai-council",
+      "rename",
+      "iterative",
+      "deep-loop",
+      "runtime",
+      "isolation"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep- skill family — `deep-ai-council`, `deep-review`, `deep-loop-runtime`, `deep-research`, and `deep-agent-improvement` — evolved through many incremental decisions (rename, isolate, iterate, harden, fix, validate)",
+    "created_at": "2026-05-23T09:23:18.906998Z",
+    "last_save_at": "2026-07-08T13:43:09.762Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:75726302179308e873c237fcf96558411584cd1b6ae19933a73a83e05f2dc184",
+    "source_doc_hashes": {
+      "spec.md": "0f550ec18c1a193e3db950ef924d115ddc147c28f801a84cedea27f3c438eceb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

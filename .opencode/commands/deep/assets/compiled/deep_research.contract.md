@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_presentation.txt",
-      "sha256": "359756eaaf11d012b632d53623ad9d600bef71bd3b5e767513a0e292e5cc1a16",
+      "sha256": "972782300ff805a6a02b6880a0100f1db5acf9ba0e316abbbc625358091e91c8",
       "section": "full"
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "1293ff04fdc5529fc969a36cc64d918d2e96303287ada37d5b0a6d0a61cb3e47",
+      "sha256": "6d41d1cfeff3b422ef5686c839c7e64118a3e0cfdf9eeced58166ef7486447a3",
       "section": "full"
     },
     {
@@ -42,12 +42,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "98992e549a66d258ce5a919fa2bc4277fa6198019ed5bcf123de974781f81b76",
+      "sha256": "2d64431e04be501ceaae5f8a87b321e43f68dda9f0db2520f5d0995c718355e6",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md",
-      "sha256": "0ac867c7134dcf5eaaf4a9c22b1725e3a3aa241b5d5cd8fd17a515cbcbba6094",
+      "sha256": "9d4f5e8fe55eb3e3ec2aa9c88a00393019507597719a904ab0cfba4ca486484f",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/state/state_format.md",
-      "sha256": "e2de11c00ab2f35394164ccc8922dc02f2523cb1f5fe7bd0b92fa1b87595e03c",
+      "sha256": "0669a7f683b3dfaaeedb6d5ed5ae6619354de9457b819aa3248781b06988ac08",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      "sha256": "cba6c31b8f9f296cb852df3a09baa5374a0f2da8f12ea8b0ed1f7587fa4a022a",
+      "sha256": "6db9559612581569c2e6f632f74e35f6fc60ff5002ddfc1dcc2df7359b71e413",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "e355064835c3c6993d9558d2cf6c69c2d9acaa0b6fb2827d367693aa1fca447e"
+  "compiledBodyDigest": "142793a8686b1a0a7014a2d3886f7727eb9d9eec9676c12259c1754f229e921a"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -106,11 +106,11 @@ You were invoked via `opencode run --command deep/research` with the `:auto` suf
 
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
-- PROCEED immediately: load the auto workflow YAML and dispatch the `deep-research` agent to run the research loop over the bound target.
-- DISPATCH ONLY: you dispatch `deep-research` to run the loop; you do NOT read, edit, patch, or run the research loop over the target yourself. The `deep-research` leaf owns the loop and every artifact write — mixing your own inline work with the dispatch is a route violation.
+- PROCEED immediately: load the auto workflow YAML and dispatch the `deep-research` agent to run ONE iteration of the research loop over the bound target.
+- DISPATCH ONLY: you dispatch `deep-research` to run one iteration; you do NOT read, edit, patch, or run the research loop over the target yourself. The auto workflow YAML owns the loop itself — setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis, and all loop-level artifact writes; the `deep-research` leaf owns only its own single-iteration artifacts — mixing your own inline work with the dispatch is a route violation.
 - ROUTE PROOF: dispatch through the auto workflow with its prompt pack so `deep-research` writes each iteration state record with the route-proof fields present — `target_agent: "deep-research"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "research"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
 
-Your job is to DISPATCH `deep-research` to run the research loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. This contract is your instruction set; the research target is the bound spec_folder/target named in your message, never this document.
+Your job is to DISPATCH `deep-research` to run ONE iteration of the research loop over the bound target — NOT to run the loop yourself, and NOT to review, analyze, or summarize this contract. The auto workflow YAML owns the loop itself (setup, dispatch-per-iteration, reducer sync, convergence, synthesis, and loop-level writes). This contract is your instruction set; the research target is the bound spec_folder/target named in your message, never this document.
 
 ## sourceAuthority
 

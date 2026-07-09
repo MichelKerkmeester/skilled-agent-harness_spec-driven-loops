@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs",
+  "spec_folder": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs",
+  "parent_id": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "004-deep-review-stress-runs"
+    ],
+    "key_topics": [
+      "004-deep-review-stress-runs",
+      "sub-phase",
+      "062-deep-loop-command-flow-stress-tests",
+      "apply",
+      "060",
+      "004",
+      "methodology",
+      "spec",
+      "deep-review",
+      "stress",
+      "runs",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stress Runs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-orchestrator",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "targeted",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "lessons",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "subcat",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-001: Re-read 060/004 spec/plan/tasks",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "T-002: Re-read 060/003 §7 (preflight + rubric)",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHAT WAS BUILT",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. HOW IT WAS DELIVERED",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. KEY DECISIONS",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology.",
+    "created_at": "2026-05-18T07:49:27.114Z",
+    "last_save_at": "2026-07-08T13:43:22.737Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75b217849116704defbbf1d00cc44b945cacad31afd855c60d2b2b6d0b4fb805",
+    "source_doc_hashes": {
+      "spec.md": "e4bad5cf24084eee5cca35f1e0f14e8740158dca8b0efe88d4dc91b0d748ab76",
+      "plan.md": "0c520bed40785a4afdd2796887ee5aa96098804d1f1765dcc0061206447060ce",
+      "tasks.md": "0c6fa07de17c96b0440a75d7882a97e17000d5b9fefaf32551a5c32b24f22c4c",
+      "implementation-summary.md": "11c9849f73b0fc5e049b2eb8f648cd124d2b2f0cc1a4c85fcce292b5c915a823"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/052-deep-loop-unification/006-skillmd-template-conformance",
+  "spec_folder": "system-deep-loop/052-deep-loop-unification/006-skillmd-template-conformance",
+  "parent_id": "system-deep-loop/052-deep-loop-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop skillmd conformance",
+      "system-deep-loop template audit",
+      "sk-doc create-skill compliance sweep",
+      "deep loop skillmd conformance plan",
+      "deep loop skillmd conformance tasks",
+      "deep loop skillmd conformance checklist",
+      "deep loop skillmd conformance implementation summary",
+      "system-deep-loop skill audit complete"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "skillmd",
+      "conformance",
+      "system-deep-loop",
+      "template",
+      "audit",
+      "sk-doc",
+      "create-skill",
+      "compliance",
+      "sweep",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/deep-loop-workflows/routing_precision.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md",
+      ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/profile-resolve.cjs",
+      "spec.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing_precision.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill_benchmark/fixtures/deep-loop-workflows/routing_precision.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill_md_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent_skill_hub_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "profile-resolve.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/profile-resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Conformance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Following",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Execute",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Independently",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-stash-against-clean-HEAD",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Following the deep-loop-workflows + deep-loop-runtime merge into `system-deep-loop` (phases 001-005 of this parent packet), no pass had specifically verified that every SKILL.md under the new `system-deep-loop` tree (the hub itself, plus its 4 workflow packets — `deep-research`, `deep-review`, `deep-improvement`, `deep-ai-council`) actually conforms to the canonical templates defined in `sk-doc`'s `create-skill` module (`skillmdtemplate.md` for leaf/packet skills, `parentskillhubtemplate.md` for the two-axis hub)",
+    "created_at": "2026-07-08T16:18:08.385Z",
+    "last_save_at": "2026-07-08T17:05:04.036Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bdf51952e5070bec9fef871360faecb598a2f0a723b519338fd7b255b723b750",
+    "source_doc_hashes": {
+      "spec.md": "e38be66bd50992181de2013c6496ff60e6b06cb3a07d5c2ed639f6bf10f6240c",
+      "plan.md": "d99d3d336504053c2a8b60d4288cbbebc89799981ead4b96629dbac36d678418",
+      "tasks.md": "2dbe9b027c697d522ed092146524c4d912300d3d18f3930f06f3625ef034f753",
+      "checklist.md": "9ab53ba26fd691dcfab74fc2bee7721878bcd91a1a5243320b3ef6c8b309bdec",
+      "implementation-summary.md": "bdd31e8b05c9ddd1d9a3a5c0c2446fec34c8f6d3a6ac171c333d32ee2f4f5f6e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

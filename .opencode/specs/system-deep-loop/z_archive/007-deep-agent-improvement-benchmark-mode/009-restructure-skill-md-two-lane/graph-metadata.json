@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/009-restructure-skill-md-two-lane",
+  "spec_folder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/009-restructure-skill-md-two-lane",
+  "parent_id": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-md two-lane",
+      "model-benchmark co-equal lane",
+      "smart-router MODEL_BENCHMARK intent",
+      "skill-md two-lane plan",
+      "co-equal lane restructure plan",
+      "model-benchmark router intent plan",
+      "skill-md two-lane tasks",
+      "co-equal lane restructure tasks",
+      "model-benchmark router intent tasks",
+      "skill-md two-lane checklist",
+      "co-equal lane restructure checklist",
+      "model-benchmark router intent checklist"
+    ],
+    "key_topics": [
+      "skill-md",
+      "two-lane",
+      "model-benchmark",
+      "co-equal",
+      "lane",
+      "smart-router",
+      "intent",
+      "plan",
+      "restructure",
+      "router",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "SKILL.md frames the model-benchmark lane as \"Mode 4: Model-Benchmark\" appended inside the agent-improvement lane section (§3), even though §1 already declares two co-equal lanes and points Lane B at a §4 that is actually Success Criteria",
+    "created_at": "2026-05-29T07:21:46Z",
+    "last_save_at": "2026-07-08T13:43:35.100Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ebc48d90dc06e3623352d829cc3004de0ecd90a54f6eba935c2cd7464d3f138",
+    "source_doc_hashes": {
+      "spec.md": "546bad81de38d46e3ef1ec1bd1f0b213aa855f6e82bcf91a4a5fb187a50f78c5",
+      "plan.md": "241586c338b9f4791d0d02c425ef75e2e2bf3cbf9715a8e5fd9bc2a675f8b94a",
+      "tasks.md": "8e399519aabb467746e81620442179ebf6e1783bc63508d156045bf40d6c33ba",
+      "checklist.md": "3bd25a656ee705170191b5f0a6fb6a31eeabb5f22065f53be5a881c6f8caef75",
+      "implementation-summary.md": "d43851bf3bd93b1bf7a356d2d856e720cf0419cfcc393ea78652984027c56baf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

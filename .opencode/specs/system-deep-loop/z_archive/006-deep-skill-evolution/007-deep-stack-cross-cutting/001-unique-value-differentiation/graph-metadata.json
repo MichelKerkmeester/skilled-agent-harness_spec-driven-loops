@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/001-unique-value-differentiation",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/001-unique-value-differentiation",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep skills differentiation",
+      "deep-review vs deep-research",
+      "deep-ai-council boundary",
+      "deep skill overlap",
+      "unique value analysis",
+      "deep skills plan",
+      "differentiation analysis plan",
+      "deep skills tasks",
+      "deep skills checklist",
+      "deep skills adrs",
+      "deep skills summary"
+    ],
+    "key_topics": [
+      "deep",
+      "skills",
+      "differentiation",
+      "deep-review",
+      "deep-research",
+      "deep-ai-council",
+      "boundary",
+      "skill",
+      "overlap",
+      "unique",
+      "value",
+      "analysis"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "research/deep-research-state.jsonl",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "research/findings-registry.json",
+      "research/research.md",
+      "research/iterations/iter-001.md",
+      "research/iterations/iter-002.md",
+      "research/iterations/iter-003.md",
+      "research/iterations/iter-004.md",
+      "research/iterations/iter-005.md",
+      "research/iterations/iter-008.md",
+      "research/iterations/iter-009.md",
+      "implementation-summary.md",
+      "research/deep-research-config.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iter-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iter-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iter-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-004.md",
+        "kind": "doc",
+        "path": "research/iterations/iter-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iter-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iter-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-009.md",
+        "kind": "doc",
+        "path": "research/iterations/iter-009.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "routing-parity-deep-skills.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Skills Unique",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Value Differentiation Analysis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "deep-review, deep-research, and the proposed deep-ai-council all rest on deep-loop-runtime and share iteration + saturation semantics",
+    "created_at": "2026-05-23T06:00:00Z",
+    "last_save_at": "2026-07-08T13:44:02.239Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:b120014918da97407345928dd971170e4c5bbe1c9293114c5ea5fc93e7d2279f",
+    "source_doc_hashes": {
+      "spec.md": "76994332b211f3c718a0f58ad67946991b4c1f49c09cb4fd88d68e53f8e810a9",
+      "plan.md": "348e4589e6928088267c20fa2d8947597dd8f465d72a29a5f67a8765d93a0707",
+      "tasks.md": "53f63c3d97df05d600d805a3394d27e0c2a8874d77d7661df6671aeaba44cc12",
+      "checklist.md": "a524bc72692481d45668f097652f51772b583a33e00a5c113949e0e3979c8896",
+      "decision-record.md": "cf0a773501f0927ea435c2a076a820eca2456f12f6df804402399714172dae40",
+      "implementation-summary.md": "90c73c99145d18c7bfd35186d792948dde2efa24b9213c8e59afa8b1dc41932f",
+      "research/research.md": "3761fe516e93bb1897a0e56121d0bae2ef9e7c72d16ac5a4fcfe79c35216e9ee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

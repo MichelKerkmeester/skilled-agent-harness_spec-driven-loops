@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/005-mcp-tool-surface-removal",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/005-mcp-tool-surface-removal",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "MCP tool surface removal",
+      "delete deep_loop_graph_ tools",
+      "coverage-graph handler delete",
+      "118 phase 004",
+      "MCP tool surface removal plan",
+      "delete coverage-graph handlers",
+      "118 phase 004 plan",
+      "MCP tool surface removal tasks",
+      "delete coverage-graph tasks",
+      "118 phase 004 tasks",
+      "MCP tool surface removal checklist",
+      "118 phase 004 checklist"
+    ],
+    "key_topics": [
+      "mcp",
+      "tool",
+      "surface",
+      "removal",
+      "delete",
+      "tools",
+      "coverage-graph",
+      "handler",
+      "118",
+      "phase",
+      "004",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+      "tools/index.ts",
+      "schemas/tool-input-schemas.ts",
+      "mcp_server/tool-schemas.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/tools/index.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tool Surface Removal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Context Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After phases 001 (runtime skill scaffold), 002 (lib migration), and 003 (script shims + DB relocation) complete, the four `deeploopgraph` MCP tools become dead weight: their handlers still live in `system-spec-kit/mcpserver/handlers/coverage-graph/`, their schemas still live in `tool-schemas.ts` and `schemas/tool-input-schemas.ts`, and they still register at server startup, even though no consumer invokes them anymore",
+    "created_at": "2026-05-22T19:55:00Z",
+    "last_save_at": "2026-07-08T13:44:00.712Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8d218b38dee8bfde9ba91e39e2897d35290af65d4cb7f2cb3c3d02e7265d1733",
+    "source_doc_hashes": {
+      "spec.md": "9241412ba220c1ba557caca62f37c9ff10e41f1d0923b52f832864ed8db9a226",
+      "plan.md": "34ad7f5a26d1208659ed1fe578bd767fda16fcd3cecd602f561008c90def7847",
+      "tasks.md": "e0b5cf15e116a6f14fe800015f029010195e62ae8a533152211fd3fb317aa073",
+      "checklist.md": "0c948d6d532e48ad0e1a03b69826540106acce89c0d89bc2be29e70c2fecd8e1",
+      "decision-record.md": "79c955dbbd1432602e557b36960ff6693c44f89af1bdbefc0f494d70bfdf7946",
+      "implementation-summary.md": "aa77e51876b46eb51af05a8a8941d2606ccad0f97d5cb7b8d9a07e00ebb33bb6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

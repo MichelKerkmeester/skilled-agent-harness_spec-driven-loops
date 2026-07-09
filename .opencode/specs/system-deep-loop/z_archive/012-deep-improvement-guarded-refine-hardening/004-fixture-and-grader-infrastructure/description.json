@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/z_archive/012-deep-improvement-guarded-refine-hardening/004-fixture-and-grader-infrastructure",
+  "description": "Phase 004: Fixture + Grader Infrastructure",
+  "keywords": [
+    "phase",
+    "004",
+    "fixture",
+    "grader",
+    "infrastructure"
+  ],
+  "lastUpdated": "2026-07-08T13:43:28.423Z",
+  "specId": "004",
+  "folderSlug": "fixture-and-grader-infrastructure",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "012-deep-improvement-guarded-refine-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

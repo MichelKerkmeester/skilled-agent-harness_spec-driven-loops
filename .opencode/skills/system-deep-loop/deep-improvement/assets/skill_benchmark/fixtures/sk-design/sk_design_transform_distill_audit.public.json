@@ -1,0 +1,15 @@
+{
+  "scenarioId": "sk_design_transform_distill_audit",
+  "tier": "T3",
+  "public": {
+    "prompt": "should it be distill",
+    "runtime": "opencode",
+    "mutationBoundary": "routing-only",
+    "outputContract": "select the appropriate design workflow without editing files"
+  },
+  "provenance": {
+    "promptAuthor": "router-corpus",
+    "goldAuthor": "router-corpus",
+    "blindToRouterKeywords": false
+  }
+}

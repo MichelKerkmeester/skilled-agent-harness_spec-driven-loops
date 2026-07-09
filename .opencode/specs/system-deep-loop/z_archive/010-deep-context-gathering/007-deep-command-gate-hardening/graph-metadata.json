@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/010-deep-context-gathering/007-deep-command-gate-hardening",
+  "spec_folder": "system-deep-loop/z_archive/010-deep-context-gathering/007-deep-command-gate-hardening",
+  "parent_id": "system-deep-loop/z_archive/010-deep-context-gathering",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep command phase 0 gate",
+      "general agent verification deep command",
+      "unskippable setup phase deep command",
+      "deep command hard blocker",
+      "deep loop command gating",
+      "deep command gate plan",
+      "phase 0 gate plan",
+      "unskippable setup plan",
+      "deep command hard blocker plan",
+      "deep command gate tasks",
+      "phase 0 gate tasks",
+      "unskippable setup tasks"
+    ],
+    "key_topics": [
+      "deep",
+      "command",
+      "phase",
+      "gate",
+      "general",
+      "agent",
+      "verification",
+      "unskippable",
+      "setup",
+      "hard",
+      "blocker",
+      "loop"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Added Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Uniform",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep commands could begin work without two safeguards",
+    "created_at": "2026-06-07T09:59:30Z",
+    "last_save_at": "2026-07-08T13:43:38.130Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a14afceade721cb115b4fe10f1e133a22acf24e623001081135f270773eb278b",
+    "source_doc_hashes": {
+      "spec.md": "fe53549648f1998d307f4f6936bbdac1afe1391267beb16d43304b35092a811b",
+      "plan.md": "92e617de59cc2711c0b3e8e2834a68329d85b38813e0adb11fd5a63fbc9cbef0",
+      "tasks.md": "9d4c3a2d017f8fb9862363f45b1e97f9fd2f9842f0b20ddf6574fa0f46830de5",
+      "checklist.md": "e232865d98e3968a03015f1daa735ffa68ec902b000f871d2d1ed9f0f6111f2c",
+      "implementation-summary.md": "26461d076c20029c6839888e3a71a5d9f82e32ad7546b2e735c8a71e30a8d3e2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

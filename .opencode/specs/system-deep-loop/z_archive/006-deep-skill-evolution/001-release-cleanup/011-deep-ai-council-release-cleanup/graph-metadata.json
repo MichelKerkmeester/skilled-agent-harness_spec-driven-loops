@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/011-deep-ai-council-release-cleanup",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/011-deep-ai-council-release-cleanup",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-ai-council release cleanup",
+      "004-deep-ai-council",
+      "ai council skill audit",
+      "alignment validation gate",
+      "deep-ai-council deep-research loop",
+      "sk-doc conformance",
+      "deep-ai-council release cleanup plan",
+      "phase 1 spec creation",
+      "phase 2 skill audit",
+      "phase 3 readme rewrite",
+      "phase 4 alignment validation gate",
+      "phase 5 deep research and merge"
+    ],
+    "key_topics": [
+      "deep-ai-council",
+      "release",
+      "cleanup",
+      "004-deep-ai-council",
+      "council",
+      "skill",
+      "audit",
+      "alignment",
+      "validation",
+      "gate",
+      "deep-research",
+      "loop"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "schemas/audit-finding.schema.json",
+      "schemas/changelog-entry.schema.json",
+      "schemas/validation-report.schema.json",
+      "schemas/iteration-output.schema.json",
+      "research/convergence-summary.md",
+      "scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/sk-prompt-models/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-finding.schema.json",
+        "kind": "config",
+        "path": "schemas/audit-finding.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-entry.schema.json",
+        "kind": "config",
+        "path": "schemas/changelog-entry.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.schema.json",
+        "kind": "config",
+        "path": "schemas/validation-report.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-output.schema.json",
+        "kind": "config",
+        "path": "schemas/iteration-output.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-summary.md",
+        "kind": "doc",
+        "path": "research/convergence-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `deep-ai-council` skill carries 477 lines of SKILL.md, 270 lines of README, 11 references (~2,470 lines), 32 feature-catalog entries, 33 manual-testing-playbook files (1 orchestrator + 32 scenarios across 9 categories), 5 changelog versions, and a substantial `scripts/` tree (5 top-level `.cjs` + 6 `lib/` files + 5 `tests/` files + 3 sub-READMEs)",
+    "created_at": "2026-05-23T21:45:00.000Z",
+    "last_save_at": "2026-07-08T13:43:57.672Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5dfb3ed9015f8195ad148987a4525d22a9196a3d3094c1d169e2794990a1bc07",
+    "source_doc_hashes": {
+      "spec.md": "767e84ad265cb5180423798bab27ff69431f4b71455b9b68e71cee0a69ad6986",
+      "plan.md": "82ff5e58c32317f894d8332799bb9b3caef2976239ae42430dd212b85bce4aaf",
+      "tasks.md": "c81c6d30ec4c4b01403fd4ea306bcce89929b74c466cdb4f036d3390d3042c13",
+      "checklist.md": "940e4603ad2fb983706756073647ec8fa082fc71e372c109abb8436739576672",
+      "decision-record.md": "e1a0ba1364257cb7be48402e20a5b5e0419056fd73e0be5f4e6bf367e957fc01",
+      "implementation-summary.md": "2f067ad71a6df7d859a517db97b7b731c4f4509ffffa1139c7aa95702080d0f7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

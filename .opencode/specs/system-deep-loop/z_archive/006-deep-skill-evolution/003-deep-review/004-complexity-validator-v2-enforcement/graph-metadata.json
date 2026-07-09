@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/004-complexity-validator-v2-enforcement",
+  "spec_folder": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/004-complexity-validator-v2-enforcement",
+  "parent_id": "system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validator v2 enforcement",
+      "review-depth validator",
+      "post-dispatch validate v2",
+      "116 validator v2 plan",
+      "116 validator v2 tasks",
+      "116 validator v2 checklist",
+      "validator v2 ADR",
+      "116 validator v2 summary"
+    ],
+    "key_topics": [
+      "validator",
+      "enforcement",
+      "review-depth",
+      "post-dispatch",
+      "validate",
+      "116",
+      "plan",
+      "tasks",
+      "checklist",
+      "adr",
+      "summary",
+      "deep-review"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Type Extension",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Checks",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Capture",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "optional",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deep-review post-dispatch validation previously proved that an iteration produced a markdown file and a minimally shaped JSONL row",
+    "created_at": "2026-05-22T00:00:00Z",
+    "last_save_at": "2026-07-08T13:43:54.050Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4d6b3d9453bfbd6ee48634576f126b21005b61b3d75137a32ba340dcc586c183",
+    "source_doc_hashes": {
+      "spec.md": "900b1f4985b86a4e056d25688b169e5457a9a92fa5a6b9b7382e321e7a2b25d5",
+      "plan.md": "6b9730ec2eb9bc06d3863f6607b844259f22baeb52ec5ea6304f5fed833e3051",
+      "tasks.md": "5029cdfb20cd72d6afd4962d9b6de783960f19428c71bedd707afbec952db9da",
+      "checklist.md": "2213d687c08774ca7f90ced1418f84d559242e0df46829be9b6d49df70e27d22",
+      "decision-record.md": "9605f7fe55a48c7dc2cc867fe027d41a3f102059fa8b02729607356b2411b9e7",
+      "implementation-summary.md": "429f24c83da18848f345a79e38cc7760f5096ab316e86bc9f4cc09acefe8021b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

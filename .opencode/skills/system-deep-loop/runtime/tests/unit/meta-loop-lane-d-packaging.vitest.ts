@@ -12,7 +12,7 @@ const WORKSPACE_ROOT = resolve(RUNTIME_ROOT, '..', '..', '..', '..');
 
 const PROFILE_PATH = resolve(
   WORKSPACE_ROOT,
-  '.opencode/skills/system-deep-loop/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json',
+  '.opencode/skills/system-deep-loop/deep-improvement/assets/non_dev_ai_system/profiles/deep_loop_runtime.json',
 );
 const SCHEMA_PATH = resolve(
   WORKSPACE_ROOT,

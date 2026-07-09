@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
+  "description": "GPT-5.5-primary (xhigh-fast, cli-codex) implementation deep research with Opus 4.8 agent verification + synthesis, turning the converged 001 design",
+  "keywords": [
+    "gpt-5",
+    "5-primary",
+    "xhigh-fast",
+    "cli-codex",
+    "implementation",
+    "deep",
+    "research",
+    "opus",
+    "agent",
+    "verification",
+    "synthesis",
+    "turning",
+    "converged",
+    "001",
+    "design"
+  ],
+  "lastUpdated": "2026-07-08T13:06:53.093Z",
+  "specId": "002",
+  "folderSlug": "implementation-deep-research",
+  "parentChain": [
+    "system-deep-loop",
+    "z_archive",
+    "008-deep-improvement-skill-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
