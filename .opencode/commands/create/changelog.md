@@ -12,7 +12,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 Route /create:changelog to its presentation contract and workflow YAML for creating global or packet-local changelogs with topology-aware release options.
 
-## 2. Routing Assets
+## 2. Owned Assets
 
 | Asset | Path | Purpose |
 | --- | --- | --- |
