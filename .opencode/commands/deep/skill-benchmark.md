@@ -1,24 +1,28 @@
 ---
 description: "Benchmark a skill's real-world routing, discovery, efficiency, and usefulness (Lane C). Emits a ranked, remediable Skill Benchmark Report. Modes :auto, :confirm."
+argument-hint: "<skill_id_or_root> [:auto|:confirm] [--outputs-dir=PATH] [--fixtures-dir=PATH] [--trace-mode=router|live] [--advisor-mode=python]"
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 skill: system-deep-loop
 ---
 
-# /deep:skill-benchmark
+# Deep Start Skill Benchmark Loop
 
 Lane C of the `deep-improvement` skill. Benchmarks whether a **skill** is well-structured, well-routed, efficient, and useful **in practice** — how AIs actually discover and use it — and emits a ranked Skill Benchmark Report with concrete, remediable findings. Distinct from `sk-doc`/`validate.sh` (doc shape) and manual testing playbooks (described behavior).
 
-> **EXECUTION PROTOCOL — READ FIRST**
+## 1. ROUTER CONTRACT
+
+This is a direct-dispatch router: it verifies the runtime agent, resolves setup, then dispatches the benchmark loop host. Scoring, contamination-lint, router-replay, and report rendering are owned by the loop-host scripts and never run inline in this document.
+
+> **EXECUTION PROTOCOL - READ FIRST**
 >
-> **YOUR FIRST ACTION (two HARD-BLOCK gates — do them in order, skip neither):**
+> **YOUR FIRST ACTION (two HARD-BLOCK gates - do them in order, skip neither):**
 > 1. Run Phase 0: dispatch-context check (below)
-> 2. Run the Setup phase (BLOCKED gate) — resolve ALL inputs (in :confirm/no-suffix, present them and wait for confirmation; in :auto, resolve confidently or fail fast naming the missing inputs)
+> 2. Run the Mandatory Input Gate (below) - resolve ALL inputs (in :confirm/no-suffix, present them and wait for confirmation; in :auto, resolve confidently or fail fast naming the missing inputs)
 > 3. Execute the Run step only after both gates pass
 >
-> This command is **general-agent based** — it orchestrates the deep-improvement skill in skill-benchmark mode (Lane C). Gate 1 (dispatch-context check) and Gate 2 (the BLOCKED Setup phase) are HARD BLOCKS; neither may be skipped.
+> This command is **general-agent based** - it orchestrates the deep-improvement skill in skill-benchmark mode (Lane C). Gate 1 (dispatch-context check) and Gate 2 (the BLOCKED input gate) are HARD BLOCKS; neither may be skipped.
 
----
-
-# 🚨 PHASE 0: DISPATCH-CONTEXT CHECK
+### PHASE 0: DISPATCH-CONTEXT CHECK
 
 **STATUS: ☐ CHECKED**
 
@@ -34,7 +38,7 @@ instructions for a worker to follow (that worker should follow its own dispatch
 prompt, not re-run this command's full setup contract)?
 
 ├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Read `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` and `references/skill_benchmark/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
+│   └─ general_agent_verified = TRUE → Read `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` and `references/skill_benchmark/operator_guide.md`, then continue to the Mandatory Input Gate (also a HARD BLOCK)
 │
 └─ NO, with concrete evidence this file's content was pasted inline rather than
    invoked as the command itself:
@@ -63,9 +67,7 @@ concrete evidence of the pasted-inline case above.
 **Phase Output:**
 - `general_agent_verified = ________________`
 
----
-
-## SETUP
+### MANDATORY INPUT GATE
 
 **STATUS: ☐ BLOCKED** — resolve ALL inputs below before the Run step. In `:confirm`/no-suffix, present the resolved inputs and wait for confirmation; in `:auto`, resolve confidently from arguments/defaults or fail fast naming the missing inputs. Do NOT run the loop-host command until inputs are resolved.
 
@@ -75,9 +77,26 @@ Resolve:
 - **fixtures dir** (optional) — defaults to `<skill>/assets/skill_benchmark/fixtures/<skill-id>/`.
 - **trace mode** — `router` (Mode A, deterministic, default/CI) or `live` (Mode B, BUILT — playbook corpus dispatched through `cli-opencode`).
 
----
+## 2. OWNED ASSETS
 
-## RUN
+| Purpose | Asset |
+|---------|-------|
+| Loop host (dispatch target) | `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs` (`--mode=skill-benchmark`) |
+| Benchmark orchestrator | `scripts/skill-benchmark/run-skill-benchmark.cjs` (D5 hard gate → per-scenario contamination-lint → router-replay → score → dual report) |
+| Methodology + operator guide | `references/skill_benchmark/operator_guide.md`, `references/skill_benchmark/routing_optimization.md`, and the target skill's SKILL.md |
+
+Presentation is inline for this direct router — there is no separate presentation asset; the router-owned display is bounded in §5.
+
+## 3. MODE ROUTING
+
+1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
+2. Treat the skill id/root, `--outputs-dir`, `--fixtures-dir`, `--trace-mode`, and `--advisor-mode` as workflow inputs, not execution modes.
+3. Resolve the Mandatory Input Gate values from `$ARGUMENTS` and defaults. For `:auto`, resolve confidently or fail fast naming the missing inputs; for `:confirm`/no suffix, present the resolved inputs and wait for confirmation.
+4. After Phase 0 and the input gate pass, read the target skill's SKILL.md + the operator guide, then dispatch the Run step in §4.
+
+## 4. EXECUTION TARGETS
+
+Dispatch the benchmark loop host directly (this is a direct-router family — no workflow YAML):
 
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
@@ -89,21 +108,22 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host
 
 `--advisor-mode=python` enables the built-but-opt-in D1-inter advisor probe (deterministic in-repo SQLite advisor, scored out-of-band; off by default and in CI). The orchestrator (`scripts/skill-benchmark/run-skill-benchmark.cjs`) runs the D5 hard gate first, then per-scenario contamination-lint → router-replay → score, then writes the dual report.
 
----
+**Optimize target.** Lane C also drives a **routing-optimization** workflow that turns the benchmark's own signals into concrete parent-router and per-child `skill.md` → `references/`/`assets/` routing fixes. It is **propose-by-default** — never mutate a target skill or its gold without explicit operator review. Runnable today (signal → fix, following the methodology reference):
 
-## OUTPUT
+1. Run the benchmark above; read `dimensionScores.D5` + `bottlenecks[class="orphan_reference"]` (references reachable from no `RESOURCE_MAP` intent) and `dimensionScores.D3` (over-routing).
+2. Apply the fix class per signal, per `references/skill_benchmark/routing_optimization.md`: wire orphan references into a meaningful intent; map always-loaded files into `RESOURCE_MAP`; align each scenario's gold with the router's *declared* designed load; intent-gate genuine over-routing.
+3. Re-benchmark to confirm the rise and no regression; keep the parent `RESOURCE_MAP` a union of its children (drift guard).
 
-- `skill-benchmark-report.json` — machine report (verdict, D1–D5, funnel, ranked bottlenecks, scenario rows).
-- `skill-benchmark-report.md` — rendered FROM the JSON (anti-drift).
+The **anti-gaming guard is mandatory** (methodology §7): never invent gold, never add keywords that misroute. `code-review` is the worked example (D5 85→100, live 69→100).
 
----
+> Planned automation: `loop-host.cjs --mode=skill-benchmark-optimize` → `scripts/skill-benchmark/optimize-skill-benchmark.cjs` emitting `proposals/router.patch` + `proposals/gold.patch` behind `--apply-router` / `--apply-gold`. Until it lands, optimize is the operator-driven runbook above.
 
-## PRESENTATION BOUNDARY
+## 5. PRESENTATION BOUNDARY
 
 The following router-owned display must render verbatim when triggered:
 
 - Phase 0 general-agent-required failure block and `STATUS=FAIL ERROR="General agent required"`.
-- Setup blocked-state wording, resolved-input confirmation, and missing-input failure summary.
+- Mandatory Input Gate blocked-state wording, resolved-input confirmation, and missing-input failure summary.
 
 The following content must not come from this router:
 
@@ -112,10 +132,8 @@ The following content must not come from this router:
 
 Lane C is **diagnostic by default** (no target-skill mutation). Findings hand off to Lane A (`/deep:agent-improvement`) or a follow-up spec packet via the remediation taxonomy.
 
----
+## 6. WORKFLOW SUMMARY
 
-## SCOPE (CURRENT)
+The dispatched loop host runs the D5 hard gate, then per-scenario contamination-lint → router-replay → score, and writes two reports: `skill-benchmark-report.json` (machine report — verdict, D1–D5, funnel, ranked bottlenecks, scenario rows) and `skill-benchmark-report.md` (rendered FROM the JSON, anti-drift).
 
-Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically; D1-inter (advisor selection) is opt-in via `--advisor-mode=python`.
-
-**Mode B (live playbook) is now BUILT** (packet `122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode`): a skill's own `manual_testing_playbook` is the corpus, scored in `--trace-mode router` (deterministic CI gate, real-gold) or `--trace-mode live` (real `cli-opencode` dispatch). Live routing/advisor scenarios are graded from the model's stated routing + observed activation; browser scenarios (MR/CB) route to a `bdg` executor; D4 usefulness is an **approximate** skill-on/off ablation; an opt-in staged generator can author scenarios for skills lacking them. Live flags: `--scenarios`, `--executor`, `--playbook-dir`; live model via env `SKILL_BENCH_OPENCODE_MODEL`/`SKILL_BENCH_OPENCODE_VARIANT` (use `gpt-5.5-fast --variant high`; `xhigh` times out). Live is advisory — the gated verdict stays router mode + the D5 hard gate. Modes `:auto` / `:confirm` follow the shared deep-loop command contract.
+Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically; D1-inter (advisor selection) is opt-in via `--advisor-mode=python`. **Mode B (live playbook) is BUILT**: a skill's own `manual_testing_playbook` is the corpus, scored in `--trace-mode router` (deterministic CI gate, real-gold) or `--trace-mode live` (real `cli-opencode` dispatch). Live routing/advisor scenarios are graded from the model's stated routing + observed activation; browser scenarios (MR/CB) route to a `bdg` executor; D4 usefulness is an **approximate** skill-on/off ablation; an opt-in staged generator can author scenarios for skills lacking them. Live flags: `--scenarios`, `--executor`, `--playbook-dir`; live model via env `SKILL_BENCH_OPENCODE_MODEL`/`SKILL_BENCH_OPENCODE_VARIANT` (use `gpt-5.5-fast --variant high`; `xhigh` times out). Live is advisory — the gated verdict stays router mode + the D5 hard gate. Modes `:auto` / `:confirm` follow the shared deep-loop command contract.

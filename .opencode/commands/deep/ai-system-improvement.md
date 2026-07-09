@@ -1,24 +1,28 @@
 ---
-description: "Benchmark an AI-system packaging with an independent grader and auto-refine its technique docs behind hard guardrails (Lane D). Dry-run default; --live runs the guarded loop. Use --self-target <profile> for guarded self-improvement setup. Modes :auto, :confirm."
+description: "Benchmark an AI-system packaging with an independent grader and auto-refine its technique docs behind hard guardrails (Lane D). Dry-run default; --live runs the guarded loop. Modes :auto, :confirm."
+argument-hint: "<packaging_root> [:auto|:confirm] [--self-target <profile>] [--live] [--max-iters=N] [--fixtures=A,B] [--variants=A,B] [--held-out=A,B] [--samples=N] [--proposer-model=ID] [--grader-model=ID] [--parallel]"
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 skill: system-deep-loop
 ---
 
-# /deep:ai-system-improvement
+# Deep Start AI System Improvement Loop
 
 Lane D of the `deep-improvement` skill. Benchmarks an **AI-system packaging** (one prompt system shipped as CLI runtime, claude.ai Project and native skill), re-grades outputs with an **independent different-family grader**, and runs a **guarded autonomous refine loop**: propose a bounded technique-doc edit, verify it against held-out fixtures inside an isolated git worktree, and promote or roll back. Self-reported quality scores are never the optimization target (the pilot measured them inflated ~+6/25 versus independent graders).
 
-> **EXECUTION PROTOCOL — READ FIRST**
+## 1. ROUTER CONTRACT
+
+This is a direct-dispatch router: it verifies the runtime agent, resolves setup, then dispatches the guarded refine loop host. All guarded-loop logic — frozen scoring surface, kill-switches, worktree promote-N, resume — lives with the packaging and never runs inline in this document.
+
+> **EXECUTION PROTOCOL - READ FIRST**
 >
-> **YOUR FIRST ACTION (two HARD-BLOCK gates — do them in order, skip neither):**
+> **YOUR FIRST ACTION (two HARD-BLOCK gates - do them in order, skip neither):**
 > 1. Run Phase 0: dispatch-context check (below)
-> 2. Run the Setup phase (BLOCKED gate) — resolve ALL inputs (in :confirm/no-suffix, present them and wait for confirmation; in :auto, resolve confidently or fail fast naming the missing inputs)
+> 2. Run the Mandatory Input Gate (below) - resolve ALL inputs (in :confirm/no-suffix, present them and wait for confirmation; in :auto, resolve confidently or fail fast naming the missing inputs)
 > 3. Execute the Run step only after both gates pass
 >
-> This command is **general-agent based** — it orchestrates the deep-improvement skill in non-dev-ai-system-refine mode (Lane D). Gate 1 (dispatch-context check) and Gate 2 (the BLOCKED Setup phase) are HARD BLOCKS; neither may be skipped.
+> This command is **general-agent based** - it orchestrates the deep-improvement skill in non-dev-ai-system-refine mode (Lane D). Gate 1 (dispatch-context check) and Gate 2 (the BLOCKED input gate) are HARD BLOCKS; neither may be skipped.
 
----
-
-# 🚨 PHASE 0: DISPATCH-CONTEXT CHECK
+### PHASE 0: DISPATCH-CONTEXT CHECK
 
 **STATUS: ☐ CHECKED**
 
@@ -34,7 +38,7 @@ ad hoc instructions for a worker to follow (that worker should follow its own
 dispatch prompt, not re-run this command's full setup contract)?
 
 ├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Read `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` and `references/non_dev_ai_system/operator_guide.md`, then continue to the Setup phase (also a HARD BLOCK)
+│   └─ general_agent_verified = TRUE → Read `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` and `references/non_dev_ai_system/operator_guide.md`, then continue to the Mandatory Input Gate (also a HARD BLOCK)
 │
 └─ NO, with concrete evidence this file's content was pasted inline rather than
    invoked as the command itself:
@@ -46,7 +50,7 @@ dispatch prompt, not re-run this command's full setup contract)?
     │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
     │   │                                                            │
     │   │ This command orchestrates the deep-improvement skill in    │
-    │   │ packaging-refine mode and runs general-agent based.         │
+    │   │ packaging-refine mode and runs general-agent based.        │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
     │   │   /deep:ai-system-improvement [arguments]                  │
@@ -63,9 +67,7 @@ concrete evidence of the pasted-inline case above.
 **Phase Output:**
 - `general_agent_verified = ________________`
 
----
-
-## SETUP
+### MANDATORY INPUT GATE
 
 **STATUS: ☐ BLOCKED** — resolve ALL inputs below before the Run step. In `:confirm`/no-suffix, present the resolved inputs and wait for confirmation; in `:auto`, resolve confidently from arguments/defaults or fail fast naming the missing inputs. Do NOT run the loop-host command until inputs are resolved.
 
@@ -79,9 +81,24 @@ Resolve:
 
 Pre-flight before any `--live` run: verify no other loop run is active (single-writer lock), and probe provider auth before the batch (an expired credential fails the whole batch — pilot teaching T11).
 
-### Self-Target Fork
+## 2. OWNED ASSETS
 
-When `--self-target <profile>` is present, setup forks before the normal Run step:
+| Purpose | Asset |
+|---------|-------|
+| Loop host (dispatch target) | `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs` (`--mode=non-dev-ai-system-refine`) |
+| Adapter (contract validation + spawn) | `scripts/non-dev-ai-system/run-non-dev-ai-system.cjs` |
+| Self-target profiles + schema | `assets/non_dev_ai_system/profiles/`, `assets/non_dev_ai_system/packaging_config.schema.json` |
+| Operator guide | `references/non_dev_ai_system/operator_guide.md`, and the packaging's own `_loop/` contract |
+
+Presentation is inline for this direct router — there is no separate presentation asset; the router-owned display is bounded in §5.
+
+## 3. MODE ROUTING
+
+1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
+2. Treat the packaging root, `--self-target`, `--live`, `--max-iters`, `--fixtures`, `--variants`, `--held-out`, `--samples`, `--proposer-model`, `--grader-model`, and `--parallel` as workflow inputs, not execution modes.
+3. Resolve the Mandatory Input Gate values. For `:auto`, resolve confidently or fail fast naming the missing inputs; for `:confirm`/no suffix, present the resolved inputs and wait for confirmation.
+
+**Self-target fork.** When `--self-target <profile>` is present, setup forks before the normal Run step:
 
 1. Resolve and parse the profile JSON, then validate it against the Lane D packaging schema.
 2. Confirm every `editableTechDocs[].relpath` is present in `allowedDiffRelpaths`.
@@ -94,9 +111,9 @@ When `--self-target <profile>` is present, setup forks before the normal Run ste
 
 The self-target flag is not forwarded to `loop-host.cjs`. It compiles to the existing `--mode=non-dev-ai-system-refine --packaging-root <resolved-root>` invocation after the guard passes, preserving the adapter's current argv contract.
 
----
+## 4. EXECUTION TARGETS
 
-## RUN
+Dispatch the guarded refine loop host directly (this is a direct-router family — no workflow YAML):
 
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
@@ -106,7 +123,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host
   [--held-out <a,b>] [--samples <n>] [--proposer-model <id>] [--grader-model <id>]
 ```
 
-Router-only self-target setup:
+Router-only self-target setup (compiles to the invocation above after the §3 fork passes):
 
 ```bash
 /deep:ai-system-improvement --self-target runtime/ [--live] [--parallel]
@@ -114,21 +131,12 @@ Router-only self-target setup:
 
 The adapter (`scripts/non-dev-ai-system/run-non-dev-ai-system.cjs`) validates the contract and spawns the packaging-owned loop host; all guarded-loop logic (frozen scoring surface, kill-switches, worktree promote-N, resume) lives with the packaging.
 
----
-
-## OUTPUT
-
-- The packaging's `_loop/state/loop-journal.jsonl` — append-only run journal (per-sample grades, promotion decisions, canonical stop reasons).
-- On `promote_accept`: the candidate edit lives in a **kept worktree (detached at the candidate state)** for deliberate operator merge — the loop never writes the live tree.
-
----
-
-## PRESENTATION BOUNDARY
+## 5. PRESENTATION BOUNDARY
 
 The following router-owned display must render verbatim when triggered:
 
 - Phase 0 general-agent-required failure block and `STATUS=FAIL ERROR="General agent required"`.
-- Setup blocked-state wording, resolved-input confirmation, and missing-input failure summary.
+- Mandatory Input Gate blocked-state wording, resolved-input confirmation, and missing-input failure summary.
 
 The following content must not come from this router:
 
@@ -137,8 +145,8 @@ The following content must not come from this router:
 
 Kill-switches that halt without promoting: scoring-surface drift, derived-copy drift, grader-family violation, hard-blocker lint failure, new floor breach, held-out regression (or below `LOOP_ACCEPT_MARGIN`), iteration ceiling, concurrent-run lock.
 
----
+## 6. WORKFLOW SUMMARY
 
-## SCOPE (CURRENT)
+The dispatched loop host writes the packaging's `_loop/state/loop-journal.jsonl` — an append-only run journal (per-sample grades, promotion decisions, canonical stop reasons). On `promote_accept`, the candidate edit lives in a **kept worktree (detached at the candidate state)** for deliberate operator merge — the loop never writes the live tree.
 
 Pilot packaging: Barter Copywriter (promotion-accept live-proven via a synthetic-deficit run; red-team gauntlet 10/10). A killed run resumes from its journal (config-hash + HEAD-sha guarded). `LOOP_POLISH=1` opts in to lowest-margin targeting when all floors pass; the default declines-when-clean. Modes `:auto` / `:confirm` follow the shared deep-loop command contract.
