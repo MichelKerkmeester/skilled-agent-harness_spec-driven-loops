@@ -1,5 +1,5 @@
 ---
-description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
+description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. Modes :auto, :confirm."
 argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, mcp__mk_spec_memory__memory_search
 ---
@@ -57,7 +57,7 @@ prompt, not re-run this command's full setup contract)?
     │   │ invocation and runs general-agent based.                   │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /deep:agent-improvement [arguments]           │
+    │   │   /deep:agent-improvement [arguments]                     │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
@@ -83,7 +83,7 @@ concrete evidence of the pasted-inline case above.
 
 For `:confirm` or no suffix, the consolidated setup prompt in the presentation contract MUST be the first visible response. For `:auto`, do not emit the consolidated setup prompt by default; use the auto setup resolution rules in the presentation contract and fail fast when required fields cannot be resolved.
 
-#### PHASE STATUS VERIFICATION (BLOCKING)
+### PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL values are set:**
 
@@ -104,6 +104,14 @@ VERIFICATION CHECK:
 │   ├─ YES → Proceed to Mode Routing and the selected workflow asset
 │   └─ NO  → Re-prompt for missing values only
 ```
+
+### ROUTING CONSTRAINTS
+
+- **DO NOT** dispatch any agent from this document
+- **DO NOT** infer the target agent from context, screenshots, or conversation history
+- **DO NOT** start the loop without all setup values resolved
+- **RESOLVE `lane` FIRST** - an explicit `lane=model-benchmark` (via `--lane`, marker, `--profile`, or Q(lane)) hands off to `/deep:model-benchmark`; never ask the Lane A questions in that case
+- **FIRST ACTION** is always: run Phase 0, run Setup, then load the YAML workflow
 
 ---
 
