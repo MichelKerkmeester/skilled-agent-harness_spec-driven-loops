@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 `create-command` is the command-authoring workflow packet of the `sk-doc` parent hub. It creates and improves OpenCode slash commands under `.opencode/commands/` with executable workflows, precise frontmatter, required input gates, least-privilege tools, and router/presentation separation when needed.
 
-This SKILL.md contains the core creation workflow. Use the `references/` route map (`references/README.md`), `assets/command/command_template.md`, `assets/command/command_presentation_template.md`, and `../shared/` only for exhaustive examples, edge cases, and validator implementation detail.
+This SKILL.md contains the core creation workflow. Use the `references/` route map (`references/README.md`), `assets/command_template.md`, `assets/command_router_template.md`, `assets/command_presentation_template.md`, and `../shared/` only for exhaustive examples, edge cases, and validator implementation detail.
 
 This packet is lean and self-contained. The advisor identity lives at the `sk-doc` hub root; do not add packet-local `graph-metadata.json`.
 
@@ -94,6 +94,7 @@ Choose the smallest command type that fits:
 | Simple | Single action, few arguments | One `.md` file, direct steps |
 | Workflow | Multi-step process with checkpoints | One `.md` file with overview, instructions, recovery |
 | Mode-based | Supports `:auto` / `:confirm` | Thin router plus owned assets when complex |
+| Router | Thin dispatcher: verify agent, resolve mode/args, hand off to owned assets | Router `.md` plus owned presentation `.txt` and optional workflow YAML or scripts |
 | Argument dispatch | Multiple action keywords or query forms | ASCII routing tree plus handlers |
 | Destructive | Deletes data or irreversible changes | Explicit confirmation, affected-state display, recovery guidance |
 | Namespace | Related commands grouped together | Directory under `.opencode/commands/` |
@@ -124,6 +125,13 @@ For a split mode-based workflow command, create or update:
 ```
 
 Use `_auto.yaml` and `_confirm.yaml` only for workflow-backed families that route execution into workflow assets. Direct-router families dispatch directly to tools/scripts and do not need workflow YAML.
+
+For a compiled-stub router, the `.md` is a generated thin stub carrying the `render-command-contract` marker; its section shape is rendered from a compiled source at invocation, not authored in the file. Do not hand-write section headings into a compiled stub, and keep its owned presentation/workflow assets alongside it:
+
+```text
+.opencode/commands/<namespace>/<action>.md            # compiled stub (render-command-contract marker)
+.opencode/commands/<namespace>/assets/<namespace>_<action>_presentation.txt
+```
 
 ### Step 6: Author Frontmatter First
 
@@ -217,6 +225,15 @@ Approved common H2 section names include:
 - `TOOL SIGNATURES`
 - `USER INPUT`
 
+Approved canonical H2 section names for router commands (see Step 11):
+
+- `ROUTER CONTRACT`
+- `OWNED ASSETS`
+- `MODE ROUTING`
+- `EXECUTION TARGETS`
+- `PRESENTATION BOUNDARY`
+- `WORKFLOW SUMMARY`
+
 ### Step 9: Implement Argument Dispatch When Needed
 
 For commands with multiple entry points, include an ASCII routing tree based on `$ARGUMENTS`.
@@ -247,40 +264,40 @@ Interactive mode pauses after each step for approval, presents options such as a
 
 If the mode-based command is large or has visible dashboards/prompts/results, use the router/presentation split.
 
-### Step 11: Enforce Router/Presentation Separation
+### Step 11: Author The Router As A First-Class Command Type
 
-For split commands, the `.md` file is a thin router. It owns:
+A router is a first-class command type, not a loose refactor. Its `.md` is a thin dispatcher: verify the orchestrating agent, resolve mode and arguments, then hand off to owned assets (a presentation `.txt`, optional `_auto.yaml` / `_confirm.yaml`, or scripts). It carries no inline dashboards, prompts, or result templates.
 
-- Mandatory input gate or Phase 0.
-- Owned-assets table.
-- Mode resolution.
-- Argument routing.
-- Execution target selection.
-- Presentation boundary.
-- Short workflow summary.
+**Detection signature.** The validator treats a command as a router when any of:
 
-The presentation asset owns:
+- a `render-command-contract` marker is present (the compiled-stub variant, which has no authored section requirements); or
+- a `Presentation Boundary` section is present; or
+- two or more of `{Router Contract, Owned Assets, Mode Routing, Execution Targets}` co-occur.
 
-- Startup prompts and consolidated setup questions.
-- Auto fail-fast display text.
-- Dashboard and checkpoint layouts.
-- Success and failure result templates.
-- Next-step suggestions.
+**Minimal core vs recommended.** A router must include the blocking core only: `Owned Assets` and `Presentation Boundary`. The remaining canonical sections — `Router Contract`, `Mode Routing`, `Execution Targets`, `Workflow Summary` — are recommended and surface as non-blocking warnings when absent. Author the full shape for new routers; the minimal core lets incremental migrations land without failing.
 
-The router must not contain inline startup-question wording, dashboard templates, result templates, or next-step wording when a presentation asset exists. The split is behavior-preserving: move display content, do not change routing semantics.
-
-Use this router section shape for new mode-based workflow commands:
+**Canonical vocabulary (numbered `## N.`, full integers).** Use exactly these H2 names, in this order, for a fully-shaped router:
 
 ```text
-Router Contract
-Owned Assets
-Mode Routing
-Execution Targets
-Presentation Boundary
-Workflow Summary
+## 1. ROUTER CONTRACT
+## 2. OWNED ASSETS
+## 3. MODE ROUTING
+## 4. EXECUTION TARGETS
+## 5. PRESENTATION BOUNDARY
+## 6. WORKFLOW SUMMARY
 ```
 
-Use `assets/command/command_presentation_template.md` for the full presentation asset skeleton.
+Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Execution Order`); the validator alias-normalizes those as a safety net, but the authored end state is the canonical names above.
+
+**Ownership boundary.** The router owns: the mandatory input gate or Phase 0, the owned-assets table, mode resolution, argument routing, execution-target selection, the presentation boundary, and a short workflow summary. The presentation asset owns: startup prompts and consolidated setup questions, auto fail-fast display text, dashboard and checkpoint layouts, success and failure result templates, and next-step suggestions. The router must not contain inline startup-question wording, dashboard templates, result templates, or next-step wording when a presentation asset exists. The split is behavior-preserving: move display content, do not change routing semantics.
+
+**Variants (one type, differing only by hand-off — not by required sections):**
+
+- Workflow-YAML-backed — routes execution into `_auto.yaml` / `_confirm.yaml` workflow assets (for example the deep-large and speckit families).
+- Direct-dispatch-script — dispatches directly to tools or scripts, no workflow YAML (for example the skill-benchmark, doctor, and memory families).
+- Compiled-stub — a generated stub carrying the `render-command-contract` marker whose contract is rendered at invocation; exempt from authored section requirements (for example research, review, and ai-council).
+
+Use `assets/command_router_template.md` for the canonical numbered router skeleton, and `assets/command_presentation_template.md` for the full presentation asset skeleton.
 
 ### Step 12: Add Destructive-Action Safety
 
@@ -313,6 +330,7 @@ Before publishing or claiming the command is valid, verify:
 - Examples cover two or three likely invocations.
 - Status output uses a structured pattern.
 - Thin routers contain no presentation templates when a presentation asset exists.
+- Router commands carry the blocking core (`OWNED ASSETS` + `PRESENTATION BOUNDARY`) and use the canonical numbered vocabulary from Step 11; remaining router sections are present or intentionally left as warnings.
 
 Run shared validators when available:
 
@@ -373,8 +391,9 @@ Use these only for overflow detail, long examples, and exact skeletons:
 - `references/router_presentation_split.md` - router/presentation ownership, the before/after split transformation, and the behavior-preserving rule.
 - `references/argument_hints_and_modes.md` - argument-hint design patterns, `:auto`/`:confirm` mode design, and frontmatter/description budget tips.
 - `references/common_pitfalls.md` - command-vs-skill-vs-agent selection and the common command-authoring mistakes table.
-- `assets/command/command_template.md` - exhaustive command type templates, examples, vocabulary, and validation checklist.
-- `assets/command/command_presentation_template.md` - full `_presentation.txt` skeleton for split command families.
+- `assets/command_template.md` - exhaustive command type templates, examples, vocabulary, and validation checklist.
+- `assets/command_router_template.md` - canonical numbered router skeleton with variant call-outs.
+- `assets/command_presentation_template.md` - full `_presentation.txt` skeleton for split command families.
 - `../shared/references/core_standards.md` - shared document quality standards.
 - `../shared/references/validation.md` - shared validation expectations.
 - `../shared/scripts/validate_document.py` - blocking structure validation.
