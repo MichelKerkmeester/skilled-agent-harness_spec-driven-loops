@@ -38,6 +38,10 @@ import { setEnv, restoreEnv, withFeatureFlag } from './__helpers__/test-env';
 const COMPLEXITY_FLAG = 'SPECKIT_COMPLEXITY_ROUTER';
 const GRAPH_PRESERVATION_FLAG = 'SPECKIT_GRAPH_CHANNEL_PRESERVATION';
 const RETRIEVAL_CLASS_ROUTING_FLAG = 'SPECKIT_RETRIEVAL_CLASS_ROUTING';
+// F5a (016-cross-package-flag-governance) flipped this to opt-in default-OFF;
+// tests exercising the content-rich-short-query preservation branch itself
+// must opt in explicitly.
+const CONTENT_RICH_SHORT_GRAPH_FLAG = 'SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION';
 
 const TRIGGER_PHRASES = [
   'save context',
@@ -497,13 +501,17 @@ describe('012-T2: routeQuery graph-preservation', () => {
     resetRoutingTelemetry();
   });
 
-  it('012-T2.1: simple-tier find_decision query routes graph channel', () => {
-    const result = routeQuery('why chose this');
-    expect(result.tier).toBe('simple');
-    expect(result.channels).toContain('graph');
-    // No entity-density, so no degree.
-    expect(result.channels).not.toContain('degree');
-    expect(result.queryPlan.routingReasons).toContain('graph-preserved-by-intent');
+  it('012-T2.1: simple-tier content-rich find_decision query routes graph and degree channels', () => {
+    // Content-rich-short-query preservation is opt-in default-OFF since F5a;
+    // opt in explicitly since this test exercises that specific branch.
+    withFeatureFlag(CONTENT_RICH_SHORT_GRAPH_FLAG, 'true', () => {
+      const result = routeQuery('why chose this');
+      expect(result.tier).toBe('simple');
+      expect(result.channels).toContain('graph');
+      expect(result.channels).toContain('degree');
+      expect(result.queryPlan.routingReasons).toContain('graph-preserved-by-intent');
+      expect(result.queryPlan.routingReasons).toContain('degree-preserved-by-content-rich-short-query');
+    });
   });
 
   it('012-T2.1b: simple-tier find_spec query labels BM25 preservation by intent', () => {

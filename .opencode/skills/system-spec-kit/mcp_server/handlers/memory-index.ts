@@ -2,6 +2,7 @@
 // MODULE: Memory Index
 // ───────────────────────────────────────────────────────────────
 import path from 'path';
+import fs from 'node:fs';
 import { createHash } from 'node:crypto';
 import type Database from 'better-sqlite3';
 
@@ -20,6 +21,10 @@ import {
   runTriggerEmbeddingBackfill,
   type TriggerEmbeddingBackfillResult,
 } from '../lib/search/trigger-embedding-backfill.js';
+import {
+  readMemoryDriftSuspects,
+  removeMemoryDriftSuspects,
+} from '../lib/storage/memory-drift-healing.js';
 
 /* ───────────────────────────────────────────────────────────────
    2. LIB MODULE IMPORTS
@@ -46,6 +51,11 @@ import {
   type DiscoveryCapExceeded,
   type DiscoveryFileList,
 } from './memory-index-discovery.js';
+import {
+  isGraphMetadataPath,
+  matchesSpecDocumentPath,
+  SPEC_DOCUMENT_FILENAMES,
+} from '../lib/config/spec-doc-paths.js';
 import {
   EMPTY_ALIAS_CONFLICT_SUMMARY,
   createDefaultDivergenceReconcileSummary,
@@ -125,6 +135,32 @@ function discoveryCaps(files: string[] | DiscoveryFileList): DiscoveryCapExceede
   return (files as Partial<DiscoveryFileList>).capExceeded;
 }
 
+// A scoped scan hands the git-hook drift marker's raw path list straight to the
+// indexer, so unlike the full-tree walker it never passes through
+// SPEC_DOCUMENT_FILENAMES/matchesSpecDocumentPath gating on its own. These reuse
+// the same predicates the tree-walker calls so a renamed non-spec file (e.g. an
+// image asset) can't be indexed as a spec document just because a path list named it.
+// Any throw from the predicates is treated as ineligible (fail closed), not surfaced.
+function isEligibleScopedSpecDocumentPath(filePath: string): boolean {
+  try {
+    if (!fs.existsSync(filePath)) {
+      return false;
+    }
+    const basename = path.basename(filePath).toLowerCase();
+    return SPEC_DOCUMENT_FILENAMES.has(basename) && matchesSpecDocumentPath(filePath, basename);
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
+function isEligibleScopedGraphMetadataPath(filePath: string): boolean {
+  try {
+    return fs.existsSync(filePath) && isGraphMetadataPath(filePath);
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
 /** Individual file result from a memory index scan. */
 interface ScanFileEntry {
   file: string;
@@ -165,6 +201,9 @@ interface ScanResults {
   orphanSweepFailed: number;
   orphanSweepScanned: number;
   orphanSweepNextCursor: number | null;
+  suspectTombstoned: number;
+  suspectCleared: number;
+  suspectFailed: number;
   moveReconciled?: number;
   files: ScanFileEntry[];
   constitutional: {
@@ -212,6 +251,7 @@ interface ScanKeyOptions {
   incremental: boolean;
   include_constitutional: boolean;
   include_spec_docs: boolean;
+  scoped_paths?: readonly string[];
 }
 
 interface RecordDeleteResult {
@@ -228,6 +268,13 @@ interface OrphanSweepDeleteResult {
   actions: StatediffAction[];
 }
 
+interface SuspectConfirmationResult {
+  tombstoned: number;
+  failed: number;
+  cleared: number;
+  actions: StatediffAction[];
+}
+
 interface OrphanSweepCandidates {
   swept: number;
   nextCursor: number | null;
@@ -236,7 +283,25 @@ interface OrphanSweepCandidates {
 }
 
 const ORPHAN_SWEEP_LIMIT = 200;
+const ORPHAN_SWEEP_MAX_PAGES = 1000;
 const ORPHAN_SWEEP_CURSOR_KEY = 'memory_index.orphan_sweep.cursor';
+// Bounds a single runGlobalOrphanSweep() invocation's wall-clock duration well under
+// the maintenance marker's 90s refresh-before window, leaving headroom for the
+// per-row DELETE-cascade cost (vector-index + causal-edge + history-log) on top of
+// the pure scan. The loop is already cursor-resumable, so a budget-exit only costs
+// an extra invocation, not a correctness change.
+const ORPHAN_SWEEP_TIME_BUDGET_MS_DEFAULT = 45_000;
+// Reuses the same interval as the marker's own background refresh timer so the
+// mid-loop re-fire cadence has no surprising relationship to the passive one.
+const ORPHAN_SWEEP_REFRESH_CADENCE_MS_DEFAULT = 20_000;
+
+function parsePositiveIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
 
 function ensureConfigTable(database: Database.Database): void {
   database.exec('CREATE TABLE IF NOT EXISTS config (key TEXT PRIMARY KEY, value TEXT)');
@@ -319,6 +384,9 @@ function createScanKey(options: ScanKeyOptions): string {
     incremental: !!options.incremental,
     include_constitutional: !!options.include_constitutional,
     include_spec_docs: !!options.include_spec_docs,
+    scoped_paths: Array.isArray(options.scoped_paths)
+      ? [...options.scoped_paths].sort()
+      : [],
   };
 
   return createHash('sha256')
@@ -344,6 +412,7 @@ interface ScanArgs {
   governedAt?: string;
   retentionPolicy?: 'keep' | 'ephemeral';
   deleteAfter?: string;
+  scopedPaths?: string[];
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -444,14 +513,19 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     force = false,
     includeConstitutional: include_constitutional = true,
     includeSpecDocs: include_spec_docs = true,
-    incremental = true
+    incremental = true,
+    scopedPaths = [],
   } = args;
+  const scopedScanPaths = Array.isArray(scopedPaths)
+    ? Array.from(new Set(scopedPaths.filter((filePath) => typeof filePath === 'string' && filePath.length > 0).map((filePath) => path.resolve(filePath))))
+    : [];
   const scanKey = createScanKey({
     spec_folder,
     force,
     incremental,
     include_constitutional,
     include_spec_docs,
+    scoped_paths: scopedScanPaths,
   });
   const governedIngest = requiresGovernedIngest(args);
   const governanceDecision = validateGovernedIngest(args);
@@ -568,11 +642,15 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   const workspacePath: string = DEFAULT_BASE_PATH;
 
-  const constitutionalFiles: string[] = include_constitutional ? findConstitutionalFiles(workspacePath) : [];
-  const specDocFiles = include_spec_docs
+  const constitutionalFiles: string[] = scopedScanPaths.length === 0 && include_constitutional ? findConstitutionalFiles(workspacePath) : [];
+  const specDocFiles = scopedScanPaths.length > 0
+    ? Object.assign(scopedScanPaths.filter((filePath) => isEligibleScopedSpecDocumentPath(filePath)), { warnings: [], capExceeded: emptyDiscoveryCapExceeded() }) as DiscoveryFileList
+    : include_spec_docs
     ? findSpecDocuments(workspacePath, { specFolder: spec_folder })
     : Object.assign([], { warnings: [], capExceeded: emptyDiscoveryCapExceeded() }) as DiscoveryFileList;
-  const graphMetadataFiles = include_spec_docs
+  const graphMetadataFiles = scopedScanPaths.length > 0
+    ? Object.assign(scopedScanPaths.filter((filePath) => isEligibleScopedGraphMetadataPath(filePath)), { warnings: [], capExceeded: emptyDiscoveryCapExceeded() }) as DiscoveryFileList
+    : include_spec_docs
     ? findGraphMetadataFiles(workspacePath, { specFolder: spec_folder })
     : Object.assign([], { warnings: [], capExceeded: emptyDiscoveryCapExceeded() }) as DiscoveryFileList;
   const walkerWarnings = [
@@ -637,8 +715,11 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         // causal edges, atomically in one transaction. The previous edges-then-row
         // sequence in two separate statements left a crash window where edges were
         // gone but the row survived, and deleted edges for a row that may not exist.
-        const rowDeleted = database
-          ? database.transaction(() => {
+        const transaction = database && typeof (database as { transaction?: unknown }).transaction === 'function'
+          ? database.transaction.bind(database)
+          : null;
+        const rowDeleted = transaction
+          ? transaction(() => {
               if (!vectorIndex.deleteMemory(staleRecordId)) {
                 return false;
               }
@@ -714,18 +795,127 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null, actions: [] };
     }
 
+    const timeBudgetMs = parsePositiveIntEnv('SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS', ORPHAN_SWEEP_TIME_BUDGET_MS_DEFAULT);
+    const refreshCadenceMs = parsePositiveIntEnv('SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS', ORPHAN_SWEEP_REFRESH_CADENCE_MS_DEFAULT);
+
     const database = vectorIndex.getDb();
-    const cursor = database ? readOrphanSweepCursor(database) : 0;
-    const sweep = sweepOrphanIndexRows({ limit: ORPHAN_SWEEP_LIMIT, cursor, basePath: workspacePath });
-    const deleteResult = deleteIndexedRecordIds(sweep.orphanRecordIds ?? []);
+    let cursor = database ? readOrphanSweepCursor(database) : 0;
+    let scannedRows = 0;
+    let nextCursor: number | null = cursor;
+    let swept = 0;
+    let failed = 0;
+    const actions: StatediffAction[] = [];
+    const loopStartedAt = Date.now();
+    let lastRefreshAt = loopStartedAt;
+
+    for (let page = 0; page < ORPHAN_SWEEP_MAX_PAGES; page++) {
+      const sweep = sweepOrphanIndexRows({ limit: ORPHAN_SWEEP_LIMIT, cursor, basePath: workspacePath });
+      scannedRows += sweep.scannedRows;
+      nextCursor = sweep.nextCursor;
+      const deleteResult = deleteIndexedRecordIds(sweep.orphanRecordIds ?? []);
+      swept += deleteResult.deleted;
+      failed += deleteResult.failed;
+      actions.push(...deleteResult.actions);
+
+      if (!sweep.nextCursor || sweep.scannedRows === 0) {
+        nextCursor = null;
+        break;
+      }
+      cursor = sweep.nextCursor;
+
+      const now = Date.now();
+      // Rate-gated repeat of the phase-entry marker refresh: a large backlog can run
+      // long enough between phase boundaries to starve the marker otherwise, so this
+      // re-fires the same callback at a bounded cadence instead of only once.
+      if (now - lastRefreshAt >= refreshCadenceMs) {
+        ctx.onPhase?.('orphan-sweep');
+        lastRefreshAt = now;
+      }
+
+      // A budget-exit is distinct from the completion-exit above: rows remain, so it
+      // persists a resumable cursor rather than null, and the loop is picked back up
+      // on a later invocation via the same cursor-resume mechanism.
+      if (now - loopStartedAt >= timeBudgetMs) {
+        break;
+      }
+    }
+
     if (database) {
-      writeOrphanSweepCursor(database, sweep.nextCursor);
+      writeOrphanSweepCursor(database, nextCursor);
     }
     return {
-      swept: deleteResult.deleted,
+      swept,
+      failed,
+      scannedRows,
+      nextCursor,
+      actions,
+    };
+  };
+
+  const resolveIndexedPathForScan = (filePath: string | null | undefined): string | null => {
+    if (typeof filePath !== 'string' || filePath.length === 0) {
+      return null;
+    }
+    return path.isAbsolute(filePath) ? filePath : path.resolve(workspacePath, filePath);
+  };
+
+  const runSuspectConfirmation = (): SuspectConfirmationResult => {
+    const database = vectorIndex.getDb();
+    if (!database) {
+      return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
+    }
+
+    try {
+      const hasQueue = database.prepare('SELECT 1 FROM config WHERE key = ? LIMIT 1').get('memory_index.drift_suspect_rows');
+      if (!hasQueue) {
+        return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
+      }
+    } catch {
+      return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
+    }
+
+    const suspects = readMemoryDriftSuspects(database);
+    if (suspects.length === 0) {
+      return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
+    }
+
+    const rows = database.prepare(`
+      SELECT id, file_path, canonical_file_path
+      FROM memory_index
+      WHERE id IN (${suspects.map(() => '?').join(',')})
+    `).all(...suspects.map((suspect) => suspect.id)) as Array<{ id: number; file_path?: string | null; canonical_file_path?: string | null }>;
+    const rowsById = new Map(rows.map((row) => [row.id, row]));
+    const pathCache = incrementalIndex.buildPathExistenceCache(rows.flatMap((row) => [
+      resolveIndexedPathForScan(row.file_path) ?? '',
+      resolveIndexedPathForScan(row.canonical_file_path) ?? '',
+    ]));
+    const idsToTombstone: number[] = [];
+    const idsToClear: number[] = [];
+
+    for (const suspect of suspects) {
+      const row = rowsById.get(suspect.id);
+      if (!row) {
+        idsToClear.push(suspect.id);
+        continue;
+      }
+
+      const filePath = resolveIndexedPathForScan(row.file_path);
+      const canonicalPath = resolveIndexedPathForScan(row.canonical_file_path);
+      const exists = incrementalIndex.cachedPathExists(pathCache, filePath)
+        || incrementalIndex.cachedPathExists(pathCache, canonicalPath);
+      if (exists) {
+        idsToClear.push(suspect.id);
+      } else {
+        idsToTombstone.push(suspect.id);
+      }
+    }
+
+    const deleteResult = deleteIndexedRecordIds(idsToTombstone);
+    removeMemoryDriftSuspects(database, [...idsToClear, ...idsToTombstone]);
+    return {
+      tombstoned: deleteResult.deleted,
       failed: deleteResult.failed,
-      scannedRows: sweep.scannedRows,
-      nextCursor: sweep.nextCursor,
+      cleared: idsToClear.length,
       actions: deleteResult.actions,
     };
   };
@@ -862,11 +1052,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     let staleDeleted = 0;
     let staleDeleteFailed = 0;
     const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
+    const suspectConfirmation = await timedPhase('suspect-confirmation', () => runSuspectConfirmation());
     const postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
     const nearDuplicateRepaired = await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
 
     if (incremental && !force) {
-      const categorized: CategorizedFiles = incrementalIndex.categorizeFilesForIndexing([]);
+      const categorized: CategorizedFiles = scopedScanPaths.length > 0
+        ? incrementalIndex.categorizeFilesForIndexing([], { staleCandidatePaths: scopedScanPaths })
+        : incrementalIndex.categorizeFilesForIndexing([]);
       const staleDeleteResult = deleteStaleIndexedRecords(categorized.toDelete);
       staleDeleted = staleDeleteResult.deleted;
       staleDeleteFailed = staleDeleteResult.failed;
@@ -886,6 +1079,13 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         orphanSweepFailed: orphanSweepResult.failed,
         operation: 'orphan-sweep',
       }, orphanSweepResult.actions);
+    }
+    if (suspectConfirmation.tombstoned > 0) {
+      runScanInvalidationHooks({
+        suspectTombstoned: suspectConfirmation.tombstoned,
+        suspectFailed: suspectConfirmation.failed,
+        operation: 'suspect-confirmation',
+      }, suspectConfirmation.actions);
     }
     if (postInsertEnrichmentRepaired > 0) {
       runScanInvalidationHooks({
@@ -940,6 +1140,9 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         orphanSweepFailed: orphanSweepResult.failed,
         orphanSweepScanned: orphanSweepResult.scannedRows,
         orphanSweepNextCursor: orphanSweepResult.nextCursor,
+        suspectTombstoned: suspectConfirmation.tombstoned,
+        suspectCleared: suspectConfirmation.cleared,
+        suspectFailed: suspectConfirmation.failed,
         checkpointRepair,
         warnings: walkerWarnings,
         capExceeded: walkerCapExceeded,
@@ -952,6 +1155,8 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         ...(triggerEmbeddingBackfill.failedRows > 0 ? [`${triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`] : []),
         ...(orphanSweepResult.swept > 0 ? [`Swept ${orphanSweepResult.swept} orphan index record(s)`] : []),
         ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be removed`] : []),
+        ...(suspectConfirmation.tombstoned > 0 ? [`Confirmed and tombstoned ${suspectConfirmation.tombstoned} suspect index record(s)`] : []),
+        ...(suspectConfirmation.cleared > 0 ? [`Cleared ${suspectConfirmation.cleared} reappeared suspect index record(s)`] : []),
         ...(checkpointRepair.cleared ? [`Cleared checkpoint derived rebuild sentinel after repairing ${checkpointRepair.completed} step(s)`] : []),
         ...(checkpointRepair.attempted && !checkpointRepair.cleared ? ['Checkpoint derived rebuild repair did not complete; sentinel retained'] : []),
         ...(checkpointRepair.error ? [`Checkpoint derived rebuild repair error: ${checkpointRepair.error}`] : []),
@@ -980,6 +1185,9 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     orphanSweepFailed: 0,
     orphanSweepScanned: 0,
     orphanSweepNextCursor: null,
+    suspectTombstoned: 0,
+    suspectCleared: 0,
+    suspectFailed: 0,
     files: [],
     constitutional: {
       found: constitutionalFiles.length,
@@ -1019,7 +1227,9 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   if (incremental && !force) {
     const startCategorize = Date.now();
-    const categorized: CategorizedFiles = incrementalIndex.categorizeFilesForIndexing(files);
+    const categorized: CategorizedFiles = scopedScanPaths.length > 0
+      ? incrementalIndex.categorizeFilesForIndexing(files, { staleCandidatePaths: scopedScanPaths })
+      : incrementalIndex.categorizeFilesForIndexing(files);
 
     filesToIndex = [...categorized.toIndex, ...categorized.toUpdate];
     filesToDelete = categorized.toDelete;
@@ -1336,6 +1546,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
   scanAppliedActions.push(...orphanSweepResult.actions);
 
+  const suspectConfirmation = await timedPhase('suspect-confirmation', () => runSuspectConfirmation());
+  results.suspectTombstoned = suspectConfirmation.tombstoned;
+  results.suspectCleared = suspectConfirmation.cleared;
+  results.suspectFailed = suspectConfirmation.failed;
+  scanAppliedActions.push(...suspectConfirmation.actions);
+
   results.postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
   if (results.postInsertEnrichmentRepaired > 0) {
     scanAppliedActions.push(createStatediffAction('upsert', {
@@ -1434,7 +1650,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }
   }
 
-  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0 || results.orphanSwept > 0 || results.postInsertEnrichmentRepaired > 0 || triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
+  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0 || results.orphanSwept > 0 || results.suspectTombstoned > 0 || results.postInsertEnrichmentRepaired > 0 || triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
     runScanInvalidationHooks({
       indexed: results.indexed,
       updated: results.updated,
@@ -1450,6 +1666,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         ? {
             orphanSwept: results.orphanSwept,
             orphanSweepFailed: results.orphanSweepFailed,
+          }
+        : {}),
+      ...(results.suspectTombstoned > 0 || results.suspectFailed > 0
+        ? {
+            suspectTombstoned: results.suspectTombstoned,
+            suspectFailed: results.suspectFailed,
           }
         : {}),
     }, scanAppliedActions);
@@ -1489,6 +1711,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   }
   if (results.orphanSweepFailed > 0) {
     hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be removed`);
+  }
+  if (results.suspectTombstoned > 0) {
+    hints.push(`Confirmed and tombstoned ${results.suspectTombstoned} suspect index record(s)`);
+  }
+  if (results.suspectCleared > 0) {
+    hints.push(`Cleared ${results.suspectCleared} reappeared suspect index record(s)`);
   }
   if (results.dedup.duplicatesSkipped > 0) {
     hints.push(`Canonical dedup skipped ${results.dedup.duplicatesSkipped} alias path(s)`);
@@ -1660,6 +1888,10 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
 export {
   handleMemoryIndexScan,
+  // Exported for tests only: lets a test drive the real orphan-sweep/scoped-scan
+  // logic with a spy in ctx (e.g. onPhase) without standing up the full background
+  // job-queue/maintenance-marker plumbing handleMemoryIndexScan's background path uses.
+  runIndexScan,
   indexSingleFile,
   findConstitutionalFiles,
   findSpecDocuments,

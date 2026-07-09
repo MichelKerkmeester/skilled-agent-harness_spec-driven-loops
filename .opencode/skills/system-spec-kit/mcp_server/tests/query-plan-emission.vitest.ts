@@ -21,7 +21,7 @@ describe('query-plan telemetry emission', () => {
   });
 
   it('emits selected and skipped channels from query-router without changing routing', () => {
-    const result = routeQuery('fix bug');
+    const result = routeQuery('hello');
 
     expect(result.channels).toEqual(['vector', 'fts']);
     expect(result.queryPlan.selectedChannels).toEqual(result.channels);
@@ -37,7 +37,7 @@ describe('query-plan telemetry emission', () => {
     const original = process.env.SPECKIT_COMPLEXITY_ROUTER;
     process.env.SPECKIT_COMPLEXITY_ROUTER = 'false';
     try {
-      const result = routeQuery('fix bug');
+      const result = routeQuery('hello');
       expect(result.channels).toEqual(['vector', 'fts', 'bm25', 'graph', 'degree']);
       expect(result.queryPlan.fallbackPolicy).toEqual({
         mode: 'safe_complexity',

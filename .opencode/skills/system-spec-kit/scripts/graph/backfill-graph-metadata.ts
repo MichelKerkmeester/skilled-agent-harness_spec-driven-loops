@@ -19,8 +19,11 @@ import path from 'node:path';
 import {
   canClassifyAsGraphMetadataPath,
   checkGeneratedMetadataDrift,
+  collectChildrenPruneCandidates,
   deriveGraphMetadata,
+  graphMetadataEqualIgnoringVolatile,
   loadGraphMetadata,
+  mergeGraphMetadata,
   refreshGraphMetadataForSpecFolder,
   resolveSpecFolderIdentity,
   SpecFolderIdentityError,
@@ -43,6 +46,7 @@ interface BackfillSummary {
   totalSpecFolders: number;
   created: number;
   refreshed: number;
+  changed: number;
   existing: number;
   lineageStamped: number;
   skipped: Array<{ specFolder: string; reason: string }>;
@@ -51,12 +55,15 @@ interface BackfillSummary {
   // Report-only drift surface: which packets carry a stored synopsis field that drifted from
   // the current docs. Populated from a read-only re-derive, never a write side effect.
   drift: Array<{ specFolder: string; fields: string[] }>;
+  pruneCandidates: Array<{ specFolder: string; childId: string; targetPath: string; existsOnDisk: boolean }>;
 }
 
 export interface BackfillOptions {
   dryRun: boolean;
   root: string;
   activeOnly?: boolean;
+  prune?: boolean;
+  pruneReport?: boolean;
   // When set, only this single packet folder is refreshed and no tree walk runs.
   specFolder?: string;
 }
@@ -142,6 +149,8 @@ function resolveScopedTarget(target: string): { ok: true; specFolder: string } |
 export function planBackfill(argv: string[]): BackfillPlan {
   let dryRun = false;
   let activeOnly = false;
+  let prune = false;
+  let pruneReport = false;
   let all = false;
   let root = path.join(resolveRepoRoot(), '.opencode', 'specs');
   let scopedTarget: string | null = null;
@@ -150,6 +159,15 @@ export function planBackfill(argv: string[]): BackfillPlan {
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === '--dry-run') {
+      dryRun = true;
+      continue;
+    }
+    if (arg === '--prune') {
+      prune = true;
+      continue;
+    }
+    if (arg === '--prune-report') {
+      pruneReport = true;
       dryRun = true;
       continue;
     }
@@ -197,7 +215,7 @@ export function planBackfill(argv: string[]): BackfillPlan {
     if (scopedTarget !== null) {
       return { ok: false, error: 'cannot combine --all with a target spec folder' };
     }
-    return { ok: true, options: { dryRun, root, activeOnly } };
+    return { ok: true, options: { dryRun, root, activeOnly, prune, pruneReport } };
   }
 
   if (scopedTarget === null) {
@@ -211,7 +229,7 @@ export function planBackfill(argv: string[]): BackfillPlan {
   if (!resolved.ok) {
     return resolved;
   }
-  return { ok: true, options: { dryRun, root, specFolder: resolved.specFolder } };
+  return { ok: true, options: { dryRun, root, specFolder: resolved.specFolder, prune, pruneReport } };
 }
 
 function isArchivedTraversalPath(dirPath: string): boolean {
@@ -309,7 +327,7 @@ export function collectReviewFlags(specFolderPath: string, metadata: GraphMetada
  * @param options - Backfill execution options
  * @returns Aggregate summary of created, refreshed, skipped, and failed packets
  */
-export function runBackfill({ dryRun, root, activeOnly = false, specFolder }: BackfillOptions): BackfillSummary {
+export function runBackfill({ dryRun, root, activeOnly = false, prune = false, pruneReport = false, specFolder }: BackfillOptions): BackfillSummary {
   const specFolders = specFolder
     ? [specFolder]
     : collectSpecFolders(root, { activeOnly });
@@ -320,12 +338,14 @@ export function runBackfill({ dryRun, root, activeOnly = false, specFolder }: Ba
     totalSpecFolders: specFolders.length,
     created: 0,
     refreshed: 0,
+    changed: 0,
     existing: 0,
     lineageStamped: 0,
     skipped: [],
     failed: [],
     reviewFlags: [],
     drift: [],
+    pruneCandidates: [],
   };
 
   for (const specFolderPath of specFolders) {
@@ -347,9 +367,26 @@ export function runBackfill({ dryRun, root, activeOnly = false, specFolder }: Ba
         summary.existing += 1;
       }
 
+      const derived = deriveGraphMetadata(specFolderPath, existing, { saveLineage });
+      const merged = mergeGraphMetadata(existing, derived, { prune });
+      if (!existing || !graphMetadataEqualIgnoringVolatile(existing, merged)) {
+        summary.changed += 1;
+      }
+      const pruneCandidates = collectChildrenPruneCandidates(specFolderPath, existing, derived);
+      if (pruneReport || prune) {
+        for (const candidate of pruneCandidates) {
+          summary.pruneCandidates.push({
+            specFolder: derived.spec_folder,
+            childId: candidate.childId,
+            targetPath: candidate.targetPath,
+            existsOnDisk: candidate.existsOnDisk,
+          });
+        }
+      }
+
       const metadata = dryRun
-        ? deriveGraphMetadata(specFolderPath, existing, { saveLineage })
-        : refreshGraphMetadataForSpecFolder(specFolderPath, { saveLineage }).metadata;
+        ? derived
+        : refreshGraphMetadataForSpecFolder(specFolderPath, { saveLineage, prune }).metadata;
 
       if (!existing) {
         summary.created += 1;

@@ -1,5 +1,7 @@
 // TEST: STARTUP CHECKS
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { describe, it, expect, vi, afterEach } from 'vitest';
 
 import {
@@ -7,8 +9,10 @@ import {
   checkJournalMode,
   detectNodeVersionMismatch,
   detectRuntimeMismatch,
+  sweepStaleMemoryDriftProcessingMarkers,
   type NodeVersionMarker,
 } from '../startup-checks.js';
+import { resolveMemoryDriftMarkerPath } from '../lib/storage/memory-drift-healing.js';
 
 describe('Startup Checks', () => {
 
@@ -282,6 +286,111 @@ describe('Startup Checks', () => {
 
       expect(pragmaSpy).not.toHaveBeenCalled();
       expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining("unexpected journal_mode ''"));
+    });
+  });
+
+  describe('sweepStaleMemoryDriftProcessingMarkers', () => {
+    const tempRoots: string[] = [];
+
+    function tempDbPath(): string {
+      const root = fs.mkdtempSync(path.join(os.tmpdir(), 'drift-sweep-'));
+      tempRoots.push(root);
+      return path.join(root, 'database', 'context-index.sqlite');
+    }
+
+    afterEach(() => {
+      for (const root of tempRoots.splice(0)) {
+        fs.rmSync(root, { recursive: true, force: true });
+      }
+    });
+
+    it('is a no-op when the memory DB directory does not exist yet (fresh install)', () => {
+      const dbPath = tempDbPath(); // parent directory intentionally never created
+      const result = sweepStaleMemoryDriftProcessingMarkers({ databasePath: dbPath });
+      expect(result).toEqual({ recovered: 0, unrecoverable: 0, entries: 0 });
+    });
+
+    it('is a no-op -- no new log noise, no behavior change -- when the directory exists but no stale file is present', () => {
+      const dbPath = tempDbPath();
+      fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      const result = sweepStaleMemoryDriftProcessingMarkers({ databasePath: dbPath });
+
+      expect(result).toEqual({ recovered: 0, unrecoverable: 0, entries: 0 });
+      expect(warnSpy).not.toHaveBeenCalled();
+      expect(errorSpy).not.toHaveBeenCalled();
+    });
+
+    it('merge-all policy: multiple stale processing files at once are all recovered and merged into the canonical marker', () => {
+      const dbPath = tempDbPath();
+      fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+      const markerPath = resolveMemoryDriftMarkerPath(dbPath);
+
+      fs.writeFileSync(`${markerPath}.processing-111-1000`, JSON.stringify({
+        version: 1,
+        updatedAt: '2026-07-08T00:00:00.000Z',
+        entries: [{ kind: 'delete', oldPath: '.opencode/specs/demo/a/spec.md' }],
+      }));
+      fs.writeFileSync(`${markerPath}.processing-222-2000`, JSON.stringify({
+        version: 1,
+        updatedAt: '2026-07-09T00:00:00.000Z',
+        entries: [{ kind: 'delete', oldPath: '.opencode/specs/demo/b/spec.md' }],
+      }));
+
+      const result = sweepStaleMemoryDriftProcessingMarkers({ databasePath: dbPath });
+
+      expect(result).toEqual({ recovered: 2, unrecoverable: 0, entries: 2 });
+      expect(fs.existsSync(`${markerPath}.processing-111-1000`)).toBe(false);
+      expect(fs.existsSync(`${markerPath}.processing-222-2000`)).toBe(false);
+      expect(fs.existsSync(markerPath)).toBe(true);
+
+      const restored = JSON.parse(fs.readFileSync(markerPath, 'utf8')) as { entries: Array<{ oldPath: string }> };
+      expect(restored.entries.map((entry) => entry.oldPath).sort()).toEqual([
+        '.opencode/specs/demo/a/spec.md',
+        '.opencode/specs/demo/b/spec.md',
+      ]);
+    });
+
+    it('a malformed/unreadable stale file is treated as unrecoverable and logged, not a boot failure', () => {
+      const dbPath = tempDbPath();
+      fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+      const markerPath = resolveMemoryDriftMarkerPath(dbPath);
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      fs.writeFileSync(`${markerPath}.processing-333-3000`, '{not-valid-json');
+
+      expect(() => sweepStaleMemoryDriftProcessingMarkers({ databasePath: dbPath })).not.toThrow();
+      const result = sweepStaleMemoryDriftProcessingMarkers({ databasePath: dbPath });
+
+      expect(result).toEqual({ recovered: 0, unrecoverable: 0, entries: 0 });
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('malformed or empty'));
+      expect(fs.existsSync(markerPath)).toBe(false);
+    });
+
+    it('merges recovered entries into an existing live canonical marker instead of clobbering it', () => {
+      const dbPath = tempDbPath();
+      fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+      const markerPath = resolveMemoryDriftMarkerPath(dbPath);
+
+      fs.writeFileSync(markerPath, JSON.stringify({
+        version: 1,
+        entries: [{ kind: 'delete', oldPath: '.opencode/specs/demo/live/spec.md' }],
+      }));
+      fs.writeFileSync(`${markerPath}.processing-444-4000`, JSON.stringify({
+        version: 1,
+        entries: [{ kind: 'delete', oldPath: '.opencode/specs/demo/stale/spec.md' }],
+      }));
+
+      const result = sweepStaleMemoryDriftProcessingMarkers({ databasePath: dbPath });
+
+      expect(result.recovered).toBe(1);
+      const restored = JSON.parse(fs.readFileSync(markerPath, 'utf8')) as { entries: Array<{ oldPath: string }> };
+      expect(restored.entries.map((entry) => entry.oldPath).sort()).toEqual([
+        '.opencode/specs/demo/live/spec.md',
+        '.opencode/specs/demo/stale/spec.md',
+      ]);
     });
   });
 });

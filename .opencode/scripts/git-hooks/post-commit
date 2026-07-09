@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Post-commit hook — advisory code-graph staleness mitigation.
+# Post-commit hook — advisory index staleness mitigation.
 #
 # When a commit changes more files than the configured threshold, mark the
 # code-graph SQLite stale so the next MCP launcher boot triggers a fresh
@@ -11,20 +11,27 @@
 #
 # Default threshold: 100 files changed (post-commit). Tunable via
 #   SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD=<int>
-# Bypass entirely (skip hook): SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT=1
+# Bypass code-graph invalidation: SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT=1
 # Disable just the rebuild (still print advisory): SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN=1
+# Bypass memory drift marker: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1
 #
 # Install: bash .opencode/scripts/install-git-hooks.sh
 # Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
 
 set -euo pipefail
 
-if [ "${SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT:-0}" = "1" ]; then
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [ -z "$REPO_ROOT" ]; then
   exit 0
 fi
 
-REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-if [ -z "$REPO_ROOT" ]; then
+if [ -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" ]; then
+  # shellcheck source=/dev/null
+  source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
+  mark_memory_drift_from_diff HEAD || true
+fi
+
+if [ "${SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT:-0}" = "1" ]; then
   exit 0
 fi
 

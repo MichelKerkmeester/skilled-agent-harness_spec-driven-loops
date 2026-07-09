@@ -33,8 +33,8 @@ import {
   generatePerFolderDescription,
   loadPerFolderDescription,
   savePerFolderDescription,
+  wouldWritePerFolderDescription,
   type GeneratedMetadataViolation,
-  type PerFolderDescription,
 } from '@spec-kit/mcp-server/api';
 import { runBackfill } from './backfill-graph-metadata.js';
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
@@ -102,6 +102,7 @@ export interface MigrationSummary {
   failed: number;
   excluded: number;
   outcomes: FolderOutcome[];
+  pruneCandidates: Array<{ specFolder: string; childId: string; targetPath: string; existsOnDisk: boolean }>;
   verify?: VerifyReport;
 }
 
@@ -116,7 +117,7 @@ export interface VerifyReport {
 /** Injectable per-folder regeneration seams so a test can assert call shape. */
 export interface MigrationDeps {
   enumerate: (specsRoot: string) => string[];
-  regenGraph: (folderAbs: string, specsRoot: string, dryRun: boolean) => BackfillSummary;
+  regenGraph: (folderAbs: string, specsRoot: string, dryRun: boolean, options?: Pick<MigrateOptions, 'prune' | 'pruneReport'>) => BackfillSummary;
   regenDescription: (folderAbs: string, specsRoot: string, dryRun: boolean) => SideOutcome;
 }
 
@@ -213,21 +214,6 @@ function fileHash(filePath: string): string | null {
   }
 }
 
-/** Compare two descriptions on the stable fields, ignoring the volatile stamp. */
-function descriptionsEqualIgnoringStamp(
-  left: PerFolderDescription | null,
-  right: PerFolderDescription | null,
-): boolean {
-  if (!left || !right) {
-    return false;
-  }
-  const strip = (value: PerFolderDescription): string => {
-    const { lastUpdated: _ignored, ...rest } = value;
-    return JSON.stringify(rest);
-  };
-  return strip(left) === strip(right);
-}
-
 /**
  * Regenerate one folder's graph-metadata through the scoped backfill path.
  *
@@ -239,8 +225,19 @@ function descriptionsEqualIgnoringStamp(
  * @param dryRun - When true the backfill derives without writing
  * @returns The scoped backfill summary for that single folder
  */
-export function regenGraphScoped(folderAbs: string, specsRoot: string, dryRun: boolean): BackfillSummary {
-  return runBackfill({ dryRun, root: specsRoot, specFolder: folderAbs });
+export function regenGraphScoped(
+  folderAbs: string,
+  specsRoot: string,
+  dryRun: boolean,
+  options: Pick<MigrateOptions, 'prune' | 'pruneReport'> = {},
+): BackfillSummary {
+  return runBackfill({
+    dryRun,
+    root: specsRoot,
+    specFolder: folderAbs,
+    prune: options.prune,
+    pruneReport: options.pruneReport,
+  });
 }
 
 /**
@@ -269,9 +266,9 @@ export function regenDescriptionScoped(folderAbs: string, specsRoot: string, dry
     if (!existing) {
       return { action: 'planned-write', detail: 'would create description.json' };
     }
-    return descriptionsEqualIgnoringStamp(existing, next)
-      ? { action: 'planned-noop' }
-      : { action: 'planned-write' };
+    return wouldWritePerFolderDescription(next, folderAbs)
+      ? { action: 'planned-write' }
+      : { action: 'planned-noop' };
   }
 
   const before = fileHash(path.join(folderAbs, 'description.json'));
@@ -293,10 +290,10 @@ function graphOutcomeFromSummary(summary: BackfillSummary, dryRun: boolean): Sid
     return { action: 'excluded', detail: summary.skipped[0]?.reason };
   }
   if (dryRun) {
-    // A dry-run does not byte-diff the graph file. A missing file plans a create,
-    // an existing file plans a scoped refresh whose real byte delta the
-    // content-hash skip resolves at write time. It never claims an early no-op.
-    return { action: summary.created > 0 ? 'planned-write' : 'planned-refresh' };
+    if (summary.created > 0) {
+      return { action: 'planned-write' };
+    }
+    return summary.changed > 0 ? { action: 'planned-refresh' } : { action: 'planned-noop' };
   }
   if (summary.created > 0) {
     return { action: 'created' };
@@ -339,6 +336,7 @@ export function migrateFolder(
   specsRoot: string,
   dryRun: boolean,
   deps: Pick<MigrationDeps, 'regenGraph' | 'regenDescription'>,
+  options: Pick<MigrateOptions, 'prune' | 'pruneReport'> = {},
 ): FolderOutcome {
   const specFolder = relativeSpecFolder(folderAbs, specsRoot);
   const graphPath = path.join(folderAbs, 'graph-metadata.json');
@@ -355,7 +353,7 @@ export function migrateFolder(
     };
   }
 
-  const graphSummary = deps.regenGraph(folderAbs, specsRoot, dryRun);
+  const graphSummary = deps.regenGraph(folderAbs, specsRoot, dryRun, options);
   const graph = graphOutcomeFromSummary(graphSummary, dryRun);
   const description = deps.regenDescription(folderAbs, specsRoot, dryRun);
 
@@ -409,6 +407,8 @@ export interface MigrateOptions {
   verify?: boolean;
   only?: string[];
   limit?: number;
+  prune?: boolean;
+  pruneReport?: boolean;
   deps?: Partial<MigrationDeps>;
 }
 
@@ -425,7 +425,7 @@ export interface MigrateOptions {
  * @returns The aggregate run summary
  */
 export function migrateAllJson(options: MigrateOptions): MigrationSummary {
-  const { specsRoot, dryRun, verify = false, only, limit } = options;
+  const { specsRoot, dryRun, verify = false, only, limit, prune = false, pruneReport = false } = options;
   const deps: MigrationDeps = {
     enumerate: options.deps?.enumerate ?? enumerateSpecFolders,
     regenGraph: options.deps?.regenGraph ?? regenGraphScoped,
@@ -450,12 +450,17 @@ export function migrateAllJson(options: MigrateOptions): MigrationSummary {
       failed: 0,
       excluded: 0,
       outcomes: [],
+      pruneCandidates: [],
     };
 
     for (const folderAbs of folders) {
       let outcome: FolderOutcome;
       try {
-        outcome = migrateFolder(folderAbs, specsRoot, dryRun, deps);
+        if (prune || pruneReport) {
+          const graphSummary = deps.regenGraph(folderAbs, specsRoot, true, { prune, pruneReport: true });
+          summary.pruneCandidates.push(...graphSummary.pruneCandidates);
+        }
+        outcome = migrateFolder(folderAbs, specsRoot, dryRun, deps, { prune, pruneReport });
       } catch (error) {
         // One corrupt folder reports failed, the run continues over the rest.
         outcome = {
@@ -496,6 +501,8 @@ export function migrateAllJson(options: MigrateOptions): MigrationSummary {
 export function parseArgs(argv: string[]): { ok: true; options: MigrateOptions } | { ok: false; error: string } {
   let dryRun = false;
   let verify = false;
+  let prune = false;
+  let pruneReport = false;
   let root = path.join(resolveRepoRoot(), '.opencode', 'specs');
   let limit: number | undefined;
   const only: string[] = [];
@@ -508,6 +515,15 @@ export function parseArgs(argv: string[]): { ok: true; options: MigrateOptions }
     }
     if (arg === '--verify') {
       verify = true;
+      continue;
+    }
+    if (arg === '--prune') {
+      prune = true;
+      continue;
+    }
+    if (arg === '--prune-report') {
+      pruneReport = true;
+      dryRun = true;
       continue;
     }
     if (arg === '--root') {
@@ -540,7 +556,7 @@ export function parseArgs(argv: string[]): { ok: true; options: MigrateOptions }
     return { ok: false, error: `unknown argument: ${arg}` };
   }
 
-  return { ok: true, options: { specsRoot: root, dryRun, verify, only, limit } };
+  return { ok: true, options: { specsRoot: root, dryRun, verify, only, limit, prune, pruneReport } };
 }
 
 function run(): void {

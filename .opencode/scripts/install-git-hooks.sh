@@ -7,8 +7,12 @@
 #
 # Hooks installed:
 #   pre-commit  — runs validate-doc-model-refs.js (advisory, non-blocking)
+#   post-commit — marks code-graph and memory-index drift for next startup repair
+#   post-merge  — marks memory-index drift after spec-folder renames/deletes
+#   post-rewrite — marks memory-index drift after amend/rebase rewrites
 #
-# Bypass any installed hook: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
+# Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
+# Bypass memory drift marker: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1 git commit ...
 
 set -euo pipefail
 
@@ -51,5 +55,8 @@ for hook in "$HOOK_SOURCE_DIR"/*; do
 done
 
 echo ""
-echo "Hooks installed. Test: 'git commit --allow-empty -m \"hook smoke\"' should run the validator silently (no output unless drift)."
-echo "Bypass: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..."
+echo "Hooks installed. Test: 'git commit --allow-empty -m \"hook smoke\"' should run silently unless drift is detected."
+echo "Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..."
+echo "Bypass memory drift marker: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1 git commit ..."
+echo "Note: these hooks are shared across every linked '.worktrees/*' checkout via git's"
+echo "git-common-dir sharing — no need to re-run this installer per worktree."

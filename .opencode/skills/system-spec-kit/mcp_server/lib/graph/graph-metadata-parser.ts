@@ -120,12 +120,19 @@ export interface GraphMetadataRefreshOptions {
   now?: Date | string;
   statusOverride?: string | null;
   saveLineage?: SaveLineage;
+  prune?: boolean;
 }
 
 export interface GraphMetadataRefreshResult {
   filePath: string;
   metadata: GraphMetadata;
   created: boolean;
+}
+
+export interface GraphMetadataPruneCandidate {
+  childId: string;
+  targetPath: string;
+  existsOnDisk: boolean;
 }
 
 type GraphMetadataDocReadResult =
@@ -1393,6 +1400,64 @@ function unionChildrenIds(existing: string[], refreshed: string[]): string[] {
   return union;
 }
 
+function specsRootForMetadata(canonicalSpecFolderPath: string, specFolder: string): string {
+  return specFolder
+    .split('/')
+    .filter(Boolean)
+    .reduce((current) => path.dirname(current), canonicalSpecFolderPath);
+}
+
+function childIdTargetPath(specsRoot: string, childId: string): string {
+  return path.join(specsRoot, ...childId.split('/').filter(Boolean));
+}
+
+function targetSpecFolderExists(targetPath: string): boolean {
+  try {
+    return fs.statSync(targetPath).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+export function collectChildrenPruneCandidates(
+  specFolderPath: string,
+  existing: GraphMetadata | null,
+  refreshed: GraphMetadata,
+): GraphMetadataPruneCandidate[] {
+  if (!existing) {
+    return [];
+  }
+  const specsRoot = specsRootForMetadata(specFolderPath, refreshed.spec_folder);
+  const refreshedChildren = new Set(refreshed.children_ids);
+  return existing.children_ids
+    .filter((childId) => !refreshedChildren.has(childId))
+    .map((childId) => {
+      const targetPath = childIdTargetPath(specsRoot, childId);
+      return {
+        childId,
+        targetPath,
+        existsOnDisk: targetSpecFolderExists(targetPath),
+      };
+    });
+}
+
+function preserveExistingChildrenOnDisk(
+  specFolderPath: string,
+  existing: GraphMetadata | null,
+  refreshed: GraphMetadata,
+): GraphMetadata {
+  const stillExisting = collectChildrenPruneCandidates(specFolderPath, existing, refreshed)
+    .filter((candidate) => candidate.existsOnDisk)
+    .map((candidate) => candidate.childId);
+  if (stillExisting.length === 0) {
+    return refreshed;
+  }
+  return graphMetadataSchema.parse({
+    ...refreshed,
+    children_ids: unionChildrenIds(stillExisting, refreshed.children_ids),
+  });
+}
+
 /**
  * Merge refreshed derived metadata with persisted manual relationships.
  *
@@ -1559,7 +1624,10 @@ export function refreshGraphMetadataForSpecFolder(
     ...options,
     saveLineage: options.saveLineage ?? 'graph_only',
   });
-  const merged = mergeGraphMetadata(existing, refreshed);
+  const mergeInput = options.prune
+    ? preserveExistingChildrenOnDisk(canonicalSpecFolderPath, existing, refreshed)
+    : refreshed;
+  const merged = mergeGraphMetadata(existing, mergeInput, { prune: options.prune });
 
   // Idempotent write: when a re-derive produced no content change (only last_save_at
   // would move), skip the write entirely. Without this, every save rewrites this

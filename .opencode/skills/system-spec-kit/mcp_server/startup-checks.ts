@@ -4,6 +4,20 @@
 // Non-critical startup checks extracted from context-server.ts.
 import path from 'path';
 import fs from 'fs';
+import {
+  MEMORY_DRIFT_MARKER_FILENAME,
+  type MemoryDriftMarkerEntry,
+  memoryDriftMarkerEntryKey,
+  parseMemoryDriftMarker,
+  resolveMemoryDriftMarkerPath,
+} from './lib/storage/memory-drift-healing.js';
+import {
+  type MemoryDriftProcessingSweepResult,
+  sweepStaleMemoryDriftProcessingMarkers,
+} from './lib/storage/memory-drift-processing-sweep.js';
+
+export type { MemoryDriftProcessingSweepResult };
+export { sweepStaleMemoryDriftProcessingMarkers };
 
 /* ───────────────────────────────────────────────────────────────
    1. NODE VERSION MISMATCH DETECTION
@@ -27,6 +41,21 @@ export interface RuntimeSnapshot {
 export interface RuntimeMismatchResult {
   detected: boolean;
   reasons: string[];
+}
+
+export interface MemoryDriftMarkerConsumeResult {
+  consumed: boolean;
+  entries: number;
+  scopedPaths: string[];
+  movedFolders: string[];
+  error: string | null;
+}
+
+export interface MemoryDriftMarkerConsumeOptions {
+  databasePath: string;
+  workspacePath: string;
+  runScopedScan: (scopedPaths: string[]) => Promise<void>;
+  refreshMovedSpecFolder?: (folderPath: string) => void;
 }
 
 function getCurrentRuntimeSnapshot(): RuntimeSnapshot {
@@ -180,5 +209,116 @@ export function checkJournalMode(db: { prepare: (sql: string) => { get: () => un
   const journalMode = String(walRow?.journal_mode ?? '').toLowerCase();
   if (journalMode !== 'delete' && journalMode !== 'wal') {
     console.warn(`[context-server] unexpected journal_mode '${journalMode}'; leaving as-is`);
+  }
+}
+
+function resolveWorkspaceSpecPath(workspacePath: string, markerPath: string): string | null {
+  const resolvedWorkspace = path.resolve(workspacePath);
+  const resolved = path.resolve(resolvedWorkspace, markerPath);
+  const specsRoot = path.join(resolvedWorkspace, '.opencode', 'specs');
+  return resolved === specsRoot || resolved.startsWith(specsRoot + path.sep) ? resolved : null;
+}
+
+function resolveMovedFolder(workspacePath: string, entry: MemoryDriftMarkerEntry): string | null {
+  if (entry.kind !== 'rename') {
+    return null;
+  }
+
+  const resolved = resolveWorkspaceSpecPath(workspacePath, entry.newPath);
+  if (!resolved) {
+    return null;
+  }
+
+  let cursor = fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()
+    ? resolved
+    : path.dirname(resolved);
+  const specsRoot = path.join(path.resolve(workspacePath), '.opencode', 'specs');
+  while (cursor === specsRoot || cursor.startsWith(specsRoot + path.sep)) {
+    if (fs.existsSync(path.join(cursor, 'spec.md'))) {
+      return cursor;
+    }
+    const parent = path.dirname(cursor);
+    if (parent === cursor) {
+      break;
+    }
+    cursor = parent;
+  }
+  return null;
+}
+
+// sweepStaleMemoryDriftProcessingMarkers + MemoryDriftProcessingSweepResult live in
+// ./lib/storage/memory-drift-processing-sweep.ts (extracted for module line-count
+// budget) and are re-exported above for existing consumers of this module.
+
+/** Consumes the git-hook dirty marker once, then delegates repair to existing scan machinery. */
+export async function consumeMemoryDriftDirtyMarker(
+  options: MemoryDriftMarkerConsumeOptions,
+): Promise<MemoryDriftMarkerConsumeResult> {
+  const markerPath = resolveMemoryDriftMarkerPath(options.databasePath);
+  if (!fs.existsSync(markerPath)) {
+    return { consumed: false, entries: 0, scopedPaths: [], movedFolders: [], error: null };
+  }
+
+  const processingPath = `${markerPath}.processing-${process.pid}-${Date.now()}`;
+  try {
+    fs.renameSync(markerPath, processingPath);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[context-server] ${MEMORY_DRIFT_MARKER_FILENAME} consume skipped: ${message}`);
+    return { consumed: false, entries: 0, scopedPaths: [], movedFolders: [], error: message };
+  }
+
+  let raw = '';
+  try {
+    raw = fs.readFileSync(processingPath, 'utf8');
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[context-server] ${MEMORY_DRIFT_MARKER_FILENAME} unreadable; ignoring: ${message}`);
+    try { fs.unlinkSync(processingPath); } catch (_unlinkError: unknown) { /* marker cleanup is best-effort */ }
+    return { consumed: true, entries: 0, scopedPaths: [], movedFolders: [], error: message };
+  }
+
+  const parsed = parseMemoryDriftMarker(raw);
+  if (!parsed || parsed.entries.length === 0) {
+    console.warn(`[context-server] ${MEMORY_DRIFT_MARKER_FILENAME} malformed or empty; ignoring`);
+    try { fs.unlinkSync(processingPath); } catch (_unlinkError: unknown) { /* marker cleanup is best-effort */ }
+    return { consumed: true, entries: 0, scopedPaths: [], movedFolders: [], error: null };
+  }
+
+  const entriesByKey = new Map(parsed.entries.map((entry) => [memoryDriftMarkerEntryKey(entry), entry]));
+  const entries = Array.from(entriesByKey.values());
+  const scopedPaths = Array.from(new Set(entries.flatMap((entry) => {
+    const oldPath = resolveWorkspaceSpecPath(options.workspacePath, entry.oldPath);
+    const newPath = entry.kind === 'rename'
+      ? resolveWorkspaceSpecPath(options.workspacePath, entry.newPath)
+      : null;
+    return [oldPath, newPath].filter((item): item is string => item !== null);
+  })));
+  const movedFolders = Array.from(new Set(entries.flatMap((entry) => {
+    const folder = resolveMovedFolder(options.workspacePath, entry);
+    return folder ? [folder] : [];
+  })));
+
+  try {
+    if (scopedPaths.length > 0) {
+      await options.runScopedScan(scopedPaths);
+    }
+    for (const folder of movedFolders) {
+      options.refreshMovedSpecFolder?.(folder);
+    }
+    fs.unlinkSync(processingPath);
+    console.error(`[context-server] Consumed ${MEMORY_DRIFT_MARKER_FILENAME}: ${entries.length} entr${entries.length === 1 ? 'y' : 'ies'}, ${scopedPaths.length} scoped path(s)`);
+    return { consumed: true, entries: entries.length, scopedPaths, movedFolders, error: null };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    try {
+      if (!fs.existsSync(markerPath)) {
+        fs.renameSync(processingPath, markerPath);
+      }
+    } catch (_restoreError: unknown) {
+      // The marker is advisory; a failed restore must not block startup.
+    }
+    console.warn(`[context-server] ${MEMORY_DRIFT_MARKER_FILENAME} consume failed: ${message}`);
+    return { consumed: false, entries: entries.length, scopedPaths, movedFolders, error: message };
   }
 }

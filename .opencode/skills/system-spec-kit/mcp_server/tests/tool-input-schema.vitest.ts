@@ -170,6 +170,14 @@ describe('Tool Input Schema Validation', () => {
     }).toThrow(/must be one of/);
   });
 
+  it('accepts memory_context tokenBudget in public and runtime schemas', () => {
+    expectPublicAndRuntimeAccept('memory_context', {
+      input: 'content-heavy deep query',
+      mode: 'deep',
+      tokenBudget: 12000,
+    });
+  });
+
   it('skips validation for unknown tools to preserve legacy flow', () => {
     expect(() => {
       validateToolInputSchema('unknown_tool', { any: 'value' }, TOOL_DEFINITIONS);

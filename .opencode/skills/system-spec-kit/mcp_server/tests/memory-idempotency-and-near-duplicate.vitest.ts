@@ -207,6 +207,21 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
     }
   });
 
+  // The prior hand-rolled check recognized '1'/'true'/'yes'/'on' but not 'enabled';
+  // delegating to the shared parseFlagTristate() helper closes that gap.
+  it('widens to the full opt-in vocabulary post-migration, including the previously-missing "enabled"', () => {
+    const prev = process.env.SPECKIT_MEMORY_IDEMPOTENCY;
+    try {
+      for (const value of ['1', 'true', 'yes', 'on', 'enabled']) {
+        process.env.SPECKIT_MEMORY_IDEMPOTENCY = value;
+        expect(isMemoryIdempotencyEnabled(), `value=${value}`).toBe(true);
+      }
+    } finally {
+      if (prev === undefined) delete process.env.SPECKIT_MEMORY_IDEMPOTENCY;
+      else process.env.SPECKIT_MEMORY_IDEMPOTENCY = prev;
+    }
+  });
+
   it('keeps receipt keys stable for identical content-addressed inputs', () => {
     const input = {
       operation: 'memory_save' as const,

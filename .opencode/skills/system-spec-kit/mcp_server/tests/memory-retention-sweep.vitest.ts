@@ -268,6 +268,28 @@ describe('memory retention sweep', () => {
     expect(isStillExpired(db, 999)).toBe(false); // missing row -> not expired
   });
 
+  // isSoftDeleteTombstonesEnabled() now delegates to parseFlagTristate(name, false)
+  // instead of a raw === 'true' literal check, so '1'/'yes'/'on'/'enabled' now enable
+  // tombstone gating too, not just the literal 'true'. Enabling it
+  // adds an `AND deleted_at IS NOT NULL` predicate; this row has delete_after in the past
+  // but deleted_at unset, so it is only "still expired" when tombstone gating is off.
+  it('widens isSoftDeleteTombstonesEnabled to the full opt-in vocabulary post-migration', () => {
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
+    db.exec('ALTER TABLE memory_index ADD COLUMN deleted_at TEXT');
+    insertMemory(db, 1, isoOffset(-3_600_000), 'expired-not-soft-deleted');
+    const { isStillExpired } = __retentionSweepTestables;
+
+    for (const value of ['1', 'yes', 'on', 'enabled', 'true']) {
+      withSoftDeleteFlag(value, () => {
+        expect(isStillExpired(db, 1), `value=${value}`).toBe(false);
+      });
+    }
+
+    withSoftDeleteFlag(undefined, () => {
+      expect(isStillExpired(db, 1)).toBe(true);
+    });
+  });
+
   it('getCurrentExpiredRow re-reads protection metadata for the delete transaction', () => {
     const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
     insertMemory(db, 1, isoOffset(-3_600_000), 'expired');

@@ -21,6 +21,7 @@ import {
 } from '../config/capability-flags.js';
 import { derivePacketSynopsis, truncateSynopsisAtWordBoundary } from '../description/packet-synopsis.js';
 import { isExcludedFromGeneratedMetadata, shouldIndexForMemory } from '../utils/index-scope.js';
+import { parseFlagTristate } from './search-flags.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -90,14 +91,15 @@ const STOP_WORDS = new Set([
   'there', 'when', 'where', 'why', 'how', 'all', 'any', 'its',
   'it', 'we', 'they', 'he', 'she', 'you', 'i', 'my', 'our',
   'your', 'their', 'his', 'her', 'which', 'who', 'what',
+  'add', 'adds', 'added', 'adding', 'build', 'builds', 'built', 'building',
+  'create', 'creates', 'created', 'creating', 'fix', 'fixes', 'fixed', 'fixing',
+  'generate', 'generates', 'generated', 'generating', 'make', 'makes', 'made', 'making',
+  'update', 'updates', 'updated', 'updating', 'use', 'uses', 'used', 'using',
 ]);
 
 const MAX_DESCRIPTION_LENGTH = 150;
 const MAX_SPEC_DISCOVERY_DEPTH = 8;
-const DESCRIPTION_REPAIR_MERGE_SAFE = (() => {
-  const rawValue = process.env.SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE?.trim().toLowerCase();
-  return rawValue !== 'false' && rawValue !== '0';
-})();
+const DESCRIPTION_REPAIR_MERGE_SAFE = parseFlagTristate('SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE', true);
 const DEFAULT_PER_TOKEN_SIMILARITY_THRESHOLD = 0.45;
 const SCAN_SKIP_DIRECTORIES = new Set([
   '.git',
@@ -278,6 +280,19 @@ function getDescriptionWritePayload(
   return { ...desc };
 }
 
+export function wouldWritePerFolderDescription(
+  desc: PerFolderDescription,
+  folderPath: string,
+): boolean {
+  const descPath = path.join(folderPath, 'description.json');
+  const prior = readRawPerFolderDescription(descPath);
+  if (!prior) {
+    return true;
+  }
+  const payload = getDescriptionWritePayload(desc, loadExistingDescription(folderPath));
+  return descriptionContentFingerprint(prior) !== descriptionContentFingerprint(payload);
+}
+
 export function getRepairMergeSafe(): boolean {
   return DESCRIPTION_REPAIR_MERGE_SAFE;
 }
@@ -398,8 +413,7 @@ function normalizeBasePaths(basePaths: string[]): string[] {
  * behavior that walked them. Read fresh each call so a caller can toggle it.
  */
 export function isGeneratedMetadataZExclusionEnabled(): boolean {
-  const rawValue = process.env.SPECKIT_GENERATED_METADATA_Z_EXCLUSION?.trim().toLowerCase();
-  return rawValue !== 'false' && rawValue !== '0';
+  return parseFlagTristate('SPECKIT_GENERATED_METADATA_Z_EXCLUSION', true);
 }
 
 function shouldSkipDirectoryName(name: string): boolean {
@@ -643,6 +657,7 @@ export function extractKeywords(description: string): string[] {
   for (const word of words) {
     const cleaned = word.replace(/-+/g, '-').trim();
     if (cleaned.length < 3) continue;
+    if (!/[a-z]/.test(cleaned)) continue;
     if (STOP_WORDS.has(cleaned)) continue;
     if (seen.has(cleaned)) continue;
     seen.add(cleaned);
@@ -1023,18 +1038,17 @@ export function generatePerFolderDescription(
 
   const folderSlug = slugifyFolderName(folderName);
 
-  // Build parent chain from path segments between basePath and folderPath
   const relativePath = path.relative(basePath, folderPath).replace(/\\/g, '/');
-  const segments = relativePath.split('/').filter(Boolean);
-  const parentChain = segments.length > 1 ? segments.slice(0, -1) : [];
 
   // Preserve existing tracking data if description.json already exists
   const existing = loadPerFolderDescription(folderPath);
 
   const normalizedRelativeFolder = relativePath && !relativePath.startsWith('..') ? relativePath : folderName;
+  const specFolder = resolveSpecFolderForDescription(folderPath, normalizedRelativeFolder);
+  const parentChain = specFolder.split('/').filter(Boolean).slice(0, -1);
 
   return {
-    specFolder: resolveSpecFolderForDescription(folderPath, normalizedRelativeFolder),
+    specFolder,
     description,
     keywords,
     lastUpdated: new Date().toISOString(),

@@ -5,6 +5,7 @@ import type BetterSqlite3 from 'better-sqlite3';
 
 import type { MCPResponse } from '../../handlers/types.js';
 import { hashCanonicalJson } from '../content-id.js';
+import { parseFlagTristate } from '../search/search-flags.js';
 
 export type IdempotencyOperation = 'memory_save' | 'memory_update';
 
@@ -52,8 +53,7 @@ const CLIENT_TOKEN_KEYS = new Set([
 ]);
 
 export function isMemoryIdempotencyEnabled(): boolean {
-  const raw = process.env.SPECKIT_MEMORY_IDEMPOTENCY?.trim().toLowerCase();
-  return raw === '1' || raw === 'true' || raw === 'yes' || raw === 'on';
+  return parseFlagTristate('SPECKIT_MEMORY_IDEMPOTENCY', false);
 }
 
 function normalizeForHash(value: unknown): unknown {

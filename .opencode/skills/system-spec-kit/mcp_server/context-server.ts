@@ -36,6 +36,7 @@ import { validateToolArgs } from './schemas/tool-input-schemas.js';
 import {
   indexSingleFile,
   handleMemoryStats,
+  handleMemoryIndexScan,
 } from './handlers/index.js';
 import * as memoryIndexDiscovery from './handlers/memory-index-discovery.js';
 import { runPostMutationHooks } from './handlers/mutation-hooks.js';
@@ -68,9 +69,11 @@ import { runWithCallerContext } from './lib/context/caller-context.js';
 // Architecture
 import { getTokenBudget } from './lib/architecture/layer-definitions.js';
 import { createMCPErrorResponse, wrapForMCP } from './lib/response/envelope.js';
+import { generatePerFolderDescription, savePerFolderDescription } from './lib/search/folder-discovery.js';
+import { refreshGraphMetadata } from './lib/graph/graph-metadata-parser.js';
 
 // Startup checks (extracted from this file)
-import { detectNodeVersionMismatch, checkSqliteVersion, checkJournalMode } from './startup-checks.js';
+import { detectNodeVersionMismatch, checkSqliteVersion, checkJournalMode, consumeMemoryDriftDirtyMarker, sweepStaleMemoryDriftProcessingMarkers } from './startup-checks.js';
 import {
   getStartupEmbeddingDimension,
   resolveStartupEmbeddingConfig,
@@ -2222,6 +2225,35 @@ async function main(): Promise<void> {
     // fault under concurrent access here, so the deliberately-chosen rollback
     // journal (DELETE) must not be silently reverted back to WAL on boot.
     checkJournalMode(database);
+
+    // Recover any `.processing-*` claim file left behind by a boot that was killed
+    // externally (e.g. an MCP client init-timeout watchdog) before it could consume
+    // or restore its own claim. Must run before the normal consume call below so
+    // recovered entries reach the existing scoped-scan path on this same boot.
+    sweepStaleMemoryDriftProcessingMarkers({
+      databasePath: vectorIndex.getDbPath() || DATABASE_PATH,
+    });
+
+    await consumeMemoryDriftDirtyMarker({
+      databasePath: vectorIndex.getDbPath() || DATABASE_PATH,
+      workspacePath: DEFAULT_BASE_PATH,
+      runScopedScan: async (scopedPaths) => {
+        await handleMemoryIndexScan({
+          includeConstitutional: false,
+          includeSpecDocs: true,
+          incremental: true,
+          force: false,
+          scopedPaths,
+        });
+      },
+      refreshMovedSpecFolder: (folderPath) => {
+        const description = generatePerFolderDescription(folderPath, path.join(DEFAULT_BASE_PATH, '.opencode', 'specs'));
+        if (description) {
+          savePerFolderDescription(description, folderPath);
+        }
+        refreshGraphMetadata(folderPath);
+      },
+    });
 
     const memoryCountRow = database.prepare('SELECT COUNT(*) as cnt FROM memory_index').get() as { cnt?: number } | undefined;
     const memoryCount = Number(memoryCountRow?.cnt ?? 0);

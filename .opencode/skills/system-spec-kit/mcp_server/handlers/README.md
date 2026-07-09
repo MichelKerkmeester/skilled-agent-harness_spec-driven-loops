@@ -110,14 +110,14 @@ mcp_server/handlers/
 |---|---|
 | `index.ts` | Lazy-loads and re-exports public handler functions. |
 | `memory-context.ts` | Builds intent-aware context for auto, deep, focused, and resume modes. |
-| `memory-search.ts` | Runs hybrid memory retrieval with profiles and telemetry. When the embedder is unavailable, search degrades to lexical retrieval and the response carries `embedder_available:false` rather than returning empty. |
+| `memory-search.ts` | Runs hybrid memory retrieval with profiles and telemetry. When the embedder is unavailable, search degrades to lexical retrieval and the response carries `embedder_available:false` rather than returning empty. Behind `SPECKIT_QUERY_TIME_EXISTENCE_FILTER` (default off), `applyQueryTimeExistenceFilter` excludes already-ranked top-k rows whose backing file path no longer exists and queues their ids as drift suspects for the next `memory_index_scan` to confirm. |
 | `memory-triggers.ts` | Matches trigger phrases and injects tiered content. |
 | `memory-save.ts` | Owns save entry validation and routes work into `save/`. Invalidates entity-density cache via `invalidateEntityDensityCache()` after successful single-row commit (warn-once on failure). |
 | `memory-crud.ts` | Provides the stable CRUD facade for list, delete, update, stats, and health. |
 | `memory-crud-health.ts` | `memory_health` handler. Exposes auto-repair, FTS rebuild stats, orphan cleanup, and a `data.routing` telemetry block with `graphChannelInvocationRate`, `channelInvocationCounts`, `channelInvocationRates`, graph contribution counters, degree contribution counters, `totalRecorded`, and `windowSize`. The `backgroundEnrichment` block also surfaces `pending` and `failed` enrichment gauges derived from the at-rest `post_insert_enrichment_status` distribution so a stuck enrichment backlog is visible. |
 | `memory-bulk-delete.ts` | Bulk delete by importance tier. Invalidates entity-density cache after successful bulk commit (also fires on partial-failure bulk paths to be safe). |
 | `mutation-hooks.ts` | Clears trigger, constitutional, graph, co-activation, tool, and degree caches after mutations. |
-| `memory-index.ts` | Runs `memory_index_scan` work. Coalesces concurrent scans onto an in-flight or recent scan, re-indexes changed spec docs, and runs a global orphan sweep over stale index rows. |
+| `memory-index.ts` | Runs `memory_index_scan` work. Coalesces concurrent scans onto an in-flight or recent scan, re-indexes changed spec docs, and runs a global orphan sweep over stale index rows. A suspect-confirmation phase (`runSuspectConfirmation`) also resolves the drift-suspect queue each scan, tombstoning rows whose backing path is still missing and clearing ones that reappeared (`suspectTombstoned`/`suspectCleared`/`suspectFailed` result counters). |
 | `memory-index-scan-jobs.ts` | Implements `memory_index_scan_status` and `memory_index_scan_cancel` for background scan jobs created with `memory_index_scan({ background: true })`. |
 | `memory-index-discovery.ts` | Discovers spec documents under a workspace and detects spec level through `findSpecDocuments` and `detectSpecLevel`. |
 | `memory-index-alias.ts` | Builds alias-conflict and divergence-reconcile summaries used by index scan. |

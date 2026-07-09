@@ -477,8 +477,11 @@ ${test_entry}"
     CURRENT_CAT_TIME=$((CURRENT_CAT_TIME + elapsed))
     TOTAL_TIME=$((TOTAL_TIME + elapsed))
 
+    local json_output
+    json_output=$(printf '%s\n' "$output" | awk '/^[[:space:]]*\{/{print; exit}')
+
     local actual
-    actual=$(printf '%s\n' "$output" | python3 -c "
+    actual=$(printf '%s\n' "$json_output" | python3 -c "
 import sys, json
 try:
     d = json.load(sys.stdin)
@@ -493,11 +496,11 @@ except Exception:
 " 2>/dev/null || printf '%s\n' "fail")
 
     local json_valid=false
-    printf '%s\n' "$output" | python3 -m json.tool > /dev/null 2>&1 && json_valid=true
+    printf '%s\n' "$json_output" | python3 -m json.tool > /dev/null 2>&1 && json_valid=true
 
     local has_fields="False"
     if [[ "$json_valid" = true ]]; then
-        has_fields=$(printf '%s\n' "$output" | python3 -c "
+        has_fields=$(printf '%s\n' "$json_output" | python3 -c "
 import sys, json
 try:
     d = json.load(sys.stdin)
@@ -513,7 +516,7 @@ except: print('False')
         CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
         if [[ "$VERBOSE" = true ]]; then
             echo -e "${DIM}  JSON (formatted):${NC}"
-            echo "$output" | python3 -m json.tool 2>/dev/null | sed 's/^/    /' | head -15
+            echo "$json_output" | python3 -m json.tool 2>/dev/null | sed 's/^/    /' | head -15
         fi
     else
         echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"

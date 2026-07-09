@@ -7,7 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { readOrphanSweepCursor, writeOrphanSweepCursor } from '../handlers/memory-index';
-import { init, reconcileMoves, sweepOrphanIndexRows } from '../lib/storage/incremental-index';
+import { categorizeFilesForIndexing, init, reconcileMoves, sweepOrphanIndexRows } from '../lib/storage/incremental-index';
 import { parseNearDuplicateHint, stringifyNearDuplicateHint } from '../lib/storage/near-duplicate';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -117,6 +117,31 @@ describe('orphan sweep cursor and corpus repair', () => {
       const second = sweepOrphanIndexRows({ limit: 3, cursor: first.nextCursor ?? 0, basePath: base });
       expect(second.nextCursor).toBe(0);
       expect(second.orphanRecordIds).toEqual([4]);
+    } finally {
+      db.close();
+    }
+  });
+
+  it('restricts stale indexed path detection to scoped dirty paths when provided', () => {
+    const root = tempRoot('scoped-stale-');
+    const scopedPath = path.join(root, '.opencode', 'specs', 'demo', '001-scoped', 'spec.md');
+    const unrelatedPath = path.join(root, '.opencode', 'specs', 'demo', '002-unrelated', 'spec.md');
+    const db = new Database(':memory:');
+    try {
+      createIndexSchema(db);
+      const insert = db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, canonical_file_path, embedding_status)
+        VALUES (?, ?, ?, ?, 'success')
+      `);
+      insert.run(1, 'demo/001-scoped', scopedPath, scopedPath);
+      insert.run(2, 'demo/002-unrelated', unrelatedPath, unrelatedPath);
+      init(db);
+
+      const scoped = categorizeFilesForIndexing([], { staleCandidatePaths: [scopedPath] });
+      expect(scoped.toDelete).toEqual([scopedPath]);
+
+      const global = categorizeFilesForIndexing([]);
+      expect(new Set(global.toDelete)).toEqual(new Set([scopedPath, unrelatedPath]));
     } finally {
       db.close();
     }

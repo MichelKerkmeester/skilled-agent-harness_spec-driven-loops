@@ -7,6 +7,7 @@ import {
   getMemoryRoadmapCapabilityFlags,
   getMemoryRoadmapDefaults,
   getMemoryRoadmapPhase,
+  isQueryTimeExistenceFilterEnabled,
 } from '../lib/config/capability-flags';
 
 const FLAG_NAMES = [
@@ -19,6 +20,7 @@ const FLAG_NAMES = [
   'MEMORY_DB_PATH',
   'SPECKIT_GRAPH_UNIFIED',
   'SPECKIT_ROLLOUT_PERCENT',
+  'SPECKIT_QUERY_TIME_EXISTENCE_FILTER',
 ] as const;
 
 const ORIGINAL_ENV: Partial<Record<typeof FLAG_NAMES[number], string | undefined>> = {};
@@ -73,6 +75,17 @@ describe('Memory roadmap flags', () => {
 
     process.env[CAPABILITY_ENV.graphUnified] = 'false';
     expect(getMemoryRoadmapCapabilityFlags().graphUnified).toBe(false);
+  });
+
+  // Confirmed-bug regression: hasExplicitDisableFlag() (capability-flags.ts) used
+  // to recognize only 'false'/'0' as a disable signal, so SPECKIT_MEMORY_GRAPH_UNIFIED=off
+  // fell through every check and the capability stayed silently enabled with no error.
+  it('disables graphUnified for every recognized opt-out value, including the previously-silent "off"', () => {
+    for (const value of ['false', '0', 'no', 'off', 'disabled']) {
+      process.env[CAPABILITY_ENV.graphUnified] = value;
+      expect(getMemoryRoadmapCapabilityFlags().graphUnified, `value=${value}`).toBe(false);
+      delete process.env[CAPABILITY_ENV.graphUnified];
+    }
   });
 
   it('lets adaptive ranking opt in explicitly while leaving the roadmap phase metadata intact', () => {
@@ -151,5 +164,33 @@ describe('Memory roadmap flags', () => {
   it('falls back to scope-governance for unknown phase labels', () => {
     process.env.SPECKIT_MEMORY_ROADMAP_PHASE = 'future-phase';
     expect(getMemoryRoadmapPhase()).toBe('scope-governance');
+  });
+
+  it('keeps query-time existence filtering default-off with explicit opt-in only', () => {
+    expect(isQueryTimeExistenceFilterEnabled()).toBe(false);
+
+    process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = '1';
+    expect(isQueryTimeExistenceFilterEnabled()).toBe(true);
+
+    process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = 'true';
+    expect(isQueryTimeExistenceFilterEnabled()).toBe(true);
+
+    process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = 'off';
+    expect(isQueryTimeExistenceFilterEnabled()).toBe(false);
+  });
+
+  // F5b (016-cross-package-flag-governance): migrated off hand-rolled parsing
+  // onto the shared isOptInEnabled() helper (lib/search/search-flags.ts). The
+  // helper's truthy set (true/1/yes/on/enabled) is a strict superset of the
+  // old hand-rolled check's (true/1), so this confirms the migration is a
+  // behavior-preserving superset, not a regression.
+  it('accepts the shared opt-in helper\'s broader truthy set after the F5b migration', () => {
+    for (const value of ['yes', 'on', 'enabled', 'TRUE', '1']) {
+      process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = value;
+      expect(isQueryTimeExistenceFilterEnabled(), `value=${value}`).toBe(true);
+    }
+
+    process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = 'false';
+    expect(isQueryTimeExistenceFilterEnabled()).toBe(false);
   });
 });

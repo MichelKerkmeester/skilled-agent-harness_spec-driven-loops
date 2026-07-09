@@ -102,6 +102,7 @@ vi.mock('../handlers/memory-save', () => ({
 }));
 
 vi.mock('../lib/governance/scope-governance', () => ({
+  requiresGovernedIngest: vi.fn(() => false),
   validateGovernedIngest: vi.fn(() => ({ allowed: true, issues: [] })),
 }));
 

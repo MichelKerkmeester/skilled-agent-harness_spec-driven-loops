@@ -51,6 +51,7 @@ import {
 } from './progressive-disclosure.js';
 import { isComplexityRouterEnabled } from './query-classifier.js';
 import { routeQuery } from './query-router.js';
+import { appendChannelException, type ChannelException } from './channel-exceptions.js';
 import {
   applyRetrievalProfileToRankedLists,
   getRetrievalProfileChannelWeight,
@@ -69,7 +70,7 @@ import {
   isTemporalEdgesEnabled,
 } from './search-flags.js';
 import { resolveFusionIntentContract } from './search-utils.js';
-import { fts5Bm25Search } from './sqlite-fts.js';
+import { fts5Bm25Search, getLastLexicalCapabilitySnapshot } from './sqlite-fts.js';
 import { ACTIVE_ROW_SQL, isActiveRow } from './active-row-predicate.js';
 import { parse_trigger_phrases, specFolderLikePattern } from './vector-index-types.js';
 import { getCanonicalPathKey } from '../utils/canonical-path.js';
@@ -139,6 +140,14 @@ interface HybridSearchOptions {
    * apply the remaining pipeline scoring and aggregation steps.
    */
   stopAfterFusion?: boolean;
+  /** Internal request-local sink for fail-open channel errors. */
+  channelExceptions?: ChannelException[];
+}
+
+interface ChannelSkipDetail {
+  channel: string;
+  reason: string;
+  type: 'planned' | 'runtime' | 'exception';
 }
 
 interface HybridSearchResult {
@@ -261,6 +270,8 @@ interface Sprint3PipelineMeta {
     tier: string;
     channels: string[];
     skippedChannels: string[];
+    skippedChannelDetails?: ChannelSkipDetail[];
+    channelExceptions?: ChannelException[];
     featureFlagEnabled: boolean;
     confidence: string;
     features: Record<string, unknown>;
@@ -465,7 +476,7 @@ function ensureLlmBackfillRegistered(): void {
  */
 function bm25Search(
   query: string,
-  options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
+  options: { limit?: number; specFolder?: string; includeArchived?: boolean; channelExceptions?: ChannelException[] } = {}
 ): HybridSearchResult[] {
   if (!isBm25Enabled()) {
     console.warn('[hybrid-search] BM25 not enabled — returning empty bm25Search results');
@@ -480,6 +491,7 @@ function bm25Search(
         limit,
         specFolder,
         includeArchived,
+        channelExceptions: options.channelExceptions,
       }).map((result) => ({
         ...result,
         bm25_score: result.score,
@@ -582,6 +594,7 @@ function bm25Search(
     }));
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
+    appendChannelException(options.channelExceptions, 'bm25', msg, 'bm25-search');
     console.warn(`[hybrid-search] BM25 search failed: ${msg}`);
     return [];
   }
@@ -636,9 +649,10 @@ function isFtsAvailable(): boolean {
  */
 function ftsSearch(
   query: string,
-  options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
+  options: { limit?: number; specFolder?: string; includeArchived?: boolean; channelExceptions?: ChannelException[] } = {}
 ): HybridSearchResult[] {
   if (!db || !isFtsAvailable()) {
+    appendChannelException(options.channelExceptions, 'fts', 'FTS unavailable', 'fts-search-unavailable');
     console.warn('[hybrid-search] db not initialized or FTS unavailable — returning empty ftsSearch results');
     return [];
   }
@@ -651,6 +665,15 @@ function ftsSearch(
     // (title 10x, trigger_phrases 5x, file_path 2x, content 1x)
     // Filters: active-row predicate and spec-folder matching handled by fts5Bm25Search
     const bm25Results = fts5Bm25Search(db, query, { limit, specFolder, includeArchived });
+    const capability = getLastLexicalCapabilitySnapshot();
+    if (capability && capability.fallbackState !== 'ok') {
+      appendChannelException(
+        options.channelExceptions,
+        'fts',
+        `FTS unavailable: ${capability.fallbackState}`,
+        'fts-search-unavailable',
+      );
+    }
 
     return bm25Results.map(row => ({
       ...row,
@@ -660,6 +683,7 @@ function ftsSearch(
     }));
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
+    appendChannelException(options.channelExceptions, 'fts', msg, 'fts-search');
     console.warn(`[hybrid-search] FTS search failed: ${msg}`);
     return [];
   }
@@ -764,7 +788,7 @@ function mergeProvenanceSources(
 
 function exactTriggerSearch(
   query: string,
-  options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
+  options: { limit?: number; specFolder?: string; includeArchived?: boolean; channelExceptions?: ChannelException[] } = {}
 ): HybridSearchResult[] {
   if (!db) return [];
 
@@ -837,6 +861,7 @@ function exactTriggerSearch(
       .slice(0, limit);
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
+    appendChannelException(options.channelExceptions, 'trigger', msg, 'trigger-search');
     console.warn(`[hybrid-search] Trigger phrase search failed: ${msg}`);
     return [];
   }
@@ -1121,6 +1146,60 @@ function toEmbeddingBufferView(value: unknown): Float32Array | null {
   return null;
 }
 
+function ensureRoutingMeta(
+  s3meta: Sprint3PipelineMeta,
+  routeResult: ReturnType<typeof routeQuery>,
+): NonNullable<Sprint3PipelineMeta['routing']> {
+  if (!s3meta.routing) {
+    s3meta.routing = {
+      tier: routeResult.tier,
+      channels: routeResult.channels,
+      skippedChannels: [],
+      skippedChannelDetails: [],
+      featureFlagEnabled: isComplexityRouterEnabled(),
+      confidence: routeResult.classification.confidence,
+      features: routeResult.classification.features as Record<string, unknown>,
+    };
+  }
+  return s3meta.routing;
+}
+
+function appendChannelSkipDetail(
+  s3meta: Sprint3PipelineMeta,
+  routeResult: ReturnType<typeof routeQuery>,
+  detail: ChannelSkipDetail,
+): void {
+  const routing = ensureRoutingMeta(s3meta, routeResult);
+  if (!routing.skippedChannels.includes(detail.channel)) {
+    routing.skippedChannels.push(detail.channel);
+  }
+  const details = routing.skippedChannelDetails ?? [];
+  const duplicate = details.some((existing) => (
+    existing.channel === detail.channel
+    && existing.reason === detail.reason
+    && existing.type === detail.type
+  ));
+  if (!duplicate) details.push(detail);
+  routing.skippedChannelDetails = details;
+}
+
+function attachChannelExceptionsToRouting(
+  s3meta: Sprint3PipelineMeta,
+  routeResult: ReturnType<typeof routeQuery>,
+  channelExceptions: readonly ChannelException[],
+): void {
+  if (channelExceptions.length === 0) return;
+  const routing = ensureRoutingMeta(s3meta, routeResult);
+  routing.channelExceptions = channelExceptions.map((entry) => ({ ...entry }));
+  for (const exception of channelExceptions) {
+    appendChannelSkipDetail(s3meta, routeResult, {
+      channel: exception.channel,
+      reason: exception.reason,
+      type: 'exception',
+    });
+  }
+}
+
 async function executeFallbackPlan(
   query: string,
   embedding: Float32Array | number[] | null,
@@ -1361,6 +1440,11 @@ async function collectAndFuseHybridResults(
 
     // Pipeline metadata collector (populated by flag-gated stages)
     const s3meta: Sprint3PipelineMeta = {};
+    const channelExceptions: ChannelException[] = [];
+    const channelAwareOptions: HybridSearchOptions = {
+      ...options,
+      channelExceptions,
+    };
 
     // -- Stage A: Query Classification + Routing (SPECKIT_COMPLEXITY_ROUTER) --
     // When enabled, classifies query complexity and restricts channels to a
@@ -1381,14 +1465,14 @@ async function collectAndFuseHybridResults(
     const skippedChannels = allPossibleChannels.filter(ch => !activeChannels.has(ch));
 
     if (skippedChannels.length > 0) {
-      s3meta.routing = {
-        tier: routeResult.tier,
-        channels: routeResult.channels,
-        skippedChannels,
-        featureFlagEnabled: isComplexityRouterEnabled(),
-        confidence: routeResult.classification.confidence,
-        features: routeResult.classification.features as Record<string, unknown>,
-      };
+      ensureRoutingMeta(s3meta, routeResult);
+      for (const skipped of routeResult.queryPlan.skippedChannels) {
+        appendChannelSkipDetail(s3meta, routeResult, {
+          channel: skipped.channel,
+          reason: skipped.reason,
+          type: 'planned',
+        });
+      }
     }
 
     // -- Stage E: Dynamic Token Budget (SPECKIT_DYNAMIC_TOKEN_BUDGET) --
@@ -1453,13 +1537,21 @@ async function collectAndFuseHybridResults(
         lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
       } catch (_err: unknown) {
         // Non-critical — vector channel failure does not block pipeline
-        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
+        const message = _err instanceof Error ? _err.message : String(_err);
+        appendChannelException(channelExceptions, 'vector', message, 'vector-search');
+        console.warn('[hybrid-search] Channel error:', message);
       }
+    } else if (activeChannels.has('vector')) {
+      appendChannelSkipDetail(s3meta, routeResult, {
+        channel: 'vector',
+        reason: embedding ? 'Runtime vector search unavailable' : 'Runtime vector embedding unavailable',
+        type: 'runtime',
+      });
     }
 
     // FTS channel (internal error handling in ftsSearch) — gated by query-complexity routing
     if (activeChannels.has('fts')) {
-      ftsChannelResults = ftsSearch(query, options);
+      ftsChannelResults = ftsSearch(query, channelAwareOptions);
       if (ftsChannelResults.length > 0) {
         lists.push({ source: 'fts', results: ftsChannelResults });
       }
@@ -1467,14 +1559,14 @@ async function collectAndFuseHybridResults(
 
     // BM25 channel (internal error handling in bm25Search) — gated by query-complexity routing
     if (activeChannels.has('bm25')) {
-      bm25ChannelResults = bm25Search(query, options);
+      bm25ChannelResults = bm25Search(query, channelAwareOptions);
       if (bm25ChannelResults.length > 0) {
         lists.push({ source: 'bm25', results: bm25ChannelResults });
       }
     }
 
     if (options.useTrigger !== false) {
-      triggerChannelResults = exactTriggerSearch(query, options);
+      triggerChannelResults = exactTriggerSearch(query, channelAwareOptions);
       if (triggerChannelResults.length > 0) {
         lists.push({ source: 'trigger', results: triggerChannelResults, weight: 1.4 });
       }
@@ -1501,7 +1593,9 @@ async function collectAndFuseHybridResults(
         }
       } catch (_err: unknown) {
         // Non-critical — graph channel failure does not block pipeline
-        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
+        const message = _err instanceof Error ? _err.message : String(_err);
+        appendChannelException(channelExceptions, 'graph', message, 'graph-search');
+        console.warn('[hybrid-search] Channel error:', message);
       }
     }
 
@@ -1548,9 +1642,13 @@ async function collectAndFuseHybridResults(
         }
       } catch (_err: unknown) {
         // Non-critical — degree channel failure does not block pipeline
-        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
+        const message = _err instanceof Error ? _err.message : String(_err);
+        appendChannelException(channelExceptions, 'degree', message, 'degree-search');
+        console.warn('[hybrid-search] Channel error:', message);
       }
     }
+
+    attachChannelExceptionsToRouting(s3meta, routeResult, channelExceptions);
 
     // Merge keyword results after all channels complete
     const keywordResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = dedupeKeywordResults([

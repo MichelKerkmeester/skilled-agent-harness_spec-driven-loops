@@ -76,6 +76,7 @@ lib/search/
 +-- sqlite-fts.ts             # SQLite FTS5 lexical retrieval
 +-- graph-search-fn.ts        # Graph and degree retrieval channel
 +-- causal-boost.ts           # Causal-neighbor score adjustment
++-- channel-exceptions.ts     # Clamped, deduped why-a-channel-was-skipped reasons
 +-- intent-classifier.ts      # Query intent detection
 +-- query-*.ts                # Query classification, routing, expansion, decomposition, and surrogates
 +-- *feedback*.ts             # Learned feedback and denylist support
@@ -131,6 +132,7 @@ lib/search/
 +-- bm25-index.ts
 +-- sqlite-fts.ts
 +-- graph-search-fn.ts
++-- channel-exceptions.ts    # Clamped, deduped why-a-channel-was-skipped reasons
 +-- entity-density.ts        # Cached entity-density signal for graph-preservation gate (60s TTL)
 +-- intent-classifier.ts
 +-- query-router.ts          # Hybrid routing + shouldPreserveBm25/Graph overrides
@@ -164,6 +166,7 @@ lib/search/
 | `bm25-index.ts` | Provides keyword ranking without external runtime dependencies. |
 | `sqlite-fts.ts` | Runs SQLite FTS5 lexical queries when available. |
 | `graph-search-fn.ts` | Produces graph and degree-channel candidates. |
+| `channel-exceptions.ts` | Records and dedupes why a retrieval channel (bm25, fts, vector, graph, degree, trigger) was excluded from a search, with a clamped 160-char reason. Consumed by `causal-boost.ts` and `hybrid-search.ts`; the shared `ChannelException` type flows through `pipeline/types.ts`. |
 | `query-router.ts` | Routes hybrid retrieval; `shouldPreserveBm25` / `shouldPreserveGraph` overrides activate bm25/graph channels for intent-driven and entity-rich queries regardless of complexity tier. Reads `SPECKIT_GRAPH_CHANNEL_PRESERVATION` env flag. |
 | `entity-density.ts` | Cached lookup of memory rows with ≥3 outgoing causal edges. `getEntityDensityScore(query, db)` returns the count of query tokens that hit high-fanout rows. 60s TTL; safe to invalidate via `invalidateEntityDensityCache()`. |
 | `routing-telemetry.ts` | In-process rolling 200-decision window tracking which channels routed per query. `getSnapshot()` returns per-channel counts and rates including `graphChannelInvocationRate`. |

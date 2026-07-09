@@ -74,6 +74,7 @@ lib/storage/
 +-- incremental-index.ts       # Content-hash, embedding-health, and move-reconcile reindex checks
 +-- learned-triggers-schema.ts # Learned trigger schema checks
 +-- lineage-state.ts           # Append-first lineage state and projections
++-- memory-drift-healing.ts    # Drift-suspect queue and git-hook marker parsing
 +-- mutation-ledger.ts         # Hash-chained mutation audit log
 +-- post-insert-metadata.ts    # Guarded memory_index metadata updates
 +-- reconsolidation.ts         # Similarity merge and conflict routing
@@ -114,6 +115,7 @@ lib/storage/
 +-- incremental-index.ts
 +-- learned-triggers-schema.ts
 +-- lineage-state.ts
++-- memory-drift-healing.ts
 +-- mutation-ledger.ts
 +-- post-insert-metadata.ts
 +-- reconsolidation.ts
@@ -135,9 +137,10 @@ lib/storage/
 | `document-helpers.ts` | Classifies spec documents and calculates document-aware weighting for save/update flows. |
 | `history.ts` | Records higher-level history events and resolves lineage anchors for reporting. |
 | `idempotency-receipts.ts` | Derives, looks up, stores, evicts and prunes memory idempotency receipts; receipt-key hashing now delegates to shared `hashCanonicalJson()` while preserving byte-identical hash output. |
-| `incremental-index.ts` | Compares stored file metadata, content hashes and embedding status to decide whether reindexing is needed. Reconciles moved spec docs by remapping the existing row to the new path so the embedding is preserved instead of being deleted and rebuilt. |
+| `incremental-index.ts` | Compares stored file metadata, content hashes and embedding status to decide whether reindexing is needed. Reconciles moved spec docs by remapping the existing row to the new path so the embedding is preserved instead of being deleted and rebuilt. Reconcile is the last stage of the drift-healing chain: a git hook detects a rename/delete, `memory-drift-healing.ts` queues the affected row as a suspect, and a scan here confirms or clears it. |
 | `learned-triggers-schema.ts` | Maintains learned-trigger column and FTS isolation schema checks. |
 | `lineage-state.ts` | Records append-first lineage transitions, active projections, integrity checks and backfill state. |
+| `memory-drift-healing.ts` | Owns the drift-suspect queue (a JSON array stored under the `memory_index.drift_suspect_rows` config key) and parses the `.memory-drift-dirty-paths.json` marker the git hooks write. `memory-search.ts` appends suspects when a query-time existence check finds a missing backing file (flag-gated); `memory-index.ts` confirms them on the next scan, tombstoning rows whose path is still missing and clearing ones that reappeared; `startup-checks.ts` consumes the marker on boot. |
 | `mutation-ledger.ts` | Writes mutation-audit rows with hash-chain continuity for low-level provenance. |
 | `post-insert-metadata.ts` | Applies guarded dynamic updates to allowed `memory_index` metadata columns. |
 | `reconsolidation.ts` | Routes similar saves through merge, conflict or complement decisions when enabled. |

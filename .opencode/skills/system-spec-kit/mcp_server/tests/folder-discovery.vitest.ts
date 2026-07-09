@@ -23,6 +23,7 @@ import {
   slugifyFolderName,
 } from '../lib/search/folder-discovery';
 import type { FolderDescription, DescriptionCache, PerFolderDescription } from '../lib/search/folder-discovery';
+import { truncateSynopsisAtWordBoundary } from '../lib/description/packet-synopsis';
 
 /* ───────────────────────────────────────────────────────────────
    1. extractDescription — spec.md content parsing
@@ -176,6 +177,25 @@ describe('T009 extractKeywords', () => {
   it('handles description with only stop words', () => {
     const keywords = extractKeywords('the and or but is was were');
     expect(keywords).toEqual([]);
+  });
+
+  it('filters pure-digit tokens and generic verbs', () => {
+    const keywords = extractKeywords('Make use add build metadata reconciliation for 2026 packet 028');
+    expect(keywords).toContain('metadata');
+    expect(keywords).toContain('reconciliation');
+    expect(keywords).not.toContain('make');
+    expect(keywords).not.toContain('use');
+    expect(keywords).not.toContain('add');
+    expect(keywords).not.toContain('build');
+    expect(keywords).not.toContain('2026');
+    expect(keywords).not.toContain('028');
+  });
+});
+
+describe('truncateSynopsisAtWordBoundary', () => {
+  it('prefers a sentence boundary within the limit before falling back to word boundary', () => {
+    const synopsis = 'A concise first sentence. This second sentence is long enough to cross the configured limit.';
+    expect(truncateSynopsisAtWordBoundary(synopsis, 55)).toBe('A concise first sentence.');
   });
 });
 
@@ -724,6 +744,19 @@ describe('T009 generatePerFolderDescription', () => {
     expect(result!.parentChain).toEqual(['022-parent']);
     expect(result!.specId).toBe('001');
     expect(result!.folderSlug).toBe('child');
+  });
+
+  it('derives parentChain from the resolved specFolder when caller base is nested', () => {
+    const specsRoot = path.join(tmpDir2, '.opencode', 'specs');
+    const track = path.join(specsRoot, 'system-spec-kit');
+    const nested = path.join(track, '028-feature', '005-quality', '033-identity');
+    fs.mkdirSync(nested, { recursive: true });
+    fs.writeFileSync(path.join(nested, 'spec.md'), '# Child Spec\n\nContent.');
+
+    const result = generatePerFolderDescription(nested, track);
+    expect(result).not.toBeNull();
+    expect(result!.specFolder).toBe('system-spec-kit/028-feature/005-quality/033-identity');
+    expect(result!.parentChain).toEqual(['system-spec-kit', '028-feature', '005-quality']);
   });
 
   it('returns null for missing spec.md', () => {

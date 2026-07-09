@@ -53,6 +53,10 @@ interface CategorizedFiles {
   toDelete: string[];
 }
 
+interface CategorizeFilesOptions {
+  staleCandidatePaths?: string[];
+}
+
 interface IndexedPathRow {
   file_path: string;
   canonical_file_path?: string | null;
@@ -215,7 +219,15 @@ function buildPathExistenceCache(filePaths: string[]): PathExistenceCache {
 
   const cache: PathExistenceCache = new Map();
   for (const filePath of normalizedPaths) {
-    const exists = existingPaths.has(filePath);
+    let exists = existingPaths.has(filePath);
+    if (!exists) {
+      try {
+        pathExistenceDiagnostics.statSyncCalls += 1;
+        exists = fs.existsSync(filePath);
+      } catch {
+        exists = false;
+      }
+    }
     cache.set(filePath, exists);
   }
   return cache;
@@ -311,7 +323,7 @@ function setIndexedMtime(filePath: string): boolean {
    7. BATCH OPERATIONS
 ----------------------------------------------------------------*/
 
-function categorizeFilesForIndexing(filePaths: string[]): CategorizedFiles {
+function categorizeFilesForIndexing(filePaths: string[], options: CategorizeFilesOptions = {}): CategorizedFiles {
   const result: CategorizedFiles = {
     toIndex: [],
     toUpdate: [],
@@ -343,7 +355,7 @@ function categorizeFilesForIndexing(filePaths: string[]): CategorizedFiles {
   // Include stale indexed paths that are no longer discovered on disk.
   // Without this pass, removed files never enter toDelete during normal scans
   // Because discovery only returns files that currently exist.
-  const staleIndexedPaths = listStaleIndexedPaths(filePaths);
+  const staleIndexedPaths = listStaleIndexedPaths(filePaths, options.staleCandidatePaths);
   if (staleIndexedPaths.length > 0) {
     const seenDeleteKeys = new Set<string>(result.toDelete.map((filePath) => getCanonicalPathKey(filePath)));
     for (const stalePath of staleIndexedPaths) {
@@ -363,10 +375,13 @@ function resetPathExistenceDiagnostics(): void {
   pathExistenceDiagnostics.readdirSyncCalls = 0;
 }
 
-function listStaleIndexedPaths(scannedFilePaths: string[]): string[] {
+function listStaleIndexedPaths(scannedFilePaths: string[], candidatePaths?: string[]): string[] {
   if (!db) return [];
 
   const scannedCanonicalPaths = new Set(scannedFilePaths.map((filePath) => getCanonicalPathKey(filePath)));
+  const candidateCanonicalPaths = Array.isArray(candidatePaths) && candidatePaths.length > 0
+    ? new Set(candidatePaths.map((filePath) => getCanonicalPathKey(filePath)))
+    : null;
   const stalePaths = new Set<string>();
 
   try {
@@ -395,6 +410,10 @@ function listStaleIndexedPaths(scannedFilePaths: string[]): string[] {
       const rowCanonicalPath = typeof row.canonical_file_path === 'string' && row.canonical_file_path.length > 0
         ? row.canonical_file_path
         : getCanonicalPathKey(row.file_path);
+
+      if (candidateCanonicalPaths && !candidateCanonicalPaths.has(rowCanonicalPath)) {
+        continue;
+      }
 
       if (scannedCanonicalPaths.has(rowCanonicalPath)) {
         continue;
@@ -999,6 +1018,7 @@ export type {
   StoredMetadata,
   IndexDecision,
   CategorizedFiles,
+  CategorizeFilesOptions,
   OrphanSweepOptions,
   OrphanSweepResult,
   MoveReconcileCandidate,

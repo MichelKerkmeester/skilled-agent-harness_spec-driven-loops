@@ -192,6 +192,7 @@ const memoryContextSchema = getSchema({
   enableDedup: z.boolean().optional(),
   includeContent: z.boolean().optional(),
   includeTrace: z.boolean().optional(), // Forward to internal memory_search
+  tokenBudget: positiveIntMax(100000).optional(),
   tokenUsage: boundedNumber(0, 1).optional(),
   anchors: optionalStringArray,
   profile: z.enum(['quick', 'research', 'resume', 'debug']).optional(),
@@ -649,7 +650,7 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
 };
 
 const ALLOWED_PARAMETERS: Record<string, string[]> = {
-  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeConstitutional', 'includeTrace', 'tokenUsage', 'anchors', 'profile'],
+  memory_context: ['input', 'mode', 'intent', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'includeContent', 'includeConstitutional', 'includeTrace', 'tokenBudget', 'tokenUsage', 'anchors', 'profile'],
   memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'retrievalLevel', 'includeTrace', 'profile', 'debug'],
   memory_quick_search: ['query', 'limit', 'specFolder', 'tenantId', 'userId', 'agentId'],
   memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],

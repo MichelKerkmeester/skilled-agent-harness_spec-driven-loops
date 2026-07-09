@@ -5,6 +5,7 @@
 // Shadow-mode adaptive ranking with bounded feedback loops,
 // signal aggregation, threshold tuning, and promotion gates.
 import type Database from 'better-sqlite3';
+import { parseFlagTristate } from '../search/search-flags.js';
 
 /**
  * Adaptive feedback channels that influence shadow ranking proposals.
@@ -188,11 +189,14 @@ function mergeAdaptiveThresholds(overrides: AdaptiveThresholdOverrides = {}): Ad
 
 function isAdaptiveFlagEnabled(...flagNames: string[]): boolean {
   for (const flagName of flagNames) {
-    const rawValue = process.env[flagName]?.trim().toLowerCase();
-    if (rawValue === 'false' || rawValue === '0') {
+    // defaultValue=true means this only returns false when the raw value is a
+    // recognized opt-out member; unset/unrecognized falls through to the next candidate.
+    if (!parseFlagTristate(flagName, true)) {
       return false;
     }
-    if (rawValue === 'true' || rawValue === '1') {
+    // defaultValue=false means this only returns true when the raw value is a
+    // recognized opt-in member; unset/unrecognized falls through to the next candidate.
+    if (parseFlagTristate(flagName, false)) {
       return true;
     }
   }

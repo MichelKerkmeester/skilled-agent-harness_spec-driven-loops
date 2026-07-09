@@ -104,6 +104,7 @@ export {
   savePerFolderDescription,
   loadPerFolderDescription,
   loadExistingDescription,
+  wouldWritePerFolderDescription,
   extractKeywords,
   slugifyFolderName,
   getRepairMergeSafe,
@@ -172,12 +173,15 @@ export {
   loadGraphMetadata,
   deriveGraphMetadata,
   mergeGraphMetadata,
+  graphMetadataEqualIgnoringVolatile,
+  collectChildrenPruneCandidates,
   serializeGraphMetadata,
   writeGraphMetadataFile,
   refreshGraphMetadataForSpecFolder,
   graphMetadataToIndexableText,
   packetReferencesToCausalLinks,
 } from '../lib/graph/graph-metadata-parser.js';
+export type { GraphMetadataPruneCandidate } from '../lib/graph/graph-metadata-parser.js';
 export type { GraphMetadataValidationResult } from '../lib/graph/graph-metadata-parser.js';
 
 // --- Performance benchmarking support (used by scripts/evals) ---

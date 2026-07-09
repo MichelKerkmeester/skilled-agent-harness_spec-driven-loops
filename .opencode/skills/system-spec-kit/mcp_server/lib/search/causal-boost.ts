@@ -13,9 +13,10 @@
 //   to edge-type priority orderings; computes traversal score as:
 //   score = seedScore * edgePrior * hopDecay * freshness
 // Both requirements are gated behind SPECKIT_TYPED_TRAVERSAL (default ON, graduated).
-import { isCausalBoostEnabled, isTypedTraversalEnabled as _isTypedTraversalEnabled, isGraphContextInjectionEnabled } from './search-flags.js';
+import { isCausalBoostEnabled, isTypedTraversalEnabled as _isTypedTraversalEnabled, isGraphContextInjectionEnabled, parseFlagTristate } from './search-flags.js';
 import { ACTIVE_ROW_SQL } from './active-row-predicate.js';
 import { routeQueryConcepts } from './entity-linker.js';
+import { appendChannelException, type ChannelException } from './channel-exceptions.js';
 import { BetterSqliteGraphTraversal, type GraphTraversal } from '../storage/ports/index.js';
 
 import type Database from 'better-sqlite3';
@@ -100,8 +101,7 @@ const RELATION_WEIGHT_MULTIPLIERS: Record<string, number> = {
 };
 
 function includeEntityLinkerCausalEdges(): boolean {
-  const normalized = process.env.SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES?.trim().toLowerCase();
-  return normalized === 'true' || normalized === '1';
+  return parseFlagTristate('SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES', false);
 }
 
 function causalEdgeProvenanceFilter(alias: string): string {
@@ -132,6 +132,8 @@ interface CausalBoostMetadata {
   sparseModeActive?: boolean;
   /** Intent used for edge traversal scoring (if typed traversal enabled) */
   intentUsed?: string;
+  /** Fail-open channel exceptions observed while applying causal boost. */
+  channelExceptions?: ChannelException[];
 }
 
 /** Options for applyCausalBoost — extended with sparse-first parameters. */
@@ -427,7 +429,11 @@ function computeBoostByHop(hopDistance: number): number {
  * (density < 0.5 and SPECKIT_TYPED_TRAVERSAL enabled), the caller passes
  * SPARSE_MAX_HOPS (1) to constrain traversal depth.
  */
-function getNeighborBoosts(memoryIds: number[], maxHops: number = MAX_HOPS): Map<number, NeighborBoost> {
+function getNeighborBoosts(
+  memoryIds: number[],
+  maxHops: number = MAX_HOPS,
+  channelExceptions?: ChannelException[],
+): Map<number, NeighborBoost> {
   const neighborBoosts = new Map<number, NeighborBoost>();
   if (!db || !graphTraversal) return neighborBoosts;
 
@@ -454,6 +460,7 @@ function getNeighborBoosts(memoryIds: number[], maxHops: number = MAX_HOPS): Map
     }
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
+    appendChannelException(channelExceptions, 'graph', message, 'causal-traversal');
     console.warn(`[causal-boost] Traversal failed: ${message}`);
   }
 
@@ -517,7 +524,11 @@ function applyCausalBoost(
   const seedResults = results.slice(0, seedLimit);
   const seedIds = seedResults.map((item) => item.id);
   // Pass effectiveMaxHops to constrain traversal in sparse mode.
-  const neighborBoosts = getNeighborBoosts(seedIds, effectiveMaxHops);
+  const channelExceptions: ChannelException[] = [];
+  const neighborBoosts = getNeighborBoosts(seedIds, effectiveMaxHops, channelExceptions);
+  if (channelExceptions.length > 0) {
+    metadata.channelExceptions = channelExceptions.map((entry) => ({ ...entry }));
+  }
   if (neighborBoosts.size === 0) {
     return { results, metadata };
   }
@@ -665,6 +676,8 @@ interface GraphContextResult {
   relatedMemoryIds: number[];
   /** Edge relation types connecting seeds to neighbors. */
   edgeTypes: string[];
+  /** Fail-open channel exceptions observed while injecting graph context. */
+  channelExceptions?: ChannelException[];
 }
 
 /**
@@ -759,8 +772,9 @@ function injectGraphContext(
     };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
+    const channelExceptions = [appendChannelException(undefined, 'graph', message, 'graph-context-injection')];
     console.warn(`[causal-boost] injectGraphContext failed (fail-open): ${message}`);
-    return empty;
+    return { ...empty, channelExceptions };
   }
 }
 

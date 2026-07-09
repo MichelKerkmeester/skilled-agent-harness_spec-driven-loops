@@ -20,6 +20,7 @@ import { setEnv, restoreEnv } from './__helpers__/test-env';
 
 const COMPLEXITY_FLAG = 'SPECKIT_COMPLEXITY_ROUTER';
 const GRAPH_PRESERVATION_FLAG = 'SPECKIT_GRAPH_CHANNEL_PRESERVATION';
+const CONTENT_RICH_SHORT_GRAPH_FLAG = 'SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION';
 
 /* ───────────────────────────────────────────────────────────────
    012-S1: RING BUFFER OVERFLOW CORRECTNESS
@@ -166,10 +167,12 @@ describe('012-S2: routeQuery latency under 1k-iter burst', () => {
 describe('012-S3: entity-density cache invalidation under stress', () => {
   let priorComplexityFlag: string | undefined;
   let priorGraphPreservationFlag: string | undefined;
+  let priorContentRichShortGraphFlag: string | undefined;
 
   beforeEach(() => {
     priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
     priorGraphPreservationFlag = setEnv(GRAPH_PRESERVATION_FLAG, undefined);
+    priorContentRichShortGraphFlag = setEnv(CONTENT_RICH_SHORT_GRAPH_FLAG, 'false');
     resetRoutingTelemetry();
     invalidateEntityDensityCache();
   });
@@ -177,6 +180,7 @@ describe('012-S3: entity-density cache invalidation under stress', () => {
   afterEach(() => {
     restoreEnv(COMPLEXITY_FLAG, priorComplexityFlag);
     restoreEnv(GRAPH_PRESERVATION_FLAG, priorGraphPreservationFlag);
+    restoreEnv(CONTENT_RICH_SHORT_GRAPH_FLAG, priorContentRichShortGraphFlag);
     resetRoutingTelemetry();
     invalidateEntityDensityCache();
   });

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Post-rewrite hook — advisory memory-index drift marking.
+#
+# Marks memory-index drift for spec-folder renames/deletes across every
+# rewritten commit pair git passes on stdin (amend or rebase). Never
+# blocks the rewrite: the marker write is best-effort.
+# Bypass: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1 git rebase / commit --amend ...
+#
+# Install: bash .opencode/scripts/install-git-hooks.sh
+# Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [ -z "$REPO_ROOT" ]; then
+  exit 0
+fi
+
+if [ ! -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" ]; then
+  exit 0
+fi
+
+# shellcheck source=/dev/null
+source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
+
+while read -r old_commit new_commit _rest; do
+  if [ -n "${old_commit:-}" ] && [ -n "${new_commit:-}" ]; then
+    mark_memory_drift_from_diff "$old_commit" "$new_commit" || true
+  fi
+done
+
+exit 0

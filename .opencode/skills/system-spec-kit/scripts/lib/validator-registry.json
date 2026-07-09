@@ -32,6 +32,14 @@
     "description": "Rejects scaffold-signature markers in required docs when spec.md claims Complete status."
   },
   {
+    "rule_id": "STATUS_CROSS_DOC_CONSISTENCY",
+    "aliases": ["STATUS_CONSISTENCY", "CROSS_DOC_STATUS"],
+    "script_path": "rules/check-status-cross-doc-consistency.sh",
+    "severity": "warn",
+    "category": "authored_template",
+    "description": "Advisory-by-default check that spec.md and implementation-summary.md status fields classify to the same delivery state."
+  },
+  {
     "rule_id": "SECTIONS_PRESENT",
     "aliases": ["SECTIONS"],
     "script_path": "rules/check-sections.sh",
@@ -219,6 +227,14 @@
     "severity": "warn",
     "category": "structural",
     "description": "Validates graph-metadata.json shape: required packet/derived blocks, last_active_child_id pointer integrity for phase parents."
+  },
+  {
+    "rule_id": "METADATA_DISK_PATH_CONSISTENCY",
+    "aliases": ["METADATA_DISK_CONSISTENCY", "DISK_PATH_CONSISTENCY"],
+    "script_path": "rules/check-metadata-disk-consistency.sh",
+    "severity": "warn",
+    "category": "structural",
+    "description": "Advisory-by-default check that description.json, graph-metadata.json, and continuity ids match the real on-disk spec-folder path."
   },
   {
     "rule_id": "DESCRIPTION_SHAPE",

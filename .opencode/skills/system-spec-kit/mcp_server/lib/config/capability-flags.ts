@@ -6,6 +6,7 @@
 // Defaults reflect the shipped rollout unless explicitly opted out, except for
 // roadmap phases that remain intentionally dormant in production.
 import { isFeatureEnabled } from '../cognitive/rollout-policy.js';
+import { isOptInEnabled, parseFlagTristate } from '../search/search-flags.js';
 
 // Derive phase type from the canonical array to keep them in sync.
 const SUPPORTED_PHASES_ARRAY = ['baseline', 'lineage', 'graph', 'adaptive', 'scope-governance'] as const;
@@ -68,8 +69,7 @@ const IDENTITY_MERGE_SAFETY_ENV = 'SPECKIT_IDENTITY_MERGE_SAFETY' as const;
  * stays ON for any value other than an explicit opt-out so the graduated default holds.
  */
 function isIdentityMergeSafetyEnabled(): boolean {
-  const rawValue = process.env[IDENTITY_MERGE_SAFETY_ENV]?.trim().toLowerCase();
-  return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
+  return parseFlagTristate(IDENTITY_MERGE_SAFETY_ENV, true);
 }
 
 /**
@@ -97,8 +97,7 @@ const GENERATED_METADATA_GRANDFATHER_ENV = 'SPECKIT_GENERATED_METADATA_GRANDFATH
  * OFF for any value other than an explicit opt-in so an unset environment enforces.
  */
 function isGeneratedMetadataGrandfatherEnabled(): boolean {
-  const rawValue = process.env[GENERATED_METADATA_GRANDFATHER_ENV]?.trim().toLowerCase();
-  return rawValue === 'true' || rawValue === '1';
+  return parseFlagTristate(GENERATED_METADATA_GRANDFATHER_ENV, false);
 }
 
 /**
@@ -127,8 +126,7 @@ const GENERATED_METADATA_DRIFT_GATE_ENV = 'SPECKIT_GENERATED_METADATA_DRIFT_GATE
  * unless an explicit false, 0, or off opts back to grandfather report mode.
  */
 function isGeneratedMetadataDriftGateEnabled(): boolean {
-  const rawValue = process.env[GENERATED_METADATA_DRIFT_GATE_ENV]?.trim().toLowerCase();
-  return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
+  return parseFlagTristate(GENERATED_METADATA_DRIFT_GATE_ENV, true);
 }
 
 /**
@@ -156,8 +154,7 @@ const GENERATOR_HARDENING_ENV = 'SPECKIT_GENERATOR_HARDENING' as const;
  * stays ON unless an explicit false, 0, or off opts back to the legacy behavior.
  */
 function isGeneratorHardeningEnabled(): boolean {
-  const rawValue = process.env[GENERATOR_HARDENING_ENV]?.trim().toLowerCase();
-  return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
+  return parseFlagTristate(GENERATOR_HARDENING_ENV, true);
 }
 
 /**
@@ -186,8 +183,7 @@ const IDEMPOTENT_DESCRIPTION_WRITES_ENV = 'SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES
  * stays ON for any value other than an explicit opt-out so the graduated default holds.
  */
 function isIdempotentDescriptionWritesEnabled(): boolean {
-  const rawValue = process.env[IDEMPOTENT_DESCRIPTION_WRITES_ENV]?.trim().toLowerCase();
-  return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
+  return parseFlagTristate(IDEMPOTENT_DESCRIPTION_WRITES_ENV, true);
 }
 
 /**
@@ -216,8 +212,38 @@ const STATUS_COMPLETION_CONSISTENCY_GATE_ENV = 'SPECKIT_STATUS_COMPLETION_CONSIS
  * OFF (report mode) unless an explicit true/1 opts into enforcement.
  */
 function isStatusCompletionConsistencyGateEnabled(): boolean {
-  const rawValue = process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV]?.trim().toLowerCase();
-  return rawValue === 'true' || rawValue === '1';
+  return parseFlagTristate(STATUS_COMPLETION_CONSISTENCY_GATE_ENV, false);
+}
+
+/**
+ * SPECKIT_QUERY_TIME_EXISTENCE_FILTER: query-result path existence guard.
+ *
+ * Default-OFF because this touches the hot search response path. When enabled,
+ * memory_search filters only the already-ranked top-k rows whose backing file path
+ * is absent, and queues those ids for scan-time confirmation instead of deleting
+ * them immediately. An explicit true/1 opts in; all other values preserve legacy
+ * query behavior.
+ *
+ * | Value        | Behavior                                                        |
+ * |--------------|-----------------------------------------------------------------|
+ * | unset / other| (default) no query-time filesystem filtering                    |
+ * | `true` / `1` | exclude missing-path top-k rows and queue them for confirmation |
+ */
+const QUERY_TIME_EXISTENCE_FILTER_ENV = 'SPECKIT_QUERY_TIME_EXISTENCE_FILTER' as const;
+
+/**
+ * Returns whether memory_search filters missing backing files at query time,
+ * excluding already-ranked top-k rows whose backing file no longer exists and
+ * queueing those ids for scan-time confirmation instead of deleting them
+ * immediately.
+ *
+ * Delegates to the shared opt-in helper (`isOptInEnabled()`, `lib/search/search-flags.ts`),
+ * which reads the environment on every call so a test can flip the behavior per-case, and
+ * stays OFF (default, legacy query behavior) unless an explicit true/1/yes/on/enabled
+ * value opts in.
+ */
+function isQueryTimeExistenceFilterEnabled(): boolean {
+  return isOptInEnabled(QUERY_TIME_EXISTENCE_FILTER_ENV);
 }
 
 // Keep roadmap controls distinct from existing runtime feature flags so
@@ -234,8 +260,9 @@ const SUPPORTED_PHASES: ReadonlySet<MemoryRoadmapPhase> = new Set(SUPPORTED_PHAS
 function hasExplicitDisableFlag(flagNames: string | readonly string[]): boolean {
   const candidates = Array.isArray(flagNames) ? flagNames : [flagNames];
   for (const flagName of candidates) {
-    const rawValue = process.env[flagName]?.trim().toLowerCase();
-    if (rawValue === 'false' || rawValue === '0') {
+    // defaultValue=true means this only returns false when the raw value is a
+    // recognized opt-out member; unset/unrecognized falls through as "not disabled".
+    if (!parseFlagTristate(flagName, true)) {
       return true;
     }
   }
@@ -261,8 +288,9 @@ function isMemoryRoadmapCapabilityEnabled(
   }
 
   for (const flagName of candidates) {
-    const rawValue = process.env[flagName]?.trim().toLowerCase();
-    if (rawValue === 'true' || rawValue === '1') {
+    // defaultValue=false means this only returns true when the raw value is a
+    // recognized opt-in member; unset/unrecognized falls through to the rollout check.
+    if (parseFlagTristate(flagName, false)) {
       return true;
     }
   }
@@ -333,11 +361,14 @@ export {
   isGeneratorHardeningEnabled,
   isIdempotentDescriptionWritesEnabled,
   isIdentityMergeSafetyEnabled,
+  isQueryTimeExistenceFilterEnabled,
   /** @internal — exposed for test utilities only */
   isMemoryRoadmapCapabilityEnabled,
   isStatusCompletionConsistencyGateEnabled,
   /** Documented parser backend env var name */
   SPECKIT_PARSER_ENV,
+  /** Documented query-time existence-filter env var name */
+  QUERY_TIME_EXISTENCE_FILTER_ENV,
   /** Documented status-completion-consistency-gate env var name */
   STATUS_COMPLETION_CONSISTENCY_GATE_ENV,
 };

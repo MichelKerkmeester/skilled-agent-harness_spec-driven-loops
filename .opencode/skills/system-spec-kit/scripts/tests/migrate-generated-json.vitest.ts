@@ -143,12 +143,14 @@ describe('migrate-generated-json scoped contract', () => {
           totalSpecFolders: 1,
           created: 0,
           refreshed: 1,
+          changed: 1,
           existing: 1,
           lineageStamped: 0,
           skipped: [],
           failed: [],
           reviewFlags: [],
           drift: [],
+          pruneCandidates: [],
         };
       },
       regenDescription: (folderAbs) => {
@@ -267,5 +269,26 @@ describe('migrate-generated-json real run', () => {
     expect(summary.verify?.foldersChecked).toBeGreaterThan(0);
     expect(summary.verify?.violations).toEqual([]);
     expect(summary.verify?.clean).toBe(true);
+  });
+
+  it('reports prune candidates without writing and prunes missing children on explicit apply', () => {
+    const tree = createSpecTree();
+    migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false });
+
+    fs.rmSync(tree.child, { recursive: true, force: true });
+    const report = migrateAllJson({ specsRoot: tree.specsRoot, dryRun: true, pruneReport: true });
+    expect(report.pruneCandidates).toEqual([
+      expect.objectContaining({
+        specFolder: 'system-spec-kit/911-parent',
+        childId: 'system-spec-kit/911-parent/001-child-phase',
+        existsOnDisk: false,
+      }),
+    ]);
+    expect(hashFile(path.join(tree.parent, 'graph-metadata.json'))).not.toBeNull();
+
+    const applied = migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false, prune: true });
+    expect(applied.failed).toBe(0);
+    const parentGraph = JSON.parse(fs.readFileSync(path.join(tree.parent, 'graph-metadata.json'), 'utf-8'));
+    expect(parentGraph.children_ids).toEqual([]);
   });
 });

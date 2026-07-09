@@ -3,8 +3,14 @@
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
+
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 const path = require('path');
 const fs = require('fs');
+const __dirname = path.dirname(__filename);
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION

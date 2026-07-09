@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Post-merge hook — advisory memory-index drift marking.
+#
+# Marks memory-index drift for spec-folder renames/deletes brought in by
+# the merge, diffing ORIG_HEAD -> HEAD (or HEAD alone when ORIG_HEAD is
+# unavailable). Never blocks the merge: the marker write is best-effort.
+# Bypass: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1 git merge ...
+#
+# Install: bash .opencode/scripts/install-git-hooks.sh
+# Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [ -z "$REPO_ROOT" ]; then
+  exit 0
+fi
+
+if [ ! -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" ]; then
+  exit 0
+fi
+
+# shellcheck source=/dev/null
+source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
+
+if git rev-parse --verify ORIG_HEAD >/dev/null 2>&1; then
+  mark_memory_drift_from_diff ORIG_HEAD HEAD || true
+else
+  mark_memory_drift_from_diff HEAD || true
+fi
+
+exit 0

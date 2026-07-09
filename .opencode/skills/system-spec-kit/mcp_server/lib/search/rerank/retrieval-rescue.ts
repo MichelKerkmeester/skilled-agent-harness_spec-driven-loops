@@ -12,6 +12,7 @@ import type { ScopeContext } from '../../governance/scope-governance.js';
 import { createLogger } from '../../utils/logger.js';
 import { ACTIVE_ROW_SQL, isActiveRow } from '../active-row-predicate.js';
 import { fts5Bm25Search, isFts5Available } from '../sqlite-fts.js';
+import { parseFlagTristate } from '../search-flags.js';
 
 type RescueOptions = {
   db?: Database.Database | null;
@@ -93,8 +94,9 @@ const telemetryCounters = {
 };
 
 function envFlagExplicitFalse(name: string): boolean {
-  const raw = process.env[name]?.trim().toLowerCase();
-  return raw === 'false';
+  // defaultValue=true means this only returns false when the raw value is a
+  // recognized opt-out member, so the negation below is true only for that case.
+  return !parseFlagTristate(name, true);
 }
 
 function hasQueryableDb(db: Database.Database | null | undefined): db is Database.Database {

@@ -19,6 +19,9 @@ import {
   resolveGraphWalkRolloutState,
   isReconsolidationEnabled,
   isTRMEnabled,
+  isContentRichShortQueryGraphPreservationEnabled,
+  isOptInEnabled,
+  parseFlagTristate,
 } from '../lib/search/search-flags';
 
 const FLAG_NAMES = [
@@ -280,5 +283,118 @@ describe('Search Flags: Planner and Save Flags (T254)', () => {
     expect(isFolderDiscoveryEnabled()).toBe(true);
     expect(isSessionBoostEnabled()).toBe(true);
     expect(isCausalBoostEnabled()).toBe(true);
+  });
+});
+
+// F5a/F5b coverage (016-cross-package-flag-governance): the content-rich
+// short-query graph-preservation flag flipped from graduated default-ON to
+// opt-in default-OFF, and now shares the exported isOptInEnabled() helper
+// with capability-flags.ts's SPECKIT_QUERY_TIME_EXISTENCE_FILTER.
+describe('Search Flags: content-rich short-query graph preservation polarity (F5a/F5b)', () => {
+  const FLAG = 'SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION';
+  let original: string | undefined;
+
+  beforeEach(() => {
+    original = process.env[FLAG];
+    delete process.env[FLAG];
+  });
+
+  afterEach(() => {
+    if (original === undefined) {
+      delete process.env[FLAG];
+    } else {
+      process.env[FLAG] = original;
+    }
+  });
+
+  it('defaults to disabled (opt-in) when unset', () => {
+    expect(isContentRichShortQueryGraphPreservationEnabled()).toBe(false);
+  });
+
+  it('stays disabled for unrecognized or explicit-off values', () => {
+    process.env[FLAG] = 'false';
+    expect(isContentRichShortQueryGraphPreservationEnabled()).toBe(false);
+
+    process.env[FLAG] = '0';
+    expect(isContentRichShortQueryGraphPreservationEnabled()).toBe(false);
+
+    process.env[FLAG] = 'nonsense';
+    expect(isContentRichShortQueryGraphPreservationEnabled()).toBe(false);
+  });
+
+  it('enables only via explicit opt-in values', () => {
+    for (const value of ['true', '1', 'yes', 'on', 'enabled', 'TRUE']) {
+      process.env[FLAG] = value;
+      expect(isContentRichShortQueryGraphPreservationEnabled(), `value=${value}`).toBe(true);
+    }
+  });
+
+  it('exports isOptInEnabled and reads the same flag directly', () => {
+    process.env[FLAG] = 'true';
+    expect(isOptInEnabled(FLAG)).toBe(true);
+    expect(isOptInEnabled(FLAG)).toBe(isContentRichShortQueryGraphPreservationEnabled());
+  });
+});
+
+// parseFlagTristate() is the single shared vocabulary authority every migrated
+// capability-flags.ts/sibling site now delegates to. This proves the full
+// 10-value vocabulary, unset, empty, and
+// one garbage value against both default polarities.
+describe('Search Flags: parseFlagTristate() vocabulary matrix', () => {
+  const FLAG = 'SPECKIT_PARSE_FLAG_TRISTATE_TEST';
+  let original: string | undefined;
+
+  beforeEach(() => {
+    original = process.env[FLAG];
+    delete process.env[FLAG];
+  });
+
+  afterEach(() => {
+    if (original === undefined) {
+      delete process.env[FLAG];
+    } else {
+      process.env[FLAG] = original;
+    }
+  });
+
+  const OPT_IN_VALUES = ['true', '1', 'yes', 'on', 'enabled'];
+  const OPT_OUT_VALUES = ['false', '0', 'no', 'off', 'disabled'];
+
+  it('resolves every opt-in value to true regardless of defaultValue', () => {
+    for (const value of OPT_IN_VALUES) {
+      process.env[FLAG] = value;
+      expect(parseFlagTristate(FLAG, true), `value=${value}, default=true`).toBe(true);
+      expect(parseFlagTristate(FLAG, false), `value=${value}, default=false`).toBe(true);
+    }
+  });
+
+  it('resolves every opt-out value to false regardless of defaultValue', () => {
+    for (const value of OPT_OUT_VALUES) {
+      process.env[FLAG] = value;
+      expect(parseFlagTristate(FLAG, true), `value=${value}, default=true`).toBe(false);
+      expect(parseFlagTristate(FLAG, false), `value=${value}, default=false`).toBe(false);
+    }
+  });
+
+  it('is case-insensitive and whitespace-tolerant for both vocabularies', () => {
+    for (const value of [...OPT_IN_VALUES, ...OPT_OUT_VALUES]) {
+      const expected = OPT_IN_VALUES.includes(value);
+      process.env[FLAG] = ` ${value.toUpperCase()} `;
+      expect(parseFlagTristate(FLAG, !expected), `value="${value.toUpperCase()}" (padded)`).toBe(expected);
+    }
+  });
+
+  it('resolves unset, empty, and unrecognized values to defaultValue', () => {
+    delete process.env[FLAG];
+    expect(parseFlagTristate(FLAG, true)).toBe(true);
+    expect(parseFlagTristate(FLAG, false)).toBe(false);
+
+    process.env[FLAG] = '';
+    expect(parseFlagTristate(FLAG, true)).toBe(true);
+    expect(parseFlagTristate(FLAG, false)).toBe(false);
+
+    process.env[FLAG] = 'maybe';
+    expect(parseFlagTristate(FLAG, true)).toBe(true);
+    expect(parseFlagTristate(FLAG, false)).toBe(false);
   });
 });

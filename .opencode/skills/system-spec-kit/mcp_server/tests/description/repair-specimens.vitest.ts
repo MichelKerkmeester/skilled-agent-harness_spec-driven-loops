@@ -333,3 +333,31 @@ describe('description.json schema-error repair specimens', () => {
     });
   });
 });
+
+// DESCRIPTION_REPAIR_MERGE_SAFE is a module-level const evaluated once at
+// import time via the shared parseFlagTristate() helper, replacing an inline
+// `rawValue !== 'false' && rawValue !== '0'` check. vi.resetModules() + a
+// fresh dynamic import re-evaluates it per case.
+describe('DESCRIPTION_REPAIR_MERGE_SAFE vocabulary (post-migration)', () => {
+  it('stays enabled by default and for every recognized opt-in value', async () => {
+    for (const value of [undefined, 'true', '1', 'yes', 'on', 'enabled']) {
+      if (value === undefined) {
+        delete process.env.SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE;
+      } else {
+        process.env.SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE = value;
+      }
+      const { discovery } = await loadModules();
+      expect(discovery.getRepairMergeSafe(), `value=${value}`).toBe(true);
+    }
+    delete process.env.SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE;
+  });
+
+  it('disables for every recognized opt-out value, widened beyond the pre-migration false/0-only check', async () => {
+    for (const value of ['false', '0', 'no', 'off', 'disabled']) {
+      process.env.SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE = value;
+      const { discovery } = await loadModules();
+      expect(discovery.getRepairMergeSafe(), `value=${value}`).toBe(false);
+    }
+    delete process.env.SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE;
+  });
+});

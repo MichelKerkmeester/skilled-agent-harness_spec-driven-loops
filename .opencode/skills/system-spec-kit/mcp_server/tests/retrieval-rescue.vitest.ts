@@ -58,6 +58,19 @@ describe('retrieval rescue layer', () => {
     expect(isRetrievalRescueEnabled()).toBe(true);
   });
 
+  // envFlagExplicitFalse() now delegates to !parseFlagTristate(name, true) instead
+  // of a literal raw === 'false' check, so the full opt-out vocabulary now disables
+  // the rescue layer, not just the literal 'false'.
+  it('disables the rescue layer for every recognized opt-out value post-migration', () => {
+    for (const value of ['false', '0', 'no', 'off', 'disabled']) {
+      process.env.SPECKIT_RERANK_LAYER = value;
+      expect(isRetrievalRescueEnabled(), `value=${value}`).toBe(false);
+    }
+
+    delete process.env.SPECKIT_RERANK_LAYER;
+    expect(isRetrievalRescueEnabled()).toBe(true);
+  });
+
   it('demotes generic trigger-only archive neighbors below richer task matches', () => {
     const query = 'stress-test task list tracking cat-14 pipeline gaps, cat-16 tooling fixes, and the remaining cat-24 memory-recall failure';
     const rows: PipelineRow[] = [

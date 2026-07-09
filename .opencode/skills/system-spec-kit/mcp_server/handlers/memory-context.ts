@@ -98,6 +98,7 @@ interface ContextOptions {
   includeContent?: boolean;
   includeConstitutional?: boolean;
   includeTrace?: boolean; // Forward to internal memory_search calls
+  tokenBudget?: number;
   anchors?: string[];
   profile?: string;
   sessionTransition?: SessionTransitionTrace;
@@ -135,6 +136,7 @@ interface ContextArgs {
   includeContent?: boolean;
   includeConstitutional?: boolean;
   includeTrace?: boolean; // Forward to internal memory_search calls
+  tokenBudget?: number;
   tokenUsage?: number;
   anchors?: string[];
   /** Presentation profile ('quick'|'research'|'resume'|'debug'). Default: full response. */
@@ -158,6 +160,8 @@ interface TokenBudgetEnforcement {
 }
 
 type PressureOverrideTargetMode = 'quick' | 'focused' | null;
+
+const DEFAULT_MIN_CONTEXT_RESULTS = 10;
 
 interface SessionLifecycleResolution {
   requestedSessionId: string | null;
@@ -694,6 +698,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
         id: row.id,
         title: row.title,
         filePath: row.filePath ?? row.file_path,
+        specFolder: row.specFolder ?? row.spec_folder,
         score: row.score ?? row.similarity,
         importanceTier: row.importanceTier ?? row.importance_tier,
         snippet,
@@ -710,16 +715,15 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
       };
     }
 
-    while (compactRows.length > 1 && estimateTokens(JSON.stringify(candidate)) > budgetTokens) {
+    const minResults = Math.min(DEFAULT_MIN_CONTEXT_RESULTS, compactRows.length);
+    while (compactRows.length > minResults && estimateTokens(JSON.stringify(candidate)) > budgetTokens) {
       compactRows.pop();
       (candidate as Record<string, unknown>).results = compactRows;
       (candidate as Record<string, unknown>).count = compactRows.length;
     }
 
     const candidateTokens = estimateTokens(JSON.stringify(candidate));
-    return candidateTokens <= budgetTokens
-      ? { result: candidate, actualTokens: candidateTokens, returnedResultCount: compactRows.length }
-      : null;
+    return { result: candidate, actualTokens: candidateTokens, returnedResultCount: compactRows.length };
   };
 
   const directCompacted = compactDirectResult();
@@ -783,6 +787,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
         title: r.title,
         similarity: r.similarity,
         specFolder: r.specFolder,
+        filePath: r.filePath ?? r.file_path,
         confidence: r.confidence,
         importanceTier: r.importanceTier,
         isConstitutional: r.isConstitutional,
@@ -852,6 +857,8 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
       ...buildPreservedCandidates(),
       ...emptyCandidates,
     ];
+    let smallestPreservedFallback: ContextResult | null = null;
+    let smallestPreservedTokens = Number.POSITIVE_INFINITY;
 
     if (parseFailedInnerText) {
       const meta = (emptyCandidates[0].meta as Record<string, unknown>);
@@ -871,12 +878,35 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
         ];
       }
 
-      if (estimateTokens(JSON.stringify(fallbackResult)) <= budgetTokens) {
+      const fallbackTokens = estimateTokens(JSON.stringify(fallbackResult));
+      if (
+        typeof candidateResultCount === 'number' &&
+        candidateResultCount > 0 &&
+        fallbackTokens < smallestPreservedTokens
+      ) {
+        smallestPreservedTokens = fallbackTokens;
+        smallestPreservedFallback = {
+          ...fallbackResult,
+          content: Array.isArray((fallbackResult as Record<string, unknown>).content)
+            ? ((fallbackResult as Record<string, unknown>).content as Array<Record<string, unknown>>)
+              .map((entry) => ({ ...entry }))
+            : (fallbackResult as Record<string, unknown>).content,
+        } as ContextResult;
+      }
+
+      if (fallbackTokens <= budgetTokens) {
         if (candidateResultCount === 0) {
+          if (smallestPreservedFallback) {
+            return smallestPreservedFallback;
+          }
           droppedAllResultsReason = 'impossible_budget';
         }
         return fallbackResult;
       }
+    }
+
+    if (smallestPreservedFallback) {
+      return smallestPreservedFallback;
     }
 
     droppedAllResultsReason = 'impossible_budget';
@@ -994,7 +1024,8 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
         currentTokens = estimateTokens(JSON.stringify(innerEnvelope));
 
         // Drop lowest-scored results if still over budget
-        while (currentResults.length > 1 && currentTokens > budgetTokens) {
+        const minResults = Math.min(DEFAULT_MIN_CONTEXT_RESULTS, currentResults.length);
+        while (currentResults.length > minResults && currentTokens > budgetTokens) {
           // Remove the last (lowest-scored) result
           const removed = currentResults.pop();
           const removedTokens = estimateTokens(JSON.stringify(removed));
@@ -1009,6 +1040,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
             title: r.title,
             similarity: r.similarity,
             specFolder: r.specFolder,
+            filePath: r.filePath ?? r.file_path,
             confidence: r.confidence,
             importanceTier: r.importanceTier,
             isConstitutional: r.isConstitutional,
@@ -1472,6 +1504,22 @@ function resolveEffectiveMode(
   };
 }
 
+function resolveEffectiveTokenBudget(
+  effectiveMode: string,
+  layerTokenBudget: number,
+  requestedTokenBudget?: number,
+): number {
+  if (
+    typeof requestedTokenBudget === 'number' &&
+    Number.isFinite(requestedTokenBudget) &&
+    requestedTokenBudget > 0
+  ) {
+    return requestedTokenBudget;
+  }
+
+  return CONTEXT_MODES[effectiveMode]?.tokenBudget || layerTokenBudget;
+}
+
 function maybeDiscoverSpecFolder(options: ContextOptions, args: ContextArgs): string | undefined {
   if (args.specFolder || !isFolderDiscoveryEnabled()) {
     return undefined;
@@ -1651,6 +1699,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       limit,
       enableDedup: enableDedup = true,
       includeContent: include_content = false,
+      tokenBudget: requestedTokenBudget,
       tokenUsage,
       anchors
     } = args;
@@ -1810,6 +1859,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       includeContent: include_content,
       includeConstitutional: args.includeConstitutional,
       includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true || debugProfileRequested,
+      tokenBudget: requestedTokenBudget,
       anchors,
       profile: args.profile,
     };
@@ -1946,8 +1996,11 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
     }
 
     // Determine effective token budget from mode or layer definitions
-    const modeTokenBudget = CONTEXT_MODES[effectiveMode]?.tokenBudget;
-    const effectiveBudget = modeTokenBudget || tokenBudget;
+    const effectiveBudget = resolveEffectiveTokenBudget(
+      effectiveMode,
+      tokenBudget,
+      options.tokenBudget,
+    );
 
     // Inject auto-resume context BEFORE budget enforcement
     // so the final response respects the advertised token budget.
@@ -2219,6 +2272,7 @@ export {
   CONTEXT_MODES,
   INTENT_TO_MODE,
   enforceTokenBudget,
+  resolveEffectiveTokenBudget,
   prependWorldSummaryPreludeToResult,
   // Exported for scope-isolation tests of the no-session continuity anchor.
   resolveNoSessionAnchor,

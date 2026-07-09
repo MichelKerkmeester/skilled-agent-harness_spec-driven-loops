@@ -102,6 +102,7 @@ export function isGraphRefreshEnabled(): boolean {
 // LLM graph backfill gate — canonical implementation in search-flags.ts.
 // Default: TRUE (graduated). Set SPECKIT_LLM_GRAPH_BACKFILL=false to disable.
 import {
+  isEntityLinkingEnabled,
   isGraphRefreshDisabled,
   isLlmGraphBackfillEnabled,
   isQuerySurrogatesEnabled,
@@ -597,9 +598,8 @@ export function onIndex(
     return buildSkipped('graph_refresh_disabled');
   }
 
-  // Guard: only run when entity linking is enabled (reuse SPECKIT_ENTITY_LINKING)
-  const entityLinkingRaw = process.env.SPECKIT_ENTITY_LINKING?.toLowerCase().trim();
-  if (entityLinkingRaw === 'false' || entityLinkingRaw === '0') {
+  // Guard: only run when entity linking is enabled (canonical getter, search-flags.ts)
+  if (!isEntityLinkingEnabled()) {
     return buildSkipped('entity_linking_disabled');
   }
 

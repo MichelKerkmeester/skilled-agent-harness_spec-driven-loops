@@ -59,6 +59,7 @@ import type { Stage2Input, Stage2Output, PipelineRow, IntentWeightsConfig, Artif
 
 import * as sessionBoost from '../session-boost.js';
 import * as causalBoost from '../causal-boost.js';
+import { parseFlagTristate } from '../search-flags.js';
 import {
   isEnabled as isCoActivationEnabled,
   spreadActivation,
@@ -168,7 +169,7 @@ function clampMultiplier(value: number): number {
 }
 
 function isShadowLearningModelLoadEnabled(): boolean {
-  return process.env.SPECKIT_SHADOW_LEARNING?.toLowerCase().trim() === 'true';
+  return parseFlagTristate('SPECKIT_SHADOW_LEARNING', false);
 }
 
 // Learned blend weight. Reads SPECKIT_LEARNED_STAGE2_BLEND_WEIGHT
@@ -1155,6 +1156,9 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
       // FIX #4: Sync aliases immediately after causal boost score mutations.
       syncScoreAliasesInPlace(results);
       metadata.causalBoostApplied = cbMeta.applied ? 'applied' : 'enabled';
+      if (cbMeta.channelExceptions && cbMeta.channelExceptions.length > 0) {
+        metadata.channelExceptions = cbMeta.channelExceptions;
+      }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
       console.warn(`[stage2-fusion] causal boost failed: ${message}`);

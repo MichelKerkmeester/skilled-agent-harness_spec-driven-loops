@@ -31,14 +31,42 @@ const DEFAULT_CONFIDENCE_CALIBRATION_MODEL_PATH = resolve(
 export type SavePlannerMode = 'plan-only' | 'full-auto' | 'hybrid';
 
 const TRUTHY_OPT_IN = new Set(['true', '1', 'yes', 'on', 'enabled']);
+const FALSY_OPT_OUT = new Set(['false', '0', 'no', 'off', 'disabled']);
+
+/**
+ * Returns true when envVarName is set to an opt-in value (true, 1, yes, on,
+ * enabled), false when set to an opt-out value (false, 0, no, off, disabled),
+ * and defaultValue for anything else — unset, empty, or unrecognized.
+ * Case-insensitive and whitespace-tolerant.
+ *
+ * Exported so other flag-parsing modules (e.g. `lib/config/capability-flags.ts`
+ * and its siblings) can register their flags through one shared vocabulary
+ * instead of each hand-rolling its own subset comparison.
+ */
+export function parseFlagTristate(envVarName: string, defaultValue: boolean): boolean {
+  const value = process.env[envVarName]?.trim().toLowerCase();
+  if (value === undefined) {
+    return defaultValue;
+  }
+  if (TRUTHY_OPT_IN.has(value)) {
+    return true;
+  }
+  if (FALSY_OPT_OUT.has(value)) {
+    return false;
+  }
+  return defaultValue;
+}
 
 /**
  * Returns true for explicit opt-in values: true, 1, yes, on, enabled.
  * Undefined, empty, unrecognized, and explicit false-like values are treated as false.
+ *
+ * Exported so other flag-registration modules (e.g. `lib/config/capability-flags.ts`)
+ * can register default-off, explicit-opt-in flags through the same helper instead of
+ * hand-rolling their own env parsing.
  */
-function isOptInEnabled(variableName: string): boolean {
-  const value = process.env[variableName]?.toLowerCase().trim();
-  return value !== undefined && TRUTHY_OPT_IN.has(value);
+export function isOptInEnabled(variableName: string): boolean {
+  return parseFlagTristate(variableName, false);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -442,6 +470,23 @@ export function isQuerySurrogatesEnabled(): boolean {
  */
 export function isRetrievalClassRoutingEnabled(): boolean {
   return isOptInEnabled('SPECKIT_RETRIEVAL_CLASS_ROUTING');
+}
+
+/**
+ * Preserve graph and degree channels for short queries with strong lexical anchors.
+ * Default: FALSE (opt-in): this repo's flag-graduation policy puts the burden of
+ * proof on default-ON before shipping, and this flag shipped default-ON with only
+ * unit-test/fixture verification, never a reindexed before/after production-path
+ * benchmark. A follow-up 7-query benchmark found it materially changes routing
+ * (graph-channel usage roughly doubled) with no labeled ground truth to judge
+ * quality by, so the result is decision-neutral but does not meet the policy's
+ * bar for a default-ON shipment. It must earn promotion back to default-ON the
+ * same way its sibling `isRetrievalClassRoutingEnabled()` does: a reindexed
+ * before/after benchmark. Set SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION=true
+ * to opt in.
+ */
+export function isContentRichShortQueryGraphPreservationEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION');
 }
 
 /* ───────────────────────────────────────────────────────────────

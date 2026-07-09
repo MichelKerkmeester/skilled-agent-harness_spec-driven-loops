@@ -16,7 +16,7 @@ import {
   resolveFeedbackRetentionMode,
   revalidateSpareOnlyRetention,
 } from '../feedback/feedback-retention-reducer.js';
-import { isRetentionForgettingEnabled } from '../search/search-flags.js';
+import { isRetentionForgettingEnabled, parseFlagTristate } from '../search/search-flags.js';
 import type {
   FeedbackRetentionDecisionResult,
   FeedbackRetentionMode,
@@ -163,7 +163,7 @@ const OPTIONAL_RETENTION_COLUMNS: ReadonlyArray<{ column: string; alias: string 
 ];
 
 function isSoftDeleteTombstonesEnabled(): boolean {
-  return process.env.SPECKIT_SOFT_DELETE_TOMBSTONES?.trim().toLowerCase() === 'true';
+  return parseFlagTristate('SPECKIT_SOFT_DELETE_TOMBSTONES', false);
 }
 
 function selectExpiredRows(database: Database.Database, useSoftDeleteTombstones: boolean): RetentionExpiredRow[] {

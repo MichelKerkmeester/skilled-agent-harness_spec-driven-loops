@@ -325,6 +325,17 @@ describe('grandfather report mode arms', () => {
     expect(isGeneratedMetadataGrandfatherEnabled()).toBe(false);
   });
 
+  // After delegating to parseFlagTristate(), this opt-in-only flag also accepts
+  // 'yes'/'on'/'enabled', which the prior rawValue === 'true' || rawValue === '1'
+  // check did not recognize.
+  it('widens the grandfather flag to the full opt-in vocabulary post-migration', () => {
+    for (const value of ['yes', 'on', 'enabled']) {
+      process.env[GENERATED_METADATA_GRANDFATHER_ENV] = value;
+      expect(isGeneratedMetadataGrandfatherEnabled(), `value=${value}`).toBe(true);
+    }
+    delete process.env[GENERATED_METADATA_GRANDFATHER_ENV];
+  });
+
   it('reads the status-completion-consistency gate flag, defaulting to report mode', () => {
     // Inverse polarity from the other flags in this module: default-OFF (report mode)
     // because a known repo-wide backlog of 213 already-mislabeled folders would otherwise
@@ -341,6 +352,18 @@ describe('grandfather report mode arms', () => {
     process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV] = 'false';
     expect(isStatusCompletionConsistencyGateEnabled()).toBe(false);
 
+    delete process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV];
+  });
+
+  // Confirmed-bug regression: isStatusCompletionConsistencyGateEnabled() used to
+  // recognize only rawValue === 'true' || rawValue === '1', so an operator setting
+  // SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE=on got no error and the gate silently
+  // stayed off (report mode) instead of enforcing. It now delegates to parseFlagTristate().
+  it('enables the consistency gate for every recognized opt-in value, including the previously-silent "on"', () => {
+    for (const value of ['true', '1', 'yes', 'on', 'enabled']) {
+      process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV] = value;
+      expect(isStatusCompletionConsistencyGateEnabled(), `value=${value}`).toBe(true);
+    }
     delete process.env[STATUS_COMPLETION_CONSISTENCY_GATE_ENV];
   });
 });

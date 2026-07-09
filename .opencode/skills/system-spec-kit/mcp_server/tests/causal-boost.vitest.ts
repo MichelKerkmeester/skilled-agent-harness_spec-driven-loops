@@ -149,6 +149,26 @@ describe('T038-T044 causal boost', () => {
     const optedInBoosts = causalBoost.getNeighborBoosts([1]);
     expect(optedInBoosts.has(2)).toBe(true);
   });
+
+  // includeEntityLinkerCausalEdges() delegates to the shared parseFlagTristate(name, false)
+  // helper instead of a raw === 'true' || raw === '1' check, so the full opt-in
+  // vocabulary now opts in, not just 'true'/'1'.
+  it('opts in to entity-linker causal edges for every recognized opt-in value post-migration', () => {
+    db?.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, strength, created_by)
+      VALUES ('1', '2', 'supports', 0.05, 'entity_linker')
+    `).run();
+
+    for (const value of ['true', '1', 'yes', 'on', 'enabled']) {
+      process.env.SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES = value;
+      expect(causalBoost.getNeighborBoosts([1]).has(2), `value=${value}`).toBe(true);
+    }
+
+    for (const value of ['false', '0', 'no', 'off', 'disabled']) {
+      process.env.SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES = value;
+      expect(causalBoost.getNeighborBoosts([1]).has(2), `value=${value}`).toBe(false);
+    }
+  });
 });
 
 describe('T008 — Seed cap and multiplier precedence', () => {

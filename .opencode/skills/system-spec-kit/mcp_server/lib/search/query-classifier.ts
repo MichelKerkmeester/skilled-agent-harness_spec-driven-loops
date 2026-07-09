@@ -38,6 +38,12 @@ const COMPLEX_TERM_THRESHOLD = 8;
  */
 const LOW_SIGNAL_STOPWORD_RATIO = 0.5;
 
+/**
+ * Stop-word ceiling for short queries that still carry enough content words to
+ * deserve recall-preserving graph corroboration.
+ */
+const CONTENT_RICH_SHORT_STOPWORD_RATIO = 1 / 3;
+
 /** Common English stop words for semantic complexity heuristic */
 const STOP_WORDS: ReadonlySet<string> = new Set([
   'the', 'a', 'an', 'is', 'are', 'was', 'were',
@@ -165,6 +171,17 @@ function isLowSignalShortQuery(
     && stopWordRatio >= LOW_SIGNAL_STOPWORD_RATIO;
 }
 
+function isContentRichShortQuery(
+  termCount: number,
+  hasTrigger: boolean,
+  stopWordRatio: number,
+): boolean {
+  return termCount >= 2
+    && termCount <= SIMPLE_TERM_THRESHOLD
+    && !hasTrigger
+    && stopWordRatio <= CONTENT_RICH_SHORT_STOPWORD_RATIO;
+}
+
 /**
  * Classify a query's complexity into one of three tiers: simple, moderate, or complex.
  *
@@ -281,10 +298,12 @@ export {
   SIMPLE_TERM_THRESHOLD,
   COMPLEX_TERM_THRESHOLD,
   STOP_WORDS,
+  CONTENT_RICH_SHORT_STOPWORD_RATIO,
 
   // Functions
   classifyQueryComplexity,
   isComplexityRouterEnabled,
+  isContentRichShortQuery,
 
   // Internal helpers (exported for testing)
   extractTerms,

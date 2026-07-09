@@ -9,6 +9,7 @@ import type Database from 'better-sqlite3';
 import {
   classifyQueryComplexity,
   isComplexityRouterEnabled,
+  isContentRichShortQuery,
   type QueryComplexityTier,
   type ClassificationResult,
 } from './query-classifier.js';
@@ -29,6 +30,7 @@ import {
   type RetrievalClass,
 } from './retrieval-class-classifier.js';
 import {
+  isContentRichShortQueryGraphPreservationEnabled,
   isRetrievalClassRoutingEnabled,
 } from './search-flags.js';
 
@@ -100,6 +102,13 @@ const MAX_ROUTING_REASON_LENGTH = 120;
 
 let _hasWarnedInvalidGraphPreservationFlag = false;
 const _safeGetDbWarnedClasses = new Set<string>();
+
+// Monitor-only counter: total content-rich-short-query graph/degree
+// preservation events this process has observed. Additive-only — never read
+// by routing logic, never gates or delays channel selection. Exists so a
+// future session investigating concurrent DB load on the graph/degree
+// channels has a real number instead of re-deriving the fixture evidence.
+let _contentRichShortQueryGraphPreservationCount = 0;
 
 /* ───────────────────────────────────────────────────────────────
    2. DEFAULT ROUTING CONFIG
@@ -219,6 +228,18 @@ interface GraphPreservationDecision {
   preserved: boolean;
   reasons: string[];
   includeDegree: boolean;
+}
+
+function shouldPreserveGraphForContentRichShortQuery(
+  classification: ClassificationResult,
+): boolean {
+  return isContentRichShortQueryGraphPreservationEnabled()
+    && classification.tier === 'simple'
+    && isContentRichShortQuery(
+      classification.features.termCount,
+      classification.features.hasTriggerMatch,
+      classification.features.stopWordRatio,
+    );
 }
 
 /**
@@ -346,6 +367,21 @@ function clampRoutingReasons(reasons: readonly string[]): string[] {
   return reasons.map(clampRoutingReason);
 }
 
+/**
+ * Monitor-only signal: how many times this process has preserved the
+ * graph/degree channels specifically for a content-rich short query since
+ * start (or since the last `resetContentRichShortQueryGraphPreservationCount()`
+ * call). Additive observability only — never consumed by routing logic.
+ */
+function getContentRichShortQueryGraphPreservationCount(): number {
+  return _contentRichShortQueryGraphPreservationCount;
+}
+
+/** Test-only reset for the F15 observability counter. */
+function resetContentRichShortQueryGraphPreservationCount(): void {
+  _contentRichShortQueryGraphPreservationCount = 0;
+}
+
 /* ───────────────────────────────────────────────────────────────
    4. CONVENIENCE: CLASSIFY + ROUTE
 ----------------------------------------------------------------*/
@@ -443,6 +479,13 @@ function routeQuery(
         appendRoutingReason(routingReasons, reason);
       }
     }
+
+    if (shouldPreserveGraphForContentRichShortQuery(classification)) {
+      adjustedChannels = enforceMinimumChannels([...adjustedChannels, 'graph', 'degree']);
+      appendRoutingReason(routingReasons, 'graph-preserved-by-content-rich-short-query');
+      appendRoutingReason(routingReasons, 'degree-preserved-by-content-rich-short-query');
+      _contentRichShortQueryGraphPreservationCount += 1;
+    }
   }
 
   const routingPlan = buildRoutingQueryPlan({
@@ -503,6 +546,9 @@ export {
   buildQualityGapFallbackPlan,
   shouldPreserveGraph,
   isGraphChannelPreservationEnabled,
+  shouldPreserveGraphForContentRichShortQuery,
+  getContentRichShortQueryGraphPreservationCount,
+  resetContentRichShortQueryGraphPreservationCount,
 
   // Internal helpers (exported for testing)
   enforceMinimumChannels,

@@ -60,6 +60,11 @@
             "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh'",
             "timeout": 3
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/check-git-hooks.sh'",
+            "timeout": 3
           }
         ]
       }

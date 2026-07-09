@@ -6,6 +6,10 @@
 # Sourced by validate.sh and compatible with strict mode.
 set -euo pipefail
 
+_scaffold_rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=../lib/status-classifier.sh
+source "${_scaffold_rule_dir}/../lib/status-classifier.sh"
+
 # Rule: SCAFFOLD_NEVER_TOUCHED
 # Severity: error
 # Description: Detects scaffold-origin docs whose folder claims Complete status.
@@ -36,21 +40,9 @@ run_check() {
 # 2. VALIDATION LOGIC
 # -----------------------------------------------------------------------------
 
-    if [[ -f "$spec_file" ]]; then
-        status_value=$(awk -F'|' '
-            function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
-            function clean(s) { gsub(/\*\*/, "", s); gsub(/`/, "", s); return trim(s) }
-            /^[ \t]*\|/ && NF >= 3 {
-                field = tolower(clean($2))
-                if (field == "status") {
-                    print clean($3)
-                    exit
-                }
-            }
-        ' "$spec_file" 2>/dev/null || true)
-    fi
+    status_value="$(extract_status_table_value "$spec_file")"
 
-    if [[ "$status_value" == Complete* ]]; then
+    if [[ "$(classify_status "$status_value")" == "complete" ]]; then
         spec_complete=true
     fi
 

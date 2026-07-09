@@ -14,8 +14,12 @@ import {
 } from '../lib/config/spec-doc-paths.js';
 import { IDENTITY_MERGE_SAFETY_ENV } from '../lib/config/capability-flags.js';
 import {
+  collectChildrenPruneCandidates,
   deriveGraphMetadata,
+  loadGraphMetadata,
   mergeGraphMetadata,
+  refreshGraphMetadataForSpecFolder,
+  writeGraphMetadataFile,
 } from '../lib/graph/graph-metadata-parser.js';
 import { generatePerFolderDescription } from '../lib/search/folder-discovery.js';
 import type { GraphMetadata } from '../lib/graph/graph-metadata-schema.js';
@@ -131,6 +135,17 @@ describe('shared identity across both generators', () => {
     expect(description?.specFolder).toBe('system-spec-kit/028-feature/005-quality/033-identity');
   });
 
+  it('derives description parentChain from the resolved specFolder, not the caller base', () => {
+    const track = makeTrackRoot();
+    const folder = path.join(track, '028-feature', '005-quality', '033-identity');
+    writeSpecFolder(folder);
+
+    const description = generatePerFolderDescription(folder, track);
+
+    expect(description?.specFolder).toBe('system-spec-kit/028-feature/005-quality/033-identity');
+    expect(description?.parentChain).toEqual(['system-spec-kit', '028-feature', '005-quality']);
+  });
+
   it('keeps the legacy caller-base description specFolder when the flag is explicitly off', () => {
     process.env[FLAG] = 'false';
     const track = makeTrackRoot();
@@ -223,5 +238,51 @@ describe('mergeGraphMetadata lineage safety', () => {
     expect(merged.parent_id).toBeNull();
     expect(merged.children_ids).toEqual(['p/033-identity']);
     expect(merged.parent_id_review_required).toBeUndefined();
+  });
+
+  it('threads prune through refreshGraphMetadataForSpecFolder only when explicitly requested', () => {
+    process.env[FLAG] = 'true';
+    const track = makeTrackRoot();
+    const parent = path.join(track, '028-feature');
+    const child = path.join(parent, '001-child');
+    writeSpecFolder(parent);
+    writeSpecFolder(child);
+
+    const original = refreshGraphMetadataForSpecFolder(parent, { now: '2026-06-22T00:00:00Z' });
+    expect(original.metadata.children_ids).toEqual(['system-spec-kit/028-feature/001-child']);
+
+    fs.rmSync(child, { recursive: true, force: true });
+    const preserved = refreshGraphMetadataForSpecFolder(parent, { now: '2026-06-22T00:00:01Z' });
+    expect(preserved.metadata.children_ids).toEqual(['system-spec-kit/028-feature/001-child']);
+
+    const pruned = refreshGraphMetadataForSpecFolder(parent, { now: '2026-06-22T00:00:02Z', prune: true });
+    expect(pruned.metadata.children_ids).toEqual([]);
+  });
+
+  it('does not prune a child id whose target still exists on disk', () => {
+    process.env[FLAG] = 'true';
+    const track = makeTrackRoot();
+    const parent = path.join(track, '028-feature');
+    const external = path.join(track, '999-external');
+    writeSpecFolder(parent);
+    writeSpecFolder(external);
+
+    const seeded = refreshGraphMetadataForSpecFolder(parent, { now: '2026-06-22T00:00:00Z' });
+    writeGraphMetadataFile(seeded.filePath, {
+      ...seeded.metadata,
+      children_ids: ['system-spec-kit/999-external'],
+    });
+    const existing = loadGraphMetadata(seeded.filePath);
+    const refreshed = deriveGraphMetadata(parent, existing, { now: '2026-06-22T00:00:01Z' });
+    const candidates = collectChildrenPruneCandidates(parent, existing, refreshed);
+
+    expect(candidates).toEqual([
+      expect.objectContaining({
+        childId: 'system-spec-kit/999-external',
+        existsOnDisk: true,
+      }),
+    ]);
+    const pruned = refreshGraphMetadataForSpecFolder(parent, { now: '2026-06-22T00:00:02Z', prune: true });
+    expect(pruned.metadata.children_ids).toEqual(['system-spec-kit/999-external']);
   });
 });

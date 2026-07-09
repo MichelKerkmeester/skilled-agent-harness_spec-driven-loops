@@ -4,6 +4,7 @@
 // Stage interfaces with the Stage 4 immutability invariant
 import type { RetrievalTrace } from '@spec-kit/shared/contracts/retrieval-trace';
 import type { QueryPlan } from '../../query/query-plan.js';
+import type { ChannelException } from '../channel-exceptions.js';
 
 // Feature catalog: 4-stage pipeline architecture
 
@@ -350,6 +351,7 @@ export interface Stage2Output {
       totalGraphInjected: number;
       rolloutState?: 'off' | 'trace_only' | 'bounded_runtime';
     };
+    channelExceptions?: ChannelException[];
     qualityFiltered: number;
     durationMs: number;
   };

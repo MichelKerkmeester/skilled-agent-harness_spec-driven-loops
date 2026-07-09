@@ -35,6 +35,20 @@ function firstSentence(text: string): string {
   return text.split(/\.\s/)[0].trim().replace(/\.$/, '');
 }
 
+function sentenceBoundaryWithinLimit(text: string, limit: number): number {
+  let bestBoundary = -1;
+  const sentenceEndRe = /[.!?](?=\s|$)/g;
+  let match: RegExpExecArray | null;
+  while ((match = sentenceEndRe.exec(text)) !== null) {
+    const boundary = match.index + 1;
+    if (boundary > limit) {
+      break;
+    }
+    bestBoundary = boundary;
+  }
+  return bestBoundary;
+}
+
 function extractFrontmatterDescription(raw: string): string | null {
   const match = raw.match(/^(?:﻿)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\r?\n([\s\S]*?)\r?\n---/);
   if (!match) {
@@ -113,6 +127,11 @@ function extractFirstBodyLine(lines: string[]): string | null {
 export function truncateSynopsisAtWordBoundary(synopsis: string, limit: number): string {
   if (synopsis.length <= limit) {
     return synopsis;
+  }
+
+  const sentenceBoundary = sentenceBoundaryWithinLimit(synopsis, limit);
+  if (sentenceBoundary > 0) {
+    return synopsis.slice(0, sentenceBoundary).trim();
   }
 
   const truncated = synopsis.slice(0, limit);

@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import type Database from 'better-sqlite3';
+import { parseFlagTristate } from '../search/search-flags.js';
 
 type TraversalNode = number | string;
 
@@ -110,8 +111,7 @@ function edgeStrength(value: number | null): number {
 }
 
 function includeEntityLinkerEdges(): boolean {
-  const normalized = process.env.SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES?.trim().toLowerCase();
-  return normalized === 'true' || normalized === '1';
+  return parseFlagTristate('SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES', false);
 }
 
 function causalEdgeFilter(): string {

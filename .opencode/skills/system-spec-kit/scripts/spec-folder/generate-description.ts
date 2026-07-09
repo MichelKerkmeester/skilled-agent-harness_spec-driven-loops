@@ -21,11 +21,24 @@ import {
   getRepairMergeSafe,
   extractKeywords,
   slugifyFolderName,
+  resolveSpecFolderIdentity,
+  SpecFolderIdentityError,
 } from '@spec-kit/mcp-server/api';
 import type { LoadResult, PerFolderDescription } from '@spec-kit/mcp-server/api';
 
 export { getRepairMergeSafe, loadExistingDescription };
 export type { LoadResult };
+
+function resolveSpecFolderForDescription(folderPath: string, legacyValue: string): string {
+  try {
+    return resolveSpecFolderIdentity(folderPath).specFolder;
+  } catch (error) {
+    if (!(error instanceof SpecFolderIdentityError)) {
+      throw error;
+    }
+  }
+  return legacyValue;
+}
 
 function main(): void {
   const args = process.argv.slice(2);
@@ -75,13 +88,13 @@ function main(): void {
     const folderSlug = slugifyFolderName(folderName);
 
     const relativePath = path.relative(basePath, folderPath).replace(/\\/g, '/');
-    const segments = relativePath.split('/').filter(Boolean);
-    const parentChain = segments.length > 1 ? segments.slice(0, -1) : [];
     const normalizedRelativeFolder =
       relativePath && !relativePath.startsWith('..') ? relativePath : folderName;
+    const specFolder = resolveSpecFolderForDescription(folderPath, normalizedRelativeFolder);
+    const parentChain = specFolder.split('/').filter(Boolean).slice(0, -1);
 
     desc = {
-      specFolder: normalizedRelativeFolder,
+      specFolder,
       description: explicitDescription.slice(0, 150),
       keywords: extractKeywords(explicitDescription),
       lastUpdated: new Date().toISOString(),

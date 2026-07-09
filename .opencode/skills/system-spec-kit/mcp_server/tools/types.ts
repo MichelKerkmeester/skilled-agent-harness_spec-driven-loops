@@ -34,6 +34,7 @@ export interface ContextArgs {
   enableDedup?: boolean;
   includeContent?: boolean;
   includeTrace?: boolean;
+  tokenBudget?: number;
   tokenUsage?: number;
   anchors?: string[];
   profile?: 'quick' | 'research' | 'resume' | 'debug';

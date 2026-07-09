@@ -8,6 +8,9 @@
 import * as toolCache from '../lib/cache/tool-cache.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import * as accessTracker from '../lib/storage/access-tracker.js';
+import {
+  appendMemoryDriftSuspects,
+} from '../lib/storage/memory-drift-healing.js';
 import * as sessionManager from '../lib/session/session-manager.js';
 import * as intentClassifier from '../lib/search/intent-classifier.js';
 import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled, isResultExplainEnabled } from '../lib/search/search-flags.js';
@@ -109,6 +112,11 @@ import {
   resetLastLexicalCapabilitySnapshot,
 } from '../lib/search/sqlite-fts.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
+import {
+  buildPathExistenceCache,
+  cachedPathExists,
+} from '../lib/storage/incremental-index.js';
+import { isQueryTimeExistenceFilterEnabled } from '../lib/config/capability-flags.js';
 import type { LexicalCapabilitySnapshot } from '../lib/search/sqlite-fts.js';
 import { buildVectorDegradationSignal } from '../lib/observability/retrieval-observability.js';
 import { evaluatePublicationGate } from '../lib/context/publication-gate.js';
@@ -202,6 +210,18 @@ interface CanonicalSourceStats {
   dropped: number;
   bySourceKind: Record<CanonicalSourceKind, number>;
 }
+
+interface QueryTimeExistenceFilterStats {
+  enabled: boolean;
+  checked: number;
+  excluded: number;
+  suspectIds: number[];
+}
+
+// Fast-fail bound for the best-effort drift-suspect write below: well under the
+// connection's normal 10000ms busy_timeout, so a lock collision degrades the
+// search response by tens of milliseconds instead of blocking it for seconds.
+const DRIFT_SUSPECT_WRITE_BUSY_TIMEOUT_MS = 25;
 
 const CONTINUITY_ANCHOR_ID = '_memory.continuity';
 const CANONICAL_READER_CACHE_VERSION = 'gate-d-reader-ready-v1';
@@ -344,6 +364,77 @@ function filterCanonicalSourceRows<T extends SessionAwareResult>(
     });
     stats.retained += 1;
     stats.bySourceKind[sourceKind] += 1;
+  }
+
+  return { results: filtered, stats };
+}
+
+function applyQueryTimeExistenceFilter<T extends SessionAwareResult>(
+  results: T[],
+): { results: T[]; stats: QueryTimeExistenceFilterStats } {
+  const stats: QueryTimeExistenceFilterStats = {
+    enabled: true,
+    checked: 0,
+    excluded: 0,
+    suspectIds: [],
+  };
+
+  const rowsWithPaths = results.flatMap((result) => {
+    const filePath = resolveFilePath(result);
+    return filePath ? [{ result, filePath }] : [];
+  });
+  if (rowsWithPaths.length === 0) {
+    return { results, stats };
+  }
+
+  const existenceCache = buildPathExistenceCache(rowsWithPaths.map((row) => row.filePath));
+  const pathByResult = new Map<T, string>();
+  for (const row of rowsWithPaths) {
+    pathByResult.set(row.result, row.filePath);
+  }
+
+  const filtered: T[] = [];
+  for (const result of results) {
+    const filePath = pathByResult.get(result);
+    if (!filePath) {
+      filtered.push(result);
+      continue;
+    }
+
+    stats.checked += 1;
+    if (cachedPathExists(existenceCache, filePath)) {
+      filtered.push(result);
+      continue;
+    }
+
+    stats.excluded += 1;
+    const id = typeof result.id === 'number'
+      ? result.id
+      : typeof result.id === 'string'
+        ? Number.parseInt(result.id, 10)
+        : NaN;
+    if (Number.isInteger(id) && id > 0) {
+      stats.suspectIds.push(id);
+    }
+  }
+
+  if (stats.suspectIds.length > 0) {
+    const db = requireDb();
+    // Best-effort write: temporarily shorten the connection's busy_timeout so a
+    // held write lock fails fast instead of blocking the search response for up
+    // to the connection's full 10s timeout. Restored unconditionally below.
+    let originalBusyTimeoutMs: number | null = null;
+    try {
+      originalBusyTimeoutMs = db.pragma('busy_timeout', { simple: true }) as number;
+      db.pragma(`busy_timeout = ${DRIFT_SUSPECT_WRITE_BUSY_TIMEOUT_MS}`);
+      appendMemoryDriftSuspects(db, stats.suspectIds);
+    } catch (error: unknown) {
+      console.warn(`[memory-search] Could not queue drift suspect rows: ${toErrorMessage(error)}`);
+    } finally {
+      if (originalBusyTimeoutMs !== null) {
+        db.pragma(`busy_timeout = ${originalBusyTimeoutMs}`);
+      }
+    }
   }
 
   return { results: filtered, stats };
@@ -1307,6 +1398,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
   // Snapshot live flags inside the request so same-process flips cannot reuse stale cache entries.
   const graphUnifiedEnabled = isGraphUnifiedEnabled();
+  const queryTimeExistenceFilterEnabled = isQueryTimeExistenceFilterEnabled();
 
   // Build cache key args
   const cacheArgs = buildCacheArgs({
@@ -1343,7 +1435,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     retrievalLevel,
     graphUnifiedEnabled,
     trackAccess,
-    cacheVersion: CANONICAL_READER_CACHE_VERSION,
+    cacheVersion: queryTimeExistenceFilterEnabled
+      ? `${CANONICAL_READER_CACHE_VERSION}:query-existence-filter`
+      : CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
     folderBoost,
   });
@@ -1500,6 +1594,13 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
     const canonicalFilter = filterCanonicalSourceRows(resultsForFormatting);
     resultsForFormatting = canonicalFilter.results;
+    const queryTimeExistenceFilter = queryTimeExistenceFilterEnabled
+      ? applyQueryTimeExistenceFilter(resultsForFormatting)
+      : {
+        results: resultsForFormatting,
+        stats: { enabled: false, checked: 0, excluded: 0, suspectIds: [] },
+      };
+    resultsForFormatting = queryTimeExistenceFilter.results;
     const avgScore = computeAverageScore(resultsForFormatting as Array<Record<string, unknown>>);
     const requestQualityLabel = pipelineResult.metadata.stage4.evidenceGapDetected ? 'gap' : 'weak';
     const qualityGapRouting = routeQuery(effectiveQuery, undefined, {
@@ -1617,6 +1718,11 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       retainedResults: canonicalFilter.stats.retained,
       droppedNonCanonicalResults: canonicalFilter.stats.dropped,
       countsBySourceKind: canonicalFilter.stats.bySourceKind,
+    };
+    extraData.queryTimeExistenceFilter = {
+      enabled: queryTimeExistenceFilter.stats.enabled,
+      checked: queryTimeExistenceFilter.stats.checked,
+      excluded: queryTimeExistenceFilter.stats.excluded,
     };
 
     if (includeTrace && pipelineResult.trace) {
@@ -2014,6 +2120,7 @@ export const __testables = {
   resolveSearchScore,
   computeAverageScore,
   filterCanonicalSourceRows,
+  applyQueryTimeExistenceFilter,
   stampFinalRankScores,
   applyFolderBoostRanking,
   shouldRunCommunityFallback,

@@ -27,6 +27,7 @@ import {
   isDegreeBoostEnabled,
   isConfidenceCalibrationEnabled,
   isRelevanceAwareGapEnabled,
+  isContentRichShortQueryGraphPreservationEnabled,
 } from '../lib/search/search-flags';
 
 /**
@@ -56,6 +57,9 @@ const ALL_SPECKIT_FLAGS = [
   'SPECKIT_DEGREE_BOOST',
   'SPECKIT_CONFIDENCE_CALIBRATION',
   'SPECKIT_RELEVANCE_AWARE_GAP',
+  'SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION',
+  'SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE',
+  'SPECKIT_STATUS_CROSS_DOC_ENFORCE',
 ] as const;
 
 /** Flag checker functions mapped to their flag names for batch verification */
@@ -80,6 +84,18 @@ const FLAG_CHECKERS: Array<{ flag: string; checker: () => boolean }> = [
   { flag: 'SPECKIT_DEGREE_BOOST', checker: isDegreeBoostEnabled },
   { flag: 'SPECKIT_CONFIDENCE_CALIBRATION', checker: isConfidenceCalibrationEnabled },
   { flag: 'SPECKIT_RELEVANCE_AWARE_GAP', checker: isRelevanceAwareGapEnabled },
+  {
+    flag: 'SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION',
+    checker: isContentRichShortQueryGraphPreservationEnabled,
+  },
+  {
+    flag: 'SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE',
+    checker: () => process.env.SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE === 'true',
+  },
+  {
+    flag: 'SPECKIT_STATUS_CROSS_DOC_ENFORCE',
+    checker: () => process.env.SPECKIT_STATUS_CROSS_DOC_ENFORCE === 'true',
+  },
 ];
 
 const ORIGINAL_ENV: Partial<Record<string, string | undefined>> = {};
@@ -230,6 +246,7 @@ const ACKNOWLEDGED_UNCEILINGED_FLAGS: string[] = [
   'SPECKIT_AUTO_RESUME',
   'SPECKIT_BATCH_LEARNED_FEEDBACK',
   'SPECKIT_CALIBRATED_OVERLAP_BONUS',
+  'SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION',
   'SPECKIT_CAUSAL_BOOST',
   'SPECKIT_CHANNEL_MIN_REP',
   'SPECKIT_COMMUNITY_SEARCH_FALLBACK',
