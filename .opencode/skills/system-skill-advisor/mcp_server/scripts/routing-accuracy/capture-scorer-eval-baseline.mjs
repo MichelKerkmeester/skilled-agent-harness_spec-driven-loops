@@ -125,7 +125,7 @@ const headSha = (() => {
 
 const baseline = {
   schemaVersion: 1,
-  capturedAt: '2026-07-07',
+  capturedAt: new Date().toISOString().slice(0, 10),
   capturedAtSha: headSha,
   corpusSha256: sha256File(CORPUS_JSONL),
   holdoutSha256: sha256File(HOLDOUT_JSONL),

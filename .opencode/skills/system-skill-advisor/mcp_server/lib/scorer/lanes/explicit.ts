@@ -98,14 +98,14 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'negative-trigger': [['sk-code', 0.8]],
 };
 
-const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
+export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/create:agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   '/create:manual-testing-playbook': [['create:manual-testing-playbook', 1.8], ['command-create-manual-testing-playbook', 1.2], ['sk-doc', 0.2]],
   '/memory:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
   '/deep:research': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
   '/deep:review': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
   '/deep:model-benchmark': [['deep-model-benchmark', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:start-agent-improvement-loop': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:agent-improvement': [['system-deep-loop', 1.6], ['command-spec-kit', 0.45]],
   '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
   'auto review release readiness': [['system-deep-loop', 1]],
   // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,

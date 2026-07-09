@@ -271,7 +271,7 @@ SKILL_ALIAS_GROUPS = {
     },
     "deep-improvement": {
         "command-spec-kit-deep-agent-improvement",
-        "/deep:start-agent-improvement-loop",
+        "/deep:agent-improvement",
         "deep-agent-improvement",
         "sk-deep-agent-improvement",
     },
@@ -288,7 +288,7 @@ SKILL_ALIAS_TO_CANONICAL = {
     for alias in {canonical, *aliases}
 }
 # BEGIN GENERATED DEEP ROUTING PROJECTION HASH
-DEEP_ROUTING_PROJECTION_HASH = "sha256:26638486adc5b54900221c2b16014d6aa4367311e7b422c905654493031500e6"
+DEEP_ROUTING_PROJECTION_HASH = "sha256:3247c68909c8f2510ca34af7ce0e02d2a91654f175b583469b225dca6cd6a6a3"
 # END GENERATED DEEP ROUTING PROJECTION HASH
 STRICT_TOPOLOGY_HEADERS = (
     ("DEPENDENCY CYCLE ERRORS", "dependency cycles"),
@@ -1878,7 +1878,7 @@ PHRASE_INTENT_BOOSTERS = {
     "evaluate agent quality": [("deep-improvement", 2.8)],
     "score agent dimensions": [("deep-improvement", 2.8)],
     "agent integration surface": [("deep-improvement", 2.6)],
-    "/deep:start-agent-improvement-loop": [("deep-improvement", 3.2)],
+    "/deep:agent-improvement": [("deep-improvement", 3.2)],
     "/prompt": [("sk-prompt", 3.2)],
     "improve agent": [("deep-improvement", 2.8)],
     "score agent": [("deep-improvement", 2.6)],
@@ -2072,8 +2072,8 @@ COMMAND_BRIDGES = {
         "owning_skill": "system-spec-kit",
     },
     "command-deep-agent-improvement": {
-        "description": "Evaluate and improve any agent across 5 dimensions using /deep:start-agent-improvement-loop.",
-        "slash_markers": ["/deep:start-agent-improvement-loop", "deep:start-agent-improvement-loop"],
+        "description": "Evaluate and improve any agent across 5 dimensions using /deep:agent-improvement.",
+        "slash_markers": ["/deep:agent-improvement", "deep:agent-improvement"],
     },
     "command-prompt-improver": {
         "description": "Create or improve AI prompts using /prompt.",
@@ -2310,7 +2310,7 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
         source="bridge",
         path=None,
         extra_variants={
-            "/deep:start-agent-improvement-loop",
+            "/deep:agent-improvement",
             "deep-agent-improvement",
             "sk-deep-agent-improvement",
             "sk-agent-improvement-loop",

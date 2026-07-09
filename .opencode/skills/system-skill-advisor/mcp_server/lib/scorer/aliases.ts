@@ -20,7 +20,7 @@ export const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Ob
 
 // BEGIN GENERATED DEEP ROUTING PROJECTION
 /** Hash of the generated deep-loop routing projection embedded below. */
-export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:26638486adc5b54900221c2b16014d6aa4367311e7b422c905654493031500e6';
+export const DEEP_ROUTING_PROJECTION_HASH = 'sha256:3247c68909c8f2510ca34af7ce0e02d2a91654f175b583469b225dca6cd6a6a3';
 
 const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'deep-ai-council': [
@@ -34,7 +34,7 @@ const GENERATED_DEEP_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> =
   ],
   'deep-improvement': [
     'command-spec-kit-deep-agent-improvement',
-    '/deep:start-agent-improvement-loop',
+    '/deep:agent-improvement',
     'deep-agent-improvement',
     'sk-deep-agent-improvement',
   ],

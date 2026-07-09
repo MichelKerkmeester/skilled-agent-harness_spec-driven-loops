@@ -6,19 +6,22 @@
 // real command file under `.opencode/commands/`. A dead id (e.g. a retired
 // `/deep:start-*-loop`) means a user typing the real command routes only by
 // natural-language luck, and a bridge that points at nothing silently rots.
-// This guard covers the two hand-authored bridge surfaces the 023 remediation
-// named — `BASE_ALIAS_GROUPS` (aliases.ts) and the inline `COMMAND_BRIDGES`
-// (projection.ts). The registry-emitted GENERATED_DEEP_ALIAS_GROUPS block is
-// hash-guarded separately by routing-registry-drift-guard.
+// Bridge-resolution checks cover the hand-authored surfaces (BASE_ALIAS_GROUPS
+// in aliases.ts and the inline COMMAND_BRIDGES in projection.ts). The dead-id
+// sweep additionally scans the emitted alias groups, the explicit-lane phrase
+// boosts, and the Python scorer: the projection hash proves those match the
+// registry, but it does NOT reject a dead id the registry itself still carries,
+// so a hash-clean surface can still route a retired command.
 
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
-import { BASE_ALIAS_GROUPS } from '../lib/scorer/aliases.js';
+import { BASE_ALIAS_GROUPS, SKILL_ALIAS_GROUPS } from '../lib/scorer/aliases.js';
+import { PHRASE_BOOSTS } from '../lib/scorer/lanes/explicit.js';
 import { COMMAND_BRIDGES } from '../lib/scorer/projection.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -77,5 +80,28 @@ describe('command-bridge → live-command resolution guard', () => {
   it('carries no retired /deep:start-*-loop dead ids', () => {
     const dead = slashIds.filter(({ id }) => DEAD_ID.test(id));
     expect(dead, `retired dead ids still bridged: ${JSON.stringify(dead)}`).toEqual([]);
+  });
+
+  it('no retired /deep:start-*-loop dead id survives in the emitted alias groups or phrase boosts', () => {
+    const leaked: { id: string; source: string }[] = [];
+    for (const [group, aliases] of Object.entries(SKILL_ALIAS_GROUPS)) {
+      for (const alias of aliases) {
+        if (DEAD_ID.test(alias)) leaked.push({ id: alias, source: `SKILL_ALIAS_GROUPS[${group}]` });
+      }
+    }
+    for (const key of Object.keys(PHRASE_BOOSTS)) {
+      if (DEAD_ID.test(key)) leaked.push({ id: key, source: 'PHRASE_BOOSTS' });
+    }
+    expect(leaked, `retired dead ids in emitted/phrase surfaces: ${JSON.stringify(leaked)}`).toEqual([]);
+  });
+
+  it('no retired /deep:start-*-loop dead id survives in the Python scorer routing surfaces', () => {
+    const py = resolve(repoRoot, '.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py');
+    const deadLines = readFileSync(py, 'utf8')
+      .split('\n')
+      .map((line, index) => ({ line, lineNo: index + 1 }))
+      .filter(({ line }) => /\/deep:start-[a-z-]+-loop/.test(line))
+      .map(({ lineNo }) => lineNo);
+    expect(deadLines, `retired dead ids in skill_advisor.py at lines ${JSON.stringify(deadLines)}`).toEqual([]);
   });
 });

@@ -121,7 +121,7 @@
         "routingClass": "alias-fold",
         "legacyAdvisorId": "deep-improvement",
         "advisorDefaultMode": true,
-        "legacyAliases": ["command-spec-kit-deep-agent-improvement", "/deep:start-agent-improvement-loop", "deep-agent-improvement", "sk-deep-agent-improvement"],
+        "legacyAliases": ["command-spec-kit-deep-agent-improvement", "/deep:agent-improvement", "deep-agent-improvement", "sk-deep-agent-improvement"],
         "packetSkillName": "deep-improvement"
       }
     },
