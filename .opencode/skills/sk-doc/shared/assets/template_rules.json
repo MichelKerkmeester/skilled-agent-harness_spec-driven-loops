@@ -112,6 +112,9 @@
         "purpose",
         "instructions"
       ],
+      "compiledContractMarker": "render-command-contract",
+      "routerSignatureSections": ["router_contract", "owned_assets", "presentation_boundary"],
+      "routerRequiredSections": ["router_contract", "owned_assets", "mode_routing", "execution_targets", "presentation_boundary", "workflow_summary"],
       "recommendedSections": [
         "contract",
         "examples",

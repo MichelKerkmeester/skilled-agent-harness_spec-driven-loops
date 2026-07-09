@@ -414,6 +414,13 @@ def validate_required_sections(content: str, doc_type_rules: Dict[str, Any]) -> 
     required = doc_type_rules.get('requiredSections', [])
     section_aliases = doc_type_rules.get('sectionAliases', {})
 
+    # Compiled-contract commands are thin runtime dispatchers whose section content is
+    # rendered from a compiled source at invocation, not written in the .md file, so
+    # there is no prose section shape to require here.
+    contract_marker = doc_type_rules.get('compiledContractMarker')
+    if contract_marker and contract_marker in content:
+        return errors
+
     # Build reverse alias map
     reverse_aliases = {}
     for alias, canonical in section_aliases.items():
@@ -435,6 +442,15 @@ def validate_required_sections(content: str, doc_type_rules: Dict[str, Any]) -> 
 
             if section_name in section_aliases:
                 found_sections.add(section_aliases[section_name])
+
+    # A router-split command uses the router section shape (Router Contract, Owned
+    # Assets, Mode Routing, Execution Targets, Presentation Boundary, Workflow Summary)
+    # instead of the general purpose/instructions sections. Detect it by its
+    # co-occurring, router-specific section vocabulary — which no simple command
+    # carries — then require the full router shape rather than the general sections.
+    router_signature = doc_type_rules.get('routerSignatureSections', [])
+    if router_signature and all(sig in found_sections for sig in router_signature):
+        required = doc_type_rules.get('routerRequiredSections', required)
 
     for req_section in required:
         found = req_section in found_sections
