@@ -836,7 +836,13 @@ The memory, speckit, create, doctor, and deep command families split each comman
 
 The **memory** and **doctor** families have NO workflow YAML — their routers dispatch directly to tools and scripts.
 
-**Reference shape for new mode-based workflow commands** — `.opencode/commands/speckit/plan.md` (router) + `speckit_plan_presentation.txt` (contract) — router sections in order: **Router Contract**, **Owned Assets**, **Mode Routing**, **Execution Targets**, **Presentation Boundary**, **Workflow Summary**. Existing families adapt this section set to their structure: direct-router families omit Mode Routing / Execution Targets / Workflow Summary, and the memory family uses its own vocabulary (`ROUTING ASSETS`, `EXECUTION ORDER`, per-mode sections, `HARD RULES`, `PRESENTATION BOUNDARY`, `RELATED COMMANDS`). The common-core invariants above always hold. Skeleton: [`command_presentation_template.md`](command_presentation_template.md).
+**Canonical router shape (first-class standard).** Every router uses one canonical, numbered section vocabulary — full integers, in this order: **`## 1. ROUTER CONTRACT`**, **`## 2. OWNED ASSETS`**, **`## 3. MODE ROUTING`**, **`## 4. EXECUTION TARGETS`**, **`## 5. PRESENTATION BOUNDARY`**, **`## 6. WORKFLOW SUMMARY`**. The blocking core is only `Owned Assets` + `Presentation Boundary`; the other four are recommended and surface as non-blocking warnings when absent. Variants differ by hand-off only, not by required sections:
+
+- **Workflow-YAML-backed** (speckit, create, deep-large) route modes into `_auto.yaml` / `_confirm.yaml`.
+- **Direct-dispatch-script** (memory, doctor, skill-benchmark) dispatch straight to tools and scripts and may leave the recommended sections as warnings.
+- **Compiled-stub** (research, review, ai-council) carry a `render-command-contract` marker and are exempt from section requirements.
+
+Do not invent divergent synonyms (`Routing Assets`, `Workflow Routing`, `Execution Order`); the validator alias-normalizes those as a safety net, but the authored end state is the canonical names above. Reference shape: `.opencode/commands/speckit/plan.md` (router) + `speckit_plan_presentation.txt` (contract). Skeletons: [`command_router_template.md`](command_router_template.md), [`command_presentation_template.md`](command_presentation_template.md).
 
 ---
 
