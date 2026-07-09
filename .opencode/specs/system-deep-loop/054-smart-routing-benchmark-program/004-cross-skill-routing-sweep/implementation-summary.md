@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "system-deep-loop/054-smart-routing-benchmark-program/004-cross-skill-routing-sweep"
     last_updated_at: "2026-07-09T09:30:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase 2 fan-out swept; Sonnet 5 APPROVE-WITH-FIXES applied"
-    next_safe_action: "Scratch-index sweep onto skilled/v4 after harness stack lands"
+    recent_action: "Anti-overfit strengthening investigated; router-precision finding documented"
+    next_safe_action: "Defer keyword-narrowing + live-decontaminated harness lane to follow-up"
     blockers: []
     key_files:
       - ".opencode/specs/system-deep-loop/054-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/phase0-triage.md"
@@ -85,7 +85,7 @@ Diagnostic computed via router-replay per scenario (read-only); orphan classific
 ## Known Limitations
 Open items surfaced by the two Sonnet audits and carried forward:
 
-1. **Adversarial/decontaminated siblings not authored.** All 12 new Phase-2 scenarios (and the pre-existing Phase-1 ones) leak intent keywords, so Mode-B measures routing consistency, not unaided judgment. Adding ≥1 paraphrased holdout + 1 negative per intent is the open `checklist.md` work that would upgrade Mode-B to a true anti-overfit test.
+1. **Anti-overfit strengthening investigated — blocked by a harness gap; a real finding surfaced instead.** Attempting the T2/T3 fixtures exposed two things (`assets/deep-research-router-precision-finding.md`): (a) the `--fixtures-dir` path enforces `contamination-lint`, which bans intent keywords from fixture prompts, so a "generic keyword over-fires in an unrelated context" negative cannot be scored (it is rejected as `contaminated-fixture`) — the framework's negatives only cover keyword-*free* unrelated prompts, which a keyword router trivially suppresses; and (b) a real (low-severity) over-activation defect: deep-research's `STATE`/`ITERATION`/`CONVERGENCE` fire on ordinary words (`strategy`, `dashboard`, `registry`, `lineage`, `focus`, `diminishing returns`) so marketing/billing/UI/ad-spend prompts mis-route. A true anti-overfit test needs *live* evaluation of decontaminated prompts (no gated harness path today); the honest Mode-B "consistency-not-judgment" framing stands as the proportionate response. The keyword-narrowing fix is a deferred precision/recall tradeoff (an operator call).
 2. **Harness prerequisite not yet on `skilled/v4.0.0.0`.** The sweep's scoring depends on the `001-live-scoring-fix` engine change (live `resourceRecall` folds observed assets) and the `d5-connectivity` routing-allowlist mechanism; both are committed on `system-speckit/028…` but reach `skilled/v4` only via the in-flight `deep-loop-workflows → system-deep-loop` migration. Until they land, `deep-research/routing-allowlist.json` is inert (harmless) and live scores are not reproducible on this branch. The sweep router-data and docs are valid standalone.
 3. **Scenario-loader scope (pre-existing).** The loader only reads `NNN-*.md` under `10--intra-routing-recall`, so a skill's other playbook categories never enter Type-1 scoring — a benchmark-scope follow-up, not introduced here.
 4. **code-opencode / code-webflow language split deferred** — a genuine both-surface router fix, captured turnkey in `assets/code-opencode-language-split-design.md`; a residual `IMPLEMENTATION` keyword collision on "implement/feature" is not split-fixable and is documented there.

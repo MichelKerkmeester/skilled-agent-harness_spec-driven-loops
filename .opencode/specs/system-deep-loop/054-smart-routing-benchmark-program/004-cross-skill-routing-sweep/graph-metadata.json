@@ -42,6 +42,7 @@
       "assets/phase0-triage.md",
       "checklist.md",
       "assets/code-opencode-language-split-design.md",
+      "assets/deep-research-router-precision-finding.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -70,6 +71,12 @@
         "name": "code-opencode-language-split-design.md",
         "kind": "doc",
         "path": "assets/code-opencode-language-split-design.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-router-precision-finding.md",
+        "kind": "doc",
+        "path": "assets/deep-research-router-precision-finding.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 003 audit flagged routing defects beyond code-review: orphan references (deep-improvement 18, deep-research/deep-review 4 each, deep-ai-council 1) and D3 over-routing below 100 across ~6 skills",
     "created_at": "2026-07-09T05:40:53.305Z",
-    "last_save_at": "2026-07-09T07:46:53.087Z",
+    "last_save_at": "2026-07-09T09:47:45.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e90362e52c5ff6b4067ded1f85cfa75a435a901beb752e564a2069728ad4181",
+    "source_fingerprint": "sha256:1a3034d7174ce9027a5f75f62afe60466e5e392355336ae9837ddb64d9224ce4",
     "source_doc_hashes": {
       "spec.md": "5ad882c8a65c280be4eae0a20382bd1d29f9f6bc75e15dd63ee64bfcd637d67e",
       "plan.md": "10819b47de0c3d932f5af7a0f814cdc92fed2c96eb6f2c04cf9e211a6b7c9370",
       "tasks.md": "71dfbbdc62f9783467b21f23de956a898fcb0523150c7e821d0419d37a050873",
       "checklist.md": "b09c5e1dddc6b397427130178d61d2d0c9edc71b5ac52d1d153c97e991c7e455",
-      "implementation-summary.md": "9f2a9c79edf43d07e185f0fa2aa0e77c411effe3fb25851566d17435bddfdea1"
+      "implementation-summary.md": "db1d278c944e08d3ec1f0d55073f7d861355c42df52d4bedc35ee1534c161eb2"
     },
     "last_active_child_id": null,
     "last_active_at": null
