@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/021-graph-preservation-quality-benchmark",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/021-graph-preservation-quality-benchmark",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "graph preservation quality benchmark",
+      "content rich short query graph preservation benchmark",
+      "retrieval class routing benchmark",
+      "F15 counter memory health wiring",
+      "labeled ground truth graph preservation",
+      "graph preservation quality benchmark plan",
+      "content rich short query graph preservation benchmark plan",
+      "retrieval class routing benchmark plan",
+      "F15 counter memory health wiring plan",
+      "graph preservation quality benchmark decisions",
+      "reuse retrieval flag eval harness",
+      "classifier verified fixture"
+    ],
+    "key_topics": [
+      "graph",
+      "preservation",
+      "quality",
+      "benchmark",
+      "content",
+      "rich",
+      "short",
+      "query",
+      "retrieval",
+      "class",
+      "routing",
+      "f15"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/retrieval-class-classifier.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-class-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/retrieval-class-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-retrieval-flag-eval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-health-edge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Preservation Quality Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two routing-affecting flags carry the identical unmet obligation in their own source comments:",
+    "created_at": "2026-07-09T20:28:59.939Z",
+    "last_save_at": "2026-07-09T20:38:26.278Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:81c63f81475a469c3e6f87664f63b1974d8b68dbc5c30b509df1e7a5363328e6",
+    "source_doc_hashes": {
+      "spec.md": "c88d47d22cc50b43e7e6dd0090308c884003d422b3ca90dc29865249e83e5929",
+      "plan.md": "91f9cb79fa57fea336db157fe4e143f6ddbaa654fe4e2b8fd06ef84fb19a868f",
+      "tasks.md": "9fa84885734149393fe69c0ccac40e2354773d98d5c1f50ed5341198ba5caefe",
+      "checklist.md": "0cb4f7529a4ba6f724a36296e35603bad03e34e53954fb7dd9561a7f4173c5c5",
+      "decision-record.md": "be75f14afe7ecef3f6967c891163c14ee21c57f95530118cd8c80485752818c2",
+      "implementation-summary.md": "176b5ae9f22b8ee6cff215ee76480d24cb16008132e011dc6d4db17683d067fb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/010-query-channel-calibration",
+  "description": "`classifyQueryComplexity` routes any query of `<=3` whitespace terms to the `simple` tier (`query-classifier.ts:228`), and",
+  "keywords": [
+    "classifyquerycomplexity",
+    "routes",
+    "query",
+    "whitespace",
+    "terms",
+    "simple",
+    "tier",
+    "query-classifier"
+  ],
+  "lastUpdated": "2026-07-09T12:38:01.375Z",
+  "specId": "010",
+  "folderSlug": "query-channel-calibration",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "09-07-26_13-38__goal-complete-all-6-phases-implemented.md"
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "search index integrity sweep",
+      "stale memory index rows",
+      "orphaned vec_768 entries",
+      "content hash drift",
+      "embedding status reconciliation"
+    ],
+    "key_topics": [
+      "search",
+      "index",
+      "integrity",
+      "sweep",
+      "stale",
+      "memory",
+      "rows",
+      "orphaned",
+      "entries",
+      "content",
+      "hash",
+      "drift"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/active-row-predicate.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/content-id.ts",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite.backup-007-search-index-integrity-sweep-20260709T0954Z",
+      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite.backup-007-search-index-integrity-sweep-pre-mutation-20260709T0959Z",
+      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite.backup-007-search-index-integrity-sweep-final-pre-repair-20260709T1002Z",
+      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+      "mcp_server/lib/storage/checkpoints.ts",
+      "handlers/memory-save.ts",
+      "handlers/save/dedup.ts",
+      "handlers/memory-index.ts",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "active-row-predicate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/active-row-predicate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-queries.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "content-id.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/content-id.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite.backup-007-search-index-integrity-sweep-20260709T0954Z",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite.backup-007-search-index-integrity-sweep-20260709T0954Z",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dedup.ts",
+        "kind": "code",
+        "path": "handlers/save/dedup.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Index Integrity Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mk-spec-memory search backend (`memoryindex` + `vec768`) has drifted from the current on-disk spec corpus, primarily as a side effect of the July 2026 `system-spec-kit` → `system-speckit` re-nest, which moved and renamed thousands of spec folders without reconciling their old index rows",
+    "created_at": "2026-07-09T06:17:43.016Z",
+    "last_save_at": "2026-07-09T10:32:27.244Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:326eb10159d84dacc961b2401b6dc8f06304e3773612824a7b3d25ea2c121b80",
+    "source_doc_hashes": {
+      "spec.md": "ea0167484a36602dbc09935bb7f9d2d3de3f9851677e56f09fedd61f3e1bde71",
+      "plan.md": "45c01ccb133e1d1cee181d77c26fc30437f7b8efb9c5b782c93826eadec5ad08",
+      "tasks.md": "fede88b1ffbc89610c562564b82eea95faed3415ad29a0ed297c0c6f498e05ad",
+      "checklist.md": "5956b7cb03fcb3a46adc3b4cf9298e3054b3684fa8a20bacd8c0210346f71088",
+      "implementation-summary.md": "04ff8e7cf3eac8cdddfcb67cfb9fd76213c728a768b22ac95e242c2edd3c229e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

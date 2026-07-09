@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/022-drift-marker-native-consolidation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/022-drift-marker-native-consolidation",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "drift marker native consolidation",
+      "git hook embedded heredoc duplication",
+      "drift marker lock staleness constant mismatch",
+      "memory-drift-marker.sh untestable heredoc",
+      "drift marker native consolidation plan",
+      "git hook embedded heredoc duplication plan",
+      "drift marker lock staleness constant mismatch plan"
+    ],
+    "key_topics": [
+      "drift",
+      "marker",
+      "native",
+      "consolidation",
+      "git",
+      "hook",
+      "embedded",
+      "heredoc",
+      "duplication",
+      "lock",
+      "staleness",
+      "constant"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/core/config.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      "mcp_server/api/index.ts",
+      "implementation-summary.md",
+      "scripts/evals/check-no-mcp-lib-imports.ts",
+      "scripts/check-api-boundary.sh",
+      "scripts/spec-folder/generate-description.ts",
+      "scripts/graph/backfill-graph-metadata.ts",
+      "api/index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-mutex-liveness.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts",
+      ".opencode/skills/system-spec-kit/scripts/check-api-boundary.sh",
+      "spec.md",
+      "plan.md",
+      ".opencode/scripts/git-hooks/README.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-drift-marker.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-healing.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
+        "source": "derived"
+      },
+      {
+        "name": "transaction-manager.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-mutex.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-mcp-lib-imports.ts",
+        "kind": "code",
+        "path": "scripts/evals/check-no-mcp-lib-imports.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-api-boundary.sh",
+        "kind": "script",
+        "path": "scripts/check-api-boundary.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": "scripts/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": "scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-mutex-liveness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-mutex-liveness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Marker Native Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` (143 lines) detects `.opencode/specs`",
+    "created_at": "2026-07-09T20:28:44.767Z",
+    "last_save_at": "2026-07-09T20:31:32.173Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:53299c84ef0f386539e3dafca13dce6c445d036f4c8aecc98cc2d5cb9368d338",
+    "source_doc_hashes": {
+      "spec.md": "dcc5d89d42e476c5c7915079d4c9ecb24ece713a993b4412dbb3847a85d0f995",
+      "plan.md": "da4401643e83b7fea25901ec0cc9d7ad638b2002b5b2548d7dac7dd173628a39",
+      "tasks.md": "e387477bc8a46fb8d775a62165595cb71904a4f7f6065573f6d01ab19848ecde",
+      "checklist.md": "1e1ab68d78382a4e16aee7e495747e4dbacb29563818f86a7e5181e557f9ad8e",
+      "implementation-summary.md": "df3c8017e9858ef11603d08ae637ad3c3c433d846638a415f6047c53578cfbf0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

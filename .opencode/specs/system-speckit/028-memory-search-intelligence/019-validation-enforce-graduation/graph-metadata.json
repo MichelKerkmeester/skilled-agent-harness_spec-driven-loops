@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validation enforce graduation",
+      "status cross-doc enforce flip",
+      "metadata disk consistency enforce flip",
+      "child drift enforce flip",
+      "advisory to enforce flag graduation",
+      "validation enforce graduation plan",
+      "status cross-doc enforce flip plan",
+      "metadata disk consistency enforce flip plan",
+      "child drift enforce flip plan",
+      "dist presence freshness guard plan",
+      "validation enforce graduation tasks",
+      "status cross-doc enforce flip tasks"
+    ],
+    "key_topics": [
+      "validation",
+      "enforce",
+      "graduation",
+      "status",
+      "cross-doc",
+      "flip",
+      "metadata",
+      "disk",
+      "consistency",
+      "child",
+      "drift",
+      "advisory"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scripts/rules/check-status-cross-doc-consistency.sh",
+      "scripts/rules/check-metadata-disk-consistency.sh",
+      "scripts/rules/check-graph-metadata-child-drift.sh",
+      "scripts/dist/spec/is-phase-parent.js",
+      "scripts/spec/is-phase-parent.ts",
+      "dist/spec/is-phase-parent.js",
+      ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/check-graph-metadata-child-drift.sh"
+    ],
+    "entities": [
+      {
+        "name": "check-status-cross-doc-consistency.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-metadata-disk-consistency.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-child-drift.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.js",
+        "kind": "code",
+        "path": "scripts/dist/spec/is-phase-parent.js",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.ts",
+        "kind": "code",
+        "path": "scripts/spec/is-phase-parent.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validation-gate-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation Advisory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enforce Graduation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Disk",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Drift",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail validation today, because each is gated by its own default-`false` enforce flag:",
+    "created_at": "2026-07-09T20:32:08.332Z",
+    "last_save_at": "2026-07-09T20:45:55.335Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:948a976c0b2577ae9559ef24b3210538276e69948522ad2b4ec7c575658e30fa",
+    "source_doc_hashes": {
+      "spec.md": "6df1b900be01ca6292de4c0445300189afd034a46d7fe48f94d03cc6c7bb21ee",
+      "plan.md": "da02a972e878da7d84e4e6400e55350cbab34757a58ca63302e213339a1e0f8e",
+      "tasks.md": "dc7f9806faf0fd89d23260f3909f0bb8eb47f3595cff963e1dec3d9e5c66f183",
+      "checklist.md": "667594bf76b8215bdae5ce1108dc5ba06477b1facf82bad7a2f4cbe0c55e84b8",
+      "decision-record.md": "b33d33ac0b39eda3af10282c560ab6c99da16e178a226df5c3ea957be9922c46",
+      "implementation-summary.md": "c2ea4ab6b296c9aebc7ad3b104f35528e933dd42ea7048012e2bbbc05f8aea5b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-speckit/028-memory-search-intelligence/021-graph-preservation-quality-benchmark",
+  "description": "Two routing-affecting flags carry the identical unmet obligation in their own source comments:",
+  "keywords": [
+    "two",
+    "routing-affecting",
+    "flags",
+    "carry",
+    "identical",
+    "unmet",
+    "obligation",
+    "own",
+    "source",
+    "comments"
+  ],
+  "lastUpdated": "2026-07-09T20:28:50.761Z",
+  "specId": "021",
+  "folderSlug": "graph-preservation-quality-benchmark",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

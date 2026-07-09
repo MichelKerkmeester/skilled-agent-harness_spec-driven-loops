@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/014-self-healing-internals-hardening",
+  "description": "F8 — synchronous drift-suspect write can block the search hot path up to 10s ([MEDIUM], flag-gated OFF today)",
+  "keywords": [
+    "synchronous",
+    "drift-suspect",
+    "write",
+    "block",
+    "search",
+    "hot",
+    "path",
+    "10s",
+    "medium",
+    "flag-gated",
+    "today"
+  ],
+  "lastUpdated": "2026-07-09T16:09:54.350Z",
+  "specId": "014",
+  "folderSlug": "self-healing-internals-hardening",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

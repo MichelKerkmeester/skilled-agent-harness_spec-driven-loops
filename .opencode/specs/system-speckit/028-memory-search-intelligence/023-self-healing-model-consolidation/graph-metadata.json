@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "self-healing model consolidation",
+      "suspect queue sole confirmation funnel",
+      "runSuspectConfirmation one confirmer",
+      "orphan sweep discoverer not deleter",
+      "drift suspect queue size cap"
+    ],
+    "key_topics": [
+      "self-healing",
+      "model",
+      "consolidation",
+      "suspect",
+      "queue",
+      "sole",
+      "confirmation",
+      "funnel",
+      "runsuspectconfirmation",
+      "one",
+      "confirmer",
+      "orphan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "plan.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-healing.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Healing Model Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Once   Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "listIndexedRecordIdsForDeletedPaths",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "appendMemoryDriftSuspects",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The self-healing system ships in three layers (`011-automatic-drift-self-healing/spec.md` section 3), and its own",
+    "created_at": "2026-07-09T20:28:41.704Z",
+    "last_save_at": "2026-07-09T20:30:47.614Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0cd2287f366b7b3cec695e91b89c16ecae94ecb185b6581dfc6e6bf265510f9f",
+    "source_doc_hashes": {
+      "spec.md": "825e298a3cacb407f426a4d12f36d2d8bcaf6822c5ae28eb3db98482450ba61b",
+      "plan.md": "b6e02a00c2ed46e5284222ff5dc9947e48686163a1c77df33ff59fb77e41836b",
+      "tasks.md": "7305d7fc3ecf822a7bde9bb176ca79904af70d330ab127f4232555c7ed0b9f28",
+      "checklist.md": "ccdc22fef5ff96c92a070f79f7b0c621f30f9e949dbbc8b11b69d6c75c0093d1",
+      "implementation-summary.md": "aedd5b7affba6c2dfe0e717174a14afa28684a120250a8a7d9307ee0f77b32ce"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

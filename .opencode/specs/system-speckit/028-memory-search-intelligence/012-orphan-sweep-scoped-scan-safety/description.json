@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/012-orphan-sweep-scoped-scan-safety",
+  "description": "F2 (headline finding, confirmed by reproduction) -- scoped scan (drift-marker consumption) bypasses every",
+  "keywords": [
+    "headline",
+    "finding",
+    "confirmed",
+    "reproduction",
+    "scoped",
+    "scan",
+    "drift-marker",
+    "consumption",
+    "bypasses",
+    "every"
+  ],
+  "lastUpdated": "2026-07-09T16:57:40.767Z",
+  "specId": "012",
+  "folderSlug": "orphan-sweep-scoped-scan-safety",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

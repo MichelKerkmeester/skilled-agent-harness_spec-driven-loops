@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/014-self-healing-internals-hardening",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/014-self-healing-internals-hardening",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "self-healing internals hardening",
+      "drift-suspect write latency guard",
+      "processing marker sweep",
+      "self-healing internals hardening plan",
+      "drift-suspect write latency guard plan",
+      "processing marker sweep plan"
+    ],
+    "key_topics": [
+      "self-healing",
+      "internals",
+      "hardening",
+      "drift-suspect",
+      "write",
+      "latency",
+      "guard",
+      "processing",
+      "marker",
+      "sweep",
+      "plan",
+      "synchronous"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/startup-checks.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-drift-healing.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-drift-suspect-write-timeout.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/startup-checks.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/startup-checks-processing-marker-sigkill.vitest.ts",
+      "dist/handlers/memory-search.js",
+      "dist/startup-checks.js",
+      "dist/context-server.js",
+      "tests/memory-search-drift-suspect-write-timeout.vitest.ts",
+      "tests/startup-checks-processing-marker-sigkill.vitest.ts",
+      "tests/memory-drift-healing.vitest.ts",
+      "tests/startup-checks.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-healing.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/startup-checks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-healing.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-drift-healing.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search-drift-suspect-write-timeout.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-drift-suspect-write-timeout.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/startup-checks.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks-processing-marker-sigkill.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/startup-checks-processing-marker-sigkill.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.js",
+        "kind": "code",
+        "path": "dist/handlers/memory-search.js",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.js",
+        "kind": "code",
+        "path": "dist/startup-checks.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Healing Internals Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "F8 — synchronous drift-suspect write can block the search hot path up to 10s ([MEDIUM], flag-gated OFF today)",
+    "created_at": "2026-07-09T15:13:35.568Z",
+    "last_save_at": "2026-07-09T17:36:23.313Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bcc1416a196bc9160c57bfbc04fe8b8b3709bd9253688c29a7cdf0e7af02cc12",
+    "source_doc_hashes": {
+      "spec.md": "1b85e84ae36a45f24757c3fdd683237d96d5d5ad184015872cc6f6527260f1fe",
+      "plan.md": "2d3bfe25e36de4a09ff7da6cb2a4423cc5886da9ed2bdabff938c5f3ca307fe3",
+      "tasks.md": "603645cdb76a0cfd9b7fbcac64889c9ce8c37c3cff7221fa4a8cb422c15ffde3",
+      "checklist.md": "3b72f75c5975e41104966c5693f498fa7449c1c967b4b4dc6674783882698207",
+      "implementation-summary.md": "7171b5f829b2611b45b62ae1470872420db8796ed30c555e9e59bb477678969c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

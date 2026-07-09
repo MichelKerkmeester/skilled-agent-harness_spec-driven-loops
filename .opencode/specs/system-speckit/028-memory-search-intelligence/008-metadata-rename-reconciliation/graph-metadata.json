@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/008-metadata-rename-reconciliation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/008-metadata-rename-reconciliation",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "metadata rename reconciliation",
+      "specFolder parentChain drift",
+      "phantom children_ids prune",
+      "extractKeywords numeric junk",
+      "migrate-generated-json apply run",
+      "metadata rename reconciliation plan",
+      "parentChain resolver routing",
+      "prune wiring migrate-generated-json",
+      "extractKeywords quality fix plan"
+    ],
+    "key_topics": [
+      "metadata",
+      "rename",
+      "reconciliation",
+      "specfolder",
+      "parentchain",
+      "drift",
+      "phantom",
+      "prune",
+      "extractkeywords",
+      "numeric",
+      "junk",
+      "migrate-generated-json"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/description/packet-synopsis.ts",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/migrate-generated-json.vitest.ts",
+      ".opencode/specs/descriptions.json",
+      ".opencode/specs/graph-metadata.json",
+      ".opencode/specs/z_future/code-graph-and-cocoindex/backup/mcp-coco-index/graph-metadata.json",
+      ".opencode/specs/z_future/code-graph-and-cocoindex/backup/system-rerank-sidecar/graph-metadata.json",
+      "scripts/tests/test-embeddings-factory.js",
+      "scripts/package.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
+      ".opencode/skills/system-spec-kit/scripts/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts",
+      ".opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh",
+      "scripts/graph/migrate-generated-json.ts",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-generated-json.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
+        "source": "derived"
+      },
+      {
+        "name": "packet-synopsis.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/packet-synopsis.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-generated-json.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/migrate-generated-json.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-embeddings-factory.js",
+        "kind": "code",
+        "path": "scripts/tests/test-embeddings-factory.js",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "scripts/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Rename Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two narrow generator bugs sit on top of the already-shipped identity resolver, unreconciled",
+    "created_at": "2026-07-09T06:26:17.088Z",
+    "last_save_at": "2026-07-09T11:41:59.309Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c3993ae25d56b20717395a2d11eec918c5a18e294e0f4d9c8d21724af83a7af1",
+    "source_doc_hashes": {
+      "spec.md": "78521b42ef54229bcac2ba4b871808cacf954464fd941bbc79c47a2105b4c826",
+      "plan.md": "62b4b6e0699503dcd2bcb795a8e78843b4851827226830f4606eb662452f31ff",
+      "tasks.md": "8af7b15246240c0d24269d8034cf542efa7cb87ce9178f9a5f21d352e72ec3a4",
+      "checklist.md": "298a1a81ab8f81b281bff6c244f8f1145f7f89c25dd16b68d1621410fd7fcb3a",
+      "implementation-summary.md": "a6ea700233ff9a20ae65c11b5f1968b74315a63fb7268be7f8c37ad8667a10f5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
