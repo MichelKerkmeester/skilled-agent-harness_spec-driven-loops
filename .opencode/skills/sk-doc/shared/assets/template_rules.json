@@ -113,8 +113,10 @@
         "instructions"
       ],
       "compiledContractMarker": "render-command-contract",
-      "routerSignatureSections": ["router_contract", "owned_assets", "presentation_boundary"],
-      "routerRequiredSections": ["router_contract", "owned_assets", "mode_routing", "execution_targets", "presentation_boundary", "workflow_summary"],
+      "routerDetectPrimary": ["presentation_boundary"],
+      "routerStructuralSections": ["router_contract", "owned_assets", "mode_routing", "execution_targets"],
+      "routerRequiredSections": ["owned_assets", "presentation_boundary"],
+      "routerRecommendedSections": ["router_contract", "mode_routing", "execution_targets", "workflow_summary"],
       "recommendedSections": [
         "contract",
         "examples",
@@ -183,7 +185,14 @@
         "best practices summary": "best_practices",
         "key behaviors": "key_behaviors",
         "context loading": "context_loading",
-        "safety features": "safety_features"
+        "safety features": "safety_features",
+        "routing assets": "owned_assets",
+        "execution order": "execution_targets",
+        "workflow routing": "execution_targets",
+        "router contract": "router_contract",
+        "mode routing": "mode_routing",
+        "presentation boundary": "presentation_boundary",
+        "workflow summary": "workflow_summary"
       },
       "tocRequired": false,
       "h2EmojiRequired": false,
@@ -594,6 +603,7 @@
       "errors": [
         "non_sequential_numbering",
         "missing_recommended_section",
+        "missing_recommended_router_section",
         "toc_entry_mismatch"
       ]
     },

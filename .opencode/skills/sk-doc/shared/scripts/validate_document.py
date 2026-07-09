@@ -443,13 +443,27 @@ def validate_required_sections(content: str, doc_type_rules: Dict[str, Any]) -> 
             if section_name in section_aliases:
                 found_sections.add(section_aliases[section_name])
 
-    # A router-split command uses the router section shape (Router Contract, Owned
-    # Assets, Mode Routing, Execution Targets, Presentation Boundary, Workflow Summary)
-    # instead of the general purpose/instructions sections. Detect it by its
-    # co-occurring, router-specific section vocabulary — which no simple command
-    # carries — then require the full router shape rather than the general sections.
-    router_signature = doc_type_rules.get('routerSignatureSections', [])
-    if router_signature and all(sig in found_sections for sig in router_signature):
+    # A router command is a thin dispatcher (verify agent -> resolve mode/args -> hand
+    # off to owned presentation/workflow assets). It carries a router-specific section
+    # vocabulary instead of the general purpose/instructions sections, so detect that
+    # shape and require only the minimal router core, treating the rest as recommended.
+    # A section counts as present if its canonical name is a found header OR a known
+    # space-form alias of it normalizes (space->underscore) to a found header.
+    def section_present(canonical: str) -> bool:
+        if canonical in found_sections:
+            return True
+        for alias in reverse_aliases.get(canonical, []):
+            if alias.replace(' ', '_') in found_sections:
+                return True
+        return False
+
+    detect_primary = doc_type_rules.get('routerDetectPrimary', [])
+    structural = doc_type_rules.get('routerStructuralSections', [])
+    is_router = (
+        any(section_present(sig) for sig in detect_primary)
+        or sum(1 for sig in structural if section_present(sig)) >= 2
+    )
+    if is_router:
         required = doc_type_rules.get('routerRequiredSections', required)
 
     for req_section in required:
@@ -477,6 +491,19 @@ def validate_required_sections(content: str, doc_type_rules: Dict[str, Any]) -> 
                 'message': f'Missing required section: {req_section}',
                 'fix_hint': f'Add section with name containing "{req_section}"'
             })
+
+    # Router shape beyond the minimal core is recommended, not required: surface any
+    # missing canonical router section as a non-blocking warning so authors converge on
+    # the full vocabulary without failing incremental migrations.
+    if is_router:
+        for rec_section in doc_type_rules.get('routerRecommendedSections', []):
+            if not section_present(rec_section):
+                errors.append({
+                    'type': 'missing_recommended_router_section',
+                    'severity': 'warning',
+                    'message': f'Missing recommended router section: {rec_section}',
+                    'fix_hint': f'Add a "{rec_section}" section (recommended for router commands)'
+                })
 
     return errors
 
