@@ -156,7 +156,7 @@ INTENT_MODEL = {
 }
 
 RESOURCE_MAP = {
-    "COUNCIL_RUN": ["references/integration/loop_protocol.md", "references/patterns/seat_diversity_patterns.md", "references/convergence/convergence_signals.md", "references/structure/output_schema.md", "assets/deep_ai_council_strategy.md"],
+    "COUNCIL_RUN": ["references/integration/loop_protocol.md", "references/patterns/seat_diversity_patterns.md", "references/convergence/convergence_signals.md", "references/structure/output_schema.md", "assets/deep_ai_council_strategy.md", "assets/prompt_pack_round.md"],
     "COUNCIL_SETUP": ["references/integration/quick_reference.md", "references/integration/loop_protocol.md", "assets/deep_ai_council_strategy.md", "assets/deep_ai_council_dashboard.md"],
     "ARTIFACT_PERSISTENCE": ["references/structure/folder_layout.md", "references/structure/output_schema.md", "references/structure/state_format.md", "references/patterns/command_wiring.md", "references/scoring/findings_registry.md", "assets/deep_ai_council_dashboard.md"],
     "RECOVERY_OR_AUDIT": ["references/structure/state_format.md", "references/structure/folder_layout.md", "references/patterns/command_wiring.md", "references/integration/loop_protocol.md"],

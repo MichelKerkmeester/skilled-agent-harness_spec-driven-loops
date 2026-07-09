@@ -124,6 +124,7 @@ RESOURCE_MAP = {
         "references/state/state_outputs.md",
         "references/state/state_reducer_registry.md",
         "assets/deep_review_strategy.md",
+        "references/state/state_jsonl.md",
     ],
     "REVIEW_ITERATION":   [
         "references/protocol/loop_protocol.md",
@@ -134,6 +135,9 @@ RESOURCE_MAP = {
         "references/convergence/convergence.md",
         "references/convergence/convergence_signals.md",
         "references/state/state_outputs.md",
+        "references/protocol/completion_criteria.md",
+        "references/protocol/loop_state_and_gates.md",
+        "references/convergence/convergence_recovery.md",
     ],
     "REVIEW_REPORT":      [
         "references/state/state_format.md",
