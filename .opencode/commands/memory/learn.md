@@ -8,7 +8,7 @@ allowed-tools: Read, Write, Edit, Glob, Bash, mcp__mk_spec_memory__memory_save, 
 
 Thin router for constitutional rule management.
 
-## 1. ROUTING ASSETS
+## 1. OWNED ASSETS
 
 | Asset | Path | Status | Purpose |
 | --- | --- | --- | --- |
@@ -34,7 +34,7 @@ Outputs:
 - `STATUS=CANCELLED ACTION=<action>`
 - `STATUS=FAIL ERROR="<message>"`
 
-## 3. WORKFLOW ROUTING
+## 3. EXECUTION TARGETS
 
 1. Parse `$ARGUMENTS` and choose one route.
 2. For `edit` or `remove` without a filename, list available files and ask one targeted selection question.

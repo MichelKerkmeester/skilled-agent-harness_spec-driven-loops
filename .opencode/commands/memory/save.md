@@ -8,7 +8,7 @@ allowed-tools: Read, Edit, Bash, Task, mcp__mk_spec_memory__memory_save, mcp__mk
 
 Thin router for canonical continuity saves.
 
-## 1. ROUTING ASSETS
+## 1. OWNED ASSETS
 
 | Asset | Path | Status | Purpose |
 | --- | --- | --- | --- |
@@ -28,7 +28,7 @@ Outputs:
 - Explicit apply/full-auto may run `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` with AI-authored JSON.
 - Immediate retrieval freshness may use `memory_index_scan({ specFolder, includeSpecDocs: true, force: false })` after the save.
 
-## 3. WORKFLOW ROUTING
+## 3. EXECUTION TARGETS
 
 1. Resolve and validate `target_folder`.
 2. Check topic/folder alignment and stop for confirmation on mismatch.

@@ -12,7 +12,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 Route /create:manual-testing-playbook to its presentation contract and workflow YAML for creating or updating manual testing playbook packages.
 
-## 2. Routing Assets
+## 2. Owned Assets
 
 | Asset | Path | Purpose |
 | --- | --- | --- |

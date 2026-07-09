@@ -8,7 +8,7 @@ allowed-tools: Read, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__mem
 
 Thin router for indexed-continuity database management.
 
-## 1. ROUTING ASSETS
+## 1. OWNED ASSETS
 
 | Asset | Path | Status | Purpose |
 | --- | --- | --- | --- |
@@ -40,7 +40,7 @@ Recognized modes:
 
 On an unknown mode, return `STATUS=FAIL ERROR="Unknown mode: <mode>"` and list the valid modes.
 
-## 3. WORKFLOW ROUTING
+## 3. EXECUTION TARGETS
 
 | Mode | Primary Tooling | Confirmation |
 | --- | --- | --- |
