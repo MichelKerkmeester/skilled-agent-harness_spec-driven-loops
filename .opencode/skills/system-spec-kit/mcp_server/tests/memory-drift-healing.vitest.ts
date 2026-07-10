@@ -8,6 +8,7 @@ import { __testables as searchTestables } from '../handlers/memory-search';
 import {
   appendMemoryDriftSuspects,
   MEMORY_DRIFT_SUSPECT_QUEUE_KEY,
+  MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE,
   parseMemoryDriftMarker,
   readMemoryDriftSuspects,
   removeMemoryDriftSuspects,
@@ -58,6 +59,33 @@ describe('memory drift healing helpers', () => {
 
       removeMemoryDriftSuspects(db, [8]);
       expect(readMemoryDriftSuspects(db)).toEqual([]);
+    } finally {
+      db.close();
+    }
+  });
+
+  it('keeps the queue at its cap and defers the one-over-cap candidate', () => {
+    const db = new Database(':memory:');
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    try {
+      const atCap = appendMemoryDriftSuspects(
+        db,
+        Array.from({ length: MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE }, (_, index) => index + 1),
+      );
+      expect(atCap).toMatchObject({
+        accepted: MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE,
+        rejected: 0,
+        queueSize: MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE,
+      });
+
+      const oneOverCap = appendMemoryDriftSuspects(db, [MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE + 1]);
+      expect(oneOverCap).toMatchObject({
+        accepted: 0,
+        rejected: 1,
+        queueSize: MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE,
+      });
+      expect(readMemoryDriftSuspects(db).map((suspect) => suspect.id)).not.toContain(MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE + 1);
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('Drift suspect queue is full'));
     } finally {
       db.close();
     }

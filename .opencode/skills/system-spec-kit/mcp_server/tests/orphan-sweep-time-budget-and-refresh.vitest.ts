@@ -2,17 +2,17 @@
 // TEST: Orphan-sweep wall-clock time budget + marker-refresh cadence
 // ───────────────────────────────────────────────────────────────
 // Drives the REAL runGlobalOrphanSweep() closure (via the exported runIndexScan
-// test seam) against a REAL SQLite database with a DELETE-heavy synthetic orphan
+// test seam) against a REAL SQLite database with a synthetic orphan
 // backlog, so every row flows through incremental-index's real sweepOrphanIndexRows
-// scan AND the handler's real deleteIndexedRecordIds() cascade (vector-index row
-// delete, causal-edge cleanup, history-log insert) — not a scan-only mirror. Only
+// scan and into the handler's real drift-suspect queue — not a scan-only mirror. Only
 // the scan-lease/checkpoint/embedding-profile scaffolding is mocked, matching this
 // handler's existing test suite; none of that scaffolding touches the orphan-sweep
 // path itself.
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { readMemoryDriftSuspects } from '../lib/storage/memory-drift-healing';
 
 const mocks = vi.hoisted(() => ({
   mockAcquireIndexScanLease: vi.fn(),
@@ -72,7 +72,7 @@ function makeTempWorkspace(prefix: string): string {
 // Seeds `count` genuine orphan rows: real memory_index rows (via the real
 // indexMemoryDeferred insert path) whose file_path is never created on disk, so
 // the real sweepOrphanIndexRows scan (resolved against MEMORY_BASE_PATH) finds
-// them absent and the real deleteIndexedRecordIds cascade actually runs on them.
+// them absent and the real orphan-sweep path queues them for later confirmation.
 function seedOrphanBacklog(vectorIndex: VectorIndexModule, workspace: string, count: number, specFolderPrefix: string): void {
   for (let i = 0; i < count; i += 1) {
     vectorIndex.indexMemoryDeferred({
@@ -127,6 +127,50 @@ afterAll(() => {
   }
 });
 
+describe('orphan-sweep confirmation timing', () => {
+  it('queues a discovered orphan during one scan and tombstones it only on the next scan', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('orphan-sweep-next-scan-');
+    const { handler, vectorIndex } = await loadRealModules(workspace);
+
+    try {
+      const id = vectorIndex.indexMemoryDeferred({
+        specFolder: 'orphan-next-scan/001',
+        filePath: path.join(workspace, 'missing.md'),
+        title: 'Orphan queued before confirmation',
+      });
+      const first = await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        {},
+      );
+      const firstData = JSON.parse((first as { content: Array<{ text: string }> }).content[0].text).data as Record<string, number>;
+
+      expect(firstData.orphanSwept).toBe(1);
+      expect(firstData.suspectTombstoned).toBe(0);
+      expect(firstData.suspectQueueSize).toBe(1);
+      expect(vectorIndex.getMemory(id, vectorIndex.getDb()!)).not.toBeNull();
+      expect(readMemoryDriftSuspects(vectorIndex.getDb()!).map((suspect) => suspect.id)).toEqual([id]);
+
+      const second = await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        {},
+      );
+      const secondData = JSON.parse((second as { content: Array<{ text: string }> }).content[0].text).data as Record<string, number>;
+
+      expect(secondData.suspectTombstoned).toBe(1);
+      expect(vectorIndex.getMemory(id, vectorIndex.getDb()!)).toBeNull();
+      expect(readMemoryDriftSuspects(vectorIndex.getDb()!)).toEqual([]);
+    } finally {
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+});
+
 describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
   let handler!: MemoryIndexHandlerModule;
   let vectorIndex!: VectorIndexModule;
@@ -145,6 +189,14 @@ describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
     } catch (_error: unknown) {
       // Best-effort cleanup.
     }
+  });
+
+  afterEach(() => {
+    const db = vectorIndex.getDb();
+    db?.exec(`
+      DELETE FROM memory_index;
+      DELETE FROM config WHERE key IN ('memory_index.drift_suspect_rows', 'memory_index.orphan_sweep.cursor');
+    `);
   });
 
   it('re-fires ctx.onPhase more than once during a DELETE-heavy sweep, at a rate-gated cadence under the chosen interval', async () => {
@@ -251,6 +303,10 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
         cursorNow = row ? Number.parseInt(row.value ?? '0', 10) : 0;
       }
       expect(cursorNow).toBe(0);
+      await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        {},
+      );
 
       const remaining = db?.prepare(
         "SELECT COUNT(*) AS count FROM memory_index WHERE spec_folder LIKE 'budget-exit/%'",
@@ -299,6 +355,11 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
           const cursorNow = cursorRow ? Number.parseInt(cursorRow.value ?? '0', 10) : 0;
           if (cursorNow === 0) break;
         }
+
+        await handler.runIndexScan(
+          { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+          {},
+        );
 
         const remaining = new Set(
           (db?.prepare(`SELECT file_path FROM memory_index WHERE spec_folder LIKE '${seedFolder}/%'`).all() as Array<{ file_path: string }>)

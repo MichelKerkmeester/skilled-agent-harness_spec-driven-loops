@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_2/implementation-summary.md]"
-description: "Status PLANNED. Self-healing model consolidation is scaffolded with spec, plan, tasks and checklist. No code is built yet."
+description: "Status COMPLETE. All discoverers enqueue bounded drift suspects; confirmation is next-cycle and remains the sole tombstone path."
 trigger_phrases:
   - "self-healing model consolidation"
   - "suspect queue sole confirmation funnel"
@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation"
-    last_updated_at: "2026-07-09T20:30:10.000Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Scaffolded plan, tasks and checklist, status PLANNED"
-    next_safe_action: "Wait for 017/018/019 to land, re-verify cited line numbers, then build per tasks.md"
+    last_updated_at: "2026-07-10T09:45:40.000Z"
+    last_updated_by: "opencode"
+    recent_action: "Implemented and verified all five decisions"
+    next_safe_action: "No further implementation work"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,8 +40,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 023-self-healing-model-consolidation |
-| **Status** | PLANNED, not yet implemented |
-| **Completed** | Not completed |
+| **Status** | COMPLETE |
+| **Completed** | 2026-07-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,33 +50,38 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This phase is scaffolded only. The spec, plan, tasks and checklist are authored and the
-work is PLANNED. Per the parent packet's own framing this is a real design improvement but not urgent —
-scheduled to start after sibling packets 017, 018 and 019 land, since none of those exist as spec folders yet
-at the time of writing (the parent's newest built child is `016-cross-package-flag-governance`).
+### Consolidated Discovery
 
-### Planned: Self-Healing Model Consolidation
+`runGlobalOrphanSweep` enqueues orphan ids at `memory-index.ts:819-827` and reports `enqueued` plus queue
+size through `OrphanSweepDeleteResult` at `:265-271`. The scoped empty-files branch resolves candidate paths
+through `listIndexedRecordIdsForDeletedPaths()` and enqueues them at `:1074-1081`. Neither path directly
+deletes a heuristic candidate.
 
-The planned change touches two existing call sites inside `mcp_server/handlers/memory-index.ts`:
-`runGlobalOrphanSweep` and the marker-triggered scoped-delete branch inside `handleMemoryIndexScan`. Both
-currently call the shared delete primitive (`deleteIndexedRecordIds` / `deleteStaleIndexedRecords`) directly
-on first detection. The plan converts both to call the existing `appendMemoryDriftSuspects` instead, so
-`runSuspectConfirmation` — which already owns confirming Layer 1's query-time-filter suspects — becomes the
-sole place that verifies-and-tombstones for all three self-healing layers. Two watch-list items ride along:
-a size cap/metric on the suspect queue, and a reconsideration of the queue-write busy-timeout now that more
-callers feed it. None of this exists in code yet.
+### Bounded Confirmation Queue
+
+`MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE` is 1,000 at `memory-drift-healing.ts:10`. Existing queued ids remain
+when full; new excess ids are deferred and warned at `:131-151`. The resulting `suspectQueueSize` is included
+in both scan envelopes at `memory-index.ts:1160-1167,1571-1577`.
+
+### Timing And Timeout Decisions
+
+Confirmation runs before orphan discovery at `memory-index.ts:1064-1065,1565-1576`, so newly discovered rows
+can only be tombstoned by a later invocation. `memory-search.ts:224,421-437` keeps its existing 25ms override
+only for the search hot path; new scan callers use the connection default. The scoped lock test proves a wait
+of at least 280ms at `suspect-confirmation.vitest.ts:252-289`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Records the problem (grounded in real file:line citations against the live tree), scope, and requirements |
-| plan.md | Created | Records the technical approach, five architecture decisions, and phase plan |
-| tasks.md | Created | Records the task breakdown, T001 blocked on 017/018/019 |
-| checklist.md | Created | Records the QA checklist, all items unchecked |
+| memory-index.ts | Modified | Queue-only orphan and scoped discovery, next-cycle ordering, envelope metric |
+| memory-drift-healing.ts | Modified | 1,000-entry bounded queue and append statistics |
+| memory-drift-healing.vitest.ts | Modified | At-cap and one-over-cap coverage |
+| orphan-sweep-time-budget-and-refresh.vitest.ts | Modified | Enqueue-then-next-scan confirmation coverage |
+| suspect-confirmation.vitest.ts | Modified | Orphan/scoped discovery fixtures and lock contention coverage |
+| spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md | Modified | Completion state and evidence |
 
-No source code has been written. `memory-index.ts`, `memory-drift-healing.ts`, and (conditionally)
-`memory-search.ts` remain unmodified.
+`memory-search.ts` is intentionally unmodified; the 25ms override remains scoped to its original caller.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -84,9 +89,9 @@ No source code has been written. `memory-index.ts`, `memory-drift-healing.ts`, a
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. This is a planning scaffold. No tests were run and no code changed. Delivery starts when
-Phase 1 of plan.md begins, which is itself gated on 017/018/019 landing per the declared sequencing
-dependency.
+Implemented in one coherent change. The full required Vitest command passed 26/26 tests across five files,
+with 0 skipped. `npm run typecheck` and scoped ESLint passed. Repository-wide `npm run lint` still reports 12
+unrelated existing errors outside this packet; none were modified.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,11 +101,11 @@ dependency.
 
 | Decision | Why |
 |----------|-----|
-| Make the suspect queue the sole confirmation funnel for all three self-healing layers, not just Layer 1 | Only Layer 1's query-time filter currently gets a time-separated confirmed second look before delete; Layer 3's orphan sweep and Layer 2's marker-triggered scoped delete both decide-and-delete on first detection today, even though `runSuspectConfirmation` already exists and already owns confirming Layer 1's candidates |
+| Make the suspect queue the sole confirmation funnel for all three self-healing layers, not just Layer 1 | Implemented at `memory-index.ts:819-827,1074-1081`; the two discoverers no longer delete on first detection |
 | Keep the out-of-scope full-corpus `filesToDelete` stale-delete path as a direct delete | It is a ground-truth corpus diff from an explicit file walk, not a heuristic candidate, so it does not need the same transient-absence protection the other two paths do |
-| Recommend swapping the orphan-sweep / suspect-confirmation phase-call order (confirmation first, orphan-sweep second) | Without the swap, an orphan-sweep-enqueued id would be confirmed by the very next line of the same function call — zero time separation, defeating the transient-absence protection the suspect-queue model exists for |
-| Add a size cap/metric to the suspect queue rather than leaving it unbounded | Layer 3's orphan sweep can page up to 200,000 candidate ids per invocation; routing that volume through the same queue and the same unbounded `WHERE id IN (...)` confirmation query that previously only saw Layer 1's ~10-50-id-per-query trickle changes a theoretical risk into a real one |
-| Reconsider (not blindly reuse) the 25ms drift-suspect-write busy-timeout for the two new callers | That timeout was tuned specifically for a read-hot-path search-response caller; the two new callers run inside an already-serialized scan/write phase where a longer wait is more likely to succeed and less costly |
+| Use next-cycle confirmation | `memory-index.ts:1064-1065,1565-1576` prevents a new orphan from being immediately confirmed; vitest proves the two-scan behavior |
+| Cap the queue at 1,000 and surface its size | `memory-drift-healing.ts:10,131-151` bounds JSON and SQL input size while `memory-index.ts:1164,1576` exposes the count |
+| Keep the 25ms timeout caller-local | `memory-search.ts:224,421-437` remains the sole fast-fail path; new callers retain normal SQLite waiting |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -110,11 +115,10 @@ dependency.
 
 | Check | Result |
 |-------|--------|
-| spec, plan, tasks, checklist authored | PASS, `validate.sh --strict` exits 0 on the scaffold |
-| Orphan-sweep and scoped-delete call-site conversions built | NOT STARTED |
-| Phase-order and size-cap/metric changes built | NOT STARTED |
-| Busy-timeout policy decision implemented | NOT STARTED |
-| Updated/extended vitest suites passing | NOT STARTED |
+| Mechanical delete inventory | `rg -n "deleteIndexedRecordIds\("` output: `785` helper call and `923` confirmation call only |
+| Required regression suite | `npx vitest run ...`: 26/26 tests, 5/5 files, 0 skipped |
+| Type safety | `npm run typecheck` exited 0 |
+| Scoped lint and comment hygiene | `npx eslint ...` and `python3 check-comment-hygiene.sh`: 5/5 changed files clean |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,14 +126,8 @@ dependency.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No code exists.** This phase is a planning scaffold only. Every file:line citation in spec.md and
-   plan.md was verified against the live tree at authoring time (2026-07-09) but must be re-verified before
-   implementation, since sibling packets 017/018/019 have not yet landed and may shift line numbers in the
-   same files this packet touches.
-2. **Three open questions remain**, all deferred to implementation-time decisions in plan.md: the exact
-   same-cycle-vs-next-cycle confirmation choice for orphan-discovered suspects (a recommended default is
-   stated but not mechanically enforced by this scaffold), the concrete size-cap number or metric-only
-   approach, and whether the busy-timeout constant relocates out of `memory-search.ts` or stays caller-local.
-3. **017/018/019 do not exist as spec folders yet.** The sequencing dependency is recorded as declared by
-   the parent packet's own scope framing, not verified against those packets' (not-yet-written) content.
+1. **Deferred candidates await a later sweep cycle.** At capacity, new candidates are deferred rather than
+   evicting confirmation work; the next cursor cycle can rediscover them (`memory-drift-healing.ts:131-151`).
+2. **Repository-wide lint remains noisy.** `npm run lint` reports 12 existing errors in unrelated files;
+   targeted lint for this packet's five TypeScript files passes.
 <!-- /ANCHOR:limitations -->

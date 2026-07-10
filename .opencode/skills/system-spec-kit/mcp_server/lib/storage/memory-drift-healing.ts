@@ -7,11 +7,19 @@ import type Database from 'better-sqlite3';
 
 export const MEMORY_DRIFT_MARKER_FILENAME = '.memory-drift-dirty-paths.json' as const;
 export const MEMORY_DRIFT_SUSPECT_QUEUE_KEY = 'memory_index.drift_suspect_rows' as const;
+export const MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE = 1_000;
 
 export interface MemoryDriftSuspect {
   id: number;
   firstSeenAt: string;
   lastSeenAt: string;
+}
+
+export interface MemoryDriftSuspectAppendResult {
+  suspects: MemoryDriftSuspect[];
+  accepted: number;
+  rejected: number;
+  queueSize: number;
 }
 
 export type MemoryDriftMarkerEntry =
@@ -102,32 +110,44 @@ export function readMemoryDriftSuspects(database: Database.Database): MemoryDrif
   }
 }
 
-/** Merges `ids` into the drift-suspect queue, stamping new ids with `observedAt` and refreshing `lastSeenAt` on ids already present, then persists the merged queue. */
+/** Merges `ids` into the drift-suspect queue, keeping existing confirmation work when the bounded queue is full. */
 export function appendMemoryDriftSuspects(
   database: Database.Database,
   ids: readonly number[],
   observedAt: string = new Date().toISOString(),
-): MemoryDriftSuspect[] {
+): MemoryDriftSuspectAppendResult {
   const next = new Map<number, MemoryDriftSuspect>();
   for (const suspect of readMemoryDriftSuspects(database)) {
     next.set(suspect.id, suspect);
   }
 
+  let accepted = 0;
+  let rejected = 0;
   for (const id of ids) {
     if (!Number.isInteger(id) || id <= 0) {
       continue;
     }
     const existing = next.get(id);
+    if (!existing && next.size >= MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE) {
+      rejected++;
+      continue;
+    }
     next.set(id, {
       id,
       firstSeenAt: existing?.firstSeenAt ?? observedAt,
       lastSeenAt: observedAt,
     });
+    if (!existing) {
+      accepted++;
+    }
   }
 
   const suspects = Array.from(next.values()).sort((a, b) => a.id - b.id);
+  if (rejected > 0) {
+    console.warn(`[memory-drift-healing] Drift suspect queue is full; deferred ${rejected} candidate(s) for a later scan`);
+  }
   writeSuspects(database, suspects);
-  return suspects;
+  return { suspects, accepted, rejected, queueSize: suspects.length };
 }
 
 /** Removes `ids` from the drift-suspect queue (confirmed tombstoned or cleared) and persists the remaining queue. */

@@ -12,17 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation"
-    last_updated_at: "2026-07-09T20:30:10.000Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored spec scaffold, status PLANNED"
-    next_safe_action: "Await 017/018/019 to land before starting Phase 2 implementation"
+    last_updated_at: "2026-07-10T09:45:40.000Z"
+    last_updated_by: "opencode"
+    recent_action: "Implemented and verified the sole suspect-confirmation funnel"
+    next_safe_action: "No further implementation work"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,10 +47,10 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-09 |
 | **Branch** | `023-self-healing-model-consolidation` |
-| **Verdict** | PLANNED, not urgent — schedule after 017/018/019 land |
+| **Verdict** | COMPLETE — all five decisions implemented and verified |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -107,6 +107,15 @@ Make the suspect queue the sole confirmation funnel across all three layers. Mar
 orphan sweep become pure discoverers that enqueue candidate ids into the existing queue; `runSuspectConfirmation`
 becomes the one place in the codebase that verifies-and-tombstones. Three candidate discoverers, one confirmer
 — not three semi-independent healing paths that happen to share a delete function.
+
+### Implementation Result
+
+`runGlobalOrphanSweep` now enqueues candidates at
+`mcp_server/handlers/memory-index.ts:821-826`; the scoped path resolves ids and enqueues at
+`mcp_server/handlers/memory-index.ts:1075-1080`. Confirmation precedes orphan discovery at
+`memory-index.ts:1064-1065` and `:1565-1576`, guaranteeing next-scan confirmation. The queue is capped at
+1,000 entries in `memory-drift-healing.ts:10,131-134`, and `suspectQueueSize` is returned in the scan
+envelope at `memory-index.ts:1160-1167,1571-1576`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -319,16 +328,14 @@ becomes the one place in the codebase that verifies-and-tombstones. Three candid
 
 ---
 
-## 10. OPEN QUESTIONS
+## 10. RESOLVED QUESTIONS
 
-- Same-cycle vs. next-cycle confirmation for orphan-sweep-discovered suspects (REQ-006): this spec states the
-  tradeoff but leaves the concrete choice to `plan.md`/implementation, since it depends on how much the
-  existing `sweepOrphanIndexRows()` existence check already overlaps with `runSuspectConfirmation`'s own
-  recheck (see plan.md's architecture discussion).
-- Exact size-cap number, or metric-only (no hard cap), for REQ-005 — left for `plan.md` to propose against
-  real orphan-backlog volumes seen in prior packets (007/008's 42%-drifted backlog cleanup is the closest
-  known real-world data point).
-- Whether `DRIFT_SUSPECT_WRITE_BUSY_TIMEOUT_MS` moves out of `memory-search.ts` into
-  `memory-drift-healing.ts` as a shared, possibly per-caller-parameterized constant, or stays put with a
-  documented "still correct for every caller" justification (REQ-007) — a call-site decision for `plan.md`.
+- **Confirmation timing:** next-cycle. `suspect-confirmation` runs before `orphan-sweep` in both scan shapes;
+  `orphan-sweep-time-budget-and-refresh.vitest.ts:131-172` proves a queued row survives the first scan and is
+  tombstoned on the second.
+- **Queue bound:** a 1,000-entry hard cap preserves already-queued confirmation work and defers excess ids with
+  a warning. `memory-drift-healing.vitest.ts:67-91` asserts at-cap and one-over-cap behavior.
+- **Busy timeout:** `memory-search.ts:224,421-437` retains its 25ms search-hot-path override. The two scan
+  discoverers make no override, using the connection default; `suspect-confirmation.vitest.ts:252-289` proves
+  scoped enqueue waits at least 280ms under contention.
 <!-- /ANCHOR:questions -->

@@ -15,6 +15,7 @@
 // except a designated failure target) so the per-entry error-resilience path can be
 // exercised without a full mock of the deletion cascade.
 import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
+import Database from 'better-sqlite3';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -26,6 +27,7 @@ const mocks = vi.hoisted(() => ({
   mockCheckDatabaseUpdated: vi.fn(),
   mockGetRestoreBarrierStatus: vi.fn(),
   mockGetEmbeddingProfile: vi.fn(),
+  mockSweepOrphanIndexRows: vi.fn(),
   // Set by the error-resilience test to make deleteMemory throw for exactly one
   // id, so the rest of the confirmation batch can be asserted to keep processing
   // regardless. Left null the rest of the time, in which case every call falls
@@ -80,19 +82,14 @@ vi.mock('../lib/search/vector-index', async (importOriginal) => {
   };
 });
 
-// The orphan-sweep phase (handlers/memory-index.ts's runGlobalOrphanSweep, tested
-// in full in orphan-sweep-time-budget-and-refresh.vitest.ts) runs immediately
-// before suspect-confirmation in the same scan and shares the same "file missing
-// on disk" criterion, so it would otherwise race suspect-confirmation and delete
-// a seeded row before this file's phase-under-test ever sees it. Stubbing out
-// only sweepOrphanIndexRows -- the orphan-sweep candidate query -- neutralizes
-// that overlap while leaving buildPathExistenceCache/cachedPathExists (what
-// runSuspectConfirmation itself actually calls) fully real.
+// Tests that seed confirmation directly disable the sweep candidate query. This
+// leaves buildPathExistenceCache/cachedPathExists fully real while avoiding a
+// second discoverer from adding unrelated fixture rows to the queue.
 vi.mock('../lib/storage/incremental-index', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../lib/storage/incremental-index')>();
   return {
     ...actual,
-    sweepOrphanIndexRows: () => ({ swept: 0, nextCursor: null, scannedRows: 0, orphanRecordIds: [] }),
+    sweepOrphanIndexRows: (...args: unknown[]) => mocks.mockSweepOrphanIndexRows(...args),
   };
 });
 
@@ -144,6 +141,7 @@ function mockLeaseAndScaffolding(): void {
   mocks.mockCheckDatabaseUpdated.mockResolvedValue(false);
   mocks.mockGetRestoreBarrierStatus.mockReturnValue(null);
   mocks.mockGetEmbeddingProfile.mockReturnValue(null);
+  mocks.mockSweepOrphanIndexRows.mockReturnValue({ swept: 0, nextCursor: null, scannedRows: 0, orphanRecordIds: [] });
 }
 
 // Seeds one real memory_index row (bypassing the file-tree walker, same fixture
@@ -169,6 +167,7 @@ interface ScanEnvelope {
     suspectTombstoned: number;
     suspectCleared: number;
     suspectFailed: number;
+    suspectQueueSize: number;
   };
 }
 
@@ -193,6 +192,102 @@ afterEach(() => {
 });
 
 describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation phase)', () => {
+  it('confirms an orphan-sweep-discovered candidate only after the scan that enqueued it', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('suspect-confirm-orphan-discoverer-');
+    const { handler, vectorIndex, driftHealing } = await loadRealModules(workspace);
+    try {
+      const db = vectorIndex.getDb()!;
+      const { id } = seedSuspectCandidate(vectorIndex, workspace, 'suspect-orphan-discoverer/001-demo');
+      mocks.mockSweepOrphanIndexRows.mockReturnValueOnce({ swept: 1, nextCursor: null, scannedRows: 1, orphanRecordIds: [id] });
+
+      const first = await handler.runIndexScan(scanArgs, {});
+      const firstEnvelope = parseEnvelope(first);
+      expect(firstEnvelope.data.suspectTombstoned).toBe(0);
+      expect(firstEnvelope.data.suspectQueueSize).toBe(1);
+      expect(vectorIndex.getMemory(id, db)).not.toBeNull();
+      expect(driftHealing.readMemoryDriftSuspects(db).map((suspect) => suspect.id)).toEqual([id]);
+
+      const second = await handler.runIndexScan(scanArgs, {});
+      expect(parseEnvelope(second).data.suspectTombstoned).toBe(1);
+      expect(vectorIndex.getMemory(id, db)).toBeNull();
+    } finally {
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+
+  it('queues a scoped-delete candidate before the following confirmation pass', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('suspect-confirm-scoped-discoverer-');
+    const { handler, vectorIndex, driftHealing } = await loadRealModules(workspace);
+    try {
+      const db = vectorIndex.getDb()!;
+      const { id, filePath } = seedSuspectCandidate(vectorIndex, workspace, 'suspect-scoped-discoverer/001-demo');
+
+      const first = await handler.runIndexScan({ ...scanArgs, incremental: true, scopedPaths: [filePath] }, {});
+      const firstEnvelope = parseEnvelope(first);
+      expect(firstEnvelope.data.suspectTombstoned).toBe(0);
+      expect(firstEnvelope.data.suspectQueueSize).toBe(1);
+      expect(vectorIndex.getMemory(id, db)).not.toBeNull();
+      expect(driftHealing.readMemoryDriftSuspects(db).map((suspect) => suspect.id)).toEqual([id]);
+
+      const second = await handler.runIndexScan(scanArgs, {});
+      expect(parseEnvelope(second).data.suspectTombstoned).toBe(1);
+      expect(vectorIndex.getMemory(id, db)).toBeNull();
+    } finally {
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+
+  it('lets the scoped-delete enqueue use the connection busy_timeout instead of the search fast-fail timeout', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('suspect-confirm-scoped-timeout-');
+    const { handler, vectorIndex, driftHealing } = await loadRealModules(workspace);
+    let lockConnection: Database.Database | null = null;
+    try {
+      const db = vectorIndex.getDb()!;
+      const databaseFile = (db.prepare('PRAGMA database_list').all() as Array<{ name: string; file: string }>)
+        .find((database) => database.name === 'main')?.file;
+      if (!databaseFile) {
+        throw new Error('test database file was not available');
+      }
+      lockConnection = new Database(databaseFile);
+      const { id, filePath } = seedSuspectCandidate(vectorIndex, workspace, 'suspect-scoped-timeout/001-demo');
+      db.pragma('busy_timeout = 300');
+      lockConnection.exec('BEGIN IMMEDIATE');
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      const startedAt = Date.now();
+      const response = await handler.runIndexScan({ ...scanArgs, incremental: true, scopedPaths: [filePath] }, {});
+      const elapsed = Date.now() - startedAt;
+
+      expect(elapsed).toBeGreaterThanOrEqual(280);
+      expect(response.isError).not.toBe(true);
+      expect(vectorIndex.getMemory(id, db)).not.toBeNull();
+      expect(driftHealing.readMemoryDriftSuspects(db)).toEqual([]);
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('Could not queue scoped drift suspects'));
+    } finally {
+      try { lockConnection?.exec('ROLLBACK'); } catch { /* no open transaction to roll back */ }
+      lockConnection?.close();
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+
   it('tombstones a suspect whose file is still genuinely missing on disk', async () => {
     vi.resetModules();
     mockLeaseAndScaffolding();
