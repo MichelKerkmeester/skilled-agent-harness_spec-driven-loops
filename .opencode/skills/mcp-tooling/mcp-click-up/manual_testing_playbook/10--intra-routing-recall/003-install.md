@@ -4,7 +4,7 @@ category: 10--intra-routing-recall
 title: 'Install routing'
 expected_intent: INSTALL
 expected_resources:
-  - INSTALL_GUIDE.md
+  - references/install_guide.md
   - references/troubleshooting.md
 version: 1.0.0.0
 ---

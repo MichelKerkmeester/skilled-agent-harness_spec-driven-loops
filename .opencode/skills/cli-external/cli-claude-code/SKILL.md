@@ -105,16 +105,18 @@ Provider-specific dictionaries (used by the shared helper functions in [`system-
 
 ```python
 INTENT_SIGNALS = {
-    "DEEP_REASONING":    {"weight": 4, "keywords": ["reason", "think", "analyze", "trade-off", "architecture", "extended thinking", "chain-of-thought"]},
-    "CODE_EDITING":      {"weight": 4, "keywords": ["edit", "refactor", "modify", "fix", "change code", "surgical edit", "diff-based"]},
-    "STRUCTURED_OUTPUT": {"weight": 4, "keywords": ["json", "schema", "structured", "extract", "parse", "validate output", "--json-schema"]},
-    "REVIEW":            {"weight": 4, "keywords": ["review", "audit", "security", "quality", "second opinion", "cross-validate"]},
-    "AGENT_DELEGATION":  {"weight": 4, "keywords": ["delegate", "agent", "background", "parallel", "offload", "claude agent"]},
-    "TEMPLATES":         {"weight": 3, "keywords": ["template", "prompt", "how to ask", "claude prompt"]},
-    "PATTERNS":          {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session", "continue", "resume"]},
-    # WHY: DESIGN is an intent signal only. The durable sk-design loading contract lives in the
-    # always-fires Design Standards Loading rule and the dispatch manifest; RESOURCE_MAP stays
-    # limited to same-skill markdown paths.
+    "DEEP_REASONING":    {"weight": 4, "keywords": ["reason", "think", "analyze", "trade-off", "architecture", "extended thinking", "chain-of-thought", "root cause", "root-cause", "figure out why", "weigh the options", "pros and cons", "algorithm design", "architectural", "chain of thought", "extended-thinking", "step by step", "deep dive", "reasoning", "thinking through", "analysis", "trade-offs", "in-depth", "thorough", "carefully consider", "dig into", "get to the bottom of", "understand why", "evaluate the options", "unpack this", "difficult decision", "hard choice", "which direction", "long-term implications", "multiple factors", "nuanced", "compare and contrast", "make the call", "downstream effects", "well-thought-out"]},
+    "CODE_EDITING":      {"weight": 4, "keywords": ["edit", "refactor", "modify", "fix", "change code", "surgical edit", "diff-based", "update the code", "rewrite", "restructure", "rename", "patch", "clean up", "rework", "multi-file edit", "diff based", "preserve existing patterns", "coordinated changes"]},
+    "STRUCTURED_OUTPUT": {"weight": 4, "keywords": ["json", "schema", "structured", "extract", "parse", "validate output", "--json-schema", "machine-readable", "typed output", "well-formed", "extraction", "guaranteed structure", "pipeline integration", "return format", "field mapping"]},
+    "REVIEW":            {"weight": 4, "keywords": ["review", "audit", "security", "quality", "second opinion", "cross-validate", "sanity check", "vulnerability", "pre-merge", "double-check", "look over", "flag concerns", "catch bugs", "spot issues"]},
+    "AGENT_DELEGATION":  {"weight": 4, "keywords": ["delegate", "agent", "background", "parallel", "offload", "claude agent", "hand off", "farm out", "dispatch to", "read-only exploration", "plan mode", "spin off", "run independently"]},
+    "TEMPLATES":         {"weight": 3, "keywords": ["template", "prompt", "how to ask", "claude prompt", "how do I phrase", "how should I word", "phrasing", "wording", "boilerplate"]},
+    "PATTERNS":          {"weight": 3, "keywords": ["pattern", "workflow", "orchestrate", "session", "continue", "resume", "orchestration", "cross-ai", "conversation history", "pick up where we left off", "carry over context", "multi-step flow"]},
+    # WHY: DESIGN is a deliberate cross-skill handoff, not an in-skill resource intent — when design
+    # keywords fire, this skill's job is to route the work AWAY to sk-design (the hub) rather than
+    # load local markdown. RESOURCE_MAP intentionally has no DESIGN entry and never will; the durable
+    # sk-design loading contract lives in the "Design Standards Loading" rule and the
+    # DESIGN_DISPATCH_MANIFEST rule (Section 4 RULES), not in a same-skill reference file.
     "DESIGN":            {"weight": 4, "keywords": ["sk-design", "interface design", "frontend design", "visual design", "redesign the ui", "design foundations", "design tokens", "motion design", "micro-interactions", "design audit", "ui critique", "extract design system", "generate design.md"]},
 }
 

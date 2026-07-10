@@ -37,5 +37,5 @@ ClickUp-specific) to reach the remote server over stdio:
 }
 ```
 
-See `../../INSTALL_GUIDE.md §4` for other clients (native remote-MCP support,
+See `../../references/install_guide.md §4` for other clients (native remote-MCP support,
 or the same `mcp-remote` bridge for other stdio-only clients).

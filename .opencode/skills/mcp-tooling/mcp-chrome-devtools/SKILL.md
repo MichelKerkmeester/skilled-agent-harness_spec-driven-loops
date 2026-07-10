@@ -2,7 +2,7 @@
 name: mcp-chrome-devtools
 description: "Chrome DevTools orchestrator: routes between bdg CLI (fast, token-efficient) and Code Mode MCP (multi-tool integration)."
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 <!-- Keywords: chrome-devtools, cdp, browser-debugger-cli, bdg, browser-automation, terminal-debugging, screenshot-capture, network-monitoring, mcp-code-mode, orchestrator -->
@@ -75,11 +75,11 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 ]
 
 INTENT_SIGNALS = {
-    "CLI": {"weight": 4, "keywords": ["bdg", "browser-debugger-cli", "terminal", "cli"]},
-    "MCP": {"weight": 4, "keywords": ["mcp", "code mode", "multi-tool", "parallel sessions"]},
-    "INSTALL": {"weight": 4, "keywords": ["install", "setup", "not installed", "command -v bdg"]},
-    "TROUBLESHOOT": {"weight": 4, "keywords": ["error", "failed", "troubleshoot", "session issue"]},
-    "AUTOMATION": {"weight": 3, "keywords": ["ci", "pipeline", "automation", "production"]},
+    "CLI": {"weight": 4, "keywords": ["bdg", "browser-debugger-cli", "terminal", "cli", "command line", "command-line", "shell", "headless", "lightweight", "token efficient"]},
+    "MCP": {"weight": 4, "keywords": ["mcp", "code mode", "multi-tool", "parallel sessions", "model context protocol", "multiple tools", "isolated instances", "tool chain", "in parallel"]},
+    "INSTALL": {"weight": 4, "keywords": ["install", "setup", "not installed", "command -v bdg", "set up", "getting started", "download", "npm install", "not found", "first time"]},
+    "TROUBLESHOOT": {"weight": 4, "keywords": ["error", "failed", "troubleshoot", "session issue", "keeps dropping", "won't connect", "figure out why", "hangs", "hanging", "stuck", "crash", "crashing", "broken", "not working", "timeout", "disconnect", "flaky", "root cause"]},
+    "AUTOMATION": {"weight": 3, "keywords": ["ci", "pipeline", "automation", "production", "automate", "unattended", "continuous integration", "batch", "recurring"]},
 }
 
 RESOURCE_MAP = {

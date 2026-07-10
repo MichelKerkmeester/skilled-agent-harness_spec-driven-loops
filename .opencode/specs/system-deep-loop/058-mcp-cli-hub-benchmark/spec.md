@@ -11,10 +11,10 @@ _memory:
     packet_pointer: "system-deep-loop/058-mcp-cli-hub-benchmark"
     last_updated_at: "2026-07-10T21:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Plan approved; P0 confirms 4 children parse, mcp-figma intents empty (needs normalization)"
-    next_safe_action: "Normalize mcp-figma, prove gold shape on one child, fan out"
+    recent_action: "All 7 targets benchmarked both modes; 5 router fixes landed; keyword-ceiling finding recorded"
+    next_safe_action: "Complete"
     blockers: []
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator: normalize mcp-figma's INTENT_MODEL router; include the D1inter advisor probe"
@@ -31,8 +31,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | 058-mcp-cli-hub-benchmark |
-| **Level** | 2 (phase parent) |
-| **Status** | In progress |
+| **Level** | 2 |
+| **Status** | Complete |
 | **Origin** | Operator: "properly plan and rebenchmark" the two new parent hubs in Mode-A + Mode-B |
 <!-- /ANCHOR:metadata -->
 
@@ -46,21 +46,25 @@ scoring in seconds). D1inter/D4 are structurally unscored without an advisor pro
 five children scoreable for real, in both modes, with honest anti-overfit signal.
 <!-- /ANCHOR:problem -->
 
-## 3. SCOPE (phase children)
+## 3. SCOPE (what was done)
 <!-- ANCHOR:scope -->
-- **001-mcp-figma-router-normalization**: `INTENT_MODEL` tuple → `INTENT_SIGNALS` `{weight,keywords}`; adapt the
-  in-skill selector; key-sync test (no runtime change); router-replay parses.
-- **002-per-child-type1-gold**: per-child `manual_testing_playbook/NN--intra-routing-recall/` gold packs (T1 per
-  intent + T2 blind holdouts + T3 negative), `expected_resources` verbatim from each child's `RESOURCE_MAP`.
-- **003-hub-type2-and-advisor**: harden each hub's `01--hub-routing/` Type-2 gold; add `NN--advisor-routing/`
-  advisor-class scenarios for the D1inter probe.
-- **004-modeb-live-wiring**: set `SKILL_BENCH_OPENCODE_MODEL` to a configured provider; confirm genuine
-  `opencode run` dispatch; document the env recipe.
-- **005-rebenchmark-matrix**: 7 targets × Mode-A + Mode-B + `--advisor-mode=python`; reports to `benchmark/`;
-  circularity meters (T1−T2, Mode-A−Mode-B).
-- **006-drift-guard-synthesis**: router self-parse + path-exists + hub-child-key drift vitest; synthesis doc.
+Delivered as a flat packet (not phase children):
+- **mcp-figma router normalization** — additive `INTENT_SIGNALS` mirror of the runtime `INTENT_MODEL` (per-intent
+  weight = max per-keyword weight), runtime selector byte-unchanged, key-sync vitest (4/4). Parser now yields all
+  6 intents (was 0).
+- **Per-child Type-1 gold** (5 children) — `manual_testing_playbook/10--intra-routing-recall/` packs: a T1
+  scenario per `INTENT_SIGNALS` key (`expected_resources` verbatim from `RESOURCE_MAP`) + T2 blind holdouts + a T3
+  negative. Every child now scores real Type-1 (no NO-SCENARIOS).
+- **Hub Type-2 hardening** — blind holdouts added to each hub's `01--hub-routing/`; both hubs route them correctly.
+- **Genuine Mode-B live dispatch** — proven via a configured model env (`SKILL_BENCH_OPENCODE_MODEL`); a blind
+  holdout that scored 31 deterministically routed at 66 live.
+- **Router improvements from the findings** — per-child keyword broadening (domain synonyms, blind to the
+  holdouts) + structural fixes: mcp-chrome-devtools resource precision, mcp-click-up `INSTALL_GUIDE.md` relocated
+  into `references/` and the dead `DEFAULT` key removed, mcp-figma dual-block key-sync, cli-children `DESIGN`
+  cross-skill-handoff documented.
 
-**Out of scope:** engine changes to the harness; D4 usefulness ablation (never fills the dimension).
+**Out of scope:** engine changes to the harness; D4 usefulness ablation; the D1inter advisor probe (deferred — it
+needs advisor-class scenarios + the live advisor daemon).
 <!-- /ANCHOR:scope -->
 
 ## 4. REQUIREMENTS

@@ -124,12 +124,12 @@ MIN_CONFIDENCE = 1
 AMBIGUITY_DELTA = 1
 
 INTENT_MODEL = {
-    "CREATE_RENDER":        {"keywords": [("create", 3), ("render", 4), ("frame", 3), ("component", 3), ("icon", 3), ("layout", 3), ("import", 3)]},
-    "DESIGN_SYSTEM_TOKENS": {"keywords": [("token", 4), ("variable", 4), ("var:", 4), ("collection", 3), ("shadcn", 3), ("design system", 4)]},
-    "INSPECT_EXPORT":       {"keywords": [("inspect", 3), ("extract", 4), ("export", 4), ("screenshot", 3), ("DESIGN.md", 4), ("a11y", 3), ("audit", 3)]},
-    "CONNECT_SETUP_DAEMON": {"keywords": [("connect", 4), ("safe", 3), ("patch", 4), ("unpatch", 4), ("daemon", 4), ("diagnose", 3), ("reconnect", 3)]},
-    "MCP_CONTEXT":          {"keywords": [("mcp", 4), ("code mode", 4), ("design context", 4), ("figma-developer-mcp", 4), ("pull", 2)]},
-    "TROUBLESHOOT":         {"keywords": [("error", 4), ("failed", 4), ("not connected", 4), ("binary not found", 4), ("unauthorized", 3)]},
+    "CREATE_RENDER":        {"keywords": [("create", 3), ("render", 4), ("frame", 3), ("component", 3), ("icon", 3), ("layout", 3), ("import", 3), ("build", 3), ("draw", 3), ("mockup", 3), ("wireframe", 3), ("prototype", 3), ("artboard", 3), ("button", 2), ("generate", 3), ("sketch", 2), ("card", 2)]},
+    "DESIGN_SYSTEM_TOKENS": {"keywords": [("token", 4), ("variable", 4), ("var:", 4), ("collection", 3), ("shadcn", 3), ("design system", 4), ("theme", 3), ("palette", 3), ("style", 2), ("swatch", 3), ("typography", 3), ("spacing", 3), ("tailwind", 3), ("primitive", 2)]},
+    "INSPECT_EXPORT":       {"keywords": [("inspect", 3), ("extract", 4), ("export", 4), ("screenshot", 3), ("DESIGN.md", 4), ("a11y", 3), ("audit", 3), ("accessibility", 3), ("contrast", 2), ("snapshot", 3), ("properties", 2), ("svg", 2), ("png", 2), ("storybook", 3), ("jsx", 2), ("download", 3), ("capture", 2)]},
+    "CONNECT_SETUP_DAEMON": {"keywords": [("connect", 4), ("safe", 3), ("patch", 4), ("unpatch", 4), ("daemon", 4), ("diagnose", 3), ("reconnect", 3), ("setup", 3), ("set up", 3), ("install", 2), ("bridge", 2), ("plugin", 2), ("restart", 3), ("health", 2)]},
+    "MCP_CONTEXT":          {"keywords": [("mcp", 4), ("code mode", 4), ("design context", 4), ("figma-developer-mcp", 4), ("pull", 2), ("framelink", 4), ("utcp", 3), ("get_design_context", 4)]},
+    "TROUBLESHOOT":         {"keywords": [("error", 4), ("failed", 4), ("not connected", 4), ("binary not found", 4), ("unauthorized", 3), ("broken", 3), ("not working", 4), ("doesn't work", 4), ("won't connect", 4), ("not responding", 3), ("unresponsive", 3), ("crash", 3), ("timeout", 3), ("conflict", 3), ("stuck", 3), ("permission denied", 3)]},
 }
 
 # Benchmark-facing mirror of INTENT_MODEL in the standard {weight, keywords} shape
@@ -139,12 +139,12 @@ INTENT_MODEL = {
 # (all six resolve to 4). Keys and keywords stay identical to INTENT_MODEL — a
 # key-sync test fails closed if the two blocks ever drift apart.
 INTENT_SIGNALS = {
-    "CREATE_RENDER":        {"weight": 4, "keywords": ["create", "render", "frame", "component", "icon", "layout", "import"]},
-    "DESIGN_SYSTEM_TOKENS": {"weight": 4, "keywords": ["token", "variable", "var:", "collection", "shadcn", "design system"]},
-    "INSPECT_EXPORT":       {"weight": 4, "keywords": ["inspect", "extract", "export", "screenshot", "DESIGN.md", "a11y", "audit"]},
-    "CONNECT_SETUP_DAEMON": {"weight": 4, "keywords": ["connect", "safe", "patch", "unpatch", "daemon", "diagnose", "reconnect"]},
-    "MCP_CONTEXT":          {"weight": 4, "keywords": ["mcp", "code mode", "design context", "figma-developer-mcp", "pull"]},
-    "TROUBLESHOOT":         {"weight": 4, "keywords": ["error", "failed", "not connected", "binary not found", "unauthorized"]},
+    "CREATE_RENDER":        {"weight": 4, "keywords": ["create", "render", "frame", "component", "icon", "layout", "import", "build", "draw", "mockup", "wireframe", "prototype", "artboard", "button", "generate", "sketch", "card"]},
+    "DESIGN_SYSTEM_TOKENS": {"weight": 4, "keywords": ["token", "variable", "var:", "collection", "shadcn", "design system", "theme", "palette", "style", "swatch", "typography", "spacing", "tailwind", "primitive"]},
+    "INSPECT_EXPORT":       {"weight": 4, "keywords": ["inspect", "extract", "export", "screenshot", "DESIGN.md", "a11y", "audit", "accessibility", "contrast", "snapshot", "properties", "svg", "png", "storybook", "jsx", "download", "capture"]},
+    "CONNECT_SETUP_DAEMON": {"weight": 4, "keywords": ["connect", "safe", "patch", "unpatch", "daemon", "diagnose", "reconnect", "setup", "set up", "install", "bridge", "plugin", "restart", "health"]},
+    "MCP_CONTEXT":          {"weight": 4, "keywords": ["mcp", "code mode", "design context", "figma-developer-mcp", "pull", "framelink", "utcp", "get_design_context"]},
+    "TROUBLESHOOT":         {"weight": 4, "keywords": ["error", "failed", "not connected", "binary not found", "unauthorized", "broken", "not working", "doesn't work", "won't connect", "not responding", "unresponsive", "crash", "timeout", "conflict", "stuck", "permission denied"]},
 }
 
 RESOURCE_MAP = {

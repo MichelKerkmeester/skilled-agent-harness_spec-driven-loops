@@ -46,4 +46,4 @@ cupt config --api-token pk_YOUR_TOKEN_HERE
 
 Get your Personal API Token at https://app.clickup.com/settings/apps
 
-See `../../INSTALL_GUIDE.md §3-§4` for full authentication and MCP config steps.
+See `../../references/install_guide.md §3-§4` for full authentication and MCP config steps.

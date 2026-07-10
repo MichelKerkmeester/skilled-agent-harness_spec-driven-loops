@@ -50,7 +50,7 @@ ALWAYS:    SKILL.md (this file)
 ON_DEMAND: references/cupt_commands.md    (when cupt command details needed)
            references/mcp_tools.md         (when MCP tool details needed)
            references/troubleshooting.md   (when error or auth issue detected)
-           INSTALL_GUIDE.md                (when setup or authentication details needed)
+           references/install_guide.md     (when setup or authentication details needed)
 ```
 
 ### Operation-to-Tool Routing Table
@@ -82,7 +82,6 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-ROOT_MARKDOWN_RESOURCES = ("INSTALL_GUIDE.md",)
 
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm whether the request is for cupt daily ops, official ClickUp MCP, install/auth, or troubleshooting",
@@ -96,31 +95,57 @@ INTENT_SIGNALS = {
         "weight": 5,
         "keywords": ["list", "show", "done", "note", "notes", "time", "tag", "context",
                      "statuses", "summary", "teams", "attach", "work queue", "complete task",
-                     "mark done", "log time", "track time"],
+                     "mark done", "log time", "track time",
+                     "my tasks", "assigned to me", "due today", "due this week", "overdue",
+                     "wrap up", "close out", "update status", "leave a comment", "add a comment",
+                     "task details", "start timer", "stop timer", "clock in", "clock out",
+                     "log hours", "worklog", "task summary", "list teams", "upload a file",
+                     "download a file", "prefetch", "offline cache"],
     },
     "MCP_ADVANCED": {
         "weight": 5,
         "keywords": ["document", "goal", "okr", "bulk", "webhook", "chat", "audit",
-                     "create_bulk", "manage_documents", "checklist", "custom field"],
+                     "create_bulk", "manage_documents", "checklist", "custom field",
+                     "quarterly goals", "key results", "doc page", "wiki page",
+                     "create a folder", "create a space", "manage lists", "task dependencies",
+                     "link tasks", "bulk update", "mass create", "batch create", "user groups",
+                     "guest access", "enterprise feature", "task template", "space tags"],
     },
     "INSTALL": {
         "weight": 6,
         "keywords": ["install cupt", "setup", "not found", "not installed", "auth",
-                     "authenticate", "api token", "mcp config"],
+                     "authenticate", "api token", "mcp config",
+                     "getting started", "onboarding", "configure", "configuration",
+                     "connect clickup", "link my account", "personal token", "pipx install",
+                     "sign in", "how do i install"],
     },
     "TROUBLESHOOT": {
         "weight": 6,
         "keywords": ["error", "failed", "not working", "403", "401", "slow", "timeout",
-                     "empty", "no tasks"],
+                     "empty", "no tasks",
+                     "broken", "doesn't work", "isn't working", "won't load", "stuck",
+                     "unauthorized", "forbidden", "permission denied", "rate limit", "429",
+                     "500", "crash", "bug", "not authenticated", "can't connect",
+                     "connection failed", "timing out"],
     },
 }
 
+# NOTE: no "DEFAULT" entry — route_clickup_resources() never indexes RESOURCE_MAP
+# by that key (the selected `intent` is always one of the four INTENT_SIGNALS
+# keys above). Both no-match fallback branches already hardcode
+# "references/cupt_commands.md" directly, so a "DEFAULT" dict entry would be
+# dead weight duplicating that literal. Promoting it to a top-level
+# DEFAULT_RESOURCE = [...] constant instead would change semantics: the
+# benchmark harness (and any router-doc-aware caller) treats DEFAULT_RESOURCE
+# as an always-loaded preamble unioned into EVERY route, which would make
+# cupt_commands.md load on MCP_ADVANCED/INSTALL/TROUBLESHOOT routes too —
+# resources those intents' gold never expects. Removing the key keeps the
+# hardcoded fallback as the single source of truth for the no-match case.
 RESOURCE_MAP = {
     "CUPT_DAILY":    ["references/cupt_commands.md"],
     "MCP_ADVANCED":  ["references/mcp_tools.md"],
-    "INSTALL":       ["INSTALL_GUIDE.md", "references/troubleshooting.md"],
+    "INSTALL":       ["references/install_guide.md", "references/troubleshooting.md"],
     "TROUBLESHOOT":  ["references/troubleshooting.md"],
-    "DEFAULT":       ["references/cupt_commands.md"],
 }
 
 def discover_markdown_resources() -> set[str]:
@@ -128,11 +153,6 @@ def discover_markdown_resources() -> set[str]:
     for base in RESOURCE_BASES:
         if base.exists():
             docs.extend(path for path in base.rglob("*.md") if path.is_file())
-
-    for resource in ROOT_MARKDOWN_RESOURCES:
-        path = SKILL_ROOT / resource
-        if path.exists() and path.is_file():
-            docs.append(path)
 
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
@@ -412,6 +432,7 @@ const result = await call_tool_chain([
 - `references/cupt_commands.md` — Full cupt command reference with agent patterns
 - `references/mcp_tools.md` — 46 official MCP tools, priority table, invocation
 - `references/troubleshooting.md` — Auth, status, team-filter, MCP failures
+- `references/install_guide.md` — Step-by-step install with validation checkpoints
 
 **Scripts:**
 - `scripts/install.sh` — Installs cupt + prints MCP config snippet
@@ -420,9 +441,6 @@ const result = await call_tool_chain([
 - `mcp-servers/clickup-mcp/package.json` — Stale. The official server is remote (`https://mcp.clickup.com/mcp`, OAuth), nothing to vendor locally. Use the `.utcp_config.json` `mcp-remote` bridge in Section 3 instead.
 - `mcp-servers/clickup-cli/requirements.txt` — cupt CLI pip pin (`cupt>=0.7.1`). Run `setup.sh` to install.
 - `mcp-servers/clickup-cli/setup.sh` — cupt install via pipx or pip.
-
-**Install Guide:**
-- `INSTALL_GUIDE.md` — Step-by-step with validation checkpoints
 
 **Examples:**
 - `examples/task-queue-workflow.sh` — Process tagged work queue
