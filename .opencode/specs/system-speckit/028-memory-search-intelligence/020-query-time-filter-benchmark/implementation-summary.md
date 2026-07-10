@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_2/implementation-summary.md]"
-description: "Status PLANNED. The query-time existence filter benchmark and hardening packet is scaffolded with spec, plan, tasks, and checklist. No harness, stress test, e2e test, or telemetry counter is built yet."
+description: "Completed latency benchmark, concurrency soak, public-handler transient-miss test, and process-lifetime aggregate exclusion telemetry for the query-time existence filter."
 trigger_phrases:
   - "query-time existence filter benchmark"
   - "REQ-008 latency benchmark"
@@ -12,23 +12,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/020-query-time-filter-benchmark"
-    last_updated_at: "2026-07-09T22:40:00Z"
-    last_updated_by: "claude-sonnet-5"
-    recent_action: "Scaffolded spec, plan, tasks, and checklist, status PLANNED"
-    next_safe_action: "Await operator approval, then begin Phase 1 of plan.md"
-    blockers:
-      - "011-automatic-drift-self-healing and 014-self-healing-internals-hardening's shipped code is the object under test; re-confirm their cited file:line references before implementation starts"
-    key_files: []
+    last_updated_at: "2026-07-10T04:43:21Z"
+    last_updated_by: "openai/gpt-5.6-terra"
+    recent_action: "Implemented and verified the benchmark, soak test, e2e flow, and aggregate telemetry"
+    next_safe_action: "No implementation work remains; use the recorded benchmark evidence for a future flag-graduation decision"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/query-time-existence-filter-concurrency-stress.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-transient-miss-e2e.vitest.ts"
+      - "results/query-time-filter-latency.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-028-020-query-time-filter-benchmark"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Does REQ-001's overhead number get pinned as a numeric pass/fail threshold, or only reported for a future graduation packet to judge?"
-      - "REQ-004's counter: persisted config-table row (Option A) or process-lifetime in-memory counter (Option B)?"
-    answered_questions: []
-status: planned
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The aggregate counter is process-lifetime in-memory telemetry; it resets on daemon restart."
+ status: completed
 ---
 # Implementation Summary
 
@@ -44,8 +46,8 @@ status: planned
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 020-query-time-filter-benchmark |
-| **Status** | PLANNED, not yet implemented |
-| **Completed** | Not completed |
+| **Status** | Completed |
+| **Completed** | 2026-07-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -54,36 +56,25 @@ status: planned
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This phase is scaffolded only. The spec, plan, tasks, and checklist are authored and
-the work is PLANNED. This is explicitly low urgency -- the self-healing system's Layer 2 (git-hook marker)
-and Layer 3 (orphan-sweep backstop) already provide drift protection independent of this phase, so there is
-no rush to build it, only a clear bar to clear when convenient.
+Implemented the four scoped hardening requirements for the default-off query-time existence filter without
+changing its filtering behavior, the Layer 2 hook, or Layer 3 sweep/confirmation behavior.
 
-### Planned: Query-Time Existence Filter Benchmark & Hardening
-
-The planned work closes four narrow, evidence-backed gaps around the already-shipped
-`SPECKIT_QUERY_TIME_EXISTENCE_FILTER` (Layer 1 of `011-automatic-drift-self-healing`, hardened by
-`014-self-healing-internals-hardening`): (1) a real p50/p95/mean latency benchmark for REQ-008, run via a
-new self-contained harness against a read-only corpus backup; (2) a concurrency stress test under
-`stress_test/durability/` proving the existing 25ms fast-fail bound holds under a wide concurrent burst, not
-just a simulated single-process lock; (3) one end-to-end test driving the transient-miss-then-restored
-correctness contract through the public `memory_search`/`memory_index_scan` handlers as a single continuous
-flow; and (4) an aggregate exclusion-count counter extending the existing ephemeral per-query telemetry
-field. None of this exists in code yet.
+- Added a read-only-source benchmark harness and raw result evidence.
+- Added a 64-wide public `memory_search` contention soak test.
+- Added one continuous public-handler transient-miss, restore, and scan-clear test.
+- Added process-lifetime aggregate checked/excluded telemetry to `memory_search` responses and an exported getter.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Records the problem, scope, requirements, and cited file:line evidence for all four gaps |
-| plan.md | Created | Records the implementation approach for the benchmark harness, stress test, e2e test, and telemetry counter |
-| tasks.md | Created | Records the task breakdown |
-| checklist.md | Created | Records the QA checklist, all items unchecked |
+| `scripts/query-time-filter-latency-benchmark.mjs` | Added | Backs up the source database and active vector shard from read-only handles, then measures the public handler against the temporary copy |
+| `results/query-time-filter-latency.json` | Added | Raw 64-sample-on/64-sample-off benchmark evidence |
+| `mcp_server/stress_test/durability/query-time-existence-filter-concurrency-stress.vitest.ts` | Added | 64-wide contended public-search soak coverage |
+| `mcp_server/tests/memory-search-transient-miss-e2e.vitest.ts` | Added | Public handler excluded-queued-restored-cleared and aggregate telemetry coverage |
+| `mcp_server/handlers/memory-search.ts` | Modified | Process-lifetime aggregate counter and response field |
+| `mcp_server/ENV_REFERENCE.md` | Modified | Documents the per-query and process-lifetime telemetry surfaces |
 
-No benchmark script, stress test, e2e test, or telemetry counter code has been written. The files named in
-spec.md's Files to Change table (`query-time-filter-latency-benchmark.mjs`,
-`query-time-existence-filter-concurrency-stress.vitest.ts`, `memory-search-transient-miss-e2e.vitest.ts`,
-and the `memory-search.ts`/`memory-drift-healing.ts` counter diff) are planned, not created.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -91,9 +82,12 @@ and the `memory-search.ts`/`memory-drift-healing.ts` counter diff) are planned, 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. This is a planning scaffold. No benchmark was run, no stress test was executed, and no
-counter was implemented. Delivery starts once an operator approves the plan and Phase 1 of `plan.md`
-begins by re-confirming the cited `011`/`014` file:line references against the live tree.
+The benchmark copied `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite`
+and its active vector shard from read-only handles into a temporary evaluation directory. It then ran the
+public `memory_search` handler with eight representative queries, two warmup repeats, and eight measured
+repeats per flag state. The source database was never opened for writes.
+
+Reproduce with `SPECKIT_BENCHMARK_SOURCE_DB=/absolute/path/context-index.sqlite node scripts/query-time-filter-latency-benchmark.mjs` from this packet. Without the override, the harness uses the configured database path.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -103,10 +97,8 @@ begins by re-confirming the cited `011`/`014` file:line references against the l
 
 | Decision | Why |
 |----------|-----|
-| Scope narrowly to four gaps against already-shipped code, not a re-design of Layer 1 | The filter, the fast-fail write bound, and the suspect-confirm/tombstone logic are already implemented and separately tested; the actual open items are measurement and end-to-end/concurrency proof, not new logic |
-| Reuse the 004-dark-flag-graduation benchmark safety pattern (read-only corpus backup, flag toggled via env) instead of designing a new harness shape | That pattern is proven, already used by multiple sibling benchmarks, and the exact safety property (never open the live DB for writes) this phase also needs |
-| Reuse the stress_test/durability isolation pattern (throwaway in-memory DB, injectable db-state hook) instead of spawning real daemon processes for the soak test | Matches what F8 actually changed (connection-level write contention), is deterministic, and is consistent with this directory's existing coverage model; real daemon-lifecycle concurrency is already covered by other files in the same directory |
-| Keep REQ-004's telemetry counter additive only, no dashboard or /doctor panel | Mirrors 016-cross-package-flag-governance's F15 precedent: observe before building more, avoid scope creep into a monitoring feature |
+| Use a process-lifetime in-memory aggregate counter | It adds no per-query database I/O or lock contention to the hot path. The counter resets on daemon restart and is exposed by `extraData.queryTimeExistenceFilterAggregate` plus `getQueryTimeExistenceFilterAggregateStats()`. |
+| Keep filtering, hook, and sweep/confirmation behavior unchanged | The production diff only records already-computed `checked`/`excluded` values after the flag-gated filter executes. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -116,12 +108,12 @@ begins by re-confirming the cited `011`/`014` file:line references against the l
 
 | Check | Result |
 |-------|--------|
-| spec, plan, tasks, checklist authored | DONE, scaffold in place |
-| REQ-001 latency benchmark harness built and run | NOT STARTED |
-| REQ-002 concurrency stress test built and passing | NOT STARTED |
-| REQ-003 end-to-end transient-miss test built and passing | NOT STARTED |
-| REQ-004 aggregate counter implemented and tested | NOT STARTED |
-| 011/checklist.md CHK-064 closed | NOT STARTED |
+| REQ-001 latency benchmark | OFF: p50 283.487ms, p95 359.550ms, mean 274.034ms. ON: p50 291.999ms, p95 370.749ms, mean 288.022ms. Mean overhead: 13.988ms (5.1045% of baseline). 320 file-backed rows checked on. |
+| REQ-002 concurrency soak | Passed: 64 concurrent public searches contended on the suspect queue, each used the 25ms busy-timeout setting, all resolved without error, and the queue remained readable. |
+| REQ-003 transient-miss flow | Passed: missing row excluded and queued; restored row included on the next public search; public index scan cleared the suspect without tombstoning it. |
+| REQ-004 aggregate telemetry | Passed: the process-lifetime aggregate increased by checked +2 and excluded +1 across the two public searches in the e2e test. |
+| Typecheck and build | Passed: `npm run typecheck`, `npm run build`. |
+| Regression tests | Passed: `memory-drift-healing.vitest.ts` and `memory-search-drift-suspect-write-timeout.vitest.ts` (12 tests). |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -129,12 +121,6 @@ begins by re-confirming the cited `011`/`014` file:line references against the l
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No code exists.** This phase is a planning scaffold only. The benchmark harness, the stress test, the
-   e2e test, and the telemetry counter are planned, not built.
-2. **Depends on 011/014's shipped state.** `011-automatic-drift-self-healing`'s Layer 1 code and
-   `014-self-healing-internals-hardening`'s F8 fast-fail bound are the objects under test; if either changes
-   materially before implementation begins, the cited file:line references need re-verification first.
-3. **Two open questions remain.** Whether REQ-001's overhead number becomes a pinned numeric threshold or
-   stays report-only, and which of the two REQ-004 counter mechanisms (persisted vs. process-lifetime) gets
-   implemented, are both still open in spec.md.
+The benchmark reports one corpus and query-set snapshot rather than a permanent graduation threshold. A future
+flag-graduation decision should re-run it on the then-current corpus and production workload.
 <!-- /ANCHOR:limitations -->

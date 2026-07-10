@@ -137,7 +137,7 @@ FAILURE MODES:
 - [x] CHK-061 [P0] The same fixture still excludes the row without a premature delete; tombstone is deferred to scan confirmation. [evidence: `memory-drift-healing.vitest.ts`]
 - [x] CHK-062 [P0] Capability flag defaults to disabled with no env var set; explicit-enable override verified (REQ-002). [evidence: `memory-roadmap-flags.vitest.ts`]
 - [x] CHK-063 [P0] Flag off after having run with it on restores pre-Layer-1 query behavior (REQ-009). [evidence: `memory-roadmap-flags.vitest.ts`]
-- [ ] CHK-064 [P1] Latency budget measured: search-with-filter-on vs. filter-off over a representative query set, real numbers captured in implementation-summary.md. Status: not yet executed as a numeric benchmark.
+- [x] CHK-064 [P1] Latency budget measured: search-with-filter-on vs. filter-off over a representative query set. Evidence: `020-query-time-filter-benchmark/implementation-summary.md` records OFF mean 274.034ms, ON mean 288.022ms, and 5.1045% mean overhead from 64 samples per state on a read-only corpus backup.
 
 **Layer 2 -- hook detects renames vs. deletes vs. unrelated commits**
 - [x] CHK-065 [P0] A commit touching only files outside .opencode/specs produces zero marker writes and zero hook side effects (REQ-003). [evidence: `git commit` scratch smoke]

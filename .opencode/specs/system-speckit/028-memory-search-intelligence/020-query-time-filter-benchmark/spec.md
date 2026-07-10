@@ -12,12 +12,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/020-query-time-filter-benchmark"
-    last_updated_at: "2026-07-09T22:40:00Z"
-    last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored spec/plan/tasks/checklist as a planning-only scaffold, status PLANNED"
-    next_safe_action: "Await operator approval, then begin Phase 1 of plan.md"
-    blockers:
-      - "011-automatic-drift-self-healing's Layer 1 code and capability flag are the object under test here and must stay the version this benchmark measures -- if that code changes materially before implementation starts, re-verify the cited file:line references first"
+    last_updated_at: "2026-07-10T04:43:21Z"
+    last_updated_by: "openai/gpt-5.6-terra"
+    recent_action: "Implemented and verified all scoped requirements"
+    next_safe_action: "Use the benchmark evidence in a future default-on graduation decision"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts"
@@ -28,11 +27,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-028-020-query-time-filter-benchmark"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Does the p50/p95 overhead budget REQ-001 measures get pinned as a numeric threshold in this phase, or only reported and left for a future graduation packet to judge against a governance bar (mirroring 016's burden-of-proof framing for a different flag)?"
-      - "Should the aggregate exclusion counter (REQ-004) persist across daemon restarts (a config-table row) or reset per process lifetime (an in-memory counter, cheaper, matches retrieval-telemetry.ts's existing per-process model)?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "REQ-001 reports benchmark evidence rather than imposing a graduation threshold."
+      - "REQ-004 uses a process-lifetime in-memory counter to avoid hot-path database I/O."
 ---
 # Feature Specification: Query-Time Existence Filter Benchmark & Hardening
 
@@ -55,7 +54,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-07-09 |
 | **Branch** | `020-query-time-filter-benchmark` |
 <!-- /ANCHOR:metadata -->

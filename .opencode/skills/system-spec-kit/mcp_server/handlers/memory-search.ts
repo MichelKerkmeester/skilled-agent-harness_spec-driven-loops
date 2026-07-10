@@ -218,6 +218,11 @@ interface QueryTimeExistenceFilterStats {
   suspectIds: number[];
 }
 
+interface QueryTimeExistenceFilterAggregateStats {
+  checked: number;
+  excluded: number;
+}
+
 // Fast-fail bound for the best-effort drift-suspect write below: well under the
 // connection's normal 10000ms busy_timeout, so a lock collision degrades the
 // search response by tens of milliseconds instead of blocking it for seconds.
@@ -244,6 +249,10 @@ const NON_CANONICAL_DOCUMENT_TYPES = new Set([
 
 const ENVELOPE_STATE = Symbol('memorySearchEnvelopeState');
 let responseEnvelopeSerializationCount = 0;
+const queryTimeExistenceFilterAggregateStats: QueryTimeExistenceFilterAggregateStats = {
+  checked: 0,
+  excluded: 0,
+};
 
 type EnvelopeBackedResponse = MCPResponse & { [ENVELOPE_STATE]?: EnvelopeState };
 
@@ -272,6 +281,15 @@ function resetResponseEnvelopeSerializationDiagnostics(): void {
 
 function getResponseEnvelopeSerializationDiagnostics(): { serializations: number } {
   return { serializations: responseEnvelopeSerializationCount };
+}
+
+export function getQueryTimeExistenceFilterAggregateStats(): QueryTimeExistenceFilterAggregateStats {
+  return { ...queryTimeExistenceFilterAggregateStats };
+}
+
+function recordQueryTimeExistenceFilterStats(stats: QueryTimeExistenceFilterStats): void {
+  queryTimeExistenceFilterAggregateStats.checked += stats.checked;
+  queryTimeExistenceFilterAggregateStats.excluded += stats.excluded;
 }
 
 function normalizeDocumentType(value: unknown): string | null {
@@ -1600,6 +1618,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         results: resultsForFormatting,
         stats: { enabled: false, checked: 0, excluded: 0, suspectIds: [] },
       };
+    if (queryTimeExistenceFilter.stats.enabled) {
+      recordQueryTimeExistenceFilterStats(queryTimeExistenceFilter.stats);
+    }
     resultsForFormatting = queryTimeExistenceFilter.results;
     const avgScore = computeAverageScore(resultsForFormatting as Array<Record<string, unknown>>);
     const requestQualityLabel = pipelineResult.metadata.stage4.evidenceGapDetected ? 'gap' : 'weak';
@@ -1724,6 +1745,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       checked: queryTimeExistenceFilter.stats.checked,
       excluded: queryTimeExistenceFilter.stats.excluded,
     };
+    extraData.queryTimeExistenceFilterAggregate = getQueryTimeExistenceFilterAggregateStats();
 
     if (includeTrace && pipelineResult.trace) {
       extraData.retrievalTrace = pipelineResult.trace;
@@ -2131,6 +2153,7 @@ export const __testables = {
   prependEvidenceGapWarningToResponse,
   resetResponseEnvelopeSerializationDiagnostics,
   getResponseEnvelopeSerializationDiagnostics,
+  getQueryTimeExistenceFilterAggregateStats,
 };
 
 // Backward-compatible aliases (snake_case)
