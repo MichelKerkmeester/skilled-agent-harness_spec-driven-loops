@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status COMPLETE. All discoverers enqueue bounded drift suspects; confirmation is next-cycle and remains the sole tombstone path."
 trigger_phrases:
   - "self-healing model consolidation"

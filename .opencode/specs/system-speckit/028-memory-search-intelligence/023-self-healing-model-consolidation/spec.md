@@ -328,7 +328,10 @@ envelope at `memory-index.ts:1160-1167,1571-1576`.
 
 ---
 
-## 10. RESOLVED QUESTIONS
+## 10. OPEN QUESTIONS
+
+_All three questions below are resolved; kept under this heading per the template's fixed section contract._
+
 
 - **Confirmation timing:** next-cycle. `suspect-confirmation` runs before `orphan-sweep` in both scan shapes;
   `orphan-sweep-time-budget-and-refresh.vitest.ts:131-172` proves a queued row survives the first scan and is

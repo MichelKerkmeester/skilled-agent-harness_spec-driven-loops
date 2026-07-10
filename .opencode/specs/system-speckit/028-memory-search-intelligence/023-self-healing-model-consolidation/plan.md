@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Self-Healing Model Consolidation [template:level_2/plan.md]"
+title: "Implementation Plan: Self-Healing Model Consolidation"
 description: "Convert runGlobalOrphanSweep and the marker-triggered scoped-delete branch from direct deleters into suspect-queue enqueuers, leaving runSuspectConfirmation as the sole confirm-and-tombstone site. Add a suspect-queue size cap/metric and resolve the busy-timeout and phase-order questions the new callers raise."
 trigger_phrases:
   - "self-healing model consolidation"

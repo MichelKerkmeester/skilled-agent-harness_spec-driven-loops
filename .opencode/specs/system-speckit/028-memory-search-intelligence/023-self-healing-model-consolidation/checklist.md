@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Self-Healing Model Consolidation [template:level_2/checklist.md]"
+title: "Verification Checklist: Self-Healing Model Consolidation"
 description: "Verification Date: TBD, scaffold not yet built"
 trigger_phrases:
   - "self-healing model consolidation"
