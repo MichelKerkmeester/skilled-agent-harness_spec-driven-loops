@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research",
-  "description": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session di",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research",
+  "description": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session",
   "keywords": [
     "mk-spec-memory",
     "mcp",
@@ -17,11 +17,11 @@
     "costs",
     "mid-session"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.544Z",
+  "lastUpdated": "2026-07-09T10:02:55.478Z",
   "specId": "000",
   "folderSlug": "spec-memory-cli-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "001-mcp-to-cli-tool-transition",

@@ -25,7 +25,6 @@
     "key_topics": [
       "skill",
       "metadata",
-      "fixes",
       "apply",
       "post-audit",
       "refresh",
@@ -34,7 +33,8 @@
       "resweep",
       "metadata-aware",
       "sweep",
-      "delta"
+      "delta",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 015/005 produced a research report (`research/audit-report.md`) ranking the 8 lowest-scoring skills with concrete WHAT/WHY/EXAMPLE phrasing changes",
     "created_at": "2026-05-14T01:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.085Z",
+    "last_save_at": "2026-07-09T10:02:49.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T01:00:00Z",
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f80c59c59bb4959d26c5f85973801b6decd8848f467056bb1dea8666e9005780",
+    "source_fingerprint": "sha256:d43d6e60a21a39be60a69e7b934d91037ec450e58667cf3697538ed408957887",
     "source_doc_hashes": {
-      "spec.md": "8053bad99eab777508ba86f839306150353772f04b289a8b33403ddb23c4ce05",
-      "plan.md": "84ad0d8b8e83d31925e9a0ee33ba93731c7b0119a0c77f52fe5dee7c0bdc9d39",
-      "tasks.md": "ba9a40899115a75980f2bfe2dce2e04900c5bad705d212f0e8a1af00eb19484a",
-      "checklist.md": "30028d6cb0bc2430e1ba52a4fe113a00d198693af29cb09f714617bb55d2fba0",
-      "implementation-summary.md": "c03dba4a757481d0371c780feddddcdd0a7a42ec61da476ac8734c76865c661f"
+      "spec.md": "5f1655650ab14054206af80f9b3ea18df021d4a683071a3d84f60e2e1f5d4fba",
+      "plan.md": "38bd091c938a42f76be8546cae61e0f140879653d1d1231804adfab6264a9758",
+      "tasks.md": "cb35226403ffe79bde373c70e4304b89f6a6ae62f940cfcf964cbe03dcfd5908",
+      "checklist.md": "f730d02af5e131e094eba8e850968c521a4c4c9cfd440f86c364f297fe11fdcc",
+      "implementation-summary.md": "1a4a1a517c2fbac703a9fe2e3f21cf3a8495c86f3dbfcfcb289074ff274f2aa1"
     },
     "last_active_child_id": null,
     "last_active_at": null

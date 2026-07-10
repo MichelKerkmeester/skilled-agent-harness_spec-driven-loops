@@ -1,22 +1,21 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter",
   "description": "Causal edges are currently created mostly through manual `memorycausallink` flows",
   "keywords": [
     "causal",
     "edges",
     "currently",
-    "created",
     "mostly",
     "manual",
     "memorycausallink",
     "flows"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.163Z",
+  "lastUpdated": "2026-07-09T10:02:55.154Z",
   "specId": "003",
   "folderSlug": "metadata-edge-promoter",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "002-memory-index-causal-lifecycle"

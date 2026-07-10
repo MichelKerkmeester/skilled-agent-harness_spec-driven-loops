@@ -241,7 +241,7 @@ echo "$PROVIDERS" | grep -q "openai"              && OPENAI_OK=1         || OPEN
 
 **User prompt template — default missing, fallback configured:**
 
-```
+```text
 The skill default `deepseek/deepseek-v4-pro` is not configured on this machine.
 A configured fallback is available. Pick one:
   A) Use `openai/gpt-5.6-sol-pro --variant high` (OpenAI premium, configured now — paid)
@@ -253,7 +253,7 @@ A configured fallback is available. Pick one:
 
 **User prompt template — all providers missing:**
 
-```
+```text
 No supported providers are configured on this machine. Run one:
   - `opencode providers login deepseek`     (recommended — default for cli-opencode)
   - `opencode auth login`                   (MiniMax Token Plan — default MiniMax path; pick "MiniMax Token Plan (minimax.io)" → provider minimax-coding-plan; model minimax-coding-plan/MiniMax-M3)

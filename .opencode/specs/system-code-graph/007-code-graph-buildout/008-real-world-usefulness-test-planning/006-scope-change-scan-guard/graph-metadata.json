@@ -27,10 +27,6 @@
       "026/007/012/005 checklist"
     ],
     "key_topics": [
-      "026",
-      "007",
-      "012",
-      "005",
       "scope-change",
       "guard",
       "forcescopechange",
@@ -38,7 +34,11 @@
       "scope",
       "fingerprint",
       "plan",
-      "schema"
+      "schema",
+      "tasks",
+      "task",
+      "list",
+      "checklist"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The Phase 012/004 F-002 fix blocks only the literal zero-node full-scan edge case",
     "created_at": "2026-05-06T07:44:35Z",
-    "last_save_at": "2026-07-07T16:18:33.854Z",
+    "last_save_at": "2026-07-09T10:02:47.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

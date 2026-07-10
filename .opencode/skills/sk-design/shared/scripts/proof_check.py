@@ -266,6 +266,23 @@ def _repo_root(card_path: Optional[str]) -> Path:
     return Path.cwd().resolve()
 
 
+def _resolve_contained_path(root: Path, rel_path: str) -> Optional[Path]:
+    """Resolve rel_path against root and enforce repo containment.
+
+    Fails closed: returns None if the resolved real path is not inside
+    root. Covers both ``../`` traversal and absolute-path overrides —
+    ``root / "/etc/passwd"`` (and likewise ``os.path.join``) silently
+    discards root and returns the absolute path as-is, so containment
+    must be checked *after* the join/resolve, never inferred from the
+    unjoined input string.
+    """
+    real_root = os.path.realpath(str(root))
+    real_candidate = os.path.realpath(os.path.join(str(root), rel_path))
+    if os.path.commonpath([real_root, real_candidate]) != real_root:
+        return None
+    return Path(real_candidate)
+
+
 def _validate_source_proof(text: str, card_path: Optional[str]) -> dict:
     rows = _find_source_proof_rows(text)
     result = {
@@ -295,11 +312,15 @@ def _validate_source_proof(text: str, card_path: Optional[str]) -> dict:
 
         raw = None
         if not item["errors"] or digest_match:
-            try:
-                with open(root / row["path"], "rb") as fh:
-                    raw = fh.read()
-            except OSError:
-                item["errors"].append("source file unreadable")
+            resolved = _resolve_contained_path(root, row["path"])
+            if resolved is None:
+                item["errors"].append("source path escapes repo root")
+            else:
+                try:
+                    with open(resolved, "rb") as fh:
+                        raw = fh.read()
+                except OSError:
+                    item["errors"].append("source file unreadable")
 
         if raw is not None and digest_match:
             actual = hashlib.sha256(raw).hexdigest()

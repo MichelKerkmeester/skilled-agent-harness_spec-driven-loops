@@ -33,8 +33,8 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
-  "description": "Phase-parent control packet for post-012 learning feedback reducers: shared aggregation foundation, session-trace causal reducer, learned retention re",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers",
+  "description": "Phase-parent control packet for post-012 learning feedback reducers: shared aggregation foundation, session-trace causal reducer, learned retention",
   "keywords": [
     "phase-parent",
     "control",
@@ -52,11 +52,11 @@
     "learned",
     "retention"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.207Z",
+  "lastUpdated": "2026-07-09T10:02:55.205Z",
   "specId": "004",
   "folderSlug": "learning-feedback-reducers",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

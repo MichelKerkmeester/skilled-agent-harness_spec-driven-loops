@@ -20,7 +20,6 @@
   "description": "Packet 009 excluded `.opencode/skills/` from default code-graph scans, but adjacent internal-heavy folders remained in the default scan surface",
   "keywords": [
     "packet",
-    "009",
     "excluded",
     "opencode",
     "skills",
@@ -34,7 +33,7 @@
     "scan",
     "surface"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.873Z",
+  "lastUpdated": "2026-07-09T10:02:46.894Z",
   "specId": "005",
   "folderSlug": "broader-excludes-and-granular-skills",
   "parentChain": [

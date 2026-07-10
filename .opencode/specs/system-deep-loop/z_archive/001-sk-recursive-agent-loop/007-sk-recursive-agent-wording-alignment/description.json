@@ -3,7 +3,6 @@
   "description": "After phase `006`, the agent-improver program was structurally aligned, but several current surfaces still had awkward phrasing, inconsistent",
   "keywords": [
     "phase",
-    "006",
     "agent-improver",
     "program",
     "structurally",
@@ -16,7 +15,7 @@
     "phrasing",
     "inconsistent"
   ],
-  "lastUpdated": "2026-07-08T13:06:38.316Z",
+  "lastUpdated": "2026-07-09T10:02:48.327Z",
   "specId": "007",
   "folderSlug": "sk-recursive-agent-wording-alignment",
   "parentChain": [

@@ -7,7 +7,6 @@
     "mechanical",
     "change",
     "set",
-    "860",
     "files",
     "needs",
     "proof",
@@ -17,7 +16,7 @@
     "anchor",
     "scaffolding"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.116Z",
+  "lastUpdated": "2026-07-09T10:02:46.023Z",
   "specId": "004",
   "folderSlug": "verification-reconciliation",
   "parentChain": [

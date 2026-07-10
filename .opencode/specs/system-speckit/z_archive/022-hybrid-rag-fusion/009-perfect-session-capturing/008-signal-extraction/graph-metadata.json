@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/008-signal-extraction",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -28,7 +28,6 @@
       "feature",
       "specificati",
       "spec",
-      "008",
       "signal",
       "implementation",
       "plan",
@@ -36,11 +35,13 @@
       "verification",
       "checklist",
       "summary",
-      "extraction"
+      "extraction",
+      "pipeline"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "scripts/lib/semantic-signal-extractor.ts",
       "scripts/lib/trigger-extractor.ts",
       "scripts/core/topic-extractor.ts",
@@ -51,13 +52,18 @@
       "shared/trigger-extractor.ts",
       "core/topic-extractor.ts",
       "lib/semantic-summarizer.ts",
-      "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "semantic-signal-extractor.ts",
         "kind": "code",
@@ -98,12 +104,6 @@
         "name": "test-scripts-modules.js",
         "kind": "code",
         "path": "scripts/tests/test-scripts-modules.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The pipeline uses 3 real extraction engines plus 1 wrapper, each with different stopwords, weighting, and placeholder rules:",
     "created_at": "2026-04-12T09:02:50.271Z",
-    "last_save_at": "2026-06-23T03:50:00.041Z",
+    "last_save_at": "2026-07-09T10:02:58.200Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

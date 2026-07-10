@@ -22,8 +22,6 @@
       "cross-skill authoring-time"
     ],
     "key_topics": [
-      "078",
-      "002",
       "spec-kit-load",
       "authoring-time",
       "sk-code",
@@ -33,16 +31,18 @@
       "plan",
       "tasks",
       "summary",
-      "077"
+      "finding",
+      "f-009-001",
+      "speckit"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
       ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
       ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/sk-code/SKILL.md",
+      "tasks.md",
       ".opencode/skills/sk-code/description.json",
       ".opencode/skills/sk-code/changelog/v3.2.1.0.md",
       "spec.md",
@@ -50,12 +50,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "speckit_complete_auto.yaml",
         "kind": "config",
@@ -72,6 +66,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "077 finding F-009-001: `/speckit:complete` workflow loads sk-code only at REVIEW TIME (Phase A \"Pre-Commit code review\", auto YAML lines 311-318), not at AUTHORING TIME (Step 10 development)",
     "created_at": "2026-05-05T17:36:52Z",
-    "last_save_at": "2026-06-23T03:49:49.847Z",
+    "last_save_at": "2026-07-09T10:02:45.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e13fd23071819961cfe7e64e8d10966b0b55d12bc457c45fb5737a6283a6b599",
+    "source_fingerprint": "sha256:6b7b4b50fd9650e6a84d813b90f05b7321a9171938032dc534a844f11f8b27e6",
     "source_doc_hashes": {
-      "spec.md": "476433f02af34af294a70fd52a3525dfb6be243d7948c10e7ed20c698b5ecd3f",
-      "plan.md": "ac7e2498db434004092c6179f494bc18307db0ee974b0d33a1fe524c920807c6",
-      "tasks.md": "91dae823dd650a9ec7159eecc919e36acfef7f232fc4cb4365167b28c30c713c",
-      "implementation-summary.md": "319aac809fa8fd896c1b076bc36bbcb26dc9a5aa07f17886935eabdbeb4da9c8"
+      "spec.md": "daf894c83fe7d5ee4fd2529e267617d97267fccfc462049fbc889e0c78ff72bf",
+      "plan.md": "3cfd2eab07b4353da4ffd930e6260b6c1f8e8810d715ed3fed155ea6147d5053",
+      "tasks.md": "6df6868f6b0a1bd84fba77a42f789971dad544692bf85d1e6140398c788a1663",
+      "implementation-summary.md": "8a91f208c7a890caf4a78e4397ef09c440b3a09fca5225dc0a8599fb4287d72a"
     },
     "last_active_child_id": null,
     "last_active_at": null

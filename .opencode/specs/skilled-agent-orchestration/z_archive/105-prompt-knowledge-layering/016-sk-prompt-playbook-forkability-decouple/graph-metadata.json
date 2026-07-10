@@ -40,6 +40,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-prompt/manual_testing_playbook/06--escalation-tiers/cli-card-five-question-fast-path.md",
       "manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
@@ -50,7 +52,13 @@
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-card-five-question-fast-path.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/manual_testing_playbook/06--escalation-tiers/cli-card-five-question-fast-path.md",
         "source": "derived"
       },
       {
@@ -184,17 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two playbook scenarios (`SP-023` CLI card fast path, `SP-024` escalation thresholds) tested the CLI",
     "created_at": "2026-06-05T12:47:32.530Z",
-    "last_save_at": "2026-06-23T03:49:51.662Z",
+    "last_save_at": "2026-07-09T10:02:46.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fbe39c91c5a7eb3441bfb89acd3b0df3da486098458295832d0b43e004f8739",
+    "source_fingerprint": "sha256:a4a82093673893578f5b4c3759a42278b3d75128dee4a675088396a30d1e8344",
     "source_doc_hashes": {
-      "spec.md": "8f3a1289caee81b36a36c9bd257f235a761b034fd694f3d0aec6df751e3df18e",
-      "plan.md": "38959689ec8b1459de53b75bc52e43bc868980be18ac22146ce158b96727e100",
-      "tasks.md": "48d3a147dc1283dcf551ff0ff9fc3a29ad966625aba10e440f93c07b5207db68",
-      "implementation-summary.md": "30225be1d874b06f76b9458abc08d2c5b43c0e338f73ad1c2abf2dfadfd57eec"
+      "spec.md": "ec31bde861bdbf6e4b04b65da9fd12c9f6512dc50bb4b4f1675edad0034d3e9e",
+      "plan.md": "ae013f67e24fa081501dd45f6bde1e32f014e881dbde457ec6a4080e7b94b704",
+      "tasks.md": "2cbd486879e0174fe72e1085aefb24b46244ab6883c65f7ff6db93b2719ab8a9",
+      "implementation-summary.md": "737ff48960c432257ad85bb370ff19fc39e0d360d0f1ca316bc9317567192b0a"
     },
     "last_active_child_id": null,
     "last_active_at": null

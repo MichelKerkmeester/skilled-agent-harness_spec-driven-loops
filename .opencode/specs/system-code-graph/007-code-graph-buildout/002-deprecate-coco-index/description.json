@@ -1,6 +1,6 @@
 {
   "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index",
-  "description": "The repo carries a semantic code-search stack that is being retired: the `mcp-coco-index` skill (a soft-fork of cocoindex-code + the `ccc` CLI + the `",
+  "description": "The repo carries a semantic code-search stack that is being retired: the `mcp-coco-index` skill (a soft-fork of cocoindex-code + the `ccc` CLI + the",
   "keywords": [
     "repo",
     "carries",
@@ -15,7 +15,7 @@
     "ccc",
     "cli"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.746Z",
+  "lastUpdated": "2026-07-09T10:02:46.754Z",
   "specId": "002",
   "folderSlug": "deprecate-coco-index",
   "parentChain": [

@@ -25,7 +25,6 @@
       "create yaml refinement summary"
     ],
     "key_topics": [
-      "create",
       "yaml",
       "refinement",
       "command",
@@ -36,7 +35,8 @@
       "tasks",
       "checklist",
       "adr",
-      "decision"
+      "decision",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The create-command YAML assets had drifted into uneven shapes",
     "created_at": "2026-04-12T09:02:50.175Z",
-    "last_save_at": "2026-07-08T13:43:46.094Z",
+    "last_save_at": "2026-07-09T10:02:49.405Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

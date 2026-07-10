@@ -3,8 +3,6 @@
   "specFolder": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/008-council-surface-polish",
   "description": "After 101/007 closed the six earlier residual gaps, three smaller items remained: (1) SKILL.md does not reference the new artifacts shipped in 007",
   "keywords": [
-    "101",
-    "007",
     "closed",
     "six",
     "earlier",
@@ -20,7 +18,7 @@
     "artifacts",
     "shipped"
   ],
-  "lastUpdated": "2026-07-08T13:06:40.095Z",
+  "lastUpdated": "2026-07-09T10:02:48.484Z",
   "specId": "008",
   "folderSlug": "council-surface-polish",
   "parentChain": [

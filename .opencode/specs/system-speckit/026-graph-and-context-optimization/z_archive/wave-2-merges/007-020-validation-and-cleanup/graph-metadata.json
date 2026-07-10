@@ -27,13 +27,13 @@
       "validation",
       "cleanup",
       "phase",
-      "006",
       "system-code-graph",
       "final",
       "plan",
       "tasks",
       "checklist",
-      "extraction"
+      "extraction",
+      "006-validation-and-cleanup"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phases 001-005 completed the design, scaffold, physical source/database move, consumer rewire, and documentation/runtime migration for extracting code-graph into `.opencode/skills/system-code-graph/`",
     "created_at": "2026-05-14T08:43:25Z",
-    "last_save_at": "2026-07-02T05:31:12.968Z",
+    "last_save_at": "2026-07-09T10:02:54.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:43:25Z",
     "source_docs": [

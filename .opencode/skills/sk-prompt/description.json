@@ -1,0 +1,26 @@
+{
+  "name": "sk-prompt",
+  "description": "Prompt engineering parent hub: routes to prompt-improve (7-framework, DEPTH-thinking, CLEAR-scored prompt enhancement) and prompt-models (read-only small-model prompt-craft profiles for DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2) through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet.",
+  "version": "1.0.0.0",
+  "importance_tier": "high",
+  "keywords": [
+    "sk-prompt",
+    "mode-registry",
+    "hub-router",
+    "workflowMode",
+    "packetKind",
+    "prompt-improve",
+    "prompt-models",
+    "prompt engineering",
+    "clear scoring",
+    "depth thinking",
+    "small model dispatch"
+  ],
+  "trigger_examples": [
+    "improve this prompt for clarity",
+    "which framework should I use for this prompt",
+    "what's the recommended prompt scaffold for DeepSeek-v4-pro",
+    "help me write a better prompt"
+  ],
+  "lastUpdated": "2026-07-09T15:30:00Z"
+}

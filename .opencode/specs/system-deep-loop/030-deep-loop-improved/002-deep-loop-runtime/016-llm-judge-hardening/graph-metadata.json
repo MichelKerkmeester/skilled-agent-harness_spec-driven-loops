@@ -35,26 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "post-dispatch-validate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-dispatch-validate.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Hardened",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A single model call failure in the judge path propagates contaminated or null output into convergence and coverage scoring; there is no neutral fallback card or quarantine boundary",
     "created_at": "2026-06-28T14:02:03Z",
-    "last_save_at": "2026-07-04T18:02:06.763Z",
+    "last_save_at": "2026-07-09T10:02:47.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1274ab8f24bc02500614e3c404c2a59f1403b44fe00d5b8d98ee71526f7d6dff",
+    "source_fingerprint": "sha256:67043fb7ce546c8ab87a312e7f6312e6c5250ada6862b24df0572372449e1f22",
     "source_doc_hashes": {
-      "spec.md": "6f3dbbb2e7070c1f382ef4dc4272cdc3d2a97f91c8dbd70e3b19e56c5afe7342",
-      "plan.md": "caa21fae639c298c914884cdb0066ed932db21c789a64a26245df4418500d7e7",
-      "tasks.md": "ff4c5d1644be70bb5fb92e9ad33804c4b95b04fdc4a44941202bda60118840e8",
-      "implementation-summary.md": "77acf25b7db41fb8f2699dead9006e41569bc3d1c350dcba3c4ff8213dee8a7e"
+      "spec.md": "f0e6129a8846e3e6447100b42270e375d1644c5ecd137e419669551a58f0d4ff",
+      "plan.md": "1db1bb11242d6b1dc803660ca0e45576821b1e36df9430c48c5a45fdfd06eecb",
+      "tasks.md": "44cd2790dd6f7938b96a9b980b4d5901092b521cc43fd1d837bd1c0b9bea2148",
+      "implementation-summary.md": "e7148b290f084187c396fead735979e42b60e6c2b7a6c5b01db96d39a3063b09"
     },
     "last_active_child_id": null,
     "last_active_at": null

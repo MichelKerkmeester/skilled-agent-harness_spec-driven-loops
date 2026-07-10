@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/003-memory-quality-qp-0-4",
+  "specFolder": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/003-memory-quality-qp-0-4",
   "description": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Memory Quality QP 0 4",
   "keywords": [
     "archived",
@@ -13,11 +13,11 @@
     "memory",
     "quality"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.590Z",
+  "lastUpdated": "2026-07-09T10:02:57.642Z",
   "specId": "003",
   "folderSlug": "memory-quality-qp-0-4",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "020-mcp-working-memory-hybrid-rag"
   ],

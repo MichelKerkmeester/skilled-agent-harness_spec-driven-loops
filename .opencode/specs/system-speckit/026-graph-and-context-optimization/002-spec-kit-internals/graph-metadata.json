@@ -22,7 +22,6 @@
       "spec folder naming policy"
     ],
     "key_topics": [
-      "026",
       "spec-kit",
       "internals",
       "skill",
@@ -33,7 +32,8 @@
       "folder",
       "naming",
       "policy",
-      "improve"
+      "improve",
+      "internal"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -86,7 +86,7 @@
     ],
     "causal_summary": "Improve internal spec-kit and skill-system mechanics: the resource-map and deep-loop artifact plumbing, the skill-advisor system, the spec-folder template system, and spec-folder naming policy",
     "created_at": "2026-05-26T16:35:26.421Z",
-    "last_save_at": "2026-07-07T11:26:12.831Z",
+    "last_save_at": "2026-07-09T10:02:51.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

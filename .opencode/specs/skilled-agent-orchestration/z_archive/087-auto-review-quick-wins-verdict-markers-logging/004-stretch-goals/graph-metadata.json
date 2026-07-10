@@ -20,7 +20,6 @@
       "108 phase stretch summary"
     ],
     "key_topics": [
-      "108",
       "phase",
       "stretch",
       "goals",
@@ -31,24 +30,19 @@
       "tasks",
       "summary",
       "phases",
-      "1-3"
+      "deliver",
+      "mvp"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/plugins/mk-skill-advisor.js",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/plugins/mk-skill-advisor.js"
     ],
     "entities": [
-      {
-        "name": "mk-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-skill-advisor.js",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -71,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "After Phases 1-3 deliver the MVP (5 quick wins), 11 additional teachings remain in 106's findings: 4 HIGH-impact MEDIUM-cost (H-4 anti-repetition rule, H-5 3-tier config, H-7 marker-based dedup, H-8 per-iteration verdict, H-9 bounded evidence) + 6 MEDIUM-impact teachings",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-06-23T03:49:50.354Z",
+    "last_save_at": "2026-07-09T10:02:45.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e50997899ed72cf1726f13c7e3c8bca163b61f5818df03b4065560ddfbc8dc5",
+    "source_fingerprint": "sha256:8b40c95329726a90d8d7f15b8d07b502d1ccf70f3c92e06f9cdde557056f9b88",
     "source_doc_hashes": {
-      "spec.md": "35a84172858d0e722596f973f8dbd83b19f19d378da079e2d978bf16f8e10a6a",
-      "plan.md": "3a699c77d8048b6bac7197be7777e34d18d259d6a7128facd2aee8e21872e9e1",
-      "tasks.md": "ae5d9669c39784c34cac98a411b94cb69904cc3fd49992bc87927ee080bd720b",
-      "implementation-summary.md": "de75bd28592d5c686180a9b66fa7515f7bde65724d96201a4ab02ca0d79ba0bb"
+      "spec.md": "401cfd8782c0e060374d1252db690c6d0eaf93fcbb0b974d22d954908a288fd9",
+      "plan.md": "81d419d507b0ac062198d49fc349c70e9a898937537aabd1e4e824d14f7766b6",
+      "tasks.md": "c9aa4fa32e89c0b43c80dc5d40dce495cd609e9b8f248236c7c0c79c8197dd76",
+      "implementation-summary.md": "a13e4a68e5e889a2cc24b2847b6cd927e6a9639b224d8ba8cfe86cd4d6bbf790"
     },
     "last_active_child_id": null,
     "last_active_at": null

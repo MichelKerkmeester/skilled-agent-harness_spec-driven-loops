@@ -28,38 +28,24 @@
       "catalog",
       "rework",
       "retroactive",
-      "update",
       "standards",
       "trigger",
       "phrases",
       "snippet",
       "subheadings",
       "template",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "feature_catalog_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +177,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 categories; system-code-graph: 15 files, 7 categories) reveals pervasive drift from the desired standard:",
     "created_at": "2026-06-04T13:19:25.651Z",
-    "last_save_at": "2026-06-23T03:49:51.433Z",
+    "last_save_at": "2026-07-09T10:02:46.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e09c387edb68cddbd70118b782310aca536e1c71dc16a1802888a6032663cb59",
+    "source_fingerprint": "sha256:5acf28f81b8b398ad9ba5724d286a09777750cbed2803646b11a117b7b67a9f5",
     "source_doc_hashes": {
-      "spec.md": "4f5987b16f4beef79ddd320273e679bc39d4e117e45e9a9d9d6ae2c57b3fc2f5",
-      "plan.md": "3ac05c6e1600f5c40aa2a555ba2883a2c5ad2d3e15b1d20dee54d2ec27fd4d2d",
-      "tasks.md": "5f84a6920d5f7bf9da1846e9743e1a4cf4d85fa6d0dd1d86bacd9364a47ff123",
-      "implementation-summary.md": "35aff8380c9d6719b63aef6aa6bf285151b7116e6f469383fba6774339bf4b77"
+      "spec.md": "c390c17ab5d7ba2a2bb1d1a78c940ba854b0d07985bdff698ce42fd840e11151",
+      "plan.md": "b4acce75dc9cec68440019a5d6c85096d866cba4a1a4bc764d782e932d2b51e5",
+      "tasks.md": "5cd38de689955a45ad12017b4a299eceedb2614e1630aeea72ada41db1673b4a",
+      "implementation-summary.md": "ffcab83bae7e182030f04eb19f5cf7ab042b321a3cea354821575dbae0dc98fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/012-auto-detection-fixes",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/012-auto-detection-fixes",
   "description": "Multiple compound failures in auto-detection and memory quality:",
   "keywords": [
     "multiple",
@@ -9,11 +9,11 @@
     "memory",
     "quality"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.067Z",
+  "lastUpdated": "2026-07-09T10:02:58.233Z",
   "specId": "012",
   "folderSlug": "auto-detection-fixes",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

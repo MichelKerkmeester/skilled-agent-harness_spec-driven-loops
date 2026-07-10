@@ -23,8 +23,6 @@
       "020 006 implementation summary"
     ],
     "key_topics": [
-      "020",
-      "006",
       "provider",
       "adapter",
       "redesign",
@@ -34,7 +32,9 @@
       "f64",
       "f71",
       "f75",
-      "execution"
+      "execution",
+      "router",
+      "sidecar"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The final arc 020 bucket left the highest-risk provider and adapter cleanup items",
     "created_at": "2026-05-23T11:03:25Z",
-    "last_save_at": "2026-07-02T05:31:12.320Z",
+    "last_save_at": "2026-07-09T10:02:53.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

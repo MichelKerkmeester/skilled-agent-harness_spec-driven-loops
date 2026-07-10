@@ -25,18 +25,18 @@
       "phase parent 049"
     ],
     "key_topics": [
-      "049",
       "deep",
       "research",
       "finding",
       "remediation",
       "f-001",
       "f-020",
-      "046",
       "followup",
       "phase",
       "parent",
-      "packet"
+      "packet",
+      "20-iteration",
+      "surfaced"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -145,15 +145,15 @@
     ],
     "causal_summary": "Packet 046's 20-iteration deep research surfaced 82 findings (0 P0, 31 P1, 51 P2) across daemon concurrency, code-graph consistency, advisor quality, validators, deep-loop workflows, search tuning, tests, architecture, topology, and CLI orchestrator skills",
     "created_at": "2026-05-01T05:18:33Z",
-    "last_save_at": "2026-07-02T05:31:10.871Z",
+    "last_save_at": "2026-07-09T10:02:51.489Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e054b26225ef2c594c10ecb9350cc16df12bfbf41dd911a8feadf6a257a02ad2",
+    "source_fingerprint": "sha256:9d24cb3ea6984c6052578a4b1a17937b5ec03de53a90ef15434784f06f6e9b7a",
     "source_doc_hashes": {
-      "spec.md": "2803534fb8749b20763c15674d947f8f86adf2e4dfe66d7dd76e2d8eca648f47"
+      "spec.md": "c106e761317382040eca4e61e234b591427ecefe4e990467f0394753c173cee9"
     },
     "last_active_child_id": null,
     "last_active_at": null

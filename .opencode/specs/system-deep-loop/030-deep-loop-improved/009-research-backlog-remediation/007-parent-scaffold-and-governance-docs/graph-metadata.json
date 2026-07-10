@@ -22,7 +22,6 @@
       "parent",
       "scaffold",
       "authoring",
-      "008",
       "template",
       "scaffolds",
       "missing",
@@ -30,7 +29,8 @@
       "decision",
       "record",
       "governance",
-      "docs"
+      "docs",
+      "plan"
     ],
     "importance_tier": "medium",
     "status": "complete",
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "`008-loop-systems-remediation/tasks.md` and `implementation-summary.md` are confirmed (direct read) to still be raw, unmodified templates — `tasks.md`'s title is literally `\"Tasks: Phase 1: loop-systems-remediation [template:level1/tasks.md]\"`, its continuity `packetpointer` is `\"scaffold/008-loop-systems-remediation\"`, `lastupdatedby: \"template-author\"` — despite the parent's own `spec.md` (already fixed during this remediation phase's own scaffolding) claiming `Status: Complete` and 7 completed children existing (`research/researcharchive/20260701T071133Z-gen1/research.md` §4.2, F-015)",
     "created_at": "2026-07-01T07:24:47.296Z",
-    "last_save_at": "2026-07-04T18:02:25.626Z",
+    "last_save_at": "2026-07-09T10:02:47.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,12 +179,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3d3bded875a5422a88101d855105576a26cb2e2bad908b3eca5378e55fa7dcc",
+    "source_fingerprint": "sha256:ff85d1d7aa9d74dd4000f625b4bb7b082c7953a2464ae8b3633059aad6625ebf",
     "source_doc_hashes": {
-      "spec.md": "107f102e9994339d7ffabf00becb718ec185533131ee52a27f28c424dce4cd0b",
-      "plan.md": "c932b4caf3fe7e7afaa23fc1b9a40909ab444411a7568ffc7804656a895fcd0b",
-      "tasks.md": "6443bb1f14f5c9b7220439311ab2cadc86704d6ca098a858baab15159761e3c2",
-      "implementation-summary.md": "153c305113a38603ee188170ff36c6d92612a3a1ac17e1f2f58fc795180e3b74"
+      "spec.md": "aa47e3761db18baf660a75c8da95797483092867d016e20c5e500674c93c00ff",
+      "plan.md": "a58b9cc81772fda8485589b1e466a85dc12d0b3f5ef0631cac327ffa35a34fb5",
+      "tasks.md": "96121a5b634672536dce2f73ca3deb34ba9d02c10f72cd4cfab8dfbe24d6bbe9",
+      "implementation-summary.md": "6ef0bd2b52cbbc0725e21a845626bcd1992afb7fb2a5437e36cfc0093c2d5a65"
     },
     "last_active_child_id": null,
     "last_active_at": null

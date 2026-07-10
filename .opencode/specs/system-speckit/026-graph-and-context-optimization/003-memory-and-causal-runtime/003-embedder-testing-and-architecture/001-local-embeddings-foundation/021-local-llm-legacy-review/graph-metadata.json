@@ -46,7 +46,6 @@
       "review/review-report.md",
       "review/resource-map.md",
       "review/deep-review-state.jsonl",
-      ".codex/config.toml",
       ".claude/mcp.json",
       "references/memory/embedding_resilience.md",
       "lib/eval/memory-state-baseline.ts",
@@ -83,12 +82,6 @@
         "name": "deep-review-state.jsonl",
         "kind": "file",
         "path": "review/deep-review-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 014 shipped a default-LLM and embedding-stack migration (Voyage → EmbeddingGemma-300m hf-local q8 for Memory MCP; google/embeddinggemma-300m sentence-transformers for CocoIndex; llama-cpp demoted to opt-in with auto-migrate; ONNX rejected)",
     "created_at": "2026-05-13T13:07:10Z",
-    "last_save_at": "2026-07-02T05:31:11.604Z",
+    "last_save_at": "2026-07-09T10:02:52.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

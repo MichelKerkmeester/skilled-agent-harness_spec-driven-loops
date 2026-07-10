@@ -20,7 +20,6 @@
     ],
     "key_topics": [
       "arc",
-      "010",
       "sidecar",
       "process",
       "ownership",
@@ -30,10 +29,11 @@
       "remediation",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "implementation"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The sidecar lifecycle selection contains explicit F88 plus the registry P1 fingerprint match F79",
     "created_at": "2026-05-23T03:50:22.751Z",
-    "last_save_at": "2026-07-02T05:31:12.249Z",
+    "last_save_at": "2026-07-09T10:02:53.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -25,7 +25,6 @@
       "skill-advisor MK_SKILL_ADVISOR_MEMORY_DB_PATH"
     ],
     "key_topics": [
-      "009",
       "embedder",
       "onnx",
       "hardening",
@@ -36,7 +35,8 @@
       "race",
       "skill-advisor",
       "env",
-      "var"
+      "var",
+      "collision"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "An independent adversarial code review of packet 005's Round 2 shipped diff (provider persistence, cross-server DB-path leak fix, onnx shutdown-crash mitigation — see `../005-shared-embedder-logic-with-spec-memory/implementation-summary.md`) found 4 gaps that Round 2's own verification never exercised: (1) `hf-model-server.cjs`'s graceful-shutdown failsafe timer can SIGKILL the process before a legitimately in-flight embed finishes draining; (2) the cross-server DB-leak fix reuses `MEMORYDBPATH`, an env var whose repo-wide established meaning is mk-spec-memory's database, creating a latent",
     "created_at": "2026-07-08T08:41:59.423Z",
-    "last_save_at": "2026-07-08T11:04:30.502Z",
+    "last_save_at": "2026-07-09T10:02:50.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

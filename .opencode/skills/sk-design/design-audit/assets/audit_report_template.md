@@ -143,7 +143,7 @@ Fill this whenever the Performance dimension above scores higher than 2. A Perfo
 
 Rule: a Performance score above 2 must carry a numeric metric in Baseline or Post-change, or the explicit `not-assessed` label in the filled evidence fields. The deterministic check confirms that the number or label is present; whether the number is a true measurement stays a judgment call. Evidence model: `../references/accessibility_performance.md` §5 and `../references/evidence_capture.md` §6.
 
-Deterministic check: `../scripts/perf_evidence_check.py <filled-report.md>`.
+Deterministic check (external, not agent-invoked): `../scripts/perf_evidence_check.py <filled-report.md>`. `audit`'s toolSurface is Read/Glob/Grep only (no Write, no Bash), so the mode never saves this template as a file and cannot run the script itself. A human reviewer, CI job, or downstream skill with Bash access runs it once the filled report has been saved to disk; cite that prior result as the evidence per `evidence_capture.md`'s "reuse a scan result instead of rerunning it." If no run exists yet, leave the field unfilled rather than claiming the check passed.
 
 ---
 

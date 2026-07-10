@@ -64,7 +64,7 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 
 ## 3. TEST EXECUTION
 
-Run this scenario through the Phase 005 universal prompt using `SCENARIO_ID=CS-003`.
+Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-003`.
 
 Evidence files:
 - `/tmp/skc-CS-003-<cli>.txt`

@@ -32,11 +32,11 @@
       "benchmark",
       "mode",
       "selector",
-      "build",
       "plan",
       "name",
       "template",
-      "core"
+      "core",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 001 design names the mode-selector approach + three seams at the ADR level, but the build packet needs sharper implementation detail: exact interface contracts for each seam, how to generalize `dispatch-minimax.cjs` into a model-agnostic `dispatch-model.cjs`, how to port the 120/003 eval-rig scorer cleanly, and how to wire `mode` into `loop.cjs` without regressing the agent-improvement path",
     "created_at": "2026-05-28T14:32:16Z",
-    "last_save_at": "2026-07-08T13:43:36.133Z",
+    "last_save_at": "2026-07-09T10:02:48.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

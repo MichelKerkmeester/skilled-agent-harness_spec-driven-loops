@@ -7,10 +7,9 @@
     "cocoindex",
     "rerank-sidecar",
     "deprecation",
-    "arc",
-    "014"
+    "arc"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.767Z",
+  "lastUpdated": "2026-07-09T10:02:46.778Z",
   "specId": "004",
   "folderSlug": "remove-rerank-sidecar-skill",
   "parentChain": [

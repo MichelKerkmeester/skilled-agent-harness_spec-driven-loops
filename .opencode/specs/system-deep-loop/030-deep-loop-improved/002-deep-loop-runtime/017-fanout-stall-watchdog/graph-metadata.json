@@ -35,26 +35,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "fanout-pool.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Opt",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A hung lineage blocks all queued work until the child timeout expires; no mechanism exists to detect a stall and free the slot sooner than the hard child timeout",
     "created_at": "2026-06-28T14:02:04Z",
-    "last_save_at": "2026-07-04T18:02:07.138Z",
+    "last_save_at": "2026-07-09T10:02:47.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29139370f234e054ecd8d32554b6e803d8eea2fec4a05b82fc9eb7f8f6ff98e9",
+    "source_fingerprint": "sha256:a04cf7a96cf3f4719e89104210cbdef62abae5ca60fc6c831bcb0279287605ad",
     "source_doc_hashes": {
-      "spec.md": "48443e467ca2ba33337a079c139da9c503dd196943361442f812466424e76632",
-      "plan.md": "34c0dc46101af1847ed332b273eb270c068bcab571070f7cbef2d0ee52387513",
-      "tasks.md": "d3e72cfa8441121e00dd5b4ca86f331e242493b47698269a83060ed3f2852986",
-      "implementation-summary.md": "52ca7f9dd851e24bb168b4b545ab7655d6822d1851d4addcb4c18d638941768c"
+      "spec.md": "bdc8d89bbdb6a667d122a4882d4e691b439a082407d56a751dbef2b88119b6b6",
+      "plan.md": "05ab6dfea93031a808145250aa2f0c2c12d77bdf60ac3d53eed2669f0e4e6178",
+      "tasks.md": "ea7454d102fa6a6e172d13a794ccd5b844ff034a0984a2bd84f71c6b89687d82",
+      "implementation-summary.md": "04fb4f9fe9a16913b10559e1474691d11c39238d76aac780812e79727b288fa8"
     },
     "last_active_child_id": null,
     "last_active_at": null

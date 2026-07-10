@@ -4,7 +4,6 @@
   "keywords": [
     "refactor",
     "refreshskillembeddings",
-    "use",
     "new",
     "embedderadapter",
     "layer",
@@ -12,7 +11,7 @@
     "pointer",
     "set"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.053Z",
+  "lastUpdated": "2026-07-09T10:02:50.247Z",
   "specId": "004",
   "folderSlug": "skill-graph-db-writer-cross-wire",
   "parentChain": [

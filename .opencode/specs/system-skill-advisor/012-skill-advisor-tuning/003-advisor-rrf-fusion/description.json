@@ -11,13 +11,12 @@
     "two",
     "routing",
     "guards",
-    "built",
     "pass",
     "unit",
     "tests",
     "byte-identical"
   ],
-  "lastUpdated": "2026-07-06T17:16:00.215Z",
+  "lastUpdated": "2026-07-09T10:02:50.465Z",
   "specId": "003",
   "folderSlug": "advisor-rrf-fusion",
   "parentChain": [

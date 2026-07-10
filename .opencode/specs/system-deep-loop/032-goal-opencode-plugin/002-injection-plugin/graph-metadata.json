@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Persisted goal state is inert unless the assistant receives it during a turn",
     "created_at": "2026-06-28T20:44:08Z",
-    "last_save_at": "2026-07-01T17:58:30.714Z",
+    "last_save_at": "2026-07-09T10:02:47.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d8c5f48665b3c62ccf06a4c170a0b603bcd483540180758564e23395e5178b8",
+    "source_fingerprint": "sha256:f606a87f196b2b12061b3d72b67cc3a41ddf0f8333f6c09bc47b47a1b99c015b",
     "source_doc_hashes": {
-      "spec.md": "30481937b3a19f59d5e47c5f5ec412f344e455992e56cdbdf28050efafda6eeb",
-      "plan.md": "88c0fd22331db9308363268c3d0aba85c62ea922f767fdacb479199d9b90b095",
-      "tasks.md": "ccc84f8167640f57c27ea162382dfe96ca2715679f50d8293423af2d627f2cd7",
-      "implementation-summary.md": "45cee789514e88319616e956bae28fb205635dcb6707a8ae8c580cc1549ab8cf"
+      "spec.md": "84d5cf51f53d1dcc895b2e9d0a78199d1faf6bd83fd09116a009851143d28f35",
+      "plan.md": "d9e9d70aeba55a1c47f463561e5d7547586afbe366b5d984be0333c9c55cd7a3",
+      "tasks.md": "2da4c53d733e1ff907a8875c58642388065985d38c8b0859d454afc52e8d50c5",
+      "implementation-summary.md": "97107a9813f07fd1e0b44f83958c8ea698092a81f96ed35593007b5cd0a031fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

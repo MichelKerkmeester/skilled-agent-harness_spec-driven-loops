@@ -27,7 +27,6 @@
     "key_topics": [
       "reducer",
       "anchor",
-      "fix",
       "deep",
       "research",
       "strategy",
@@ -36,7 +35,8 @@
       "missing",
       "section",
       "reduce-state",
-      "hard"
+      "hard",
+      "fail"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
       ".opencode/specs/system-deep-loop/038-deep-loop-runtime/research/deep-research-strategy.md"
     ],
     "entities": [
@@ -71,12 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
         "source": "derived"
       },
       {
@@ -184,7 +177,7 @@
     ],
     "causal_summary": "The deep-research loop folds cross-iteration state by rewriting anchored sections of a per-run strategy file",
     "created_at": "2026-06-19T06:06:27.158Z",
-    "last_save_at": "2026-07-06T16:24:27.982Z",
+    "last_save_at": "2026-07-09T10:02:48.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,7 +191,7 @@
       "spec.md": "add7ab114cc24adfe5cfa9332ceacaba6af74faf98ad20349d3f4cfd4bddb134",
       "plan.md": "ab03fd95c339aeda20b1d187ac81ffc3f72b7a16d7a408293ca759fad14f4620",
       "tasks.md": "ba290c9f63764a7b72d9fbe846559ecd4378724ac4db0614043e9a37278bf01c",
-      "implementation-summary.md": "30d011de8997b87616fb30956aa197edf5e7614108d4376d1128e3372f887b14"
+      "implementation-summary.md": "6a4ef1f54453032d87bfa285196d86435ba3de0d9752f634ce8955e1582b65bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

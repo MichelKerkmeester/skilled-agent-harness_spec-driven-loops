@@ -932,7 +932,7 @@ Skill references/assets additionally require `trigger_phrases` (3-8), `importanc
 
 ### Templates
 - [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
-- [command_template.md](../../create-command/assets/command/command_template.md) - Command file templates
+- [command_template.md](../../create-command/assets/command_template.md) - Command file templates
 
 ### Standards
 - [core_standards.md](../references/core_standards.md) - Document type rules

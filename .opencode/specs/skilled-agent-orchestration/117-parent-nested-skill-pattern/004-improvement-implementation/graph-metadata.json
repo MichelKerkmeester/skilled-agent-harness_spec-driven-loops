@@ -29,14 +29,14 @@
       "improvement",
       "research",
       "findings",
-      "make",
       "c-plus",
       "real",
       "advisor-sync",
       "deep-loop",
       "runtime",
       "self-contained",
-      "loop-lock"
+      "loop-lock",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 5-iteration improvement research found the deep-loop architecture is sound but the C-plus routing guarantee is aspirational (the drift-guard test exists but nothing runs it; the guard + `/doctor` are hardcoded to the canonical skill, so a 2nd parent skill's `advisorRouting` is inert + unguarded), the runtime is \"MCP-free in name but parasitic on `system-spec-kit`'s nodemodules\", loop-locking is inconsistent (prose-only / missing across modes), and a set of low-regret hardening gaps exist",
     "created_at": "2026-06-15T14:54:56.469Z",
-    "last_save_at": "2026-07-02T05:31:08.549Z",
+    "last_save_at": "2026-07-09T10:02:45.007Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

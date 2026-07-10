@@ -12,32 +12,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
+      "sk-code engineering rituals",
+      "mutation check claim falsifier",
+      "verification ladder named blind spots",
+      "decision economy fail closed by construction",
       "implementation",
       "plan",
+      "name",
+      "template",
       "plan core",
       "tasks",
       "tasks core",
-      "verification",
-      "checklist"
+      "verification"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
+      "sk-code",
+      "engineering",
+      "rituals",
+      "mutation",
+      "check",
+      "claim",
+      "falsifier",
       "verification",
-      "checklist",
-      "sk-code"
+      "ladder",
+      "named",
+      "blind",
+      "spots"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`sk-code` Phase 3 (`.opencode/skills/sk-code/SKILL.md` lines 41, 208-214) tells the agent to \"run surface verification commands and record evidence,\" but it never says how to know the evidence is honest",
     "created_at": "2026-06-15T14:06:39Z",
-    "last_save_at": "2026-07-07T16:45:58.074Z",
+    "last_save_at": "2026-07-09T10:02:44.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b8348e63f246e6d5d6189505663a3d5d6b592b423f7d0f74a0cf496713bdc8e",
+    "source_fingerprint": "sha256:7147e9ae87db1ecbe52c0f520c67b66dbf258dc5de8a1a2e7fd7917639716cd1",
     "source_doc_hashes": {
-      "spec.md": "df5b3093b1c8e2985727466f3bcd14ed4cab494382d8ad68c15a9c2b85b0155e",
+      "spec.md": "03d92d70e0966fb7bccea47bf9a2068f362eacf54bf9ede4d2dcb7b93625d4c8",
       "plan.md": "5fee402a01609ecea70e9b9d51cb23aea2bf2703366eadbfc13669256c63bf87",
       "tasks.md": "73a56f70c9dd93a9afbb2531efd864fdcf5ea0c9fae34c49f881eeef5f9f6808",
       "checklist.md": "2c3479d5d58be86663a378c7af625663ad1996d2b376305bbeb935f2b5644561",
-      "implementation-summary.md": "991c0b84965d977bd77ad1cbbd857ea1bb1ab7c098ca9438aa9aca7f96c03a3f"
+      "implementation-summary.md": "04f33358773690e1415336b69eb2e8a00daae47db7308fd548f4b03a4e3a00fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

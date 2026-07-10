@@ -31,12 +31,12 @@
       "research",
       "playbook",
       "run",
-      "007",
       "phase",
-      "004",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "verdict",
+      "ledger"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`deep-research` is the autonomous iterative-investigation loop built on the shared `deep-loop-runtime` foundation (executor, prompt-pack, post-dispatch validation, atomic state, JSONL repair, pause sentinel, convergence detection, quality guards, graph-aware stop gates, progressive synthesis, dashboard, and the command-flow surface)",
     "created_at": "2026-05-27T07:08:08.395Z",
-    "last_save_at": "2026-07-08T13:43:55.983Z",
+    "last_save_at": "2026-07-09T10:02:48.879Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

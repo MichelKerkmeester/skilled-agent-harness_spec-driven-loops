@@ -27,15 +27,15 @@
       "deep-loop-workflows",
       "hub",
       "skill",
-      "build",
       "mode-registry",
       "json",
       "verbatim",
       "mode",
       "packets",
       "phase",
-      "003",
-      "merged-hub-and-mode-packets"
+      "merged-hub-and-mode-packets",
+      "deep",
+      "loop"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -44,10 +44,6 @@
       "tasks.md",
       "checklist.md",
       "spec.md",
-      ".opencode/skills/deep-loop-workflows/SKILL.md",
-      ".opencode/skills/deep-loop-workflows/graph-metadata.json",
-      ".opencode/skills/deep-loop-workflows/README.md",
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
       "implementation-summary.md"
     ],
     "entities": [
@@ -73,30 +69,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
         "source": "derived"
       },
       {
@@ -194,11 +166,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "skill_id",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtimeLoopType",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the R4",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five persona skills must become one skill without flattening their five distinct convergence contracts (coverage-saturation, dual-layer newInfoRatio, P0-gated verdict, two-of-three council, config-driven plateau)",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-07-02T05:31:05.027Z",
+    "last_save_at": "2026-07-09T10:02:47.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d01e20aa5d4957851f7786309abb545d7f5eaa9623932c5b0769cb383176b662",
+    "source_fingerprint": "sha256:47abf6daf15a934fe3b4a79910f9f76cf9139b611bae01e2813be281bacdda03",
     "source_doc_hashes": {
-      "spec.md": "394495008c1552817cc638b307984050523304a38740d7fa981f6deb00bf21cb",
-      "plan.md": "15465a7a425c7d2efcad1cd65b8911de2510268cf01711f81e5bfc38257a1995",
-      "tasks.md": "43f4262d1142a7c2be7076153bd03c66c70deb01fad7ac9205921fb70193e550",
-      "checklist.md": "8ab55bdbb6c96006407daf18591f20a298e075aec08bd776b7024444cc2ba69e",
-      "implementation-summary.md": "3e7b15346d78244ac1eeab4eb6e0fdf8d9d324d2dcc6192e0676305c344f7d71"
+      "spec.md": "f1f390512152c80af36cbb2d412db7bbd079c9039cd6c212193894ad5f3174b7",
+      "plan.md": "2403a09f0d5479f997237ed08200de6a2a8429928f315c760c04a010902e2d43",
+      "tasks.md": "3d441f2fcc838a4c95ae4e28f0e9e0c89f3eb0a9eed9dfdf8c8b59340273fbc2",
+      "checklist.md": "71840f4ea6b771d000d667d7fbcc1348106569fc8117e0f77c52dc1cca6b56f6",
+      "implementation-summary.md": "d6227ca4cb0606f4b5f2b788e2b24096f941e1027777b29b42079dc9bd9ba322"
     },
     "last_active_child_id": null,
     "last_active_at": null

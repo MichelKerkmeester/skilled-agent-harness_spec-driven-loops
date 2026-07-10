@@ -29,7 +29,7 @@
       "003-anchor-comment-removal",
       "tasks",
       "summary",
-      "688"
+      "in-scope"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -175,7 +175,7 @@
     ],
     "causal_summary": "~688 in-scope skill markdown files carry `ANCHOR:name` / `/ANCHOR:name` HTML",
     "created_at": "2026-05-26T09:40:16.339Z",
-    "last_save_at": "2026-06-23T03:49:51.106Z",
+    "last_save_at": "2026-07-09T10:02:46.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,12 +184,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:693fccd0a59ac6f0e5e6bd68cbf93dd0381b809f9a13ae78892154659455de12",
+    "source_fingerprint": "sha256:0fcca327682bc0a29aff8b776e6b6f7eaecdbc21c4109934f3a49869a1b63309",
     "source_doc_hashes": {
-      "spec.md": "4c927f4565734850dfd0007ba260190c5a70e5876183ddb6144340e2e81011b7",
-      "plan.md": "bd91fc71ed98def1cd099b452a89beebe4ae6d5146622351f9ccc363877714d7",
-      "tasks.md": "c4c538276e70407296b0861dc83466d19639fdac313842e5c3d4512e3dc5e6d1",
-      "implementation-summary.md": "014b3a355e0b8e9917e403e97c60b34503d8e96d28d4c6060a6bc11eaccfdd25"
+      "spec.md": "cc597074409c5937f702c5dd71149c257ea9ca7e1aa5b6487028b6babf309422",
+      "plan.md": "efdbbce23452e6a0d7072bd5d4561439d22cba18e2ea848658866cc66ed5579a",
+      "tasks.md": "4485c452a932ef1f9d4e033cb9520a9f72f63bd2970b76b4bf237bb2625f0a6c",
+      "implementation-summary.md": "15b8bcd510a3073bc08d2905f07e2201520c247092ea7a3faf1b676ef12a1f96"
     },
     "last_active_child_id": null,
     "last_active_at": null

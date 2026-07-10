@@ -9,14 +9,13 @@
     "high",
     "dispatched",
     "waves",
-    "2-4",
     "routingcalibration",
     "interface",
     "expansion",
     "env-var",
     "overrides"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.070Z",
+  "lastUpdated": "2026-07-09T10:02:50.282Z",
   "specId": "008",
   "folderSlug": "skill-advisor-interface-and-env-vars",
   "parentChain": [

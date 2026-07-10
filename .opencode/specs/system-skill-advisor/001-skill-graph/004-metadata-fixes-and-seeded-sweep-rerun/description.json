@@ -1,11 +1,9 @@
 {
   "level": "2",
   "specFolder": "system-skill-advisor/001-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
-  "description": "Phase 015/005 produced a research report (`research/audit-report.md`) ranking the 8 lowest-scoring skills with concrete WHAT/WHY/EXAMPLE phrasing chan",
+  "description": "Phase 015/005 produced a research report (`research/audit-report.md`) ranking the 8 lowest-scoring skills with concrete WHAT/WHY/EXAMPLE phrasing",
   "keywords": [
     "phase",
-    "015",
-    "005",
     "produced",
     "research",
     "report",
@@ -15,17 +13,13 @@
     "skills",
     "concrete",
     "example",
-    "phrasing",
-    "chan"
+    "phrasing"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.211Z",
+  "lastUpdated": "2026-07-09T10:02:49.560Z",
   "specId": "004",
   "folderSlug": "metadata-fixes-and-seeded-sweep-rerun",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "001-skill-graph"
   ],
   "memorySequence": 0,

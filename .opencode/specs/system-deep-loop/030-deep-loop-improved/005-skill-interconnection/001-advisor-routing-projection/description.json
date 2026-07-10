@@ -6,7 +6,6 @@
     "new",
     "deep-loop",
     "mode",
-    "added",
     "mode-registry",
     "json",
     "advisor",
@@ -19,7 +18,7 @@
     "drift-guard",
     "test"
   ],
-  "lastUpdated": "2026-07-04T18:02:14.571Z",
+  "lastUpdated": "2026-07-09T10:02:47.572Z",
   "specId": "001",
   "folderSlug": "advisor-routing-projection",
   "parentChain": [

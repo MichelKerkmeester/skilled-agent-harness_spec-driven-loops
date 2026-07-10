@@ -44,7 +44,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
-      ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
       ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
       "spec.md",
       "plan.md",
@@ -199,7 +198,7 @@
     ],
     "causal_summary": "The 4 CLI prompt-quality cards (cli-opencode, cli-gemini, cli-codex, cli-claude-code) each inlined the complete framework table from the canonical card, producing 89-96 line files that diverged from sk-prompt whenever the table changed",
     "created_at": "2026-06-05T12:47:32.514Z",
-    "last_save_at": "2026-06-23T03:49:51.604Z",
+    "last_save_at": "2026-07-09T10:02:46.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e112339b2cdae93d76b3200848405fd457ca9d66d32240073300310b9c8ce1a2",
+    "source_fingerprint": "sha256:f9db9a70d6704ff451738d9e0f56d84bc5fc3c4179954ef89cfd806a1d4a057a",
     "source_doc_hashes": {
-      "spec.md": "467ab73c358470c8cdfc759df7bd6440ee9a5b4acff47d1bba8d740512d986a6",
-      "plan.md": "c808bbc4cca245b5ad5ec82332b7302af5af71f911d491382c0741a70df08552",
-      "tasks.md": "3dc79a5db0fb91f71f49704fe8f0e4fc26d9224d7fb8ea74644ce37e9085edbc",
-      "implementation-summary.md": "05738581942490db15d29518956a63aac90563218785c100b0a346b99a66227e"
+      "spec.md": "473acdfeb098e5a364710ebde65efede5a7485a0e2699f50c962d334204d6370",
+      "plan.md": "d7b319f668a78c08effdce366587537f13f4f92544b2e5b1c900b0a5f6bb5822",
+      "tasks.md": "edc7b8846adee4af2fe9173a71260005787c88a9aabd3728bbd98428b695f864",
+      "implementation-summary.md": "48f90ea8f2c4d07091476613e382d2001b9527a1691a5e11f9509404cbe8266f"
     },
     "last_active_child_id": null,
     "last_active_at": null

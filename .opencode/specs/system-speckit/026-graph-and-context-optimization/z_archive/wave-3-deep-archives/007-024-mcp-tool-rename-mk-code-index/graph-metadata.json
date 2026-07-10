@@ -25,7 +25,6 @@
       "mk-code-index rename complete"
     ],
     "key_topics": [
-      "010",
       "mcp",
       "tool",
       "rename",
@@ -36,7 +35,8 @@
       "namespace",
       "mk-code-index",
       "launcher",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The extracted code-graph MCP server was registered as `systemcodegraph`",
     "created_at": "2026-05-14T17:29:04Z",
-    "last_save_at": "2026-07-02T05:31:13.018Z",
+    "last_save_at": "2026-07-09T11:23:17.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

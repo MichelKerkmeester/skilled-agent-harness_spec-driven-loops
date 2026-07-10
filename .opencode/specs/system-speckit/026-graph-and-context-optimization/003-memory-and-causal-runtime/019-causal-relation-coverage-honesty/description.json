@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty",
   "description": "`memorycausalstats` reports a `relationCoverage` block whose `backfillJob.command` is `memoryhealth({ autoRepair: true, confirmed: true })` and whose",
   "keywords": [
     "memorycausalstats",
@@ -15,11 +15,11 @@
     "true",
     "confirmed"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.662Z",
+  "lastUpdated": "2026-07-09T10:02:54.069Z",
   "specId": "019",
   "folderSlug": "causal-relation-coverage-honesty",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime"
   ],

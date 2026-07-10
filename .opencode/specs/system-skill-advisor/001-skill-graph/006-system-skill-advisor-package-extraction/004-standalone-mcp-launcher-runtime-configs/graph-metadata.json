@@ -34,11 +34,11 @@
       "runtime",
       "config",
       "skill",
-      "013",
-      "009",
-      "004",
       "implementation",
-      "plan"
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
     ],
     "importance_tier": "critical",
     "status": "planned",
@@ -50,7 +50,6 @@
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
-      ".codex/config.toml",
       ".claude/mcp.json",
       ".claude/settings.local.json",
       ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
@@ -96,12 +95,6 @@
         "name": "advisor-server.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Child 003 moved advisor source and DB ownership into the dedicated `system-skill-advisor` package, but the runtime still has no standalone advisor launcher or MCP registration",
     "created_at": "2026-05-14T12:45:00Z",
-    "last_save_at": "2026-07-02T05:31:11.105Z",
+    "last_save_at": "2026-07-09T10:02:49.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T12:45:00Z",
     "source_docs": [
@@ -214,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80851858bc119c1658b3e4070224b2fa899a9774a9f405e79f5f10ead10dce50",
+    "source_fingerprint": "sha256:e17ce99bb6fb0b1f6cd4361a34fb66602d8403ff9ae42e22774446bf0418f731",
     "source_doc_hashes": {
-      "spec.md": "3027b6d5e24782391b7ccc07f70efd443433c9a996dfba17a0dde422db01c1b3",
-      "plan.md": "ce8e4d39598ca61eabc4cce42755df7876d6dec6792ab52a27ccfadc18fe0c1e",
-      "tasks.md": "b0ad58af8ad239028c3095583b59e1bc51c30e2014a58a94226dbcb82ae2abcc",
-      "checklist.md": "a9bede73e38db081fd569519c44f252bd2ef19d5f82385f5d5cd69911643ef23",
-      "decision-record.md": "55992f0416cc46301409e452437fd9de1920d853225b335f497f8f69cd4cc8e7",
-      "implementation-summary.md": "3dc2597cf5a95ef593c2bc91b7964dd517d8e4f57370ac76855f9aade6063345"
+      "spec.md": "da1bcbe444bcd9cd9481960128d3458fa42f5be6c2b183c80e898ef7a5fddbc0",
+      "plan.md": "be0000614d1b5651d0daa4de7ef05209f4f0320b3cca217c42e2032270ffb43e",
+      "tasks.md": "bbae2c18b254861b0e95063fe68fb5f1cf799d213d7a58a7ba586dc5b5f480fd",
+      "checklist.md": "cc4a949894c4542fc4d6744b1f301bb266e1233871aab02bd3f68d5be1ad3827",
+      "decision-record.md": "7de376b6e53221d1d8eaf977794876aa2f45f076664268e39e4e90e880e7e4fd",
+      "implementation-summary.md": "2889c69a47fc26bf20e84f253a9e1829b1bf585be0f897e9608f75b3fa7c43ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

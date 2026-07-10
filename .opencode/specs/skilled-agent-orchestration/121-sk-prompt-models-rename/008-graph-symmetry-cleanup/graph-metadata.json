@@ -38,7 +38,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/sk-code-review/graph-metadata.json",
       ".opencode/skills/sk-prompt-models/graph-metadata.json",
       "spec.md",
       "plan.md",
@@ -193,7 +192,7 @@
     ],
     "causal_summary": "`skillgraphcompiler --export-json` fails on 5 symmetry errors: `mcp-figma` and `mcp-open-design` declare `dependson sk-design` and `sibling sk-design`, but `sk-design` lacks the reciprocal `prerequisitefor` + `sibling` edges; and `sk-design` declares `sibling sk-code-review` without the reciprocal",
     "created_at": "2026-06-28T15:46:01.946Z",
-    "last_save_at": "2026-07-02T05:31:09.797Z",
+    "last_save_at": "2026-07-09T10:02:45.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

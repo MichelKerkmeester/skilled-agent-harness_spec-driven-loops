@@ -26,13 +26,13 @@
       "test",
       "folder",
       "dedicated",
-      "037",
       "005-stress-test-folder-migration",
       "resource",
       "map",
       "migration",
       "file",
-      "ledger"
+      "ledger",
+      "stress-test"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Stress-test coverage for the MCP server lived inside `mcpserver/tests/`, making it harder to distinguish explicit stress, load, and matrix-cell validation from the default unit and integration suite",
     "created_at": "2026-04-29T15:55:02.000Z",
-    "last_save_at": "2026-07-02T05:31:10.691Z",
+    "last_save_at": "2026-07-09T10:02:51.094Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

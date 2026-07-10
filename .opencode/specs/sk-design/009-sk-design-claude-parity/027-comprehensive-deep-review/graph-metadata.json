@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/009-sk-design-claude-parity/027-comprehensive-deep-review",
+  "spec_folder": "sk-design/009-sk-design-claude-parity/027-comprehensive-deep-review",
+  "parent_id": "sk-design/009-sk-design-claude-parity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design comprehensive review",
+      "sk-design 20 iteration review",
+      "sk-design bug sweep",
+      "sk-design comprehensive review plan",
+      "sk-design comprehensive review tasks",
+      "sk-design comprehensive review checklist",
+      "sk-design comprehensive review implementation summary"
+    ],
+    "key_topics": [
+      "sk-design",
+      "comprehensive",
+      "review",
+      "iteration",
+      "bug",
+      "sweep",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary",
+      "009-sk-design-claude-parity"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/design-interface/SKILL.md",
+      ".opencode/skills/sk-design/design-foundations/SKILL.md",
+      ".opencode/skills/sk-design/design-motion/SKILL.md",
+      ".opencode/skills/sk-design/design-audit/SKILL.md",
+      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
+      ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/descriptions.json",
+      ".opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".opencode/skills/sk-doc/scripts/package_skill.py",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-design/mode-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Comprehensive Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Execution Init",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Cross",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "independent",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `009-sk-design-claude-parity` packet built sk-design to Claude-parity and was closed complete on 2026-07-06, with its own 10-iteration review covering only the spec-folder documentation of packet 009 itself (`009/review/`, status complete, 8 P1 findings recommending a `010-...-remediation` follow-up)",
+    "created_at": "2026-07-09T05:17:37.332Z",
+    "last_save_at": "2026-07-09T07:53:05.919Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7cdb07c6e990068ec64300819363802adb3ce75854378578406e3d259be1c8da",
+    "source_doc_hashes": {
+      "spec.md": "556635141af1c764b0a167d40930f5b28bd4f49fb31326201f01b23999255f49",
+      "plan.md": "8e7cad9fbcdf1fd91f37a201ee1b0486d02dfcb449608cff075a0811fd5c33d3",
+      "tasks.md": "052d93bb574b29d6a2c0b83526ad64730e13a4dd1e40abe9e59e2c980709414d",
+      "checklist.md": "4a44bc345a94fcb8ca13b68164eb1639bb55fae8f709352a7f047d3c204b12b0",
+      "implementation-summary.md": "d55136322db458ee6b0ad4f0f18eb8e3eded11a630f4e9d1e5bc0fc1f0d51c29"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

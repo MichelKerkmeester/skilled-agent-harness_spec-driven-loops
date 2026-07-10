@@ -50,7 +50,6 @@
       "decision-record.md",
       "research/extraction-survey.md",
       "research/standalone-mcp-discussion.md",
-      ".codex/config.toml",
       ".claude/mcp.json",
       "mcp_server/tool-schemas.ts",
       "mcp_server/context-server.ts",
@@ -103,12 +102,6 @@
         "name": "standalone-mcp-discussion.md",
         "kind": "doc",
         "path": "research/standalone-mcp-discussion.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor today is a substantial subsystem buried 5 levels deep inside `system-spec-kit`",
     "created_at": "2026-05-14T02:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.095Z",
+    "last_save_at": "2026-07-09T10:02:49.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T02:00:00Z",
     "source_docs": [
@@ -215,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47361bd85f3655f4087506bc2ea5652c161482bfe0ef5cc232051e9e5c94dc74",
+    "source_fingerprint": "sha256:9db952219fe0ca649bccd823ad6f2226d9cb6d88b6003461a01b0dce31526fac",
     "source_doc_hashes": {
-      "spec.md": "45c95bf21b574e74e352332dd9bea533789efdf02e865ecaca00b122a1fb6181",
-      "plan.md": "99e91fd953cee3a5da9e78e149d9f0ebec4218de03649b3c9edf6e283076d4f5",
-      "tasks.md": "619a37926bcbcc06aff0f7648c081e41a9388e95fa84c5c7da2b6b15958806f8",
-      "checklist.md": "8ce716bad7596873ad9260661613c55da361b806edca92362349332a6cab1819",
-      "decision-record.md": "c8e78c4cd164b2ae084e8721f4d1092840f4fc9ac2e3f19df4c1fc3278ecd3ff",
-      "implementation-summary.md": "3af7bb37acd2c7b091096ca8675534b362f90a5d743bbadd53a0d481857ffb9c"
+      "spec.md": "cd8f7215b733f3b575626ca57f3fac260028b004e7b7092deb17ac9c985a039a",
+      "plan.md": "e71fa88c36c3c9a528e3eaae70d394b5dcefda54b09c130ebb0ee5745666b631",
+      "tasks.md": "a93125f6d08de2b5936f6087b2bcb3ede38562f27e36522dc3728165a08dea0f",
+      "checklist.md": "927bb3fb47064e5a4047983709fc881025cbda096aa8254cc621502a05e165bf",
+      "decision-record.md": "3f06fe1bb816660deac52811024c04624f7d36d35ef19ab82e585c6157298361",
+      "implementation-summary.md": "fd3ace724a214dbaa4fc7ea18a59d335c4e58eaa6937118dffa0cc65f234370d"
     },
     "last_active_child_id": null,
     "last_active_at": null

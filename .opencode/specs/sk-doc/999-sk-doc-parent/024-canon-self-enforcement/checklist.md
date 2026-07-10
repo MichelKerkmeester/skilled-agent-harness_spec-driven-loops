@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-sk-doc-parent/024-canon-self-enforcement"
-    last_updated_at: "2026-07-08T04:03:24Z"
+    last_updated_at: "2026-07-08T15:52:50Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored the plan-phase verification checklist"
-    next_safe_action: "Operator resolves D1-D3 then execute Phase 2 trio"
+    recent_action: "Verified DO-NOW gates at close-out (4/4 hubs, validate 0/0); tranche deferred"
+    next_safe_action: "Gate-adjacent tranche awaits operator-opened scorer lane + 193-row re-baseline"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-This is a PLANNING packet. Plan-artifact items are verified now; code-execution items stay pending until each work unit runs.
+The DO-NOW batch has SHIPPED and was re-verified at close-out (2026-07-08). Plan-artifact items and DO-NOW code-execution items are checked below; the gate-adjacent tranche items (WU8/10/11/12c) stay unchecked and deferred per ADR-002 (they are the tranche's own gate, satisfied when it runs).
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -57,8 +57,8 @@ This is a PLANNING packet. Plan-artifact items are verified now; code-execution 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Each DO-NOW unit keeps `parent-skill-check.cjs` 4/4 (0 warnings) on all four hubs
-- [ ] CHK-011 [P1] WU1 resolves paths against a computed repo root, not `process.cwd()` or an env var
+- [x] CHK-010 [P0] Each DO-NOW unit keeps `parent-skill-check.cjs` 4/4 (0 warnings) on all four hubs [EVIDENCE: 2026-07-08 close-out re-verify — sk-code / sk-design / sk-doc / system-deep-loop each exit 0, "all hard invariants passed, 0 warnings"]
+- [x] CHK-011 [P1] WU1 resolves paths against a computed repo root, not `process.cwd()` or an env var [EVIDENCE: parent-skill-check.cjs findRepoRoot(.git walk-up); shipped f8924b0495]
 - [x] CHK-012 [P1] The plan reuses existing patterns, not new abstractions [EVIDENCE: plan.md WU3 clones the family self-heal at skill-graph-db.ts:372-422; WU2 mirrors the dependency-free CI vitest step]
 <!-- /ANCHOR:code-quality -->
 
@@ -67,8 +67,8 @@ This is a PLANNING packet. Plan-artifact items are verified now; code-execution 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Every new vitest green (vocab battery, edge_type CHECK, command-binding, checker fixtures, discovery parity)
-- [ ] CHK-021 [P1] A synthetic PR touching a non-deep-loop hub registry triggers the CI gate
+- [x] CHK-020 [P0] Every new vitest green (vocab battery, edge_type CHECK, command-binding, checker fixtures, discovery parity) [EVIDENCE: T020 — 6 files, 28 pass + 1 expected-fail (WU8 guard); drift-guard 7/7]
+- [x] CHK-021 [P1] A synthetic PR touching a non-deep-loop hub registry triggers the CI gate [EVIDENCE: T021 — CI glob-enrolls `skills/*/mode-registry.json` + per-hub checker loop; checker-from-/tmp passes 4a/4b (gate mechanism proven; not a literal PR run)]
 - [x] CHK-022 [P1] Each work unit has a defined verification gate in plan.md §5 [EVIDENCE: plan.md testing table maps every WU to a tool/scope]
 <!-- /ANCHOR:testing -->
 
@@ -80,7 +80,7 @@ This is a PLANNING packet. Plan-artifact items are verified now; code-execution 
 - [x] CHK-030 [P0] Root cause named per unit, not just symptoms [EVIDENCE: thesis — canon declared once, hand-copied to ~12 dialects, guards watch deep-loop only — drives WU1/WU2/WU3]
 - [x] CHK-031 [P0] The next latent twin is pre-empted, not just the last fire [EVIDENCE: WU3 defuses the edge_type CHECK at skill-graph-db.ts:209, the twin of the fixed family CHECK]
 - [x] CHK-032 [P1] Sibling/related sites enumerated so no fix is partial [EVIDENCE: WU2 lists all ~12 dialects; the FIX ADDENDUM maps every affected surface to its WUs]
-- [ ] CHK-033 [P1] Gate-adjacent fixes co-land with their re-baseline (no partial scoring shift)
+- [ ] CHK-033 [P1] Gate-adjacent fixes co-land with their re-baseline (no partial scoring shift) — **DEFERRED per ADR-002**: this is the tranche's own gate; satisfied when WU8/10/11/12c execute, not before
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -118,13 +118,13 @@ This is a PLANNING packet. Plan-artifact items are verified now; code-execution 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 5/7 (2 pending execution) |
-| P1 Items | 13 | 9/13 (4 pending execution) |
-| P2 Items | 3 | 2/3 (1 pending execution) |
+| P0 Items | 7 | 7/7 |
+| P1 Items | 13 | 12/13 (CHK-033 deferred per ADR-002) |
+| P2 Items | 3 | 3/3 |
 
-**Verification Date**: 2026-07-07 (plan phase)
-**Verified By**: AI Assistant (Claude, planning architect)
-**Note**: pending items are code-execution gates that run when each work unit executes.
+**Verification Date**: 2026-07-08 (close-out; DO-NOW gates re-verified on the post-rename tree)
+**Verified By**: AI Assistant (Claude Opus)
+**Note**: the sole unchecked item (CHK-033) is the gate-adjacent tranche's own co-land gate, deferred per ADR-002; it is satisfied when WU8/10/11/12c execute.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -142,8 +142,8 @@ This is a PLANNING packet. Plan-artifact items are verified now; code-execution 
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [ ] CHK-110 [P1] WU2 vocab battery runs in the dependency-light CI vitest step (NFR-P01)
-- [ ] CHK-111 [P2] WU5 doctor panel opens the graph read-only, no writes (NFR-P02)
+- [x] CHK-110 [P1] WU2 vocab battery runs in the dependency-light CI vitest step (NFR-P01) [EVIDENCE: vocabulary-agreement.vitest.ts shipped (WU2); dependency-light — repoRoot via .git, no daemon]
+- [x] CHK-111 [P2] WU5 doctor panel opens the graph read-only, no writes (NFR-P02) [EVIDENCE: skill-graph-freshness.cjs uses node:sqlite readOnly, exits 0; wired as a read-only /doctor route (a0efc35c3c)]
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -152,7 +152,7 @@ This is a PLANNING packet. Plan-artifact items are verified now; code-execution 
 ## L3+: DEPLOYMENT READINESS
 
 - [x] CHK-120 [P0] Rollback documented per unit; each WU atomic; WU3 migration idempotent [EVIDENCE: plan.md §7 + L2 Enhanced Rollback]
-- [ ] CHK-121 [P1] WU1 CI change guarded by a per-hub `PARENT_HUB_CHECK_STRICT=0` opt-out for scaffolding hubs
+- [x] CHK-121 [P1] WU1 CI change guarded by a per-hub `PARENT_HUB_CHECK_STRICT=0` opt-out for scaffolding hubs [EVIDENCE: checker prints "Mode 5-9: canon (FAIL)" strict-default; PARENT_HUB_CHECK_STRICT=0 downgrades 5-9 to advisory WARN]
 - [x] CHK-122 [P2] The gate-adjacent tranche cannot corrupt the 193-row parity by rollback [EVIDENCE: WU8/WU10/WU11 never land outside the single re-baseline event]
 <!-- /ANCHOR:deploy-ready -->
 
@@ -170,7 +170,7 @@ This is a PLANNING packet. Plan-artifact items are verified now; code-execution 
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [ ] CHK-140 [P1] `validate.sh --strict` exits 0 for this folder
+- [x] CHK-140 [P1] `validate.sh --strict` exits 0 for this folder [EVIDENCE: 2026-07-08 close-out — RESULT: PASSED, Errors 0 / Warnings 0]
 - [x] CHK-141 [P2] description.json + graph-metadata.json generated for this packet [EVIDENCE: generate-description.js + backfill-graph-metadata.js ran; both files present]
 <!-- /ANCHOR:docs-verify -->
 
@@ -180,5 +180,5 @@ This is a PLANNING packet. Plan-artifact items are verified now; code-execution 
 ## L3+: SIGN-OFF
 
 - [x] CHK-150 [P0] Plan authored, phased, and gate-partitioned; ready for operator fork resolution [EVIDENCE: this packet — spec/plan/tasks/checklist/decision-record/implementation-summary]
-- [ ] CHK-151 [P1] Operator resolves D1-D3; execution begins with the Phase 2 trio
+- [x] CHK-151 [P1] Operator resolves D1-D3; execution begins with the Phase 2 trio [EVIDENCE: D1-D3 resolved (ADR-003/004/005); DO-NOW batch executed + shipped]
 <!-- /ANCHOR:sign-off -->

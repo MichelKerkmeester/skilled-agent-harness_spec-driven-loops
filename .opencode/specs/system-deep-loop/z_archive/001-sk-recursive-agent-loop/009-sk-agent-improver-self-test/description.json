@@ -1,6 +1,6 @@
 {
   "specFolder": "system-deep-loop/z_archive/001-sk-recursive-agent-loop/009-sk-agent-improver-self-test",
-  "description": "The sk-improve-agent skill has been validated against handover, debug, orchestrate, and review agents (Phases 001-008), but never against itself. The",
+  "description": "The sk-improve-agent skill has been validated against handover, debug, orchestrate, and review agents (Phases 001-008), but never against itself.",
   "keywords": [
     "sk-improve-agent",
     "skill",
@@ -12,11 +12,10 @@
     "review",
     "agents",
     "phases",
-    "001-008",
     "never",
     "itself"
   ],
-  "lastUpdated": "2026-07-08T13:06:38.055Z",
+  "lastUpdated": "2026-07-09T10:02:48.341Z",
   "specId": "009",
   "folderSlug": "sk-agent-improver-self-test",
   "parentChain": [

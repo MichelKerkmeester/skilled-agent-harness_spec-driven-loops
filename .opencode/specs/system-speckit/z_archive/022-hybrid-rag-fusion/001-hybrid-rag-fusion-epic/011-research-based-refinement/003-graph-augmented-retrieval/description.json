@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/003-graph-augmented-retrieval",
-  "description": "Implement sparse-first graph policy, intent-aware typed traversal, graph refresh on write, deterministic save-time enrichment, graph signal calibratio",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/003-graph-augmented-retrieval",
+  "description": "Implement sparse-first graph policy, intent-aware typed traversal, graph refresh on write, deterministic save-time enrichment, graph signal",
   "keywords": [
     "implement",
     "sparse-first",
@@ -14,14 +14,13 @@
     "deterministic",
     "save-time",
     "enrichment",
-    "signal",
-    "calibratio"
+    "signal"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.724Z",
+  "lastUpdated": "2026-07-09T10:02:57.797Z",
   "specId": "003",
   "folderSlug": "graph-augmented-retrieval",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic",

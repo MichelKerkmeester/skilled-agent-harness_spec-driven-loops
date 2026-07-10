@@ -3,18 +3,16 @@
   "specFolder": "system-code-graph/005-code-graph-doc-audit",
   "description": "The 008 parent identified a coverage gap for system-code-graph documentation after the 028 code-graph work",
   "keywords": [
-    "008",
     "parent",
     "identified",
     "coverage",
     "gap",
     "system-code-graph",
     "documentation",
-    "028",
     "code-graph",
     "work"
   ],
-  "lastUpdated": "2026-07-06T17:15:58.189Z",
+  "lastUpdated": "2026-07-09T10:02:46.731Z",
   "specId": "005",
   "folderSlug": "code-graph-doc-audit",
   "parentChain": [

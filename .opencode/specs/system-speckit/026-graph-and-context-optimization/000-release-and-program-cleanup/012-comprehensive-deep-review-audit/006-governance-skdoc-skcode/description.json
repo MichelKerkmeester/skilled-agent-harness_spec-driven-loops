@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
   "description": "The constitutional rules govern spec-kit behavior, and sk-doc / sk-code define documentation and code standards",
   "keywords": [
     "constitutional",
@@ -14,11 +14,11 @@
     "code",
     "standards"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.002Z",
+  "lastUpdated": "2026-07-09T10:02:51.672Z",
   "specId": "006",
   "folderSlug": "governance-skdoc-skcode",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "012-comprehensive-deep-review-audit"

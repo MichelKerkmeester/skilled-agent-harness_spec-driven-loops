@@ -1,9 +1,8 @@
 {
   "level": "2",
   "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/015-remediate-cross-surface-residue",
-  "description": "The 014 CocoIndex + rerank-sidecar deprecation deleted the code, and `014-remediate-codegraph-naming` cleaned the code-graph docs, but six non-code-gr",
+  "description": "The 014 CocoIndex + rerank-sidecar deprecation deleted the code, and `014-remediate-codegraph-naming` cleaned the code-graph docs, but six",
   "keywords": [
-    "014",
     "cocoindex",
     "rerank-sidecar",
     "deprecation",
@@ -13,10 +12,9 @@
     "cleaned",
     "code-graph",
     "docs",
-    "six",
-    "non-code-gr"
+    "six"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.813Z",
+  "lastUpdated": "2026-07-09T10:02:46.824Z",
   "specId": "015",
   "folderSlug": "remediate-cross-surface-residue",
   "parentChain": [

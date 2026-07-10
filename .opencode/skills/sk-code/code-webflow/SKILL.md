@@ -50,6 +50,122 @@ Cross-language shared tier (`references/shared/`): `dev_workflow.md`, `cross_lan
 
 Workflow (`references/`): `workflow_implement.md`, `workflow_debug.md`, `workflow_verify.md` — this surface owns the implement -> debug -> verify phases; these are the shared phase doctrine.
 
+## 2b. SMART ROUTING (machine-readable)
+
+This block is the deterministic projection of code-webflow's own reference/asset routing, consumed by the skill-benchmark router-replay; keep it in sync with the parent hub union.
+
+```python
+# code-webflow owns its intent -> reference/asset routing. Paths are relative to
+# this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
+# (re-prefixed with code-webflow/) and the sibling code-opencode map plus the
+# parent-owned universal/shared tier; a drift guard enforces that equality.
+DEFAULT_RESOURCE = [
+    "references/shared/dev_workflow.md",
+]
+
+INTENT_SIGNALS = {
+    "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring", "smooth-scroll", "intersectionobserver"]},
+    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell"]},
+    "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "failing", "stack trace", "console error", "regression"]},
+    "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
+    "TESTING":            {"weight": 1, "keywords": ["unit test", "integration test", "coverage", "vitest", "pytest", "shellcheck"]},
+    "DEPLOYMENT":         {"weight": 1, "keywords": ["deploy", "cdn", "wrangler", "minify", "staging", "production release"]},
+    "PERFORMANCE":        {"weight": 1, "keywords": ["lighthouse", "core web vitals", "web vitals", "largest contentful", "lcp", "interaction to next paint", "inp", "cumulative layout shift", "cls", "pagespeed", "jank", "frame budget"]},
+    "ANIMATION":          {"weight": 1, "keywords": ["animation", "transition", "easing", "stagger", "motion principles", "motion language", "gsap", "lenis", "carousel", "parallax"]},
+    "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "animate()", "inview", "in-view", "motion cdn", "scroll()", "stagger()", "animation principles", "cross-stack animation"]},
+    "ACCESSIBILITY":      {"weight": 1, "keywords": ["reduced motion", "reduced-motion", "prefers-reduced-motion", "a11y", "accessibility"]},
+    "FORMS":              {"weight": 1, "keywords": ["form upload", "filepond", "field validation", "focus trap"]},
+    "VIDEO":              {"weight": 1, "keywords": ["hls", "adaptive stream", "video player"]},
+    "LANGUAGE_STANDARDS": {"weight": 1, "keywords": ["typescript", ".ts", ".tsx", "python", ".py", "shell script", "bash", ".sh", "commonjs", ".cjs", ".mjs", "docstring"]},
+}
+
+RESOURCE_MAP = {
+    "IMPLEMENTATION": [
+        "references/implementation/implementation_workflows.md",
+        "references/implementation/async_patterns.md",
+        "references/implementation/observer_patterns.md",
+        "references/implementation/security_patterns.md",
+        "references/implementation/third_party_integrations.md",
+        "references/implementation/webflow_patterns.md",
+        "references/shared/dev_workflow.md",
+        "assets/integrations/README.md",
+        "assets/patterns/README.md",
+        "assets/templates/README.md"
+    ],
+    "CODE_QUALITY": [
+        "references/shared/cross_language_rules.md",
+        "references/shared/enforcement.md",
+    ],
+    "DEBUGGING": [
+        "references/debugging/debugging_workflows.md",
+        "references/debugging/error_recovery.md",
+        "assets/webflow-debugging_checklist.md"
+    ],
+    "VERIFICATION": [
+        "references/verification/verification_workflows.md",
+        "assets/webflow-verification_checklist.md"
+    ],
+    "TESTING": [
+        "assets/animation/playbook_entries.md"
+    ],
+    "DEPLOYMENT": [
+        "references/deployment/cdn_deployment.md",
+        "references/deployment/minification_guide.md",
+        "references/deployment/webflow_staging_production.md",
+        "assets/scripts/README.md"
+    ],
+    "PERFORMANCE": [
+        "references/performance/cwv_remediation.md",
+        "references/performance/interaction_gated_loading.md",
+        "references/performance/resource_loading.md",
+        "references/performance/third_party.md",
+        "references/performance/webflow_constraints.md",
+        "references/verification/performance_checklist.md",
+        "references/implementation/performance_patterns.md",
+        "references/animation/performance_and_pitfalls.md"
+    ],
+    "ANIMATION": [
+        "references/implementation/animation_workflows.md",
+        "references/implementation/swiper_patterns.md"
+    ],
+    "MOTION_DEV": [
+        "references/animation/quick_start.md",
+        "references/animation/animation_principles.md",
+        "references/animation/animate_and_timelines.md",
+        "references/animation/scroll_and_gestures.md",
+        "references/animation/integration_patterns.md",
+        "references/animation/decision_matrix.md",
+        "references/animation/performance_and_pitfalls.md",
+        "assets/animation/install_card.md",
+        "assets/animation/snippets/principled_reveal.js",
+        "assets/animation/snippets/README.md"
+    ],
+    "ACCESSIBILITY": [
+        "references/animation/performance_and_pitfalls.md",
+        "references/implementation/animation_workflows.md",
+        "references/verification/verification_workflows.md"
+    ],
+    "FORMS": [
+        "references/implementation/form_upload_workflows.md",
+        "references/implementation/focus_management.md"
+    ],
+    "VIDEO": [
+        "references/implementation/third_party_integrations.md"
+    ],
+    "LANGUAGE_STANDARDS": [
+        "references/css/style_guide.md",
+        "references/css/quality_standards.md",
+        "references/css/quick_reference.md",
+        "references/css/patterns.md",
+        "references/html/style_guide.md",
+        "references/html/quality_standards.md",
+        "references/javascript/style_guide.md",
+        "references/javascript/quality_standards.md",
+        "references/javascript/quick_reference.md"
+    ],
+}
+```
+
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
 - **CDN runtime reality.** Client scripts ship over a CDN with cache lag; treat every deploy as versioned and verify the minified runtime, not just the source. See `references/deployment/minification_guide.md` and `references/verification/verification_workflows.md`.

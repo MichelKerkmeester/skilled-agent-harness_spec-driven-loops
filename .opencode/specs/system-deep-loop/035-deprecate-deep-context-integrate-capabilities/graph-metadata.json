@@ -3,6 +3,7 @@
   "packet_id": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
   "spec_folder": "system-deep-loop/035-deprecate-deep-context-integrate-capabilities",
   "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
   "children_ids": [
     "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/001-research-baseline-and-inventory",
     "system-deep-loop/035-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts",
@@ -91,7 +92,7 @@
     ],
     "causal_summary": "The deep-loop framework still exposes a standalone `deep-context` route through command, agent, nested skill, registry, advisor, generated contract, documentation, fixture, and benchmark surfaces",
     "created_at": "2026-07-04T10:46:17Z",
-    "last_save_at": "2026-07-07T15:43:52.524Z",
+    "last_save_at": "2026-07-09T10:02:48.062Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

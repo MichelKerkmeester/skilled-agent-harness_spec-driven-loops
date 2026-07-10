@@ -4,7 +4,6 @@
   "description": "The remediation fixed several state-safety, fan-out, and goal-plugin defects, each backed by a regression test, but the manual-testing playbooks",
   "keywords": [
     "remediation",
-    "fixed",
     "several",
     "state-safety",
     "fan-out",
@@ -16,7 +15,7 @@
     "manual-testing",
     "playbooks"
   ],
-  "lastUpdated": "2026-07-04T18:02:20.925Z",
+  "lastUpdated": "2026-07-09T10:02:47.610Z",
   "specId": "004",
   "folderSlug": "adversarial-playbook-scenarios",
   "parentChain": [

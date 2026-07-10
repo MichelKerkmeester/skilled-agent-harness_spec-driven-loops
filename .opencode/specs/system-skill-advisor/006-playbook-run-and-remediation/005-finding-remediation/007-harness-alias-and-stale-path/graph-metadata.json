@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The regression harnesses (`skilladvisorregression.py` and the TS `evaluateRegressionCases` in `advisor-validate.ts`) match gold labels by strict string equality, so fixtures/corpus rows labelled `sk-deep-research` / `sk-deep-review` / `sk-deep-agent-improvement` fail against the live graph IDs `deep-research` / `deep-review` / `deep-agent-improvement`",
     "created_at": "2026-05-27T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.386Z",
+    "last_save_at": "2026-07-09T10:02:50.204Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +213,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d509272e1c069ce27e9146093dae97b010d1b04d317243d530de792be20b65bd",
+    "source_fingerprint": "sha256:e9f560a97b464a6137b1eb20b8ebdc96b43afd8bdf3f070e29b6623667aa068d",
     "source_doc_hashes": {
-      "spec.md": "2aa1588803e1c1394bcf203f21f3d4d98ba5067962735fcc5b9736436bd6aac7",
-      "plan.md": "fcc455e4544eb609f980d1da74b4012ed859005eebb2662cc739835f4b7d4fb9",
-      "tasks.md": "439f57210a5a48dbf354e2e8218a1cdf9dc02d32fba1ab5ff93d7517e6571c0b",
-      "implementation-summary.md": "f504645d7a667cda4ad31f69583de98fa3634dfc308aa60290916ade778f2aa8"
+      "spec.md": "6e2af711b8c76d8776f1b99bb631b5bfa7214e9cd76aeb7054a0658fd4e80d7d",
+      "plan.md": "71700694b90283fc343c9987ae51df92b8a319a17f6fecc723687427a68c52c8",
+      "tasks.md": "f83511fd976cffad1f17ab7487e284aa43c7b227892d884c8b19cc64d06bff4f",
+      "implementation-summary.md": "dd8cbbe0521c83fb83c1f2f01497f359add0515ffbf1d15edeed93f5ed0bec38"
     },
     "last_active_child_id": null,
     "last_active_at": null

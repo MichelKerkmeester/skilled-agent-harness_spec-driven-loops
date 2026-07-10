@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/002-sprint-1-graph-signal-activation",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/002-sprint-1-graph-signal-activation",
   "description": "The graph channel is now functional after Sprint 0's G1 fix, but it contributes only through graph-search results (traversal)",
   "keywords": [
     "graph",
@@ -7,18 +7,17 @@
     "now",
     "functional",
     "sprint",
-    "fix",
     "contributes",
     "only",
     "graph-search",
     "results",
     "traversal"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.651Z",
+  "lastUpdated": "2026-07-09T10:02:57.709Z",
   "specId": "002",
   "folderSlug": "sprint-1-graph-signal-activation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic"

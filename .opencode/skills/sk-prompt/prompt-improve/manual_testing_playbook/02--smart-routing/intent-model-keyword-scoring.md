@@ -66,7 +66,7 @@ Routing trace per input. Capture intent name + resource list per call.
 
 1. Inspect SKILL.md §2 INTENT_MODEL keyword weights; compare to the per-input scoring trace.
 2. Re-dispatch each input with the keyword density doubled, see if scoring changes.
-3. Confirm RESOURCE_MAP entries still resolve on disk (`bash: ls .opencode/skills/sk-prompt/references/`).
+3. Confirm RESOURCE_MAP entries still resolve on disk (`bash: ls .opencode/skills/sk-prompt/prompt-improve/references/`).
 
 ### Optional Supplemental Checks
 

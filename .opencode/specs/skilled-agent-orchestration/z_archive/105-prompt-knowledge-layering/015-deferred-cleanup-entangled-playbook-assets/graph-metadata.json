@@ -40,12 +40,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three deferred items remained after 014",
     "created_at": "2026-06-05T12:47:32.528Z",
-    "last_save_at": "2026-06-23T03:49:51.656Z",
+    "last_save_at": "2026-07-09T10:02:46.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38b8c18bc7213d103dfbe083b0625141a4db22cbc2314c99141454ccfd5970f4",
+    "source_fingerprint": "sha256:a52dbe4b17f06e17a35dff258b1ebca7496fc7899e94342bb819e519627dd265",
     "source_doc_hashes": {
-      "spec.md": "cd94742fcab1937301867f1b438993008fc854317341c00e24a38d5705e1021b",
+      "spec.md": "51e208841aacd007ade4ff7942b649d91b890824d3e078db53625a53b7c3f1d0",
       "plan.md": "4b63a76b6b37a87e75d9d83e048aa27a5fe44bae3254559d2a71456b752e6879",
-      "tasks.md": "0705baee82bb8447cd7007faa17ba602cd911492d836f6f008f94f5e7b2ce80c",
-      "implementation-summary.md": "d53188e721de7599ce95e6081bf5e3c780bcc2d95bfd26c8b2b17877556cea7c"
+      "tasks.md": "ea102042057445ae265965377fd97840a0fd59759e924779e0e7af3e746805da",
+      "implementation-summary.md": "f0634feacaa5e971a83b775708c17fb4c8aa00f6d17fa77b954316c1f5e45cf7"
     },
     "last_active_child_id": null,
     "last_active_at": null

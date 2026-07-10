@@ -3,7 +3,6 @@
   "description": "Phase 014's deep-review + deep-research audit (20 iterations, independently re-verified by fresh Claude Sonnet 5 agents) confirmed 6 real drift",
   "keywords": [
     "phase",
-    "014",
     "deep-review",
     "deep-research",
     "audit",
@@ -18,7 +17,7 @@
     "real",
     "drift"
   ],
-  "lastUpdated": "2026-07-04T19:10:58.913Z",
+  "lastUpdated": "2026-07-09T10:02:47.843Z",
   "specId": "002",
   "folderSlug": "skill-doc-drift-remediation",
   "parentChain": [

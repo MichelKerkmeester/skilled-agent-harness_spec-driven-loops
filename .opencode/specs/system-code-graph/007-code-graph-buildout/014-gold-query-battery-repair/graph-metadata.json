@@ -37,8 +37,8 @@
       "fail",
       "system-code-graph",
       "extraction",
-      "026",
-      "004"
+      "plan",
+      "verify"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The Code Graph MCP read path reports a fresh index, but `codegraphquery` still blocks because the verification gate fails",
     "created_at": "2026-06-07T09:30:00Z",
-    "last_save_at": "2026-07-07T16:18:33.897Z",
+    "last_save_at": "2026-07-09T10:02:47.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:021b0472b59a4eec61ecca14a9edd453484a57950fd4094954929e6471d31ae7",
+    "source_fingerprint": "sha256:f890e4c4a4088fd545f3995271236189d7fbc942c9f1fb4915765582cea0b9fb",
     "source_doc_hashes": {
       "spec.md": "95599d064295c3bae683566626dee0903565e150a5d4396f888ba575d84f7d6c",
       "plan.md": "ee0800e2de2943fc580311d52d5e32f1e4ccc877b8c3a7a7975f935b544cfd02",
       "tasks.md": "581f06521d6eb3ee305f542c9512fea3fd234b9f4afd43dabe7506a9c612bf4e",
       "checklist.md": "35554b92320bae26f81144d3d6e8fe236c29df127ad6edf61af570b90e3ee54a",
-      "implementation-summary.md": "5a0882449ef67f590a1b0d88e672b67ed17e7f0037650bf6578d18b76f1502a4",
+      "implementation-summary.md": "195d0dcfa422ebd55bec4c83507e91b9062a7f3cc15bbef36d8e9e74f8c276b7",
       "handover.md": "1705dd3ac523e4fe0a538e2e9f1c136113eb32658d9b32d5609fc6ebb3f57361"
     },
     "last_active_child_id": null,

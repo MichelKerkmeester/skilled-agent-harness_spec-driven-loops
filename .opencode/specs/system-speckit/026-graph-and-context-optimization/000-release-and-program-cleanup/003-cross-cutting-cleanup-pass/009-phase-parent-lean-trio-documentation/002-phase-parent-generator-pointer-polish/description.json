@@ -1,9 +1,8 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish",
   "description": "Phase 001 shipped the lean-trio enforcement and documentation but deferred several additive items",
   "keywords": [
     "phase",
-    "001",
     "shipped",
     "lean-trio",
     "enforcement",
@@ -13,11 +12,11 @@
     "additive",
     "items"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.276Z",
+  "lastUpdated": "2026-07-09T10:02:50.831Z",
   "specId": "002",
   "folderSlug": "phase-parent-generator-pointer-polish",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass",

@@ -25,8 +25,6 @@
       "skill reindex resource map"
     ],
     "key_topics": [
-      "065",
-      "001",
       "skill",
       "reindex",
       "advisor",
@@ -36,7 +34,9 @@
       "plan",
       "tasks",
       "checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "resource"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Refresh skill advisor memory system: run skill graph rescan, advisor rebuild, and memory index scan; capture before/after snapshots for verification",
     "created_at": "2026-05-18T07:49:27.128Z",
-    "last_save_at": "2026-06-23T03:49:49.546Z",
+    "last_save_at": "2026-07-09T10:02:45.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:5e55efc6700102a50bdf6cbedde29303f5da08335236ec092091f126a3a092d3",
+    "source_fingerprint": "sha256:a05b8ec7d10a98dee715859e0d6a56a8ae11e979e2668dfd67213c5cd8c6fe19",
     "source_doc_hashes": {
-      "spec.md": "e970195695655c408165ef993d714cd0a17299082c218a3568602dc6047abe7d",
-      "plan.md": "357f731e4b25f3cdada50ed991c5981ab92f23b777d4003387d281988fa198e7",
-      "tasks.md": "f5c91df52158bb8e0801714c8d22b573f80eaaafb997ff586974813a2dcde073",
-      "checklist.md": "a4ecf61f2d6788ca923e86d6a383e56628fdaff13e1aeb13392200b4f02377c7",
-      "implementation-summary.md": "2c35573b754ea5cb9e662cc8da194c8752944f76bd4f85bcd05f0c825b2b61b3",
-      "resource-map.md": "ec8daab8c8370899116f39778e0292c13936ea4c3dc15b227cf77199e3fa99c2"
+      "spec.md": "ad73d65f5e5744a8b2142f4ef21d967b416b330d30a296ac7409c7219e05f0c2",
+      "plan.md": "ff6da5c5baac735b2c1af9c48e41c0d6d1f00712b25a13ca7e230b784a1752c1",
+      "tasks.md": "d3498e49ea150352ee44bff53197242e531d0285753c5e1f02f89c1f32a117c7",
+      "checklist.md": "234183b04e9be7889fd5fa9d6eb30f7b2ce7c976aa9d1a35e5950abf9eb248bd",
+      "implementation-summary.md": "df57442c9f028b5f1b7f2f0812c02712d49fd80546495ba02701917cbf310bb1",
+      "resource-map.md": "0da59afb5c0237e39cb21d3d5a452fb236f7d6c6202a675a99f6e9086422118b"
     },
     "last_active_child_id": null,
     "last_active_at": null

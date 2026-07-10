@@ -25,18 +25,18 @@
       "system-code-graph v1.0.2.0 polish complete"
     ],
     "key_topics": [
-      "039",
       "system-code-graph",
       "deferred",
       "follow-on",
-      "037",
       "batch",
-      "038",
       "leftovers",
       "polish",
       "package",
       "json",
-      "gitignore"
+      "gitignore",
+      "decision",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Packet 038 successfully closed 11 of the 24 verified P0+P1 findings from 037's 20-iter deep-review (P0-1 docs, P0-2 by parallel-agent's Path-1 real probe, P1-B1..B7 runtime cluster, P1-C1 launcher comment)",
     "created_at": "2026-05-15T18:08:38.450Z",
-    "last_save_at": "2026-07-07T16:18:34.019Z",
+    "last_save_at": "2026-07-09T10:02:47.433Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

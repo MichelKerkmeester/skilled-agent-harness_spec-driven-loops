@@ -27,9 +27,6 @@
       "013/009/009 implementation summary"
     ],
     "key_topics": [
-      "013",
-      "009",
-      "fix",
       "script",
       "scope",
       "plan",
@@ -38,7 +35,10 @@
       "resolution",
       "tasks",
       "checklist",
-      "verification"
+      "verification",
+      "implementation",
+      "summary",
+      "two"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Two production advisor scripts resolve filesystem paths one directory too high",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.126Z",
+    "last_save_at": "2026-07-09T10:02:49.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:00:00Z",
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cff36e72cf5752bdffaf181d52cc33eaaae85cfbecdc5f0851381f1482654012",
+    "source_fingerprint": "sha256:e1947043fc08f59d729c1fdb07176e2c8204ee0995343b2020c598654b1a52a7",
     "source_doc_hashes": {
-      "spec.md": "d3084f4ec814dee44b4079b4d78c5c4cc803debaa5fc141ba724f8e4ad82b95d",
-      "plan.md": "cd139c511b48d8782368e51accc5b41586ead2f717ade32a76ced5fe99f92789",
-      "tasks.md": "6d478affa42912bc293e7e972c1ac945ebc6ac7212939afdbe0a1609b5405c7b",
-      "checklist.md": "f456c43de4ee26e63f14c4fd8f67c94fe1df323893148db64295caece7b74dea",
-      "implementation-summary.md": "b031a12c445517b145909cc1bedf20b020cdef1d6ada38e3586656cfcc9529bd"
+      "spec.md": "22a68ad351248b51b734593ca9c57b0865b75147bfdaca345c822662c2aa6245",
+      "plan.md": "20bd2ee820f26290a5ee43021a86b2b980464391297b054c50306731d3b93e56",
+      "tasks.md": "c5ad3974c89e312d33dfc20735d5cf021bf4a18cd0acf40d77fdf89ec8eb4a9d",
+      "checklist.md": "4ca49e541371e5fe5bbd488c3d7fb5d56c3b9a4e59a5730e40cd8751519f57d7",
+      "implementation-summary.md": "06d1f9d90e58017e77f1fcafa46cb7563ac66ad1a9028bce94356b448cc22c1e"
     },
     "last_active_child_id": null,
     "last_active_at": null

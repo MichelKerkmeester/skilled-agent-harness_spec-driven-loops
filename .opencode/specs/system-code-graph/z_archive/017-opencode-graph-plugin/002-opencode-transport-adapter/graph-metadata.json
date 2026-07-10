@@ -29,14 +29,14 @@
       "transport",
       "adapter",
       "packet",
-      "030",
       "level",
       "plan",
       "phase",
       "tasks",
       "checklist",
       "verification",
-      "adr"
+      "adr",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 024 already has strong retrieval surfaces, but OpenCode still lacked a clean prompt-time transport layer that could inject compact context during hook assembly",
     "created_at": "2026-04-12T09:02:53.436Z",
-    "last_save_at": "2026-07-07T16:18:33.995Z",
+    "last_save_at": "2026-07-09T10:02:47.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

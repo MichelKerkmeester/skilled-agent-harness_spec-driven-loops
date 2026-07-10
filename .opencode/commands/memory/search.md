@@ -43,7 +43,7 @@ Before asking startup questions or displaying results, read the presentation ass
 Enter this mode when `ARGS_PRESENT=true` and `QUERY` is not an analysis subcommand. Parse an optional `--intent <type>` or `--intent=<type>` from `QUERY`; otherwise let the server or local router infer intent from the query.
 
 1. Extract `query` (the resolved `QUERY`) and optional intent override.
-2. Prefer `memory_context({ input: query, mode: "auto", intent, includeContent: true, enableDedup: true })`.
+2. Prefer `memory_context({ input: query, mode: "auto", intent, limit: 10, enableDedup: true })`.
 3. Use `memory_quick_search` for fast query-only fallback.
 4. Use `memory_search` only when fine-grained search parameters are needed.
 5. Use `memory_match_triggers` as a supplemental fallback, not as a replacement for direct retrieval.
@@ -55,11 +55,11 @@ MUST emit exactly this shape for retrieval results:
 ```text
 MEMORY:SEARCH "<query>" intent=<detected_intent> results=<count>
 --------------------------------------------------
-<leaf-folder>/
+<specFolder>/
   <score>  #<id>  <title>
   <score>  #<id>  <title>
 
-<leaf-folder>/
+<specFolder>/
   <score>  #<id>  <title>
 
 STATUS=OK RESULTS=<count> INTENT=<detected_intent>
@@ -71,7 +71,7 @@ Score mandate — one score, one scale, one name: `<score>` is `similarity` on a
 
 Arg-echo rule: the query echoed in `"<query>"` MUST equal the resolved `QUERY`. A mismatch means the query was dropped — re-emit with `QUERY`.
 
-Surface-parity clause: the five core slots and the similarity 0–1 / two-decimal scale are mandatory regardless of how this command was reached — `--command` dispatch, a direct prompt, or natural conversation. Conversational phrasing may wrap the block in prose, but the core field set, field names, and scale never change, so any two surfaces return diffable, comparable rows for the same result.
+Surface-parity clause: the five core slots and the similarity 0–1 / two-decimal scale are mandatory when this command contract is loaded through `--command` dispatch or another route that explicitly reads the presentation asset. Raw one-shot natural-language prompts that bypass this command contract cannot guarantee the same render policy. Conversational phrasing may wrap the block in prose, but once this contract is loaded the core field set, field names, and scale never change.
 
 Verdict render slots: `requestQuality` and `citationPolicy` are the only sanctioned extras beyond the core slots. When present, render each as a named trailing field per the presentation asset, never as an unnamed, renamed, or ad-hoc metric, and their presence must be unambiguous.
 

@@ -24,13 +24,13 @@
       "runtime",
       "skill",
       "skeleton",
-      "118",
       "phase",
-      "001",
       "deep-loop",
       "peer",
       "arc",
-      "executes"
+      "executes",
+      "fullisolatenomcp",
+      "migration"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The 118 arc executes a FULLISOLATENOMCP migration that relocates 13 runtime library files, 4 MCP handler files, the SQLite coverage-graph DB, and 4 MCP tool schema entries out of `.opencode/skills/system-spec-kit/mcpserver/` and into a new peer skill `.opencode/skills/deep-loop-runtime/`",
     "created_at": "2026-05-22T19:50:00Z",
-    "last_save_at": "2026-07-08T13:43:59.024Z",
+    "last_save_at": "2026-07-09T10:02:48.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

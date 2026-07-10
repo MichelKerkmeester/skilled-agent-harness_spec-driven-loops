@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/076-post-speckit-template-upgrade-command-allignment",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/076-post-speckit-template-upgrade-command-allignment",
   "description": "Comprehensive alignment of 19 OpenCode commands with command_template.md standards following SpecKit v1.9.0 CORE + ADDENDUM v2.0 template architecture",
   "keywords": [
     "comprehensive",
@@ -14,11 +14,11 @@
     "template",
     "architecture"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.305Z",
+  "lastUpdated": "2026-07-09T10:02:57.320Z",
   "specId": "076",
   "folderSlug": "post-speckit-template-upgrade-command-allignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

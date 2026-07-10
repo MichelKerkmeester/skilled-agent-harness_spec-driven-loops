@@ -4,7 +4,6 @@
   "description": "Packet 108 shipped 5 quick-win teachings (H-1, H-2, H-3, H-4, H-6) from 106's auto-review research, but 6 stretch teachings remain unadopted: H-5",
   "keywords": [
     "packet",
-    "108",
     "shipped",
     "quick-win",
     "teachings",
@@ -13,7 +12,6 @@
     "h-3",
     "h-4",
     "h-6",
-    "106",
     "auto-review",
     "research",
     "stretch",
@@ -21,7 +19,7 @@
     "unadopted",
     "h-5"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.636Z",
+  "lastUpdated": "2026-07-09T10:02:45.832Z",
   "specId": "089",
   "folderSlug": "auto-review-stretch-config-dedup-gates",
   "parentChain": [

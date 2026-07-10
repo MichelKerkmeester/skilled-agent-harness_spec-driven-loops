@@ -4,7 +4,6 @@
   "description": "Phases 002-004 each carry their own exit gates, but nothing has yet confirmed the WHOLE packet is internally consistent, that the phase-parent's own",
   "keywords": [
     "phases",
-    "002-004",
     "carry",
     "own",
     "exit",
@@ -17,7 +16,7 @@
     "consistent",
     "phase-parent"
   ],
-  "lastUpdated": "2026-07-08T05:23:49.490Z",
+  "lastUpdated": "2026-07-09T10:02:48.222Z",
   "specId": "005",
   "folderSlug": "validation-and-closeout",
   "parentChain": [

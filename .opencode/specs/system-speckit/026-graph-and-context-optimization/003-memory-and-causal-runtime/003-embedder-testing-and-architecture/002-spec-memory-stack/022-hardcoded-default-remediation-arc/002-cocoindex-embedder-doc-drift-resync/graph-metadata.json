@@ -22,8 +22,6 @@
       "022/002 shipped"
     ],
     "key_topics": [
-      "022",
-      "002",
       "embedder",
       "doc",
       "drift",
@@ -33,7 +31,9 @@
       "historical",
       "annotation",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "shipped"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "4 doc edits closing the embedder-side P0 doc drift from packet 021: config_templates.md _NOTE_2 (3 sites) + embedder-pluggability.md historical annotation + ENV_REFERENCE.md date refresh + SKILL.md keywords. Reranker-side doc edits (BAAI/bge-reranker-v2-m3 → Qwen/Qwen3-Reranker-0.6B prose) deferred to follow-on packet because they need Qwen3 disk-footprint + daemon-log behavior verification beyond the mechanical-edit threshold.",
     "created_at": "2026-05-23T16:15:00.000000Z",
-    "last_save_at": "2026-07-02T05:31:11.819Z",
+    "last_save_at": "2026-07-09T10:02:52.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

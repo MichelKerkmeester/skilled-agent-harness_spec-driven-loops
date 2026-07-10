@@ -27,19 +27,18 @@
       "memory",
       "upsert",
       "hook",
-      "005",
       "step",
       "incremental",
       "save",
       "005-per-iteration-memory-upsert",
       "summary",
-      "deep-loop"
+      "deep-loop",
+      "findings"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,12 +49,6 @@
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-memory-upsert-yaml.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deep-loop findings only land in Spec Kit Memory at the final `memorysave` call after a run completes",
     "created_at": "2026-06-28T21:17:48.961Z",
-    "last_save_at": "2026-07-04T18:02:17.442Z",
+    "last_save_at": "2026-07-09T10:02:47.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6cd316781557a309bd86fed1f2b713da39d2ad4a8814b9a51e073de67c1e3815",
+    "source_fingerprint": "sha256:5bdb95b72d9a619b0ea90a27e6eabae98502501ae21ed1c788f797ec2e446024",
     "source_doc_hashes": {
-      "spec.md": "051dd15e7cd2e617c0f45b7fc0622432d2920769a72aef30a28ea5397a6a7ac6",
-      "plan.md": "064e87f21f69f3c539edc7791e98dc4966f0477c3e197c1b4b112f76e874640b",
-      "tasks.md": "9fa59979570a5f1cf04cff6b50bb1da562224b7ea4643650702411a1d8132163",
-      "implementation-summary.md": "d4b5e03904c71260abf187354797895b65687748eb40d818766dea46337a3add"
+      "spec.md": "98d082abe0e8cfd1aef9138abca83550bba120672b6da5e0c751ecb93c88c6d9",
+      "plan.md": "92e53cc2038ddb733f59af2f5df4e84c7af9d21e76ea8a2c24753d1afe741643",
+      "tasks.md": "e7a55ed8223f7cc2988a4784f2b8aa06ed2f19cd2f8bc867d7c47b43a52d86f1",
+      "implementation-summary.md": "aa329607129abeaccee470edd03e96e8642213ab871dee552deceffa253a5b8f"
     },
     "last_active_child_id": null,
     "last_active_at": null

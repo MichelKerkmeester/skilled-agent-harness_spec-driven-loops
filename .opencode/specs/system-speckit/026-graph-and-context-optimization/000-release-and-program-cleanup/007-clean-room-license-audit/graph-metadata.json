@@ -22,18 +22,18 @@
       "clean-room approved"
     ],
     "key_topics": [
-      "012",
       "license",
       "audit",
       "clean",
       "room",
       "external-project",
-      "001",
       "decision",
       "record",
       "clean-room",
       "adr",
-      "polyform"
+      "polyform",
+      "noncommercial",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "pt-02 §12 ranks license contamination from direct External Project reuse as a P0 risk",
     "created_at": "2026-04-25T10:48:06.447Z",
-    "last_save_at": "2026-07-02T05:31:10.916Z",
+    "last_save_at": "2026-07-09T10:02:51.540Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

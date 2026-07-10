@@ -1,7 +1,7 @@
 {
   "level": "phase",
   "specFolder": "system-skill-advisor/007-skill-advisor-embedder-stack",
-  "description": "Skill-advisor embedder work delivered the pluggable architecture, registry, schema, and writer wiring. The active runtime remains gemma; default",
+  "description": "Skill-advisor embedder work delivered the pluggable architecture, registry, schema, and writer wiring.",
   "keywords": [
     "skill-advisor",
     "embedder",
@@ -12,14 +12,9 @@
     "registry",
     "schema",
     "writer",
-    "wiring",
-    "active",
-    "runtime",
-    "remains",
-    "gemma",
-    "default"
+    "wiring"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.035Z",
+  "lastUpdated": "2026-07-09T10:02:50.217Z",
   "specId": "007",
   "folderSlug": "skill-advisor-embedder-stack",
   "parentChain": [

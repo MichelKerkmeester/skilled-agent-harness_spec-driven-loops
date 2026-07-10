@@ -101,11 +101,11 @@ function parseResourceMap(body) {
 // doc) is genuinely consulted on every route, so the replay seeds every result
 // with the whole set. Always returns an array; [] when absent.
 function parseDefaultResource(text) {
-  const listM = /DEFAULT_RESOURCE\s*=\s*\[([\s\S]*?)\]/.exec(text);
+  const listM = /DEFAULT_RESOURCES?\s*=\s*\[([\s\S]*?)\]/.exec(text);
   if (listM) {
     return [...listM[1].matchAll(/["']([^"']+)["']/g)].map((m) => m[1]);
   }
-  const strM = /DEFAULT_RESOURCE\s*=\s*["']([^"']+)["']/.exec(text);
+  const strM = /DEFAULT_RESOURCES?\s*=\s*["']([^"']+)["']/.exec(text);
   return strM ? [strM[1]] : [];
 }
 

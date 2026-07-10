@@ -25,9 +25,9 @@
       "default",
       "invocation",
       "path",
-      "uses",
       "opencode",
-      "skills"
+      "skills",
+      "system-spec-kit"
     ],
     "importance_tier": "medium",
     "status": "complete",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The default `validate.sh` invocation path uses `.opencode/skills/system-spec-kit/mcpserver/lib/validation/orchestrator.ts` (a hand-written TypeScript file, ~530 lines) whose `validateFolder()` function (lines roughly 420-455) calls a flat, hardcoded sequence of validator functions (`validateFileExists`, `validatePlaceholders`, `validateTemplateSource`, `validateTemplateShape`, `validatePriorityTags`, `validateFrontmatterBasics`, `validateSpecDocRule`, `validateGeneratedMetadataIntegrity`, `validateGeneratedMetadataDrift`) and pushes results into an `entries[]` array",
     "created_at": "2026-07-01T19:38:04.143Z",
-    "last_save_at": "2026-07-04T18:02:31.083Z",
+    "last_save_at": "2026-07-09T10:02:47.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8e781088c86c6f85c872ccf54e22a9d1008bd487076328fa7aff8c760eca20e",
+    "source_fingerprint": "sha256:fbe101e5db1ed70406852fefa908e1c3f6d2ee40891616602e4074cd20d11537",
     "source_doc_hashes": {
-      "spec.md": "ceecff696a34a665cd5d1e6a4b460efd106dd5f431302fee80c70a1c1ae92e25",
-      "plan.md": "ef539c73eab05f6030b76ab589395230c4ed7e80ac7cf54b44e5bfcbf5e24241",
-      "tasks.md": "f5ab21651499aa304a828410d0d3e8591e6c481d8fa6036ad3ae141ee65a5349",
-      "implementation-summary.md": "d36adeb8d324899b0f25899fa19b6ff944fbce57e74196efb6042c765076d0ea"
+      "spec.md": "131a854fd759f7c83225db42f63011776f46c78a6b396fcb2f10fe2349b27e74",
+      "plan.md": "6b6f1c3c43d9dc4acaf438d1362af06c22d75dc4491914342e4644e7f4a10528",
+      "tasks.md": "cd0f78296a30bcf58c9d2f90b648f7f373a4b6ad33478db261013b1d5b477cee",
+      "implementation-summary.md": "f463412b63004533ae6fe0292b4076f9524b3fffc0c760fdf6c6248f918151c9"
     },
     "last_active_child_id": null,
     "last_active_at": null

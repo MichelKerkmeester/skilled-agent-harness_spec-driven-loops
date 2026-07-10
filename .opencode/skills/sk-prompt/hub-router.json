@@ -1,0 +1,27 @@
+{
+  "skill": "sk-prompt",
+  "version": "1.0.0.0",
+  "routerPolicy": {
+    "defaultMode": "prompt-improve",
+    "ambiguityDelta": 1,
+    "tieBreak": ["prompt-improve", "prompt-models"],
+    "outcomes": {
+      "single": "one dominant prompt intent routes to one workflow mode",
+      "orderedBundle": "clearly separate prompt intents route to an ordered workflow mode list",
+      "defer": "unclear or contradictory intent asks for disambiguation"
+    },
+    "defaultResource": ["prompt-improve/SKILL.md"],
+    "bundleRules": []
+  },
+  "routerSignals": {
+    "prompt-improve": { "weight": 4, "classes": ["prompt-improve-aliases", "prompt-improve-actions", "hub-identity"], "resources": ["prompt-improve/SKILL.md"] },
+    "prompt-models": { "weight": 5, "classes": ["prompt-models-aliases", "prompt-models-runtime", "hub-identity"], "resources": ["prompt-models/SKILL.md"] }
+  },
+  "vocabularyClasses": {
+    "hub-identity": { "keywords": ["sk-prompt", "prompt", "mode-registry", "hub-router", "workflowmode", "packetkind"] },
+    "prompt-improve-aliases": { "keywords": ["improve prompt", "enhance prompt", "prompt framework", "prompt engineering", "structure prompt"] },
+    "prompt-improve-actions": { "keywords": ["clear score", "depth thinking", "rewrite instructions", "select framework"] },
+    "prompt-models-aliases": { "keywords": ["small model prompt", "per-model profile", "model dispatch craft", "prompt-models"] },
+    "prompt-models-runtime": { "keywords": ["deepseek", "kimi", "minimax", "mimo", "glm-5.2", "model_profiles"] }
+  }
+}

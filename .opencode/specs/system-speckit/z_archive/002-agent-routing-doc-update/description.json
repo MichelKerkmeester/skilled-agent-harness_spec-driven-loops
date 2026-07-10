@@ -1,23 +1,22 @@
 {
-  "specFolder": "system-spec-kit/z_archive/002-agent-routing-doc-update",
+  "specFolder": "system-speckit/z_archive/002-agent-routing-doc-update",
   "description": "This archived folder captures work that updated system-spec-kit documentation for agent routing behavior",
   "keywords": [
     "archived",
     "folder",
     "captures",
     "work",
-    "updated",
     "system-spec-kit",
     "documentation",
     "agent",
     "routing",
     "behavior"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.420Z",
+  "lastUpdated": "2026-07-09T10:02:57.467Z",
   "specId": "002",
   "folderSlug": "agent-routing-doc-update",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

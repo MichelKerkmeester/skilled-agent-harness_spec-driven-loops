@@ -43,6 +43,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-prompt/SKILL.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -51,6 +52,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -188,17 +195,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`model-profiles.json` existed in `sk-prompt/assets/` even though sk-prompt-models is the canonical skill for per-model dispatch",
     "created_at": "2026-06-05T12:47:32.531Z",
-    "last_save_at": "2026-06-23T03:49:51.667Z",
+    "last_save_at": "2026-07-09T10:02:46.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3e2f200865ee18c35fea1195cc2687c3d29137dc8a7e7bf62cc1afff8b5eebf",
+    "source_fingerprint": "sha256:e1f65dbd3e05c6528db34e7d1de838cd379bc4888b70d7b573d4ff1568e27f24",
     "source_doc_hashes": {
-      "spec.md": "7dadae92ce43884b1da790cc9f2719d20ee17283dfdaea17c0f629e00e495a19",
-      "plan.md": "4193055ed6e690bd83d644484f299764e31b3ce82b186b0ad8f1ab650252d3e6",
-      "tasks.md": "4417a04e18a0993ca92a2270d1b4a34d705396b5cfb8b553e3b2474e2885bc28",
-      "checklist.md": "b39b24b69981ae9aa593dc427611cd5bfcdb7cec030c75ccabe6aa4e0f04e827",
-      "decision-record.md": "fdbe8685bb261493ecaf874f35b94745810e1a861bdfcfa9234ff7c334b18194",
-      "implementation-summary.md": "a540870c6ab2b58b6a0e02f714a528ebdd67818b9e45fd0af8bc58bae88d7454"
+      "spec.md": "bd1380dababca663020f5c3efc3d5fee5606fefa8ac8ab8ec02712eb4f15d876",
+      "plan.md": "aa113d242d77a11e53dc8f30160abd80a47dbd5143b7bcf8db7cf37bae3dcdf2",
+      "tasks.md": "1c748431b01037bfaf859522e699a8377dcfc5200aec7acf5857c74a8c67be8b",
+      "checklist.md": "57b312b7b9c33b2dc82daeac91807c38a5910c5bca50b7603e3b4220338d8cec",
+      "decision-record.md": "da519549fdf5cca33c359b89d8705035f649dcfc1613d13f98237464267cd683",
+      "implementation-summary.md": "27ceaa53c702abea7371bc8700951b2bf58d5150bc11c946afb4bb62204267df"
     },
     "last_active_child_id": null,
     "last_active_at": null

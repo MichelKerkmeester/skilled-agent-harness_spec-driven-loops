@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
   "description": "`memorycontext({ input: \"semantic search\", mode: \"deep\", intent: \"understand\" })` returns 0 results despite the database containing 1202 memories with",
   "keywords": [
     "memorycontext",
@@ -15,14 +15,13 @@
     "despite",
     "database",
     "containing",
-    "1202",
     "memories"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.487Z",
+  "lastUpdated": "2026-07-09T10:02:58.768Z",
   "specId": "010",
   "folderSlug": "search-retrieval-quality-fixes",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],

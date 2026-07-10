@@ -1,24 +1,21 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics",
   "description": "005/REQ-010 captured 344 new edges in 15 minutes — 100% `supersedes`, 0% `caused`/`supports`",
   "keywords": [
-    "005",
     "req-010",
     "captured",
-    "344",
     "new",
     "edges",
     "minutes",
-    "100",
     "supersedes",
     "caused",
     "supports"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.577Z",
+  "lastUpdated": "2026-07-09T10:02:51.222Z",
   "specId": "006",
   "folderSlug": "causal-graph-relation-window-metrics",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

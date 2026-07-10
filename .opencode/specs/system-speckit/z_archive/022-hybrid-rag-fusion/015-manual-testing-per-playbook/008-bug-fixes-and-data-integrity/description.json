@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/008-bug-fixes-and-data-integrity",
-  "description": "The bug-fixes-and-data-integrity category covers 11 scenarios that verify correctness of data handling, deduplication, and transaction safety in the h",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/008-bug-fixes-and-data-integrity",
+  "description": "The bug-fixes-and-data-integrity category covers 11 scenarios that verify correctness of data handling, deduplication, and transaction safety in the",
   "keywords": [
     "bug-fixes-and-data-integrity",
     "category",
@@ -14,11 +14,11 @@
     "transaction",
     "safety"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.262Z",
+  "lastUpdated": "2026-07-09T10:02:58.443Z",
   "specId": "008",
   "folderSlug": "bug-fixes-and-data-integrity",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

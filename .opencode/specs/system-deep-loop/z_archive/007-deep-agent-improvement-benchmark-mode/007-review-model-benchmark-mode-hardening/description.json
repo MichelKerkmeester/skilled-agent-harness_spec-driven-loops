@@ -12,13 +12,11 @@
     "deep-agent-improvement",
     "model-benchmark",
     "mode",
-    "121",
-    "003",
     "loop-host",
     "cjs",
     "dispatch-model"
   ],
-  "lastUpdated": "2026-07-08T13:06:47.855Z",
+  "lastUpdated": "2026-07-09T10:02:48.971Z",
   "specId": "007",
   "folderSlug": "review-model-benchmark-mode-hardening",
   "parentChain": [

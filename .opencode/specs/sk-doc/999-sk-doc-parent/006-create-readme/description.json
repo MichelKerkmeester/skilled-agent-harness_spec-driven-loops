@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/999-sk-doc-parent/006-create-readme",
+  "description": "Phase 006 of the sk-doc monolith to parent-hub conversion",
+  "keywords": [
+    "phase",
+    "sk-doc",
+    "monolith",
+    "parent-hub",
+    "conversion"
+  ],
+  "lastUpdated": "2026-07-09T10:02:44.700Z",
+  "specId": "006",
+  "folderSlug": "create-readme",
+  "parentChain": [
+    "sk-doc",
+    "999-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

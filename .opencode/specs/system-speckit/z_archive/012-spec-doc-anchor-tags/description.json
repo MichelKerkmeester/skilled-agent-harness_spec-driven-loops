@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/012-spec-doc-anchor-tags",
+  "specFolder": "system-speckit/z_archive/012-spec-doc-anchor-tags",
   "description": "This archived system-spec-kit archive folder captures work related to Spec Doc Anchor Tags",
   "keywords": [
     "archived",
@@ -14,11 +14,11 @@
     "anchor",
     "tags"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.480Z",
+  "lastUpdated": "2026-07-09T10:02:57.524Z",
   "specId": "012",
   "folderSlug": "spec-doc-anchor-tags",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

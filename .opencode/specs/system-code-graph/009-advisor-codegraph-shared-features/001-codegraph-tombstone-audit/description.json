@@ -13,12 +13,9 @@
     "cleanup",
     "lib",
     "code-graph-db",
-    "692-704",
-    "784-790",
-    "890-905",
     "file"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.406Z",
+  "lastUpdated": "2026-07-09T10:02:47.261Z",
   "specId": "001",
   "folderSlug": "codegraph-tombstone-audit",
   "parentChain": [

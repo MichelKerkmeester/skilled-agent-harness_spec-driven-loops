@@ -26,26 +26,19 @@
       "observability",
       "envelope",
       "event",
-      "003",
       "observability-events",
       "cjs",
       "normalizeobservabilityevent",
       "003-unified-observability-event-envelope",
       "summary",
       "deep-loop",
-      "producer"
+      "producer",
+      "appends"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/tests/unit/observability-events.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/integration/status-script.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -53,51 +46,9 @@
     ],
     "entities": [
       {
-        "name": "observability-events.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "round-state-jsonl.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/lib/council/round-state-jsonl.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "status.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
-        "source": "derived"
-      },
-      {
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "observability-events.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/observability-events.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "status-script.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/integration/status-script.vitest.ts",
         "source": "derived"
       },
       {
@@ -195,11 +146,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built New",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Each deep-loop producer appends events in a different native format",
     "created_at": "2026-06-28T21:08:34.372Z",
-    "last_save_at": "2026-07-04T18:02:16.573Z",
+    "last_save_at": "2026-07-09T10:02:47.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0427e2094005e303380d025e8e80a6e9fa7231c9d5a4d747cc2db04f4c66ee2",
+    "source_fingerprint": "sha256:e11db9c4cf388dafed3f0cc6a6a896ccace76fabf3c362e9cb25a1abad30a197",
     "source_doc_hashes": {
-      "spec.md": "cc7077bbce3e2282237c58ae444c0d7d054c1100e404180238a3c2d4414c5c34",
-      "plan.md": "bcbf0a9280205ff096a5715963a2cc2f3f4208c9a111855b32f769aacdbfa9a7",
-      "tasks.md": "112139874b748c391d33bf88076633ce5eebc85d0115c12da9aae665aa26bd27",
-      "implementation-summary.md": "8fb3a8fc71575e57b568feb589bfb7c75aba6228cb26db8db0df8d19ab298747"
+      "spec.md": "2762aa20bf9bc7f42a9aebb8e90c91ee20b00079326693f45db98ea8de98e04c",
+      "plan.md": "fdedd60f7f756cb3a45d0f3b7c18eedfa15b20805f700d7a045ca560a72c8bfa",
+      "tasks.md": "9a22859f150ce9a00849f4532c61a5a65dc5a958a3cbbe936765bbfb35e8dceb",
+      "implementation-summary.md": "974be6781b8e73c3b217271e644f88cc18b8e5fca662ee3fc2fe6f2f4bca1714"
     },
     "last_active_child_id": null,
     "last_active_at": null

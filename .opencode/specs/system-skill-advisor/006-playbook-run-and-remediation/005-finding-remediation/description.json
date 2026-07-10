@@ -2,7 +2,6 @@
   "specFolder": "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation",
   "description": "The 028 playbook run surfaced 5 key findings in the `system-skill-advisor` skill: a corpus accuracy regression, PC-005 bench failures + doc gap,",
   "keywords": [
-    "028",
     "playbook",
     "run",
     "surfaced",
@@ -19,7 +18,7 @@
     "doc",
     "gap"
   ],
-  "lastUpdated": "2026-07-07T12:56:31.997Z",
+  "lastUpdated": "2026-07-09T10:02:50.149Z",
   "specId": "005",
   "folderSlug": "finding-remediation",
   "parentChain": [

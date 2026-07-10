@@ -22,7 +22,6 @@
     ],
     "key_topics": [
       "phase",
-      "012",
       "cocoindex",
       "utilization",
       "usefulness",
@@ -32,7 +31,8 @@
       "checklist",
       "implementation",
       "summary",
-      "improved"
+      "improved",
+      "visibility"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Phase 012 improved CocoIndex visibility and routing, but the packet drifted away from the Level 2 template and from current implementation reality",
     "created_at": "2026-04-12T09:02:50.350Z",
-    "last_save_at": "2026-07-07T16:18:33.964Z",
+    "last_save_at": "2026-07-09T10:02:47.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

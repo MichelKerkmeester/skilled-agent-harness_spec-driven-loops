@@ -21,7 +21,6 @@
     "key_topics": [
       "scorer",
       "routing",
-      "fixes",
       "f1b",
       "ambiguity",
       "abstention",
@@ -30,7 +29,8 @@
       "intent",
       "bonus",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 028 PC-004 regression has genuine P0 failures unrelated to label drift (0/24 P0 cases use the drifted labels)",
     "created_at": "2026-05-26T21:20:41.535Z",
-    "last_save_at": "2026-07-02T05:31:11.371Z",
+    "last_save_at": "2026-07-09T10:02:50.158Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bfe65f8d65922e16cc6f98260bb527d2adeab3e1ce1301a9f16328b284d75a3b",
+    "source_fingerprint": "sha256:b8cd405d8417f9c30866071b8f83021e4e83ba8e2fbc88bed060bb85a50c06ce",
     "source_doc_hashes": {
-      "spec.md": "871b214fd4d2d9907f7f97c9441ba87dfdb9ec3d4f154d65ef23384771c4fb77",
-      "plan.md": "b986b2156d239c91f5e08a698c6b064ef905340164955b45f340aea5b905cb8b",
-      "tasks.md": "9d6045305d02e81d97313280d9c384e502f93e5c219d1d52e6f1827846f950cd",
-      "implementation-summary.md": "b822f3dde4b83a21714de3aa6956db603f20f1ad70d10497273ed65e10e749f8"
+      "spec.md": "5960fecc9ed1a92bf27b0302418d5eccba6ba0038a286f045511212fe7c78943",
+      "plan.md": "a8be8e3a23caf0327930dca09522b77b425da93ea6310b26676a5e16209c1c43",
+      "tasks.md": "ac19df5ac147e8fa2b519fc0cecbceef4809ccf9581f6cf2eaedd048d114718f",
+      "implementation-summary.md": "9b99169e160110c99d8cc7d6650adf648a5168d4c8e432ff85a74c49f3ef3c45"
     },
     "last_active_child_id": null,
     "last_active_at": null

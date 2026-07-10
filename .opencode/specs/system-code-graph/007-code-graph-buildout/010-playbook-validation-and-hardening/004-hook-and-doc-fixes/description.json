@@ -1,8 +1,7 @@
 {
   "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/004-hook-and-doc-fixes",
-  "description": "The 029 validation run surfaced (a) F-025-1: the Devin SessionStart hook in `.devin/hooks.v1.json` registers a non-existent path, so the hook never fi",
+  "description": "The 029 validation run surfaced (a) F-025-1: the Devin SessionStart hook in `.devin/hooks.v1.json` registers a non-existent path, so the hook never",
   "keywords": [
-    "029",
     "validation",
     "run",
     "surfaced",
@@ -17,7 +16,7 @@
     "path",
     "never"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.096Z",
+  "lastUpdated": "2026-07-09T10:02:47.090Z",
   "specId": "004",
   "folderSlug": "hook-and-doc-fixes",
   "parentChain": [

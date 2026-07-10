@@ -46,9 +46,7 @@
       "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
-      ".opencode/skills/deep-loop-workflows/graph-metadata.json"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -85,18 +83,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "shasum",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "All five skills ship a featurecatalog and a manualtestingplaybook (roughly 198 combined playbook scenarios) with no common category schema (lifecycle vs sweep vs four-lane vs council)",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-07-02T05:31:05.046Z",
+    "last_save_at": "2026-07-09T10:02:47.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:739be4c3a1abfbbdc4bbb083920d533b8d23d8f588fa5e1a7eb5830f73f0ef9f",
+    "source_fingerprint": "sha256:da66a6074f9b20fd2978901e7cd4a03769a5267c3d1ba2ae2ad3610268415dfc",
     "source_doc_hashes": {
-      "spec.md": "aa7c9366a9b442d825de21af8cae989182c0c48f087b4336118fd82023494793",
-      "plan.md": "426fec740d978b195e8c9f8eab02c1051b8380590bf6c44fbb31b87bda5b2050",
-      "tasks.md": "f87753093b3abe00189a6b4c3c8e443ad3638a1985343d319dcded16f6ef1010",
-      "checklist.md": "624ef9fe2ab5abb389a0ac8d6dde5c63f3ed96c5e42c94017e3337eb29730ab8",
-      "decision-record.md": "8730aa983ca994519d2a0fa10eb2e797dacfeea793d7327b90a7d28d255e6ae0",
-      "implementation-summary.md": "8c2cd4f71593db743775982712600f2296ced8cee4a97f0430c7eaa4a297a330"
+      "spec.md": "b1db469b62ede9e73f5a955dbfc2344c6bcab2d86510fa3f4eebc7c2970e6ae0",
+      "plan.md": "96d63e4679fd0170756f05a16a6cebeb13b9bfeec4c031ab6d702375696f40ce",
+      "tasks.md": "efbc3c49604756801f9c3bfe8d7dca39ba766e2d1d40a8bbe20810a0f4296876",
+      "checklist.md": "f3507bc0b8d179febdad23579b9fcc4d0c0a27094496bb23ce5cf9a370f20355",
+      "decision-record.md": "722ab1b5f58726dfa656158614788e9fddb85221ee34c5f2fdbe6763d7b79421",
+      "implementation-summary.md": "8d8b07aea5ab9ed7de60ffa36a264023d54b97c390295355fec75e41a5777e5a"
     },
     "last_active_child_id": null,
     "last_active_at": null

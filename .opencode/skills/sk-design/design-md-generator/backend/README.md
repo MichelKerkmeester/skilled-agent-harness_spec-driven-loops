@@ -70,6 +70,7 @@ Expected result: `extract.ts` writes `tokens.json` into the `--output` directory
 | Write | Runs `build-write-prompt.ts`, which pre-renders the Tokens Colors, Spacing and Shapes, Surfaces and Quick Start sections deterministically through `formatters-v3.ts`, plus a FACTS block of locked values for the prose phase to paste unchanged. |
 | Validate | Runs `validate.ts` to confirm every hex in `DESIGN.md` traces to `tokens.json`, the required v3 sections are present, Quick-Start fidelity holds, and prose provenance meets the claims threshold. |
 | Report | Optional. `report-gen.ts` and `preview-gen.ts` render HTML report and visual preview artifacts from a `DESIGN.md` and `tokens.json` pair, and `proof.ts` produces a fidelity proof. |
+| Guided Run | Optional wrapper. `guided-run.ts` runs preflight checks, then chains extract, write-prompt and (once a `DESIGN.md` exists) validate/report — a single entry point for a smoke run. It never authors `DESIGN.md` content. |
 
 ---
 
@@ -103,6 +104,7 @@ backend/
 | `scripts/formatters-v3.ts` | Deterministic v3 emitters for Colors, Spacing and Shapes, Surfaces and Quick Start. |
 | `scripts/validate.ts` | Phase 3 entry point. Checks hex accuracy, section completeness and Quick-Start fidelity. |
 | `scripts/report-gen.ts`, `scripts/preview-gen.ts`, `scripts/proof.ts` | Optional report-phase artifacts. |
+| `scripts/guided-run.ts` | Guided wrapper entry point. Runs preflight checks, then extract, write-prompt, and (once `--design-md` exists) validate/report; never authors `DESIGN.md` itself. See `../references/guided_run.md`. |
 | `scripts/cluster.ts` | Deterministic L1 to L4 token stability classifier. |
 | `package.json` | Scripts, dependencies and the `design-system-extractor` bin. |
 | `dist/` | Built CLI output. Git-ignored, produced by `npm run build`. |

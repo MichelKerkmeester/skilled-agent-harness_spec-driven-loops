@@ -3,7 +3,6 @@
   "description": "Phase 005 surfaced one confirmed code bug and four stale-scenario expectations",
   "keywords": [
     "phase",
-    "005",
     "surfaced",
     "one",
     "confirmed",
@@ -13,7 +12,7 @@
     "stale-scenario",
     "expectations"
   ],
-  "lastUpdated": "2026-07-08T13:06:35.299Z",
+  "lastUpdated": "2026-07-09T10:02:48.900Z",
   "specId": "008",
   "folderSlug": "dai-rulecoherence-inline-fallback",
   "parentChain": [

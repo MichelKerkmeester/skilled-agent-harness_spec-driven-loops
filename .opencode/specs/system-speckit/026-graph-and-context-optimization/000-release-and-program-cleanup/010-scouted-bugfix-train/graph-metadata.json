@@ -34,12 +34,12 @@
       "verify-first",
       "batches",
       "batch",
-      "026",
       "program",
       "subsystems",
       "memory",
       "mcp",
-      "code-graph"
+      "code-graph",
+      "skill-advisor"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -92,7 +92,7 @@
     ],
     "causal_summary": "The 026 program subsystems (memory MCP, code-graph, skill-advisor, deep-loop runtime, and the cli executors) accumulate latent drift, small correctness defects, and refinement opportunities that no single feature packet owns",
     "created_at": "2026-06-03T00:00:00.000Z",
-    "last_save_at": "2026-07-02T05:31:10.934Z",
+    "last_save_at": "2026-07-09T10:02:51.580Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/999-sk-doc-parent/003-hub-scaffold",
+  "spec_folder": "sk-doc/999-sk-doc-parent/003-hub-scaffold",
+  "parent_id": "sk-doc/999-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc hub scaffold",
+      "125 hub scaffold",
+      "sk-doc parent phase 003"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "hub",
+      "scaffold",
+      "parent",
+      "phase",
+      "monolith",
+      "parent-hub",
+      "conversion",
+      "feature",
+      "specification",
+      "skeleton",
+      "two-tier"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Scaffold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 of the sk-doc monolith to parent-hub conversion",
+    "created_at": "2026-07-06T06:30:33.986Z",
+    "last_save_at": "2026-07-09T10:02:44.685Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d70ffbdacb68daa8db1fadb33e6bb1b9e8988e8e0874aaf43a5883b3da34f5a9",
+    "source_doc_hashes": {
+      "spec.md": "8121b7bfc13f0eea91c46ae1a63159297bd190dcfb2df584810cde1b7ea5f711"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

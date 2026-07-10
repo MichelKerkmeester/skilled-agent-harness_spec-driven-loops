@@ -39,7 +39,6 @@
       ".opencode/plugins/mk-deep-loop-guard.js",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/agents/orchestrate.md",
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -62,12 +61,6 @@
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-opencode/SKILL.md` now correctly documents that `orchestrate` may perform exactly one bounded hand-off dispatch to a command-owned loop executor (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`), but never re-implement the loop itself",
     "created_at": "2026-07-01T17:22:22.549Z",
-    "last_save_at": "2026-07-04T19:09:00.129Z",
+    "last_save_at": "2026-07-09T10:02:47.795Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b7b6a41111ae2ca288e8174fd2a00e8bc8394051690b352094323aa6aef6e8d",
+    "source_fingerprint": "sha256:ff47c6fbd42808dc5798e43b6f2fb2e4bb9d542f052237144d0eb6d46d6b7417",
     "source_doc_hashes": {
-      "spec.md": "f8955949c615a44ddba62d3b3e289843274c3087a4c220c81155a4704749cbec",
-      "plan.md": "de01b962fcb968e59718f1405b0ac1a66d44f8eb0c3686587004ec6ea15c2814",
-      "tasks.md": "28822e004dac2f338472f05c028c572aa57e96d0fc7adc9d23c52f744d0fb492",
-      "implementation-summary.md": "11d4d99664066ce6ed32e33f12235641e09aa9a6f0a50d28c217216f954c4a71"
+      "spec.md": "e0019e3f701131a93b3488da6758f31aeadb5801bead7c7d971f5b2f1967b37f",
+      "plan.md": "85429a6cb9bad5c41461f4aa462c0112a50c67f677b303daa64eb4ffff8350a9",
+      "tasks.md": "ab8cb76a6cffd130222394cf783af3056c4f18b0361f0687ee747179eda2f1f9",
+      "implementation-summary.md": "8b324a2bfe2e8afc99858b92728274ac72cce010d040114cc5db3a7b0b651a8c"
     },
     "last_active_child_id": null,
     "last_active_at": null

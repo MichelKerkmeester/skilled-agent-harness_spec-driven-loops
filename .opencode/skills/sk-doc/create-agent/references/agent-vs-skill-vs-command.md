@@ -73,4 +73,4 @@ Need a named runtime persona with authority and tool policy?
 - [permission_design.md](permission_design.md) - once the answer is "agent", how to scope its frontmatter and permissions
 - [common_pitfalls.md](common_pitfalls.md) - failure modes, including creating an agent for reusable knowledge alone
 - [create-skill README](../../create-skill/references/README.md) - companion workflow for reusable knowledge bundles
-- [command_template.md](../../create-command/assets/command/command_template.md) - companion scaffold for slash-command entry points
+- [command_template.md](../../create-command/assets/command_template.md) - companion scaffold for slash-command entry points

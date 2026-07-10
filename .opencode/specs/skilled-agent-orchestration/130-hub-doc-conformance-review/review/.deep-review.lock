@@ -1,0 +1,11 @@
+{
+  "owner_pid": 33851,
+  "started_at_iso": "2026-07-10T14:41:21.529Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-07-10T14:41:21.529Z",
+  "packet_id": ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-07-10T14:41:21.529Z",
+  "acquire_nonce": "33851-1783694481530-b062231a-9753-4c4e-9dbc-3a8450edd278"
+}

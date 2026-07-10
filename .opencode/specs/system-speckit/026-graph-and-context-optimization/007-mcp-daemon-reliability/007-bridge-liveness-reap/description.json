@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap",
-  "description": "`maybeBridgeLeaseHolder` (`launcher-ipc-bridge.cjs:97`) bridges whenever `fs.existsSync(socketPath)` is true (the gate at `:122`) with NO liveness pro",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap",
+  "description": "`maybeBridgeLeaseHolder` (`launcher-ipc-bridge.cjs:97`) bridges whenever `fs.existsSync(socketPath)` is true (the gate at `:122`) with NO liveness",
   "keywords": [
     "maybebridgeleaseholder",
     "launcher-ipc-bridge",
@@ -12,15 +12,13 @@
     "socketpath",
     "true",
     "gate",
-    "122",
-    "liveness",
-    "pro"
+    "liveness"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.424Z",
+  "lastUpdated": "2026-07-09T10:02:54.401Z",
   "specId": "007",
   "folderSlug": "bridge-liveness-reap",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

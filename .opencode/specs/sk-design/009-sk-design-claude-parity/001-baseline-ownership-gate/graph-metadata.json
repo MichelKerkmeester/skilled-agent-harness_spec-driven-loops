@@ -30,13 +30,13 @@
       "sk-design",
       "gate",
       "phase",
-      "001",
       "implementation",
       "plan",
       "tasks",
       "verification",
       "checklist",
-      "decision"
+      "decision",
+      "record"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The sk-design parity refactor must not begin while existing or uncommitted `sk-design` changes have unclear ownership",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-06T05:47:25.235Z",
+    "last_save_at": "2026-07-09T10:02:44.435Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bda5f4d4305c8a753e72031571f5c29e26a18dd92bae26332b0366c54b80c70",
+    "source_fingerprint": "sha256:12b2d95f0dc94466f516595bef00ab60ab8ae7ad9edaf97abbcd9159f187ee7f",
     "source_doc_hashes": {
-      "spec.md": "da957d6ed7b4562d7e5e413abbc75d60c79f2850e1e423f018274e46d92fdec7",
-      "plan.md": "fd619e129ad0ec164aa7e0aa726d20875a0abb6fe4f2ebd02a2bc75ac34e1c78",
-      "tasks.md": "21814fb80f50d6ae878ae8af542caa01ce9dfedfb4e946e4a7ced738eff364ca",
-      "checklist.md": "5796d76feb0945271d05c3d6a3e9b1e8e87d21965fd31b85a48e3ce9be511b87",
-      "decision-record.md": "bb60b552d878e4d2d355a8c840903003e231c5577a44ed16e162d01ad01b9d15",
+      "spec.md": "1ec073297f23f027910aa214636660ea0c15c6d652bc057e470b71228c028607",
+      "plan.md": "6d7534c06ca643a85d20576b5b4e9ea6954a0c64a398c0510a121d6fbd51911d",
+      "tasks.md": "b942a492e3cdb28de140a9b65b880d7da986d74791bec32343e1d5db9d1b3c95",
+      "checklist.md": "be9df52a9e50044c4d88f5906c97bd8e4b6ba3dc867162d94adc493318ee7d23",
+      "decision-record.md": "f93f42fd8040de9194a71f4f5325e112a7279cefab2507db8bf44fa5b3face08",
       "implementation-summary.md": "22d8a9374ccc9b31f7ff50ab12f2f59bbf92cd1f0732f9b230791d26237ceff1"
     },
     "last_active_child_id": null,

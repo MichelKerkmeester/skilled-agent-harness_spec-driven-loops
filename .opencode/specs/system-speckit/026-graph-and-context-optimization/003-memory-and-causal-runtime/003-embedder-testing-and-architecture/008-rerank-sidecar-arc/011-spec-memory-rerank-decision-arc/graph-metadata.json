@@ -31,7 +31,6 @@
       "rerank decision phased plan"
     ],
     "key_topics": [
-      "011",
       "spec-memory",
       "rerank",
       "decision",
@@ -42,7 +41,8 @@
       "bge-reranker-v2-m3",
       "trial",
       "domain-tuned",
-      "reranker"
+      "reranker",
+      "fine-tune"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -102,7 +102,7 @@
     ],
     "causal_summary": "Phase parent for the 3-step path to a working spec-memory reranker (or a defensible decision not to ship one). Phase 1 audits the OFF baseline before building anything. Phase 2 tries the strongest Apache-2.0 off-the-shelf cross-encoder (bge-reranker-v2-m3) before fine-tuning. Phase 3 only fires if 1 and 2 both fail to clear the rank-quality bar. Supersedes the original 010-domain-tuned-reranker-finetune scaffold (now folded in as Phase 3 with the template-stripping refinement).",
     "created_at": "2026-05-23T11:55:15.626Z",
-    "last_save_at": "2026-07-02T05:31:12.166Z",
+    "last_save_at": "2026-07-09T10:02:53.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

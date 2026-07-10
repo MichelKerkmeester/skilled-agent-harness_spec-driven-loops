@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -31,17 +31,16 @@
       "merge",
       "refinement",
       "spec",
-      "041",
       "implementation",
       "plan",
       "tasks",
       "checklist",
-      "decision"
+      "decision",
+      "following"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4/analysis-report.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       "spec.md",
       "tasks.md",
@@ -54,12 +53,6 @@
       "decision-record.md"
     ],
     "entities": [
-      {
-        "name": "analysis-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/041-post-merge-refinement-4/analysis-report.md",
-        "source": "derived"
-      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Following the system-memory to system-spec-kit merger (specs 035-040), a comprehensive 10-agent analysis revealed 75+ issues across documentation, code, UX, and integration",
     "created_at": "2026-04-12T09:02:53.526Z",
-    "last_save_at": "2026-06-23T03:49:59.111Z",
+    "last_save_at": "2026-07-09T10:02:57.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

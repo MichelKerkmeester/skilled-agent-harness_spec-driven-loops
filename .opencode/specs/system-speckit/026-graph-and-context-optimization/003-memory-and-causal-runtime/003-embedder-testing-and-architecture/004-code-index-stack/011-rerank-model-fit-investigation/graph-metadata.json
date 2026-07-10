@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Investigate whether BAAI/bge-reranker-v2-m3 is the right cross-encoder for code-retrieval queries on a 4-mirror codebase. The May 18 evening instrumented bench surfaced a structural failure mode: the reranker demotes implementations below tests/refs on paraphrase-heavy queries (lexical-cue density rewarded over semantic role). This packet researches alternative cross-encoder reranker models trained on code (or code-adjacent retrieval), measures the four failure-case probes (3, 10, 14, 18) against the alternatives, and recommends a swap if any alternative materially improves the failure-mode",
+    "causal_summary": "Investigate whether BAAI/bge-reranker-v2-m3 is the right cross-encoder for code-retrieval queries on a 4-mirror codebase. The May 18 evening instrumented bench surfaced a structural failure mode: the reranker demotes implementations below tests/refs on paraphrase-heavy queries (lexical-cue density rewarded over semantic role).",
     "created_at": "2026-05-18T19:21:19.316Z",
-    "last_save_at": "2026-07-02T05:31:11.921Z",
+    "last_save_at": "2026-07-09T10:02:52.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -27,7 +27,6 @@
       "prompt knowledge layering validation"
     ],
     "key_topics": [
-      "130",
       "phase",
       "validate",
       "sweep",
@@ -38,17 +37,25 @@
       "duplication",
       "guard",
       "changelog",
-      "reindex"
+      "reindex",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After seven phases of structural changes across five CLI skills, two sk-prompt skills, and the sync substrate, there is no single pass that confirms the whole system is internally consistent",
     "created_at": "2026-06-05T12:47:32.518Z",
-    "last_save_at": "2026-06-23T03:49:51.615Z",
+    "last_save_at": "2026-07-09T10:02:46.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ddb5367e5d737a85f9ad9d065b92e6c5ab4f9df63c4677b894a57b7c52611ce",
+    "source_fingerprint": "sha256:7d0f2374a34de40c630d401bbb25610970e191d8a006110a8894255286d9c912",
     "source_doc_hashes": {
-      "spec.md": "ecfb4851207db85debeb73613f204c93c41ffb9d3fee244493d43f74593f0fbe",
-      "plan.md": "4c518bc9554dcc5fbf8c9b610eac6406808f1d37e27339bf55e6418b1c28b48e",
-      "tasks.md": "37f775d881056126308da715aca1de29eb2f71dee2f7683c4f74bdd44c0f9bb6",
-      "implementation-summary.md": "f92df4424ff604e2a2fb0d7ee405c33b569a2c012b964f837affb1d2f4a54447"
+      "spec.md": "05a71c74ae1f8300100b79ba6ac1f78983ae002b501de8ad9e3a68abb1783aa2",
+      "plan.md": "3ade2989b2399e1e534dd5ba3c025c105ef7c3616e049282df0473e70ece94cf",
+      "tasks.md": "bade07b689f199d527a39927790842be5126cc79f08002dde3fd555042f20fa1",
+      "implementation-summary.md": "b985f4e27167f9579677af23aa7066530d88956b9c11e8d8168cf7d858c4d572"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -20,21 +20,21 @@
       "018-xce-feature-adoption-advisor-codegraph",
       "advisor 027 feature adoption",
       "code graph 027 feature adoption",
-      "phase parent"
+      "advisor codegraph shared features phase parent"
     ],
     "key_topics": [
       "018-xce-feature-adoption-advisor-codegraph",
       "advisor",
-      "027",
       "feature",
       "adoption",
       "code",
       "graph",
+      "codegraph",
+      "shared",
+      "features",
       "phase",
       "parent",
-      "spec-027",
-      "hardened",
-      "spec"
+      "spec-027"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -87,15 +87,15 @@
     ],
     "causal_summary": "Spec-027 hardened the Spec Kit Memory system with retrieval observability, a provenance-overwrite guard, packed BM25/BM25F lexical search, shared app-level BFS traversal, shadow feedback reducers, and soft-delete tombstones",
     "created_at": "2026-06-10T19:24:08Z",
-    "last_save_at": "2026-07-07T16:18:33.933Z",
+    "last_save_at": "2026-07-09T10:02:47.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:15e0226a76378e45b3b1db3c411bf6e850132b6416aa7dd5edd412f90209ed80",
+    "source_fingerprint": "sha256:db9b94744e810acf489f4057f672ed7df1f000b9361693b56085cc5f5cb40cb5",
     "source_doc_hashes": {
-      "spec.md": "bb6b02d5eb40637dc2cfa49ba2cf8e72fcfaff5f1b58cc3684640a9b15778f10"
+      "spec.md": "241b8c581519206a07263bdaf462baac4ae79a4083d270d534a1e40006cfbab2"
     },
     "last_active_child_id": null,
     "last_active_at": null

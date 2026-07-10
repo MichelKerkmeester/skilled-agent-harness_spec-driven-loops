@@ -44,8 +44,6 @@
       "plan.md",
       "tasks.md",
       "spec.md",
-      ".opencode/skills/deep-loop-workflows/SKILL.md",
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
       "implementation-summary.md"
     ],
     "entities": [
@@ -71,18 +69,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
         "source": "derived"
       },
       {
@@ -192,11 +178,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Eight /deep: commands plus roughly twelve YAML assets reference the five old skill paths and skill: keys (the heaviest YAML carry dozens of path occurrences each)",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-07-02T05:31:05.031Z",
+    "last_save_at": "2026-07-09T10:02:47.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:455cf0238aa24176c64aaaff7533c99be6dbd8c527c13256620de185d6337b65",
+    "source_fingerprint": "sha256:d6862f2972295b98e049a73813cf7677e95efd486e890311e48deb64ab7dfff3",
     "source_doc_hashes": {
-      "spec.md": "0c3ee168da5b3955903611d5ba884fe999e9636677744aa57fabd2838b25bdd8",
-      "plan.md": "07ebd4982e741cbcadcb74f7a5e9629fe6e1bc7c6b976c72a7311abca1e900ab",
-      "tasks.md": "855a40a5bc8bf8701348bed9b160c00889d176a36da758ea2e384b894b01cee4",
-      "checklist.md": "b1cc71962c40588fb5ca731daa2683f516cf6c828b0e2e5093117b612adffee6",
-      "implementation-summary.md": "7d6e96b80cb40e929ccc47c10f270a51b26e268b6180dd6e004e1e838e62f6ab"
+      "spec.md": "d65cf172e9005885b8d3eabbf26d0976399dbb39b2cf5da0d7b848f967c991f5",
+      "plan.md": "d13d413ab56523b9157f6cd08e9ac7c8670237f48816b4e23892f81996b4afb5",
+      "tasks.md": "23c23ff8afd6458f24e228508965c916119cb5d8f9aa4d8ab0b371771a4c9e2e",
+      "checklist.md": "65209a9c838a9201bf40bb19e7ce2c1c2935249e3ef4330f3d7523877ed1cbc4",
+      "implementation-summary.md": "05b5453f31f4fbcda5d935c86d71f6a4b9d63721cedc4a3a5c37f2c6fc771ab0"
     },
     "last_active_child_id": null,
     "last_active_at": null

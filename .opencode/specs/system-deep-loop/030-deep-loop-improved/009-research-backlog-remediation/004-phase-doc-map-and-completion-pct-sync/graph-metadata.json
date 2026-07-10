@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Every phase-parent 002-007 has a \"Phase Documentation Map\" table in its `spec.md` whose Status column still reads \"Draft\" for every child row, even though (a) the parent's own header METADATA claims Status=Complete/completionpct=100, and (b) every child's own `spec.md` independently claims Status=Complete with a matching, verified `implementation-summary.md`",
     "created_at": "2026-07-01T07:20:35.904Z",
-    "last_save_at": "2026-07-04T18:02:24.386Z",
+    "last_save_at": "2026-07-09T10:02:47.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a0fb8b81390627b79d502c2499ca8d450d7c493c2362a56e327c9f8f2679af2",
+    "source_fingerprint": "sha256:40294252f77381a8b1f3d3b30da222773e94aa2915bf0e64fb8fd847eceb1491",
     "source_doc_hashes": {
-      "spec.md": "c1309f570c29f42b29ed5e6a24f9d7997eb0d951c9c9b09e30410fb6786d0961",
-      "plan.md": "02a49ce38815193fe9131c3a4fa9590ab8dc9a35ef9033651c9f6c602a0881be",
-      "tasks.md": "bc5488f142a981784ecb32d0fb627d6bdcd63d7034de198660ac11e755cba49c",
-      "implementation-summary.md": "4740852a347505960667226a7b59bafdf665628c8d4a49b7e1f00f9974e10282"
+      "spec.md": "bbc2a0aa3f2202b14144c7ca243ae98b5978c284406571639ff31f13cf719f04",
+      "plan.md": "79054fba809174f6841399c4c951da1e307b1fbf58a87b5f4b796d05c1ae51a5",
+      "tasks.md": "df5e7e55b3901c6b1ebc8071cc5b2ce3b98a79ebd57fbdcad81e4c1cf51062d4",
+      "implementation-summary.md": "f016bde970b522b4bfbc091e1253fd586414655f5fd68313051444d6e5b5d754"
     },
     "last_active_child_id": null,
     "last_active_at": null

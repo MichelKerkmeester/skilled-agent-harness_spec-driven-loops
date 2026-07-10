@@ -37,16 +37,17 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/mcp-code-mode/SKILL.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-prompt/SKILL.md",
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/mcp-chrome-devtools/SKILL.md",
-      ".opencode/skills/sk-code-review/SKILL.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/commands/memory/search.md",
       ".opencode/commands/memory/manage.md",
@@ -55,10 +56,27 @@
       ".opencode/commands/speckit/resume.md",
       ".opencode/commands/speckit/plan.md",
       ".opencode/commands/prompt.md",
-      ".opencode/commands/create/agent.md",
-      ".opencode/commands/create/changelog.md"
+      ".opencode/commands/create/agent.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -105,12 +123,6 @@
         "name": "agent.md",
         "kind": "doc",
         "path": ".opencode/commands/create/agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/changelog.md",
         "source": "derived"
       },
       {
@@ -190,23 +202,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Claude Code's status line reports `15 skill descriptions dropped`",
     "created_at": "2026-05-06T12:38:24.302Z",
-    "last_save_at": "2026-06-23T03:49:49.930Z",
+    "last_save_at": "2026-07-09T10:02:45.561Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15c0fe59aa5cff859a025a21daf5f4e62fe6b2f98c61b5ae28dfdadacbf738dd",
+    "source_fingerprint": "sha256:afd8e558a751bd53f2c07e93468c1e6839b55f7296ecfc048ec8597b85e652c8",
     "source_doc_hashes": {
-      "spec.md": "1283b61a6089f86c9cc163a78b366bdb8eec1d8e2553f60afb5f77e1b9000626",
-      "plan.md": "88e10ac727420ad372fc08951f60893776d7c8cf1934ea491d1931456f4ced15",
-      "tasks.md": "7dbc57d683d9ab22430557907385b2cb4eeccf2cabb60894276e057efa3cb45a",
-      "implementation-summary.md": "af03c51276bc6f619b5b7a0ce4cad80fc18bc0d8fd2a9e7b4228671b9c72a346"
+      "spec.md": "67359f413895548a5648f36ec9f99c99e8b5b57410d32a639460045191a7ce7b",
+      "plan.md": "4e48a7d52db0f8f4db02f66e79e710b277bb90a61491276813ac29837c66c9d4",
+      "tasks.md": "9621e5bf31b06285f8ee2416ee3fe1133869cf2ad46f1d7743231ff5aea97760",
+      "implementation-summary.md": "e29604bfe4fff14809f68df1944e737d3a9a37f3944022ef526db68820ae5e1b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -24,9 +24,6 @@
       "stella xformers"
     ],
     "key_topics": [
-      "016",
-      "006",
-      "004",
       "extended",
       "bake-off",
       "nomic",
@@ -35,7 +32,10 @@
       "embedder",
       "plan",
       "tasks",
-      "summary"
+      "summary",
+      "bge-code-v1",
+      "wins",
+      "results"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,8 +47,6 @@
       "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv",
       "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl",
       "evidence/run-extended-bake-off.sh",
-      ".opencode/skills/sk-doc/references/benchmark_creation.md",
-      ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
       "evidence/cocoindex-embedder-comparison-extended.csv",
       "implementation-summary.md"
     ],
@@ -93,18 +91,6 @@
         "name": "run-extended-bake-off.sh",
         "kind": "script",
         "path": "evidence/run-extended-bake-off.sh",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/benchmark_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark_report_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
         "source": "derived"
       },
       {
@@ -196,11 +182,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Re-run 018/003 benchmark harness against 2 additional candidates: nomic-CodeRankEmbed (previously failed) + stella_en_400M_v5 (newly registered). Measure hit-rate + p95 latency on the same 18-pair fixture.",
     "created_at": "2026-05-18T05:13:47.028Z",
-    "last_save_at": "2026-07-02T05:31:11.899Z",
+    "last_save_at": "2026-07-09T10:02:52.893Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

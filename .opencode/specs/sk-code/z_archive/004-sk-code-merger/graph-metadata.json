@@ -31,15 +31,15 @@
       "merge",
       "sk-code-web",
       "sk-code-full-stack",
-      "create",
       "sk-code",
       "merger",
-      "054",
       "plan",
       "implementation",
       "tasks",
       "task",
-      "list"
+      "list",
+      "checklist",
+      "two"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Two parallel code skills (`sk-code-web` and `sk-code-full-stack`) overlap in phase model, intent vocabulary, and advisor scoring keys, causing routing ambiguity and operator confusion",
     "created_at": "2026-04-30T08:30:00Z",
-    "last_save_at": "2026-07-07T16:45:58.013Z",
+    "last_save_at": "2026-07-09T10:02:44.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f15fc6628126f3813ae61c08a5e4ca043c950bd078c0310d735e9f636374885",
+    "source_fingerprint": "sha256:614029dfbfcc358ee44e8b9b73061b00b25e74511dc8648306d279446802c490",
     "source_doc_hashes": {
-      "spec.md": "27f8f673068efdc8f64e796a48d6b55e62a26398c7e70a3b5be5f3734f588efe",
-      "plan.md": "858c0e2c3f4d0563f6853e346c659d1ac7ce8c3138165625d9d719018d24f49b",
-      "tasks.md": "b9e5d1a9018d78e4263f1bc067f53e54c94c60efcadae1c4c01741663395e5dd",
-      "checklist.md": "fdeb459bdceb87b30ac1e08a0bbab5fb929f41e0046ed0cb22264fc3b1187dfb",
-      "decision-record.md": "a470f8dea4dd4f3b2790ae2179fd16d08a91f2d8d0a8c42fa12c0b7d262bf683",
-      "implementation-summary.md": "c9633a2024dc1d2cee4517ab4a54353fe1dbffd1948d9a21d494348a1e8fe557"
+      "spec.md": "6e4a848c221d18cb93ef7cea638b95f03e78d548f6a8c66f5fe6a88993f1bdb3",
+      "plan.md": "d352a4f11432645b0438e9139bfefd9b1a965dede18cb70ec4cab221a4cb659a",
+      "tasks.md": "0893e6a10e6e1f434395967b4b6bdc4fb0aa34bc8b97d62d83179a8492137f86",
+      "checklist.md": "3005b70184f4cdbba3763b7694dd8e52a13fee1e58ac8e513cf63edcc4ae85b3",
+      "decision-record.md": "66bc27511674d1b9d8ba05ecf7f096accb6d90d7a74300abc618d8b0701555f1",
+      "implementation-summary.md": "f7b6b866aed286c6454493364ada2c5a5af9849810eb8873e2054e89b9c9683e"
     },
     "last_active_child_id": null,
     "last_active_at": null

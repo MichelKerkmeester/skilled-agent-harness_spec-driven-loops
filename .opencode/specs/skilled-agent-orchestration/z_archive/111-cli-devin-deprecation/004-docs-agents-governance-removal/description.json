@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/111-cli-devin-deprecation/004-docs-agents-governance-removal",
-  "description": "cli-devin/devin appeared in agent rosters (deep-context/research/review/improvement across 3 runtimes), governance docs (AGENTS.md, CLAUDE.md, README.",
+  "description": "cli-devin/devin appeared in agent rosters (deep-context/research/review/improvement across 3 runtimes), governance docs (AGENTS.md, CLAUDE.md,",
   "keywords": [
     "cli-devin",
     "devin",
@@ -17,10 +17,9 @@
     "governance",
     "docs",
     "agents",
-    "claude",
-    "readme"
+    "claude"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.431Z",
+  "lastUpdated": "2026-07-09T10:02:46.537Z",
   "specId": "004",
   "folderSlug": "docs-agents-governance-removal",
   "parentChain": [

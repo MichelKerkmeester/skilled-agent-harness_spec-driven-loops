@@ -35,12 +35,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json",
       ".opencode/commands/deep/ai-system-improvement.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
-      ".opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,39 +43,9 @@
     ],
     "entities": [
       {
-        "name": "deep-loop-runtime.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/profiles/deep-loop-runtime.json",
-        "source": "derived"
-      },
-      {
         "name": "ai-system-improvement.md",
         "kind": "doc",
         "path": ".opencode/commands/deep/ai-system-improvement.md",
-        "source": "derived"
-      },
-      {
-        "name": "packaging_config.schema.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/packaging_config.schema.json",
-        "source": "derived"
-      },
-      {
-        "name": "loop_contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/references/non_dev_ai_system/loop_contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "meta-loop-lane-d-packaging.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/meta-loop-lane-d-packaging.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "loop.py.template",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/non_dev_ai_system/templates/loop.py.template",
         "source": "derived"
       },
       {
@@ -190,11 +155,35 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Lane",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `deep-ai-system-improvement` skill has no packaging profile for `deep-loop-runtime` itself as an improvement target",
     "created_at": "2026-06-28T14:02:14Z",
-    "last_save_at": "2026-07-04T18:02:12.639Z",
+    "last_save_at": "2026-07-09T10:02:47.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +192,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b892dd5d58733cd836cffd4e15dff1ba5bae152920a25f6e9ef50ae62127215",
+    "source_fingerprint": "sha256:a73da54fc72c8aa67dbb89bd5957d8b6a27987dd043216462be0d12aa09fdd73",
     "source_doc_hashes": {
-      "spec.md": "12f7d3425230d7659a2604f63ab939dad03f2796b30a17c9f044db781de7d934",
-      "plan.md": "291bcce9adc490278e57315e88faa0a6012638e8ba22dbd114f69e357062f7a8",
-      "tasks.md": "e6f5f6e6940ef44ac5e62ae327b45b28f46fc10d59c8a3418869ad40778e9c4d",
-      "implementation-summary.md": "459e275c1ed8a6cdf1691dd4f1850f967f8d7932f521e624efca2e44cd574cb4"
+      "spec.md": "21b0622d808ef7b27874238424c369cfc036f607db07b20007479d190123ec4c",
+      "plan.md": "780bb84d518669f5836735a7c5a5d995f7cfcc3367255a78eb22a977e211a5f1",
+      "tasks.md": "2e5c626776237d099509a3167d7e49d3e5bbfab0f63f0891d64309bb4cda6a13",
+      "implementation-summary.md": "ba368ef72bea9968c5b972127e35cd42bc81341a7364fcf217558528a7fe55d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -31,17 +31,17 @@
     ],
     "key_topics": [
       "arc",
-      "010",
-      "003",
       "remaining",
       "sidecar",
       "investigation",
-      "fixes",
       "dead-code",
       "cleanup",
-      "002",
       "closed",
-      "findings"
+      "findings",
+      "deep-research",
+      "synthesis",
+      "feature",
+      "specification"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -115,7 +115,7 @@
     ],
     "causal_summary": "arc 010/002 closed 18 findings (3 P0 + 15 P1) from arc 010/001's deep-research synthesis",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-07-02T05:31:12.256Z",
+    "last_save_at": "2026-07-09T10:02:53.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

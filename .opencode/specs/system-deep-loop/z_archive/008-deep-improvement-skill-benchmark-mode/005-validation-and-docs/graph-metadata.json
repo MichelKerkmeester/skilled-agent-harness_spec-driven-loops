@@ -21,15 +21,15 @@
       "deep-improvement",
       "three-lane",
       "docs",
-      "122",
       "phase",
-      "005",
       "skill-benchmark",
       "validation",
       "implementation",
       "summary",
       "results",
-      "bring"
+      "bring",
+      "skill",
+      "readme"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -119,7 +119,7 @@
     ],
     "causal_summary": "Bring SKILL.md, README, catalog, and advisor metadata up to the three-lane (agent-improvement / model-benchmark / skill-benchmark) reality of the renamed deep-improvement skill; run hardening/deep-review gate; end-to-end validation.",
     "created_at": "2026-05-30T07:27:05.681Z",
-    "last_save_at": "2026-07-08T13:43:15.580Z",
+    "last_save_at": "2026-07-09T10:02:49.059Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

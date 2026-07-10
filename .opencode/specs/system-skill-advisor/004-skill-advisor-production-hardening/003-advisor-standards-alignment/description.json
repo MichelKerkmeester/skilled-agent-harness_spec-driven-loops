@@ -5,17 +5,13 @@
     "two",
     "findings",
     "packet",
-    "008",
     "audit"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.535Z",
+  "lastUpdated": "2026-07-09T10:02:49.958Z",
   "specId": "003",
   "folderSlug": "advisor-standards-alignment",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "004-skill-advisor-production-hardening"
   ],
   "memorySequence": 0,

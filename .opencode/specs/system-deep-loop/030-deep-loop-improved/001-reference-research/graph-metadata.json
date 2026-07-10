@@ -49,15 +49,9 @@
       "research/iterations/iteration-046.md",
       "spec.md",
       "plan.md",
-      ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
-      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
-      ".opencode/commands/deep/assets/deep_research_auto.yaml"
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -121,57 +115,21 @@
         "source": "derived"
       },
       {
-        "name": "spawn-cjs.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
-        "source": "derived"
-      },
-      {
-        "name": "atomic-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sleep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "loop-lock.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-signals.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
-        "source": "derived"
-      },
-      {
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -203,11 +161,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Our",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ran",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Our loop systems had unquantified gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-28T14:30:35.956Z",
-    "last_save_at": "2026-07-04T18:02:00.300Z",
+    "last_save_at": "2026-07-09T10:02:47.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +211,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c6cafb14907fe79cfa18980af59585fd40fc5cff8b7904e01fd9cf0f3780a63c",
+    "source_fingerprint": "sha256:e93649dcacb4b0ce00573d064bcf306fb8bffd882ed2892ca0b3e15dc8b323ac",
     "source_doc_hashes": {
-      "spec.md": "4095d7c3239ce5726d7b82db42770a8c8e5045f33bdefc5404d2fd03e388af91",
-      "plan.md": "9cce13820a9485aa6b8dd68203b1f225593628813bc13cf4ad6fd3b7f406b95b",
-      "tasks.md": "af700128eaaeb4b857cf7ba9a28d59d9db2b54dc1ae5ec49ab7036efec17eecc",
-      "implementation-summary.md": "93ac5b9e350cfb650751d2908fd6523e5a97e22099575a2cc840b87d5169be9c",
+      "spec.md": "0ca33053daf9a09c584e47cced7945b487cf43ab18b836ffe418b7ddc40c843d",
+      "plan.md": "16f8f078c692fb13d8eeccd300221d715e98b64bf6b2e45b86068f7a05aa4c6b",
+      "tasks.md": "ae96c157592164a6dbb4a18ea3a2647cbbd31e14d7c31558a6d2a2ad0e41ff0f",
+      "implementation-summary.md": "c5994a05e07d918d2ebecab8f083ec23fd8b38a7f39e256741b47ac8b1cb0803",
       "research/research.md": "71f903ebd030c07d74495572ed6d04093c773d7ac6e3ae0e1d80c608ff2edb8b"
     },
     "last_active_child_id": null,

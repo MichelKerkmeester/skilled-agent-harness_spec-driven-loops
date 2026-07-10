@@ -35,10 +35,10 @@
       "skill-advisor",
       "regression",
       "coverage",
-      "008",
       "review",
       "remediation",
-      "plan"
+      "plan",
+      "advisor"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The 008/002-skill-graph-daemon-native-advisor-tools deep review surfaced three release-blocker correctness/security/traceability gaps and 15 P2 advisories",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-07-07T11:42:17.325Z",
+    "last_save_at": "2026-07-09T10:02:49.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bcf694f1009e800626f56968a2177ee99b9951ec74276bc8d178d2f9cd50970",
+    "source_fingerprint": "sha256:45e089c5b5bb546806e02b65d04fe682ec8e96800b0c06775922ae217ba0d02b",
     "source_doc_hashes": {
-      "spec.md": "0a1431ee7b3a16a2a4199580b8114ed937118b4be3c97e0b1cda625dacdcbaba",
-      "plan.md": "9f1bfb6be7cc5b6c4369796ff59a925ef012c3118bf799cf0675e7c2769bc500",
-      "tasks.md": "a5bc5ab9ffaf67cdb87924b60980225907f72c1a209a9ff7a4ae6f6e570f77d3",
-      "checklist.md": "aea7db751d743db02fcfa9f89f641bbf35b42c81a864a540dc7f61e0810c94c6",
-      "implementation-summary.md": "f6cc91dd9eaa2759a293507fe76509ac60d5a34c52245d35f4a61f30cb8ca0b7"
+      "spec.md": "a33fa84ceb5bdca36c28579a4b75a78776123b49fae98e30dfcfe8e8e1caafa5",
+      "plan.md": "800417deae433c37d1055c55c23e9dbd2b70c839cd2dd128ec46efbadf76b990",
+      "tasks.md": "c0de312d6159b41fb6e69a2f5abedd6ac1f197879e3b5051e673bb55d8fa0a9d",
+      "checklist.md": "ce9ab809da88d3dd9d2c576fa4537f463c195dc8301d42e1855159cf1c8a25d6",
+      "implementation-summary.md": "430798487f797f69c70682812a3133cfad677c2d8fa1a895b7082aa338ea138a"
     },
     "last_active_child_id": null,
     "last_active_at": null

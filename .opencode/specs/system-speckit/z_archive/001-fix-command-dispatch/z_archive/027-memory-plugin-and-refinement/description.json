@@ -1,13 +1,12 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement",
-  "description": "This parent packet coordinates the phased work under `027 Memory Plugin And Refinement` so the child packets stay discoverable and the root purpose re",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement",
+  "description": "This parent packet coordinates the phased work under `027 Memory Plugin And Refinement` so the child packets stay discoverable and the root purpose",
   "keywords": [
     "parent",
     "packet",
     "coordinates",
     "phased",
     "work",
-    "027",
     "memory",
     "plugin",
     "refinement",
@@ -18,11 +17,11 @@
     "root",
     "purpose"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.015Z",
+  "lastUpdated": "2026-07-09T10:02:56.976Z",
   "specId": "027",
   "folderSlug": "memory-plugin-and-refinement",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

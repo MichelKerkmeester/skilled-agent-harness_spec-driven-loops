@@ -41,5 +41,5 @@ Private procedure card for applying the existing design-audit accessibility revi
 
 ## 4. RELATED CARDS
 
-- `../design-motion/procedures/interaction_states_pass.md` for detailed state feedback requirements.
-- `../shared/procedures/polish_gate_orchestration.md` for full pre-delivery aggregation.
+- `../../design-motion/procedures/interaction_states_pass.md` for detailed state feedback requirements.
+- `../../shared/procedures/polish_gate_orchestration.md` for full pre-delivery aggregation.

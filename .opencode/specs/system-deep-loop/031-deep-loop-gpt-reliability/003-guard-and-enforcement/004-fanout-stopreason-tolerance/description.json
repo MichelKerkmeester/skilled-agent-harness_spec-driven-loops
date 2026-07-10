@@ -6,7 +6,6 @@
     "findmaxiterationspolicyviolation",
     "fanout-run",
     "cjs",
-    "619",
     "rejects",
     "lineage",
     "whenever",
@@ -14,7 +13,7 @@
     "stopreason",
     "maxiterationsreached"
   ],
-  "lastUpdated": "2026-07-04T19:09:00.849Z",
+  "lastUpdated": "2026-07-09T10:02:47.807Z",
   "specId": "004",
   "folderSlug": "fanout-stopreason-tolerance",
   "parentChain": [

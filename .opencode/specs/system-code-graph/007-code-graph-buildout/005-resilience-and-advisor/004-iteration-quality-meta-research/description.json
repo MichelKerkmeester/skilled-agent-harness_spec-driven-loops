@@ -22,7 +22,6 @@
   "description": "Prior fix cycles closed cited sites but missed sibling producers, downstream consumers, matrix rows, or algorithm invariants",
   "keywords": [
     "prior",
-    "fix",
     "cycles",
     "closed",
     "cited",
@@ -37,7 +36,7 @@
     "algorithm",
     "invariants"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.912Z",
+  "lastUpdated": "2026-07-09T10:02:46.934Z",
   "specId": "004",
   "folderSlug": "iteration-quality-meta-research",
   "parentChain": [

@@ -8,7 +8,6 @@
     "featurecatalog",
     "manualtestingplaybook",
     "roughly",
-    "198",
     "combined",
     "playbook",
     "scenarios",
@@ -17,7 +16,7 @@
     "schema",
     "lifecycle"
   ],
-  "lastUpdated": "2026-06-30T12:42:35.210Z",
+  "lastUpdated": "2026-07-09T10:02:47.464Z",
   "specId": "007",
   "folderSlug": "governance-consolidation",
   "parentChain": [

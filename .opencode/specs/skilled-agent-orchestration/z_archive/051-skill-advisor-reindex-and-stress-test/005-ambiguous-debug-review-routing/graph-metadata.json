@@ -33,8 +33,6 @@
       "ambiguous debug review resources"
     ],
     "key_topics": [
-      "065",
-      "005",
       "ambiguous",
       "debug",
       "review",
@@ -44,7 +42,9 @@
       "tasks",
       "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "resource",
+      "map"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -55,8 +55,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/skills/sk-code-review/SKILL.md"
+      ".opencode/skills/sk-code/SKILL.md"
     ],
     "entities": [
       {
@@ -206,7 +205,7 @@
     ],
     "causal_summary": "Plan phase to improve ambiguous code/problem prompts so review or debug candidates outrank broad sk-code without overconfidence.",
     "created_at": "2026-05-18T07:49:27.135Z",
-    "last_save_at": "2026-06-23T03:49:49.576Z",
+    "last_save_at": "2026-07-09T10:02:45.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +216,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:936101cb75873490e54bfdd571387b35decbeb19fead11f5a7294f133e28902d",
+    "source_fingerprint": "sha256:ec597ed21c2c242d7179fe9564ed8e26066033b49b6697995c3d420728c4b8e6",
     "source_doc_hashes": {
-      "spec.md": "caf5f1e61b1c9ab421f39d923666a3f6d2d252f1ffa454e293cde8ad92dffff2",
-      "plan.md": "c826fc5aafe4596112d1ec54a24923dde4572cc6aa8a58d125ad010e1eb9126e",
-      "tasks.md": "e528439f67fff36cf5b1c53b49fc75e3056bcd0842fe609dda813e002a15b259",
-      "checklist.md": "bb9bd16f2820e9b916517c57ed37eee346ef42babb4c8b93546a4ab54b9ed94f",
-      "implementation-summary.md": "5a250111b1a1e803560374fa20073cb71f021f76797aa6a1da04b1bbdf156e32",
-      "resource-map.md": "ccf5582bc5d3498f089e083a5716248bc408f7762e98f92c5460dae0d181186e"
+      "spec.md": "711a6becaab257ab3cec8e6260d53f07fb4b1c6d2aa16d28684fc888021618ab",
+      "plan.md": "1e7e9bc2d7497e12a8a7c405d406c116d4cfa98cd9ef135b64d010e0f3a69a72",
+      "tasks.md": "1545c417de6cf611fd4faf125f3aee7a38d31a5936415c46adfdbc9bae2d7699",
+      "checklist.md": "3b8715478171398a363ee77daaf2ea6d53cb1075c8bb9f7da1eb29bb848426a5",
+      "implementation-summary.md": "6ca548ebeb10f742a1aba6153a71f649addad82a8288afc56fe5087a2f8ca8dc",
+      "resource-map.md": "2a2e5d5cb4ffc61bf838d000d5930c453cf198a7a677872ce2100bba95de6565"
     },
     "last_active_child_id": null,
     "last_active_at": null

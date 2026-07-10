@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/010-remove-memory-coco-integration",
-  "description": "system-spec-kit (memory) carries a live CocoIndex integration the research missed: `lib/cocoindex/daemon-probe.ts`, `lib/utils/cocoindex-path.ts` (`is",
+  "description": "system-spec-kit (memory) carries a live CocoIndex integration the research missed: `lib/cocoindex/daemon-probe.ts`, `lib/utils/cocoindex-path.ts`",
   "keywords": [
     "system-spec-kit",
     "memory",
@@ -16,7 +16,7 @@
     "utils",
     "cocoindex-path"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.793Z",
+  "lastUpdated": "2026-07-09T10:02:46.804Z",
   "specId": "010",
   "folderSlug": "remove-memory-coco-integration",
   "parentChain": [

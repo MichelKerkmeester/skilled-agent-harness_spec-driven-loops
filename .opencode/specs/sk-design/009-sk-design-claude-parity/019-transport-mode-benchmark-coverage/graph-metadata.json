@@ -30,13 +30,13 @@
       "benchmark",
       "coverage",
       "phase",
-      "019",
       "sk-design",
       "re-benchmark",
       "integration",
       "mr-007",
       "open",
-      "design"
+      "design",
+      "routing"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 018 integrated `design-mcp-open-design` as a registered `packetKind: \"transport\"` mode in sk-design's registries, but the hub's `manualtestingplaybook` (the corpus the skill-benchmark harness scores against) still only exercised the five original design-judgment modes — it had zero scenarios naming the new mode",
     "created_at": "2026-07-07T08:32:09.549Z",
-    "last_save_at": "2026-07-07T08:33:02.128Z",
+    "last_save_at": "2026-07-09T10:02:44.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

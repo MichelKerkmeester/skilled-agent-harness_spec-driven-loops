@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit",
   "children_ids": [],
   "manual": {
     "depends_on": [
@@ -42,7 +42,6 @@
       "memory leak research verification"
     ],
     "key_topics": [
-      "024",
       "cli",
       "memory",
       "leak",
@@ -53,27 +52,33 @@
       "spam",
       "mcp-coco-index",
       "system-code-graph",
-      "orchestration"
+      "orchestration",
+      "ram"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "resource-map.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "resource-map.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      "implementation-summary.md",
-      ".opencode/skills/cli-claude-code/SKILL.md",
-      ".opencode/skills/cli-codex/SKILL.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "resource-map.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "resource-map.md",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -101,6 +106,12 @@
         "source": "derived"
       },
       {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -110,18 +121,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-claude-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -217,7 +216,7 @@
     ],
     "causal_summary": "Prior sessions observed CLI-orchestrated agent workflows building up many processes and consuming enough memory to threaten a 64 GB Apple Silicon workstation",
     "created_at": "2026-05-22T05:55:00Z",
-    "last_save_at": "2026-06-23T03:49:55.086Z",
+    "last_save_at": "2026-07-09T10:02:53.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

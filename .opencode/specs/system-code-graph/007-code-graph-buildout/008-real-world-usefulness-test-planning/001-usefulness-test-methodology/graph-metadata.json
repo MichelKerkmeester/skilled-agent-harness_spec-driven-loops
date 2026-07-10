@@ -34,9 +34,9 @@
       "validation",
       "runtime",
       "integration",
-      "026",
-      "007",
-      "012"
+      "plan",
+      "cli",
+      "matrix"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces",
     "created_at": "2026-06-08T11:50:46.782Z",
-    "last_save_at": "2026-07-07T16:18:33.841Z",
+    "last_save_at": "2026-07-09T10:02:47.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

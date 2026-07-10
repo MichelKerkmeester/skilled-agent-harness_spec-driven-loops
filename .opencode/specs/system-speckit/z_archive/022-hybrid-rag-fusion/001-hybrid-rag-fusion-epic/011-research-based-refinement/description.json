@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement",
-  "description": "The deep research (spec `019-deep-research-rag-improvement`) produced 29 prioritized recommendations from 5 GPT 5.4 agents (1.35M tokens, ~52 web sear",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement",
+  "description": "The deep research (spec `019-deep-research-rag-improvement`) produced 29 prioritized recommendations from 5 GPT 5.4 agents (1.35M tokens, ~52 web",
   "keywords": [
     "deep",
     "research",
@@ -13,14 +13,13 @@
     "agents",
     "35m",
     "tokens",
-    "web",
-    "sear"
+    "web"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.707Z",
+  "lastUpdated": "2026-07-09T10:02:57.777Z",
   "specId": "011",
   "folderSlug": "research-based-refinement",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic"

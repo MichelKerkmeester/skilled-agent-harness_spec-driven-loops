@@ -3,8 +3,6 @@
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/004-rename-sibling-edges-typescript",
   "description": "After 002/003 rename, sibling skill graph metadata + advisor-scorer code + parity test still reference the OLD names",
   "keywords": [
-    "002",
-    "003",
     "rename",
     "sibling",
     "skill",
@@ -19,7 +17,7 @@
     "old",
     "names"
   ],
-  "lastUpdated": "2026-07-08T13:07:00.913Z",
+  "lastUpdated": "2026-07-09T10:02:48.613Z",
   "specId": "004",
   "folderSlug": "rename-sibling-edges-typescript",
   "parentChain": [

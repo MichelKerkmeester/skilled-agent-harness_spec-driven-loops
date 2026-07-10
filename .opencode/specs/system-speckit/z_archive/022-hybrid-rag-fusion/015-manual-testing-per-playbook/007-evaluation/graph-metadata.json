@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,16 +41,22 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "mcp_server/lib/eval/ablation-framework.ts",
       "mcp_server/handlers/eval-reporting.ts",
       "mcp_server/lib/eval/reporting-dashboard.ts",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
       "plan.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "ablation-framework.ts",
         "kind": "code",
@@ -85,12 +91,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The evaluation category contains 6 manual test scenarios covering ablation studies (channel-level Recall@20 delta measurement), reporting dashboard (sprint/channel trend aggregation), evaluation dashboard generation, ablation study execution with custom parameters, baseline comparison reporting, and learning history retrieval",
     "created_at": "2026-04-12T09:02:50.294Z",
-    "last_save_at": "2026-06-23T03:50:00.254Z",
+    "last_save_at": "2026-07-09T10:02:58.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,6 +1,6 @@
 {
   "specFolder": "system-deep-loop/z_archive/001-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation",
-  "description": "The sk-improve-agent skill evaluates agents by checking keyword presence in markdown (~15-20% of what a true agent improvement system needs). The",
+  "description": "The sk-improve-agent skill evaluates agents by checking keyword presence in markdown (~15-20% of what a true agent improvement system needs).",
   "keywords": [
     "sk-improve-agent",
     "skill",
@@ -10,14 +10,13 @@
     "keyword",
     "presence",
     "markdown",
-    "15-20",
     "true",
     "agent",
     "improvement",
     "system",
     "needs"
   ],
-  "lastUpdated": "2026-07-08T13:06:37.801Z",
+  "lastUpdated": "2026-07-09T10:02:48.334Z",
   "specId": "008",
   "folderSlug": "sk-recursive-agent-holistic-evaluation",
   "parentChain": [

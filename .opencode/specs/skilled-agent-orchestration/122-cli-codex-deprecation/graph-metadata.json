@@ -41,9 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".codex/config.toml",
-      ".agents/skills/system-spec-kit/SKILL.md",
-      ".codex/README.md",
       ".opencode/skills/README.md",
       "plan.md",
       "tasks.md",
@@ -55,21 +52,9 @@
     ],
     "entities": [
       {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".agents/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".codex/README.md",
+        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
@@ -197,11 +182,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-codex` remains a first-class skill and executor in active OpenCode surfaces even though the user wants it deprecated",
     "created_at": "2026-06-30T06:25:16Z",
-    "last_save_at": "2026-07-02T05:31:10.091Z",
+    "last_save_at": "2026-07-09T10:02:45.143Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

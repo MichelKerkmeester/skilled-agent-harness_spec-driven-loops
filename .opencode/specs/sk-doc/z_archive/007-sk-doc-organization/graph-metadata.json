@@ -20,21 +20,21 @@
   "derived": {
     "trigger_phrases": [
       "068-sk-doc-organization",
-      "phase parent"
+      "sk-doc assets reorganization phase parent"
     ],
     "key_topics": [
       "068-sk-doc-organization",
+      "sk-doc",
+      "assets",
+      "reorganization",
       "phase",
       "parent",
-      "sk-doc",
       "skill",
-      "assets",
       "directory",
       "accreted",
       "two-level",
       "hierarchy",
-      "longer",
-      "matches"
+      "longer"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -87,15 +87,15 @@
     ],
     "causal_summary": "The `sk-doc` skill's `assets/` directory has accreted a two-level hierarchy that no longer matches its access patterns",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-07-07T17:12:11.854Z",
+    "last_save_at": "2026-07-09T10:02:44.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:91e9381955797286da5637828f0e9c2eb4ddbdda0933cf9c4447246fd5f49942",
+    "source_fingerprint": "sha256:dee06618693275fc357cc8f82c0407c223660ed37879cfb2bfabbb1e390b881d",
     "source_doc_hashes": {
-      "spec.md": "efa4017b6037dea88f6f5b66d90e45cdf6467b4d9d8cfe9ffb834aadf45790a7"
+      "spec.md": "8538d01b95c0108364762197121c53f684f42118054bd645061a7db410361885"
     },
     "last_active_child_id": null,
     "last_active_at": null

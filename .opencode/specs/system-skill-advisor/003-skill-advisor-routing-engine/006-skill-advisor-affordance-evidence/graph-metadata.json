@@ -25,7 +25,6 @@
       "affordance evidence checklist"
     ],
     "key_topics": [
-      "012",
       "affordance",
       "evidence",
       "skill",
@@ -34,9 +33,10 @@
       "resource",
       "routing",
       "normalizer",
-      "004",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "compiler"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Skill Advisor's compiler whitelist is intentionally limited to `skill`, `agent`, `script`, `config`, and `reference`",
     "created_at": "2026-04-25T10:48:08.547Z",
-    "last_save_at": "2026-07-07T11:42:16.255Z",
+    "last_save_at": "2026-07-09T10:02:49.933Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f39dd0b6b66bd4c5598252847bf8f4e3a9ed9a68d7400d4f1e7878115e6aca7",
+    "source_fingerprint": "sha256:d8bde55f7e34661c90291dd2428c467d90ab4af8703033b940d00cc265570a13",
     "source_doc_hashes": {
-      "spec.md": "8aa1086ca9805656cca0b1a80c8dea7059a6f4f333279b8b65f97497b7555c26",
-      "plan.md": "05ff620dbc0782a03e88aad521a9a47a5e97f6ef9a645edcaf933af31c8f7fd2",
-      "tasks.md": "360213d3d1ba0b863abf7b9c47c60bfda5555e0e46bacc3069eabd45cade8d4a",
-      "checklist.md": "6c98bdec143fb724efc437e76abb4e080c1967de4a950696fbe47ed14375f967",
-      "implementation-summary.md": "47e71fdc33cf72a02238fe3833614cb841b148466fc578430065dbad49cae288"
+      "spec.md": "a1cfb7acc00cf14dde42bd9bb2e6bb8f1ce8ff44360feb91e9c3be2d7b6dd451",
+      "plan.md": "48d471c33334f943f8589c07f01d98568c08242c03132ccbf6733355a2f800d8",
+      "tasks.md": "468c4cb6a0d18322a0709987c1c6283126cd8e22f44be57187e03094bef8bee5",
+      "checklist.md": "2e6f960ab35b7490da06ce7812e3f49b3d1951dd228e930c2b17632635b18336",
+      "implementation-summary.md": "8d75babda3011dad5c7b4544bb9ecad06627e6dd55d880c930ac91aa99ab2d98"
     },
     "last_active_child_id": null,
     "last_active_at": null

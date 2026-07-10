@@ -30,8 +30,6 @@
       "reindex stress test handover"
     ],
     "key_topics": [
-      "065",
-      "001",
       "baseline",
       "reindex",
       "stress",
@@ -41,27 +39,47 @@
       "plan",
       "tasks",
       "checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "roll-up"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "implementation-summary.md",
+      "handover.md",
       "001-skill-reindex/reindex-diff.md",
       "001-skill-reindex/implementation-summary.md",
       "002-skill-router-stress-tests/test-report.md",
+      "specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex/reindex-diff.md",
+      "specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests/test-report.md",
+      "specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       "001-skill-reindex/graph-metadata.json",
       "001-skill-reindex/tasks.md",
-      "implementation-summary.md",
       ".claude/settings.local.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "handover.md",
-      "resource-map.md"
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
       {
         "name": "reindex-diff.md",
         "kind": "doc",
@@ -87,12 +105,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "settings.local.json",
         "kind": "config",
         "path": ".claude/settings.local.json",
@@ -101,37 +113,25 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/051-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/checklist.md",
         "source": "derived"
       },
       {
@@ -205,11 +205,17 @@
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Completed baseline phase preserving the original 065 reindex, live MCP replay, and router stress-test evidence.",
     "created_at": "2026-05-18T07:49:27.126Z",
-    "last_save_at": "2026-06-23T03:49:49.539Z",
+    "last_save_at": "2026-07-09T10:02:45.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,15 +227,15 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:79cdfcfc6c330aa7785cc1601cb8f78ec9caecedcf896d36cca707b4faf29110",
+    "source_fingerprint": "sha256:8355a2497654f8d5fbf69294eff9ef32b86d32aca4158637203ae856115b8979",
     "source_doc_hashes": {
-      "spec.md": "624f53ee8cb5763f6f2d694805cad61a56d58994e1150f8f40dc6709e6e12770",
-      "plan.md": "4b89a734932748bce98939e33c38b0c010caa78ba0341635ff6089b455fa64b2",
-      "tasks.md": "a55711415d80b86af9976ab55ee66292ed5bd362ae838d76c62cd5f4a76fdb44",
-      "checklist.md": "e635367451c41333ce428ddc3020c5aaca48debcc7bb8a42019ac41f8e92787d",
-      "implementation-summary.md": "5857d328d4fabfc8dea3102a255444c20fc51c266024330bd21fa92b593b832f",
-      "handover.md": "763af4d6c317966ba905d66132cf96ed1b0381984e7b1485c3e54f29719d11fb",
-      "resource-map.md": "9ab6e5f650548e5668e43c7bb973ef3b8d90ba257210e07fdf6885baf1fc28f8"
+      "spec.md": "631bc5d0a840388242e3569c5ab0df9b63022ee8c6832943c776baf9318d0249",
+      "plan.md": "645f071ba7d096defe794b80a3db03f146d81854f38077f6abd67f15d0387ac0",
+      "tasks.md": "2ef7ba217744ec0dd981e9cc7987788f35bea8e1965275c2394a0ad5a533078a",
+      "checklist.md": "c3790949b6736c76f719f1c20dbefbbbe3d0baa1a9ef3061c9a685032689eebb",
+      "implementation-summary.md": "5bd6a049a6c41b8c39f4e32d9b6cf746a962305fac2fdc4008960a67b60731c8",
+      "handover.md": "4a0aa0853146f24de1a183edbe5e6ca2ffb2549288325d66c7bd67a2162d9472",
+      "resource-map.md": "aef2099273eb8d782befd61fffd50a5a477166556c4da18d7484446287370c9d"
     },
     "last_active_child_id": null,
     "last_active_at": null

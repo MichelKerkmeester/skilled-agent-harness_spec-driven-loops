@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/009-speckit-testing",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/009-speckit-testing",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/009-speckit-testing",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/009-speckit-testing",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -30,12 +30,12 @@
       "post",
       "rename",
       "spec",
-      "009",
       "implementation",
       "plan",
       "tasks",
       "testing",
-      "verify"
+      "verify",
+      "features"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -174,7 +174,7 @@
     ],
     "causal_summary": "Verify all SpecKit features work correctly after the recent rename and consolidation changes",
     "created_at": "2026-04-12T09:02:53.510Z",
-    "last_save_at": "2026-06-23T03:49:58.881Z",
+    "last_save_at": "2026-07-09T10:02:56.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

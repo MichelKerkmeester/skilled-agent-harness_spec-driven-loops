@@ -3,10 +3,7 @@
   "description": "Phase 001 measured 130 Phase 002 files: the two old skill folder roots and",
   "keywords": [
     "phase",
-    "001",
     "measured",
-    "130",
-    "002",
     "files",
     "two",
     "old",
@@ -14,7 +11,7 @@
     "folder",
     "roots"
   ],
-  "lastUpdated": "2026-07-08T13:06:51.611Z",
+  "lastUpdated": "2026-07-09T10:02:49.248Z",
   "specId": "002",
   "folderSlug": "skill-folder-rename",
   "parentChain": [

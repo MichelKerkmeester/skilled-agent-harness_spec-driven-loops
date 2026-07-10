@@ -27,8 +27,6 @@
     ],
     "key_topics": [
       "arc",
-      "010",
-      "003",
       "sidecar-client",
       "f18",
       "f20",
@@ -37,7 +35,9 @@
       "f62",
       "f73",
       "f91",
-      "remediation"
+      "remediation",
+      "plan",
+      "constructor"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`sidecar-client.ts` retained several P1 issues from arc 010/001 deep research: production constructor options still blurred into test-only knobs (F18), `EmbedOptions` existed twice (F20), trivial single-call helper indirection hid the flow (F25), termination still split signal/exit sequencing across duplicate paths (F57), response handling used unsafe post-parse assertions instead of discriminator narrowing (F62), `ready()` had no production role in the sidecar execution path (F73), and `embed()` validation was a nested cascade (F91)",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-02T05:31:12.264Z",
+    "last_save_at": "2026-07-09T10:02:53.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

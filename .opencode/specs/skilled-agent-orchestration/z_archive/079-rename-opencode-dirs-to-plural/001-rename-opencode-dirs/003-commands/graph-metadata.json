@@ -21,8 +21,6 @@
       "096/003 implementation summary"
     ],
     "key_topics": [
-      "096",
-      "003",
       "commands",
       "rename",
       "opencode",
@@ -32,7 +30,9 @@
       "checklist",
       "implementation",
       "summary",
-      "docs"
+      "docs",
+      "https",
+      "say"
     ],
     "importance_tier": "high",
     "status": "draft",
@@ -42,6 +42,7 @@
       "spec.md",
       "plan.md",
       "implementation-summary.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/003-remediation/005-checklist-evidence/implementation-summary.md",
       "tasks.md",
       "checklist.md"
     ],
@@ -193,7 +194,7 @@
     ],
     "causal_summary": "opencode docs (`https://opencode.ai/docs/commands`) say project-level command discovery looks for `.opencode/commands/` (plural)",
     "created_at": "2026-05-18T07:49:27.234Z",
-    "last_save_at": "2026-06-23T03:49:50.049Z",
+    "last_save_at": "2026-07-09T10:02:45.655Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc5fb4242f1004fbe85340d32de4ff2ce111cea7df53902c29819b9af4ccaa82",
+    "source_fingerprint": "sha256:e8ce6c82265e4ec94eab2e0a03d4315c629cfc03a89d98c0777d8e28a8715e98",
     "source_doc_hashes": {
-      "spec.md": "a373b24ccfab940cf4cdebca9ddb6dacb47b42757e11167e8d6092434accb480",
-      "plan.md": "930f9bc7a615e15472493a5da46a2e165fd8402bc34375dcecc1e76cf8243eb7",
-      "tasks.md": "734cff10fca9b21d99d2cad292bff0e37101c351d7a73548c9fbb1f9b5d0e95c",
-      "checklist.md": "cb5d23c1c9f0e73658a9b1d30035929fdee4c3e3fe44e46bef752f063d231e92",
-      "implementation-summary.md": "b4138df64558c29dde3a137d8e578458e7a56f6cdb55901caf2440200556bce9"
+      "spec.md": "a37d3856e07ae35de78e78777710af66edc7425b6534348ba5993f2aa9f9b8f4",
+      "plan.md": "cd116a9515e92627ea2f26963b53df316ef56f6db45fae285f23d5e9c9fb0830",
+      "tasks.md": "58587543aa82756039c2c47d1c1510291e4f6a3f4fdc60d1f7fd6b73ee603a2a",
+      "checklist.md": "9fb79a0f7bdab9e729f57e0d4cf521aa233b44b7ab8ea556eafc0fbd720f3038",
+      "implementation-summary.md": "46259ec037574129bf3ea3b72582f4c2a90910ae52c7799616e201939f52cf7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

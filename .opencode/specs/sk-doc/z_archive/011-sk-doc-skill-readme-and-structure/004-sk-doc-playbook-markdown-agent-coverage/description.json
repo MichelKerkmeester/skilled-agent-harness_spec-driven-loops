@@ -4,7 +4,6 @@
   "description": "Phase 003 introduced the `@markdown` agent as the dedicated sk-doc documentation executor, but the sk-doc manual testing playbook was not updated",
   "keywords": [
     "phase",
-    "003",
     "introduced",
     "markdown",
     "agent",
@@ -14,10 +13,9 @@
     "executor",
     "manual",
     "testing",
-    "playbook",
-    "updated"
+    "playbook"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.930Z",
+  "lastUpdated": "2026-07-09T10:02:44.959Z",
   "specId": "004",
   "folderSlug": "sk-doc-playbook-markdown-agent-coverage",
   "parentChain": [

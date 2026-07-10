@@ -38,17 +38,26 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
-      ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
       ".opencode/commands/prompt.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      ".opencode/specs/skilled-agent-orchestration/z_archive/031-cli-skill-improved-prompting/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/031-cli-skill-improved-prompting/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/031-cli-skill-improved-prompting/implementation-summary.md",
+      "implementation-summary.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/031-cli-skill-improved-prompting/decision-record.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/031-cli-skill-improved-prompting/spec.md",
+        "source": "derived"
+      },
       {
         "name": "prompt_quality_card.md",
         "kind": "doc",
@@ -64,7 +73,7 @@
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/031-cli-skill-improved-prompting/plan.md",
         "source": "derived"
       },
       {
@@ -82,19 +91,13 @@
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/031-cli-skill-improved-prompting/decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/031-cli-skill-improved-prompting/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,7 +199,7 @@
     ],
     "causal_summary": "The CLI orchestrator skills currently rely on static prompt templates without a lightweight framework-selection or quality-check layer",
     "created_at": "2026-04-12T09:02:50.198Z",
-    "last_save_at": "2026-06-23T03:49:49.282Z",
+    "last_save_at": "2026-07-09T10:02:45.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98b2a8404d8f60a1a2c9dc74596cef24e9d66b7c40ffd158312a8ec1db7159bc",
+    "source_fingerprint": "sha256:1056034e82f2d4e5fa2d4c22c03ef614595c48f6da1f31afc01f4a0d3f960f28",
     "source_doc_hashes": {
-      "spec.md": "194cb5b15857e77cfb12d290ab8cd69af66a1215d403de56cd9f4ca683ac5cd6",
-      "plan.md": "400ab3b9ee7ae5ac5a06b14f2adf25c50ea01fd2b25c1e4d63a98f78d2a173f6",
-      "tasks.md": "642e3d7457561116c3a3f381005738fbcb2867af1e45ab0cb5c1bf7954128820",
-      "checklist.md": "3c7bf3aca276d7b76271a981892e64e6c74dae61791464ae22a009265bcc8c56",
-      "decision-record.md": "1786e0574b3f3cfbeaf6e860e9ba4206a0867bbab10c92d9d68a007ea1226f21",
-      "implementation-summary.md": "b31f87114610b25d5a39d3bcc6fc86865a1b7e90038bb9058e62c0d59a2837ff"
+      "spec.md": "2bdcc7b33c81fd4a2f917f4997e15f4e0726a1f238a978f01ffada866380a543",
+      "plan.md": "067294c7fcf4749aceb692819e9ee7b65d451f56e0977d004d60297ba0ce8801",
+      "tasks.md": "4505ac61366f0e4dae737ddf49c22ffe5b65f8d8bff98d7d8dc67d2ae79787c1",
+      "checklist.md": "5eb211ad7f8924e294119cf5d616eee040b83ae0f69e093a88d9102bd576a414",
+      "decision-record.md": "fd10f2bdd2dd1f779fece235ffa09a6f0ad2b07c0800499dbed85a214f9fee70",
+      "implementation-summary.md": "7d4ba7e9a0b3c2bf25d25376e1bb72514bfe43fd624611ad66af0014afc33164"
     },
     "last_active_child_id": null,
     "last_active_at": null

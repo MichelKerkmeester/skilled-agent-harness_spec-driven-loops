@@ -1,11 +1,10 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/002-eval-rig",
-  "description": "The eval loop in 003 needs (a) a fixture set grounded in real failure modes (not synthetic), (b) a grader harness that produces reproducible scores, (",
+  "description": "The eval loop in 003 needs (a) a fixture set grounded in real failure modes (not synthetic), (b) a grader harness that produces reproducible scores,",
   "keywords": [
     "eval",
     "loop",
-    "003",
     "needs",
     "fixture",
     "set",
@@ -20,7 +19,7 @@
     "reproducible",
     "scores"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.034Z",
+  "lastUpdated": "2026-07-09T10:02:45.895Z",
   "specId": "002",
   "folderSlug": "eval-rig",
   "parentChain": [

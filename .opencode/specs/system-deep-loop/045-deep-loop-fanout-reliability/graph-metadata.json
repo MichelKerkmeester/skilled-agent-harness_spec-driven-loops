@@ -42,10 +42,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-      ".opencode/skills/deep-loop-runtime/SKILL.md",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
       ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
       "core/config.ts",
@@ -55,30 +51,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "code-graph-tools.ts",
         "kind": "code",
@@ -198,11 +170,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop fan-out runner reported failed and timed-out CLI lineages as successes (the worker returned a result object instead of throwing, so the pool counted every completed worker as fulfilled and the process exited 0)",
     "created_at": "2026-06-04T20:45:40Z",
-    "last_save_at": "2026-07-07T15:48:11.396Z",
+    "last_save_at": "2026-07-09T10:02:48.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

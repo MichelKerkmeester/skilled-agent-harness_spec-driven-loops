@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research",
-  "description": "012's 7-iteration deep research produced a 50-row automation reality map (14 auto / 14 half / 18 manual / 4 P1 aspirational) but stopped on `maxiterat",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research",
+  "description": "012's 7-iteration deep research produced a 50-row automation reality map (14 auto / 14 half / 18 manual / 4 P1 aspirational) but stopped on",
   "keywords": [
-    "012",
     "7-iteration",
     "deep",
     "research",
@@ -15,14 +14,13 @@
     "half",
     "manual",
     "aspirational",
-    "stopped",
-    "maxiterat"
+    "stopped"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.804Z",
+  "lastUpdated": "2026-07-09T10:02:51.474Z",
   "specId": "002",
   "folderSlug": "automation-reality-supplemental-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "006-research"

@@ -18,12 +18,13 @@
     "class",
     "confirm"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.530Z",
+  "lastUpdated": "2026-07-09T10:02:46.622Z",
   "specId": "009",
   "folderSlug": "evidence-contract",
   "parentChain": [
     "skilled-agent-orchestration",
-    "144-operate-like-fable-5"
+    "z_archive",
+    "114-operate-like-fable-5"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

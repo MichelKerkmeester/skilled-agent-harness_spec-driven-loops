@@ -27,7 +27,6 @@
     ],
     "key_topics": [
       "phase",
-      "072",
       "sk-code",
       "scripts",
       "relocation",
@@ -37,7 +36,8 @@
       "alignment",
       "drift",
       "validator",
-      "plan"
+      "plan",
+      "asset"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-code/scripts/` currently mixes stack-specific Webflow build utilities with the root of the `sk-code` skill",
     "created_at": "2026-05-05T20:48:59Z",
-    "last_save_at": "2026-07-07T16:45:58.046Z",
+    "last_save_at": "2026-07-09T10:02:44.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c59d11497ddb22f9d3ead22d9bb3af0c9f6b7b96b165410b7c5808b3f9e12ba6",
+    "source_fingerprint": "sha256:a371f1e2df49447f11d7c9aeccf1ddab189a68e573f38f6a5b1dc50a543436df",
     "source_doc_hashes": {
-      "spec.md": "eca2c24384ee4e7404b7c395eab1b940ed5211fea2671f8605b0ca4283cad21c",
-      "plan.md": "a3f1699ce7f6b34223d402d207a57cdf62a24ec40d5fb9fb59b6b9a7c18fb77a",
-      "tasks.md": "324750c366e6d36387a420b12bef0b9df57d66962a81f8d006759bf8f373156f",
-      "checklist.md": "d555fadf96474cdb0f5ecc025767f8415df5e6702c44a253509981dbc211cc30",
-      "decision-record.md": "afe8c9794e834f8feecb4318dde9933afa6736d6d7e70f0bc1b92aee723cc0aa",
-      "implementation-summary.md": "bfa04a5f9b32f60af7baea52f53c84c00a3dbb8cc44bf642e584a12545836af4"
+      "spec.md": "a0ac27d8f5d9e47c4b708c2f167d2773425581b29c831868a39a1d086417f006",
+      "plan.md": "94f57df8715a065e30ba56e1955fb2ef0c316f698bd78b6adb8a860f7448f177",
+      "tasks.md": "20225664c2188b26677e1b8b0d2f6751d823da2eeb91588a8df1227b9d5c24ad",
+      "checklist.md": "69fbfc914ff988f198d2ed025ce7a9753ccaa1bbfde6e3fce94a2a423b328984",
+      "decision-record.md": "60b9f5319f3c9f38606a0ab5a63ef130ea801c7eb4a519227eb89dcb8c454423",
+      "implementation-summary.md": "e16ca44a3b06fa3c93efc55ffe695a240085d6a174b5f7c35ee5e23104ab145a"
     },
     "last_active_child_id": null,
     "last_active_at": null

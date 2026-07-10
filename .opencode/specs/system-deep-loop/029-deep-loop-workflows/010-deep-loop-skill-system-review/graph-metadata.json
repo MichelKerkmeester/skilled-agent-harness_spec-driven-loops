@@ -29,14 +29,14 @@
       "skill-system",
       "trio",
       "review",
-      "152",
-      "153",
-      "155",
       "comprehensive",
       "deep",
       "report",
       "remediation",
-      "plan"
+      "plan",
+      "orchestrated-wave",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -49,8 +49,7 @@
       "checklist.md",
       "implementation-summary.md",
       "review/deltas/verdicts.jsonl",
-      "review/iterations/iteration-000-scope-foundation.md",
-      ".opencode/skills/sk-doc/references/skill_creation.md"
+      "review/iterations/iteration-000-scope-foundation.md"
     ],
     "entities": [
       {
@@ -105,12 +104,6 @@
         "name": "iteration-000-scope-foundation.md",
         "kind": "doc",
         "path": "review/iterations/iteration-000-scope-foundation.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/skill_creation.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three sibling packets landed in close succession and need a release-readiness check before the trio is called \"done\": `147-deep-loop-workflows` (the 9-phase merge that folded the five deep-loop mode packets into one parent skill, including a destructive old-skill-deletion phase), `148-mcp-skill-install-doctor-standardization` (new install/doctor scripts), and `117-parent-nested-skill-pattern` (the parent-nested-skill formalization)",
     "created_at": "2026-06-15T18:14:25.486Z",
-    "last_save_at": "2026-07-02T05:31:05.060Z",
+    "last_save_at": "2026-07-09T10:02:47.476Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4cbbb34b0674dfd921e40f5f8d9a9169955ace507d234c3a72773e729435b247",
+    "source_fingerprint": "sha256:8393fd7698755935cca04eef6bf4e12988bad74c3da7ea96aea98b8b8412ba04",
     "source_doc_hashes": {
-      "spec.md": "63b445c7b01234e58447996247c6743cf20ab387bdefff2a098735d5ad445867",
-      "plan.md": "e958abee3bd40fc09b1c8eed7f22da1c0b5858e0093de962962c14dccb653f3b",
-      "tasks.md": "b83aaa9df7cfd2c104f0c03828ae2a5a7bf8b7efc2b7c7d6e61865146099df73",
-      "checklist.md": "46e218efa0810b00db26448e1d154ae0898f2e1f7cd93a2c995052e9f3401b11",
-      "implementation-summary.md": "9e482567cc18014a8a8cd30e383db41668f3e5fa64a2909ef24969321e276aec"
+      "spec.md": "7bdf229f67289cef3103adfd159f14dd6802f6beaa45239195e4ca0e4104d00d",
+      "plan.md": "0a71e8cf5af6eb6d1e85548cf5638ec40f03ed4ea700e0952321a7b75f21ad63",
+      "tasks.md": "e2c3ed86188b860c40fe33f8834324126e7ab66c0da231340478ebb6cf0fc86d",
+      "checklist.md": "57d0573a87417e2dc6269f06f5cf2f817143d12c2151a25ee872709b43f0b7c0",
+      "implementation-summary.md": "95c920915fd5b9929fbb600eb7524dd845ab794901677628f45f98af622a579e"
     },
     "last_active_child_id": null,
     "last_active_at": null

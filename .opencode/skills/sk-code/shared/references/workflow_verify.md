@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion claim gate"
 importance_tier: important
 contextType: general
-version: 1.0.0.0
+version: 4.1.0.2
 ---
 
 # Workflow Reference - Verification
@@ -72,6 +72,31 @@ Use the universal verification checklist as the detailed gate, not as content to
 | Verify | Confirm output, exit code, test count, and observed behavior match expectations. |
 | Record | Save the exact evidence needed to support the final claim. |
 | Claim | Make only the narrow claim that evidence supports. |
+
+### OpenCode Surface Only: Verification Reality
+
+This subsection applies only to the OpenCode surface. It is present in the shared workflow file because this file is symlinked into multiple surfaces; Webflow readers should ignore this OpenCode-specific command chain.
+
+OpenCode verification starts with the real spec validation contract when a spec folder is in scope:
+
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
+```
+
+The authoritative `validate.sh` exit-code contract is: `0=pass`, `1=user error`, `2=validation error`, `3=system error`. Do not describe exit `1` as warnings; warnings only become a failing validation outcome under `--strict`, which exits `2` unless the folder is grandfathered. `--strict` also runs strict-only validators such as evidence-marker lint, generated-metadata integrity/drift checks, command-tree parity, and completion freshness when that feature flag is enabled.
+
+Use the package script for the package you changed. The spec-kit root and project-reference workspaces use `tsc --build`; satellite packages with their own package boundary use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay. For TypeScript tests, run the package's Vitest-backed script where present, such as `npm test`, `npm run test:core`, or the targeted `vitest run ...` command exposed by that package.
+
+When verification discovers missing build output, stale generated runtime files, or a wrong package boundary, hand back to [Workflow Reference - Implementation](./workflow_implement.md) before making any completion claim.
+
+### OpenCode Surface Only: Runtime Build Traps
+
+This subsection applies only to the OpenCode surface.
+
+- MCP servers, daemon-backed CLIs, and runtime hooks execute built `dist/` output. Editing a `.ts` source file has no runtime effect until the owning package rebuilds its `dist/` artifacts.
+- Rebuild before verifying behavior that depends on generated output. For mk-spec-memory, the server package documents `dist/context-server.js` as the compiled backend artifact and `npm run build` as the command that builds TypeScript into `dist/`.
+- Keep env-sensitive tests deterministic: set feature flags, provider choices, database paths, and timeout knobs explicitly in the command or test fixture; record those values with the result; do not rely on inherited shell state when the claim depends on a flag.
+- After a Node version change, run the native rebuild helper from the spec-kit root: `bash scripts/setup/rebuild-native-modules.sh`. It rebuilds native modules including `better-sqlite3` in `mcp_server/` and shared workspace modules, then records the new Node version marker.
 
 ### Baseline And Delta
 

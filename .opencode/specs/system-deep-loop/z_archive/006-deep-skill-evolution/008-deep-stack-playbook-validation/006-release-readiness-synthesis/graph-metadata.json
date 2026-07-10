@@ -34,9 +34,9 @@
       "playbook",
       "dispatch",
       "runbook",
-      "007",
       "phase",
-      "006"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger",
     "created_at": "2026-05-27T07:08:08.399Z",
-    "last_save_at": "2026-07-08T13:43:42.795Z",
+    "last_save_at": "2026-07-09T10:02:48.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

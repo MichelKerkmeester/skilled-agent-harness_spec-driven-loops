@@ -27,7 +27,6 @@
       "058 spec kit ux checklist"
     ],
     "key_topics": [
-      "058",
       "spec",
       "kit",
       "adoptions",
@@ -38,15 +37,16 @@
       "tasks",
       "checklist",
       "packet",
-      "057"
+      "10-iteration",
+      "deep-research"
     ],
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
       {
@@ -62,15 +62,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet 057's 10-iteration deep-research run produced 12 ranked findings comparing external SPAR-Kit against our internal `system-spec-kit`",
     "created_at": "2026-05-01T11:00:00Z",
-    "last_save_at": "2026-06-23T03:49:49.386Z",
+    "last_save_at": "2026-07-09T10:02:45.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5e05f46ca4f3476dbbbd4333ab15f26ae55e78c9b9702241126d1d989e8347e6",
+    "source_fingerprint": "sha256:4d6c5d98964c7a7d40f755ffbc8399e4a847ad6ffdab1f0eab94a831aff079d1",
     "source_doc_hashes": {
-      "spec.md": "ec35750b5d5a839bacb516258e5492da2b5e086a203e8f34762e8b43074eb89a",
-      "plan.md": "545bfc56eaeb75843ff0f2c4b7693f73e29af7a8a012b12940c2ee5e49dab1b4",
-      "tasks.md": "6ddca5bb9ab979ce795d5e63531c0a8d19d17eb3cb929876568c552ff33bae32",
-      "checklist.md": "8e7e32c23393751d694007939506733454675a7d4eb0dea1f376c5b818f1b24d"
+      "spec.md": "c255a27aa46eb37f4283b3c80d5a846356db10476298c37db34ad01bc2db173d",
+      "plan.md": "5f789b476543884d30830bd8936310802d957206d43f428772221e62a059aa18",
+      "tasks.md": "1f01eb8e5dd9b2da4fde6f24b8789c02fa7783aa50c455bb39d748052fc9b4e6",
+      "checklist.md": "732bd0dc19e5df3901dc832833602032abb9745298f91b454c780257527f608a"
     },
     "last_active_child_id": null,
     "last_active_at": null

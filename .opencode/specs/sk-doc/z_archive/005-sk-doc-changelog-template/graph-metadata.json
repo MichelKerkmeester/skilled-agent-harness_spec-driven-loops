@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The canonical changelog and release-notes template previously lived at the create-command asset path (`.opencode/commands/create/assets/changelogtemplate`)",
     "created_at": "2026-04-18T09:14:07.277Z",
-    "last_save_at": "2026-07-07T17:12:11.299Z",
+    "last_save_at": "2026-07-09T10:02:44.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0da86091a090ebe8ff4d57c750a435cb9f3b0dc82f6c04aff48eac464b667f1e",
+    "source_fingerprint": "sha256:c847b83e804d76fb74befed8ab11781bc4935c8713ce603f6a79919fcd1af73b",
     "source_doc_hashes": {
-      "spec.md": "b2d7e5e6209618e4bb0c5216171fc7766a1669e19856d74fa0b413b53799c89b",
-      "plan.md": "27b6961dbd9ed071e24ceaabb3b3c1d2d36078e1ae56712e679c612cd4c2a81e",
-      "tasks.md": "2368ada2d8fc28bba3b848f53b7b56642c96e0e1ea5b9206d43213e06118d535",
-      "implementation-summary.md": "5b9e1d7ad108bdfe84781e5025746b1b464dd4612c1973457e74f4e03e83bbe1"
+      "spec.md": "ae6afa869328363ec1bce856e58f6ba24e560e177ce7cc51671d4b02da1847a1",
+      "plan.md": "8e71dfada9e83613192d5be5b3902d8636f5a5a4446466d8033c10a97cd2eba4",
+      "tasks.md": "adac1929c57a255189ec1f3b585457e09e2524d21c879a961d88c7e84a9c7bf2",
+      "implementation-summary.md": "b86c4edcfd99eea6831c55384ab8f2dc0536c208ebe1ee1bccac98da391ff65c"
     },
     "last_active_child_id": null,
     "last_active_at": null

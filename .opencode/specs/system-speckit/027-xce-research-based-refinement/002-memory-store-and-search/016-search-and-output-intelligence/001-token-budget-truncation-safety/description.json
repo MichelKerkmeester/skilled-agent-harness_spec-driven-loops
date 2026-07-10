@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety",
   "description": "The token-budget truncator sorted candidates by score and hard-stopped on the first result that overflowed the budget, so one large top memory starved",
   "keywords": [
     "token-budget",
@@ -19,11 +19,11 @@
     "memory",
     "starved"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.341Z",
+  "lastUpdated": "2026-07-09T10:02:55.364Z",
   "specId": "001",
   "folderSlug": "token-budget-truncation-safety",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "016-search-and-output-intelligence"

@@ -45,7 +45,6 @@
       ".opencode/plugins/mk-code-graph.js",
       ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
       ".claude/mcp.json",
-      ".codex/config.toml",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "shared/ipc/socket-server.ts",
       "spec.md",
@@ -70,12 +69,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped … (exit=75)` banner empirically: the shared daemon IPC socket server caps concurrent clients at 8 (`DEFAULTMAXSECONDARYCLIENTS`) and refuses excess connections by accepting then immediately closing them",
     "created_at": "2026-06-11T17:40:00Z",
-    "last_save_at": "2026-07-02T05:31:13.988Z",
+    "last_save_at": "2026-07-09T10:02:55.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

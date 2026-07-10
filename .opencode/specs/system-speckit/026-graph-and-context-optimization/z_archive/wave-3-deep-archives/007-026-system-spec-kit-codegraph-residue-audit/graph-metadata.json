@@ -27,7 +27,6 @@
       "012 codegraph residue audit tasks"
     ],
     "key_topics": [
-      "012",
       "system",
       "spec",
       "kit",
@@ -37,8 +36,9 @@
       "code",
       "graph",
       "post",
-      "014",
-      "docs"
+      "docs",
+      "cleanup",
+      "system-code-graph"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Packet 014 moved code-graph ownership out of `system-spec-kit` into the standalone `.opencode/skills/system-code-graph/` skill",
     "created_at": "2026-05-14T17:35:44Z",
-    "last_save_at": "2026-07-02T05:31:13.025Z",
+    "last_save_at": "2026-07-09T10:02:54.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

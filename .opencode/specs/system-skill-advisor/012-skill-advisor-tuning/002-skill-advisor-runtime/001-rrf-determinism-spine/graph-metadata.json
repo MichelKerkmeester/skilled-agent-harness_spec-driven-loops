@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The Skill Advisor fuses five lanes (`explicitauthor 0.42` / `lexical 0.28` / `graphcausal 0.13` / `derivedgenerated 0.12` / `semanticshadow 0.05`, `lane-registry.ts:8-19`) via a raw-score weighted SUM that mixes incomparable scales, per skill `weightedScore = rawScore  weights[lane]` (`fusion.ts:366`), fused `score = contributions.reduce((t,c) => t + c.weightedScore, 0)` (`fusion.ts:372`)",
     "created_at": "2026-06-19T05:52:29.583Z",
-    "last_save_at": "2026-07-07T09:40:25.024Z",
+    "last_save_at": "2026-07-09T10:02:50.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1d8565a5a446efb12b1d687a5ce271575f462d609924b7080a4b9f762a22cee",
+    "source_fingerprint": "sha256:bc9ae1e95fd9fd263d3cb73064137611064cda9e08ea1b61650b098a4c0d1b9f",
     "source_doc_hashes": {
-      "spec.md": "57a208b9cd147e25fe6c747ba37c8416bee758282f0e1c86feeac9ae7c4259f5",
-      "plan.md": "dc005d524deed99ba87b2d3a48c6e0dd02ed6e714d50ea83c610227b297a12f8",
-      "tasks.md": "f6959302ef5e614abe64c4a0b0f4ee13ebcc2ae0881eee43bef5995be62f7030",
-      "checklist.md": "f05d76fb7594c93e8521f28f913a2ce9cb7df60099093cf26bd3e3bbc29acb7e",
-      "implementation-summary.md": "91b27c4e8373b2b4014230ec204e4202da7b6b4f64daa1dce99872973601b4db"
+      "spec.md": "d3205452a4c508fc41efa8db25ee1bffcb44f9e525d6a473b6c238c2ee0f8544",
+      "plan.md": "dc79f84828564d2fc9f3c612185378f704a76f434c209b6eb3ff61175b55c738",
+      "tasks.md": "74507f7d4fbe3753e14cccdc7ed9d86a1535ccdae6150c6b4ab89acb21d30eca",
+      "checklist.md": "bd5e20eb41ec4db8e98ffe5d9a2c4f7a015af5f08558e65798d94edcca4ba3e9",
+      "implementation-summary.md": "44b8a229366cdc0489d699997d015c757077af4a19845ece884a11d84ff6cacb"
     },
     "last_active_child_id": null,
     "last_active_at": null

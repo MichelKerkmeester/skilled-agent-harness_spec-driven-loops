@@ -1,23 +1,12 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/048-agent-optimization",
-  "description": "Phase-parent root spec. Apply the validated sk-improve-agent v2 substrate (proven in packet 060 → final composite PASS 6/0/0) to the remaining 9",
+  "description": "Phase-parent root spec.",
   "keywords": [
     "phase-parent",
     "root",
-    "spec",
-    "apply",
-    "validated",
-    "sk-improve-agent",
-    "substrate",
-    "proven",
-    "packet",
-    "060",
-    "final",
-    "composite",
-    "pass",
-    "remaining"
+    "spec"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.479Z",
+  "lastUpdated": "2026-07-09T10:02:45.349Z",
   "specId": "048",
   "folderSlug": "agent-optimization",
   "parentChain": [

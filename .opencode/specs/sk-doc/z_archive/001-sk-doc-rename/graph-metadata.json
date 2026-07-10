@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The Public repository previously contained legacy documentation-skill identifiers plus stale references to a removed visual skill across content, folder paths, and runtime symlink names",
     "created_at": "2026-04-12T09:02:50.205Z",
-    "last_save_at": "2026-07-07T17:12:10.095Z",
+    "last_save_at": "2026-07-09T10:02:44.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77992b8a52be13f19be6bfd96310cf244a0f6c782076d78131e56ceb5e8bce6b",
+    "source_fingerprint": "sha256:1cabe80697096fd3d4b1108c7825a611f923110a9a375ff637139c0f2388ab2b",
     "source_doc_hashes": {
       "spec.md": "c9e5ec5fb0484338128603ceca3304a1b767604f317296c64ef6f75503c4ed93",
       "plan.md": "b141cf37b9184dcba15624fa8992ae984366d923693e41e37086f02f5c877a4d",
       "tasks.md": "06d7cdf9e41bd67e11481df7382140b44bc600aafdbdbe77e35dae811d998699",
       "checklist.md": "731976aacf9eb0824f063d9cc41e65709a48f8bef4fe96cfb3fc6ac70277046d",
-      "implementation-summary.md": "ffcd15820b730fc71adce47ee667a7a4657df686eb852c55d03dd66d03a1aaee"
+      "implementation-summary.md": "280cc36bee592920b705259423ee29a66037de2964fa9d82ba1b241e17a5ef44"
     },
     "last_active_child_id": null,
     "last_active_at": null

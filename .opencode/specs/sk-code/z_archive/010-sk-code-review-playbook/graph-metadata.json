@@ -33,13 +33,13 @@
       "manual",
       "testing",
       "review",
-      "093",
-      "001",
       "code",
       "baseline",
       "regression",
       "coverage",
-      "plan"
+      "plan",
+      "implementation",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "draft",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`",
     "created_at": "2026-05-18T07:49:27.225Z",
-    "last_save_at": "2026-07-07T16:45:58.068Z",
+    "last_save_at": "2026-07-09T10:02:44.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:985d15fb2f7a68ccd0a55b589ad005cbc3e5e3e31b40beb10fcaab4df6b7c933",
+    "source_fingerprint": "sha256:dd904cbf9c862e6bb62da7a4d4a5a047d23107c8e9dc42dced42ff7f5a464cdb",
     "source_doc_hashes": {
-      "spec.md": "e288c8db6f415836bd654b52087136d7ed2e102cd9be83210e8ab0fb6ad67a12",
-      "plan.md": "54d1c9a3fccba2e02f7c656025b693ca8bb6cdfc8211327ece6deb6de948b969",
-      "tasks.md": "0079450da0392e7da86afae96ddf925052e6dc2d25d57c7847bc0294899c6ba6",
-      "checklist.md": "53091f03b5b9d5a7ed724d9c9a23ab5843205634be6c2a14bbd6ea260c98ac54",
-      "implementation-summary.md": "544b95644110e3e844ea02c924bbd730a290d2920984ff833ca0e5627dd03061"
+      "spec.md": "188bf707c42ccb1a57b206869064b7c517bfe384e0df0c52ef0eed15eec81686",
+      "plan.md": "c4654e0993dffbf3525280941463dfd9444f42af3328786c40b0fabef584ee39",
+      "tasks.md": "ded79f6ee4b0bef4afaff0acc1fef1a37ac8e54059ce1dec3601e01559f36e2a",
+      "checklist.md": "f63805589d18eb3421bf49ba55392b66bf803120a2b90cb7fd3a0803ae74f2bc",
+      "implementation-summary.md": "319b3c50e72e2200dc5c34b7d367b0ee876ba9453537ac321fc2c32623941b67"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/054-smart-routing-benchmark-program/009-deterministic-scoring-extensions",
+  "spec_folder": "system-deep-loop/054-smart-routing-benchmark-program/009-deterministic-scoring-extensions",
+  "parent_id": "system-deep-loop/054-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "over-activation lane",
+      "identity-scoped contamination lint",
+      "scenario loader scope"
+    ],
+    "key_topics": [
+      "over-activation",
+      "lane",
+      "identity-scoped",
+      "contamination",
+      "lint",
+      "scenario",
+      "loader",
+      "scope",
+      "two",
+      "ci-safe",
+      "deterministic",
+      "harness"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deterministic Scoring Extensions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activation Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loader Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two CI-safe deterministic harness extensions: an identity-scoped contamination lint that unblocks generic-keyword over-activation negatives (the scoring path already exists; only the lint gate blocks it), and a scenario-loader relaxation that lets all playbook categories (not just 10--intra-routing-recall) enter Type-1 scoring when they carry gold.",
+    "created_at": "2026-07-09T12:18:01.049Z",
+    "last_save_at": "2026-07-09T12:18:01.049Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1ee7d7c8c406256d22fe247dee2532efd832da5a89c7a4c23cd32060beff03bf",
+    "source_doc_hashes": {
+      "spec.md": "4a4c95a1a54c7a380adbf01f3df63a7a729a796780b8dc5e140944c50a66c60e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

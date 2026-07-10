@@ -3,7 +3,6 @@
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review",
   "description": "The 008 deep-skill doc-evolution ship (commit 5f3e0a2f53) reworked the 5 deep- skills' documentation substantially",
   "keywords": [
-    "008",
     "deep-skill",
     "doc-evolution",
     "ship",
@@ -15,7 +14,7 @@
     "documentation",
     "substantially"
   ],
-  "lastUpdated": "2026-07-08T13:07:10.366Z",
+  "lastUpdated": "2026-07-09T10:02:48.859Z",
   "specId": "005",
   "folderSlug": "doc-evolution-post-impl-deep-review",
   "parentChain": [

@@ -4,7 +4,6 @@
   "description": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/<run-label>/`",
   "keywords": [
     "phase",
-    "002",
     "runs",
     "bakeoff",
     "empirical",
@@ -16,7 +15,7 @@
     "benchmarks",
     "run-label"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.398Z",
+  "lastUpdated": "2026-07-09T10:02:45.081Z",
   "specId": "003",
   "folderSlug": "promote-results",
   "parentChain": [

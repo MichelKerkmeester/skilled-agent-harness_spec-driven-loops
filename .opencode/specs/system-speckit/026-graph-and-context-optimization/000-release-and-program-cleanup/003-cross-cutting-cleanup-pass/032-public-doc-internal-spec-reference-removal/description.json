@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/032-public-doc-internal-spec-reference-removal",
-  "description": "Public-facing docs, commands, setup guides, skill references, assets, feature catalogs, and manual testing playbooks contained direct links to this re",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/032-public-doc-internal-spec-reference-removal",
+  "description": "Public-facing docs, commands, setup guides, skill references, assets, feature catalogs, and manual testing playbooks contained direct links to this",
   "keywords": [
     "public-facing",
     "docs",
@@ -20,11 +20,11 @@
     "direct",
     "links"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.433Z",
+  "lastUpdated": "2026-07-09T10:02:51.017Z",
   "specId": "032",
   "folderSlug": "public-doc-internal-spec-reference-removal",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

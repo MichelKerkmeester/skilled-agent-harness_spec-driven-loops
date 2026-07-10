@@ -64,7 +64,6 @@
       "ADR-016 ADR-017 ADR-018 ADR-019 ADR-020 ADR-021 ADR-023"
     ],
     "key_topics": [
-      "018",
       "code",
       "embedder",
       "coderank",
@@ -74,8 +73,9 @@
       "comparison",
       "adr",
       "index",
-      "004",
-      "stack"
+      "stack",
+      "decisions",
+      "adr-016"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -174,7 +174,7 @@
     ],
     "causal_summary": "CocoIndex code embedder stack parent. Current default is sbert/nomic-ai/CodeRankEmbed (768d, MIT) with hybrid search default-on, query expansion default-off, and Qwen rerank via sidecar default-on.",
     "created_at": "2026-05-18T16:14:38.272Z",
-    "last_save_at": "2026-07-02T05:31:11.887Z",
+    "last_save_at": "2026-07-09T10:02:52.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

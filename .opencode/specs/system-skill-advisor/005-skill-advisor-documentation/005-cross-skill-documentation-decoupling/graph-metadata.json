@@ -22,7 +22,6 @@
       "005 implementation summary"
     ],
     "key_topics": [
-      "005",
       "cross-skill",
       "decoupling",
       "remove",
@@ -33,10 +32,11 @@
       "tables",
       "readme",
       "section",
-      "terse"
+      "terse",
+      "arch"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Three coordinated drift issues across the system-spec-kit + system-skill-advisor + system-code-graph triad",
     "created_at": "2026-05-16T12:33:24Z",
-    "last_save_at": "2026-07-02T05:31:11.318Z",
+    "last_save_at": "2026-07-09T10:02:50.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68edc1e197661c24afb9dda15823d4c316bdcabcd4b29bfcc73fa1ca2352eb43",
+    "source_fingerprint": "sha256:73182f494d1d7686b59941956b877aa2355cdb40cb732f5331042bbc2057dd37",
     "source_doc_hashes": {
-      "spec.md": "61c19e45c05b846413c47eec764e4cc94d777ac57ea13a625caea92a487c8f85",
-      "plan.md": "2c88710703b9409b1ba509d2d68e94aaa7c849b5f1d9fca8d9789726cc1ddd0d",
-      "tasks.md": "f788d7465bf5d98ce04bc1dcbe13e01f3320dad0860c67e6de14afbe25d0bff1",
-      "implementation-summary.md": "fbcdf25d0c47673c6f0b4976752aa76a5454f0908d61f0fe9896315deea8958f"
+      "spec.md": "a764d8cc8747d059d877d5e9596d7f89ea53da9ef9c402d185269506e2434852",
+      "plan.md": "5b8519a75836509dc85c94956782a37e6caeef0c1fb5d24b0bea701a344ed00a",
+      "tasks.md": "bf9224d8b2d5c8330cd80b5e340b50d4947f0ffbbb84d9476c104b88679ac9a9",
+      "implementation-summary.md": "3bf3911b4366019371b7d8f095800b3c4cccd94dd728c7f5dadffc01cd730162"
     },
     "last_active_child_id": null,
     "last_active_at": null

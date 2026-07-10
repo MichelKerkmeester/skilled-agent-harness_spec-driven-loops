@@ -4,7 +4,6 @@
   "description": "Phase 003 of `101-deep-multi-ai-council-skill` shipped a dedicated council graph (4 MCP tools, 8 node kinds, 10 relation kinds, 5 query modes, 3",
   "keywords": [
     "phase",
-    "003",
     "101-deep-multi-ai-council-skill",
     "shipped",
     "dedicated",
@@ -18,7 +17,7 @@
     "query",
     "modes"
   ],
-  "lastUpdated": "2026-07-08T13:06:41.059Z",
+  "lastUpdated": "2026-07-09T10:02:48.456Z",
   "specId": "004",
   "folderSlug": "deep-ai-council-playbook-graph-coverage",
   "parentChain": [

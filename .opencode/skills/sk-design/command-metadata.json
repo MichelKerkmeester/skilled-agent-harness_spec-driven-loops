@@ -48,11 +48,17 @@
       {
         "order": 3,
         "skill": "design-audit",
+        "resource": ".opencode/skills/sk-design/design-audit/procedures/",
+        "action": "choose at most one private procedure card (accessibility_audit.md for WCAG/contrast/keyboard/forms review, ai_slop_check.md for AI-template/generic-visual-language detection) matching the request, or ../shared/procedures/polish_gate_orchestration.md for full pre-delivery polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline audit workflow' if no card matches"
+      },
+      {
+        "order": 4,
+        "skill": "design-audit",
         "resource": ".opencode/skills/sk-design/design-audit/references/",
         "action": "load mode references and assets as the work requires, then apply the audit workflow to $ARGUMENTS"
       },
       {
-        "order": 4,
+        "order": 5,
         "skill": "sk-code",
         "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"
@@ -212,11 +218,17 @@
       {
         "order": 3,
         "skill": "design-foundations",
+        "resource": ".opencode/skills/sk-design/design-foundations/procedures/",
+        "action": "choose at most one private procedure card (tweakable_design_controls.md for user-adjustable options/controls/tunable variants, component_system_inventory.md for component extraction/reusable parts/system inventory, hierarchy_rhythm_review.md for hierarchy/rhythm/spacing/density review) matching the request, or ../shared/procedures/polish_gate_orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline foundations workflow' if no card matches"
+      },
+      {
+        "order": 4,
+        "skill": "design-foundations",
         "resource": ".opencode/skills/sk-design/design-foundations/references/",
         "action": "load mode references and assets as the work requires, then apply the foundations workflow to $ARGUMENTS"
       },
       {
-        "order": 4,
+        "order": 5,
         "skill": "sk-code",
         "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"
@@ -376,11 +388,17 @@
       {
         "order": 3,
         "skill": "design-interface",
+        "resource": ".opencode/skills/sk-design/design-interface/procedures/",
+        "action": "choose at most one private procedure card (discovery_question_round.md for missing material brief facts, aesthetic_direction.md for greenfield direction without a stronger brand/system, wireframe_exploration.md for low-fidelity structure or storyboard, variation_set.md for multiple high-fidelity directions or alternatives, prototype_flow_spec.md for prototype/demo/stateful interaction briefs, deck_direction_spec.md for slide deck or presentation design) matching the request, or ../shared/procedures/polish_gate_orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline interface workflow' if no card matches"
+      },
+      {
+        "order": 4,
+        "skill": "design-interface",
         "resource": ".opencode/skills/sk-design/design-interface/references/",
         "action": "load mode references and assets as the work requires, then apply the interface workflow to $ARGUMENTS"
       },
       {
-        "order": 4,
+        "order": 5,
         "skill": "sk-code",
         "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"
@@ -468,6 +486,12 @@
         "surface": "reuse-before-generate grounding phase"
       },
       {
+        "lane": "TRANSFORM_APPLICATION",
+        "label": "transform",
+        "class": "internal",
+        "surface": "make-frame transform verb (bolder/quieter/distill/clarify/delight) already routed here; taskProjections below carries the explicit verb argument"
+      },
+      {
         "lane": "REAL_WORLD_REFERENCE",
         "label": "reference",
         "class": "hidden",
@@ -480,6 +504,7 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
+          "design-interface/references/design-process/transform_application.md",
           "design-interface/references/design-process/design_principles.md",
           "design-audit/references/transform_remediation.md"
         ],
@@ -491,6 +516,7 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
+          "design-interface/references/design-process/transform_application.md",
           "design-interface/references/design-process/design_principles.md",
           "design-audit/references/transform_remediation.md"
         ],
@@ -502,6 +528,7 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
+          "design-interface/references/design-process/transform_application.md",
           "design-interface/references/design-process/variation_diversity.md",
           "design-audit/references/transform_remediation.md"
         ],
@@ -513,6 +540,7 @@
         "ownerMode": "interface",
         "strictness": "advisory",
         "referenceSources": [
+          "design-interface/references/design-process/transform_application.md",
           "design-interface/references/design-process/real_ui_loop.md",
           "design-audit/references/transform_remediation.md"
         ],
@@ -630,11 +658,17 @@
       {
         "order": 3,
         "skill": "design-md-generator",
+        "resource": ".opencode/skills/sk-design/design-md-generator/procedures/",
+        "action": "select the private design_system_extraction.md card when the request involves measured extraction, token capture, CSS capture, DESIGN.md generation, source design systems, screenshots, brand references, gaps, inconsistencies, or grounding future work in an existing surface; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline md-generator pipeline' if the card does not match"
+      },
+      {
+        "order": 4,
+        "skill": "design-md-generator",
         "resource": ".opencode/skills/sk-design/design-md-generator/references/",
         "action": "load mode references and assets as the work requires, then apply the md-generator workflow to $ARGUMENTS"
       },
       {
-        "order": 4,
+        "order": 5,
         "skill": "sk-code",
         "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"
@@ -771,11 +805,17 @@
       {
         "order": 3,
         "skill": "design-motion",
+        "resource": ".opencode/skills/sk-design/design-motion/procedures/",
+        "action": "choose a private procedure card only when its trigger matches (interaction_states_pass.md for hover/active/focus/disabled/loading/selected/navigation/form/custom-widget interaction-state work), or ../shared/procedures/polish_gate_orchestration.md for final polish spanning multiple design dimensions; cite the selected card's relative path in the plan or proof line, or state 'Procedure applied: none - baseline motion workflow' if no card matches"
+      },
+      {
+        "order": 4,
+        "skill": "design-motion",
         "resource": ".opencode/skills/sk-design/design-motion/references/",
         "action": "load mode references and assets as the work requires, then apply the motion workflow to $ARGUMENTS"
       },
       {
-        "order": 4,
+        "order": 5,
         "skill": "sk-code",
         "resource": ".opencode/skills/sk-design/shared/sk_code_handoff.md",
         "action": "prepare implementation handoff only when accepted design output moves to code"

@@ -33,12 +33,12 @@
       "prompt",
       "contract",
       "searchledger",
-      "116",
       "plan",
       "tasks",
       "checklist",
       "adr",
-      "reviewdepthschemaversion"
+      "reviewdepthschemaversion",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`deep-review` records findings and graph events, but it has no versioned way to prove target selection, bug-class search coverage, ruled-out candidates, or remaining search debt before a no-finding or low-finding review counts as deep enough",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-07-08T13:43:54.949Z",
+    "last_save_at": "2026-07-09T10:02:48.677Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

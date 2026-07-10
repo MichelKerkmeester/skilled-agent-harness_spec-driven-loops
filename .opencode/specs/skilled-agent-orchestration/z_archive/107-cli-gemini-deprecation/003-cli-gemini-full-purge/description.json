@@ -1,10 +1,8 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation/003-cli-gemini-full-purge",
-  "description": "After phases 001 and 002, `cli-gemini` still existed as a first-class executor across active source: deep-loop executor unions and audit maps, deep-im",
+  "description": "After phases 001 and 002, `cli-gemini` still existed as a first-class executor across active source: deep-loop executor unions and audit maps,",
   "keywords": [
     "phases",
-    "001",
-    "002",
     "cli-gemini",
     "still",
     "existed",
@@ -16,10 +14,9 @@
     "deep-loop",
     "unions",
     "audit",
-    "maps",
-    "deep-im"
+    "maps"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.252Z",
+  "lastUpdated": "2026-07-09T10:02:46.388Z",
   "specId": "003",
   "folderSlug": "cli-gemini-full-purge",
   "parentChain": [

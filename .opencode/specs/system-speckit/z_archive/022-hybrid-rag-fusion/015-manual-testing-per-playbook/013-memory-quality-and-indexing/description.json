@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/013-memory-quality-and-indexing",
-  "description": "The memory quality and indexing feature category is the largest single phase in the hybrid-RAG-fusion manual testing playbook, spanning 27 scenario fi",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/013-memory-quality-and-indexing",
+  "description": "The memory quality and indexing feature category is the largest single phase in the hybrid-RAG-fusion manual testing playbook, spanning 27 scenario",
   "keywords": [
     "memory",
     "quality",
@@ -17,11 +17,11 @@
     "spanning",
     "scenario"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.292Z",
+  "lastUpdated": "2026-07-09T10:02:58.482Z",
   "specId": "013",
   "folderSlug": "memory-quality-and-indexing",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

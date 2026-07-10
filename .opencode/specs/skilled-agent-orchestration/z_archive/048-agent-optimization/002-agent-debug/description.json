@@ -3,12 +3,11 @@
   "description": "`@debug` (506 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
     "debug",
-    "506",
     "loc",
     "sk-improve-agent",
     "lens"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.491Z",
+  "lastUpdated": "2026-07-09T10:02:45.363Z",
   "specId": "002",
   "folderSlug": "agent-debug",
   "parentChain": [

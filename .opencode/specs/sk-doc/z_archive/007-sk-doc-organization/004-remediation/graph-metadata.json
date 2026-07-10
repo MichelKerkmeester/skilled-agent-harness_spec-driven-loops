@@ -22,8 +22,6 @@
       "remediation summary"
     ],
     "key_topics": [
-      "068",
-      "004",
       "remediation",
       "deep-review-fix",
       "plan",
@@ -32,32 +30,20 @@
       "phase",
       "substring",
       "sweep",
-      "used",
-      "fixed-string"
+      "fixed-string",
+      "patterns",
+      "prefixed",
+      "assets"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/references/global/quick_reference.md",
-      ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_md_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,11 +175,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built You",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 2's substring sweep used 4 fixed-string patterns prefixed with `assets/`",
     "created_at": "2026-05-05T09:51:15Z",
-    "last_save_at": "2026-06-23T03:49:49.646Z",
+    "last_save_at": "2026-07-09T10:02:44.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [
@@ -202,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:301403166a8e61b624f46cc04c656b01df3f93b7469557885da0cf123d49e418",
+    "source_fingerprint": "sha256:9cf128f4b94564aca62ee247a4b95e4a6c56b73ccf0415901b13c743a469c31b",
     "source_doc_hashes": {
-      "spec.md": "a91d93a54306d0fddd6ce9125fa7f0f606dc99ff164a2aa8a3c11b0e7fcd0b27",
-      "plan.md": "7da0c89709ff6538acd5083f6c245a55b1723de6189048ff3fd8cd623d6d247a",
-      "tasks.md": "72d3ded833362b91529549672a6f70dfa9329a53d67ab87f88abb00509638763",
-      "implementation-summary.md": "cbc9d87f14d9dbc1c47c8ca185ae0bd58964b2eaaaae082f6ff5c1354632b6bf"
+      "spec.md": "13fba56fd06796de3ba38c0abcad04d3d7a2ef38d6b842f7a8192b60b5a21deb",
+      "plan.md": "06498427ae78b45907e7978d9ec2bd11d6c4a538ae7468032ad5d9f85c15b070",
+      "tasks.md": "7c37b21d96224c78e640be2d1e2c8a3fbfc6a2b24a7556b8f378a4d1319e93ab",
+      "implementation-summary.md": "b1cd8e5053888067fa893b598859e2ada89d3811d0876292e9962bfa76d4ce0a"
     },
     "last_active_child_id": null,
     "last_active_at": null

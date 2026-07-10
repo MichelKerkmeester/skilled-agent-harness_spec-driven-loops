@@ -1,0 +1,330 @@
+---
+title: "Deep Review Strategy: Doc-conformance + reality-alignment audit of cli-external + mcp-tooling hub docs (feature catalogs, testing playbooks, references, assets, READMEs, SKILLs) against sk-doc create-skill templates and creation standards"
+description: "Review strategy for the sk-prompt parent-hub merge program + post-merge benchmark work."
+---
+
+# Deep Review Strategy
+
+## Review Charter
+
+- **Target**: `Doc-conformance + reality-alignment audit of cli-external + mcp-tooling hub docs (feature catalogs, testing playbooks, references, assets, READMEs, SKILLs) against sk-doc create-skill templates and creation standards` (doc-tree)
+- **Dimensions**: sk-doc-conformance, reality-alignment
+- **Max Iterations**: 10
+- **Convergence Threshold**: 0.1 (telemetry only — stop_policy=max-iterations)
+- **Stop Policy**: max-iterations
+
+## Scope Files
+
+- `.opencode/skills/cli-external/README.md`
+- `.opencode/skills/cli-external/SKILL.md`
+- `.opencode/skills/cli-external/cli-claude-code/README.md`
+- `.opencode/skills/cli-external/cli-claude-code/SKILL.md`
+- `.opencode/skills/cli-external/cli-opencode/README.md`
+- `.opencode/skills/cli-external/cli-opencode/SKILL.md`
+- `.opencode/skills/mcp-tooling/README.md`
+- `.opencode/skills/mcp-tooling/SKILL.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/README.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/examples/README.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/README.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/SKILL.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/examples/README.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-cli/README.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/README.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/SKILL.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/mcp-servers/figma-cli/README.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/mcp-servers/figma-mcp/README.md`
+- `.opencode/skills/cli-external/cli-claude-code/references/agent_delegation.md`
+- `.opencode/skills/cli-external/cli-claude-code/references/claude_tools.md`
+- `.opencode/skills/cli-external/cli-claude-code/references/cli_reference.md`
+- `.opencode/skills/cli-external/cli-claude-code/references/integration_patterns.md`
+- `.opencode/skills/cli-external/cli-opencode/references/agent_delegation.md`
+- `.opencode/skills/cli-external/cli-opencode/references/cli_reference.md`
+- `.opencode/skills/cli-external/cli-opencode/references/context-budget.md`
+- `.opencode/skills/cli-external/cli-opencode/references/destructive_scope_violations.md`
+- `.opencode/skills/cli-external/cli-opencode/references/integration_patterns.md`
+- `.opencode/skills/cli-external/cli-opencode/references/opencode_tools.md`
+- `.opencode/skills/cli-external/cli-opencode/references/permissions-matrix.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/cdp_patterns.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/session_management.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/references/cupt_commands.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/references/mcp_tools.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/references/figma_cli_reference.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/references/mcp_wiring.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/references/tool_surface.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/references/troubleshooting.md`
+- `.opencode/skills/cli-external/cli-claude-code/assets/prompt_quality_card.md`
+- `.opencode/skills/cli-external/cli-claude-code/assets/prompt_templates.md`
+- `.opencode/skills/cli-external/cli-opencode/assets/prompt_quality_card.md`
+- `.opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/assets/env_template.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/assets/utcp_figma_manual.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/default-model-selection-sonnet.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/output-format-text-vs-json.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/01--cli-invocation/stream-json-incremental-output.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/02--permission-modes/accept-edits-auto-approve-writes-sandboxed.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/02--permission-modes/bypass-permissions-guard-rail-sandboxed.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/02--permission-modes/plan-mode-read-only-enforcement.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/03--reasoning-and-models/haiku-fast-classification.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/03--reasoning-and-models/opus-extended-thinking.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/03--reasoning-and-models/sonnet-balanced-default.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/context-agent-codebase-exploration.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/debug-agent-fresh-perspective-root-cause.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/handover-agent-context-transfer.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy-planning.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/orchestrate-agent-multi-step.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/research-agent-investigation.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/review-agent-security-audit.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/04--agent-routing/speckit-agent-spec-folder.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/05--session-continuity/continue-previous-conversation.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/05--session-continuity/resume-specific-session-by-id.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/06--integration-patterns/generate-review-fix-cycle.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/06--integration-patterns/structured-output-with-json-schema.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/07--prompt-templates/clear-quality-card-5-check.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/07--prompt-templates/prompt-template-usage-from-assets.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/08--cost-and-background/background-execution.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/08--cost-and-background/max-budget-usd-cap.md`
+- `.opencode/skills/cli-external/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/01--cli-invocation/dir-flag-working-directory.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/01--cli-invocation/file-attachment-via-f-flag.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/01--cli-invocation/format-default-vs-json.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/01--cli-invocation/pure-and-print-logs.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/02--external-dispatch/from-claude-code.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/02--external-dispatch/self-invocation-refusal.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/03--multi-provider/deepseek-direct-api.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/03--multi-provider/variant-levels-comparison.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/04--agent-routing/context-leaf-agent.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/04--agent-routing/deep-research-agent-iterations.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/04--agent-routing/deep-review-agent-audit.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/04--agent-routing/general-agent-default.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/04--agent-routing/orchestrate-agent-multi-agent.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/04--agent-routing/review-agent-security-audit.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/05--session-continuity/continue-last-session.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/05--session-continuity/fork-and-share.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/05--session-continuity/resume-by-session-id.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/06--integration-patterns/memory-epilogue-handback.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/clear-quality-card.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/minimax-design-context-manifest.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/template-applied-to-real-dispatch.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/07--prompt-templates/templates-inventory.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/08--parallel-detached/ablation-suite.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/08--parallel-detached/parallel-detached-session.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/08--parallel-detached/worker-farm-loop.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/attach-remote-server.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/cross-repo-dispatch.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/self-invocation-guard-nested.md`
+- `.opencode/skills/cli-external/cli-opencode/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/cli-external/manual_testing_playbook/01--hub-routing/001-opencode-full-runtime-dispatch.md`
+- `.opencode/skills/cli-external/manual_testing_playbook/01--hub-routing/002-claude-code-second-opinion.md`
+- `.opencode/skills/cli-external/manual_testing_playbook/01--hub-routing/003-ambiguous-defer.md`
+- `.opencode/skills/cli-external/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/001-chrome-devtools-browser-debug.md`
+- `.opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/002-clickup-task-management.md`
+- `.opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/003-figma-transport.md`
+- `.opencode/skills/mcp-tooling/manual_testing_playbook/01--hub-routing/004-ambiguous-defer.md`
+- `.opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/install-version.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/session-start.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/session-stop.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/status-json.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/02--protocol-discovery/describe-page-domain.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/02--protocol-discovery/list-cdp-domains.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/02--protocol-discovery/search-cdp-method.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/03--dom-and-screenshot/eval-javascript.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/03--dom-and-screenshot/query-selector.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/03--dom-and-screenshot/screenshot-capture.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/04--console-and-network/console-list.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/04--console-and-network/cookies-retrieval.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/04--console-and-network/har-export.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/chrome-devtools-1-navigate.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/close-and-select-page.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/dual-instance-parallel.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/multi-tab-same-instance.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/page-context-isolation.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/cleanup-leak.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/dead-session.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/invalid-url.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/missing-browser.md`
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/01--cupt-lifecycle/config-show.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/01--cupt-lifecycle/install-version.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/01--cupt-lifecycle/session-auth.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/01--cupt-lifecycle/status-json.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/02--task-operations/done-with-note.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/02--task-operations/list-today.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/02--task-operations/show-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/02--task-operations/statuses-dry-run.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/03--time-and-notes/note-and-notes.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/03--time-and-notes/time-add-manual.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/03--time-and-notes/time-start-stop.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/04--mcp-advanced/create-document.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/04--mcp-advanced/manage-goals.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/05--recovery-and-failure/empty-queue.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/05--recovery-and-failure/missing-auth.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/05--recovery-and-failure/status-error.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/06--cupt-advanced-listing/cap-results.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/06--cupt-advanced-listing/exclude-tag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/06--cupt-advanced-listing/stacked-filters.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/06--cupt-advanced-listing/verbose.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/07--cupt-offline-and-cache/attachments.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/07--cupt-offline-and-cache/clear-cache.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/07--cupt-offline-and-cache/prefetch-offline.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/08--mcp-task-crud/bulk-create.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/08--mcp-task-crud/create-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/08--mcp-task-crud/delete-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/08--mcp-task-crud/get-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/08--mcp-task-crud/get-workspace.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/08--mcp-task-crud/manage-comments.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/08--mcp-task-crud/search-tasks.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/08--mcp-task-crud/update-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/09--mcp-documents-goals/create-document.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/09--mcp-documents-goals/document-pages.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/09--mcp-documents-goals/get-document.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/09--mcp-documents-goals/manage-goals.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/10--mcp-bulk-and-structure/checklist-lifecycle.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/10--mcp-bulk-and-structure/create-webhook.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/10--mcp-bulk-and-structure/custom-field.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/10--mcp-bulk-and-structure/manage-lists.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/01--detection-setup/binary-detection.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/01--detection-setup/figma-desktop-required.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/01--detection-setup/safe-connect.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/02--daemon-health/daemon-status-diagnose.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/03--read-only/read-only-export.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/03--read-only/read-only-inspect.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/04--safety-gate/destructive-verb-refused.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/05--optional-mcp/framelink-discovery.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/manual_testing_playbook/manual_testing_playbook.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/01--cupt-authentication/auth-status.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/01--cupt-authentication/clear-cache.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/01--cupt-authentication/direct-token.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/01--cupt-authentication/interactive-auth.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/01--cupt-authentication/list-default.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/01--cupt-authentication/logout.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/01--cupt-authentication/show-config.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/01--cupt-authentication/workspace-default.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/all-tasks.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/cap-results.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/exclude-tag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-overdue.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-tag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-team.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-today.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-week.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/json-output.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/list-assigned.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/mine-only.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/offline.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/stacked-filters.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/02--cupt-task-listing/verbose.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/03--cupt-task-details/show-notes.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/03--cupt-task-details/show-offline.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/03--cupt-task-details/show-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/03--cupt-task-details/status-by-list.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/03--cupt-task-details/status-schema.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/03--cupt-task-details/task-context.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/04--cupt-task-completion/auto-note.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/04--cupt-task-completion/complete-with-note.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/04--cupt-task-completion/dry-run.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/04--cupt-task-completion/mark-complete.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/05--cupt-notes-comments/add-comment.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/05--cupt-notes-comments/list-comments.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/06--cupt-time-tracking/log-manual.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/06--cupt-time-tracking/start-timer.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/06--cupt-time-tracking/stop-timer.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/06--cupt-time-tracking/timer-status.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/07--cupt-tag-management/add-tag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/07--cupt-tag-management/remove-tag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/08--cupt-attachments/download-file.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/08--cupt-attachments/list-attachments.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/08--cupt-attachments/upload-file.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/09--cupt-workspace/list-teams.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/09--cupt-workspace/prefetch.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/09--cupt-workspace/task-summary.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/10--cupt-global-flags/debug-flag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/10--cupt-global-flags/json-flag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/10--cupt-global-flags/offline-flag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/10--cupt-global-flags/version-flag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/11--mcp-high-priority/create-bulk-tasks.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/11--mcp-high-priority/create-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/11--mcp-high-priority/delete-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/11--mcp-high-priority/get-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/11--mcp-high-priority/get-workspace.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/11--mcp-high-priority/manage-comments.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/11--mcp-high-priority/search-tasks.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/11--mcp-high-priority/update-task.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/add-tag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/create-document.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/create-subtask.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/create-task-link.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/custom-fields.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/get-document.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/get-views.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/manage-folders.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/manage-goals.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/manage-lists.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/manage-spaces.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/multi-list.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/remove-tag.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/space-tags.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/task-attachments.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/task-dependencies.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/time-tracking.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/update-bulk-tasks.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/12--mcp-medium-priority/update-document.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/audit-logs.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/create-checklist-item.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/create-checklist.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/create-doc-page.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/delete-checklist-item.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/delete-checklist.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/feedback.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/get-custom-fields.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/get-dependencies.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/get-doc-pages.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/manage-chat.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/manage-guests.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/manage-webhooks.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/set-custom-field.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/update-checklist-item.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/update-checklist.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/update-doc-page.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/use-template.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/13--mcp-low-priority/user-groups.md`
+- `.opencode/skills/mcp-tooling/mcp-click-up/feature_catalog/FEATURE_CATALOG.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/feature_catalog/01--connect-and-daemon/connect-and-daemon.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/feature_catalog/02--inspect/inspect.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/feature_catalog/03--design-system-extract-and-import/design-system-extract-and-import.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/feature_catalog/04--render-and-create/render-and-create.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/feature_catalog/05--tokens-and-variables/tokens-and-variables.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/feature_catalog/06--a11y-and-analysis/a11y-and-analysis.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/feature_catalog/07--export/export.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/feature_catalog/08--optional-mcp/optional-mcp-context.md`
+- `.opencode/skills/mcp-tooling/mcp-figma/feature_catalog/feature_catalog.md`
+
+## Cross-Reference Targets
+
+- spec_paths: all 9 spec folders (parent + 001-008) under `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review`
+- code_paths: `.opencode/skills/sk-prompt/**`
+- test_paths: `.opencode/skills/sk-prompt/*/manual_testing_playbook/**`, `.opencode/skills/sk-prompt/benchmark/**`
+
+## Dimension Queue
+
+1. correctness
+2. security
+3. traceability
+4. maintainability
+
+Iterations beyond dimension count re-cycle the queue for deeper passes (stop_policy=max-iterations mandates broadening rather than stopping).
+
+## Known Context
+
+resource-map.md not present; skipping coverage gate.

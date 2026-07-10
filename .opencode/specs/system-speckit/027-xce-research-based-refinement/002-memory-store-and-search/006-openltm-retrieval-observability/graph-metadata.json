@@ -25,9 +25,7 @@
       "tasks core"
     ],
     "key_topics": [
-      "027",
       "phase",
-      "008",
       "openltm",
       "retrieval",
       "observability",
@@ -36,7 +34,9 @@
       "inline",
       "contradiction",
       "supersession",
-      "warning"
+      "warning",
+      "vector",
+      "degradation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Memory retrieval is hard to inspect",
     "created_at": "2026-06-08T15:10:29Z",
-    "last_save_at": "2026-07-02T05:31:13.684Z",
+    "last_save_at": "2026-07-09T10:02:55.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

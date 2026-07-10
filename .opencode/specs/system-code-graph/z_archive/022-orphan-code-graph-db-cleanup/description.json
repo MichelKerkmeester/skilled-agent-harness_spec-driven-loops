@@ -4,7 +4,6 @@
   "description": "Packet 014 extracted code-graph ownership to `.opencode/skills/system-code-graph/`, but stale code-graph SQLite files and compiled extracted code",
   "keywords": [
     "packet",
-    "014",
     "extracted",
     "code-graph",
     "ownership",
@@ -17,7 +16,7 @@
     "compiled",
     "code"
   ],
-  "lastUpdated": "2026-07-07T16:12:52.281Z",
+  "lastUpdated": "2026-07-09T10:02:47.423Z",
   "specId": "022",
   "folderSlug": "orphan-code-graph-db-cleanup",
   "parentChain": [

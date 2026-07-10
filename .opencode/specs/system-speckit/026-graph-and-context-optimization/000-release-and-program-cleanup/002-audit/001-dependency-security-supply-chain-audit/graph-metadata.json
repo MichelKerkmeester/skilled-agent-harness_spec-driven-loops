@@ -25,7 +25,6 @@
       "security sweep dispatch tasks"
     ],
     "key_topics": [
-      "015",
       "global",
       "security",
       "sweep",
@@ -36,7 +35,8 @@
       "supply-chain",
       "check",
       "public",
-      "repo"
+      "repo",
+      "dead-man"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -48,7 +48,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".claude/mcp.json",
-      ".codex/config.toml",
       "research/prompts/iteration-001.md",
       "research/prompts/iteration-002.md",
       "research/prompts/iteration-003.md",
@@ -60,7 +59,8 @@
       "research/prompts/iteration-009.md",
       "research/prompts/iteration-010.md",
       "research/prompts/iteration-011.md",
-      "research/prompts/iteration-012.md"
+      "research/prompts/iteration-012.md",
+      "research/prompts/iteration-013.md"
     ],
     "entities": [
       {
@@ -103,12 +103,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -184,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "iteration-013.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-013.md",
+        "source": "derived"
+      },
+      {
         "name": "Global Security Sweep",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 2026-05-15 TanStack Mini Shai-Hulud disclosure is a watershed npm supply-chain event: first documented npm worm shipping with valid SLSA provenance signatures",
     "created_at": "2026-05-15T18:27:58.266Z",
-    "last_save_at": "2026-07-02T05:31:10.505Z",
+    "last_save_at": "2026-07-09T10:02:50.612Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -14,13 +14,12 @@
     "blocked",
     "upstream",
     "phase",
-    "005",
     "packet",
     "original",
     "acceptance-gate",
     "smoke"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.459Z",
+  "lastUpdated": "2026-07-09T10:02:47.825Z",
   "specId": "002",
   "folderSlug": "gpt-claude-benchmark",
   "parentChain": [

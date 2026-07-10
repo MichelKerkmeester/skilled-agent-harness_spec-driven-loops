@@ -1,9 +1,8 @@
 {
   "specFolder": "sk-code/z_archive/007-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
-  "description": "Packets 1 and 2 created motion.dev playbook coverage and a populated cross-stack `motiondev/` reference package, but existing Webflow docs still menti",
+  "description": "Packets 1 and 2 created motion.dev playbook coverage and a populated cross-stack `motiondev/` reference package, but existing Webflow docs still",
   "keywords": [
     "packets",
-    "created",
     "motion",
     "dev",
     "playbook",
@@ -16,10 +15,9 @@
     "existing",
     "webflow",
     "docs",
-    "still",
-    "menti"
+    "still"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.610Z",
+  "lastUpdated": "2026-07-09T10:02:44.293Z",
   "specId": "003",
   "folderSlug": "cross-ref-metadata-sync",
   "parentChain": [

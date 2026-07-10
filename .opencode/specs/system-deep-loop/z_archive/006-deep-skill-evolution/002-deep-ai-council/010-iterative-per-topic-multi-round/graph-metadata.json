@@ -16,8 +16,6 @@
       "129 003 per-topic multi-round orchestration"
     ],
     "key_topics": [
-      "129",
-      "003",
       "per-topic",
       "multi-round",
       "orchestration",
@@ -27,7 +25,9 @@
       "verdict-delta",
       "convergence",
       "max-round",
-      "handling"
+      "handling",
+      "feature",
+      "specification"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Implement a topic-local multi-round loop with verdict-delta convergence and max-round handling",
     "created_at": "2026-05-23T07:53:20Z",
-    "last_save_at": "2026-07-08T13:43:53.322Z",
+    "last_save_at": "2026-07-09T10:02:48.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

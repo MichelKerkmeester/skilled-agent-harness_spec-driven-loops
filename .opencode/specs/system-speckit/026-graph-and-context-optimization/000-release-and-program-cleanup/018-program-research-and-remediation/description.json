@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation",
-  "description": "The 026 graph-and-context-optimization program closed without a retrospective, and a deep review suggested it shipped mechanisms while deferring the m",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation",
+  "description": "The 026 graph-and-context-optimization program closed without a retrospective, and a deep review suggested it shipped mechanisms while deferring the",
   "keywords": [
-    "026",
     "graph-and-context-optimization",
     "program",
     "closed",
@@ -16,11 +15,11 @@
     "while",
     "deferring"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.095Z",
+  "lastUpdated": "2026-07-09T10:02:51.775Z",
   "specId": "018",
   "folderSlug": "program-research-and-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup"
   ],

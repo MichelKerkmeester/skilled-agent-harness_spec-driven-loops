@@ -4,9 +4,7 @@
   "description": "The relocation (004) and fold (005) moved or deleted files that external code and docs still referenced by their old paths",
   "keywords": [
     "relocation",
-    "004",
     "fold",
-    "005",
     "moved",
     "deleted",
     "files",
@@ -18,7 +16,7 @@
     "old",
     "paths"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.269Z",
+  "lastUpdated": "2026-07-09T10:02:44.138Z",
   "specId": "007",
   "folderSlug": "advisor-and-integration",
   "parentChain": [

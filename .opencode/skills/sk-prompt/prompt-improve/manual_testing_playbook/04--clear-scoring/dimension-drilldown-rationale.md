@@ -46,7 +46,7 @@ Score my data-validation prompt; verify every CLEAR dimension includes a numeric
 
 1. `sk-prompt: Score my data validation prompt and tell me WHY each CLEAR dimension got the score it did.`
 2. `agent: @prompt-improver raw_task="Score and improve a data-validation prompt with per-dimension CLEAR rationale." task_type=analyze target_cli=opencode complexity_hint=7 constraints="Each CLEAR dimension must include a one-line reason."`
-3. `bash: rg 'Per-Dimension Scoring Rubrics|Scoring Criteria|CLEAR Dimensions' .opencode/skills/sk-prompt/references/patterns_evaluation.md`
+3. `bash: rg 'Per-Dimension Scoring Rubrics|Scoring Criteria|CLEAR Dimensions' .opencode/skills/sk-prompt/prompt-improve/references/patterns_evaluation.md`
 
 ### Expected
 

@@ -25,9 +25,6 @@
       "016/007/003 implementation summary"
     ],
     "key_topics": [
-      "016",
-      "007",
-      "003",
       "4-candidate",
       "re-baseline",
       "corrected",
@@ -36,7 +33,10 @@
       "post",
       "install-hygiene",
       "cocoindex",
-      "default"
+      "default",
+      "re-evaluation",
+      "rerank-firing",
+      "baseline"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,8 +44,6 @@
       "decision-record.md",
       "pre-confirmation-margin-analysis.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/references/benchmark_creation.md",
-      ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -68,18 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/benchmark_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark_report_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "ADR-001",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Scope changed 2026-05-18 evening. Original plan: corrected single-run or later 018 bge-code-v1-only confirmation. Replaced with: full 4-candidate re-baseline against the corrected pipeline (pipx editable + harness CCC-pinned + rerank actually firing per 016/005/005 hygiene fix). The May 18 morning 11/18 = 61.1% baseline was invalidated — that bench ran with the reranker module missing from pipx. Re-run all 4 candidates (jina-code, gemma, nomic-CodeRankEmbed, bge-code-v1) end-to-end; produce new ranking; promote (or hold) based on rigorous comparison.",
     "created_at": "2026-05-18T16:52:17.343Z",
-    "last_save_at": "2026-07-02T05:31:12.124Z",
+    "last_save_at": "2026-07-09T10:02:53.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

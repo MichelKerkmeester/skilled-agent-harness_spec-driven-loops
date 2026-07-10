@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/005-skill-doc-hygiene",
   "description": "The routing and identity refactors left the deep-loop skill docs describing stale behavior",
   "keywords": [
@@ -13,7 +14,7 @@
     "stale",
     "behavior"
   ],
-  "lastUpdated": "2026-07-04T19:10:59.264Z",
+  "lastUpdated": "2026-07-05T13:38:01.252Z",
   "specId": "005",
   "folderSlug": "skill-doc-hygiene",
   "parentChain": [
@@ -21,6 +22,5 @@
     "031-deep-loop-gpt-reliability"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

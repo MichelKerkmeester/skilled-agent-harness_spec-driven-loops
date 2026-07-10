@@ -33,12 +33,12 @@
       "refinement",
       "research",
       "skill",
-      "026",
-      "009",
-      "015",
       "plan",
       "remediation",
-      "implementation"
+      "implementation",
+      "10-pr",
+      "roadmap",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The Code Graph system (AST-based structural indexer) and the Skill Advisor system (5-lane fusion scorer) each carry known limitations discovered piecemeal across prior packets",
     "created_at": "2026-04-24T00:00:00Z",
-    "last_save_at": "2026-07-07T16:18:33.795Z",
+    "last_save_at": "2026-07-09T10:02:46.907Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -25,11 +25,11 @@
       "never",
       "touched",
       "leaves",
-      "fix",
       "plan",
       "tasks",
       "cleanup",
-      "leaf"
+      "leaf",
+      "docs"
     ],
     "importance_tier": "medium",
     "status": "complete",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "12 leaf children under `.opencode/specs/system-deep-loop/030-deep-loop-improved/003-deep-loop-workflows/` (`001-anti-convergence-floor` through `012-push-wave-fanout`) each have a `plan.md` and `tasks.md` whose BODY content, not just frontmatter, is still unmodified scaffold-template placeholder prose (literal text like `[Component 1]: [Purpose]` and unchecked items literally reading `[Implement core feature 1]`)",
     "created_at": "2026-07-01T19:38:04.140Z",
-    "last_save_at": "2026-07-04T18:02:30.077Z",
+    "last_save_at": "2026-07-09T10:02:47.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:628dbcb5428a70b2995d01f58a720ec8c9a28a4e762429a597bf8d7aa64b5d4b",
+    "source_fingerprint": "sha256:2d51efc927365c32ed3c908628ad04eec3684eb81f5f9d74976f03c4efd4019d",
     "source_doc_hashes": {
-      "spec.md": "59493b49128cd43c51e059a318fd09ff3d7c43a3de80822581bf3d9123f01976",
-      "plan.md": "e0beaa35c10211a7e951b20f40441af23d5f57baaa3050eff7909273eff4a6a5",
-      "tasks.md": "72835a9ea52ae5fa343ef063b109b2ef28c885ee057ebd50c7b7b78ec68db1e5",
-      "implementation-summary.md": "cda2391fa3ea780f41e1bb2b05150befc1965582702159e8e5c6b78a271c5473"
+      "spec.md": "2b21f0713648850563345286aa7ce8728cdcac9a9e629887ca0bf81d11082198",
+      "plan.md": "83eac22005553ccaa5f620ffd81e6b763e05b3ff7c370d32bb54992326de6423",
+      "tasks.md": "b3ac0187782065683eb8f1f8f830663ad2105e6b91a98868fcdf32ee505ed29a",
+      "implementation-summary.md": "63f87355d02b11691fc52e68b39acfb54b0ad9dc5720b6cd8179e359d2cc2f37"
     },
     "last_active_child_id": null,
     "last_active_at": null

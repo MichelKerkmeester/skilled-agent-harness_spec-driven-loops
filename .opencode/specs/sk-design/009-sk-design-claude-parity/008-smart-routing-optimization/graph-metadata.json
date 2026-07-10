@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The sk-design Lane-C skill-benchmark harness recorded a `CONDITIONAL` verdict at aggregate `69/100` in both the frozen `benchmark/baseline/` run (21 scenarios, pre-Phase-002) and the Phase-005 `benchmark/after-009/` rerun (24 scenarios, post-Phase-005)",
     "created_at": "2026-07-06T04:34:34.389Z",
-    "last_save_at": "2026-07-06T06:56:34.313Z",
+    "last_save_at": "2026-07-09T10:02:44.472Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b925d11d6792815c82d0c736249f27898556ff67bbe8dd0761575e86e9a09125",
+    "source_fingerprint": "sha256:66a0ab9ead672ed69f095ec0fd445fb08ddc1c4582204ec3be68de308c821ddd",
     "source_doc_hashes": {
-      "spec.md": "3c0b3be45c0fc9a09d0d2dfd4e4b99be2ee3a472f22d41129a5c66135dc85ca5",
-      "plan.md": "7cad05c06fec5af3bb5426cc10d2dcbb7d54eba1a86bcb37796ff45a2e841ff0",
-      "tasks.md": "4ccb983476a09b15507ffbf686a1fdee60ac01308973047eaf7700931082e300",
-      "checklist.md": "50ebaef78fc2f895b3d418283a5c5c11ae38de9d4ccba9b029035860ca40c106",
+      "spec.md": "9ec1c01a0e6817036f459bf947172a84051d03266f49484b454d6b40ad3b1d03",
+      "plan.md": "fdcde2055a33d7e5d338e767b107862d7a91e32d9fa77f31c33f48332e3e252d",
+      "tasks.md": "a8398c291ca62e568597599516c3e386aeda1068a5112e61b6712bb68c052880",
+      "checklist.md": "bee0d3d2351c049677dc2d5166afdcb18ec685b8652eb9b4903f845f86de3eb8",
       "implementation-summary.md": "cef6437701844ca7d7f94c6b7a027aa2182d2b307329ffb012c96afaceef03bf"
     },
     "last_active_child_id": null,

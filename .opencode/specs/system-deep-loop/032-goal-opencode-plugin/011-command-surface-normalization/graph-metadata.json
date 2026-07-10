@@ -30,8 +30,8 @@
       "plan",
       "tasks",
       "phase",
-      "011",
-      "summary"
+      "summary",
+      "docs"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phase 003's docs mandated `.opencode/commands/goal.md`",
     "created_at": "2026-07-01T10:04:51Z",
-    "last_save_at": "2026-07-03T13:21:41.626Z",
+    "last_save_at": "2026-07-09T10:02:47.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b542e1c1a540e9713c85c17f697d426a6a360c90c74424735e9a8e95205ccdb",
+    "source_fingerprint": "sha256:3df9dc1b927ad417d5be7d7ff7879e687bc441dce65eba3f806a17d70e5b9549",
     "source_doc_hashes": {
-      "spec.md": "d9fc574f1b1cacfb02e3e6631139eee663bfd6f4138daff6db4b343c5c4e16fa",
-      "plan.md": "990e2a423e7f48a963e27e92d0b231fd08b8d99b3557045c78fb3657f5e40e45",
-      "tasks.md": "2a9c73a714948f5bcae6b069c1bf2a4b526f73742d8715cc9a2e8e316d24dfbe",
-      "implementation-summary.md": "bec2783cccd8787612eba0d15dbb1be8b18d137d077e27ad139bc478cdd7bbae"
+      "spec.md": "09751185c9ef65ee74219d3e74a237c5e523d29c7242866023626f5e519c1ff9",
+      "plan.md": "9af39cf2d15682ffab4c105b38cbd1733a6c3a1d791760eccdb1ab963ec48f32",
+      "tasks.md": "f52b10cd3d05ffcc078b51ae94c9bd163901b27b5b5c296fe26ecc8a85fb2921",
+      "implementation-summary.md": "a3976ff92048ae5cbaca4f585b2125ef4893a88835792f955d437d687e502d04"
     },
     "last_active_child_id": null,
     "last_active_at": null

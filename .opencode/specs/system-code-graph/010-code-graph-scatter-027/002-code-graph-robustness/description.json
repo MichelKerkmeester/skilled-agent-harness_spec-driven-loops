@@ -5,7 +5,6 @@
   "keywords": [
     "remediation",
     "sub-phase",
-    "027",
     "fresh",
     "regression",
     "deep-review",
@@ -15,7 +14,7 @@
     "task",
     "registry"
   ],
-  "lastUpdated": "2026-07-07T16:15:42.400Z",
+  "lastUpdated": "2026-07-09T10:02:47.289Z",
   "specId": "002",
   "folderSlug": "code-graph-robustness",
   "parentChain": [

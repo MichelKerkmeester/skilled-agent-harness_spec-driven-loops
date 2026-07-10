@@ -4,7 +4,6 @@
   "description": "Packet 071 stress-matrix covered 15 scenarios but exercised only 9 of sk-doc's 11 router intents",
   "keywords": [
     "packet",
-    "071",
     "stress-matrix",
     "covered",
     "scenarios",
@@ -14,7 +13,7 @@
     "router",
     "intents"
   ],
-  "lastUpdated": "2026-07-07T17:13:14.876Z",
+  "lastUpdated": "2026-07-09T10:02:44.935Z",
   "specId": "010",
   "folderSlug": "sk-doc-missing-router-intents-bullet-aware-matrix",
   "parentChain": [

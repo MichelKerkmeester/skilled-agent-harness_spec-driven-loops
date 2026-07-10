@@ -25,18 +25,18 @@
       "deep review remediation adr"
     ],
     "key_topics": [
-      "017-021",
       "remediation",
       "deep",
       "review",
-      "017",
-      "021",
       "search",
       "output",
       "intelligence",
       "plan",
       "tasks",
-      "reindex"
+      "reindex",
+      "maintenance",
+      "checklist",
+      "decisions"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 027/002 phases 017-021 shipped working, tested code, but the 50-pass review surfaced a set of confirmed residual issues: one bounded shell-exposure P1 in the `/memory:search` command contract, several maintainability/observability/test-debt P2s in the search and reindex/maintenance code, and pervasive spec-folder doc drift where canonical docs still describe scaffold/planned state while the implementation-summaries record completed work",
     "created_at": "2026-06-17T20:05:00.777Z",
-    "last_save_at": "2026-07-02T05:31:14.054Z",
+    "last_save_at": "2026-07-09T10:02:55.893Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

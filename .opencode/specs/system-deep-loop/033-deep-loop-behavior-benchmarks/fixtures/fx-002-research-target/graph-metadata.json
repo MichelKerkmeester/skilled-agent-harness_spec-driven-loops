@@ -3,6 +3,7 @@
   "packet_id": "system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target",
   "spec_folder": "system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-002-research-target",
   "parent_id": "system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,40 +15,203 @@
       "url slug utility",
       "unicode slug research fixture",
       "deep research behavior benchmark",
+      "url slug plan",
       "research fixture plan",
-      "slugify implementation"
+      "slugify implementation",
+      "url slug tasks",
+      "research fixture tasks",
+      "slugify tasks",
+      "url slug implementation summary",
+      "research fixture summary",
+      "slugify summary"
     ],
     "key_topics": [
       "url",
       "slug",
+      "utility",
       "unicode",
       "research",
       "fixture",
+      "deep",
+      "behavior",
+      "benchmark",
+      "plan",
       "slugify",
-      "benchmark"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "src/slugify.js",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "src/slugify.js"
+      "implementation-summary.md"
     ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "slugify.js",
+        "kind": "code",
+        "path": "src/slugify.js",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Slug Utility",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Convert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Behavior-benchmark research runs need a deterministic toy target with a small,",
+    "created_at": "2026-07-03T00:00:00.000Z",
+    "last_save_at": "2026-07-09T10:02:48.040Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Behavior-benchmark research runs need a deterministic toy target with a small,",
-    "created_at": "2026-07-03T00:00:00.000Z",
-    "last_save_at": "2026-07-03T00:00:00.000Z",
-    "save_lineage": "graph_only",
-    "last_accessed_at": null,
-    "source_fingerprint": "sha256:f8b06fdf75949ffbda4c2668ee4966d0165e0af2cb1953e342df612b35dc23d0",
+    "source_fingerprint": "sha256:0028188c16627163859ae56ccb973728bdf38513eecd61d95d67b1b837390808",
+    "source_doc_hashes": {
+      "spec.md": "e56f2613a8e6e46912d3ca325e7b248f23ffd0c05ba659e6e080f733e339edae",
+      "plan.md": "ef26d0dc1246f8c7db00df58d52c164c3a78179b4a89558bd0ac8a3748e868a7",
+      "tasks.md": "4049b5a7075865decef8bbcae442f0bfd8aa3d3ea39a92d6e0ee8b3b855e396f",
+      "implementation-summary.md": "b4ef378baeb24b07a5e46f070e554b15d78135e857d1fb6276aca9c395c1032f"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -41,7 +41,7 @@
       "parity"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/commands/memory/search.md",
       ".opencode/commands/memory/assets/search_presentation.txt",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The same retrieval result rendered differently per model: DeepSeek showed `confidence 0.36` while Kimi showed `similarity 0.68` for the identical row, so two surfaces could not be compared or diffed",
     "created_at": "2026-06-17T19:57:25.108Z",
-    "last_save_at": "2026-07-02T05:31:13.740Z",
+    "last_save_at": "2026-07-09T10:02:55.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

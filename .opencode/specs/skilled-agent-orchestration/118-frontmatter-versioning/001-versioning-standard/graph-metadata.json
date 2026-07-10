@@ -34,14 +34,13 @@
       "required",
       "derivation",
       "spec",
-      "create",
       "command",
-      "emit"
+      "emit",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
       ".opencode/skills/sk-doc/scripts/quick_validate.py",
       ".opencode/skills/sk-doc/scripts/package_skill.py",
       "spec.md",
@@ -50,12 +49,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "frontmatter_templates.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/frontmatter_templates.md",
-        "source": "derived"
-      },
       {
         "name": "quick_validate.py",
         "kind": "file",
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc owns the frontmatter standard, templates, validators, and `create:` generators, but `version` is only documented as an optional SKILL.md field",
     "created_at": "2026-06-23T07:33:08Z",
-    "last_save_at": "2026-07-02T05:43:32.291Z",
+    "last_save_at": "2026-07-09T10:02:45.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

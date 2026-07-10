@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The sk-doc HVR rules (`../../../skill/sk-doc/references/global/hvrrules.md`) cover word-level and punctuation-level AI tells but lack structural patterns, section-level guidance and scoring calibration learned from writing production READMEs",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-07-07T17:12:11.023Z",
+    "last_save_at": "2026-07-09T10:02:44.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ceb99104daf099a0271b01a3c27930c59610887e58bd2a565de111cff7dbfd2b",
+    "source_fingerprint": "sha256:f9c9bea8f5e570c305c97d403ea68618936bee980be25f97328e26e5f2641677",
     "source_doc_hashes": {
-      "spec.md": "0cb9010081578a4f066e746fb40d2524d4c8058a7cf6e7995c081399d3e1e55d",
-      "plan.md": "9176688856293e1dd12433a8d2195bcc0cac546dcd5ff4c767b3624ac077e52c",
-      "tasks.md": "b018b2d5fbb844d517b293d0baae3c4593a276fd13ccab3cbbcdef4e71525e40",
-      "checklist.md": "d6a0766cc519bab773fcab073be4e64642df0a6008a103c23d20b67be0835390",
-      "implementation-summary.md": "410e37c673ef4232fcf22cb2ca91ba0cd70a310799e6b78db60fb21b9a60fb90"
+      "spec.md": "c13dea58d29f5bc87735cd200b923f8bae79de1e29f49dfcc6cd12172717eb67",
+      "plan.md": "3ab368bc9f6a082454bd5151c548077d9fdf5ed1fd4a1b3a94618184ec1097ca",
+      "tasks.md": "1c265b0fc22a3d1ae4b3fa4b43b0d7670e3a60ec0fc16e5f2ad8069440a049db",
+      "checklist.md": "0df4f8253337f60342e6e44365e199409ca7c78a6e1cfe855aa2761206cf408a",
+      "implementation-summary.md": "98a7183918e4a3b99eeffda2f35ad0fce1d8538d9b007d2bb7f2432000f64444"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -3,7 +3,6 @@
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/003-doc-evolution-spec-and-resource-map",
   "description": "The 008 cluster improves documentation across five mature deep- skills, but a sibling cluster (`000-release-cleanup`) already shipped uneven per-skill",
   "keywords": [
-    "008",
     "cluster",
     "improves",
     "documentation",
@@ -19,7 +18,7 @@
     "uneven",
     "per-skill"
   ],
-  "lastUpdated": "2026-07-08T13:07:09.519Z",
+  "lastUpdated": "2026-07-09T10:02:48.850Z",
   "specId": "003",
   "folderSlug": "doc-evolution-spec-and-resource-map",
   "parentChain": [

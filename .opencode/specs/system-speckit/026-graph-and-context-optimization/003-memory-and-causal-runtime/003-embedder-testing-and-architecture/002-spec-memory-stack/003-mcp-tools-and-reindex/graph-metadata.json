@@ -19,8 +19,6 @@
       "016/003 summary"
     ],
     "key_topics": [
-      "016",
-      "003",
       "embedder",
       "mcp",
       "tools",
@@ -30,7 +28,9 @@
       "plan",
       "tasks",
       "summary",
-      "phase"
+      "phase",
+      "expose",
+      "background"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phase 3 of 016. Expose embedder_list / embedder_set / embedder_status MCP tools + background re-index orchestrator. User-facing surface.",
     "created_at": "2026-05-17T06:35:17.961Z",
-    "last_save_at": "2026-07-02T05:31:11.740Z",
+    "last_save_at": "2026-07-09T10:02:52.626Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/023-ablation-benchmark-integrity",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/023-ablation-benchmark-integrity",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/023-ablation-benchmark-integrity",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/023-ablation-benchmark-integrity",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,8 +35,9 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
       ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
@@ -48,17 +49,22 @@
       ".opencode/skills/system-spec-kit/mcp_server/tests/handler-eval-reporting.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts",
       ".claude/mcp.json",
-      ".codex/config.toml",
-      ".agents/settings.json",
       "mcp_server/database/context-index.sqlite",
       "mcp_server/lib/eval/ablation-framework.ts",
       "mcp_server/lib/search/hybrid-search.ts",
       "scripts/evals/run-ablation.ts",
       "handlers/eval-reporting.ts",
       "scripts/evals/map-ground-truth-ids.ts",
-      "mcp_server/lib/eval/data/ground-truth.json"
+      "mcp_server/lib/eval/data/ground-truth.json",
+      "plan.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "context-index.sqlite",
         "kind": "file",
@@ -126,15 +132,9 @@
         "source": "derived"
       },
       {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".agents/settings.json",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The current ablation path can report invalid Recall@20 values because the benchmark still allows chunk-ID scoring on the CLI path, live token-budget and confidence truncation can cut results below `K=20`, and the active database may not match the parent-memory ID universe encoded in `ground-truth.json`",
     "created_at": "2026-04-12T09:02:50.312Z",
-    "last_save_at": "2026-06-23T03:50:00.393Z",
+    "last_save_at": "2026-07-09T10:02:58.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

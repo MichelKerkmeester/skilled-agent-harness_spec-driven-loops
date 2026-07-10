@@ -21,22 +21,19 @@
       "identity",
       "conflation",
       "f003",
-      "fix",
       "complete",
       "shared",
       "fan-out",
       "prompt",
       "builder",
-      "buildloopprompt"
+      "buildloopprompt",
+      "opencode"
     ],
     "importance_tier": "medium",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
       ".opencode/agents/deep-review.md",
-      ".opencode/agents/deep-context.md",
       ".opencode/agents/deep-research.md",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       ".opencode/specs/system-deep-loop/030-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation/spec.md",
       ".opencode/specs/system-deep-loop/030-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation/plan.md",
       ".opencode/specs/system-deep-loop/030-deep-loop-improved/011-followup-remediation/002-fanout-leaf-identity-conflation/tasks.md",
@@ -48,33 +45,15 @@
     ],
     "entities": [
       {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-review.md",
         "source": "derived"
       },
       {
-        "name": "deep-context.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-context.md",
-        "source": "derived"
-      },
-      {
         "name": "deep-research.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,11 +169,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shared fan-out prompt builder `buildLoopPrompt` in `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` (function spans roughly lines 863-945) tells the dispatched CLI subprocess \"You are a {agentName} agent running a fan-out lineage\" (around line 930, `agentName` set at line 870, e.g",
     "created_at": "2026-07-01T19:38:04.135Z",
-    "last_save_at": "2026-07-04T18:02:29.087Z",
+    "last_save_at": "2026-07-09T10:02:47.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3068d1ace487241eb7f68ef4a252ec8900e4b698932e56339b5f7d419d2e3b9",
+    "source_fingerprint": "sha256:b5605fba1c1863bc89ce355c7b25d957be92bcf4a7bdb9927150bfec0142a50d",
     "source_doc_hashes": {
-      "spec.md": "24544ec2e06dc39ac101133318b48dbbe377d5b1a447f00ded78134be475fe26",
-      "plan.md": "7ef72e8ffaa38c645ecd4c6e636f7187ed78663c44df2ca98365f78c5f4f1db4",
-      "tasks.md": "4b768845000438ca4c44f71d9e666b04ca2fab33c3904bb71692eca0c73fab45",
-      "implementation-summary.md": "61b260348aeaf536ee4b8bb684f884228ef6202d2e158de682fd4b46b7b6dce8"
+      "spec.md": "01b8a53c49e836aed0f019d2f90cb0d1ab2c3b866d0a731070ec4aa6636ba2f2",
+      "plan.md": "1d4efd9509124bcbcb1fb83345e99ce3ae538dc587158ae10b1bfbbde2f5af34",
+      "tasks.md": "350b72fcb1e3c983d14b7d3e8ba9f304164587ed148860a0cd5a1c623b6079bf",
+      "implementation-summary.md": "bad018801481071d740e7caa8da02949c787cc9b7999d9abea8826ce336ba078"
     },
     "last_active_child_id": null,
     "last_active_at": null

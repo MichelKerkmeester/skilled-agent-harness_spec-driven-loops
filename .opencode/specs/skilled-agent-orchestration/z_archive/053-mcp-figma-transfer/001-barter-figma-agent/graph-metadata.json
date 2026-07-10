@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The Figma MCP capability lives as a developer-grade skill (`mcp-figma`) inside the Public skill repo",
     "created_at": "2026-05-05T07:49:57Z",
-    "last_save_at": "2026-06-23T03:49:49.596Z",
+    "last_save_at": "2026-07-09T10:02:45.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c0010b9f50de2b2c6d95c99ff05db4c1afd398975a2e9c6e384ccbc46d8ba65",
+    "source_fingerprint": "sha256:e94fe93db8607da8662303cffc42ea611a5fb3a770f00ab693da41cd79b40a56",
     "source_doc_hashes": {
-      "spec.md": "c2e38672c311b3ec30793280a5a5c5561e11010fba6dff0b542b0f99d49305af",
-      "plan.md": "82deba174ed727152392a408f6d069efd5a3c602265e3e5a0cfffbd64ec1df16",
-      "tasks.md": "e988f13edfc5649301b1a08c4416d5ad5e44c66a53e20bcf6f5e494747a14d2c",
-      "checklist.md": "be56b9defb260056935ffbd30f88d90698b5ddf3ece798ca26f4d5b2dc333aca",
-      "decision-record.md": "b3b6b5e2635d5c26626260879f1730714c5ff67710fe3aadedcddf3ec8124afc",
-      "implementation-summary.md": "c93b1a4a262956c8e6b8cdfdd50395010caf0295b47ff2969ade05ad1bd3aa92"
+      "spec.md": "93a6c7dc9c9f2e805059ea2cf5a65ee2063829ee03bcdfe61d7d893fd089ee47",
+      "plan.md": "5716735327e3bead8fbb453630e1696e0e5f28351866ca8939cc7b3c54f589fd",
+      "tasks.md": "b9dd875ddb8ba67412f69376ef99919aaa94a59a1e8b439911203db2daa7993a",
+      "checklist.md": "d7631e41f16cac72aa4b51f5b0b84261977982294aee82dbaaaeccb54782dec7",
+      "decision-record.md": "efda5c710f130a53a6fa2b6e75d6dc87044447248ea5f8e8fc87afbe89e6fcbf",
+      "implementation-summary.md": "c809551551648b4512ca6530fa4f4c90347074694652600013da476c105298c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

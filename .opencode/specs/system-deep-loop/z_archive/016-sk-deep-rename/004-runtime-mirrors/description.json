@@ -3,7 +3,6 @@
   "description": "Phase 001 found runtime mirror files in `.claude`, `.codex`, and `.gemini` that still reference the old deep-loop skill names",
   "keywords": [
     "phase",
-    "001",
     "found",
     "runtime",
     "mirror",
@@ -18,7 +17,7 @@
     "skill",
     "names"
   ],
-  "lastUpdated": "2026-07-08T13:06:42.032Z",
+  "lastUpdated": "2026-07-09T10:02:49.263Z",
   "specId": "004",
   "folderSlug": "runtime-mirrors",
   "parentChain": [

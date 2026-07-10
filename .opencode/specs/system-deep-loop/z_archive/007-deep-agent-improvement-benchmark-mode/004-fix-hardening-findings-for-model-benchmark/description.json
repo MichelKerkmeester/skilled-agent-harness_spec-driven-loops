@@ -4,7 +4,6 @@
   "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark",
   "description": "The 122 deep review confirmed (post Opus-4.8 arbitration) 3 unique P1 correctness/security defects in the shipped model-benchmark mode — the",
   "keywords": [
-    "122",
     "deep",
     "review",
     "confirmed",
@@ -19,7 +18,7 @@
     "model-benchmark",
     "mode"
   ],
-  "lastUpdated": "2026-07-08T13:06:48.108Z",
+  "lastUpdated": "2026-07-09T10:02:48.954Z",
   "specId": "004",
   "folderSlug": "fix-hardening-findings-for-model-benchmark",
   "parentChain": [

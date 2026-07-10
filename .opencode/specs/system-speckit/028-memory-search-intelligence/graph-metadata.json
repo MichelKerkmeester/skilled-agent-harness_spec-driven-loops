@@ -77,10 +77,6 @@
       "mcp_server/benchmarks/README.md",
       "formatters/search-results.ts",
       "lib/eval/README.md",
-      "lib/search/README.md",
-      "mcp_server/README.md",
-      "research/deltas/iteration-009.jsonl",
-      "research/deltas/iteration-010.jsonl",
       ".opencode/specs/descriptions.json",
       "research/research.md",
       "handover.md"
@@ -114,18 +110,6 @@
         "name": "search-results.ts",
         "kind": "code",
         "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-009.jsonl",
-        "kind": "file",
-        "path": "research/deltas/iteration-009.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-010.jsonl",
-        "kind": "file",
-        "path": "research/deltas/iteration-010.jsonl",
         "source": "derived"
       },
       {
@@ -229,11 +213,23 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
+      },
+      {
+        "name": "Open Items",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Items Continuation",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, release cleanup, review remediation, data-quality generation, dark-flag graduation and surface-alignment work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-07-10T13:18:31.225Z",
+    "last_save_at": "2026-07-10T14:52:19.556Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -241,10 +237,10 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:b4998560edab983e078c3f079d36891603e79a13fd6c7d1cfd73dac5dc785d27",
+    "source_fingerprint": "sha256:ce492955348dc3ca18060944963b6519afe07e42a846cf8878b61aade9305491",
     "source_doc_hashes": {
       "spec.md": "d4199d6534f39cb6d4985d805111c16f1027e09b17ca7bf1045dbf2861de24fb",
-      "research/research.md": "534a044ff852cf46516be419c0aab3b6afe9c380ef6c288ddbdc25661bbdc120",
+      "research/research.md": "d175570f96fb2703dd9c977de819fe102b93c9c5670db07396a57ec94ae2b83d",
       "handover.md": "0aa19a3de52fdf7a8a977f07a95e469786ed0e55cd2ed977195b799de441c6fb"
     },
     "last_active_child_id": "system-speckit/028-memory-search-intelligence/021-graph-preservation-quality-benchmark",

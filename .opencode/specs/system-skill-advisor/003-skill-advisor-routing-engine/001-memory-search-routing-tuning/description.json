@@ -5,7 +5,6 @@
     "packet",
     "root",
     "active",
-    "026",
     "phase",
     "map",
     "identity",
@@ -17,14 +16,11 @@
     "child",
     "folders"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.481Z",
+  "lastUpdated": "2026-07-09T10:02:49.870Z",
   "specId": "001",
   "folderSlug": "memory-search-routing-tuning",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "003-skill-advisor-routing-engine"
   ],
   "memorySequence": 0,

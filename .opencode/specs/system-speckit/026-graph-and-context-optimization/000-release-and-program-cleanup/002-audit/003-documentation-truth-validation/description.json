@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/003-documentation-truth-validation",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/003-documentation-truth-validation",
   "description": "The 013 supplemental research found that several operator-facing docs describe automation more broadly than the implementation supports",
   "keywords": [
-    "013",
     "supplemental",
     "research",
     "found",
@@ -15,11 +14,11 @@
     "implementation",
     "supports"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.167Z",
+  "lastUpdated": "2026-07-09T10:02:50.666Z",
   "specId": "003",
   "folderSlug": "documentation-truth-validation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "002-audit"

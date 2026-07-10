@@ -20,7 +20,6 @@
       "sk-code README audit summary"
     ],
     "key_topics": [
-      "026",
       "sk-code",
       "audit",
       "code",
@@ -31,7 +30,8 @@
       "extraction",
       "implementation",
       "plan",
-      "summary"
+      "summary",
+      "19-skill"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The 19-skill tree contains many first-party code folders, but not every code-bearing folder has local README coverage",
     "created_at": "2026-05-15T11:40:19Z",
-    "last_save_at": "2026-07-02T05:31:11.181Z",
+    "last_save_at": "2026-07-09T10:02:49.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6109167fd1062ef9750d7da02f8876cdf4ab797fe5dad5d14fe809380f8864e0",
+    "source_fingerprint": "sha256:bc910e9b6dc0f7be58a9de221533b3d371de94411cd7ff1988a9f6d89f126c9b",
     "source_doc_hashes": {
-      "spec.md": "8be37f9f3807ba85e316e80036495a6516ea34f5b2b0b0edfef40549fbf892ad",
-      "plan.md": "87dbbb03a5d7861c27b192d32ccb3122f1896d841fd875caf65d912d19389a5d",
-      "tasks.md": "9a47643fc62506a2033074089eee5a5e66c73e18b67f1ec20699b1ee365e08c4",
-      "checklist.md": "975b2cb445e14b6d3c8d5c284b4979db78306860a4af43f51e0b1bdcbb3a292a",
-      "decision-record.md": "65b70a66d8b47699284bf83931e3cf2c41fca01ef215f9e36db41ab846317852",
-      "implementation-summary.md": "79fd11ba1f09c3242bc9ee518c3fb6daf9333aae92e698baa3d065b4a3937dd0"
+      "spec.md": "011ced07004b7f73664ba576adb31e0da8716bf0fa7d7da67c57d930c19fc0fc",
+      "plan.md": "a0c97f6995e4c32efc381a2bf735b9b4759ed56c0e38196aa14f05f349a66c99",
+      "tasks.md": "6d2014d65e0ec5f4f2ae532998fdbc3d8835240c711e9642228116be2762ef97",
+      "checklist.md": "9e27ad36629d519cc08921e3e38f315864555bde550ba4813715d12b941df661",
+      "decision-record.md": "67f71d8ae059d22eadf26de313ce27c6337441149b4bd075b8537b190d93b7b5",
+      "implementation-summary.md": "4cd390bb20dedeab5cd1a24984e6c35963a495d20525fe9dfe5d723a73ad1f7c"
     },
     "last_active_child_id": null,
     "last_active_at": null

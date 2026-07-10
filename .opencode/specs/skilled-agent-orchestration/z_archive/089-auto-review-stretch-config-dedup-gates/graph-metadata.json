@@ -22,7 +22,6 @@
       "packet 108 follow-on"
     ],
     "key_topics": [
-      "110",
       "auto-review",
       "stretch",
       "uplift",
@@ -32,19 +31,27 @@
       "marker",
       "dedup",
       "packet",
-      "108",
-      "follow-on"
+      "follow-on",
+      "shipped",
+      "quick-win"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
+      "001-mk-plugins-config-uplift/spec.md",
       "ai-council/council-report.md",
       ".opencode/plugins/mk-skill-advisor.js",
       ".opencode/plugins/mk-code-graph.js",
-      ".opencode/skills/sk-code-review/SKILL.md",
-      "spec.md"
+      "skilled-agent-orchestration/z_archive/086-opencode-auto-review-teachings-research/research/review-report.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "council-report.md",
         "kind": "doc",
@@ -64,15 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "review-report.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code-review/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "skilled-agent-orchestration/z_archive/086-opencode-auto-review-teachings-research/research/review-report.md",
         "source": "derived"
       },
       {
@@ -114,15 +115,15 @@
     ],
     "causal_summary": "Packet 108 shipped 5 quick-win teachings (H-1, H-2, H-3, H-4, H-6) from 106's auto-review research, but 6 stretch teachings remain unadopted: H-5 (3-tier config for mk- plugins), H-7 (marker-based dedup for deep-review multi-dimensional loops), M-1 (PR state dedup for sk-code-review), M-2 (optional min-evidence gate for sk-code-review), M-3 (mutation signature dedup for deep-agent-improvement), M-6 (async config init for mk- plugins)",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-06-23T03:49:50.366Z",
+    "last_save_at": "2026-07-09T10:02:45.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2ae7fdfce6942b45943e6e4d1beb3aa222baf4cb56a0a02e9822a9344bf8ec96",
+    "source_fingerprint": "sha256:c7e5853bece7be615fcff8b289468b0c191cd7dbb4348e6890df7e47575cb6fc",
     "source_doc_hashes": {
-      "spec.md": "dc7465a5abc32bac8e2ee8feb8b2edb72a04c1d813ba9d24005e5c8a1e1968fa"
+      "spec.md": "28dd6d792df6e245d63792aa50ab01cf9689313bd37e4b14d667b77ee2adc10e"
     },
     "last_active_child_id": null,
     "last_active_at": null

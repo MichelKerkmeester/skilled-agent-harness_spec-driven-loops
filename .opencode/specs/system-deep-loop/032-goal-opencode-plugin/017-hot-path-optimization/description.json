@@ -13,7 +13,6 @@
     "message",
     "appendgoalbrief",
     "mk-goal",
-    "1581-1596",
     "disk",
     "read",
     "plus",
@@ -21,7 +20,7 @@
     "json",
     "parse"
   ],
-  "lastUpdated": "2026-07-04T08:25:39.419Z",
+  "lastUpdated": "2026-07-09T10:02:47.966Z",
   "specId": "017",
   "folderSlug": "hot-path-optimization",
   "parentChain": [

@@ -5,7 +5,6 @@
   "keywords": [
     "phase",
     "deep-review",
-    "make",
     "dimension",
     "coverage",
     "evidence",
@@ -18,7 +17,7 @@
     "still",
     "leaving"
   ],
-  "lastUpdated": "2026-07-08T13:07:05.634Z",
+  "lastUpdated": "2026-07-09T10:02:48.689Z",
   "specId": "006",
   "folderSlug": "complexity-candidate-saturation-gates",
   "parentChain": [

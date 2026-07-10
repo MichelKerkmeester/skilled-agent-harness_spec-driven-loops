@@ -20,16 +20,16 @@
     "key_topics": [
       "deep-improvement",
       "rename",
-      "122",
       "phase",
-      "003",
       "deep-agent-improvement",
       "implementation",
       "summary",
       "results",
       "skill",
       "across",
-      "dir"
+      "dir",
+      "commands",
+      "agent"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -125,7 +125,7 @@
     ],
     "causal_summary": "Rename the deep-agent-improvement skill to deep-improvement across skill dir, SKILL.md, commands, agent + runtime mirrors, advisor graph, descriptions.json, and cross-references; zero dangling refs; green advisor rebuild.",
     "created_at": "2026-05-30T07:27:05.680Z",
-    "last_save_at": "2026-07-08T13:43:16.145Z",
+    "last_save_at": "2026-07-09T10:02:49.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -26,17 +26,17 @@
     ],
     "key_topics": [
       "wave",
-      "004",
       "transform",
       "verb",
-      "make",
       "tv-001",
       "tv-002",
       "dispatch",
       "bolder",
       "quieter",
       "distill",
-      "delight"
+      "delight",
+      "phase",
+      "sk-design"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 023's parent scope assigned this child wave 5 of the 55 real constituent dispatches: all 4 variants of `TV-001` (`make it` transform-verb prompts that should route to `interface`) plus the first variant of `TV-002` (`should it be` transform-verb prompts that should route to `audit`)",
     "created_at": "2026-07-07T15:12:22.642Z",
-    "last_save_at": "2026-07-07T15:13:38.127Z",
+    "last_save_at": "2026-07-09T10:02:44.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

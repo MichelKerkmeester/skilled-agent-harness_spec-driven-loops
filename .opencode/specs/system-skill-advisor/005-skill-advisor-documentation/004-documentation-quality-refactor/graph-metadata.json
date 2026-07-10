@@ -11,14 +11,6 @@
     "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/005-content-additions-hvr-polish",
     "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
     "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor",
-    "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution",
-    "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
-    "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs",
-    "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite",
-    "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment",
-    "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/005-content-additions-hvr-polish",
-    "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
-    "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor",
     "system-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution"
   ],
   "migrated": true,
@@ -64,7 +56,6 @@
       ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
       "resource-map.md",
       ".opencode/skills/system-code-graph/README.md",
-      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       ".opencode/skills/system-skill-advisor/mcp_server/README.md",
       ".opencode/skills/system-skill-advisor/mcp_server/handlers/README.md",
       ".opencode/skills/system-skill-advisor/mcp_server/tools/README.md",
@@ -116,12 +107,6 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr_rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
         "source": "derived"
       },
       {
@@ -223,17 +208,17 @@
     ],
     "causal_summary": "`.opencode/skills/system-skill-advisor/` has accumulated drift across its 6 doc surfaces (SKILL.md, README.md, ARCHITECTURE.md, INSTALLGUIDE.md, references/, featurecatalog/, manualtestingplaybook/)",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.287Z",
+    "last_save_at": "2026-07-09T10:02:50.059Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:b223d69b571ce7eaf356ce185d59ed88bb7561d80df6a81346e79cdf78860a27",
+    "source_fingerprint": "sha256:6f9f914e0f5a8e35f2ba6851926dd4d62040754f24071b8f5483ac517ab0bb42",
     "source_doc_hashes": {
-      "spec.md": "c48172bf11a7c7bf2d9ad9b7e59e479c6a06e4e9e4269b6c2fd13784da9ea2cb",
-      "resource-map.md": "7eaa12f4f09453bdf0e45190e17de21ef886adf8ef9e010850c77989d5dc2e91"
+      "spec.md": "3f2212e0e5c724610f3ce296019b9d01d572097c97e4fbe62ee3877a6a0095d1",
+      "resource-map.md": "b8bc454f5c98b36b392158b4a154db21cd629e9177e06f49e7b701bd042a49c2"
     },
     "last_active_child_id": null,
     "last_active_at": null

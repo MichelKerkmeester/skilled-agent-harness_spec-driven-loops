@@ -35,26 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "fallback-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fallback-router.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fallback-router.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Typed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "On executor failure the fallback router retries flat without knowing the failure kind, routing all failures identically and producing no trace of the routing decision",
     "created_at": "2026-06-28T14:02:03Z",
-    "last_save_at": "2026-07-04T18:02:06.351Z",
+    "last_save_at": "2026-07-09T10:02:47.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d37caf18499724e2a2d1cdf671636bf1677f8f0d0030aa924e02fadfe28671f",
+    "source_fingerprint": "sha256:b76137d94e257948cca541b727f927aafac2132d22fc680118440f1e67d860cb",
     "source_doc_hashes": {
-      "spec.md": "9f3d136f3559077831afb766e7d5e539499a200bccc77c7c1de9e63490f7b50b",
-      "plan.md": "bce264137706b168a07b6924088fd91cef8102be7aa25c1befea4e09d8c399eb",
-      "tasks.md": "fd3b7cba95f9804856d29f10cc6625a650627401d6769d9f6bf959a937e27d6a",
-      "implementation-summary.md": "03d93c5bc6d78fb9a772cbb19cbc6f5ed01460b717d884848418e633c53e7e02"
+      "spec.md": "28d6a722083657da3aa58f5f738b598c9e52609c812c3d7b18dd9393f0288c50",
+      "plan.md": "656ec40e5438dac8b4e6e11d216932f8394f5e496184bce3b04c9a9220ff3ae1",
+      "tasks.md": "5709ae2770ea1b770b8682f80564c6b368aa3a529f9a42a466dc56ffe91d9b2c",
+      "implementation-summary.md": "6e3e25ee81eff47acdce8bebe908d00cffcaf7db08f5277f49788a6808e27bd0"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
-  "description": "mk-spec-memory stack parent for adapter architecture, Ollama + hf-local Nomic cascade, Nomic/CodeRankEmbed default, retrieval-rescue closure, and late",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack",
+  "description": "mk-spec-memory stack parent for adapter architecture, Ollama + hf-local Nomic cascade, Nomic/CodeRankEmbed default, retrieval-rescue closure, and",
   "keywords": [
     "mk-spec-memory",
     "stack",
@@ -14,14 +14,13 @@
     "coderankembed",
     "default",
     "retrieval-rescue",
-    "closure",
-    "late"
+    "closure"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.272Z",
+  "lastUpdated": "2026-07-09T10:02:52.605Z",
   "specId": "002",
   "folderSlug": "spec-memory-stack",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture"

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/054-remaining-bugs-remediation",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/054-remaining-bugs-remediation",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/054-remaining-bugs-remediation",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/054-remaining-bugs-remediation",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -29,14 +29,14 @@
       "remaining",
       "bugs",
       "remediation",
-      "054",
       "implementation",
       "plan",
       "tasks",
       "checklist",
       "decision",
       "record",
-      "following"
+      "following",
+      "comprehensive"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Following comprehensive analysis of spec folders 052-codebase-fixes and 053-script-analysis-testing, along with a deep bug hunt of the Spec Kit Memory system, 13 bugs were ident...",
     "created_at": "2026-04-12T09:02:53.534Z",
-    "last_save_at": "2026-06-23T03:49:59.193Z",
+    "last_save_at": "2026-07-09T10:02:57.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

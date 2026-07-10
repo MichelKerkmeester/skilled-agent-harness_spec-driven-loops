@@ -56,7 +56,7 @@ Measure first, optimize with evidence, verify improvement with before/after Page
 
 #### Timeout Hierarchy
 
-From Spec 031 (ADR-001): Standardize timeouts across all hero scripts to create a layered safety net:
+Layered-timeout pattern: Standardize timeouts across all hero scripts to create a layered safety net:
 
 | Component | Timeout | Rationale |
 |-----------|---------|-----------|

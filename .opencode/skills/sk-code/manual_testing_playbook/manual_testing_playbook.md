@@ -258,7 +258,7 @@ Per-feature files: see `06--cross-browser-and-performance-gates/`.
 
 ## 13. CROSS-STACK ROUTING (`CS-001..CS-007`)
 
-These scenarios validate Motion.dev as a cross-stack peer resource rather than a third surface. They are designed for the Phase 005 cross-CLI harness, where each runtime must analyze routing decisions without editing files or dispatching agents.
+These scenarios validate Motion.dev as a cross-stack peer resource rather than a third surface. They are designed for the cross-CLI harness, where each runtime must analyze routing decisions without editing files or dispatching agents.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|

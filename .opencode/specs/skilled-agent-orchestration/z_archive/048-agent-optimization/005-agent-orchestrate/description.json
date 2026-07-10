@@ -3,12 +3,11 @@
   "description": "`@orchestrate` (855 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
     "orchestrate",
-    "855",
     "loc",
     "sk-improve-agent",
     "lens"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.501Z",
+  "lastUpdated": "2026-07-09T10:02:45.376Z",
   "specId": "005",
   "folderSlug": "agent-orchestrate",
   "parentChain": [

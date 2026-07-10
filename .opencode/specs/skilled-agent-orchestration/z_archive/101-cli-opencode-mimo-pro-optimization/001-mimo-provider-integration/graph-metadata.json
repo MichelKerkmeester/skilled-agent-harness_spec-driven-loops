@@ -43,11 +43,11 @@
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/cli-opencode/graph-metadata.json",
       ".opencode/skills/cli-opencode/changelog/v1.3.5.0.md",
-      ".opencode/skills/sk-prompt-models/SKILL.md",
       ".opencode/skills/sk-prompt-models/description.json",
       ".opencode/skills/sk-prompt-models/README.md",
       ".opencode/skills/sk-prompt-models/graph-metadata.json",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented cli-opencode provider, is absent from `model-profiles.json`, and the `sk-prompt-models` sentinel never names it",
     "created_at": "2026-06-01T20:21:29.317Z",
-    "last_save_at": "2026-06-23T03:49:51.487Z",
+    "last_save_at": "2026-07-09T10:02:46.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7911e53ee8f773b336d989e3c3729cecc147c8627804f4d9a6e4bc192fe7ceff",
+    "source_fingerprint": "sha256:6180da54742c042cc3830a26d3c67030e6819c049933c10d22bfda9ac8c3bf8f",
     "source_doc_hashes": {
-      "spec.md": "b5d3b905b69244280d79fd72389837b5ccbb5896b36206da376746d437b89b0b",
-      "plan.md": "14a1c826d31d829bff9c354443820bbf785298257fa35bc7f6b0553cb36740f8",
-      "tasks.md": "f92c51efdcf7627fd2b168b9d72c2aa5ed998ffe2ff35f1c1c82d353b88fde62",
-      "checklist.md": "d9be3c1ba3a4f5423da854727b593c9e46b3ca86563b61488bc57cfe967d89b4",
-      "implementation-summary.md": "2dda462a0fb837c48ddce12a55c2494d856a4237ddf579c44eab0beb73068a04"
+      "spec.md": "faec29fceb8accf1e1883e8104adcd1bee8ec7f010d464a0c59e48c0e8a28d65",
+      "plan.md": "72ad52aeb4474b52cb99548417731dc0d590960c1b8e6361cfbded48046c582b",
+      "tasks.md": "b715bae30ac8ab253432fde647f61c779b94f1116b7ea2ca717c4b55d0b204ba",
+      "checklist.md": "d1f3c37125da2719adfb1c790bccd96a2766c0d1fe1ead15b02d10827298c683",
+      "implementation-summary.md": "4a94911eecc57370c13ab42cf64b3e8ebbc6bd634f03a51c5eda9d640f7c79ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

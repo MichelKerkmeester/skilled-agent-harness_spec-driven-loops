@@ -10,7 +10,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import type { DesignTokens, ColorToken, TypographyLevel, ShadowToken, RadiusToken } from './types';
 import { validateDesignMd, type ValidationResult } from './validate';
-import { ensureWritableFile } from './output-policy';
+import { ensureWritableFile, requireOutputPath } from './output-policy';
 import { safeColor, safeLength, safeLineHeight, safeFontWeight, safeFontFamily, safeShadow } from './render-safety';
 
 // ────────────────────────────────────────────────────────────────
@@ -641,6 +641,10 @@ export function generateReport(
   designMdPath?: string,
   options: { force?: boolean } = {},
 ): void {
+  // Output must live in a spec folder or an approved sandbox, same boundary
+  // enforced by extract.ts/guided-run.ts, so a standalone report-gen.ts
+  // invocation can't write generated HTML outside the allowlist.
+  const resolvedOutputDir = requireOutputPath(outputDir);
   const tokens: DesignTokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
 
   let designMdContent: string | null = null;
@@ -652,14 +656,14 @@ export function generateReport(
   }
 
   let proofData: ProofData | null = null;
-  const proofDataPath = path.join(outputDir, 'proof-data.json');
+  const proofDataPath = path.join(resolvedOutputDir, 'proof-data.json');
   if (fs.existsSync(proofDataPath)) {
     proofData = JSON.parse(fs.readFileSync(proofDataPath, 'utf-8'));
     console.log(`  Proof data loaded (coverage: ${((proofData?.coverage ?? 0) * 100).toFixed(1)}%)`);
   }
 
   const html = generateReportHtml(tokens, validation, designMdContent, proofData);
-  const outPath = path.join(outputDir, 'report.html');
+  const outPath = path.join(resolvedOutputDir, 'report.html');
   ensureWritableFile(outPath, options);
   fs.writeFileSync(outPath, html);
   console.log(`  Generated report.html → ${outPath}`);

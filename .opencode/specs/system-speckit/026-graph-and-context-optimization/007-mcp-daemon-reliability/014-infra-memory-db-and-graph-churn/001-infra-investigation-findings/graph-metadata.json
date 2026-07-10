@@ -23,14 +23,14 @@
       "corruption",
       "graph-metadata",
       "churn",
-      "634",
       "files",
       "spec-memory",
       "mcp",
       "write",
       "failure",
       "investigation",
-      "infra"
+      "infra",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Two live-infra issues degrade the spec-memory subsystem",
     "created_at": "2026-06-08T11:22:12.712Z",
-    "last_save_at": "2026-07-02T05:31:12.885Z",
+    "last_save_at": "2026-07-09T10:02:54.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

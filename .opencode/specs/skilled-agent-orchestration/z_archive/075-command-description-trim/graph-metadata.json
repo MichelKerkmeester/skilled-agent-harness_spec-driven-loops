@@ -20,7 +20,6 @@
       "command description trim summary"
     ],
     "key_topics": [
-      "091",
       "command",
       "trim",
       "description",
@@ -31,14 +30,14 @@
       "implementation",
       "summary",
       "packets",
-      "083"
+      "skills",
+      "commands"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/sk-prompt/SKILL.md",
       ".opencode/commands/create/changelog.md",
-      ".opencode/commands/create/sk-skill.md",
       ".opencode/commands/prompt.md",
       ".opencode/commands/memory/manage.md",
       ".opencode/commands/memory/search.md",
@@ -58,12 +57,6 @@
         "name": "changelog.md",
         "kind": "doc",
         "path": ".opencode/commands/create/changelog.md",
-        "source": "derived"
-      },
-      {
-        "name": "sk-skill.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/sk-skill.md",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit: `sk-prompt` (132/130) and 7 commands clustered at 112-122 chars (target 110)",
     "created_at": "2026-05-06T17:04:32.499Z",
-    "last_save_at": "2026-06-23T03:49:49.985Z",
+    "last_save_at": "2026-07-09T10:02:45.604Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03089de8746d2193a98eec27510a649cea78397c051f364e9bfc544339fd7d8e",
+    "source_fingerprint": "sha256:6f6c50ed3a61cbd2ed725ae7914962b226c1a1a7cbdfa272cd306e9f06e27506",
     "source_doc_hashes": {
-      "spec.md": "3f620a4ad8019701b43832e83f1144d75617c9092b12512ef9b7a562c7cd9c04",
-      "plan.md": "593f9a23a59a116b12e55b642e1f4e35fea383ab5125146ff31083290d929d75",
-      "tasks.md": "85f9a3870fbb6eedd9f2fc987d6da1afff35bb6e2d9906a0f9bcfc9bfa05bfec",
-      "implementation-summary.md": "fd61e986d71b82c7d87704fb0769b395871858b6b59616ce5d1b70c66bd33ae7"
+      "spec.md": "7aeb85f39a4c1aaf1482b38da15bea1c476847c7dc16f1803cbfa0837cacd295",
+      "plan.md": "ca76271ca45135fb690740bc244782e6001ea028c0cc5a25376d53915cfc1fd3",
+      "tasks.md": "04604711b55a43f9d546310f41459148746cfbfb495d41cc52866f58341a6589",
+      "implementation-summary.md": "df38ab8cef67ba60cfae6ba28ec576419d006e7e22a2706de30230cc4805f9db"
     },
     "last_active_child_id": null,
     "last_active_at": null

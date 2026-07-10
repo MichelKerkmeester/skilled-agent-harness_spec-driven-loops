@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness",
   "description": "The default-off idempotency path had correctness defects that only matter when `SPECKITMEMORYIDEMPOTENCY` is explicitly enabled:",
   "keywords": [
     "default-off",
@@ -14,11 +14,11 @@
     "explicitly",
     "enabled"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.322Z",
+  "lastUpdated": "2026-07-09T10:02:55.341Z",
   "specId": "014",
   "folderSlug": "idempotency-flag-on-correctness",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

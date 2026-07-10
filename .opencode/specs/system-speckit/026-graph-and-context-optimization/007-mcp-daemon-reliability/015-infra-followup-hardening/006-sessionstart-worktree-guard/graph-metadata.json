@@ -26,12 +26,12 @@
       "worktree-guard",
       "hook",
       "wiring",
-      "035",
       "backstop",
       "plan",
       "tasks",
       "checklist",
-      "summary"
+      "summary",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Packet 035 created `worktree-guard.sh` — a detect-and-warn SessionStart guard that warns when a top-level session is running directly on the shared `main` checkout instead of an isolated worktree",
     "created_at": "2026-05-30T21:50:43.392Z",
-    "last_save_at": "2026-07-02T05:31:12.905Z",
+    "last_save_at": "2026-07-09T10:02:54.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

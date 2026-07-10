@@ -3,7 +3,6 @@
   "specFolder": "system-deep-loop/040-deep-loop-gauges-dedup-scale",
   "description": "The 009 dark-flag validation (research sections 3.5 and 3.6) qualified two graduated deep-loop capabilities",
   "keywords": [
-    "009",
     "dark-flag",
     "validation",
     "research",
@@ -14,7 +13,7 @@
     "deep-loop",
     "capabilities"
   ],
-  "lastUpdated": "2026-07-07T04:46:34.153Z",
+  "lastUpdated": "2026-07-09T10:02:48.168Z",
   "specId": "040",
   "folderSlug": "deep-loop-gauges-dedup-scale",
   "parentChain": [

@@ -17,7 +17,7 @@
       "sk-code multi-stack",
       "sk-code nextjs go",
       "056 sk-code",
-      "smart router alignment",
+      "sk-code smart router alignment",
       "stack scaffolding",
       "056 plan",
       "sk-code multi-stack plan",
@@ -31,7 +31,6 @@
       "sk-code",
       "multi-stack",
       "nextjs",
-      "056",
       "smart",
       "router",
       "alignment",
@@ -39,7 +38,8 @@
       "scaffolding",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "verification"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`sk-code` was the umbrella code-routing skill but only had one live stack (Webflow)",
     "created_at": "2026-04-30T13:00:00Z",
-    "last_save_at": "2026-07-07T16:45:58.023Z",
+    "last_save_at": "2026-07-09T10:02:44.269Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-30T18:30:00Z",
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:746bf302a19208c011d907b5e178ba8e2b79fb6dc8bd30dc4f2de422107b0b96",
+    "source_fingerprint": "sha256:ad8c311b200bcef8e1047feb7972f963f74470c0f737fe71ec34041910ca7f3c",
     "source_doc_hashes": {
-      "spec.md": "5b6f6ca35e63d6a64bf66f941f74ec4b7d7bcc96cdda1a345d92b68dfdea6420",
+      "spec.md": "32f84e8786baf4ef2435d165a56951a8970719730600093bcb3719cbe61659f0",
       "plan.md": "6922ed0049671809e8bc2a36ab371d0228a3d230b9dbc97230c3e8b9efeb4326",
       "tasks.md": "ea5577d4bbaea3b334bfc4682e3f5197c5444e97e5cf6b7c4fe5906ecc42e163",
       "checklist.md": "9ca0e03ee9cef35144a09f01e19ffbede561acfd830b6f060ed225cccc3b966e",
-      "implementation-summary.md": "5506d8461097f5647e64169dea8a7d16bae4495079c0c283d6c3b6045d62f945"
+      "implementation-summary.md": "8c2421c56ed323195fdf21578c314b4db63bc0dfce0251d1b87fe5c194f7cb34"
     },
     "last_active_child_id": null,
     "last_active_at": null

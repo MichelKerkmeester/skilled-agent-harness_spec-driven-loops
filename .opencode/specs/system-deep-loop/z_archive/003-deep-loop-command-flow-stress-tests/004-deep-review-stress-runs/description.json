@@ -5,11 +5,9 @@
     "sub-phase",
     "062-deep-loop-command-flow-stress-tests",
     "apply",
-    "060",
-    "004",
     "methodology"
   ],
-  "lastUpdated": "2026-07-08T13:06:39.339Z",
+  "lastUpdated": "2026-07-09T10:02:48.429Z",
   "specId": "004",
   "folderSlug": "deep-review-stress-runs",
   "parentChain": [

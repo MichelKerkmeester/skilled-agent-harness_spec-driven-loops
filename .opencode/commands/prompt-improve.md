@@ -48,7 +48,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ invocation and optional @prompt-improver dispatch.         │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /prompt [arguments]                              │
+    │   │   /prompt-improve [arguments]                              │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"
@@ -90,8 +90,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ IF user explicitly requests isolation, fresh context, or parallelism → dispatch_mode = "AGENT" (pre-set, omit Q4)
    └─ OTHERWISE → dispatch_mode = "ASK" (include Q4 in prompt)
 
-5. Search for related spec folders:
-   $ ls -d specs/*/ 2>/dev/null | tail -10
+5. Search for related spec folders (canonical root is `.opencode/specs/`; `specs/` is a symlink alias to the same tree, not a separate legacy store):
+   $ find .opencode/specs -mindepth 2 -maxdepth 2 -type d 2>/dev/null | sort | tail -10
 
 6. ASK user with SINGLE consolidated prompt (include only applicable questions):
 
@@ -139,8 +139,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 9. Execute background operations based on choices:
    - IF save_choice == A: Validate spec folder exists
-   - IF save_choice == B: Find next number and create: specs/[NNN]-[topic]/
-   - IF save_choice == C: Validate custom path exists
+   - IF save_choice == B: Sanitize the topic to a filesystem-safe slug, find the next available number under `.opencode/specs/`, and create: `.opencode/specs/[NNN]-[sanitized-topic]/`
+   - IF save_choice == C: Resolve custom path to absolute, confirm it resolves inside the `.opencode/specs/` spec tree (reject paths escaping it), then validate it exists or can be created
 
 10. SET STATUS: ✅ PASSED
 
@@ -214,7 +214,7 @@ Create or improve AI prompts by invoking the **sk-prompt** skill. Transforms vag
 
 ## 1. PURPOSE
 
-This command provides a streamlined entry point for prompt engineering via the `sk-prompt` skill. Instead of manually loading the skill and navigating its pipeline, users invoke `/prompt` with their text and receive either an inline enhancement or a fresh-context `@prompt-improver` result — with the option to save it to a spec folder's `prompts/` directory.
+This command provides a streamlined entry point for prompt engineering via the `sk-prompt` skill. Instead of manually loading the skill and navigating its pipeline, users invoke `/prompt-improve` with their text and receive either an inline enhancement or a fresh-context `@prompt-improver` result — with the option to save it to a spec folder's `prompts/` directory.
 
 **When to use:**
 - Enhancing a vague or basic AI prompt
@@ -280,7 +280,7 @@ enhancement_mode (from Setup Phase)
 
 - Read the skill definition:
   ```
-  Read(".opencode/skills/sk-prompt/SKILL.md")
+  Read(".opencode/skills/sk-prompt/prompt-improve/SKILL.md")
   ```
 
 - Based on `enhancement_mode`, load conditional references:
@@ -439,22 +439,25 @@ Present the enhanced prompt with:
 **Execute save based on `save_choice` from Setup Phase:**
 
 **If A (existing spec folder):**
-1. Confirm the selected spec folder exists
-2. Create `prompts/` directory if it doesn't exist: `mkdir -p specs/[folder]/prompts/`
+1. Confirm the selected spec folder exists. `[folder]` is the full relative path returned by the Setup Phase step 5 search (already rooted at `.opencode/specs/`, or legacy `specs/` if that is where the match lives) — do not prepend another root.
+2. Create `prompts/` directory if it doesn't exist: `mkdir -p [folder]/prompts/`
 3. Generate descriptive filename from prompt topic (hyphen-case, e.g., `api-auth-documentation.md`)
 4. Write enhanced prompt file with frontmatter (see format below)
-5. Confirm: `Saved to: specs/[folder]/prompts/[filename].md`
+5. Confirm: `Saved to: [folder]/prompts/[filename].md`
 
 **If B (new spec folder):**
-1. Find next available number: `ls -d specs/*/ | sort | tail -1`
-2. Create spec folder: `mkdir -p specs/[NNN]-[topic]/prompts/`
-3. Write enhanced prompt file with frontmatter
-4. Confirm: `Saved to: specs/[NNN]-[topic]/prompts/[filename].md`
+1. Sanitize the prompt topic into a filesystem-safe slug before it touches any path or shell command: lowercase it, replace every character outside `[a-z0-9-]` with `-`, collapse repeated `-`, and trim leading/trailing `-`. Fall back to `untitled-prompt` if the result is empty. This whitelist strips shell metacharacters (spaces, `;`, `|`, backticks, `$()`, quotes) as a side effect — never interpolate the raw topic text into a shell command.
+2. Find next available number under the preferred root: `ls -d .opencode/specs/*/ 2>/dev/null | sort | tail -1`. Use legacy `specs/` only if the related packet found in Setup Phase step 5 already lives there.
+3. Create spec folder: `mkdir -p .opencode/specs/[NNN]-[sanitized-topic]/prompts/`
+4. Write enhanced prompt file with frontmatter
+5. Confirm: `Saved to: .opencode/specs/[NNN]-[sanitized-topic]/prompts/[filename].md`
 
 **If C (specific path):**
-1. Create parent directory if needed: `mkdir -p [custom-path]/`
-2. Write enhanced prompt file with frontmatter
-3. Confirm: `Saved to: [custom-path]/[filename].md`
+1. Resolve `[custom-path]` to an absolute path and confirm it resolves INSIDE the `.opencode/specs/` spec-folder tree (the canonical spec root; the `specs/` symlink alias resolves to the same tree). This command saves prompt artifacts into the spec-folder tree only. Reject and re-prompt for a corrected value if the path escapes that tree: an absolute path elsewhere on disk, a repo path outside `.opencode/specs/`, or a `..` segment that climbs out of the spec root. Saving outside the spec tree is a deliberate non-goal of this command — if the user needs the file elsewhere, tell them to move it manually after the save rather than widening this containment boundary.
+2. Create parent directory if needed: `mkdir -p [custom-path]/`
+3. Before writing, check whether `[custom-path]/[filename].md` already exists. Never overwrite it silently — ask the user to confirm replacing it, or auto-suffix the filename (e.g., `-2`, `-3`) and use that instead.
+4. Write enhanced prompt file with frontmatter
+5. Confirm: `Saved to: [custom-path]/[filename].md`
 
 **If D (skip):** No file written. Prompt remains in conversation only.
 
@@ -476,7 +479,7 @@ created: [YYYY-MM-DD]
 - If completed without save: `STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME]`
 - If prompt saved: `STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME] SAVED=[path]`
 - If user cancels: `STATUS=CANCELLED`
-- If skill not found: `STATUS=FAIL ERROR="sk-prompt skill not found at .opencode/skills/sk-prompt/SKILL.md"`
+- If skill not found: `STATUS=FAIL ERROR="prompt-improve packet not found at .opencode/skills/sk-prompt/prompt-improve/SKILL.md"`
 - If CLEAR score fails after max iterations: `STATUS=FAIL ERROR="CLEAR score below threshold after 3 iterations: [SCORE]/50"`
 
 ---
@@ -486,49 +489,49 @@ created: [YYYY-MM-DD]
 ### Basic Prompt Improvement
 
 ```
-/prompt "Write a blog post about AI"
+/prompt-improve "Write a blog post about AI"
 ```
 → Setup asks Q1 (mode), Q2 (save location), Q3 (execution mode), Q4 (dispatch mode)
 
 ### With Mode Prefix and Auto Mode
 
 ```
-/prompt $improve "Help users understand our API authentication flow" :auto
+/prompt-improve $improve "Help users understand our API authentication flow" :auto
 ```
 → Skips Q1 and Q3; still resolves Q2 and Q4 as needed
 
 ### Quick Enhancement
 
 ```
-/prompt $short "Generate test data for user registration"
+/prompt-improve $short "Generate test data for user registration"
 ```
 → Quick 3-round DEPTH (D-P-H only), fast enhancement
 
 ### JSON Format Output
 
 ```
-/prompt $json "Create a customer support chatbot system prompt"
+/prompt-improve $json "Create a customer support chatbot system prompt"
 ```
 → Full DEPTH processing, outputs as JSON-structured prompt
 
 ### Raw Passthrough
 
 ```
-/prompt $raw "Analyze the sentiment of customer reviews and categorize them"
+/prompt-improve $raw "Analyze the sentiment of customer reviews and categorize them"
 ```
 → No DEPTH processing, formats only
 
 ### Interactive with Confirmation
 
 ```
-/prompt "Design a prompt for code review automation" :confirm
+/prompt-improve "Design a prompt for code review automation" :confirm
 ```
 → Pauses at each DEPTH phase for user approval
 
 ### Save to Spec Folder
 
 ```
-/prompt $improve "Build a system prompt for onboarding new developers"
+/prompt-improve $improve "Build a system prompt for onboarding new developers"
 ```
 → User selects Q2=A → Saved to `specs/012-onboarding/prompts/developer-onboarding-system-prompt.md`
 
@@ -574,9 +577,9 @@ STATUS=OK SCORE=44/50 FRAMEWORK=RCAF SAVED=specs/012-onboarding/prompts/api-auth
 
 ## 7. NOTES
 
-- **Skill dependency**: Requires `sk-prompt` at `.opencode/skills/sk-prompt/`
+- **Skill dependency**: Requires the `prompt-improve` packet at `.opencode/skills/sk-prompt/prompt-improve/`
 - **Prompt saving**: Setup Phase Q2 determines save behavior upfront. Saved prompts include frontmatter with framework, mode, and CLEAR score metadata.
-- **Prompts directory**: Saved prompts go to `specs/[folder]/prompts/[descriptive-name].md`. The `prompts/` directory is created automatically if it doesn't exist.
+- **Prompts directory**: Saved prompts go to `.opencode/specs/[folder]/prompts/[descriptive-name].md` (the canonical root; legacy `specs/` is a symlink alias to the same tree). The `prompts/` directory is created automatically if it doesn't exist.
 - **Framework selection**: RCAF is the default (92% success rate). For complex prompts (7+ complexity), CRAFT or TIDD-EC is auto-selected.
 - **Scoring threshold**: CLEAR score must reach 40/50 with all dimension floors met. Below-threshold results trigger automatic re-iteration.
 - **Token efficiency**: SHORT mode ($short) uses only 3 DEPTH rounds for faster results when quality requirements are lower.

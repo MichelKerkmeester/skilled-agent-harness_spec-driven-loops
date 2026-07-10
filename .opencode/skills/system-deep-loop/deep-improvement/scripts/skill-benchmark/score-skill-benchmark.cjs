@@ -169,7 +169,7 @@ function computeSurfaceMatch(scenario, obs) {
   return { expectedSurface, observedSurface, surfaceMatch };
 }
 
-function scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRecall, resourceRecall }) {
+function scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRecall, resourceRecall, liveTier }) {
   if (negative) {
     // A suppression scenario fails when a FORBIDDEN resource is routed — matched
     // by prefix, since the gold is usually a glob (`references/webflow/*`). The
@@ -190,14 +190,20 @@ function scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRe
     // scenario that names neither a positive nor a forbidden set stays neutral.
     return { score: leaked ? 0 : 1, intentRecall, resourceRecall, negative: true, forbiddenLeaked: leaked };
   }
-  const ir = intentRecall == null ? 1 : intentRecall;
   const rr = resourceRecall == null ? 1 : resourceRecall;
-  const d1 = {
-    score: D1_INTRA_INTENT_WEIGHT * ir + D1_INTRA_RESOURCE_WEIGHT * rr,
-    intentRecall,
-    resourceRecall,
-    negative: false,
-  };
+  // Live mode never asks the model for the internal intent-signal key, so intent
+  // recall is unobservable there; scoring d1-intra on resource recall alone keeps
+  // the live number honest instead of flatly halving it by an always-zero term.
+  // Router mode keeps the intent+resource blend since the key is deterministically
+  // observable there.
+  const d1 = liveTier
+    ? { score: rr, intentRecall, resourceRecall, negative: false, liveResourceOnly: true }
+    : {
+        score: D1_INTRA_INTENT_WEIGHT * (intentRecall == null ? 1 : intentRecall) + D1_INTRA_RESOURCE_WEIGHT * rr,
+        intentRecall,
+        resourceRecall,
+        negative: false,
+      };
   if (surfaceMatch === false) {
     d1.surfaceMismatch = true;
     d1.score = Math.min(d1.score, SURFACE_MISMATCH_D1_CAP);
@@ -1121,9 +1127,17 @@ function scoreScenario(arg) {
   const negative = expected && expected.negativeActivation === true;
 
   // D1-intra: did the in-skill router select the expected intents + resources?
+  // Live mode reports references and assets on SEPARATE channels (the model states
+  // "resources" and "assets" distinctly). Credit correct asset routing in recall by
+  // folding stated assets into the observed set here; D3 over-routing below stays
+  // references-only so a deferred, correctly-named asset is not re-read as waste.
+  const liveTier = tier === 'live';
+  const observedForRecall = liveTier
+    ? [...new Set([...(routerResult.resources || []), ...((obs && obs.observedAssets) || [])])]
+    : routerResult.resources;
   const intentRecall = setRecall(expected && expected.intentKeys, routerResult.intents);
-  const resourceRecall = setRecall(expected && expected.resources, routerResult.resources);
-  dims.d1intra = scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRecall, resourceRecall });
+  const resourceRecall = setRecall(expected && expected.resources, observedForRecall);
+  dims.d1intra = scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRecall, resourceRecall, liveTier });
 
   // Command recipe validity is gold-gated. Without recipe gold it is inert; when
   // present, an undefined or malformed recipe soft-caps D2/D3 instead of adding

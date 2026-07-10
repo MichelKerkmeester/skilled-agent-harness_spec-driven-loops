@@ -33,7 +33,6 @@
   "description": "Packet 057's 10-iteration deep-research run produced 12 ranked findings comparing external SPAR-Kit against our internal `system-spec-kit`",
   "keywords": [
     "packet",
-    "057",
     "10-iteration",
     "deep-research",
     "run",
@@ -47,7 +46,7 @@
     "internal",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.388Z",
+  "lastUpdated": "2026-07-09T10:02:45.335Z",
   "specId": "046",
   "folderSlug": "spec-kit-ux-adoptions",
   "parentChain": [

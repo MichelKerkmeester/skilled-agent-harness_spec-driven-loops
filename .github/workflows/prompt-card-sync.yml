@@ -17,7 +17,7 @@ jobs:
             echo "::warning::card-sync guard not found at $GUARD — skipping"
             exit 0
           fi
-          # Structural drift guard for the sk-prompt / sk-prompt-models / cli-* layers:
+          # Structural drift guard for the sk-prompt hub (prompt-improve + prompt-models packets) / cli-* layers:
           # table inlining, Tier-3 escalation-rule drift, registry/profile/_index completeness,
           # and per-model discovery reachability. python3 is preinstalled on ubuntu-latest.
           bash "$GUARD" .

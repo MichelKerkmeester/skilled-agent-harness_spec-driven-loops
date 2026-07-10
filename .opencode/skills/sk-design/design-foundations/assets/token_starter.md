@@ -142,4 +142,6 @@ When the scaffold is filled, the system is ready for implementation. Confirm bef
 - Spacing values all come from the scale.
 - Dark mode, when in scope, has its own surface and text pairs rather than inverted light values.
 
+Two deterministic checks gate this scaffold once filled: `../scripts/baseline_rhythm_check.py` rejects Section 5 spacing values that do not resolve to `--baseline`, and `../scripts/naming_doc_check.py` rejects token names and headings that miss the naming/doc contract. `foundations` does not run either script itself (Read/Glob/Grep only); like the contrast calculator, they run downstream in the step that builds, ships, or maintains this artifact.
+
 If a filled value contradicts the register, the register wins for posture and this scaffold carries the craft within it.

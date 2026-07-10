@@ -3,12 +3,11 @@
   "description": "`@deep-research` (476 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
     "deep-research",
-    "476",
     "loc",
     "sk-improve-agent",
     "lens"
   ],
-  "lastUpdated": "2026-07-08T13:06:20.047Z",
+  "lastUpdated": "2026-07-09T10:02:49.225Z",
   "specId": "015",
   "folderSlug": "agent-deep-research-optimization",
   "parentChain": [

@@ -2,7 +2,6 @@
   "specFolder": "skilled-agent-orchestration/z_archive/012-cmd-create-emoji-enforcement",
   "description": "The `/create` command currently enforces emoji usage in documentation through validation logic and templates",
   "keywords": [
-    "create",
     "command",
     "currently",
     "enforces",
@@ -13,7 +12,7 @@
     "logic",
     "templates"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.944Z",
+  "lastUpdated": "2026-07-09T10:02:45.200Z",
   "specId": "012",
   "folderSlug": "cmd-create-emoji-enforcement",
   "parentChain": [

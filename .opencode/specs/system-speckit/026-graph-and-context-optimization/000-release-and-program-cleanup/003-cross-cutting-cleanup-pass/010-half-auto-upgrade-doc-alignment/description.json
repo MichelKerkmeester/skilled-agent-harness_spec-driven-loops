@@ -1,9 +1,8 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment",
   "description": "Packet 013 identified four Tier C surfaces where automation was easy to overstate:",
   "keywords": [
     "packet",
-    "013",
     "identified",
     "four",
     "tier",
@@ -12,11 +11,11 @@
     "easy",
     "overstate"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.295Z",
+  "lastUpdated": "2026-07-09T10:02:50.855Z",
   "specId": "010",
   "folderSlug": "half-auto-upgrade-doc-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

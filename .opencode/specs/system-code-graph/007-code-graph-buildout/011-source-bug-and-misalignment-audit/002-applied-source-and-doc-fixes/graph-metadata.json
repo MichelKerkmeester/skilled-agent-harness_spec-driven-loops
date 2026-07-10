@@ -22,13 +22,13 @@
       "remediation",
       "applied-source-and-doc-fixes",
       "system-code-graph",
-      "fix",
       "applied",
       "source",
       "doc",
-      "fixes",
-      "011",
-      "audit"
+      "audit",
+      "recorded",
+      "findings",
+      "mcp"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -168,7 +168,7 @@
     ],
     "causal_summary": "The 011 audit recorded 37+1 findings in the system-code-graph MCP server",
     "created_at": "2026-05-29T08:30:00.000Z",
-    "last_save_at": "2026-07-07T16:18:33.888Z",
+    "last_save_at": "2026-07-09T10:02:47.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,12 +177,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da9748c5b084a986b75b2aba1293d6c6d493ba9d8e5a559a27fe02854e13dfcc",
+    "source_fingerprint": "sha256:736f177294c19ce13d4e4ab6c9005f46f7fb1e642554f7bf24f08870431cad3b",
     "source_doc_hashes": {
       "spec.md": "50ab566401464d176206f0788270074d9c47da6b94cf581bd1ff9d59e56cb69b",
       "plan.md": "671b3d8a8ac8a6d79195d5afbbd32e1c96ebbd803117685ba145565f2f3c35b1",
       "tasks.md": "a87e47b37ea6d0cde3fd3af75a7e6916f479dac390626115e114f3c6acd54265",
-      "implementation-summary.md": "40a6d966ae3f06b2d886c9ff5e7947f7283617d2cbd8a3cb2e0c7eb70a41da06"
+      "implementation-summary.md": "d49eae3bc36755adf951b01042dfe0bbd868ecd2eebfc8f521b78560dd268b3e"
     },
     "last_active_child_id": null,
     "last_active_at": null

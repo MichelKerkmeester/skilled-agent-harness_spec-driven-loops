@@ -22,29 +22,27 @@
     "key_topics": [
       "runtime",
       "hygiene",
-      "fixes",
       "comment",
       "markers",
       "cleanup",
       "salvage",
       "placeholder",
       "naming",
-      "fix",
       "duplicate",
-      "iteration"
+      "iteration",
+      "filename",
+      "plan"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/commands/deep/assets/deep_review_auto.yaml",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/system-spec-kit/scripts/rules/check-comment-hygiene.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-salvage.vitest.ts",
       ".opencode/skills/cli-opencode/references/agent_delegation.md",
       "scripts/rules/check-comment-hygiene.sh",
       "spec.md",
@@ -63,12 +61,6 @@
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-salvage.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
         "source": "derived"
       },
       {
@@ -99,12 +91,6 @@
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-salvage.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-salvage.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +182,23 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three related but distinct hygiene defects, all confirmed live:",
     "created_at": "2026-07-01T07:19:07.520Z",
-    "last_save_at": "2026-07-04T18:02:23.960Z",
+    "last_save_at": "2026-07-09T10:02:47.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fdb1664ff3d353c8d7917c98a2f8c6e2a645b2e0430dca15fda19fc55eb6c8e",
+    "source_fingerprint": "sha256:861b6479aa913a184007800762985885a63ad266d051b6bae2dcb86ff1770d6c",
     "source_doc_hashes": {
-      "spec.md": "1bb2d0933e80d5d011342aa45f00ec0787d584c45628c5761ece4118cee29d49",
-      "plan.md": "befe3843dad08a7186934a73d6c352a8c863cd4d9f2bf637ce5aa653343f7af0",
-      "tasks.md": "fa48aa929d5953f359f90ad8ec2a2de1df986b891efea071cd5392e208cf7c7e",
-      "implementation-summary.md": "c2217087bb38dbe4aa3976fbcfbd72596608ede7c423034d084c966b2a1020cd"
+      "spec.md": "c2cd41a197ddb00956195809008dbe7c21210f725b0cad5ce930164e5a329f56",
+      "plan.md": "38b4c8f4b3516360ed054539a69d7ea0f5aab55adf7b87a5344fd1c90a8e9841",
+      "tasks.md": "8e3d890808c91f0430bdf37169880a1c75342bff74d90d306614d53be7d02b7a",
+      "implementation-summary.md": "14255bfee1ba1106ef7c20c7664c1c332d777791c270de53fbfae6164d66ad0d"
     },
     "last_active_child_id": null,
     "last_active_at": null

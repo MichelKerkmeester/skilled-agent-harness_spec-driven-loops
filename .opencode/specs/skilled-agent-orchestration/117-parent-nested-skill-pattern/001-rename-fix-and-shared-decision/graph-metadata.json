@@ -28,7 +28,6 @@
       "deep-loop-workflows",
       "folder",
       "rename",
-      "fix",
       "deep",
       "prefix",
       "packet",
@@ -36,13 +35,12 @@
       "stays",
       "plan",
       "parent-nested-skill-pattern",
-      "phase"
+      "phase",
+      "sweep"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
       "decision-record.md",
       "spec.md",
       ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
@@ -52,18 +50,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 152 merge wired `deep-loop-workflows`'s internal references to bare packet names (`context/`, `research/`, `review/`, `improvement/`, `ai-council/`)",
     "created_at": "2026-06-15T09:09:33.216Z",
-    "last_save_at": "2026-07-02T05:31:08.534Z",
+    "last_save_at": "2026-07-09T10:02:44.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

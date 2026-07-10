@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/006-reference-sweep-validation-guard",
-  "description": "After the migration waves, snippets are de-numbered but cross-cutting references outside the per-skill trees may still point at old numbered paths: ~8",
+  "description": "After the migration waves, snippets are de-numbered but cross-cutting references outside the per-skill trees may still point at old numbered paths:",
   "keywords": [
     "migration",
     "waves",
@@ -18,7 +18,7 @@
     "numbered",
     "paths"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.286Z",
+  "lastUpdated": "2026-07-09T10:02:46.445Z",
   "specId": "006",
   "folderSlug": "reference-sweep-validation-guard",
   "parentChain": [

@@ -8,13 +8,12 @@
     "verdict",
     "decides",
     "stop-vs-continue",
-    "fixed",
     "set",
     "structural",
     "graph",
     "signals"
   ],
-  "lastUpdated": "2026-07-06T16:24:26.949Z",
+  "lastUpdated": "2026-07-09T10:02:48.126Z",
   "specId": "005",
   "folderSlug": "stop-input-corroboration",
   "parentChain": [

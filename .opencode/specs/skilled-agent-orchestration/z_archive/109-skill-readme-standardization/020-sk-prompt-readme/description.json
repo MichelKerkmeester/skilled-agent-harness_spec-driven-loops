@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/020-sk-prompt-readme",
-  "description": "The sk-prompt README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus mode-count drift (it clai",
+  "description": "The sk-prompt README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus mode-count drift (it",
   "keywords": [
     "sk-prompt",
     "readme",
@@ -17,10 +17,9 @@
     "line",
     "plus",
     "mode-count",
-    "drift",
-    "clai"
+    "drift"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.390Z",
+  "lastUpdated": "2026-07-09T10:02:46.496Z",
   "specId": "020",
   "folderSlug": "sk-prompt-readme",
   "parentChain": [

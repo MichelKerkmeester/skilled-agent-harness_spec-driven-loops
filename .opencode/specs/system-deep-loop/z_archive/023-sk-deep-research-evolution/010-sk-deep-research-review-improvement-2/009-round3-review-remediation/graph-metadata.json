@@ -21,18 +21,18 @@
       "round 3 remediation summary"
     ],
     "key_topics": [
-      "042",
-      "009",
       "round",
       "remediation",
       "copilot",
       "review",
-      "fixes",
       "plan",
-      "fix",
       "tasks",
       "checklist",
-      "summary"
+      "summary",
+      "remediate",
+      "findings",
+      "20-iteration",
+      "gpt-5"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Remediate 54 findings (37 P1, 17 P2) from the 20-iteration Copilot GPT-5.4 Round 3 deep review covering workflow logic, security hardening, traceability alignment, and maintainability cleanup.",
     "created_at": "2026-04-13T04:55:07.915Z",
-    "last_save_at": "2026-07-08T13:43:44.265Z",
+    "last_save_at": "2026-07-09T10:02:49.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

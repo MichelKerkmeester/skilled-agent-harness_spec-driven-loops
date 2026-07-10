@@ -16,7 +16,6 @@
       "advisor env hardening"
     ],
     "key_topics": [
-      "018",
       "subprocess",
       "env",
       "follow-on",
@@ -27,7 +26,8 @@
       "deferred",
       "because",
       "launcher",
-      "plugin"
+      "plugin",
+      "bridge"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Packet 018 deferred subprocess env hardening because the launcher, plugin bridge, and Python shim inherited broad parent environments",
     "created_at": "2026-05-15T10:50:16Z",
-    "last_save_at": "2026-07-02T05:31:11.173Z",
+    "last_save_at": "2026-07-09T10:02:49.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70b80e7d8012fd9cd5f55adff9cc7c3fb580c148e63420df38b6e286a73850c9",
+    "source_fingerprint": "sha256:1d07a29070f7015f02801dc3de93316d1277e9b586bd1bf2bb01015aaf8e667c",
     "source_doc_hashes": {
-      "spec.md": "b59c3aa7df9715121b61db85bbaa6d30dbe21d638c31781f225a6ce0f266cbaf",
-      "plan.md": "20711ad50f4879ed4253b3f034eb17ff2bfa075e5487616f5a434534048b6d5f",
-      "tasks.md": "5c1ff4ce620bd0aff51e4522ae4c03554ae15e87dc2a60e25078b7ac916dc91b",
-      "checklist.md": "e164b90f1338a8a99ec948dd54e5efb9408a0a3ebddd016c5510897139ea0c1f",
-      "implementation-summary.md": "5d9160a67248f8d94e707b5671227865d59833ba5c7303a7d87d05b9a21d7e84"
+      "spec.md": "b541172f73bda85bfa4ab0d2fb3e5ac79c4e8d63d93a882c0e1df71a3017743d",
+      "plan.md": "a2ae613f077a4d058fdae05aa87495047537761196751ea0662ce18b97bc7c4d",
+      "tasks.md": "3ad3ea8b03d3254e6b36cd349094ba3e8d175dea90601aa19b574fb28c80e464",
+      "checklist.md": "54f49e5582dd1b7de0a31aad89e3ad8d80f71826f6a70b9751d3847d092e8581",
+      "implementation-summary.md": "c12ce8bd78cad3bcc76a15abfff021a76d0e6e86478fe418fafecfc42b5a3415"
     },
     "last_active_child_id": null,
     "last_active_at": null

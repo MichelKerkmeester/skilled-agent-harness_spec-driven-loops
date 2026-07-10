@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test",
   "description": "The F2 clean-close barrier (`reapLeaseChildBeforeRespawn` in `mk-spec-memory-launcher.cjs`, shipped in 032/001) decides whether a possibly-dirty DB is",
   "keywords": [
     "clean-close",
@@ -9,17 +9,15 @@
     "mk-spec-memory-launcher",
     "cjs",
     "shipped",
-    "032",
-    "001",
     "decides",
     "whether",
     "possibly-dirty"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.488Z",
+  "lastUpdated": "2026-07-09T10:02:54.470Z",
   "specId": "001",
   "folderSlug": "live-two-launcher-test",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability",
     "015-infra-followup-hardening"

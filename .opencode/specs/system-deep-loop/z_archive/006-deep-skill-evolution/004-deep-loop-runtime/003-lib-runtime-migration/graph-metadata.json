@@ -27,8 +27,6 @@
       "lib move verification"
     ],
     "key_topics": [
-      "118",
-      "002",
       "lib",
       "runtime",
       "migration",
@@ -38,7 +36,9 @@
       "deep-loop-runtime",
       "population",
       "plan",
-      "git"
+      "git",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 001 creates the `.opencode/skills/deep-loop-runtime/` scaffold (SKILL.md + `lib/` + `scripts/` + `storage/` + `tests/`) but leaves the 13 lib .ts files untouched at their old `.opencode/skills/system-spec-kit/mcpserver/lib/{deep-loop,coverage-graph}/` locations",
     "created_at": "2026-05-22T19:50:00Z",
-    "last_save_at": "2026-07-08T13:44:00.422Z",
+    "last_save_at": "2026-07-09T10:02:48.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

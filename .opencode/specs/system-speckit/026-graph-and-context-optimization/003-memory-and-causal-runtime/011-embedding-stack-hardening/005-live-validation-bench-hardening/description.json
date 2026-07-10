@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening",
-  "description": "The cross-launcher residency, spawn→bind window, real EADDRINUSE/wx races, SIGKILL reclaim, and the 404 contract have never been validated live, so `S",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening",
+  "description": "The cross-launcher residency, spawn→bind window, real EADDRINUSE/wx races, SIGKILL reclaim, and the 404 contract have never been validated live, so",
   "keywords": [
     "cross-launcher",
     "residency",
@@ -13,17 +13,16 @@
     "races",
     "sigkill",
     "reclaim",
-    "404",
     "contract",
     "never",
     "validated",
     "live"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.501Z",
+  "lastUpdated": "2026-07-09T10:02:53.900Z",
   "specId": "005",
   "folderSlug": "live-validation-bench-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "011-embedding-stack-hardening"

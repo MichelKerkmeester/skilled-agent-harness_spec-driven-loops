@@ -28,17 +28,17 @@
     ],
     "key_topics": [
       "phase",
-      "006",
       "collateral",
       "doctor",
       "deep-loop",
-      "update",
       "system-code-graph",
       "playbook",
       "mcp",
       "removal",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "phases"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "After phases 003 (script shims), 004 (MCP tool surface removal), and 005 (workflow YAML migration), 4 collateral files still reference the deleted `mcpmkspecmemorydeeploopgraph<X>` MCP tools",
     "created_at": "2026-05-22T19:50:00Z",
-    "last_save_at": "2026-07-08T13:44:01.943Z",
+    "last_save_at": "2026-07-09T10:02:48.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

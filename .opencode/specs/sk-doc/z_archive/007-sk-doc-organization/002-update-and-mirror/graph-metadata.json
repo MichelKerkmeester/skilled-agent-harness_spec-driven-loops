@@ -23,23 +23,24 @@
       "update-and-mirror summary"
     ],
     "key_topics": [
-      "068",
-      "002",
       "update-and-mirror",
       "sk-doc",
       "reference",
       "sweep",
-      "create",
       "command",
       "mirror",
       "plan",
       "tasks",
-      "summary"
+      "summary",
+      "phase",
+      "moves",
+      "asset"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/commands/create/assets/create_agent_auto.yaml",
       ".opencode/commands/create/README.txt",
       ".opencode/commands/create/agent.md",
       "spec.md",
@@ -52,6 +53,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_agent_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_agent_auto.yaml",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Begin Phase",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After Phase 1 moves the 4 asset items to `assets/` root, every dependent reference across sk-doc internal docs, `/create:` commands × 4 runtimes, the `@create` agent × 4 runtimes, and the install guide still points to the OLD paths",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-06-23T03:49:49.634Z",
+    "last_save_at": "2026-07-09T10:02:44.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [
@@ -204,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b188b31c20525121573a0eb9f0c46cb51f4b26451f33ee6c9d9b647634c635b6",
+    "source_fingerprint": "sha256:776e09569d21f361c3ca6431af98aa9b8bea4a2d3abdd0422bf642919b5661fc",
     "source_doc_hashes": {
-      "spec.md": "e2042f19a3d361bf3afedc0c59ed232f2a36fb96cbf16b8c371e8dab0de37685",
-      "plan.md": "ac7bcb82df1f3632b1ab8efdedd822494f886073241561c17c1dd02ef88b80ac",
-      "tasks.md": "6af9ac76f172438086374c8cd9ea2e2e98c3b88d07f385363ca1e127629de797",
-      "implementation-summary.md": "1ffb550cecbe60fa0247ce820f2aebc7917d4638186272e0da290e293ae335cb"
+      "spec.md": "0047afe3ebace7221a8576d03496a55b0a6fc84064e4453778f677afc7298178",
+      "plan.md": "e03a4541b38deb25174d8cc157fe6d303492c48f2810dece09e393971c7a7e60",
+      "tasks.md": "dad483c98080ab239034f9e10ec79c015247a3975e3a54526a89c35fb0662e92",
+      "implementation-summary.md": "cf25b26db80e2e53008ac7fd3019d581b4b0d780cf384a0b9f08570b6ff0b74e"
     },
     "last_active_child_id": null,
     "last_active_at": null

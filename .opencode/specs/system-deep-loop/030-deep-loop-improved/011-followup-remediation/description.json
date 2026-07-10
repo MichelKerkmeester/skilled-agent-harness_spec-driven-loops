@@ -4,7 +4,6 @@
   "description": "Phase 009's own changelog (`changelog-009-root.md` Follow-Ups) documented 4 deliberately-deferred items: 2 review findings that remained genuinely",
   "keywords": [
     "phase",
-    "009",
     "own",
     "changelog",
     "changelog-009-root",
@@ -17,7 +16,7 @@
     "remained",
     "genuinely"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.351Z",
+  "lastUpdated": "2026-07-09T10:02:47.692Z",
   "specId": "011",
   "folderSlug": "followup-remediation",
   "parentChain": [

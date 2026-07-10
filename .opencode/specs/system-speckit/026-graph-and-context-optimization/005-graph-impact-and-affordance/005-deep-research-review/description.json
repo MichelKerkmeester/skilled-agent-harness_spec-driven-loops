@@ -3,8 +3,6 @@
   "description": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook",
   "keywords": [
     "phase",
-    "006",
-    "007",
     "remediation",
     "claimed",
     "broad",
@@ -18,7 +16,7 @@
     "tests",
     "playbook"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.330Z",
+  "lastUpdated": "2026-07-09T10:02:54.162Z",
   "specId": "005",
   "folderSlug": "deep-research-review",
   "parentChain": [

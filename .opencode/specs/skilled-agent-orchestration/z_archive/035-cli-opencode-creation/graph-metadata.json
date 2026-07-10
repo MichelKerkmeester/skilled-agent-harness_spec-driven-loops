@@ -43,15 +43,15 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/cli-claude-code/graph-metadata.json",
-      ".opencode/skills/cli-codex/graph-metadata.json",
-      ".opencode/changelog/cli-opencode/v1.0.0.0.md",
-      ".opencode/skills/README.md",
-      ".opencode/skills/cli-opencode/SKILL.md",
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
+      ".opencode/skills/cli-claude-code/graph-metadata.json",
+      ".opencode/changelog/cli-opencode/v1.0.0.0.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
       ".opencode/commands/create/changelog.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
@@ -62,9 +62,39 @@
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
       ".opencode/skills/cli-opencode/README.md",
       ".opencode/skills/cli-opencode/graph-metadata.json",
-      "spec.md"
+      ".opencode/specs/skilled-agent-orchestration/z_archive/035-cli-opencode-creation/spec.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/035-cli-opencode-creation/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "graph-metadata.json",
         "kind": "config",
@@ -87,30 +117,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -153,12 +159,6 @@
         "name": "prompt_templates.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The framework already ships four cli- orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`) that let any AI assistant delegate work to an external AI binary",
     "created_at": "2026-04-26T05:00:00Z",
-    "last_save_at": "2026-06-23T03:49:49.307Z",
+    "last_save_at": "2026-07-09T10:02:45.294Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +223,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d7fb7b0fee474c25a61fd51c7438d23e88d60578eb86ab26ec1804024135327",
+    "source_fingerprint": "sha256:9aff4dd415ac0b9b3d7b571db477b87fd85dce56458dd1f48fb30906cbd669c6",
     "source_doc_hashes": {
-      "spec.md": "b84a5a9af6774ed3eedcd4d00f654e7d9905d4a97f39a8843c45624bf34091a5",
-      "plan.md": "bb52c474c58ef5e142769b3c077b02edf7fe7788d481dc77d894e593591d3b54",
-      "tasks.md": "47e3c8ac1e84580f2c0114986c3bda9d050370697e89ecb465455bd7e2a96759",
-      "checklist.md": "eccd2c0cca3b05bbf118ed83d4096e7cb8e171b84fb23b2cb8a9f643e8fcfb1c",
-      "decision-record.md": "821492dcc27a69d3240402be5c7363b30de93dca95ed4b031c2da8ecae77338d",
-      "implementation-summary.md": "b02bb62774bbd3d246b58d4ef2f158db6dd0f2f613d5c33432abf898d8cdab4d"
+      "spec.md": "5c386bc9b90c04117150b18f4174024dfab51ec1cc91f075a96fef9b66cc95a8",
+      "plan.md": "ac0e2ee9bfd6adf9700adc1bf1352f761d613a54db2fb245ecaf730b553a6afb",
+      "tasks.md": "f9102bdda41cf0b4c0df1b69234adf337c709a22ccd83971aa1c85be964a512a",
+      "checklist.md": "b3f68a98e8458104a33652fc5cdf73241960b666060e15e1e9d60b052258394c",
+      "decision-record.md": "f2a2a095d9f5cb9f1a7e8096710a298ca3c2ad5bbdbc00e2932f2e8dca0dac90",
+      "implementation-summary.md": "5a10a59bbf1cfe00e63b5368ea50c08d4fed3eae8d67b5e5b00c5551bd1953a5"
     },
     "last_active_child_id": null,
     "last_active_at": null

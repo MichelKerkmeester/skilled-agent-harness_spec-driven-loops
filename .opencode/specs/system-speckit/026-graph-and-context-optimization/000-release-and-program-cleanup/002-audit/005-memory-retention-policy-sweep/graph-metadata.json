@@ -32,13 +32,13 @@
       "retention",
       "sweep",
       "enforcement",
-      "033",
       "plan",
       "tasks",
       "checklist",
       "verification",
       "implementation",
-      "summary"
+      "summary",
+      "supplemental"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The 013 supplemental research validated P1-2: governed memory ingest persists `deleteafter`, but no cleanup path consumes it",
     "created_at": "2026-04-29T13:55:41Z",
-    "last_save_at": "2026-07-02T05:31:10.520Z",
+    "last_save_at": "2026-07-09T10:02:50.680Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

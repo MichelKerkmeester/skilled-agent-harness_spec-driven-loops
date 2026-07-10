@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "sk-code",
-      "build",
       "remaining",
       "modes",
       "code-implement",
@@ -36,7 +35,8 @@
       "contracts",
       "mode",
       "skill",
-      "plan"
+      "plan",
+      "code"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The hub is routing-only and the surface detection lives in `shared/`, but the four non-review mode packets were still 57-line placeholders",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-07-07T17:16:28.539Z",
+    "last_save_at": "2026-07-09T10:02:44.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

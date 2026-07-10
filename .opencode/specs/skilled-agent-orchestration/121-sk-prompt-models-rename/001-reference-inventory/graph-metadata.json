@@ -32,7 +32,7 @@
       "tasks",
       "001-reference-inventory",
       "touches",
-      "799"
+      "files"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The rename touches ~799 files",
     "created_at": "2026-06-28T13:47:21.024Z",
-    "last_save_at": "2026-07-02T05:31:09.770Z",
+    "last_save_at": "2026-07-09T10:02:45.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

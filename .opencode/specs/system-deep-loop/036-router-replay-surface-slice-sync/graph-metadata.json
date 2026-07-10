@@ -3,6 +3,7 @@
   "packet_id": "system-deep-loop/036-router-replay-surface-slice-sync",
   "spec_folder": "system-deep-loop/036-router-replay-surface-slice-sync",
   "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,8 +43,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/spec.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/surface-slice-sync.vitest.ts",
       ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/plan.md",
       ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/tasks.md",
       ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/checklist.md",
@@ -62,18 +61,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "surface-slice-sync.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/surface-slice-sync.vitest.ts",
         "source": "derived"
       },
       {
@@ -201,11 +188,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Diagnose Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Lane-C deterministic router-replay (`deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs`) slices a single-surface sk-code task down to only its detected surface's resources, so the benchmark can measure route-time loading discipline (the D3 efficiency dimension)",
     "created_at": "2026-07-05T18:13:11.174Z",
-    "last_save_at": "2026-07-06T08:41:30.282Z",
+    "last_save_at": "2026-07-09T10:02:48.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24dfd588d48d46f151eb02de4d9939217232dbc4ca442cc425b70a12c698ed6a",
+    "source_fingerprint": "sha256:f25bb935b72b1a0a3c94e2e6c95b3c520a9bd8bf9cae95dc8a29792c8812a3af",
     "source_doc_hashes": {
-      "spec.md": "b75155617c24edc0f9053980ac6d44001b71e32674cce0925ce9e4e2b73e2ab0",
-      "plan.md": "764675649cec368efc16ad42333bd87546a823fb09c802192222d2445aa133ec",
-      "tasks.md": "406832d61535be70bdac800cec6e4908ba9078fc30023627ea2a04b69edfa5c3",
-      "checklist.md": "4d0836ad04d2c92501db60d10c263ca2be3889c218919d129abb0c2ea0a958b4",
-      "implementation-summary.md": "ff22ca94870dfc1c723c4c4c86be7ac6cbf1545493458b94fe02bead5a576c46"
+      "spec.md": "240b3773e7e6c503c505c7aa508679507c3477fee97670b5f21350080b472614",
+      "plan.md": "9c2eba397b115ead25986bf2593569b590b18a4c9a0ef18fdb83d8c68f116d04",
+      "tasks.md": "26dd6a031f10e0b0ceb1be792dc44d5bc98387d5caff1ba649645565969aa80c",
+      "checklist.md": "8e948efccdb76b6966836112c1c2f86507f2e63f9b4490ee9491c53dae74909c",
+      "implementation-summary.md": "ab340ef0a811396f4606a072931c97a34710447226b0f6a4ffdc02d1bd6ca61e"
     },
     "last_active_child_id": null,
     "last_active_at": null

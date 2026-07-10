@@ -9,17 +9,13 @@
     "one-off",
     "model-specific",
     "rigs",
-    "120",
-    "003",
     "minimax",
     "7-fixture",
-    "126",
-    "004",
     "mimo",
     "lean",
     "2-fixture"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.738Z",
+  "lastUpdated": "2026-07-09T10:02:46.196Z",
   "specId": "102",
   "folderSlug": "reusable-model-benchmark-framework",
   "parentChain": [

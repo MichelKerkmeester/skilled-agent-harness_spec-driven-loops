@@ -23,7 +23,6 @@
       "summary"
     ],
     "key_topics": [
-      "031",
       "coco",
       "index",
       "command",
@@ -34,7 +33,8 @@
       "implementation",
       "summary",
       "folder",
-      "existed"
+      "existed",
+      "without"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "This folder existed without the required planning docs, so the intended command integration work for sk-coco-index was not traceable through spec-kit validation",
     "created_at": "2026-04-12T09:02:50.177Z",
-    "last_save_at": "2026-06-23T03:49:49.061Z",
+    "last_save_at": "2026-07-09T10:02:45.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:92cec48d8427e457edcd02bd08554029c21e9bbc5438b730b396258be049ef1a",
+    "source_fingerprint": "sha256:fd8aefd18a447b56a907dcad35e3cdfdc6196a2b5ce59a751449feaf4c692666",
     "source_doc_hashes": {
-      "spec.md": "35af50ec8c0ca5a2319084fa127cba332bba2a06d482510604ca4081bdeb35f6",
-      "plan.md": "97f39798953dcf4c9776ea13ace11c0583e7fab98e6b3a220d97183b17ba3709",
-      "tasks.md": "e8f0e1cb9cac49b80d7506a07af5c49458d56c5a5a3ead904648ce961b2863a2",
-      "implementation-summary.md": "8a5a79eb3c60c35acda017181143b328302375fc37e66ea908ec70b243a6f4e7"
+      "spec.md": "5e3c75a3056ec39b23cf0a5ef7c8b1e0df2063c4e58174dfb679d888b07fb019",
+      "plan.md": "aa286b8dbbc65e09e0ea471597c1f38a58339232e3b6fa7502e1d82e187679dd",
+      "tasks.md": "df6ee027ee2a8feebdb0ee8c240ddffb17a36e2a81c9a7e3c9d283115e48144e",
+      "implementation-summary.md": "257f00034ceb38fc74afcffd3db2b223f59f042dcc93700c0b08fbb771dc1b0d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -46,7 +46,7 @@ Score and improve my customer-feedback parsing prompt; verify CLEAR reports all 
 
 1. `sk-prompt: Score my prompt for parsing customer feedback across all 5 CLEAR dimensions, not just the total.`
 2. `agent: @prompt-improver raw_task="Score and improve a customer-feedback parsing prompt with full CLEAR breakdown." task_type=analyze target_cli=opencode complexity_hint=6 constraints="Return C, L, E, A, R and total."`
-3. `bash: rg 'Correctness|Logic|Expression|Arrangement|Reusability|CLEAR_SCORE' .opencode/skills/sk-prompt/references/patterns_evaluation.md .opencode/skills/sk-prompt/SKILL.md`
+3. `bash: rg 'Correctness|Logic|Expression|Arrangement|Reusability|CLEAR_SCORE' .opencode/skills/sk-prompt/prompt-improve/references/patterns_evaluation.md .opencode/skills/sk-prompt/SKILL.md`
 
 ### Expected
 

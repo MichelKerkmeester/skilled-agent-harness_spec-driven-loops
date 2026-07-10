@@ -25,18 +25,18 @@
       "008 remediation summary"
     ],
     "key_topics": [
-      "fix",
       "benchmark",
       "threshold",
       "profile",
       "path",
-      "008",
       "deep-agent-improvement",
       "remediation",
       "lg-0004",
       "lg-0006",
       "run-benchmark",
-      "profilesdir"
+      "profilesdir",
+      "default",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Remediation of the two code/config gaps the 005-deep-agent-improvement phase-5 deep-research loop surfaced and escalated: align the dynamic-profile benchmark threshold (75 -> 80) and fix the run-benchmark default profilesDir (target-profiles -> benchmark-profiles).",
     "created_at": "2026-05-24T04:32:12.188Z",
-    "last_save_at": "2026-07-08T13:43:58.505Z",
+    "last_save_at": "2026-07-09T10:02:48.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

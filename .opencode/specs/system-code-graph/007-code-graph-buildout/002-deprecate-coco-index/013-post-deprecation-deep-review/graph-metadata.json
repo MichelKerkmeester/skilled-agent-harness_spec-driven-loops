@@ -21,7 +21,6 @@
       "post-deprecation",
       "deep",
       "review",
-      "014",
       "surfaces",
       "cli-devin",
       "coco",
@@ -29,7 +28,8 @@
       "declared",
       "complete",
       "session",
-      "repeatedly"
+      "repeatedly",
+      "found"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -96,7 +96,7 @@
     ],
     "causal_summary": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc`), and a pre-review sweep confirmed 4 more misses",
     "created_at": "2026-05-25T00:00:00.000Z",
-    "last_save_at": "2026-07-07T16:18:33.763Z",
+    "last_save_at": "2026-07-09T10:02:46.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

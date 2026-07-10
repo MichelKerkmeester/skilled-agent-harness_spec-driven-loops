@@ -1,14 +1,13 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
-  "description": "MiMo-V2.5-Pro and MiniMax cannot be cleanly used as deep-loop executors: every `cli-opencode` dispatch in the deep skills injects `--agent general`, w",
+  "description": "MiMo-V2.5-Pro and MiniMax cannot be cleanly used as deep-loop executors: every `cli-opencode` dispatch in the deep skills injects `--agent general`,",
   "keywords": [
     "mimo-v2",
     "5-pro",
     "minimax",
     "cannot",
     "cleanly",
-    "used",
     "deep-loop",
     "executors",
     "every",
@@ -20,7 +19,7 @@
     "agent",
     "general"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.164Z",
+  "lastUpdated": "2026-07-09T10:02:46.179Z",
   "specId": "002",
   "folderSlug": "deep-skills-executor-integration",
   "parentChain": [

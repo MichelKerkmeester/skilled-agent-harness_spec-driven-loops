@@ -1,11 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement",
   "parent_id": null,
   "children_ids": [
     "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/001-state-simplification",
-    "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/002-debugger"
+    "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/002-debugger",
+    "system-speckit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/001-state-simplification",
+    "system-speckit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement/002-debugger"
   ],
   "manual": {
     "depends_on": [],
@@ -34,12 +36,12 @@
       "analysis",
       "improvements",
       "spec",
-      "019",
       "implementation",
       "plan",
       "tasks",
       "breakdown",
-      "verification"
+      "verification",
+      "conversation"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -200,7 +202,7 @@
     ],
     "causal_summary": "\"Conversation context is volatile, but the filesystem is persistent",
     "created_at": "2026-04-12T09:02:53.513Z",
-    "last_save_at": "2026-06-23T03:49:58.916Z",
+    "last_save_at": "2026-07-09T10:02:56.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -164,7 +164,7 @@ function parseCatalogTells(source) {
 function familyFromHeading(heading) {
   const normalized = heading.toLowerCase();
 
-  if (normalized.includes("opencode tells")) {
+  if (normalized.includes("opencode-lineage tells")) {
     return "opencode";
   }
 

@@ -39,18 +39,24 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md",
       ".opencode/skills/sk-prompt-models/references/models/_index.md",
       ".opencode/skills/sk-prompt-models/SKILL.md",
       ".opencode/skills/sk-prompt-models/graph-metadata.json",
       ".opencode/skills/cli-opencode/graph-metadata.json",
-      ".opencode/skills/cli-opencode/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "kimi-k2.7-code.md",
         "kind": "doc",
@@ -61,12 +67,6 @@
         "name": "_index.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt-models/references/models/_index.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Kimi K2.7 Code (live slug `kimi-for-coding/k2p7`) is available on the dedicated \"Kimi For Coding\" coding-plan provider but is not registered anywhere in the small-model surfaces, so it cannot be dispatched or routed by name",
     "created_at": "2026-06-15T09:21:00Z",
-    "last_save_at": "2026-06-23T03:49:48.748Z",
+    "last_save_at": "2026-07-09T10:02:46.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:febb02ce47f2131b983201f8f5330113d900e9e62d8379d4abfa004f0f4ba938",
+    "source_fingerprint": "sha256:006098db86d115155dce26ec97023a1f4d2e026606da4f577d244f385e61e1f6",
     "source_doc_hashes": {
-      "spec.md": "167e5d1385bb0767baf14f7f5908a37fbda312d209287606d46963438b82952d",
-      "plan.md": "7a155eca42c8b0ac325700bcddf07e4db16c7b0f758ff3da7df1319393a9566c",
-      "tasks.md": "dbfda96678d03fd42ebf06b94a8a2aea9e6774be90ae976e01003d9f291d2591",
-      "implementation-summary.md": "e6acaf9261923db6a2fad0e9ec43457e5096f948c899ebe3d1bc7e06cdd4f863"
+      "spec.md": "806f42a309e3a48a3c55581b9496e6090d84ec19e67aba38f5ea2fb3dcb18d19",
+      "plan.md": "c831460f1e8d48c282ae737dbb589c289354abd6b03d1bd2c7a94154543b750b",
+      "tasks.md": "b40275577a5cd236ed977699fd562d270de512f95d9b7090c4489ed3e910eafc",
+      "implementation-summary.md": "6bdf0569161d516a24eabf70caf67cae285d7a12830f5ee3b944338334c564f0"
     },
     "last_active_child_id": null,
     "last_active_at": null

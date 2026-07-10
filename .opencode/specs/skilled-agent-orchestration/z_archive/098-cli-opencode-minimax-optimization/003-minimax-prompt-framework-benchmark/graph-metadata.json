@@ -196,7 +196,7 @@
     ],
     "causal_summary": "120/002's research recommended a prompt framework for MiniMax 2.7 by desk analysis only — it never ran the model, so the recommendation is unvalidated",
     "created_at": "2026-05-28T11:03:05Z",
-    "last_save_at": "2026-06-23T03:49:51.160Z",
+    "last_save_at": "2026-07-09T10:02:46.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e82426c6b039381da99f020a9573b1bb00daf3f1d814733ad865dca65f93f03",
+    "source_fingerprint": "sha256:53e94837412df3501bbe4f8cb7d32bff7cb3d0b98bb41edc5ebe2a65b90f9bbb",
     "source_doc_hashes": {
-      "spec.md": "ed8222856916e186a7211480d0880ecd1ed0fe42a6385a37cd252c918e320b03",
-      "plan.md": "f88bd9b0189b752141bc120172485ec431d5e5db6e37770eea051b2b54d9c251",
-      "tasks.md": "36c7c78f28925096f8d184b48bd4c6e6adcb29e8d8e017506a577762de3dcd7d",
-      "implementation-summary.md": "365fc0fab85cce8d6f5c310df70b9f817c31b4dcec5586669e7bc40d234481b1"
+      "spec.md": "9762fc590d40fb2834617fb6c67d44de26f9ec8f9c7c4ed2c720b3e9809c1393",
+      "plan.md": "da47e6c1c55602c1565aefbfd011b1331cd5a19c623c36bb307ef082bb999b17",
+      "tasks.md": "902a121e7e5ac4699e10065aaa62974ef536bc34165dd8bacc9ff2461c7eb666",
+      "implementation-summary.md": "a273c11375a4ecde21ad8f6ca58b28eea41f79d33cf8fe96744417c1d860d88f"
     },
     "last_active_child_id": null,
     "last_active_at": null

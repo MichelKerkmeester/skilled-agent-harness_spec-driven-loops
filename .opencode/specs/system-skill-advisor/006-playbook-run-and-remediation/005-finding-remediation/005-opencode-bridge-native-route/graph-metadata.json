@@ -23,14 +23,14 @@
       "bridge",
       "native",
       "route",
-      "fix",
       "mk-skill-advisor-bridge",
       "launcher",
       "lease",
       "no-bridge-socket",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`mk-skill-advisor-bridge.mjs` fails open to the python route (`route:\"python\"`, `SYSTEMSKILLADVISORUNAVAILABLE`) even though `dist/mcpserver/compat/index.js` exists",
     "created_at": "2026-05-26T21:20:48.106Z",
-    "last_save_at": "2026-07-02T05:31:11.380Z",
+    "last_save_at": "2026-07-09T10:02:50.190Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fd043b2af997901117bcce62618e8619e0cadd5043929961b0f4fdca4443083",
+    "source_fingerprint": "sha256:d31b6f60f42c51a3b753185a84251cbb14e6f21f283c46393b121316f1c17d29",
     "source_doc_hashes": {
-      "spec.md": "3e4e12cfbb25c9ceac05f0e67819977a3f0858947f2b8dac290efe0572553c04",
-      "plan.md": "b340485ae80256f6f21e89982a26414aa4169c3ea9aa7c30b311efbf49b87ca7",
-      "tasks.md": "448c82f186e385d6399a3164356863a81afe52de4ba63e76d40b8a19ebe2edc7",
-      "implementation-summary.md": "2ff2ae5baaf8e334d084c9fa3fd8fdf2c1f8aeea9f160b93ec378a20d6a41001"
+      "spec.md": "775b5ab4a0128c0685daa9ed4147f32d6d896dd5e083329cc8980466328f9339",
+      "plan.md": "96c36d026e854f4252a7863c866fc64e91b0a9f037434a00f35c3ea018c118ed",
+      "tasks.md": "97939c3cfa53b1f8c3e947bd41fd98785fa606b292c14db4592149744ba29509",
+      "implementation-summary.md": "03cf5157adf85fdb66f7a2fab80ef2070ad9d2f14b32ca22ea8583d95ec82b6e"
     },
     "last_active_child_id": null,
     "last_active_at": null

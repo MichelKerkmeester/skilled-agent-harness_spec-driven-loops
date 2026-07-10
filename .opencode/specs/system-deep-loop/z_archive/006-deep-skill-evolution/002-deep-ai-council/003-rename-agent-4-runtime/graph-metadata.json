@@ -21,8 +21,6 @@
       "115 003 impl summary"
     ],
     "key_topics": [
-      "115",
-      "003",
       "agent",
       "runtime",
       "rename",
@@ -32,7 +30,9 @@
       "impl",
       "summary",
       "deep-ai-council",
-      "slug"
+      "slug",
+      "deep",
+      "prefix"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `@deep-ai-council` agent slug uses the `deep-` prefix that conflates with the autonomous-loop family (deep-research, deep-review, deep-agent-improvement)",
     "created_at": "2026-05-21T06:57:09Z",
-    "last_save_at": "2026-07-08T13:43:50.842Z",
+    "last_save_at": "2026-07-09T10:02:48.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

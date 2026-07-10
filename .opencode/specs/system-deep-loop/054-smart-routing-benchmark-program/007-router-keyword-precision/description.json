@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-deep-loop/054-smart-routing-benchmark-program/007-router-keyword-precision",
+  "description": "Narrow over-broad generic keywords in the deep-loop child routers (deep-research + deep-improvement) so unrelated marketing/billing/UI prompts stop",
+  "keywords": [
+    "narrow",
+    "over-broad",
+    "generic",
+    "keywords",
+    "deep-loop",
+    "child",
+    "routers",
+    "deep-research",
+    "deep-improvement",
+    "unrelated",
+    "marketing",
+    "billing",
+    "prompts",
+    "stop"
+  ],
+  "lastUpdated": "2026-07-09T12:18:00.250Z",
+  "specId": "007",
+  "folderSlug": "router-keyword-precision",
+  "parentChain": [
+    "system-deep-loop",
+    "054-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

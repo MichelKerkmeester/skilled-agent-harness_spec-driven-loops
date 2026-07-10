@@ -35,15 +35,16 @@
       "skill",
       "plan",
       "tasks",
-      "104",
-      "checklist"
+      "checklist",
+      "verification"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/README.md",
       ".opencode/skills/cli-claude-code/graph-metadata.json",
-      ".opencode/skills/cli-codex/graph-metadata.json",
       ".opencode/skills/cli-opencode/graph-metadata.json",
       "manual_testing_playbook/manual_testing_playbook.md",
       "implementation-summary.md",
@@ -53,6 +54,12 @@
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "sibling",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repo's CLI-executor skill family (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) lets any one CLI delegate tasks to any other CLI as a peer",
     "created_at": "2026-05-15T07:01:57.575Z",
-    "last_save_at": "2026-06-23T03:49:50.311Z",
+    "last_save_at": "2026-07-09T10:02:45.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:543fab15d3e8689e7be2706f5ee1261ada652c06c382de144907568fdc3ba82b",
+    "source_fingerprint": "sha256:2a7f5a49c0aac8fdbf572066cf57a991fb0ef5fc0f0a6915fa46637ad114e8f8",
     "source_doc_hashes": {
-      "spec.md": "a87322dc2d92f42c1db7eec99144a413426368b6237cdab5edc3be5ba8cb7e3e",
-      "plan.md": "761040fa5b6e5c0c711be84687b725bde18c569aac2180de970d1fc118b055fe",
-      "tasks.md": "44df2435eaf8a94241def9689b587379843438a04c6a35f556413e030ac252f3",
-      "checklist.md": "e0ba7dcd0ddb0ab059fdc763b020ef9d1f65fc066f205e00d118c219bb59e9de",
-      "implementation-summary.md": "0cc59c242ddaf2542cadccb4c45c2d3e24a002b4ff68c8eecc558b5dc639f2cd"
+      "spec.md": "a96c586a2d8227559da4b6660645bb014eeab442503d1ce308ffa41bfaad8194",
+      "plan.md": "53dc71d0610f39fb2098914e6a935d85cfba4b114eb3fb8e93b44e9a53d4299a",
+      "tasks.md": "5f16084e6c9fecec9a726c3987dc196477c1e62535deb6c2baefcb4522491baa",
+      "checklist.md": "1c1599f602ed563224b6373c54a4d36c3fd731656fd4a1e81e1bb26217b42f05",
+      "implementation-summary.md": "9d3050878c16fa824efbe12bd4440f5a597924bfc00e1fd1904dae08b592fb92"
     },
     "last_active_child_id": null,
     "last_active_at": null

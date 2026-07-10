@@ -12,10 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "tighten playbook pass criteria",
-      "manual testing playbook",
+      "deep-loop playbook pass-criteria tightening",
       "inspection-only loophole",
       "deep-loop-runtime",
       "implementation plan",
+      "manual testing playbook",
       "tasks",
       "implementation summary"
     ],
@@ -24,20 +25,19 @@
       "playbook",
       "pass",
       "criteria",
-      "manual",
-      "testing",
+      "deep-loop",
+      "pass-criteria",
+      "tightening",
       "inspection-only",
       "loophole",
       "deep-loop-runtime",
       "implementation",
-      "plan",
-      "tasks"
+      "plan"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md",
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,12 +48,6 @@
         "name": "speckit-autopilot-lifecycle.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md",
-        "source": "derived"
-      },
-      {
-        "name": "single-loop-telemetry-heartbeat.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md",
         "source": "derived"
       },
       {
@@ -187,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built High",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Several high-risk manual testing scenarios used pass criteria that could be satisfied by inspection alone",
     "created_at": "2026-06-29T10:43:20Z",
-    "last_save_at": "2026-07-04T18:02:21.613Z",
+    "last_save_at": "2026-07-09T10:02:47.616Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c7f628db30d1f3eb59dbbd3430320349904819622f1f9931f8acef24148d79a",
+    "source_fingerprint": "sha256:16722af71222cd1d547661fe05617166b9dd70ed9373e80a8876c7bd600bb222",
     "source_doc_hashes": {
-      "spec.md": "b9892d0610c74f09c05aabf2693e6abf3ae44969523c4e1476c0cd371248d6fe",
-      "plan.md": "df46f1e7ae36424e10852f875ceffeda35f9cf3c7387019d4a92a1828f474f9d",
-      "tasks.md": "0ec9678f8eb6e9e9108c00a8e07253eacd8c83f7ef91012c95924a696d788d74",
-      "implementation-summary.md": "99c07298c00491ed1a96cb75fbb1e0ef481c82b6119879e4bb56d3dc3b9118d0"
+      "spec.md": "bdd43781bec1df437fa0bdf1db03567941d39243633971ebea01c467f049b0f2",
+      "plan.md": "059a4945f19344419192928af0674caa5b5f83d6242dded88a3a94d599da602a",
+      "tasks.md": "e090df0fd0413cd92789787710a52a15ba5d0e8ab9ab49d4c938bbbbe7f42618",
+      "implementation-summary.md": "eda834619669752d7f0d3d42a71f8e6a459e6115c2405c27beb3127acff14677"
     },
     "last_active_child_id": null,
     "last_active_at": null

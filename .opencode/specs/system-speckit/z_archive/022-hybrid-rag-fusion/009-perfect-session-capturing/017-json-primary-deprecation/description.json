@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/017-json-primary-deprecation",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/017-json-primary-deprecation",
   "description": "Dynamic session capture reconstructs context from runtime databases after the fact",
   "keywords": [
     "dynamic",
@@ -11,11 +11,11 @@
     "databases",
     "fact"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.128Z",
+  "lastUpdated": "2026-07-09T10:02:58.303Z",
   "specId": "017",
   "folderSlug": "json-primary-deprecation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

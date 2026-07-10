@@ -122,15 +122,15 @@
     ],
     "causal_summary": "cli-opencode supports three provider families (`opencode-go` default, `deepseek` direct-API, and MiniMax via the Token Plan `minimax-coding-plan` / Direct API `minimax`)",
     "created_at": "2026-06-01T20:21:29.312Z",
-    "last_save_at": "2026-06-23T03:49:51.480Z",
+    "last_save_at": "2026-07-09T10:02:46.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6474640cba6f53df1a132d902b946b0d36ac65c7169f6e3c02ebf6b3f5d06d04",
+    "source_fingerprint": "sha256:1b18ab1deeace97a032faead9bdfc101a5a540e9bbb57eb8604a74b39eac53cf",
     "source_doc_hashes": {
-      "spec.md": "7724de5b5fe49586c1d61c968c71fe3b17e3b6878c173c8b2a391065dfc2205c"
+      "spec.md": "12209ab84c6af059a5e005056132c698753f1096c398390cde42e30b4193bc3c"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-01T21:27:52.168Z"

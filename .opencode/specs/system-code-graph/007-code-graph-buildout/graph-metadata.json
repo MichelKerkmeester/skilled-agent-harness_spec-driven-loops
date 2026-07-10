@@ -37,7 +37,6 @@
       "path catalog 005-code-graph"
     ],
     "key_topics": [
-      "026",
       "code",
       "graph",
       "structural",
@@ -48,7 +47,8 @@
       "map",
       "005-code-graph",
       "path",
-      "catalog"
+      "catalog",
+      "harden"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -144,7 +144,7 @@
     ],
     "causal_summary": "Build and harden the code-graph structural-indexing surface: the standalone package, CocoIndex decoupling, startup fixes, and the code-graph runtime, resilience, extraction, and documentation sub-themes",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-07-07T16:18:33.747Z",
+    "last_save_at": "2026-07-09T10:02:46.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

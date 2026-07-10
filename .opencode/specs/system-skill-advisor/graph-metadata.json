@@ -29,43 +29,84 @@
       "system-skill-advisor track",
       "skill advisor subsystem",
       "skill graph routing engine scoring",
-      "advisor scorer intelligence",
-      "advisor projection vocabulary",
-      "saturation-class root fix"
+      "advisor scorer intelligence"
     ],
     "key_topics": [
       "system-skill-advisor",
+      "track",
+      "skill",
       "advisor",
-      "skill-graph",
+      "subsystem",
+      "graph",
       "routing",
+      "engine",
       "scoring",
-      "hardening",
-      "embedder",
-      "cli",
       "scorer",
-      "saturation",
-      "track"
+      "intelligence",
+      "skill-advisor"
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "last_active_child_id": "system-skill-advisor/012-skill-advisor-tuning",
     "key_files": [
-      "spec.md",
-      "context-index.md"
+      "spec.md"
     ],
-    "entities": [],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Skill Advisor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
     "causal_summary": "The skill-advisor subsystem's spec history was scattered across three unrelated `system-speckit` packets (026, 027, 028) for over two months, with no single folder a reader could open to understand its full history",
     "created_at": "2026-04-21T00:00:00.000Z",
-    "last_save_at": "2026-07-07T00:00:00.000Z",
+    "last_save_at": "2026-07-09T10:02:49.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "context-index.md"
+      "spec.md"
     ],
     "source_fingerprint": "sha256:b9043ce87e2cab2b904cc92acc61f591ff348f1d5eef76ac8f3a21eb2b51d0a1",
     "source_doc_hashes": {
       "spec.md": "446dfce8f911a3fd08b54e2ff78c11504edfd33dc8d26160b99c61ac30126513"
-    }
+    },
+    "last_active_child_id": "system-skill-advisor/012-skill-advisor-tuning",
+    "last_active_at": null
   }
 }

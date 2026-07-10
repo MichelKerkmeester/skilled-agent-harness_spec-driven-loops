@@ -30,35 +30,19 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
       ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/skills/sk-doc/references/skill_creation.md",
       "resource-map.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/assets/readme/readme_template.md",
-      ".opencode/skills/sk-doc/assets/readme/readme_code_template.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
       {
-        "name": "skill_readme_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/skill_creation.md",
         "source": "derived"
       },
       {
@@ -83,18 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "readme_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/readme/readme_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "readme_code_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/readme/readme_code_template.md",
         "source": "derived"
       },
       {
@@ -186,11 +158,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc has README templates and skill creation guidance, but lacks a dedicated skill README asset for skill packages",
     "created_at": "2026-05-10T10:33:23Z",
-    "last_save_at": "2026-06-23T03:49:50.264Z",
+    "last_save_at": "2026-07-09T10:02:44.945Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,14 +197,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:98cc0da813049ee199aa8b70f30d021f925eb684db14eaabbb0d56f3adb98025",
+    "source_fingerprint": "sha256:1068fe95d56b66835fbd08ea331ad0f05b3f3cf553b5bad58a1db6829bb44afa",
     "source_doc_hashes": {
-      "spec.md": "ad65009422a62c80d26d44c26ea8701efaee3ee132b61730fc5c1ee4fe9feedb",
-      "plan.md": "7c96e9254b8ad73c6bfd122a70c094b83cd179e9dfea961de4612df6c8141ea1",
-      "tasks.md": "283dc2c424c8b782aa942c3692b6d8a7b4ce213be0f226963e36c42746286180",
-      "checklist.md": "35f85742865e78252bc5a189113ebafb629aeef1ed511d350c3751c6eb29b222",
-      "implementation-summary.md": "5d67453e2a2ac3a7a57ea49a7a2bf5c8c6147053079d666e70e32f147099c8db",
-      "resource-map.md": "1afc399f5dfd2d48ac012b781d6155d9917a2ecf49835fbeeb1e625eae173ee9"
+      "spec.md": "5133b665649ea19aea4e0e401a4f092b2161ddb8dc1b84b20fafa2293484d8ed",
+      "plan.md": "10d4687105c958a5b14bfa2a2c68ab6e476823ab14a99314680bb574785d8fb8",
+      "tasks.md": "812b310d1eda8c1b94ae5bce7bbaa99c7963a2d4ff00b64fa1005309db1a45f3",
+      "checklist.md": "5009ff9ec6d548246d87574f78f927269f62dc55a82d00434fca34e49b3fd5bf",
+      "implementation-summary.md": "412fc05297cc536e4495976a271489c897866636a4ea54c21717485964c67731",
+      "resource-map.md": "291677fff68c045ee2ff586f6213844d688af564a5216c0feccb898fad1d7461"
     },
     "last_active_child_id": null,
     "last_active_at": null

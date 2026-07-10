@@ -27,9 +27,6 @@
       "advisor cleanup checklist"
     ],
     "key_topics": [
-      "013",
-      "009",
-      "006",
       "validation",
       "cleanup",
       "advisor",
@@ -38,7 +35,10 @@
       "proxy",
       "final",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "adr-001",
+      "intentionally"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "ADR-001 intentionally allowed a short compatibility window where `speckitmemory` could expose advisor proxy tools while consumers moved to the standalone `systemskilladvisor` MCP server",
     "created_at": "2026-05-14T12:45:00Z",
-    "last_save_at": "2026-07-02T05:31:11.114Z",
+    "last_save_at": "2026-07-09T10:02:49.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T12:45:00Z",
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dbcc1c5fd5d41dbe43ad8de3a98d7283b793a905ab069f300099821d0deeb810",
+    "source_fingerprint": "sha256:c32dcf274ab70a6fcdcdb1d4b0149b37273081e6767b902c14f926c2bb4a6b0d",
     "source_doc_hashes": {
-      "spec.md": "9f8e49f1c754d42d3706c75db4edbc6057f3d3f0532b6ce74b9b2aebef885e0d",
-      "plan.md": "8d6ba092d5e6302b64e050be3279c76fd985703522639e076be991c07c8b0ea9",
-      "tasks.md": "e8ea9ec83bacaa18fc39b70d327cc177110b9a49b7fb16402023fbdd7a9c01a1",
-      "checklist.md": "16d417d0cf8191f16a7fac82542c72940a4ba6a54c5540dadfa9c9124c3e9480",
-      "decision-record.md": "7774b7e560c9a3b37a36b7fd9ef679ef0c056b6bb6e7624f5295980036b704ca",
-      "implementation-summary.md": "8bbd9fb8835ef6a56d05c8174e6868a589fc4cebd7a930d9f55729d2fc5e3616"
+      "spec.md": "f2f32bc77217669391743c91744354bde8771eb2133e0da2af199a5be1f0bff7",
+      "plan.md": "18513a7682e0f992478d3f4fbfd78daabfe808f0026851be550034ccf02bd67c",
+      "tasks.md": "33f89d66e7f66b041ff170f54f509db90c32d0436fdeae3c3f671be1b765e6f2",
+      "checklist.md": "874cfe3f3ccdea5a3e481fb217482d2a56d51b69e4584e4b9236b69fe5b7c656",
+      "decision-record.md": "badbbe1dfd77d5506cb914da4f9c0c5b1c7544e71098732bf2c5e0e0ca0ef4a8",
+      "implementation-summary.md": "3dbc8d563c7847a4223415a6ffec415508628dfad486ec9d41ae2beaa9ae6f75"
     },
     "last_active_child_id": null,
     "last_active_at": null

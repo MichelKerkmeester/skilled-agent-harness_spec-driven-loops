@@ -25,8 +25,6 @@
       "cross cli card mirror tasks"
     ],
     "key_topics": [
-      "113",
-      "006",
       "cli",
       "cross",
       "rcaf",
@@ -36,19 +34,18 @@
       "plan",
       "prompt",
       "quality",
-      "card"
+      "card",
+      "default",
+      "already"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
-      ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-claude-code/changelog/v1.1.6.0.md",
-      ".opencode/skills/cli-codex/changelog/v1.4.3.0.md",
       ".opencode/skills/cli-opencode/changelog/v1.3.2.0.md",
       "plan.md",
       "tasks.md",
@@ -74,12 +71,6 @@
         "name": "v1.1.6.0.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-claude-code/changelog/v1.1.6.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.4.3.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/changelog/v1.4.3.0.md",
         "source": "derived"
       },
       {
@@ -201,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 113/003 cli-devin eval-loop measured that medium-density pre-planning outperformed dense pre-planning by roughly 10-15% on SWE 1.6",
     "created_at": "2026-05-17T12:18:18Z",
-    "last_save_at": "2026-06-23T03:49:50.485Z",
+    "last_save_at": "2026-07-09T10:02:45.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2751339fffe984e9cc1a86d0f8078ba68b090dceaa8901f702179f31da12d96c",
+    "source_fingerprint": "sha256:48fc1b6bb592013dee1c18079ef6077698c98fb2c992ddf1e015ca6852af7741",
     "source_doc_hashes": {
-      "spec.md": "0809b5c091a20d0aff868a58bbacd2ec9698e94f5f8e14ac3e9be86fe575fc55",
-      "plan.md": "d21d03d77acdaa834b50c49a427080bcd70870fc3a3520bf2e03f6a12eba6d7a",
-      "tasks.md": "cd2ca0b936318d614dd10e7ccd5b696236e8ff1d56173a4c27cc1dbbc7d8a5c4",
-      "checklist.md": "4ea74350dd6fda1c7f0b15305ebbecd3823cf82b9edcdefeef9bc2eb78d875cd",
-      "decision-record.md": "e4a48705aa906604bd49e49ae89d16586d59b9c8a1762725fcfa2909d041ae2f",
-      "implementation-summary.md": "612edfb89d0c2d117d9259e3d9fda66a5719a017aebff85581ea6f35d334e17c"
+      "spec.md": "3bb66206455efd43ce6a46d57fe6452337085ee1fc9c9b454a410eedfb4515a9",
+      "plan.md": "e90dc4fb16ac657c7723edbbc29eed0c019641f967cd3ce1bc77197952db845e",
+      "tasks.md": "5ecce6d839fe7113dbb71a52d9656b814392e84052cc3a8e9eb1df4194dedff8",
+      "checklist.md": "e65e87622caa0c44d7eb964f55ae5a17faca471c665ba0e873d7a291bea8baaa",
+      "decision-record.md": "0e72af01955505548ae05a39c9d947e1ff132902546a481c28d0183962d46434",
+      "implementation-summary.md": "53f79be79e765a8fccf4c4633ed32d69c0371a34fb93cd91fbf9f45a18535fd0"
     },
     "last_active_child_id": null,
     "last_active_at": null

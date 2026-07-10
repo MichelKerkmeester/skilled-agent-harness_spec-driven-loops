@@ -24,13 +24,13 @@
       "backfill",
       "remediation",
       "phases",
-      "004",
-      "007",
-      "005",
       "recursive",
       "strict",
       "validation",
-      "implementation"
+      "implementation",
+      "summary",
+      "ten",
+      "leaf"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Ten leaf children across four phases still have `plan.md`/`tasks.md` whose BODY content is unmodified scaffold-template placeholder prose (`[Core feature 1]`, `[MVC | MVVM | ...]`, generic Setup/Core Implementation/Verification checklists), carrying scaffold-signature frontmatter markers: a `title` containing `[template:...]`, a `packetpointer` starting with `scaffold/`, and `lastupdatedby: \"template-author\"`",
     "created_at": "2026-07-01T19:38:04.141Z",
-    "last_save_at": "2026-07-04T18:02:30.590Z",
+    "last_save_at": "2026-07-09T10:02:47.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4df95ba073528c661ddf17a2a15561421bd36afe9c4176eba034111c59af9abe",
+    "source_fingerprint": "sha256:09ad714531be21dba4ad118ef6c61be97974a86eb0c2a1567faf6803adf0e457",
     "source_doc_hashes": {
-      "spec.md": "04e223e8ac8ceedf749ffbc8c1a3f148c5c861bddad604301e1b62549b2ca062",
-      "plan.md": "2a99746315f17007943eb2e67a4f1fe252ec4d47c9ac06a8a838a1de9b76d04f",
-      "tasks.md": "2156c480cae8f83868a4327d1e5c5707a3c27132ec08748c8a45130ec667f41b",
-      "implementation-summary.md": "c648b6c6bac7187f7bdb8ab660fb90329b9551fe3d38e64f3a2081f1dd016ac8"
+      "spec.md": "ccd44b98943c062faa862567b4dc8b7c3a3c4966132f0fac8c91676f74fdf9c3",
+      "plan.md": "405215367e00efeee587af73dc4a5cd2783b5b5052b0ca741327d018d2b064ca",
+      "tasks.md": "a8ba901f9fbce8bf870f24258ae31d97d96b4da589b68920df13ec64eb24c9f9",
+      "implementation-summary.md": "6ea40075be8b20abc875d4b74981393d200959acb98ba338c02f263c60183a16"
     },
     "last_active_child_id": null,
     "last_active_at": null

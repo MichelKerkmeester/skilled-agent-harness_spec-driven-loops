@@ -97,7 +97,7 @@ Every session starts by locating the CLI as `node "$OD_BIN" --help` (or the `ELE
 
 ### The Read Direction
 
-After wiring, the read-only tools are always safe: `list_projects`, `get_active_context`, `get_project`, `get_file`, `search_files`, `list_files`, `get_artifact`, and the list and run inspectors. From the CLI, `od tools design-systems read` reads a registered design system's files. A design system is a `DESIGN.md`, a paste-ready `tokens.css`, and an optional `components.html`. Open Design content is read live and never copied into a repo, because reusing a system happens at build time in the target app rather than by vendoring its files, whose per-source licenses would attach.
+After wiring, read-only means the tool does not write; it does not automatically mean unguarded (see [`references/tool_surface.md`](./references/tool_surface.md) for the full two-axis rule). Pure transport reads (`list_projects`, `list_files`, `list_skills`, `list_plugins`, `list_agents`) are always safe to call, since they return inventory only. Design-feeding reads (`get_active_context`, `get_project`, `get_file`, `search_files`, `get_artifact`, `get_run`) are guarded: their output needs `sk-design`'s ground → token-system → critique before it shapes a design decision, except `get_file`/`search_files` with a non-design-use receipt. From the CLI, `od tools design-systems read` reads a registered design system's files. A design system is a `DESIGN.md`, a paste-ready `tokens.css`, and an optional `components.html`. Open Design content is read live and never copied into a repo, because reusing a system happens at build time in the target app rather than by vendoring its files, whose per-source licenses would attach.
 
 ### The Run Direction
 

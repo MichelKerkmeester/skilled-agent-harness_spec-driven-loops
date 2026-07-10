@@ -26,18 +26,18 @@
       "readme standalone mcp topology complete"
     ],
     "key_topics": [
-      "015",
       "public",
       "readme",
-      "update",
       "post",
-      "014",
       "extraction",
       "system",
       "code",
       "graph",
       "first",
-      "class"
+      "class",
+      "skill",
+      "standalone",
+      "mcp"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The repository-root `README.md` is the first document new readers see, but parts of it still describe code graph as memory-owned or omit the standalone MCP topology created by packet 014",
     "created_at": "2026-05-14T19:30:00Z",
-    "last_save_at": "2026-07-07T16:18:34.010Z",
+    "last_save_at": "2026-07-09T10:02:47.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

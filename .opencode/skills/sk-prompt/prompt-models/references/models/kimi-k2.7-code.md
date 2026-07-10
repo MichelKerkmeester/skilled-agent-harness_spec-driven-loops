@@ -59,7 +59,7 @@ Kimi-k2.7-code is the **coding-optimized large-context** Kimi in the rotation �
 **Avoid:** RCAF (objectively weakest on strict validators — benchmark 007)
 **Pre-planning density:** LEAN
 
-These choices mirror `recommended_frameworks` in [`../../../sk-prompt-models/assets/model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json) entry `kimi-k2.7-code` (the DATA source of truth). See `patterns_evaluation.md` for the generic RCAF, COSTAR, and RACE definitions — this profile records the per-model choice and rationale only.
+These choices mirror `recommended_frameworks` in [`../../assets/model_profiles.json`](../../assets/model_profiles.json) entry `kimi-k2.7-code` (the DATA source of truth). See `patterns_evaluation.md` for the generic RCAF, COSTAR, and RACE definitions — this profile records the per-model choice and rationale only.
 
 **Why COSTAR for Kimi-k2.7-code (empirical, benchmark 007):** On invalid-dominant strict validators, three frameworks tied at perfect correctness — COSTAR, RACE, TIDD-EC — while RCAF (the old default) and CIDI were the measured-weakest (see §4). Among the perfect tier, COSTAR is the most cross-validated pick: it is MiMo's empirical winner (benchmark 004, a comparable strong coding model) and was favored by run 006's judge, so it is the safest default across evidence sources. COSTAR frames by objective + output-shape rather than guardrails, which fits a strong model that does not need heavy scaffolding. TIDD-EC (fallback) tied on correctness and is the most token-efficient; RACE is an equally-correct simpler alternative. **Avoid RCAF** — it was objectively weakest (0.992) and is retired as this model's default. The trust verdict was a TIE among the perfect tier, so this is "best-of-tied + corroborated", not a decisive single winner.
 
@@ -89,7 +89,7 @@ Two bakeoffs were run. **Run `006`** used easy T3 fixtures and **saturated** —
 
 ## 5. TUNED TEMPLATE SNIPPET
 
-The generic COSTAR framework definition is defined in [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — do not restate it here.
+The generic COSTAR framework definition is defined in [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — do not restate it here.
 
 The scaffold below is the Kimi-k2.7-code-specific COSTAR fill (lean pre-planning). Copy-paste-ready; executor-agnostic (no opencode invocation wrapper included — those live in the executor cards).
 
@@ -133,7 +133,7 @@ A senior engineer who will run the output against a strict hidden-test oracle.
 
 ## 6. DISPATCH GOTCHAS
 
-Model-specific capability fields and flags are sourced from the `kimi-k2.7-code` entry in [`../../../sk-prompt-models/assets/model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
+Model-specific capability fields and flags are sourced from the `kimi-k2.7-code` entry in [`../../assets/model_profiles.json`](../../assets/model_profiles.json). Full dispatch wrappers live in [`cli-opencode`](../../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
 | Field | Value | Implication |
 | --- | --- | --- |
@@ -147,7 +147,7 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.7-code`
 
 **Slug-drift guard:** re-verify the live slug with `opencode models kimi-for-coding` before automation runs — Kimi/Moonshot ids drift. The provider is `kimi-for-coding`; do NOT use the invented `kimi-token-plan-ams` slug.
 
-**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context, append `</dev/null` to the executor-owned invocation wrapper to prevent stdin blocking. Use the wrapper from [`cli-opencode`](../../../cli-opencode/SKILL.md), not this profile.
+**Non-TTY automation rule (executor mechanic):** In any non-interactive automation context, append `</dev/null` to the executor-owned invocation wrapper to prevent stdin blocking. Use the wrapper from [`cli-opencode`](../../../../cli-opencode/SKILL.md), not this profile.
 
 **Fallback target:** none. If the `kimi-for-coding` pool is exhausted, defer the task — do not retry against the same pool.
 
@@ -161,16 +161,16 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.7-code`
 
 **Implication:** preferred small-model for **brand-critical illustration / color-budgeted visual** work; the COSTAR + read-cap scaffold (§5) plus an embedded brand brief carries it.
 
-**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#kimi-k2.7-code.strengths`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `sk-prompt-models/benchmarks/<label>/`).
+**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#kimi-k2.7-code.strengths`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `prompt-models/benchmarks/<label>/`).
 
 ---
 
 ## 8. SEE ALSO
 
-- [`../../../sk-prompt-models/assets/model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json) `#kimi-k2.7-code` — Registry entry; the authoritative DATA this profile mirrors.
-- [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (RCAF § 3, full framework library).
-- [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Kimi For Coding); non-TTY rule, permissions, model-selection guidance.
-- [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax TIDD-EC + MiMo COSTAR templates as worked examples of the format).
+- [`../../assets/model_profiles.json`](../../assets/model_profiles.json) `#kimi-k2.7-code` — Registry entry; the authoritative DATA this profile mirrors.
+- [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — Generic framework definitions (RCAF § 3, full framework library).
+- [`../../../../cli-opencode/SKILL.md`](../../../../cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (Kimi For Coding); non-TTY rule, permissions, model-selection guidance.
+- [`../../../../cli-opencode/assets/prompt_templates.md`](../../../../cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax TIDD-EC + MiMo COSTAR templates as worked examples of the format).
 - [`../pattern_index.md`](../pattern_index.md) — Index of all MECHANICS patterns + ship status.
 - [`../models/_index.md`](../models/_index.md) — Sibling model index; see DeepSeek-v4-pro for an opencode-go-tier reasoning peer.
-- **Executor quality card:** [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.
+- **Executor quality card:** [`../../../../cli-opencode/assets/prompt_quality_card.md`](../../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

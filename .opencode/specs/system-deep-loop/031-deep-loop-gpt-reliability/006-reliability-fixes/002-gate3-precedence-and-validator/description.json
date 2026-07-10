@@ -1,25 +1,15 @@
 {
   "level": "1",
   "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator",
-  "description": "Phase 002 of packet 035 (unified command-contract architecture). The P0 fix: kill the most-replicated GPT failure — the Gate-3 spec-folder halt on",
+  "description": "Phase 002 of packet 035 (unified command-contract architecture).",
   "keywords": [
     "phase",
-    "002",
     "packet",
-    "035",
     "unified",
     "command-contract",
-    "architecture",
-    "fix",
-    "kill",
-    "most-replicated",
-    "gpt",
-    "failure",
-    "gate-3",
-    "spec-folder",
-    "halt"
+    "architecture"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.468Z",
+  "lastUpdated": "2026-07-09T10:02:47.858Z",
   "specId": "002",
   "folderSlug": "gate3-precedence-and-validator",
   "parentChain": [

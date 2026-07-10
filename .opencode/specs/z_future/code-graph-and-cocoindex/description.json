@@ -32,7 +32,7 @@
     "008-coco-memory-context-extras",
     "009-cocoindex-memory-port-research"
   ],
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex",
+  "specFolder": "z_future/code-graph-and-cocoindex",
   "description": "Feature Specification: Code Graph + CocoIndex Implementation (XCE-derived)",
   "keywords": [
     "feature",
@@ -43,11 +43,11 @@
     "implementation",
     "xce-derived"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.022Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "028",
   "folderSlug": "code-graph-and-cocoindex",
   "parentChain": [
-    "system-spec-kit"
+    "z_future"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

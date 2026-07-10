@@ -25,9 +25,7 @@
       "sk-prompt playbook quality gates"
     ],
     "key_topics": [
-      "085",
       "phase",
-      "002",
       "sk-prompt",
       "testing",
       "playbook",
@@ -36,33 +34,23 @@
       "plan",
       "name",
       "template",
-      "core"
+      "core",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-prompt/SKILL.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-prompt/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,12 +64,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -91,6 +73,24 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The `sk-prompt` skill (renamed in 082) ships 12 distinct testable surfaces but has no manualtestingplaybook/ directory",
     "created_at": "2026-05-06T13:19:26Z",
-    "last_save_at": "2026-06-23T03:49:49.953Z",
+    "last_save_at": "2026-07-09T10:02:45.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8400d5d3b4a0909ec15f376b3fc2b0216079a745b561c94452a1775f9932347f",
+    "source_fingerprint": "sha256:e53867e6d02f7658217abcd4aa5bf733c91f37df039d748a9ed291de0a5b482d",
     "source_doc_hashes": {
-      "spec.md": "e5e2a4132f77c37d4fb3d1217f6bac2efb2fc7bc9a8c2f43c8a886bc2078d4e9",
+      "spec.md": "2b2b3ccb3d8c447b9b2ebf3f7dab38ca77af1fbbc20ad31454ecbaee32828335",
       "plan.md": "06b99e6d4d2a65cf0482c2428f95e9111b50bf32f5478514a13e34d03c8a3fa0",
-      "tasks.md": "75450c2a1eb0b177a83b9167061b177f50d1e42e361cad78810e09e32c1e4198",
-      "checklist.md": "093abb91b433ff8d9a8cbef306720430dab040432ccd691764c2f19f14c54918",
-      "implementation-summary.md": "602d40d62acb5b34494aa26855e4f4c7e8560de7bf81512e9ed39ed84961d43e"
+      "tasks.md": "39b0b720775cb8398c7fb7b742ffa22880d88d7ceb802f8d8776fadd230ef37d",
+      "checklist.md": "baf907777adaaf330b1e721fea725c0ac7a68c005395c6b82abfde0c59b4ab0c",
+      "implementation-summary.md": "c0675b589a396845b69e025306c2dbcbb047ddcc3ceea1c7c342905c0efc07a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

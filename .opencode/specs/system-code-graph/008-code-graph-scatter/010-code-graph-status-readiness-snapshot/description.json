@@ -12,12 +12,10 @@
     "live",
     "code",
     "graph",
-    "010",
     "findings",
-    "lines",
-    "123-126"
+    "lines"
   ],
-  "lastUpdated": "2026-07-07T16:10:54.524Z",
+  "lastUpdated": "2026-07-09T10:02:47.225Z",
   "specId": "010",
   "folderSlug": "code-graph-status-readiness-snapshot",
   "parentChain": [

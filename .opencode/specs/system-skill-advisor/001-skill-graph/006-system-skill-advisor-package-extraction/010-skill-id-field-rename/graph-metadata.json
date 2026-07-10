@@ -26,9 +26,6 @@
       "skill id rename summary"
     ],
     "key_topics": [
-      "013",
-      "009",
-      "010",
       "skill",
       "rename",
       "system-skill-advisor",
@@ -37,7 +34,10 @@
       "plan",
       "tasks",
       "checklist",
-      "verification"
+      "verification",
+      "implementation",
+      "summary",
+      "extracted"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The extracted advisor skill lives at `.opencode/skills/system-skill-advisor/`, but its graph metadata and compiled graph still used `skilladvisor` as the skill id",
     "created_at": "2026-05-18T08:53:19.727Z",
-    "last_save_at": "2026-07-02T05:31:11.130Z",
+    "last_save_at": "2026-07-09T10:02:49.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ed5927760ceb74961d30c0d9f9b25028dcefe5550b9cabeaccdac39532b73a4",
+    "source_fingerprint": "sha256:325e4f05d37915a0ec48753fe9ed51950ba95f2bb452f45391156980eee4264b",
     "source_doc_hashes": {
-      "spec.md": "b8a6d56ed5282e2639d2900a94e4fc8b9a2e3ea961b99eeb72330e2861e8257d",
-      "plan.md": "0e81793448f13dd1d98dacb00b2d86926adbcce49d48c2d9cfea7037335432e1",
-      "tasks.md": "22b8ad05a7a8ff14e3681491afc66f470185d10bf2c37605bb1139d62cac075b",
-      "checklist.md": "d8407dff894c73a65ea3d275a883a3c5c11c8a8e539530b7d6453e8c26ec29de",
-      "implementation-summary.md": "dcccf1c3e9daa7ab769e0f7d791537488c8395bb14e88901561c077c69d8002d"
+      "spec.md": "cc0e3d3f8323c17f8ef43a13a396272307f58e11323857ecba8ebc148a4fe7f4",
+      "plan.md": "ede3ae1c041d3d2ebf5b2698fa85aa80fa6f8de515fce7f4238cbca0f4854c12",
+      "tasks.md": "a803a7bbf432bbe30bc404d4c60e039d09744885b7777423b70b65aadb93078a",
+      "checklist.md": "179f4f554e826b325438333125747c85335546a7fdfea44381c6074784bf8e10",
+      "implementation-summary.md": "c387dfebb50ba655e55d5585afe1c1a6cb192f14f87f927442c97955f26589e5"
     },
     "last_active_child_id": null,
     "last_active_at": null

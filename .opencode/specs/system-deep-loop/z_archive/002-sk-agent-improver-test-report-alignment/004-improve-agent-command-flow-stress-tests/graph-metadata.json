@@ -26,7 +26,6 @@
       "061 resource map"
     ],
     "key_topics": [
-      "061",
       "command-flow",
       "stress",
       "tests",
@@ -37,7 +36,8 @@
       "cp-040",
       "cp-043",
       "cp-044",
-      "cp-045"
+      "cp-045",
+      "rerun"
     ],
     "importance_tier": "high",
     "status": "draft",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After 062, the executable wiring is in place but the existing CP-040..045 stress scenarios still dispatch via prepend-agent-body",
     "created_at": "2026-05-02T15:00:00Z",
-    "last_save_at": "2026-07-08T13:43:14.300Z",
+    "last_save_at": "2026-07-09T10:02:48.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

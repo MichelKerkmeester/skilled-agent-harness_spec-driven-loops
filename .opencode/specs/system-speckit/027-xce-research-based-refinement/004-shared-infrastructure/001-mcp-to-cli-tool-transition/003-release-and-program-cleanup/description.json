@@ -3,7 +3,6 @@
   "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-release-and-program-cleanup",
   "description": "The 028 program shipped three dual-stack CLIs (`spec-memory`, `code-index`, `skill-advisor`) over the existing daemons, warm-only hook fallbacks for",
   "keywords": [
-    "028",
     "program",
     "shipped",
     "three",
@@ -18,7 +17,7 @@
     "hook",
     "fallbacks"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.430Z",
+  "lastUpdated": "2026-07-09T10:02:55.539Z",
   "specId": "003",
   "folderSlug": "release-and-program-cleanup",
   "parentChain": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/014-pipeline-architecture",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/014-pipeline-architecture",
   "description": "The feature catalog for Pipeline Architecture has evolved significantly",
   "keywords": [
     "feature",
@@ -9,11 +9,11 @@
     "evolved",
     "significantly"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.866Z",
+  "lastUpdated": "2026-07-09T10:02:57.964Z",
   "specId": "014",
   "folderSlug": "pipeline-architecture",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "007-code-audit-per-feature-catalog"

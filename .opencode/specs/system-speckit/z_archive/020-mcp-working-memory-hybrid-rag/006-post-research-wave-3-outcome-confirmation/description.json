@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/006-post-research-wave-3-outcome-confirmation",
-  "description": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Post Research Wave 3 Outcome Confirmati",
+  "specFolder": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/006-post-research-wave-3-outcome-confirmation",
+  "description": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Post Research Wave 3 Outcome",
   "keywords": [
     "archived",
     "child",
@@ -13,14 +13,13 @@
     "post",
     "research",
     "wave",
-    "outcome",
-    "confirmati"
+    "outcome"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.611Z",
+  "lastUpdated": "2026-07-09T10:02:57.661Z",
   "specId": "006",
   "folderSlug": "post-research-wave-3-outcome-confirmation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "020-mcp-working-memory-hybrid-rag"
   ],

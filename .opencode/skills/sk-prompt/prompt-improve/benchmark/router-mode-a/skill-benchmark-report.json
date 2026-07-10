@@ -1,0 +1,290 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-a-router-replay",
+  "traceMode": "router",
+  "targetSkill": {
+    "id": "prompt-improve",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt/prompt-improve"
+  },
+  "verdict": "NO-SCENARIOS",
+  "aggregateScore": null,
+  "gate": {
+    "d5Score": 16,
+    "gateFailed": false,
+    "reason": null,
+    "hubRoute": {
+      "failed": false,
+      "regressions": 0,
+      "knownGaps": 0,
+      "reason": null
+    },
+    "toolSurface": {
+      "failed": false,
+      "violations": [],
+      "reason": null
+    }
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": null
+    },
+    "D2": {
+      "points": 20,
+      "score": null
+    },
+    "D3": {
+      "points": 15,
+      "score": null
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 16,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "advisorySignals": {
+    "D4_task_outcome": {
+      "score": null,
+      "status": "unscored (run --d4 in live mode)",
+      "note": "task-outcome usefulness delta; separate from D4 hallucination, never summed into it"
+    },
+    "assetRecall": {
+      "score": null,
+      "status": "deferred (router) or no asset gold",
+      "note": "deferred-asset support recall; advisory, not weighted"
+    },
+    "modePrecision": {
+      "score": null,
+      "status": "unscored (no mode-routing probe or no expected.mode)",
+      "note": "advisor deep-loop mode match vs fixture expected.mode; advisory, gate stays skill-id"
+    },
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    }
+  },
+  "funnel": {},
+  "headlineBottleneck": null,
+  "bottlenecks": [
+    {
+      "class": "dead_intent_key",
+      "severity": "P1",
+      "locus": "RESOURCE_MAP.TEXT_ENHANCE",
+      "detail": "TEXT_ENHANCE has no INTENT_SIGNALS entry"
+    },
+    {
+      "class": "dead_intent_key",
+      "severity": "P1",
+      "locus": "RESOURCE_MAP.FRAMEWORK",
+      "detail": "FRAMEWORK has no INTENT_SIGNALS entry"
+    },
+    {
+      "class": "dead_intent_key",
+      "severity": "P1",
+      "locus": "RESOURCE_MAP.DESIGN_GEN",
+      "detail": "DESIGN_GEN has no INTENT_SIGNALS entry"
+    },
+    {
+      "class": "dead_intent_key",
+      "severity": "P1",
+      "locus": "RESOURCE_MAP.FORMAT_MARKDOWN",
+      "detail": "FORMAT_MARKDOWN has no INTENT_SIGNALS entry"
+    },
+    {
+      "class": "dead_intent_key",
+      "severity": "P1",
+      "locus": "RESOURCE_MAP.FORMAT_JSON",
+      "detail": "FORMAT_JSON has no INTENT_SIGNALS entry"
+    },
+    {
+      "class": "dead_intent_key",
+      "severity": "P1",
+      "locus": "RESOURCE_MAP.FORMAT_YAML",
+      "detail": "FORMAT_YAML has no INTENT_SIGNALS entry"
+    },
+    {
+      "class": "dead_intent_key",
+      "severity": "P1",
+      "locus": "RESOURCE_MAP.RAW",
+      "detail": "RAW has no INTENT_SIGNALS entry"
+    }
+  ],
+  "coverage": {
+    "routing": 0,
+    "advisor": 0,
+    "browser": 0,
+    "routedOut": 0,
+    "scored": 0
+  },
+  "divergence": [],
+  "lintFindings": [],
+  "scenarioRows": [],
+  "runQuality": {
+    "scenarioCount": 0,
+    "traceMode": "router",
+    "hubRouteKnownGaps": 0,
+    "relativeRanking": {
+      "score": null,
+      "status": "unscored (no advisor probe or no rank-below gold)",
+      "note": "advisor target rank relative to sibling transports; advisory, not weighted"
+    },
+    "routeTelemetry": {
+      "telemetryMissingRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "aliasMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "bundleMissRate": {
+        "rate": null,
+        "unobserved": 0,
+        "observed": 0,
+        "observedWrong": 0,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "routeGoldRows": 0
+    },
+    "recipeMissRate": {
+      "rate": null,
+      "valid": 0,
+      "misses": 0,
+      "numerator": 0,
+      "denominator": 0
+    },
+    "recipeMissBreakdown": {
+      "metadata": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "wrapper": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "arg": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "route": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      },
+      "choreography": {
+        "rate": null,
+        "numerator": 0,
+        "denominator": 0
+      }
+    },
+    "recipeGoldRows": 0,
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0)."
+  }
+}

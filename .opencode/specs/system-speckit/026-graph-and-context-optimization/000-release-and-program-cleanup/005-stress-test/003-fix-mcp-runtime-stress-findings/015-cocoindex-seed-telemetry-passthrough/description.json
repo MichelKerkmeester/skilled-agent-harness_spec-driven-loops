@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough",
-  "description": "The CocoIndex fork (cocoindexcode v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result — `rawscore`, `pathclass`, `rankingSignals",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough",
+  "description": "The CocoIndex fork (cocoindexcode v0.2.3+spec-kit-fork.0.2.0) emits 5 new telemetry fields per query result — `rawscore`, `pathclass`,",
   "keywords": [
     "cocoindex",
     "fork",
@@ -14,14 +14,13 @@
     "query",
     "result",
     "rawscore",
-    "pathclass",
-    "rankingsignals"
+    "pathclass"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.650Z",
+  "lastUpdated": "2026-07-09T10:02:51.286Z",
   "specId": "015",
   "folderSlug": "cocoindex-seed-telemetry-passthrough",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

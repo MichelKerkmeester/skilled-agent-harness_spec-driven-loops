@@ -1,11 +1,10 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/002-alignment-fixes",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/002-alignment-fixes",
   "description": "This spec documents the alignment fixes applied to memory command files to ensure consistency with",
   "keywords": [
     "spec",
     "documents",
     "alignment",
-    "fixes",
     "applied",
     "memory",
     "command",
@@ -13,11 +12,11 @@
     "ensure",
     "consistency"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.849Z",
+  "lastUpdated": "2026-07-09T10:02:56.797Z",
   "specId": "002",
   "folderSlug": "alignment-fixes",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

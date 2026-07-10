@@ -4,7 +4,6 @@
   "description": "Phase 005 shipped 6 value-comparison scenarios DAC-027..DAC-032 that contrast the no-graph operator workflow with the with-graph MCP workflow on",
   "keywords": [
     "phase",
-    "005",
     "shipped",
     "value-comparison",
     "scenarios",
@@ -17,7 +16,7 @@
     "with-graph",
     "mcp"
   ],
-  "lastUpdated": "2026-07-08T13:06:40.824Z",
+  "lastUpdated": "2026-07-09T10:02:48.470Z",
   "specId": "006",
   "folderSlug": "council-graph-value-scenario-automation",
   "parentChain": [

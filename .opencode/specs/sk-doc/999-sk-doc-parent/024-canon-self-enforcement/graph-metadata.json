@@ -28,24 +28,23 @@
       "canon",
       "self-enforcement",
       "plan",
-      "999",
       "sk-doc",
       "phase",
-      "024",
       "parent",
       "hub",
       "advisor",
       "hardening",
-      "detail"
+      "detail",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/specs/sk-doc/999-sk-doc-parent/022-parent-skill-logic-review/review-report.md",
       ".github/workflows/routing-registry-drift.yml",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      "spec.md",
       "plan.md",
+      "spec.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
@@ -53,12 +52,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/999-sk-doc-parent/022-parent-skill-logic-review/review-report.md",
-        "source": "derived"
-      },
       {
         "name": "routing-registry-drift.yml",
         "kind": "config",
@@ -72,15 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Canon is declared once in each hub's `mode-registry.json` and then hand-copied into ~12 consumer dialects that must agree but are only kept in sync by discipline",
     "created_at": "2026-07-07T20:30:08.079Z",
-    "last_save_at": "2026-07-08T04:03:24.671Z",
+    "last_save_at": "2026-07-09T10:02:44.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee44959575824d2f863cf4a6e4378b9b2911059acd2d64b5c730970fbba09ccf",
+    "source_fingerprint": "sha256:85365aff28393dd2ba961d95149c89927b401e74513b8a3c9036cd56096b6241",
     "source_doc_hashes": {
-      "spec.md": "21d7f1b97924e5f66d602932a548147b388b4d925bd20051fb04063855c75569",
-      "plan.md": "34743b7ea8470d14d37c7e39f39292a2211143a084a4efb4a0ee92792e5bc3fd",
-      "tasks.md": "81fb299f4d450968bac040dc7b6ff47dd37159a1e4cf009c0c6fbb5a4469e9ff",
-      "checklist.md": "4198281f9555f7e2895a19451d50d8a555ff5bc64a4f3fc5936aedc5a963700b",
-      "decision-record.md": "2eb5fdeaaeeaa530919c675425efc827f4c16c1f0bd17e2017207489c1bc38d6",
-      "implementation-summary.md": "aaf8b9ef63e9c9cf28059ed48b45e0f5a1fae2a9832b9af7c574d0c33b7aa812"
+      "spec.md": "b41a684af49636046a2f96db3882f55be4a3b8827d4d278adc9faa91a325317e",
+      "plan.md": "5efdb929e74de35ed7c72b9cfd1b3c94f81585dede47a787dea6774776f3e8b3",
+      "tasks.md": "e448b602231f028860f0e9846dce340c18c560028a6578203f971c18703fb611",
+      "checklist.md": "9806aaef2d25ee553202adc09f70c0cb7be4832a0114e5caba931fe3ece87ca3",
+      "decision-record.md": "4554cd7362d3e14c2b53494009d44a8afbcbac8b7c19c2ac3838eb7eada4d3a6",
+      "implementation-summary.md": "8ce503172a7711d4e47d78211da2a91b2a70510a197d7caa99b66cbd083c6499"
     },
     "last_active_child_id": null,
     "last_active_at": null

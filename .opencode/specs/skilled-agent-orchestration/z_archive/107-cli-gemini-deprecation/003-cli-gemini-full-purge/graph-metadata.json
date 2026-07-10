@@ -51,16 +51,16 @@
       "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
       "references/templates/template_guide.md",
       "resource-map.md",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "templates/README.md",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/templates/README.md"
     ],
     "entities": [
       {
@@ -118,24 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-audit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -163,6 +145,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -206,11 +194,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phases 001 and 002, `cli-gemini` still existed as a first-class executor across active source: deep-loop executor unions and audit maps, deep-improvement model-benchmark dispatch, the system-spec-kit matrix runner adapter set, the multi-AI council fixture, plus a wide spread of feature catalogs, manual testing playbooks, references, a constitutional file, and release-history changelogs",
     "created_at": "2026-06-08T16:11:50.617Z",
-    "last_save_at": "2026-06-23T03:49:51.693Z",
+    "last_save_at": "2026-07-09T10:02:46.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,15 +222,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:f41a421726d11ac59237f831c44684aa3e0edfd285a67a44f85f08ae40c8a948",
+    "source_fingerprint": "sha256:b8f9d32eb83879baeb99f3af4a7a9aaa24a1da4b3d24366451454dadfccbb771",
     "source_doc_hashes": {
-      "spec.md": "4ddb4ce26195feb1a0d78a7ca40db40a06d4266e08f538f3694eeb0b0139d804",
-      "plan.md": "27a6f72e6cdb24decf9b8998b6aebbd6a745f53847b7d99a78e5d25a5d7fc580",
-      "tasks.md": "d5e28625286f4a5f86250cf63f2fcd81b10e99669d62589eae8e33e5d5e06f7a",
-      "checklist.md": "369f0cc4be522ee6b7a8f5440d2b9b661b9de6ac3a19ace61d13ebe65c9f730d",
-      "decision-record.md": "2e51b2a1b35505ec57318add30c03ea3bc1d79e926dd45347ae44039f3c4c617",
-      "implementation-summary.md": "d2ee5c5178ac0834b5be4df71b3dc2644e68cd03c69884b5c80c91b169a053ff",
-      "resource-map.md": "4b16e8ab9322ad202db4acac2d26e8112db4dfa1ce0300dd73955e1b44f4f36d"
+      "spec.md": "9db826c6ed3d1ac65acb108274722da242d59e16d4dc9069605674874b780ce3",
+      "plan.md": "360857175fcf31c8979d237f8bf237063c2757b73b12a08de02a88cde8ea631e",
+      "tasks.md": "8ad7766b5ece8d8187b5654bea3b5da21d89fb8892651f5cecdae71fed81b2c2",
+      "checklist.md": "7eeade154ecb360b945787e8915ac638973f27a9bde5ceb34175fc3b2399e6a1",
+      "decision-record.md": "8e2c14241f27697be9d22f9e03be5ab7b031cba0b2064fa2279a086670aa973f",
+      "implementation-summary.md": "dac21de2697416732dc024f8c2060f1110da31c33866c3e03100c5a9befc1d32",
+      "resource-map.md": "5008769c7194118954eb9d4c583d7fc2f6adaea9190c74d22a0b49fcb1490226"
     },
     "last_active_child_id": null,
     "last_active_at": null

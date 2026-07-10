@@ -28,7 +28,7 @@
     ".opencode/skills/sk-code/references/webflow/shared/cross_language_rules.md"
   ],
   "specFolder": "skilled-agent-orchestration/z_archive/097-comment-ref-hygiene/001-rule-and-cleanup",
-  "description": "Inline code comments across the deep and system skills name specific ephemeral artifacts (`// Phase 002 T011: ...`, `// ADR-004: ...`, `featurecatalog",
+  "description": "Inline code comments across the deep and system skills name specific ephemeral artifacts (`// Phase 002 T011: ...`, `// ADR-004: ...`,",
   "keywords": [
     "inline",
     "code",
@@ -42,12 +42,10 @@
     "ephemeral",
     "artifacts",
     "phase",
-    "002",
     "t011",
-    "adr-004",
-    "featurecatalog"
+    "adr-004"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.122Z",
+  "lastUpdated": "2026-07-09T10:02:46.064Z",
   "specId": "001",
   "folderSlug": "rule-and-cleanup",
   "parentChain": [

@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md",
-  "description": "Memory Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and d",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/002-author-presentation-md",
+  "description": "Memory Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and",
   "keywords": [
     "memory",
     "commands",
@@ -18,11 +18,11 @@
     "implementation",
     "routing"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.660Z",
+  "lastUpdated": "2026-07-09T10:02:55.560Z",
   "specId": "002",
   "folderSlug": "author-presentation-md",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation",

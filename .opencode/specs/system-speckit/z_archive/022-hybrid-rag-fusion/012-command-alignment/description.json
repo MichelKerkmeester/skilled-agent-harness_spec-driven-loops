@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/012-command-alignment",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/012-command-alignment",
   "description": "The 012 spec pack previously described a command surface that is no longer true on disk:",
   "keywords": [
-    "012",
     "spec",
     "pack",
     "previously",
@@ -13,11 +12,11 @@
     "true",
     "disk"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.193Z",
+  "lastUpdated": "2026-07-09T10:02:58.360Z",
   "specId": "012",
   "folderSlug": "command-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

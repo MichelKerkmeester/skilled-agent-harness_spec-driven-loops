@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/research/003-graph-metadata-validation-research/iterations",
+  "specFolder": "system-skill-advisor/003-skill-advisor-routing-engine/001-memory-search-routing-tuning/research/003-graph-metadata-validation-research/iterations",
   "description": "Research iteration artifacts for 010-search-and-routing-tuning-003-graph-metadata-validation.",
   "keywords": [
     "research",
@@ -10,12 +10,13 @@
     "026-graph-and-context-optimization",
     "iterations"
   ],
-  "lastUpdated": "2026-04-21T13:00:00Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "010",
   "folderSlug": "search-and-routing-tuning-003-graph-metadata-validation-iterations",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
+    "system-skill-advisor",
+    "003-skill-advisor-routing-engine",
+    "001-memory-search-routing-tuning",
     "research",
     "003-graph-metadata-validation-research"
   ],

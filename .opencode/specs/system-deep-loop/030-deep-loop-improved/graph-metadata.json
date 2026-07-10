@@ -3,6 +3,7 @@
   "packet_id": "system-deep-loop/030-deep-loop-improved",
   "spec_folder": "system-deep-loop/030-deep-loop-improved",
   "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
   "children_ids": [
     "system-deep-loop/030-deep-loop-improved/001-reference-research",
     "system-deep-loop/030-deep-loop-improved/002-deep-loop-runtime",
@@ -34,7 +35,6 @@
       "deep",
       "loop",
       "improved",
-      "030",
       "agent",
       "loops",
       "systems",
@@ -42,7 +42,8 @@
       "deep-loop",
       "improvements",
       "implementation",
-      "156"
+      "loop-based",
+      "deep-loop-runtime"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -140,7 +141,7 @@
     ],
     "causal_summary": "Our loop-based systems (deep-loop-runtime, deep-loop-workflows, and the system-spec-kit commands/agents that drive them) carry known gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-30T10:32:21.634Z",
-    "last_save_at": "2026-07-07T15:43:51.683Z",
+    "last_save_at": "2026-07-09T10:02:47.479Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

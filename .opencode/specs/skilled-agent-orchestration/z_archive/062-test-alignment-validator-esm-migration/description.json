@@ -4,11 +4,8 @@
   "description": "Packet 073 deferred Fix #1: `test-alignment-validator.js` uses CommonJS `require()`, but `scripts/package.json` declares `\"type\":\"module\"`",
   "keywords": [
     "packet",
-    "073",
     "deferred",
-    "fix",
     "test-alignment-validator",
-    "uses",
     "commonjs",
     "require",
     "scripts",
@@ -18,7 +15,7 @@
     "type",
     "module"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.813Z",
+  "lastUpdated": "2026-07-09T10:02:45.482Z",
   "specId": "062",
   "folderSlug": "test-alignment-validator-esm-migration",
   "parentChain": [

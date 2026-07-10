@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "sk-code/z_archive/015-sk-code-ponytail-based-refinement/001-skreview-checklist-rows",
-  "description": "sk-code-review's `codequalitychecklist.md` has generic KISS/DRY rows but no explicit check for code that hand-rolls something the standard library alr",
+  "description": "sk-code-review's `codequalitychecklist.md` has generic KISS/DRY rows but no explicit check for code that hand-rolls something the standard library",
   "keywords": [
     "sk-code-review",
     "codequalitychecklist",
@@ -15,10 +15,9 @@
     "hand-rolls",
     "something",
     "standard",
-    "library",
-    "alr"
+    "library"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.450Z",
+  "lastUpdated": "2026-07-09T10:02:44.380Z",
   "specId": "001",
   "folderSlug": "skreview-checklist-rows",
   "parentChain": [

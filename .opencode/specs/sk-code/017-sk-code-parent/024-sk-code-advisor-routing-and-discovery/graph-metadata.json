@@ -31,19 +31,17 @@
       "discovery",
       "lane-c",
       "proxy",
-      "fix",
       "cwv",
       "accessibility",
       "smart",
       "phase",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-code/shared/references/smart_routing.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
       ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/cwv-gates-animation-heavy.md",
       ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/prefers-reduced-motion.md",
       "spec.md",
@@ -57,18 +55,6 @@
         "name": "smart_routing.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
         "source": "derived"
       },
       {
@@ -196,11 +182,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two sk-code discovery scenarios failed because the references they needed already existed in `sk-code/shared/references/smartrouting.md` RESOURCEMAP, but the prompts did not fire the intents that map to those references",
     "created_at": "2026-07-06T09:31:15.780Z",
-    "last_save_at": "2026-07-07T17:16:30.902Z",
+    "last_save_at": "2026-07-09T10:02:44.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,9 +208,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f96ea2de6279a5726893a336f3047eb6aa4714a96cecaa9e65907d67cf8a7d5",
+    "source_fingerprint": "sha256:33a39456078e6a82c1c2f14a78c1b112cf8301b08f24cb6b2efb5b7697531fb4",
     "source_doc_hashes": {
-      "spec.md": "918dfc674c4d3f79bede65f69ddc7a47284a6527c2c76525a95f460e33d42ecc",
+      "spec.md": "5cecf7c8506672e054524f3623acf4663dc7eb56c3527349f37790f62ee690c9",
       "plan.md": "d85731122a7c372358466ea5bdd77f0335082172543b8bbe39f399429638178f",
       "tasks.md": "16a431ea6aff2c8215fe035963d95c61f01618551b87b68ca428c2263ccce3d0",
       "checklist.md": "27c112e1a2ed7ba66b65a0fe0dbf4de1e376b6dde68ea734a3316aee2c38f8ef",

@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "wave",
-      "010",
       "md-generator",
       "serial",
       "pipeline",
@@ -36,7 +35,8 @@
       "mr-005",
       "ai-001-p5",
       "pb-003",
-      "mg-001"
+      "mg-001",
+      "mg-002"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The `md-generator` mode is the only `sk-design` mode with `mutatesWorkspace: true` and `Write`/`Edit`/`Bash` tool access, so its manual-testing-playbook scenarios (mode routing, positive advisor control P5, parity preservation, the full four-scenario `04--md-generator-pipeline/` set, and both md-generator variants of the fallback-and-resilience negative controls) had never been run through a real `opencode run` dispatch that actually performs a live URL crawl and writes files",
     "created_at": "2026-07-07T16:16:46.832Z",
-    "last_save_at": "2026-07-07T16:17:10.785Z",
+    "last_save_at": "2026-07-09T10:02:44.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

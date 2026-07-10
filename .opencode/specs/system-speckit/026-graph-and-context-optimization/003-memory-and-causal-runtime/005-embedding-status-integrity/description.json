@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
-  "description": "The 004 deep-research investigation proved a bulk re-embed of the mk-spec-memory store cannot reach `0 failed / 0 pending` because of three durable de",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
+  "description": "The 004 deep-research investigation proved a bulk re-embed of the mk-spec-memory store cannot reach `0 failed / 0 pending` because of three durable",
   "keywords": [
-    "004",
     "deep-research",
     "investigation",
     "proved",
@@ -18,11 +17,11 @@
     "three",
     "durable"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.389Z",
+  "lastUpdated": "2026-07-09T10:02:53.793Z",
   "specId": "005",
   "folderSlug": "embedding-status-integrity",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime"
   ],

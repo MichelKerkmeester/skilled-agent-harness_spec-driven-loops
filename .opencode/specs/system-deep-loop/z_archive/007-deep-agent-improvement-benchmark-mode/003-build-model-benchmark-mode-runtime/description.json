@@ -12,13 +12,11 @@
     "benchmark",
     "models",
     "prompts",
-    "120",
-    "003",
     "rig",
     "packet-local",
     "one-off"
   ],
-  "lastUpdated": "2026-07-08T13:06:44.823Z",
+  "lastUpdated": "2026-07-09T10:02:48.946Z",
   "specId": "003",
   "folderSlug": "build-model-benchmark-mode-runtime",
   "parentChain": [

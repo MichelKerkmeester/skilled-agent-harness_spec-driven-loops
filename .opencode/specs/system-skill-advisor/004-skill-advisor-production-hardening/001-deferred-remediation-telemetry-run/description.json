@@ -10,14 +10,11 @@
     "deferred",
     "items"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.523Z",
+  "lastUpdated": "2026-07-08T05:23:49.841Z",
   "specId": "001",
   "folderSlug": "deferred-remediation-telemetry-run",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "004-skill-advisor-production-hardening"
   ],
   "memorySequence": 0,

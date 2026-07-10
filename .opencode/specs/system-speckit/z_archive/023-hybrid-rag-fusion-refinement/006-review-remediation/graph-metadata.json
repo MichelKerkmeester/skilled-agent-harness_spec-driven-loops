@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/006-review-remediation",
-  "spec_folder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/006-review-remediation",
-  "parent_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement",
+  "packet_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/006-review-remediation",
+  "spec_folder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/006-review-remediation",
+  "parent_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -28,19 +28,20 @@
       "review",
       "remediation",
       "deep",
-      "fixes",
-      "023",
       "phase",
-      "fix",
       "findings",
       "plan",
       "tasks",
       "checklist",
-      "10-iteration"
+      "10-iteration",
+      "found",
+      "required",
+      "advisory"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "shared/package.json",
       "shared/paths.ts",
       "api/index.ts",
@@ -59,10 +60,15 @@
       "mcp_server/cli.ts",
       "mcp_server/tests/preflight.vitest.ts",
       "mcp_server/tests/handler-memory-save.vitest.ts",
-      "scripts/dist/memory/validate-memory-quality.js",
-      "implementation-summary.md"
+      "scripts/dist/memory/validate-memory-quality.js"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "package.json",
         "kind": "config",
@@ -160,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 10-iteration deep review found 14 P1 (required) and 4 P2 (advisory) findings across 5 workstreams",
     "created_at": "2026-04-12T09:02:50.320Z",
-    "last_save_at": "2026-06-23T03:50:00.460Z",
+    "last_save_at": "2026-07-09T10:02:58.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -34,25 +34,19 @@
       "collision",
       "abort",
       "manifest",
-      "133"
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tooling/denumber-snippets.cjs",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
+      "checklist.md",
+      "tooling/denumber-snippets.cjs",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "denumber-snippets.cjs",
-        "kind": "file",
-        "path": "tooling/denumber-snippets.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -66,15 +60,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "denumber-snippets.cjs",
+        "kind": "file",
+        "path": "tooling/denumber-snippets.cjs",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Renaming 1,531 files and rewriting ~2,275 link occurrences by hand is error-prone: a single missed `SOURCE METADATA` self-path or root-doc link silently breaks navigation, and two known slug collisions would overwrite real content if a rename ran blind",
     "created_at": "2026-06-06T06:46:12.386Z",
-    "last_save_at": "2026-06-23T03:49:51.721Z",
+    "last_save_at": "2026-07-09T10:02:46.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa2a039131dc44240f8bb5c2d558bcf3e3b43ffcbc890435ac23151068f4787f",
+    "source_fingerprint": "sha256:4908f98bad0715639ef440781050171a953812656bd9bf1a487609b25349a67f",
     "source_doc_hashes": {
-      "spec.md": "95f2631bb24a2309b39ccc4dac0ace6d810b38c6dec94aab08717ff3d3d919ab",
-      "plan.md": "5024395eefed17f29f1f9288beb869d40b629c67aea924fc0c26cd832b4a58e1",
-      "tasks.md": "302b49604ac898e7a55e0adac5ee281ce4b790fe6e70878ba465223374baa8ff",
-      "checklist.md": "ef03337f73da3fd09db2ff5a2e97fc7dc519b8ccb2d449095b1e4d22ed64b9cf",
-      "implementation-summary.md": "6f4559ba2765cbaf06db5e24fbd6a3a435a0a421079a469415963d86ac753e91"
+      "spec.md": "90a4235e432309c570f77be34bbf2424cbaab0981af14b012f4ff9ce07a824a0",
+      "plan.md": "ffd0d4bbbe60355ab9630ba1d83c0989a27e3b31c3324a8139dda5529e5a1e5c",
+      "tasks.md": "d0ee70a1d8c6c51f0d126e3df2521dc38bfee52f2874d327472ba56b9db210cf",
+      "checklist.md": "698903802047dfba4867019de42ea4b94419768b55784731d6328cc26b7c826c",
+      "implementation-summary.md": "87ec6f3eca437e4071e57259327b952de18ac763bc696e616c3be81dbd389d9c"
     },
     "last_active_child_id": null,
     "last_active_at": null

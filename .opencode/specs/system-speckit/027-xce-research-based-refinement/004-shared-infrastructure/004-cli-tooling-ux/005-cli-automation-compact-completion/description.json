@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion",
   "description": "The `list-tools --format json` output includes the full `inputSchema` for every tool, so machine scripts must parse large payloads to get tool names:",
   "keywords": [
     "list-tools",
@@ -21,11 +21,11 @@
     "get",
     "names"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.831Z",
+  "lastUpdated": "2026-07-09T10:02:55.723Z",
   "specId": "005",
   "folderSlug": "cli-automation-compact-completion",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "004-cli-tooling-ux"

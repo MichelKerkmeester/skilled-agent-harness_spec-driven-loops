@@ -3,8 +3,6 @@
   "description": "Phase 001 creates the `.opencode/skills/deep-loop-runtime/` scaffold (SKILL.md + `lib/` + `scripts/` + `storage/` + `tests/`) but leaves the 13 lib",
   "keywords": [
     "phase",
-    "001",
-    "creates",
     "opencode",
     "skills",
     "deep-loop-runtime",
@@ -16,7 +14,7 @@
     "tests",
     "leaves"
   ],
-  "lastUpdated": "2026-07-08T13:07:16.094Z",
+  "lastUpdated": "2026-07-09T10:02:48.722Z",
   "specId": "003",
   "folderSlug": "lib-runtime-migration",
   "parentChain": [

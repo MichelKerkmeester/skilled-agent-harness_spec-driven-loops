@@ -35,19 +35,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-codex/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-codex README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T10:30:00Z",
-    "last_save_at": "2026-06-23T03:49:51.831Z",
+    "last_save_at": "2026-07-09T10:02:46.471Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af78bbc4a7a2a4c33b850eec96a80c5eaabd93ed3f8dccab41f5e1e7b52fde6b",
+    "source_fingerprint": "sha256:e0a25f80f6edc657ab6197f48eaea7ae2edd47eb68d90678a35346d43f1583e8",
     "source_doc_hashes": {
-      "spec.md": "2db9a941574f6b6bf067c36e2c8e043d06e4e3c00be458c2388c6d38ca11098c",
-      "plan.md": "c35d84979d8638b8661dd4d9dc2788790ed715540ce456cff3c33e457d78ff94",
-      "tasks.md": "d1ff1704a792076944349a986b057a7224175df0619dd4cad1ad22a0f613c613",
-      "implementation-summary.md": "68f3150465170a2e6bdf66682f3db8766a5321b637a1f551f9c9f2472d25eee1"
+      "spec.md": "513200ff4f765c11d94ae2b42d8a0afa581c8be3698ea5bddbe366f7b31a452c",
+      "plan.md": "c05321b2870e87b92d80a2375beadff8e5f64e3d56a26b3e1e1a47b8e8690697",
+      "tasks.md": "1c37f27107c428ba830c602f722fe711fdcb010c41d378995d386f072bcddc8f",
+      "implementation-summary.md": "c6151a49fc6b6d06986ab0c1e692a96ee924ed41c0a721617da1f6832128aac5"
     },
     "last_active_child_id": null,
     "last_active_at": null

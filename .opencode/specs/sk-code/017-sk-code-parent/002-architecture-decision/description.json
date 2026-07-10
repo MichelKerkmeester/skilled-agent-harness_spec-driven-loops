@@ -4,13 +4,11 @@
   "description": "Phase 001 produced a decision-ready recommendation but nothing binds it; the build phases need a single authoritative contract for the taxonomy,",
   "keywords": [
     "phase",
-    "001",
     "produced",
     "decision-ready",
     "recommendation",
     "nothing",
     "binds",
-    "build",
     "phases",
     "need",
     "single",
@@ -18,7 +16,7 @@
     "contract",
     "taxonomy"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.247Z",
+  "lastUpdated": "2026-07-09T10:02:44.120Z",
   "specId": "002",
   "folderSlug": "architecture-decision",
   "parentChain": [

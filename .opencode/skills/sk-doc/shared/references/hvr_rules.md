@@ -498,8 +498,8 @@ pre_publish_checklist:
 |----------|----------|-------|
 | Implementation Summary | `.opencode/skills/system-spec-kit/templates/*/implementation-summary.md` | Narrative prose, explain "why", direct address |
 | Decision Record | `.opencode/skills/system-spec-kit/templates/level_3*/decision-record.md` | Clear rationale, no hedging, active voice |
-| README | `.opencode/skills/sk-doc/create-readme/assets/readme/readme_template.md` | Welcoming tone, practical focus |
-| Install Guide | `.opencode/skills/sk-doc/create-readme/assets/readme/install_guide_template.md` | Direct instructions, imperative mood |
+| README | `.opencode/skills/sk-doc/create-readme/assets/readme_template.md` | Welcoming tone, practical focus |
+| Install Guide | `.opencode/skills/sk-doc/create-readme/assets/install_guide_template.md` | Direct instructions, imperative mood |
 
 ### Standards
 - [core_standards.md](./core_standards.md) - Document formatting standards

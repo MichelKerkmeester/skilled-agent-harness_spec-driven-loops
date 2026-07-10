@@ -35,26 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "loop-lock.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
-        "source": "derived"
-      },
-      {
-        "name": "loop-lock.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Hardened",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`refreshLoopLock` exists in `loop-lock.ts` but no caller invokes it while dispatch is running; a loop that is slow but alive will let its advisory lock expire on the configured TTL",
     "created_at": "2026-06-28T14:01:56Z",
-    "last_save_at": "2026-07-04T18:02:03.103Z",
+    "last_save_at": "2026-07-09T10:02:47.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b2f5601c8b8b07c8b4c46405b30deb558efeddec40fe3862403c96a488a3c56",
+    "source_fingerprint": "sha256:7d3dadc06ead268a4e682cc494c4aef1c38c0a77d6b4bdd75bfd120f5c7a28ba",
     "source_doc_hashes": {
-      "spec.md": "79a0a94bd3579b434d12afe8b2648b5b405239aeac104570058acfaf535f495d",
-      "plan.md": "eba2a49006803f3ce97d431e601fb21fc668eb9f28bd0a82ed3923285e94633b",
-      "tasks.md": "0f0cf0f6d68182656655412be3523cd3c6beca7ea51003db572a1d471e9b19c6",
-      "implementation-summary.md": "ca68bdf12e9cccbdc25ffe0522ee10c65d8864ac950f9927ee793c7b4ee09bb8"
+      "spec.md": "3338ff68a2c6a4a34a63937f189e884c536b04c18572204a3db1320d1a57102f",
+      "plan.md": "ebde4eb37e41f72e418b0bf5d9d46c5182149ca9d36c3c29f591aa9bf0775f77",
+      "tasks.md": "f81560c38a03fe5c8c507f9d277cff8073479fae149a5f7c0de2a040313e1f42",
+      "implementation-summary.md": "35852657789914e6d47ac7e882624138e78ea53526446dc74e3650103dcb1553"
     },
     "last_active_child_id": null,
     "last_active_at": null

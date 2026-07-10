@@ -1,6 +1,6 @@
 {
   "level": "track",
-  "specFolder": "system-spec-kit",
+  "specFolder": "system-speckit",
   "description": "Two-bug fix to mcp-coco-index daemon: (1) idempotent start_daemon() prevents leaked-zombie duplicates, (2) BrokenPipeError-safe error handler stops CP",
   "keywords": [
     "two-bug",
@@ -22,7 +22,7 @@
     "disconnect",
     "mid-stream"
   ],
-  "lastUpdated": "2026-05-07T09:13:37.743Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "",
   "folderSlug": "system-spec-kit",
   "parentChain": [],

@@ -39,7 +39,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -51,12 +50,6 @@
         "name": "doctor_mcp_install.yaml",
         "kind": "config",
         "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase `001-runtime-surface-and-skill-deletion` deleted the `cli-gemini` skill and the project `.gemini/` runtime surface, but it left orphaned `cli-gemini` executor branches and stray \"Gemini\" surface references across the whole command layer: both the command-layer YAML assets and the command `.md` docs that drive them",
     "created_at": "2026-06-08T16:11:50.615Z",
-    "last_save_at": "2026-06-23T03:49:51.687Z",
+    "last_save_at": "2026-07-09T10:02:46.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f887a5566b7aa6962c5e9dc55200ab2d41d9ebb10255338572002f8e6d0b8b4b",
+    "source_fingerprint": "sha256:b6809bffa04c1b24c57ea60bc7891ca0d036f9ddb9e93746ae90b5e1a2180710",
     "source_doc_hashes": {
-      "spec.md": "84be640e55f6fa669f5120beb6442ac140a55023b62d08c6e6bf037365adbc6c",
-      "plan.md": "45b9fedf71313fb66da388922fd5427b2bb939cb074fdf98a3a360cebc39e961",
-      "tasks.md": "60375377e293ef505b6c5f6b3b3803373d789b2b48e934d651abc12c87b783c6",
-      "checklist.md": "ea246bcd8c21b70a2b6e633456f48a78e6d4e26eea0f81d1228503be8d64c693",
-      "implementation-summary.md": "66c1e7d99404ac454457a4a2a3d748ebfd7b659686a3a73d7224760931d7b84b"
+      "spec.md": "210cd22e9bb7ddfa102320ec61a41c72464d6b46d29530bea2d90ce04c609439",
+      "plan.md": "f681a4357a870e58d246cad00241e593a42beb9a6157f58c51e7e2acce27834c",
+      "tasks.md": "9891608fbb07df40422d9a5e41045fa3760116da0e2693fe6ac1cf74d27b3592",
+      "checklist.md": "c05f9d3e7d4c3771af1eb5063f4eea97a5932d8c7d13ec29851f7de41e2030ae",
+      "implementation-summary.md": "7ec4687c7a9746b510c554e4724a2e6302e8d8e7249ef228fd1d1956a95aa001"
     },
     "last_active_child_id": null,
     "last_active_at": null

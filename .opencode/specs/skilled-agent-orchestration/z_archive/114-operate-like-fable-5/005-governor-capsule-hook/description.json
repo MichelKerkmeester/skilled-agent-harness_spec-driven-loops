@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/005-governor-capsule-hook",
-  "description": "The fable-5 efficiency doctrine (result-first output, low token burn, commit-and-move) lives only on cold read surfaces like `AGENTS.md` / `CLAUDE.md`",
+  "description": "The fable-5 efficiency doctrine (result-first output, low token burn, commit-and-move) lives only on cold read surfaces like `AGENTS.md` /",
   "keywords": [
     "fable-5",
     "efficiency",
@@ -18,10 +18,9 @@
     "read",
     "surfaces",
     "like",
-    "agents",
-    "claude"
+    "agents"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.501Z",
+  "lastUpdated": "2026-07-09T10:02:46.599Z",
   "specId": "005",
   "folderSlug": "governor-capsule-hook",
   "parentChain": [

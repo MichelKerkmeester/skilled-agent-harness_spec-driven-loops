@@ -46,7 +46,7 @@ Improve my technical-writing prompt; verify CLEAR loops stop after 3 attempts an
 
 1. `sk-prompt: Improve my prompt for technical writing — but if it can't hit 40/50 in 3 tries, just give me the best version with notes.`
 2. `agent: @prompt-improver raw_task="Improve a technical-writing prompt under a strict max-3 CLEAR iteration cap." task_type=edit target_cli=opencode complexity_hint=8 constraints="If CLEAR cannot reach 40/50 in 3 attempts, deliver the best version with notes."`
-3. `bash: rg 'max 3 iterations|on_exceed|Deliver best version' .opencode/skills/sk-prompt/references/depth_framework.md`
+3. `bash: rg 'max 3 iterations|on_exceed|Deliver best version' .opencode/skills/sk-prompt/prompt-improve/references/depth_framework.md`
 
 ### Expected
 

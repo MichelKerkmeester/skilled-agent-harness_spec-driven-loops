@@ -29,14 +29,14 @@
       "routing",
       "optimization",
       "phase",
-      "016",
       "sk-design",
       "parity",
       "sk-code",
       "sk-doc",
       "plan",
       "tasks",
-      "verification"
+      "verification",
+      "checklist"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`sk-code` and `sk-doc` (the other two parent hubs in this repo) both carry two structural conventions in their `mode-registry.json`/`hub-router.json` that `sk-design`'s equivalents lack: (1) a per-mode `\"command\"` field recording the bound slash command, documented in `advisorRoutingContract`; (2) a `\"hub-identity\"` vocabulary class wired into every mode's `routerSignals.classes` array",
     "created_at": "2026-07-06T19:50:05.020Z",
-    "last_save_at": "2026-07-06T19:50:05.020Z",
+    "last_save_at": "2026-07-09T10:02:44.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

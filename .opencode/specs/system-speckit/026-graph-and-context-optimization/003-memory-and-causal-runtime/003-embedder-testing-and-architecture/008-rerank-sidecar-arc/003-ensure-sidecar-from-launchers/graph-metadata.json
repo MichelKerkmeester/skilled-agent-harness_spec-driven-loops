@@ -43,7 +43,6 @@
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       ".opencode/bin/mk-code-index-launcher.cjs",
       ".claude/mcp.json",
-      ".codex/config.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -66,12 +65,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase 002 ships a runnable sidecar, neither MCP launcher knows to start it or attach to it",
     "created_at": "2026-05-23T11:55:15.607Z",
-    "last_save_at": "2026-07-02T05:31:12.138Z",
+    "last_save_at": "2026-07-09T10:02:53.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -28,7 +28,6 @@
       "code",
       "index",
       "reconnect",
-      "32000",
       "workspace",
       "root",
       "resolution",
@@ -36,7 +35,8 @@
       "socket",
       "plan",
       "resolver",
-      "fix"
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`/mcp` reported `Failed to reconnect to mkcodeindex: -32000`",
     "created_at": "2026-05-26T08:34:36.085Z",
-    "last_save_at": "2026-07-07T16:18:33.775Z",
+    "last_save_at": "2026-07-09T10:02:46.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

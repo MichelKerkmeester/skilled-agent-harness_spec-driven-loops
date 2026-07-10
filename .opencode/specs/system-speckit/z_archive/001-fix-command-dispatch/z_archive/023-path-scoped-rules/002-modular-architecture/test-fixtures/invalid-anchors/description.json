@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/invalid-anchors",
   "description": "This fixture tests detection of malformed ANCHOR tags",
   "keywords": [
     "fixture",
@@ -9,11 +9,11 @@
     "anchor",
     "tags"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.960Z",
+  "lastUpdated": "2026-07-09T10:02:56.923Z",
   "specId": "",
   "folderSlug": "invalid-anchors",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive",

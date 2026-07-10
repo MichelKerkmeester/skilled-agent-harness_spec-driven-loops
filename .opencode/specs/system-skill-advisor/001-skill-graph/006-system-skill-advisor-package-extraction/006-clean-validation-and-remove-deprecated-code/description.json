@@ -1,7 +1,7 @@
 {
   "level": "3",
   "specFolder": "system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/006-clean-validation-and-remove-deprecated-code",
-  "description": "ADR-001 intentionally allowed a short compatibility window where `speckitmemory` could expose advisor proxy tools while consumers moved to the standal",
+  "description": "ADR-001 intentionally allowed a short compatibility window where `speckitmemory` could expose advisor proxy tools while consumers moved to the",
   "keywords": [
     "adr-001",
     "intentionally",
@@ -16,17 +16,13 @@
     "tools",
     "while",
     "consumers",
-    "moved",
-    "standal"
+    "moved"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.262Z",
+  "lastUpdated": "2026-07-08T05:23:49.649Z",
   "specId": "006",
   "folderSlug": "clean-validation-and-remove-deprecated-code",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "001-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

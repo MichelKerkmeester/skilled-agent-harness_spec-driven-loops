@@ -6,14 +6,13 @@
     "autonomous",
     "iterative-investigation",
     "loop",
-    "built",
     "shared",
     "deep-loop-runtime",
     "foundation",
     "executor",
     "prompt-pack"
   ],
-  "lastUpdated": "2026-07-08T13:07:05.909Z",
+  "lastUpdated": "2026-07-09T10:02:48.880Z",
   "specId": "004",
   "folderSlug": "deep-research-scenarios",
   "parentChain": [

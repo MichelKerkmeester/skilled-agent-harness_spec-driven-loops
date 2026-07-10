@@ -57,7 +57,7 @@
       "opencode",
       "ai-council",
       "folder",
-      "created"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -219,7 +219,7 @@
     ],
     "causal_summary": "When the Multi-AI Council is invoked directly as a main agent in opencode (a Depth 0 user-initiated dispatch with no orchestrator wrapper), the council frequently completes its deliberation and returns a chat-form Multi-AI Council Report without writing any `ai-council/` artifacts to the spec folder",
     "created_at": "2026-05-19T13:51:38.813Z",
-    "last_save_at": "2026-07-08T13:43:11.653Z",
+    "last_save_at": "2026-07-09T10:02:49.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

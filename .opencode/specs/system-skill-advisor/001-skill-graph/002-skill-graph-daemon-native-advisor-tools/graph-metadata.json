@@ -27,9 +27,6 @@
       "026/008/008 implementation summary"
     ],
     "key_topics": [
-      "026",
-      "009",
-      "002",
       "skill",
       "graph",
       "daemon",
@@ -38,7 +35,10 @@
       "native",
       "plan",
       "tasks",
-      "027"
+      "checklist",
+      "decisions",
+      "adr",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The legacy skill-advisor stack depended on manually refreshed graph files, hand-maintained trigger phrases, fixed Python scoring, and split ownership between Python scripts and the system-spec-kit MCP server",
     "created_at": "2026-04-21T08:25:00.990Z",
-    "last_save_at": "2026-07-02T05:31:11.078Z",
+    "last_save_at": "2026-07-09T10:02:49.540Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,15 +211,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:645ddb602091535685758e3e733bdb7353cf9c10d7e8e80b2ff80a2eb8273387",
+    "source_fingerprint": "sha256:873bafdd863b492733d7e7db3e0084fe22b2b3f5e1a16571e27fad51d0ba3500",
     "source_doc_hashes": {
-      "spec.md": "5c0e9e379cf35db50f0ed226336a96c34957af3ce386870b41a9be991b7deb8b",
-      "plan.md": "610b0d18655e07c923376bd2e83c96bc5df1f0b1d6a8834d724aa9e738414565",
-      "tasks.md": "07fc7babcb5227b646591b2f81c15ae4683ba28681f098f83a28c82f42627f12",
-      "checklist.md": "9dc10a4152763b8a475033640a5126ce9479516662a81d62da1c59c883f1fed5",
-      "decision-record.md": "714ea261bb23ce450254ea8548a22c06e8d448f172f3ead8e534a709f260ef92",
-      "implementation-summary.md": "de200de6a1a80f70115418285d4e1c260a38588f25bbcd22ca141ba204491263",
-      "research/research.md": "dbe67716126308a04b93b781ed5f837cd69a49e626c0cfa58e69443ece21a5c6"
+      "spec.md": "314ef67ef3abe0f06184f0f1408b8efc9c06a74daf1d4548e1d4a0a1137ef50b",
+      "plan.md": "beefa8bb33acb9bbc9975f6e1c823d2468b0dec91ea2d4a921798f392b674d10",
+      "tasks.md": "f45c83603c118c7ef0575087db54c3616f7d63f95841a3d2bd7e773b12057375",
+      "checklist.md": "4e80351ce8f2054420506b2d410bc5d8869ebb0f99a35959b0dbcd2e68cf2908",
+      "decision-record.md": "e61875651cfb1a227a15f00974583661dde1341c7c9a02926550890198a3eb9c",
+      "implementation-summary.md": "f6bf9828ed81d4390d6fec93693ecdcf3aa28fe44c5151ffcdc14b244a00f348",
+      "research/research.md": "cff278c8d5359f29c92f8e7fa1551e2dfb3636f13b09c628d68e472049a93094"
     },
     "last_active_child_id": null,
     "last_active_at": null

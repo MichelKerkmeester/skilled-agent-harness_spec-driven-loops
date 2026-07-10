@@ -8,7 +8,7 @@ trigger_phrases:
   - "shell quality validation"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.9
+version: 1.0.0.15
 ---
 
 # Shell Quality Standards
@@ -45,7 +45,7 @@ Every shell script must start with the portable shebang:
 #!/usr/bin/env bash
 ```
 
-**Evidence**: `lib/common.sh:1`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh:1`
 
 ### Strict Mode
 
@@ -61,7 +61,7 @@ set -euo pipefail
 | `-u` | Error on undefined vars | Catches typos, missing args |
 | `-o pipefail` | Pipe failure propagation | Catches hidden pipe errors |
 
-**Evidence**: `spec/create.sh:22`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:22`
 
 ### Double-Quoted Variables
 
@@ -145,7 +145,7 @@ validateInput() { ... }    # camelCase
 ProcessFile() { ... }      # PascalCase
 ```
 
-**Evidence**: `lib/common.sh:47-88`
+This naming example is illustrative; no current system-spec-kit script provides a matching evidence pointer.
 
 ### Local Variables in Functions
 
@@ -239,7 +239,7 @@ if [[ ! -t 1 ]]; then
 fi
 ```
 
-**Evidence**: `lib/common.sh:13-22`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:74-77`
 
 ### Function Documentation
 
@@ -400,7 +400,7 @@ log_error "RULE" "Description of error"
 log_info "RULE" "Informational message"
 ```
 
-**Evidence**: `lib/common.sh:47-88`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:325-343`
 
 ### JSON Mode Support
 

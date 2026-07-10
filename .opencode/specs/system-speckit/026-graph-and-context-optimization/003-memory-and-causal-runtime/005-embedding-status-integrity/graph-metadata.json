@@ -28,7 +28,6 @@
       "embedding",
       "status",
       "integrity",
-      "fixes",
       "reindex",
       "commit",
       "prevention",
@@ -36,10 +35,11 @@
       "retention",
       "non-destructive",
       "call-time",
-      "config"
+      "config",
+      "plan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The 004 deep-research investigation proved a bulk re-embed of the mk-spec-memory store cannot reach `0 failed / 0 pending` because of three durable defects: (1) the `embedderset`/reindex completion transaction writes vectors but never commits `memoryindex.embeddingstatus`, so a completed re-embed leaves rows stale; (2) `enforceRetryRetentionLimits()` parks clean never-attempted `pending` rows as `failed` before the drain can embed them; (3) retry-retention config is read once at module load, so tuned env never applies to a long-lived daemon without a precise restart",
     "created_at": "2026-05-27T03:52:02.042Z",
-    "last_save_at": "2026-07-02T05:31:12.345Z",
+    "last_save_at": "2026-07-09T10:02:53.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

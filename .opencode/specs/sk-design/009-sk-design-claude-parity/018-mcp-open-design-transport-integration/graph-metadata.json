@@ -31,12 +31,12 @@
       "transport",
       "axis",
       "phase",
-      "018",
       "mcp-open-design",
       "open",
       "design",
       "nested",
-      "packet"
+      "packet",
+      "plan"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The operator physically moved and renamed `.opencode/skills/mcp-open-design/` to `.opencode/skills/sk-design/design-mcp-open-design/` via a raw `mv` (outside git)",
     "created_at": "2026-07-07T07:42:15.977Z",
-    "last_save_at": "2026-07-07T07:44:29.245Z",
+    "last_save_at": "2026-07-09T10:02:44.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

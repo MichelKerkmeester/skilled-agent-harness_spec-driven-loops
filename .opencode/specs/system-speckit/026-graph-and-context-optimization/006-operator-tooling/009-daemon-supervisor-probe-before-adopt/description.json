@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/009-daemon-supervisor-probe-before-adopt",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/009-daemon-supervisor-probe-before-adopt",
   "description": "The stale-reclaim adoption branch (`mk-spec-memory-launcher.cjs:1580`) adopts a released daemon when `processLiveness(orphanChildPid) !== 'dead'` AND",
   "keywords": [
     "stale-reclaim",
@@ -8,7 +8,6 @@
     "branch",
     "mk-spec-memory-launcher",
     "cjs",
-    "1580",
     "adopts",
     "released",
     "daemon",
@@ -16,11 +15,11 @@
     "orphanchildpid",
     "dead"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.356Z",
+  "lastUpdated": "2026-07-09T10:02:54.329Z",
   "specId": "009",
   "folderSlug": "daemon-supervisor-probe-before-adopt",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "006-operator-tooling"
   ],

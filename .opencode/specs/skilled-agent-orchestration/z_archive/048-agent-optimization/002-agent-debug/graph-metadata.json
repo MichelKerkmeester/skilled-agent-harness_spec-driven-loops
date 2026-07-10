@@ -20,7 +20,6 @@
       "002-agent-debug",
       "debug",
       "optimization",
-      "506",
       "loc",
       "sk-improve-agent",
       "lens",
@@ -28,7 +27,8 @@
       "agent",
       "sub-phase",
       "061-agent-optimization",
-      "applying"
+      "applying",
+      "validated"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -36,7 +36,6 @@
       "improvement/candidates/iter-1-candidate-001.md",
       ".opencode/agents/debug.md",
       ".claude/agents/debug.md",
-      ".codex/agents/debug.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -53,12 +52,6 @@
         "name": "debug.md",
         "kind": "doc",
         "path": ".opencode/agents/debug.md",
-        "source": "derived"
-      },
-      {
-        "name": "debug.toml",
-        "kind": "file",
-        "path": ".codex/agents/debug.toml",
         "source": "derived"
       },
       {
@@ -186,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Invocation Approval",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`@debug` (506 LOC) has not been through the sk-improve-agent v2 lens",
     "created_at": "2026-05-18T07:49:27.102Z",
-    "last_save_at": "2026-06-23T03:49:49.453Z",
+    "last_save_at": "2026-07-09T10:02:45.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c185a182421fe704a9a75f9f960fd6829d603ee7e7605594a8ed46642bf38c5",
+    "source_fingerprint": "sha256:000c45ce4e5cb76be0a8c3e46befece2101ef62c04a100441df860c1203ac981",
     "source_doc_hashes": {
-      "spec.md": "b4057eb6d6ecdfc6e7c06baf564567b5bfc106383d62bccbe0d8483d68bd1d63",
-      "plan.md": "3460cdca1612bf0beafaefe4bf8b61a98da62f2aed633a1a088c55f5a9bdc197",
-      "tasks.md": "b368d5718a57fd6a834d37f48b84eeda29a7a1293e2b87e1852ce3b71c8303bf",
-      "implementation-summary.md": "e99c39c3f1cf073a17819401f49e3b2c8a2aa7603920c3591e205b7217dbd8f1"
+      "spec.md": "cfa1aa4f9a7645b1ece4949163d4e417168d7db12523170b789da84677be0b93",
+      "plan.md": "c2353e89fd45565113cf23a9fb2f68d5f28147c4860ec0bb7ac0ea7e4b38bf4c",
+      "tasks.md": "8a55445dc29f20a04a78f75641bea5222cc844f4c82d1b9319f0670b738f9827",
+      "implementation-summary.md": "d823efea296f90a7112d7cd2b1ed7ab2b8b520bab8fa060c0d2ce12fb36595aa"
     },
     "last_active_child_id": null,
     "last_active_at": null

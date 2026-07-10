@@ -2,14 +2,13 @@
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap",
   "description": "The 007 validation run recorded 19 SKIP verdicts",
   "keywords": [
-    "007",
     "validation",
     "run",
     "recorded",
     "skip",
     "verdicts"
   ],
-  "lastUpdated": "2026-07-08T13:06:34.061Z",
+  "lastUpdated": "2026-07-09T10:02:48.907Z",
   "specId": "009",
   "folderSlug": "cp-copilot-to-opencode-swap",
   "parentChain": [

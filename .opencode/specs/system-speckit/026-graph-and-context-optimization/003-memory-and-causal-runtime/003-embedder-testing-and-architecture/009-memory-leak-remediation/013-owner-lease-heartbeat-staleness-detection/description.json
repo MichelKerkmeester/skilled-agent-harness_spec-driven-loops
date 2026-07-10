@@ -1,10 +1,9 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection",
   "description": "Phase 007's `classifyOwner` returns `live-owner` for any owner whose PID is alive, regardless of heartbeat freshness",
   "keywords": [
     "phase",
-    "007",
     "classifyowner",
     "returns",
     "live-owner",
@@ -16,11 +15,11 @@
     "heartbeat",
     "freshness"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.162Z",
+  "lastUpdated": "2026-07-09T10:02:53.543Z",
   "specId": "013",
   "folderSlug": "owner-lease-heartbeat-staleness-detection",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

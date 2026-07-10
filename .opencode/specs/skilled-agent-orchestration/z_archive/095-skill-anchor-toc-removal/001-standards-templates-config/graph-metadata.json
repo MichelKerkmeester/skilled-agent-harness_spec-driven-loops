@@ -37,18 +37,6 @@
     "status": "in_progress",
     "key_files": [
       ".opencode/commands/create/feature-catalog.md",
-      ".opencode/commands/create/testing-playbook.md",
-      ".opencode/skills/sk-doc/assets/template_rules.json",
-      ".opencode/skills/sk-doc/references/global/core_standards.md",
-      ".opencode/skills/sk-doc/assets/readme/readme_template.md",
-      ".opencode/skills/sk-doc/assets/readme/readme_code_template.md",
-      ".opencode/skills/sk-doc/assets/readme/install_guide_template.md",
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
-      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-      ".opencode/skills/sk-doc/references/readme_creation.md",
-      ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
-      ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
-      ".opencode/skills/sk-doc/references/global/workflows.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -59,78 +47,6 @@
         "name": "feature-catalog.md",
         "kind": "doc",
         "path": ".opencode/commands/create/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "template_rules.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/assets/template_rules.json",
-        "source": "derived"
-      },
-      {
-        "name": "core_standards.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/core_standards.md",
-        "source": "derived"
-      },
-      {
-        "name": "readme_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/readme/readme_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "readme_code_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/readme/readme_code_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "install_guide_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/readme/install_guide_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "readme_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/readme_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/workflows.md",
         "source": "derived"
       },
       {
@@ -198,11 +114,83 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc standards, doc templates, and `templaterules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR` markers as recommended",
     "created_at": "2026-05-26T09:40:16.335Z",
-    "last_save_at": "2026-06-23T03:49:51.094Z",
+    "last_save_at": "2026-07-09T10:02:46.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59db10b0842fdf6786256421b58a270da9274d29408fafb44586a37efc5ce038",
+    "source_fingerprint": "sha256:bac9b5ad20c61ff94e441cbc8740bbe603692280838b55e905a4cf0a0c05855b",
     "source_doc_hashes": {
-      "spec.md": "32f9c6b5a0988dbaf017a1c3a7b3ec56fb4a139ccb6ca493423c0c139eed67aa",
-      "plan.md": "90d6963a9ce1ec51544d1c848b63c311787869b3519e526a2b1962c0614f111e",
-      "tasks.md": "0b6f1d558889f7b2c3594fc0ea212097dd134e74daf6c62cd4ff0c32647149e3",
-      "implementation-summary.md": "189daf21f7ff1b5bd77551c17064d081c3b94ba275004d4b0044c72238c564a2"
+      "spec.md": "f8a06f3b0d8b1b1ef13cce9ce5a9d9d093ec13eee320f25bca0d3e4bc6a5f595",
+      "plan.md": "13bf20a7e151510e842dba136455e7d120cefebd2a51ff10c1acfe4389df2fdd",
+      "tasks.md": "b5f4ab72215475ba355353d34595abddedec7d4ca36b32b1a59b4f6904eb7e1b",
+      "implementation-summary.md": "8745fb42c9daf01658cd5096d17d1c8c5b306e4a3a9764244938aa715759d3c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

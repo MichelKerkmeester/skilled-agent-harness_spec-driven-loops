@@ -39,75 +39,12 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-guards.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spawn-cjs.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-salvage-recovery.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -197,11 +134,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Hardened",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Setup Bindings",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retry Classification",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The detached CLI fan-out path had: (1) review init bindings missing from CLI prompts, (2) unrecoverable salvage yielding false-fulfilled lineages, (3) mixed-salvage failures treated as fatal instead of retryable, (4) prompt-only write isolation via unconditional `--dangerously-skip-permissions`, (5) a playbook regression that did not exercise the documented exit-0/no-artifact path, (6) registry-only merge silently skipping leaf-only lineages, and (7) lag-ceiling observability events normalizing to `unknown`",
     "created_at": "2026-06-30T13:35:53.863Z",
-    "last_save_at": "2026-07-04T18:02:22.453Z",
+    "last_save_at": "2026-07-09T10:02:47.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f401b3ce1db2bf1fb1496db67ff5c1bad4cf81e59948b0c5bc4d29781258cd62",
+    "source_fingerprint": "sha256:7e402bcc33ff764903bee763be098275d0374736c9cb8278d7ac9c04ecc6952c",
     "source_doc_hashes": {
-      "spec.md": "6fa277d88723e60d80ae618acb7d30a965568435b3da9b1be3d6cc80df5e54a2",
-      "plan.md": "f09232a60c495462473ae32bb09144d4b827cf544f1a6d084449555b9370b5a3",
-      "tasks.md": "38559c80021d8dc87ad4d424e3a52bff5fe853b9269639ae99b6c9d4d8180ee5",
-      "implementation-summary.md": "c523d9776b6d0ad99f36b24f0b8d12573c2c07e3389c85b627740e31690c6a9f"
+      "spec.md": "0473f9f1d3b1ae98f4d065abc648da60b37dc6a7e7875397f5e308d1b940158b",
+      "plan.md": "8b9ce8218f29ba29d11842fad0df08625ebbcda39879b3268d979510a9ce0cf1",
+      "tasks.md": "b95e07520282b8062858f0da182feed1d2e0121fbbf9967ba0ec9f8812091ab3",
+      "implementation-summary.md": "4e1e91b73c7bce822ea1c6b38a16c2cb0679346c92b05fc4de6bd4cdf92574ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

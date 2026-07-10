@@ -49,18 +49,13 @@
       "tasks.md",
       "spec.md",
       ".opencode/specs/system-deep-loop/029-deep-loop-workflows/spec.md",
-      ".opencode/skills/deep-loop-workflows/SKILL.md",
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
-      ".opencode/skills/deep-loop-workflows/graph-metadata.json",
       ".opencode/commands/doctor/assets/doctor_speckit_presentation.txt",
-      ".opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
       ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
-      ".opencode/specs/system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation/checklist.md"
+      ".opencode/specs/system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation/checklist.md",
+      ".opencode/specs/system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation/implementation-summary.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -106,39 +101,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/graph-metadata.json",
-        "source": "derived"
-      },
-      {
         "name": "doctor_speckit_presentation.txt",
         "kind": "file",
         "path": ".opencode/commands/doctor/assets/doctor_speckit_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "council-graph-script.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "council-graph-value-scenarios.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts",
         "source": "derived"
       },
       {
@@ -160,15 +125,9 @@
         "source": "derived"
       },
       {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "status.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/029-deep-loop-workflows/009-old-skill-deletion-and-validation/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,11 +165,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gated",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Groups",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Split Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five old skill directories must be deleted only after every surface (skill, commands, agents, advisor, governance, docs, runtime) is green, so that rollback stays per-strata until the very end",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-07-02T05:31:05.055Z",
+    "last_save_at": "2026-07-09T10:02:47.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9a6f262a2f642d262601a1629502ed24134ad4bc15dd6936523b552f1c8e15d",
+    "source_fingerprint": "sha256:9659cd7c81be7acce5e77ecbecac2c6dbaf75dbed092149b1f2ec62629af30d6",
     "source_doc_hashes": {
-      "spec.md": "39c5ed47968add55af2ecfacf41727a5198951b9335e99301a4ab59b26746a79",
-      "plan.md": "c7bf00a7d136b582d0629f78db0bdf7ff2e0a113c97f9769858b50fdc6ef608f",
-      "tasks.md": "8b71076741ba3ca6bc8d2e07c09a193a3b992017e1cc234ca3e1b99b25f00d75",
-      "checklist.md": "8b1ff601fad1882be55043d915f6fb31418eb4a63231123a996cd1ddcd8275da",
+      "spec.md": "a3de69dc79c26a8f97046181870a60f1ef45c89e09a9d5b1b22ec4b28b0ce5de",
+      "plan.md": "98740a5ceb62e5d635a9aa703e9073cc1185eb05647b47131c928b00999632b3",
+      "tasks.md": "67daea0c9c6f0ba651da592c9236286ae1b718aa9b7edfb904c561fe989cd9c5",
+      "checklist.md": "cb53c21da8354b4ac822e883153b99d8a5a414cef301269037d820a2b7420959",
       "decision-record.md": "1543612703b9cdd4bb00105eddb085923c6f3d1a35869804137d05759406fa6e",
-      "implementation-summary.md": "ea877bb485e9d4f3bfc495164cd25b5814cdc6cd25430ca6360924c07eba95b5"
+      "implementation-summary.md": "4ba11bceab25b6927dc6c8ae10ba5ec35b6e0d0ef103904aa30b0c04013e3915"
     },
     "last_active_child_id": null,
     "last_active_at": null

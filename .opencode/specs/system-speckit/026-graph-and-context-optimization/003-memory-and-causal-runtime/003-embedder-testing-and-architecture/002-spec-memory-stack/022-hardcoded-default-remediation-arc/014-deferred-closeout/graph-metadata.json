@@ -22,8 +22,6 @@
       "deferred closeout complete"
     ],
     "key_topics": [
-      "022",
-      "014",
       "deferred",
       "closeout",
       "skill-advisor",
@@ -33,7 +31,9 @@
       "advisory",
       "pre-commit",
       "hook",
-      "plan"
+      "plan",
+      "tasks",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Closes 3 of 4 deferred follow-ons from the 022 arc: tracked dist/data JSON-copy script + install-guide note, advisory pre-commit hook + install script for validate-doc-model-refs.js, Z_SCORE_THRESHOLD comment update reflecting post-013 state. node-llama-cpp dep prune resolved-by-discovery (no live package.json dep).",
     "created_at": "2026-05-23T22:00:00.000000Z",
-    "last_save_at": "2026-07-02T05:31:11.865Z",
+    "last_save_at": "2026-07-09T10:02:52.862Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

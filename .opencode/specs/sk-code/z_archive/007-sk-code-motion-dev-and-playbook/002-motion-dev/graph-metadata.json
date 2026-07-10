@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The sk-code skill has empty peer folders for cross-stack motion.dev guidance",
     "created_at": "2026-05-05T08:00:00Z",
-    "last_save_at": "2026-07-07T16:45:58.037Z",
+    "last_save_at": "2026-07-09T10:02:44.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:704282b31e5f650d977baff84145aa8dd97f063896934a7c84f25e67f7982fa1",
+    "source_fingerprint": "sha256:51db5ea49529e61ec9d241103f6f613f306de94e6ad2f35a97ce5fdb85e88c07",
     "source_doc_hashes": {
       "spec.md": "6fd431efcf66a4e18fa68bec88533e09577be90188b8e9395275dce1e455e1d1",
       "plan.md": "2ad492dc674d575aea7c7fbfda5e334284a22ad4bd7c2606cabf60b3a40ed23a",
       "tasks.md": "d46e737f464120abee76a6d3f125c6698522c2175c702ed279ffd23dbbf9e573",
       "checklist.md": "7d47b179028686fe00a339933a1220379704e3758292defe9629f118ebc8e17e",
-      "implementation-summary.md": "9245fd14376ced0dc32fd001dfb6ad15bad6f3f5239d755b519385c091040676"
+      "implementation-summary.md": "59711737a4e3fb573475ca7705e05aa51c78515c35d6b5fcc8db6b8d11c8a3c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

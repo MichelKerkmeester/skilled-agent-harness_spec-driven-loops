@@ -62,14 +62,14 @@
       "leak",
       "remediation",
       "arc",
-      "009",
       "process",
       "lifecycle",
       "cleanup",
       "sidecar",
       "daemon",
       "phase",
-      "parent"
+      "parent",
+      "across"
     ],
     "importance_tier": "critical",
     "status": "planned",
@@ -122,15 +122,15 @@
     ],
     "causal_summary": "Phase parent for memory and process lifecycle remediation across Spec Kit Memory, deep-loop CLI dispatch, CocoIndex, Code Graph, rerank sidecars, and Apple Silicon host-memory verification.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-07-02T05:31:12.188Z",
+    "last_save_at": "2026-07-09T10:02:53.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:90c25b77e529f327088f54835002bdd0e372cdcd19ec72d11995b1ba50ef1fcf",
+    "source_fingerprint": "sha256:f16967a16687f2bc7b45663540f6295e66651cd3bb7e26b133b511d2bed30d9b",
     "source_doc_hashes": {
-      "spec.md": "e75998bf082df56d4b3439917435f05757d908ccdd489a74f47959ddde6b0055"
+      "spec.md": "88ac9582b2c945109606dd92e03c5781702fd95b9fed7e5b478478a1d54656c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

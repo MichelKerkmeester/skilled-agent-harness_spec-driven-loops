@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/111-cli-devin-deprecation/006-delete-skill-directory-and-verify",
-  "description": "After all active references are removed and canonical assets re-homed, the cli-devin skill directory must be deleted and the whole deprecation verifie",
+  "description": "After all active references are removed and canonical assets re-homed, the cli-devin skill directory must be deleted and the whole deprecation",
   "keywords": [
     "active",
     "references",
@@ -15,10 +15,9 @@
     "must",
     "deleted",
     "whole",
-    "deprecation",
-    "verifie"
+    "deprecation"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.445Z",
+  "lastUpdated": "2026-07-09T10:02:46.550Z",
   "specId": "006",
   "folderSlug": "delete-skill-directory-and-verify",
   "parentChain": [

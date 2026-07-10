@@ -8,14 +8,11 @@
     "partially",
     "remediated",
     "across",
-    "026",
     "phases",
-    "003",
     "code-graph-package",
-    "009",
     "hook-package"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.859Z",
+  "lastUpdated": "2026-07-09T10:02:46.875Z",
   "specId": "003",
   "folderSlug": "resolver-and-hook-improvements",
   "parentChain": [

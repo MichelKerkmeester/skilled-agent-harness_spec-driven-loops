@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/124-sk-prompt-parent/006-advisor-and-integration",
+  "description": "After phases 004 and 005 move the skill content and functional write targets, roughly 50 active documentation and prose referrers can still point at",
+  "keywords": [
+    "phases",
+    "004",
+    "005",
+    "move",
+    "skill",
+    "content",
+    "functional",
+    "write",
+    "targets",
+    "roughly",
+    "active",
+    "documentation",
+    "prose",
+    "referrers",
+    "still",
+    "point"
+  ],
+  "lastUpdated": "2026-07-09T19:05:30.013Z",
+  "specId": "006",
+  "folderSlug": "advisor-and-integration",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-prompt-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

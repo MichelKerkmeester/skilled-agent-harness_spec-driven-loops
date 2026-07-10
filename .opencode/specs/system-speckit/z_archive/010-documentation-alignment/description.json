@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/010-documentation-alignment",
+  "specFolder": "system-speckit/z_archive/010-documentation-alignment",
   "description": "This archived folder captures work that aligned documentation for Spec 126",
   "keywords": [
     "archived",
@@ -8,14 +8,13 @@
     "work",
     "aligned",
     "documentation",
-    "spec",
-    "126"
+    "spec"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.467Z",
+  "lastUpdated": "2026-07-09T10:02:57.513Z",
   "specId": "010",
   "folderSlug": "documentation-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

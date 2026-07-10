@@ -32,9 +32,9 @@
       "system-code-graph",
       "docs",
       "phase",
-      "005",
       "runtime",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Phases 003 and 004 moved the code-graph source and rewired imports, but the authored documentation and runtime guidance still describe code graph as part of `system-spec-kit`",
     "created_at": "2026-05-14T08:21:27Z",
-    "last_save_at": "2026-07-02T05:31:12.965Z",
+    "last_save_at": "2026-07-09T10:02:54.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:21:27Z",
     "source_docs": [

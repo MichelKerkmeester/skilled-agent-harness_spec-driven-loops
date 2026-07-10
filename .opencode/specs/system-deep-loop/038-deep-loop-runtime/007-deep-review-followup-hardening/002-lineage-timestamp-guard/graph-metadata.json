@@ -38,9 +38,6 @@
     "importance_tier": "medium",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lineage-timestamp-window.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/lineage-timestamp-window.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -49,24 +46,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "lineage-timestamp-window.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lineage-timestamp-window.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lineage-timestamp-window.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/lineage-timestamp-window.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +171,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Lineage subprocesses own their JSONL state writes (`deep-review-state.jsonl` et al.) and the prompt asks for ISO-8601 timestamps, but nothing verifies truthfulness",
     "created_at": "2026-07-02T15:14:06.679Z",
-    "last_save_at": "2026-07-06T16:24:25.969Z",
+    "last_save_at": "2026-07-09T10:02:48.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +211,7 @@
       "tasks.md": "fddc11da1e12ac8010fcce96de59f434785283f7a216254d21818db180744144",
       "checklist.md": "5f80f94aee208149902e35c1ccbf20997a07b11b2228b48ad8d3c71a219d523d",
       "decision-record.md": "b11d6223f5df656aacfb730eeb56e6a2fb1bc2fa1df7183b1187ee224fab7426",
-      "implementation-summary.md": "cc9a103d774f413b21d0b70173b29c42127a7dd740e6c0b634111ed6ccacc6c0"
+      "implementation-summary.md": "b01d443ab380115b3b076011f1fa142e311c87acccbb19dc1f3e54ced9850986"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,7 +2,6 @@
   "specFolder": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/004-salvage-coverage-graph",
   "description": "Make every iteration yield a usable artifact even when an executor doesn't write its file (weak CLIs / sandboxed writes), and ensure parallel lineages",
   "keywords": [
-    "make",
     "every",
     "iteration",
     "yield",
@@ -21,7 +20,7 @@
     "parallel",
     "lineages"
   ],
-  "lastUpdated": "2026-07-08T13:06:57.583Z",
+  "lastUpdated": "2026-07-09T10:02:49.129Z",
   "specId": "004",
   "folderSlug": "salvage-coverage-graph",
   "parentChain": [

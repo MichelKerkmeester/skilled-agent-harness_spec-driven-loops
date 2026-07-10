@@ -11,7 +11,7 @@
   "status": "complete",
   "created_at": "2026-05-23T12:30:00Z",
   "updated_at": "2026-05-23T10:31:09Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/003-fix-deferred-p2s-for-filesystem-durability",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/003-fix-deferred-p2s-for-filesystem-durability",
   "description": "Nine deferred P2 findings remain in the rerank sidecar launcher durability surface",
   "keywords": [
     "nine",
@@ -24,11 +24,11 @@
     "durability",
     "surface"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.329Z",
+  "lastUpdated": "2026-07-09T10:02:53.721Z",
   "specId": "003",
   "folderSlug": "fix-deferred-p2s-for-filesystem-durability",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/116-kimi-k2-7-code-support/006-broad-scope-timeout-caveat",
-  "description": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo dis",
+  "description": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo",
   "keywords": [
     "kimi",
     "code",
@@ -16,10 +16,9 @@
     "failure",
     "mode",
     "broad",
-    "large-repo",
-    "dis"
+    "large-repo"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.532Z",
+  "lastUpdated": "2026-07-09T10:02:46.668Z",
   "specId": "006",
   "folderSlug": "broad-scope-timeout-caveat",
   "parentChain": [

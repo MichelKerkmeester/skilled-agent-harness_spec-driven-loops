@@ -44,14 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/continuity-thread.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       ".opencode/commands/deep/assets/deep_research_confirm.yaml",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
-      ".opencode/skills/deep-loop-runtime/tests/unit/continuity-thread.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/prompt-pack.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
       "checklist.md",
       "implementation-summary.md"
@@ -76,24 +70,6 @@
         "source": "derived"
       },
       {
-        "name": "continuity-thread.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/continuity-thread.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
@@ -103,24 +79,6 @@
         "name": "deep_research_confirm.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "continuity-thread.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/continuity-thread.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-pack.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/prompt-pack.vitest.ts",
         "source": "derived"
       },
       {
@@ -200,11 +158,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unit Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research iteration cycle is itself a retrieval loop, but it threads forward in the \"reactive, reconstruct-cold\" mode, each iteration rebuilding its working set from the reducer's distilled snapshot rather than carrying its own prior thread, and the \"next focus\" it pursues is whatever free-text the previous iteration hand-wrote, not a function of what that iteration actually found",
     "created_at": "2026-06-19T06:20:37.820Z",
-    "last_save_at": "2026-07-06T16:24:27.687Z",
+    "last_save_at": "2026-07-09T10:02:48.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +214,7 @@
       "plan.md": "1a31a372adabb735126c2389416f493c40223792442aeca783f4123566c25dac",
       "tasks.md": "8ba37084436c799398420f40a4a1ede9f8602ffc06870afbe6fa33dd85fbf5e6",
       "checklist.md": "2e8a9340fea7149a12cf6604ed3214d6cfaee891dc09afd9d361b4c30ec68144",
-      "implementation-summary.md": "053199992365d7c0f5965b72769052b7bfe46e1de8f0690c4554cbf6afa606aa"
+      "implementation-summary.md": "ea3637190eb9238f4e40949463aed1ac53ffde2377887bcd21a0066ae1d654b3"
     },
     "last_active_child_id": null,
     "last_active_at": null

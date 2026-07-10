@@ -4,7 +4,6 @@
   "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs",
   "description": "The 122 review flagged that the ported 5-dim scorer (`score-model-variant.cjs`) was built and available but never wired into `run-benchmark.cjs`",
   "keywords": [
-    "122",
     "review",
     "flagged",
     "ported",
@@ -12,13 +11,12 @@
     "scorer",
     "score-model-variant",
     "cjs",
-    "built",
     "available",
     "never",
     "wired",
     "run-benchmark"
   ],
-  "lastUpdated": "2026-07-08T13:06:43.719Z",
+  "lastUpdated": "2026-07-09T10:02:48.961Z",
   "specId": "005",
   "folderSlug": "add-opt-in-5dim-scorer-and-skill-docs",
   "parentChain": [

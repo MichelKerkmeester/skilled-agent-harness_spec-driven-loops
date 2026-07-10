@@ -44,13 +44,23 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "001-council-design/spec.md",
+      "002-eval-rig/spec.md",
+      "004-skill-uplift/implementation-summary.md",
+      "005-extraction-rerun/implementation-summary.md",
+      "006-cross-cli-rcaf-propagation/implementation-summary.md",
+      "007-cross-model-validation/analysis.md",
       ".opencode/skills/sk-prompt/changelog/v1.3.1.0.md",
       "001-council-design/ai-council/council-report.md",
-      "004-skill-uplift/implementation-summary.md",
-      "006-cross-cli-rcaf-propagation/implementation-summary.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "analysis.md",
+        "kind": "doc",
+        "path": "007-cross-model-validation/analysis.md",
+        "source": "derived"
+      },
       {
         "name": "v1.3.1.0.md",
         "kind": "doc",
@@ -108,15 +118,15 @@
     ],
     "causal_summary": "cli-devin shipped with 7 prompt templates, 5 model presets, 6 framework choices, and 3 detail levels for the pre-planning block — but no systematic evaluation of which combinations maximize output quality on real coding tasks",
     "created_at": "2026-05-18T07:49:26.948Z",
-    "last_save_at": "2026-06-23T03:49:50.447Z",
+    "last_save_at": "2026-07-09T10:02:45.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5448dc8c9d6507f3147623653a517d70e0d4949f166fd5d104bc88101bca9923",
+    "source_fingerprint": "sha256:2c8c8fa4fe9434efe1b140777a0e79fa38fcd66bf2ea8bb5ae30f73d541f892a",
     "source_doc_hashes": {
-      "spec.md": "22962d50d376e89b9f23c8a442ccc9cf815a5f0084cf0c166939f712c4541613"
+      "spec.md": "489df592dce6704defdd8e19a79fcfc1a6ffe85b8f3a2acf764a72d346abb075"
     },
     "last_active_child_id": null,
     "last_active_at": null

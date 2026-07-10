@@ -4,13 +4,12 @@
   "description": "Phases 002-004 landed and were independently re-verified as code-complete",
   "keywords": [
     "phases",
-    "002-004",
     "landed",
     "independently",
     "re-verified",
     "code-complete"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.385Z",
+  "lastUpdated": "2026-07-09T10:02:47.731Z",
   "specId": "001",
   "folderSlug": "gpt-behavioral-hardening-research",
   "parentChain": [

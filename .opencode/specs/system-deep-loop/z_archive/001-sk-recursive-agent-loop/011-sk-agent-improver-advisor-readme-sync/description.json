@@ -3,13 +3,12 @@
   "description": "After Phase 008-010, the skill advisor and skill README are outdated",
   "keywords": [
     "phase",
-    "008-010",
     "skill",
     "advisor",
     "readme",
     "outdated"
   ],
-  "lastUpdated": "2026-07-08T13:06:36.802Z",
+  "lastUpdated": "2026-07-09T10:02:48.355Z",
   "specId": "011",
   "folderSlug": "sk-agent-improver-advisor-readme-sync",
   "parentChain": [

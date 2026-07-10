@@ -22,8 +22,6 @@
       "verify-and-ship summary"
     ],
     "key_topics": [
-      "068",
-      "003",
       "verify-and-ship",
       "opus",
       "verification",
@@ -33,10 +31,12 @@
       "phases",
       "left",
       "repo",
-      "state"
+      "state",
+      "reorg",
+      "appears"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/sk-doc/SKILL.md",
       "implementation-summary.md",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phases 1 and 2 left the repo in a state where the reorg APPEARS complete but no fresh-context verification has confirmed it",
     "created_at": "2026-05-05T07:55:04Z",
-    "last_save_at": "2026-06-23T03:49:49.640Z",
+    "last_save_at": "2026-07-09T10:02:44.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5e129f6b93b9a5cb863058fd615f7fa541ab7d1828da1d737807f6a871e051c",
+    "source_fingerprint": "sha256:7986c0e6a0dbfa5000efb065333c6de85c1718c9c537f7d64f48c1d324a65916",
     "source_doc_hashes": {
-      "spec.md": "1f298368ba8a48f32d258fb2bcd8269804ff3f3c32bf9680d82421e672d0274e",
-      "plan.md": "a1abeef3c2b89f85294bbde2c5612585a5e87ef843f00d9ce0c696b06367e551",
-      "tasks.md": "04ed7aa1da8af31fc82c0d1078248b10d55e59b24556faf5e93efd187f1bfbf8",
-      "implementation-summary.md": "8ff8027ac6afc24fd9a01ffd6ea25a490ac0ab196276f768146c52eab06efef0"
+      "spec.md": "9f746b04f3e72dcb6fbca796215a5a14ceb38a2341a80b326c4a9ef2137da84e",
+      "plan.md": "c322a720696900d8663b6bb702ecc99d060311b4f0a7fde06d3ecbef9b01be98",
+      "tasks.md": "86206c7ad3286415f272a79559338824349584f307bbb72958ce5c7b647696eb",
+      "implementation-summary.md": "08f22d37fe21d7faca4f50e4707beb48b49822e246c29ddfa58aefc47bfbe113"
     },
     "last_active_child_id": null,
     "last_active_at": null

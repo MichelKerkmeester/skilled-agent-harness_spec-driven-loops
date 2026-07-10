@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/002-outsourced-agent-handback",
-  "description": "When an external CLI (Codex, Copilot, Gemini, Claude Code) completes delegated work and returns session context, the data must flow through 010's `gen",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/002-outsourced-agent-handback",
+  "description": "When an external CLI (Codex, Copilot, Gemini, Claude Code) completes delegated work and returns session context, the data must flow through 010's",
   "keywords": [
     "external",
     "cli",
@@ -17,15 +17,13 @@
     "context",
     "data",
     "must",
-    "flow",
-    "010",
-    "gen"
+    "flow"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.978Z",
+  "lastUpdated": "2026-07-09T10:02:58.120Z",
   "specId": "002",
   "folderSlug": "outsourced-agent-handback",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing",

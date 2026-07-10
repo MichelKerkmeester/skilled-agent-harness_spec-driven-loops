@@ -25,7 +25,6 @@
       "/create:testing-playbook decision record"
     ],
     "key_topics": [
-      "create",
       "testing",
       "playbook",
       "command",
@@ -36,17 +35,15 @@
       "template",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "adr"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/create/testing-playbook.md",
-      ".opencode/commands/create/assets/create_testing_playbook_auto.yaml",
-      ".opencode/commands/create/assets/create_testing_playbook_confirm.yaml",
+      "spec.md",
       ".opencode/commands/create/README.txt",
       ".opencode/commands/README.txt",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -55,33 +52,15 @@
     ],
     "entities": [
       {
-        "name": "testing-playbook.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/create/testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "create_testing_playbook_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_testing_playbook_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "create_testing_playbook_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_testing_playbook_confirm.yaml",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/create/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-06-23T03:49:49.030Z",
+    "last_save_at": "2026-07-09T10:02:45.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09884f6887b11cd23e8df40dc6b84cc03f35b1b6fa388363d95843ea3b9831f8",
+    "source_fingerprint": "sha256:ac6977e76444aa3153f7a63cec64157f6c454b1859fd3f03eaa06e23e0023f86",
     "source_doc_hashes": {
-      "spec.md": "5e25846a7eb66514af8ac96234f0e479b073945ac21f0efb3f82b0ee9502e057",
-      "plan.md": "dff04c1094f5d75efd504faf56749b4d7afb016da303b87e0780dbc95e301371",
-      "tasks.md": "202dbd9c9cee5e4c52dc695348d585fb95d201568ada6a6e979c475acfbd5c8b",
-      "checklist.md": "b3646181542d9934fcd13986cca5d90151457e59a45cb6c137e266ec29157a59",
-      "decision-record.md": "f2bea5e357c9a6f9ab145c7f5f5360f0ff9cdfcc1f9eb1617cef3dd1b9f9e866",
-      "implementation-summary.md": "e8c07e6ee05371348c199bd3c40d2c17da082c3cd95e8ea2076d92c5b679f436"
+      "spec.md": "eefbb4762a3fb805794667c7fb57cb0ae46b447056ed9ba4c80fc9f690b824d4",
+      "plan.md": "ebbf4eeb6676c98616a55fe5d797cba7dea5aeb4eed3e1e723c82a3cf650de0c",
+      "tasks.md": "408c80a18d9a20c0d98edd5330c96ecb9c48748bf4476926f8c5fc86df8f9f2e",
+      "checklist.md": "825645ded94999b2028bd19fd6e7736a3f9fb378d8c656bcd3f4f4878eda80cf",
+      "decision-record.md": "a18e4abd448c8ae5e7b97b679672cbbf78c9d19530df0b47dbca53aa96d963e0",
+      "implementation-summary.md": "e0c3e04f4ebcf7968edea39d12be44f4c524f570d7f753103d864f7ab91021f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

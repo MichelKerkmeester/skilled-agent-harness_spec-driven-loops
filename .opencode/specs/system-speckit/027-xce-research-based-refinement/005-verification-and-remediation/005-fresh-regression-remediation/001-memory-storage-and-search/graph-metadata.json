@@ -1,11 +1,175 @@
-Packet: system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search
-Spec Folder: system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search
-Status: complete
-Importance Tier: important
-Summary: Remediation sub-phase of the 027 fresh+regression deep-review: 34 findings (5 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.
-Parent: system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation
-Migrated: true
-Migration Source: legacy
-Key Topics: remediation, sub-phase, 027, fresh, regression, deep-review, findings, subsystem, carried, task, registry, recommendation
-Key Files: spec.md, tasks.md, plan.md, implementation-summary.md
-Source Docs: spec.md, plan.md, tasks.md, implementation-summary.md
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search",
+  "parent_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "remediation",
+      "sub-phase",
+      "fresh",
+      "regression",
+      "deep-review",
+      "findings",
+      "subsystem",
+      "carried",
+      "task",
+      "registry",
+      "recommendation",
+      "scaffold"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Store",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Save Write",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation One",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Remediation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Per",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 34 findings (5 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
+    "created_at": "2026-07-09T10:02:55.851Z",
+    "last_save_at": "2026-07-09T10:02:55.851Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:746a30e6256b75b5bee1aa458d79b5952384136336788471b9040a1acd800c83",
+    "source_doc_hashes": {
+      "spec.md": "0e35b85157554b130901b13da09b3177441b5c4bcdea3896a94a9b6e6f087ecf",
+      "plan.md": "67abe3fd00e631ed92211427dc91bfd867d4a866efb696bf2508f57216af0313",
+      "tasks.md": "2670815d8d33cb94cc5517544db64f8d41ab7aa7cc817ea803bc3ac6e729fb96",
+      "implementation-summary.md": "98273870d7404750b78af7d5ebba96b52c8c47f2793a761aa1ad271d97593b63"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

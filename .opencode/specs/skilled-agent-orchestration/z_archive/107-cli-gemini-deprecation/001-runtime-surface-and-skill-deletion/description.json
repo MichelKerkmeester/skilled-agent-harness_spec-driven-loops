@@ -1,7 +1,7 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
-  "description": "The checked-in project `.gemini/` directory is still treated as an active runtime surface by docs, command scaffolds, tests, runtime capability manife",
+  "description": "The checked-in project `.gemini/` directory is still treated as an active runtime surface by docs, command scaffolds, tests, runtime capability",
   "keywords": [
     "checked-in",
     "project",
@@ -16,10 +16,9 @@
     "command",
     "scaffolds",
     "tests",
-    "capability",
-    "manife"
+    "capability"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.242Z",
+  "lastUpdated": "2026-07-09T10:02:46.368Z",
   "specId": "001",
   "folderSlug": "runtime-surface-and-skill-deletion",
   "parentChain": [

@@ -18,11 +18,10 @@
     "scripts",
     "tests",
     "config",
-    "lines",
-    "20-23"
+    "lines"
   ],
-  "lastUpdated": "2026-07-07T16:37:56.890Z",
-  "specId": "011",
+  "lastUpdated": "2026-07-09T10:02:44.331Z",
+  "specId": "008",
   "folderSlug": "sk-code-authoring",
   "parentChain": [
     "sk-code",

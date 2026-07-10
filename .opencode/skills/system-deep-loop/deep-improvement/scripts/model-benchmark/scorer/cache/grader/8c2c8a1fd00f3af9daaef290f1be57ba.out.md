@@ -1,0 +1,2 @@
+<!-- cache-meta {"kind":"grader","key":"8c2c8a1fd00f3af9daaef290f1be57ba","created_at":"2026-07-08T16:44:05.442Z","dim_id":"D4","fixture_id":"x","variant_hash":"h","rubric_version":"v1.0.0","grader_model":"claude-sonnet-4-5","parse_status":"ok"} -->
+{"score":0.95,"confidence":0.9,"rationale":"all symbols and flags in output verified against allowlist","evidence":[],"dim_id":"D4","parse_status":"ok","raw_grader_output":"[redacted: set DEEP_AGENT_GRADER_CACHE_RAW=1 to store raw output]","version":"1.0.0"}

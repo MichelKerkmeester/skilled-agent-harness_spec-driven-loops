@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/054-smart-routing-benchmark-program/002-code-review-optimization",
+  "spec_folder": "system-deep-loop/054-smart-routing-benchmark-program/002-code-review-optimization",
+  "parent_id": "system-deep-loop/054-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-review routing optimization",
+      "orphan references wiring",
+      "code-review D5 D3",
+      "always tier intent mapping",
+      "code-review optimization plan",
+      "code-review optimization tasks",
+      "code-review optimization checklist",
+      "code-review optimization summary",
+      "default_resources parser bug"
+    ],
+    "key_topics": [
+      "code-review",
+      "routing",
+      "optimization",
+      "orphan",
+      "references",
+      "wiring",
+      "always",
+      "tier",
+      "intent",
+      "mapping",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-code/code-review/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Legend",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After the live-scoring fix (sibling packet 001), `code-review` still scored lowest of all children — CONDITIONAL 69 vs 80-100",
+    "created_at": "2026-07-09T05:03:22.142Z",
+    "last_save_at": "2026-07-09T05:10:55.429Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e6b41b95c288f727c00c1f633b50cc0930a7973e8b19b7c3afecae6e18158e8",
+    "source_doc_hashes": {
+      "spec.md": "d64e44e75ef9928746a27bdb097818d4dbd94fdb7ee6e0edf9b7b2c9297a65fb",
+      "plan.md": "ccf23ea0346c682073b2e1485c727732d12c9598a46fe444fe9b42d1f55e9a1f",
+      "tasks.md": "41aca10a948014a9877a7e4c52479379065ccfe62bdfc50ce70da7f42e8c4fc9",
+      "checklist.md": "e81d213b3de26caa349c55f8280632dc164e38dc22d45328fb2509e562a954e8",
+      "implementation-summary.md": "09063b3b1d26720303e8678e87df25830ff3f05c2d6eca975aef033340409999"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/124-sk-prompt-parent/002-architecture-decision",
+  "description": "The program has approved high-impact structural decisions for folding `.opencode/skills/sk-prompt/` and `.opencode/skills/sk-prompt-models/` into a",
+  "keywords": [
+    "program",
+    "approved",
+    "high-impact",
+    "structural",
+    "decisions",
+    "folding",
+    "opencode",
+    "skills",
+    "sk-prompt",
+    "sk-prompt-models"
+  ],
+  "lastUpdated": "2026-07-09T15:47:28.916Z",
+  "specId": "002",
+  "folderSlug": "architecture-decision",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-prompt-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

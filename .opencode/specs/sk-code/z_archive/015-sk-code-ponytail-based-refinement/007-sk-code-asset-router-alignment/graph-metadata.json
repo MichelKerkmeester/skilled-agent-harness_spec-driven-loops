@@ -196,7 +196,7 @@
     ],
     "causal_summary": "sk-code's five `authoring.md` checklist assets led with `## 1",
     "created_at": "2026-06-14T06:30:53Z",
-    "last_save_at": "2026-07-07T16:45:58.062Z",
+    "last_save_at": "2026-07-09T10:02:44.415Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23c2ba8c5c00cc7a4d70fce5d0a2879c700e5a46ec5c7b764c1a108533f541f4",
+    "source_fingerprint": "sha256:4069578333d08fb399a2e41e703c60ad41665eeb11e0c10abbab933fa8b755ac",
     "source_doc_hashes": {
-      "spec.md": "f6e3940aa5f921446d81ec67f801a26cb55184dc941223c75845db6fec5da90a",
-      "plan.md": "a1255a729fb29a24c04bce3a2081c4d19d567556de760188bf5cde9667cd8587",
-      "tasks.md": "371cc032bd087de94098ecb2fe3f8efa7ab2e724cb0be95d35e212f650c1ce77",
-      "checklist.md": "46f8f173989af074fa6790e86f278ca3fc7663fda98ab8233e34391a888110fb",
-      "implementation-summary.md": "655100de13b167d1719fb60161a57649c1441485d56ea7e0dd308d2d43f6dae1"
+      "spec.md": "c76c92612cc8096d5faa38687adb58d6f5b9db039592ee2ff6ce59489be54a41",
+      "plan.md": "3b409d066b613500010fbd1937c0de5b2fa17da349e1b5577b9f943054709447",
+      "tasks.md": "86a066d9a67b6b846c33527df20cad3a4d9c79974b58c62ea596ba967072826f",
+      "checklist.md": "9d492a402223d83fc5f4b6b1e7598213d7995ea1886e1ac514c589c4f861e58b",
+      "implementation-summary.md": "6adb8d88d666dd61ffdad23cb9b5e2cdae7a4c5695d29655f89d1abac65baa9b"
     },
     "last_active_child_id": null,
     "last_active_at": null

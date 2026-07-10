@@ -29,11 +29,11 @@
       "interconnection",
       "workflowmode",
       "publication",
-      "005",
       "mode",
       "registry",
       "drift",
-      "guard"
+      "guard",
+      "new"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +44,6 @@
       "001-advisor-routing-projection/spec.md",
       ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
-      ".opencode/commands/create/assets/create_parent_skill_auto.yaml",
       "spec.md"
     ],
     "entities": [
@@ -76,12 +75,6 @@
         "name": "advisor-recommend.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create_parent_skill_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_parent_skill_auto.yaml",
         "source": "derived"
       },
       {
@@ -129,15 +122,15 @@
     ],
     "causal_summary": "New deep-loop lexical modes added to `mode-registry.json` are born inert: the advisor's alias tables and drift-guard test are not automatically regenerated, so the advisor scores against stale projections and `advisorrecommend` responses omit the resolved `workflowMode` field that callers need",
     "created_at": "2026-06-29T05:08:45.945Z",
-    "last_save_at": "2026-07-04T18:02:15.262Z",
+    "last_save_at": "2026-07-09T10:02:47.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9a83a06bfd822c02900e2a93b3dd8af099a61ff0f255464c2772d5d6a10741c2",
+    "source_fingerprint": "sha256:4a00618f47c728991963c276a79c93e230f60e27918e03b418f806a014eb745f",
     "source_doc_hashes": {
-      "spec.md": "7225088ee0e9f46a67015c5f3552a48111284c5aa50e1fce60dfdc829a10c181"
+      "spec.md": "acb6befb57a7dc5343f8fd23edb0b4496f7c6235f50424ac14277ecdf1057937"
     },
     "last_active_child_id": null,
     "last_active_at": null

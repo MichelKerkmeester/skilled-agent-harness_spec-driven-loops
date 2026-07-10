@@ -41,7 +41,7 @@
       "per-result"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Per-result `confidence.value` was only ~40% absolute relevance, so a strong-but-isolated high-cosine hit could be capped at \"medium\" - dragged down by weak heuristic signals (the 0.6/0.4 blend favoured the heuristic)",
     "created_at": "2026-06-17T19:57:25.104Z",
-    "last_save_at": "2026-07-02T05:31:13.731Z",
+    "last_save_at": "2026-07-09T10:02:55.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

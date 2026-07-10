@@ -24,12 +24,12 @@
       "heading",
       "rename",
       "bulk",
-      "fix",
       "script-driven",
-      "fixes",
       "across",
-      "370",
-      "files"
+      "files",
+      "current",
+      "reality",
+      "insert"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -113,7 +113,7 @@
     ],
     "causal_summary": "Script-driven bulk fixes across all 370 catalog files: rename CURRENT REALITY heading, insert template marker, fix validation table columns.",
     "created_at": "2026-06-04T13:19:25.656Z",
-    "last_save_at": "2026-06-23T03:49:51.439Z",
+    "last_save_at": "2026-07-09T10:02:46.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

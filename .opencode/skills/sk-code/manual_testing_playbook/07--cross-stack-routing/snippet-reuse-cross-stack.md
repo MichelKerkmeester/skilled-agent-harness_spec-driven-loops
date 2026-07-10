@@ -53,7 +53,7 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 
 ## 3. TEST EXECUTION
 
-Run this scenario through the Phase 005 universal prompt using `SCENARIO_ID=CS-005`. The grading checks the response content, not only the YAML path list.
+Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-005`. The grading checks the response content, not only the YAML path list.
 
 Evidence files:
 - `/tmp/skc-CS-005-<cli>.txt`

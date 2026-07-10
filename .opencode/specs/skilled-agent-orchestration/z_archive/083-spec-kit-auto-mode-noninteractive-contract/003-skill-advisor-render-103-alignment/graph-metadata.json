@@ -19,9 +19,7 @@
       "advisor first-action under 103 contract"
     ],
     "key_topics": [
-      "103",
       "phase",
-      "003",
       "skill",
       "advisor",
       "render",
@@ -30,15 +28,17 @@
       "invoke",
       "first",
       "first-action",
-      "contract"
+      "contract",
+      "renderer",
+      "still"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,15 +55,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The skill advisor renderer still emits soft wording around the top recommendation: `render.ts:155-157` says to use a label rather than requiring the first action",
     "created_at": "2026-05-11T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:50.305Z",
+    "last_save_at": "2026-07-09T10:02:45.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-11T00:00:00Z",
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef428d54395496686542714f1efd4d58e2adfb80b7ace3933333757bad332a7c",
+    "source_fingerprint": "sha256:f99f1284d2f982f8078882917280bcd224fb06fb0a1ad0370fd5138b51707249",
     "source_doc_hashes": {
-      "spec.md": "de72507455cde3a59c79ec3f417d1e7454d70257a0742c399dbdbebdd92faf39",
-      "plan.md": "20fc70955f971d119365afa8717d13d190c3e6a12515eff5275f3a82f25cfa54",
-      "tasks.md": "e9f3f222fe54ea3f14583b180011f57280acf84f20d8fd79d0a2494b9145734a",
-      "checklist.md": "70eea90a91f2742fd2dbc9cb2bd9d26c32fca5d297d20bf8fcdb6680e499a9c8",
-      "implementation-summary.md": "69776d8a097aef0844793296babec67b802cf88f9d2fc79f078cfcd5eb0e1d56"
+      "spec.md": "9ccbc3a87a51afbc86994e22ce2725867e20af357ffb0f4e000ef00dc6da51a7",
+      "plan.md": "ac63a13c0171362ae8ab71ceaa896e0457b99ce9c3e222fc244990e9665cdf7f",
+      "tasks.md": "571abb3198b8e541c269518f5f57ae1fedaefa74307e755f96cc8627e9f7a7f2",
+      "checklist.md": "9657f13a2d25001d18a51de7888d79bfea4db9e1832cdc1ae22cede34da0074a",
+      "implementation-summary.md": "7fbb18000716a4e8a040d6f9b9252d48c49e9cb55d1ac5330664607bfe3994f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

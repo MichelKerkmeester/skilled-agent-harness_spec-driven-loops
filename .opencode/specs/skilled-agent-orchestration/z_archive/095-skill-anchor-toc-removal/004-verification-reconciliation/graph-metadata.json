@@ -23,13 +23,13 @@
       "cleanup",
       "verification",
       "reconcile",
-      "117",
       "packet",
       "reconciliation",
       "plan",
       "004-verification-reconciliation",
       "tasks",
-      "summary"
+      "summary",
+      "large"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "A large mechanical change set (≈860 files) needs proof that it removed only TOC/anchor scaffolding,",
     "created_at": "2026-05-26T09:40:16.340Z",
-    "last_save_at": "2026-06-23T03:49:51.112Z",
+    "last_save_at": "2026-07-09T10:02:46.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6d377a99021da2c240d096bdf83b0b1a281f969a80fe0dafd3b1fe2c461ea52",
+    "source_fingerprint": "sha256:17e48216e023e7af8bb2c417b19617ad10db05d7f67db581ce5bfed8a701406e",
     "source_doc_hashes": {
-      "spec.md": "afacd918954b5474c6a17e95e0917872f647caa6faf5b12584e0d9266b49fdfd",
-      "plan.md": "5de08aab918983394515c071932267d533250c6c85bb215e4672a9d6ce30244c",
-      "tasks.md": "460c34cccdf7ddc3deb72d3aa865eec0588c74411dfd6d2ebe34c661806edf51",
-      "implementation-summary.md": "daaf56d40aa9cbaa0d902e1137544ef2d65e77c3291030139d12683492694959"
+      "spec.md": "84d8ca9af7ce3e2e27c68f0ca1528b12eac3889c5549513cde22abb357b39923",
+      "plan.md": "348cb857d653bc9ec4c486bcb8288f0470a451dd3bacbf44a2c8eaca64baae32",
+      "tasks.md": "46a6234a5595affa43905eb86926df1c5c8f2dca48dbb4a91dd5dc06de83f30f",
+      "implementation-summary.md": "0f82d60cfc94ad6d409941dee7c7b22f5c56fa3d84c1d81020ede3c5d79a0958"
     },
     "last_active_child_id": null,
     "last_active_at": null

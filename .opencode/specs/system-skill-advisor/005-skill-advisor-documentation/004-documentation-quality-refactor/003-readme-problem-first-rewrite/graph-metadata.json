@@ -24,7 +24,6 @@
       "skill-advisor",
       "readme",
       "rewrite",
-      "003",
       "marketing",
       "phase",
       "system-skill-advisor",
@@ -32,13 +31,13 @@
       "tasks",
       "summary",
       "current",
-      "reads"
+      "reads",
+      "structural"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-skill-advisor/README.md",
-      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       "spec.md",
       "plan.md",
       ".opencode/skills/system-code-graph/README.md",
@@ -50,12 +49,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-skill-advisor/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr_rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current `system-skill-advisor/README.md` reads as a structural reference (PASS on sk-doc `skillreadme` template) but lacks marketing voice",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.295Z",
+    "last_save_at": "2026-07-09T10:02:50.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55f05aff5705b5ca3a65d207df1ce4be6ef9d8597c077d5a921c3f7d4f00e40a",
+    "source_fingerprint": "sha256:9b95071faa135c60513a7976adc6c549cfc778fae26527f7d617b45d808a374d",
     "source_doc_hashes": {
-      "spec.md": "32806aa1efb18bce23d3c895c0a6cb4126c94f6fadfc5e2860ceb2dc401de1ce",
-      "plan.md": "0032be20b4ac59db1c72926afcb045aff89dbb0c06131d27d3805096985072d0",
-      "tasks.md": "34090946b6217ad9c1c25b1ab04d893932506e7fb09ab995681c8d512d428e39",
-      "implementation-summary.md": "45dc641905015023874bc9f909131129059653d634723d0b3a8cf5acf902e9c2"
+      "spec.md": "21f9ccc3086a6f5d70a3dd1b7322b02388b06dcbe713ff4639b54543c30abf32",
+      "plan.md": "211140854f01cfa900f114d9e0af09db358113be9745c281b9b3e9cf55f5959d",
+      "tasks.md": "8c25b21fe4c0879c29ef871189239eb005728b3d0e0600c633ae01495e41f5ad",
+      "implementation-summary.md": "215adcaadfcda1b38bdb6d8c9b0c17506426538b56f76808686dc44e0404038a"
     },
     "last_active_child_id": null,
     "last_active_at": null

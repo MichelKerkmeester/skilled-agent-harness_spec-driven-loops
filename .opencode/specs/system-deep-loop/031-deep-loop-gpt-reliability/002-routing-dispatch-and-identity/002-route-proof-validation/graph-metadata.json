@@ -44,14 +44,9 @@
     "status": "complete",
     "key_files": [
       "decision-record.md",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       ".opencode/commands/deep/assets/deep_review_auto.yaml",
       ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -63,18 +58,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "post-dispatch-validate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-dispatch-validate.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
         "source": "derived"
       },
       {
@@ -93,18 +76,6 @@
         "name": "deep_ai-council_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate-topic.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
         "source": "derived"
       },
       {
@@ -202,11 +173,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The research (`../../research/research.md` §5) found a critical false-negative (F27): a GPT mis-dispatch can PASS every existing FIX-5 validator signal if it writes schema-correct artifacts in expected paths while doing semantically wrong-mode work",
     "created_at": "2026-06-30T15:05:00Z",
-    "last_save_at": "2026-07-05T06:45:59.569Z",
+    "last_save_at": "2026-07-09T10:02:47.749Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:566c12dafe7d13170189094cb2a24073ebeb45e9457c7b8806bcc0eb6fa87629",
+    "source_fingerprint": "sha256:9e06db3d02bfd880cf9f14b0ca9d76af72585876239c186f68be6b8fb4525468",
     "source_doc_hashes": {
-      "spec.md": "a51d5933f33d1daa2eb0292f675d1dc8dc7b4bec3f532bc5cbf894578109ec8e",
-      "plan.md": "9524c17e8a5d70e5b8d695853f79765b1c9bf495e20e7e4cb4c060e5eb115ac1",
-      "tasks.md": "879a20ea7162f5d92c7f127260d97e3f731ecf307c89d2fd2f3b4d19d1879ce2",
-      "checklist.md": "cd88c08715789832d1462e9732c08498fae37d3f339a29618376580efb2ac516",
-      "decision-record.md": "4c43e9734e2893876715aa7ace688b61006cd162e3f6088d3442a7e59de02333",
-      "implementation-summary.md": "4ad0ffcbb7be73a07561a2d85a95118809bf316ce0745ddf1cfea7a603164664"
+      "spec.md": "1ff7e41048167fb1197436c11e4c4474331f090eb075a4f7ba4b4a296de269b6",
+      "plan.md": "6660909322c9304ed00d4984b0ec5d91429d52213795e64e5267c662103eab91",
+      "tasks.md": "5671177702bd9428c9abf9e131ef5acc743211f5079202063d06d9daf15b1b2d",
+      "checklist.md": "001b8191ce88013bf2ca786f4610535eb64474f93796a9a9beeb0de4c64914d4",
+      "decision-record.md": "9380d08524f494e9c8de5c54c927edb4ef6d8bac6dfeb16e98571863a05d359a",
+      "implementation-summary.md": "ed92e218c82290dfa6731e4b4b24eeae802ce4112c019378e9622e53b29faf2b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,7 +13,7 @@
   "status": "complete",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
   "description": "Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership",
   "keywords": [
     "align",
@@ -32,11 +32,11 @@
     "presentation",
     "ownership"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.895Z",
+  "lastUpdated": "2026-07-09T10:02:54.893Z",
   "specId": "006",
   "folderSlug": "command-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup"
   ],

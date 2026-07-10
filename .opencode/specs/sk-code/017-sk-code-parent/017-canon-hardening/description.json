@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-code/017-sk-code-parent/017-canon-hardening",
   "description": "The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary",
   "keywords": [
@@ -16,7 +17,7 @@
     "bundlerules",
     "vocabulary"
   ],
-  "lastUpdated": "2026-07-05T05:46:26.306Z",
+  "lastUpdated": "2026-07-07T17:12:13.840Z",
   "specId": "017",
   "folderSlug": "canon-hardening",
   "parentChain": [
@@ -24,6 +25,5 @@
     "017-sk-code-parent"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

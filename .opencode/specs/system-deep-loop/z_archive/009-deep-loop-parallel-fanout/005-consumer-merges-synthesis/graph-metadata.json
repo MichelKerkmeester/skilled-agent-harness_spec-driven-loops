@@ -15,9 +15,7 @@
       "fanout-merge.cjs synthesis"
     ],
     "key_topics": [
-      "123",
       "phase",
-      "005",
       "merge",
       "fanout-merge",
       "cjs",
@@ -26,7 +24,9 @@
       "isolated",
       "lineage",
       "packets",
-      "one"
+      "one",
+      "canonical",
+      "output"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -79,7 +79,7 @@
     ],
     "causal_summary": "Consolidate the N isolated lineage packets into ONE canonical output per consumer, reusing the existing synthesis compilers",
     "created_at": "2026-05-30T10:12:01.128Z",
-    "last_save_at": "2026-07-08T13:43:27.204Z",
+    "last_save_at": "2026-07-09T10:02:49.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

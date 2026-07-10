@@ -32,26 +32,32 @@
       "manual",
       "testing",
       "git",
-      "093",
-      "002",
       "workflow",
       "regression",
       "coverage",
       "worktree",
-      "commit"
+      "commit",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "draft",
     "key_files": [
+      ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-git/SKILL.md",
       "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
@@ -74,12 +80,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "sk-git is the three-phase git lifecycle orchestrator (worktree setup → commit formation → finish/PR) used across the repo for every feature shipped",
     "created_at": "2026-05-18T07:49:27.226Z",
-    "last_save_at": "2026-06-23T03:49:50.008Z",
+    "last_save_at": "2026-07-09T10:02:45.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d993ae42e186e6552825733b4a11310c2d9ee528f3ddd1a028d090acdb42d073",
+    "source_fingerprint": "sha256:d8ce6d9440daf6e6c25993980d5f6d40a2f731fc0f71fa83cf85fe67bc9d54ce",
     "source_doc_hashes": {
-      "spec.md": "d2aaeef733df1b1a7870f27881bce4446edd1704c64b06eb3be7961498921778",
-      "plan.md": "ea5574071fb0c5cafa130deae45ce9a1d317a7db95d37d61c3d912ddbd43e49c",
-      "tasks.md": "b60f7eaeb525d4a22a14017145cbc4a01f94df417582c24f83edb2ee914b8a85",
-      "checklist.md": "ad31a9467ef0ade4f53c1c3e5621b1c3d55a22d0ec2d97ebcccd5c2c4b898a8d",
-      "implementation-summary.md": "fec7077dc62f8a57a0b9cae54fe1c624ee06807d40e7e0b7ed0ca97751c7dadf"
+      "spec.md": "5250dee44dae17ea514c9031ffc5a09c33419e2396f8fc012f56d1f5698eae90",
+      "plan.md": "5ae2da63fe162df77e26a59763a34fb76508f39e259ec154be9e895190400fe9",
+      "tasks.md": "f3d268c6376f539a9d3f62ea38cd59b05e22e91704faa6cbdb1f370b1eaed665",
+      "checklist.md": "51b36a7e828a1c6ce75b13d4ce0a217dd030c72630642a9b9efdcf856a6b8cd8",
+      "implementation-summary.md": "d3e0d80af2f61c40e06485f1e09ec6cb67f86f67460e377deba4836bd9537ab1"
     },
     "last_active_child_id": null,
     "last_active_at": null

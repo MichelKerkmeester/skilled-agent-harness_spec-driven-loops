@@ -40,12 +40,19 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-prompt-models/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The remaining phases need a single, ratified design to implement against: where per-model prompt-craft prose lives, the exact shape of the `recommendedframeworks` data field, the per-model profile structure, and one delegation rule that replaces the contradictory ones in use today",
     "created_at": "2026-06-02T18:04:10Z",
-    "last_save_at": "2026-06-23T03:49:51.572Z",
+    "last_save_at": "2026-07-09T10:02:46.252Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15cfb2cfe51b959ca612ffbab50b59e2bad1fb5183c82c8bad2b8cc0397e2e5b",
+    "source_fingerprint": "sha256:08af0031094431e4d62c167f04a8787f3de7a767b604881c9a14b38631b17b38",
     "source_doc_hashes": {
-      "spec.md": "5425e1b67544141423564d499a87895d9f2baad6eb3955212d0538e5b05e6e65",
-      "plan.md": "98b21e27ac0291d818f728f5154c168b9b408923906266026773679a4bcf7018",
-      "tasks.md": "84d0077ec1bb07b17941d8597ff21acabbedbb61ebe219af9bfa609fa222ddf8",
-      "implementation-summary.md": "11277c3f2a2aa04d76370b3402cd8485185a2ecab1a1ec52f0e5eb43bacc9a93"
+      "spec.md": "9afe070aa42fac567c729cd9b3e8c62fe6413028da6c1964b4f05a8c5cb58a8f",
+      "plan.md": "08984f4ea29650c3bb4e87af88d71a47b25ca9554872a9d1b95b98470ce04d4a",
+      "tasks.md": "f2443c9372d086e907fac8e9f380074707388416a3e98e14cbaa45355d587c55",
+      "implementation-summary.md": "1bbbfbf83d4cf9677213bbecb5c7937843fa920174e5d3868b86755c85c4407d"
     },
     "last_active_child_id": null,
     "last_active_at": null

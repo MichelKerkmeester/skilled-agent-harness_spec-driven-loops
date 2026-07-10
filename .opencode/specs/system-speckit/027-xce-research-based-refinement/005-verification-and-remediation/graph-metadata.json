@@ -36,7 +36,6 @@
       "release alignment review"
     ],
     "key_topics": [
-      "027",
       "verification",
       "remediation",
       "finding",
@@ -47,7 +46,8 @@
       "design",
       "units",
       "fresh",
-      "regression"
+      "regression",
+      "review"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -100,7 +100,7 @@
     ],
     "causal_summary": "The 027 program produced review and research evidence that had to become terminal, verified work queues rather than assumed-true claims",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:13.998Z",
+    "last_save_at": "2026-07-09T10:02:55.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

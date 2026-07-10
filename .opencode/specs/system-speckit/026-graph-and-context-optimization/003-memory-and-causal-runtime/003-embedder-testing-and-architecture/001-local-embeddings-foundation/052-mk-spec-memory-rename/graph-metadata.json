@@ -42,7 +42,6 @@
     "status": "complete",
     "key_files": [
       ".claude/mcp.json",
-      ".codex/config.toml",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
@@ -65,12 +64,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Model Context Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current configured server alias forces a 22-character fully qualified prefix, `mcpmkspecmemory`, into every Claude-style tool reference",
     "created_at": "2026-05-13T09:00:44Z",
-    "last_save_at": "2026-07-02T05:31:11.713Z",
+    "last_save_at": "2026-07-09T10:02:52.576Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

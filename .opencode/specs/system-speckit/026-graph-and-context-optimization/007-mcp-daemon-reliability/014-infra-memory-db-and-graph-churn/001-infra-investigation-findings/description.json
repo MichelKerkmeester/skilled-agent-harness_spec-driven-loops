@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings",
   "description": "Two live-infra issues degrade the spec-memory subsystem",
   "keywords": [
     "two",
@@ -9,11 +9,11 @@
     "spec-memory",
     "subsystem"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.471Z",
+  "lastUpdated": "2026-07-09T10:02:54.451Z",
   "specId": "001",
   "folderSlug": "infra-investigation-findings",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability",
     "014-infra-memory-db-and-graph-churn"

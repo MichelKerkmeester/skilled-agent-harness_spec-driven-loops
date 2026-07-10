@@ -4,7 +4,6 @@
   "description": "The synthesis.md from 003 lists winning prompt patterns, but they live in eval-loop packet artifacts — invisible to future cli-devin dispatches",
   "keywords": [
     "synthesis",
-    "003",
     "lists",
     "winning",
     "prompt",
@@ -18,7 +17,7 @@
     "cli-devin",
     "dispatches"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.044Z",
+  "lastUpdated": "2026-07-09T10:02:45.911Z",
   "specId": "004",
   "folderSlug": "skill-uplift",
   "parentChain": [

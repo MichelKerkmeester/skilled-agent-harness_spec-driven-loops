@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/034-gate-enforcement-refinement",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/034-gate-enforcement-refinement",
   "description": "Refine the gate-enforcement.md constitutional memory to cover ALL 4 HARD BLOCK gates (0, 3, 5, 6) instead of just 2 (3, 5).",
   "keywords": [
     "refine",
@@ -13,11 +13,11 @@
     "instead",
     "just"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.081Z",
+  "lastUpdated": "2026-07-09T10:02:57.043Z",
   "specId": "034",
   "folderSlug": "gate-enforcement-refinement",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

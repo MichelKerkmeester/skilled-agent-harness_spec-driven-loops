@@ -15,6 +15,8 @@ version: 1.0.0.3
 
 # mcp-click-up Troubleshooting Guide
 
+Diagnostic guide for cupt CLI and official ClickUp MCP failures, covering installation, authentication, status resolution, and MCP connection issues.
+
 ---
 
 ## 1. OVERVIEW

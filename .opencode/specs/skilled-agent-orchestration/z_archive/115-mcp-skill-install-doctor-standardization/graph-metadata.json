@@ -41,14 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "scripts/doctor.sh",
       ".opencode/skills/mcp-figma/changelog/v1.0.0.0.md",
-      ".opencode/skills/mcp-open-design/INSTALL_GUIDE.md",
       ".opencode/skills/mcp-chrome-devtools/scripts/doctor.sh",
-      ".opencode/skills/mcp-click-up/scripts/doctor.sh",
       ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+      "scripts/doctor.sh",
+      ".opencode/skills/mcp-click-up/scripts/doctor.sh",
       ".opencode/commands/doctor/mcp.md",
-      ".opencode/skills/mcp-open-design/mcp-servers/open-design/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -57,21 +55,15 @@
     ],
     "entities": [
       {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
-        "source": "derived"
-      },
-      {
         "name": "v1.0.0.0.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-figma/changelog/v1.0.0.0.md",
         "source": "derived"
       },
       {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-open-design/INSTALL_GUIDE.md",
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-chrome-devtools/scripts/doctor.sh",
         "source": "derived"
       },
       {
@@ -84,12 +76,6 @@
         "name": "mcp.md",
         "kind": "doc",
         "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-open-design/mcp-servers/open-design/README.md",
         "source": "derived"
       },
       {
@@ -199,11 +185,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five mcp- skills had drifted out of a shared shape",
     "created_at": "2026-06-15T05:45:12Z",
-    "last_save_at": "2026-06-23T03:49:48.735Z",
+    "last_save_at": "2026-07-09T10:02:46.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac27dcb4c506f7ee4ca9f3bbfd95d6032ef21bfbf5a957da07879a54f4a95014",
+    "source_fingerprint": "sha256:f81363716cdd16d5c3147497be0b2275a57e42798035ab7ababe7c4aae68657b",
     "source_doc_hashes": {
-      "spec.md": "072fb329630d19c952e4452ae2f2050b189ca61808c6cf7f2647d78c37f6bde5",
-      "plan.md": "00c37bfcf0f0719d1609459efa46fd4738d4b0fddc06e2e046969b981141ac24",
-      "tasks.md": "8d21fb8e590e75db858c4d319352c5e52e47eaf485d8e43bd1859350abc39df6",
-      "checklist.md": "c290b9d98c3612ea254163a209c6cdde0933e4574e9b4237c98864eef14529ae",
-      "implementation-summary.md": "6172a9132fcb1bece98a89efe2d06b7d73c3b37da39700c487112d2f91c59781"
+      "spec.md": "cc919e774468f95fbcf8125731d43fbf821a03e82d0e72164c34f341e12744e5",
+      "plan.md": "037cd77acf526fbfc65605aecfab0e312c8c7829b861b6129cba26ce64ddf310",
+      "tasks.md": "643cf3f0f7209a334317d049f14d6ee79a36e8cd9bf25b290e666f168fb77286",
+      "checklist.md": "0b79bea2ac48f10329c407dce90612185ecb4a8ff9101cc5d1b939e9f92b814e",
+      "implementation-summary.md": "85b166f3ff164735870251f894ca927a058d10ec7addf8336414428b7619568f"
     },
     "last_active_child_id": null,
     "last_active_at": null

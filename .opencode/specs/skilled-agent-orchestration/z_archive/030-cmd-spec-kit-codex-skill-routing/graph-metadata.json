@@ -35,15 +35,15 @@
       "start",
       "memory",
       "routing",
-      "039",
-      "spec"
+      "spec",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       "research/research.md",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
@@ -52,6 +52,12 @@
       "references/workflows/quick_reference.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -62,12 +68,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The research packet in `research/` already answered the core question: Codex does not mainly lack command docs",
     "created_at": "2026-04-12T09:02:50.182Z",
-    "last_save_at": "2026-06-23T03:49:49.109Z",
+    "last_save_at": "2026-07-09T10:02:45.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7cba137600574328b37b2a8d583b69078fc245a3806e8ad7e66d7e48e4f1b31d",
+    "source_fingerprint": "sha256:00fa36658e08cf45df0cc235dad68ec94b8d3f79631b76dccda69e3adeeedbd4",
     "source_doc_hashes": {
-      "spec.md": "2e6edeaa426e47cbafc08be3a82c718bb1a18d88f21c35116f1ba1af6f21d51b",
-      "plan.md": "92028c2bdca6b0c1fd26674a3d73f077e68e9c50f905a7267a8cd65593f7249a",
-      "tasks.md": "06489050c2cfe7b9fb12f9355fde3522300b5de49390796c5cb2b67fd25519f9",
-      "implementation-summary.md": "4ff91ad2d5c6d537aeddf8b4d5335195cdac9e8efeaf59daebb7018a9edb1a14",
-      "research/research.md": "9d215bb60aa657062c997d7bcce689e034ed1e13983b45d2fa3c94b136bd551a"
+      "spec.md": "7fd802d8620372738416b69ee36bcd95821649abd36e3bd50864d7040ec19742",
+      "plan.md": "2951ca59314eb24558f13557640b143b71beb21d84c3ac829e15f08bc9708ce2",
+      "tasks.md": "a47cef19851ddee52ad01aa7ab6d6b4996a40fbb9d9f9a02fba7b250f69888ad",
+      "implementation-summary.md": "811608746038fc51e888e8846565ca02db32d816497aa28a896a5edaefcf7965",
+      "research/research.md": "6bae09fbb06878c44d79f3c30aa132f91640e69396d5cabed7bbbbdd1eef5c3c"
     },
     "last_active_child_id": null,
     "last_active_at": null

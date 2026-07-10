@@ -2,7 +2,6 @@
   "specFolder": "system-code-graph/007-code-graph-buildout/011-source-bug-and-misalignment-audit/002-applied-source-and-doc-fixes",
   "description": "The 011 audit recorded 37+1 findings in the system-code-graph MCP server",
   "keywords": [
-    "011",
     "audit",
     "recorded",
     "findings",
@@ -10,7 +9,7 @@
     "mcp",
     "server"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.570Z",
+  "lastUpdated": "2026-07-09T10:02:47.135Z",
   "specId": "002",
   "folderSlug": "applied-source-and-doc-fixes",
   "parentChain": [

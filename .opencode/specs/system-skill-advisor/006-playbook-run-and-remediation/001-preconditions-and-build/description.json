@@ -9,14 +9,13 @@
     "current",
     "mcp",
     "server",
-    "build",
     "unset",
     "speckitskilladvisorhookdisabled",
     "flag",
     "evidence",
     "workspaces"
   ],
-  "lastUpdated": "2026-07-07T12:56:31.977Z",
+  "lastUpdated": "2026-07-09T10:02:50.126Z",
   "specId": "001",
   "folderSlug": "preconditions-and-build",
   "parentChain": [

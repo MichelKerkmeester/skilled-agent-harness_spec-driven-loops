@@ -21,7 +21,6 @@
       "search fusion reranker tuning"
     ],
     "key_topics": [
-      "010",
       "search",
       "routing",
       "tuning",
@@ -32,7 +31,8 @@
       "graph",
       "metadata",
       "validation",
-      "fusion"
+      "fusion",
+      "reranker"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -149,16 +149,16 @@
     ],
     "causal_summary": "This packet root was active in the 026 phase map, but its root identity lived only in `description.json`, `graph-metadata.json`, and the child folders",
     "created_at": "2026-04-13T16:01:59Z",
-    "last_save_at": "2026-07-07T11:48:30.311Z",
+    "last_save_at": "2026-07-09T10:02:49.868Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52480cacb2777375fd63bee73dcd1a220554b4ad6c9d2b2807d178f008e9bf2f",
+    "source_fingerprint": "sha256:a32f91768a87ef756694b451f91a008d16485ba0ed1a5ce49c71c42d3086ae61",
     "source_doc_hashes": {
-      "spec.md": "2e31b22ea9afcb728641efa183b2bd8d4db4e7524cfbf706a6bf07723dc5b95e",
+      "spec.md": "0804741139215092b1512168ad9cc7a6a845d419ab521d756b458c07301ad3ec",
       "implementation-summary.md": "1612b445d9c3af93b199a20f7aecf622c72cb0aaf9f9e2874d6f8f175c546e5d"
     },
     "last_active_child_id": null,

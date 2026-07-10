@@ -35,10 +35,10 @@
       "dac-026",
       "integration",
       "scenarios",
-      "101",
-      "004",
       "plan",
-      "tasks"
+      "tasks",
+      "summary",
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Phase 003 of `101-deep-multi-ai-council-skill` shipped a dedicated council graph (4 MCP tools, 8 node kinds, 10 relation kinds, 5 query modes, 3 convergence buckets) backed by `council-graph.sqlite` and verified by `tests/council-graph.vitest.ts`",
     "created_at": "2026-05-11T05:27:10Z",
-    "last_save_at": "2026-07-08T13:43:24.421Z",
+    "last_save_at": "2026-07-09T10:02:48.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

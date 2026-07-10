@@ -17,9 +17,7 @@
       "fanout-pool capped pool done"
     ],
     "key_topics": [
-      "123",
       "phase",
-      "002",
       "pool",
       "fanout-pool",
       "cjs",
@@ -28,7 +26,9 @@
       "summary",
       "done",
       "provide",
-      "concurrency-capped"
+      "concurrency-capped",
+      "fan-out",
+      "orchestrator"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -168,7 +168,7 @@
     ],
     "causal_summary": "Provide the concurrency-capped fan-out orchestrator primitive (the one thing the council dispatcher lacks)",
     "created_at": "2026-05-30T10:12:01.127Z",
-    "last_save_at": "2026-07-08T13:43:18.315Z",
+    "last_save_at": "2026-07-09T10:02:49.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

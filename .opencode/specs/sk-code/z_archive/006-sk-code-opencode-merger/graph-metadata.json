@@ -211,7 +211,7 @@
     ],
     "causal_summary": "Before this implementation, `sk-code` advertised itself as an umbrella application-code router with Webflow, Go, and React/NextJS branches, while `sk-code-opencode` separately owned OpenCode system-code standards",
     "created_at": "2026-05-03T11:04:06Z",
-    "last_save_at": "2026-07-07T16:45:58.026Z",
+    "last_save_at": "2026-07-09T10:02:44.277Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,15 +223,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:0971fa940059e545b149afac19faf98d90e17bf3c6a4bd2a85a924db8dcdd465",
+    "source_fingerprint": "sha256:f884a0b13df56b6c0ed91a592db849e0f5f8ed3602c4b5711bb68d394a792e37",
     "source_doc_hashes": {
       "spec.md": "7628b2e2332b64cae4cb82a1c20ab53e54e62e653c3bd9c0109e3195d0444dba",
       "plan.md": "882ad8733dbc10445b8835d41edffbefc1ffc61c8ab81d8494106d2eb6764a86",
       "tasks.md": "6ae39389f0c6f36820ed70a3b528ca032cb8ba5371ef8e693e2fb8331fd49118",
       "checklist.md": "7ddc2b527987368a5ce0a9cbff0e1d96ac46f4f1cadf2c74ca7eafa2ae4b72c3",
       "decision-record.md": "6af6b6fd09e806fe2b4392bd976c0050b2fa4cbddc5f100c7d16808fdcc8e2d2",
-      "implementation-summary.md": "8fba5ccf8070dd68fc7739d436faa3df35293439c01ce200653e8da1e62a0dff",
-      "resource-map.md": "ce4819cebc0a5426a981aed5235dc03f0957e05c6d9e695688c4628026dc6086"
+      "implementation-summary.md": "96c8d07a5ab27ff37fc02650c4c076a29cec2b11e6c02c3a98a0b680cff856cc",
+      "resource-map.md": "f8d7d5dd0211a93817350b267291a42d43b97bd7ef160634aaf26daf88f581c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -16,8 +16,8 @@
       "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/008-sk-deep-cli-runtime-execution",
-  "description": "Merged packet covering the CLI executor arc: 001-executor-feature (ex-018, native + cli-codex) plus 002-runtime-matrix (ex-019 + cli-gemini + cli-clau",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/008-sk-deep-cli-runtime-execution",
+  "description": "Merged packet covering the CLI executor arc: 001-executor-feature (ex-018, native + cli-codex) plus 002-runtime-matrix (ex-019 + cli-gemini +",
   "keywords": [
     "merged",
     "packet",
@@ -32,14 +32,13 @@
     "plus",
     "002-runtime-matrix",
     "ex-019",
-    "cli-gemini",
-    "cli-clau"
+    "cli-gemini"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.875Z",
+  "lastUpdated": "2026-07-09T10:02:52.106Z",
   "specId": "008",
   "folderSlug": "sk-deep-cli-runtime-execution",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "001-continuity-memory-runtime"

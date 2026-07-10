@@ -31,11 +31,11 @@
       "code",
       "first-time",
       "auto-establish",
-      "026",
-      "004",
-      "012",
       "reindex",
-      "isdefaultenduserscope"
+      "isdefaultenduserscope",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "When the code graph is empty (never built, or reset), the read tools (`codegraphquery`, `codegraphcontext`) return `status:\"blocked\"` with `requiredAction: codegraphscan` — they never build the index themselves",
     "created_at": "2026-05-29T10:44:34.652Z",
-    "last_save_at": "2026-07-07T16:18:33.893Z",
+    "last_save_at": "2026-07-09T10:02:47.153Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2821400fc377ecd0da30d637c7ed70aba318e43c52902a71d097459d53eced3",
+    "source_fingerprint": "sha256:e5b84093ca129dc0d519ea8a39f291368d3ce466a5c1d241540e8ecfcdb22e2b",
     "source_doc_hashes": {
       "spec.md": "a7cbd7a817ca7e3e9c61c6e9f6eb57f2c4a1c296a4374b5f16555a400d78a79a",
       "plan.md": "21bdd69e6d5b525748f8d34ffd3f2742d594eb2149b3ef20bbc9ad7695afa925",
       "tasks.md": "74f85290f6a97d62e4e55d814bc5becebba5e652c1958895454030805311d0d3",
       "checklist.md": "abb93f40cb8a920a6d5dd9fc959ea30f0891e96631b31c58dd28af1515081dfa",
-      "implementation-summary.md": "511d776d553d1c7a63127d4e72480915c98e61cbbca406617b8f8174af897a95"
+      "implementation-summary.md": "b96cbc5504d88a4ad9b3ac1eb84c55220884466434a9b65a4f097731f4cf3a23"
     },
     "last_active_child_id": null,
     "last_active_at": null

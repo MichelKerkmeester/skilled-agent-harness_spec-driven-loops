@@ -22,7 +22,6 @@
       "008 handover"
     ],
     "key_topics": [
-      "008",
       "spec",
       "mk-spec-memory",
       "stress",
@@ -33,7 +32,8 @@
       "full",
       "run",
       "plan",
-      "tasks"
+      "tasks",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Exercise all 39 mk-spec-memory MCP tools and execute all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 to validate behavior post-113 z_archive un-exclusion.",
     "created_at": "2026-05-16T13:55:00Z",
-    "last_save_at": "2026-07-02T05:31:10.851Z",
+    "last_save_at": "2026-07-09T10:02:51.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

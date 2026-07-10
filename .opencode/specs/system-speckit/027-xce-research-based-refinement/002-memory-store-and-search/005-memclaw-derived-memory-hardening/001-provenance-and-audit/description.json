@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit",
-  "description": "Automated writers (enrichment, promoters, reducers) can overwrite human-authored and constitutional memory fields because the write path enforces no p",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit",
+  "description": "Automated writers (enrichment, promoters, reducers) can overwrite human-authored and constitutional memory fields because the write path enforces no",
   "keywords": [
     "automated",
     "writers",
@@ -18,11 +18,11 @@
     "path",
     "enforces"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.241Z",
+  "lastUpdated": "2026-07-09T10:02:55.247Z",
   "specId": "001",
   "folderSlug": "provenance-and-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "005-memclaw-derived-memory-hardening"

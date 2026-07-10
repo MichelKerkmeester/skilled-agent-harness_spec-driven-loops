@@ -41,10 +41,8 @@
   "description": "Packet 124 shipped 5 P0 + 3 P1 correctness fixes for deep-agent-improvement, but the skill's documentation has not been brought to the same canonical",
   "keywords": [
     "packet",
-    "124",
     "shipped",
     "correctness",
-    "fixes",
     "deep-agent-improvement",
     "skill",
     "documentation",
@@ -52,7 +50,7 @@
     "same",
     "canonical"
   ],
-  "lastUpdated": "2026-07-08T13:06:59.210Z",
+  "lastUpdated": "2026-07-09T10:02:48.812Z",
   "specId": "005",
   "folderSlug": "doc-version-reconciliation",
   "parentChain": [

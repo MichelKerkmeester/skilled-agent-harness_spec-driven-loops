@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5",
   "description": "The verify-first round-3 tail left 4 targets originally classified as unconfirmed",
   "keywords": [
     "verify-first",
@@ -11,11 +11,11 @@
     "classified",
     "unconfirmed"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.959Z",
+  "lastUpdated": "2026-07-09T10:02:51.623Z",
   "specId": "005",
   "folderSlug": "scouted-bugfix-batch-5",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "010-scouted-bugfix-train"

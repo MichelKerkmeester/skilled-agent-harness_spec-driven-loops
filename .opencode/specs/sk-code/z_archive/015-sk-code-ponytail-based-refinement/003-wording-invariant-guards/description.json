@@ -3,7 +3,6 @@
   "specFolder": "sk-code/z_archive/015-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
   "description": "Add a standalone canary guard that locks automation-parsed exact strings (the Review status triplet) and, after canonicalizing the 3-way-drifted Iron",
   "keywords": [
-    "add",
     "standalone",
     "canary",
     "guard",
@@ -18,7 +17,7 @@
     "3-way-drifted",
     "iron"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.459Z",
+  "lastUpdated": "2026-07-09T10:02:44.394Z",
   "specId": "003",
   "folderSlug": "wording-invariant-guards",
   "parentChain": [

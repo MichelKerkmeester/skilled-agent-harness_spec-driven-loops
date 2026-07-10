@@ -17,7 +17,7 @@
   "completed_at": "2026-06-07T17:00:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy",
   "description": "mk-spec-memory fronts its daemon with a reconnecting session proxy so secondary clients survive a recycle or owner change transparently",
   "keywords": [
     "mk-spec-memory",
@@ -34,11 +34,11 @@
     "change",
     "transparently"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.548Z",
+  "lastUpdated": "2026-07-09T10:02:54.525Z",
   "specId": "020",
   "folderSlug": "code-index-reconnecting-proxy",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

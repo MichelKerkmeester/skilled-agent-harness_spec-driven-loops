@@ -1,11 +1,9 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
   "description": "Packet 008 made `closedb()` run `PRAGMA walcheckpoint(TRUNCATE)` on graceful close, but the daemon shutdown path still allowed two durability gaps",
   "keywords": [
     "packet",
-    "008",
-    "made",
     "closedb",
     "run",
     "pragma",
@@ -22,11 +20,11 @@
     "durability",
     "gaps"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.436Z",
+  "lastUpdated": "2026-07-09T10:02:54.417Z",
   "specId": "009",
   "folderSlug": "shutdown-durability",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

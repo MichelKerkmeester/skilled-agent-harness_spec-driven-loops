@@ -25,7 +25,6 @@
       "system code graph shared dist emit complete"
     ],
     "key_topics": [
-      "009",
       "tsconfig",
       "references",
       "restructure",
@@ -36,7 +35,8 @@
       "dist",
       "emit",
       "gap",
-      "unicode"
+      "unicode",
+      "normalization"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet 014 extracted code-graph ownership into `.opencode/skills/system-code-graph/`, but its TypeScript config kept both an `include` for `../system-spec-kit/shared//.ts` and a project `references` entry for `../system-spec-kit/shared`",
     "created_at": "2026-05-14T16:26:51Z",
-    "last_save_at": "2026-07-02T05:31:13.015Z",
+    "last_save_at": "2026-07-09T10:02:54.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

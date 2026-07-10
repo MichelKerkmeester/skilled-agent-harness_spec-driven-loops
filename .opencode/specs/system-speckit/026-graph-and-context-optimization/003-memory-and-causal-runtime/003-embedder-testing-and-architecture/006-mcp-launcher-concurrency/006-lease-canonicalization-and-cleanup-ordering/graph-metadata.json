@@ -25,8 +25,6 @@
       "lease canonicalization summary"
     ],
     "key_topics": [
-      "012",
-      "006",
       "lease",
       "canonicalization",
       "phase",
@@ -36,7 +34,9 @@
       "probe",
       "launcher",
       "cleanup",
-      "ordering"
+      "ordering",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Phase 005 council review found that the launcher arc still had two load-bearing lease gaps: lexical path identity could let symlink aliases bypass single-writer checks, and child signal mirroring could kill the parent before cleanup ran",
     "created_at": "2026-05-18T15:18:04.415Z",
-    "last_save_at": "2026-07-02T05:31:12.084Z",
+    "last_save_at": "2026-07-09T10:02:53.230Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

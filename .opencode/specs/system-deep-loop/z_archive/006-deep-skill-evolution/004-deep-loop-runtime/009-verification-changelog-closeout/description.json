@@ -4,8 +4,6 @@
   "description": "After phases 001 through 007 land, the arc's code work is mechanically complete: the runtime skill exists, 13 lib files have moved, 4 .cjs scripts",
   "keywords": [
     "phases",
-    "001",
-    "007",
     "land",
     "arc",
     "code",
@@ -21,7 +19,7 @@
     "cjs",
     "scripts"
   ],
-  "lastUpdated": "2026-07-08T13:07:16.658Z",
+  "lastUpdated": "2026-07-09T10:02:48.764Z",
   "specId": "009",
   "folderSlug": "verification-changelog-closeout",
   "parentChain": [

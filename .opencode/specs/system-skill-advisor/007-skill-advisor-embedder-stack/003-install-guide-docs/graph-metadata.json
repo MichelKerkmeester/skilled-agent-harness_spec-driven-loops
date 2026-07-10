@@ -20,8 +20,6 @@
       "022/003 summary"
     ],
     "key_topics": [
-      "022",
-      "003",
       "install",
       "guide",
       "skill-advisor",
@@ -29,9 +27,11 @@
       "docs",
       "plan",
       "tasks",
-      "010",
       "summary",
-      "embedder"
+      "embedder",
+      "document",
+      "new",
+      "pluggable"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Document the new pluggable embedder + auto-detect for new users — mirror 019/002 for skill-advisor",
     "created_at": "2026-05-18T08:07:25.980Z",
-    "last_save_at": "2026-07-07T11:42:15.775Z",
+    "last_save_at": "2026-07-09T10:02:50.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac3af65e37e7d0b90113078481c5f4a315225e1204305ac82491a7a82ea5ee0a",
+    "source_fingerprint": "sha256:ec0a707e7cb40adeca56ab2968001bd98f04f7969ddf4e434db32a126bb45a8c",
     "source_doc_hashes": {
-      "spec.md": "9ab686f4c9c2b830888b9655ae5394689165ddb1e5ae87c7d29f81b23dceacb6",
-      "plan.md": "f72aafd98034c5901c52a034c3af41191432ccff15a129ff0588fdeb5232acb7",
-      "tasks.md": "b3fdb33f4b18074218f0459def20b7b519eee118ef049f79e9b98bc46785ffcf",
-      "implementation-summary.md": "b0335ccff8cc3021a53072679bdddd6e186932da8beffcf7c234b81ae10cd53f"
+      "spec.md": "2f6382f8cfcbab95905b1e5852f964eb6cc532aa556e8e9f61ef42396b10a67c",
+      "plan.md": "4e375797599affbd4999af93bb8af050554c4b59e85a49c2b6273ad8a10425d4",
+      "tasks.md": "eeab1693d8e286c143fa3591469c75aafd16c3a5ce3427d09028bc0316f3a217",
+      "implementation-summary.md": "ae0bc73aaee5137a0df41337794437d53aaf9f21efba1643038a8ddea2348e84"
     },
     "last_active_child_id": null,
     "last_active_at": null

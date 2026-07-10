@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined",
-  "description": "SpecKit currently lacks critical capabilities present in competitor systems: no graph traversal (dotmd has 2-hop + LadybugDB), no session deduplicatio",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/082-speckit-reimagined",
+  "description": "SpecKit currently lacks critical capabilities present in competitor systems: no graph traversal (dotmd has 2-hop + LadybugDB), no session",
   "keywords": [
     "speckit",
     "currently",
@@ -15,14 +15,13 @@
     "dotmd",
     "2-hop",
     "ladybugdb",
-    "session",
-    "deduplicatio"
+    "session"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.346Z",
+  "lastUpdated": "2026-07-09T10:02:57.376Z",
   "specId": "082",
   "folderSlug": "speckit-reimagined",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

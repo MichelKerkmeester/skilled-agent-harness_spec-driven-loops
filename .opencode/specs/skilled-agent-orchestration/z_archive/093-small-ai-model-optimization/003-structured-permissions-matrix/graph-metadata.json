@@ -38,13 +38,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
       ".opencode/skills/cli-opencode/assets/permissions-matrix.schema.json",
       ".opencode/skills/cli-opencode/references/permissions-matrix.md",
       ".opencode/skills/cli-opencode/assets/permissions-matrix.example-readonly.json",
       ".opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json",
       ".opencode/skills/cli-opencode/assets/permissions-matrix.example-repo-wide.json",
       ".opencode/skills/cli-opencode/SKILL.md",
-      ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -53,6 +53,12 @@
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "destructive_scope_violations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+        "source": "derived"
+      },
       {
         "name": "permissions-matrix.schema.json",
         "kind": "config",
@@ -87,12 +93,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "destructive_scope_violations.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "cli-opencode v1.3.3.0 ALWAYS rule #13 ships a four-layer prose mitigation for destructive scope violations (RM-8 follow-on): (L1) prompt contains literal `BANNED OPERATIONS` + `ALLOWED WRITE PATHS` strings, (L2) `--dir` points at fresh worktree, (L3) main git status clean, (L4) prefer cli-copilot + gpt-5.5 for multi-phase targets",
     "created_at": "2026-05-18T12:32:47.354Z",
-    "last_save_at": "2026-06-23T03:49:50.518Z",
+    "last_save_at": "2026-07-09T10:02:45.959Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5daa078eae9ed5ace08b3fac7451fc23c4126a43766d725d92c75423c6f53c9",
+    "source_fingerprint": "sha256:46d0566ff3cecaffa8b9a165e41e87d635c56586bc18a1a6d2046e595b68b7b7",
     "source_doc_hashes": {
-      "spec.md": "e4a2b846bca49a7bcc01eeb25076cddd9880c3c1030f3a934b4105983b8a76f8",
-      "plan.md": "5a6fdb6976f8567f740a5b922f78cb3bcf2756e8f1b790312771643a064667bd",
-      "tasks.md": "ef4f70f0bddadbb3dcfb064f663cfebdefb0a788dc9e39c65f6a41b6fdeea06c",
-      "checklist.md": "9eafb6e26f9ca6806dd17ac685add752bb1ebdd7eccf382ac4b038b7a7165da6",
-      "decision-record.md": "f26488851fe2e3e4073e012ba9f0f2674e57b120a291a0e17b94faaf1580701c",
-      "implementation-summary.md": "958ff50cb2dc284b3d8218cee5adae9251358b234a4b59cd5182976a19d5e8f0"
+      "spec.md": "cc35599158b7779231662b26616877ecb8b42d006d5214a37d5c90e182e13562",
+      "plan.md": "51092397f2522e2b4fca9025a69c879a2132221b40bacea710b5736375ee856b",
+      "tasks.md": "3df9d6d985b228e663bf246e00de304b8ae1d8e9c2223875cb90bee9116d1484",
+      "checklist.md": "160fa12f6a7ff903a6773bec879f8364d56e90c5ac695b3b3a68f1dac1cad51b",
+      "decision-record.md": "c1430b898bde6a44802c80f1131623e833075c0033148e1464c13534d59959ef",
+      "implementation-summary.md": "2ac8659f91a0661ca02664c6a0ebbef97cad025d78540f0759c53a2a33e6e0e9"
     },
     "last_active_child_id": null,
     "last_active_at": null

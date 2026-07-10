@@ -36,7 +36,6 @@
       "skilled-agent-orchestration 042-sk-deep-research-review-improvement-2 resource map"
     ],
     "key_topics": [
-      "042",
       "deep",
       "research",
       "review",
@@ -47,7 +46,8 @@
       "parent",
       "packet",
       "improvements",
-      "resource"
+      "resource",
+      "map"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The deep-loop stack still needs stronger runtime truth, better semantic coverage signals, bounded large-target orchestration, and safer offline tuning",
     "created_at": "2026-04-12T09:02:50.190Z",
-    "last_save_at": "2026-07-08T13:43:29.260Z",
+    "last_save_at": "2026-07-09T10:02:49.440Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

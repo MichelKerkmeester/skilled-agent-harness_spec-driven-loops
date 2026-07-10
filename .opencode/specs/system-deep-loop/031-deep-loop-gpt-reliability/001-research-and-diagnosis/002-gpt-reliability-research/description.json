@@ -7,7 +7,6 @@
     "orchestrator-hosted",
     "deep-research",
     "campaign",
-    "using",
     "gpt-5",
     "5-fast",
     "xhigh",
@@ -17,7 +16,7 @@
     "commands",
     "gates"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.390Z",
+  "lastUpdated": "2026-07-09T10:02:47.738Z",
   "specId": "002",
   "folderSlug": "gpt-reliability-research",
   "parentChain": [

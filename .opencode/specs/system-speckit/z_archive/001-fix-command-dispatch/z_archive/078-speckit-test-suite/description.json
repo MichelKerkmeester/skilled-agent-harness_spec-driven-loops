@@ -1,25 +1,23 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/078-speckit-test-suite",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/078-speckit-test-suite",
   "description": "The system-spec-kit has grown to ~10,500 LOC across MCP handlers (2,208 LOC) and scripts (8,500 LOC), but test coverage is incomplete",
   "keywords": [
     "system-spec-kit",
     "grown",
-    "500",
     "loc",
     "across",
     "mcp",
     "handlers",
-    "208",
     "scripts",
     "test",
     "coverage",
     "incomplete"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.318Z",
+  "lastUpdated": "2026-07-09T10:02:57.339Z",
   "specId": "078",
   "folderSlug": "speckit-test-suite",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

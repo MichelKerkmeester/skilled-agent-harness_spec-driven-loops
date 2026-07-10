@@ -44,10 +44,10 @@
       "tasks",
       "impl",
       "summary",
-      "fixes"
+      "alias-awareness"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "After the P0 routing fixes and alias-awareness work, the regression suite still has non-alias P1 failures: ~6 in the Python harness and ~11 in the TS harness (the extra TS failures are mostly TS abstaining where Python routes)",
     "created_at": "2026-05-27T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.389Z",
+    "last_save_at": "2026-07-09T10:02:50.208Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +213,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46e1dab653361b62fe2283c26c5fe8e71e15fa2cfdc6e1f511a412e9abf82cc1",
+    "source_fingerprint": "sha256:c9f38dedb5094471318dad177b95ffa46c91a1e81fbd49d8e0c1e81deba13d9c",
     "source_doc_hashes": {
-      "spec.md": "9870a3626b485eeba725bbfaa80c7a88a0c47df214e0a03b5bc8dad395a44392",
-      "plan.md": "77f225405db75a9c42984cde55d4a822b72f8d7942f6e75993e2ef66d0071bb3",
-      "tasks.md": "a987a6f310ae3b84631ae49a4e87df9cd99022523825147333647083d85bdc8e",
-      "implementation-summary.md": "57e96f141b05fdaa5a8af97a241bf015810d600c2e601fff147086f68d521ccb"
+      "spec.md": "6dd454d64c531d9bd115e983da2e550c1186c771202c29d5565a75b2fb263292",
+      "plan.md": "6050b2a880d4da566f45ec23aa1414231ce8fe6b4e4addaeeeed1fc9f1bda653",
+      "tasks.md": "8197a7387dd2c213ccdbbdc0420d970d19753893201133ba5bde6481a6b59172",
+      "implementation-summary.md": "9a04c1d735e947a3a09b766bb7f7da6e9f64bd0c2ecc46430be076c35b9e7d70"
     },
     "last_active_child_id": null,
     "last_active_at": null

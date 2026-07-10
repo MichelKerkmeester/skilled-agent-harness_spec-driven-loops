@@ -28,17 +28,17 @@
     ],
     "key_topics": [
       "phase",
-      "006",
       "routing",
       "precision",
       "packet",
-      "069",
-      "fixes",
       "rd-002",
       "sk-doc",
       "cs-002",
       "non-webflow",
-      "guard"
+      "guard",
+      "motion",
+      "dev",
+      "path"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phase 005 proved the Motion.dev peer-reference architecture works on the majority path, but the matrix still returned CONDITIONAL because two critical routing classes failed",
     "created_at": "2026-05-05T13:30:00Z",
-    "last_save_at": "2026-07-07T16:45:58.044Z",
+    "last_save_at": "2026-07-09T10:02:44.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T13:30:00Z",
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:743c1161c72f9cfd069671733646514a2e6d3223ec05ed6384e1ec2961876f06",
+    "source_fingerprint": "sha256:07ffc5c0a715bc993d770cd95c584d028b8546ed6666a9454ea6f6b108acdeda",
     "source_doc_hashes": {
       "spec.md": "a8ee0137861fc9f5baf6f1a7c57d77409e6618944f85f54ca0ca439ea65f0d58",
       "plan.md": "e1b3cfa99d2057caf007b72db4125e8223a31349e50ab17cc96127c5d6bc4412",
       "tasks.md": "a23f7b4675bfe9f11834032c42f1a1679ec83e3c98fb43744dfb2329e83f77c5",
       "checklist.md": "351ede487bb9bb39c79d43140113c7cf26e97f7bba3a51b34e6d8039f5ab5ba5",
-      "implementation-summary.md": "63be6a56950ae0ec020695e3e401a884f50a8a9bf5934bea9efceb171ca389fd"
+      "implementation-summary.md": "14904f5c1a552eb59d8f883e5588ca128ee21b1e86540943ceb10f5c5d5a735b"
     },
     "last_active_child_id": null,
     "last_active_at": null

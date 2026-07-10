@@ -26,7 +26,6 @@
       "spec-kit-skill-advisor plugin shipped"
     ],
     "key_topics": [
-      "023",
       "smart",
       "router",
       "remediation",
@@ -37,7 +36,8 @@
       "tasks",
       "checklist",
       "verification",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Two research packets just shipped with 10+ concrete recommendations:",
     "created_at": "2026-04-19T00:00:00.000Z",
-    "last_save_at": "2026-07-07T11:42:16.106Z",
+    "last_save_at": "2026-07-09T10:02:49.908Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-19T00:00:00.000Z",
     "source_docs": [
@@ -216,13 +216,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37c1e4b4878dddd42f6eb0d19172f20294899ca19c82d2e8445e9307e0804cbc",
+    "source_fingerprint": "sha256:a264be41d04e8203d8299cf55abb353ba1db74082f8d3c68f22dd124bc0a292b",
     "source_doc_hashes": {
-      "spec.md": "2146d2d3cb0513b6408df1379ea25ed0fa2642e2c9b51a6fd10981abcdb76132",
-      "plan.md": "a892544fc5b0ce4bc2e4fbc316a4463392df4d4ee83f6337e73bfddbf9db16f8",
-      "tasks.md": "5f12a0c5c314317945fd94fb4b0959ca68a6c0f29a7304de1b580cedf5bede6f",
-      "checklist.md": "bb469b4ef5ec4726846abb0116889b1b90ba57034b76b2a17790f55d0f5efaf4",
-      "implementation-summary.md": "76f36a18027f902179bfe5e5a622eec5a31123feabb16cb331a5521f188d85b0"
+      "spec.md": "fb922aee40332b57d3fb8ea7b0bbc1cc2ca5741dbe0e8e01b57358a92d58aaad",
+      "plan.md": "af77dae56e39e2ccdd68072b3687a1076a05401963822cd0599ef756be84c7c0",
+      "tasks.md": "96a2953b225e9a9a0ea5342fc196dd166baa2d3a838b54afb795df24594777fd",
+      "checklist.md": "093c7f3bc44da547b73754e3cece8e19832f7d142b31e6503e2d27b6eb3e8f27",
+      "implementation-summary.md": "6caeb395372edb0b0ad9969a09a6f7ce7fc90a5f21b0e0788b9ea266bf45e895"
     },
     "last_active_child_id": null,
     "last_active_at": null

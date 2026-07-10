@@ -18,18 +18,18 @@
       "071/004 summary"
     ],
     "key_topics": [
-      "071",
-      "004",
       "closeout",
       "plan",
       "tasks",
       "summary",
       "phase",
-      "1-3",
       "raw",
       "deliverables",
       "exist",
-      "scenarios"
+      "scenarios",
+      "cells",
+      "matrix",
+      "csv"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "After Phase 1-3, raw deliverables exist (15 scenarios, 45 cells, matrix.csv, review-report.md) but packet metadata isn't refreshed and validate.sh hasn't been run on the final state",
     "created_at": "2026-05-05T10:27:22Z",
-    "last_save_at": "2026-06-23T03:49:49.777Z",
+    "last_save_at": "2026-07-09T10:02:44.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce6fe6b3746c68a226d25f7d4a43dfd8588d29a883b9e90eb92b97cbdb07520a",
+    "source_fingerprint": "sha256:b5e6f0b6b18dd7de8e664f8968450f5a22e461a632bd08c836b6e3919e437a32",
     "source_doc_hashes": {
-      "spec.md": "c640dfd7b5951f8e9f8234de8d9f4a05b637a77217f76233db2fed4ad2667cd8",
-      "plan.md": "3687745cbf7a837fe907ee84015600fa22d69babd27c9ee46133ea33d1ba134e",
-      "tasks.md": "24265ed2485082a56cb3fb4fdbdc6b969af06ed9ae321095d85f7934a2eb51f3",
-      "implementation-summary.md": "4f61c4ab901f5035c65f9a205e238c13fe00e09e44e3b05fff8ce74b5fd37e00"
+      "spec.md": "b0895d290e072a25021ed98d9257657641bf595859cc9a4e21b02087e275a96c",
+      "plan.md": "dfe55d6df11b8948a37119cb405c391689940ed11b60ecfd957d49e4d464689f",
+      "tasks.md": "eaf0d8517ca964e2a4f639567e4761234dc0854448395dc041f4be5969224b19",
+      "implementation-summary.md": "76493030ed2e874c172ddbc2d17635d853034b42aa7f18cbde72bdf2a92508fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

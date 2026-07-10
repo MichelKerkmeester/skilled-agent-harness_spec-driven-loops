@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/102-reusable-model-benchmark-framework/001-design-research",
-  "description": "The repo's prompt-framework benchmarks are one-off, model-specific rigs: `120/003` (MiniMax, 7 fixtures) and `126/004` (MiMo, lean 2-fixture port) eac",
+  "description": "The repo's prompt-framework benchmarks are one-off, model-specific rigs: `120/003` (MiniMax, 7 fixtures) and `126/004` (MiMo, lean 2-fixture port)",
   "keywords": [
     "repo",
     "prompt-framework",
@@ -9,19 +9,14 @@
     "one-off",
     "model-specific",
     "rigs",
-    "120",
-    "003",
     "minimax",
     "fixtures",
-    "126",
-    "004",
     "mimo",
     "lean",
     "2-fixture",
-    "port",
-    "eac"
+    "port"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.178Z",
+  "lastUpdated": "2026-07-09T10:02:46.205Z",
   "specId": "001",
   "folderSlug": "design-research",
   "parentChain": [

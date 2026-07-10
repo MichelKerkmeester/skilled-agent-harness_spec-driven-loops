@@ -1,6 +1,6 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/004-budget-and-output-verification",
-  "description": "SWE-1.6 dispatches today have NO context-budget awareness — every iter sends prompts up to the model's window with no truncation hints, no eviction pr",
+  "description": "SWE-1.6 dispatches today have NO context-budget awareness — every iter sends prompts up to the model's window with no truncation hints, no eviction",
   "keywords": [
     "swe-1",
     "dispatches",
@@ -17,7 +17,7 @@
     "hints",
     "eviction"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.078Z",
+  "lastUpdated": "2026-07-09T10:02:45.969Z",
   "specId": "004",
   "folderSlug": "budget-and-output-verification",
   "parentChain": [

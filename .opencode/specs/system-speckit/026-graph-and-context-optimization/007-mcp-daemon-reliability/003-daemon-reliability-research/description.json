@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research",
-  "description": "During sessions the MCP daemons repeatedly die or disconnect, forcing constant `/mcp` reconnects: mk-spec-memory grows to ~1–2 GB RSS and gets OOM-kil",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research",
+  "description": "During sessions the MCP daemons repeatedly die or disconnect, forcing constant `/mcp` reconnects: mk-spec-memory grows to ~1–2 GB RSS and gets",
   "keywords": [
     "sessions",
     "mcp",
@@ -15,14 +15,13 @@
     "mk-spec-memory",
     "grows",
     "rss",
-    "gets",
-    "oom-kil"
+    "gets"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.400Z",
+  "lastUpdated": "2026-07-09T10:02:54.371Z",
   "specId": "003",
   "folderSlug": "daemon-reliability-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

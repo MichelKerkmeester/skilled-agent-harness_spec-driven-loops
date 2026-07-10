@@ -25,9 +25,7 @@
       "scoped preexec handoff gates"
     ],
     "key_topics": [
-      "027",
       "phase",
-      "006",
       "gem",
       "team",
       "adoption",
@@ -36,7 +34,9 @@
       "program",
       "typed",
       "adapter",
-      "scoped"
+      "scoped",
+      "preexec",
+      "handoff"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -106,7 +106,7 @@
     ],
     "causal_summary": "The gem-team adoption research (007) recommended three small, additive refinements to the spec-kit agent runtime, and the integration research (009) showed they collapse onto a single shared advisory contract (`agent-io-contract.md`) emitted/consumed centrally by `@orchestrate`",
     "created_at": "2026-06-06T10:11:02.043Z",
-    "last_save_at": "2026-07-02T05:31:13.577Z",
+    "last_save_at": "2026-07-09T10:02:55.074Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/002-indexing-normalization",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/002-indexing-normalization",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/002-indexing-normalization",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/002-indexing-normalization",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -27,18 +27,19 @@
       "002-indexing-normalization",
       "implementation",
       "summary",
-      "002",
       "indexing",
       "normalization",
       "audit",
       "improvement",
       "deep",
       "research",
-      "index"
+      "index",
+      "scan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts",
@@ -57,10 +58,15 @@
       "decision-record.md",
       "implementation-summary.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "memory-parser.ts",
         "kind": "code",
@@ -176,12 +182,6 @@
         "source": "derived"
       },
       {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-        "source": "derived"
-      },
-      {
         "name": "Indexing Normalization",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The index scan currently collects files from both `specs/` and `.opencode/specs/` roots",
     "created_at": "2026-04-12T09:02:50.237Z",
-    "last_save_at": "2026-06-23T03:49:59.742Z",
+    "last_save_at": "2026-07-09T10:02:57.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

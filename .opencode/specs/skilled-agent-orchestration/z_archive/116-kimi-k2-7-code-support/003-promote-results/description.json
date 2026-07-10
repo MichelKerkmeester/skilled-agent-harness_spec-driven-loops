@@ -4,7 +4,6 @@
   "description": "After Phase 002 runs the bakeoff, the empirical winner exists only in the run output under `benchmarks/006-kimi-k2.7-prompt-framework/`",
   "keywords": [
     "phase",
-    "002",
     "runs",
     "bakeoff",
     "empirical",
@@ -17,7 +16,7 @@
     "006-kimi-k2",
     "7-prompt-framework"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.517Z",
+  "lastUpdated": "2026-07-09T10:02:46.647Z",
   "specId": "003",
   "folderSlug": "promote-results",
   "parentChain": [

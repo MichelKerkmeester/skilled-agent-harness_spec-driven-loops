@@ -240,7 +240,7 @@ Budgeting is advisory until a runtime prompt-pack builder consumes `per_model_bu
 Verification command:
 
 ```bash
-jq empty .opencode/skills/sk-prompt-models/assets/per_model_budgets.json
+jq empty .opencode/skills/sk-prompt/prompt-models/assets/per_model_budgets.json
 ```
 
 Expected DeepSeek-v4-pro budget:

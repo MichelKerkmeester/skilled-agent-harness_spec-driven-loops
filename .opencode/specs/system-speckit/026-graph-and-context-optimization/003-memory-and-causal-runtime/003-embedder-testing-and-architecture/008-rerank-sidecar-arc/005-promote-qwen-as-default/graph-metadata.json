@@ -29,11 +29,11 @@
       "cross-encoder",
       "ms-marco",
       "qwen3",
-      "005",
       "promotion",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -42,7 +42,6 @@
       ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
       ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
       "references/memory/embedder_architecture.md",
-      ".codex/config.toml",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -65,12 +64,6 @@
         "name": "benchmark_report.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phases 001-003 ship, spec-memory has a working cross-encoder rerank pipeline plumbed to a shared Qwen sidecar",
     "created_at": "2026-05-23T11:55:15.613Z",
-    "last_save_at": "2026-07-02T05:31:12.146Z",
+    "last_save_at": "2026-07-09T10:02:53.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

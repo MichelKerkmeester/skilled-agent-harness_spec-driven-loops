@@ -1,9 +1,8 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings",
   "description": "Packets 042-044 surfaced 4 drift findings between the feature catalogs and product code, all flagged with `FIXME(<featureid>)` markers in stress tests",
   "keywords": [
     "packets",
-    "042-044",
     "surfaced",
     "drift",
     "findings",
@@ -19,11 +18,11 @@
     "stress",
     "tests"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.201Z",
+  "lastUpdated": "2026-07-09T10:02:50.728Z",
   "specId": "008",
   "folderSlug": "fix-audit-drift-findings",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "002-audit"

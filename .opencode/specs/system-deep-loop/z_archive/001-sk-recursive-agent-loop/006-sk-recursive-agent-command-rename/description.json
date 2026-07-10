@@ -3,7 +3,6 @@
   "description": "After phase `005`, the runtime mutator, skill package, and wrapper content all aligned on `agent-improver`, but the command entrypoint itself still",
   "keywords": [
     "phase",
-    "005",
     "runtime",
     "mutator",
     "skill",
@@ -17,7 +16,7 @@
     "itself",
     "still"
   ],
-  "lastUpdated": "2026-07-08T13:06:38.551Z",
+  "lastUpdated": "2026-07-09T10:02:48.321Z",
   "specId": "006",
   "folderSlug": "sk-recursive-agent-command-rename",
   "parentChain": [

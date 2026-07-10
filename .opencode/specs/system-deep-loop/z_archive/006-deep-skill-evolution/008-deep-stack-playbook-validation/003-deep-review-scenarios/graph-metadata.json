@@ -31,12 +31,12 @@
       "review",
       "playbook",
       "run",
-      "007",
       "phase",
-      "003",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "verdict",
+      "ledger"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`deep-review` is the autonomous iterative code-review loop built on the shared `deep-loop-runtime`: it owns review entry points and modes, canonical state initialization, per-iteration state discipline (read-before-review, three-artifact write contract, dimension rotation), convergence and recovery gates, pause/resume fault-tolerance, synthesis-save guardrails, and the review-depth v2 validator/reducer rollout",
     "created_at": "2026-05-27T07:08:08.394Z",
-    "last_save_at": "2026-07-08T13:43:56.531Z",
+    "last_save_at": "2026-07-09T10:02:48.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

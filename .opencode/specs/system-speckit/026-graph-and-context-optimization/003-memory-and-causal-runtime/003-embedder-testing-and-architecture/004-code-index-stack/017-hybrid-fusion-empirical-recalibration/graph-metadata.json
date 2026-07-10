@@ -27,9 +27,6 @@
       "016/004/017 checklist"
     ],
     "key_topics": [
-      "016",
-      "004",
-      "017",
       "hybrid",
       "recalibration",
       "rrf",
@@ -38,7 +35,10 @@
       "tuning",
       "cocoindex",
       "fusion",
-      "plan"
+      "plan",
+      "tasks",
+      "checklist",
+      "re-grounds"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Re-grounds CocoIndex's hybrid (dense + FTS5) RRF fusion parameters (k, vec_weight, fts_weight) on EMPIRICAL evidence from the post-013/014/015/016 corrected pipeline instead of inherited defaults. Sweeps the small parameter grid against the 18-probe corrected fixture under bge-code-v1, picks the best-on-fixture config, freezes it as the new default, and documents the tradeoff (recall, precision, latency) per config. Embedder-agnostic, reranker-agnostic, future-proof: the grid+harness can be re-run any time the corpus, embedder, or reranker changes.",
     "created_at": "2026-05-19T14:26:30.924Z",
-    "last_save_at": "2026-07-02T05:31:11.979Z",
+    "last_save_at": "2026-07-09T10:02:52.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

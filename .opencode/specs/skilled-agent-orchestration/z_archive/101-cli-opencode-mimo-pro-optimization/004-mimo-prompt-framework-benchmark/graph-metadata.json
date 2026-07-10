@@ -197,7 +197,7 @@
     ],
     "causal_summary": "We have no empirical evidence for which prompt framework yields the best MiMo-V2.5-Pro output when another AI drives it through cli-opencode",
     "created_at": "2026-06-01T20:21:29.319Z",
-    "last_save_at": "2026-06-23T03:49:51.506Z",
+    "last_save_at": "2026-07-09T10:02:46.192Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f8724c3b85936fbddd5e13a3475a3a907330abe973310a1ddb209e2dbb619f9",
+    "source_fingerprint": "sha256:f0a0a0c5828436e9c893cbc510c2a29401ee298336700f78a273d1b69b4b0129",
     "source_doc_hashes": {
-      "spec.md": "3c24d82e5790a15afc2827da9ac1a925daf3dfa15ffc7480000e94d514c7ffaf",
-      "plan.md": "d80f89d7e89a9da06bbffce646a9dcc0688b43e0f8e6f90484e0b2f4e5065fc3",
-      "tasks.md": "e1d322bc5966b7f3bac288bc7dada54718e7654f66328e7d3cec6bfa2e5789bf",
-      "checklist.md": "95d17145730a8a506ed0762c24bab27d49396410eae83badab82c93d608a3448",
-      "implementation-summary.md": "b5e76ec9023ea999c36d9ebf33368b2a31c52721762cf9070c07d683dbe5d97f"
+      "spec.md": "a00c892016d828aa65008a8013f63a32b971c99314c55c444e763bc550c7d5d3",
+      "plan.md": "05dcdbe24d1a2da9be1d28454950b621f189360d0ac365f10cc6773483bdde8f",
+      "tasks.md": "ee279b3cd931266f7970c99cb288d513ca7c4603188556e2d60ed8ebdfc18314",
+      "checklist.md": "3ddf977c1fd1c7f7a4613702ae07c7ac68c34471e704bdb7eb4d5556cf70489d",
+      "implementation-summary.md": "7bfcaf6d309317fabe6016b229b9de1d4b4482e48a9cbc5e94595857940ddf16"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -25,8 +25,6 @@
       "deep-ai-council skill summary"
     ],
     "key_topics": [
-      "101",
-      "001",
       "deep-ai-council",
       "skill",
       "creation",
@@ -36,7 +34,9 @@
       "extraction",
       "plan",
       "implementation",
-      "tasks"
+      "tasks",
+      "summary",
+      "planning"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Council planning is a specialized multi-agent workflow, but its references, persistence scripts, and routing language currently live under `system-spec-kit`",
     "created_at": "2026-05-10T06:35:39Z",
-    "last_save_at": "2026-07-08T13:43:24.675Z",
+    "last_save_at": "2026-07-09T10:02:48.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

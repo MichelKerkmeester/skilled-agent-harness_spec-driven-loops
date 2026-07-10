@@ -8,7 +8,7 @@ trigger_phrases:
   - "json config validation rules"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.10
+version: 1.0.0.15
 ---
 
 # Config Quality Standards
@@ -94,7 +94,7 @@ python -m json.tool config.json
 grep -v '^\s*//' config.jsonc | python -m json.tool
 
 # Header and comment policy spot-checks (JSONC, manual review support)
-rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$" .opencode/skills/sk-code/references/opencode/config
+rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$" .opencode/skills/sk-code/code-opencode/references/config
 ```
 
 ---

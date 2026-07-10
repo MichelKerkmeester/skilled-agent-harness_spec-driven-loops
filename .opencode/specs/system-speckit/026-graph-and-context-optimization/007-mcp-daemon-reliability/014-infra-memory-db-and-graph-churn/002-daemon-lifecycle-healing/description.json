@@ -1,10 +1,9 @@
 {
   "title": "Daemon-lifecycle healing (FTS auto-heal + clean-close barrier + substrate test)",
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing",
   "description": "The 032 deep-research loop established a single production root cause behind two live symptoms (SQ4): the `mk-spec-memory` launcher's respawn path can",
   "keywords": [
-    "032",
     "deep-research",
     "loop",
     "established",
@@ -22,11 +21,11 @@
     "respawn",
     "path"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.477Z",
+  "lastUpdated": "2026-07-09T10:02:54.458Z",
   "specId": "002",
   "folderSlug": "daemon-lifecycle-healing",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability",
     "014-infra-memory-db-and-graph-churn"

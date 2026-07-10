@@ -32,8 +32,6 @@
       "022/007 shipped"
     ],
     "key_topics": [
-      "022",
-      "007",
       "code-graph",
       "config",
       "plan",
@@ -43,7 +41,9 @@
       "cli-opencode",
       "deepseek-v4-pro",
       "variant",
-      "high"
+      "high",
+      "dispatched",
+      "new"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched: new config-defaults.ts with CODE_GRAPH_DEFAULTS (ttlMs, findFilesMaxDepth, quarantineAgeDays, floors, edgeWeights) + 5 SPECKIT_CODE_GRAPH_* env-var overrides + 15-assertion invariant test. 5 consumer files wired.",
     "created_at": "2026-05-23T18:20:00.000000Z",
-    "last_save_at": "2026-07-07T16:18:33.931Z",
+    "last_save_at": "2026-07-09T10:02:47.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

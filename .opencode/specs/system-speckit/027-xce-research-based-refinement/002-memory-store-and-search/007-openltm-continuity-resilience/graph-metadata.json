@@ -18,9 +18,7 @@
       "goal decision progress gotcha taxonomy"
     ],
     "key_topics": [
-      "027",
       "phase",
-      "009",
       "openltm",
       "continuity",
       "resilience",
@@ -29,7 +27,9 @@
       "restore",
       "panel",
       "precompact",
-      "authored"
+      "authored",
+      "snapshot",
+      "goal"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Our continuity ladder is richer than OpenLTM's, but it lacks a few low-tech resilience surfaces",
     "created_at": "2026-06-08T15:11:22Z",
-    "last_save_at": "2026-07-02T05:31:13.687Z",
+    "last_save_at": "2026-07-09T10:02:55.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -7,7 +7,6 @@
     "rename",
     "deep-agent-improvement",
     "deep-improvement",
-    "add",
     "lane",
     "skill-benchmark",
     "measuring",
@@ -16,7 +15,7 @@
     "routing",
     "unprompted"
   ],
-  "lastUpdated": "2026-07-08T13:06:20.778Z",
+  "lastUpdated": "2026-07-09T10:02:49.036Z",
   "specId": "008",
   "folderSlug": "deep-improvement-skill-benchmark-mode",
   "parentChain": [

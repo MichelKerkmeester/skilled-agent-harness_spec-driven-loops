@@ -3,6 +3,7 @@
   "packet_id": "sk-code/017-sk-code-parent",
   "spec_folder": "sk-code/017-sk-code-parent",
   "parent_id": "sk-code",
+  "parent_id_review_required": true,
   "children_ids": [
     "sk-code/017-sk-code-parent/001-research-and-context",
     "sk-code/017-sk-code-parent/002-architecture-decision",
@@ -29,7 +30,9 @@
     "sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research",
     "sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
     "sk-code/017-sk-code-parent/025-code-quality-and-shared-research",
-    "sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation"
+    "sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation",
+    "sk-code/017-sk-code-parent/027-code-opencode-refinement-research",
+    "sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -134,7 +137,7 @@
     ],
     "causal_summary": "Code capability is split across two mature-but-uncoordinated skills",
     "created_at": "2026-07-03T00:00:00Z",
-    "last_save_at": "2026-07-07T17:12:36.181Z",
+    "last_save_at": "2026-07-09T10:02:44.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -144,7 +147,7 @@
     "source_doc_hashes": {
       "spec.md": "31e2b63228dd40e5f40e485cc25ed0011ef5e45f4fe5e7327a9f1d0f0595bb27"
     },
-    "last_active_child_id": "sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation",
+    "last_active_child_id": "sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation",
     "last_active_at": "2026-07-07T00:00:00.000Z"
   }
 }

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
   "description": "The local embedding stack does not yet deliver its zero-install promise end to end",
   "keywords": [
     "local",
@@ -11,11 +11,11 @@
     "promise",
     "end"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.471Z",
+  "lastUpdated": "2026-07-09T10:02:53.869Z",
   "specId": "011",
   "folderSlug": "embedding-stack-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime"
   ],

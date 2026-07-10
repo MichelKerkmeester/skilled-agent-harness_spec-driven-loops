@@ -3,7 +3,6 @@
   "description": "Packet 146 bundles the external ponytail project (`external/ponytail-main/`) and asks how its logic, hooks, etc",
   "keywords": [
     "packet",
-    "146",
     "bundles",
     "external",
     "ponytail",
@@ -14,8 +13,8 @@
     "hooks",
     "etc"
   ],
-  "lastUpdated": "2026-07-07T16:37:56.589Z",
-  "specId": "010",
+  "lastUpdated": "2026-07-09T10:02:44.370Z",
+  "specId": "015",
   "folderSlug": "sk-code-ponytail-based-refinement",
   "parentChain": [
     "sk-code",

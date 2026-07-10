@@ -7,10 +7,9 @@
     "Packet B cli-copilot test hardening",
     "promptFileBody dispatch test"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/017-cli-copilot-dispatch-test-parity",
   "description": "The 011 deep-review report (`../011-research-post-stress-finding-followups/review/review-report.md`) §4 surfaced F-004 [P2]:",
   "keywords": [
-    "011",
     "deep-review",
     "report",
     "011-research-post-stress-finding-followups",
@@ -19,11 +18,11 @@
     "surfaced",
     "f-004"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.666Z",
+  "lastUpdated": "2026-07-09T10:02:51.305Z",
   "specId": "017",
   "folderSlug": "cli-copilot-dispatch-test-parity",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

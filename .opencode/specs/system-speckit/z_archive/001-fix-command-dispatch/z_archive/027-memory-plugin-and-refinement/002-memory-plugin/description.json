@@ -1,14 +1,11 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/002-memory-plugin",
-  "description": "Reduce token consumption from ~2,000-5,000 tokens to ~500-1,000 tokens per session by replacing full memory content injection with a compact ASCII das",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/002-memory-plugin",
+  "description": "Reduce token consumption from ~2,000-5,000 tokens to ~500-1,000 tokens per session by replacing full memory content injection with a compact ASCII",
   "keywords": [
     "reduce",
     "token",
     "consumption",
-    "000-5",
-    "000",
     "tokens",
-    "500-1",
     "per",
     "session",
     "replacing",
@@ -17,14 +14,13 @@
     "content",
     "injection",
     "compact",
-    "ascii",
-    "das"
+    "ascii"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.031Z",
+  "lastUpdated": "2026-07-09T10:02:56.993Z",
   "specId": "002",
   "folderSlug": "memory-plugin",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive",

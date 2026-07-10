@@ -33,9 +33,9 @@
       "dist",
       "source",
       "target",
-      "016",
-      "004",
-      "012"
+      "plan",
+      "tasks",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Audit the 18-pair code-retrieval fixture for expected-path correctness. Probe 10 (`context save command that reads structured JSON` expected as the `.js` dist artifact) is the immediate trigger — the `.ts` source variant is arguably more correct. Audit pass: read every probe's expected_source_path against the actual codebase, decide whether the expected path is the BEST answer to the query, recommend updates.",
     "created_at": "2026-05-18T19:21:19.321Z",
-    "last_save_at": "2026-07-02T05:31:11.924Z",
+    "last_save_at": "2026-07-09T10:02:52.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

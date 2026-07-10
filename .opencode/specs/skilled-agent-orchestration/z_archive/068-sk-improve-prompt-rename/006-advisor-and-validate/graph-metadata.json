@@ -25,9 +25,7 @@
       "strict validate recursive"
     ],
     "key_topics": [
-      "082",
       "phase",
-      "006",
       "sk-improve-prompt",
       "advisor",
       "validate",
@@ -36,15 +34,17 @@
       "name",
       "template",
       "core",
-      "tasks"
+      "tasks",
+      "probes",
+      "final"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
+      "plan.md",
       "tasks.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -54,9 +54,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -66,9 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The rename is complete only if advisor state, skill graph indexes, prompt-routing probes, strict spec validation, and active-scope grep all agree on `sk-prompt`",
     "created_at": "2026-05-06T10:22:43Z",
-    "last_save_at": "2026-06-23T03:49:49.925Z",
+    "last_save_at": "2026-07-09T10:02:45.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b3a8f840b017cc1c04851efe1f507fc56aef578627f48d52d348a1dccb0a203",
+    "source_fingerprint": "sha256:7f3cfe9504df41db86c1dcc2b2caaa557d397d272d7b38289dfa693c9f122c7d",
     "source_doc_hashes": {
-      "spec.md": "e6fb68c49c2917d62bc714d8e10ed92a7e884a05701cd824f213b0e3f1d8f19d",
+      "spec.md": "19688a9d796e20b6f9bfd00949906f972c1c61630aef1c9d505b9620fb961e01",
       "plan.md": "57f3a4ce13317a33d869657734a7da18516de05d824071bb7d3d11cb0c2b745c",
       "tasks.md": "bb794b1ab3548959ea67ab69b3d5305cb1d9605fb752561ffebed2134e0e3bbe",
-      "implementation-summary.md": "c38cd379aed714677c73d16ed3eac217277f1b8c6cfd70842e6e50532d39bf21"
+      "implementation-summary.md": "cdd887d2e2c4ed183681cfb29c0f06c53b481550870c7536a6154bff35a0e7ed"
     },
     "last_active_child_id": null,
     "last_active_at": null

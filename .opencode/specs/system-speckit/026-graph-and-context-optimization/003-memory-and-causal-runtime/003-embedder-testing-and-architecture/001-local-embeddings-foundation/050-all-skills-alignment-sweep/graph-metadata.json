@@ -47,8 +47,7 @@
       "decision-record.md",
       "research/skills-audit.md",
       "implementation-summary.md",
-      ".opencode/skills/README.md",
-      ".codex/config.toml"
+      ".opencode/skills/README.md"
     ],
     "entities": [
       {
@@ -97,12 +96,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill docs have accumulated mixed current-state language across recent restructures: standalone `systemskilladvisor`, the `mk-code-index` code-graph rename, post-040 embedding behavior, and sk-doc template hardening",
     "created_at": "2026-05-14T18:47:27Z",
-    "last_save_at": "2026-07-02T05:31:11.706Z",
+    "last_save_at": "2026-07-09T10:02:52.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,12 +1,11 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/017-update-install-guide",
-  "description": "The install guide (mcpserver/INSTALLGUIDE.md, ~930 lines) has a solid 5-phase gate structure but was written before the final dependency set stabilize",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/017-update-install-guide",
+  "description": "The install guide (mcpserver/INSTALLGUIDE.md, ~930 lines) has a solid 5-phase gate structure but was written before the final dependency set",
   "keywords": [
     "install",
     "guide",
     "mcpserver",
     "installguide",
-    "930",
     "lines",
     "solid",
     "5-phase",
@@ -15,14 +14,13 @@
     "written",
     "final",
     "dependency",
-    "set",
-    "stabilize"
+    "set"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.359Z",
+  "lastUpdated": "2026-07-09T10:02:58.581Z",
   "specId": "017",
   "folderSlug": "update-install-guide",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

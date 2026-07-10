@@ -25,15 +25,15 @@
       "deep",
       "token",
       "replace",
-      "098",
       "phase",
-      "002",
-      "097",
       "remediation",
       "infrastructure",
       "quality",
       "002-sk-deep-token-replace",
-      "checklist"
+      "checklist",
+      "implementation",
+      "sk-deep",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "draft",
@@ -42,7 +42,6 @@
       ".opencode/agents/deep-review.md",
       ".opencode/agents/deep-research.md",
       ".opencode/install_guides/SET-UP - AGENTS.md",
-      ".codex/agents/review.toml",
       "tasks.md",
       "spec.md",
       "plan.md",
@@ -72,12 +71,6 @@
         "name": "SET-UP - AGENTS.md",
         "kind": "doc",
         "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "review.toml",
-        "kind": "file",
-        "path": ".codex/agents/review.toml",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Command assets, agent bodies, orchestrator routing, Codex review doctrine, runtime mirrors, and install guides still cite legacy `sk-deep-review` / `sk-deep-research` even though packet 070 renamed folders to `.opencode/skills/deep-review/` and `.opencode/skills/deep-research/`",
     "created_at": "2026-05-18T07:49:27.239Z",
-    "last_save_at": "2026-06-23T03:49:50.078Z",
+    "last_save_at": "2026-07-09T10:02:45.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2264b619293b39213eb0ddd91070de9223c24748cfe7ed512106e1130295cb56",
+    "source_fingerprint": "sha256:a73dcc287ae6c9f2bac37e054d7141838639af1b2bb65758cef10feb253312b6",
     "source_doc_hashes": {
-      "spec.md": "c55c764478744ac8e3b8e2799a7f9d6542bff9e514bdd4fc1ceeb252bf123129",
-      "plan.md": "8d2aa2469a37908d385b1b03f644a44b58e65ae3798dba2f6c24cac71320ddd8",
-      "tasks.md": "d11613b2927e20caee3f730dbe6265d717b7d0980894c48f7bc923b4674ae3bc",
-      "checklist.md": "e4e03b1a9a825e6a7cbceec15c3e6229a6614c8b4a4fa635ccf3f0874175dad4",
-      "implementation-summary.md": "ce21542925f6e2c4a9660f67afecfbb978485cc5ffaf0896a22d496c140750e9"
+      "spec.md": "40b73eb346b72ad1be32a83a60b808c0e600cb77c778ffee04d15e3d2267c5d7",
+      "plan.md": "799989ae04a55f6a89717c36ac4e9aeac4d00542752fd5d2ea9a9610b80571c2",
+      "tasks.md": "c0a9eb7871666611d600e27229866047dfd23f5babdcb376316dd390fa5df24c",
+      "checklist.md": "2dd08ef9d2bf650c6853293bdac5753b0c58ec7c9b2b666c80345d4a932737ef",
+      "implementation-summary.md": "86b862b99e271949c969b7caea084145aeab8b1118023d9adf93d9a06587b9b9"
     },
     "last_active_child_id": null,
     "last_active_at": null

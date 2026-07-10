@@ -8,7 +8,7 @@ trigger_phrases:
   - "tsconfig baseline standards"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.8
+version: 1.0.0.11
 ---
 
 # TypeScript Quality Standards
@@ -128,6 +128,10 @@ function parseInput(raw: any): SearchConfig {
 
 ```typescript
 // Interop with untyped third-party library (sqlite-vec native module)
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sqliteVec = require('sqlite-vec') as any;
 ```
@@ -209,7 +213,7 @@ interface SuccessResult<T> {
 interface ErrorResult {
   readonly success: false;
   readonly error: string;
-  readonly code: ErrorCode;
+  readonly code: string;
 }
 
 type OperationResult<T> = SuccessResult<T> | ErrorResult;
@@ -279,11 +283,11 @@ function configure(overrides: Partial<SearchConfig>): SearchConfig {
 }
 
 // Immutable configuration
-const FROZEN_CONFIG: Readonly<SearchConfig> = Object.freeze({
+const FROZEN_CONFIG = Object.freeze({
   maxResults: 100,
   timeout: 5000,
   includeMetadata: true,
-});
+} satisfies SearchConfig);
 
 // Metadata as untyped key-value pairs
 interface MemoryRecord {
@@ -469,52 +473,63 @@ interface CacheEntry<T> {
 Extend `Error` with typed properties:
 
 ```typescript
+import type { RecoveryHint } from './recovery-hints.js';
+
+export const ErrorCodes = {
+  INVALID_PARAMETER: 'E030',
+} as const;
+
 /**
  * Base error for all memory operations.
  */
 class MemoryError extends Error {
   /** Error code for programmatic handling. */
-  readonly code: ErrorCode;
+  public code: string;
 
-  /** Additional context for debugging. */
-  readonly context: Record<string, unknown>;
+  /** Additional details for debugging. */
+  public details: Record<string, unknown>;
+
+  /** Optional recovery guidance for callers. */
+  public recoveryHint?: RecoveryHint;
 
   constructor(
+    code: string,
     message: string,
-    code: ErrorCode,
-    context: Record<string, unknown> = {},
+    details: Record<string, unknown> = {},
   ) {
     super(message);
     this.name = 'MemoryError';
     this.code = code;
-    this.context = context;
-
-    // Maintain proper prototype chain
-    Object.setPrototypeOf(this, new.target.prototype);
+    this.details = details;
+    Object.setPrototypeOf(this, MemoryError.prototype);
   }
 }
 
 // Specialized error subclass
 class ValidationError extends MemoryError {
-  constructor(message: string, context: Record<string, unknown> = {}) {
-    super(message, ErrorCode.ValidationFailed, context);
+  constructor(message: string, details: Record<string, unknown> = {}) {
+    super(ErrorCodes.INVALID_PARAMETER, message, details);
     this.name = 'ValidationError';
   }
 }
 ```
 
-### Error Code Enum
+### Error Code Const Object
 
 ```typescript
-enum ErrorCode {
-  NotFound = 'NOT_FOUND',
-  Timeout = 'TIMEOUT',
-  ConnectionFailed = 'CONNECTION_FAILED',
-  ValidationFailed = 'VALIDATION_FAILED',
-  EmbeddingFailed = 'EMBEDDING_FAILED',
-  StorageFull = 'STORAGE_FULL',
-}
+export const ErrorCodes = {
+  EMBEDDING_FAILED: 'E001',
+  FILE_NOT_FOUND: 'E010',
+  DB_CONNECTION_FAILED: 'E020',
+  INVALID_PARAMETER: 'E030',
+  SEARCH_FAILED: 'E040',
+  RATE_LIMITED: 'E429',
+} as const;
+
+export type ErrorCodeKey = keyof typeof ErrorCodes;
 ```
+
+Prefer `export const X = {...} as const` plus `keyof typeof X` over `enum` for shared code maps.
 
 ### Typed Error Handling
 
@@ -524,9 +539,9 @@ try {
   await searchMemories(query, options);
 } catch (error: unknown) {
   if (error instanceof MemoryError) {
-    // TypeScript narrows to MemoryError — .code and .context available
+    // TypeScript narrows to MemoryError — .code and .details available
     console.error(`[search] ${error.code}: ${error.message}`);
-    if (error.code === ErrorCode.Timeout) {
+    if (error.code === ErrorCodes.SEARCH_FAILED) {
       // Handle timeout specifically
     }
   } else if (error instanceof Error) {
@@ -596,7 +611,7 @@ async function safeAsync<T>(
       ? error.message
       : String(error);
     console.error(`[${context}] Failed: ${message}`);
-    return { success: false, error: message, code: ErrorCode.Timeout };
+    return { success: false, error: message, code: ErrorCodes.SEARCH_FAILED };
   }
 }
 
@@ -682,14 +697,17 @@ After editing TypeScript source files, the compiled `dist/` output must be rebui
 # Standard build (type checks + emit)
 npm run build          # runs: tsc --build
 
-# Build with pre-existing type errors (emit without type checking)
-npx tsc --build --noCheck --force
+# Satellite package build overlay (type checks + emits dist/)
+npm run build          # runs: tsc -p tsconfig.build.json
+
+# Satellite package typecheck overlay (no emit)
+npm run typecheck      # often adds: --noEmit --composite false
 
 # Smoke test after build
 npm run test:cli       # verifies dist/ output runs correctly
 ```
 
-**When to use `--noCheck`**: The `strict: true` config combined with third-party SDK types (e.g., MCP SDK `Record<string, unknown>` vs typed handler args) can produce pre-existing type errors that don't affect runtime. Use `--noCheck --force` to emit JavaScript while bypassing these.
+**Package-aware build rule**: Use the package script for the package you changed. The spec-kit root uses `tsc --build`; satellite packages with their own package boundary, such as `system-skill-advisor/mcp_server`, use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
 
 **Workspace build order**: `tsc --build` respects project references and builds in dependency order:
 1. `shared/` (no dependencies)
@@ -767,6 +785,29 @@ Each workspace extends the root and declares its own composite settings:
 }
 ```
 
+### Satellite tsconfig.build.json Pattern
+
+Satellite packages that are not part of the spec-kit root project-reference build use a package-local build overlay:
+
+```jsonc
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "incremental": false,
+    "noEmit": false,
+    "rootDir": "..",
+    "outDir": "./dist"
+  },
+  "include": ["lib/**/*.ts", "tools/**/*.ts"],
+  "exclude": ["node_modules", "dist", "tests", "**/*.test.ts"]
+}
+```
+
+For typecheck-only runs, call `tsc --noEmit --composite false -p tsconfig.build.json` through the package script instead of changing the build overlay.
+
 ---
 
 ## 11. MODULE ORGANIZATION
@@ -780,9 +821,10 @@ CommonJS only where a workspace inherits the root fallback.
 
 ```typescript
 // SOURCE (.ts) — ES module syntax
-import path from 'path';
-import { MemoryError } from './errors/core';
-import type { SearchResult } from '../types';
+import path from 'node:path';
+
+import { MemoryError } from './errors/core.js';
+import type { SearchResult } from '../types.js';
 
 export function search(query: string): SearchResult[] {
   // implementation
@@ -792,29 +834,27 @@ export { MemoryError };
 ```
 
 ```javascript
-// POSSIBLE COMPILED OUTPUT (.js) — CommonJS only for fallback/CommonJS workspaces
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
-const core_1 = require("./errors/core");
+// EMITTED OUTPUT (.js) — NodeNext ESM package boundary
+import path from 'node:path';
+import { MemoryError } from './errors/core.js';
 
-function search(query) {
+export function search(query) {
   // implementation
 }
 
-exports.search = search;
+export { MemoryError };
 ```
 
 ### Barrel Files (index.ts)
 
 ```typescript
 // lib/index.ts — Barrel file
-export { MemoryError, ErrorCode } from './errors/core';
-export { VectorIndex } from './search/vector-index';
-export { validateInputLengths } from './utils/validation';
+export { ErrorCodes, MemoryError } from './errors/core.js';
+export { VectorIndex } from './search/vector-index.js';
+export { validateInputLengths } from './utils/validation.js';
 
 // Type-only re-exports
-export type { SearchResult, SearchOptions } from '../types';
+export type { SearchResult, SearchOptions } from '../types.js';
 ```
 
 ---

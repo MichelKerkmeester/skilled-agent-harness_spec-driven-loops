@@ -35,33 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
-      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-reduce-state.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -187,11 +166,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Operators and analyst agents can inject questions mid-run only by editing the `key-questions` markdown block directly, which bypasses the state machine",
     "created_at": "2026-06-28T14:02:09Z",
-    "last_save_at": "2026-07-04T18:02:09.585Z",
+    "last_save_at": "2026-07-09T10:02:47.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4b61cd4ac38c8e3a983e263dfb316c45630e5e23f14ff40398bd0d73bdbf080",
+    "source_fingerprint": "sha256:be8ec0c6a00d0802bc037d4b4f1b9d467c894a266261d09f69a98b36f1d6d190",
     "source_doc_hashes": {
-      "spec.md": "89b4fab586c80a0716182eb493a406d890e4ed32ebbd9768d73414437d839066",
-      "plan.md": "4f25df1162108f85c4c9d0eb730456b5cc14f7a46c0694ff0a8d783a28ef3b50",
-      "tasks.md": "a6751d8b0f4ee901a003dc25d3267c532e38391bb39b3349b569ee40a8ec055e",
-      "implementation-summary.md": "704fb44b4aa7e11e67213b312e2cb832c4df1c223c4278c856a2301a8583f44a"
+      "spec.md": "030ba5c444ccc80c41bdc016fb09a8ce75e839f65822b2fc3dda7f0288bdec3f",
+      "plan.md": "9777195ce0b112f63f8eefeade34eb0bf48b25d010b26689e582d86d5c7d004b",
+      "tasks.md": "184e63fa1ceaf8ec5a55ee10901863f8cc1ddc216f17773ae62088c39144bbf2",
+      "implementation-summary.md": "645fb703b202c7c7a4361fea994e900fd7f10c8449b61c2dd0a41dea4cbd56a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

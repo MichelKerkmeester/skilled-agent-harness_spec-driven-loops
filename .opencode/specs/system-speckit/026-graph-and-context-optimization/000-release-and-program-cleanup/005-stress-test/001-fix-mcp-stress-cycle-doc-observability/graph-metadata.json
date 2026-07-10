@@ -27,7 +27,6 @@
     ],
     "key_topics": [
       "001-fix-mcp-stress-cycle-doc-observability",
-      "011",
       "review",
       "remediation",
       "stress",
@@ -37,7 +36,8 @@
       "verdict",
       "replayability",
       "validator",
-      "hygiene"
+      "hygiene",
+      "003-fix-mcp-runtime-stress-findings"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 003-fix-mcp-runtime-stress-findings deep review confirmed the v1.0.2 verdict (6/7 PROVEN, 0 REGRESSION, 83.8% overall) holds independent verification, AND validated that the proposed P0 cli-copilot Gate 3 bypass fix in `executor-config.ts` + `buildCopilotPromptArg` is correctly implemented across all 5 sub-checks",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-07-02T05:31:10.710Z",
+    "last_save_at": "2026-07-09T10:02:51.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

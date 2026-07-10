@@ -1,0 +1,25 @@
+---
+id: CR-R01
+category: 10--intra-routing-recall
+title: 'Security routing'
+expected_intent: SECURITY
+expected_resources:
+  - references/review_core.md
+  - references/review_ux_single_pass.md
+  - assets/security_checklist.md
+  - assets/code_quality_checklist.md
+  - assets/fix-completeness-checklist.md
+version: 1.0.0.0
+---
+
+# CR-R01: Security routing
+
+## 2. SCENARIO CONTRACT
+
+- Prompt: `Review this auth handler for injection, vulnerability, race, and secret-handling security issues.`
+- Expected intent: `SECURITY`
+
+**Exact prompt**:
+```text
+Review this auth handler for injection, vulnerability, race, and secret-handling security issues.
+```

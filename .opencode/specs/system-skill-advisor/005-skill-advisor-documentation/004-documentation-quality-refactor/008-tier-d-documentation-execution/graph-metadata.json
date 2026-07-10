@@ -23,7 +23,6 @@
     "key_topics": [
       "tier",
       "execution",
-      "008",
       "devin",
       "hooks",
       "migration",
@@ -31,8 +30,9 @@
       "plan",
       "tasks",
       "summary",
-      "007",
-      "deferred-decisions"
+      "deferred-decisions",
+      "documented",
+      "items"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "007 deferred-decisions.md documented 5 Tier D items (F4, F6, F35, F36, F37) with rationale",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.309Z",
+    "last_save_at": "2026-07-09T10:02:50.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d18b1e17783c6fc3a2416206dd29284dcaba878fbff61de21d9042a982c33c1",
+    "source_fingerprint": "sha256:55d286f7123176c18230f1a7337bda76fc7d42b9d4970863b159c139ecdf85b3",
     "source_doc_hashes": {
-      "spec.md": "bd7164f6b9167abe99f8604841374feb5d5b34415619d01524700712dc1ffb72",
-      "plan.md": "146815b710a61905064a2b70f85436e6982bfef93a39bd1d7f07b1bce01d5567",
-      "tasks.md": "2f34be803c11377952eeea899ed0fce5a6202cb0151a4830205df41a07e07d10",
-      "implementation-summary.md": "5163c462623bcdd26f12b12c103b581df61828a357ea06caf1aed1a458a2ee02"
+      "spec.md": "5316332145faf33c37b67b15795d0887fbecc05fb68461f52e521f8b898a0d15",
+      "plan.md": "2313e96ee4a274acb58f3bad3566f02f02d68cf19e738aefb7ddd7f9d28823f5",
+      "tasks.md": "42c7be1432330659c15b42c6273355a194b95a85ab9076c97518eeebd61e9ebe",
+      "implementation-summary.md": "6a1d67b5bbb91282117cbff59b775ba73aee953165913ba862590432d728549b"
     },
     "last_active_child_id": null,
     "last_active_at": null

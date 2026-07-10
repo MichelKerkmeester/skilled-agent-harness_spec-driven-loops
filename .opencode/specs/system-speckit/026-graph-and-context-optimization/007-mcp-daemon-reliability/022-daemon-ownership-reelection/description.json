@@ -17,7 +17,7 @@
   "completed_at": "2026-06-07T17:32:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection",
   "description": "The shared mk-spec-memory daemon is owned by one launcher",
   "keywords": [
     "shared",
@@ -27,11 +27,11 @@
     "one",
     "launcher"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.559Z",
+  "lastUpdated": "2026-07-09T10:02:54.538Z",
   "specId": "022",
   "folderSlug": "daemon-ownership-reelection",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
-  "description": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `targetsqlite.db` (proven via d",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/009-cocoindex-ipc-fix",
+  "description": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `targetsqlite.db` (proven via",
   "keywords": [
     "setup",
     "embeddinggemma-300m",
@@ -16,11 +16,11 @@
     "proven",
     "via"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.981Z",
+  "lastUpdated": "2026-07-09T10:02:52.246Z",
   "specId": "009",
   "folderSlug": "cocoindex-ipc-fix",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

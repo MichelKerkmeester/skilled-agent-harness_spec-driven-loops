@@ -32,11 +32,11 @@
       "graph",
       "post-rename",
       "infra",
-      "029",
       "phase",
-      "002",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "playbook"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "7 of the 22 playbook scenarios are static/source-inspection or build-verification checks (MCP manifest post-rename, launcher startup prefix, mcp.json server key, database path, TypeScript build/entry point, unicode-normalization fix) plus the Devin CLI SessionStart hook scenario",
     "created_at": "2026-05-26T19:43:14.033Z",
-    "last_save_at": "2026-07-07T16:18:33.871Z",
+    "last_save_at": "2026-07-09T10:02:47.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

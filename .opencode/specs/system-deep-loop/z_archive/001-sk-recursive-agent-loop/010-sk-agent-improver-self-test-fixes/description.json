@@ -3,12 +3,11 @@
   "description": "Phase 009 (self-test) found 5 issues",
   "keywords": [
     "phase",
-    "009",
     "self-test",
     "found",
     "issues"
   ],
-  "lastUpdated": "2026-07-08T13:06:36.562Z",
+  "lastUpdated": "2026-07-09T10:02:48.348Z",
   "specId": "010",
   "folderSlug": "sk-agent-improver-self-test-fixes",
   "parentChain": [

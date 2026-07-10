@@ -55,7 +55,7 @@ The hub resolves the request to the `design-foundations` mode and applies it.
 
 ## 4. HOW IT WORKS
 
-A design request resolves through the hub to exactly one mode. A request that spans modes stays at the hub for disambiguation. The five design modes:
+A design request resolves through the hub to one mode when a single design axis dominates, to an ordered bundle of modes when the request clearly spans separate axes (for example, interface + foundations), or stays at the hub for disambiguation when the intent is unclear or contradictory. The five design modes:
 
 | Mode | Owns |
 |---|---|

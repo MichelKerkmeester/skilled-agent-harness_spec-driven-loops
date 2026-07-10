@@ -39,13 +39,13 @@
       "dedup",
       "deep-agent-improvement",
       "uplift",
-      "110",
       "phase",
       "004-dai",
       "plan",
       "tasks",
       "004-dai-uplift",
-      "summary"
+      "summary",
+      "evaluates"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-07-08T13:43:10.251Z",
+    "last_save_at": "2026-07-09T10:02:49.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

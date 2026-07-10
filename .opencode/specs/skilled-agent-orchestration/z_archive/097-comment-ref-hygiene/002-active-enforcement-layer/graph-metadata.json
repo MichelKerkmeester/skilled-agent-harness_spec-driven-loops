@@ -42,17 +42,15 @@
       "write-time",
       "sk-code",
       "checker",
-      "119",
       "layer",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
-      ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
-      ".claude/settings.local.json",
       ".opencode/hooks/install-hooks.sh",
+      ".claude/settings.local.json",
       ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md",
       ".opencode/skills/sk-code/SKILL.md",
       "decision-record.md",
@@ -69,27 +67,15 @@
     ],
     "entities": [
       {
-        "name": "check-comment-hygiene.sh",
+        "name": "install-hooks.sh",
         "kind": "script",
-        "path": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
-        "source": "derived"
-      },
-      {
-        "name": "claude-posttooluse.sh",
-        "kind": "script",
-        "path": ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
+        "path": ".opencode/hooks/install-hooks.sh",
         "source": "derived"
       },
       {
         "name": "settings.local.json",
         "kind": "config",
         "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "install-hooks.sh",
-        "kind": "script",
-        "path": ".opencode/hooks/install-hooks.sh",
         "source": "derived"
       },
       {
@@ -211,11 +197,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `sk-code §4` text rule exists",
     "created_at": "2026-05-29T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:51.137Z",
+    "last_save_at": "2026-07-09T10:02:46.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,14 +224,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d731614410ef2f9e65a6a544470e4313839afdc236315438856d4a766ceb7da7",
+    "source_fingerprint": "sha256:6384f92858d8482c464ae9530f044f5031616edc87e033be6dbdeec6508a18d8",
     "source_doc_hashes": {
-      "spec.md": "ad59f172f9dd8778f42db8fa283e5e320ebc4b05548dc70847abe4d46881097f",
-      "plan.md": "408ea38378a783f9dc08994b9b80cd91aa5fa2046be4f9c340f6f333e473456a",
-      "tasks.md": "14c597ab203ec1397239d9fd61078e3d50fc54d7efd1e9c14b1bf7c88c74cadc",
-      "checklist.md": "ebd7b57540e1986cdad62c25c88d823b1d88032da6a3e2daada11ff1250aa09b",
-      "decision-record.md": "8466240033d71a551c17c08ca16db9c506a4fc47c9bffd7e8e34c3ebd2e1f6a1",
-      "implementation-summary.md": "c4c3d5f9ea770ba110e181e7ddaf9706e59b86c2b9c2b03c6947b16dd9bece6d"
+      "spec.md": "2dfc1e372fc05cc390365ec7388b88596a29a940a87455c5cfc9022d339d3fcf",
+      "plan.md": "70820ad88df3af0e23a00dcb42452e8750172d6215ae86a50ce36b2031fe4a1b",
+      "tasks.md": "0a8d4f213ac829d1417dac7a1f486b973b8a4a2bb443b5cb00d1371b12410bcf",
+      "checklist.md": "cb66f8fc38f438761e5d067c1baef5ce2a66724cb0312746190319a7197b441a",
+      "decision-record.md": "d6290c76dbbac73d5b4cc08a440c2b2c3c4fdd38f80c2e99ffa9208ff0cd7b2e",
+      "implementation-summary.md": "c5d6f5fa613bdaf71eef3079f7e9a875a05e979380f7cc5757099424ac1defdf"
     },
     "last_active_child_id": null,
     "last_active_at": null

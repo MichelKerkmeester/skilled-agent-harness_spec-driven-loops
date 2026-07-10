@@ -28,7 +28,6 @@
       "skill-advisor",
       "runtime",
       "integration",
-      "003",
       "003-runtime-integration",
       "phase",
       "plan",
@@ -36,7 +35,8 @@
       "result",
       "advisor",
       "brief",
-      "sits"
+      "sits",
+      "prompt-submit"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The advisor brief sits on the prompt-submit critical path in every runtime; pairing it with the CLI must respect the measured budget — the one-shot native bridge (824.8ms) stays banned",
     "created_at": "2026-06-06T14:45:18Z",
-    "last_save_at": "2026-07-07T11:58:28.311Z",
+    "last_save_at": "2026-07-09T10:02:50.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +211,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:123132242858f759133a3fea1c20c6b470cddaaf005e8980ff32c9f39ec355bd",
+    "source_fingerprint": "sha256:bb6da492746ff340781ab48c2a495a1fcf301268962bf40535a7555c2962ce27",
     "source_doc_hashes": {
-      "spec.md": "204dcbcf0a9263a2c8ba11a979c4830265a0f7e4eea93a3e099a26a71f684b68",
-      "plan.md": "934875a343bb2f81e28826c3f80c8b7a2e02486eb12d45b92cced008e97a22c2",
-      "tasks.md": "6e32dcfb210351ffae9ad94a3095c440ce804ea5215afeffd89e5888d28b4a62",
-      "implementation-summary.md": "10f8f06b62e990f943b5dc0e48cd0f1ce2d2a73cc5686d3bb825d86204cfc3a4"
+      "spec.md": "e5cdfa162c285355be3b142a79319b33767bbf54c73078d3ff2da3b7b0fcc865",
+      "plan.md": "514307383c42d9c6f861359933b89d6d249121091dbc8ae2c785d86bd05da1d7",
+      "tasks.md": "174ac91b25cfdffcfb23cb9582fc78a5c0d689882eb9727a5679a3f88b94f75f",
+      "implementation-summary.md": "3e39ee4c351318a7a322dacc8305363230eb27a712b66257ed145c149e14a574"
     },
     "last_active_child_id": null,
     "last_active_at": null

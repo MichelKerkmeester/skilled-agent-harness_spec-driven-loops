@@ -49,10 +49,10 @@
       "folder",
       "writes",
       "audit",
-      "098",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "adrs"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -218,7 +218,7 @@
     ],
     "causal_summary": "The multi-ai-council agent is intentionally planning-only as of v3.4.1.0",
     "created_at": "2026-05-08T21:45:00Z",
-    "last_save_at": "2026-07-08T13:43:11.929Z",
+    "last_save_at": "2026-07-09T10:02:49.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

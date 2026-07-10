@@ -36,7 +36,6 @@
       "spec-kit template phases"
     ],
     "key_topics": [
-      "008",
       "template",
       "levels",
       "phase",
@@ -47,7 +46,8 @@
       "phases",
       "today",
       "maintains",
-      "files"
+      "files",
+      "13k"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -103,7 +103,7 @@
     ],
     "causal_summary": "The spec-kit template system today maintains 86 files (~13K LOC) split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T16:30:00Z",
-    "last_save_at": "2026-07-02T05:31:11.392Z",
+    "last_save_at": "2026-07-09T10:02:51.881Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

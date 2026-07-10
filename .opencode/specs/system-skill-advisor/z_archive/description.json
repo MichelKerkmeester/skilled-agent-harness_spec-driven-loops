@@ -10,10 +10,12 @@
     "empty",
     "unregistered-parent"
   ],
-  "lastUpdated": "2026-07-06T09:52:21.000Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "",
   "folderSlug": "z_archive",
-  "parentChain": [],
+  "parentChain": [
+    "system-skill-advisor"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

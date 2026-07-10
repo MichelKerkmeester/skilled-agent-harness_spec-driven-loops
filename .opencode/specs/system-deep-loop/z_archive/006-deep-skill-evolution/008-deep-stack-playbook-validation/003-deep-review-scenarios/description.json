@@ -7,7 +7,6 @@
     "iterative",
     "code-review",
     "loop",
-    "built",
     "shared",
     "deep-loop-runtime",
     "owns",
@@ -17,7 +16,7 @@
     "modes",
     "canonical"
   ],
-  "lastUpdated": "2026-07-08T13:06:34.327Z",
+  "lastUpdated": "2026-07-09T10:02:48.873Z",
   "specId": "003",
   "folderSlug": "deep-review-scenarios",
   "parentChain": [

@@ -11,13 +11,12 @@
     "table",
     "opencode",
     "agents",
-    "97-105",
     "single",
     "deterministic",
     "routing",
     "surface"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.425Z",
+  "lastUpdated": "2026-07-09T10:02:47.764Z",
   "specId": "007",
   "folderSlug": "orchestrate-universal-routing",
   "parentChain": [

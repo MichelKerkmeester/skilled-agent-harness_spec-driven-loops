@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/025-mcp-runtime-hardening",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/025-mcp-runtime-hardening",
   "description": "The `024-codex-memory-mcp-fix` packet documented six follow-on recommendations (T020-T025) for runtime hardening, but none were implemented",
   "keywords": [
     "024-codex-memory-mcp-fix",
@@ -14,11 +14,11 @@
     "none",
     "implemented"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.408Z",
+  "lastUpdated": "2026-07-09T10:02:58.648Z",
   "specId": "025",
   "folderSlug": "mcp-runtime-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

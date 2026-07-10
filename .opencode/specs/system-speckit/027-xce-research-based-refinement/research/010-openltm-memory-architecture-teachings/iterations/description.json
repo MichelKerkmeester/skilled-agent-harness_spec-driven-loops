@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/research/010-openltm-memory-architecture-teachings/iterations",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/research/010-openltm-memory-architecture-teachings/iterations",
   "description": "Research iteration artifacts for 010-openltm-memory-architecture-teachings.",
   "keywords": [
     "research",
@@ -10,11 +10,11 @@
     "027-xce-research-based-refinement",
     "iterations"
   ],
-  "lastUpdated": "2026-06-08T15:25:37.013Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "010",
   "folderSlug": "openltm-memory-architecture-teachings-iterations",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "research",
     "010-openltm-memory-architecture-teachings"

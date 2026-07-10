@@ -36,7 +36,6 @@
       "loop",
       "systems",
       "remediation",
-      "008",
       "deep-review",
       "deferred",
       "findings",
@@ -44,14 +43,12 @@
       "campaign",
       "recommendations",
       "plan",
-      "parent"
+      "parent",
+      "aggregate"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
       "001-deep-improvement-rollback-hash-guard/implementation-summary.md",
       "002-deep-improvement-promotion-safety/implementation-summary.md",
       "003-model-benchmark-reducer-ledger/implementation-summary.md",
@@ -68,27 +65,12 @@
       "003-model-benchmark-reducer-ledger/tasks.md",
       "004-adversarial-playbook-scenarios/tasks.md",
       "005-tighten-playbook-pass-criteria/tasks.md",
-      "006-p2-test-adequacy-and-source-only-audit/tasks.md"
+      "006-p2-test-adequacy-and-source-only-audit/tasks.md",
+      "007-fan-out-hardening/tasks.md",
+      ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+      "handover.md"
     ],
     "entities": [
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-guards.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
-        "source": "derived"
-      },
       {
         "name": "tasks.md",
         "kind": "doc",
@@ -111,6 +93,18 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_model-benchmark_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -214,11 +208,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deferred deep-review findings and MiMo-campaign recommendations identified gaps in rollback hash-guard integrity, promotion safety, benchmark ledger accuracy, adversarial playbook coverage, playbook pass-criteria rigor, and P2 test-adequacy/source-only auditing across the loop-system surfaces",
     "created_at": "2026-06-29T10:43:16Z",
-    "last_save_at": "2026-07-04T18:52:40.157Z",
+    "last_save_at": "2026-07-09T10:02:47.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,13 +228,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:972fadbcf20102d1291d8c76944657577433a6390a0fd240d66ee3383748ebb0",
+    "source_fingerprint": "sha256:7b6a824f3a00c584d250bb08f2c78530ee8d6708282a280650ad23428774c891",
     "source_doc_hashes": {
-      "spec.md": "1816e5aabadbc802f4effcdf1f0e05dfda74ee9c8c7ad25f836634cf726bf87a",
-      "plan.md": "0af20c3ff18c12f1b746d27b0dc945a3eadfd3a08fb5a5cace119ac08415daa8",
-      "tasks.md": "3838ff52dbb65405637eb0c7626615d8f989486efedd6a6b0243a54c7a23d0a6",
-      "implementation-summary.md": "d4aeeb92759b3446b19571bfc12647014a98f5ab8148e1520c981e7ead4a76b0",
-      "handover.md": "5dde0fae5a58cc91b3d3923647da568cd1031a5510c6d82811004d84a11ba924"
+      "spec.md": "8a006fdd9ee30af090272d1514c5f66ec9a8985431ce06e2a42e0edc59dfe622",
+      "plan.md": "eab715e9855f77ef0561279ee637dc79329599f75bed2193fd2988aedfe8d9bd",
+      "tasks.md": "eadb0777fec9e40df8efda43072927e7420a9b1a34a0abccdc82c582769e17dc",
+      "implementation-summary.md": "bcbd152c6e1820f10c4a822c7a206371dcdfd578e66fa819c74fc58df52f6120",
+      "handover.md": "5770013f3607f4e4306dbb182dfa3d6eaf16bb88ff31f726e5ffb2d46e11905c"
     },
     "last_active_child_id": null,
     "last_active_at": null

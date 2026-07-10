@@ -1,10 +1,9 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture",
   "description": "Author 10-20 deterministic query→expected-source pairs for CocoIndex embedder benchmarking",
   "keywords": [
     "author",
-    "10-20",
     "deterministic",
     "query",
     "expected-source",
@@ -13,11 +12,11 @@
     "embedder",
     "benchmarking"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.554Z",
+  "lastUpdated": "2026-07-09T10:02:52.882Z",
   "specId": "002",
   "folderSlug": "baseline-fixture",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

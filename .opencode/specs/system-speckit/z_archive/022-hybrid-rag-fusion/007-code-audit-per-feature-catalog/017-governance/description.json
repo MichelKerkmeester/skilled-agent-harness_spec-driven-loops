@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/017-governance",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/017-governance",
   "description": "The feature catalog for Governance has evolved significantly",
   "keywords": [
     "feature",
@@ -8,11 +8,11 @@
     "evolved",
     "significantly"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.886Z",
+  "lastUpdated": "2026-07-09T10:02:57.985Z",
   "specId": "017",
   "folderSlug": "governance",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "007-code-audit-per-feature-catalog"

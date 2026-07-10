@@ -25,7 +25,6 @@
       "retry-manager failure_reason masking summary"
     ],
     "key_topics": [
-      "038",
       "embedding",
       "error",
       "propagation",
@@ -36,10 +35,11 @@
       "generatedocumentembedding",
       "catch",
       "swallow",
-      "retry-manager"
+      "retry-manager",
+      "masking"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/shared/embeddings.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "`generateDocumentEmbedding` catches real provider failures, records a circuit-breaker failure, logs a warning, and returns `null`",
     "created_at": "2026-05-14T14:31:45Z",
-    "last_save_at": "2026-07-02T05:31:11.666Z",
+    "last_save_at": "2026-07-09T10:02:52.473Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

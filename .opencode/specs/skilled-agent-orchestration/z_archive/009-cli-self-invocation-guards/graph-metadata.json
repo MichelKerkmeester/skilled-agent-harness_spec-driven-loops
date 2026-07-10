@@ -31,18 +31,17 @@
       "self",
       "invocation",
       "spec",
-      "009",
       "implementation",
       "plan",
       "tasks",
       "guards",
-      "summary"
+      "summary",
+      "bridge"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/cli-claude-code/SKILL.md",
-      ".opencode/skills/cli-codex/SKILL.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "The CLI bridge skills are meant for cross-AI delegation, but the shared skill system makes it possible for a runtime to be told to invoke the very bridge that targets itself",
     "created_at": "2026-04-12T09:02:50.204Z",
-    "last_save_at": "2026-06-23T03:49:48.923Z",
+    "last_save_at": "2026-07-09T10:02:45.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

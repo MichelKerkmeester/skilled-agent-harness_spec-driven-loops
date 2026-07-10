@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
-  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
-  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
+  "packet_id": "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis",
+  "spec_folder": "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis",
+  "parent_id": "z_future/code-graph-and-cocoindex",
   "children_ids": [
-    "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract",
-    "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl",
-    "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
-    "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/004-test"
+    "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract",
+    "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl",
+    "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
+    "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis/004-test"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -88,7 +88,7 @@
     ],
     "causal_summary": "The five deterministic risk signals are:",
     "created_at": "2026-05-08T15:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.864Z",
+    "last_save_at": "2026-07-09T11:26:11.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

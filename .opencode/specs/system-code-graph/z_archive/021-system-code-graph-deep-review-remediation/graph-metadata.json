@@ -18,18 +18,18 @@
       "code-graph v1.0.1.0 remediation"
     ],
     "key_topics": [
-      "038",
       "system-code-graph",
       "deep-review",
       "remediation",
-      "037",
       "cli-opencode",
       "deepseek-v4-pro",
       "xhigh",
       "code-graph",
       "packet",
       "20-iter",
-      "surfaced"
+      "surfaced",
+      "findings",
+      "variant"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Packet 037's 20-iter deep-review surfaced 2 P0 + 25 P1 + ~30 P2 findings on system-code-graph v1.0.0.0",
     "created_at": "2026-05-26T16:51:06.371Z",
-    "last_save_at": "2026-07-07T16:18:34.014Z",
+    "last_save_at": "2026-07-09T10:02:47.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

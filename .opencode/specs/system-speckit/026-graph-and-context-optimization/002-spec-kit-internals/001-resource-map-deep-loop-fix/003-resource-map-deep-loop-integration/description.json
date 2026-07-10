@@ -26,8 +26,8 @@
       "TBD"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
-  "description": "Autonomous deep-loop runs produce rich evidence across 5–15 iterations, but the output surface is split between iteration markdown files (dense, per-c",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration",
+  "description": "Autonomous deep-loop runs produce rich evidence across 5–15 iterations, but the output surface is split between iteration markdown files (dense,",
   "keywords": [
     "autonomous",
     "deep-loop",
@@ -44,14 +44,13 @@
     "iteration",
     "markdown",
     "files",
-    "dense",
-    "per-c"
+    "dense"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.174Z",
+  "lastUpdated": "2026-07-09T10:02:51.875Z",
   "specId": "003",
   "folderSlug": "resource-map-deep-loop-integration",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals",
     "001-resource-map-deep-loop-fix"

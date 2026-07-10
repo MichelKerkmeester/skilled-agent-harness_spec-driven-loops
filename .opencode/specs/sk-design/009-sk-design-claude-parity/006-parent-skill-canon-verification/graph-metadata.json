@@ -57,7 +57,6 @@
       "implementation-summary.md",
       ".opencode/skills/sk-design/mode-registry.json",
       ".opencode/skills/sk-design/shared/procedure_card_schema.md",
-      ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
       ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
@@ -107,12 +106,6 @@
         "name": "procedure_card_schema.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent_skills_nested_packets.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001-005 refactored `sk-design` toward Claude Design-like manager behavior while preserving the OpenCode-native parent-hub shape: one advisor identity, registry-driven routing, five public modes",
     "created_at": "2026-07-06T04:36:21.215Z",
-    "last_save_at": "2026-07-06T05:47:26.137Z",
+    "last_save_at": "2026-07-09T10:02:44.453Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

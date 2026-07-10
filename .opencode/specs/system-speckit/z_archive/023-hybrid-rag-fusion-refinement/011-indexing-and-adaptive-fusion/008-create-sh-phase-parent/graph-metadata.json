@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
-  "spec_folder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
-  "parent_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
+  "packet_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
+  "spec_folder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
+  "parent_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -30,19 +30,19 @@
       "alias",
       "nested",
       "append",
-      "create",
       "specs",
       "phase-parent",
       "planning",
       "plan",
       "tasks",
-      "task"
+      "task",
+      "list"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -51,15 +51,15 @@
     ],
     "entities": [
       {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The phase creation workflow breaks when the parent folder lives inside a nested spec tree such as `system-spec-kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion`",
     "created_at": "2026-04-12T09:02:50.337Z",
-    "last_save_at": "2026-06-23T03:50:00.535Z",
+    "last_save_at": "2026-07-09T10:02:58.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

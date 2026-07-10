@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/014-memory-index-txt-support",
+  "specFolder": "system-speckit/z_archive/014-memory-index-txt-support",
   "description": "This archived system-spec-kit archive folder captures work related to Memory Index Txt Support",
   "keywords": [
     "archived",
@@ -14,11 +14,11 @@
     "txt",
     "support"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.537Z",
+  "lastUpdated": "2026-07-09T10:02:57.587Z",
   "specId": "014",
   "folderSlug": "memory-index-txt-support",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

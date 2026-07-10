@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/001-session-source-validation",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/001-session-source-validation",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/001-session-source-validation",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/001-session-source-validation",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -28,32 +28,38 @@
       "hybrid",
       "rag",
       "fusion",
-      "009",
       "perfect",
       "spec",
-      "001",
       "session",
       "plan",
       "tasks",
       "rid",
-      "checklist"
+      "checklist",
+      "transcript",
+      "selection"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "scripts/loaders/data-loader.ts",
       "scripts/memory/validate-memory-quality.ts",
       "scripts/extractors/quality-scorer.ts",
       "scripts/core/quality-scorer.ts",
       "scripts/core/workflow.ts",
       "scripts/extractors/collect-session-data.ts",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "data-loader.ts",
         "kind": "code",
@@ -82,12 +88,6 @@
         "name": "collect-session-data.ts",
         "kind": "code",
         "path": "scripts/extractors/collect-session-data.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Transcript selection uses filesystem `mtime` as a proxy for \"current session.\" Any touch on an older transcript makes it outrank the active session",
     "created_at": "2026-04-12T09:02:50.264Z",
-    "last_save_at": "2026-06-23T03:49:59.971Z",
+    "last_save_at": "2026-07-09T10:02:58.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

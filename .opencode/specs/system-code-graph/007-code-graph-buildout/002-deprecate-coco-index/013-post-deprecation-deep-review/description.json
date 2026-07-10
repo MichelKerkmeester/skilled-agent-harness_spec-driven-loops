@@ -1,9 +1,8 @@
 {
   "level": "1",
   "specFolder": "system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/013-post-deprecation-deep-review",
-  "description": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc`), and a pre",
+  "description": "The 014 deprecation was declared complete, but the session repeatedly found more residual at each grep refinement (`cocoindex`→`ccc`→`ccc`), and a",
   "keywords": [
-    "014",
     "deprecation",
     "declared",
     "complete",
@@ -14,10 +13,9 @@
     "grep",
     "refinement",
     "cocoindex",
-    "ccc",
-    "pre"
+    "ccc"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.798Z",
+  "lastUpdated": "2026-07-09T10:02:46.810Z",
   "specId": "013",
   "folderSlug": "post-deprecation-deep-review",
   "parentChain": [

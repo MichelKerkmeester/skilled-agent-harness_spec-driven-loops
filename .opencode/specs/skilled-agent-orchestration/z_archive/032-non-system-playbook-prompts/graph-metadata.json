@@ -37,23 +37,23 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "checklist.md",
       "spec.md",
+      "checklist.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The repository now contains several non-system-spec-kit manual testing playbook packages that were authored at different maturity levels",
     "created_at": "2026-04-12T12:01:01Z",
-    "last_save_at": "2026-06-23T03:49:49.289Z",
+    "last_save_at": "2026-07-09T10:02:45.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7a3ea059d5fd424809d9d52eb358fefc617484ab8ea4b76b53adb7c32f561339",
+    "source_fingerprint": "sha256:9e2e6738a16c758061ca81009a057b8a6640e51142abc9645e80e8029d393e0f",
     "source_doc_hashes": {
-      "spec.md": "88b62a30ee1fd03526432e40625e0a4e73c19335d1bd20efc9d40828d285410c",
-      "plan.md": "d90214a519eb642137cc394c3d7a28825c0548ffe7c4f9dedfa7412bef1478fe",
-      "tasks.md": "88539de042712fbe4fde3a05d74e91578bd12272236cac08a31e016ba70664e3",
-      "checklist.md": "f1a7d6f85367a31b0ad52908cb8fd7e9100f919ef153ae2316a38f452072c192",
-      "implementation-summary.md": "ebe22fa5f96b38eeed082daa328100f4bdc0cd87b1bbcccd8d66829cdfbba521"
+      "spec.md": "5f8475041fbf170a5e2ab13573db552c3a12b5dc78e0ebde3aa2eaca92513327",
+      "plan.md": "feb9ad6d875060d487b5714ed9ee5a6043a49a0afea455f523c85f74eb9634e6",
+      "tasks.md": "1c1102f03d8a9e254007ddcd328ca9223d3b091e6c248ec761a2095b73b43ef5",
+      "checklist.md": "6ed07332cc8a85972ba70c01651dc47aed9e2752d9ef1a00b690dc951afdca67",
+      "implementation-summary.md": "1302eebfdbf655a8b0f15d76b9493c1bf86492c3b08ffcf0de19fb4222a737a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

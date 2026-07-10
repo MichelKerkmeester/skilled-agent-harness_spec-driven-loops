@@ -16,12 +16,11 @@
     "primitives",
     "deep-loop-runtime",
     "without",
-    "creating",
     "peer",
     "council-runtime",
     "package"
   ],
-  "lastUpdated": "2026-07-08T13:07:01.150Z",
+  "lastUpdated": "2026-07-09T10:02:48.640Z",
   "specId": "009",
   "folderSlug": "iterative-runtime-primitive-extraction",
   "parentChain": [

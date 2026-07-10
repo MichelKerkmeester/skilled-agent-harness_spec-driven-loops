@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
-  "description": "`invalidateProviderSingleton()` (`shared/embeddings.ts`) nulls `providerInstance` without calling any dispose, so the outgoing `HfLocalProvider`'s nat",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
+  "description": "`invalidateProviderSingleton()` (`shared/embeddings.ts`) nulls `providerInstance` without calling any dispose, so the outgoing `HfLocalProvider`'s",
   "keywords": [
     "invalidateprovidersingleton",
     "shared",
@@ -12,14 +12,13 @@
     "calling",
     "dispose",
     "outgoing",
-    "hflocalprovider",
-    "nat"
+    "hflocalprovider"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.412Z",
+  "lastUpdated": "2026-07-09T10:02:54.385Z",
   "specId": "005",
   "folderSlug": "provider-dispose",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

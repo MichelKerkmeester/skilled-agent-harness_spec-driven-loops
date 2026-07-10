@@ -41,7 +41,6 @@
       "decision-record.md",
       ".opencode/agents/ai-council.md",
       ".opencode/skills/cli-opencode/references/agent_delegation.md",
-      ".opencode/skills/sk-doc/assets/agent_template.md",
       "spec.md",
       "implementation-summary.md",
       "plan.md",
@@ -65,12 +64,6 @@
         "name": "agent_delegation.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/references/agent_delegation.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/agent_template.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/agents/ai-council.md:4` currently declares `mode: all`, meaning it is dual-reachable: directly selectable as a top-level agent in OpenCode (like a primary agent) AND dispatchable as a Task-tool sub-agent",
     "created_at": "2026-07-01T10:56:26.917Z",
-    "last_save_at": "2026-07-05T06:46:02.064Z",
+    "last_save_at": "2026-07-09T10:02:47.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7fde61617f467e453016042af633f1313550fe006797a00d3645a301e7773d2",
+    "source_fingerprint": "sha256:032f9fc85c8b1ba50c5195ff42edafe62f82513e72dfb56f0584786de118e085",
     "source_doc_hashes": {
-      "spec.md": "f79a44da5a1a1ea65be2f30bbd16ee69ca59da815dca50426755792dea13f9d4",
-      "plan.md": "a067fbad83bdd5cb7c97d846ff48d48ef17312ac04e9f25d2c4de79e1a722306",
-      "tasks.md": "b8915e054aa65a17b22f822266b0f9fbd430064646eeab7a7dcf00bf372d6b2f",
-      "checklist.md": "e0615fcf9157c18dc86bf7419720eb31d8bcce6f472bfde26da1449c5597c667",
+      "spec.md": "f6e5c0709a651056446097ba0cdada17dd8b1d09c43765e4bfb5239dd6ed9ba8",
+      "plan.md": "a80c120f352879d8bfa4e52acf53a977f3381103946e64e6d53ef277abae788a",
+      "tasks.md": "e7cf33aa321fefdd849f3e2b20efb32b320ce43084b95d6793ad2a8430c234d4",
+      "checklist.md": "46e33eebfe3bb713db26925a431a31fd7bc8084f7b2184d50430a625103d6110",
       "decision-record.md": "d5280979f235b1ab9a71edd86a931d7451f859ac7180d256210aeb48c149c6b6",
-      "implementation-summary.md": "d8e27aa05c1730b620c52ac668f013217665e96566742e24449e361bcd6905f6"
+      "implementation-summary.md": "65e21969272d51b3d1391cea1b7120f4d2358bd2b1ac4f99e409dc6deb7f7ab7"
     },
     "last_active_child_id": null,
     "last_active_at": null

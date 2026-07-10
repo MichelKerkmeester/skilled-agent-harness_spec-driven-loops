@@ -29,19 +29,19 @@
       "discriminating",
       "bakeoff",
       "run",
-      "007",
       "strict",
       "validators",
       "rcaf",
       "retired",
       "costar",
       "promoted",
-      "framework"
+      "framework",
+      "separation"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json",
+      ".opencode/skills/sk-prompt-models/benchmarks/007-kimi-k2.7-discriminating/synthesis.md",
       ".opencode/skills/sk-prompt-models/references/models/kimi-k2.7-code.md",
       ".opencode/skills/sk-prompt-models/references/models/_index.md",
       "spec.md",
@@ -51,9 +51,9 @@
     ],
     "entities": [
       {
-        "name": "kimi-k2.7-discriminating.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json",
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/benchmarks/007-kimi-k2.7-discriminating/synthesis.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The phase 002 bakeoff (run 006) scored every prompt framework at correctness 1.0 because its T3 fixtures were too easy for a frontier coding model, so it returned an uninformative TIE and left `rcaf` as a convention default with no empirical backing",
     "created_at": "2026-06-15T11:56:39Z",
-    "last_save_at": "2026-06-23T03:49:48.768Z",
+    "last_save_at": "2026-07-09T10:02:46.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbdc748f9bf4b607683bbb5fab2e107f77627a2766096098c05a82e4e534b9ed",
+    "source_fingerprint": "sha256:50f7f1801830d2dcb0113941b84bb99abaceb3cb4c5be9f495d8f16defaa2e92",
     "source_doc_hashes": {
-      "spec.md": "a2da077d86edd3e5732b9e514d8d7d384605c43cf044e4f1e10a964de77a1026",
-      "plan.md": "fcd12ffb1bfcd536d644896b3a02e97930df00840a32875c0372f208aed77f36",
-      "tasks.md": "8328c10970c946f74311f9c2b6aa3b193c5b15e9ed9ca73175ce71944caededc",
-      "implementation-summary.md": "d4d94d3145d84d21aac62059f175f2f0ab4c30989950d26471a309486eda6f49"
+      "spec.md": "f200c99b64a5f906f0d9e00774eeef0d754524ac5d03ca030230793cce44a628",
+      "plan.md": "b72718234a57f104e1a00f40c2f1cdf41453e254848654a90350a15332a6d3eb",
+      "tasks.md": "8fbcae5ca51d9f81f992e327c163b1daa8f4de8d2b4786a49031d6a6cda5049a",
+      "implementation-summary.md": "4ebed831f6da749ae3a39207508aa26daf95ed9b20716ecb202805d804eba464"
     },
     "last_active_child_id": null,
     "last_active_at": null

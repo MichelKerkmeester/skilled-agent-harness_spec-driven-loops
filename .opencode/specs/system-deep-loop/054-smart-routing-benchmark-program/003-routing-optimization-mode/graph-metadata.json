@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/054-smart-routing-benchmark-program/003-routing-optimization-mode",
+  "spec_folder": "system-deep-loop/054-smart-routing-benchmark-program/003-routing-optimization-mode",
+  "parent_id": "system-deep-loop/054-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill routing optimization mode",
+      "routing optimization command",
+      "orphan reference sweep",
+      "deep-improvement lane c optimize",
+      "routing optimization mode plan",
+      "routing optimization mode tasks",
+      "routing optimization mode checklist",
+      "routing optimization mode summary",
+      "skill benchmark optimize command"
+    ],
+    "key_topics": [
+      "skill",
+      "routing",
+      "optimization",
+      "mode",
+      "command",
+      "orphan",
+      "reference",
+      "sweep",
+      "deep-improvement",
+      "lane",
+      "optimize",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+      ".opencode/commands/deep/skill-benchmark.md",
+      "assets/cross-skill-routing-audit.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/skill-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-skill-routing-audit.md",
+        "kind": "doc",
+        "path": "assets/cross-skill-routing-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Routing Optimization Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extend Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Legend",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Lane C skill-benchmark (`/deep:skill-benchmark`) diagnoses routing quality but is diagnostic-only — it emits a ranked report and never proposes or applies fixes",
+    "created_at": "2026-07-09T05:03:27.232Z",
+    "last_save_at": "2026-07-09T05:11:00.480Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e847dd94e9e5c41c78b6e98377a6ccff1d7ef2fcafa21950e7e74742ff35f04e",
+    "source_doc_hashes": {
+      "spec.md": "5e400e852620d9e1def9051dd9d2b3c8e1353b6cde1bfaaf9287d3aa5061d8f0",
+      "plan.md": "30b78d031af4f00185fc83b5b44053abda20ad627879732ceb5241d78c465504",
+      "tasks.md": "b4cd9ff7e2ad509c5ab1a139828417b457eb1ed975b65fcaaef6100d65cebd5c",
+      "checklist.md": "503b2d043dfb0b619b7cc73dbdaa0d37ea35907030eec80c7c563dd7716dbb1c",
+      "implementation-summary.md": "ad36d3c1d79f7281fc7d50675f96fd01c99e5801bdba4b8cfb906d39ee5811eb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

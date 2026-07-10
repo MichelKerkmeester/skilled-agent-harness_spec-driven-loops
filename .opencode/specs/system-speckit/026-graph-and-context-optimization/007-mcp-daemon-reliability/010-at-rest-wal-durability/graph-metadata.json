@@ -29,14 +29,14 @@
       "wal",
       "durability",
       "checkpoint",
-      "256",
       "checkpointallwal",
-      "026",
-      "007",
-      "010",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "packet",
+      "close-time",
+      "walcheckpoint",
+      "truncate"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Packet 008 added a close-time `walcheckpoint(TRUNCATE)` for the main context index, but the active vector shard remained attached without a shard TRUNCATE checkpoint in the close path",
     "created_at": "2026-05-29T13:15:08.290Z",
-    "last_save_at": "2026-07-02T05:31:12.872Z",
+    "last_save_at": "2026-07-09T10:02:54.422Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

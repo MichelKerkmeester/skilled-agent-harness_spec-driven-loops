@@ -4,7 +4,6 @@
   "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/002-research-model-benchmark-implementation",
   "description": "The 001 design names the mode-selector approach + three seams at the ADR level, but the build packet needs sharper implementation detail: exact",
   "keywords": [
-    "001",
     "design",
     "names",
     "mode-selector",
@@ -13,7 +12,6 @@
     "seams",
     "adr",
     "level",
-    "build",
     "packet",
     "needs",
     "sharper",
@@ -21,7 +19,7 @@
     "detail",
     "exact"
   ],
-  "lastUpdated": "2026-07-08T13:06:46.354Z",
+  "lastUpdated": "2026-07-09T10:02:48.938Z",
   "specId": "002",
   "folderSlug": "research-model-benchmark-implementation",
   "parentChain": [

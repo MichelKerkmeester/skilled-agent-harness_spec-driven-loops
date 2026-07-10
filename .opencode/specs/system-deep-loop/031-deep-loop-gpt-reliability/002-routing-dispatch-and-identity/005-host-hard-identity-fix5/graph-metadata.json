@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The research (§8b) found that hard per-agent `subagenttype` identity requires a host-runtime dispatch-primitive change (bind `agentslug` at the Task boundary, auto-load/enforce, reject unknown, stamp provenance) — NOT a frontmatter-only or config-only change (F33)",
     "created_at": "2026-06-30T15:25:00Z",
-    "last_save_at": "2026-07-05T06:46:00.861Z",
+    "last_save_at": "2026-07-09T10:02:47.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,11 +194,11 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c141dae934f6909d09c75a5d86849edae92f2f098424d659232abccef1963ed0",
+    "source_fingerprint": "sha256:ffd54d6153b9afde2f0afc53483b210acd9651530122b99f433824bfd868b821",
     "source_doc_hashes": {
-      "spec.md": "4e62fb365289a384aa27a974730cf5f26f2574f626b306eb7f6c3460cc31bc7e",
-      "plan.md": "61df3bba30b1f7b241f463875a2a5f83c99f6353c5c080c63209671c7a75953c",
-      "tasks.md": "1b5d585ed7eb6bc5105b2d87d037d6a36262f8917582194588ac6495aa35bb0d",
+      "spec.md": "6dede16e853af5c023aabe1958edce53f35959b5e46474f26891f571c6e7f831",
+      "plan.md": "e2fb80bc837ac5a942545626867a3fdeb0e91d93460cb7f3e76adc14da63df48",
+      "tasks.md": "c52141041276d874279cbbe15c6f75e514d987e346ce07ffed6753f7573c6f4f",
       "decision-record.md": "fdd57400820add63655d3bbde74c3cf16e53f99d5cb3b45482133b8f76a4512a"
     },
     "last_active_child_id": null,

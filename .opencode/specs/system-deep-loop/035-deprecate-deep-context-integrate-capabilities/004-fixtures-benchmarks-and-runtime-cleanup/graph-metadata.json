@@ -39,23 +39,12 @@
       "decision"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/verify-iteration.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/query.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
-      ".opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/fixtures/deep-loop-workflows/dlw-context-001.private.json",
-      ".opencode/skills/deep-loop-workflows/README.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -85,72 +74,6 @@
         "source": "derived"
       },
       {
-        "name": "compile-command-contracts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "verify-iteration.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/verify-iteration.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "query.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/query.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "status.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/status.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "upsert.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/upsert.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "framework.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/shared/behavior-benchmark/framework.md",
-        "source": "derived"
-      },
-      {
-        "name": "dlw-context-001.private.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/skill_benchmark/fixtures/deep-loop-workflows/dlw-context-001.private.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/README.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -175,6 +98,12 @@
         "source": "derived"
       },
       {
+        "name": "Recover Spec Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Spec Memory",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -193,21 +122,81 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conditional Runtime Removal",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Runtime",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Even after public and discoverability cleanup, test fixtures, behavior benchmarks, generated source lists, and shared runtime branches can keep standalone `deep-context` alive as an active compatibility path",
     "created_at": "2026-07-04T14:32:37Z",
-    "last_save_at": "2026-07-04T18:36:44.915Z",
+    "last_save_at": "2026-07-09T10:02:48.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3daf570641e7030f6fdeb3b7f9bc075dacdb36e5061bac733d07929be670ada1",
+    "source_fingerprint": "sha256:818e6e02b235f7abb2589c72a73d946ca04aa36eb7e7ecf00db837cc15a25e4a",
     "source_doc_hashes": {
-      "spec.md": "4fb2ae82e60d913c7fd69e9cdbb3e6b7cb10a1832c74a3f9c77934aa01185a2d",
-      "plan.md": "7e69e30a0265f9b9987bda16180f777925b903c6124c024be0b4a5361c34e043",
-      "tasks.md": "9500686ce776ec9dfa0152a88dd49ac8c25ed80332f67452c54440ed0659b7d0",
-      "checklist.md": "6a49706cdf053cd3fcd454d242677cd585604b85442b92098973338f2cd96fd9",
-      "decision-record.md": "a93b96962f084577ce8521f65b52b557237fa92ccd0b9de6e2ffd3f7d45cddcc",
-      "implementation-summary.md": "cf02d5f2a1075deb93c578d370a5280c5d80d1da22839517d6d5cdfda61402d8"
+      "spec.md": "37b00e1158c7337c688cee204aeeafae16b6f474d3e66e7d8b722e8b8f1fe7eb",
+      "plan.md": "320dc798abf107ae558be1118f8a865003699ba455ae90ff73bfa9fe871a019d",
+      "tasks.md": "01b538e4c4d3b77bccb2cb2033e772d9f87407daca9329a01e22fa70456c0412",
+      "checklist.md": "af9ff9999ef7bd9523d4ba90c026ef3c5612b9a9292999749d22b7e7753c2d17",
+      "decision-record.md": "2513ea4bfe6c3cb7a32492171445106ac4594448e8ffea537750d5d0ed86aad3",
+      "implementation-summary.md": "32085b9ee72a242fec8299fadbb0f27caaa458c2433819a7390504153c8ccb1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

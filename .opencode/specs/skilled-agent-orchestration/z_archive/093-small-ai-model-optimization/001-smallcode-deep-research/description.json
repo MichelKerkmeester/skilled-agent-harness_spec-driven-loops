@@ -1,8 +1,7 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/001-smallcode-deep-research",
-  "description": "The 113 arc shipped cli-devin v1.0.6.3 with cross-model-validated prompt composition rules (RCAF default, medium pre-plan, standard bundle-gate, anti-",
+  "description": "The 113 arc shipped cli-devin v1.0.6.3 with cross-model-validated prompt composition rules (RCAF default, medium pre-plan, standard bundle-gate,",
   "keywords": [
-    "113",
     "arc",
     "shipped",
     "cli-devin",
@@ -15,10 +14,9 @@
     "medium",
     "pre-plan",
     "standard",
-    "bundle-gate",
-    "anti"
+    "bundle-gate"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.064Z",
+  "lastUpdated": "2026-07-09T10:02:45.950Z",
   "specId": "001",
   "folderSlug": "smallcode-deep-research",
   "parentChain": [

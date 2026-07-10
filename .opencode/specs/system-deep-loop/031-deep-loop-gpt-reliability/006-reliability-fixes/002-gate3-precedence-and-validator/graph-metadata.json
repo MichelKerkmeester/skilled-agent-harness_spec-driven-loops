@@ -23,9 +23,7 @@
       "031 006 002"
     ],
     "key_topics": [
-      "035",
       "phase",
-      "002",
       "gate3",
       "precedence",
       "validator",
@@ -34,7 +32,9 @@
       "binding",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary",
+      "packet"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 002 of packet 035 (unified command-contract architecture). The P0 fix: kill the most-replicated GPT failure — the Gate-3 spec-folder halt on autonomous command runs — with an autonomous-precedence bridge AND a concrete validateSpecFolderBinding() the satisfaction rule actually calls (plan-review GAP-16 blocker). Closes F-001/002/003/004/005/028/030/040. Absorbs plan-review gaps GAP-04/07/12/16/17/18/19/20/21/22/48/51.",
     "created_at": "2026-07-03T14:05:28.198Z",
-    "last_save_at": "2026-07-05T06:46:08.262Z",
+    "last_save_at": "2026-07-09T10:02:47.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0a47199057e3c9692b75cf67568ca79d6e67869a90feac10310e84e29644208",
+    "source_fingerprint": "sha256:fe38e7c16b44c80c6343481469e10b837454a384b034ad1d0c2dfeded8705342",
     "source_doc_hashes": {
-      "spec.md": "537d0974bf7bcbd1c4587a551698ef4c9791e67963bbce3fc947baf3202514e7",
-      "plan.md": "8f8c3284673f92c2ceaa3ad3c01931fe66b0261b48bdc80d614e6d95ad83fa62",
-      "tasks.md": "c7a4dac69c46a3dee222e2320fa2662ac4fb560ce2efc935dc4846584e961acf",
-      "implementation-summary.md": "3c2f6844394a5902fdd08f97bfc1e9246b3101deab7faf64ad65e8aba323e0b5"
+      "spec.md": "89d47a07719a3634ce8dde96efd64be7737e8978b4533fae31fa2985b1762ad5",
+      "plan.md": "e01dd39e372a133d5035767fd368ae26c30fab7fd498b1452ce8bbd55ea2b0fe",
+      "tasks.md": "d06b96bb3d60e073d7f2a953cbc136a3a55f2620c9cb32c5da219a73e6c5d4a8",
+      "implementation-summary.md": "4b563b8b25c1fbc751fa9271f1a17b28cb975a8653e102a9211b5575d456288d"
     },
     "last_active_child_id": null,
     "last_active_at": null

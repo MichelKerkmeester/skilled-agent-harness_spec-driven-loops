@@ -30,10 +30,10 @@
       "plugin",
       "general",
       "identity",
-      "fix",
       "plan",
       "tasks",
-      "verification"
+      "verification",
+      "checklist"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -43,8 +43,6 @@
       "spec.md",
       ".opencode/plugins/README.md",
       ".opencode/skills/.loop-guard-state/guard-warnings.log",
-      ".opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md",
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/mk-deep-loop-guard.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md",
@@ -79,12 +77,6 @@
         "name": "guard-warnings.log",
         "kind": "file",
         "path": ".opencode/skills/.loop-guard-state/guard-warnings.log",
-        "source": "derived"
-      },
-      {
-        "name": "mk-deep-loop-guard.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md",
         "source": "derived"
       },
       {
@@ -194,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatches within a session (phase 012's benchmark measured GPT-5.5 inconsistently refusing one direct dispatch while allowing an identical one); (2) its existing mode-mismatch check resolves the dispatch target via `registry.get(args.subagenttype)`, but `orchestrate.md`'s own dispatch convention sets `subagenttype: \"general\"` on every Task call (independently re-verified against `orchestrate.md`'s real",
     "created_at": "2026-07-01T17:42:33.780Z",
-    "last_save_at": "2026-07-05T06:46:03.731Z",
+    "last_save_at": "2026-07-09T10:02:47.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5952db3d177b886e08ef152e82c26568f1da1f3a4c859db60db325403d470bf",
+    "source_fingerprint": "sha256:51fea0828ad49b3b30e2d1f949bb7b4d792a66d5a92d7e302aac3657c2fa951c",
     "source_doc_hashes": {
-      "spec.md": "2700f22ef786cf2c70bf2e1c7f5054a3941cd4dc84480b438d13577837f2494d",
-      "plan.md": "6439b90b9fc98e494468e45472dbbc79516a97a53e4eb2e1459fc58d6675db13",
-      "tasks.md": "78d3ceec451de96c3f9850c48ac1996e20fee999ee482c19b266aeb7e4228c13",
-      "checklist.md": "2f86d560a2b65a5cc92d41e80b1ad013f9f500dbde750d5aa66017f413d2522c",
-      "implementation-summary.md": "7db3c27ad9453e7d741370729cf2ca0ae384f3a3ddde01f20f5574bff60cf452"
+      "spec.md": "45b532878adc62c98c4b0d47629e478d4608e633a22bf5b79888f848f147ee89",
+      "plan.md": "3b6fc9f7182e7b8bfd67f753eb136b28a0ed7390c7334684cd040756cede113a",
+      "tasks.md": "27cea4c20bb2a343391cff2ce7de822216f855873632dd13970894fc5cf62fc9",
+      "checklist.md": "ffc01d41e073e28fee5154974f579b1ffb5f5e03400213a1f583737df6843290",
+      "implementation-summary.md": "c7ffc03428d63db7dde0ee2e510bcfa2ec5e139e86b83269a05116f30133c419"
     },
     "last_active_child_id": null,
     "last_active_at": null

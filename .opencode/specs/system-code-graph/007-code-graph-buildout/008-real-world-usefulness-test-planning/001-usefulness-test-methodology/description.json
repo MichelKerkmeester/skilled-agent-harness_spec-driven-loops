@@ -3,7 +3,6 @@
   "description": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces",
   "keywords": [
     "phases",
-    "001-011",
     "shipped",
     "capability",
     "resilience",
@@ -15,7 +14,7 @@
     "integration",
     "surfaces"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.005Z",
+  "lastUpdated": "2026-07-09T10:02:47.009Z",
   "specId": "001",
   "folderSlug": "usefulness-test-methodology",
   "parentChain": [

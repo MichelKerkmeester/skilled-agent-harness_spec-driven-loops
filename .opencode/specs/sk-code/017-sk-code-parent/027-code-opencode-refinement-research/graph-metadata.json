@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/017-sk-code-parent/027-code-opencode-refinement-research",
+  "spec_folder": "sk-code/017-sk-code-parent/027-code-opencode-refinement-research",
+  "parent_id": "sk-code/017-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-opencode refinement research",
+      "refine code-opencode surface subskill",
+      "code-opencode vs .opencode reality"
+    ],
+    "key_topics": [
+      "code-opencode",
+      "refinement",
+      "research",
+      "refine",
+      "surface",
+      "subskill",
+      "opencode",
+      "reality",
+      "generic",
+      "docs",
+      "packet",
+      "playbook"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "config/config.jsonc",
+      "spec/create.sh",
+      ".opencode/plugins/mk-skill-advisor.js",
+      ".github/hooks/superset-notify.json",
+      "hooks/claude/README.md",
+      ".claude/settings.local.json",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/skills/sk-doc/create-command/assets/command_template.md",
+      ".claude/settings.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.jsonc",
+        "kind": "file",
+        "path": "config/config.jsonc",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "superset-notify.json",
+        "kind": "config",
+        "path": ".github/hooks/superset-notify.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "hooks/claude/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-command/assets/command_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic-env",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Contract Versions",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alignment Drift Verifier",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-built",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`code-opencode` is not a generic docs packet — it is the playbook for writing and modifying code in this repository's own `.opencode/` tree: skills, agents, commands, plugins, MCP servers, hooks, and descriptor/config",
+    "created_at": "2026-07-08T14:11:39.742Z",
+    "last_save_at": "2026-07-08T14:13:55.229Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:5bcce1ce25e7fd2ea866ffafd2058b9915a58c329574b028d650b49ebf459e0d",
+    "source_doc_hashes": {
+      "spec.md": "257196f237c3e43b43fe6451bcdd3bb0deb7bdfddda6bb431f7bec94b0b438bb",
+      "research/research.md": "7bb671a39760c9680474aaba8d244d112a22a8d1024d314ec0f0685bbcc09e73"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

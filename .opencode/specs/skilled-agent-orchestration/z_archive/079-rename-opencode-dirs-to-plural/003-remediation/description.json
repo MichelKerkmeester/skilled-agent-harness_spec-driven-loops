@@ -36,12 +36,10 @@
     "active",
     "findings",
     "packet",
-    "097",
     "deep-review",
-    "093-096",
     "track"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.840Z",
+  "lastUpdated": "2026-07-09T10:02:45.676Z",
   "specId": "003",
   "folderSlug": "remediation",
   "parentChain": [

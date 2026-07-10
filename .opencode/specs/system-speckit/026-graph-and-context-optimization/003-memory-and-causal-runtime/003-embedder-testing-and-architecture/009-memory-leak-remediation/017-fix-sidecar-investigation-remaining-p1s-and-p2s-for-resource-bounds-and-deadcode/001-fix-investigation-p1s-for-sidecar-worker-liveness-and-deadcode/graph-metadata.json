@@ -28,9 +28,6 @@
     ],
     "key_topics": [
       "arc",
-      "010",
-      "003",
-      "001",
       "sidecar-worker",
       "f14",
       "f19",
@@ -38,7 +35,10 @@
       "f30",
       "f94",
       "f95",
-      "remediation"
+      "remediation",
+      "plan",
+      "liveness",
+      "deadcode"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "sidecar-worker.ts has 7 P1 findings from arc 010/001 deep-research covering: dead model-name fallback (F5), incorrect parent-liveness detection (F14), single-caller helper-function indirection chain (F19), 4 trivial-impl single-call helpers (F26), inconsistent error-message detail across module boundaries (F30), pre-parse failure responses use id=0 with silent loss (F94), cached rejected provider promise persists indefinitely (F95)",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-02T05:31:12.258Z",
+    "last_save_at": "2026-07-09T10:02:53.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

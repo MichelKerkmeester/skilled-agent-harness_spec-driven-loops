@@ -28,18 +28,18 @@
       "graph"
     ],
     "key_topics": [
-      "028",
       "code-graph",
       "self-contained",
       "package",
       "migration",
       "plan",
-      "002",
       "code",
       "ystem",
       "spec",
       "kit",
-      "026"
+      "graph",
+      "migrate",
+      "parallel"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Migrate code-graph into a parallel self-contained package at `mcpserver/code-graph/` with subfolders `lib/`, `tools/`, `handlers/`, `tests/`, `schemas/` (if extracted)",
     "created_at": "2026-04-21T08:25:24.317Z",
-    "last_save_at": "2026-07-07T16:18:34.011Z",
+    "last_save_at": "2026-07-09T10:02:47.411Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

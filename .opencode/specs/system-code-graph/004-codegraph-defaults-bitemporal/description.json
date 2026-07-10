@@ -3,7 +3,6 @@
   "specFolder": "system-code-graph/004-codegraph-defaults-bitemporal",
   "description": "The 009 dark-flag validation found two production-readiness gaps in the system-code-graph subsystem, both behind existing default-off flags",
   "keywords": [
-    "009",
     "dark-flag",
     "validation",
     "found",
@@ -17,7 +16,7 @@
     "default-off",
     "flags"
   ],
-  "lastUpdated": "2026-07-06T17:15:57.775Z",
+  "lastUpdated": "2026-07-09T10:02:46.724Z",
   "specId": "004",
   "folderSlug": "codegraph-defaults-bitemporal",
   "parentChain": [

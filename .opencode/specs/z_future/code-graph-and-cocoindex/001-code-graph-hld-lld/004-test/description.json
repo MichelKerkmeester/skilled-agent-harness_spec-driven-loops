@@ -27,7 +27,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/004-test",
+  "specFolder": "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld/004-test",
   "description": "Feature Specification: 004 Tests",
   "keywords": [
     "feature",
@@ -35,12 +35,12 @@
     "004",
     "tests"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.042Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "004",
   "folderSlug": "test",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex",
+    "z_future",
+    "code-graph-and-cocoindex",
     "001-code-graph-hld-lld"
   ],
   "memorySequence": 0,

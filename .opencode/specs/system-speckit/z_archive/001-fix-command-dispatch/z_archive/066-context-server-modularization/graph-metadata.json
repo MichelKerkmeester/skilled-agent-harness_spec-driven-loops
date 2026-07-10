@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -31,12 +31,12 @@
       "server",
       "modularization",
       "spec",
-      "066",
       "implementation",
       "plan",
       "tasks",
       "validation",
-      "checklist"
+      "checklist",
+      "context-server"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -45,7 +45,6 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization/spec.md",
       "spec.md",
       "implementation-summary.md",
       "handover.md"
@@ -78,7 +77,7 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/066-context-server-modularization/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The context-server.js file is 2,703 lines - too large for efficient AI-assisted development and human review",
     "created_at": "2026-04-12T09:02:53.540Z",
-    "last_save_at": "2026-06-23T03:49:59.238Z",
+    "last_save_at": "2026-07-09T10:02:57.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

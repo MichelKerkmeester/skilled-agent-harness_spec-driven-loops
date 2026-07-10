@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/007-session-cleanup",
+  "description": "Fix plan for the session-cleanup audit findings; two-model designs, review-hardened; actionable fixes + reclassified non-issues.",
+  "keywords": [
+    "session-cleanup",
+    "remediation",
+    "fixes",
+    "plugin",
+    "review",
+    "plan"
+  ],
+  "lastUpdated": "2026-07-10T11:42:16.945Z",
+  "specId": "007",
+  "folderSlug": "session-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "129-opencode-plugins-hooks-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

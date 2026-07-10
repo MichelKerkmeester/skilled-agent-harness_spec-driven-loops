@@ -12,32 +12,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "spec",
+      "tree-sitter WASM migration",
+      "tree-sitter default parser",
+      "regex fallback parser",
+      "plan",
       "tree",
       "sitter",
       "wasm",
       "migration",
       "015",
-      "plan",
       "tasks",
       "foundation",
-      "checklist",
-      "implementation",
-      "summary"
+      "checklist"
     ],
     "key_topics": [
-      "spec",
-      "tree",
-      "sitter",
+      "tree-sitter",
       "wasm",
       "migration",
-      "015",
+      "default",
+      "parser",
+      "regex",
+      "fallback",
       "plan",
+      "tree",
+      "sitter",
       "tasks",
-      "foundation",
-      "checklist",
-      "implementation",
-      "summary"
+      "foundation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-13T04:55:08.078Z",
-    "last_save_at": "2026-07-07T16:18:33.969Z",
+    "last_save_at": "2026-07-09T10:02:47.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7b7e53d2bd4a9849c63af47187880c8edf39884820809c49d73bf35287fcf1d",
+    "source_fingerprint": "sha256:1b848866398232235f7c10c2d2d8ef54e48a8fe91725ed7e458124025636832d",
     "source_doc_hashes": {
-      "spec.md": "7575b2fc0449a389665231323a034b3805b9fec69a03991cbec2f2a93b4f1e55",
+      "spec.md": "fd98ddd0a36aeafb4676487bb49c375e7bd6d7b28e967ae7539520bf0c4eb36f",
       "plan.md": "8a04b6ebeddc8f405a134a2c2df1457149295c87475708c92235c4a74bf338c8",
       "tasks.md": "d76e678915915f29580b5a1e72a6506e8beccb7019f31b337ebb8864ea9b60a7",
       "checklist.md": "aa8857d89994a4acbf2a65f588f3c6cabf336a7896c1483ec3a3586173f7423a",

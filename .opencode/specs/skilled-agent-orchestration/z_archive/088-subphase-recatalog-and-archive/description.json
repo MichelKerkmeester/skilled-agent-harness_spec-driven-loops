@@ -4,7 +4,6 @@
   "description": "Execute 998 Wave 2 PROCEED operations: 000-release-cleanup 6-sub-phase recatalog, 006-skill-advisor 5-sub-phase internal structure, parent-doc derived",
   "keywords": [
     "execute",
-    "998",
     "wave",
     "proceed",
     "operations",
@@ -18,7 +17,7 @@
     "parent-doc",
     "derived"
   ],
-  "lastUpdated": "2026-06-23T03:49:50.362Z",
+  "lastUpdated": "2026-07-09T10:02:45.825Z",
   "specId": "088",
   "folderSlug": "subphase-recatalog-and-archive",
   "parentChain": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027",
   "status": "complete",
   "statusNote": "Read-only review-output artifact (review/ holds the findings); terminal — no implementation lane.",
   "description": "Read-only review: README currency vs 027 reality",
@@ -11,11 +11,11 @@
     "027",
     "reality"
   ],
-  "lastUpdated": "2026-06-18T12:37:51.568Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "001",
   "folderSlug": "readmes-vs-027",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",
     "007-release-alignment-review"

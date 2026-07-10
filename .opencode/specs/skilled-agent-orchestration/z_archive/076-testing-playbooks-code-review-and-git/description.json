@@ -8,7 +8,6 @@
     "findings-first",
     "review",
     "baseline",
-    "used",
     "deep-review",
     "speckit",
     "sk-git",
@@ -16,7 +15,7 @@
     "git",
     "lifecycle"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.583Z",
+  "lastUpdated": "2026-07-09T10:02:45.611Z",
   "specId": "076",
   "folderSlug": "testing-playbooks-code-review-and-git",
   "parentChain": [

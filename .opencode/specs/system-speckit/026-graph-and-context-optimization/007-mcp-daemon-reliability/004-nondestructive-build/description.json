@@ -1,11 +1,10 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build",
-  "description": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build` repop",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build",
+  "description": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build`",
   "keywords": [
     "spec-kit",
     "mcp-server",
-    "build",
     "runs",
     "prebuild",
     "clean",
@@ -15,14 +14,13 @@
     "force",
     "deleting",
     "live",
-    "tsc",
-    "repop"
+    "tsc"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.406Z",
+  "lastUpdated": "2026-07-09T10:02:54.378Z",
   "specId": "004",
   "folderSlug": "nondestructive-build",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

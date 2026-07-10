@@ -52,7 +52,7 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 
 ## 3. TEST EXECUTION
 
-Run this scenario through the Phase 005 universal prompt using `SCENARIO_ID=CS-004`. The expected answer may recommend CSS for simple hover and Motion.dev for timeline, gesture, or runtime-controlled cases, but the matrix must be loaded.
+Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-004`. The expected answer may recommend CSS for simple hover and Motion.dev for timeline, gesture, or runtime-controlled cases, but the matrix must be loaded.
 
 Evidence files:
 - `/tmp/skc-CS-004-<cli>.txt`

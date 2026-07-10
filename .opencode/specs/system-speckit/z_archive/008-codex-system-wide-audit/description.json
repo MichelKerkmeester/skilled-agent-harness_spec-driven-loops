@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/008-codex-system-wide-audit",
+  "specFolder": "system-speckit/z_archive/008-codex-system-wide-audit",
   "description": "This archived folder captures work that remediated audit findings across the wider system-spec-kit surface",
   "keywords": [
     "archived",
@@ -14,11 +14,11 @@
     "system-spec-kit",
     "surface"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.455Z",
+  "lastUpdated": "2026-07-09T10:02:57.501Z",
   "specId": "008",
   "folderSlug": "codex-system-wide-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

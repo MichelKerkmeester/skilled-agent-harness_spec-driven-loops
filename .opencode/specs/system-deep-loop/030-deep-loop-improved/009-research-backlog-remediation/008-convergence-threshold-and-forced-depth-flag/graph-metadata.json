@@ -35,11 +35,8 @@
     "importance_tier": "medium",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
       ".opencode/commands/deep/research.md",
       ".opencode/commands/deep/review.md",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -47,27 +44,9 @@
     ],
     "entities": [
       {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
-        "source": "derived"
-      },
-      {
         "name": "review.md",
         "kind": "doc",
         "path": ".opencode/commands/deep/review.md",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -189,11 +168,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Fixed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`fanout-run.cjs:846` hardcodes `const convergenceThreshold = options.convergenceThreshold ?? 0.1;` as the fallback when no explicit value is supplied to a CLI-executor fan-out lineage, while `deepresearchconfig.json`'s own documented default is `0.05` — confirmed distinct from (though related to) the separate \"the flag doesn't propagate at all\" bug already fixed in child 001's dispatch",
     "created_at": "2026-07-01T07:26:03.619Z",
-    "last_save_at": "2026-07-04T18:02:26.028Z",
+    "last_save_at": "2026-07-09T10:02:47.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +187,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7ea39b360ce7bc7b849e3952ab81a86db52ac324a553416a9e1fe456b0ac184",
+    "source_fingerprint": "sha256:9a4e146c133f2c6482e7b50fb3f87224d4c75d9cc13534ea979d6b81aea8ace6",
     "source_doc_hashes": {
-      "spec.md": "79050e9698d3f235037ed94685cad5bf3fcbbc5380845e12e16da34bf74460a9",
-      "plan.md": "0dae33a595f8aca9885b89628d41129f0fa2a303d0d634a55199dc621d49c395",
-      "tasks.md": "49565e257f8591c297d44f79d626bbb0fca6dcabae719dfd2b6c1ef88ab49ed2",
-      "implementation-summary.md": "435019545ec61a97d0036415b61d4dcbe32160f0a5ad2a6da133049038e27e9b"
+      "spec.md": "a80635b4573cb3afb344e73b7c296086390da771b7553893b612814062bf04ab",
+      "plan.md": "7c7f430fc36a0189a08a17591aea70d6c8c9c7dc8d5ec4a407f6bc404617b9cf",
+      "tasks.md": "2464342cc01b015db15c62f9ddf057a7802d14cd8af5043db80cd857b5bcf2fb",
+      "implementation-summary.md": "33f48a7000e216686a9d6fcf923897d8088bb96c080f51bfb5c64dfd19f46beb"
     },
     "last_active_child_id": null,
     "last_active_at": null

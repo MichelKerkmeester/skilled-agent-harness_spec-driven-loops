@@ -1,27 +1,24 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units",
-  "description": "029 ground the deep-research remediation down to its tail, but three residual builds were deliberately deferred because each mutates a high-blast-radi",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units",
+  "description": "029 ground the deep-research remediation down to its tail, but three residual builds were deliberately deferred because each mutates a",
   "keywords": [
-    "029",
     "ground",
     "deep-research",
     "remediation",
     "tail",
     "three",
     "residual",
-    "builds",
     "deliberately",
     "deferred",
     "because",
-    "mutates",
-    "high-blast-radi"
+    "mutates"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.947Z",
+  "lastUpdated": "2026-07-09T10:02:55.839Z",
   "specId": "004",
   "folderSlug": "residual-design-units",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation"
   ],

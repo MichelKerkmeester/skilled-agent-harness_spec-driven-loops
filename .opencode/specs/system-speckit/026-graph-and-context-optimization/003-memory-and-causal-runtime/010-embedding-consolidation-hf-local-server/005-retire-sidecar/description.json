@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar",
   "description": "Once hf-local is a client for a launcher-supervised model server, the sidecar branch becomes redundant lifecycle machinery",
   "keywords": [
     "hf-local",
@@ -14,11 +14,11 @@
     "lifecycle",
     "machinery"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.459Z",
+  "lastUpdated": "2026-07-09T10:02:53.858Z",
   "specId": "005",
   "folderSlug": "retire-sidecar",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "010-embedding-consolidation-hf-local-server"

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/013-spec-descriptions",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/013-spec-descriptions",
   "description": "The centralized `specs/descriptions.json` stores all spec folder descriptions in a single file, creating three problems:",
   "keywords": [
     "centralized",
@@ -11,15 +11,14 @@
     "folder",
     "single",
     "file",
-    "creating",
     "three",
     "problems"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.073Z",
+  "lastUpdated": "2026-07-09T10:02:58.241Z",
   "specId": "013",
   "folderSlug": "spec-descriptions",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

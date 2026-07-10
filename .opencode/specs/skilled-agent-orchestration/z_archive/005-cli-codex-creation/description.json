@@ -10,12 +10,11 @@
     "gemini",
     "model",
     "variants",
-    "created",
     "avoidable",
     "decision",
     "overhead"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.899Z",
+  "lastUpdated": "2026-07-09T10:02:45.174Z",
   "specId": "005",
   "folderSlug": "cli-codex-creation",
   "parentChain": [

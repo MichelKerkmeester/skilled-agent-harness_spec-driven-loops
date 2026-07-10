@@ -27,7 +27,6 @@
       "w3 w7 runtime wiring checklist"
     ],
     "key_topics": [
-      "008",
       "runtime",
       "wiring",
       "audit",
@@ -38,7 +37,8 @@
       "first",
       "implementation",
       "plan",
-      "w13"
+      "w13",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase F found that W3-W7 exist as useful local artifacts, but runtime decisions remain fragmented: W3 and W6 are test-only, W5 is response-only, W7 is fixture-only, and W4 is underfed by an unknown empty QueryPlan",
     "created_at": "2026-04-29T04:45:00Z",
-    "last_save_at": "2026-07-02T05:31:10.510Z",
+    "last_save_at": "2026-07-09T10:02:50.630Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

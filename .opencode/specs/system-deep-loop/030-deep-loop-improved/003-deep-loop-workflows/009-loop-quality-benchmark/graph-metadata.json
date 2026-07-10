@@ -35,54 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "run-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "promote-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "run-benchmark-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "promote-candidate-benchmark.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state-mode-mix.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/reduce-state-mode-mix.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,11 +148,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "helped",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Emit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-improvement benchmark currently gates on benchmark-pass (did the run succeed?) rather than improvement-over-baseline (is the candidate better than what was there before?)",
     "created_at": "2026-06-28T14:02:12Z",
-    "last_save_at": "2026-07-04T18:02:11.775Z",
+    "last_save_at": "2026-07-09T10:02:47.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca784b7846e5a3d660f505aff5d3a92299ecb6a87df6b469ba87791d18dfb7db",
+    "source_fingerprint": "sha256:cb17d08687b3e256eac6096d5e51f89548ba014c72259ab23d07b822817c1fa5",
     "source_doc_hashes": {
-      "spec.md": "0a25721492c2d8c30a40424da598253e57dd080f3b41ce2be3bddceedd29607c",
-      "plan.md": "3e5dbfe7d43c4eaf9c1f9b9620988068688477f7bb1aa4e46a7ec8b72cddb073",
-      "tasks.md": "5024bc32ad969ce6031cd6659a51de4c40571933a8a40669ea7fafad7eded8e4",
-      "implementation-summary.md": "a178dd35427e8a104270a0dfdc8eeb731eafa8734ada49da50ef7049e6bce9d4"
+      "spec.md": "42f3cfe216f52a990ee01002fa9d84655a2ccb8ceef57b9b3bd56a7ef25586b9",
+      "plan.md": "eaf665899b37c6d0a8b6679a89f2313ee6b6bf7bf138306b1862c8ea41c5801d",
+      "tasks.md": "b8951b9f33d9c2f452a247a26eebe41b6ac43ab403ec40943f29c792da4ce19a",
+      "implementation-summary.md": "e87eb5d688781a7cde3553d1fb8048af021ed62082cbf31b7f075360ed4c5075"
     },
     "last_active_child_id": null,
     "last_active_at": null

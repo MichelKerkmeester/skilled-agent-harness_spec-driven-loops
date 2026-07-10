@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Roll the calibrated framework out to the two remaining runtime-loop modes",
     "created_at": "2026-07-02T05:53:06.087Z",
-    "last_save_at": "2026-07-02T17:46:36.175Z",
+    "last_save_at": "2026-07-09T10:02:48.020Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0be325c4a141587e14619c279fa5ec8fca8376410fbc729629f5306448bf1d2",
+    "source_fingerprint": "sha256:2398794b96dd97ee81d8d209c977c6d159dd67bae6eaea24d2bf4ce0a4889b81",
     "source_doc_hashes": {
-      "spec.md": "a8f47cc6aa81bf68577a7223c60524b8f05dce24fed0acb70654f3f4cea25dce",
-      "plan.md": "4b73ed388bef5fc5c0a7b46b93c99c14695e7d9be6104331999b4f84611e46d0",
-      "tasks.md": "b5b713499a2191dd1a96779d51a65ce6258afb570d5c6de299567d4c04e5475d",
-      "checklist.md": "926c9b812af0b3dc7ff6d3d204b32f8bfdd528f5c9cef70eabeac883f4ae38f7",
-      "implementation-summary.md": "ae94083ebc2da5af3a180a2f81ddd4aefd3d13e31cd5a454f0e325b6197e4ef6"
+      "spec.md": "d61bb0cee71a0fca974e463183983f603357ec8f17b46b4c6fa0d63a6d501861",
+      "plan.md": "17702ca96536390a7b347423b8471459b3713e4830aa5a566ce96ac12c25db49",
+      "tasks.md": "58f60610e078032548e1b6dfdbc00a27adac7ac38e4692b3b759b87b4d1c0225",
+      "checklist.md": "6e1d893ae36dc27464a45ad940307ba1e91ef449ef38ce0cfa7dc70f03a24f04",
+      "implementation-summary.md": "b52167c149fc60329f33e17e9686af581ca5f5f4289d6a57808b26f08c09d1ac"
     },
     "last_active_child_id": null,
     "last_active_at": null

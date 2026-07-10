@@ -39,14 +39,9 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/constitutional/recursion-control.md",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
       ".github/workflows/agent-mirror-sync.yml",
       "plan.md",
       "tasks.md",
@@ -60,30 +55,6 @@
         "name": "recursion-control.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/constitutional/recursion-control.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-pack.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,11 +170,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 rides the live per-turn skill-advisor hook to keep the fable-5 governor capsule in front of main-session agents, but that hook does not fire for sub-agents",
     "created_at": "2026-06-15T14:06:38Z",
-    "last_save_at": "2026-06-23T03:49:48.506Z",
+    "last_save_at": "2026-07-09T10:02:46.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a45a0b557ba417a3ce4fe05835d07765fcf1b0b809a18862a8d45a2e2110f5f8",
+    "source_fingerprint": "sha256:64e0ea52c8ef43e5f695256fe2f33df06f93293ff6551e3884ad2b4fde1ce89f",
     "source_doc_hashes": {
       "spec.md": "c10c50c33c11ff9ddfdd5ed80678a8acb141c3f57ecb40969c9fe8eb0040cbcf",
       "plan.md": "4e34dab5c3eb480cce7207216e013aaf88bc0f5180274894912b20584f4465de",
       "tasks.md": "93bcd7b728f3175730b6ebc98ef8ae3520c813fdd5126d3bd495b7f637062d7c",
       "checklist.md": "84c8a92792188fbaa2019dbe6c4fd46fb235357ce601937cbed053b72d6d0950",
       "decision-record.md": "a7e08faeb58e0398d3b403c55dc403e584a6605dfcb1d2d27f94ab6f3cc6d37a",
-      "implementation-summary.md": "6612e82d0c45b8b5650770af1755776b71594949d68a76c6f91d26cf92dd1ded"
+      "implementation-summary.md": "bcd12fb63a3bce396bf6dc3ab0aa8684543f8cc03e04a39ef28f879ca39e68b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,7 +8,6 @@
     "benchmark",
     "packages",
     "phases",
-    "002-004",
     "need",
     "one",
     "shared",
@@ -16,7 +15,7 @@
     "measurement",
     "substrate"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.583Z",
+  "lastUpdated": "2026-07-09T10:02:48.011Z",
   "specId": "001",
   "folderSlug": "framework-and-harness",
   "parentChain": [

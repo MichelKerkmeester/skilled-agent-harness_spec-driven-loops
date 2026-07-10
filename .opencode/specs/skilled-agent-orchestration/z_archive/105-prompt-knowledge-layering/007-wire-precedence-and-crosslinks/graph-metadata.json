@@ -45,7 +45,6 @@
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/sk-prompt-models/SKILL.md",
       "spec.md",
       "plan.md",
@@ -200,7 +199,7 @@
     ],
     "causal_summary": "Each cli- skill defined prompt-composition guidance independently, so a caller could not predict which rule prevailed when two constraints matched the same dispatch",
     "created_at": "2026-06-05T12:47:32.516Z",
-    "last_save_at": "2026-06-23T03:49:51.609Z",
+    "last_save_at": "2026-07-09T10:02:46.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:042ebecf35fcf1b95b9a09e335c1e0773f9b422a7642dc981fa95edc15cda476",
+    "source_fingerprint": "sha256:739f5c97266dcde16728dd578d959317554438cf8bd011905a8d6522739aa0dd",
     "source_doc_hashes": {
-      "spec.md": "b9cb5232378ee105fb3c4841e4755a94650db6963f20b7de1a0893ba4670cb1b",
-      "plan.md": "8d2d99404b636660d1ad4cd4753c2114dcd75ba7c885f2a1353643a27f26715f",
-      "tasks.md": "f857f2297457cae5979edc66495f98bb08a7407cf52fa848063d36939f521caf",
-      "implementation-summary.md": "8d21d1267111b698ccdb7ab6d7b4fbbd0fd4de51b29c931ba00e500dc40d48eb"
+      "spec.md": "62b4f3753aedbac306b1edae12684770419ffc2d4ab0d94d0f0154f4d429bff4",
+      "plan.md": "e00ee7ad022ecf8c72d428ced197cff7fb22cd8b81375c8505dcdb836591eb34",
+      "tasks.md": "0a3bcd941c01f22e615e0b9c4b6ae626ad98a69accde2dda9061d1ee1c2db7e1",
+      "implementation-summary.md": "97d75cd6036075889f59091df5c20ba8fa5fa8210a8b81c87598c74a24ef4a90"
     },
     "last_active_child_id": null,
     "last_active_at": null

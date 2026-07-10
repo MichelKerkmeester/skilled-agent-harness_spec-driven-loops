@@ -8,7 +8,7 @@ trigger_phrases:
   - "language sub detection"
 importance_tier: important
 contextType: general
-version: 3.5.0.8
+version: 4.1.0.9
 ---
 
 # Router Reference - Code Surface Detection
@@ -87,13 +87,16 @@ After OPENCODE surface detection, select language resources by extension first:
 
 | Language | Extensions | Resource Folder |
 | --- | --- | --- |
-| JAVASCRIPT | `.js`, `.mjs`, `.cjs` | `references/opencode/javascript/` |
-| TYPESCRIPT | `.ts`, `.tsx`, `.mts`, `.d.ts` | `references/opencode/typescript/` |
-| PYTHON | `.py` | `references/opencode/python/` |
-| SHELL | `.sh`, `.bash` | `references/opencode/shell/` |
-| CONFIG | `.json`, `.jsonc` | `references/opencode/config/` |
+| JAVASCRIPT | `.js`, `.mjs`, `.cjs` | `code-opencode/references/javascript/` |
+| TYPESCRIPT | `.ts`, `.tsx`, `.mts`, `.d.ts` | `code-opencode/references/typescript/` |
+| PYTHON | `.py` | `code-opencode/references/python/` |
+| SHELL | `.sh`, `.bash` | `code-opencode/references/shell/` |
+| CONFIG | `.json`, `.jsonc` | `code-opencode/references/config/` |
+| CONFIG | `.yaml`, `.yml` | `code-opencode/references/config/` |
 
 When multiple languages are touched, load shared OpenCode guidance plus each touched language quick reference/checklist.
+
+YAML is a live OpenCode config-adjacent genre for command routers, command auto/confirm assets, and workflow contracts. A live-surface scan found 65 YAML/YML files under `.opencode/commands` and `.opencode/skills`, excluding `node_modules` and `dist`.
 
 ---
 

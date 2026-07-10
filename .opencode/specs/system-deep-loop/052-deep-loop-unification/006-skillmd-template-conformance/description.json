@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-deep-loop/052-deep-loop-unification/006-skillmd-template-conformance",
   "description": "Following the deep-loop-workflows + deep-loop-runtime merge into `system-deep-loop` (phases 001-005 of this parent packet), no pass had specifically",
   "keywords": [
@@ -8,13 +9,12 @@
     "merge",
     "system-deep-loop",
     "phases",
-    "001-005",
     "parent",
     "packet",
     "pass",
     "specifically"
   ],
-  "lastUpdated": "2026-07-08T16:18:08.223Z",
+  "lastUpdated": "2026-07-09T10:02:48.230Z",
   "specId": "006",
   "folderSlug": "skillmd-template-conformance",
   "parentChain": [
@@ -22,6 +22,5 @@
     "052-deep-loop-unification"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

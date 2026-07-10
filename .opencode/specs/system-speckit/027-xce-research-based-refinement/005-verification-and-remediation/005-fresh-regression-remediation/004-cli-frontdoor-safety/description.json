@@ -1,28 +1,22 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety",
-  "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved — 5 fixed, 1 refuted-then-hardened; CLI vitest gree",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety",
+  "description": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings.",
   "keywords": [
     "remediation",
     "sub-phase",
-    "027",
     "fresh",
     "regression",
     "deep-review",
     "cli",
     "front-door",
-    "findings",
-    "resolved",
-    "fixed",
-    "refuted-then-hardened",
-    "vitest",
-    "gree"
+    "findings"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.977Z",
+  "lastUpdated": "2026-07-09T10:02:55.867Z",
   "specId": "004",
   "folderSlug": "cli-frontdoor-safety",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",
     "005-fresh-regression-remediation"

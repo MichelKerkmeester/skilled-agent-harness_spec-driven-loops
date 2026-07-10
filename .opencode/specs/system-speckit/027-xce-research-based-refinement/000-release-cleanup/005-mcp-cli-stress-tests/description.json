@@ -13,7 +13,7 @@
   "status": "complete",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests",
   "description": "Completed stress coverage for the three daemons, CLI front doors under schema v37, and the new gated flags",
   "keywords": [
     "completed",
@@ -30,11 +30,11 @@
     "gated",
     "flags"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.889Z",
+  "lastUpdated": "2026-07-09T10:02:54.887Z",
   "specId": "005",
   "folderSlug": "mcp-cli-stress-tests",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup"
   ],

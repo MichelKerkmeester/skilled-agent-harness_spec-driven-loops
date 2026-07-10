@@ -22,8 +22,6 @@
       "validator shape rules"
     ],
     "key_topics": [
-      "078",
-      "004",
       "validator-cleanup",
       "graph-metadata-shape",
       "plan",
@@ -33,11 +31,15 @@
       "validator",
       "shape",
       "rules",
-      "077"
+      "surfaced",
+      "findings",
+      "mcp"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       "references/config/environment_variables.md",
       "spec.md",
       "plan.md",
@@ -45,6 +47,18 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
       {
         "name": "environment_variables.md",
         "kind": "doc",
@@ -176,23 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Phase",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "077 surfaced 4+ findings in the validator + MCP tool docs cluster",
     "created_at": "2026-05-05T17:36:54Z",
-    "last_save_at": "2026-06-23T03:49:49.859Z",
+    "last_save_at": "2026-07-09T10:02:45.518Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ed1c59f0aa5a9e1a87596de85929339321b567bae5cb0439b8767f115fc2556",
+    "source_fingerprint": "sha256:2eee61bc0dec4166a6b0f393b4303b74d1f4905dffe5559a3f94bf0112d3a5fa",
     "source_doc_hashes": {
-      "spec.md": "f89d2b3d197776e4b25b8230b392bd01887433a0fe288babaf71eab96c1ac2cd",
-      "plan.md": "e8f1c7d4b8f40cc8840f0dcf5d9ad1f9603e77120662912f04d5f09848a0917d",
-      "tasks.md": "d3f975b1bb14c7be5672baf98ed0803a0afd6ce191277291ba4e3ad675912f81",
-      "implementation-summary.md": "c7b200abf97de0d8ac5e5b611b52e2d82ba0c39bafaaa7c34d466b46cc68f1d5"
+      "spec.md": "36a17b86cc15be363763ae83fe6d18a8728c8ab3f1adcd97d71ce4b9cee72a41",
+      "plan.md": "feb2f8330cf0fe89de98592b232d5eb834fdc0ef0b3443c29f2a5ffbe1082ac7",
+      "tasks.md": "2bef6c3800ae29fe607b8c4b5aca9837e8379d21273b5ac75ce5e42b6e4208c6",
+      "implementation-summary.md": "93f98e4f84a1287675e95653b4a709f5567e9cf7dbce42dfd2bc6252709f28bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

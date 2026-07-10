@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/007-system-spec-kit-rename",
-  "description": "Rename the workflows-spec-kit skill to system-spec-kit across the entire codebase, ensuring all references are properly updated while preserving histo",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/007-system-spec-kit-rename",
+  "description": "Rename the workflows-spec-kit skill to system-spec-kit across the entire codebase, ensuring all references are properly updated while preserving",
   "keywords": [
     "rename",
     "workflows-spec-kit",
@@ -12,16 +12,14 @@
     "ensuring",
     "references",
     "properly",
-    "updated",
     "while",
-    "preserving",
-    "histo"
+    "preserving"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.872Z",
+  "lastUpdated": "2026-07-09T10:02:56.823Z",
   "specId": "007",
   "folderSlug": "system-spec-kit-rename",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

@@ -19,17 +19,17 @@
     ],
     "key_topics": [
       "adapter-resident-memory-benchmark",
-      "009",
       "phase",
-      "012",
       "adapter",
       "rss",
       "benchmark",
       "arc",
-      "008",
       "shipped",
       "close",
-      "idempotence"
+      "idempotence",
+      "fallback",
+      "gate",
+      "kept"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Arc 009 phase 008 shipped adapter close idempotence + a fallback RSS gate but kept severity at P2 (default) because growth was not yet measured",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-07-02T05:31:12.223Z",
+    "last_save_at": "2026-07-09T10:02:53.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

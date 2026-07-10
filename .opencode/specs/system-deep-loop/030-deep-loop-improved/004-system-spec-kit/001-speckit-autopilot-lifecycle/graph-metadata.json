@@ -42,7 +42,6 @@
       ".opencode/commands/speckit/plan.md",
       ".opencode/commands/speckit/implement.md",
       ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
       "plan.md",
       "spec.md",
       "tasks.md",
@@ -65,12 +64,6 @@
         "name": "speckit_complete_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-autopilot-contract.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The speckit `:auto` mode cuts interactive approval prompts but is not designed for crash-safe unattended execution",
     "created_at": "2026-06-28T20:06:47.253Z",
-    "last_save_at": "2026-07-04T18:02:13.894Z",
+    "last_save_at": "2026-07-09T10:02:47.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f18b60e17623064f1241920e91e91d10a1d9806ff91ae7bcd91c7d13a066d41",
+    "source_fingerprint": "sha256:9b77ace7ecb961c9545405e71a08a4de5b52f34f4554dbb411b4721d5b74ff54",
     "source_doc_hashes": {
-      "spec.md": "c8cb8017bd5a9de33b207148617f8a309298e07c8dd61ae2d80440b0ebe0b320",
-      "plan.md": "942643d7277c9a1a12de79c7fda5f8a8335745fb2e10c2368011647f6593ea32",
-      "tasks.md": "8204a21134ea93e44b86901fc4e4f9a1e1b7d4ad51e61baa78d2722e2feb2b3e",
-      "implementation-summary.md": "b2bf89780d921ebde1cf16284dadddd4aaff53c42c97826b29f722a0bd457556"
+      "spec.md": "2c0da7b80ffe0c60064c524fe024487ba74cf1769490d4ac2be1a395d8ab2444",
+      "plan.md": "da8a8463539ab9376f59146c2282101b66d4a7ed6cdbc1110491e82f91819905",
+      "tasks.md": "7daad9a607f6f922ce3a38a0704e2ee52b9837021cad83320b8e32b9616918d2",
+      "implementation-summary.md": "6275e30c7b686161e4a94e40ce3c03120c15319361af4fb545e037494c25b570"
     },
     "last_active_child_id": null,
     "last_active_at": null

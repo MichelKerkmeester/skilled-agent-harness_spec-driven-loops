@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis",
-  "description": "The analysis category contains 7 manual test scenarios covering causal graph operations (create, stats, delete, trace), epistemic measurement (preflig",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis",
+  "description": "The analysis category contains 7 manual test scenarios covering causal graph operations (create, stats, delete, trace), epistemic measurement",
   "keywords": [
     "analysis",
     "category",
@@ -12,19 +12,17 @@
     "causal",
     "graph",
     "operations",
-    "create",
     "stats",
     "delete",
     "trace",
     "epistemic",
-    "measurement",
-    "preflig"
+    "measurement"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.250Z",
+  "lastUpdated": "2026-07-09T10:02:58.429Z",
   "specId": "006",
   "folderSlug": "analysis",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

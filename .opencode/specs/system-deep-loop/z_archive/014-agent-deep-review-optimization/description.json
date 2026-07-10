@@ -3,12 +3,11 @@
   "description": "`@deep-review` (579 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
     "deep-review",
-    "579",
     "loc",
     "sk-improve-agent",
     "lens"
   ],
-  "lastUpdated": "2026-07-08T13:43:07.371Z",
+  "lastUpdated": "2026-07-09T10:02:49.219Z",
   "specId": "014",
   "folderSlug": "agent-deep-review-optimization",
   "parentChain": [

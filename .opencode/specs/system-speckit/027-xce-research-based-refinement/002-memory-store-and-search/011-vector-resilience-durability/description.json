@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
   "description": "Vector-shard quarantine previously relied on process memory plus a per-shard sentinel",
   "keywords": [
     "vector-shard",
@@ -13,11 +13,11 @@
     "per-shard",
     "sentinel"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.302Z",
+  "lastUpdated": "2026-07-09T10:02:55.320Z",
   "specId": "011",
   "folderSlug": "vector-resilience-durability",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

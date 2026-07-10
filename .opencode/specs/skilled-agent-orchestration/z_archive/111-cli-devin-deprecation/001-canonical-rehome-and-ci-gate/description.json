@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/111-cli-devin-deprecation/001-canonical-rehome-and-ci-gate",
-  "description": "The cli-devin skill owned five canonical pattern assets (context-budget, per-model-budgets, output-verification, confidence-scoring-rubric, quota-fall",
+  "description": "The cli-devin skill owned five canonical pattern assets (context-budget, per-model-budgets, output-verification, confidence-scoring-rubric,",
   "keywords": [
     "cli-devin",
     "skill",
@@ -13,10 +13,9 @@
     "context-budget",
     "per-model-budgets",
     "output-verification",
-    "confidence-scoring-rubric",
-    "quota-fall"
+    "confidence-scoring-rubric"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.417Z",
+  "lastUpdated": "2026-07-09T10:02:46.523Z",
   "specId": "001",
   "folderSlug": "canonical-rehome-and-ci-gate",
   "parentChain": [

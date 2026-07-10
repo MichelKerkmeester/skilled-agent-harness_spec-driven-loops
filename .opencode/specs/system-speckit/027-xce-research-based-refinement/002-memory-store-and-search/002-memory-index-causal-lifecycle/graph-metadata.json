@@ -30,9 +30,7 @@
       "statediff reconciliation layer"
     ],
     "key_topics": [
-      "027",
       "phase",
-      "003",
       "memory",
       "index",
       "causal",
@@ -41,7 +39,9 @@
       "graph",
       "tombstones",
       "frontmatter",
-      "edge"
+      "edge",
+      "promoter",
+      "statediff"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -157,7 +157,7 @@
     ],
     "causal_summary": "Phase-parent control packet grouping the memory store's incremental-index and causal-graph write lifecycle: incremental index foundation, causal-edge tombstones, deterministic metadata-edge promotion, and desired/prior write-path reconciliation.",
     "created_at": "2026-06-06T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:13.602Z",
+    "last_save_at": "2026-07-09T10:02:55.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

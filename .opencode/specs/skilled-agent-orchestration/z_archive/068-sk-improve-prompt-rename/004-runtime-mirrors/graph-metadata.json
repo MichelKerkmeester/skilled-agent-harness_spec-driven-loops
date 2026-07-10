@@ -24,9 +24,7 @@
       "claude codex gemini agent body refs"
     ],
     "key_topics": [
-      "082",
       "phase",
-      "004",
       "sk-improve-prompt",
       "runtime",
       "mirrors",
@@ -35,10 +33,12 @@
       "name",
       "template",
       "core",
-      "tasks"
+      "tasks",
+      "mirror",
+      "rotation"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Runtime mirror files outside `.opencode/` still contain skill-loading references to the old skill ID",
     "created_at": "2026-05-06T10:22:41Z",
-    "last_save_at": "2026-06-23T03:49:49.914Z",
+    "last_save_at": "2026-07-09T10:02:45.549Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2d9b7abaff782a5384ccb3b60b6a6fb5cc9177cf016db0e08cf9b2b1de3515b",
+    "source_fingerprint": "sha256:7a19118521d983a638a55533b5bbe13c063336c281787a673ba36aa48587f0d2",
     "source_doc_hashes": {
-      "spec.md": "2391e266cfcb515b089ee076acfae5e3af795ff32fe4e7b72ee1e642624b8e1b",
+      "spec.md": "7d17e8cb1a72cb5a06fceeca0d48b9150631236ae02a830ca335b1f0daddd8e4",
       "plan.md": "1adfd554c1be4dd74fd023a472815b97ff225714986f0c1275d73036d71f3de6",
       "tasks.md": "b5609309aa8b23736b85355dcd20d2e5ee89033371eb9d5040db2fea0ee352a0",
-      "implementation-summary.md": "85d5bdf8a3211f47fcd1e09247875c335c573e2ae5cbec09bd6fe18a15d4ad38"
+      "implementation-summary.md": "c72096e7bf39042b51b495f1c56702d38b65818aa7a4b2dafd69fc8b8ca3609c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -4,7 +4,6 @@
   "description": "Packet 080 documents the `ai-council/` output protocol but provides no persistence machinery",
   "keywords": [
     "packet",
-    "080",
     "documents",
     "ai-council",
     "output",
@@ -13,7 +12,7 @@
     "persistence",
     "machinery"
   ],
-  "lastUpdated": "2026-07-08T13:43:10.888Z",
+  "lastUpdated": "2026-07-09T10:02:49.354Z",
   "specId": "002",
   "folderSlug": "multi-ai-council-persistence",
   "parentChain": [

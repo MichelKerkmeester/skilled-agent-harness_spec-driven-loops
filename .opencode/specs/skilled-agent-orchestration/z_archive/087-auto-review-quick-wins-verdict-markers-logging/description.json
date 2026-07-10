@@ -4,7 +4,6 @@
   "description": "Packet 106 identified 9 HIGH-impact + 6 MEDIUM-impact reusable patterns from the upstream `dzianisv/opencode-plugins` `auto-review` package",
   "keywords": [
     "packet",
-    "106",
     "identified",
     "high-impact",
     "medium-impact",
@@ -16,7 +15,7 @@
     "auto-review",
     "package"
   ],
-  "lastUpdated": "2026-06-23T03:49:50.332Z",
+  "lastUpdated": "2026-07-09T10:02:45.805Z",
   "specId": "087",
   "folderSlug": "auto-review-quick-wins-verdict-markers-logging",
   "parentChain": [

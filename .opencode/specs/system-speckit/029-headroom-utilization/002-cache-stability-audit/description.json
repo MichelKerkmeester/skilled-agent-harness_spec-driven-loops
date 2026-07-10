@@ -1,5 +1,6 @@
 {
-  "specFolder": "system-spec-kit/029-headroom-utilization/002-cache-stability-audit",
+  "level": "1",
+  "specFolder": "system-speckit/029-headroom-utilization/002-cache-stability-audit",
   "description": "Our hooks inject context (advisor briefs, SessionStart summaries, UserPromptSubmit context) at the top of every turn",
   "keywords": [
     "hooks",
@@ -14,14 +15,13 @@
     "every",
     "turn"
   ],
-  "lastUpdated": "2026-06-28T09:17:56.772Z",
+  "lastUpdated": "2026-07-09T10:02:56.747Z",
   "specId": "002",
   "folderSlug": "cache-stability-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "029-headroom-utilization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

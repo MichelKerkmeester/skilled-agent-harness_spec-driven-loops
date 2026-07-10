@@ -30,13 +30,13 @@
       "validator",
       "rewrite",
       "phase",
-      "021",
       "sk-design",
       "design-command-surface-check",
       "drift",
-      "020",
       "deep-research",
-      "findings"
+      "findings",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 020 deep-research audit (`../020-drift-and-improvement-audit/research/research.md`) found `design-command-surface-check.mjs` reporting `STATUS=INVALID STAGE=metadata` with 10 errors, attributed to `:auto|:confirm` modeled as a flag and missing `design-mcp-open-design` sibling coverage",
     "created_at": "2026-07-07T09:58:04.406Z",
-    "last_save_at": "2026-07-07T09:58:04.406Z",
+    "last_save_at": "2026-07-09T10:02:44.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

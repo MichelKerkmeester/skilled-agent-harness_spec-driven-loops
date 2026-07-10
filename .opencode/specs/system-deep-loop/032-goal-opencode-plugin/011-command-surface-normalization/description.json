@@ -4,14 +4,13 @@
   "description": "Phase 003's docs mandated `.opencode/commands/goal.md`",
   "keywords": [
     "phase",
-    "003",
     "docs",
     "mandated",
     "opencode",
     "commands",
     "goal"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.520Z",
+  "lastUpdated": "2026-07-09T10:02:47.924Z",
   "specId": "011",
   "folderSlug": "command-surface-normalization",
   "parentChain": [

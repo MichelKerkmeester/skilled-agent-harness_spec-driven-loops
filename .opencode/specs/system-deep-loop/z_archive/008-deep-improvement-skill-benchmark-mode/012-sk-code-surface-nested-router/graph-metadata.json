@@ -25,13 +25,13 @@
       "router",
       "surface",
       "nesting",
-      "build",
       "plan",
       "tasks",
       "checklist",
       "summary",
       "routes",
-      "correct"
+      "correct",
+      "surfacematch"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "sk-code routes to the correct surface (`surfaceMatch` true 3/3 live) but over-loads: the `RESOURCEMAP[intent]` value unions Webflow + Motion.dev + OpenCode + universal resources, so the detected surface's slice arrives bundled with the other surfaces' resources",
     "created_at": "2026-06-01T19:25:23.863Z",
-    "last_save_at": "2026-07-08T13:43:15.850Z",
+    "last_save_at": "2026-07-09T10:02:49.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

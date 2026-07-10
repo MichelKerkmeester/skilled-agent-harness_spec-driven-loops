@@ -3,6 +3,7 @@
   "packet_id": "system-deep-loop/032-goal-opencode-plugin",
   "spec_folder": "system-deep-loop/032-goal-opencode-plugin",
   "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
   "children_ids": [
     "system-deep-loop/032-goal-opencode-plugin/001-state-store",
     "system-deep-loop/032-goal-opencode-plugin/002-injection-plugin",
@@ -231,7 +232,7 @@
     ],
     "causal_summary": "OpenCode has no goal/completion-condition system",
     "created_at": "2026-06-28T14:00:33Z",
-    "last_save_at": "2026-07-07T15:43:51.984Z",
+    "last_save_at": "2026-07-09T10:02:47.896Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

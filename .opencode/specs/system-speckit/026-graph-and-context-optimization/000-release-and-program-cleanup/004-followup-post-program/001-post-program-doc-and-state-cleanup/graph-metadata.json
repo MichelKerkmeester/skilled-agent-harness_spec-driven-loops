@@ -26,10 +26,8 @@
       "026 cleanup implementation summary"
     ],
     "key_topics": [
-      "005",
       "post-program",
       "cleanup",
-      "026",
       "validator",
       "hygiene",
       "release",
@@ -37,7 +35,9 @@
       "drift",
       "plan",
       "tasks",
-      "task"
+      "task",
+      "ledger",
+      "checklist"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 026 deep-review remediation program landed most runtime and documentation fixes, but left post-program status and validator surfaces stale",
     "created_at": "2026-04-28T19:26:58Z",
-    "last_save_at": "2026-07-02T05:31:10.667Z",
+    "last_save_at": "2026-07-09T10:02:51.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

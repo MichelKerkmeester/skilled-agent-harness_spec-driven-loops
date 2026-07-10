@@ -27,18 +27,18 @@
       "deep-review checklist 093-101"
     ],
     "key_topics": [
-      "102",
       "track",
       "rereview",
       "deep-review",
-      "093-101",
       "verdict",
       "flip",
       "post-100",
-      "101",
       "audit",
       "cli-opencode",
-      "executor"
+      "executor",
+      "smoke",
+      "second",
+      "verdict-flip"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -47,10 +47,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/007-track-rereview/review/review-report.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/007-track-rereview/review/resource-map.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/007-track-rereview/implementation-summary.md",
       "implementation-summary.md",
       "review/review-report.md",
       "review/resource-map.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/002-track-review/review/review-report.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/004-track-rereview/review/review-report.md",
       "review/deep-review-dashboard.md"
     ],
     "entities": [
@@ -79,15 +84,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "review-report.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/007-track-rereview/review/review-report.md",
         "source": "derived"
       },
       {
-        "name": "review-report.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "review/review-report.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/007-track-rereview/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -201,7 +206,7 @@
     ],
     "causal_summary": "Packet 099 (re-review of 093-098) converged with verdict FAIL on 2026-05-07: 0 P0, 13 P1, 6 P2",
     "created_at": "2026-05-07T20:55:00Z",
-    "last_save_at": "2026-06-23T03:49:50.132Z",
+    "last_save_at": "2026-07-09T10:02:45.742Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +216,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9397ece1db8513efb824489bf16dd4b2a1ceb4393c2266f6b99aec1f8afa11a",
+    "source_fingerprint": "sha256:6f10ace2621f767beefdb302d55a9cb9501f9d2e8734e9d28b9f2f53e64620f1",
     "source_doc_hashes": {
-      "spec.md": "b71f06e31470d51bbb72ceb4a3a253effcec4c336c24260c9336beda704232ff",
-      "plan.md": "de73c86bc4a362b0d65da0de1095058f7c78eb49e4a7acb4403962b0cc32b539",
-      "tasks.md": "9e5426869cb337c75c2cad1e232d3bb594001f6c98c08783ae747aa1aefd8419",
-      "checklist.md": "f237d73be451da243fa374a81658a6bd658dd6b222bae2b7d87507fab43fa309",
-      "implementation-summary.md": "532a2c70f4cb2a0a26a375c649f09cfabf3a66ab0c9eb821bb8ecdbed591601e"
+      "spec.md": "8b0cd79f9528ff3b0ad479546da918279adf31c29c17e9d729b8e5d3d2ea8c6b",
+      "plan.md": "0736dc0737c3ff1e60e860caa2fd6f6eb232adabaf7af7877a41995811114637",
+      "tasks.md": "96cd51f5471173f3e131a2876d47c8fb5f98d2714bf59c09943613e878e167b5",
+      "checklist.md": "28a40f3ac3c3df91916a1e13f44f76f716343d87ff01333640c9742cc663ba94",
+      "implementation-summary.md": "b87c5902bf4f1f2cdd1b903262f6c4ca026e9e6e4828f3602c9844cf262272ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

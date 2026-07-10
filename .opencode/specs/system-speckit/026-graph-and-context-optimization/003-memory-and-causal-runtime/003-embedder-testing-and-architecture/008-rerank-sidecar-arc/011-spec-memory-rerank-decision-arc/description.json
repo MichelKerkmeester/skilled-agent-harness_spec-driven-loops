@@ -1,7 +1,7 @@
 {
   "level": "phase-parent",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
-  "description": "Phase parent for the 3-step path to a working spec-memory reranker (or a defensible decision not to ship one). Phase 1 audits the OFF baseline before",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc",
+  "description": "Phase parent for the 3-step path to a working spec-memory reranker (or a defensible decision not to ship one).",
   "keywords": [
     "phase",
     "parent",
@@ -13,15 +13,13 @@
     "defensible",
     "decision",
     "ship",
-    "one",
-    "audits",
-    "baseline"
+    "one"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.033Z",
+  "lastUpdated": "2026-07-09T10:02:53.414Z",
   "specId": "011",
   "folderSlug": "spec-memory-rerank-decision-arc",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

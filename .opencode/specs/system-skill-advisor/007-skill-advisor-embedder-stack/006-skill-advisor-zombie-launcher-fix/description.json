@@ -4,7 +4,6 @@
   "description": "After Phase 006 shipped, a live process audit at 2026-05-18T16:47Z still observed three `mk-skill-advisor-launcher` processes while",
   "keywords": [
     "phase",
-    "006",
     "shipped",
     "live",
     "process",
@@ -18,7 +17,7 @@
     "processes",
     "while"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.061Z",
+  "lastUpdated": "2026-07-09T10:02:50.264Z",
   "specId": "006",
   "folderSlug": "skill-advisor-zombie-launcher-fix",
   "parentChain": [

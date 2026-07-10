@@ -31,11 +31,11 @@
       "skill-advisor",
       "manual",
       "testing",
-      "028",
       "system-skill-advisor",
       "ships",
       "46-scenario",
-      "manualtestingplaybook"
+      "manualtestingplaybook",
+      "spanning"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -95,7 +95,7 @@
     ],
     "causal_summary": "The `system-skill-advisor` skill ships a 46-scenario manual testing playbook (`manualtestingplaybook/`) spanning native MCP tools, CLI runtime hooks, compatibility shims, auto-update daemon state, auto-indexing, lifecycle routing, scorer fusion and Python compatibility",
     "created_at": "2026-05-26T20:09:07.489Z",
-    "last_save_at": "2026-07-07T11:26:24.044Z",
+    "last_save_at": "2026-07-09T10:02:50.121Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

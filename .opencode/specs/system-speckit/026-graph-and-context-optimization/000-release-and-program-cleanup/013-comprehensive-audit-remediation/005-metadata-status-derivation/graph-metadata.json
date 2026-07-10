@@ -33,10 +33,10 @@
       "graph",
       "parser",
       "table",
-      "027",
       "placeholder",
       "child",
-      "026"
+      "last",
+      "active"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`deriveStatus()` in `graph-metadata-parser.ts` populates spec status only from YAML frontmatter, but many 026/027 specs declare status only in the markdown metadata table row `| Status | Draft |`",
     "created_at": "2026-06-04T20:45:43Z",
-    "last_save_at": "2026-07-02T05:31:10.990Z",
+    "last_save_at": "2026-07-09T10:02:51.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "phase",
-      "071",
       "remediation",
       "stack",
       "agnostic",
@@ -36,18 +35,20 @@
       "plan",
       "tasks",
       "findings",
-      "verification"
+      "verification",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/skills/mcp-code-mode/references/workflows.md",
+      ".opencode/skills/cli-opencode/README.md",
+      ".opencode/skills/cli-opencode/references/opencode_tools.md",
       "decision-record.md",
       ".opencode/skills/system-spec-kit/scripts/.folder-list.txt",
       ".opencode/skills/system-spec-kit/scripts/.scan-lines.txt",
-      ".opencode/skills/mcp-code-mode/references/workflows.md",
       ".opencode/skills/mcp-chrome-devtools/examples/README.md",
-      ".opencode/skills/cli-opencode/README.md",
-      ".opencode/skills/cli-opencode/references/opencode_tools.md",
+      "specs/skilled-agent-orchestration/z_archive/058-stack-agnostic-cleanup/graph-metadata.json",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -56,6 +57,24 @@
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/references/workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode_tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/opencode_tools.md",
+        "source": "derived"
+      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -75,21 +94,9 @@
         "source": "derived"
       },
       {
-        "name": "workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-code-mode/references/workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-chrome-devtools/examples/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "opencode_tools.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-opencode/references/opencode_tools.md",
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/skilled-agent-orchestration/z_archive/058-stack-agnostic-cleanup/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -114,12 +121,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": "specs/skilled-agent-orchestration/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -203,7 +204,7 @@
     ],
     "causal_summary": "The independent verifier for Phase 071 found nine remaining issues after the stack-agnostic cleanup",
     "created_at": "2026-05-05T19:52:59Z",
-    "last_save_at": "2026-06-23T03:49:49.787Z",
+    "last_save_at": "2026-07-09T10:02:45.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eda712a8b987982d7014488c871c858c3beebd87e91966b29d263f3bdddf9b70",
+    "source_fingerprint": "sha256:303ec7d7bdd8e55cacf4314c19ee127f9af31ce721ba237bebc8f07dccec17ff",
     "source_doc_hashes": {
-      "spec.md": "5adabd7c07fa48780fa8af18ff62e077d0b4b0722284f4fcd8bdc062d49d8c2a",
-      "plan.md": "9ac0dcfb8b2f0b2d61e4d65d46bf8e63125f2d7ba5ed245aae629807fb6080e5",
-      "tasks.md": "0b75904a423e5eff92a509fa006b0924f175d5a5386aab10cbc0479d360bf99b",
-      "checklist.md": "c06c5bfcb33e49f05acffb26b23b4f2af5207b78603fb4cae38e1e6ef502f16c",
-      "decision-record.md": "bd3d42dad76942a369ea14b43ff2a914ce3c41932b86fe9ea4c598b0b7bec41e",
-      "implementation-summary.md": "ea7be4436efcd2bb56f1c1e1e252f43252649473308846db31e0aabc2af1df88"
+      "spec.md": "b1eb6dd8384dae17a014c8bfe71f5b289ecb24367506f0d3f388682f664e4c4e",
+      "plan.md": "eda9ffea0bb70725dc3a3ce532bd22ed5dcb41782fefc02b4b5e77dbbb19239c",
+      "tasks.md": "c4fd391fa07af03b2d17257be9c71b50d27e653fdc3fcc81fbdd7ce4b709bb05",
+      "checklist.md": "803385acc507423e5a0af77d99d6422f1735b0e76d6b4bfea45e60055c80c549",
+      "decision-record.md": "5561a6d915ac0492c11e0051cd61540ce2a63b4d7be4e7e5455a20ac79386435",
+      "implementation-summary.md": "2be21dfbd4bf7b0f7fe717d09e487758d75d9766e57cecf49eb26b0183647e13"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,7 +1,7 @@
 {
   "level": "phase",
   "specFolder": "system-code-graph/007-code-graph-buildout/006-extraction-and-isolation/001-system-code-graph-extraction",
-  "description": "Migrate the code-graph subsystem out of system-spec-kit's MCP server into a dedicated `.opencode/skills/system-code-graph/` package with its own SKILL",
+  "description": "Migrate the code-graph subsystem out of system-spec-kit's MCP server into a dedicated `.opencode/skills/system-code-graph/` package with its own",
   "keywords": [
     "migrate",
     "code-graph",
@@ -14,10 +14,9 @@
     "skills",
     "system-code-graph",
     "package",
-    "own",
-    "skill"
+    "own"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.931Z",
+  "lastUpdated": "2026-07-09T10:02:46.947Z",
   "specId": "001",
   "folderSlug": "system-code-graph-extraction",
   "parentChain": [

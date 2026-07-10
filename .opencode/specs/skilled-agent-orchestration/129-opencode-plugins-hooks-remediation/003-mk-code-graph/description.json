@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/003-mk-code-graph",
+  "description": "Fix plan for the mk-code-graph audit findings; two-model designs, review-hardened; actionable fixes + reclassified non-issues.",
+  "keywords": [
+    "mk-code-graph",
+    "remediation",
+    "fixes",
+    "plugin",
+    "review",
+    "plan"
+  ],
+  "lastUpdated": "2026-07-10T11:42:16.945Z",
+  "specId": "003",
+  "folderSlug": "mk-code-graph",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "129-opencode-plugins-hooks-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

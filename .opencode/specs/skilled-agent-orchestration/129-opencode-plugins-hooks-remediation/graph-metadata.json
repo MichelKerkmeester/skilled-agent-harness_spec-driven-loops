@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation",
+  "spec_folder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/001-mk-spec-memory",
+    "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/002-mk-skill-advisor",
+    "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/003-mk-code-graph",
+    "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/004-mk-goal",
+    "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/005-mk-deep-loop-guard",
+    "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/006-mk-dist-freshness-guard",
+    "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/007-session-cleanup"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode plugins remediation",
+      "plugin hooks fixes",
+      "opencode plugin bug fixes"
+    ],
+    "key_topics": [
+      "opencode",
+      "plugins",
+      "remediation",
+      "plugin",
+      "hooks",
+      "bug",
+      "audit",
+      "packet",
+      "found",
+      "confirmed",
+      "issues",
+      "across"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/plugins/mk-spec-memory.js",
+      ".opencode/plugins/mk-skill-advisor.js",
+      ".opencode/plugins/mk-code-graph.js",
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/mk-deep-loop-guard.js",
+      ".opencode/plugins/mk-dist-freshness-guard.js",
+      ".opencode/plugins/session-cleanup.js",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-spec-memory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-memory.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-deep-loop-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-deep-loop-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-dist-freshness-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-dist-freshness-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Rollup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The audit (packet 127) found 108 confirmed issues across the 7 OpenCode plugins and their Claude hook versions",
+    "created_at": "2026-07-10T11:42:18.282Z",
+    "last_save_at": "2026-07-10T11:42:18.282Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ece4329ce70ff2b1b4b1540faa365b1f800c0ab27d92fc62030671633d88f211",
+    "source_doc_hashes": {
+      "spec.md": "2c4abb0d6dbb6343e0bbf8e9a2aa3a1096031c2088da98ade7aee4c7206bfe75"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

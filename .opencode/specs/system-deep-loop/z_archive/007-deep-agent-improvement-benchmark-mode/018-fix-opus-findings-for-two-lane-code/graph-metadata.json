@@ -27,18 +27,18 @@
       "benchmark-mode promotion checklist"
     ],
     "key_topics": [
-      "fix",
       "opus",
       "review",
       "findings",
       "two-lane",
       "code",
-      "017",
       "deep-review",
       "materializer",
       "fixture-id",
       "traversal",
-      "plan"
+      "plan",
+      "remediation",
+      "benchmark-mode"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 017 deep review returned CONDITIONAL with four active P1 defects",
     "created_at": "2026-05-29T15:10:42Z",
-    "last_save_at": "2026-07-08T13:43:34.154Z",
+    "last_save_at": "2026-07-09T10:02:49.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

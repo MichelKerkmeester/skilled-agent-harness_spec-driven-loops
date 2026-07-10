@@ -26,7 +26,7 @@
     "completion_pct": 100,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration",
   "description": "Level 2 closeout child for ENV_REFERENCE flags and integration tests across feedback reducer consumers.",
   "keywords": [
     "level",
@@ -40,11 +40,11 @@
     "reducer",
     "consumers"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.230Z",
+  "lastUpdated": "2026-07-09T10:02:55.233Z",
   "specId": "005",
   "folderSlug": "env-tests-integration",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "004-learning-feedback-reducers"

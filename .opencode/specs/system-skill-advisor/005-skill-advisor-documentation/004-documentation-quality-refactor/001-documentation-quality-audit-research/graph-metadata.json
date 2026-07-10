@@ -32,9 +32,9 @@
       "swe",
       "findings",
       "ledger",
-      "001",
       "research",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The system-skill-advisor docs need a coordinated audit before any rewrite/alignment work begins",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.291Z",
+    "last_save_at": "2026-07-09T10:02:50.063Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9f8293b5f796a9ceff6b7877480f894ad5083f1639ea5a486c3dc6e3a3d04d6",
+    "source_fingerprint": "sha256:6b231f43120210a717a4f20e477514f1a5ae4833b3b3f771df9b9d424b1378ae",
     "source_doc_hashes": {
-      "spec.md": "e5320ca48e2d313a3bc4c8635f8ba8a64d59c7ae3d22b0aab71bf0ac220dc9ef",
-      "plan.md": "4579fce4576996677ea7e00697b23f4475deeff6b9f17e266f0c5862705a649d",
-      "tasks.md": "b61c0268cab514440edfd02a8766b0e1b70d4ba11344e5231a16198b0e136fbb",
-      "implementation-summary.md": "a81778311870097eea5da574de28fb6e598b184ae1df4587b315e94f53e74d8a"
+      "spec.md": "1a3bdddc84623db0b78af9b0c51ebbcacbd560d41671f6019af450bc2945bed4",
+      "plan.md": "66c4182ae5e807e87cb1796e13c4121d4a7217cd020a6124762e464b661a82f9",
+      "tasks.md": "99629480395774c069a3d25257517510eca40b35ed13537c30285494d08000b0",
+      "implementation-summary.md": "b5ef32ded4edb98e9f5e461b3821f2256b04d70257b6b7232ab36284ac814c90"
     },
     "last_active_child_id": null,
     "last_active_at": null

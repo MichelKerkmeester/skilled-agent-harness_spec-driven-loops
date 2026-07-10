@@ -10,14 +10,12 @@
     "shipped",
     "via",
     "packet",
-    "093",
     "naturalized",
-    "094",
     "scenarios",
     "actual",
     "execution-against-deepseek"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.595Z",
+  "lastUpdated": "2026-07-09T10:02:45.634Z",
   "specId": "078",
   "folderSlug": "sk-code-review-playbook-execution",
   "parentChain": [

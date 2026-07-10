@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning",
   "description": "Research phase for §3 structural retrieval improvements. Deep-research informs implementation plan.",
   "keywords": [
     "research",
@@ -12,11 +12,11 @@
     "implementation",
     "plan"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.592Z",
+  "lastUpdated": "2026-07-09T10:02:52.920Z",
   "specId": "008",
   "folderSlug": "chunking-strategy-tuning",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

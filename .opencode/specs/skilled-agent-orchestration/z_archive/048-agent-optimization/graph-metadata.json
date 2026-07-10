@@ -27,7 +27,6 @@
       "improve agents"
     ],
     "key_topics": [
-      "061",
       "root",
       "phase",
       "parent",
@@ -38,18 +37,20 @@
       "improve",
       "agents",
       "phase-parent",
-      "spec"
+      "spec",
+      "apply"
     ],
     "importance_tier": "high",
     "status": "planned",
     "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/z_archive/048-agent-optimization/spec.md",
       "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/048-agent-optimization/spec.md",
         "source": "derived"
       },
       {
@@ -91,15 +92,15 @@
     ],
     "causal_summary": "Phase-parent root spec. Apply the validated sk-improve-agent v2 substrate (proven in packet 060 → final composite PASS 6/0/0) to the remaining 9 agents in the fleet. One sub-phase per agent. Sub-phase 006 also renames @ultra-think → @multi-ai-council across all 4 runtime mirrors and every reference.",
     "created_at": "2026-05-18T07:49:27.101Z",
-    "last_save_at": "2026-06-23T03:49:49.442Z",
+    "last_save_at": "2026-07-09T10:02:45.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9b4cfd260e0d486352d0d476d9cb458b5f2861b751635fe45efed0a6a866dc14",
+    "source_fingerprint": "sha256:425327318ebb35046e645d3b00219095af097ebc3b544f98acbca3693708167d",
     "source_doc_hashes": {
-      "spec.md": "e88847eb073af2fc1bf07b7050df0d8d229498c75bd995220b1844f322554089"
+      "spec.md": "c11823654dfd2be4cb9ab2896f586b4ff016a0a3ad6191d7e7743d7d0d919d5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

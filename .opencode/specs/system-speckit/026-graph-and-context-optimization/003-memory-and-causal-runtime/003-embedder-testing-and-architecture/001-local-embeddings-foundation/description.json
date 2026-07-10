@@ -1,7 +1,7 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
-  "description": "This phased decomposition tracks Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory across independently executab",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation",
+  "description": "This phased decomposition tracks Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory across independently",
   "keywords": [
     "phased",
     "decomposition",
@@ -13,14 +13,13 @@
     "code",
     "memory",
     "across",
-    "independently",
-    "executab"
+    "independently"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.927Z",
+  "lastUpdated": "2026-07-09T10:02:52.176Z",
   "specId": "001",
   "folderSlug": "local-embeddings-foundation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture"

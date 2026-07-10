@@ -32,13 +32,13 @@
       "improvements",
       "system",
       "research",
-      "026",
-      "009",
-      "013",
       "implementation",
       "plan",
       "daemon",
-      "parity"
+      "parity",
+      "tasks",
+      "checklist",
+      "verification"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The code-graph system has been delivered and partially remediated across 026 phases 003 (code-graph-package) and 009 (hook-package)",
     "created_at": "2026-04-24T01:10:00Z",
-    "last_save_at": "2026-07-07T16:18:33.784Z",
+    "last_save_at": "2026-07-09T10:02:46.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

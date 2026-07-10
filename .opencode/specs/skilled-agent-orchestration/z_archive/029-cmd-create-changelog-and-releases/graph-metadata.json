@@ -30,26 +30,32 @@
       "creation",
       "github",
       "command",
-      "create",
       "tag",
       "workflow",
       "plan",
       "implementation",
       "phase",
-      "integration"
+      "integration",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      "spec.md",
       ".opencode/commands/create/changelog.md",
       ".opencode/skills/sk-git/references/finish_workflows.md",
       "implementation-summary.md",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "changelog.md",
         "kind": "doc",
@@ -66,12 +72,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The `create:changelog` command generates changelog markdown files but stops there",
     "created_at": "2026-04-12T09:02:50.181Z",
-    "last_save_at": "2026-06-23T03:49:49.103Z",
+    "last_save_at": "2026-07-09T10:02:45.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9753cb4ee7a4a3bc7783ad6e873a480a1a6ecbd4645ec8c88c6e64577f1272e6",
+    "source_fingerprint": "sha256:27a5b13c800e27f53517a7f8dd1a519ba9168b98511084396b5924d6db609bee",
     "source_doc_hashes": {
-      "spec.md": "fe579b7e6f651f42edcd692e1b3ba361332651c954e6c58bc5aac922c3980ac5",
-      "plan.md": "b8623708dc9cf5ab545951765577084cb0b24411ac18a5ca9dd8b15ca021af4e",
-      "tasks.md": "f6f1415832a30f3610e8bb1d0c89bef67dd507a05022494883e3ef85c3c0b2eb",
-      "checklist.md": "644390ee1c7a15d4a94005aa577d0315a7e6c02c7085af228c6ac2fe3da045da",
-      "implementation-summary.md": "b5eea609f377a3c28b91ac52a1177c430a39bbc113fe93cb18881e31df2ffd09"
+      "spec.md": "25e75f8c4bb9d4dd5fef5063b3f5c50bddd12c14a7e2fdc892ae658bf3b4c328",
+      "plan.md": "5591fb22edc163bb9c483212087a6bada2e56d5d16847cf3046233ee3e8cde23",
+      "tasks.md": "28c0ddd324f80dd0f82b15ddcf475dd428cc5c484e5c815654eeec6cf7dbc8a5",
+      "checklist.md": "fc089699eadd9460386e00ad99ecaaabe10a8295afa12086a6173654bba98fd8",
+      "implementation-summary.md": "4801725bd52f408049e9974cf23220aaed845a91e98aae264049441a12714969"
     },
     "last_active_child_id": null,
     "last_active_at": null

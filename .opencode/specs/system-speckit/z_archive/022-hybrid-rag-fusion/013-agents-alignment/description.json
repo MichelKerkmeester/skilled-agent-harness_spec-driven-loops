@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
   "description": "The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses",
   "keywords": [
     "original",
@@ -10,14 +10,13 @@
     "runtime",
     "model",
     "repository",
-    "now",
-    "uses"
+    "now"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.205Z",
+  "lastUpdated": "2026-07-09T10:02:58.366Z",
   "specId": "013",
   "folderSlug": "agents-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

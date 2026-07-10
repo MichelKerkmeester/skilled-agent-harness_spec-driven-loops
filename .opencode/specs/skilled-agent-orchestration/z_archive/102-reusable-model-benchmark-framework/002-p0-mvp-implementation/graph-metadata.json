@@ -41,6 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-prompt/assets/framework-registry.json",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -48,6 +49,12 @@
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "framework-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/assets/framework-registry.json",
+        "source": "derived"
+      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -185,17 +192,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 127 research designed a reusable, config-driven benchmark framework but it is unbuilt",
     "created_at": "2026-06-02T04:33:50.234Z",
-    "last_save_at": "2026-06-23T03:49:51.523Z",
+    "last_save_at": "2026-07-09T10:02:46.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3b5c819b263eee058a5bd2529639b352b791fd8aa6f822f7b12fab9d7a7effa",
+    "source_fingerprint": "sha256:314adffb1e2ca79d0cc7342b95aa50488573726ce09495b3070b76bd5fd87b0a",
     "source_doc_hashes": {
-      "spec.md": "76ac906b2bbac6b398bd802624c6f3ea26d8435ef3988eafaa8e5d78a8739026",
-      "plan.md": "7ec32705bfe84ed2080c1210ee369fe0bdcac5e8d09edb432f819e80845867a9",
-      "tasks.md": "402ac691054fe07af04a933c1f2bc4cba50026262637a8015950aba44c27486f",
-      "checklist.md": "fbb482f9930af2c7991d2ea2908321f7968bdbbb300f107286bc78c698e6e30a",
-      "implementation-summary.md": "b14641693f68ffc2d2cebc8fbc7200b1cbd0cad5417800a476cd7e83e584492f"
+      "spec.md": "d4d8278fb7a1b2c0887511a3ad0c336b34dc5136f586e47c554a813dea956a81",
+      "plan.md": "bf5ec9b06fd78638666d45f21145848f6a23a8773565953ad68327eaf1b955a8",
+      "tasks.md": "0c3214910edf8341a31e80888d621b72982d78c01cf641a5dad0408e2d9e4663",
+      "checklist.md": "22e1d89bc50723f53608f0f5157920e33fa8fa2f7fbd39edbcbc777fc9e75ec2",
+      "implementation-summary.md": "84052f21a0d928ab7de40a143f23d5638516a51a6684e2b4587c5b708679b694"
     },
     "last_active_child_id": null,
     "last_active_at": null

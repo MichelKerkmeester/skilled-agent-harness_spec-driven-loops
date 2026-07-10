@@ -31,7 +31,6 @@
       "rename and review cycle resources"
     ],
     "key_topics": [
-      "096",
       "umbrella",
       "opencode",
       "plural",
@@ -42,7 +41,8 @@
       "remediation",
       "skilled-agent-orchestration",
       "release",
-      "resource"
+      "resource",
+      "map"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -160,17 +160,17 @@
     ],
     "causal_summary": "Phase parent umbrella for the entire opencode rename + 3 deep-review iterations + 3 remediation packets + 1 cli-opencode executor add. 8 phases tracking the full quality cycle from rename through release-readiness.",
     "created_at": "2026-05-18T07:49:27.230Z",
-    "last_save_at": "2026-06-23T03:49:50.026Z",
+    "last_save_at": "2026-07-09T10:02:45.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:30ea1cb36a69f9ac74edbb4be9a8534a0e38eb0f5f79aae82c4ef5c24057d160",
+    "source_fingerprint": "sha256:faa8e9e1c8467d9dfc7a4b23e88ecb728c3f48d2c4ce673068c3f9516e2681ef",
     "source_doc_hashes": {
-      "spec.md": "238b7a2b7dd4700cbabedb4b4e96c430d1df3efd18797a3b11f2e466298f7db0",
-      "resource-map.md": "79ffb4749cc415f07782acc40f0c66bddee8d8d8d6740ca663c370caccdd1b19"
+      "spec.md": "6a9bbc1f89e43a82c7482707123ea1a15fc3fc591b7ad073dba32c5c9ecb4da8",
+      "resource-map.md": "2242c3e743d1d6c00b2b89331e8bd009112d8b4a14452a2ab1e40ad5942d4600"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -7,7 +7,6 @@
     "skill-advisor",
     "reconnect",
     "implementation",
-    "added",
     "owner-lease",
     "bridge",
     "happy",
@@ -17,7 +16,7 @@
     "action",
     "respawn"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.097Z",
+  "lastUpdated": "2026-07-09T10:02:50.322Z",
   "specId": "001",
   "folderSlug": "skill-advisor-cross-session-reconnect",
   "parentChain": [

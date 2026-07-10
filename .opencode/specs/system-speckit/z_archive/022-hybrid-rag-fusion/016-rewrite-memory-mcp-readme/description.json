@@ -1,26 +1,23 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/016-rewrite-memory-mcp-readme",
-  "description": "The MCP server README (mcpserver/README.md, ~1281 lines) was written incrementally as features were added across 16 phases of the 022-hybrid-rag-fusio",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/016-rewrite-memory-mcp-readme",
+  "description": "The MCP server README (mcpserver/README.md, ~1281 lines) was written incrementally as features were added across 16 phases of the",
   "keywords": [
     "mcp",
     "server",
     "readme",
     "mcpserver",
-    "1281",
     "lines",
     "written",
     "incrementally",
     "features",
-    "added",
     "across",
-    "phases",
-    "022-hybrid-rag-fusio"
+    "phases"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.353Z",
+  "lastUpdated": "2026-07-09T10:02:58.574Z",
   "specId": "016",
   "folderSlug": "rewrite-memory-mcp-readme",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

@@ -1,14 +1,13 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
-  "description": "`memorysave` and `memoryupdate` are retryable, but a retried save can create a duplicate row because there is no operation receipt to recognize and re",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
+  "description": "`memorysave` and `memoryupdate` are retryable, but a retried save can create a duplicate row because there is no operation receipt to recognize and",
   "keywords": [
     "memorysave",
     "memoryupdate",
     "retryable",
     "retried",
     "save",
-    "create",
     "duplicate",
     "row",
     "because",
@@ -16,11 +15,11 @@
     "receipt",
     "recognize"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.247Z",
+  "lastUpdated": "2026-07-09T10:02:55.255Z",
   "specId": "002",
   "folderSlug": "idempotency-and-near-duplicate",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "005-memclaw-derived-memory-hardening"

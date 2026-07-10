@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives",
   "description": "Batch reindex discovered substantially more files on disk than were inserted into the memory index",
   "keywords": [
     "batch",
@@ -12,11 +12,11 @@
     "memory",
     "index"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.481Z",
+  "lastUpdated": "2026-07-09T10:02:58.761Z",
   "specId": "009",
   "folderSlug": "reindex-validator-false-positives",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],

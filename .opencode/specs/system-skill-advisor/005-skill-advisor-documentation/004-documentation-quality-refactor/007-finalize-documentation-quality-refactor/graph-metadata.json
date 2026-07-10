@@ -24,15 +24,15 @@
       "skill-advisor",
       "deferred",
       "final",
-      "007",
       "cli-opencode",
       "deepseek",
       "dispatch",
       "plan",
       "tasks",
       "summary",
-      "006",
-      "closed"
+      "closed",
+      "tier",
+      "bulk"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "After 006 closed Tier A + Tier B + bulk Oxford comma sweep, the remaining deferred backlog covers: 135 semicolons (context-aware HVR sweep), F34 playbook TEST EXECUTION structure across 20 files, F4/F6/F35/F36/F37 architectural decisions, plus 4 net new reference docs",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.306Z",
+    "last_save_at": "2026-07-09T10:02:50.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa8ab459ec316b71465a891a968a7a8c31e6916c31cf2effa709053375ec9d6e",
+    "source_fingerprint": "sha256:42774a07db7bb684cf77ca8ef7bfd304e9e3de2ee37a223986ee194606a0324a",
     "source_doc_hashes": {
-      "spec.md": "7fcc5ab0ab83319a5c56cbb9eb82ef3c6c951ec3c6bc55b55dc3e39f4943bdde",
-      "plan.md": "e12096ca5633bf37b48455e002088c0735173532d2ce8e508df6c61e1a91efd4",
-      "tasks.md": "833da5e032d7d4de71ef92709547306784f57ff7816f5728a00b3024fc6d1adc",
-      "implementation-summary.md": "00ac176a4fd149d983e3ededeac5e321b817b83feea05a52daec7a3770954313"
+      "spec.md": "1513fed8fd7eaa37538952061760f2f2816b9601133dc5d761c768f5c3f112c5",
+      "plan.md": "1e4220db9bcafd00a9da8c3851d4109a8c23e6666606e465d81c3577cd57827b",
+      "tasks.md": "81b896522e83f757df1cd1e7f02be1f8bc925d4f5ab6c0fd16a5994f6290ba2d",
+      "implementation-summary.md": "a863afb1278a9da9c64e0728f0fa7c1bd6008a39772e72e00ff9ad7425da8afd"
     },
     "last_active_child_id": null,
     "last_active_at": null

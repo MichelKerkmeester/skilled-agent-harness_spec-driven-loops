@@ -27,9 +27,7 @@
       "070 phase 009 checklist"
     ],
     "key_topics": [
-      "070",
       "phase",
-      "009",
       "family",
       "schema",
       "migration",
@@ -38,7 +36,9 @@
       "graph",
       "check",
       "constraint",
-      "skill-graph"
+      "skill-graph",
+      "sqlite",
+      "reset"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts because `skill-graph-db.ts` and its dist mirror hardcode a SQL `CHECK` constraint that still lists `sk-deep`",
     "created_at": "2026-05-05T18:25:00Z",
-    "last_save_at": "2026-07-08T13:43:26.640Z",
+    "last_save_at": "2026-07-09T10:02:49.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T18:25:00Z",
     "source_docs": [

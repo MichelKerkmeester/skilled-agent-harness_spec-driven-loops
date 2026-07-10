@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The `mcp-figma` developer skill at `CodeEnvironment/Public/.opencode/skills/mcp-figma/` has been superseded by the new Figma MCP Agent in AISystems/Barter (Phase 1) and AISystems/Public (Phase 2)",
     "created_at": "2026-05-05T07:49:59Z",
-    "last_save_at": "2026-06-23T03:49:49.610Z",
+    "last_save_at": "2026-07-09T10:02:45.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bca64f7f9ce05d155a57916718b9cafd0516a84c56506b6bb85f3eba591c450d",
+    "source_fingerprint": "sha256:4c9cfc92a3c2b06a43ca04ad99c069e1659e5520fa4e17f999a9d15b57487f75",
     "source_doc_hashes": {
-      "spec.md": "16dac7a66ede3868a2af20410a15adcb0d8613e7ff381237927d32daa612a667",
-      "plan.md": "0b5c99520c6d6a95a30d95676672426764f23cea545336fdedaf91c235261f2d",
-      "tasks.md": "c4832c704afbd024f9e81baf27a4a218b8b61740f577960fd8b07be10d16e2ff",
-      "checklist.md": "5d45edce9025d7e6a68fa86b59107a9b57810bae78cac1e4021d128cd993961f",
-      "decision-record.md": "44c3dbc3ea0ab863059c7dcc4ffc3f4de9cf5ac45ac48ec7bd2184cd84a69640",
-      "implementation-summary.md": "6866e81d39ece70ae0e2a3b8e1ca6ff326a8957dd7009ffc6cee89ef29b8115c"
+      "spec.md": "c751daedcc5f5b0e979e5a2540a3d7c99a5376a08c79c211cc12090bd04ba2f0",
+      "plan.md": "0607b452d789f305cb92d33e7b6c6e7b6519e894b960381a3632d491a32929e1",
+      "tasks.md": "1649a77434ab0ddb8398d6f98bb348072e79481fd296ccc0ea4cf6538c2a233c",
+      "checklist.md": "0147f065f8b76909377f58bf304b6638fe2c73c168a8c167475e5d9a71d97749",
+      "decision-record.md": "3caeeff9273764324e3a0976b24ab5a6d820c079d61838f009c4bdcc5ffd50a3",
+      "implementation-summary.md": "99fd3fdeb6d601301c444e113116d95d209c0c96b4ee6a6f5f7ce666fd60d70b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,10 +1,9 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/030-test-fixture-singular-to-plural-sweep",
-  "description": "Packet 096 renamed production paths from singular `.opencode/skill/` to plural `.opencode/skills/`, but 7 advisor-test fixtures continued using the si",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/030-test-fixture-singular-to-plural-sweep",
+  "description": "Packet 096 renamed production paths from singular `.opencode/skill/` to plural `.opencode/skills/`, but 7 advisor-test fixtures continued using the",
   "keywords": [
     "packet",
-    "096",
     "renamed",
     "production",
     "paths",
@@ -15,14 +14,13 @@
     "skills",
     "advisor-test",
     "fixtures",
-    "continued",
-    "using"
+    "continued"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.420Z",
+  "lastUpdated": "2026-07-09T10:02:51.000Z",
   "specId": "030",
   "folderSlug": "test-fixture-singular-to-plural-sweep",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

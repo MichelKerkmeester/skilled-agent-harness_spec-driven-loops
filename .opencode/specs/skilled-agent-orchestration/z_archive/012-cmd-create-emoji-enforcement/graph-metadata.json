@@ -31,21 +31,19 @@
       "emoji",
       "enforcement",
       "spec",
-      "011",
-      "create",
       "implementation",
       "plan",
       "tasks",
-      "command"
+      "command",
+      "currently",
+      "enforces"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/commands/create/folder_readme.md",
-      ".opencode/commands/create/assets/create_folder_readme_auto.yaml",
-      ".opencode/commands/create/assets/create_folder_readme_confirm.yaml",
       ".opencode/commands/create/assets/create_agent_auto.yaml",
       ".opencode/commands/create/assets/create_agent_confirm.yaml",
+      ".opencode/commands/create/assets/create_skill_confirm.yaml",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -54,24 +52,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "folder_readme.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/folder_readme.md",
-        "source": "derived"
-      },
-      {
-        "name": "create_folder_readme_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_folder_readme_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "create_folder_readme_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_folder_readme_confirm.yaml",
-        "source": "derived"
-      },
       {
         "name": "create_agent_auto.yaml",
         "kind": "config",
@@ -82,6 +62,12 @@
         "name": "create_agent_confirm.yaml",
         "kind": "config",
         "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_skill_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_skill_confirm.yaml",
         "source": "derived"
       },
       {
@@ -197,11 +183,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "emoji",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `/create` command currently enforces emoji usage in documentation through validation logic and templates",
     "created_at": "2026-04-12T09:02:50.211Z",
-    "last_save_at": "2026-06-23T03:49:48.942Z",
+    "last_save_at": "2026-07-09T10:02:45.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

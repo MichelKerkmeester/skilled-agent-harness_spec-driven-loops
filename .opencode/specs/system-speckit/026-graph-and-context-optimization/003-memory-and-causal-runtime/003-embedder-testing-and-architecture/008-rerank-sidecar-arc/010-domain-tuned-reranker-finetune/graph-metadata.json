@@ -22,7 +22,6 @@
       "010 fine-tune summary"
     ],
     "key_topics": [
-      "010",
       "domain",
       "fine-tune",
       "spec-memory",
@@ -33,7 +32,8 @@
       "tasks",
       "summary",
       "four",
-      "rerank"
+      "rerank",
+      "benchmarks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Four spec-memory rerank benchmarks have produced HOLD verdicts with distinct failure modes:",
     "created_at": "2026-05-23T11:55:15.624Z",
-    "last_save_at": "2026-07-02T05:31:12.163Z",
+    "last_save_at": "2026-07-09T10:02:53.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

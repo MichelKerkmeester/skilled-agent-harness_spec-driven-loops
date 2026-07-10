@@ -4,7 +4,6 @@
   "description": "Packet 018 deferred plugin bridge unit isolation because behavioral tests still spawned the bridge process for every assertion",
   "keywords": [
     "packet",
-    "018",
     "deferred",
     "plugin",
     "bridge",
@@ -19,14 +18,11 @@
     "every",
     "assertion"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.360Z",
+  "lastUpdated": "2026-07-09T10:02:49.705Z",
   "specId": "022",
   "folderSlug": "plugin-bridge-unit-test-isolation",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "001-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

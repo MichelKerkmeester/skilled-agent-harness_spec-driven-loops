@@ -35,12 +35,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,39 +43,9 @@
     ],
     "entities": [
       {
-        "name": "post-dispatch-validate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-        "source": "derived"
-      },
-      {
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "post-dispatch-validate.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-reduce-state.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state-sparkline.test.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state-sparkline.test.cjs",
         "source": "derived"
       },
       {
@@ -190,11 +155,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "completed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "optional",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Log analysis tools must scan and parse entire transcript files by markdown headers to locate a specific iteration's output; on long runs with many iterations this is slow and error-prone",
     "created_at": "2026-06-28T14:01:57Z",
-    "last_save_at": "2026-07-04T18:02:03.925Z",
+    "last_save_at": "2026-07-09T10:02:47.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e34bafb84d578aaa2c5e9732a8a9719f67e71dd91cc7caf2e1ae4ba2f949ba17",
+    "source_fingerprint": "sha256:77ce3bf6e4c52f7f9a3a80293a6a8e21ebbdbe0fa230be916901ff7b6cd6b5d6",
     "source_doc_hashes": {
-      "spec.md": "bb41e330516b9f11933c64800b59e0e9052492bcd4ac45f5a99a92354a6b51f5",
-      "plan.md": "9f3e1d1ef43ed03c26c771677659734f34a65348a21b887987112a62cc096444",
-      "tasks.md": "83016c5bc33b743f0bad29885af4f97fa8360ae4c013850de598324aa28d1388",
-      "implementation-summary.md": "45a88ad3d5e629ce139b9c17655730cd9cfd7a5c412f79805dbba3bb92a17906"
+      "spec.md": "a50f06b6b273d0daf04c62fe290c0d7f9c98a004ae54625bc6d875c789aef727",
+      "plan.md": "7b9b475a325e453802648688fdb1dc23e40c384ef28c080c1516f3fdc62404cb",
+      "tasks.md": "c3ecb1f0e9b93da23a119fa97b2d0d9f4b0731305396a0f19046caff2450f43f",
+      "implementation-summary.md": "05492e29d798d11116423b1a013ed6afef7e88cebfbd88f4ce2e665699303b6c"
     },
     "last_active_child_id": null,
     "last_active_at": null

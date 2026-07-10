@@ -25,10 +25,9 @@
   "created_at": "2026-05-07T20:30:00Z",
   "last_updated_at": "2026-05-07T20:50:00Z",
   "specFolder": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/005-remediation",
-  "description": "Packet 099 deep-review (10 iterations, gpt-5.5 high fast) confirmed P0=0 holding (098/001 dist rebuild succeeded) but verdict remained FAIL on 13 acti",
+  "description": "Packet 099 deep-review (10 iterations, gpt-5.5 high fast) confirmed P0=0 holding (098/001 dist rebuild succeeded) but verdict remained FAIL on 13",
   "keywords": [
     "packet",
-    "099",
     "deep-review",
     "iterations",
     "gpt-5",
@@ -36,17 +35,14 @@
     "fast",
     "confirmed",
     "holding",
-    "098",
-    "001",
     "dist",
     "rebuild",
     "succeeded",
     "verdict",
     "remained",
-    "fail",
-    "acti"
+    "fail"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.886Z",
+  "lastUpdated": "2026-07-09T10:02:45.733Z",
   "specId": "005",
   "folderSlug": "remediation",
   "parentChain": [

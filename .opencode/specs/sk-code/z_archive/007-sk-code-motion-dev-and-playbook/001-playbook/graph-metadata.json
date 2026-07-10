@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The sk-code manual testing playbook already follows the sk-doc playbook package contract, but it stops at routing and advisor scenarios",
     "created_at": "2026-05-05T07:30:00Z",
-    "last_save_at": "2026-07-07T16:45:58.034Z",
+    "last_save_at": "2026-07-09T10:02:44.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75e00fe37c585bafb3ee77cb809d422419bfbeea3ec52a27409f97b72c5e98bd",
+    "source_fingerprint": "sha256:7cf22aa82e80e631f86068f880134fbc2ebee0f89b39cf24984ed01ff934a877",
     "source_doc_hashes": {
       "spec.md": "2b53ecaabfa77737ca1799c12471c3ed6194d969b240ee607523e29e8da9809a",
       "plan.md": "ce588f9b7c7c34f4706682794d71c3b8f4a3e163f4183126e1121a7d3e4a370c",
       "tasks.md": "297f65d57616faeea437f541924f0daa47138df3c7f71784651021144cfaf763",
       "checklist.md": "6c3b113e49dd118b4acb5b16b1fabd54f2f0b3429aac78269f366ca5996d5ebd",
-      "implementation-summary.md": "7077c4626c7709f04dadbf8a25f416031c42426ba9c5237248e4ae66b93ca289"
+      "implementation-summary.md": "c572f2479c07749a79a652d638788ecdee4cbe0ba20a686f203e3c31542622a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

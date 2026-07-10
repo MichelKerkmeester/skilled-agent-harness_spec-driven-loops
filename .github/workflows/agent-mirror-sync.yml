@@ -14,7 +14,7 @@ jobs:
       - name: Check changed agent files for mirror drift
         run: |
           set -euo pipefail
-          CHECKER=".opencode/skills/deep-loop-workflows/deep-improvement/scripts/check-agent-mirror-sync.cjs"
+          CHECKER=".opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
           # Fail closed in CI: a required guard must exist. A PR that deletes or
           # moves the checker must not silently disable its own gate.
           if [ ! -f "$CHECKER" ]; then

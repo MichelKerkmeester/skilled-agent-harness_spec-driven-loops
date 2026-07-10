@@ -113,9 +113,9 @@ The reusable benchmark contract ships with the skill, not with each spec packet:
 - Materializer: `scripts/shared/materialize-benchmark-fixtures.cjs`
 - Runner: `scripts/model-benchmark/run-benchmark.cjs`
 
-The command workflow first materializes static fixture JSON into outputs under `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir .opencode/skills/sk-prompt-models/benchmarks/{run_label}`. The runner writes `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
+The command workflow first materializes static fixture JSON into outputs under `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json --outputs-dir .opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}`. The runner writes `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
 
-Benchmark outputs are always written to the sk-prompt-models hub at `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`. There is no spec-local output path. `run_label` is a required identifier that distinguishes benchmark runs in the hub (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`).
+Benchmark outputs are always written to the sk-prompt/prompt-models hub at `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/`. There is no spec-local output path. `run_label` is a required identifier that distinguishes benchmark runs in the hub (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`).
 
 `benchmark_completed` may be emitted only after `benchmarks/{run_label}/report.json` exists. Repeatability output from `benchmark-stability.cjs` is separate evidence and does not by itself prove benchmark completion.
 

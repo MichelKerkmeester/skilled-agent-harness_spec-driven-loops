@@ -1,27 +1,25 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/019-architecture-remediation",
-  "description": "The perfect-session-capturing subsystem has grown to 20 child phases (000-019), 96+ TypeScript source files, 44 MCP handlers, and multiple audit passe",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/019-architecture-remediation",
+  "description": "The perfect-session-capturing subsystem has grown to 20 child phases (000-019), 96+ TypeScript source files, 44 MCP handlers, and multiple audit",
   "keywords": [
     "perfect-session-capturing",
     "subsystem",
     "grown",
     "child",
     "phases",
-    "000-019",
     "typescript",
     "source",
     "files",
     "mcp",
     "handlers",
     "multiple",
-    "audit",
-    "passe"
+    "audit"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.147Z",
+  "lastUpdated": "2026-07-09T10:02:58.323Z",
   "specId": "019",
   "folderSlug": "architecture-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

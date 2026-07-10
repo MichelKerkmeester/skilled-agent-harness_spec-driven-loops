@@ -2,10 +2,9 @@
   "completionPct": 0,
   "lastOutcome": "Spec docs authored; awaiting Phases 001-003 completion.",
   "specFolder": "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks",
-  "description": "After Phases 001-003 rename `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/` to plural, the following symlinks in mirror runtimes are B",
+  "description": "After Phases 001-003 rename `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/` to plural, the following symlinks in mirror runtimes are",
   "keywords": [
     "phases",
-    "001-003",
     "rename",
     "opencode",
     "skills",
@@ -17,7 +16,7 @@
     "mirror",
     "runtimes"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.830Z",
+  "lastUpdated": "2026-07-09T10:02:45.659Z",
   "specId": "004",
   "folderSlug": "symlinks",
   "parentChain": [

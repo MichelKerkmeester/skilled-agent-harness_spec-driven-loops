@@ -24,7 +24,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl",
+  "specFolder": "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl",
   "description": "Feature Specification: 027/004/002 Impact Analysis Library",
   "keywords": [
     "feature",
@@ -36,12 +36,12 @@
     "analysis",
     "library"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.077Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "002",
   "folderSlug": "lib-impl",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex",
+    "z_future",
+    "code-graph-and-cocoindex",
     "003-code-graph-impact-analysis"
   ],
   "memorySequence": 0,

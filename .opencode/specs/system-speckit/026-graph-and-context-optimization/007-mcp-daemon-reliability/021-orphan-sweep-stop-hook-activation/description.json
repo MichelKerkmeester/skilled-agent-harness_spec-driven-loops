@@ -17,7 +17,7 @@
   "completed_at": "2026-06-07T17:20:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation",
   "description": "The Stop hook runs `session-cleanup.sh`, which only reaps a session's MCP descendants when `CLAUDESESSIONPID` is set",
   "keywords": [
     "stop",
@@ -32,11 +32,11 @@
     "claudesessionpid",
     "set"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.553Z",
+  "lastUpdated": "2026-07-09T10:02:54.532Z",
   "specId": "021",
   "folderSlug": "orphan-sweep-stop-hook-activation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

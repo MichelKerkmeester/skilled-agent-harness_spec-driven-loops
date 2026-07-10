@@ -24,12 +24,12 @@
       "integration",
       "deprecate",
       "phase",
-      "010",
       "coco",
       "scope",
       "gap",
       "system-spec-kit",
-      "carries"
+      "carries",
+      "live"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -89,7 +89,7 @@
     ],
     "causal_summary": "system-spec-kit (memory) carries a live CocoIndex integration the research missed: `lib/cocoindex/daemon-probe.ts`, `lib/utils/cocoindex-path.ts` (`isCocoIndexAvailable`/`getCocoIndexBinaryPath`), `lib/search/cocoindex-calibration.ts` (post-fetch overfetch telemetry), `cocoIndexAvailable` threaded through `context-server.ts`/`session-snapshot.ts`/`memory-surface.ts`/both `session-prime` hooks/`code-graph-boundary.ts`, the `cocoIndex` MergeInput hint in `compact-inject.ts`, and a coco-keyed `\"vector channel unavailable, lexical-only\"` warning in `memory-search.ts`",
     "created_at": "2026-05-25T00:00:00.000Z",
-    "last_save_at": "2026-07-07T16:18:33.762Z",
+    "last_save_at": "2026-07-09T10:02:46.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

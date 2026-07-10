@@ -28,28 +28,24 @@
     "completion_pct": 100,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup",
-  "description": "Sibling packet `003-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup: 026/000/002-vitest-base",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup",
+  "description": "Sibling packet `003-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup:",
   "keywords": [
     "sibling",
     "packet",
     "003-vitest-baseline-recovery",
     "unit",
     "expected",
-    "196",
     "deferred",
     "failures",
     "discoverable",
-    "followup",
-    "026",
-    "000",
-    "002-vitest-base"
+    "followup"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.449Z",
+  "lastUpdated": "2026-07-09T10:02:51.040Z",
   "specId": "002",
   "folderSlug": "vitest-baseline-recovery-followup",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "004-followup-post-program"

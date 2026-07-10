@@ -17,7 +17,8 @@
     "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/021-system-code-graph-readme",
     "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/022-system-skill-advisor-readme",
     "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/023-system-spec-kit-readme",
-    "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/024-skills-index-readme"
+    "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/024-skills-index-readme",
+    "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/019-sk-prompt-small-model-readme"
   ],
   "manual": {
     "depends_on": [],
@@ -49,27 +50,22 @@
     "importance_tier": "high",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/README.md",
-      ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-      "spec.md"
+      "spec.md",
+      "023-system-spec-kit-readme/spec.md",
+      "024-skills-index-readme/spec.md",
+      ".opencode/skills/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_readme_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
@@ -111,15 +107,15 @@
     ],
     "causal_summary": "The repo root `README.md` and the recent `system-spec-kit` changelogs read in one warm, human-centered narrative voice: a problem-first opener, an \"At a Glance\" table near the top, outcome-named section headers, sparse tables, honest trade-off notes, and a verification closer",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-06-23T03:49:51.815Z",
+    "last_save_at": "2026-07-09T10:02:46.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:efd9070c0120ad2dec0df1a2d1f0ed2ff281fdd6fb76136d55e8f1cda11841d3",
+    "source_fingerprint": "sha256:74d3ceac311b92707d0d90e91c7ff6e4ad6824b2721c777985ce74e3442c5352",
     "source_doc_hashes": {
-      "spec.md": "387ec22e7ef19da8549da3878c1f0c63f3fa9511e317257720a12b4b08b4cd10"
+      "spec.md": "811854411fcbc3a80f445dd02de5710c3cf3950b28ad7f7407473c193f0d3f42"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-06-07T17:38:46.456Z"

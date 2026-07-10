@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/.backup-20260512-182832",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture/.backup-20260512-182832",
   "description": "Feature Specification: Phase 1: prefix-registry-architecture",
   "keywords": [
     "feature",
@@ -7,13 +7,14 @@
     "phase",
     "prefix-registry-architecture"
   ],
-  "lastUpdated": "2026-05-23T09:09:18.044Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "",
   "folderSlug": "backup-20260512-182832",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
-    "013-embedder-testing-and-architecture",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
     "001-local-embeddings-foundation",
     "001-prefix-registry-architecture"
   ],

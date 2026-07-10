@@ -36,7 +36,7 @@
       "live",
       "detection",
       "workaround",
-      "026"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`generate-context.js` Step 11.5 unconditionally imported `@spec-kit/mcp-server/api/indexing`, called `initializeIndexingRuntime()`, and then ran `reindexSpecDocs()`",
     "created_at": "2026-05-29T14:01:10.035Z",
-    "last_save_at": "2026-07-02T05:31:12.881Z",
+    "last_save_at": "2026-07-09T10:02:54.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

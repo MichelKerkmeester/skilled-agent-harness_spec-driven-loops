@@ -27,7 +27,6 @@
       "hermetic",
       "test",
       "isolation",
-      "001",
       "spawn-cjs",
       "helper",
       "home",
@@ -35,31 +34,18 @@
       "vitest",
       "parallel",
       "summary",
-      "createhermeticenv"
+      "createhermeticenv",
+      "tests"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spawn-cjs.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +177,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`, `database/`, and system temp directories because there is no shared hermetic helper",
     "created_at": "2026-06-28T16:15:21.565Z",
-    "last_save_at": "2026-07-04T18:02:18.741Z",
+    "last_save_at": "2026-07-09T10:02:47.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f5a4d492b0152482e2c6ad9e31d57c296a8ede0326aef6b59e26ad6a82dc27e",
+    "source_fingerprint": "sha256:e2dd234bccbc0b68761e638115c0d71528abe16b7aeb5d936084009852d51a58",
     "source_doc_hashes": {
-      "spec.md": "1da8082ab80b313fcef8f24d9615c803dfafbbda5a99efadb7d6f2d86d3b862b",
-      "plan.md": "93685041f9d2dce21579328f4296ac0adb835af568e2d4ba2af4448e748b9d11",
-      "tasks.md": "95526073efd9489ba1d7001953b189fbf2c4353252fea6d4804a6e1afda73e2e",
-      "implementation-summary.md": "89f4211ae40feb8e11e2851309a2c08b6267084e5811f7286fe64a66075771d3"
+      "spec.md": "14cfde7a2955fc126787287b2f72df061348ced6bb39712a0a9e46d01073909e",
+      "plan.md": "d5124b0bcf95bb87dc0f47bd53d7991a3eaf703b801bb2687f88ebfafa86a0fa",
+      "tasks.md": "74c4d3cc8741d514504caf8b1574b0084478a2189143cbc18d38f73dc1f77bc4",
+      "implementation-summary.md": "7cd661cc3d4bab2ca52585cc07f3b195b8485a74c7a3d0885cca59a23c0fde61"
     },
     "last_active_child_id": null,
     "last_active_at": null

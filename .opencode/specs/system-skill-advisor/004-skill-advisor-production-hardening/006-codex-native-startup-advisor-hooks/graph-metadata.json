@@ -36,7 +36,7 @@
       "brief",
       "userpromptsubmit",
       "sessionstart",
-      "026"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Codex CLI sessions do not receive the two payloads Claude Code receives:",
     "created_at": "2026-04-22T06:39:13.790Z",
-    "last_save_at": "2026-07-07T11:42:17.804Z",
+    "last_save_at": "2026-07-09T10:02:49.983Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,15 +211,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:af701f962e848ab7c7bdd6d0747d9cd1f8be414cfbd9e334fd0efb56371f40fa",
+    "source_fingerprint": "sha256:2a1582b26f3b5b77589e4b468267998ef103b29fdb1a371d1e553f206c52d07b",
     "source_doc_hashes": {
-      "spec.md": "76bafd6b3de703071575134724d36a96adbd4dc46882250099a3b36a27905904",
-      "plan.md": "a67a62c3dc4b34ff7665fe2c07e5db573985bb5c4c42558a56025f9dfb544a14",
-      "tasks.md": "44a3f3e4a8ad0a78530d62f3377eeb75ca8bc8bf53e0a2d0e2727bd4d8db8dc0",
-      "checklist.md": "910a2b8c8eff64a782dede4bdc9eea4c275fb07e5d2e04df84c29a5d873c30bf",
-      "decision-record.md": "67ea39b824cbc3d6fc04f0d2e274639f7b4d32fe3bf96e80efd0e6596232da9b",
-      "implementation-summary.md": "68d214858e10d086ae69d4a632f41c5fca5f24a5885aa0fa34a4c8714dad6e73",
-      "research/research.md": "d627709fd46a07b61398c463290c44c026c3cb569a303723de3a283681e6325a"
+      "spec.md": "b412884fb9126cd9042e814b8c483802031f5ad3ed2b288804c5e152939515fd",
+      "plan.md": "0c52f2d61071ec6c39f16fbdac0002fe0ab42afbb5e2489a3d62bd15d082d52f",
+      "tasks.md": "65f69f23d30cd895cb902eb490bd906dbc31b3ca94e9b4bb2dbb8f83072d060e",
+      "checklist.md": "db4f90d6d944dda6e3396274ae9fbaeb01b024bf3819199b452f6d154fdc8b66",
+      "decision-record.md": "8b80ab1e9641f9edb5da22ec99ada6e74cd747caf238fa7a584603de46974d72",
+      "implementation-summary.md": "fa667d336a2b49175bdd34a658431317d9f61d03b48b071adf89a12ab4d43a00",
+      "research/research.md": "8cef9f58049f6eb7605973abeba4f91faf7ad5ac273ccd2d2a6c64479302928e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,8 +28,6 @@
     ],
     "key_topics": [
       "session",
-      "120",
-      "121",
       "deep",
       "review",
       "dual-executor",
@@ -38,7 +36,9 @@
       "implementation",
       "plan",
       "name",
-      "template"
+      "template",
+      "core",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "This session shipped real, committed code — the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a ported 5-dim scorer, mode-aware records) plus the MiniMax provider integration (120: cli-opencode + sk-prompt skill edits)",
     "created_at": "2026-05-28T17:42:53Z",
-    "last_save_at": "2026-07-08T13:43:37.631Z",
+    "last_save_at": "2026-07-09T10:02:48.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

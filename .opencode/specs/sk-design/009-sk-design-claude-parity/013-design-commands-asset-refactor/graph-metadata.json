@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The five `/design:` commands (`interface`, `foundations`, `motion`, `audit`, `md-generator`) are currently flat, single-file commands with no `assets/` folder",
     "created_at": "2026-07-06T04:33:03.987Z",
-    "last_save_at": "2026-07-06T10:00:23.836Z",
+    "last_save_at": "2026-07-09T10:02:44.512Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad532314fe23dbb308b14ed9333ea887efb5770018706815d4b9fe9ab4308350",
+    "source_fingerprint": "sha256:dbf0d948cf1d7c28db7b5fd699d11f98b60e3e3392f79a446e70c29247b32beb",
     "source_doc_hashes": {
       "spec.md": "64db5b188431fef0287331d85c6a9e016637fca96dfcf555e3fd2052b2e84355",
       "plan.md": "bb9f5f9084dc14e6618ec43fe3dcfaaf4822ed5d9e211b5375e1ff848f204651",
       "tasks.md": "c400fe670d06bb285644af8b14db759583c0732becba5daad3bba6ad88ba4b29",
       "checklist.md": "c470f180d79002406952b0d1abd7f136ad666873a8d29d92bb467c6d4d287993",
       "decision-record.md": "550ba0e9fae7d9e2a9245c5e1c256f99e0d7df0c9bbe93f5a37ea33e8c090ff2",
-      "implementation-summary.md": "ae7aabde634e643de7cb2598c1cc225fa51b8d6a5d51216bf6b14e9972b9099e"
+      "implementation-summary.md": "06901140728bf147a2a94e5869b8d04e2a757400fa59996ffaf501ecfbe2b43f"
     },
     "last_active_child_id": null,
     "last_active_at": null

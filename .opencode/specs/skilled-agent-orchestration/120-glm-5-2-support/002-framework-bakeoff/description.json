@@ -6,7 +6,6 @@
     "glm-5",
     "registered",
     "phase",
-    "001",
     "reasoned-but-unverified",
     "framework",
     "recommendedframeworks",
@@ -14,7 +13,7 @@
     "craft",
     "status"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.336Z",
+  "lastUpdated": "2026-07-09T10:02:45.066Z",
   "specId": "002",
   "folderSlug": "framework-bakeoff",
   "parentChain": [

@@ -44,7 +44,6 @@
       "post-022 substrate stability instrumentation"
     ],
     "key_topics": [
-      "032",
       "substrate",
       "repair",
       "followups",
@@ -55,7 +54,8 @@
       "re-run",
       "validation",
       "mcp",
-      "server"
+      "server",
+      "failed"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -165,7 +165,7 @@
     ],
     "causal_summary": "Phase parent for the 5 approved follow-ups to 022-local-llm-legacy-remediation's substrate-repair work. Each child is a focused unit shipped via a fresh cli-codex gpt-5.5 high fast dispatch. Wave 1 (001/003/004) runs in parallel; Wave 2 (002/005) runs sequentially after Wave 1 lands.",
     "created_at": "2026-05-14T11:05:00Z",
-    "last_save_at": "2026-07-02T05:31:11.629Z",
+    "last_save_at": "2026-07-09T10:02:52.392Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-14T14:30:00Z",
     "source_docs": [

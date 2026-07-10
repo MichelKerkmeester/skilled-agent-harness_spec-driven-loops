@@ -3,7 +3,6 @@
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/006-rename-reindex-validate",
   "description": "After 002-005 land file edits, the compiled skill-graph.json + advisor cache need to be refreshed so the advisor surfaces the renamed identities",
   "keywords": [
-    "002-005",
     "land",
     "file",
     "edits",
@@ -18,7 +17,7 @@
     "renamed",
     "identities"
   ],
-  "lastUpdated": "2026-07-08T13:07:02.446Z",
+  "lastUpdated": "2026-07-09T10:02:48.626Z",
   "specId": "006",
   "folderSlug": "rename-reindex-validate",
   "parentChain": [

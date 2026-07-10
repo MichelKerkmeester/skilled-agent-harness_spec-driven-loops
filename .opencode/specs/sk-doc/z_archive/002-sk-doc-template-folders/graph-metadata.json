@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The sk-doc skill stores all OpenCode component templates (skill, agent, command) in a single `assets/opencode/` directory",
     "created_at": "2026-04-12T09:02:50.207Z",
-    "last_save_at": "2026-07-07T17:12:10.402Z",
+    "last_save_at": "2026-07-09T10:02:44.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d03895789749300b488ed8401707d7f49269d730dda1209cb255ac6ec7f6573a",
+    "source_fingerprint": "sha256:da70701d88255c7dc897249e7a284b1bcd7b8386d3b3d8082558adcda1672bd0",
     "source_doc_hashes": {
       "spec.md": "8d45025e42eaa84470e88876a4d45f7ceee96899fc795c05a2e29ca314ea8a4f",
       "plan.md": "0009880025895e11671fdac1ba47eb2a9999099782bbf34579b0c12d9113672a",
       "tasks.md": "9b5efc9ae5d179ce2422bc3cd23a2d46f7ffd8008f08c8bb830b9ea20cdfb8a8",
       "checklist.md": "f8dcce874f6ba69a8d065d1427007805a51efa8f36bce9957f2a0e7a7533946a",
-      "implementation-summary.md": "626d8a1124c4a9838bafe23251e113e9a8a8966fe183e1c91dcce8a38ecac13d"
+      "implementation-summary.md": "34cfdaa9b5de5822b8595327a05410019b4554283be77ff81d9570fea178f6f3"
     },
     "last_active_child_id": null,
     "last_active_at": null

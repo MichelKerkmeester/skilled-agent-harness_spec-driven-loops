@@ -54,13 +54,13 @@
       "tasks.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/cli-claude-code/README.md",
-      ".opencode/skills/cli-codex/README.md",
       ".opencode/skills/cli-opencode/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
       "manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json"
+      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/067-cli-copilot-deprecation-due-to-price-hike/spec.md"
     ],
     "entities": [
       {
@@ -136,6 +136,12 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/067-cli-copilot-deprecation-due-to-price-hike/spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria All",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`",
     "created_at": "2026-05-06T10:28:50.690Z",
-    "last_save_at": "2026-06-23T03:49:49.881Z",
+    "last_save_at": "2026-07-09T10:02:45.527Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:ef051588b2ea2fb4b096caa81fdc10c1f6de6696a38f6f2f3370e47845f80ffc",
+    "source_fingerprint": "sha256:82343dc88b8fd95a214f36e8684884751e8af773cde7dda402de02fc366e5070",
     "source_doc_hashes": {
-      "spec.md": "e0fce39ca21d513f52e9d0e8124960f6813906844edc76c18efde9edb8406d5a",
-      "plan.md": "f200e0bff0b977c1fefb48b95ec791ee581abe10cca4282113d23e50184fac15",
-      "tasks.md": "378a134144be9f4c47fe0ab61b5726cb09e3cb17c1f877afbb683ced1e4f4ccd",
-      "checklist.md": "14a04fce22850d2e72e94fba10358564ad3bbc627086d531a7157c8a854ee737",
-      "implementation-summary.md": "449978bc6840cfeb5af079092891ee4e86f71a996b96037defd1bab619929dec",
-      "resource-map.md": "01c78866a2e6fc420bf8fd71f55da170d5e0e2147bc0d14d53bec5d1c4f5f69a"
+      "spec.md": "59a113a2e666e16e65542ad90451696feae9c86625ac7fa2ddfefd10e95536fb",
+      "plan.md": "254a7251c406e1cbd0c490d947683385a0f4d00805a5ad1035e31694d0386b5a",
+      "tasks.md": "8642f145198b51232493f6842e27404cde32dcd51abba874874bdc4ed49c5402",
+      "checklist.md": "4226dce403a414309c99488e6723905a7bc02bd5cff94bfdc9d763479b4cc236",
+      "implementation-summary.md": "7d70a3657264695540fea9f9c4d3250ec497e71464b765759f3d0580da1edd82",
+      "resource-map.md": "af1b65df439674d529cfbcf0d8497bd5d4a8b9d8e8786095a98c5a12a68299ba"
     },
     "last_active_child_id": null,
     "last_active_at": null

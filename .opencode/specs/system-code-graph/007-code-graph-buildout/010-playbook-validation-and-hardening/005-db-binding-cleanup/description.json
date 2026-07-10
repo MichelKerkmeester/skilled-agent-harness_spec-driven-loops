@@ -1,8 +1,7 @@
 {
   "specFolder": "system-code-graph/007-code-graph-buildout/010-playbook-validation-and-hardening/005-db-binding-cleanup",
-  "description": "029 finding F-019-1 reported a legacy code-graph SQLite DB at `.opencode/skills/system-code-graph/mcpserver/database/code-graph.sqlite` (106 KB) along",
+  "description": "029 finding F-019-1 reported a legacy code-graph SQLite DB at `.opencode/skills/system-code-graph/mcpserver/database/code-graph.sqlite` (106 KB)",
   "keywords": [
-    "029",
     "finding",
     "f-019-1",
     "reported",
@@ -13,11 +12,9 @@
     "skills",
     "system-code-graph",
     "mcpserver",
-    "database",
-    "106",
-    "along"
+    "database"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.101Z",
+  "lastUpdated": "2026-07-09T10:02:47.096Z",
   "specId": "005",
   "folderSlug": "db-binding-cleanup",
   "parentChain": [

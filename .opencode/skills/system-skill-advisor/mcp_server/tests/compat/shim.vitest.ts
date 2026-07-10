@@ -90,9 +90,16 @@ describe('skill_advisor.py compat shim', () => {
     expect(result.status).toBe(0);
     expect(result.stdout).not.toContain(secretPrompt);
     expect(result.stdout).not.toContain('private-address@example.com');
-    expect(parseJson(result.stdout)).toEqual([
-      expect.objectContaining({ source: 'native' }),
-    ]);
+    // Native co-surfaces the save-context prompt to more than one recommendation
+    // (system-spec-kit plus memory:save). The load-bearing invariant is the two
+    // leak checks above; assert every returned entry is prompt-safe native
+    // metadata rather than pinning an exact recommendation count.
+    const parsedNative = parseJson(result.stdout);
+    expect(Array.isArray(parsedNative)).toBe(true);
+    expect((parsedNative as unknown[]).length).toBeGreaterThan(0);
+    for (const recommendation of parsedNative as Array<Record<string, unknown>>) {
+      expect(recommendation).toEqual(expect.objectContaining({ source: 'native' }));
+    }
   });
 
   it('honors the shared disabled flag with no recommendation', () => {

@@ -20,7 +20,6 @@
       "007-agent-improve-prompt",
       "improve-prompt",
       "optimization",
-      "271",
       "loc",
       "sk-improve-agent",
       "lens",
@@ -28,7 +27,8 @@
       "agent",
       "sub-phase",
       "061-agent-optimization",
-      "applying"
+      "applying",
+      "validated"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`@improve-prompt` (271 LOC) has not been through the sk-improve-agent v2 lens",
     "created_at": "2026-05-18T07:49:27.107Z",
-    "last_save_at": "2026-06-23T03:49:49.476Z",
+    "last_save_at": "2026-07-09T10:02:45.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1c3c58e3de55fb2f9999d0fb5d15a96b678dfcc71d02d2e88d26a27209d09d7",
+    "source_fingerprint": "sha256:49875ca7f3b48bde483174fb937e8c5829441dd9ff7f12dcbe5aaf12492a61cc",
     "source_doc_hashes": {
-      "spec.md": "dce22bc1c23b0a44a6563e44550d8af6d1b7eee357c21db0056b3aec4efd2d96",
-      "plan.md": "e11da08b3205c282474e8e60c0f7df7e68a8300215eebe4669ffce99198512ba",
-      "tasks.md": "3f31f9b44df2b67d84bb22f7a611a39baabb112c341ac94de854d4cf25d96902",
-      "implementation-summary.md": "63651634011960c852a19b8222f42ff211cead8363c21406135f813595fd222b"
+      "spec.md": "bbaa746095d32e64a97ad099eb78a3b3afb63d8911f46fe2de5b3dc3fdc27023",
+      "plan.md": "f4b3b383f6d71776108f4e07415cfaafd265f62bc63f4b97afaf47c3d4deb801",
+      "tasks.md": "d0017216b66cc77b729c459300ec8a2e647333d613456ed4a2a3db8a645329c2",
+      "implementation-summary.md": "7f926304e3c155cc72d13f2401cb13b6a47def6141fb46cb22b3f5d21a3c5826"
     },
     "last_active_child_id": null,
     "last_active_at": null

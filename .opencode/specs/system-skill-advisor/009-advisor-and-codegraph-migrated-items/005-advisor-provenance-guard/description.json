@@ -7,7 +7,6 @@
     "auto",
     "edge-patch",
     "path",
-    "adds",
     "autoaddedat",
     "autoaddedreason",
     "idempotent",
@@ -16,7 +15,7 @@
     "durable",
     "sourcekind"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.119Z",
+  "lastUpdated": "2026-07-09T10:02:50.352Z",
   "specId": "005",
   "folderSlug": "advisor-provenance-guard",
   "parentChain": [

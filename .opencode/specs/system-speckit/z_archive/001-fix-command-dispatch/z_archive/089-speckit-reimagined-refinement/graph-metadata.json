@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/089-speckit-reimagined-refinement",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/089-speckit-reimagined-refinement",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/089-speckit-reimagined-refinement",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/089-speckit-reimagined-refinement",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "spec",
-      "089",
       "system",
       "kit",
       "speckit",
@@ -36,7 +35,8 @@
       "checklist",
       "decision",
       "record",
-      "title"
+      "title",
+      "system-spec-kit"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "title: \\\"Spec 089: system-spec-kit Reimagined Refinement\\\"",
     "created_at": "2026-04-12T09:02:53.559Z",
-    "last_save_at": "2026-06-23T03:49:59.400Z",
+    "last_save_at": "2026-07-09T10:02:57.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

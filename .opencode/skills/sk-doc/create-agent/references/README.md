@@ -46,7 +46,7 @@ Load the file that matches the current task:
 
 ### Sibling sk-doc Packets
 - [create-skill README](../../create-skill/references/README.md) - companion workflow for reusable knowledge bundles
-- [command_template.md](../../create-command/assets/command/command_template.md) - companion scaffold for slash-command entry points
+- [command_template.md](../../create-command/assets/command_template.md) - companion scaffold for slash-command entry points
 
 ### Shared Reference Files
 - [core_standards.md](../../shared/references/core_standards.md) - document type rules and structural requirements

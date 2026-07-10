@@ -48,7 +48,6 @@
       "decision-record.md",
       "spec.md",
       ".claude/mcp.json",
-      ".codex/config.toml",
       ".opencode/agents/README.txt",
       ".opencode/agents/deep-improvement.md",
       ".opencode/agents/deep-review.md",
@@ -56,11 +55,12 @@
       ".opencode/agents/prompt-improver.md",
       ".opencode/commands/create/README.txt",
       ".opencode/commands/create/agent.md",
-      ".opencode/commands/create/folder_readme.md",
-      ".opencode/commands/create/sk-skill.md",
+      ".opencode/commands/create/skill.md",
       ".opencode/commands/create/assets/create_agent_auto.yaml",
       ".opencode/commands/create/assets/create_agent_confirm.yaml",
-      ".opencode/commands/create/assets/create_changelog_auto.yaml"
+      ".opencode/commands/create/assets/create_changelog_auto.yaml",
+      ".opencode/commands/create/assets/create_changelog_confirm.yaml",
+      ".opencode/commands/create/assets/create_feature_catalog_auto.yaml"
     ],
     "entities": [
       {
@@ -106,12 +106,6 @@
         "source": "derived"
       },
       {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/agents/README.txt",
@@ -148,15 +142,9 @@
         "source": "derived"
       },
       {
-        "name": "folder_readme.md",
+        "name": "skill.md",
         "kind": "doc",
-        "path": ".opencode/commands/create/folder_readme.md",
-        "source": "derived"
-      },
-      {
-        "name": "sk-skill.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/sk-skill.md",
+        "path": ".opencode/commands/create/skill.md",
         "source": "derived"
       },
       {
@@ -175,6 +163,18 @@
         "name": "create_changelog_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/create/assets/create_changelog_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_changelog_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_changelog_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_feature_catalog_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The checked-in project `.gemini/` directory is still treated as an active runtime surface by docs, command scaffolds, tests, runtime capability manifests, and MCP setup guidance",
     "created_at": "2026-06-05T06:49:52Z",
-    "last_save_at": "2026-06-23T03:49:51.679Z",
+    "last_save_at": "2026-07-09T10:02:46.364Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,15 +222,15 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:94fdeb4e6e458e070025e3ce6a243047299b22b197c6dfed9d088b99b9aafe29",
+    "source_fingerprint": "sha256:e92be771e32d4bd0831dfe0a320cad4c6f53543a3ca79aac749e41afe8e784e9",
     "source_doc_hashes": {
-      "spec.md": "fd52dd98ec8719ef3194a5629be0051b5ef7dd6b079d5167b6d910a4f088531d",
-      "plan.md": "aa5cac0c761689f5ff776db6ae6004688bee484f2539e730f46c559f3476fd61",
-      "tasks.md": "8d8050888359a699b5b4ffdb696360a8d1d32434d12aea8463df3e2c237e4e75",
-      "checklist.md": "c531e0ccbdd0961b4067417a80a5871c2b01bc2a6a6efea412f4ba7726b2086c",
-      "decision-record.md": "4169a35f01b59c65236c2b64dc5f4b627b713832cd9709a7065dcb409a507a93",
-      "implementation-summary.md": "414904907f37d6ed94d5df4371be95fe59c884db9721ea88c726a1f7fc2c5639",
-      "resource-map.md": "62aac0b54703077f3b8f058c16d473091a24df82d9b039806760ac6ad0a1abae"
+      "spec.md": "d6a0fed9de63eec8c04a2400caaa1af948588120726265654f37ba1b7a32c9a2",
+      "plan.md": "03f4b44c4fa34f43b82a8ca11128a8971de8b72d511581d80514a57fed4089f2",
+      "tasks.md": "53952a74f65e5ccb625f9a0f9cc117a6ec73d4bc8d8f81c361afe0bbb1ac54b1",
+      "checklist.md": "444ea0791bfd58585690f78b8f4bb4d24021fd0f23817620c6a016adad17b07e",
+      "decision-record.md": "0b40dd800c917949a585aae83046786c646920a5e3f02b7ed390f0b0d265996d",
+      "implementation-summary.md": "0726ddc5f70e442d322aacdd6968011fe8b6a75a58192091ea2df8785980a9a0",
+      "resource-map.md": "794c00afa28c3a2d17f8c71d95b26964b8a6a0fd3a02630003330d0b4aea861c"
     },
     "last_active_child_id": null,
     "last_active_at": null

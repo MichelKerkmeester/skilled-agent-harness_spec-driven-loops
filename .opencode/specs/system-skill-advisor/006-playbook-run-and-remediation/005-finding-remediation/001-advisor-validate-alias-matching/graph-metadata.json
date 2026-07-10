@@ -24,13 +24,13 @@
       "f1a",
       "corpus",
       "accuracy",
-      "fix",
       "skill-id",
       "drift",
       "gold",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`advisorvalidate` matches corpus gold labels to the recommended skill with strict equality (`result.topSkill === expected`, `handlers/advisor-validate.ts` ~lines 266-275 and 361-371) and ignores the alias groups already defined in `lib/scorer/aliases.ts:4-16`",
     "created_at": "2026-05-26T21:12:43.331Z",
-    "last_save_at": "2026-07-02T05:31:11.368Z",
+    "last_save_at": "2026-07-09T10:02:50.155Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:759dc30b13f2e4acfd3622f20251c286074b181ad737e3bb94df6c7f46e60710",
+    "source_fingerprint": "sha256:cb2787be001224897834cf2efa7a0ef4a3552da9e3a3907b84c9819bd6f73009",
     "source_doc_hashes": {
-      "spec.md": "74640d439f54907a7956dcde3975b663f8c380ecd713fdcee45107b8efe250c2",
-      "plan.md": "8d85005f38492ee5fd98ed4617ab5525c43d4623bee76945600c5436bdb32521",
-      "tasks.md": "6ac472c870189f0662f4406d6e1c9a0f9d3f465802b10e6408710b74e83003f4",
-      "implementation-summary.md": "33ff1bdb4d5e9c183533b568f54f1af40ae1d0a34fcc46c53faa06aff6773988"
+      "spec.md": "24a879e23a13fed449e90350886541572fd09b156c9b5ca1ec22eee49d82e863",
+      "plan.md": "d5105561dae1d388098d007bf878633da2ea6813e93910fdf2462dac40f598aa",
+      "tasks.md": "747864b94d00f1a8395cfa1f6df70b7a650933677f1678c099f5f97e25e5fa9a",
+      "implementation-summary.md": "608972f55f30f57b39bd6cf0f34568b0ed0d23ba720fbee25663e6465dde0f41"
     },
     "last_active_child_id": null,
     "last_active_at": null

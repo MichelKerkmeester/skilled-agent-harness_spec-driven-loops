@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
-  "description": "The `codegraph` and `skilladvisor` subsystems each maintain a feature catalog (17 + 37 = 54 features), but the stress-test directory currently holds o",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/006-stress-coverage-audit-and-run",
+  "description": "The `codegraph` and `skilladvisor` subsystems each maintain a feature catalog (17 + 37 = 54 features), but the stress-test directory currently holds",
   "keywords": [
     "codegraph",
     "skilladvisor",
@@ -14,11 +14,11 @@
     "currently",
     "holds"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.771Z",
+  "lastUpdated": "2026-07-09T10:02:51.435Z",
   "specId": "006",
   "folderSlug": "stress-coverage-audit-and-run",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test"

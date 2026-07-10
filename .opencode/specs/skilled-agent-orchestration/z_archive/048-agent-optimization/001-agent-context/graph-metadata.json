@@ -20,7 +20,6 @@
       "001-agent-context",
       "context",
       "optimization",
-      "444",
       "loc",
       "sk-improve-agent",
       "lens",
@@ -28,7 +27,8 @@
       "agent",
       "sub-phase",
       "061-agent-optimization",
-      "applying"
+      "applying",
+      "validated"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -36,7 +36,6 @@
       "improvement/candidates/iter-1-candidate-001.md",
       ".opencode/agents/context.md",
       ".claude/agents/context.md",
-      ".codex/agents/context.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -53,12 +52,6 @@
         "name": "context.md",
         "kind": "doc",
         "path": ".opencode/agents/context.md",
-        "source": "derived"
-      },
-      {
-        "name": "context.toml",
-        "kind": "file",
-        "path": ".codex/agents/context.toml",
         "source": "derived"
       },
       {
@@ -186,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Score Progression",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`@context` (444 LOC) has not been through the sk-improve-agent v2 lens",
     "created_at": "2026-05-18T07:49:27.101Z",
-    "last_save_at": "2026-06-23T03:49:49.447Z",
+    "last_save_at": "2026-07-09T10:02:45.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40603fcf47f2722bd1ea75d9b51e033f6b08f7960fa2426c5fcd987034c2ef4e",
+    "source_fingerprint": "sha256:82468caa73e56efafca60d7273e8cb4006c63dcb75c18d3f2875c631e88dfa2f",
     "source_doc_hashes": {
-      "spec.md": "6bad407ca9bb54ff344178f3226cc83630037f49c296485272fee5a72247847c",
-      "plan.md": "c4ae40d45930cdb3a19094b6c0ce34fd0c3cb2ebc3adc9a6ddb676077265fb7e",
-      "tasks.md": "4ad9a4f6165c6bb83f308b42a6fb6a82ac820fdbdd8fcca65cc378767e36ece0",
-      "implementation-summary.md": "794af6d8db9800fbbaf19ef12c5c442b3346cd9709726ee1eedc32f20741c6ae"
+      "spec.md": "0e46839ff22bb2663bb88d08974d88d47703a0b944df7aa5c0fc09fa8c53f8b8",
+      "plan.md": "f83737bfa281369f65c7d8cfce4e9eb1923bcb99294d6f2e860fb17a026ee3dc",
+      "tasks.md": "e8b536d4a154818b5fa846cbf55d34d1d3d545575854f1204a692e78e7d8fb59",
+      "implementation-summary.md": "3ec20406103547dfa59f299ffc09fce94df03ba2a3ab97a7fc2d82610d53e8c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

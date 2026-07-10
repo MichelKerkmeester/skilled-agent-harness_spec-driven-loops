@@ -26,9 +26,6 @@
     ],
     "key_topics": [
       "arc",
-      "010",
-      "005",
-      "003",
       "layer",
       "launcher",
       "preflight",
@@ -36,7 +33,10 @@
       "rerank",
       "sidecar",
       "parity",
-      "fixtures"
+      "fixtures",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The detached rerank sidecar launchers could reuse or spawn sidecars without first removing rows whose registered launcher owners were all dead",
     "created_at": "2026-05-23T07:46:28Z",
-    "last_save_at": "2026-07-02T05:31:12.291Z",
+    "last_save_at": "2026-07-09T10:02:53.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

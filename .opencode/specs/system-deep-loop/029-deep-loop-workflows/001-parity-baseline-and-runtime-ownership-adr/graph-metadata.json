@@ -36,7 +36,7 @@
       "discovery",
       "test",
       "phase",
-      "001"
+      "parity-baseline-and-runtime-ownership-adr"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "A structure-only merge can silently change behavior",
     "created_at": "2026-06-14T20:16:09.677Z",
-    "last_save_at": "2026-07-02T05:31:05.014Z",
+    "last_save_at": "2026-07-09T10:02:47.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5df81f40cfcef2bd86962b2b141c2f91fbc60d9f158a610383de4fa28a1e1405",
+    "source_fingerprint": "sha256:cef1f5beb1bdddf713866352dca2d666efda565eafb83897cd12b23e7ed08cb2",
     "source_doc_hashes": {
-      "spec.md": "9e768277ef64ca271e00a38d8b2d2c01196e69a9ba5f7679d97f7f2803b99477",
-      "plan.md": "dc7105067f3860507f353068e9bc7cb1cb969b407ae38e5583643e76dacec841",
-      "tasks.md": "eccda85e55e1926a913b55ffd6b9727c1e205acf1578d1fd020af7fb9b0ab19e",
-      "checklist.md": "08b8bc39d08455a0277c3ccbd2d3a16723bb07a971d7626c93076b7a03267b33",
-      "decision-record.md": "8c1e6602a25c6a14e854e37662acd6db2a3d16588bff3e31e990e66a89cee414",
-      "implementation-summary.md": "2ab66b0df1c5606348a116eb12211f7173490439c68e8e1bd96c48bc080d867c"
+      "spec.md": "9bf437d440f6953c9f5b1e6b339b4d63f29a2fa51e50ca5976e4da116361ea56",
+      "plan.md": "10c4e5ecd3bf6d84ab81648ab3f996bdca826c87362f7aabed3e508381501295",
+      "tasks.md": "77c593d84cae0f6a766cc64e528e66ae8f54e9082fb69ee46260b5b406eee9cf",
+      "checklist.md": "831157c88f21186676cf4407df575913063cbe53141c944a4afd5d20ccc664e3",
+      "decision-record.md": "a6ca8f441a4b7192929a2a98097c13431970b74d2d1893f6b174b0083bbd3640",
+      "implementation-summary.md": "2930f87239dae06b1f6eac110411378b002099fb7659a76113b0546dd30e9bcf"
     },
     "last_active_child_id": null,
     "last_active_at": null

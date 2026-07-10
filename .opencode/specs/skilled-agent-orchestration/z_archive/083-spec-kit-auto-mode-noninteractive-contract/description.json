@@ -21,16 +21,14 @@
     "auto",
     "setup-resolution",
     "contract",
-    "001",
     "introduced",
     "three-tier",
     "flow",
     "deep",
     "start-review-loop",
-    "002",
     "generalizes"
   ],
-  "lastUpdated": "2026-06-23T03:49:50.289Z",
+  "lastUpdated": "2026-07-09T10:02:45.774Z",
   "specId": "083",
   "folderSlug": "spec-kit-auto-mode-noninteractive-contract",
   "parentChain": [

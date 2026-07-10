@@ -23,11 +23,10 @@
     "019-maintenance-grace-background-embedding",
     "020-cooperative-heavy-phases"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search",
   "description": "The bulk of 027 hardens the Spec Kit memory store and its retrieval path: write-path safety, incremental index and causal lifecycle, semantic trigger",
   "keywords": [
     "bulk",
-    "027",
     "hardens",
     "spec",
     "kit",
@@ -44,11 +43,11 @@
     "semantic",
     "trigger"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.133Z",
+  "lastUpdated": "2026-07-09T10:02:55.116Z",
   "specId": "002",
   "folderSlug": "memory-store-and-search",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,

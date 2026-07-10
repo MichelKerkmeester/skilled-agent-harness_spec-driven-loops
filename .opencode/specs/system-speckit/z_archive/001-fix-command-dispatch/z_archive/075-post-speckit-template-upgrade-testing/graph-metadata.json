@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-testing",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-testing",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-testing",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-testing",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -31,12 +31,12 @@
       "speckit",
       "template",
       "spec",
-      "075",
       "implementation",
       "plan",
       "tasks",
       "upgrade",
-      "verification"
+      "verification",
+      "system-spec-kit"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The system-spec-kit has undergone a major template architecture upgrade to CORE+ADDENDUM v2.0",
     "created_at": "2026-04-12T09:02:53.547Z",
-    "last_save_at": "2026-06-23T03:49:59.297Z",
+    "last_save_at": "2026-07-09T10:02:57.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

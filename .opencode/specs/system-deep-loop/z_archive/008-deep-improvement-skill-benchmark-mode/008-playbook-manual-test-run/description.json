@@ -2,14 +2,13 @@
   "specFolder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
   "description": "008 — Deep-Improvement Playbook Manual Test Run",
   "keywords": [
-    "008",
     "deep-improvement",
     "playbook",
     "manual",
     "test",
     "run"
   ],
-  "lastUpdated": "2026-07-08T13:06:55.871Z",
+  "lastUpdated": "2026-07-09T10:02:49.068Z",
   "specId": "008",
   "folderSlug": "playbook-manual-test-run",
   "parentChain": [

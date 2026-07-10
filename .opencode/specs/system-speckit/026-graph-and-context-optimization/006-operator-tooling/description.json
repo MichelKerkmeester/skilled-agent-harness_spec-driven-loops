@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling",
-  "description": "Improve operator-facing tooling: runtime hook parity across runtimes, the doctor command surface, and install-script and doctor realignment for the po",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling",
+  "description": "Improve operator-facing tooling: runtime hook parity across runtimes, the doctor command surface, and install-script and doctor realignment for the",
   "keywords": [
     "improve",
     "operator-facing",
@@ -16,11 +16,11 @@
     "install-script",
     "realignment"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.213Z",
+  "lastUpdated": "2026-07-09T10:02:54.168Z",
   "specId": "006",
   "folderSlug": "operator-tooling",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization"
   ],
   "memorySequence": 0,

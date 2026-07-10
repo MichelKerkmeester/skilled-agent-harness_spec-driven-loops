@@ -132,6 +132,21 @@ INTENT_MODEL = {
     "TROUBLESHOOT":         {"keywords": [("error", 4), ("failed", 4), ("not connected", 4), ("binary not found", 4), ("unauthorized", 3)]},
 }
 
+# Benchmark-facing mirror of INTENT_MODEL in the standard {weight, keywords} shape
+# the skill-benchmark router-replay reads (the tuple form above parses to zero
+# intents there). Runtime scoring uses INTENT_MODEL; this block changes no routing.
+# Per-intent weight = the MAX per-keyword weight in INTENT_MODEL for that intent
+# (all six resolve to 4). Keys and keywords stay identical to INTENT_MODEL — a
+# key-sync test fails closed if the two blocks ever drift apart.
+INTENT_SIGNALS = {
+    "CREATE_RENDER":        {"weight": 4, "keywords": ["create", "render", "frame", "component", "icon", "layout", "import"]},
+    "DESIGN_SYSTEM_TOKENS": {"weight": 4, "keywords": ["token", "variable", "var:", "collection", "shadcn", "design system"]},
+    "INSPECT_EXPORT":       {"weight": 4, "keywords": ["inspect", "extract", "export", "screenshot", "DESIGN.md", "a11y", "audit"]},
+    "CONNECT_SETUP_DAEMON": {"weight": 4, "keywords": ["connect", "safe", "patch", "unpatch", "daemon", "diagnose", "reconnect"]},
+    "MCP_CONTEXT":          {"weight": 4, "keywords": ["mcp", "code mode", "design context", "figma-developer-mcp", "pull"]},
+    "TROUBLESHOOT":         {"weight": 4, "keywords": ["error", "failed", "not connected", "binary not found", "unauthorized"]},
+}
+
 RESOURCE_MAP = {
     "CREATE_RENDER":        ["references/figma_cli_reference.md", "references/tool_surface.md"],
     "DESIGN_SYSTEM_TOKENS": ["references/figma_cli_reference.md", "references/tool_surface.md"],

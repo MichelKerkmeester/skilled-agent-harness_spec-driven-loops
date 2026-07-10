@@ -21,7 +21,6 @@
       "095 implementation summary"
     ],
     "key_topics": [
-      "095",
       "sk-code-review",
       "playbook",
       "execution",
@@ -32,11 +31,13 @@
       "opencode",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
       "plan.md",
       "tasks.md",
@@ -44,6 +45,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "graph-metadata.json",
         "kind": "config",
@@ -181,17 +188,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code-review playbook (just shipped via packet 093, naturalized via packet 094) has 18 scenarios but no actual execution-against-deepseek baseline",
     "created_at": "2026-05-18T07:49:27.229Z",
-    "last_save_at": "2026-06-23T03:49:50.020Z",
+    "last_save_at": "2026-07-09T10:02:45.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1768cc852b646ee0178bdb6e52bb1e3a704fe2b266fd1cb38819b4c7e793a0b0",
+    "source_fingerprint": "sha256:655b43482674e277edc63a1abd0610b507359a44af604ed0d0bf59b855bd2e4f",
     "source_doc_hashes": {
-      "spec.md": "dc4151c05179875ced658e231b7c08f3f978b192765141813e8b819bbd8f9629",
-      "plan.md": "ddabb9274d3a6cad459314163de1ffe9e9601e46fc649e35cd24ceb8408bbf74",
-      "tasks.md": "4da3e062eb2411af2fd2eb3a0311e3da0072e841d9b221827c91c553a9a1da1e",
-      "implementation-summary.md": "9134115109097cd342c46307c99874d68af5b669e7d007dc6a7b5dbaea21d04c"
+      "spec.md": "f254374580e40a7d61e016b3bd1230576c3e7f72806dba10a3c00f268484b742",
+      "plan.md": "ddf5bb13fa103cda096e7177a408a891af42d9a558fc654ffd43070a40824960",
+      "tasks.md": "c355e1fd7203d425ada633c9c694b27ed68a67e210b1f5f1491a3bdbe9e3d836",
+      "implementation-summary.md": "6e753904815fa8bafa004a1d4aa407be96c85c63c7a8584493bc94baba32e663"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -16,7 +16,6 @@
       "corpus stats cache"
     ],
     "key_topics": [
-      "018",
       "dfidf",
       "follow-on",
       "cold",
@@ -27,7 +26,8 @@
       "advisor",
       "idf",
       "module",
-      "computed"
+      "computed",
+      "document"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The advisor corpus DF/IDF module computed document frequencies and IDF values from the provided corpus every time",
     "created_at": "2026-05-15T10:50:17Z",
-    "last_save_at": "2026-07-02T05:31:11.176Z",
+    "last_save_at": "2026-07-09T10:02:49.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9978978f6434221bd582e8e045136bb562d8b548bbbcf83c4d6f21b54c1bf9c2",
+    "source_fingerprint": "sha256:b44677222fdf54638d0c16c040fce45d28d6872dfccbf75fa015dbf05aaf5b19",
     "source_doc_hashes": {
-      "spec.md": "79d927c7e3e2533283345ac519a862177e0b6f4ccdd9b525e18ce79ead71ef1f",
-      "plan.md": "b5241576cc62216ad70ebdc80998bdfc12e852510d118a487dc99d0162d11dd8",
-      "tasks.md": "30ac45992a03682bd1070d67fce30b3934b283747da768dda2413c296b4b96b7",
-      "checklist.md": "0cbd62184c75d31172f83fadc5d9efc3bc1892542984aa856bf13e081fdb7628",
-      "implementation-summary.md": "6d4319cf3962f817d283575fd13f756581456378b9237f19035ed7872c537ec6"
+      "spec.md": "75363d628a382813a0e57cb2bac268ba3a28b57c7ff6ec6fab32fc3f8f3a290b",
+      "plan.md": "d2e415732a73571d2f936546e4906669606fbb415cb343cb3fd7021103f4f136",
+      "tasks.md": "355d092461c808fb068186b6b6fe95866d1f345f0a768deed9e67c9777022e7a",
+      "checklist.md": "7c17d04d4a6a5222a28a1b416cbeab2f321b89f6a14db9e085049abc11eb1183",
+      "implementation-summary.md": "290754620c3b8472c9ccb730db5457f086952b4ac8faf20b7ebf7fa3889a8a2c"
     },
     "last_active_child_id": null,
     "last_active_at": null

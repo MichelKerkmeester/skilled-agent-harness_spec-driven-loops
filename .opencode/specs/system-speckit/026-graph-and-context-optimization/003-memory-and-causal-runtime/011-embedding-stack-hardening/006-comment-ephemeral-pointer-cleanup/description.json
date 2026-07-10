@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup",
-  "description": "The sk-code canonical rule `codestyleguide.md` §4 \"No ephemeral-artifact pointers\" forbids code comments from embedding a spec folder/number, a packet",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup",
+  "description": "The sk-code canonical rule `codestyleguide.md` §4 \"No ephemeral-artifact pointers\" forbids code comments from embedding a spec folder/number, a",
   "keywords": [
     "sk-code",
     "canonical",
@@ -15,14 +15,13 @@
     "embedding",
     "spec",
     "folder",
-    "number",
-    "packet"
+    "number"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.507Z",
+  "lastUpdated": "2026-07-09T10:02:53.907Z",
   "specId": "006",
   "folderSlug": "comment-ephemeral-pointer-cleanup",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "011-embedding-stack-hardening"

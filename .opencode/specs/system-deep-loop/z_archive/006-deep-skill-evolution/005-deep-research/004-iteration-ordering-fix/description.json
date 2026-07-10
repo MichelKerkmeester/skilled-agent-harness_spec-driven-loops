@@ -5,15 +5,13 @@
   "keywords": [
     "reduce-state",
     "cjs",
-    "874",
-    "uses",
     "default",
     "sort",
     "lexical",
     "iteration",
     "filenames"
   ],
-  "lastUpdated": "2026-07-08T13:06:27.232Z",
+  "lastUpdated": "2026-07-09T10:02:48.783Z",
   "specId": "004",
   "folderSlug": "iteration-ordering-fix",
   "parentChain": [

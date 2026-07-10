@@ -11,7 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "release readiness synthesis",
+      "code-graph release readiness synthesis",
       "code graph playbook matrix",
       "029 phase 003 synthesis",
       "release readiness synthesis plan",
@@ -25,6 +25,7 @@
       "029 phase 003 checklist"
     ],
     "key_topics": [
+      "code-graph",
       "release",
       "readiness",
       "synthesis",
@@ -32,11 +33,10 @@
       "graph",
       "playbook",
       "matrix",
-      "029",
       "phase",
-      "003",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidated view of all 22 scenarios with FAIL/SKIP triage",
     "created_at": "2026-05-26T19:43:14.033Z",
-    "last_save_at": "2026-07-07T16:18:33.873Z",
+    "last_save_at": "2026-07-09T10:02:47.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae3fc70cbd1bfffb22b408d87b499c5470b3aa36dcc891c72752b25ae440a5ea",
+    "source_fingerprint": "sha256:96effc0278b466e3bca15706126f43f73d8d209636177821ab98ffe6da07aa9b",
     "source_doc_hashes": {
-      "spec.md": "d487e3fd89962d45afec8a19fc919770e4b9ceee79e79ac967c3322e1d244967",
+      "spec.md": "e52b0cd1a824345dcd015e90b295cd6395c554ca57df0d8fc3de0737ce525f38",
       "plan.md": "c483d3fe6edd60cf298cd92ef26e9ef67c0747e5891698c1e65bfe94e3439a84",
       "tasks.md": "3051351e023870654d47afc9cd50e31157f717587a7207943d9ae793c79e3165",
       "checklist.md": "21b95c02a18777098d4a8a0af78262b8a961d71ababa989cdfb8c01d0e694b5a",

@@ -21,8 +21,6 @@
       "019/002 implementation summary"
     ],
     "key_topics": [
-      "019",
-      "002",
       "readme",
       "marketing",
       "system-code-graph",
@@ -32,7 +30,9 @@
       "tasks",
       "implementation",
       "summary",
-      "current"
+      "current",
+      "opencode",
+      "skills"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The current `.opencode/skills/system-code-graph/README.md` opens with implementation prose (\"Structural code indexing, SQLite-backed graph storage...\")",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-07-07T16:18:33.866Z",
+    "last_save_at": "2026-07-09T10:02:47.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

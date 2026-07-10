@@ -28,7 +28,6 @@
     ],
     "key_topics": [
       "phase",
-      "005",
       "cross",
       "cli",
       "execution",
@@ -36,9 +35,10 @@
       "playbook",
       "harness",
       "packet",
-      "069",
       "routing",
-      "audit"
+      "audit",
+      "sk-code",
+      "cross-stack"
     ],
     "importance_tier": "important",
     "status": "blocked",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 069 now has Motion.dev peer references and manual playbook coverage, but it lacks a repeatable way to ask multiple AI runtimes how they would route the same sk-code scenarios",
     "created_at": "2026-05-05T10:30:00Z",
-    "last_save_at": "2026-07-07T16:45:58.042Z",
+    "last_save_at": "2026-07-09T10:02:44.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T10:30:00Z",
     "source_docs": [
@@ -215,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e8fcb74d37edbdff65cbfd0a194b6b255fc7eebbc5336dc217409e75fd8ef23",
+    "source_fingerprint": "sha256:32bddaf3cb69851fd40e80a07181e410496692707f3ba292fb909c6f9a0f33c7",
     "source_doc_hashes": {
       "spec.md": "f717c8dff1515ebdb9e4c23fdf7f761dbd7255ec9ee456c996505989f64227a8",
       "plan.md": "075b79db6af674bf6166d9d764f0616daf79fde5ed04e63a1f58f0dff09f0f1a",
       "tasks.md": "4b59e4e27d11d6bc23d6e05b7c03f76c81676d1646fcb82ad08d0f8061f42ec8",
       "checklist.md": "aed785b5b87da9a4589efff954661e32dc98c1d7c8e8a7ddd5ace3dd8fe0fbaa",
-      "implementation-summary.md": "2a8f6ef0406875830b60706491927e48638a1760f6443af94ffe6330397d5710"
+      "implementation-summary.md": "4d942e1ba6cf2f2bd0d7c52f738ec7cdcfc24a6592a89747e4ecc17eb810293b"
     },
     "last_active_child_id": null,
     "last_active_at": null

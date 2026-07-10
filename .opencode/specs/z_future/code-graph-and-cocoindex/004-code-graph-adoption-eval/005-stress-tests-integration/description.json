@@ -24,7 +24,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/005-stress-tests-integration",
+  "specFolder": "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval/005-stress-tests-integration",
   "description": "Feature Specification: 005 Stress Tests Integration",
   "keywords": [
     "feature",
@@ -34,12 +34,12 @@
     "tests",
     "integration"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.111Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "005",
   "folderSlug": "stress-tests-integration",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex",
+    "z_future",
+    "code-graph-and-cocoindex",
     "004-code-graph-adoption-eval"
   ],
   "memorySequence": 0,

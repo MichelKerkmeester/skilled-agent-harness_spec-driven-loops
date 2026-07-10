@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-058-skill-md-realignment",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-058-skill-md-realignment",
   "description": "20 cli-devin SWE 1.6 deep-review iterations identify drift + gaps",
   "keywords": [
     "cli-devin",
@@ -11,11 +11,11 @@
     "drift",
     "gaps"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.734Z",
+  "lastUpdated": "2026-07-09T10:02:54.716Z",
   "specId": "014",
   "folderSlug": "local-embeddings-migration-058-skill-md-realignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"

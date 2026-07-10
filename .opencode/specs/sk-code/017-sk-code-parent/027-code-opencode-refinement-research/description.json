@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-code/017-sk-code-parent/027-code-opencode-refinement-research",
+  "description": "`code-opencode` is not a generic docs packet — it is the playbook for writing and modifying code in this repository's own `.opencode/` tree: skills,",
+  "keywords": [
+    "code-opencode",
+    "generic",
+    "docs",
+    "packet",
+    "playbook",
+    "writing",
+    "modifying",
+    "code",
+    "repository",
+    "own",
+    "opencode",
+    "tree",
+    "skills"
+  ],
+  "lastUpdated": "2026-07-08T14:10:37.723Z",
+  "specId": "027",
+  "folderSlug": "code-opencode-refinement-research",
+  "parentChain": [
+    "sk-code",
+    "017-sk-code-parent"
+  ],
+  "memorySequence": 27,
+  "memoryNameHistory": [],
+  "level": "2"
+}

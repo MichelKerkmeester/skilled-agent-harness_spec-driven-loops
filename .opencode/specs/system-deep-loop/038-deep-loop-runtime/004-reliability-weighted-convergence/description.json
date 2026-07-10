@@ -9,7 +9,6 @@
     "verdict",
     "computecompositescore",
     "cjs",
-    "107-141",
     "fixed-weight",
     "linear",
     "blend",
@@ -18,7 +17,7 @@
     "volume",
     "terms"
   ],
-  "lastUpdated": "2026-07-06T16:24:26.103Z",
+  "lastUpdated": "2026-07-09T10:02:48.117Z",
   "specId": "004",
   "folderSlug": "reliability-weighted-convergence",
   "parentChain": [

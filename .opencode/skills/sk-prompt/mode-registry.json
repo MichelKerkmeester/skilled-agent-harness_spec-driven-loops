@@ -1,0 +1,42 @@
+{
+  "skill": "sk-prompt",
+  "version": "1.0.0.0",
+  "description": "Declarative packet registry for the sk-prompt parent hub: workflowMode + packetKind + backendKind + toolSurface + advisorRouting for the prompt-improve and prompt-models workflow packets. The advisor routes the single sk-prompt identity; the hub selects the workflow packet. Workflow-only hub (no surface axis), zero named extensions.",
+  "discriminator": {
+    "workflowMode": "Public hub/mode key; stable identity used by the hub router and this registry.",
+    "packetKind": "Axis discriminator: workflow for both sk-prompt packets (no surface packets — prompt-models' real consuming workflow, cli-opencode's pre-dispatch step, lives outside this hub, which fails the surface-packet contract).",
+    "backendKind": "prompt-engine for prompt-improve's DEPTH/CLEAR pipeline; profile-lookup for prompt-models' read-only per-model reference."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "metadata = resolved by hub membership (default for both sk-prompt modes). No lexical/alias-fold modes (avoids the advisor-projection extension + CI drift-guard).",
+    "command": "The bound slash command for the mode; null when the mode has no dedicated command.",
+    "packetSkillName": "The packet SKILL.md name; folder == packetSkillName for both modes.",
+    "grandfatheredFolderMismatch": "false for both sk-prompt modes."
+  },
+  "modes": [
+    {
+      "workflowMode": "prompt-improve",
+      "packetKind": "workflow",
+      "backendKind": "prompt-engine",
+      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "packet": "prompt-improve",
+      "packetSkillName": "prompt-improve",
+      "grandfatheredFolderMismatch": false,
+      "command": "/prompt-improve",
+      "aliases": ["improve prompt", "enhance prompt", "prompt framework", "clear score", "depth thinking", "prompt engineering"],
+      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "prompt-improve" }
+    },
+    {
+      "workflowMode": "prompt-models",
+      "packetKind": "workflow",
+      "backendKind": "profile-lookup",
+      "toolSurface": { "allowed": ["Read", "Grep", "Glob"], "forbidden": ["Write", "Edit", "Task", "Bash"], "mutatesWorkspace": false, "bashAllowlist": [] },
+      "packet": "prompt-models",
+      "packetSkillName": "prompt-models",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": ["small model prompt", "per-model profile", "deepseek prompt", "kimi prompt", "minimax prompt", "mimo prompt", "glm prompt", "model dispatch craft"],
+      "advisorRouting": { "routingClass": "metadata", "packetSkillName": "prompt-models" }
+    }
+  ]
+}

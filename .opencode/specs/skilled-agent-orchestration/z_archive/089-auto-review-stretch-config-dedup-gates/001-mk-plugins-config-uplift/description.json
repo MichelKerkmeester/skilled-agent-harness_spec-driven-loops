@@ -7,12 +7,11 @@
     "plugins",
     "mk-skill-advisor",
     "mk-code-graph",
-    "use",
     "env-only",
     "hardcoded",
     "config"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.980Z",
+  "lastUpdated": "2026-07-09T10:02:45.839Z",
   "specId": "001",
   "folderSlug": "mk-plugins-config-uplift",
   "parentChain": [

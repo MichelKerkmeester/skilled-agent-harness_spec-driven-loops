@@ -27,7 +27,6 @@
       "deferred remediation shipped"
     ],
     "key_topics": [
-      "024",
       "deferred",
       "remediation",
       "telemetry",
@@ -38,7 +37,8 @@
       "registration",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "verification"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Six phases shipped with a consolidated list of deferred items:",
     "created_at": "2026-04-19T18:10:00.000Z",
-    "last_save_at": "2026-07-07T11:42:16.977Z",
+    "last_save_at": "2026-07-09T10:02:49.943Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-19T18:15:00.000Z",
     "source_docs": [
@@ -219,13 +219,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd99b356bbc10853ee252087709a2cf179b986afecf10165bab563264ab65398",
+    "source_fingerprint": "sha256:47b678b3645431f5e3984c9b1c35bdda10f91c70c094508d07d57df9f842fba6",
     "source_doc_hashes": {
-      "spec.md": "7a81f7cd67ee9f7ce9d364d9f4851aeeea48706c68f87d8e0ee886f2222d8592",
-      "plan.md": "a5a1464cb96849cd8a7463533ffe4f30d7b0f6dfe8faf00d0d9bcc862e98f1bc",
-      "tasks.md": "5fd678d7417abdeb2e00730e05adb6217022fec9c6469563828c0287f9cdfdb5",
-      "checklist.md": "7519dcd929b07bf34e5eeecec1752dc873c6c68db0d7676580de0a6d602cefe2",
-      "implementation-summary.md": "2a257425d95aa0e0072f29e0d616aea000ce6015a0c43fe1ae7d4a91fb0ae295"
+      "spec.md": "3b864d98475c6ba5ab5a9bb0cde29e059c08a2602321c881f6ab777a8eaa2a74",
+      "plan.md": "99aff62bd7e88c1dc88f96a06a575ce1cb65d676b8248e8aa4df25a8cf50e037",
+      "tasks.md": "5f6d81b632659851679d38385f8b1967b4aebc5330487f7d7fc1061231d44a68",
+      "checklist.md": "7bb991304e767d9fd97a0495f69b4ca6628dc3c1d6ce71cb50ade95aea799c77",
+      "implementation-summary.md": "5d917d26dd560bd6c8bf25c06ebc8099e03e04eb92e1b174c1917a33a6035ab8"
     },
     "last_active_child_id": null,
     "last_active_at": null

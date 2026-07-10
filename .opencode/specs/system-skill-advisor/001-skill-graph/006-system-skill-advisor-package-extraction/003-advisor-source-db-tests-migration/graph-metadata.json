@@ -30,15 +30,15 @@
       "advisor",
       "move",
       "recalibration",
-      "013",
-      "009",
-      "003",
       "finalize",
       "system",
       "skill",
       "extraction",
       "fixup",
-      "bridge"
+      "bridge",
+      "imports",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The advisor source tree and this spec packet were moved outside git tracking before this run",
     "created_at": "2026-05-14T10:45:00Z",
-    "last_save_at": "2026-07-02T05:31:11.102Z",
+    "last_save_at": "2026-07-09T10:02:49.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T10:45:00Z",
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:867adbad0c91f72a9af2f6153cbf01da1b5a211b7d52e994a1adb801466b1da8",
+    "source_fingerprint": "sha256:a4027c0ba4f97b5dd0565e031ae09f757638e1f1c2537f686d4d16ee1d59ab0c",
     "source_doc_hashes": {
-      "spec.md": "04861747fbe2ac251ca5800857f4215af07e145f91c936e4d359bd1b959eba23",
-      "plan.md": "bb0550e2ca95d7c16ab3cde0dbf855d68f29f782ef53cfb482abc4b1860b29dc",
-      "tasks.md": "0c7b16e071901f5128a3948a9da01bc59ace8834a1cbdecf117ed524e00273c9",
-      "checklist.md": "f053feb45d9bd461f8b4424604dc5380a1e441b644e45c91e46b5af3e4d34e82",
-      "implementation-summary.md": "64f6e6fa6ea9b752ca6ed9565f4c256f3d70e3b9e628fda72b6153e62f498ef5"
+      "spec.md": "abb95220bbb761097a4f1bc2947ec67fae1ec1d669276acdce1ee5470bc34f3c",
+      "plan.md": "f05c91c03e66790314beebc0c68ff17dec3458d9e5fc8eec1fd6fa8806312870",
+      "tasks.md": "a26c5c133e87de726ce3493083d30681647eb887260d4fc5945213394c584a7a",
+      "checklist.md": "49f50179043cad87ff21b229ce22c8abf3ff1949d8e6a2043911d8031ee328a9",
+      "implementation-summary.md": "8a1ac7ec97c340d0604f23a3bc9e69f0322e4fdacb130578f228dbfe537ee133"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -30,7 +30,6 @@
       "stale exclusion audit tool ownership"
     ],
     "key_topics": [
-      "007",
       "memclaw",
       "memory",
       "hardening",
@@ -40,8 +39,9 @@
       "feedback",
       "reducer",
       "reframe",
-      "005",
-      "tombstone"
+      "tombstone",
+      "edge",
+      "promotion"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -106,7 +106,7 @@
     ],
     "causal_summary": "The Spec Kit Memory system would benefit from a coherent set of write-safety and quality hardenings derived from a deep study of the caura-memclaw fleet-memory system (research in `../research/008-caura-memclaw-fleet-memory-teachings/`)",
     "created_at": "2026-06-06T10:10:44Z",
-    "last_save_at": "2026-07-02T05:31:13.656Z",
+    "last_save_at": "2026-07-09T10:02:55.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

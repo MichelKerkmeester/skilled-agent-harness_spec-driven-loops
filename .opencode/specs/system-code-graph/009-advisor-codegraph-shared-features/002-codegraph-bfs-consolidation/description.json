@@ -6,7 +6,6 @@
     "code",
     "graph",
     "already",
-    "uses",
     "app-level",
     "bfs",
     "rather",
@@ -17,11 +16,10 @@
     "traversal",
     "handlers",
     "query",
-    "537-632",
     "blast",
     "radius"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.410Z",
+  "lastUpdated": "2026-07-09T10:02:47.268Z",
   "specId": "002",
   "folderSlug": "codegraph-bfs-consolidation",
   "parentChain": [

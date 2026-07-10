@@ -1,9 +1,8 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands",
   "description": "The create commands command family owns presentation instructions inline with routing instructions",
   "keywords": [
-    "create",
     "commands",
     "command",
     "family",
@@ -13,11 +12,11 @@
     "inline",
     "routing"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.709Z",
+  "lastUpdated": "2026-07-09T10:02:55.605Z",
   "specId": "003",
   "folderSlug": "create-commands",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation"

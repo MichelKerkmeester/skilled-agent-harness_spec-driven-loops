@@ -27,7 +27,6 @@
       "natural human prompt heuristic"
     ],
     "key_topics": [
-      "094",
       "playbook",
       "prompt",
       "naturalness",
@@ -38,14 +37,12 @@
       "prompts",
       "playbooks",
       "drop",
-      "role"
+      "role",
+      "default"
     ],
     "importance_tier": "high",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
-      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-      ".opencode/commands/create/testing-playbook.md",
       ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
       "decision-record.md",
       "plan.md",
@@ -55,24 +52,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/testing-playbook.md",
-        "source": "derived"
-      },
       {
         "name": "graph-metadata.json",
         "kind": "config",
@@ -198,11 +177,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "heuristic ADR-001",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every per-feature file across 16 `manualtestingplaybook/` packages (~498 files total) currently pins an \"Exact Prompt\" that opens with `As a {ROLE}, {ACTION} against {TARGET}",
     "created_at": "2026-05-18T07:49:27.228Z",
-    "last_save_at": "2026-06-23T03:49:50.014Z",
+    "last_save_at": "2026-07-09T10:02:45.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20f00204e8efa93b93b144ae28c306f9eec78902248cb55daf5330c13de694ab",
+    "source_fingerprint": "sha256:e2236bcf7f9da335e4040808fa1fd5d80cfd7b6d90d948bc02d61bfe73781495",
     "source_doc_hashes": {
-      "spec.md": "f9e785d718296c8471ce4523d94da5de0f15ee06bdf648785d2967c6161e2774",
-      "plan.md": "09bfcfb1dcb722dd76b8c211b3f4a87cc94fe02abe6400aacc3dc40622704fd3",
-      "tasks.md": "a62408e8662ff366cbd569afbbaa50693ebf036f62c3ccf4d901409be0eb06cd",
-      "checklist.md": "6eef061a832081a260acd41bebceb7a9e02c7e8b697b84399ae9afd5c3c3a472",
-      "decision-record.md": "317970b0dc6dc8104caa5fa5c8104201a9a778944a2aeec34cd03ae7cf708289",
-      "implementation-summary.md": "0743aa2d878eeeba23d7cc99a26d4c78f99ef278dbf72f5ebee6a82e050cb2f9"
+      "spec.md": "f66804d1030b0088f18eb039150f9b9a8ec1b714efd9378bb7af55eea24595a2",
+      "plan.md": "8bf80f0151632e38954730ce671fdec69340d67b87a7931cc964f666e5a2e51c",
+      "tasks.md": "73fec4f311e1bd4e981abe3cbaf0172709c1c3f932a29b8dac54cd295a821dd4",
+      "checklist.md": "3c610a5722f3ba00c3595034f4cd121caf7700c88044dfad5eebd8f34382a20f",
+      "decision-record.md": "7a9e65f4d1bc2caf870af0ac21e77d7e02a3f48bdba1d88b8e1fde246af4b92d",
+      "implementation-summary.md": "1d634138938ca1a845795b84b4cea79be4d80daaf747b5ffb34fb61e67f45f52"
     },
     "last_active_child_id": null,
     "last_active_at": null

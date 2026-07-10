@@ -11,15 +11,13 @@
     "previously-scattered",
     "single-purpose",
     "code-graph",
-    "fix",
     "audit",
     "packets",
     "moved",
-    "026",
     "optimization",
     "tree"
   ],
-  "lastUpdated": "2026-07-07T16:21:02.882Z",
+  "lastUpdated": "2026-07-09T10:02:47.165Z",
   "specId": "008",
   "folderSlug": "code-graph-scatter",
   "parentChain": [

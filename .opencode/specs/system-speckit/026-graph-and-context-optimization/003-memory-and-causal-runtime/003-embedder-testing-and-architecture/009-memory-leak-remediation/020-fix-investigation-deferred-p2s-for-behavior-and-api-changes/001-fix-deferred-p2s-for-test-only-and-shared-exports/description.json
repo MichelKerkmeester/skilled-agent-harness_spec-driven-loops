@@ -1,14 +1,12 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/001-fix-deferred-p2s-for-test-only-and-shared-exports",
   "description": "F44 and F109 were deferred by arc 017/005 because current tests imported production-dead symbols through public barrels",
   "keywords": [
     "f44",
     "f109",
     "deferred",
     "arc",
-    "017",
-    "005",
     "because",
     "current",
     "tests",
@@ -18,11 +16,11 @@
     "public",
     "barrels"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.317Z",
+  "lastUpdated": "2026-07-09T10:02:53.706Z",
   "specId": "001",
   "folderSlug": "fix-deferred-p2s-for-test-only-and-shared-exports",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

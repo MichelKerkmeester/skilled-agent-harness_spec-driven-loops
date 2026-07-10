@@ -1,7 +1,7 @@
 {
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/016-sk-doc",
   "description": "sk-doc reference/asset frontmatter is inconsistent with the repo-wide contract: 2 of 14 references and 7 of 25 assets carry the detailed memory-style",
   "keywords": [
     "sk-doc",
@@ -17,11 +17,11 @@
     "detailed",
     "memory-style"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.009Z",
+  "lastUpdated": "2026-07-09T10:02:54.983Z",
   "specId": "016",
   "folderSlug": "sk-doc",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup",
     "009-skill-frontmatter-alignment"

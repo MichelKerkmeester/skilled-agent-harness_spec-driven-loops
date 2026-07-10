@@ -6,7 +6,7 @@
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
   "specFolder": "skilled-agent-orchestration/z_archive/100-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
-  "description": "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files). Smaller scale than phase 005 — can be done",
+  "description": "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files).",
   "keywords": [
     "apply",
     "sub-headings",
@@ -15,20 +15,15 @@
     "sections",
     "skill-advisor",
     "files",
-    "code-graph",
-    "smaller",
-    "scale",
-    "phase",
-    "005",
-    "done"
+    "code-graph"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.461Z",
+  "lastUpdated": "2026-07-09T10:02:46.141Z",
   "specId": "006",
   "folderSlug": "subheadings-advisor-codegraph",
   "parentChain": [
     "skilled-agent-orchestration",
     "z_archive",
-    "125-feature-catalog-template-improvements"
+    "100-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

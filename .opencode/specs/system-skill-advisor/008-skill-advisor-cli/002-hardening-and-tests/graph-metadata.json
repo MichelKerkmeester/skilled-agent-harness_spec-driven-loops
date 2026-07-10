@@ -28,7 +28,6 @@
       "skill-advisor",
       "hardening",
       "tests",
-      "003",
       "002-hardening-and-tests",
       "phase",
       "plan",
@@ -36,7 +35,8 @@
       "result",
       "reconcile",
       "verdict",
-      "depends"
+      "depends",
+      "scorer"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The reconcile verdict depends on scorer parity staying true, the orphan-launcher incident class has no regression fixture, and rebuild/scan mutation wall-time was never measured (read-only research residual)",
     "created_at": "2026-06-06T14:45:17Z",
-    "last_save_at": "2026-07-07T11:58:28.185Z",
+    "last_save_at": "2026-07-09T10:02:50.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:951f2f6b5480814435bede7783b454fb9aa3bd204cd2ba6190e433a3b885f0c3",
+    "source_fingerprint": "sha256:e73afdec7184b599815d37daf905ca74d9cd4188a5ff78701bba54c56c7fcb16",
     "source_doc_hashes": {
-      "spec.md": "5d00c8c2579f3c97fc067ef396e6b87d041945482715c044d965167d39db184a",
-      "plan.md": "f0de6f99d35a3790feb62996f82a6f20c80363220f2021702930f938aa796c89",
-      "tasks.md": "d840a92f386b21e58028b9e75be1a190f5b229b61b8d718a4c1b3ab722b003fa",
-      "implementation-summary.md": "8de83a5510e23abee3e04ea7304c611bae2cdd29fda88e0e31f032d899f396b3"
+      "spec.md": "a2fb0e233198a8eb0a8158b46ab46489aa585cb5e07d491a0a8ab015eae7675b",
+      "plan.md": "50caee9798b04b1ba4815fdc0b129d6bdea9654e671fef9e0c2c2860e990fb3a",
+      "tasks.md": "4d69f22ad60645dfb09f268ee7c6c906b8e6be3e6a206178c1231e2bc612f259",
+      "implementation-summary.md": "e990dbff2d8f55a8a65db5b54e9b480124502b24796091365636b8a61168d621"
     },
     "last_active_child_id": null,
     "last_active_at": null

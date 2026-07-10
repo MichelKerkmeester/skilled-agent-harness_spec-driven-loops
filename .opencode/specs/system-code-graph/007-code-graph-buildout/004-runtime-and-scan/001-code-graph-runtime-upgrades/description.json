@@ -1,26 +1,21 @@
 {
   "specFolder": "system-code-graph/007-code-graph-buildout/004-runtime-and-scan/001-code-graph-runtime-upgrades",
-  "description": "Current 026 graph work hardens trust (`011`) and advisory routing (`008`), but it does not add new detector provenance states, blast-radius correctnes",
+  "description": "Current 026 graph work hardens trust (`011`) and advisory routing (`008`), but it does not add new detector provenance states, blast-radius",
   "keywords": [
     "current",
-    "026",
     "graph",
     "work",
     "hardens",
     "trust",
-    "011",
     "advisory",
     "routing",
-    "008",
-    "add",
     "new",
     "detector",
     "provenance",
     "states",
-    "blast-radius",
-    "correctnes"
+    "blast-radius"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.843Z",
+  "lastUpdated": "2026-07-09T10:02:46.856Z",
   "specId": "001",
   "folderSlug": "code-graph-runtime-upgrades",
   "parentChain": [

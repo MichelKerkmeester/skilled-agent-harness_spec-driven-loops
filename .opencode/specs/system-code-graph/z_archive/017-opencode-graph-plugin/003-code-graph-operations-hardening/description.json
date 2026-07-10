@@ -1,6 +1,6 @@
 {
   "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin/003-code-graph-operations-hardening",
-  "description": "The additional research showed that the current graph runtime is good at compact context generation but still thin on durability, portability, and int",
+  "description": "The additional research showed that the current graph runtime is good at compact context generation but still thin on durability, portability, and",
   "keywords": [
     "additional",
     "research",
@@ -15,10 +15,9 @@
     "still",
     "thin",
     "durability",
-    "portability",
-    "int"
+    "portability"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.796Z",
+  "lastUpdated": "2026-07-09T10:02:47.378Z",
   "specId": "003",
   "folderSlug": "code-graph-operations-hardening",
   "parentChain": [

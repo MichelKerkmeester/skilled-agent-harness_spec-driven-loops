@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/054-smart-routing-benchmark-program",
+  "spec_folder": "system-deep-loop/054-smart-routing-benchmark-program",
+  "parent_id": null,
+  "children_ids": [
+    "system-deep-loop/054-smart-routing-benchmark-program/001-live-scoring-fix",
+    "system-deep-loop/054-smart-routing-benchmark-program/002-code-review-optimization",
+    "system-deep-loop/054-smart-routing-benchmark-program/003-routing-optimization-mode",
+    "system-deep-loop/054-smart-routing-benchmark-program/004-cross-skill-routing-sweep",
+    "system-deep-loop/054-smart-routing-benchmark-program/005-code-opencode-language-gate",
+    "system-deep-loop/054-smart-routing-benchmark-program/006-deep-ai-council-canonical-router",
+    "system-deep-loop/054-smart-routing-benchmark-program/007-router-keyword-precision",
+    "system-deep-loop/054-smart-routing-benchmark-program/008-code-webflow-router-completion",
+    "system-deep-loop/054-smart-routing-benchmark-program/009-deterministic-scoring-extensions",
+    "system-deep-loop/054-smart-routing-benchmark-program/010-live-anti-overfit-lane",
+    "system-deep-loop/054-smart-routing-benchmark-program/011-skill-benchmark-optimize-automation",
+    "system-deep-loop/054-smart-routing-benchmark-program/012-program-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "smart routing benchmark",
+      "skill benchmark",
+      "per-child routing recall",
+      "intra-routing",
+      "parent child discoverability",
+      "router mode-a mode-b",
+      "circularity meter",
+      "smart routing benchmark plan",
+      "P0 P8 routing phases",
+      "mode-a mode-b plan",
+      "smart routing benchmark tasks",
+      "routing benchmark status"
+    ],
+    "key_topics": [
+      "smart",
+      "routing",
+      "benchmark",
+      "skill",
+      "per-child",
+      "recall",
+      "intra-routing",
+      "parent",
+      "child",
+      "discoverability",
+      "router",
+      "mode-a"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts",
+      ".opencode/skills/sk-code/shared/references/smart_routing.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "sk-code-router-sync.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Benchmark Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trim Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reproducible Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Legend",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill routing quality was only partially measured",
+    "created_at": "2026-07-08T18:22:20.553Z",
+    "last_save_at": "2026-07-09T12:18:02.143Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e144012281a2f27a38b0e6c4a32b65d5a3dfd9fc6861df12f8b813bb95fc6ca4",
+    "source_doc_hashes": {
+      "spec.md": "d04cac05a723f2c11a5a3128ee85ea00a0b5c3274847c7b1106cfa6ac15aaec6",
+      "plan.md": "8481a846bdd420aee49db291711d60ee1c2e0d0b0d5a48842b51ada23aa9f8fd",
+      "tasks.md": "b3d7774eef0c935b4ccbea0e37127b049f4c440cdf87732eebfe409423a663d8",
+      "checklist.md": "65a87c6b4acd4442da3b95da558626b12121fff56249fd037262704bc9910479",
+      "decision-record.md": "f970d7c3e117e382c838dbe225bbecd14804cea73754d499e74e7df4b1afb8a7",
+      "implementation-summary.md": "b307ee8d21f32baa01d775138485b569a41ccf3e2a9c319bff6e63a6525e778d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,10 +1,9 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/087-auto-review-quick-wins-verdict-markers-logging/004-stretch-goals",
-  "description": "After Phases 1-3 deliver the MVP (5 quick wins), 11 additional teachings remain in 106's findings: 4 HIGH-impact MEDIUM-cost (H-4 anti-repetition rule",
+  "description": "After Phases 1-3 deliver the MVP (5 quick wins), 11 additional teachings remain in 106's findings: 4 HIGH-impact MEDIUM-cost (H-4 anti-repetition",
   "keywords": [
     "phases",
-    "1-3",
     "deliver",
     "mvp",
     "quick",
@@ -12,15 +11,13 @@
     "additional",
     "teachings",
     "remain",
-    "106",
     "findings",
     "high-impact",
     "medium-cost",
     "h-4",
-    "anti-repetition",
-    "rule"
+    "anti-repetition"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.973Z",
+  "lastUpdated": "2026-07-09T10:02:45.819Z",
   "specId": "004",
   "folderSlug": "stretch-goals",
   "parentChain": [

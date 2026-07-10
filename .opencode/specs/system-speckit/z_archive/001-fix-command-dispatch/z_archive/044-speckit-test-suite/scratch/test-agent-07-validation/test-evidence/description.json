@@ -1,16 +1,16 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/scratch/test-agent-07-validation/test-evidence",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/scratch/test-agent-07-validation/test-evidence",
   "description": "Test Spec Evidence",
   "keywords": [
     "test",
     "spec",
     "evidence"
   ],
-  "lastUpdated": "2026-03-08T11:08:55.493Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "",
   "folderSlug": "test-evidence",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive",

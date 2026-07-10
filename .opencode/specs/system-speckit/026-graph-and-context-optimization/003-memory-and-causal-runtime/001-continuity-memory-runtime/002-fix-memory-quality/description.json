@@ -18,8 +18,8 @@
       "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/002-fix-memory-quality"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality",
-  "description": "The original research packet identified eight distinct JSON-mode memory defects across content shaping, metadata consistency, lineage capture, git pro",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/002-fix-memory-quality",
+  "description": "The original research packet identified eight distinct JSON-mode memory defects across content shaping, metadata consistency, lineage capture, git",
   "keywords": [
     "original",
     "research",
@@ -37,14 +37,13 @@
     "consistency",
     "lineage",
     "capture",
-    "git",
-    "pro"
+    "git"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.832Z",
+  "lastUpdated": "2026-07-09T10:02:52.013Z",
   "specId": "002",
   "folderSlug": "fix-memory-quality",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "001-continuity-memory-runtime"

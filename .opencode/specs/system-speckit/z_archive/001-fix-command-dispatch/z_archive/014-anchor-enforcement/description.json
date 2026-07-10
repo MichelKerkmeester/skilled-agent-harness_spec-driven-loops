@@ -1,19 +1,18 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/014-anchor-enforcement",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/014-anchor-enforcement",
   "description": "Memory files were using inconsistent anchor formats:",
   "keywords": [
     "memory",
     "files",
-    "using",
     "inconsistent",
     "anchor",
     "formats"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.900Z",
+  "lastUpdated": "2026-07-09T10:02:56.855Z",
   "specId": "014",
   "folderSlug": "anchor-enforcement",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

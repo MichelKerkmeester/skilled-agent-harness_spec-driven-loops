@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening",
   "description": "Four retrieval/causal surfaces bypassed governed retrieval scope or trusted forged identity",
   "keywords": [
     "four",
@@ -14,11 +14,11 @@
     "forged",
     "identity"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.034Z",
+  "lastUpdated": "2026-07-09T10:02:51.698Z",
   "specId": "002",
   "folderSlug": "retrieval-scope-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "013-comprehensive-audit-remediation"

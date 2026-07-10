@@ -3,7 +3,6 @@
   "description": "Phase 016's research confirmed two real gaps in the phase-011 `mk-deep-loop-guard.js` plugin: (1) it has no mechanism to detect loop-like repeated",
   "keywords": [
     "phase",
-    "016",
     "research",
     "confirmed",
     "two",
@@ -17,7 +16,7 @@
     "loop-like",
     "repeated"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.446Z",
+  "lastUpdated": "2026-07-09T10:02:47.800Z",
   "specId": "003",
   "folderSlug": "loop-guard-implementation",
   "parentChain": [

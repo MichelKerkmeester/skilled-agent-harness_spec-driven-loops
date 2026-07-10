@@ -25,7 +25,6 @@
       "shipped fixes with evidence"
     ],
     "key_topics": [
-      "016",
       "review",
       "remediation",
       "last",
@@ -34,9 +33,10 @@
       "worker",
       "shutdown",
       "fence",
-      "fix",
       "unified",
-      "sigterm"
+      "sigterm",
+      "path",
+      "socket"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -50,7 +50,6 @@
       "handlers/memory-save.ts",
       "lib/search/entity-density.ts",
       "handlers/save/response-builder.ts",
-      ".codex/config.toml",
       "lib/architecture/layer-definitions.ts",
       "tests/lib/process-liveness-drift.vitest.ts",
       "tests/ipc-socket-fresh-bind.vitest.ts",
@@ -60,7 +59,8 @@
       "checklist.md",
       "spec.md",
       "scripts/deploy-mcp.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/shutdown-hooks.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/shutdown-hooks.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
     ],
     "entities": [
       {
@@ -109,12 +109,6 @@
         "name": "response-builder.ts",
         "kind": "code",
         "path": "handlers/save/response-builder.ts",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sibling deep-review packet `016-last-50-commits-deep-review` returned a CONDITIONAL verdict over the last 50 commits: 0 active P0, 3 actionable P1 (ingest-worker shutdown fence, compound concurrent-SIGTERM failure, runtime-fork drift guard), and ~17 P2 advisories spanning IPC/socket hardening, validator DoS, memory-write guards, MCP contract gaps, config-note drift, and test-integrity gaps",
     "created_at": "2026-06-05T12:47:33.243Z",
-    "last_save_at": "2026-07-02T05:31:11.008Z",
+    "last_save_at": "2026-07-09T10:02:51.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -19,9 +19,7 @@
       "model schedule design status"
     ],
     "key_topics": [
-      "123",
       "phase",
-      "007",
       "model",
       "schedule",
       "per-iteration",
@@ -30,7 +28,9 @@
       "summary",
       "design",
       "status",
-      "spec"
+      "spec",
+      "only",
+      "first-class"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -183,7 +183,7 @@
     ],
     "causal_summary": "Design (spec only) a first-class, contract-compliant way for an operator to request a fixed-count heterogeneous per-iteration model schedule through the canonical `/deep:start-review-loop` and `/deep:start-research-loop` commands and the shared `deep-loop-runtime`",
     "created_at": "2026-05-31T14:05:02.648Z",
-    "last_save_at": "2026-07-08T13:43:18.805Z",
+    "last_save_at": "2026-07-09T10:02:49.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

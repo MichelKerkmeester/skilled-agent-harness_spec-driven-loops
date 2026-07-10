@@ -25,9 +25,7 @@
       "082 phase 001 complete"
     ],
     "key_topics": [
-      "082",
       "phase",
-      "001",
       "sk-improve-prompt",
       "discovery",
       "inventory",
@@ -36,30 +34,20 @@
       "name",
       "template",
       "core",
-      "tasks"
+      "tasks",
+      "checklist",
+      "verification"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tasks.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,6 +58,18 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Packet 082 renames `sk-improve-prompt` to `sk-prompt` across active repo surfaces",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-06-23T03:49:49.896Z",
+    "last_save_at": "2026-07-09T10:02:45.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fb9449c0a0abb7de383d5aa951d181b12e3bc351fff2156b7fb99f7b2d78f97",
+    "source_fingerprint": "sha256:ead6afa89a2eb8cd3139236aa1ec7586842a942daf472dc5b32bf70b7365c4da",
     "source_doc_hashes": {
-      "spec.md": "66939c15de34f8f6c1f0b6f02761119417a5cb888a28f82674e1bd26391fc9e8",
-      "plan.md": "a9bbaccbb11eb1b52eaeb01bbfd0035230822144e263271f9a1902deced92048",
-      "tasks.md": "2e30afa1c20cc3db746470cbbcd50c2f041c88e954b0dbc627fae0c64f4e6f15",
-      "checklist.md": "d75afb80457f77071dc7fda45d7c8d316e6f2cb6a27a1c375f766a60ec632b4b",
-      "implementation-summary.md": "1b47211689097507a1ba14b2e739df7d2f9b00f69bd533ab7df66356d490f2b9"
+      "spec.md": "b706f118e0fbfe7f853ec87f92af8646a6d40a96b7fdc8d053b3369d680d77cb",
+      "plan.md": "2ff32568f52f9d49984b8e90aa93fea87fcd549fb1c635c787f03e411b2db007",
+      "tasks.md": "68d0315b77a2af7d9fa57d0691ae0e43794a7c1b2d3934616ed35c08e0c4202a",
+      "checklist.md": "b9f9b8e58b99bb7bf84401308f12637f4d147d3ffe8ae545fb010f768af07da4",
+      "implementation-summary.md": "387af49cb9af20b6dc539deed5c16305fbb044131434001a9d247ffac2df03e8"
     },
     "last_active_child_id": null,
     "last_active_at": null

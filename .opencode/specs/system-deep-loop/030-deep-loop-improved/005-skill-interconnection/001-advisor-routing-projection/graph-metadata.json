@@ -33,7 +33,7 @@
       "guard",
       "alias",
       "table",
-      "001"
+      "001-advisor-routing-projection"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +44,6 @@
       ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts",
-      ".opencode/commands/create/assets/create_parent_skill_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -85,12 +84,6 @@
         "name": "advisor-recommend.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create_parent_skill_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_parent_skill_auto.yaml",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When a new deep-loop mode is added to `mode-registry.json`, the advisor's alias tables in `aliases.ts` require a manual edit; the drift-guard test compares file content rather than a freshness hash, so it cannot detect stale aliases at build time",
     "created_at": "2026-06-28T20:06:50.952Z",
-    "last_save_at": "2026-07-04T18:02:14.835Z",
+    "last_save_at": "2026-07-09T10:02:47.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df1de63f3cc10719f6baae0cbf3570a02422c5b2aa0391bfa9686ddeeaa5fb4e",
+    "source_fingerprint": "sha256:a47d275c27f00de7eeedd256e9b09f050d4d635d4e5175f2f886c171ef68b140",
     "source_doc_hashes": {
-      "spec.md": "72cf8d7fa814657ee44a0f2095ff8675cbd9f090a05f96a32f35f06e9cbb41a0",
-      "plan.md": "65c2b4c4ed288b564bb58de905b773ae10148beec59b4ece23b457307184a951",
-      "tasks.md": "14a453195063cac3a2ee93689347f3a93aaeccb08e3b610c9ec5298342835623",
-      "implementation-summary.md": "71bffd1b8fef799b256f9ad76e643dc32af956d06e7fc2fabce9251aade7151f"
+      "spec.md": "d9a038cea501fb0f038219615e690f91e15a23f790b582a93f8f6c2f578a8721",
+      "plan.md": "9ffe22459bb39a2e3e1b90e9638f76b446815f92dcec577145f2d83fe7cd3f86",
+      "tasks.md": "cfe6f40a560150b910a61707671050df824ca4a92f9eca9d16001e3a66a8fb5e",
+      "implementation-summary.md": "4ec61de60a976930b2f395cbdefe14fcd2848dfc5077adc76b6b87f5923235f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

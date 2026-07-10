@@ -46,9 +46,6 @@
       "scripts/gauge-benchmark.mjs",
       "results/dedup-metrics.json",
       "results/gauge-metrics.json",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -78,24 +75,6 @@
         "name": "gauge-metrics.json",
         "kind": "config",
         "path": "results/gauge-metrics.json",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
@@ -199,11 +178,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop fan-out merge ships three finished, default-off capabilities behind no measured verdict",
     "created_at": "2026-06-24T04:53:47.796Z",
-    "last_save_at": "2026-07-07T04:46:33.990Z",
+    "last_save_at": "2026-07-09T10:02:48.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,9 +210,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d082af332a9856395dc852061786ffcac7be966c66f0fef26617818a836bb9be",
+    "source_fingerprint": "sha256:991c5de6fd054f2c074c1d642c427d63985f2fcf73520d88b2b8ae770427ceb3",
     "source_doc_hashes": {
-      "spec.md": "f465931e0edbf620c06c814209391ddc6d558c2b65094a4f23c9d3070028ea8d",
+      "spec.md": "6ee609fd0b48b04f86889d2203963ae90f7ad1bcef04fb2fd6b4c9bcb0371fa2",
       "plan.md": "a41aa091329acd0f7eec9ef1a6403f52be42b235528614db1822d31b0e764140",
       "tasks.md": "25c42dcce60ccbe0e6f21f6ba21c935d70eec1662db2971abcd843310707acb0",
       "checklist.md": "4a27438a011517ee40f50285184b6e7fb933896024a33524720a52b31739444f",

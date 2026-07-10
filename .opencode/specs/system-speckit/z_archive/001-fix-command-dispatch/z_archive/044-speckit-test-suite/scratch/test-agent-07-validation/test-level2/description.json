@@ -1,16 +1,16 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/scratch/test-agent-07-validation/test-level2",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/scratch/test-agent-07-validation/test-level2",
   "description": "Test Spec Level 2",
   "keywords": [
     "test",
     "spec",
     "level"
   ],
-  "lastUpdated": "2026-03-08T11:08:55.650Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "",
   "folderSlug": "test-level2",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive",

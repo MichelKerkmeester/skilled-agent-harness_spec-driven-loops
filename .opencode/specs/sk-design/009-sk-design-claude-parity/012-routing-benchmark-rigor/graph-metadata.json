@@ -56,7 +56,8 @@
       ".opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.json",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/spec.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/graph-metadata.json",
-      "manual_testing_playbook/manual_testing_playbook.md"
+      "manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md"
     ],
     "entities": [
       {
@@ -117,6 +118,12 @@
         "name": "manual_testing_playbook.md",
         "kind": "doc",
         "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md",
         "source": "derived"
       },
       {
@@ -196,17 +203,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Confirm Phases",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Phase 012 packet still described future work as \"Planned / Not Started\" even though a real benchmark run already exists and passed at `.opencode/skills/sk-design/benchmark/after-012-routing-rigor/report.{json,md}`",
     "created_at": "2026-07-06T04:40:02.795Z",
-    "last_save_at": "2026-07-06T10:47:51.203Z",
+    "last_save_at": "2026-07-09T10:02:44.502Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +218,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:195ca92d7d28ec2604a0a110f1100de26066e08744f5d1896fa75d66073d7696",
+    "source_fingerprint": "sha256:8e2b20728fbd232c0dac0a7b01c149f2282d55b9bf499b75d26904c8a3e4771a",
     "source_doc_hashes": {
       "spec.md": "e197fd53d991e93fbbcd87c773f098102372d3c3727682d9b2d72044b13f3e7e",
       "plan.md": "cb8b0b02b50bc3fc89bbd6ce7940674d04eca5dd07476cf2e0feaa409f0fd45a",
       "tasks.md": "a302c5c2df886a079d12a22ffac7c3ac09c5f2910cc0cde2e5cf7a44de88ba5e",
       "checklist.md": "3d0599cdc33f0b92b54d008413404d67d189801a14a59d54f2d3f7887cae8091",
-      "decision-record.md": "202a611beb0280fde32a2aac153a465ceb8104f0672fd0cd581f43f7c6f51848",
+      "decision-record.md": "8dbf7a3b5ce8ca00349ccb3bae659f9dd45a88371de5f692ccc6bbe1c33bda74",
       "implementation-summary.md": "7b9e2e2cafc7d02cc57b63cafab5276f825746df544afee1bcc97fdacdea4b76"
     },
     "last_active_child_id": null,

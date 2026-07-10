@@ -44,5 +44,9 @@
     "system-code-graph/z_archive/024-system-code-graph-deferred-followon"
   ],
   "created_at": "2026-07-07T16:12:24.704Z",
-  "updated_at": "2026-07-07T16:12:24.704Z"
+  "updated_at": "2026-07-09T11:26:11.531Z",
+  "specFolder": "system-code-graph/z_archive",
+  "parentChain": [
+    "system-code-graph"
+  ]
 }

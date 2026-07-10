@@ -35,10 +35,10 @@
       "tools",
       "coverage-graph",
       "handler",
-      "118",
       "phase",
-      "004",
-      "plan"
+      "plan",
+      "handlers",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "After phases 001 (runtime skill scaffold), 002 (lib migration), and 003 (script shims + DB relocation) complete, the four `deeploopgraph` MCP tools become dead weight: their handlers still live in `system-spec-kit/mcpserver/handlers/coverage-graph/`, their schemas still live in `tool-schemas.ts` and `schemas/tool-input-schemas.ts`, and they still register at server startup, even though no consumer invokes them anymore",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-07-08T13:44:00.712Z",
+    "last_save_at": "2026-07-09T10:02:48.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

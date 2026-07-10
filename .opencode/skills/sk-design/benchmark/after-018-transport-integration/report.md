@@ -4,6 +4,8 @@
 
 **Verdict: PASS** · aggregate 93/100
 
+> **Scope note:** PASS is computed over the four weighted, scored dimensions (D1intra, D2, D3, D5); D1-inter and D4 remain unscored this run (see Methodology below). It does **not** certify the browser-class scenarios — see the P1 `funnel_attrition` bottleneck under Ranked bottlenecks: 6 of 7 browser scenarios first-fail at the `browser` stage because the harness has no per-URL export/motion/video probe for 3 scenario types (`PARTIAL-NEEDS-ARTIFACT`) and no recipe at all for the other 3 (`SKIP-NO-BROWSER`). That is a benchmark-harness instrumentation gap, not an observed routing/discovery defect in the skill; treat it as an open item tracked via the bottlenecks table, not resolved by this headline.
+
 ## Coverage
 
 - Scored (text executors): **22** · routed out to browser harness: **0**
@@ -72,5 +74,5 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Methodology / caveats
 
-- Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0).
+- This run's trace mode is `live` (see header), but D1-inter and D4 still show `unscored-mode-a` here because this pass supplied no advisor probe/rank-gold (D1-inter) and no `--d4` ablation flag (D4) — not because live mode is inherently unable to score them. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0).
 - Scenario count: 25.

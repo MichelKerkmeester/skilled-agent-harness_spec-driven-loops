@@ -4,7 +4,6 @@
   "description": "The Phase 008 work started from a simple but high-impact gap: the repo already shipped richer stop-state, graph, and replay helpers than the visible",
   "keywords": [
     "phase",
-    "008",
     "work",
     "started",
     "simple",
@@ -20,7 +19,7 @@
     "helpers",
     "visible"
   ],
-  "lastUpdated": "2026-07-08T13:43:44.884Z",
+  "lastUpdated": "2026-07-09T10:02:49.486Z",
   "specId": "008",
   "folderSlug": "further-deep-loop-improvements",
   "parentChain": [

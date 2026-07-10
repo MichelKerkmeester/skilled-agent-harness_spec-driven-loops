@@ -100,15 +100,15 @@
     ],
     "causal_summary": "The `.opencode/skills/cli-devin` skill (and the broader Devin surface — the cli-devin executor plus the Devin IDE-runtime hooks) is being retired",
     "created_at": "2026-06-08T16:10:27Z",
-    "last_save_at": "2026-06-23T03:49:51.975Z",
+    "last_save_at": "2026-07-09T10:02:46.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d9580952ec250192c088317e03b90577d639f734acb2440040e6806ee32048a0",
+    "source_fingerprint": "sha256:3b276841a3267b9711e4997bb1ad4e8ce4fe1507a02ea40e510dc3f213c66c66",
     "source_doc_hashes": {
-      "spec.md": "c74d42f61fc5347e0046fd0d8a36c3131236bd49be3abfbe5db8c12ac87083f6"
+      "spec.md": "23c5414313c353e8204ab55523f47928e9070df4efb924968aff194fc3bd71f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

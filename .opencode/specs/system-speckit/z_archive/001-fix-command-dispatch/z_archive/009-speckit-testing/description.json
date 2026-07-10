@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/009-speckit-testing",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/009-speckit-testing",
   "description": "Verify all SpecKit features work correctly after the recent rename and consolidation changes",
   "keywords": [
     "verify",
@@ -12,11 +12,11 @@
     "consolidation",
     "changes"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.882Z",
+  "lastUpdated": "2026-07-09T10:02:56.835Z",
   "specId": "009",
   "folderSlug": "speckit-testing",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

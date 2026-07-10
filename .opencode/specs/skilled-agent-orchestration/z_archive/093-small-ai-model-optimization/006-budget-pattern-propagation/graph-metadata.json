@@ -38,6 +38,10 @@
     "key_files": [
       ".opencode/skills/cli-opencode/references/context-budget.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/006-budget-pattern-propagation/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/006-budget-pattern-propagation/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/006-budget-pattern-propagation/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/006-budget-pattern-propagation/implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -60,31 +64,31 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/006-budget-pattern-propagation/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/006-budget-pattern-propagation/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/006-budget-pattern-propagation/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/006-budget-pattern-propagation/implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -192,7 +196,7 @@
     ],
     "causal_summary": "Phase C lands the budget engine in cli-devin only",
     "created_at": "2026-05-18T12:42:58.569Z",
-    "last_save_at": "2026-06-23T03:49:50.537Z",
+    "last_save_at": "2026-07-09T10:02:45.979Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fb9ad838a3d62a0bf9128bb707fc14f28986649d8a9a1ca45e962a4638203f0",
+    "source_fingerprint": "sha256:386628eeb4e406ef371911cddf187227d4fb942d12a33bd4228e8f4fb9c32dc2",
     "source_doc_hashes": {
-      "spec.md": "4c38c0e08c068954607f6d1f19bdbc92b8eabd169dd65a519ee193738aff3cf3",
-      "plan.md": "1e8c546de77ab6b57de157d5cd8116e7c5fedbed937b7f2e7370648d829a7e2b",
-      "tasks.md": "1b3ecf3d6de3d7df1aeb31e0f596f68ef3f8d37fd9568e80a4cb065cd0333520",
-      "checklist.md": "a58f0c6384e99ab4bf40b43fd7fa138bad8ad0fdcb4ce58ae47321c980a41fc5",
-      "implementation-summary.md": "c5473dcaa2fcfd1537a718ef83d0e7eac5e67ca6b66e3ee47404662520e85d41"
+      "spec.md": "ae2e5383ff5e349c16aa61bf7c3c93e7cd53b416688dbbdc20301f742aacfdf3",
+      "plan.md": "0767e28fd4d57b089b7fc5d533e153f907abf44545d43fe23f70f83cb09bad03",
+      "tasks.md": "f5f28a3b23e15f7b6e5b004f623befab26e11cfec7ea2fdcc5e9e769a0452082",
+      "checklist.md": "cbe6c580c84eb4f84376efed0e91efca5d4d97a6654ffab70686bcba7acb118c",
+      "implementation-summary.md": "900de35fc56d4bee6e2fdac79461c418e3de588044d6a100f6513587dceaa49e"
     },
     "last_active_child_id": null,
     "last_active_at": null

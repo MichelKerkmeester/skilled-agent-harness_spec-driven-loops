@@ -16,7 +16,9 @@
       "deep-loop-workflows rename references",
       "external reference migration plan",
       "external reference migration tasks",
-      "external reference migration checklist"
+      "external reference migration checklist",
+      "external reference migration implementation summary",
+      "system-deep-loop reference migration complete"
     ],
     "key_topics": [
       "external",
@@ -33,18 +35,96 @@
       "checklist"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "plan.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+      ".opencode/plugins/mk-deep-loop-guard.js",
+      ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".github/workflows/agent-mirror-sync.yml",
+      ".opencode/hooks/README.md",
+      ".opencode/commands/doctor/_routes.yaml",
+      "constitutional/deep-skill-workflow-required.md",
+      "references/structure/folder_structure.md",
+      "research/stage-a-advisor-baseline.json",
       "spec.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "aliases.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-deep-loop-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-deep-loop-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-deep-loop-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/agent-mirror-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-skill-workflow-required.md",
+        "kind": "doc",
+        "path": "constitutional/deep-skill-workflow-required.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder_structure.md",
+        "kind": "doc",
+        "path": "references/structure/folder_structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage-a-advisor-baseline.json",
+        "kind": "config",
+        "path": "research/stage-a-advisor-baseline.json",
         "source": "derived"
       },
       {
@@ -63,6 +143,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -112,97 +198,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Grep",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Core Implementation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Capture Stage",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "948 non-noise references to `deep-loop-workflows`/`deep-loop-runtime` exist outside the two skills' own folders — across `/deep:` commands (434 hits, 24 files), doctor (15 hits incl",
     "created_at": "2026-07-08T04:36:15.645Z",
-    "last_save_at": "2026-07-08T04:43:09.215Z",
+    "last_save_at": "2026-07-09T10:02:48.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9b5ae01e43efd2029aea29941e95a8d76617f9737d51a47f640bd73eebb4e4a3",
     "source_doc_hashes": {
-      "spec.md": "7d2d6eab260aa19c6a685bc8435f0a827104d6d9cb286c461c7d2a8bd42e82c5",
-      "plan.md": "cfc35fca830e664dee53576a0f5525dfd06d3af0d6471f40afa8ff3b18f3ebb2",
-      "tasks.md": "2dc5ee1a5a4620f8a8719d1abfb937140280a5c32b4253874d84039f7f0f178a",
-      "checklist.md": "10958345aa6be9bd13a9d78db3825a3c326324dde64fd0c15be1038dbc1c9e3c"
+      "spec.md": "8d95d35c54085445736fc5658fd8cef13a8a28bc4216d601281db8465cef0cb7",
+      "plan.md": "df4bedf2351a8e385f7fc29534f7f20f28dfe9860a945aef08ba9842f5988fd2",
+      "tasks.md": "2c33a34874be53f8c65207c0689dddbcb0f94e9300ecc5f10bc7112f763bae9b",
+      "checklist.md": "025fc3a606ec57842e2e9205f7ea4cb4138b8a614b439d654cd50d38bc5c9cff",
+      "implementation-summary.md": "ecdeb0a1842ca944ae37b626a12e923c1101a7bcf1215f1f28cac713bac158ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

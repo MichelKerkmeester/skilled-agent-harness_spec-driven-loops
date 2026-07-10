@@ -28,7 +28,6 @@
     "moved",
     "stress",
     "tests",
-    "added",
     "matrix",
     "runners",
     "refreshed",
@@ -39,7 +38,7 @@
     "hook",
     "surfaces"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.210Z",
+  "lastUpdated": "2026-07-09T10:02:50.568Z",
   "specId": "009",
   "folderSlug": "upgrade-safety-operability-audit",
   "parentChain": [

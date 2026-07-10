@@ -1,13 +1,11 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
-  "description": "Renaming 1,531 files and rewriting ~2,275 link occurrences by hand is error-prone: a single missed `SOURCE METADATA` self-path or root-doc link silent",
+  "description": "Renaming 1,531 files and rewriting ~2,275 link occurrences by hand is error-prone: a single missed `SOURCE METADATA` self-path or root-doc link",
   "keywords": [
     "renaming",
-    "531",
     "files",
     "rewriting",
-    "275",
     "link",
     "occurrences",
     "hand",
@@ -17,10 +15,9 @@
     "source",
     "metadata",
     "self-path",
-    "root-doc",
-    "silent"
+    "root-doc"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.266Z",
+  "lastUpdated": "2026-07-09T10:02:46.417Z",
   "specId": "002",
   "folderSlug": "migration-tooling-and-dry-run",
   "parentChain": [

@@ -20,14 +20,14 @@
       "sub-phase",
       "062-deep-loop-command-flow-stress-tests",
       "apply",
-      "060",
-      "004",
       "methodology",
       "spec",
       "deep-research",
       "stress",
       "runs",
-      "002"
+      "plan",
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology.",
     "created_at": "2026-05-18T07:49:27.112Z",
-    "last_save_at": "2026-07-08T13:43:22.963Z",
+    "last_save_at": "2026-07-09T10:02:48.416Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

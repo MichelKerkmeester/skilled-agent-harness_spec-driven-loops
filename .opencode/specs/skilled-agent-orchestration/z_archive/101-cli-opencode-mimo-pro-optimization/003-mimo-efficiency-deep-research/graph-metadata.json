@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 001 registered `mimo-v2.5-pro` with placeholder capability metadata (`contextlength: null`, `--variant` unverified)",
     "created_at": "2026-06-01T20:21:29.319Z",
-    "last_save_at": "2026-06-23T03:49:51.500Z",
+    "last_save_at": "2026-07-09T10:02:46.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:633af2c0f862a423b27688675873f2bb74a48179a2a02be7771ef380a479a93c",
+    "source_fingerprint": "sha256:f070a68e8fdaf71f5c033e5afc405fd968c804a773507e3ab9bc895d5b9ac70b",
     "source_doc_hashes": {
-      "spec.md": "7cdeeac2837f6c06cdc5c8bdc042e4c1a5a4d3b9bc312fc4afaa967e753be22e",
-      "plan.md": "f122b5040d28557657c025554814ca2a92f223e0a363815456a18a30e9d149c3",
-      "tasks.md": "bbcbfdc84b5cfe18303f180fb02a2e679f8d4f7610c9636ef2b8a1c6680855d0",
-      "implementation-summary.md": "c7690eecf55c3e0c0e4ba946982d3dd0228e9cb6b4fa23437b0bef16885da325",
+      "spec.md": "74ba1c3f63adaf44a9a99b53bc20b8db7e03b161988183e2c958694a9112a616",
+      "plan.md": "54d1368a4a232fd533d164a7e03f33b58c7b9189b8f0d3e4988843bc46ab3398",
+      "tasks.md": "faeba2b9f4ddd6fa685cb5bcdf8fd59d578e9e54f60b9cb578760e82622c6ad0",
+      "implementation-summary.md": "6eaafcde570e4699312f21f8ff5cecfb8a69c88e534974bdcf73be444f8cda2a",
       "research/research.md": "5621057c4eedc7afafcfb95dff66e1012a09f0dd45ceda21a1964b602b1d522f"
     },
     "last_active_child_id": null,

@@ -34,10 +34,10 @@
       "non-hook",
       "startup",
       "guidance",
-      "027",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phases 018 and 024 improved hookless session bootstrap, but non-hook runtimes still depend too much on the model deciding to call structural tools at the right moment",
     "created_at": "2026-04-12T09:02:53.433Z",
-    "last_save_at": "2026-07-07T16:18:33.985Z",
+    "last_save_at": "2026-07-09T10:02:47.351Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

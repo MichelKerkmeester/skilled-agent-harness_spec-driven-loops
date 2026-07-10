@@ -23,8 +23,6 @@
       "sk-code v3.2.0.0"
     ],
     "key_topics": [
-      "078",
-      "001",
       "sk-code-authoring",
       "opencode",
       "authoring",
@@ -34,7 +32,9 @@
       "tasks",
       "summary",
       "sk-code",
-      "skill"
+      "skill",
+      "declares",
+      "scope"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "sk-code's SKILL.md declares OPENCODE scope covering skills, agents, commands, MCP servers, hooks, scripts, tests, and config (lines 20-23), but the on-disk `assets/opencode/checklists/` directory contains only language-level checklists (config, javascript, python, shell, typescript, universal)",
     "created_at": "2026-05-05T17:36:52Z",
-    "last_save_at": "2026-07-07T16:45:58.066Z",
+    "last_save_at": "2026-07-09T10:02:44.329Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8ff9ac92b8aa39da32c621686a52a033eef6cb73355c666a2c8a73ef363588d",
+    "source_fingerprint": "sha256:ba750a73ec9e6b81f800b6e065350f4795edf46d35703b08b4262924d1e9bee8",
     "source_doc_hashes": {
-      "spec.md": "39059af84fa0387c44b9d356f800b66616cd147c6ef9b6a576aefaebb0ba27f0",
-      "plan.md": "5910663a161f7fcff0a65f3152abb5a262cecd4f6ceec2b62485ef21e43202f9",
-      "tasks.md": "1ebce427a0751e37e295987638fbce15d756db09500ef8de22a82f623348242e",
-      "implementation-summary.md": "765afb5d0854e58119120b190ab5ca68612e6e76082facaf65a9fd06973f24a1"
+      "spec.md": "a426f71ae5644e69b458a1b4584d7d78ce55077d5286ea050b0be4e8e00a6660",
+      "plan.md": "4bc42ca88720e94fb43e4b6fddd7b67c1410305f226e9db21f71064932aecabb",
+      "tasks.md": "749c527422cff4747be962afe60ca9c404f3863bdd8bab80f332db6a8596859f",
+      "implementation-summary.md": "09cb830f502f4370b4c91560e4b314b77f668bf8af9840561d6f76706a683743"
     },
     "last_active_child_id": null,
     "last_active_at": null

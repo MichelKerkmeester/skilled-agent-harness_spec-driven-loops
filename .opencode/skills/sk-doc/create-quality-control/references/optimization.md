@@ -193,8 +193,8 @@ Before finalizing, verify each snippet:
 ### Templates
 - [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
 - [skill_asset_template.md](../../create-skill/assets/skill/skill_asset_template.md) - Bundled asset structure
-- [readme_template.md](../../create-readme/assets/readme/readme_template.md) - Comprehensive README guide (13 sections)
-- [command_template.md](../../create-command/assets/command/command_template.md) - Command creation guide (19 sections)
-- [install_guide_template.md](../../create-readme/assets/readme/install_guide_template.md) - Install guide template (14 sections)
+- [readme_template.md](../../create-readme/assets/readme_template.md) - Comprehensive README guide (13 sections)
+- [command_template.md](../../create-command/assets/command_template.md) - Command creation guide (19 sections)
+- [install_guide_template.md](../../create-readme/assets/install_guide_template.md) - Install guide template (14 sections)
 - [llmstxt_templates.md](../../shared/assets/llmstxt_templates.md) - llms.txt with decision framework
 - [frontmatter_templates.md](../../shared/assets/frontmatter_templates.md) - Frontmatter validation & templates (11 sections)

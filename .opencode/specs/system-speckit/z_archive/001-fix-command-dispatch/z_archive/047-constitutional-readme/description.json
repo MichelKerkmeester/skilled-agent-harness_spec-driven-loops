@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/047-constitutional-readme",
-  "description": "Create comprehensive documentation (README.md) for the constitutional memory system located at .opencode/skills/system-spec-kit/constitutional/. The R",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/047-constitutional-readme",
+  "description": "Create comprehensive documentation (README.md) for the constitutional memory system located at .opencode/skills/system-spec-kit/constitutional/.",
   "keywords": [
-    "create",
     "comprehensive",
     "documentation",
     "readme",
@@ -14,11 +13,11 @@
     "skills",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.153Z",
+  "lastUpdated": "2026-07-09T10:02:57.133Z",
   "specId": "047",
   "folderSlug": "constitutional-readme",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

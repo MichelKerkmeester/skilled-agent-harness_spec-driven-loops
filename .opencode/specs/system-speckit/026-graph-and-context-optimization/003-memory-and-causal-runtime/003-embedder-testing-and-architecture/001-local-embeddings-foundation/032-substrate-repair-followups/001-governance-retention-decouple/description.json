@@ -14,7 +14,7 @@
   "created_at": "2026-05-14T11:10:00Z",
   "updated_at": "2026-05-14T11:10:00Z",
   "status": "complete",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/001-governance-retention-decouple",
   "description": "Passing `retentionPolicy: \"ephemeral\"` to `memorysave` silently triggered governed-ingest validation and required the full audit chain",
   "keywords": [
     "passing",
@@ -30,11 +30,11 @@
     "audit",
     "chain"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.103Z",
+  "lastUpdated": "2026-07-09T10:02:52.401Z",
   "specId": "001",
   "folderSlug": "governance-retention-decouple",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

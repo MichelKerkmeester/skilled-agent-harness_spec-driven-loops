@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout",
-  "description": "Daemon re-election is the only thing that keeps the shared mk-spec-memory daemon alive when its owning session disposes, but it shipped default-off an",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout",
+  "description": "Daemon re-election is the only thing that keeps the shared mk-spec-memory daemon alive when its owning session disposes, but it shipped default-off",
   "keywords": [
     "daemon",
     "re-election",
@@ -17,11 +17,11 @@
     "shipped",
     "default-off"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.588Z",
+  "lastUpdated": "2026-07-09T10:02:54.569Z",
   "specId": "027",
   "folderSlug": "reelection-default-on-rollout",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

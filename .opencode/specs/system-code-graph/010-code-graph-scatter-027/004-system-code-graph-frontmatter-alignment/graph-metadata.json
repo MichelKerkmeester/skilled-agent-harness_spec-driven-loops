@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "system-code-graph frontmatter alignment",
       "system-code-graph reference frontmatter",
-      "skill frontmatter standardization",
+      "system-code-graph skill frontmatter standardization",
       "system-code-graph frontmatter plan",
       "code graph doc contract plan",
       "skill doc frontmatter phase 20",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "system-code-graph reference/asset frontmatter is inconsistent with the repo-wide contract: 6 of 7 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:38Z",
-    "last_save_at": "2026-07-07T16:18:33.949Z",
+    "last_save_at": "2026-07-09T10:02:47.295Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +210,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a98bb05652ee347022766523aa7c2e97bbc9ed54d86ac9c639eb5746a66c1c55",
+    "source_fingerprint": "sha256:46b970765f530892486b8f7c09303f17ffbbdeb0b13cd11ea8752d6178ac194b",
     "source_doc_hashes": {
-      "spec.md": "f9ff410e4df5780bbdc31a59a987ade1e0b5fc40f39315a34de8b957f8c7cdb8",
+      "spec.md": "c627e94db97e01519e0e63a2ec57551cf29577fc3ba99a8181fde429710d7853",
       "plan.md": "508dce5d7c6a2f827fb89e2f627d3db2161ccd48548cffaeab910c990f2ad5be",
-      "tasks.md": "2e917a17924e8344a1834d13df9ee802c26df1ccce0f68ac1a3732bb6bfa168b",
+      "tasks.md": "40f13d258c510c0626db894291aa73f23d7e2ce890477503bc956d87bfec693f",
       "implementation-summary.md": "e2593680a11e65ffc5afbcd90754c150f3ee09715ba6f54dc895f83ba1849dab"
     },
     "last_active_child_id": null,

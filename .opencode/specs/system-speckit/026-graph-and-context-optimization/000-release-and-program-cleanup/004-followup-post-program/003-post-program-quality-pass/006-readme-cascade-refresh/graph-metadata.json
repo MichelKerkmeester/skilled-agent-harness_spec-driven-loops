@@ -29,14 +29,14 @@
       "readme",
       "cascade",
       "refresh",
-      "update",
       "parent",
       "skill",
       "plan",
       "tasks",
       "checklist",
-      "037",
-      "006-readme-cascade-refresh"
+      "006-readme-cascade-refresh",
+      "resource",
+      "map"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Packets 031-036 and 037/001-005 changed the current documentation surface: the MCP registry is now 54 tools, `matrixrunners/` and `stresstest/` are live folders, `advisorrebuild` is a public Skill Advisor tool, and the stress suites moved out of `tests/`",
     "created_at": "2026-04-29T16:19:08.000Z",
-    "last_save_at": "2026-07-02T05:31:10.696Z",
+    "last_save_at": "2026-07-09T10:02:51.103Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

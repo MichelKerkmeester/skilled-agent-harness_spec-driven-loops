@@ -8,7 +8,7 @@ trigger_phrases:
   - "python naming checklist"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.13
+version: 1.0.0.20
 ---
 
 # Python Code Quality Checklist

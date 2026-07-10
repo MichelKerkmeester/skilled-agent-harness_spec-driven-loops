@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`sk-prompt-models` was a thin router with no per-model prompt-craft content",
     "created_at": "2026-06-05T12:47:32.510Z",
-    "last_save_at": "2026-06-23T03:49:51.592Z",
+    "last_save_at": "2026-07-09T10:02:46.270Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3933d8408e9a02dc37f518c876ae03d89fa3565bc7b33a49a32530669a7d8a01",
+    "source_fingerprint": "sha256:acb84843bb80e939d03a9c00d37990c2c4efe86f904ca826157993cc84d2a4f4",
     "source_doc_hashes": {
-      "spec.md": "f35d88992c8d08ccc26fdbb63184a4415a5a3d6ca8479efb8441b6918a47006a",
-      "plan.md": "eebda287ef055fd81c9177dfa58da0b3f4a3eda8dbd0ead3c1e756b9cc845a4e",
-      "tasks.md": "60dd09d2ae11b847437f506f004a6b6ecf2d7525f88f2d71901a1abfc5a4368d",
-      "implementation-summary.md": "186a651d841c39bcb0d98d9ba2716c259be9790d637485f0608a5952b19979ef"
+      "spec.md": "c74900740880ff2ceefefa0ab6b860a6095d36fa81ec17eb4525f7b999e0b53e",
+      "plan.md": "fe4c85e642b79af1adcc118b24b075cd82a0883892527849bab6f54415575039",
+      "tasks.md": "ba26d4d165bf781c4c1508b88f5dc459341f5bbab2d89026b884bd122fcb562a",
+      "implementation-summary.md": "b2a3a90e2a097c1d478263f66b435b6ebbeb7a1b1036a70ddbebd689f89994db"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,31 +1,32 @@
 {
   "level": "2",
   "specFolder": "sk-code/017-sk-code-parent/009-cutover-and-rollout",
-  "description": "Final phase of the sk-code parent conversion. Branch portion landed verified cleanup (8 harness-test migrations, parent-hub-vocab-sync generalization, CS-003 matcher, a 29-path smart_routing content-drift fix) plus two fold-broken live fixes; the load-bearing cutover (sk-code-review scorer removal, skill-graph regen + reindex, 4 alias-site deletions, ~350 NAME-ref repoints, version release) is specified as an atomic main-side advisor-rebuild runbook because the worktree lacks the compiled dist those steps require",
+  "description": "The cutover removes `sk-code-review` as a routing identity and cuts the release",
   "keywords": [
-    "sk-code",
-    "cutover-and-rollout",
+    "cutover",
+    "removes",
     "sk-code-review",
-    "alias-removal",
-    "advisor-rebuild",
-    "advisor-scorer",
-    "skill-graph-regen",
-    "name-ref-repoint",
-    "harness-migration",
-    "main-side-runbook"
+    "routing",
+    "identity",
+    "cuts",
+    "release"
   ],
-  "lastUpdated": "2026-07-08T04:14:29.865Z",
+  "lastUpdated": "2026-07-09T13:47:17.083Z",
   "specId": "009",
   "folderSlug": "cutover-and-rollout",
   "parentChain": [
     "sk-code",
     "017-sk-code-parent"
   ],
-  "memorySequence": 13,
+  "memorySequence": 17,
   "memoryNameHistory": [
     "05-07-26_07-47__while-the-waiter-runs-honest-consolidated-status.md",
     "07-07-26_19-16__all-my-authored-docs-are-clean-continuity-fields.md",
     "08-07-26_04-34__i-m-treating-this-compaction-boundary-per-the.md",
-    "08-07-26_05-14__wu-4-consult-is-now-running-on-fable-in-the.md"
+    "08-07-26_05-14__wu-4-consult-is-now-running-on-fable-in-the.md",
+    "08-07-26_18-32__p4-code-opencode-fixtures-are-being-authored-by.md",
+    "08-07-26_18-40__code-opencode-playbook-dispatched-bo1l0qouj-using.md",
+    "08-07-26_21-15__both-remaining-live-runs-hub-mode-b-deep-ai.md",
+    "09-07-26_14-47__010-is-implemented-verified-circularity-test-7-7.md"
   ]
 }

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/024-compact-code-graph/021-cross-runtime-instruction-parity",
-  "spec_folder": "system-spec-kit/z_archive/024-compact-code-graph/021-cross-runtime-instruction-parity",
-  "parent_id": "system-spec-kit/z_archive/024-compact-code-graph",
+  "packet_id": "system-speckit/z_archive/024-compact-code-graph/021-cross-runtime-instruction-parity",
+  "spec_folder": "system-speckit/z_archive/024-compact-code-graph/021-cross-runtime-instruction-parity",
+  "parent_id": "system-speckit/z_archive/024-compact-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -25,7 +25,6 @@
     ],
     "key_topics": [
       "phase",
-      "021",
       "cross",
       "runtime",
       "spec",
@@ -35,22 +34,27 @@
       "checklist",
       "implementation",
       "summary",
-      "addresses"
+      "addresses",
+      "concrete"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/agents/orchestrate.md",
       ".opencode/agents/context.md",
-      ".codex/agents/orchestrate.toml",
-      ".codex/agents/deep-research.toml",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "orchestrate.md",
         "kind": "doc",
@@ -61,24 +65,6 @@
         "name": "context.md",
         "kind": "doc",
         "path": ".opencode/agents/context.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.toml",
-        "kind": "file",
-        "path": ".codex/agents/orchestrate.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-research.toml",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Template",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-13T04:55:09.652Z",
-    "last_save_at": "2026-06-23T03:50:00.719Z",
+    "last_save_at": "2026-07-09T10:02:58.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

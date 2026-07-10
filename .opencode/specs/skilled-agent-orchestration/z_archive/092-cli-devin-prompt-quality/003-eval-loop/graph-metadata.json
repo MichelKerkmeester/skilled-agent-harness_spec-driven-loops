@@ -24,8 +24,6 @@
       "113/003 summary"
     ],
     "key_topics": [
-      "113",
-      "003",
       "eval",
       "loop",
       "cli-devin",
@@ -35,7 +33,9 @@
       "run",
       "hill-climbing",
       "convergence",
-      "plan"
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "We have a rig (002) and a ratified design contract (001)",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-06-23T03:49:50.467Z",
+    "last_save_at": "2026-07-09T10:02:45.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd93dad9cf2d522220333149b8b4a6803e442111019cf469eda89063e46b9fc9",
+    "source_fingerprint": "sha256:4fae8158cc036327f7ba11cfcd6a59047218b07cc66277806d8a72f62733cbab",
     "source_doc_hashes": {
-      "spec.md": "ca5330e0d15043b1b6389010a5f003487f9b6ad7b914f0ecbbb3395f111aff51",
-      "plan.md": "87b8f52ea58846fddffdd1b71275a20d6ce2d165646867c9c5824b450482533f",
-      "tasks.md": "e8bc92c388f58aee92744a06148adf6d32ff342f41b4ec5aac44af0bfe97344c",
-      "checklist.md": "715a318091d4ef2eba69d69d3d6016376fe94c63b705957cc45f86f0ea579dfd",
-      "decision-record.md": "a553c2880deb7ef810394b7205944aa4ead691e52afaf2171d537d87d3208b5f",
-      "implementation-summary.md": "8523c757ee9b74a7875df4f9587b5cf672d3f9727b676a3e198afc837bea28cf"
+      "spec.md": "e3a9ccb4d749bf39941a7f386cd89e3c60b2257dca86b1bef5e4ee4a2731e887",
+      "plan.md": "478f2f520a2c60bf32487c20281dd3f56a3e2119c0655a35ad6012f25214a537",
+      "tasks.md": "d7689c70feca1a906e14fa0594e03dfd53bb09dc809d6d428bfd6d7351a0c578",
+      "checklist.md": "c20c8ff85ef4834e583676ff50a8387c5102ce0560b323da1608c8b801d8fcba",
+      "decision-record.md": "da8a3e5eb2cecaae5ab6344d672017b4efacff8fca10318f736a9e5394e0f835",
+      "implementation-summary.md": "2d13304a428ba7763773c767215ef734a578fa1ba05b7e1bce78e4c7bf872936"
     },
     "last_active_child_id": null,
     "last_active_at": null

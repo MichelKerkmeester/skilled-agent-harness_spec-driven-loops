@@ -10,9 +10,7 @@
   "keywords": [
     "script-driven",
     "bulk",
-    "fixes",
     "across",
-    "370",
     "catalog",
     "files",
     "rename",
@@ -22,18 +20,17 @@
     "insert",
     "template",
     "marker",
-    "fix",
     "validation",
     "table",
     "columns"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.440Z",
+  "lastUpdated": "2026-07-09T10:02:46.117Z",
   "specId": "002",
   "folderSlug": "mechanical-sweep",
   "parentChain": [
     "skilled-agent-orchestration",
     "z_archive",
-    "125-feature-catalog-template-improvements"
+    "100-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

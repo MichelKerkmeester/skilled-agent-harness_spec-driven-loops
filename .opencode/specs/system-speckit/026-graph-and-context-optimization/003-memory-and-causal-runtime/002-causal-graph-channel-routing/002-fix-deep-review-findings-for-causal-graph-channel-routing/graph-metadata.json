@@ -20,7 +20,6 @@
     ],
     "key_topics": [
       "002-fix-deep-review-findings-for-causal-graph-channel-routing",
-      "012",
       "deep-review",
       "remediation",
       "p1-c-001",
@@ -30,7 +29,8 @@
       "invalidation",
       "hooks",
       "resource-map",
-      "drift"
+      "drift",
+      "polish"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` produced a CONDITIONAL verdict because of two release-blocking P1s and 39 P2 polish items",
     "created_at": "2026-05-19T15:28:02.707Z",
-    "last_save_at": "2026-07-02T05:31:11.520Z",
+    "last_save_at": "2026-07-09T10:02:52.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

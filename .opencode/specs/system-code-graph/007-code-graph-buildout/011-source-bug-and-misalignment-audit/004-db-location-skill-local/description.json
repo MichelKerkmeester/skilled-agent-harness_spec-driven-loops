@@ -8,13 +8,12 @@
     "lease",
     "readiness",
     "marker",
-    "created",
     "workspace-root",
     "opencode",
     "spec-kit",
     "database"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.147Z",
+  "lastUpdated": "2026-07-09T10:02:47.148Z",
   "specId": "004",
   "folderSlug": "db-location-skill-local",
   "parentChain": [

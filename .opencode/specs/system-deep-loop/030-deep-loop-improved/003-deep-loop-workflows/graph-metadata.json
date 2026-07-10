@@ -34,47 +34,26 @@
       "loop",
       "workflows",
       "improvements",
-      "003",
       "subsystem",
       "recommendations",
       "research",
       "improvement",
       "deep-loop-workflows",
       "layer",
-      "review"
+      "review",
+      "context"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
       "spec.md"
     ],
     "entities": [
       {
-        "name": "deep_research_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
         "source": "derived"
       },
       {
@@ -122,15 +101,15 @@
     ],
     "causal_summary": "The deep-loop-workflows layer (research, review, context, council, improvement modes) carries 12 distinct gaps identified in the 51-iteration reference-research run: no anti-convergence floor, no unified convergence contract, no injection inbox with provenance, an unresolved anchor-ownership overwrite race, no rejected-pattern cache, no idea lifecycle, an empty coverage-graph initialization, a benchmark that gates on pass/fail rather than improvement-over-baseline, merged accept/ship promotion steps with no separate gate, no Lane D self-improvement packaging, and a FIFO fan-out with no",
     "created_at": "2026-06-28T14:00:34Z",
-    "last_save_at": "2026-07-04T18:02:13.491Z",
+    "last_save_at": "2026-07-09T10:02:47.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bee31e3619f2c3071ae4d3f02beebd754b86188967031f07eb3b46a28c3ce67d",
+    "source_fingerprint": "sha256:2b9d7a29581c5fe25cba791c2bc01bd569392480ba12d5d2e82c4e790b005a34",
     "source_doc_hashes": {
-      "spec.md": "54fa82632cfa191300fee9250c7258832f80944f47073a3c082ed70f92e3f044"
+      "spec.md": "8d873f65c4fd56bb8034c6bae2b0b305b7d6e64be9c6c72c3ce4c2c0d3c74388"
     },
     "last_active_child_id": null,
     "last_active_at": null

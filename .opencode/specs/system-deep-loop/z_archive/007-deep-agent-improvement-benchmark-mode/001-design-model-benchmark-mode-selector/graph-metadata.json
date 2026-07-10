@@ -33,10 +33,10 @@
       "prompt-framework",
       "skill",
       "selector",
-      "build",
       "plan",
       "implementation",
-      "port"
+      "port",
+      "rig"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "We now have two near-identical evaluation loops: `deep-agent-improvement` (mutate + score an agent definition, promote the best) and the 120/003 benchmark rig (run a model against fixtures under prompt-framework variants, score, pick the best)",
     "created_at": "2026-05-28T13:38:37Z",
-    "last_save_at": "2026-07-08T13:43:34.388Z",
+    "last_save_at": "2026-07-09T10:02:48.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

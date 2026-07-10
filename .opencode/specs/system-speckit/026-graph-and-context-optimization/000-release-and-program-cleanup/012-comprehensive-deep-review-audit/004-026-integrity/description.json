@@ -1,11 +1,9 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
   "description": "The 026 program (8 tracks, ~634 sub-packets) recently had changelog audit drift and completion-claim reconciliation remediated",
   "keywords": [
-    "026",
     "program",
     "tracks",
-    "634",
     "sub-packets",
     "recently",
     "changelog",
@@ -15,11 +13,11 @@
     "reconciliation",
     "remediated"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.992Z",
+  "lastUpdated": "2026-07-09T10:02:51.661Z",
   "specId": "004",
   "folderSlug": "026-integrity",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "012-comprehensive-deep-review-audit"

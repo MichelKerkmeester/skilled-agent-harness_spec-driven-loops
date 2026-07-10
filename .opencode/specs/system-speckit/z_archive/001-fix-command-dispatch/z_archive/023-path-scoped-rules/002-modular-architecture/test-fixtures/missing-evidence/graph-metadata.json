@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/missing-evidence",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/missing-evidence",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/missing-evidence",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture/test-fixtures/missing-evidence",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -177,7 +177,7 @@
     ],
     "causal_summary": "This fixture tests detection of missing evidence on completed items",
     "created_at": "2026-06-22T18:55:03.932Z",
-    "last_save_at": "2026-06-23T03:49:58.969Z",
+    "last_save_at": "2026-07-09T10:02:56.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

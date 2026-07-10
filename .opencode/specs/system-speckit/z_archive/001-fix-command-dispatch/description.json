@@ -1,22 +1,21 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch",
   "description": "This archived folder captures work that fixed a command dispatch vulnerability in system-spec-kit",
   "keywords": [
     "archived",
     "folder",
     "captures",
     "work",
-    "fixed",
     "command",
     "dispatch",
     "vulnerability",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.838Z",
+  "lastUpdated": "2026-07-09T10:02:56.779Z",
   "specId": "001",
   "folderSlug": "fix-command-dispatch",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

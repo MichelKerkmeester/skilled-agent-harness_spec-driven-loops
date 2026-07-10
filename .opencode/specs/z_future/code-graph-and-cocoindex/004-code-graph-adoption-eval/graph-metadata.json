@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
-  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
-  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
+  "packet_id": "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval",
+  "spec_folder": "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval",
+  "parent_id": "z_future/code-graph-and-cocoindex",
   "children_ids": [
-    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton",
-    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement",
-    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/003-fixtures",
-    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/004-report-generator",
-    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/005-stress-tests-integration"
+    "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton",
+    "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement",
+    "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval/003-fixtures",
+    "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval/004-report-generator",
+    "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval/005-stress-tests-integration"
   ],
   "manual": {
     "depends_on": [
@@ -109,7 +109,7 @@
     ],
     "causal_summary": "This phase coordinates the lightweight local adoption evaluation harness for the code_graph toolchain. The harness compares baseline advisor behavior against the new code_graph-assisted condition and reports productivity-oriented measures: file reads avoided, token reduction, context accuracy, answer completeness, and diagnostics around first-action adherence.",
     "created_at": "2026-05-08T15:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.870Z",
+    "last_save_at": "2026-07-09T11:26:11.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

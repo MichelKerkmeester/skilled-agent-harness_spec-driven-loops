@@ -25,9 +25,7 @@
       "summary"
     ],
     "key_topics": [
-      "082",
       "phase",
-      "002",
       "sk-improve-prompt",
       "skill",
       "folder",
@@ -36,11 +34,17 @@
       "plan",
       "name",
       "template",
-      "core"
+      "core",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-prompt/SKILL.md",
       ".opencode/skills/sk-prompt/README.md",
       ".opencode/skills/sk-prompt/graph-metadata.json",
@@ -48,13 +52,33 @@
       ".opencode/skills/sk-prompt/changelog/v1.0.0.0.md",
       ".opencode/skills/sk-prompt/changelog/v1.1.0.0.md",
       ".opencode/skills/sk-prompt/changelog/v1.2.0.0.md",
-      "implementation-summary.md",
-      "tasks.md",
-      "spec.md",
-      "plan.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -95,30 +119,6 @@
         "name": "v1.2.0.0.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt/changelog/v1.2.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The canonical skill directory and skill-local metadata still identify the skill as `sk-improve-prompt`",
     "created_at": "2026-05-06T10:22:40Z",
-    "last_save_at": "2026-06-23T03:49:49.902Z",
+    "last_save_at": "2026-07-09T10:02:45.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1da8d85cdb42037618f841f2039d76c957266612642fd422ea0ed8b54f4e8515",
+    "source_fingerprint": "sha256:23b4b566ba8b0ede0d7c114937e39d1f28a57ee068f08de181cd895b8650235d",
     "source_doc_hashes": {
-      "spec.md": "7f5048413968748d327f69501399b254a62a0d45f53224ce3aaba4f91916c8a2",
-      "plan.md": "9dda9732fd8bad147b14b5fbcef1ebb32428393252833c03d9be69f4eb018c62",
-      "tasks.md": "0c1c57e0aa4f843b720ec6d0fb839ed9bd202e95dbd2cc04f36e4f8bd9d5b07d",
-      "checklist.md": "0b5d2e2c99b624fda879d08f3662612b45c1ea883733d2774fc1ef31aea57dc6",
-      "implementation-summary.md": "8b964f81908ed04bce55e9aa9ce8b83ba01ef6a966496083ae59c17742d5a0dc"
+      "spec.md": "5ea6fc6514ba646fabeebf073e18e46544a52988372104c6595f6f7dcfb79d08",
+      "plan.md": "3fa9b2fc10428ef4af79bbc62328f4aaf0e01d48de8e8c4d52353b7687df0734",
+      "tasks.md": "033fc89cd3fb8021d1c87b47e90376ab160f72ee1d2c408fc3656e8203d00baf",
+      "checklist.md": "aa0e18ee0702dc22a57d7ef53ac636294476ada2b4344b5132f75ec8f8ad698a",
+      "implementation-summary.md": "d82dff0a398206efab9cd9fd39215deedceb7e458ee264838226bb45cad3d5d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

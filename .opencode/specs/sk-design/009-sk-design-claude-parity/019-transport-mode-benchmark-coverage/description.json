@@ -4,7 +4,6 @@
   "description": "Phase 018 integrated `design-mcp-open-design` as a registered `packetKind: \"transport\"` mode in sk-design's registries, but the hub's",
   "keywords": [
     "phase",
-    "018",
     "integrated",
     "design-mcp-open-design",
     "registered",
@@ -15,7 +14,7 @@
     "registries",
     "hub"
   ],
-  "lastUpdated": "2026-07-07T12:56:31.780Z",
+  "lastUpdated": "2026-07-09T10:02:44.554Z",
   "specId": "019",
   "folderSlug": "transport-mode-benchmark-coverage",
   "parentChain": [

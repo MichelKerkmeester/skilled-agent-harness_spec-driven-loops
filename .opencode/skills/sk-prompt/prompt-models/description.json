@@ -1,10 +1,10 @@
 {
-  "name": "sk-prompt-models",
-  "description": "Per-model prompt-craft hub covering DeepSeek-v4-pro + Kimi-k2.7-code + MiniMax-M3 + MiMo-V2.5-Pro via cli-opencode (DeepSeek API + opencode-go + Kimi For Coding kimi-for-coding + MiniMax Token Plan minimax-coding-plan / MiniMax Direct API minimax + Xiaomi Token Plan xiaomi-token-plan-ams / Xiaomi Direct API xiaomi mimo-v2.5-pro) dispatch paths. Gives the skill advisor one discoverable routing anchor for small-model dispatch alongside cli-opencode.",
-  "version": "0.2.1",
+  "name": "prompt-models",
+  "description": "sk-prompt workflow packet: per-model prompt-craft profiles covering DeepSeek-v4-pro + Kimi-k2.7-code + MiniMax-M3 + MiMo-V2.5-Pro via cli-opencode (DeepSeek API + opencode-go + Kimi For Coding kimi-for-coding + MiniMax Token Plan minimax-coding-plan / MiniMax Direct API minimax + Xiaomi Token Plan xiaomi-token-plan-ams / Xiaomi Direct API xiaomi mimo-v2.5-pro) dispatch paths. Read-only reference; the hub sk-prompt is the one discoverable advisor identity.",
+  "version": "0.9.0.0",
   "importance_tier": "important",
   "keywords": [
-    "sk-prompt-models",
+    "prompt-models",
     "small-model",
     "small model",
     "small-model dispatch",
@@ -41,6 +41,6 @@
     "check structured permissions before DeepSeek-v4-pro dispatch",
     "dispatch MiniMax via the Token Plan minimax-coding-plan default"
   ],
-  "lastUpdated": "2026-06-01T00:00:00Z",
-  "pattern_index": ".opencode/skills/sk-prompt-models/references/pattern_index.md"
+  "lastUpdated": "2026-07-09T16:10:00Z",
+  "pattern_index": ".opencode/skills/sk-prompt/prompt-models/references/pattern_index.md"
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/046-post-release-refinement-1",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/046-post-release-refinement-1",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/046-post-release-refinement-1",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/046-post-release-refinement-1",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -31,12 +31,12 @@
       "infrastructure",
       "bug",
       "spec",
-      "046",
       "implementation",
       "plan",
       "task",
       "breakdown",
-      "tasks"
+      "tasks",
+      "systematically"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Systematically address all bugs, misalignments, and technical debt identified during the comprehensive 20-agent deep dive analysis of the OpenCode infrastructure. This includes ...",
     "created_at": "2026-04-12T09:02:53.529Z",
-    "last_save_at": "2026-06-23T03:49:59.145Z",
+    "last_save_at": "2026-07-09T10:02:57.124Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

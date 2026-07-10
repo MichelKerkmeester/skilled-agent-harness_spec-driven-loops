@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The packet-135 QA audit (two read-only gpt-5.5-fast reviewers) found three nested `mcpserver` READMEs that had drifted behind their real tool sets",
     "created_at": "2026-06-07T18:40:00Z",
-    "last_save_at": "2026-06-23T03:49:51.962Z",
+    "last_save_at": "2026-07-09T10:02:46.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:346f135825b5ba0cc84275174ec4a5c4f214a4b96aed1d266500cd8e19aecd75",
+    "source_fingerprint": "sha256:1be503b81b3fd63f73c9fb1dbe41f963c99b49fdab10af07859621315614b366",
     "source_doc_hashes": {
-      "spec.md": "7017d21e562bd7399ba04cee200210373daa42f8b6174c47537a2ada332f8b05",
-      "plan.md": "a95ce62638395c03f7773291c49fff80aa0ab9b28a3c9f3f7f63ef212c23127d",
-      "tasks.md": "67deb5875f2cabb8ce816955a2d05191799b139623e022391076f8690e29c79f",
-      "implementation-summary.md": "eccb37c764f62423cdc81da8069454a97f9cdcb1060928aae15dfadc53f5c52e"
+      "spec.md": "f5b9e08e1ca39bb2017e23631173b6a7b5dc809aa641633d6560e562c6282c2d",
+      "plan.md": "d360193a8cb8e8798afa0dc129c02f62b102bc0e087c575e5eb3e26166cb930f",
+      "tasks.md": "10dd543f193d157ea9eadb865ffb91faff125ff638ec512b5c256c49776c8016",
+      "implementation-summary.md": "fa0e01b54284899eca945a5e3ebcb4b990d3e5935b87fa5f83067f77247f51a5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/005-retrieval-ux-presentation",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/005-retrieval-ux-presentation",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/005-retrieval-ux-presentation",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/005-retrieval-ux-presentation",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -36,7 +36,7 @@
       "disclosure",
       "session",
       "state",
-      "022"
+      "hybrid"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Add empty-result recovery UX, two-tier explainability, mode-aware response shapes, per-result calibrated confidence, progressive disclosure, and retrieval session state.",
     "created_at": "2026-04-12T09:02:50.236Z",
-    "last_save_at": "2026-06-23T03:49:59.735Z",
+    "last_save_at": "2026-07-09T10:02:57.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

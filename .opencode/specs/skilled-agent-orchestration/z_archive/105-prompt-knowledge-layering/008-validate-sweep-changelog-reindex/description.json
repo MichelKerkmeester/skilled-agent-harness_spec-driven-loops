@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/008-validate-sweep-changelog-reindex",
-  "description": "After seven phases of structural changes across five CLI skills, two sk-prompt skills, and the sync substrate, there is no single pass that confirms t",
+  "description": "After seven phases of structural changes across five CLI skills, two sk-prompt skills, and the sync substrate, there is no single pass that confirms",
   "keywords": [
     "seven",
     "phases",
@@ -19,7 +19,7 @@
     "pass",
     "confirms"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.237Z",
+  "lastUpdated": "2026-07-09T10:02:46.293Z",
   "specId": "008",
   "folderSlug": "validate-sweep-changelog-reindex",
   "parentChain": [

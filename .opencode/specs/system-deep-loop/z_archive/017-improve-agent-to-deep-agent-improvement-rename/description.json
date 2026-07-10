@@ -3,7 +3,6 @@
   "description": "Packet 079 renamed the skill `sk-improve-agent` → `deep-agent-improvement` but kept the agent name `@improve-agent` stable per the original",
   "keywords": [
     "packet",
-    "079",
     "renamed",
     "skill",
     "sk-improve-agent",
@@ -16,7 +15,7 @@
     "per",
     "original"
   ],
-  "lastUpdated": "2026-07-08T13:06:18.498Z",
+  "lastUpdated": "2026-07-09T10:02:49.315Z",
   "specId": "017",
   "folderSlug": "improve-agent-to-deep-agent-improvement-rename",
   "parentChain": [

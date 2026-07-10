@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
   "description": "Feature Specification: Indexing and Adaptive Fusion Enablement",
   "keywords": [
     "feature",
@@ -9,11 +9,11 @@
     "fusion",
     "enablement"
   ],
-  "lastUpdated": "2026-05-23T15:25:01.137Z",
+  "lastUpdated": "2026-07-09T10:02:58.777Z",
   "specId": "011",
   "folderSlug": "indexing-and-adaptive-fusion",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],

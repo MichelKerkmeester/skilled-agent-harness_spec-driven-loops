@@ -27,9 +27,7 @@
       "070 phase 003 implementation summary"
     ],
     "key_topics": [
-      "070",
       "phase",
-      "003",
       "opencode",
       "internal",
       "references",
@@ -38,7 +36,9 @@
       "sk-deep-research",
       "deep-research",
       "plan",
-      "reference"
+      "reference",
+      "graph",
+      "metadata"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and `sk-deep-research`",
     "created_at": "2026-05-05T20:00:00Z",
-    "last_save_at": "2026-07-08T13:43:26.909Z",
+    "last_save_at": "2026-07-09T10:02:49.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T20:00:00Z",
     "source_docs": [

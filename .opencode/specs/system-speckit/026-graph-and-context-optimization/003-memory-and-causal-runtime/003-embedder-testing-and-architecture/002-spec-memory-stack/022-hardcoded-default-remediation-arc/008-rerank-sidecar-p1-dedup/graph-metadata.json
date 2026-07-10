@@ -31,8 +31,6 @@
       "022/008 shipped"
     ],
     "key_topics": [
-      "022",
-      "008",
       "sidecar",
       "dedup",
       "plan",
@@ -42,7 +40,9 @@
       "new",
       "scripts",
       "module",
-      "declares"
+      "declares",
+      "canonical",
+      "port"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "New scripts/sidecar_defaults.py module declares canonical PORT (8765), MODEL_NAME (Qwen/Qwen3-Reranker-0.6B), MODEL_REVISION (e61197ed4...). Python launchers (rerank_sidecar.py + ensure_rerank_sidecar.py) import from it. Bash (start.sh) + Node (ensure-rerank-sidecar.cjs) launchers retain inline defaults but ship explicit cross-language sync comments pointing to canonical Python source. Closes 4 P1 audit findings on port/model/revision duplication.",
     "created_at": "2026-05-23T17:45:00.000000Z",
-    "last_save_at": "2026-07-02T05:31:11.838Z",
+    "last_save_at": "2026-07-09T10:02:52.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

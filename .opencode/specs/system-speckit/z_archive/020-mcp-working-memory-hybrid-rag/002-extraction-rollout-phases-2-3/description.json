@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/002-extraction-rollout-phases-2-3",
+  "specFolder": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/002-extraction-rollout-phases-2-3",
   "description": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Extraction Rollout Phases 2 3",
   "keywords": [
     "archived",
@@ -14,11 +14,11 @@
     "rollout",
     "phases"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.583Z",
+  "lastUpdated": "2026-07-09T10:02:57.637Z",
   "specId": "002",
   "folderSlug": "extraction-rollout-phases-2-3",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "020-mcp-working-memory-hybrid-rag"
   ],

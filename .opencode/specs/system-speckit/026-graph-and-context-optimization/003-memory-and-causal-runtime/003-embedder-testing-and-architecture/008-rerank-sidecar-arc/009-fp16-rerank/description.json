@@ -1,10 +1,9 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank",
   "description": "Packet 007 found that Qwen3-Reranker-0.6B on MPS OOMs in attention forwards at spec-memory's default 50-doc batch size — Metal tried to allocate a 76",
   "keywords": [
     "packet",
-    "007",
     "found",
     "qwen3-reranker-0",
     "mps",
@@ -20,11 +19,11 @@
     "tried",
     "allocate"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.022Z",
+  "lastUpdated": "2026-07-09T10:02:53.400Z",
   "specId": "009",
   "folderSlug": "fp16-rerank",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

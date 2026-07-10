@@ -11,14 +11,6 @@
     "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
     "system-speckit/026-graph-and-context-optimization/006-operator-tooling",
     "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
-    "system-speckit/026-graph-and-context-optimization/008-runtime-defect-fixes",
-    "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup",
-    "system-speckit/026-graph-and-context-optimization/001-research-and-baseline",
-    "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals",
-    "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
-    "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
-    "system-speckit/026-graph-and-context-optimization/006-operator-tooling",
-    "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
     "system-speckit/026-graph-and-context-optimization/008-runtime-defect-fixes"
   ],
   "migrated": true,
@@ -36,7 +28,6 @@
       "026 phase map"
     ],
     "key_topics": [
-      "026",
       "graph",
       "context",
       "optimization",
@@ -47,7 +38,8 @@
       "map",
       "spec-kit",
       "memory",
-      "operator-tooling"
+      "operator-tooling",
+      "subsystems"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -100,7 +92,7 @@
     ],
     "causal_summary": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fixes",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-07-07T16:24:48.118Z",
+    "last_save_at": "2026-07-09T10:02:50.514Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

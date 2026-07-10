@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/007-acceptance-coverage-gate",
   "description": "A spec folder claims its acceptance criteria are satisfied through a single self-attested checkbox (\"All acceptance criteria met\") in `checklist.md`",
   "keywords": [
     "spec",
@@ -15,11 +15,11 @@
     "met",
     "checklist"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.103Z",
+  "lastUpdated": "2026-07-09T10:02:55.067Z",
   "specId": "007",
   "folderSlug": "acceptance-coverage-gate",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "001-research-and-doctrine",
     "001-peck-teachings-adoption"

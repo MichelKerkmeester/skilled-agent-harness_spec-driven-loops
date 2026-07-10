@@ -1,15 +1,20 @@
 {
-  "specFolder": "009-perfect-session-capturing/024-runtime-contract-and-indexability",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scratch/phase-quarantine/024-runtime-contract-and-indexability",
   "description": "Phase 1: runtime-contract-and-indexability",
   "keywords": [
     "phase",
     "runtime-contract-and-indexability"
   ],
-  "lastUpdated": "2026-03-18T20:12:03.134Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "024",
   "folderSlug": "runtime-contract-and-indexability",
   "parentChain": [
-    "009-perfect-session-capturing"
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "009-perfect-session-capturing",
+    "scratch",
+    "phase-quarantine"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

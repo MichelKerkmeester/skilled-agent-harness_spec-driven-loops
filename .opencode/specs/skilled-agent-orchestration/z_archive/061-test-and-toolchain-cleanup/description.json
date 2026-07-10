@@ -4,17 +4,14 @@
   "description": "Packets 071/072 + the inline telemetry-schema fix surfaced 4 bounded toolchain issues",
   "keywords": [
     "packets",
-    "071",
-    "072",
     "inline",
     "telemetry-schema",
-    "fix",
     "surfaced",
     "bounded",
     "toolchain",
     "issues"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.807Z",
+  "lastUpdated": "2026-07-09T10:02:45.476Z",
   "specId": "061",
   "folderSlug": "test-and-toolchain-cleanup",
   "parentChain": [

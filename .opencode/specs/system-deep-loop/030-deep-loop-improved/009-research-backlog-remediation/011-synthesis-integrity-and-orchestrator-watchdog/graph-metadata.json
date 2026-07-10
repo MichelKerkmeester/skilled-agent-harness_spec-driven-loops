@@ -36,38 +36,14 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       ".opencode/commands/deep/assets/deep_review_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-        "source": "derived"
-      },
       {
         "name": "deep_research_auto.yaml",
         "kind": "config",
@@ -78,24 +54,6 @@
         "name": "deep_review_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "run-now-yaml-control.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
         "source": "derived"
       },
       {
@@ -193,11 +151,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Sonnet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Fixed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Generation-2 forced-depth research (35 iterations/lineage) against this exact packet directly reproduced two critical bugs in the deep-research/fan-out runtime itself, discovered only because the orchestrating session cross-checked live process state rather than trusting self-reported completion:",
     "created_at": "2026-07-01T09:14:13.890Z",
-    "last_save_at": "2026-07-04T18:02:27.517Z",
+    "last_save_at": "2026-07-09T10:02:47.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1276daf1dbc40ffee9e722c76ae2c9991be6aa9b4d4a0a3369cd17b2db3fac25",
+    "source_fingerprint": "sha256:3b0d0580048939ba8618d7119264e0b71f5a4dcf8999fa485b8f1fb6e8fca2da",
     "source_doc_hashes": {
-      "spec.md": "79f9f47a2abe97358a1d055d29d2f5952ae7df6a157921cafcd9a53c71b3dfe8",
-      "plan.md": "e58edb9e3c26d3e38b1c85b2f0f79b77bc789580b173239132f708f978fd90f4",
-      "tasks.md": "392b30681a9479b0f6b8999c3666cf4073cfd3c31f547e147fd601d60e0873dd",
-      "implementation-summary.md": "511027557f4ee9e6ecf541a22db8bb9f3cbdf444f9b6e7d8809d67d6c3f2ff36"
+      "spec.md": "da6b97bc8e3efc8a84150b3928b558ff4bf88addebb943aa1e998444f7e983ac",
+      "plan.md": "2a2ed86f3c1e3d90dbb1e2e1dee3ac806da25f04cc8844643afa982a5e8f1ff9",
+      "tasks.md": "654e19a184146a42c852ddae4f9da00a221cc62ddd684c6b54e7fceef58885ce",
+      "implementation-summary.md": "364c99471411fe1546ee6ae476e5a02b77a46c7cd66d7637478ac33d4a6a00dd"
     },
     "last_active_child_id": null,
     "last_active_at": null

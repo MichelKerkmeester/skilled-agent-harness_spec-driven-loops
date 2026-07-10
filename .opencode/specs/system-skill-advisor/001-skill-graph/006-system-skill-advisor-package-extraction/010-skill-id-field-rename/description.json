@@ -14,17 +14,13 @@
     "metadata",
     "compiled",
     "still",
-    "used",
     "skilladvisor"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.288Z",
+  "lastUpdated": "2026-07-09T10:02:49.636Z",
   "specId": "010",
   "folderSlug": "skill-id-field-rename",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "001-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

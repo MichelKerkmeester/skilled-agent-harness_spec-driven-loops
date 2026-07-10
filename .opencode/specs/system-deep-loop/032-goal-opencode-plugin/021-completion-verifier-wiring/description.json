@@ -10,14 +10,12 @@
     "options-injectable",
     "only",
     "mk-goal",
-    "128",
-    "1197-1199",
     "opencode",
     "loads",
     "plugins",
     "without"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.563Z",
+  "lastUpdated": "2026-07-09T10:02:47.993Z",
   "specId": "021",
   "folderSlug": "completion-verifier-wiring",
   "parentChain": [

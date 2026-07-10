@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target",
+  "spec_folder": "system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-001-review-target",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "convert",
+      "short",
+      "human-readable",
+      "labels",
+      "blog",
+      "post",
+      "titles",
+      "product",
+      "names",
+      "category",
+      "url",
+      "slug"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "src/slugify.js",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "slugify.js",
+        "kind": "code",
+        "path": "src/slugify.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Slug Utility",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Convert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Examples",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notes Inputs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plan Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notes Standalone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1 - Implement",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notes",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks Implementation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Convert short human-readable labels (blog post titles, product names, category",
+    "created_at": "2026-07-09T10:02:48.032Z",
+    "last_save_at": "2026-07-09T10:02:48.032Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:8718496fab87fada37aa603f8f3c1cdfc119d6c25ed425c5ef3a360f350c140e",
+    "source_doc_hashes": {
+      "spec.md": "9a3f81ad1a9e03c4e815e889209a9826d30ca8093eb5f1f29a8be6650fc28c11",
+      "plan.md": "8e927037a14b62820815049a96d199148c04130fff0c8b8e06caf2b7ff951a40",
+      "tasks.md": "e648652c060e119155a2cf2a78872b549174e863d3015c0344d6282f0916cf6d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

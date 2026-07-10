@@ -16,10 +16,9 @@
     "skill",
     "registry",
     "advisor",
-    "generated",
     "contract"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.596Z",
+  "lastUpdated": "2026-07-09T10:02:48.063Z",
   "specId": "035",
   "folderSlug": "deprecate-deep-context-integrate-capabilities",
   "parentChain": [

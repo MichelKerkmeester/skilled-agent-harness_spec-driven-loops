@@ -14,13 +14,12 @@
     "model-benchmark",
     "prose",
     "phases",
-    "010-012",
     "split",
     "references",
     "assets",
     "agent"
   ],
-  "lastUpdated": "2026-07-08T13:06:43.452Z",
+  "lastUpdated": "2026-07-09T10:02:48.990Z",
   "specId": "013",
   "folderSlug": "reorganize-script-lane-folders",
   "parentChain": [

@@ -32,7 +32,6 @@
       "code graph research to implementation"
     ],
     "key_topics": [
-      "028",
       "code",
       "graph",
       "implementation",
@@ -43,7 +42,8 @@
       "planning",
       "candidate",
       "tail",
-      "research"
+      "research",
+      "surfaced"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -142,7 +142,7 @@
     ],
     "causal_summary": "The code graph research surfaced candidate work across deterministic traversal, edge lifecycle, readiness, parser resilience and doc-symbol coverage",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-07-07T15:59:45.344Z",
+    "last_save_at": "2026-07-09T10:02:46.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

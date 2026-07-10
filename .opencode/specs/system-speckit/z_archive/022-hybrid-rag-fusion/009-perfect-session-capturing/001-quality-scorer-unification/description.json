@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/001-quality-scorer-unification",
   "description": "The pipeline runs three quality checks with a split contract: stored/indexed quality uses the 0.0-1.0 scale, but workflow gating uses 0-100",
   "keywords": [
     "pipeline",
@@ -11,18 +11,15 @@
     "contract",
     "stored",
     "indexed",
-    "uses",
-    "0-1",
     "scale",
     "workflow",
-    "gating",
-    "0-100"
+    "gating"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.001Z",
+  "lastUpdated": "2026-07-09T10:02:58.148Z",
   "specId": "001",
   "folderSlug": "quality-scorer-unification",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

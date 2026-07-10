@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The parent `sk-design` hub needed the feel of a design manager: context first, visible plan, proof expectations, and verifier cadence before mode handoff",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-06T05:47:25.401Z",
+    "last_save_at": "2026-07-09T10:02:44.439Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f147b848104d5cf75d6cbcec5a383ebbc6931871db8cccdae49ab7bd2ee8afa4",
+    "source_fingerprint": "sha256:8bccda5ada492d5e01994944a841c874200bc91da4c21d461ca307b3d454fe81",
     "source_doc_hashes": {
-      "spec.md": "12d40cdc87a686b71769ba9b364ab1e4176c63ab667c75e0202e2e81ca476269",
-      "plan.md": "6b586d17a3d27c992676a37daa8490d7de10bf11f1b4af3a0b529c523352e917",
-      "tasks.md": "0fd48b250555cd9c2fd33d30cbdf36f8994238ae7cbbd5fb0f2f4a234d43d67c",
-      "checklist.md": "c7d3db8afffe747b22505f18a6fdda2c25e58149d40028c5d01a801d4805e552",
-      "decision-record.md": "fcb5ea6ed2e9fa2d1573ead40ad9547f3324addfb8edb6e1ea36ad20e61e3d14",
-      "implementation-summary.md": "9eb4b3b81a74d8e3bb9a1a7bfd16fa0072f753948d07d5192299221628c4dfe8"
+      "spec.md": "80a4cce19934e863133ee39af3d14222d983087d84b75d84a4fd593ec156dcca",
+      "plan.md": "7ccf18163baa1449ffd41c81811c7b67698866c89d03c68da57d70ddc3594bc1",
+      "tasks.md": "549f2c22379cffd47a3c37bb1088ef1ea9a95821fdf749db7e1b6ae8897399db",
+      "checklist.md": "505a72e6d35d776792759bf02ff615ed8659b2594017b332b1b2e4afeb4858ce",
+      "decision-record.md": "3a8512a7919ea3167a4a78ad5b3310e4aeeac16474fc39a6e4e5ae42790485fd",
+      "implementation-summary.md": "e4904ffe60705ef466cad3fef8bbac9aec3d318a3c401bb1883cf57802faea83"
     },
     "last_active_child_id": null,
     "last_active_at": null

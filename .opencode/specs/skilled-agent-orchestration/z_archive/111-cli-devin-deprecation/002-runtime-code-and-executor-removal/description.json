@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/111-cli-devin-deprecation/002-runtime-code-and-executor-removal",
-  "description": "cli-devin was wired into the deep-loop runtime executor layer (executor-config.ts EXECUTORKINDS + DEVINSUPPORTEDMODELS + permission/validation, execut",
+  "description": "cli-devin was wired into the deep-loop runtime executor layer (executor-config.ts EXECUTORKINDS + DEVINSUPPORTEDMODELS + permission/validation,",
   "keywords": [
     "cli-devin",
     "wired",
@@ -13,10 +13,9 @@
     "executorkinds",
     "devinsupportedmodels",
     "permission",
-    "validation",
-    "execut"
+    "validation"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.421Z",
+  "lastUpdated": "2026-07-09T10:02:46.529Z",
   "specId": "002",
   "folderSlug": "runtime-code-and-executor-removal",
   "parentChain": [

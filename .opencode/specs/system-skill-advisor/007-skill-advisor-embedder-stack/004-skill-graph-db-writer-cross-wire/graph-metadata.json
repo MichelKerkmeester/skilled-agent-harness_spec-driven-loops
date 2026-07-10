@@ -22,8 +22,6 @@
       "writer cross-wire implementation"
     ],
     "key_topics": [
-      "010",
-      "004",
       "writer",
       "cross-wire",
       "skill-graph-db",
@@ -31,9 +29,11 @@
       "refactor",
       "embedderadapter",
       "wiring",
-      "002",
       "unblock",
-      "plan"
+      "plan",
+      "phases",
+      "tasks",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Refactor `refreshSkillEmbeddings()` to use the new EmbedderAdapter layer when an active pointer is set",
     "created_at": "2026-05-17T22:02:52.268Z",
-    "last_save_at": "2026-07-02T05:31:11.879Z",
+    "last_save_at": "2026-07-09T10:02:50.245Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f55e73e0c947b36b1fcd2136e5e94b776e750e627c1493e83e49e48b6d33df2e",
+    "source_fingerprint": "sha256:cc86dd20c64d5e47df3a2ec488b267df066c6c554a234f54705002d02a446d0f",
     "source_doc_hashes": {
-      "spec.md": "15cc63f7d807748cb4ddc289ed8a30f58e10700a3370f0faee6e9e49d8f95018",
-      "plan.md": "df8a4bb20f3d46cd6b90c3f02239cb9dd3802ba0e912cf4d0dbf0d68de692781",
-      "tasks.md": "fa701c6dfdd138567fc99d86b6439eb0ad58393f5ffb5c304caea62ca892f4ee",
-      "implementation-summary.md": "7d70c179dd56233fd96967368237b31f1d69434ab8b2900bbc34cf2277d3ca11"
+      "spec.md": "1bce013f0dc2b897b9978fac485cde10d65a0dd01d9d9a9482d7fb8fcc846619",
+      "plan.md": "2a62d947061530baf948bfd1d62c358ab9fcb20f5f3edf3c8490e583b3e36f46",
+      "tasks.md": "7c46b81cd1b7ee0ca75e69d494952b195d30171002fc763d276c191a4fc9afb4",
+      "implementation-summary.md": "f45c8b328203c968e5e98e742677202652586b05cb6fe219ebd18b0e4db5a81b"
     },
     "last_active_child_id": null,
     "last_active_at": null

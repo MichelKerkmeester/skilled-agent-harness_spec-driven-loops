@@ -2,17 +2,14 @@
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation/010-resolve-all-partials-and-skip",
   "description": "After 009 the 007 matrix stands at 145 PASS / 31 PARTIAL / 0 FAIL / 1 SKIP",
   "keywords": [
-    "009",
-    "007",
     "matrix",
     "stands",
-    "145",
     "pass",
     "partial",
     "fail",
     "skip"
   ],
-  "lastUpdated": "2026-07-08T13:06:34.817Z",
+  "lastUpdated": "2026-07-09T10:02:48.914Z",
   "specId": "010",
   "folderSlug": "resolve-all-partials-and-skip",
   "parentChain": [

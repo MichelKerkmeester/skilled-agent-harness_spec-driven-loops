@@ -27,18 +27,18 @@
       "skill-advisor hook docs complete"
     ],
     "key_topics": [
-      "022",
       "skill-advisor",
       "docs",
       "alignment",
       "feature",
       "catalog",
-      "update",
       "sk-code-opencode",
       "check",
       "implementation",
       "plan",
-      "phase"
+      "phase",
+      "audit",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Phase 020 shipped the skill-advisor hook surface across 4 runtimes (Claude/Gemini/Copilot/Codex) with 11 new lib files, 4 hook adapters, 11 test files, and full reference documentation at `.opencode/skills/system-spec-kit/references/hooks/`",
     "created_at": "2026-04-19T18:10:00Z",
-    "last_save_at": "2026-07-02T05:31:11.277Z",
+    "last_save_at": "2026-07-09T10:02:50.004Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ceec35049513c15fb5066cc269f4df7a00e90b45fffde82ed2c6d92de4bbad7",
+    "source_fingerprint": "sha256:fc64e82cc5071fd70f5846aaf3e48b4e196f617053e7645e42afccf1be6338bc",
     "source_doc_hashes": {
-      "spec.md": "39063b89031df2a430161c503e9940b47031e8efc00603dc92541d944fce51e5",
-      "plan.md": "1ce1d09510ae05fee728cbe2895b02862d3e999acbd13e9fca860e792660a6d1",
-      "tasks.md": "46e84167401e5c32b1092571dd90215452d26c06c9ff1f298e2c1da7cac7a59c",
-      "checklist.md": "f859def37cbf40ebf4d6891f6f064cfd5959c8a64e658ef29ca74b6bbae65e58",
-      "implementation-summary.md": "9365556f2b83d7289141a470d4a7dfe8c7fab221a2a9e500ea96f087af2532f5"
+      "spec.md": "c81e6fa46edaa387afa45bf47e285946ea14efc1506c9b7aa8db203222fdbc05",
+      "plan.md": "d51bacb85afa2b68cdaddfd8a2d4efb372f46f9775d9133b7192d2fca28284d3",
+      "tasks.md": "33118c087c5d8e70e13b7661f32cf3acf5877920793a56d4168f244f272be9ff",
+      "checklist.md": "0ca566f642becb7b980a8f9f5dc158bfcb56999ad816c69d524012f9241d417e",
+      "implementation-summary.md": "128bc127abb09017b4d2c9e03749f34df8b4eea8ff8e5cbd2e28706689147e79"
     },
     "last_active_child_id": null,
     "last_active_at": null

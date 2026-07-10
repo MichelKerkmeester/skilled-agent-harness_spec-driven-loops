@@ -27,10 +27,6 @@
       "F-002 tasks"
     ],
     "key_topics": [
-      "026",
-      "007",
-      "012",
-      "004",
       "code",
       "graph",
       "remediation",
@@ -38,7 +34,11 @@
       "diagnostics",
       "stale",
       "valid",
-      "plan"
+      "plan",
+      "zero-node",
+      "guard",
+      "candidate",
+      "manifest"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The real-world usefulness research found two end-user-facing P0 code graph bugs",
     "created_at": "2026-05-06T06:02:52Z",
-    "last_save_at": "2026-07-07T16:18:33.852Z",
+    "last_save_at": "2026-07-09T10:02:47.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf3d3f87112bfeb6d7c3c94fe5d8aa672b4b6bfad824217018d0e73186e14bd6",
+    "source_fingerprint": "sha256:ac078d0924289e4701ee6c503c405af54be59db1eb1a96fe743772879eddbaf8",
     "source_doc_hashes": {
       "spec.md": "e3ccf23d0009accf6893c9ee4b6edcd642b43b3bd7f606d315e949e3f99d8b84",
       "plan.md": "2310193115a3a11ea82102b6c082d1cb7758696d7e581923d9a417ddf037a6d2",
       "tasks.md": "af7b1b6f77722deac2fc53880e5248d0ca8f6862e7d5769e613bc3ffde6fe268",
       "checklist.md": "ad32570cc1b3a0be49296d13c970fa021737321f6e97c406108a644742a33fde",
       "decision-record.md": "e07a636d1d93a80b32b8aeed6e04a11be7c934b230a863664e27e1160cdf2506",
-      "implementation-summary.md": "28ded0f5dabddd6e80cf5fc0c52c7a1451306f01ccc104835b5d16f0feb80750"
+      "implementation-summary.md": "f6c492041c26e3a4471a19cb7848bd2855ae9deecef5620cf6ace63d75cce60f"
     },
     "last_active_child_id": null,
     "last_active_at": null

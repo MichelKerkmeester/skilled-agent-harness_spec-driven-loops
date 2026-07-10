@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/020-post-release-fixes",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/020-post-release-fixes",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/020-post-release-fixes",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/020-post-release-fixes",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -25,7 +25,6 @@
       "post"
     ],
     "key_topics": [
-      "020",
       "pre-release",
       "remediation",
       "post-review",
@@ -36,11 +35,13 @@
       "tasks",
       "pre",
       "release",
-      "post"
+      "post",
+      "now"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "review/review-report.md",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
@@ -49,12 +50,16 @@
       "mcp_server/tests/modularization.vitest.ts",
       "tasks.md",
       "checklist.md",
-      "review-report.md",
-      "spec.md",
       "implementation-summary.md",
       "decision-record.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "review-report.md",
         "kind": "doc",
@@ -89,12 +94,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "The canonical review now says the packet is blocked by four distinct remediation lanes:",
     "created_at": "2026-04-12T09:02:50.310Z",
-    "last_save_at": "2026-06-23T03:50:00.375Z",
+    "last_save_at": "2026-07-09T10:02:58.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,9 +212,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:345a66a5f842cf08b9f268a556b435528160e9128aaad36d71db6db9d163f041",
+    "source_fingerprint": "sha256:fa1e08dc4ba853e17d63c830e329bf76fac977893e04529de09dcd8c53138738",
     "source_doc_hashes": {
-      "spec.md": "25d7de9ae67b1ede0436790264be4fcf22486bfc6e4b873224a96b1d773f48d2",
+      "spec.md": "1cc8e001921c8ef55cbe6667c7bcd87f895e2d698088d789e37c4211a9163d5a",
       "plan.md": "d1012c3cd183cb5b4ae6118d560c920a0f14aabdce5d594c10ef6926c1d4eed9",
       "tasks.md": "3ef3a9c616db7240dfa7348aa70afe9f0cb4c09c0454f4b456714f987b4b185e",
       "checklist.md": "70ab67ecdee2912e5fa846bd13d9ccb5bbb1e74dcee1b43726884fa4ff6c346f",

@@ -44,7 +44,6 @@
       ".opencode/skills/sk-code/mode-registry.json",
       ".opencode/skills/sk-code/hub-router.json",
       ".opencode/skills/sk-code/shared/references/smart_routing.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -68,12 +67,6 @@
         "name": "smart_routing.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Surface Packets",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 124 cutover merged the sk-code parent hub with a workflow-only decomposition: implement, quality, debug, verify, and review",
     "created_at": "2026-07-05T04:34:33.874Z",
-    "last_save_at": "2026-07-07T17:16:29.416Z",
+    "last_save_at": "2026-07-09T10:02:44.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

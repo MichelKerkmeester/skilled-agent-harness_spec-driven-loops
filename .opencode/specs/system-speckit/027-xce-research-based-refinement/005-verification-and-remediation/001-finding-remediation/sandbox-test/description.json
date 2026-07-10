@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test",
   "description": "Sandbox Mutation Test Doc",
   "keywords": [
     "sandbox",
@@ -7,11 +7,11 @@
     "test",
     "doc"
   ],
-  "lastUpdated": "2026-06-22T18:55:03.515Z",
+  "lastUpdated": "2026-07-09T10:02:55.817Z",
   "specId": "",
   "folderSlug": "sandbox-test",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",
     "001-finding-remediation"

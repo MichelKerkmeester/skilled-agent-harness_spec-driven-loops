@@ -14,7 +14,6 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "007",
       "deep-improvement",
       "3-lane",
       "doc",
@@ -23,7 +22,6 @@
       "lanes",
       "handover",
       "packet",
-      "122",
       "child"
     ],
     "importance_tier": "important",
@@ -114,7 +112,7 @@
     ],
     "causal_summary": "007 — Deep-Improvement 3-Lane Doc Rebuild",
     "created_at": "2026-07-08T06:29:36.530Z",
-    "last_save_at": "2026-07-08T13:06:55.011Z",
+    "last_save_at": "2026-07-09T10:02:49.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,27 +1,25 @@
 {
-  "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/005-changelog-updates",
-  "description": "After Tasks 01–04 identify all required documentation changes, create changelog entries for each affected track documenting the alignment work perform",
+  "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/005-changelog-updates",
+  "description": "After Tasks 01–04 identify all required documentation changes, create changelog entries for each affected track documenting the alignment work",
   "keywords": [
     "tasks",
     "identify",
     "required",
     "documentation",
     "changes",
-    "create",
     "changelog",
     "entries",
     "affected",
     "track",
     "documenting",
     "alignment",
-    "work",
-    "perform"
+    "work"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.519Z",
+  "lastUpdated": "2026-07-09T10:02:57.567Z",
   "specId": "005",
   "folderSlug": "changelog-updates",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "013-memory-overhaul-and-agent-upgrade-release"
   ],

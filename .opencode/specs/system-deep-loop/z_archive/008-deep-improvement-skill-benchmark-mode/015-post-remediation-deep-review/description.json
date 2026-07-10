@@ -4,7 +4,6 @@
   "description": "The v1.11.1.0 remediation made substantial changes to the grader (dimension-awareness, `--append-system-prompt`), the live executor (truncation cap,",
   "keywords": [
     "remediation",
-    "made",
     "substantial",
     "changes",
     "grader",
@@ -15,7 +14,7 @@
     "truncation",
     "cap"
   ],
-  "lastUpdated": "2026-07-08T13:06:56.115Z",
+  "lastUpdated": "2026-07-09T10:02:49.098Z",
   "specId": "015",
   "folderSlug": "post-remediation-deep-review",
   "parentChain": [

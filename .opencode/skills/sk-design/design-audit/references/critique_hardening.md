@@ -139,6 +139,8 @@ Use exactly these verdicts:
 
 The unfinished-marker scan is deterministic: scan the resolved surface for `\b(TODO|FIXME|XXX|HACK|WIP)\b`. A `ready` verdict requires a clean scan; if any marker is present, the row is at most `blocked`. If no scan ran, the row is `not-assessed`, not `ready`.
 
+`scripts/polish_readiness_check.py` is external, not agent-invoked: `audit`'s toolSurface is Read/Glob/Grep only (no Write, no Bash) and the mode never saves the filled report as a file, so it cannot run the script itself. A human reviewer, CI job, or downstream skill with Bash access runs it against a saved report; cite that prior result as the scan evidence per `evidence_capture.md`'s "reuse a scan result instead of rerunning it." Absent a prior run, the row stays `not-assessed`.
+
 This is a necessary floor, not proof of polish. A clean marker scan plus `ready` only says the surface has no visible unfinished markers and the review was performed; hierarchy, perceived quality, design-system alignment, and state craft still need rendered evidence and human judgment under section 7.
 
 ## 8. Evidence Limits

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The sk-design hub and mode-packet manual testing playbooks did not fully exercise behavior added by earlier parity-refactor work:",
     "created_at": "2026-07-06T04:31:56.870Z",
-    "last_save_at": "2026-07-06T09:11:03.370Z",
+    "last_save_at": "2026-07-09T10:02:44.493Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f372675668b78893c8acb9eeb68b488967e275fb90aa131f377c68ddd107f261",
+    "source_fingerprint": "sha256:0f2f79147367c01520cdff0489c0674cc41ebe1ce374bf49b7ab56424c2e899b",
     "source_doc_hashes": {
-      "spec.md": "72cbe45a10ed5bbcd3959438bfba12a29188672290e828e8418912dc50a7b2fc",
-      "plan.md": "772f3d9eb71f359e1f7557736805bc6a7033df27c3fdcf8d77a683979f5a5505",
-      "tasks.md": "28df08aa8953b272aeceb2aecab8a52752ddd35c541c5d36cda7a3ec08d8462e",
-      "checklist.md": "e1054600b0c4a0645f345444558a13ad107f471d01d251e3e81856377bb77078",
-      "implementation-summary.md": "45aa5e71c95560e8b6e40f729eef84fdd8022cc73cfdfb643c4a6ea8aa7f59b5"
+      "spec.md": "d1e5a2b2e4f48b196e2f6d56e13e217d2fbcb02da967dd84540757c77db5c940",
+      "plan.md": "145bab2be227261eb0e0b7db265193acfdcad09e93d3db556d7a6a9654742094",
+      "tasks.md": "c77f2d90336fb856d7b3e92938cda40168556ed8d88f551a8f0b295c4b763532",
+      "checklist.md": "73eb3b11ce4e665758066bde11bdfa2b1a3fdc24948908c1bec8856d99778456",
+      "implementation-summary.md": "f863d885ba4bf87216d0dad2b1d9e82e50283b4c41d94e1b6fdbe0618d70e6a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

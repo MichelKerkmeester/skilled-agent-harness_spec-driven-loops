@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
-  "description": "Independent gpt-5.5 deep-review audit of the system-spec-kit MCP server infrastructure OUTSIDE the search pipeline (scope A) and the store/index/lifec",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
+  "description": "Independent gpt-5.5 deep-review audit of the system-spec-kit MCP server infrastructure OUTSIDE the search pipeline (scope A) and the",
   "keywords": [
     "independent",
     "gpt-5",
@@ -13,16 +13,13 @@
     "outside",
     "search",
     "pipeline",
-    "scope",
-    "store",
-    "index",
-    "lifec"
+    "scope"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.019Z",
+  "lastUpdated": "2026-07-09T10:02:55.912Z",
   "specId": "",
   "folderSlug": "c-rest-of-server",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",
     "006-deep-review-017-021-remediation",

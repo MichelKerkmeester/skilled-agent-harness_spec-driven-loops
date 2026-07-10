@@ -22,7 +22,6 @@
       "readme staleness map"
     ],
     "key_topics": [
-      "019",
       "readme",
       "resource",
       "map",
@@ -33,7 +32,8 @@
       "audit",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Inventory every README in the repo, identify staleness against the 014 line, and apply the edits to align canonical READMEs with current code state.",
     "created_at": "2026-05-13T15:30:00Z",
-    "last_save_at": "2026-07-02T05:31:11.595Z",
+    "last_save_at": "2026-07-09T10:02:52.323Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-13T15:30:00Z",
     "source_docs": [

@@ -16,17 +16,13 @@
     "metadata",
     "already",
     "listed",
-    "children",
-    "001-021"
+    "children"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.378Z",
+  "lastUpdated": "2026-07-09T10:02:49.726Z",
   "specId": "025",
   "folderSlug": "parent-documentation-drift-refresh",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "001-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

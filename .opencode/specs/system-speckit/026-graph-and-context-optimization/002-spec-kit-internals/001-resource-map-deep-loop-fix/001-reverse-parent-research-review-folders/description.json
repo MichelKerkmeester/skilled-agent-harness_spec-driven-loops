@@ -1,12 +1,11 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
-  "description": "The centralized parent-root placement policy made child-phase deep-research and deep-review artifacts land under ancestor/root `research/` and `review",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders",
+  "description": "The centralized parent-root placement policy made child-phase deep-research and deep-review artifacts land under ancestor/root `research/` and",
   "keywords": [
     "centralized",
     "parent-root",
     "placement",
     "policy",
-    "made",
     "child-phase",
     "deep-research",
     "deep-review",
@@ -14,14 +13,13 @@
     "land",
     "ancestor",
     "root",
-    "research",
-    "review"
+    "research"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.160Z",
+  "lastUpdated": "2026-07-09T10:02:51.855Z",
   "specId": "001",
   "folderSlug": "reverse-parent-research-review-folders",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals",
     "001-resource-map-deep-loop-fix"

@@ -25,7 +25,6 @@
       "sk-improve-agent test report alignment"
     ],
     "key_topics": [
-      "060",
       "root",
       "phase",
       "parent",
@@ -36,7 +35,8 @@
       "phase-parent",
       "spec",
       "five-phase",
-      "end-to-end"
+      "end-to-end",
+      "methodology"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -105,7 +105,7 @@
     ],
     "causal_summary": "Phase-parent root spec. Five-phase end-to-end methodology campaign on the sk-improve-agent triad — research → initial implementation + R1 → followup research → command-flow stress tests → executable wiring. Final composite stress score PASS 6 / PARTIAL 0 / FAIL 0 against the substrate built across phases.",
     "created_at": "2026-05-02T11:47:00Z",
-    "last_save_at": "2026-07-08T13:43:07.766Z",
+    "last_save_at": "2026-07-09T10:02:48.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

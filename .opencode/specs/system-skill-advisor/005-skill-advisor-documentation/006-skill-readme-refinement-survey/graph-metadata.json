@@ -21,7 +21,6 @@
       "006 implementation summary"
     ],
     "key_topics": [
-      "006",
       "skill",
       "readme",
       "refinement",
@@ -32,10 +31,11 @@
       "section",
       "tables",
       "remediation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Packet 005 (`a1a1ca9d3`) refined the 3 system- skill READMEs",
     "created_at": "2026-05-16T13:25:00Z",
-    "last_save_at": "2026-07-02T05:31:11.328Z",
+    "last_save_at": "2026-07-09T10:02:50.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8bf9c358fddb707e3ac15c5e22b2da4078fe0ab8788dfde10a987b2bfe6bf65f",
+    "source_fingerprint": "sha256:9852d8fb76c9d03b7ace9c5b65a82efe974757e75a25c508dc18465c3b4b78f2",
     "source_doc_hashes": {
-      "spec.md": "01aede576de3dd827de0289191fa221e60b94ba657ed447a7e2f89c283478800",
-      "plan.md": "be22ba783c9bd1a1c279d5f09f0ad994b68971d9021bb8bb608fc7a3b2cdcfc4",
-      "tasks.md": "ddbec98153bf695cdd5c81aa86c569625c056628bf4470a5b8c5af6e45bd8965",
-      "implementation-summary.md": "4f711787bf08bcf6aaeb98265a873757486aa177a49bfd5f2e694d9d03bd2b32"
+      "spec.md": "7c13a73766d5731cb7b1cd8e8394cf4996fb78ec5fdd7d10d88e61097b4b7a48",
+      "plan.md": "f2b7e966520162cdf5c679ec8f9ccee7cc83f44656bfd97d15c95d934827f80b",
+      "tasks.md": "37d1facba56d692c8d0caacaf8390ac5755d6bf1c9ef147a85f9ce903f07ab3d",
+      "implementation-summary.md": "86660bb8653460858c615b3f14408b4c854a2c16565cd7800d28649f5c3f5d4f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,7 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
       ".opencode/skills/sk-git/README.md",
       "spec.md",
       "plan.md",
@@ -49,12 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "skill_readme_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-        "source": "derived"
-      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc skill-README template encodes a tabular reference-card layout: a feature inventory, a structure tree and a settings table, with no human entry point",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-06-23T03:49:51.820Z",
+    "last_save_at": "2026-07-09T10:02:46.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e5d14faef389b5aedcc7b56ebfc55e6e7e498ede7cd3db762becdbfa0fed8c0",
+    "source_fingerprint": "sha256:8841d1338c21a9396365058273d213f531e62cab775526ca9940da38e4eeec91",
     "source_doc_hashes": {
-      "spec.md": "39b1800fffcd3096d8caed10d59e0af25272faae915e6cb8c2539535deff27ee",
-      "plan.md": "0168a5b21d5c6527f8093c51ce4cd1db405606b1e78246331d96202d7cfe451f",
-      "tasks.md": "56cc5f49cd0e313cabc525472930452afe051b92599c4bf0702219e316fefb2e",
-      "implementation-summary.md": "b1e258aab18f25e2659883a18c2ab850431769bb99d29dd006856a5d14688abb"
+      "spec.md": "80236a70d618c0cc060811c0e0275e4838473f44495ccf70ede722ad676d3d35",
+      "plan.md": "2a53faa0066c9cf432b7dcae76a995ba9dcf9c1739aebf203fdf9f6fa19faaa0",
+      "tasks.md": "825483cedc82c1ec2e7e24e70d37fcd0e23794ca7c4b6ae53588f700c3c96a83",
+      "implementation-summary.md": "03cf2fcbcdcdb9591f2fb72adb2ca57a7a6508f54078185b44bdacb096c186c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

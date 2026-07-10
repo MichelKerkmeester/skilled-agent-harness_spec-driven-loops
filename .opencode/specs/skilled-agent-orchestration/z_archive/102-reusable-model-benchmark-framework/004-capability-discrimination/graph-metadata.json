@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The current benchmark cannot say which frontier model is better: the 2 fixtures saturate (both 100% correct), so only format/brevity separated MiniMax-M3 and MiMo-V2.5-Pro",
     "created_at": "2026-06-02T06:05:31.048Z",
-    "last_save_at": "2026-06-23T03:49:51.536Z",
+    "last_save_at": "2026-07-09T10:02:46.228Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:489d86726b534cf97574b49857b2c9d0c9e50cb88525952c7a44c426e2571f58",
+    "source_fingerprint": "sha256:fb61cc7a9199d85aa14691223054cbd53da55a11112e3d97ae54d23e14c9c7b2",
     "source_doc_hashes": {
-      "spec.md": "560fd4f58247322f412ec21f4607dfe3edd7f20b71630f02a94de6be24e512b0",
-      "plan.md": "60d4ea386113d6ef9b38d33ea50666e699bc4291936979202f262ba5d6c00334",
-      "tasks.md": "4320da6c9a94d24cbcbd645970b1dc901e9a50a30e79aa1b72f3d51e06002f71",
-      "checklist.md": "a1319e3958dcf25eaa8d5ac0794665e1e0c496f154bb6e2927b39f88c1b78a6a",
-      "implementation-summary.md": "764914e9d28249dbafc338e5a67fad787ffe761b69bf7a4a6a1f8ab40b70838f"
+      "spec.md": "8ebf12d2dd3f73b8432d5bb56a04d622bcc07cf4bc3301f7a5d847d1e685fc68",
+      "plan.md": "c09b95f8b395907df5815540af702f2447253be38002f14f08a9fc2059b8cf24",
+      "tasks.md": "56d57f80468e8431442f1cc6502d9919f03f8a5524dfaa4af02c8f3c36e701ed",
+      "checklist.md": "f87749397a7e721bae056b4128e1bbdf9a57b20da185d625e34771b470463ad9",
+      "implementation-summary.md": "46c8c034b24311493381556a2515525b656904d7e81a462dc941764b0a445acd"
     },
     "last_active_child_id": null,
     "last_active_at": null

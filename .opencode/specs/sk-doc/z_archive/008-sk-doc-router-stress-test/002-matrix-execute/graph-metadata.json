@@ -18,8 +18,6 @@
       "071/002 summary"
     ],
     "key_topics": [
-      "071",
-      "002",
       "matrix-execute",
       "plan",
       "tasks",
@@ -29,10 +27,12 @@
       "intents",
       "comparative",
       "data",
-      "cli-codex"
+      "cli-codex",
+      "cli-copilot",
+      "cli-opencode"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "sk-doc has 11 router intents but no comparative data on how cli-codex/cli-copilot/cli-opencode interpret the router across realistic input scenarios",
     "created_at": "2026-05-05T10:27:20Z",
-    "last_save_at": "2026-06-23T03:49:49.765Z",
+    "last_save_at": "2026-07-09T10:02:44.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab14f369656fad5c9bc09bb438ebceed87f5eba5398e34e9f280d084f469e885",
+    "source_fingerprint": "sha256:44f2278427e1e5b41f82ed2c2f3ae1c50eedc3e6fc0de722600c95e95c06f0e5",
     "source_doc_hashes": {
-      "spec.md": "33fe8f71ba3e7a39dc7b458aff7f39c9590d8052d83af02eaeef1077f5e942cb",
-      "plan.md": "7f1f5ec706063c0dd5be00fe80c48eae88863a0da90118e5a8df0cfd93a27fc7",
-      "tasks.md": "bdc6aec25ca42ce451828c8eb6f54c2f9305cce867adfc7c3550dd899c7433f3",
-      "implementation-summary.md": "856bfd6b31f8a449ca9589c0d2e2a2de3b18a31e372dd60900e64aac3828d932"
+      "spec.md": "e75003fdc08479f1c995762741882eda982b93c237978262582b9fcb1431ab3e",
+      "plan.md": "ecd69f0b30eea0e7f6857508704b1834113d81303b50d196372aa21b76c0cc2b",
+      "tasks.md": "aab32b548d64091df5953406f248da8fe0e3e6500ff6a54332b7431f7891a439",
+      "implementation-summary.md": "f841ae4f827a6bfcbe97ba539ec1d08d173ddb6eb3bb4676dd4eebd2e6fbaa50"
     },
     "last_active_child_id": null,
     "last_active_at": null

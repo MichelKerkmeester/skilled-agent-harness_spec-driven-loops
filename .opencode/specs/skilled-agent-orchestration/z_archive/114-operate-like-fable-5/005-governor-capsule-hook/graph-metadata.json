@@ -39,7 +39,7 @@
       "fable-governor"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/constitutional/fable-governor.md",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The fable-5 efficiency doctrine (result-first output, low token burn, commit-and-move) lives only on cold read surfaces like `AGENTS.md` / `CLAUDE.md`, which decay out of context as a session grows; there is no behavioral setpoint that re-asserts itself every turn",
     "created_at": "2026-06-15T14:06:37Z",
-    "last_save_at": "2026-06-23T03:49:48.499Z",
+    "last_save_at": "2026-07-09T10:02:46.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:017928d4850d0bf47a812c93bcba367c13f8c573f8c0419b9087d6552db72284",
+    "source_fingerprint": "sha256:2ca43671a8157d902033e456886720f202d6f92f03ed037bd89de8f557a1acd4",
     "source_doc_hashes": {
-      "spec.md": "103a5c4f41b891e3ce967e00d7902e2d4d167dbe390ea8c05bf3539af7d8bbbe",
-      "plan.md": "acd7504806063659991870122a24a99efe8cd0f8108b0a1620a1e80c5db90b3c",
-      "tasks.md": "3ddce75a319247405c2cad36807395b3d9e088173deaf1d281eb774f1ae71bf4",
-      "checklist.md": "e63bbfb03bee217f410a68a24cd736acb66dfc8b0fdf8405e13b80331a7a920f",
-      "implementation-summary.md": "06b909c1c4ad950ab9ccde1ff78899324e1a3d60e5454a68f79b5a9085fc1c95"
+      "spec.md": "6dd70c6843f2bd909941c85c1e76cfac4712f5d2bea99aacc40b144bdfb7109e",
+      "plan.md": "5c3dcfea8bc5704383afe27ec6d5c0fee779ea21d504ad7e83cdf42ab4a6930d",
+      "tasks.md": "df3d9c572ab8c39776a3be4fc876bb8d808da768516d6685cb553b85b5268f1e",
+      "checklist.md": "ee01a4d1e6b586de3f0175ae23072f75c499c1583e9faffb8b6b6ee7eff78da4",
+      "implementation-summary.md": "87058d0adcbad90e5816e833d5ff2330df06f5fde6f4fb40d718cbd381b928bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

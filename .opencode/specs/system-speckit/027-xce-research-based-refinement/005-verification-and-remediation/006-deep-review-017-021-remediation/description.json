@@ -1,12 +1,9 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
-  "description": "The 027/002 phases 017-021 shipped working, tested code, but the 50-pass review surfaced a set of confirmed residual issues: one bounded shell-exposur",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
+  "description": "The 027/002 phases 017-021 shipped working, tested code, but the 50-pass review surfaced a set of confirmed residual issues: one bounded",
   "keywords": [
-    "027",
-    "002",
     "phases",
-    "017-021",
     "shipped",
     "working",
     "tested",
@@ -19,14 +16,13 @@
     "residual",
     "issues",
     "one",
-    "bounded",
-    "shell-exposur"
+    "bounded"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.003Z",
+  "lastUpdated": "2026-07-09T10:02:55.896Z",
   "specId": "006",
   "folderSlug": "deep-review-017-021-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation"
   ],

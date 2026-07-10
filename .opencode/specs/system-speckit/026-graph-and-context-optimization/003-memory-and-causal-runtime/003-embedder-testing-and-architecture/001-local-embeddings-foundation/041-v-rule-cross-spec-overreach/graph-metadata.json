@@ -27,18 +27,18 @@
       "V8 overreach implementation summary"
     ],
     "key_topics": [
-      "040",
       "v-rule",
       "cross-spec",
       "overreach",
-      "fix",
       "contamination",
       "adr",
       "numeric",
       "prefix",
       "false",
       "positive",
-      "current"
+      "current",
+      "spec",
+      "nested"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The memory quality validator rejects ADR-like content with `V-rule hard block: V8 (cross-spec-contamination)`",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.674Z",
+    "last_save_at": "2026-07-09T10:02:52.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

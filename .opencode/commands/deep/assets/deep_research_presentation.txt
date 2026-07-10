@@ -202,7 +202,7 @@ For code review and quality auditing, see `/deep:review`.
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-ai-council` (proposed) uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 116 research at `.opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. See 116 research at `.opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/007-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
 
 ```yaml
 role: Deep Research Loop Manager

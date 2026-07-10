@@ -3,7 +3,6 @@
   "description": "Packet 123 shipped a \"parallel multi-executor fan-out\" layer for `/deep:start-review-loop` and `/deep:start-research-loop`",
   "keywords": [
     "packet",
-    "123",
     "shipped",
     "parallel",
     "multi-executor",
@@ -13,7 +12,7 @@
     "start-review-loop",
     "start-research-loop"
   ],
-  "lastUpdated": "2026-07-08T13:06:56.949Z",
+  "lastUpdated": "2026-07-09T10:02:49.146Z",
   "specId": "009",
   "folderSlug": "fanout-remediation",
   "parentChain": [

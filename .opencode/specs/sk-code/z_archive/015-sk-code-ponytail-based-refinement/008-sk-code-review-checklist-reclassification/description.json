@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-code/z_archive/015-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
-  "description": "Six `sk-code-review/references/` files (`codequalitychecklist`, `securitychecklist`, `solidchecklist`, `testqualitychecklist`, `fix-completeness-check",
+  "description": "Six `sk-code-review/references/` files (`codequalitychecklist`, `securitychecklist`, `solidchecklist`, `testqualitychecklist`,",
   "keywords": [
     "six",
     "sk-code-review",
@@ -10,10 +10,9 @@
     "codequalitychecklist",
     "securitychecklist",
     "solidchecklist",
-    "testqualitychecklist",
-    "fix-completeness-check"
+    "testqualitychecklist"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.485Z",
+  "lastUpdated": "2026-07-09T10:02:44.419Z",
   "specId": "008",
   "folderSlug": "sk-code-review-checklist-reclassification",
   "parentChain": [

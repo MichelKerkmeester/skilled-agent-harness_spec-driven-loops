@@ -25,9 +25,6 @@
       "ollama routing verification"
     ],
     "key_topics": [
-      "016",
-      "013",
-      "002",
       "ollama",
       "adapter",
       "cocoindex",
@@ -36,7 +33,10 @@
       "provider",
       "embedder",
       "registry",
-      "plan"
+      "plan",
+      "routing",
+      "tasks",
+      "task"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Add Ollama provider support to CocoIndex's embedder registry. Today CocoIndex's MANIFESTS is sbert-only; the config.py comment claims non-sbert names route via LiteLLM, but the path is unverified. This packet verifies that path or extends the loader, registers at least one Ollama embedder (e.g., ollama/nomic-embed-text), and smoke-tests end-to-end indexing + search.",
     "created_at": "2026-05-18T17:44:39.189Z",
-    "last_save_at": "2026-07-02T05:31:12.121Z",
+    "last_save_at": "2026-07-09T10:02:53.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

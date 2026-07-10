@@ -25,15 +25,15 @@
       "hooks",
       "resolver",
       "tighten",
-      "098",
       "phase",
-      "004",
-      "097",
       "remediation",
       "infrastructure",
       "quality",
       "004-hooks-resolver-tighten",
-      "checklist"
+      "checklist",
+      "implementation",
+      "summary",
+      "session-stop"
     ],
     "importance_tier": "high",
     "status": "draft",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`session-stop.ts:38` reads an env-selectable autosave script path and executes before canonical workflow path resolution",
     "created_at": "2026-05-18T07:49:27.241Z",
-    "last_save_at": "2026-06-23T03:49:50.090Z",
+    "last_save_at": "2026-07-09T10:02:45.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14bbb19788764323d694ff3254e68ca59a48f31731b9b4e0c526148bb312b165",
+    "source_fingerprint": "sha256:637909ad75be7db7bd40f5fd0881a9bbb4c9b7390e1f7eafd1d21322efcc12be",
     "source_doc_hashes": {
-      "spec.md": "acd572015c0640d0ee6d8afade897663ad814e26860dbe9c9fd2b368d15de20d",
-      "plan.md": "afb18b2852e640f02beac35cffbdc16faabdbf8db37adc40d7f3147b6106cfab",
-      "tasks.md": "512d2d2475abeea0dce3193bb7bb36ad91af6a61516b5e6db7069d2b47b09d6a",
-      "checklist.md": "98672aedadc5221a0031bd95fd5b3fabe4ccb44f0370f96dae4f79156be2ca2a",
-      "implementation-summary.md": "37734240234edfc5e1f3ff2d96937b0eb429e94995dadc065b13da13483470f9"
+      "spec.md": "f84f76ed7d5d416007d0ef3566d2009d9831322ab0a8bae06a0f223cb98ae348",
+      "plan.md": "8ce61b7d2d33e01a78c30cb22f00f324395d00bf6bb0aad500e8f49c05a727dc",
+      "tasks.md": "d17b515f80719f4434f45c06c98d91d450af8057e2705430de58de81efced8c0",
+      "checklist.md": "7c46fbe119235b12a043254fb71973638f680148ff88d9d8c0fe56b296d6409d",
+      "implementation-summary.md": "7ce4d2f073ba9c9c03e81da4adc66b5f414ae813719e232407ce59677f678464"
     },
     "last_active_child_id": null,
     "last_active_at": null

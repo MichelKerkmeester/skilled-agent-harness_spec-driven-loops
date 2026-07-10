@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment",
   "description": "The `011-skill-alignment` pack preserved an older story that no longer matched the repository",
   "keywords": [
     "011-skill-alignment",
@@ -11,11 +11,11 @@
     "matched",
     "repository"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.160Z",
+  "lastUpdated": "2026-07-09T10:02:58.340Z",
   "specId": "011",
   "folderSlug": "skill-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

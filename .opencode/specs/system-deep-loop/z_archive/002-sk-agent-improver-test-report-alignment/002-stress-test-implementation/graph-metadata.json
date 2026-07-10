@@ -25,9 +25,7 @@
       "060/002 handover"
     ],
     "key_topics": [
-      "060",
       "phase",
-      "002",
       "sk-improve-agent",
       "stress",
       "test",
@@ -36,7 +34,9 @@
       "cp-045",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "adrs",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "draft",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Packet 060 phase 001 found that sk-improve-agent has serious evaluator machinery (proposal-only candidates, 5-dimension deterministic scoring, journals, benchmarks, mirror-drift policy, legal-stop vocabulary) but lacks the part that made packet 059's @code campaign effective: same-task A/B stress scenarios that force one failure-path claim at a time, reset the sandbox between calls, and judge only grep-checkable signals",
     "created_at": "2026-05-02T09:47:05.342Z",
-    "last_save_at": "2026-07-08T13:43:13.556Z",
+    "last_save_at": "2026-07-09T10:02:48.374Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

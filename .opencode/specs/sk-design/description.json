@@ -1,5 +1,5 @@
 {
-  "specFolder": "design",
+  "specFolder": "sk-design",
   "description": "Track folder for design packets - interface design, design transports, Figma integration, design markdown extraction, and the parent design skill surface.",
   "keywords": [
     "design",
@@ -12,7 +12,7 @@
     "transport",
     "style-reference"
   ],
-  "lastUpdated": "2026-06-30T13:20:00.000Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "design",
   "folderSlug": "design",
   "parentChain": [],

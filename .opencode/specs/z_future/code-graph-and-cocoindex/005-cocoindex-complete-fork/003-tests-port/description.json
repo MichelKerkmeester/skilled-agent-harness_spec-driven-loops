@@ -10,7 +10,7 @@
     "status": "draft",
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/003-tests-port",
+  "specFolder": "z_future/code-graph-and-cocoindex/005-cocoindex-complete-fork/003-tests-port",
   "description": "Feature Specification: Port Upstream Tests",
   "keywords": [
     "feature",
@@ -19,12 +19,12 @@
     "upstream",
     "tests"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.127Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "003",
   "folderSlug": "tests-port",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex",
+    "z_future",
+    "code-graph-and-cocoindex",
     "005-cocoindex-complete-fork"
   ],
   "memorySequence": 0,

@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/008-fail-loud-provenance",
-  "description": "The deep-loop runtime already records the actual model an executor ran in its provenance audit (`buildExecutorAuditRecord` in `.opencode/skills/deep-l",
+  "description": "The deep-loop runtime already records the actual model an executor ran in its provenance audit (`buildExecutorAuditRecord` in",
   "keywords": [
     "deep-loop",
     "runtime",
@@ -13,17 +13,15 @@
     "ran",
     "provenance",
     "audit",
-    "buildexecutorauditrecord",
-    "opencode",
-    "skills",
-    "deep-l"
+    "buildexecutorauditrecord"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.523Z",
+  "lastUpdated": "2026-07-09T10:02:46.616Z",
   "specId": "008",
   "folderSlug": "fail-loud-provenance",
   "parentChain": [
     "skilled-agent-orchestration",
-    "144-operate-like-fable-5"
+    "z_archive",
+    "114-operate-like-fable-5"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

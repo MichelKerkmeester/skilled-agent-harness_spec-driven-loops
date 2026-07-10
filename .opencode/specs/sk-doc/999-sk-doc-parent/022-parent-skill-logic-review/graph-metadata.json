@@ -26,14 +26,14 @@
       "skill",
       "logic",
       "review",
-      "999",
       "sk-doc",
       "phase",
-      "022",
       "hub",
       "deep",
       "plan",
-      "tasks"
+      "tasks",
+      "summary",
+      "parent-hub"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The parent-hub (parent-skill) pattern — one advisor identity, a `mode-registry.json`, a `hub-router.json`, one `graph-metadata.json`, and nested mode/surface packets — is scaffolded by `create-skill` and implemented independently by four hubs (sk-doc, sk-code, sk-design, deep-loop-workflows) and consumed by the skill advisor",
     "created_at": "2026-07-07T15:48:20.922Z",
-    "last_save_at": "2026-07-07T15:48:20.922Z",
+    "last_save_at": "2026-07-09T10:02:44.849Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

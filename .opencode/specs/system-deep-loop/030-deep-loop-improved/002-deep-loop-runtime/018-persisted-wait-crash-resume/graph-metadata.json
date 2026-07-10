@@ -35,9 +35,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -45,21 +43,9 @@
     ],
     "entities": [
       {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -187,11 +173,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When a loop process is killed during a scheduled wait, the next startup re-dispatches immediately instead of resuming the remaining delay; killed lineages cannot distinguish \"killed mid-wait\" from \"killed mid-dispatch.\" This causes duplicate dispatch and incorrect lineage attribution on restart",
     "created_at": "2026-06-28T14:02:05Z",
-    "last_save_at": "2026-07-04T18:02:07.543Z",
+    "last_save_at": "2026-07-09T10:02:47.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d175aac0f702af06a1cc57a45736e3f3b9ead103df728c408ba59c0e47f04c8",
+    "source_fingerprint": "sha256:deb6839b31660cca759ee0963e20be49ab41730d4337f295e62c4440032e1139",
     "source_doc_hashes": {
-      "spec.md": "ec6e908bad547c1308d99a14ed557f8c04920f7baf1ee5d7a62698cf6c4be1a2",
-      "plan.md": "b3abf19e6e7ff77c4c3a3a8a53cf83bafa828daf750dc71532c43c82fbf66c66",
-      "tasks.md": "df7c2caaa4ad475c0d3750515dc260132239804a790e0b572949eb6f0dcc0c9b",
-      "implementation-summary.md": "74b913508bfd6c35b645165d1c3d0a7aac59d9bddc13b1218d1038925c33a0f7"
+      "spec.md": "309179c3f729e768f1996cac07fa053fa0587972d6f1d9f1a67ddce3ee811982",
+      "plan.md": "6fd326f82a42d9c748053fc63c3835daa5947b284b00cfb9a47dabc9b3afbffb",
+      "tasks.md": "1bd9bafb8b289df13849529f9f55dc261f83c161800c96d7a272c5c22082a4eb",
+      "implementation-summary.md": "15805ba377fafbaae4f8c3aa5ab4063b1b97af0fd2a05879ba21e742d8e1650d"
     },
     "last_active_child_id": null,
     "last_active_at": null

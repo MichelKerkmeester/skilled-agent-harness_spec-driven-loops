@@ -4,9 +4,7 @@
   "description": "Arc 009 phase 007 shipped the code-graph launcher single-owner + closeDb lifecycle work but used a targeted-gate (lib/owner-lease + launcher-lease)",
   "keywords": [
     "arc",
-    "009",
     "phase",
-    "007",
     "shipped",
     "code-graph",
     "launcher",
@@ -14,13 +12,12 @@
     "closedb",
     "lifecycle",
     "work",
-    "used",
     "targeted-gate",
     "lib",
     "owner-lease",
     "launcher-lease"
   ],
-  "lastUpdated": "2026-07-07T16:10:55.920Z",
+  "lastUpdated": "2026-07-09T10:02:47.249Z",
   "specId": "014",
   "folderSlug": "code-graph-suite-triage",
   "parentChain": [

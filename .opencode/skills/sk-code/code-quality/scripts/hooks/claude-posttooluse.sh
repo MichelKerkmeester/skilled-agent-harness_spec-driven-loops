@@ -7,10 +7,10 @@ checker, and prints a warning to stdout if violations are found.
 
 Always exits 0 (fail-safe): never blocks the tool even if the checker fails.
 
-Hook entry (settings.local.json):
+Hook entry (settings.json):
   { "matcher": "Write|Edit",
     "hooks": [{ "type": "command",
-                "command": "bash -c 'cd \"/...repo...\" && bash .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh'",
+                "command": "bash -c 'cd \"/...repo...\" && python3 .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh'",
                 "timeout": 10 }] }
 
 See: .opencode/skills/sk-code/shared/references/universal/code_style_guide.md §4

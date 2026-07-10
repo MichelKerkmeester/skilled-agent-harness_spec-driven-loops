@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The advisor's auto edge-patch path adds `autoaddedat` / `autoaddedreason` and is idempotent by target, but it carries no durable `sourcekind` and no manual-protection guard (`lib/cross-skill-edges/apply-graph-metadata-patch.ts:25-29` and `:63-80`)",
     "created_at": "2026-06-10T19:24:09Z",
-    "last_save_at": "2026-07-07T11:58:28.907Z",
+    "last_save_at": "2026-07-09T10:02:50.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf4d828f520b5a698b8de783599af888f9ac48fa43d270a22eb061cd94989854",
+    "source_fingerprint": "sha256:74ff53be22f6b67cfc852d89569832082cd2013c2daffa510bd99d4c8b7ab96f",
     "source_doc_hashes": {
-      "spec.md": "a26769db334e7c7fad2b1c191c1c935f367da3888e557139786090a64a1b8f6d",
-      "plan.md": "2504002934c977fd85c704ccfec5ca7f3219028c020e741a2334d7341f6689ea",
-      "tasks.md": "39858aede0973a0c7f2da0aa0a4b1c8b5a5696b77ef8409d1d1172544b140c8f",
-      "implementation-summary.md": "3fb91fea30ee25ddbc3f29b9eff7c8a9d2a2c1ccd8c8ea4db71732841adede0c"
+      "spec.md": "b0c0240f53071e16f28524c06e266b36175dd7c56f85ea0231985eeed7bcd427",
+      "plan.md": "7fcc9a42dec564c160b6b8c5553288279575ae6be9e7e23fba81fd7b2e0eaef8",
+      "tasks.md": "a49e80bde43e444f24464f5a51cc67a77ef65c7a47d494b459d4c7f717cbfce6",
+      "implementation-summary.md": "c7cba6534ed15d0958deea5fa6d25c1983c6032d19f4dab9b99dd98858f2efbb"
     },
     "last_active_child_id": null,
     "last_active_at": null

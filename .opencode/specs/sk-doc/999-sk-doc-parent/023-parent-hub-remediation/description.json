@@ -1,22 +1,25 @@
 {
+  "level": 1,
   "specFolder": "sk-doc/999-sk-doc-parent/023-parent-hub-remediation",
-  "description": "Remediation plan for all 18 parent-hub review findings: 9 ordered work units, 6 operator decision forks, 4/4-canon-clean done-bar.",
+  "description": "The 022 deep review found 18 defects in the parent-hub pattern: one P0 (sk-design fails the canon checker on an un-canonized `transport` axis), seven",
   "keywords": [
-    "remediation",
-    "plan",
-    "parent-hub",
+    "deep",
     "review",
-    "findings",
-    "ordered",
-    "work",
-    "units",
-    "operator",
-    "decision",
-    "forks",
-    "4-canon-clean",
-    "done-bar"
+    "found",
+    "defects",
+    "parent-hub",
+    "pattern",
+    "one",
+    "sk-design",
+    "fails",
+    "canon",
+    "checker",
+    "un-canonized",
+    "transport",
+    "axis",
+    "seven"
   ],
-  "lastUpdated": "2026-07-07T15:55:58.658Z",
+  "lastUpdated": "2026-07-09T10:02:44.853Z",
   "specId": "023",
   "folderSlug": "parent-hub-remediation",
   "parentChain": [
@@ -24,6 +27,5 @@
     "999-sk-doc-parent"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

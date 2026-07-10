@@ -8,14 +8,13 @@
     "manual",
     "testing",
     "scenarios",
-    "used",
     "pass",
     "criteria",
     "satisfied",
     "inspection",
     "alone"
   ],
-  "lastUpdated": "2026-07-04T18:02:21.356Z",
+  "lastUpdated": "2026-07-09T10:02:47.618Z",
   "specId": "005",
   "folderSlug": "tighten-playbook-pass-criteria",
   "parentChain": [

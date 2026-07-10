@@ -22,7 +22,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/002-exemplars-retriever",
+  "specFolder": "z_future/code-graph-and-cocoindex/008-coco-memory-context-extras/002-exemplars-retriever",
   "description": "Feature Specification: 002 Exemplars Retriever",
   "keywords": [
     "feature",
@@ -31,12 +31,12 @@
     "exemplars",
     "retriever"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.162Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "002",
   "folderSlug": "exemplars-retriever",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex",
+    "z_future",
+    "code-graph-and-cocoindex",
     "008-coco-memory-context-extras"
   ],
   "memorySequence": 0,

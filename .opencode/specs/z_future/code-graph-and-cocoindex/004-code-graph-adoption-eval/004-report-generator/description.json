@@ -21,7 +21,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/004-report-generator",
+  "specFolder": "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval/004-report-generator",
   "description": "Feature Specification: 004 Report Generator",
   "keywords": [
     "feature",
@@ -30,12 +30,12 @@
     "report",
     "generator"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.106Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "004",
   "folderSlug": "report-generator",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex",
+    "z_future",
+    "code-graph-and-cocoindex",
     "004-code-graph-adoption-eval"
   ],
   "memorySequence": 0,

@@ -4,7 +4,6 @@
   "keywords": [
     "phase",
     "parent",
-    "add",
     "opt-in",
     "fan-out",
     "layer",
@@ -16,7 +15,7 @@
     "start-research-loop",
     "start-review-loop"
   ],
-  "lastUpdated": "2026-07-08T13:06:21.017Z",
+  "lastUpdated": "2026-07-09T10:02:49.105Z",
   "specId": "009",
   "folderSlug": "deep-loop-parallel-fanout",
   "parentChain": [

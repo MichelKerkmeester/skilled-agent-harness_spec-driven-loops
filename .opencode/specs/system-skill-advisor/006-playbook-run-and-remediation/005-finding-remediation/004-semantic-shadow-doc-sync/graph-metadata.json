@@ -23,14 +23,14 @@
       "sync",
       "lane",
       "weight",
-      "fix",
       "sc-004",
       "sc-005",
       "stale",
       "plan",
       "tasks",
       "implementation",
-      "summary"
+      "summary",
+      "live"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The live `semanticshadow` lane is an intentional promotion to weight 0.05 / `shadowOnly:false` / `live:true` (source of truth `lib/scorer/lane-registry.ts:12`, exported via `weights-config.ts:18`; asserted by `lanes/tests/semantic-shadow-cosine.vitest.ts:212-213`; feature catalog `04--scorer-fusion/01-five-lane-fusion.md:29` agrees)",
     "created_at": "2026-05-26T21:20:46.369Z",
-    "last_save_at": "2026-07-02T05:31:11.377Z",
+    "last_save_at": "2026-07-09T10:02:50.179Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:182f9545531416076af3bb038c6b19ceeaed1f065e3a8a9e0d20c3e0f88ac338",
+    "source_fingerprint": "sha256:5ed95614557e9027a5d8c59331d1d39c039831cffa73f97e660fe580a26abf46",
     "source_doc_hashes": {
-      "spec.md": "68de1a9d04a0cb8aaefa43e21cbe71b6df0aaa72fa4dced5849f5544934b696f",
-      "plan.md": "5c94c4add352883444797ac05a47a30298cb8bf1cca548a038ac581dc58bb42e",
-      "tasks.md": "d550c94ca4349ee3fc6744314b8a8f0baf522d17b365b874384f122d2bb5466d",
-      "implementation-summary.md": "aa6eaa14845dabd8f9a5b3ef3957c647cbdf2d6ac785008c699a79d275652a30"
+      "spec.md": "461dc660a131c68792e3062dcde4eae3e9a468ac8cb5f9b6832e5a252d63985a",
+      "plan.md": "cb737f10efad2f5ebac8ec578578e51b2a421ddcf439caf68d12a4d289b26b46",
+      "tasks.md": "b2a40b6f5c9df3030b52fd90b3ffa7b769b85969d4b8411d9527a1ccb7d499c3",
+      "implementation-summary.md": "2124bebc880d632281538db6d2950a8302680ba8f659189da8052a18a48267e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

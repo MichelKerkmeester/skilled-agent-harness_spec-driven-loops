@@ -28,7 +28,6 @@
       "catalog playbook migration paths"
     ],
     "key_topics": [
-      "133",
       "catalog",
       "playbook",
       "snippet",
@@ -39,38 +38,30 @@
       "files",
       "feature",
       "de-numbering",
-      "sk-doc"
+      "sk-doc",
+      "naming"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "resource-map.md",
-      ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
-      ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       ".opencode/commands/create/feature-catalog.md",
-      ".opencode/commands/create/testing-playbook.md",
-      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
-      ".opencode/skills/sk-doc/assets/template_rules.json",
-      "spec.md"
+      ".opencode/specs/skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/spec.md",
+        "source": "derived"
+      },
       {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
         "source": "derived"
       },
       {
@@ -86,27 +77,9 @@
         "source": "derived"
       },
       {
-        "name": "testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/testing-playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "template_rules.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/assets/template_rules.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -184,17 +157,17 @@
     ],
     "causal_summary": "Per-feature snippet files in feature catalogs and manual testing playbooks carry a globally sequential numeric prefix (`001-feature-name.md`, `NNN-feature-name.md`) that \"continues across categories and does not reset.\" That prefix makes the packages hard to maintain: inserting, reordering, or moving a feature forces a renumber, the global sequence drifts (real folders already mix `007` next to `024`), and two features can only be told apart by their number — producing duplicate slugs once the number is stripped",
     "created_at": "2026-06-06T06:46:12.378Z",
-    "last_save_at": "2026-06-23T03:49:51.709Z",
+    "last_save_at": "2026-07-09T10:02:46.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:85381dac4634edc8e88ebe651105ddb14c8cc9c462d65f3e5091b30fec979491",
+    "source_fingerprint": "sha256:1739a34bca0a9b72adb97a252d45df49f73c25abeca83c9ac71fca37d140a00a",
     "source_doc_hashes": {
-      "spec.md": "2a5134ebe18b51595e2a12176b8a59292810013636a03f9510e7764ac7da9782",
-      "resource-map.md": "262ec1df2f41d319d3c40f2f779654b883b2922802b1cf91978828fb2675a998"
+      "spec.md": "4fb8d15fd6d1cf48b3257e99f489837260493dd55d9ab956b8f15bf75780942e",
+      "resource-map.md": "34b6f12dee669832fdfbe45ea4e86c2eff831f096114d3c1d14812fd9efc9aab"
     },
     "last_active_child_id": "skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
     "last_active_at": "2026-06-06T17:14:42.510Z"

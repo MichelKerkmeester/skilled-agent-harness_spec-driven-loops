@@ -191,7 +191,7 @@
     ],
     "causal_summary": "cli-devin/devin appeared in agent rosters (deep-context/research/review/improvement across 3 runtimes), governance docs (AGENTS.md, CLAUDE.md, README.md, skills index), cli- sibling skill docs, deep-context skill refs, constitutional docs (cli-dispatch-skill-preload, post-implementation-deep-review), and shared cli references",
     "created_at": "2026-06-08T16:10:30Z",
-    "last_save_at": "2026-06-23T03:49:51.998Z",
+    "last_save_at": "2026-07-09T10:02:46.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0cfc9ee75930641b49e0ea51fe17e99ae9d571945871d698a00c53f1f1ecf68",
+    "source_fingerprint": "sha256:2d252c6897099abcce4bf606c6a27f4b93eeefb98d47f3c883d9d90529294595",
     "source_doc_hashes": {
-      "spec.md": "f1c996c2a16f607bdba5b5667795134d37f8468f161ee8a857d3991e96c2e00e",
-      "plan.md": "f5c25c4d42de30dcf4cbb8d8a4853074dce0e4f415fcebe2a08ca454618d6d0b",
-      "tasks.md": "c42da77a85287ea8f9d41e43e2b4d0bb2f3d7d976ccf4d2b2ece72da0d10f254",
-      "implementation-summary.md": "5084dfb0baab185fe2e5480bd0536751736a70346cc00ed8e5036cc498d3fb2a"
+      "spec.md": "222cb65b6dcfc6e8ae1959ec7672aacc967efa4f6257e0c4e012d701b7283d35",
+      "plan.md": "dda84de267a54814d8db6169eb8344bdcaed2b87aebc9a1c7ad277eb7a15ae47",
+      "tasks.md": "6b7de529f4c305a2a24281ea545b39384bc7665aaeadf1a7552ea2a00ebf5ab9",
+      "implementation-summary.md": "1680a954e980b152119442df6088990210d4c017a45fdbd2d63f573fced1a501"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -31,12 +31,12 @@
       "mk-spec-memory",
       "embedder",
       "bake-off",
-      "016",
-      "004",
       "text",
       "jina-embeddings-v3",
       "adr-012",
-      "production"
+      "production",
+      "cat-24-409",
+      "retrieval"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -55,12 +55,12 @@
       "evidence/008-pass-sample-rerun.jsonl",
       "evidence/swap-benchmark.csv",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/references/benchmark_creation.md",
-      ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
       "manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json",
       "evidence/corpus-hygiene-cleanup.md",
       "spec.md",
-      "mcp_server/tests/retrieval-rescue.vitest.ts"
+      "mcp_server/tests/retrieval-rescue.vitest.ts",
+      "evidence/d-sample-30.json",
+      "evidence/d-rescue-on-vs-off.jsonl"
     ],
     "entities": [
       {
@@ -148,18 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "benchmark_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/benchmark_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark_report_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
-        "source": "derived"
-      },
-      {
         "name": "409-fixture.json",
         "kind": "config",
         "path": "manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json",
@@ -181,6 +169,18 @@
         "name": "retrieval-rescue.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/retrieval-rescue.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "d-sample-30.json",
+        "kind": "config",
+        "path": "evidence/d-sample-30.json",
+        "source": "derived"
+      },
+      {
+        "name": "d-rescue-on-vs-off.jsonl",
+        "kind": "file",
+        "path": "evidence/d-rescue-on-vs-off.jsonl",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "mk-spec-memory's authoritative text-embedder benchmark. Entry hypothesis (mxbai-embed-large) failed; expanded into a 6-candidate bake-off (mxbai, jina-v3, nomic-v1.5, bge-m3, snowflake-arctic-l, gemma baseline). No pure dense swap closed cat-24/409 — added a retrieval-rescue layer (ADR-010/011). Final production default: jina-embeddings-v3 + rescue layer per ADR-012. Headline: benchmark-results.md.",
     "created_at": "2026-05-17T06:35:18.410Z",
-    "last_save_at": "2026-07-02T05:31:11.743Z",
+    "last_save_at": "2026-07-09T10:02:52.635Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -44,8 +44,6 @@
     "key_files": [
       ".opencode/specs/system-deep-loop/041-deep-research-loop-instrumentation/spec.md",
       ".opencode/specs/system-deep-loop/041-deep-research-loop-instrumentation/implementation-summary.md",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-novelty-inertness.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -63,18 +61,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": ".opencode/specs/system-deep-loop/041-deep-research-loop-instrumentation/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-novelty-inertness.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-novelty-inertness.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +182,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Across all 20 iterations of the surface-alignment deep-research run, the emitted `newInfoRatio` was exactly `1.0` in every state record, including iterations that repeated earlier findings",
     "created_at": "2026-07-05T13:17:57.971Z",
-    "last_save_at": "2026-07-06T17:28:26.224Z",
+    "last_save_at": "2026-07-09T10:02:48.174Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +214,7 @@
       "plan.md": "65df62676d3bc154baa627d2f990c65845037999a77768f69fd45c54c0fcb50e",
       "tasks.md": "9cc13b156f2393e820c25ba78914f81ec48869827c7160a582bcce248d5e3dee",
       "checklist.md": "e8be39d1b09fc2e80e45ee170fe5bdb96dea0c89373ff05cae8d28502de4a562",
-      "implementation-summary.md": "85abe42f6b8f24946b8e7bd6fa4be776da54894a48bdb4064d8fbb7c10198da0"
+      "implementation-summary.md": "ac7bdb5b84fb09f378a0690bdb4d468f0602cffeac45e39a6b26ccac30ef2c8b"
     },
     "last_active_child_id": null,
     "last_active_at": null

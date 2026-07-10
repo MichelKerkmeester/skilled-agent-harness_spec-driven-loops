@@ -1,6 +1,6 @@
 {
   "specFolder": "system-code-graph/007-code-graph-buildout/005-resilience-and-advisor",
-  "description": "The code-graph resilience and advisor-integration track: advisor refinement, backend resilience research and implementation, iteration-quality meta re",
+  "description": "The code-graph resilience and advisor-integration track: advisor refinement, backend resilience research and implementation, iteration-quality meta",
   "keywords": [
     "code-graph",
     "resilience",
@@ -14,7 +14,7 @@
     "iteration-quality",
     "meta"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.879Z",
+  "lastUpdated": "2026-07-09T10:02:46.900Z",
   "specId": "005",
   "folderSlug": "resilience-and-advisor",
   "parentChain": [

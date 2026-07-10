@@ -29,7 +29,6 @@
     "key_topics": [
       "preflight",
       "scope-map",
-      "115",
       "rename",
       "plan",
       "emission",
@@ -38,7 +37,8 @@
       "cli-devin",
       "dispatch",
       "tasks",
-      "checklist"
+      "checklist",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Without a comprehensive surface map + rename-plan contract, phases 002-005 cannot run in parallel safely",
     "created_at": "2026-05-21T06:57:07Z",
-    "last_save_at": "2026-07-08T13:43:53.827Z",
+    "last_save_at": "2026-07-09T10:02:48.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

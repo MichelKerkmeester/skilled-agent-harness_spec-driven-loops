@@ -25,7 +25,6 @@
     "key_topics": [
       "mode",
       "gate",
-      "fix",
       "ai-council",
       "route",
       "identity",
@@ -34,12 +33,12 @@
       "check",
       "deterministic",
       "dispatch",
-      "context"
+      "context",
+      "implementation"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
       ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
       ".opencode/commands/deep/ai-system-improvement.md",
       ".opencode/commands/deep/skill-benchmark.md",
@@ -56,12 +55,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "orchestrate-topic.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
-        "source": "derived"
-      },
       {
         "name": "deep_ai-council_auto.yaml",
         "kind": "config",
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two independent, confirmed-by-code-trace defects, both cross-validated across research/research.md's 6 lineages:",
     "created_at": "2026-07-01T10:50:58.996Z",
-    "last_save_at": "2026-07-05T06:46:01.297Z",
+    "last_save_at": "2026-07-09T10:02:47.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47b40d0fe888e182989284182db616a4c65094cc84226050e358cf618912e211",
+    "source_fingerprint": "sha256:c4ed73cc826dc5eba44af1e89ad50ed7848efd8f9bd1cd785b3d9fcfc4ff7f6a",
     "source_doc_hashes": {
-      "spec.md": "2fee2c56305784ed9177f48c072e232cbf7a87285b9eef4fafba45112f064486",
-      "plan.md": "2ab84405a568b71ebe8fbc406a491b12eeecc1e63e829583d3236b996d35d097",
-      "tasks.md": "3dc61188e771ef6ee06f0301dec556518abef8c69f6000acd6ff48bcac410fb5",
-      "checklist.md": "3f1090d6149eee9b33c7600f8325453ebebe7fee3644845e6f612daa41c73362",
-      "implementation-summary.md": "10582b4c4649db249c63d45d379599069e1044733f86170e51b8113dd0720f03"
+      "spec.md": "ac6fe5b87988ffc713cd471447c69c14c679523870fe48374cb2b747c5063db6",
+      "plan.md": "21ae48d8fce65ca3432ad59290284afa167c99c4474061308382a20141b33d79",
+      "tasks.md": "ba5fe24cf3739574ad5f8f22b63be8d07dc3f7c40c997eabd181816c55a2a6cd",
+      "checklist.md": "bd2a2fbcf3fe3d9f884acab5a39cf1558102a0ccd63c70189b36432104947ba4",
+      "implementation-summary.md": "7eb969a8c6ed7c388f7181d61c71b61895b02893875ca163939a44dccfb225dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

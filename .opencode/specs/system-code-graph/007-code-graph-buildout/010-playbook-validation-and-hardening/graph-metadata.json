@@ -33,10 +33,10 @@
       "manual",
       "testing",
       "run",
-      "029",
       "skill",
       "ships",
-      "22-scenario"
+      "22-scenario",
+      "manualtestingplaybook"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -96,7 +96,7 @@
     ],
     "causal_summary": "The `system-code-graph` skill ships a 22-scenario manual testing playbook (`manualtestingplaybook/`) that validates the `mk-code-index` MCP runtime: read-path freshness, manual scan/verify/status, detectchanges, context retrieval, coverage graph, MCP tool surface, doctor-code-graph policy, post-rename infrastructure, and the Devin SessionStart hook",
     "created_at": "2026-05-26T19:43:14.031Z",
-    "last_save_at": "2026-07-07T16:18:33.867Z",
+    "last_save_at": "2026-07-09T10:02:47.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

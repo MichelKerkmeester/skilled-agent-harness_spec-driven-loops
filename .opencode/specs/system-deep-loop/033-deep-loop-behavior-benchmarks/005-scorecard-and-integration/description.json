@@ -10,7 +10,6 @@
     "scored",
     "run",
     "phases",
-    "002-004",
     "one",
     "cross-skill",
     "scorecard",
@@ -19,7 +18,7 @@
     "analyze",
     "per-checkpoint"
   ],
-  "lastUpdated": "2026-07-02T21:33:36.047Z",
+  "lastUpdated": "2026-07-09T10:02:48.027Z",
   "specId": "005",
   "folderSlug": "scorecard-and-integration",
   "parentChain": [

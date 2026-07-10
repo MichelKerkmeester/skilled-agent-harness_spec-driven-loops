@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates",
   "description": "system-spec-kit's self-check lives in the global CLAUDE.md, not in the manifest templates an author actually fills in",
   "keywords": [
     "system-spec-kit",
@@ -14,11 +14,11 @@
     "actually",
     "fills"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.068Z",
+  "lastUpdated": "2026-07-09T10:02:55.025Z",
   "specId": "002",
   "folderSlug": "self-check-templates",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "001-research-and-doctrine",
     "001-peck-teachings-adoption"

@@ -1,9 +1,8 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/117-parent-nested-skill-pattern",
-  "description": "The 152 epic merged five deep-loop skills into one `deep-loop-workflows` skill structured as a thin hub `SKILL.md` + `mode-registry.json` + five inter",
+  "description": "The 152 epic merged five deep-loop skills into one `deep-loop-workflows` skill structured as a thin hub `SKILL.md` + `mode-registry.json` + five",
   "keywords": [
-    "152",
     "epic",
     "merged",
     "five",
@@ -16,10 +15,9 @@
     "thin",
     "hub",
     "mode-registry",
-    "json",
-    "inter"
+    "json"
   ],
-  "lastUpdated": "2026-07-01T05:32:33.184Z",
+  "lastUpdated": "2026-07-09T10:02:44.984Z",
   "specId": "117",
   "folderSlug": "parent-nested-skill-pattern",
   "parentChain": [

@@ -29,8 +29,8 @@
       "summary",
       "convergence",
       "references",
-      "use",
-      "question"
+      "question",
+      "coverage"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Deep-research convergence references use question coverage as a saturation signal, but the operator dashboard did not show which questions remained uncovered",
     "created_at": "2026-05-23T03:56:52.598Z",
-    "last_save_at": "2026-07-08T13:44:03.687Z",
+    "last_save_at": "2026-07-09T10:02:48.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

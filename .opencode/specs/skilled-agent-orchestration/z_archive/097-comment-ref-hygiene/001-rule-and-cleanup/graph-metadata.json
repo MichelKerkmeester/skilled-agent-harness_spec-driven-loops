@@ -45,12 +45,6 @@
     "key_files": [
       "lib/test-helpers/env-snapshot.ts",
       ".claude/mcp.json",
-      ".codex/config.toml",
-      ".opencode/skills/sk-code/references/universal/code_style_guide.md",
-      ".opencode/skills/sk-code/references/universal/code_quality_standards.md",
-      ".opencode/skills/sk-code/references/opencode/shared/universal_patterns.md",
-      ".opencode/skills/sk-code/references/webflow/shared/cross_language_rules.md",
-      ".opencode/skills/sk-code/references/opencode/config/quality_standards.md",
       "decision-record.md",
       "plan.md",
       "tasks.md",
@@ -72,42 +66,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "code_style_guide.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/references/universal/code_style_guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "code_quality_standards.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/references/universal/code_quality_standards.md",
-        "source": "derived"
-      },
-      {
-        "name": "universal_patterns.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/references/opencode/shared/universal_patterns.md",
-        "source": "derived"
-      },
-      {
-        "name": "cross_language_rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/references/webflow/shared/cross_language_rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "quality_standards.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/references/opencode/config/quality_standards.md",
         "source": "derived"
       },
       {
@@ -205,11 +163,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Part",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Governance",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Inline code comments across the deep and system skills name specific ephemeral artifacts (`// Phase 002 T011: ...`, `// ADR-004: ...`, `featurecatalog/...`)",
     "created_at": "2026-05-27T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:51.130Z",
+    "last_save_at": "2026-07-09T10:02:46.058Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,15 +215,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:d7ade7aca6f27accab3d1900c38cd460eb47b1b1d4fe1d56be8e85fb9e0431b4",
+    "source_fingerprint": "sha256:4dcc015087ac9c55b54478a84c7bd68967433ac1ed10dad09d5f75e189e246d8",
     "source_doc_hashes": {
-      "spec.md": "604822c8004c21c054d005db3889a248ec1d5a1b765b591b4b3d25642e8ce1fb",
-      "plan.md": "be5e61986e32d994f808ceccdea5570510316b10ed00c89bc77925ca3fa5621c",
-      "tasks.md": "49c9b313dafe065db404738ff13618f2223fba69da68a12f1f64ca983de6e311",
-      "checklist.md": "927788ad7c209cde8b1c63fdf6896c127e78cb823c3ae57ae5b997b01dec0d58",
-      "decision-record.md": "74adaa6a06f3b624bc17b1c1bcb5eb4b2285a3e01c10b0cf40bc83b7444125e2",
-      "implementation-summary.md": "39d846670dbd860de296eb1a8de2d130a421a21d4b9f40d1a43ef3cdb20094f4",
-      "handover.md": "54b8a19814349d1dc055835f105d27bf6995933701ff46181020132d8bb3e6a9"
+      "spec.md": "654e81729f7831466f5e8ab1b4b72229361d58cc8da1689c83256c52e1997635",
+      "plan.md": "d980704d73c62891c72d216003e449f438d1be79b33358abca0773e4f1b0c131",
+      "tasks.md": "0715af0ae288ea5638f1526c700d7107bb8bb292979d63c80a283f9c15032cfb",
+      "checklist.md": "95ce0edbece0431cccd050b551593cf1421986723fa6610c6e485f9ee96bd84e",
+      "decision-record.md": "05bee4cece98dce08b198cfe2742a389e38c8f22102c487ef273f208ea6d65c6",
+      "implementation-summary.md": "7f4c000bee09b6b059720ca433b47f563803d054ae8985f994aee9fa3f2ac966",
+      "handover.md": "1a0432c9e99239064afa4bbe01a24e6f9b43e3cbac637386c83e23731c811c28"
     },
     "last_active_child_id": null,
     "last_active_at": null

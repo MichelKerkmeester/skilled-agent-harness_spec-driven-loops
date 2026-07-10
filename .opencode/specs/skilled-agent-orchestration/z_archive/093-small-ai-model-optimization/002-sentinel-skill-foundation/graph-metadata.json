@@ -41,8 +41,8 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/cli-opencode/graph-metadata.json",
       ".opencode/skills/sk-prompt/graph-metadata.json",
+      ".opencode/skills/cli-opencode/graph-metadata.json",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts",
       "spec.md",
       "plan.md",
@@ -54,7 +54,7 @@
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skills/cli-opencode/graph-metadata.json",
+        "path": ".opencode/skills/sk-prompt/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Today the skill-advisor has no routing target for small-model concerns",
     "created_at": "2026-05-18T12:27:06.089Z",
-    "last_save_at": "2026-06-23T03:49:50.512Z",
+    "last_save_at": "2026-07-09T10:02:45.956Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c94aec2a2d23f69c33363caa8f60185c0f0525fed8b772adb2e34a2da76e8b72",
+    "source_fingerprint": "sha256:47fa731b673867534fae91e0cc34d5d0ecd903a376634a14dc664bf3760af6c4",
     "source_doc_hashes": {
-      "spec.md": "7419d9c48d46c3819a0050f74dfefa1f3727290180fc1a6268e08e0b55b95b7e",
-      "plan.md": "7b76d738a583626601330b7451c09b734180cdc8695c9412035e88842da5ba8d",
-      "tasks.md": "1d608f1394ef021f78d1c426a0a08fe40075f2344ee628f0bd3a47a806969483",
-      "checklist.md": "41e697a0149a87a5bfc043dd39a8cf3764edd57b8751baaaaf1869f21b9fe205",
-      "implementation-summary.md": "e96d3007634f60e0c54b1e4c8d0f4c96da94a9fac72e39daf9ba5e6fe3787f68"
+      "spec.md": "9b124c4cd2389020c5bbd66681631df9a4181ea6d1f4a6ae1d851ff653edcc3f",
+      "plan.md": "62cc7b9942088fd47be7f2c3215a79691de30e128bfbcbf3aeae9d5fe586347d",
+      "tasks.md": "fe73928715c2665651b869cfa47c0526ed032595cf04e3d969b16fd1e187ef23",
+      "checklist.md": "514552460874fc94739665563a6c9588c3f4cc1d106f9da2ed2dfca2577fc591",
+      "implementation-summary.md": "997291f35410e94de0866c1eb7771295b21bd48a28049084d1ae208d0f8af19a"
     },
     "last_active_child_id": null,
     "last_active_at": null

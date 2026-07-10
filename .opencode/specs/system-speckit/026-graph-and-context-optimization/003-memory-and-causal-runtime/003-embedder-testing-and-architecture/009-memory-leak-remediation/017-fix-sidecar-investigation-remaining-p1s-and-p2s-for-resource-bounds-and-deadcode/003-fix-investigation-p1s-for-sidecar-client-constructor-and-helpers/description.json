@@ -12,16 +12,14 @@
       "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
-  "description": "`sidecar-client.ts` retained several P1 issues from arc 010/001 deep research: production constructor options still blurred into test-only knobs (F18)",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
+  "description": "`sidecar-client.ts` retained several P1 issues from arc 010/001 deep research: production constructor options still blurred into test-only knobs",
   "keywords": [
     "sidecar-client",
     "retained",
     "several",
     "issues",
     "arc",
-    "010",
-    "001",
     "deep",
     "research",
     "production",
@@ -30,14 +28,13 @@
     "still",
     "blurred",
     "test-only",
-    "knobs",
-    "f18"
+    "knobs"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.252Z",
+  "lastUpdated": "2026-07-09T10:02:53.629Z",
   "specId": "003",
   "folderSlug": "fix-investigation-p1s-for-sidecar-client-constructor-and-helpers",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

@@ -25,8 +25,6 @@
       "implementation summary"
     ],
     "key_topics": [
-      "042",
-      "004",
       "offline",
       "loop",
       "optimizer",
@@ -36,7 +34,9 @@
       "advisory",
       "promotion",
       "gate",
-      "implementation"
+      "implementation",
+      "plan",
+      "phase"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The deep-loop products now have richer runtime state, but tuning them is still largely manual: convergence thresholds, stuck detection, recovery escalation, and related numeric controls are adjusted by human judgment and one-off testing",
     "created_at": "2026-04-12T09:02:50.194Z",
-    "last_save_at": "2026-07-08T13:43:45.801Z",
+    "last_save_at": "2026-07-09T10:02:49.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

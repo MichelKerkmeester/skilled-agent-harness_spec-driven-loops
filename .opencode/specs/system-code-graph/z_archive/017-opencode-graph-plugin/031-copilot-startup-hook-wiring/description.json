@@ -1,6 +1,6 @@
 {
   "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin/031-copilot-startup-hook-wiring",
-  "description": "Copilot CLI live verification proved that the shared startup banner code existed and emitted the right output when run directly, but the repo-level `s",
+  "description": "Copilot CLI live verification proved that the shared startup banner code existed and emitted the right output when run directly, but the repo-level",
   "keywords": [
     "copilot",
     "cli",
@@ -19,7 +19,7 @@
     "directly",
     "repo-level"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.816Z",
+  "lastUpdated": "2026-07-09T10:02:47.397Z",
   "specId": "031",
   "folderSlug": "copilot-startup-hook-wiring",
   "parentChain": [

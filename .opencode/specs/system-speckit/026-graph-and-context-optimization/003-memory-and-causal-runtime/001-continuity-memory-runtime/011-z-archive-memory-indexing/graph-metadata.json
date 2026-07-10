@@ -23,18 +23,18 @@
       "z_archive propagation audit"
     ],
     "key_topics": [
-      "026",
-      "003",
-      "011",
       "spec",
       "indexing",
       "memory",
       "exclusion",
-      "fix",
       "plan",
       "tasks",
       "summary",
-      "research"
+      "research",
+      "propagation",
+      "audit",
+      "un-exclude",
+      "index"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Un-exclude z_archive from memory index. ARCHIVE_MULTIPLIERS already penalizes z_archive content with multiplier 0.1 in scoring; the redundant EXCLUDED_FOR_MEMORY block contradicts that decay design by removing archived content from the index entirely.",
     "created_at": "2026-05-16T13:35:00Z",
-    "last_save_at": "2026-07-02T05:31:11.506Z",
+    "last_save_at": "2026-07-09T10:02:52.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -21,8 +21,6 @@
       "018/003 summary"
     ],
     "key_topics": [
-      "018",
-      "003",
       "comparison",
       "measure",
       "adr-001",
@@ -32,7 +30,9 @@
       "code",
       "benchmark",
       "plan",
-      "tasks"
+      "tasks",
+      "verdict",
+      "keep-jina-code"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Run gemma vs CodeRankEmbed (and optional jina-code, bge-code) on 018/002 fixture + author ADR-001 ratifying CocoIndex production embedder",
     "created_at": "2026-05-18T08:18:02.785Z",
-    "last_save_at": "2026-07-02T05:31:11.896Z",
+    "last_save_at": "2026-07-09T10:02:52.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

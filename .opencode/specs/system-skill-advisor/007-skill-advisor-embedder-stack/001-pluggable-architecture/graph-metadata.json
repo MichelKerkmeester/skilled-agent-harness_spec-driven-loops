@@ -19,8 +19,6 @@
       "022/001 summary"
     ],
     "key_topics": [
-      "022",
-      "001",
       "pluggable",
       "architecture",
       "skill-advisor",
@@ -30,7 +28,9 @@
       "tasks",
       "summary",
       "author",
-      "lib"
+      "lib",
+      "embedders",
+      "module"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Author mcp_server/lib/embedders/ module mirroring 016 pattern: EmbedderAdapter + MANIFESTS + OllamaAdapter + dim-tagged vec_<dim> schema + vec_metadata pointer",
     "created_at": "2026-05-18T08:07:25.979Z",
-    "last_save_at": "2026-07-07T11:37:49.125Z",
+    "last_save_at": "2026-07-09T10:02:50.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0bfcf80214c97554860a63a92207a1e5964ce8b30cd3946a78f54c2fd04fabd",
+    "source_fingerprint": "sha256:a1944e05701d8929952988f754ba1ba3bc894be5b4c131549c22e544fee91b7c",
     "source_doc_hashes": {
-      "spec.md": "4c9fbe578378203b13afb5f706362584f7f20e0f5aee6700103d299b230b48c2",
-      "plan.md": "627bc78803aa7308bf8962f97f240344af2cfcccb66be575be38ffa541e132f7",
-      "tasks.md": "62ec6d5955b78fe5ada9a993b22f5460e63a73b2861b198b93692dce1abc7700",
-      "implementation-summary.md": "63cbe965547ec47b792aa42077105da1611d1e4067820e59dbc0ff1643d3a05a"
+      "spec.md": "94a765f2b0513a186a2d5a2374224ebe395cbb35ba3304d20dfb37375f89094c",
+      "plan.md": "8748a2d3f08c0c6c0f66372c838cdf19fc762abb7bc150e598b5eb0c4b802215",
+      "tasks.md": "791979c6ae153ae4046c364c2a515d715fa935840312863f151ecc3869866c77",
+      "implementation-summary.md": "1be89cc8649973a2e140498a3cb4e36857f1683dfa224be440a165c54213e1d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

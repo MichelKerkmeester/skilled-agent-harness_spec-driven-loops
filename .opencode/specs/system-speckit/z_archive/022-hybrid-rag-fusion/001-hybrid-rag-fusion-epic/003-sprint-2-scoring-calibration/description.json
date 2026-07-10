@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/003-sprint-2-scoring-calibration",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/003-sprint-2-scoring-calibration",
   "description": "The dual scoring systems have a ~15:1 magnitude mismatch — RRF fusion scores range ~[0, 0.07] while composite scores range ~[0, 1]",
   "keywords": [
     "dual",
@@ -14,11 +14,11 @@
     "while",
     "composite"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.657Z",
+  "lastUpdated": "2026-07-09T10:02:57.716Z",
   "specId": "003",
   "folderSlug": "sprint-2-scoring-calibration",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic"

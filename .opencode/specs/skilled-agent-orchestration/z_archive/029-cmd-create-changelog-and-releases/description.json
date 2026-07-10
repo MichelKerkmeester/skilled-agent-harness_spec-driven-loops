@@ -2,15 +2,13 @@
   "specFolder": "skilled-agent-orchestration/z_archive/029-cmd-create-changelog-and-releases",
   "description": "The `create:changelog` command generates changelog markdown files but stops there",
   "keywords": [
-    "create",
     "changelog",
     "command",
-    "generates",
     "markdown",
     "files",
     "stops"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.105Z",
+  "lastUpdated": "2026-07-09T10:02:45.272Z",
   "specId": "029",
   "folderSlug": "cmd-create-changelog-and-releases",
   "parentChain": [

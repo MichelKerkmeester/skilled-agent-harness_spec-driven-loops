@@ -4,6 +4,8 @@
 
 **Verdict: PASS** · aggregate 94/100
 
+> **Scope note:** PASS is computed over the four weighted, scored dimensions (D1intra, D2, D3, D5); D1-inter and D4 remain unscored this run (see Methodology below). It does **not** certify the browser-class scenarios — see the P1 `funnel_attrition` bottleneck under Ranked bottlenecks: 6 of 7 browser scenarios first-fail at the `browser` stage because the harness has no per-URL export/motion/video probe for 3 scenario types (`PARTIAL-NEEDS-ARTIFACT`) and no recipe at all for the other 3 (`SKIP-NO-BROWSER`). That is a benchmark-harness instrumentation gap, not an observed routing/discovery defect in the skill; treat it as an open item tracked via the bottlenecks table, not resolved by this headline.
+
 ## Coverage
 
 - Scored (text executors): **24** · routed out to browser harness: **0**

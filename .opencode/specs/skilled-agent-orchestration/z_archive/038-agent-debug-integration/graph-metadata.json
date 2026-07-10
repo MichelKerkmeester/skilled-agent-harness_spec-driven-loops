@@ -46,12 +46,10 @@
       ".opencode/commands/speckit/assets/speckit_implement_auto.yaml",
       ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
       ".claude/agents/debug.md",
-      ".codex/agents/debug.toml",
       ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh",
       ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
       ".opencode/commands/speckit/assets/speckit_implement_confirm.yaml",
       ".claude/agents/orchestrate.md",
-      ".codex/agents/orchestrate.toml",
       ".opencode/commands/speckit/implement.md",
       ".opencode/commands/speckit/complete.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -60,7 +58,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "handover.md"
+      "handover.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/038-agent-debug-integration/implementation-summary.md"
     ],
     "entities": [
       {
@@ -88,12 +87,6 @@
         "source": "derived"
       },
       {
-        "name": "debug.toml",
-        "kind": "file",
-        "path": ".codex/agents/debug.toml",
-        "source": "derived"
-      },
-      {
         "name": "scaffold-debug-delegation.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh",
@@ -109,12 +102,6 @@
         "name": "speckit_implement_confirm.yaml",
         "kind": "config",
         "path": ".opencode/commands/speckit/assets/speckit_implement_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.toml",
-        "kind": "file",
-        "path": ".codex/agents/orchestrate.toml",
         "source": "derived"
       },
       {
@@ -138,7 +125,7 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/038-agent-debug-integration/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,11 +193,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware",
     "created_at": "2026-04-27T08:35:00Z",
-    "last_save_at": "2026-06-23T03:49:49.328Z",
+    "last_save_at": "2026-07-09T10:02:45.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +220,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:65feb2e3bbbf6d9a526ca8ce31b389ee84315f610c4208d68c45bfbd01e61737",
+    "source_fingerprint": "sha256:2f85feb5dea2e08bcb3b41ce0741bea4f5ddaec2c7f65a749f58f4a1cc111d28",
     "source_doc_hashes": {
-      "spec.md": "28cb1e50a50f3e3f729be4de81f5521d7c0bd395dc993c626b0eb576ba41192f",
-      "plan.md": "efb051587661cb18516fac7c7c43eea89ec0e12fa5859f2810864712aef5efcb",
-      "tasks.md": "bb1cbf7ce46419afc9dbccae0ee4f7c0029147edcd31c036c8d6383513b800ff",
-      "checklist.md": "8ab97a5ffc69b1d9124aac2d1c097a15a913fde664c76b9ae4780a7f02230fd9",
-      "implementation-summary.md": "420b9d8a2b030c1a021ec6fe670539593e4b1dc3b946214a7acf6609188dee12",
-      "handover.md": "d4aa60bba8a6c081417fcd20f098a1b5640ce7d6cb94d9b009dadb230be8eba7"
+      "spec.md": "98551338c15b1a1d483d7d33d4cd633ecdef402bd486243980e8b37492b9b068",
+      "plan.md": "f9650c1dd63314adafa1010438cdd23f6b911dcc494c17ad51ee21ff826c7538",
+      "tasks.md": "aa1c4b6eec4908e125d6527250fb46df71796ab5510e33130723ae77c858687f",
+      "checklist.md": "215f129490e8e2429f63a9caadfd701384de554ab3375bacf21758bf85d6986e",
+      "implementation-summary.md": "be30f48aae8fe2f549488c3c8649d5673d68adf981a46d9e5432b7dc5bedb91d",
+      "handover.md": "fc86bd418ca1f2e42d02447dce5ee170777ca6c7ac06a168c03e8d51eec5200b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,8 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
       ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/spec.md",
       ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/plan.md",
       ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/tasks.md",
@@ -50,22 +48,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "rollback-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/rollback-candidate.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "promote-candidate-benchmark.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/tests/promote-candidate-benchmark.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,12 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": ".opencode/specs/system-deep-loop/030-deep-loop-improved/008-loop-systems-remediation/001-deep-improvement-rollback-hash-guard/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "promote-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/promote-candidate.cjs",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Rollback",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Hash Guard The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Regression Coverage The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`rollback-candidate.cjs` restored the pre-acceptance backup without checking whether the target being rolled back from still matched a stored accepted-state hash",
     "created_at": "2026-06-29T10:43:17Z",
-    "last_save_at": "2026-07-04T18:02:19.897Z",
+    "last_save_at": "2026-07-09T10:02:47.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8b9373be18a22e4385431f4487d6047d0c4128d910f9a1c2455eaef62dfebe5",
+    "source_fingerprint": "sha256:3a3c4a86c298a5d09cb50f8d49aa8883e33259b3fd0b2df7e3fa6d652a327c7a",
     "source_doc_hashes": {
-      "spec.md": "5d8207859417f4492b18ed92bda083a948f1c61b05304a3caa302975effd610d",
-      "plan.md": "a415727a430a993b20d2d4a7713a8d9827ebf8f16c7019e5eae0e59ddf01699a",
-      "tasks.md": "48211c437460b1c3b58bf7e899171adb02ed4f3a1357f15aadd4e7c8bf5a01b0",
-      "implementation-summary.md": "f44c82189c0a60d424bd5e32bc8622faa26e794a9f30351080a9998eb38b46b1"
+      "spec.md": "886690ffe41b67abf98d7326bc5dea399a94ccca56b4a9ec20eb6dd2f16d485b",
+      "plan.md": "64f61b52208ab86be838843e7c9b51008786fa8ebcb5b69f3bc92ec4b914e0f2",
+      "tasks.md": "8ffae2646546ffb9409a4cfc78d17c1728437bfe061c0821fea67efe3ab3b004",
+      "implementation-summary.md": "047d82d3d3ca76797b22110c4223a48a573b53a95dae9359c166d70f091c7660"
     },
     "last_active_child_id": null,
     "last_active_at": null

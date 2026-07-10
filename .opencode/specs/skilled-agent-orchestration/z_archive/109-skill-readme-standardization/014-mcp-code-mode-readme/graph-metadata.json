@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The mcp-code-mode README is a tabular reference card with a table of contents and no problem-first entry point",
     "created_at": "2026-06-07T13:05:42Z",
-    "last_save_at": "2026-06-23T03:49:51.899Z",
+    "last_save_at": "2026-07-09T10:02:46.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9aefa4173b509ba64669a0de444f435aff65ae6aea507b2c7fa0fbdf4c5044f0",
+    "source_fingerprint": "sha256:71660c9299f0c3fee2fe05751f77ddb42ccaf3851bbbe008658f25f51255859d",
     "source_doc_hashes": {
-      "spec.md": "19bdcd7d427ac5b638bf47bd5bcaffac2ae90ca94e19ed9021e5c94ae8bf4f72",
-      "plan.md": "4ec0dcb0e23ce027a614dffc8e1af07937a69e804865cf35b049c8ef7e413944",
-      "tasks.md": "cbee89c18be92f7b03b92544d9755226ab86ec31e9ab4421c5ee97459024fbca",
-      "implementation-summary.md": "9859ae2f13665e45ed8e71f40aecbee05e1a57d3258fe7bca71f6ebc078acedc"
+      "spec.md": "9145dd5640a42ec06a0728719828d70671f0c859bb5bff7e78a6bf7f7b64fef5",
+      "plan.md": "bb029970cec4d6ac32a6000dd63c2166fb9d4939362ade0372fbd249bf062a27",
+      "tasks.md": "89af76142e7b427b43fa954b3c46be43c676e471fcb927cc32c4625d79489307",
+      "implementation-summary.md": "518a8a5a89e4543bcee4c809e0838ea2949ef37978cfe8144e309a88b5e5c3c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

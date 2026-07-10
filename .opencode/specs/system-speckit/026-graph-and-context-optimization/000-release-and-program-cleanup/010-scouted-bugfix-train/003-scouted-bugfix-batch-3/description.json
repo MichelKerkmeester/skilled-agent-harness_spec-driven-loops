@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3",
-  "description": "A second scout surfaced a fresh 20 high-risk targets across previously-untouched subsystems: code-graph stress tests, the deep-loop convergence script",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3",
+  "description": "A second scout surfaced a fresh 20 high-risk targets across previously-untouched subsystems: code-graph stress tests, the deep-loop convergence",
   "keywords": [
     "second",
     "scout",
@@ -15,14 +15,13 @@
     "stress",
     "tests",
     "deep-loop",
-    "convergence",
-    "script"
+    "convergence"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.945Z",
+  "lastUpdated": "2026-07-09T10:02:51.606Z",
   "specId": "003",
   "folderSlug": "scouted-bugfix-batch-3",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "010-scouted-bugfix-train"

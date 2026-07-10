@@ -36,9 +36,9 @@
       "stop",
       "blocked",
       "plan",
-      "116",
       "tasks",
-      "checklist"
+      "checklist",
+      "adr"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Before this phase, deep-review could make dimension coverage, evidence density, and graph convergence look complete while still leaving v2 candidate-search obligations unresolved",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-07-08T13:43:55.711Z",
+    "last_save_at": "2026-07-09T10:02:48.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "wave",
-      "003",
       "advisor",
       "positive",
       "controls",
@@ -36,7 +35,8 @@
       "plan",
       "tasks",
       "verification",
-      "checklist"
+      "checklist",
+      "implementation"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`AI-001: Positive Design Controls` defines a single 6-probe battery (P1-P6) verifying that the advisor picks the single public `sk-design` identity — never a child mode as a separate identity — for every positive design-family prompt, and that the hub then resolves each probe to its documented `workflowMode` and packet",
     "created_at": "2026-07-07T15:17:02.203Z",
-    "last_save_at": "2026-07-07T15:17:51.746Z",
+    "last_save_at": "2026-07-09T10:02:44.590Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

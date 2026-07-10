@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript error handling standards"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.11
+version: 1.0.0.15
 ---
 
 # JavaScript Quality Standards
@@ -163,16 +163,17 @@ Extend Error for domain-specific errors.
 class MemoryError extends Error {
   /**
    * Create a MemoryError.
-   * @param {string} message - Error description
    * @param {string} code - Error code (e.g., 'DB_CONNECTION_FAILED')
-   * @param {Object} [context] - Additional context
+   * @param {string} message - Error description
+   * @param {Object} [details] - Additional details
    */
-  constructor(message, code, context = {}) {
+  constructor(code, message, details = {}) {
     super(message);
     this.name = 'MemoryError';
     this.code = code;
-    this.context = context;
-    Error.captureStackTrace(this, this.constructor);
+    this.details = details;
+    this.recoveryHint = undefined;
+    Object.setPrototypeOf(this, MemoryError.prototype);
   }
 }
 

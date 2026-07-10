@@ -10,13 +10,6 @@
     "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync",
     "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route",
     "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
-    "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path",
-    "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching",
-    "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes",
-    "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates",
-    "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync",
-    "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route",
-    "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix",
     "system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path"
   ],
   "manual": {
@@ -35,18 +28,19 @@
       "advisor",
       "finding",
       "remediation",
-      "028",
       "remediate",
       "findings",
       "playbook",
       "run",
       "surfaced",
       "key",
-      "system-skill-advisor"
+      "system-skill-advisor",
+      "corpus"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/specs/system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/research/research.md",
       "research/research.md",
       "research/resource-map.md",
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
@@ -56,7 +50,7 @@
       {
         "name": "research.md",
         "kind": "doc",
-        "path": "research/research.md",
+        "path": ".opencode/specs/system-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation/research/research.md",
         "source": "derived"
       },
       {
@@ -140,16 +134,16 @@
     ],
     "causal_summary": "The 028 playbook run surfaced 5 key findings in the `system-skill-advisor` skill: a corpus accuracy regression, PC-005 bench failures + doc gap, semanticshadow lane-weight doc drift, the OpenCode plugin bridge native-route fail-open, and a stale vitest path in two playbook scenarios",
     "created_at": "2026-05-27T11:53:18.233Z",
-    "last_save_at": "2026-07-02T05:31:11.365Z",
+    "last_save_at": "2026-07-09T10:02:50.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:908282fb0c4e8d5e04094e7777e34858160462bfa2136bfec1af808e257b3000",
+    "source_fingerprint": "sha256:b849e0941fe62a8397b7c9c5a4bd324de7b439f44ae9fb0b9cd696f73f083f29",
     "source_doc_hashes": {
-      "spec.md": "fb41e3a8d99d70ab1198e8731a64cbe28f7dde0d96f68db620da8c8ccd92cfb3",
+      "spec.md": "30d2a0ecf18dc58eedf8ba4e7e2598b61b70de111a13f6167977d4edb3a65dba",
       "research/research.md": "9a2a392297b504a2a79b2954c1fb33b3c7c194c511778fbd80ad619d722c1ff6"
     },
     "last_active_child_id": null,

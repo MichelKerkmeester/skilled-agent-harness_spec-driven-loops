@@ -9,11 +9,10 @@
     "scripts",
     "fanout-merge",
     "cjs",
-    "472",
     "mergeresearchregistries",
     "registry"
   ],
-  "lastUpdated": "2026-07-04T18:02:23.053Z",
+  "lastUpdated": "2026-07-09T10:02:47.632Z",
   "specId": "001",
   "folderSlug": "fanout-merge-schema-tolerance",
   "parentChain": [

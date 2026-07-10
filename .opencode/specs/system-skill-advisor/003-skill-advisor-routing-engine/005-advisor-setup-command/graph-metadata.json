@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The skill advisor scoring system (explicit lane TOKENBOOSTS, PHRASEBOOSTS, lexical CATEGORYHINTS, graph-metadata.json derived triggers/keywords) is manually maintained with no guided setup workflow",
     "created_at": "2026-04-25T14:30:00Z",
-    "last_save_at": "2026-07-02T05:31:11.250Z",
+    "last_save_at": "2026-07-09T10:02:49.929Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf56358b9b0fcf31f33932b09afb89c0e3d8e7e354597b864463f38271c0c4b0",
+    "source_fingerprint": "sha256:a4ad15fdb950bc8d5a37bdb0daf1b8a73108604ca56cc17f210a398c1973b5f3",
     "source_doc_hashes": {
-      "spec.md": "d508eec5a47f8354b03b5a84443a5b7efd53a71fd61f51de3f3d2b47aca7cbb5",
-      "plan.md": "67e84bc20bb6d26e620e137f64d871c97473268996224bb173d50a43ee9855d2",
-      "tasks.md": "95378faa3c2a1c68af843e686c2c3d02cc75c4642c8017ac239bb5247fe90f87",
-      "checklist.md": "313e2d5637ed5c1f61e38c28accb1cf6570afdafb520f71e0df8a46b43bace78",
-      "implementation-summary.md": "9b219262f8c31d337e1e38cc33c1001cf67fa3bdd43b0f217fae63c395ab2262"
+      "spec.md": "f13c92e0df715d143952b146ceb30ffb73b4b8a30cd8f406f846c9f924e5cd02",
+      "plan.md": "3e1a37c6f1d3614f9fed88698d218be7707662264224deb390068a1edc97779b",
+      "tasks.md": "39913d554a92e93529efa7e3721cfbcc0b658f8bd0bdf1f5db9529c5353bb7de",
+      "checklist.md": "443532315c6d5b50ec95b69b8c7dee46b8de57b072391d367598f8af71be3ec3",
+      "implementation-summary.md": "a54e22ec72058dc939220ff5f9a74f0316819acaeef35fb1be8343a3621ce87f"
     },
     "last_active_child_id": null,
     "last_active_at": null

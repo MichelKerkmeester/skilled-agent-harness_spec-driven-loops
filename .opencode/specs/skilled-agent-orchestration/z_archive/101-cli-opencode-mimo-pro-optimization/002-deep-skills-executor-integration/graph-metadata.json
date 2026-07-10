@@ -35,8 +35,8 @@
       "opencode",
       "agent",
       "general",
-      "fix",
-      "minimax"
+      "minimax",
+      "loop"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "MiMo-V2.5-Pro and MiniMax cannot be cleanly used as deep-loop executors: every `cli-opencode` dispatch in the deep skills injects `--agent general`, which the current opencode rejects/falls-back-from, producing noisy warnings and (for token-plan providers) failed dispatches",
     "created_at": "2026-06-01T20:21:29.318Z",
-    "last_save_at": "2026-06-23T03:49:51.493Z",
+    "last_save_at": "2026-07-09T10:02:46.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b47e16cfef7afa3a94a5811863dfb896b4ad5b278aa3066722d89ff0af0b330",
+    "source_fingerprint": "sha256:f3c6b5fe26888edcadf39160a7e4ab615d191883dbedc2fcf01286f83866dc77",
     "source_doc_hashes": {
-      "spec.md": "13dca9601bfbb884dfda930da0b7e21350b0f5914f775f80111daa4034c365a4",
-      "plan.md": "3e78031110acf609b81b7078479c6c2f6cb9d21f670a9e4f0280b09580fb961d",
-      "tasks.md": "6239b42102eb4fe727d5a8c0f8a87df33c541e4360dcd452f47791a0515632a2",
-      "checklist.md": "9c662167b49be86778feb529d7b181e2ce30f631aaa9292f0cd1c9814c90877c",
-      "implementation-summary.md": "a1f2da28f9836a7e487555af745c618936c4002ae4cb1ab9fe147e09767ff743"
+      "spec.md": "24c01dd9d8f50b6ec86a8ec6afa856bc4d343092175e4b0878674552470a1171",
+      "plan.md": "51edc4ad320aa41907c2959562c856b9a871b3429928ba8fc2023c34d96923e2",
+      "tasks.md": "24963314c2f8788e499133562bf374f2726dd5d677a5c183f9afea9182659fbe",
+      "checklist.md": "bc0864846c6ee5afc44d2e7111687d51d952ec36a114f7918aaea9bc0e62cd6e",
+      "implementation-summary.md": "8b1dcb0f9bd8815f2f648b788f1890b80619ad8fca247d0359f61378f46a0980"
     },
     "last_active_child_id": null,
     "last_active_at": null

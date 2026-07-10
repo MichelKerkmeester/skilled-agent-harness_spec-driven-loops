@@ -33,10 +33,10 @@ Workflows define the execution patterns and operational modes for the markdown d
 
 **Scope Note**: This reference covers Mode 1 (Document Quality) workflows only. For other modes, see:
 - Mode 2 (Skill Creation): [skill_creation.md](../../create-skill/references/README.md)
-- Mode 3 (Flowcharts): [create-flowchart/assets/flowcharts/](../../create-flowchart/assets/flowcharts/)
+- Mode 3 (Flowcharts): [create-flowchart/assets/](../../create-flowchart/assets/)
 - Mode 4 (Install Guides): [create-readme references](../../create-readme/references/README.md)
-- Mode 5 (Playbooks): [create-manual-testing-playbook references](../../create-manual-testing-playbook/references/README.md), [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_snippet_template.md)
-- Companion catalog workflow: [create-feature-catalog references](../../create-feature-catalog/references/README.md) plus the [feature catalog template bundle](../../create-feature-catalog/assets/feature_catalog/)
+- Mode 5 (Playbooks): [create-manual-testing-playbook references](../../create-manual-testing-playbook/references/README.md), [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_snippet_template.md)
+- Companion catalog workflow: [create-feature-catalog references](../../create-feature-catalog/references/README.md) plus the [feature catalog template bundle](../../create-feature-catalog/assets/)
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in numbered category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
 
@@ -90,4 +90,4 @@ The validation sequence, enforcement prompts, phase chaining, worked examples, a
 
 ### Templates
 - [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
-- [command_template.md](../../create-command/assets/command/command_template.md) - Command file templates
+- [command_template.md](../../create-command/assets/command_template.md) - Command file templates

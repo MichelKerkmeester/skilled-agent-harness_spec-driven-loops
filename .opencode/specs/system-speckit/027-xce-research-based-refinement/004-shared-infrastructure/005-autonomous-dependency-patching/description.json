@@ -21,7 +21,7 @@
     "automation",
     "audit"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching",
   "description": "GitHub and npm security advisories can flag stale transitive dependencies in skill package lockfiles even when package ranges permit patched versions",
   "keywords": [
     "github",
@@ -41,11 +41,11 @@
     "patched",
     "versions"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.836Z",
+  "lastUpdated": "2026-07-09T10:02:55.728Z",
   "specId": "005",
   "folderSlug": "autonomous-dependency-patching",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure"
   ],

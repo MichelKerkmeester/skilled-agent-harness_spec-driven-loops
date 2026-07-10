@@ -25,8 +25,6 @@
       "020 001 implementation summary"
     ],
     "key_topics": [
-      "020",
-      "001",
       "f44",
       "f109",
       "test-only",
@@ -36,7 +34,9 @@
       "listsupporteddimensions",
       "embeddermanifest",
       "plan",
-      "direct"
+      "direct",
+      "imports",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "F44 and F109 were deferred by arc 017/005 because current tests imported production-dead symbols through public barrels",
     "created_at": "2026-05-23T10:01:51Z",
-    "last_save_at": "2026-07-02T05:31:12.301Z",
+    "last_save_at": "2026-07-09T10:02:53.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

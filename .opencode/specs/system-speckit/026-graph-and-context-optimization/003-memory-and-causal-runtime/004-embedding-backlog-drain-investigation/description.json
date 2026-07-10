@@ -1,16 +1,16 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation",
   "description": "<!-- DR-SEED:REQUIREMENTS -->",
   "keywords": [
     "dr-seed",
     "requirements"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.383Z",
+  "lastUpdated": "2026-07-09T10:02:53.785Z",
   "specId": "004",
   "folderSlug": "embedding-backlog-drain-investigation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime"
   ],

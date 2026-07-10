@@ -17,7 +17,14 @@
       "skill-advisor spec-memory embedder parity",
       "auto sentinel default",
       "nomic-embed-text-v1.5 default",
-      "content-type aware cascade"
+      "content-type aware cascade",
+      "active embedder provider persistence",
+      "MEMORY_DB_PATH cross-server leakage",
+      "hf-model-server onnx shutdown crash",
+      "shared embedder logic checklist",
+      "skill-advisor embedder verification",
+      "provider persistence checklist",
+      "MEMORY_DB_PATH leakage checklist"
     ],
     "key_topics": [
       "shared",
@@ -36,31 +43,74 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "implementation-summary.md",
+      "mcp_server/lib/embedders/index.ts",
+      "lib/embedders/schema.ts",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      "shared/embeddings/factory.ts",
+      ".opencode/bin/hf-model-server.cjs",
+      "spec.md",
+      "tasks.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/adapter.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/types.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapter.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/adapter.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/registry.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/adapters/ollama.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/schema.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
-      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
-      ".opencode/skills/system-skill-advisor/README.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/embedders/shared-factory-parity.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/embedders/ensure-active-embedder.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/embedders/schema.vitest.ts",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-bootstrap.vitest.ts",
-      ".opencode/bin/hf-model-server.cjs",
-      "checklist.md"
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/types.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/registry.ts"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "index.ts",
         "kind": "code",
         "path": "mcp_server/lib/embedders/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "schema.ts",
+        "kind": "code",
+        "path": "lib/embedders/schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -94,60 +144,6 @@
         "source": "derived"
       },
       {
-        "name": "schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "shared-factory-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/embedders/shared-factory-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ensure-active-embedder.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/embedders/ensure-active-embedder.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "code",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "hf-model-server.cjs",
-        "kind": "code",
-        "path": ".opencode/bin/hf-model-server.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Arc",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -166,25 +162,43 @@
         "source": "derived"
       },
       {
-        "name": "Type Constraint",
+        "name": "Ship Hardening",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "See Round",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "File Path",
+        "name": "Success Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Notes",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "spec-memory",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -198,7 +212,7 @@
     ],
     "causal_summary": "Skill-advisor and mk-spec-memory currently have separate embedder registries with competing defaults and parallel factory implementations",
     "created_at": "2026-05-21T18:08:46.935Z",
-    "last_save_at": "2026-07-08T06:58:48.000Z",
+    "last_save_at": "2026-07-09T10:02:50.256Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +222,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3920fb27b79b6890a8068f8d8152007d4fece64df85e6eb52a97d6657851ac78",
+    "source_fingerprint": "sha256:cfdd775b36a32eaea2770e52a057c0b7438b124d133e4fa1eeff65d09d0d82dd",
     "source_doc_hashes": {
       "spec.md": "09494eac29622efb614905aefd0fade70e67f3e07a04ace8b92215a71c521d35",
       "plan.md": "720239400962115da99eaabf1c5a0b1b27f4664890fa3118df5b39a041501513",
       "tasks.md": "2c46f830b51d06df2f4ccca9fc46b491b962fd2b97af4fe20767d0bbe61788a5",
       "checklist.md": "38142c0599a587a4e20bc6865a8ef7be51b59a797ff27088289da248e3a07136",
-      "implementation-summary.md": "1f79c2499de2d34677e573886a77e369ed08be03ed0b420e658108b238354301"
+      "implementation-summary.md": "5042f79977e9f6b814d4736ad19362d6da55192e9f837eda177bae5dfb971a90"
     },
     "last_active_child_id": null,
     "last_active_at": null

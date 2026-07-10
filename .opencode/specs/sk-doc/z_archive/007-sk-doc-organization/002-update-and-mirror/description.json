@@ -16,11 +16,10 @@
     "sk-doc",
     "internal",
     "docs",
-    "create",
     "commands",
     "runtimes"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.636Z",
+  "lastUpdated": "2026-07-09T10:02:44.890Z",
   "specId": "002",
   "folderSlug": "update-and-mirror",
   "parentChain": [

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Existing provenance can verify GPT first-dispatch correctness without new benchmark tooling, but the smoke must include route-proof assertions",
     "created_at": "2026-06-30T15:20:00Z",
-    "last_save_at": "2026-07-05T06:46:05.382Z",
+    "last_save_at": "2026-07-09T10:02:47.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb78c1ba9cc54e528b2e3baf00df4fe2ac931b0f434504ddf8a5f7e5e7f8b283",
+    "source_fingerprint": "sha256:4318a489146ea5c144159e146154a7708a6aa59305b4ec2310e914db72868a49",
     "source_doc_hashes": {
-      "spec.md": "fccd2163116b542e11f573e8a217554542ee726dee406cfc36f1a4571eff64eb",
-      "plan.md": "18edc8f585f7cded71913413d2d2116d46a6a41e1c61b18287bda5659e4eb3ea",
-      "tasks.md": "ff4ae467c3b73a55924579d3490b1b4b3a52420913cef38ebcad8840c29b36d5",
-      "implementation-summary.md": "5134514d1e50f0db8a23aebbb168d652580a7672c5d6a7c13d160d09b12cbf56"
+      "spec.md": "42b92e5447361500cad1faa40d1c7739210abd37407bdde51a77dc935bf99377",
+      "plan.md": "65241c60c07de898e8a694e6ec65c460efefc428b6314aa114138ceeac190579",
+      "tasks.md": "c64df798afabe956dae492ed729b62e7dd59fbbb9cc803730fffb76a9712b338",
+      "implementation-summary.md": "ff16b3ed9229a41863c15d9035de69d83d2b90c26d0eb00db9a0622ac1264ba2"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,6 +1,6 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/003-structured-permissions-matrix",
-  "description": "cli-opencode v1.3.3.0 ALWAYS rule #13 ships a four-layer prose mitigation for destructive scope violations (RM-8 follow-on): (L1) prompt contains lite",
+  "description": "cli-opencode v1.3.3.0 ALWAYS rule #13 ships a four-layer prose mitigation for destructive scope violations (RM-8 follow-on): (L1) prompt contains",
   "keywords": [
     "cli-opencode",
     "always",
@@ -15,10 +15,9 @@
     "rm-8",
     "follow-on",
     "prompt",
-    "contains",
-    "lite"
+    "contains"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.074Z",
+  "lastUpdated": "2026-07-09T10:02:45.961Z",
   "specId": "003",
   "folderSlug": "structured-permissions-matrix",
   "parentChain": [

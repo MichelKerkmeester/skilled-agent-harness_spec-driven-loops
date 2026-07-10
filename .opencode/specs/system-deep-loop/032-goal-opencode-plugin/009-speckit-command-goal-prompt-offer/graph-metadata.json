@@ -35,10 +35,10 @@
       "workflow",
       "field",
       "phase",
-      "009",
       "integration",
       "plan",
-      "tasks"
+      "tasks",
+      "implemented"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Finding INT-1 (dossier §E, verbatim): the `/speckit:` goal-prompt offer — this phase's whole original purpose — is NOT implemented",
     "created_at": "2026-07-02T05:31:05.812Z",
-    "last_save_at": "2026-07-04T08:33:05.702Z",
+    "last_save_at": "2026-07-09T10:02:47.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:78ce387ca01c199278b64700605a0702ad97ba810e5cd00721687dff7a1309d7",
+    "source_fingerprint": "sha256:aab9f6013bb79ea044a4c423ed4867b9a17d3f0d54d7cefcdac55d4def19f3a1",
     "source_doc_hashes": {
-      "spec.md": "c5f1e000e552c312dad843df86df3ddfdcb8eeb20365132f1f703d5eda28c9b2",
-      "plan.md": "e9a6fbc7e4fcfb51dd972f8c33078bce3fec1a93bb110d4899043e54b0197365",
-      "tasks.md": "e9b5f75aed313b71d5effe1d33094c6d924bc935e0a970d0d291519beed16218",
-      "implementation-summary.md": "e4e04316a48833f1a9ea4477286ce24441240932a8a8540fcc6cab92a3235f02",
-      "handover.md": "e70747ea0703170da6522025cce8893286ae045c27b20a3a0b64a88e92c0d9f9"
+      "spec.md": "3fc46a68d9a2c6e452087657222a512f516192011f34f431f06c4af63ec90ae2",
+      "plan.md": "72e813403d548a1bd720af652ea75819071a6b628f93ff7c5838ab0521411906",
+      "tasks.md": "665a351189f6f2fe0abab3dcc099da0686cd6fbb7e9541485aa5d8f2bec427a5",
+      "implementation-summary.md": "5b623e6e81702a0a534423a3626d4c6cd0531c90ce2d0255a8368af8d621b947",
+      "handover.md": "0282203ae99fb1bd877e8b953c90f29d3e1aa8de5c94be5bb033e9788915d7cc"
     },
     "last_active_child_id": null,
     "last_active_at": null

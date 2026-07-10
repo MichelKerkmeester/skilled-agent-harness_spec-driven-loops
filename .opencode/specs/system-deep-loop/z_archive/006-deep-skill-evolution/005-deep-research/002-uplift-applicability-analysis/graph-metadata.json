@@ -14,23 +14,26 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "119/002",
-      "applicability",
-      "118-arc-changes",
-      "classification",
-      "uplift-mapping"
+      "packet",
+      "metadata",
+      "derived",
+      "canonical",
+      "spec",
+      "documents"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [],
     "entities": [],
-    "causal_summary": "Applicability classification table for all 47 changes catalogued from arc 118. Outputs: applicability-table.md mapping each C-NNN to APPLY / SKIP / ADAPT / ALREADY-DONE.",
+    "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-05-23T06:00:00.000Z",
-    "last_save_at": "2026-05-23T06:00:00.000Z",
+    "last_save_at": "2026-07-09T10:02:48.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
+    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

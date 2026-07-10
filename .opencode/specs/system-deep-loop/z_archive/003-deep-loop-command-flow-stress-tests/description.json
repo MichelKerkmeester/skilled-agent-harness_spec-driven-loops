@@ -1,23 +1,12 @@
 {
   "specFolder": "system-deep-loop/z_archive/003-deep-loop-command-flow-stress-tests",
-  "description": "Phase-parent root spec. Apply the 060/004 command-flow stress methodology (proven PASS 6/0/0 against @improve-agent) to @deep-research and",
+  "description": "Phase-parent root spec.",
   "keywords": [
     "phase-parent",
     "root",
-    "spec",
-    "apply",
-    "060",
-    "004",
-    "command-flow",
-    "stress",
-    "methodology",
-    "proven",
-    "pass",
-    "against",
-    "improve-agent",
-    "deep-research"
+    "spec"
   ],
-  "lastUpdated": "2026-07-08T13:06:19.031Z",
+  "lastUpdated": "2026-07-09T10:02:48.404Z",
   "specId": "003",
   "folderSlug": "deep-loop-command-flow-stress-tests",
   "parentChain": [

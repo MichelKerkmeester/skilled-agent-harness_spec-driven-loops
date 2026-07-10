@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening",
   "description": "The substrate stress harness reclassifies a connection failure as a tolerated SKIP whenever a live PID is found in a daemon's single-writer lease",
   "keywords": [
     "substrate",
@@ -18,11 +18,11 @@
     "single-writer",
     "lease"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.525Z",
+  "lastUpdated": "2026-07-09T10:02:54.499Z",
   "specId": "016",
   "folderSlug": "substrate-harness-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

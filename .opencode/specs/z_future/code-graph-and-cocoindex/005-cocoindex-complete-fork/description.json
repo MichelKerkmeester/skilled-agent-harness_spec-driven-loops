@@ -14,7 +14,7 @@
     "status": "phase-parent",
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork",
+  "specFolder": "z_future/code-graph-and-cocoindex/005-cocoindex-complete-fork",
   "description": "Feature Specification: 005 — Complete CocoIndex MCP Fork",
   "keywords": [
     "feature",
@@ -25,12 +25,12 @@
     "mcp",
     "fork"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.114Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "005",
   "folderSlug": "cocoindex-complete-fork",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex"
+    "z_future",
+    "code-graph-and-cocoindex"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

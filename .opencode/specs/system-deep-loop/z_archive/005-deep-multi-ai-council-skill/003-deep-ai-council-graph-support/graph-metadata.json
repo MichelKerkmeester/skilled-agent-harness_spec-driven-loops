@@ -27,8 +27,6 @@
       "council graph verification"
     ],
     "key_topics": [
-      "101",
-      "003",
       "deep-ai-council",
       "graph",
       "support",
@@ -38,7 +36,9 @@
       "plan",
       "tasks",
       "checklist",
-      "verification"
+      "verification",
+      "deliberation",
+      "needs"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Council deliberation needs durable structural context beyond append-only artifacts, but the existing deep-loop coverage graph is specialized for research and review coverage",
     "created_at": "2026-05-10T06:35:40Z",
-    "last_save_at": "2026-07-08T13:43:23.925Z",
+    "last_save_at": "2026-07-09T10:02:48.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

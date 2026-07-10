@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: Canon self-enforcement (plan)"
-description: "Authored the twelve-work-unit canon self-enforcement plan: a DO-NOW foundational trio plus hardening batch, and a gate-adjacent tranche deferred behind the operator-owned advisor scorer lane. Planning only — no source touched; execution begins after the operator resolves three forks."
+title: "Implementation Summary: Canon self-enforcement (parent-hub hardening)"
+description: "Executed the canon self-enforcement program: the DO-NOW foundational trio + hardening batch shipped and verified (parent-skill-check exit 0 / 0 warnings on all four hubs, validate --strict 0/0). The gate-adjacent scoring tranche (WU8/10/11/12c) stays deferred behind the operator-owned advisor scorer lane per ADR-002, to co-land with the 193-row re-baseline as one event."
 trigger_phrases:
   - "canon self-enforcement summary"
   - "999 sk-doc phase 024 summary"
@@ -9,21 +9,21 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/999-sk-doc-parent/024-canon-self-enforcement"
-    last_updated_at: "2026-07-08T04:03:24Z"
+    last_updated_at: "2026-07-08T15:52:50Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored the 024 canon-self-enforcement plan (planning only)"
-    next_safe_action: "Operator resolves D1-D3 then execute Phase 2 trio"
+    recent_action: "DO-NOW batch shipped+verified (4/4 hubs, validate 0/0); packet closed"
+    next_safe_action: "Gate-adjacent tranche awaits operator-opened scorer lane + 193-row re-baseline"
     blockers: []
     key_files:
-      - ".opencode/specs/sk-doc/999-sk-doc-parent/024-canon-self-enforcement/plan.md"
+      - ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "bootstrap-session"
       parent_session_id: null
-    completion_pct: 20
-    open_questions:
-      - "Operator resolves D1 (/doc:quality fix-vs-ratchet), D2 (zombie nodes panel), D3 (sk-hub family)"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "D1 /doc:quality: create the missing command (ADR-003); D2 doctor panel report-only (ADR-004); D3 keep sk-hub family (ADR-005)"
 ---
 # Implementation Summary
 
@@ -38,9 +38,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 024-canon-self-enforcement |
-| **Completed** | 2026-07-07 (planning only; execution pending) |
+| **Completed** | 2026-07-08 (DO-NOW batch shipped + verified; gate-adjacent tranche deferred per ADR-002) |
 | **Level** | 3 |
-| **Deliverable** | `spec.md` + `plan.md` (twelve WUs, five phases) + `tasks.md` + `checklist.md` + `decision-record.md` (5 ADRs) |
+| **Deliverable** | The Level 3 packet + the shipped DO-NOW batch: WU1-7, WU9, WU12a/b/d (CI hub-glob gate, vocab-agreement battery, `edge_type` CHECK self-heal, command-binding gate, read-only doctor freshness panel, checker fixture harness, discovery-parity, `description.json` rule 8b, template `sk-hub` family, `command⊆toolSurface` rule) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -108,6 +108,8 @@ Built directly from the AI Council opportunity map, re-verifying every cited anc
 | Anchor accuracy | Pass | Every cited `file:line` re-verified against HEAD before authoring |
 | Gate partition | Pass | DO-NOW vs GATE-ADJ vs OPERATOR-DECISION explicit; the scorer-lane gate named in ADR-002 |
 | Plan validity | Pass | `validate.sh --strict` exits 0 for this folder (planning gate) |
+| DO-NOW execution | Pass | WU1-7, WU9, WU12a/b/d shipped; `parent-skill-check` exit 0 / 0 warnings on all four hubs (2026-07-08 re-verify, post-rename tree); new vitests green + WU8 guard red-proven |
+| Packet close-out | Pass | `validate.sh --strict` 0/0 on the closed packet (2026-07-08); gate-adjacent tranche documented as a deferred separate scoring event per ADR-002 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -115,7 +117,7 @@ Built directly from the AI Council opportunity map, re-verifying every cited anc
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Planning only** — no hub / checker / advisor / scorer source was touched. Execution begins once the operator resolves the three forks (D1–D3); the DO-NOW trio can then proceed on defaults.
-2. **Three units are hard-gated** — WU8-fix, WU10, and WU11 touch the operator-owned advisor scorer track and its 193-row parity re-baseline; they stay PREP-only until the operator opens the lane, then co-land as one re-baseline event (with the 023 WU5 command-bridge unit that shares the same gate).
-3. **Parent metadata drift noted, not fixed** — the `999-sk-doc-parent/graph-metadata.json` still carries the pre-rename `skilled-agent-orchestration/125-sk-doc-parent` packet_id and 001–021 children_ids, while 022/023/024 self-identify as `sk-doc/999-sk-doc-parent/...`; this packet enrolls 024 (and the missing 022/023) in the current convention but leaves the stale prefix for the operator-gated reindex.
+1. **Gate-adjacent tranche deferred (WU8/10/11/12c) — a separate scoring event, not incomplete 024 work.** These four units change advisor scoring, so per ADR-002 they co-land with the operator-owned scorer lane and one 193-row parity re-baseline (plus the 023 WU5 command-bridge unit sharing the gate). As of close-out the gate has NOT fired: the scorer lane was mutated 2026-07-08 by the system-deep-loop rename closeout (`381729834a`, which recomputed `scorer-eval-baseline.json`), and the branch is diverged from origin. A Fable-5 verdict (2026-07-08) confirmed DEFER and that all four bugs are still live and were NOT absorbed by the rename — WU8 (`metadata-sanitizer.ts:60-68` still drops object entities, red-proven by its guard test), WU10 (`parent-hub-vocab-sync.cjs:113-118` first-match-wins prefix bug), WU11 (5 corpus rows still carry the dead `/deep:start-*-loop` ids), WU12c (`projection.ts:587` `docTierWeight(importance_tier)`).
+2. **PREP artifact staleness at execution time.** `references/wu11-dead-id-sequencing.md` still names the pre-rename `deep-loop-workflows/mode-registry.json` as the emit source (renamed to `system-deep-loop` on 2026-07-08, compat symlinks removed) and estimates "≈8 rows" where 5 now survive. The WU8 guard is self-refreshing (it is a test); the sequencing doc must be re-derived when the tranche executes. **Restated gate**: quiet operator-opened scorer lane + branch reconciled with origin + co-land with 023 WU5 + baseline recomputed once from the post-rename `corpusSha256`.
+3. **Parent metadata drift noted, not fixed** — the `999-sk-doc-parent/graph-metadata.json` still carries the pre-rename `skilled-agent-orchestration/125-sk-doc-parent` packet_id and 001–021 children_ids, while 022/023/024 self-identify as `sk-doc/999-sk-doc-parent/...`; left for the operator-gated reindex.
 <!-- /ANCHOR:limitations -->

@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/z_archive/101-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
-  "description": "MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented cli-openco",
+  "description": "MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented",
   "keywords": [
     "mimo-v2",
     "5-pro",
@@ -10,10 +10,9 @@
     "xiaomi-token-plan-ams",
     "invisible",
     "framework",
-    "documented",
-    "cli-openco"
+    "documented"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.160Z",
+  "lastUpdated": "2026-07-09T10:02:46.170Z",
   "specId": "001",
   "folderSlug": "mimo-provider-integration",
   "parentChain": [

@@ -21,9 +21,7 @@
       "secret redaction"
     ],
     "key_topics": [
-      "027",
       "phase",
-      "002",
       "feedback",
       "correctness",
       "auto-provenance",
@@ -32,7 +30,9 @@
       "manual-edge",
       "overwrite",
       "guard",
-      "retention-sweep"
+      "retention-sweep",
+      "tier",
+      "basement"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`../005-learning-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes",
     "created_at": "2026-05-11T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:13.596Z",
+    "last_save_at": "2026-07-09T10:02:55.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-11T00:00:00Z",
     "source_docs": [

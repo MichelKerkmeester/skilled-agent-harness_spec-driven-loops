@@ -3,6 +3,7 @@
   "packet_id": "skilled-agent-orchestration/z_archive",
   "spec_folder": "skilled-agent-orchestration/z_archive",
   "parent_id": "skilled-agent-orchestration",
+  "parent_id_review_required": true,
   "children_ids": [
     "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
     "skilled-agent-orchestration/z_archive/002-sk-git-github-mcp-integration",
@@ -106,20 +107,26 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "archive",
-      "cold-tier",
-      "container"
+      "packet",
+      "metadata",
+      "derived",
+      "canonical",
+      "spec",
+      "documents"
     ],
-    "importance_tier": "archived",
-    "status": "archived",
+    "importance_tier": "important",
+    "status": "planned",
     "key_files": [],
     "entities": [],
-    "causal_summary": "Hand-authored archived container node for cold-tier graph discoverability under skilled-agent-orchestration/z_archive; indexes 114 direct child folder(s), no canonical spec documents.",
+    "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-07-06T09:52:21.000Z",
-    "last_save_at": "2026-07-06T09:52:21.000Z",
+    "last_save_at": "2026-07-09T11:23:10.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
-    "source_doc_hashes": {}
+    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "source_doc_hashes": {},
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

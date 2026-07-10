@@ -22,9 +22,7 @@
       "031 007 001"
     ],
     "key_topics": [
-      "036",
       "phase",
-      "001",
       "contract",
       "compiler",
       "design",
@@ -32,11 +30,13 @@
       "tasks",
       "implementation",
       "summary",
-      "031",
-      "007"
+      "packet",
+      "command",
+      "carved",
+      "design-first"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Phase 001 of packet 036 (command contract compiler, carved from 035). Design-first: verify and expand the seed design (design.md, produced during the 035 phase-003 pass and grounded in the real /deep:review 14-file authority chain) into an implementable spec, resolving the three named unknowns — the OpenCode prompt-injection insertion point, checksum ownership over generated markdown, and CLI-executor receipt/progress parity under fan-out — then decompose the build and retrofit phases.",
     "created_at": "2026-07-03T17:04:53.763Z",
-    "last_save_at": "2026-07-05T06:46:09.481Z",
+    "last_save_at": "2026-07-09T10:02:47.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c13325061162d32ad5509de5b780bf6d2e7beafd5d2d5e4e8b70ba108d2b617",
+    "source_fingerprint": "sha256:a8f77b1d61df519402bb012eba4297a092de9d11ff0b153a0d6fe22ad28a7fe7",
     "source_doc_hashes": {
-      "spec.md": "4887ed5356ae6b9349e021d45606d758cbfba80f4889a9880ad6dd132bdec4bc",
-      "plan.md": "0c1388155150c5e0d5e8b73783d4d0f9e06a9bd4a29a64064d4701f78e4c7285",
-      "tasks.md": "0f4b15aafb844161d5aaaf09ac37b7e29a2311b7d55d4e3fa882844b2dff6681",
-      "implementation-summary.md": "533b7eba7a468927c6fc5f1909d2336cf653fa0b5636a5cd7f49076401abf732"
+      "spec.md": "15729b32941a8c62912de9c6cca751b35e6c750907a34b481e3bb376175463ca",
+      "plan.md": "533c759a8bc420261c4e02f9af13a0c894ef02ce3e35bb25769a895a23ba4b8b",
+      "tasks.md": "f932f41dd0004650571cf9ec6877b7ea61be7a3b8e520b40dda2d1033b2fcb65",
+      "implementation-summary.md": "846adcd4aee6d71f0e8154ec04debe8b2288daa70770baa0a4fb71a971ff1108"
     },
     "last_active_child_id": null,
     "last_active_at": null

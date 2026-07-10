@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`system-skill-advisor` already supports Claude, Gemini, Codex, and OpenCode prompt-time guidance, but Devin CLI has no explicit advisor hook registration",
     "created_at": "2026-05-15T13:05:18.133Z",
-    "last_save_at": "2026-07-07T11:48:30.586Z",
+    "last_save_at": "2026-07-09T10:02:49.966Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,17 +224,17 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:96133073ee8cc3327f80032769fc5e61d71f96199d2c864da1a732151a84a70f",
+    "source_fingerprint": "sha256:e49c8af1da45c04cd4bf7ead7cf6e88326d4c08e80117d3cebb6a9d2da663ca4",
     "source_doc_hashes": {
-      "spec.md": "ca8a118eff30968bb42258822a7f866627bdc4e67b1d8aa561c17843985a50c0",
-      "plan.md": "d8108331856b483b1278471ffaf3382f4134035f2980ba6cdfb6daed396a1930",
-      "tasks.md": "713be34982f057c23e6eca3cd843f4cb493543dedcd5f570b00ae04dc8f9e2ff",
-      "checklist.md": "52ddf3be448a676741bd883aa3d89403c86412c8f888c6d9f1810446ee953df2",
-      "decision-record.md": "96eb283c73f19cf2b96f912eeb1b6fb500bc8f60549197d2b41745dd1b2f37ca",
-      "implementation-summary.md": "2daa29eb078724b19ef10dceb9e5c73f2aa5c6e2edfb3f6e86323acc60c1ee79",
+      "spec.md": "f7dddd77d430425f0451197b472ffde87c957ae70bfa8f8fd2c54e35c1bdc94b",
+      "plan.md": "1931172ff6efc435cbe7c666cf122cceb2483476950fc3bdf8b9c5d8554b90cd",
+      "tasks.md": "d9a5396a8819ebf7bc9a18139cec35b9a8905d62ce1951b75285cfab489316b4",
+      "checklist.md": "d92cdc10a255a1d243688631b682f743ea640d6678d27656b41522a3e51622fd",
+      "decision-record.md": "2d09a608ae38df202cd970cd55253bd0cfc3a1ade49bd99b2ced232964a2c0f7",
+      "implementation-summary.md": "7c77887afbeab14ba1e44d3d521b823ec804970461fb8ae0d3d8edf92af63ef9",
       "research/research.md": "b47120f3449eddbca19578ce3175ebd92dfa9f91d4c000d5af5a065d12480ed7",
-      "handover.md": "09bc6a7f7a0413df84208505a92052f5c793d47298af274d29de1b8ef1a1ae61",
-      "resource-map.md": "98c1273d90fffa5b7a53e6446d170e8ef07a66f7d1e9d80f45fda6ffe7db12a3"
+      "handover.md": "52f221638f604d3026fec6bda9a720835ae1e5b090f2a92393860dd25288b86f",
+      "resource-map.md": "aa5b92361d243a8eb8604e19c1366812b8450c6ca28b40b0b412c7ecc5aa35ed"
     },
     "last_active_child_id": null,
     "last_active_at": null

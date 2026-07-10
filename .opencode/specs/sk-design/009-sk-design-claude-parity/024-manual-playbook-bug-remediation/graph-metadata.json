@@ -30,13 +30,13 @@
       "bug",
       "remediation",
       "phase",
-      "024",
       "sk-design",
       "mg-004",
       "authoring",
       "boundary",
-      "fix",
-      "real"
+      "real",
+      "bugs",
+      "plan"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 023's first-ever full manual execution of sk-design's `manualtestingplaybook` (56 real dispatches through `cli-opencode`, `openai/gpt-5.5-fast --variant medium`) produced a genuine `NOT READY` release verdict and catalogued 8 real bugs in `023-full-manual-playbook-execution/verdict-matrix.md`'s \"Real bugs found\" section — routing misses, a skipped ALWAYS-marked resource load, an unenforced excluded-alias rule, a router-precedence loss on a brief-only authoring-boundary scenario, an intake-before-routing violation, a weak-signal transform-verb prompt producing zero skill routing, and a",
     "created_at": "2026-07-07T19:18:48.068Z",
-    "last_save_at": "2026-07-07T19:21:31.997Z",
+    "last_save_at": "2026-07-09T10:02:44.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

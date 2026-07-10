@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/999-sk-doc-parent/008-create-feature-catalog",
+  "spec_folder": "sk-doc/999-sk-doc-parent/008-create-feature-catalog",
+  "parent_id": "sk-doc/999-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc create feature catalog",
+      "125 create feature catalog",
+      "sk-doc parent phase 008"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "feature",
+      "catalog",
+      "parent",
+      "phase",
+      "monolith",
+      "parent-hub",
+      "conversion",
+      "specification",
+      "create-feature-catalog",
+      "packet",
+      "template"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 008 of the sk-doc monolith to parent-hub conversion",
+    "created_at": "2026-07-06T06:30:35.405Z",
+    "last_save_at": "2026-07-09T10:02:44.711Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8935c27a373d915d4881bc22b93a4eeb10751bd8ac441856cc7798cffa195254",
+    "source_doc_hashes": {
+      "spec.md": "212d754452c7acfa7765f90e85027168a731a1d88810074278a3a51860dd6757"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

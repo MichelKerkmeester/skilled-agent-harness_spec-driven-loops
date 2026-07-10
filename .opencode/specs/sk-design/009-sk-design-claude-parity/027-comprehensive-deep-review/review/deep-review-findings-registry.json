@@ -1,0 +1,1078 @@
+{
+  "sessionId": "2026-07-09T05:15:59.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "IN_PROGRESS",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Standalone md-generator artifact writers bypass the central output boundary",
+      "file": null,
+      "line": null,
+      "description": "preview-gen.ts, proof.ts, and report-gen.ts can write generated artifacts to caller-supplied directories without validating the destination through the central spec-folder/sandbox output policy.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [
+        "preview-gen.ts",
+        "proof.ts",
+        "report-gen.ts",
+        "output-policy.ts",
+        "guided-run.ts"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Newer changelog files omit required version frontmatter",
+      "file": null,
+      "line": null,
+      "description": "Three changelog files do not carry the required YAML frontmatter version field.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003-001",
+      "severity": "P1",
+      "title": "Source-proof validation accepts proof-card paths without repository containment",
+      "file": null,
+      "line": null,
+      "description": "proof_check.py --require-source-proof validates source-proof rows by opening root / row[path] without rejecting absolute paths or .. traversal.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003-002",
+      "severity": "P1",
+      "title": "Live benchmark reports carry Mode-A caveats and PASS verdicts alongside P1 browser bottlenecks",
+      "file": null,
+      "line": null,
+      "description": "Live benchmark reports declare trace mode live but retain Mode-A unscored/need-live caveats and mark PASS while listing P1 browser bottlenecks.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-009-001",
+      "severity": "P1",
+      "title": "/design:foundations metadata omits the packet's required procedure-card surface",
+      "file": null,
+      "line": null,
+      "description": "The /design:foundations command metadata does not correctly reflect the packet's own procedures/ contract.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-010-001",
+      "severity": "P1",
+      "title": "/design:audit metadata omits the packet's required procedure-card surface",
+      "file": null,
+      "line": null,
+      "description": "/design:audit command metadata does not enumerate the design-audit procedure cards even though the packet makes procedure-card selection part of the runtime routing/proof contract.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-010-002",
+      "severity": "P1",
+      "title": "AI-fingerprint routing lists a JSON registry that its own loader rejects",
+      "file": null,
+      "line": null,
+      "description": "The documented anti-pattern resource loader cannot load the machine-checkable AI fingerprint registry it promises to load.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-010-003",
+      "severity": "P1",
+      "title": "Audit report template requires a Python deterministic check despite the audit mode forbidding Bash",
+      "file": null,
+      "line": null,
+      "description": "The design-audit packet tells report authors to run a deterministic Python check for performance evidence while the mode's tool surface and direct-fallback contract forbid Bash/command execution.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-011-001",
+      "severity": "P1",
+      "title": "/design:audit metadata omits the packet's procedure-card surface",
+      "file": null,
+      "line": null,
+      "description": "/design:audit command metadata does not reflect the packet's actual procedure-card surface even though the registry and packet contract make design-audit/procedures part of audit routing.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 11,
+      "lastSeen": 11,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 11,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-012-001",
+      "severity": "P1",
+      "title": "/design:motion metadata omits the packet's required procedure-card surface",
+      "file": null,
+      "line": null,
+      "description": "/design:motion command metadata does not enumerate the motion packet's own procedures surface even though the packet makes procedure-card selection part of the motion routing/proof contract.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "Motion packet has exactly one local procedure file and one shared procedure path referenced by SKILL.md; neither is named by /design:motion choreography.",
+      "affectedSurfaceHints": [
+        "/design:motion",
+        "command-metadata.json",
+        "design-motion/procedures",
+        "shared/procedures",
+        "procedure-card routing"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 12,
+      "lastSeen": 12,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 12,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-013-001",
+      "severity": "P1",
+      "title": "/design:motion command metadata omits the packet required procedure-card surface",
+      "file": ".opencode/skills/sk-design/command-metadata.json",
+      "line": 772,
+      "description": "The command projection can omit mandatory motion procedure-card selection/proof because it never names the procedures surface or a state-feedback task projection.",
+      "findingClass": null,
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 13,
+      "lastSeen": 13,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 13,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-016-001",
+      "severity": "P1",
+      "title": "sk-doc package check fails because design-md-generator/SKILL.md exceeds the skill word limit",
+      "file": null,
+      "line": null,
+      "description": "The required sk-doc structural checker fails this mode packet because SKILL.md is 5759 words against a 5000-word maximum.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 16,
+      "lastSeen": 16,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 16,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-019-001",
+      "severity": "P1",
+      "title": "command-metadata.json systematically omits workflow procedure-card surfaces",
+      "file": null,
+      "line": null,
+      "description": "The command metadata projection pattern omits every command-backed workflow mode's declared proceduresPath, so /design:* command choreography can drift from the procedure-card routing/proof contract.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 19,
+      "lastSeen": 19,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 19,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "correctness-security-design-interface",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "README still says every multi-mode request stays at the hub for disambiguation",
+      "file": ".opencode/skills/sk-design/README.md",
+      "line": null,
+      "description": "Update README wording to distinguish ambiguous multi-mode prompts from clearly separate axes that route to an ordered bundle.",
+      "findingClass": "instance-only",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "Graph metadata derived retrieval facets omit the Open Design transport despite the current six-mode hub",
+      "file": ".opencode/skills/sk-design/graph-metadata.json",
+      "line": null,
+      "description": "Refresh graph metadata derived trigger_phrases and key_topics so retrieval facets include design-mcp-open-design and transport-axis terms.",
+      "findingClass": "instance-only",
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007-001",
+      "severity": "P2",
+      "title": "design-interface SKILL.md exceeds the sk-doc package size recommendation",
+      "file": null,
+      "line": null,
+      "description": "Move non-routing explanatory detail into packet references while preserving runtime-critical routing and rules.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "package check warning is isolated to design-interface/SKILL.md",
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007-002",
+      "severity": "P2",
+      "title": "Smart-router block lacks the sk-doc marker functions expected by the package checker",
+      "file": null,
+      "line": null,
+      "description": "Add the expected smart-router marker scaffold or update the checker/template contract if the compact parseable model is intentional.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "grep found no discover_markdown_resources, _guard_in_skill, or UNKNOWN_FALLBACK in design-interface/SKILL.md",
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007-003",
+      "severity": "P2",
+      "title": "Transform-application guidance is orphaned from the router and /design:interface command projection",
+      "file": null,
+      "line": null,
+      "description": "Wire transform_application.md into the relevant interface transform intent/resource map and command projection reference sources, or delete/merge it if other references are canonical.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "grep for transform_application|bolder|quieter|distill|delight|clarify under design-interface found transform_application.md and generic SKILL routing text, but no RESOURCE_MAP linkage to transform_application.md.",
+      "affectedSurfaceHints": [
+        "transformVerbRouting",
+        "/design:interface taskProjections",
+        "design-interface RESOURCE_MAP",
+        "transform_application.md"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-009-001",
+      "severity": "P2",
+      "title": "package_skill.py --check warns that SKILL.md exceeds the recommended size budget",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-009-002",
+      "severity": "P2",
+      "title": "Two script-backed validators are not discoverable from SKILL.md or the packet procedures",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-010-004",
+      "severity": "P2",
+      "title": "Procedure cards use broken sibling-mode relative links",
+      "file": null,
+      "line": null,
+      "description": "Two design-audit procedure cards point at sibling mode procedures with ../design-* paths that resolve under design-audit/ rather than to sibling packets.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-011-001",
+      "severity": "P2",
+      "title": "package_skill.py --check warns that design-audit/SKILL.md exceeds the recommended size budget",
+      "file": null,
+      "line": null,
+      "description": "Move non-routing explanatory detail into packet references while preserving runtime-critical routing and procedure selection.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 11,
+      "lastSeen": 11,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 11,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-014-001",
+      "severity": "P2",
+      "title": "Secondary docs flatten guarded design-feeding reads into always-safe reads",
+      "file": ".opencode/skills/sk-design/design-mcp-open-design/feature_catalog/feature_catalog.md",
+      "line": null,
+      "description": "Separate pure transport reads from design-feeding reads and replace always-safe wording with write-safe but design-gated wording.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Primary SKILL.md and later catalog sections preserve the hard sk-design pairing, so this is secondary-doc ambiguity rather than a runtime-contract failure.",
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 14,
+      "lastSeen": 14,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 14,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-016-001",
+      "severity": "P2",
+      "title": "Backend docs and lockfile claim a design-system-extractor bin that package.json no longer declares",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 16,
+      "lastSeen": 16,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 16,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-016-002",
+      "severity": "P2",
+      "title": "guided-run.ts is executable and tested but missing from the documented/package entrypoint surface",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 16,
+      "lastSeen": 16,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 16,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-018-001",
+      "severity": "P2",
+      "title": "Public-URL crawl boundary is documented but not enforced by the wrapper or extractor",
+      "file": null,
+      "line": null,
+      "description": "The packet documents that extraction works only on publicly accessible URLs, but guided-run.ts and extract.ts validate output location, not the URL trust boundary, before launching Playwright.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "The gap crosses guided-run wrapper and direct extract CLI; config scan found no .env-like secret file or checked-in credentials.",
+      "affectedSurfaceHints": [
+        "guided-run.ts",
+        "extract.ts",
+        "crawl.ts",
+        "README.md",
+        "INSTALL_GUIDE.md"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 18,
+      "lastSeen": 18,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 18,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-020-001",
+      "severity": "P2",
+      "title": "Open Design transport packet exceeds the recommended SKILL.md size budget",
+      "file": null,
+      "line": null,
+      "description": "package_skill.py --check warns that design-mcp-open-design/SKILL.md is 3935 words against the recommended 3000-word budget.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Warning isolated to design-mcp-open-design package check; checker returned Result: PASS.",
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 20,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 20,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-020-002",
+      "severity": "P2",
+      "title": "Open Design transport changelog entries omit required version frontmatter",
+      "file": null,
+      "line": null,
+      "description": "package_skill.py --check warns that six design-mcp-open-design/changelog files are missing a version frontmatter field.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "Fresh checker output names exactly these six docs and returns Result: PASS, so this is advisory structural debt.",
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 20,
+      "lastSeen": 20,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 20,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "correctness-security-design-interface",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 17,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Newer changelog files omit required version frontmatter",
+      "file": null,
+      "line": null,
+      "description": "Three changelog files do not carry the required YAML frontmatter version field.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "correctness-security-design-interface",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 17,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Newer changelog files omit required version frontmatter",
+      "file": null,
+      "line": null,
+      "description": "Three changelog files do not carry the required YAML frontmatter version field.",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "correctness-security-design-interface",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 17,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 14,
+    "P2": 16
+  },
+  "openFindingsCount": 30,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.8,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -1,22 +1,21 @@
 {
-  "specFolder": "system-spec-kit/z_archive/006-generate-context-subfolder",
+  "specFolder": "system-speckit/z_archive/006-generate-context-subfolder",
   "description": "This archived folder captures work that added subfolder support to generate-context behavior",
   "keywords": [
     "archived",
     "folder",
     "captures",
     "work",
-    "added",
     "subfolder",
     "support",
     "generate-context",
     "behavior"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.443Z",
+  "lastUpdated": "2026-07-09T10:02:57.491Z",
   "specId": "006",
   "folderSlug": "generate-context-subfolder",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

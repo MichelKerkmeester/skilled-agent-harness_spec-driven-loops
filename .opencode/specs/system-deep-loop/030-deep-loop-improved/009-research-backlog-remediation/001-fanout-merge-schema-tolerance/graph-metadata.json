@@ -37,26 +37,12 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "fanout-merge.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-merge.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,7 +172,7 @@
     ],
     "causal_summary": "`.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:472` — `mergeResearchRegistries` does `if (!registry || !Array.isArray(registry.keyFindings)) continue;`",
     "created_at": "2026-07-01T06:22:13.241Z",
-    "last_save_at": "2026-07-04T18:02:23.245Z",
+    "last_save_at": "2026-07-09T10:02:47.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +181,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec8f97a062de2fee19d5aa33e28bcab541f11e0ccdde966dd567008abbccda14",
+    "source_fingerprint": "sha256:0da700b7fd23ac0d82369532d2f6d3014b5c4544d6c41d0e97b94d1b09c9ee96",
     "source_doc_hashes": {
-      "spec.md": "dc6c66e6076c0392f4acffac9dc9960532a0223a56591c372addc018145ebdbd",
-      "plan.md": "4a9e49432dfdd4b0449e5ce22b9a58173dabd29daac20dff9b98367c6a631c45",
-      "tasks.md": "573a67824e48a48b05afbe086ca7133d53719f13ce45dbcdbcedd8c56000903b",
-      "implementation-summary.md": "82611b20869e21a031bd496851f0c4e67eec553b30c60000c41dc4dd2edde757"
+      "spec.md": "7acb63344f9779d4fa9fb4c8e4ee7931696c06b5a1bc517cb1a875b13265c16c",
+      "plan.md": "f0b8d5bff8b701de4986a226455b398a97bfb5689fb14b3b06c2774363d24ae4",
+      "tasks.md": "284d8ffa999b87d028e3d3d054c8220181dc783cecf7e78876d6e3e4aee24801",
+      "implementation-summary.md": "4d37a988a952a43f214bf9f8ad10fe5501d5f8cbe1463b5a87f9255a527cc390"
     },
     "last_active_child_id": null,
     "last_active_at": null

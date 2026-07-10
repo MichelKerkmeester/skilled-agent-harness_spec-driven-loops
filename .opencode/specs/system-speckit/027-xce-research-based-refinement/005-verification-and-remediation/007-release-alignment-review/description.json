@@ -1,10 +1,9 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
   "description": "Phase-parent for the 027 release-alignment program: a 36-seat gpt-5.5-fast review of every README vs current reality and all OpenCode-surface code vs",
   "keywords": [
     "phase-parent",
-    "027",
     "release-alignment",
     "program",
     "36-seat",
@@ -18,11 +17,11 @@
     "opencode-surface",
     "code"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.024Z",
+  "lastUpdated": "2026-07-09T10:02:55.917Z",
   "specId": "007",
   "folderSlug": "release-alignment-review",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation"
   ],

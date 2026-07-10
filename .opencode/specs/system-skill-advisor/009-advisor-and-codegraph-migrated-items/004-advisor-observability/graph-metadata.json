@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The advisor already computes scorer evidence internally (`lib/scorer/types.ts:80-87`) but strips it at output, so the public `laneBreakdown` exposes only numeric lane fields and Gate 2 routing decisions are hard to debug (`handlers/advisor-recommend.ts:177-184`)",
     "created_at": "2026-06-10T19:24:08Z",
-    "last_save_at": "2026-07-07T11:58:28.751Z",
+    "last_save_at": "2026-07-09T10:02:50.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a01c78d0830125282b05148d70f8c12f331b77cb03662d44f3c49aa67ff8227d",
+    "source_fingerprint": "sha256:57924c1d4a9632883a40c67798924bb3e0476fd218a823c06ace438dff3584cd",
     "source_doc_hashes": {
-      "spec.md": "8ce59b0f104b2ee80a79bdeaef03c61d306e41ba8aefff9cfca4e5a5e4972c3d",
-      "plan.md": "e5a3c05cde8d32e17967c98fbfb00fc45b3ea6be2e108a905869aa0e36d6b502",
-      "tasks.md": "c82a244f0865058fab65596b51213167ba8d32dc1ba20a560642e466d700a038",
-      "implementation-summary.md": "5065f23efd8b80f9846dd2f1060b70303d90a3f8670b41dbe69c743d29fa505f"
+      "spec.md": "75fb41507c60f7b51086cae5644ccbc7fe2bf3c1eabe6528bfea04f3bd86610c",
+      "plan.md": "45f0ebe09758b528125459661a87a61fd61323bae0baee6a9bbb9c98cb20e332",
+      "tasks.md": "a86c8d28789f19bb98ea754169311d0bbeeed9e34022f54098e15d8546631459",
+      "implementation-summary.md": "6840d1515415a3f3d9eed3e7006ad6df43938696e63a123ca4a547e72ec1b4e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

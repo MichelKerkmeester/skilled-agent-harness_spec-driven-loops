@@ -19,18 +19,18 @@
       "074 summary"
     ],
     "key_topics": [
-      "074",
       "test-alignment-validator-esm-migration",
       "esm",
       "test",
-      "fix",
       "plan",
       "tasks",
       "summary",
       "packet",
-      "073",
       "deferred",
-      "test-alignment-validator"
+      "test-alignment-validator",
+      "commonjs",
+      "require",
+      "scripts"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Packet 073 deferred Fix #1: `test-alignment-validator.js` uses CommonJS `require()`, but `scripts/package.json` declares `\"type\":\"module\"`",
     "created_at": "2026-05-05T15:20:01Z",
-    "last_save_at": "2026-06-23T03:49:49.811Z",
+    "last_save_at": "2026-07-09T10:02:45.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc13d9657b31479bd94a4e8f14367ee1d3b6fd453b5db4e4139443299692422d",
+    "source_fingerprint": "sha256:62d6523242c2ca118b61ea8d1f11bf55ffa79f254fdc8442743f042d8c99d9dc",
     "source_doc_hashes": {
-      "spec.md": "0ce950179987238efbe2cd67da3643a83b95fa6b3c5ac459d98731663243eef3",
-      "plan.md": "fe6ecceaa748b33fcd60f8e873da39832769d779dee2481602f277e6c5eef9a4",
-      "tasks.md": "d6415452ac278b5f55bc0a67ab016610e7e21dd79d8042879bedf2046a13be6d",
-      "implementation-summary.md": "e667b8d569ea1607c59e696739416bf877cdeed8e447ce5f1300ec15ae1f17ba"
+      "spec.md": "07b3347cc4089d3dd5db4e9e75f59ff0ba367eaeb3290e0ba0ed55a0c2bd3b01",
+      "plan.md": "d90e771b8fa15392924469191953a67b1e43365be925d6ea0a08d0a07c37a3d2",
+      "tasks.md": "b037bb03f279c90e926101157dc6dc39951afd856fcf4bad3df822788802383b",
+      "implementation-summary.md": "0f512a50fe190b2b8a1073d7dcc9d18c8653ace9aa1487441e57bb0a50b6bece"
     },
     "last_active_child_id": null,
     "last_active_at": null

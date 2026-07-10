@@ -26,7 +26,6 @@
       "classifier RPC summary"
     ],
     "key_topics": [
-      "021",
       "codegraph",
       "rpc",
       "surface",
@@ -37,7 +36,8 @@
       "intent",
       "replace",
       "spec-kit",
-      "classifier"
+      "classifier",
+      "shim"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Packet 020 removed direct source imports from system-spec-kit to system-code-graph, but `classifyQueryIntent()` had no MCP surface to call",
     "created_at": "2026-05-15T09:15:19Z",
-    "last_save_at": "2026-07-02T05:31:11.166Z",
+    "last_save_at": "2026-07-09T10:02:49.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-15T09:20:31Z",
     "source_docs": [
@@ -214,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc4ac0a64eae9d1440a631be1ca655c8e9150ea87a7cae293b5ea2aed95e282d",
+    "source_fingerprint": "sha256:385f12ab83a026d28871ab7f3d5b2edb7e35f106dea81305f425d39169ff3b56",
     "source_doc_hashes": {
-      "spec.md": "fbf70b68b2fa7952e59b8b73cc16936f0c48111961ab6da3e5ce006a9c59b3a5",
-      "plan.md": "71540fc44a5bbb11e6f4ee130713f0ad80c985c751080ac11846d28e2673b714",
-      "tasks.md": "be140a2123e6bb047435f0405e3ea60adf4b210d652430897e08910475c391de",
-      "checklist.md": "279a2fff42c5de00d03eda603f39643949c165bc28e45c1ee4ff162fa1ff8da7",
-      "implementation-summary.md": "9764f228252229f9210a2970d4ee0ab6809ffd2a0f074e19fed774f02bf17927"
+      "spec.md": "8ac125a98c7aa45e7abdc48df56d8ee0ebc93438c5112f676a76e22904919cb0",
+      "plan.md": "968711f42416b3b2ca55fdb38ef4c9af3e2bd39ac0f7e81194d467aeb18216ae",
+      "tasks.md": "c91510df13ecb3c7cc7b9b8830b101470ce5be31384177c9bcd5354e6c5f5b08",
+      "checklist.md": "88f5b4022096d4ddcf0628daab4cf7b0256b42d37a21925106bcb047002e748e",
+      "implementation-summary.md": "a99d4361cece463031d66adcf216c6b0f482e639281b2c5a0788c693d323ff74"
     },
     "last_active_child_id": null,
     "last_active_at": null

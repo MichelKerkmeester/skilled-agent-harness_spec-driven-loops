@@ -17,7 +17,6 @@
       "deep review remediation"
     ],
     "key_topics": [
-      "067",
       "phase",
       "remediation",
       "deep",
@@ -28,11 +27,13 @@
       "commits",
       "across",
       "repos",
-      "functional"
+      "functional",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/z_archive/053-mcp-figma-transfer/004-deep-review-remediation/job3-report.md",
       ".opencode/skills/README.md",
       "plan.md",
       "tasks.md",
@@ -41,6 +42,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "job3-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/053-mcp-figma-transfer/004-deep-review-remediation/job3-report.md",
+        "source": "derived"
+      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Phase",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 067-mcp-figma-transfer packet shipped 7 commits across 3 repos with functional implementation work, but follow-up commits (`66e1e87`, `766206b`, `b03bf7563`, `bdb739d97`) introduced state changes that were not propagated into formal phase docs",
     "created_at": "2026-05-05T12:50:00Z",
-    "last_save_at": "2026-06-23T03:49:49.617Z",
+    "last_save_at": "2026-07-09T10:02:45.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a47b77699e6ff775dbd70f0e2ab72752723871e8ca8c18216a9cedaca4edaa6c",
+    "source_fingerprint": "sha256:d15d02b2289323f63acfc70df2348c83d7a74339167c5b6d54199aebb4de0ab9",
     "source_doc_hashes": {
-      "spec.md": "b3e18a9c471c906ec100c41eac40b45519e6af3ddb4c4730d49863f157bf56d9",
-      "plan.md": "32c8825524f2a7e46bf7f67738753b62328de6f4b978daa656ebc640dc97b8f5",
-      "tasks.md": "e44ce0c0e2c27e041eed69991d0e44cc839963894eb59280f4e4263704084051",
-      "checklist.md": "8aeb240fa390f25a4411c8b219ef1bb888df8dd583b108ca487dc404b4890348",
-      "implementation-summary.md": "a3951cba168cd237955bc922b564a678a603370781e2bdf746d4296412040346"
+      "spec.md": "cb3e60256c08337f67b1ef874e0ea65420d2b151c8a74b247ab8edda66e174db",
+      "plan.md": "86a48c4965fd4e603440391890d275a0451aca405654792526acaf6ccaeb9541",
+      "tasks.md": "7b26a32fbaf613c58eedeb3f4136f045a910c1ac0da028a8a20d19b26e710539",
+      "checklist.md": "c430f275ea0c16dd039e3de809047c776eafdffb175d672de49aa59fb32b88d8",
+      "implementation-summary.md": "85a7e93ffa14e79b0fed8ee51c89a256f53dd414a4fcf2fea8773dde58f52af8"
     },
     "last_active_child_id": null,
     "last_active_at": null

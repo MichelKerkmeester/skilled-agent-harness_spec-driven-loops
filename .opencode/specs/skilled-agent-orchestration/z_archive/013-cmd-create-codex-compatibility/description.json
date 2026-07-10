@@ -7,13 +7,12 @@
     "agent",
     "routing",
     "metadata",
-    "create",
     "command",
     "files",
     "three",
     "ways"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.951Z",
+  "lastUpdated": "2026-07-09T10:02:45.208Z",
   "specId": "013",
   "folderSlug": "cmd-create-codex-compatibility",
   "parentChain": [

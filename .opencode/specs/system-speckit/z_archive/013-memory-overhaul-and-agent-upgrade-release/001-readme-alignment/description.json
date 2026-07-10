@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/001-readme-alignment",
-  "description": "Audit every README.md file in the `.opencode/` directory tree to ensure all statistics, feature descriptions, version numbers, and cross-references re",
+  "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/001-readme-alignment",
+  "description": "Audit every README.md file in the `.opencode/` directory tree to ensure all statistics, feature descriptions, version numbers, and cross-references",
   "keywords": [
     "audit",
     "every",
@@ -17,11 +17,11 @@
     "numbers",
     "cross-references"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.495Z",
+  "lastUpdated": "2026-07-09T10:02:57.539Z",
   "specId": "001",
   "folderSlug": "readme-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "013-memory-overhaul-and-agent-upgrade-release"
   ],

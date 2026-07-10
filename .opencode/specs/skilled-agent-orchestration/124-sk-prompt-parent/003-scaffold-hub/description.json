@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/124-sk-prompt-parent/003-scaffold-hub",
+  "description": "No parent-hub skeleton exists yet for the approved `sk-prompt` merge",
+  "keywords": [
+    "parent-hub",
+    "skeleton",
+    "exists",
+    "approved",
+    "sk-prompt",
+    "merge"
+  ],
+  "lastUpdated": "2026-07-09T15:11:57.841Z",
+  "specId": "003",
+  "folderSlug": "scaffold-hub",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "124-sk-prompt-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Child 001 wires the cosine lane shadow-only",
     "created_at": "2026-05-13T19:30:00Z",
-    "last_save_at": "2026-07-02T05:31:11.214Z",
+    "last_save_at": "2026-07-09T10:02:49.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T19:30:00Z",
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d2be1cd67afee2838e14d274da80de895b8a18d24b14a116761d8f02a3a18cc",
+    "source_fingerprint": "sha256:3f5b37b385ac370570cfa5b6efeeed5f765c97a18f9d3002ab39cbb4c83c93e4",
     "source_doc_hashes": {
-      "spec.md": "2b38c1afe4511b793181c445975622a3bebb909c8ded197f135a601f21dc92ba",
-      "plan.md": "c8f781557e91b51446e5c3ee02e0f458305d5262550298e0f6fa6d3576b6ec0e",
-      "tasks.md": "0806ed4824ed2f77cb0ec38a6e10a732bd81db7e9e45e8692c327214d0d0230f",
-      "checklist.md": "ab5c571694d951fc438927e4a2ac18af594958bfd0547be55bbbb64d1eeb76f7",
-      "decision-record.md": "f0a5041d2559a783323165b365e0b67df4667c759a6c3201cffac0f06a0ce731",
-      "implementation-summary.md": "8c1fb03a392956463359fe29a3563b082dab399c89a31c7dbe9dd0c8fcbf82d2"
+      "spec.md": "334ab5006c0fc674fd02c12a7c0fdc47135d795fec42c0a23ddecebb5dc16f45",
+      "plan.md": "141451a6452e89bd3940d4d661a3a1e36287efe935605a33c1fd81d543a96f20",
+      "tasks.md": "8f5344fd6a3ca88e335187204ea01a5cda92d5fec92683be131b69e1cc7f0c13",
+      "checklist.md": "ed991778a44a1888c6e6116e87ed2ba7145bb7f71ab75e5a1a01967836073118",
+      "decision-record.md": "708f1c6bb0a7435516179c705039d7d12e7b0e63d3a9e1dc3c270df0f8387c99",
+      "implementation-summary.md": "30abdd3b5e8858774110ee3e418842962393cee18e257868ac1cba82556429e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

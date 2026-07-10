@@ -35,7 +35,7 @@
       "playbook",
       "filename",
       "convention",
-      "133"
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The sk-doc creation standards and templates mandate a globally-sequential numeric prefix on per-feature snippet filenames (`NNN-feature-name.md`)",
     "created_at": "2026-06-06T06:46:12.384Z",
-    "last_save_at": "2026-07-07T17:13:15.432Z",
+    "last_save_at": "2026-07-09T10:02:44.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5eee3fa902ad174f1f868f6c48254d57760509b3ae2e93f95ce25a29bd7166f8",
+    "source_fingerprint": "sha256:8c2240332e9e926692cafacd40d923e638af01f4e23512a30197ff72c6091274",
     "source_doc_hashes": {
       "spec.md": "cd2fff8ab422cb88a1f33c868951a8fe95c9ff67ac37b101d27a57bac14a2c07",
       "plan.md": "2fc593a719d4842d45239db1a96b675aa060772174514d345cd54687233f1038",
       "tasks.md": "16ad5fb222ecbcf7818d1b5ee337619dec99008fd96263dd0ac28a873f2f5587",
       "checklist.md": "98584545c2f0e85e9a95bc5e891972cd374d43649f853aa051d72993609ecb08",
-      "implementation-summary.md": "b3dbfc03dfb746387bc8f8279703697554061f1d23d7f9f88ccc687e4490089d"
+      "implementation-summary.md": "b062a227d29e0d9b6ac7e25564a507b56cd10042230c9827353ef63a7f0d7d34"
     },
     "last_active_child_id": null,
     "last_active_at": null

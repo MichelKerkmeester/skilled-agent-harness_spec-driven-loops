@@ -3,7 +3,6 @@
   "description": "Phase 005 proved the Motion.dev peer-reference architecture works on the majority path, but the matrix still returned CONDITIONAL because two critical",
   "keywords": [
     "phase",
-    "005",
     "proved",
     "motion",
     "dev",
@@ -20,7 +19,7 @@
     "two",
     "critical"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.625Z",
+  "lastUpdated": "2026-07-09T10:02:44.322Z",
   "specId": "006",
   "folderSlug": "routing-precision-fixes",
   "parentChain": [

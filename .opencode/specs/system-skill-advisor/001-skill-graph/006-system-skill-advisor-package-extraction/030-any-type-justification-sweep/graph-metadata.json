@@ -20,7 +20,6 @@
       "implementation summary"
     ],
     "key_topics": [
-      "030",
       "type",
       "justification",
       "sweep",
@@ -31,7 +30,8 @@
       "checklist",
       "implementation",
       "summary",
-      "packet"
+      "packet",
+      "recorded"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Packet 026 recorded unresolved sk-code violations after the README coverage sweep",
     "created_at": "2026-05-15T11:56:28Z",
-    "last_save_at": "2026-07-02T05:31:11.192Z",
+    "last_save_at": "2026-07-09T10:02:49.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a85024c45555da8af16acd5f4c3d33c20cbd26354048a67b96b77cf85b83185d",
+    "source_fingerprint": "sha256:84f3b366e24bddfc2b4bc961c6b9405de3b444941402505405f5ef82a2a274c6",
     "source_doc_hashes": {
-      "spec.md": "bc83cb15c5b7de5efe9a83dccac0881b22ed3a186067a7009dc1d00c3e4b80dc",
-      "plan.md": "3fc054c5da72c646d2e5df7e97177e22f54852eb0abdb52553c419d33fcf13f2",
-      "tasks.md": "10a6bdbd3ecb0a26e7834284dedc0544f34014a008c3ef9c6e5090d6f76c0ee6",
-      "checklist.md": "428b3ad2d1aba007d71e479b070c544633dcaad55b3983e65b64be8e2a699bcf",
-      "implementation-summary.md": "f75f6cbf5cac8d7112713aae8311c231972e9c3246dc4f8dcfc614f6fe296845"
+      "spec.md": "fcbd6d2892909d10532442237731f42b322aa0c9ab5178f397f84fcd2cc6fe20",
+      "plan.md": "a6b1e981d4b41adf5cb8af046314056c24b62b3b279b14968004b36f08c1b3e2",
+      "tasks.md": "30b164b8bfb7544736e2be6af5aa1e2acffa1564e49841a221a5be6ba44ef2fd",
+      "checklist.md": "8e879a8386b4a764345f12a6387f98018ace7ca10c290bc80f9f77c2ad784861",
+      "implementation-summary.md": "9aa85d139b155bc6b603ece25bd93f994711feedd455809237bc30a2bb75e004"
     },
     "last_active_child_id": null,
     "last_active_at": null

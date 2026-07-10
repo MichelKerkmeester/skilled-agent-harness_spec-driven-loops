@@ -62,7 +62,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 ## 3. TEST EXECUTION
 
-Run this scenario through the Phase 005 universal prompt using `SCENARIO_ID=CS-006`.
+Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-006`.
 
 Evidence files:
 - `/tmp/skc-CS-006-<cli>.txt`

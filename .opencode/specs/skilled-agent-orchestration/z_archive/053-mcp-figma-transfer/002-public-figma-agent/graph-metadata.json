@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 1 produced an internal-team-framed Barter Figma agent (commit 690b498 with 16 files, ~234K markdown)",
     "created_at": "2026-05-05T07:49:58Z",
-    "last_save_at": "2026-06-23T03:49:49.604Z",
+    "last_save_at": "2026-07-09T10:02:45.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af1a3c4bfdee0e599d04b66c01f3d1ead8472af0c70147d2e957df3dfdcc1fe8",
+    "source_fingerprint": "sha256:7e4d02e4bf49d926aada4ffd420906f9d37004517ff556e9e705fbadd883b769",
     "source_doc_hashes": {
-      "spec.md": "df242b609fcf5c2d34ba7347fe1c5bba9846fa77e9f5d92e7de0f8a0cac856ff",
-      "plan.md": "d2b9a439f18bab515c8c63369b8494db0f58ba43341725db590fec710c5255e9",
-      "tasks.md": "71d43301efb8a6f2f6c4cc55c0aed6d4a730f42a56a5cd4d7c038182b2c384e1",
-      "checklist.md": "e3130ef93eb2e4a1fc474595f1c48bffcd07804e672f796a170482d8469ebd79",
-      "decision-record.md": "9f38d62661ead0b884a3fe353696186af5cc469823daf336f497d5713d8b4782",
-      "implementation-summary.md": "2f523ab0379fdc7547f9043cce69035e08eb73eaf54ffce1d51ecf163915142f"
+      "spec.md": "11673506a5eab316146144797a358bee3f1553a0a78dd52ced8280e35959df19",
+      "plan.md": "b6e32e0ec2242492da1e6e8265b7dc368ba9d58b49a89242d8ac0ecad49522b6",
+      "tasks.md": "0d64f1c52024d7496ac4883d1094a0d42d6a5e96550e366ce8bdedc710e4a8c5",
+      "checklist.md": "4dd0be9fcd393de5e3239190e10cb352046852c2102b144aeb916381f24782e4",
+      "decision-record.md": "625443804931a094b69dbee855a26e8687a9ebe6f702cd0ffa9db6a8f4c4d13f",
+      "implementation-summary.md": "814df478ac531964c2c24edb120a13a42b90f056c692caeb6769062393d7165a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -29,18 +29,19 @@
       "manual",
       "testing",
       "phase",
-      "002",
       "spec",
       "kit",
       "memory",
       "tests",
       "hybrid",
       "rag",
-      "fusion"
+      "fusion",
+      "playbook"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "lib/storage/history.ts",
       "tasks.md",
       "checklist.md",
@@ -56,10 +57,15 @@
       "mcp_server/lib/storage/transaction-manager.ts",
       "mcp_server/lib/storage/history.ts",
       "mcp_server/schemas/tool-input-schemas.ts",
-      "spec.md",
       "plan.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "history.ts",
         "kind": "code",
@@ -145,12 +151,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The mutation feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
     "created_at": "2026-04-12T09:02:50.290Z",
-    "last_save_at": "2026-06-23T03:50:00.224Z",
+    "last_save_at": "2026-07-09T10:02:58.396Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

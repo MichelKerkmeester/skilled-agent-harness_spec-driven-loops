@@ -46,101 +46,17 @@
       "signal",
       "loop",
       "resilience",
-      "002",
       "core",
-      "library"
+      "library",
+      "scripts"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "atomic-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "loop-lock.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/loop-lock.ts",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sleep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-taxonomy.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "jsonl-repair.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/jsonl-repair.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-dispatch-validate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-signals.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-query.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-query.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fallback-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts",
-        "source": "derived"
-      },
       {
         "name": "deep_research_auto.yaml",
         "kind": "config",
@@ -192,15 +108,15 @@
     ],
     "causal_summary": "The deep-loop-runtime core library and scripts carry known structural gaps across four dimensions: (1) resilience — atomic state writes are unguarded for integrity and redundancy, the loop lock has no heartbeat during long dispatch, and there is no crash-resume for killed wait-boundary processes; (2) convergence quality — the convergence signal has no improvement-effect delta, no observation-threshold guard, and no time-decay on stale evidence; (3) observability — log transcript navigation requires full-file scanning and there is no byte-offset indexing; (4) robustness — the fallback router",
     "created_at": "2026-06-28T14:00:34Z",
-    "last_save_at": "2026-07-04T18:02:07.953Z",
+    "last_save_at": "2026-07-09T10:02:47.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6224b0206a11bc18cdd3686e193dfbf549ec0e1d91b77f5393eef72b25bdfcf5",
+    "source_fingerprint": "sha256:a114b598743a30ae23e4aa2aa8e54aea50bcbddb3f1e1db5a1172ac76efb1918",
     "source_doc_hashes": {
-      "spec.md": "db0bdb0c68988ecfb34410368bee81a0a74f70d70095bd36d6957ea5bd3a5899"
+      "spec.md": "4e04706dfd16e0a99d4f8be629d1c47a3ffd0340b2deb7db92604562cf79dad2"
     },
     "last_active_child_id": null,
     "last_active_at": null

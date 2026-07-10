@@ -29,14 +29,14 @@
       "catalogs",
       "rollup",
       "umbrella",
-      "026",
       "feature",
       "catalog",
       "readme",
       "capability",
       "sync",
       "plan",
-      "gap"
+      "gap",
+      "analysis"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Spec 026 shipped capabilities across 8 tracks over months",
     "created_at": "2026-04-25T10:48:09.975Z",
-    "last_save_at": "2026-07-02T05:31:10.922Z",
+    "last_save_at": "2026-07-09T10:02:51.553Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

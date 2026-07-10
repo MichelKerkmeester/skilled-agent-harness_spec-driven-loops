@@ -39,13 +39,9 @@
       "load-bearing"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
       ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
-      ".opencode/skills/deep-loop-runtime/tests/unit/evidence-contract.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -55,33 +51,9 @@
     ],
     "entities": [
       {
-        "name": "evidence-contract.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/evidence-contract.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-dispatch-validate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/post-dispatch-validate.ts",
-        "source": "derived"
-      },
-      {
         "name": "agent-io-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence-contract.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/evidence-contract.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-dispatch-validate.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/post-dispatch-validate.vitest.ts",
         "source": "derived"
       },
       {
@@ -197,11 +169,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Load-bearing claims at the dispatch boundary carry their proof in free prose, so nothing forces a claim to name its class, what would confirm it, the gate delta it produced, the scope it touched, or whether a child agent's result was verified",
     "created_at": "2026-06-15T14:06:40Z",
-    "last_save_at": "2026-06-23T03:49:48.527Z",
+    "last_save_at": "2026-07-09T10:02:46.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fff988aa292b7c3792996ee5fd23bc89d67d853cd7bfc6334e27d005f80bb3c",
+    "source_fingerprint": "sha256:a7cace453333e499084b4aae023adbd38d697934b4d79cd04bfb051417ac1b95",
     "source_doc_hashes": {
       "spec.md": "488945783a0f6f5e1ad094f35989932eb6c4c3023b40ad26942d6f84e78514d1",
       "plan.md": "0baa6ebe8316fac7555cdf5962c63bd056c6a634e3c61582ba1d2b2e808fa471",
       "tasks.md": "bd4b98323e80990ae725e8754bf8a8ba40db099fe7e12ad3f4617dcf1a5e47b3",
       "checklist.md": "8f1b9d84b0e0663391eaa5299ff7009bd107269d77a4cc63d8668ad0af287751",
       "decision-record.md": "d7b76ed54a284d30ce6d3aa8c8d4f690dfcc560f8389f5424d678da321943ac9",
-      "implementation-summary.md": "947d9e67d2bbd0da74508e83c13cfa0d03d4f338aa1fd3733655a240e09c0572"
+      "implementation-summary.md": "07494e473c6bbbd1a3e34b647aef2fcfa1455f413b36991ab975cc7517cd1488"
     },
     "last_active_child_id": null,
     "last_active_at": null

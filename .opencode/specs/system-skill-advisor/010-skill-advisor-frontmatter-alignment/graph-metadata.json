@@ -201,7 +201,7 @@
     ],
     "causal_summary": "system-skill-advisor reference/asset frontmatter is inconsistent with the repo-wide contract: 14 of 15 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:39Z",
-    "last_save_at": "2026-07-07T14:25:49.841Z",
+    "last_save_at": "2026-07-09T10:02:50.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +210,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0703ac98873443a74094d068d8d56888d28c4dcafe605ecbad7b8214a9484a37",
+    "source_fingerprint": "sha256:2324eb0de72da16a2f6df8b405da25ba8ef35216d54ec736c0141e259fa4e9e4",
     "source_doc_hashes": {
       "spec.md": "0b2f9327e87c47018e6d18f80ba4d6384434fea6200e4e3c4d94d38474609384",
       "plan.md": "e313ae540006d9612adceccfd2e40813a7d18b314e9c781d12f61f81226acc0a",
-      "tasks.md": "0a1e5a3c687b6449c1f18614dbb3b054205747757983489dc92156f3d6b1718a",
+      "tasks.md": "b5422795e7a349f17545846548f3e85eb204aab7dd9036f58552f8d4b9286745",
       "implementation-summary.md": "8f66b08c2d9059c90e79eb4eb5f661b0320cb7e8fc2ff99749f714c9109ab374"
     },
     "last_active_child_id": null,

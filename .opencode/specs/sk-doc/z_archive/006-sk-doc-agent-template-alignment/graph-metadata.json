@@ -21,7 +21,6 @@
       "063 implementation summary"
     ],
     "key_topics": [
-      "063",
       "sk-doc",
       "template",
       "agent",
@@ -32,7 +31,8 @@
       "summary",
       "clean",
       "files",
-      "063a"
+      "063a",
+      "align"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Clean up agent files (063a) AND align the template to current production reality (063b)",
     "created_at": "2026-05-18T07:49:27.115Z",
-    "last_save_at": "2026-07-07T17:12:11.571Z",
+    "last_save_at": "2026-07-09T10:02:44.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bc2696ccf09ff4bda3fc23d8f4ce4ca0564a0a895ce9ae814817f8b5fa09113",
+    "source_fingerprint": "sha256:b71e08cf6e508c87f197c464e98f9ef82996f4c49882f513ec9697de0242c8de",
     "source_doc_hashes": {
-      "spec.md": "edb34ab978f1193d565f54c1cb1884ed0bbaba39e788800f924fe172634069d6",
-      "plan.md": "bfa9d4128b11881b7b92e56b7276958191ac4dd1cca1036c2428ec95cf9aa7df",
-      "tasks.md": "06d5c7a2fcd827be6c2be290699bf6803d0533f23c0635deec8a2d2d651390fb",
-      "implementation-summary.md": "526a28750d8c508cc7c649b6a510057ca44da239cf2202d30a6a3defcbec8592"
+      "spec.md": "c2cc0b316128d53c96bfaf49e8e7d324b6455629c6f1b1022607a8e8d5cdb37d",
+      "plan.md": "3209fe82fd4b0bba5c9bc372611dfc03a9bc013ee8d87e2620d992c9ee75f8d0",
+      "tasks.md": "003a165e8b04647753aba4e4a1011631c017071fc00a785ad5dafc1e38107afb",
+      "implementation-summary.md": "c8a04012f53fc951eae7608748665e693df12af095f317b8e55650b8986be3a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

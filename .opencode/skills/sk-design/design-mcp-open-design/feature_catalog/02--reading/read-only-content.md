@@ -1,6 +1,6 @@
 ---
 title: "Read-only content access"
-description: "List projects, read the active context, read design-system files, and fetch artifacts, all read-only and always safe."
+description: "List projects, read the active context, read design-system files, and fetch artifacts — all read-only; pure-transport reads are always safe, design-feeding reads are guarded."
 trigger_phrases:
   - "read open design content"
   - "list projects"
@@ -26,11 +26,11 @@ The read tools never need a cloud account for local content and never mutate sta
 
 ### The read-only tool set
 
-After wiring, the agent calls Open Design's MCP tools. The read-only tools are always safe: `list_projects`, `get_active_context` (what the user has open now), `get_project`, `get_file`, `search_files`, `list_files`, `get_artifact`, `list_skills`, `list_plugins`, `list_agents`, and `get_run`. From the terminal directly, `node "$OD_BIN" tools design-systems read --path <manifest-path>` reads a registered design system's pull-layer files.
+After wiring, the agent calls Open Design's MCP tools. Pure-transport reads (`list_projects`, `list_files`, `list_skills`, `list_plugins`, `list_agents`) are always safe to call — they only enumerate inventory, never feed a design decision. Design-feeding reads (`get_active_context`, `get_project`, `get_file`, `search_files`, `get_artifact`, `get_run`) are guarded — per `references/tool_surface.md`, they require `sk-design`'s ground → token-system → critique gate first, except `get_file`/`search_files` with a non-design-use receipt. From the terminal directly, `node "$OD_BIN" tools design-systems read --path <manifest-path>` reads a registered design system's pull-layer files.
 
 ### Design-system shape and the live-read rule
 
-A design system is a `DESIGN.md` (9-section prose), a paste-ready `tokens.css` (a `:root` block), and an optional `components.html`. Open Design content is read live and never copied or cached into a repo, because reusing a system's files happens at build time in the target app rather than by vendoring Open Design's files, whose per-source Apache-2.0 or MIT licenses would otherwise attach. The read tools are safe to call without confirmation, since nothing is written and the active context is observed rather than changed.
+A design system is a `DESIGN.md` (9-section prose), a paste-ready `tokens.css` (a `:root` block), and an optional `components.html`. Open Design content is read live and never copied or cached into a repo, because reusing a system's files happens at build time in the target app rather than by vendoring Open Design's files, whose per-source Apache-2.0 or MIT licenses would otherwise attach. None of these tools write anything, but design-feeding reads still pass through `sk-design`'s gate before the content can inform a decision — see `references/tool_surface.md` for the guarded/exempt split.
 
 ---
 

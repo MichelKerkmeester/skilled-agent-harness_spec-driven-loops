@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/005-mk-deep-loop-guard",
+  "spec_folder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/005-mk-deep-loop-guard",
+  "parent_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mk-deep-loop-guard remediation",
+      "mk-deep-loop-guard fixes",
+      "mk-deep-loop-guard bug fixes",
+      "opencode plugin remediation"
+    ],
+    "key_topics": [
+      "mk-deep-loop-guard",
+      "remediation",
+      "bug",
+      "opencode",
+      "plugin",
+      "audit",
+      "packet",
+      "surfaced",
+      "confirmed",
+      "findings",
+      "claude",
+      "hook"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/plugins/mk-deep-loop-guard.js",
+      ".claude/settings.json",
+      ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
+      "fix-design/fix-design.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-deep-loop-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-deep-loop-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "mk-deep-loop-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Severity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Route",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The audit (packet 127) surfaced 13 confirmed findings in `mk-deep-loop-guard` and its Claude hook version (6 P1 / 5 P2 / 2 refinement)",
+    "created_at": "2026-07-10T11:42:17.733Z",
+    "last_save_at": "2026-07-10T11:42:17.733Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:05738894c72f16d2ba6512ca9c4b47b682795306723f0f5f969c6efe826948f1",
+    "source_doc_hashes": {
+      "spec.md": "bcf32ede09868bee67cc91bdc085ced1ef69281c16853464260808c3ffa30497",
+      "plan.md": "0763c7386ed5852d7dd6a0d8bbac22aeb6cc970681c7e130fa782473807da834",
+      "tasks.md": "4bd9e43ea01d22511d582d1cb2c4a0c7dcc13b322564c9159d07f0f27a14359a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

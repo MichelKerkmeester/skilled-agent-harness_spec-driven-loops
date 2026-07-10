@@ -11,7 +11,7 @@
     "reviewer_over_read",
     "reviewer_ac_coverage"
   ],
-  "outputsDir": ".opencode/skills/sk-prompt-models/benchmarks/{run_label}",
+  "outputsDir": ".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}",
   "metrics": ["correctness", "verdict_match", "finding_match"],
   "scoring": {
     "scorer": "reviewer",

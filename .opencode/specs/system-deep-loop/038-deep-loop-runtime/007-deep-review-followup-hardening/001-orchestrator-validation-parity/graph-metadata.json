@@ -49,7 +49,8 @@
       ".opencode/skills/system-spec-kit/mcp_server/tests/validation-orchestrator-bridge.vitest.ts",
       "decision-record.md",
       "plan.md",
-      "spec.md"
+      "spec.md",
+      "scripts/dist/validation/evidence-marker-lint.js"
     ],
     "entities": [
       {
@@ -110,6 +111,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-marker-lint.js",
+        "kind": "code",
+        "path": "scripts/dist/validation/evidence-marker-lint.js",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`runRegistryShellRules` filters the validator registry with `rule.strictonly !== true` unconditionally (`orchestrator.ts:269` at time of writing), so strict-only shell rules such as `CONTINUITYFRESHNESS` and `EVIDENCEMARKERLINT` never execute through the default Node path even under `--strict` — while the legacy shell path runs them",
     "created_at": "2026-07-02T15:14:06.540Z",
-    "last_save_at": "2026-07-06T16:24:25.045Z",
+    "last_save_at": "2026-07-09T10:02:48.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +218,7 @@
       "tasks.md": "72eada9bf72d71580a11e054800e3a4bd1d02d5e3a93feff7c495489f3612cbb",
       "checklist.md": "34a7639d6b96648f6d1aecc9cb72acb9af07758c80c5f0a277b5c00b1ce390ec",
       "decision-record.md": "9ba6829758e52aed7ab8409e8ad291b04e076459c33950a66bd45bf77e3f29ec",
-      "implementation-summary.md": "bf930e4e290f8bba85460dec71474e0ba67d52a6e58f074840caff2adf05536d"
+      "implementation-summary.md": "4e9b916c724c263bec8644aba2a4b2d5d0be70db0f5417853f1d3645aac36c16"
     },
     "last_active_child_id": null,
     "last_active_at": null

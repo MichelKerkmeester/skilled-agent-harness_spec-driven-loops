@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The skills index is a tabular reference card that has drifted: it counts 21 skill folders when there are 22, miscategorizes system-code-graph as a semantic-search MCP skill, lists it twice in the structure tree, references a non-existent skill, and pins per-skill version numbers that age immediately",
     "created_at": "2026-06-07T19:05:00Z",
-    "last_save_at": "2026-06-23T03:49:51.956Z",
+    "last_save_at": "2026-07-09T10:02:46.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b05e528e5fd3f9f904d5a9352977352f8473426b705fafdb3ce8e90e08ec051f",
+    "source_fingerprint": "sha256:a39ee26a6dd4f5a930a708d42c7587dc77af144fed51de78adba84ef1804480c",
     "source_doc_hashes": {
-      "spec.md": "b161b99273617bed98a2beac6c8ccb2f4d67d98fc7e48c37a199b85549e4dc39",
-      "plan.md": "bc7f524c8c7d1001738ae0751140ec2e14ed25d81ddab0ad15bc75a11adea5f5",
-      "tasks.md": "5d60a4ca4ddd74bcee4ae3322388df62f7f249fc7435ec913fff80a0594363df",
-      "implementation-summary.md": "b57ac76bced382d5d313f8a0ad1d014f7534b605e649e7d77ab93d3fb2c771cf"
+      "spec.md": "d5267d4384f4326661265a998a644fbd953140bc0c535830a508d3bed2d4cc15",
+      "plan.md": "3e8b4135d3c1b588febb7be8a6846491e40f786ed290d8cfb4e20e6e50e9d79f",
+      "tasks.md": "9c643161fed2791cf864465b152a4c1ec3bd2ca66a903007c595a351a44e4606",
+      "implementation-summary.md": "520a760195b9439f6c9597dcaf9c26b193f937e0c2f4243c2a91c12ae6a8ded9"
     },
     "last_active_child_id": null,
     "last_active_at": null

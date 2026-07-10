@@ -35,7 +35,7 @@
       "chat",
       "input",
       "plan",
-      "fix"
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The `.opencode/plugins/mk-dist-freshness-guard.js` plugin emitted stale-dist warnings with `console.warn` and `console.error` during `tool.execute.before` for risky `opencode run` / `validate.sh` commands and once per session during `session.created`",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-07-07T17:16:29.046Z",
+    "last_save_at": "2026-07-09T10:02:44.155Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

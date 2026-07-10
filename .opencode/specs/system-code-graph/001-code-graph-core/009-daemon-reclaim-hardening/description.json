@@ -17,7 +17,7 @@
     "socket-health",
     "correlation"
   ],
-  "lastUpdated": "2026-07-06T16:45:36.550Z",
+  "lastUpdated": "2026-07-06T17:46:02.015Z",
   "specId": "009",
   "folderSlug": "daemon-reclaim-hardening",
   "parentChain": [

@@ -12,7 +12,7 @@
     "extract from evidence extractor",
     "review-research-paths rollback"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
   "description": "Reviewers and successor phases had no quick way to answer \"what files did this packet touch\" without reading `implementation-summary.md` end-to-end or",
   "keywords": [
     "reviewers",
@@ -29,11 +29,11 @@
     "implementation-summary",
     "end-to-end"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.153Z",
+  "lastUpdated": "2026-07-09T10:02:51.846Z",
   "specId": "001",
   "folderSlug": "resource-map-deep-loop-fix",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals"
   ],

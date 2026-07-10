@@ -95,6 +95,7 @@ assets/removal_plan.md
 | --- | --- | --- |
 | ALWAYS | Every invocation, including security/correctness reviews | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/security_checklist.md`, `assets/code_quality_checklist.md`, `assets/fix-completeness-checklist.md` |
 | CONDITIONAL | Intent score indicates need | `assets/solid_checklist.md`, `assets/code_quality_checklist.md`, `assets/removal_plan.md`, `assets/test_quality_checklist.md` |
+| CONDITIONAL | `CORE` / `COMPLETENESS` / `PR_STATE` / `SETUP` intents | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/fix-completeness-checklist.md`, `references/pr_state_dedup.md`, `references/quick_reference.md` |
 | ON_DEMAND | Explicit deep-dive request | Full mapped reference set |
 
 ### Precedence Matrix
@@ -141,6 +142,10 @@ INTENT_SIGNALS = {
     "SOLID": {"weight": 3, "keywords": ["solid", "architecture", "design", "coupling", "cohesion", "module", "adapter", "interface", "abstraction", "responsibility", "dependency", "boundary"]},
     "REMOVAL": {"weight": 3, "keywords": ["remove", "dead code", "cleanup", "deprecate"]},
     "TESTING": {"weight": 3, "keywords": ["test", "tests", "testing", "coverage", "assertion", "mock", "stub", "fixture", "test quality", "brittle"]},
+    "CORE": {"weight": 2, "keywords": ["review doctrine", "review standards", "review baseline", "single pass", "single-pass", "interactive review", "one-pass review"]},
+    "COMPLETENESS": {"weight": 3, "keywords": ["fix completeness", "incomplete fix", "partial fix", "complete the fix", "all call sites", "leftover", "half-done"]},
+    "PR_STATE": {"weight": 3, "keywords": ["pr state", "pull request state", "dedup", "deduplicate", "duplicate finding", "already flagged", "prior comment", "repeated finding"]},
+    "SETUP": {"weight": 2, "keywords": ["quick reference", "review setup", "how to review", "review workflow", "review cheat sheet"]},
 }
 
 RESOURCE_MAP = {
@@ -151,6 +156,10 @@ RESOURCE_MAP = {
     "SOLID": ["assets/solid_checklist.md"],
     "REMOVAL": ["assets/removal_plan.md"],
     "TESTING": ["assets/test_quality_checklist.md"],
+    "CORE": ["references/review_core.md", "references/review_ux_single_pass.md"],
+    "COMPLETENESS": ["assets/fix-completeness-checklist.md"],
+    "PR_STATE": ["references/pr_state_dedup.md"],
+    "SETUP": ["references/quick_reference.md"],
 }
 
 ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive", "flag false positives", "blocking regressions", "list findings", "read-only only", "underrepresented", "scope correctly"]
@@ -455,7 +464,7 @@ Manual testing scenarios for the `code-review` mode (of the sk-code family) live
 
 ---
 
-## 9. PR-STATE EFFICIENCY GATES (Packet 110)
+## 9. PR-STATE EFFICIENCY GATES
 
 ### 9.1 M-1: PR-State Content-Hash Dedup
 

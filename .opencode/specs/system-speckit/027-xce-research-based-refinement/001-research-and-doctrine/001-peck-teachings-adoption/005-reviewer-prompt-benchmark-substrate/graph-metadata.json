@@ -18,9 +18,7 @@
       "SPECKIT_REVIEWER_BENCHMARKS"
     ],
     "key_topics": [
-      "027",
       "phase",
-      "010",
       "reviewer",
       "prompt",
       "benchmark",
@@ -29,7 +27,9 @@
       "scorer",
       "lane",
       "spec-kit",
-      "ships"
+      "ships",
+      "verification-discipline",
+      "rules"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -38,18 +38,9 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-schema.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-stale-verdict.json",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-softened-fail.json",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-over-read.json",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-ac-coverage.json",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/lib/README.md",
       ".opencode/commands/deep/model-benchmark.md",
       ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
       ".opencode/commands/deep/assets/deep_model-benchmark_confirm.yaml",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/manual_testing_playbook.md",
       ".github/workflows/prompt-card-sync.yml",
       "implementation-summary.md"
     ],
@@ -79,48 +70,6 @@
         "source": "derived"
       },
       {
-        "name": "reviewer-schema.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-schema.md",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-stale-verdict.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-stale-verdict.json",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-softened-fail.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-softened-fail.json",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-over-read.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-over-read.json",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-ac-coverage.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/reviewer-ac-coverage.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "reviewer-scorer.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
-        "source": "derived"
-      },
-      {
         "name": "model-benchmark.md",
         "kind": "doc",
         "path": ".opencode/commands/deep/model-benchmark.md",
@@ -136,12 +85,6 @@
         "name": "deep_model-benchmark_confirm.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_model-benchmark_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -197,11 +140,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Verdict",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "spec-kit ships verification-discipline rules and gates (the 009 freshness/anti-softening/read-budget rules, the 011 AC-coverage gate) onto reviewer agents and the completion gate, but it has no regression harness that answers \"does this reviewer prompt still catch this known bug class.\" The deep-improvement benchmark Lanes do not cover the reviewer-prompt-vs-expected-verdict shape: Lane B fixtures are function/code-task oracles (`code-task-scorer.cjs` returns a correctness pass-rate, zero verdict lexicon; fixtures carry `{name,args,expect}`, no `expectedVerdict`), and Lane C gold is",
     "created_at": "2026-06-06T10:22:05.630Z",
-    "last_save_at": "2026-07-02T05:31:13.557Z",
+    "last_save_at": "2026-07-09T10:02:55.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

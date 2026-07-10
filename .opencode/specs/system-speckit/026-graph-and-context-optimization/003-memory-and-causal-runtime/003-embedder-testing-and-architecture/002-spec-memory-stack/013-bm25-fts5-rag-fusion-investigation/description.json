@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/013-bm25-fts5-rag-fusion-investigation",
   "description": "Deep-research-005 ranked the JS in-memory BM25 index as the top resident-memory target, but its recommendation noted that SQLite FTS5 tokenization and",
   "keywords": [
     "deep-research-005",
@@ -17,11 +17,11 @@
     "fts5",
     "tokenization"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.344Z",
+  "lastUpdated": "2026-07-09T10:02:52.695Z",
   "specId": "013",
   "folderSlug": "bm25-fts5-rag-fusion-investigation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

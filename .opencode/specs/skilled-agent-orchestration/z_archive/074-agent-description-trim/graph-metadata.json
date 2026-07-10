@@ -25,7 +25,6 @@
       "agent",
       "description",
       "trim",
-      "090",
       "skill-budget",
       "ceiling",
       "plan",
@@ -33,14 +32,18 @@
       "implementation",
       "summary",
       "doctor",
-      "audit"
+      "audit",
+      "shipped"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       ".opencode/agents/debug.md",
+      ".opencode/agents/code.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/prompt-improver.md",
+      ".opencode/agents/orchestrate.md",
       ".claude/agents/debug.md",
-      ".codex/agents/debug.toml",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -54,9 +57,27 @@
         "source": "derived"
       },
       {
-        "name": "debug.toml",
-        "kind": "file",
-        "path": ".codex/agents/debug.toml",
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
@@ -172,29 +193,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Acted",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `/doctor:skill-budget` audit shipped in packet 086 surfaced 6 agents whose descriptions exceed the 130-char soft target — none were touched by packet 083's skill+command trim because that packet's scope was deliberately limited",
     "created_at": "2026-05-06T16:56:10.042Z",
-    "last_save_at": "2026-06-23T03:49:49.979Z",
+    "last_save_at": "2026-07-09T10:02:45.597Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11e9050e06fb0a111b4403dc6dbd13f686f1adada7c5ce584667304a40893e2f",
+    "source_fingerprint": "sha256:81764cb345ce9148794aa4515ec1f573a55c9fa2a425bc5d661833749611b6ba",
     "source_doc_hashes": {
-      "spec.md": "a85043643544a5589bfe959beed6591ff3014e49256ffc06d2af2c98071586ed",
-      "plan.md": "6326205235bee7c8e9a5a2d345f1fd7d65750c2d3e49cc76b5868de356a4cdbc",
-      "tasks.md": "e36dff4d6f52753de1cb59ba08fa73dad619adbd66bec07ac18a7b07a2fa0fa7",
-      "implementation-summary.md": "8b8bf5e32f7d0d43723d7908bba88fe56c9a19c072bc494fccf2e18d3ead7189"
+      "spec.md": "6e3a4568a2a743bceef434c38ce4af71ddf79502369ce597aee0bbef9246039b",
+      "plan.md": "62a81a57ea1ece616b69a126f359501c773310945a649c74263e289b4d6671a5",
+      "tasks.md": "e686f71814c44ca969d47cad2e973a34957e06e79f3e13159115849c7a986597",
+      "implementation-summary.md": "964fd804c413fe5a09b851e281e38c6723893d19f9f436bf9bca4a3929b2f447"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,9 +28,7 @@
       "rename remediation"
     ],
     "key_topics": [
-      "098",
       "remediation",
-      "097",
       "findings",
       "dist",
       "rebuild",
@@ -39,14 +37,23 @@
       "replace",
       "rename",
       "phase",
-      "parent"
+      "parent",
+      "sub-phases",
+      "addressing"
     ],
     "importance_tier": "high",
     "status": "planned",
     "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/002-track-review/review/review-report.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/002-track-review/review/review-report.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -92,15 +99,15 @@
     ],
     "causal_summary": "Phase parent for 7 remediation sub-phases addressing 22 active findings (P0=1, P1=12, P2=9) from packet 097 deep-review of the 093-096 track.",
     "created_at": "2026-05-18T07:49:27.237Z",
-    "last_save_at": "2026-06-23T03:49:50.068Z",
+    "last_save_at": "2026-07-09T10:02:45.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f675edd1c764306fadc0bff61bfd91f54b3164c0e1874b025ddd1fb7c1425216",
+    "source_fingerprint": "sha256:61aea6e140d2a4428880dea2d0fcc27ecae8670a4419abf99dc7a75ffc77916c",
     "source_doc_hashes": {
-      "spec.md": "363d7828ef584bd14488b78447f732908a6daf7e3ac987ddc41d54de04a66d93"
+      "spec.md": "8da4ecd4b281b1fc896defe39208a4e98c6ab20fb456e1696c3bf20d9a6195ba"
     },
     "last_active_child_id": null,
     "last_active_at": null

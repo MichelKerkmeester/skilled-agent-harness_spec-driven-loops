@@ -8,7 +8,6 @@
     "goal-state",
     "json",
     "files",
-    "created",
     "per",
     "session",
     "goalpathforsession",
@@ -19,7 +18,7 @@
     "lifecycle",
     "handling"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.536Z",
+  "lastUpdated": "2026-07-09T10:02:47.942Z",
   "specId": "014",
   "folderSlug": "goal-state-cleanup-and-archive",
   "parentChain": [

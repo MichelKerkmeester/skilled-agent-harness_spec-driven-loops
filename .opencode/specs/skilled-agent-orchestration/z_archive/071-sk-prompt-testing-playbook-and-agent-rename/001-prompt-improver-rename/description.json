@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/z_archive/071-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
-  "description": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`, `@deep-",
+  "description": "The `@improve-prompt` agent name is verb-object phrasing — an outlier in the noun-form agent family (`@code`, `@review`, `@debug`, `@context`,",
   "keywords": [
     "improve-prompt",
     "agent",
@@ -14,10 +14,9 @@
     "code",
     "review",
     "debug",
-    "context",
-    "deep"
+    "context"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.779Z",
+  "lastUpdated": "2026-07-09T10:02:45.576Z",
   "specId": "001",
   "folderSlug": "prompt-improver-rename",
   "parentChain": [

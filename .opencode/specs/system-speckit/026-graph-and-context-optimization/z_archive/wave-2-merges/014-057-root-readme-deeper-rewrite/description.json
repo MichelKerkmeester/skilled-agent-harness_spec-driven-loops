@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-057-root-readme-deeper-rewrite",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-057-root-readme-deeper-rewrite",
   "description": "Sonnet @markdown second-pass that revisits the raw iter findings (not just the bucket delta) and applies surgical edits to any finding Phase 4 missed",
   "keywords": [
     "sonnet",
@@ -20,11 +20,11 @@
     "phase",
     "missed"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.715Z",
+  "lastUpdated": "2026-07-09T10:02:54.694Z",
   "specId": "014",
   "folderSlug": "057-root-readme-deeper-rewrite",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"

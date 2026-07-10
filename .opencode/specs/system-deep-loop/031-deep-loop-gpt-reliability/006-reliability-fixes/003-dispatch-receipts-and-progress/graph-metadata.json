@@ -23,9 +23,7 @@
       "031 006 003"
     ],
     "key_topics": [
-      "035",
       "phase",
-      "004",
       "dispatch",
       "receipts",
       "progress",
@@ -34,10 +32,12 @@
       "receipt",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary",
+      "packet"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -174,7 +174,7 @@
     ],
     "causal_summary": "Phase 004 of packet 035 (the last acute-fix phase). Two standalone dispatch-integrity mechanisms (packet 036's compiled contract will reference them): engine-held HMAC dispatch receipts (the key never leaves the engine process — plan-review GAP-23 blocker) and step-transition progress records with a work-anchored schema. Closes F-010/011/012/013/041 (receipts) and F-015/016/017/031/043 (progress). Absorbs GAP-13/15/23/24/25/26/27/28/29/30/31/32/34/35/36.",
     "created_at": "2026-07-03T14:05:28.547Z",
-    "last_save_at": "2026-07-05T06:46:08.700Z",
+    "last_save_at": "2026-07-09T10:02:47.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -183,12 +183,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e817c0293d41e3325f67a38463b58f535df70d0c8c773e82021ee7a4a76a4be4",
+    "source_fingerprint": "sha256:0f8700fb1ee4e7e74eceded86abf33a575728b837754e6edaf9630fb54f159ac",
     "source_doc_hashes": {
-      "spec.md": "9563fec5f4d2009170de2e95acb297a77541afeba725833d9d923963407accf2",
-      "plan.md": "f347b26e6a87c06bbcadbbce7be1c23a4fbea6abad5d599e804dca740be96d00",
-      "tasks.md": "c1b5844ad151847f8ab368ee12036e27257fccc065a648f0aef530b364580a0f",
-      "implementation-summary.md": "12dfb989e459eb851b0a1efe658f77cb04cd6036430618a06180bd2d0f313b28"
+      "spec.md": "376fdd722be0262513a10e7c7d5ddac5439d4bc679df7f33fee71f1660f944c1",
+      "plan.md": "90d001d96cfba49c39596af677ec59cdb2765c5e83f7484d86494a6b12575407",
+      "tasks.md": "52c03861c66dcd06e70eee66bb0742904ac8b0ec6231edc2652eae1fce2cd9d1",
+      "implementation-summary.md": "3ebcc56ea0df705eeb99fe0b2fa29cbddc577792f9f9de237458a80ff197010a"
     },
     "last_active_child_id": null,
     "last_active_at": null

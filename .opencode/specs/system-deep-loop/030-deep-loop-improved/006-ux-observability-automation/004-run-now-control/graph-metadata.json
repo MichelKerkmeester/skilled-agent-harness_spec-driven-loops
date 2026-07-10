@@ -27,19 +27,18 @@
       "control",
       "forced",
       "sentinel",
-      "004",
       "deep-research-run-now",
       "004-run-now-control",
       "summary",
       "only",
       "way",
-      "trigger"
+      "trigger",
+      "immediate"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,12 +49,6 @@
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "run-now-yaml-control.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/run-now-yaml-control.vitest.ts",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The only way to trigger an immediate deep-loop iteration is to wait for the configured cadence or restart the process",
     "created_at": "2026-06-28T16:59:37.521Z",
-    "last_save_at": "2026-07-04T18:02:17.023Z",
+    "last_save_at": "2026-07-09T10:02:47.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d7c1c7d99e15ad3a434645a6e9df116ebb7ac5bf9f0bd9d7a515729a672db4b1",
+    "source_fingerprint": "sha256:27a6fab31e4ef21d6b302bcf35ca754d85a7ebbd1673fc125502ab5eca080e1f",
     "source_doc_hashes": {
-      "spec.md": "f8aaf1e1eb864f946fbab8f2e2b6d444c170c32bace1e1bb7a2ca0c2480edf4e",
-      "plan.md": "2f97310b6fe434c4f7cc5f3c3444c1afc6a5882bc370e717ce7ebdf7a63ca52e",
-      "tasks.md": "e31f2e7d944606e61e046e73beee6fd26f3e0b6bd1aa1c05f3f7bdad23c88ad6",
-      "implementation-summary.md": "12b4953374cbcf94de13582c2a3b6ef558ee7f6b402b797c53052ec48ca5b84a"
+      "spec.md": "7bc88538b3380117117f0d20e96564eaada542e745fea45113b74346cd7fbf0b",
+      "plan.md": "9039cd6eeb3e7b2c8a4852613306564c9dc606f5cd73721488a6ecc962275cc6",
+      "tasks.md": "71fe5ca07b4fcbd9c7999848bd4c02324259799dc2ed1996edcfdd2cae1e96b6",
+      "implementation-summary.md": "014074dec126d560cb18db44a2e914783051092d719e0492c1917b75c856befc"
     },
     "last_active_child_id": null,
     "last_active_at": null

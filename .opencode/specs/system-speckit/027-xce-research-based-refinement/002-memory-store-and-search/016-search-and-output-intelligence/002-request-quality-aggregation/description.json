@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/002-request-quality-aggregation",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/002-request-quality-aggregation",
   "description": "The request-quality verdict was gated on `topScore >= 0.7 AND qualityRatio >= 0.6` with the ratio computed over the whole result set",
   "keywords": [
     "request-quality",
@@ -14,11 +14,11 @@
     "result",
     "set"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.347Z",
+  "lastUpdated": "2026-07-09T10:02:55.370Z",
   "specId": "002",
   "folderSlug": "request-quality-aggregation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "016-search-and-output-intelligence"

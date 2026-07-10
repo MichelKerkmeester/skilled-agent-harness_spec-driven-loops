@@ -18,10 +18,7 @@
   "description": "The Phase 012/004 F-002 fix blocks only the literal zero-node full-scan edge case",
   "keywords": [
     "phase",
-    "012",
-    "004",
     "f-002",
-    "fix",
     "blocks",
     "only",
     "literal",
@@ -30,7 +27,7 @@
     "edge",
     "case"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.036Z",
+  "lastUpdated": "2026-07-09T10:02:47.033Z",
   "specId": "006",
   "folderSlug": "scope-change-scan-guard",
   "parentChain": [

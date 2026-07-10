@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 015/004 + 015/006 proved that the existing 24-prompt corpus is lexical-saturated: even with audit-improved metadata + real Gemma vectors flowing through the cosine lane at any weight from 0 to 0.30, no candidate vector flipped a single routing decision",
     "created_at": "2026-05-14T01:30:00Z",
-    "last_save_at": "2026-07-02T05:31:11.223Z",
+    "last_save_at": "2026-07-09T10:02:49.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T01:30:00Z",
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6845abcbf9426706fd9129c1bcb185daccae2d70bdffc7dfd900a29d59bd024f",
+    "source_fingerprint": "sha256:c089b331d427171e480b60dd0ce32781a3c28b69a10ed189dbf94a84f1650fb0",
     "source_doc_hashes": {
-      "spec.md": "7721c62f9aaef60692b9dce54011b9d586d66b036c2f010c942e2c6fcf578350",
-      "plan.md": "35e684491eec56c919671f71a1306c2141b7ee13080d1be130b6d735c7e3ae53",
-      "tasks.md": "aa2ca4f44ae724c1b992a2be53d157b53d99c4bb630c0c9fcf90e543ad3ef336",
-      "checklist.md": "21be121bf4684a8c5048a390efe7b2a86b63e4168c618fc6a093e306a69cd55b",
-      "implementation-summary.md": "de22ec1deb6de127cb9d0017421ed6fba4093d67cde63ee06c762d65bb17c27a"
+      "spec.md": "cfc1361fd1ba6ee0ec99c69656441965400a96c3c08c59d2af7ca418a3f9fedc",
+      "plan.md": "0f9e786fc98e89db3feb3abeb01cc391e209d9cab26c7fba78ea12c26cb23f8d",
+      "tasks.md": "ed0205f63a1cd96f5a93b522b660d2f08fa3a58ae17ba34fb474db81f8b3db25",
+      "checklist.md": "fd99eaaf4c79d1391af96a3b051e6a60a975aaeeda1335e7b90234eb8d41e92b",
+      "implementation-summary.md": "8f1879853784cf1839d34bc49cb14aff3fa9b4bd3a7f39ade8706e87367dacce"
     },
     "last_active_child_id": null,
     "last_active_at": null

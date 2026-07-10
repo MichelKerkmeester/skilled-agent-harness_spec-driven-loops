@@ -4,7 +4,6 @@
   "description": "Phase 006 parked FIX-5 (host hard identity / process-isolation) behind a trigger defined before this packet's follow-up research existed",
   "keywords": [
     "phase",
-    "006",
     "parked",
     "fix-5",
     "host",
@@ -19,7 +18,7 @@
     "research",
     "existed"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.433Z",
+  "lastUpdated": "2026-07-09T10:02:47.774Z",
   "specId": "009",
   "folderSlug": "fix5-checkpoint",
   "parentChain": [

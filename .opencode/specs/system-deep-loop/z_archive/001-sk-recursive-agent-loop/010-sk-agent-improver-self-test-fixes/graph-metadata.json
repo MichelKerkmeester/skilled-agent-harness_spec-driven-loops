@@ -25,15 +25,15 @@
       "spec",
       "self",
       "test",
-      "010",
       "agent",
       "plan",
       "tasks",
       "phase",
       "checklist",
-      "009",
       "self-test",
-      "found"
+      "found",
+      "issues",
+      "system-deep-loop"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -155,7 +155,7 @@
     ],
     "causal_summary": "Phase 009 (self-test) found 5 issues",
     "created_at": "2026-04-13T04:55:07.906Z",
-    "last_save_at": "2026-07-08T13:43:19.923Z",
+    "last_save_at": "2026-07-09T10:02:48.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

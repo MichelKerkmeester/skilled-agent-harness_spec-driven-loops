@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 113 arc shipped cli-devin v1.0.6.3 with cross-model-validated prompt composition rules (RCAF default, medium pre-plan, standard bundle-gate, anti-hallucination secondary, sequentialthinking 2-layer)",
     "created_at": "2026-05-18T09:01:17.095Z",
-    "last_save_at": "2026-06-23T03:49:50.503Z",
+    "last_save_at": "2026-07-09T10:02:45.946Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +214,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d2b4f4b492541bf06852a640be7707fb314d02715ec46b4f8b8603c777d40002",
+    "source_fingerprint": "sha256:e48f2e606c52c29065eae964fc192287df167a62edf8bccacc072a4366b8d070",
     "source_doc_hashes": {
-      "spec.md": "6a4b9fb01cb0f9d71059972f6c1a1c47d4e491048ff987c3d521c9d4e31ca84e",
-      "plan.md": "1490cd6815667acd4576140fa77c2bbd650583544886e803bc09a1fbd03863d5",
-      "tasks.md": "b2aa4c79cb9b9298e298cfe0793cae2359f8e6a2aa12909f7636f4ec47a80711",
-      "checklist.md": "8758d14522678438bd9ea6c9c9e233a5b0b38d280876169fa64424435b9b8d99",
-      "decision-record.md": "5cf6dc824366420dbd9c4c91cbf916296214f773d9e60d973368aadad22eb5da",
-      "implementation-summary.md": "76550ebd074c826bc526400756213059917bcd02d0e69bd2e0ce8f175feb034a",
-      "research/research.md": "3431bbb49b650dc479364697e88c84a4f98f2c497c954d2e432e0dbaf7117325"
+      "spec.md": "0093c37e9fd01c43122a26b0423469738da7afba412fc85e27fd3906a2cd1b8a",
+      "plan.md": "b8ebaef319af6fd67d0a7e035a02144ecbdcb97fc352f2863640c14b61aae891",
+      "tasks.md": "5882ebc1d5379199e1b8bf12c56f9b3a28515c2ec0b8b5e712c134c6dcbb185f",
+      "checklist.md": "5acf763890f6395cbb35a81e4bf92bc1768f082a3ca023d8fc0802a052f43edf",
+      "decision-record.md": "0e010de0433941afaa5bd405934fd1237f62bc758bfc95d8188211ebbb44187f",
+      "implementation-summary.md": "712e36ef8b2d67b4f5324328bfc6e381d03fedacaf05f9dde63313bd44c0247d",
+      "research/research.md": "10b0c08c9e51f60b8f06bfd64f420f8f98ed4f7864d4eb41c17675c9c26be3bf"
     },
     "last_active_child_id": null,
     "last_active_at": null

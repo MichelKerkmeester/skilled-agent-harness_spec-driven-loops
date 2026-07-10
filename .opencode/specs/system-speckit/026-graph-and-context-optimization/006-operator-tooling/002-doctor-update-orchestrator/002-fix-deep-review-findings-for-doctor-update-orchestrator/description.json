@@ -1,13 +1,10 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
-  "description": "The 013 deep-review identified that 013 + 001 + 002 spec docs lie about completion state (checklists 100% unchecked while implementation-summaries cla",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator",
+  "description": "The 013 deep-review identified that 013 + 001 + 002 spec docs lie about completion state (checklists 100% unchecked while implementation-summaries",
   "keywords": [
-    "013",
     "deep-review",
     "identified",
-    "001",
-    "002",
     "spec",
     "docs",
     "lie",
@@ -15,17 +12,15 @@
     "completion",
     "state",
     "checklists",
-    "100",
     "unchecked",
     "while",
-    "implementation-summaries",
-    "cla"
+    "implementation-summaries"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.275Z",
+  "lastUpdated": "2026-07-09T10:02:54.231Z",
   "specId": "002",
   "folderSlug": "fix-deep-review-findings-for-doctor-update-orchestrator",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "006-operator-tooling",
     "002-doctor-update-orchestrator"

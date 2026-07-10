@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/026-graph-and-context-optimization/research/006-continuity-refactor-gates-pt-01/iterations",
-  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/research/006-continuity-refactor-gates-pt-01/iterations",
-  "parent_id": "system-spec-kit/026-graph-and-context-optimization",
+  "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/research/iterations",
+  "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/research/iterations",
+  "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates/research",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -27,7 +27,7 @@
     "entities": [],
     "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-04-18T16:45:36.933Z",
-    "last_save_at": "2026-04-21T13:00:00Z",
+    "last_save_at": "2026-07-09T11:26:11.531Z",
     "last_accessed_at": null,
     "source_docs": [],
     "save_lineage": "same_pass"

@@ -20,18 +20,18 @@
       "073 summary"
     ],
     "key_topics": [
-      "073",
       "test-and-toolchain-cleanup",
       "post-save",
       "eisdir",
-      "fix",
       "run-matrix",
       "plan",
       "tasks",
       "summary",
       "packets",
-      "071",
-      "072"
+      "inline",
+      "telemetry-schema",
+      "surfaced",
+      "bounded"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Packets 071/072 + the inline telemetry-schema fix surfaced 4 bounded toolchain issues",
     "created_at": "2026-05-05T15:06:20Z",
-    "last_save_at": "2026-06-23T03:49:49.805Z",
+    "last_save_at": "2026-07-09T10:02:45.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T17:25:00Z",
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da66634fc94c5adf99398da6cb3b458ce4fa289301b4494ec2c81c18c6eb03f5",
+    "source_fingerprint": "sha256:0dd3494b6aa69225f6b3011e5a1c6435636e23d55f3f019a05f191532ab9789a",
     "source_doc_hashes": {
-      "spec.md": "628ac0e36212cdebba939df044d948c0f5872f6d68d0f3f9eacf13e677faac00",
-      "plan.md": "f58b88f6a7c2a8cb6ef8eaaa7871b75cd6e04093b586507a2569355b8cbdab21",
-      "tasks.md": "ff26c0a994ecceeec93b86905cda0791e1c8c9f8a54cdbf82d0cdea8eb29fbfa",
-      "implementation-summary.md": "e6acfeca7d47a2463a755748db44cc06ed36a06c2fdebaf8169b6f5a9b635ce6"
+      "spec.md": "82502cc5b648846e6179b65566810660597d88fb88f82a19af91268458c39c31",
+      "plan.md": "17ff523d5911cc642dbd681d36a5adfa0aa8c2af33985aa14483a2f100f0e523",
+      "tasks.md": "13e78e99db9c4f7a9e572e2b13c6edfcfbc6309004c112109a2cda6fe7ede896",
+      "implementation-summary.md": "4047a5ea1f2c6b55fbcaa810b257df6492346eb564adc4a50a84e39bee374033"
     },
     "last_active_child_id": null,
     "last_active_at": null

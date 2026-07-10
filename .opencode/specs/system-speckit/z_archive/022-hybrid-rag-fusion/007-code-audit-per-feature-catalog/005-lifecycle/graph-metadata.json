@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/005-lifecycle",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/005-lifecycle",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/005-lifecycle",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/005-lifecycle",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,15 +34,21 @@
       "evolved"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -59,12 +65,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The feature catalog for Lifecycle has evolved significantly",
     "created_at": "2026-04-12T09:02:50.247Z",
-    "last_save_at": "2026-06-23T03:49:59.806Z",
+    "last_save_at": "2026-07-09T10:02:57.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

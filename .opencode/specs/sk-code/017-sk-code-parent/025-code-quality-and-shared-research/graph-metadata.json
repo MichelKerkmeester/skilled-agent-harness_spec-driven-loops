@@ -55,12 +55,12 @@
       ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/implementation-summary.md",
       ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
       ".opencode/commands/deep/research.md",
-      ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
       "spec.md",
       "research/iterations/iteration-001.md",
       "plan.md",
       "checklist.md",
-      "research/deep-research-config.json"
+      "research/deep-research-config.json",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -127,12 +127,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code `code-quality` sub-skill carries one of the highest-leverage jobs in the coding lifecycle — judging whether code is correct, clean, and safe — yet it has grown independently and its real usefulness is unproven",
     "created_at": "2026-07-07T00:00:00.000Z",
-    "last_save_at": "2026-07-07T17:16:31.033Z",
+    "last_save_at": "2026-07-09T10:02:44.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,9 +221,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:59c1ac117cc8271c6b1fb0f6ac36915850638346a1c2b5f789e82df1b8427faf",
+    "source_fingerprint": "sha256:54b252d460a94cc8884652fda2907e167ce57b5b2f054f129e1231708582cf3a",
     "source_doc_hashes": {
-      "spec.md": "628312e86f0b08d834a72ea6be12744631e0142e2febc4820d24c1856a118238",
+      "spec.md": "b0f8613dc8d9c8713831129567f38861457d4b87d5993c82a7fa831db6f3209a",
       "plan.md": "f0cc40f7cdd5345697c65bd4be524cef6d7e575efe1627efeb1abc63b863067a",
       "tasks.md": "2c6583a4dfc775a44c7dc3f538ba1fabd05b5011cc39ccca7d3346cb46ff3380",
       "checklist.md": "d74b7e684e3cf603d877340407ea0d5544a59af2c991efa0bf44d6eb94f4fa75",

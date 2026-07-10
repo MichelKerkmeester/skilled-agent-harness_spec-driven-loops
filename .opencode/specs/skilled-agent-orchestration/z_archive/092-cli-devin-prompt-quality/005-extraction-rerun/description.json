@@ -3,8 +3,6 @@
   "specFolder": "skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/005-extraction-rerun",
   "description": "113/003 synthesis.md notes a known limitation: SWE 1.6 `--print` returns markdown text rather than files",
   "keywords": [
-    "113",
-    "003",
     "synthesis",
     "notes",
     "known",
@@ -17,7 +15,7 @@
     "rather",
     "files"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.049Z",
+  "lastUpdated": "2026-07-09T10:02:45.919Z",
   "specId": "005",
   "folderSlug": "extraction-rerun",
   "parentChain": [

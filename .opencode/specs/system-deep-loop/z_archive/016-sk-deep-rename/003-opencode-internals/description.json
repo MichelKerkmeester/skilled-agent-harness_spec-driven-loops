@@ -3,11 +3,9 @@
   "description": "Phase 002 renamed the skill folders and updated the advisor graph source, but many `.opencode/` consumers still point at `sk-deep-review` and",
   "keywords": [
     "phase",
-    "002",
     "renamed",
     "skill",
     "folders",
-    "updated",
     "advisor",
     "graph",
     "source",
@@ -18,7 +16,7 @@
     "point",
     "sk-deep-review"
   ],
-  "lastUpdated": "2026-07-08T13:06:43.223Z",
+  "lastUpdated": "2026-07-09T10:02:49.255Z",
   "specId": "003",
   "folderSlug": "opencode-internals",
   "parentChain": [

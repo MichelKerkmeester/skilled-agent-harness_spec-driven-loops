@@ -27,16 +27,16 @@
     "key_topics": [
       "feature",
       "specification",
-      "create",
       "prompt",
       "command",
       "spec",
-      "017",
       "cmd",
       "implementation",
       "plan",
       "tasks",
-      "template"
+      "template",
+      "sk-improve-prompt",
+      "skill"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-improve-prompt skill provides powerful prompt engineering capabilities (7 frameworks, DEPTH processing, CLEAR scoring), but users must manually load the SKILL.md and follow its multi-step pipeline",
     "created_at": "2026-04-12T09:02:50.218Z",
-    "last_save_at": "2026-06-23T03:49:48.973Z",
+    "last_save_at": "2026-07-09T10:02:45.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

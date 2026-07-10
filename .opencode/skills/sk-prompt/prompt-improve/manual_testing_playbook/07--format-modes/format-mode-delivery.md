@@ -46,7 +46,7 @@ $json improve my API request prompt; verify the enhanced prompt is valid JSON wi
 
 1. `sk-prompt: $json improve my API request prompt — return the enhanced prompt structured as JSON, not markdown.`
 2. `agent: @prompt-improver raw_task="Improve an API request prompt for JSON delivery." task_type=generation target_cli=opencode complexity_hint=6 constraints="Deliver enhanced prompt as valid JSON, not markdown."`
-3. `bash: rg 'JSON|YAML|Markdown|format_guide_json' .opencode/skills/sk-prompt/SKILL.md .opencode/skills/sk-prompt/assets/format_guide_json.md`
+3. `bash: rg 'JSON|YAML|Markdown|format_guide_json' .opencode/skills/sk-prompt/SKILL.md .opencode/skills/sk-prompt/prompt-improve/assets/format_guide_json.md`
 
 ### Expected
 

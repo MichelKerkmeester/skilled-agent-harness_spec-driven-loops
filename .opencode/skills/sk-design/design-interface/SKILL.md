@@ -46,7 +46,7 @@ Approach UI work as the design lead at a studio known for visual identities that
 
 Detect design intent and how much of the visual direction the brief fixes:
 
-Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, route to `audit`. If `hierarchy`, `spacing`, `grid`, or token language is the main ask, route to `foundations`; if `DESIGN.md` or `tokens.json` is a measured artifact, route to `md-generator`. **Exception — transform-verb precedence**: `clarify` (`transformVerbRouting.aliasOnly`) always resolves here even when a static-system noun like "hierarchy" appears in the same sentence; `typeset`/`colorize` (`transformVerbRouting.excludedAliases.foundations`) never independently justify pulling `foundations` in as a bundled or supporting mode, even when the request's own wording ("typography and color application") echoes foundations' static-system vocabulary — the registry's alias/exclusion list overrides this noun-based heuristic.
+Route here when the request asks to invent, apply, or reshape an interface direction, not merely to evaluate it. `hero section`, `landing page`, `less generic`, `custom not templated`, `visual direction`, and make-frame transform verbs such as "make it bolder", "make it quieter", "clarify this", or "delight the interaction" are interface evidence when they ask for a new direction. Once one of those transform verbs routes here, apply it through `references/design-process/transform_application.md` (the interface-side landing lane: shared application contract, per-verb ledgers, and fillable proof cards for bolder/quieter/distill/clarify/delight) rather than improvising the change. If the same prompt asks whether the design should change, requests a score, or frames the work as review/release readiness, route to `audit`. If `hierarchy`, `spacing`, `grid`, or token language is the main ask, route to `foundations`; if `DESIGN.md` or `tokens.json` is a measured artifact, route to `md-generator`. **Exception — transform-verb precedence**: `clarify` (`transformVerbRouting.aliasOnly`) always resolves here even when a static-system noun like "hierarchy" appears in the same sentence; `typeset`/`colorize` (`transformVerbRouting.excludedAliases.foundations`) never independently justify pulling `foundations` in as a bundled or supporting mode, even when the request's own wording ("typography and color application") echoes foundations' static-system vocabulary — the registry's alias/exclusion list overrides this noun-based heuristic.
 
 ```bash
 # Direction freedom (pseudo)
@@ -73,8 +73,9 @@ DESIGN TASK
 | Level | When to Load | Resource |
 | ----- | ------------ | -------- |
 | ALWAYS | Any design task | `references/design-process/design_principles.md` (palette, type, structure, motion, restraint) |
-| ALWAYS | The first step of any design task | `../shared/register.md` (set the Brand-vs-Product register, which gates density, motion, color dosage, copy, anti-slop strictness) and `references/design-process/brief_to_dials.md` (Design Read intake to the dials). **Required load-and-prove loop:** register + brief-to-dials + `assets/interface_preflight_card.md` are not optional for interface work; load the first two before decisions and prove the third before delivery. |
-| ALWAYS | Any design or UI build task | `../shared/context_loading_contract.md` (register-first gate, build bundle, context manifest, the four required proof fields, and hard gates). **Citation required, not just a background load**: name this file by its relative path in the context-basis line alongside `register.md` — the same explicit by-path citation this mode already requires for procedure cards (Section 3) — a recommendation with no visible citation of this path is the same as not loading it. |
+| ALWAYS | The first step of any design task | `../shared/register.md` (Brand-vs-Product register) and `references/design-process/brief_to_dials.md` (Design Read intake to the dials). Load-and-prove loop is mandatory, not optional — full rationale: `references/design-process/resource_loading_notes.md` §1. |
+| ALWAYS | Any design or UI build task | `../shared/context_loading_contract.md` (register-first gate, build bundle, context manifest, the four required proof fields, and hard gates). Citation required, not just a background load — full rationale: `references/design-process/resource_loading_notes.md` §2. |
+| CONDITIONAL | A make-frame transform verb (bolder, quieter, distill, clarify, delight) already routed here | `references/design-process/transform_application.md` (shared application contract, per-verb ledgers, proof cards) |
 | CONDITIONAL | Writing UI copy | Section 6 of `design_principles.md` (writing in design) |
 | CONDITIONAL | Producing two or more design directions at once | `references/design-process/variation_diversity.md` (seed-of-thought debias so the directions are not N safe copies of the median) |
 | CONDITIONAL | Verifying the quality floor / charts | `references/design-process/ux_quality_reference.md` (accessibility, motion, touch, responsive, forms, charts) |
@@ -84,8 +85,8 @@ DESIGN TASK
 | CONDITIONAL | Redesigning an existing surface | `references/design-process/redesign_intake.md` (classify greenfield, preserve or overhaul, then protect URLs, nav labels, form fields, legal copy and locked tokens) |
 | CONDITIONAL | Internal procedure support | `procedures/discovery_question_round.md`, `procedures/aesthetic_direction.md`, `procedures/wireframe_exploration.md`, `procedures/variation_set.md`, `procedures/prototype_flow_spec.md`, `procedures/deck_direction_spec.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | A real design system you own, read live and never copied. See `references/design-grounding/design_inventory.md` |
-| ON_DEMAND | Naming a realized look in one line as the default to critique against | The illustrative cues in `references/aesthetics/` (brutalist, minimalist, soft, apple-bento). Critique-against reference only, subordinate to grounding, never a chooser, preset, or pick-a-vibe axis. See `references/aesthetics/README.md` |
-| INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS screens + flows) or Refero (web pages + visual styles). These run through Code Mode (`mobbin.*` / `refero.*`), so co-load `mcp-code-mode` before any lookup; this skill does not call Code Mode directly. Take the initiative to pull ONE when the category benefits and a subscription is connected; otherwise ask the user; otherwise fall back to the generic process. See `references/design-grounding/design_references_mcp.md` |
+| ON_DEMAND | Naming a realized look in one line as the default to critique against | The illustrative cues in `references/aesthetics/` (brutalist, minimalist, soft, apple-bento). Critique-against only, never a chooser or preset — see `references/aesthetics/README.md` and Reference Loading Notes §3. |
+| INITIATIVE / ASK | A convention-heavy category where naming the real-world default sharpens the deviation | A real shipped-UI reference via Mobbin (app/iOS) or Refero (web). Routes through Code Mode, one reference, never copied — full initiative/ask/fallback rule in ALWAYS #8 and `references/design-grounding/design_references_mcp.md`. |
 | ON_DEMAND | Implementing in code | `sk-code` web-surface standards for the target stack |
 
 The private procedure-card selection table in Section 3 is part of this routing contract: after the public `interface` mode is selected, choose at most one card from `procedures/` or `../shared/procedures/` and cite its relative path in the plan or proof line.
@@ -100,6 +101,7 @@ The Resource Loading Levels table above is the human-readable view; the fenced b
 # of the top score, then union DEFAULT_RESOURCE + RESOURCE_MAP[intent] for each.
 # Every reference and asset on disk appears in at least one RESOURCE_MAP entry, so
 # no on-disk guidance is unreachable; design_principles.md is also the default.
+from pathlib import Path
 
 DEFAULT_RESOURCE = ["references/design-process/design_principles.md", "../shared/register.md", "../shared/context_loading_contract.md"]
 
@@ -115,10 +117,12 @@ INTENT_SIGNALS = {
     "REAL_SYSTEM_GROUNDING": {"weight": 4, "keywords": ["design system", "design inventory", "ground in a system", "existing design system", "our design system", "reuse-ground"]},
     "REAL_WORLD_REFERENCE": {"weight": 4, "keywords": ["mobbin", "refero", "real-world reference", "shipped ui", "critique against", "default to deviate from", "the cliche", "the usual look", "typical look"]},
     "AESTHETICS": {"weight": 3, "keywords": ["aesthetic", "brutalist", "minimalist", "soft ui", "apple bento", "name the look", "name a realized look", "realized default", "named default look", "vibe"]},
+    "TRANSFORM_APPLICATION": {"weight": 4, "keywords": ["make it bolder", "make it quieter", "make it distill", "make it clarify", "make it delight", "bolder", "quieter", "distill", "clarify", "delight the interaction", "earned moment", "keep ledger", "remove ledger"]},
 }
 
 RESOURCE_MAP = {
     "DESIGN_PRINCIPLES": ["references/design-process/design_principles.md"],
+    "TRANSFORM_APPLICATION": ["references/design-process/transform_application.md"],
     "REGISTER_DIALS": ["references/design-process/brief_to_dials.md"],
     "VARIATION_DIVERSITY": ["references/design-process/variation_diversity.md"],
     "UX_QUALITY": ["references/design-process/ux_quality_reference.md"],
@@ -130,6 +134,24 @@ RESOURCE_MAP = {
     "REAL_WORLD_REFERENCE": ["references/design-grounding/design_references_mcp.md", "references/mcp-tooling/mobbin_tools.md", "references/mcp-tooling/refero_tools.md"],
     "AESTHETICS": ["references/aesthetics/README.md", "references/aesthetics/brutalist.md", "references/aesthetics/minimalist.md", "references/aesthetics/soft.md", "references/aesthetics/apple_bento.md"],
 }
+
+# Resilience guards (see ../../sk-doc/create-skill/assets/skill/skill_smart_router.md):
+# runtime-discover what's actually on disk, guard every path inside the skill
+# before loading it, and fall back to disambiguation instead of guessing.
+SKILL_ROOT = Path(__file__).resolve().parent
+
+def discover_markdown_resources() -> set[str]:
+    bases = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+    return {p.relative_to(SKILL_ROOT).as_posix() for base in bases if base.exists() for p in base.rglob("*.md")}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    shared_root = (SKILL_ROOT.parent / "shared").resolve()
+    if not (resolved.is_relative_to(SKILL_ROOT) or resolved.is_relative_to(shared_root)):
+        raise ValueError(f"Resource escapes the skill root: {relative_path}")
+    return relative_path
+
+UNKNOWN_FALLBACK = "Ask which request shape applies: pinned brief, free-axis direction, transform verb, or procedure trigger — do not guess a mode."
 
 # Routing flow on top of the model above:
 # 1) DEFAULT_RESOURCE (design_principles.md and the shared register) loads on every design task.
@@ -166,34 +188,13 @@ If no procedure card matches, state `Procedure applied: none - baseline interfac
 
 ### Context, Proof, And Direct Fallback
 
-Record the context basis before recommendations: public mode `interface`, loaded references, selected procedure card or no-procedure fallback, target surface, audience, pinned axes, constraints, and missing facts. Before any ready or handoff claim, include a proof line naming the selected procedure card, loaded evidence, pre-flight result, and unresolved risks.
+Context basis before recommendations: public mode `interface`, loaded references, selected procedure card or no-procedure fallback, target surface, audience, pinned axes, constraints, missing facts. Proof line before any ready/handoff claim: selected procedure card, loaded evidence, pre-flight result, unresolved risks.
 
-This mode must run directly with Read, Glob, and Grep only. If subagents are unavailable or disallowed, do not dispatch; execute the same card selection, context capture, and proof checks in the current session. The fallback keeps the same proof bar and cannot rely on Write, Edit, Bash, or Task.
+Run directly with Read, Glob, and Grep only. If subagents are unavailable or disallowed, do not dispatch — do the same card selection, context capture, and proof checks in the current session, same proof bar, no Write/Edit/Bash/Task.
 
 ### The Two-Pass Process
 
-**Process Flow**:
-```
-STEP 0: Ground the subject
-       └─ Name one concrete subject, its audience, and the page's single job
-       ↓
-STEP 1: Brainstorm a compact token system
-       ├─ Color: 4-6 named hex values
-       ├─ Type: a display face used with restraint + a body face (+ utility face)
-       ├─ Layout: a concept with one-sentence prose + ASCII wireframes
-       └─ Signature: the one element the page will be remembered by
-       ↓
-STEP 2: Critique the plan against the brief
-       └─ Anything that reads like a generic default gets revised, with a stated reason
-       ↓
-STEP 3: Build from the revised plan
-       └─ Derive every color and type decision from the plan, mind CSS specificity
-       ↓
-STEP 4: Self-critique
-       └─ Screenshot if possible, remove one accessory, confirm the quality floor
-```
-
-Calibration matters: current AI design clusters around three default looks (cream + serif + terracotta, near-black + one acid accent, broadsheet with hairline rules). They are defaults, not choices. When the brief frees an axis, do not spend it on one of these. The full calibration, two-pass detail, and writing rules are in [`references/design-process/design_principles.md`](references/design-process/design_principles.md).
+The five-step flow (ground, brainstorm a token system, critique against the brief, build from the revised plan, self-critique) is diagrammed once already, in Phase Detection (Section 2) — not repeated here. Calibration matters: current AI design clusters around three default looks (cream + serif + terracotta, near-black + one acid accent, broadsheet with hairline rules). They are defaults, not choices. When the brief frees an axis, do not spend it on one of these. The full step detail, calibration, and writing rules are in [`references/design-process/design_principles.md`](references/design-process/design_principles.md).
 
 ### Quality Floor
 
@@ -201,7 +202,7 @@ Build to it without announcing it: responsive down to mobile, visible keyboard f
 
 ### Mechanical Delivery Gates
 
-A taste read misses structural and content tells, so two binary gates run before delivery. The layout gate in `references/design-process/mechanical_defaults.md` counts the hero lines, the bento cells against content, and the eyebrows against a `ceil(sectionCount / 3)` ceiling, and computes button contrast against the real background. The content gate in `references/design-process/copy_and_mock_data.md` sweeps for lorem, AI-tell phrasing, fake-precise numbers, a mixed copy register, and lazy image seeds. The fill-in `assets/interface_preflight_card.md` is the checkable form of both plus the dials: every box is binary, and a single fail means the surface is not done.
+A taste read misses structural and content tells, so two binary gates run before delivery: the layout gate (`references/design-process/mechanical_defaults.md` — hero lines, bento cells, eyebrow ceiling, button contrast) and the content gate (`references/design-process/copy_and_mock_data.md` — lorem, AI-tell phrasing, fake-precise numbers, mixed copy register, lazy image seeds). The fill-in `assets/interface_preflight_card.md` is the checkable form of both plus the dials: every box is binary, and a single fail means the surface is not done.
 
 ### Required sk-code Build Manifest
 
@@ -241,29 +242,33 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 
 ### Core References
 
-- [`references/design-process/design_principles.md`](references/design-process/design_principles.md) - Full guidance: grounding, design principles, the two-pass process with AI-default calibration, restraint and self-critique, and interface writing.
-- [`references/design-process/ux_quality_reference.md`](references/design-process/ux_quality_reference.md) - The objective quality floor (accessibility, motion, touch, responsive, forms, charts). Apply as the pass/fail gate after the direction is set.
-- [`references/design-grounding/design_inventory.md`](references/design-grounding/design_inventory.md) - How to use a real design system you own as either reuse-ground or the named default to critique against. Never a chooser.
-- [`references/design-grounding/design_references_mcp.md`](references/design-grounding/design_references_mcp.md) - How to read real-world shipped UI live via Mobbin or Refero (Code Mode) to name the real-world default and deviate from it. Critique-against only, one reference, never a chooser, never copied.
-- [`references/mcp-tooling/mobbin_tools.md`](references/mcp-tooling/mobbin_tools.md) - Mobbin MCP tool catalog (search_screens, search_flows): arguments, the verified Code Mode call convention, result shape, troubleshooting.
-- [`references/mcp-tooling/refero_tools.md`](references/mcp-tooling/refero_tools.md) - Refero MCP tool catalog (8 tools across styles, screens, flows): the styles-first model, call convention, result shape, troubleshooting.
-- [`references/design-process/variation_diversity.md`](references/design-process/variation_diversity.md) - The seed-of-thought debias for producing two or more directions at once: a committed seed picks a non-median start in the grounded option space, the rest are spread to be distinct, and grounding plus the anti-default critique stay primary. Consult only when more than one direction is requested.
-- [`references/design-process/real_ui_loop.md`](references/design-process/real_ui_loop.md) - The real-UI loop: ground in a design system, reuse before generating, check the real render against the quality floor, hand off cleanly. Consult when producing or iterating on real UI.
-- [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Interface uses it as the required build manifest for real UI handoff.
-- [`../shared/register.md`](../shared/register.md) - The shared Brand-vs-Product operating register. Set it first. It gates density, motion, color dosage, copy, anti-slop strictness.
-- [`references/design-process/brief_to_dials.md`](references/design-process/brief_to_dials.md) - Design Read intake that maps the variance, motion and density dials to choices and defers the Brand-vs-Product posture to the shared register. Consult at the start of a task.
-- [`references/design-process/mechanical_defaults.md`](references/design-process/mechanical_defaults.md) - The mechanical anti-default layout gate (hero, bento, meta-label, button contrast, spacing). Authored once here, referenced by the audit mode.
-- [`references/design-process/copy_and_mock_data.md`](references/design-process/copy_and_mock_data.md) - The content gate for realistic mock data and copy (no lorem, no AI-tell phrasing, one copy register). Authored once here, referenced by the audit mode.
-- [`references/design-process/redesign_intake.md`](references/design-process/redesign_intake.md) - Redesign lane intake for existing surfaces, including greenfield, preserve and overhaul classification plus approval-gated never-silently-change items.
-- [`assets/interface_preflight_card.md`](assets/interface_preflight_card.md) - The fill-in PASS or FAIL mechanical pre-flight card. Run it before shipping.
-- [`procedures/discovery_question_round.md`](procedures/discovery_question_round.md) - Private question-round support for under-specified interface briefs.
-- [`procedures/aesthetic_direction.md`](procedures/aesthetic_direction.md) - Private direction-setting support for greenfield or weakly grounded visual systems.
-- [`procedures/wireframe_exploration.md`](procedures/wireframe_exploration.md) - Private low-fidelity structure and storyboard exploration support.
+Full descriptions for every file below live in its own frontmatter and body; this index states only the routing-relevant fact (why it's cited from here, or when to consult it).
+
+- [`references/design-process/design_principles.md`](references/design-process/design_principles.md) - Grounding, principles, the two-pass process, AI-default calibration, restraint, self-critique, interface writing. The default-loaded authority.
+- [`references/design-process/ux_quality_reference.md`](references/design-process/ux_quality_reference.md) - The objective quality-floor pass/fail gate. Apply after the direction is set.
+- [`references/design-grounding/design_inventory.md`](references/design-grounding/design_inventory.md) - Using a real design system as reuse-ground or named default to critique against. Never a chooser.
+- [`references/design-grounding/design_references_mcp.md`](references/design-grounding/design_references_mcp.md) - Reading real-world shipped UI live via Mobbin/Refero to name and deviate from the category default. One reference, never copied, never a chooser.
+- [`references/mcp-tooling/mobbin_tools.md`](references/mcp-tooling/mobbin_tools.md) - Mobbin MCP tool catalog: arguments, Code Mode call convention, result shape, troubleshooting.
+- [`references/mcp-tooling/refero_tools.md`](references/mcp-tooling/refero_tools.md) - Refero MCP tool catalog (styles-first model): call convention, result shape, troubleshooting.
+- [`references/design-process/variation_diversity.md`](references/design-process/variation_diversity.md) - Seed-of-thought debias for two-or-more directions. Consult only when multiple directions are requested.
+- [`references/design-process/real_ui_loop.md`](references/design-process/real_ui_loop.md) - Ground in a system, reuse before generating, render-fidelity check, clean handoff. Consult when producing or iterating on real UI.
+- [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope; the required build manifest for real UI handoff.
+- [`../shared/register.md`](../shared/register.md) - The Brand-vs-Product operating register. Set it first; it gates density, motion, color dosage, copy, anti-slop strictness.
+- [`references/design-process/brief_to_dials.md`](references/design-process/brief_to_dials.md) - Design Read intake mapping the variance/motion/density dials to choices. Consult at task start.
+- [`references/design-process/mechanical_defaults.md`](references/design-process/mechanical_defaults.md) - The mechanical anti-default layout gate. Authored once here, referenced by the audit mode.
+- [`references/design-process/copy_and_mock_data.md`](references/design-process/copy_and_mock_data.md) - The content gate for realistic mock data and copy. Authored once here, referenced by the audit mode.
+- [`references/design-process/redesign_intake.md`](references/design-process/redesign_intake.md) - Redesign intake: greenfield/preserve/overhaul classification plus approval-gated never-silently-change items.
+- [`references/design-process/transform_application.md`](references/design-process/transform_application.md) - Interface-side landing lane for a make-frame transform verb already routed here: application contract, per-verb ledgers, proof cards.
+- [`references/design-process/resource_loading_notes.md`](references/design-process/resource_loading_notes.md) - Extended rationale for the load-and-prove and citation-required table rows, plus reference-loading discipline notes.
+- [`assets/interface_preflight_card.md`](assets/interface_preflight_card.md) - The fill-in PASS/FAIL mechanical pre-flight card. Run before shipping.
+- [`procedures/discovery_question_round.md`](procedures/discovery_question_round.md) - Private question-round support for under-specified briefs.
+- [`procedures/aesthetic_direction.md`](procedures/aesthetic_direction.md) - Private direction-setting support for greenfield or weakly grounded systems.
+- [`procedures/wireframe_exploration.md`](procedures/wireframe_exploration.md) - Private low-fidelity structure/storyboard exploration support.
 - [`procedures/variation_set.md`](procedures/variation_set.md) - Private support for materially distinct design options.
-- [`procedures/prototype_flow_spec.md`](procedures/prototype_flow_spec.md) - Private prototype-flow specification support before `sk-code` implementation.
-- [`procedures/deck_direction_spec.md`](procedures/deck_direction_spec.md) - Private deck and presentation planning support.
+- [`procedures/prototype_flow_spec.md`](procedures/prototype_flow_spec.md) - Private prototype-flow spec support before `sk-code` implementation.
+- [`procedures/deck_direction_spec.md`](procedures/deck_direction_spec.md) - Private deck/presentation planning support.
 - [`../shared/procedures/polish_gate_orchestration.md`](../shared/procedures/polish_gate_orchestration.md) - Shared private final-polish orchestration when interface owns visual-direction repair.
-- [`references/aesthetics/README.md`](references/aesthetics/README.md) - Illustrative grounding cues (brutalist, minimalist, soft, apple-bento) for naming a realized default to critique against. Subordinate to grounding and the anti-default critique, never a chooser, preset, or pick-a-vibe axis.
+- [`references/aesthetics/README.md`](references/aesthetics/README.md) - Illustrative grounding cues, critique-against only, subordinate to grounding, never a chooser or preset.
 - [`LICENSE.txt`](LICENSE.txt) - Apache-2.0 terms for the vendored Anthropic `frontend-design` base.
 
 ### Manual Testing Playbook
@@ -272,12 +277,7 @@ Manual testing scenarios live in `manual_testing_playbook/manual_testing_playboo
 
 ### Reference Loading Notes
 
-- Load `design_principles.md` on every design task. It is the authority for palette, type, structure, motion, and copy.
-- Keep Section 2 (SMART ROUTING) as the single routing authority.
-- `references/design-process/ux_quality_reference.md` is the objective quality-floor gate; apply it after the direction is set.
-- A real design system you own is an OPTIONAL source to ground in or to name the default to deviate from, never a required step and never a style chooser. `design_principles.md` stays the authority.
-- The `references/aesthetics/` cues are illustrative critique-against reference only: cite at most one to name a realized default at the critique step, subordinate to grounding, never surfaced as a chooser, preset, or pick-a-vibe axis. `real_ui_loop.md` Section 8 owns this guardrail.
-- When the Mobbin or Refero subscriptions are connected, they are an OPTIONAL real-world critique-against reference (via Code Mode) for naming the category default to deviate from, never a chooser and never copied. `references/design-grounding/design_references_mcp.md` owns the rules and `design_principles.md` stays the authority.
+Full reference-loading discipline notes (design_principles.md authority, quality-floor gate order, design-system-grounding optionality, aesthetics-cue subordination, Mobbin/Refero optionality): `references/design-process/resource_loading_notes.md` §3.
 
 ---
 

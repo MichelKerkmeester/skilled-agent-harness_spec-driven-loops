@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/003-data-fidelity",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/003-data-fidelity",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/003-data-fidelity",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/003-data-fidelity",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -28,7 +28,6 @@
       "feature",
       "specification",
       "spec",
-      "003",
       "data",
       "implementation",
       "plan",
@@ -36,11 +35,13 @@
       "fidelity",
       "verification",
       "checklist",
-      "summary"
+      "summary",
+      "normalization"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "scripts/utils/input-normalizer.ts",
       "scripts/utils/fact-coercion.ts",
       "scripts/extractors/file-extractor.ts",
@@ -50,13 +51,18 @@
       "scripts/tests/runtime-memory-inputs.vitest.ts",
       "scripts/tests/test-extractors-loaders.js",
       "tests/runtime-memory-inputs.vitest.ts",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "input-normalizer.ts",
         "kind": "code",
@@ -103,12 +109,6 @@
         "name": "test-extractors-loaders.js",
         "kind": "code",
         "path": "scripts/tests/test-extractors-loaders.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Normalization is lossy at multiple pipeline boundaries",
     "created_at": "2026-04-12T09:02:50.269Z",
-    "last_save_at": "2026-06-23T03:50:00.011Z",
+    "last_save_at": "2026-07-09T10:02:58.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

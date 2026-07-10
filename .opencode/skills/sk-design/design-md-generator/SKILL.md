@@ -86,7 +86,7 @@ TASK CONTEXT
 
 ### Resource Domains
 
-The router discovers knowledge from this skill's `references/` and `assets/` directories: nine reference docs covering the v3 format spec and writing-style guide, the colour and component taxonomies, anti-patterns, the authoring boundary, the quality checklist, and the operational extraction-workflow and troubleshooting guides, plus three assets (the WRITE-phase prompt template, the cardinal-rules card, and the source-of-truth router card). The gold-standard pairs under `references/examples/` are reachable only under STUDY intent — study artifacts the writer reads to learn format conventions, never copied into an extraction.
+The router discovers knowledge from this skill's `references/` and `assets/` directories: ten reference docs covering the v3 format spec and writing-style guide, the colour and component taxonomies, anti-patterns, the authoring boundary, the quality checklist, the operational extraction-workflow and troubleshooting guides, and the guided-run wrapper contract, plus three assets (the WRITE-phase prompt template, the cardinal-rules card, and the source-of-truth router card). The gold-standard pairs under `references/examples/` are reachable only under STUDY intent — study artifacts the writer reads to learn format conventions, never copied into an extraction.
 
 ```text
 references/design_md_format.md       # v3 Style Reference section specification (DEFAULT_RESOURCE)
@@ -251,44 +251,14 @@ Record the context basis before extraction or validation: public mode `md-genera
 
 If subagents are unavailable or disallowed, execute directly in the current session using this mode's normal backend boundary. Direct fallback does not weaken the pipeline: full extraction still requires extract, write, and validate; validation-only and report-only paths still use their dedicated backend entrypoints.
 
-**Process Flow:**
-```
-EXTRACT (Phase 1)
-    ├─ Playwright crawls the target URL across 5 viewports (mobile through wide desktop)
-    ├─ Collects computed CSS: colors, typography, shadows, radii, spacing, CSS variables
-    ├─ Preserves measured image-edge outlines, box-shadows, nested/concentric radii, root font smoothing, and hit-target affordances when present
-    ├─ Detects dark-mode palette, framework markers, icon system, motion tokens, a11y data
-    ├─ Each token tagged with a 4-layer stability class (L1 permanent → L4 content)
-    └─ Output: tokens.json (verbatim measured values)
-         ↓
-WRITE (Phase 2)
-    ├─ Run build-write-prompt.ts FIRST: it pre-renders Tokens — Colors, Tokens — Spacing &
-    │    Shapes, Surfaces, and Quick Start deterministically from tokens (doc-as-view, no AI on
-    │    the value tables) via formatters-v3.ts, plus a FACTS block of locked values
-    ├─ Read tokens.json and references/design_md_format.md for the v3 Style Reference spec
-    ├─ Paste the pre-rendered value sections UNCHANGED; write prose only (intro, Typography role
-    │    prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands)
-    ├─ Every value comes from a pre-rendered section or the FACTS block — never invented or concretized
-    ├─ Voice is NAMED, CONFIDENT, RESTRAINED; assign evocative colour names and roles, infer Similar
-    │    Brands, but never assert a system the data contradicts (no gradient-as-depth, no false focus)
-    ├─ Elevation renders FLAT when 0 shadow tokens (states how depth is achieved instead)
-    ├─ L1 (permanent) + L2 (system) colours in the main token table
-    ├─ L3 (campaign) colours in a "Current Campaign Colors (Subject to change)" sub-table
-    ├─ L4 (content) tokens excluded entirely
-    └─ Output: DESIGN.md (v3 Style Reference) at the user-specified path
-         ↓
-VALIDATE (Phase 3)
-    ├─ Run validate.ts: check every hex code in DESIGN.md exists in tokens.json
-    ├─ Check the required v3 Style Reference sections are present
-    ├─ Check Quick-Start fidelity: every Quick Start hex traces to tokens, --page-max-width matches
-    ├─ Check format consistency (hex casing, phantom colors) and prose provenance (claimsScore ≥ 80)
-    └─ Output: validation pass/fail with a dual score and per-finding messages
-         ↓
-REPORT (Phase 4, optional)
-    ├─ report-gen.ts: render an HTML report of token-to-section mapping
-    ├─ preview-gen.ts: render a visual preview of the design system
-    └─ Output: visual artifacts for human review
-```
+**Process Flow:** `EXTRACT (Phase 1)` → `WRITE (Phase 2)` → `VALIDATE (Phase 3)` → `REPORT (Phase 4, optional)`
+
+- **EXTRACT** — Playwright crawls 5 viewports, collecting computed CSS (colors, typography, shadows, radii, spacing, CSS variables), measured image-edge outlines, nested/concentric radii, root font smoothing, and hit-target affordances when present, plus dark-mode/framework/icon/motion/a11y signals. Every token is tagged with a stability class (L1–L4, see below). Output: `tokens.json`.
+- **WRITE** — `build-write-prompt.ts` runs first: it pre-renders the value tables (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) plus a FACTS block deterministically from tokens via `formatters-v3.ts` (doc-as-view, no AI on the value tables). Paste those sections unchanged; write prose only (intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands) — voice per `references/writing_style_guide.md`. Elevation renders FLAT when there are 0 shadow tokens. Output: `DESIGN.md`.
+- **VALIDATE** — `validate.ts` checks hex accuracy, v3 section completeness, Quick-Start fidelity, and prose provenance (see "What `validate.ts` traces" below). Output: pass/fail with a dual score and per-finding messages.
+- **REPORT** (optional) — `report-gen.ts` and `preview-gen.ts` render visual artifacts (HTML report, preview) for human review.
+
+Full phase-by-phase actions and handoff: `references/extraction_workflow.md`.
 
 ### Cardinal Fidelity Rule
 
@@ -305,49 +275,27 @@ The cardinal rule stays enforceable by inspection because every value has a legi
 
 ### Invocation
 
-> **Working directory.** Run the one-time setup from `backend/` (npm needs the package
-> manifest there). Run every `extract.ts` invocation from the **repo root** with the full
-> script path: `extract.ts` refuses any `--output` that resolves inside the skill, so a
-> relative `--output .opencode/specs/...` only resolves correctly from the repo root.
+> **Working directory.** One-time setup runs from `backend/`. Every pipeline script runs from the **repo root** with the full script path — `extract.ts` refuses any `--output` that resolves inside the skill, so a relative `.opencode/specs/...` path only resolves correctly from there. Full phase-by-phase actions: `references/extraction_workflow.md`. Complete flag reference: `backend/README.md`.
 
 ```bash
-# One-time setup (from the skill's backend/ directory)
+# One-time setup
 cd .opencode/skills/sk-design/design-md-generator/backend && npm install && npx playwright install chromium
 
-# Phase 1 — extract (run from the repo root). --fast crawls 5 pages at 8 concurrency
-# (default is 8 pages). Interaction capture (hover/focus/active) runs by DEFAULT, including
-# under --fast. tokens.json is written to <--output>/. The relative --output resolves under
-# the repo root (outside the skill), which is what the output guard requires.
+# Phase 1 — extract (writes tokens.json to --output)
 npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
 
-# Phase 2 — write DESIGN.md per references/design_md_format.md, every value from tokens.json.
-# Run build-write-prompt.ts first: it pre-renders Tokens—Colors/Spacing&Shapes/Surfaces/Quick Start
-# (via formatters-v3.ts) plus a FACTS block, then you paste those unchanged and write prose only:
+# Phase 2 — pre-render value tables + FACTS block, then write DESIGN.md prose
 npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts .opencode/specs/<track>/<packet>/output/tokens.json
 
-# Phase 3 — validate (DESIGN.md first, tokens.json second):
+# Phase 3 — validate (DESIGN.md first, tokens.json second)
 npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/validate.ts <DESIGN.md> .opencode/specs/<track>/<packet>/output/tokens.json
-
-# Optional — fidelity proof + visual report/preview (these take tokens.json FIRST):
-npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts <url> .opencode/specs/<track>/<packet>/output/tokens.json
-npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts .opencode/specs/<track>/<packet>/output/tokens.json <dir> <DESIGN.md>
-npx ts-node .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts .opencode/specs/<track>/<packet>/output/tokens.json <dir>
 ```
 
-Real extract flags (see `backend/README.md`): `--fast` (5 pages, 8 concurrency — still captures interaction), `--max-pages <n>` (default 8), `--concurrency <n>` (default 5), `--with-interaction` (the default — capture hover/focus/active states), `--no-interaction` (opt OUT of interaction capture), `--fast-no-interaction` (fast crawl AND skip interaction — the old `--fast` behavior), `--no-dark-mode` (skip dark detection), `--wait-for <strategy>`, `--extra-urls`, `--merge-with`, `--output <dir>` (REQUIRED — a spec folder outside the skill), `--insecure` (ignore HTTPS certificate errors for self-signed / staging hosts), `--verbose`. Interaction capture is **default-on**; opt out only with `--no-interaction` or `--fast-no-interaction`.
+Optional Phase 4 (from the repo root, tokens.json first): `proof.ts <url> <tokens.json>`, `report-gen.ts <tokens.json> <dir> <DESIGN.md>`, `preview-gen.ts <tokens.json> <dir>`. Interaction capture is **default-on**; opt out with `--no-interaction` or `--fast-no-interaction`.
 
 ### Token Stability Classes (L1–L4)
 
-Each extracted token receives a stability classification that governs whether it appears in `DESIGN.md`:
-
-| Class | Name (emitted `layer`)     | Description                                              | DESIGN.md treatment                      |
-| ----- | -------------------------- | -------------------------------------------------------- | ---------------------------------------- |
-| L1    | Permanent (`infrastructure`) | Brand identity — logo colors, brand typeface, core radii | Included in main sections                |
-| L2    | System (`system`)          | Design-system tokens — semantic colors, spacing scale    | Included in main sections                |
-| L3    | Campaign (`campaign`)      | Temporary — hero gradients, seasonal accents             | Included with "Subject to change" annotation |
-| L4    | Content (`content`)        | Image-derived, one-off, article-specific                 | Excluded entirely                        |
-
-The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Tokens that sit at a boundary are assigned the higher (more restrictive) class. In `tokens.json` each token's `stability.layer` carries the emitted string (`infrastructure` for L1, then `system`, `campaign`, `content`) — "Permanent" is the human-facing label for the `infrastructure` layer.
+Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`content`) by the deterministic classifier in `backend/scripts/cluster.ts`. L1+L2 populate the main `DESIGN.md` sections, L3 gets a "Subject to change" annotation, L4 is excluded entirely. Boundary tokens take the higher (more restrictive) class. Full class table, the emitted `stability.layer` string mapping, and the coverage-election pre-gate: `references/extraction_workflow.md` (Section 3).
 
 ---
 
@@ -460,43 +408,14 @@ The classifier lives in `backend/scripts/cluster.ts` and is deterministic. Token
 
 ## 7. INTEGRATION POINTS
 
-### Tool Usage Guidelines
-
-- **Bash** owns all embedded-tool invocations: `npx ts-node …/backend/scripts/extract.ts`, `…/validate.ts`, `…/report-gen.ts`, `…/preview-gen.ts`, `npm install`, `npx playwright install chromium`. Run the one-time setup (`npm install`, `npx playwright install chromium`) from `backend/`; run the pipeline scripts from the **repo root** with the full script path, so a relative `--output` resolves outside the skill (the output guard refuses skill-internal paths).
-- **Read** loads `tokens.json`, the existing DESIGN.md for re-extraction context, and all resource/reference docs.
-- **Write** produces the DESIGN.md output. Only Write when the token data is fully loaded and the v3 Style Reference format specification has been read.
-- **Edit** is used for targeted fixes to DESIGN.md after validation reveals specific errors.
-- **Glob/Grep** inspect the tool directory, locate examples, and search tokens.json for specific token keys.
-
-### Cross-Workflow Contracts
-
-- **`interface`** is the design-judgment skill. When a DESIGN.md extraction feeds into inventing new UI direction, load that skill. This skill provides the ground truth; `interface` applies the taste.
-- **`sk-code`** consumes DESIGN.md as an implementation reference. The DESIGN.md produced by this skill is the contract that `sk-code` builds against — the hallucination-proof source of truth for colors, fonts, spacing, shadows, and radii.
-- **`mcp-figma`** and **`design-mcp-open-design`** (nested inside `sk-design`) are alternative extraction sources. When the user needs a DESIGN.md from a Figma file or Open Design project instead of a live URL, route to those transports. When the user needs a DESIGN.md from a live URL, this is the skill.
-- **`system-spec-kit`** applies when the extraction is part of a larger spec-tracked feature and packet documentation is required.
-
-### External Tools
-
-- **Playwright** (Microsoft, Apache 2.0): installed via `npx playwright install chromium`. Required for the extraction phase. The embedded tool uses Playwright to crawl live URLs and read computed CSS.
-- **Node.js**: required by the embedded tool — Node 20 or newer (the floor the backend targets). `backend/package.json` does not pin an `engines` range; treat Node 20+ as the supported baseline.
-- **`ts-node`**: used to execute the embedded TypeScript modules directly. Included in `backend/package.json` devDependencies.
-
-### Knowledge Base Dependencies
-
-**Required** (every invocation): `references/design_md_format.md` (v3 Style Reference section specification). **Conditional**: `writing_style_guide.md`, taxonomy docs, `anti_patterns.md`, `quality_checklist.md` (per intent model in Section 2).
+- `interface` owns new direction (palette, type, anti-default critique); this skill supplies the measured ground truth it builds on.
+- `sk-code` implements against `DESIGN.md` as the hallucination-proof source of truth for colors, fonts, spacing, shadows, and radii.
+- `mcp-figma` and `design-mcp-open-design` (nested inside `sk-design`) are the Figma-file and Open Design alternatives to a live-URL extraction.
+- `system-spec-kit` applies when the extraction is part of a larger spec-tracked feature and packet documentation is required.
+- Requires Playwright (Apache 2.0, via `npx playwright install chromium`) and Node.js 20+ (`backend/package.json` does not pin an `engines` range — treat 20+ as the supported floor); `ts-node` executes the embedded TypeScript modules directly.
 
 ---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) discovers resource and reference docs dynamically. Start from `references/design_md_format.md` for the v3 Style Reference section specification, load `references/writing_style_guide.md` for voice/tone rules, and load taxonomy/anti-pattern/quality docs per the intent model. References stay the primary loaded resources.
-
-Examples: `references/examples/{stripe,vercel,linear,supabase}/` provide gold-standard DESIGN.md + tokens.json pairs, loaded in STUDY intent. Study the DESIGN.md alongside the matching tokens.json to understand the format conventions.
-
-Scripts: the embedded `backend/scripts/` directory contains 20 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `build-write-prompt.ts` (Phase 2 doc-as-view: pre-renders the v3 Tokens — Colors / Spacing & Shapes / Surfaces / Quick Start sections and a FACTS block), `validate.ts` (Phase 3, v3-schema-aware with a Quick-Start fidelity check), `report-gen.ts`, and `preview-gen.ts` (Phase 4). `formatters-v3.ts` holds the deterministic v3 emitters — the hue+lightness colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start renderers (every value verbatim from tokens) — that `build-write-prompt.ts` calls. The remaining modules are internal pipeline stages called by the orchestrator.
-
-Related skills: `interface` (the design-judgment sibling — invents new direction, consumes DESIGN.md as ground truth), `sk-code` (consumes DESIGN.md as the implementation contract), `mcp-figma` (extracts from Figma Desktop, not live URLs), `design-mcp-open-design` (nested inside `sk-design`, extracts from Open Design projects), `mcp-chrome-devtools` (for browser inspection and visual preview, not structured extraction), and `system-spec-kit` when the extraction is part of a tracked packet.
-
-Install guide: tool setup is `cd backend && npm install && npx playwright install chromium`. A dedicated INSTALL_GUIDE.md for Node.js + Playwright + Chromium setup is authored separately.
-
-The embedded tool under `backend/` is a self-contained TypeScript pipeline; its runtime dependencies are declared in `backend/package.json` and installed per the INSTALL_GUIDE, not redistributed in the skill.
+Manual validation scenarios live in `manual_testing_playbook/manual_testing_playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.0.md`. Tool setup: `INSTALL_GUIDE.md`. The embedded `backend/scripts/` pipeline (20 TypeScript modules) is documented operationally in `references/extraction_workflow.md`.

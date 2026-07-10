@@ -31,12 +31,12 @@
       "daemon",
       "waves",
       "scenarios",
-      "028",
       "phase",
-      "004",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "verdicts",
+      "run"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The remaining 32 scenarios span seven categories: compat/disable (CP), operator-H5 daemon states (OP), auto-update daemon (AU), auto-indexing (AI), lifecycle routing (LC), scorer fusion (SC) and python compat (PC)",
     "created_at": "2026-05-26T20:10:30.278Z",
-    "last_save_at": "2026-07-02T05:31:11.362Z",
+    "last_save_at": "2026-07-09T10:02:50.144Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:877c08ebfe4c0a365afef302e9a173c52ea7cacf9d40d8176fe144b92651a64a",
+    "source_fingerprint": "sha256:2936071ca0d83c69b307764b595739e3887b1742da620ba05226c005c490e00a",
     "source_doc_hashes": {
-      "spec.md": "6827aeebf22e5a8265ef4270060cf20c9e1c62a4ffaac0c4c1f0b7bab9407751",
-      "plan.md": "a49add5e4b373e5c6df5b7be504dc0ed43c3d2ecd4de35651687c331e7022656",
-      "tasks.md": "cad7292c565c2b05b6a9847abdd5396eebe95c057e37f769d2bf53b0fa7b901e",
-      "checklist.md": "d7ccf317c1921d4787e62bc3f8ac24758bddd9c55d6b3115a8629221cb7c781d",
-      "implementation-summary.md": "4d8664cf544bb5b32a160d248255cf9eafa2e80dac946ad7a3be790103818fb4"
+      "spec.md": "6ebd3d1bf8bd6475e54710da3830f105be9255c434680bba19e3331c101901ae",
+      "plan.md": "92a8be8fe6c5be9b24a3ea1865227e0f302c57dd5fa22103ce96082aff970ebf",
+      "tasks.md": "c6279017bb7e7cb3745ec42380e8ad24b3eb1615b208502ece7800d5fce7dd85",
+      "checklist.md": "d5ebc5e6bbaabd46a79c29bca00c057c791d94f094b17d59ad2a87bdafeac80e",
+      "implementation-summary.md": "331a51d022baaa14e700744a39e1f847cea121d2571728c0d87bf6ee4ece7ada"
     },
     "last_active_child_id": null,
     "last_active_at": null

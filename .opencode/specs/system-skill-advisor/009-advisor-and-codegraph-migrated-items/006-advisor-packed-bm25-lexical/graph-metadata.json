@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The advisor lexical lane is token overlap plus static synonyms/hints (`lib/scorer/lanes/lexical.ts:8-23` and `:50-85`), so routing quality depends on hand-tuned synonym pressure and degrades on ambiguous prompts",
     "created_at": "2026-06-10T19:24:10Z",
-    "last_save_at": "2026-07-07T11:58:29.047Z",
+    "last_save_at": "2026-07-09T10:02:50.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb76733bfee16cfc51a998091785450d9259f79db7eaf1700e79c6c6f1cee938",
+    "source_fingerprint": "sha256:791f0a0e07a2cd0ecd6fab698f20e122a3a473b14c0fa63e023ab6ed570967cf",
     "source_doc_hashes": {
-      "spec.md": "1dd57c13df0280abda0bf70054067a19c02e5853bfc46d133084b10e81cf88ab",
-      "plan.md": "65dd448d15f951b5ae7ff58e8e6fb1f1b92056bc1adabcbf91607301a9088b4e",
-      "tasks.md": "b58e5ff56cffc5ecf904815832c66cf6324d6dc28b4132dd831c07727adeef56",
-      "implementation-summary.md": "b8f2299e5c79b16911a659aabd37c31e5e12395aa328e4b5f18254e36fc30749"
+      "spec.md": "eb499f537fd3bdb139843ab041d4797b8d75aab1c757bc858942e85dcdeed5db",
+      "plan.md": "50bfc592ec415b5c37a8d8e35f2dbb89f6ef642de0897dc3f9589276089a171c",
+      "tasks.md": "d39de026efbcc4c9d25b7696ad9d6344b7d5ff1596343d75dfc471b294936400",
+      "implementation-summary.md": "343806e5a05d0172eef6c14e20ee427ce94ca05f41efbc595ab55efe9fe2917e"
     },
     "last_active_child_id": null,
     "last_active_at": null

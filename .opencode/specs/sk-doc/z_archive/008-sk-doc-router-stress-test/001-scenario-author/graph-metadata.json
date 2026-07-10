@@ -21,8 +21,6 @@
       "071/001 summary"
     ],
     "key_topics": [
-      "071",
-      "001",
       "scenario-author",
       "sk-doc",
       "playbook",
@@ -32,7 +30,9 @@
       "summary",
       "smart",
       "router",
-      "distinct"
+      "distinct",
+      "intents",
+      "test"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "sk-doc has a smart router with 11 distinct intents but NO test playbook to verify router behavior across model interpretations",
     "created_at": "2026-05-05T10:27:19Z",
-    "last_save_at": "2026-06-23T03:49:49.759Z",
+    "last_save_at": "2026-07-09T10:02:44.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f24c111ab40911a6fe639dfb5ad6d3ebcab0c093e58f21055c1fec1692b61bd",
+    "source_fingerprint": "sha256:375cbfa56de2c0b97adbdd1a88dcb5dc43546b82138bfdf23a16a37534920ecb",
     "source_doc_hashes": {
-      "spec.md": "ea2d31b3f5866f03e59ed1fea556d7cfd165496b5f687eca75f23268b7f9715d",
-      "plan.md": "fbbc5182c6c66ca2db19e8b0ef1f9ed0f13220aba6e77370cd8836679b506c96",
-      "tasks.md": "c45ac31b66d000bca7c6f70fc3ac40c970453d259ebc058ba9be445ac4d88e77",
-      "implementation-summary.md": "a6ee777e9a11cc6fcfef44eda282c0fabc987875f84b3b0df086a216ecbec504"
+      "spec.md": "4a1879991a12c20773c4f3522632b592698cf891d6c55fef9f37082e17b70eb3",
+      "plan.md": "7ace970922a4b3501c16e67e36b84d7e85621b35bd921a8d60c905ac5a69a928",
+      "tasks.md": "cf7db0f5719c5801ef9364acb5d83232f6f4b6c459f9362f619fb5da934933ae",
+      "implementation-summary.md": "e465cd21880b870e5df46344c30845bbc93cb5b661ce1a519c2838276854f7b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

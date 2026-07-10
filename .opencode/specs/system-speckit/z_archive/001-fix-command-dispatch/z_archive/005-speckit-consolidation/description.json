@@ -1,13 +1,11 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/005-speckit-consolidation",
-  "description": "Enable users to update the SpecKit functionality by updating a single skill folder, eliminating the need to manage two separate directories (`.opencod",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/005-speckit-consolidation",
+  "description": "Enable users to update the SpecKit functionality by updating a single skill folder, eliminating the need to manage two separate directories",
   "keywords": [
     "enable",
     "users",
-    "update",
     "speckit",
     "functionality",
-    "updating",
     "single",
     "skill",
     "folder",
@@ -16,14 +14,13 @@
     "manage",
     "two",
     "separate",
-    "directories",
-    "opencod"
+    "directories"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.866Z",
+  "lastUpdated": "2026-07-09T10:02:56.816Z",
   "specId": "005",
   "folderSlug": "speckit-consolidation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

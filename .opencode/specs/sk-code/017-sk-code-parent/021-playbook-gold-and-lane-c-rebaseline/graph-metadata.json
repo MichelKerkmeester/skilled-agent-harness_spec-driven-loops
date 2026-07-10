@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
     "created_at": "2026-07-05T19:09:55.824Z",
-    "last_save_at": "2026-07-07T17:16:30.517Z",
+    "last_save_at": "2026-07-09T10:02:44.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc0b93a3f83d30dd73d6e6ac3a2dc90818d6af023d40da4b0afa12564daf37e9",
+    "source_fingerprint": "sha256:84fd624df903bfdb5fa235c5bf05cab0ede99d8555b2077325e9fa5b1d794a01",
     "source_doc_hashes": {
-      "spec.md": "cf589578ff04a4fd87e1d3e486b29e3c41292fb4cfa90eec1245adca0e93ab0b",
+      "spec.md": "b7b08c85224d78c73403493fe7007d151178f16940cac93f27b16967423f1e7f",
       "plan.md": "df13be5a73304775d50bbfa09d0b4e5300a78bc27deeeceb047fc260908c5f2b",
       "tasks.md": "45b9feab9a087b0b2593f9bea79a8ace8a5872737baa2c230f199f00630a6afe",
       "checklist.md": "e93ea4d1ffafa4b571531adbeceff1a8e03bdf308e15a6aff7974d77e5a3299c",

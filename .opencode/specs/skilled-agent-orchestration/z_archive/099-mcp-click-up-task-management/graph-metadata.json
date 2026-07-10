@@ -50,11 +50,11 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/mcp-click-up/SKILL.md",
+      ".opencode/skills/mcp-click-up/scripts/install.sh",
+      ".opencode/skills/mcp-click-up/references/cupt_commands.md",
       ".opencode/skills/mcp-click-up/README.md",
       ".opencode/skills/mcp-click-up/INSTALL_GUIDE.md",
       ".opencode/skills/mcp-click-up/graph-metadata.json",
-      ".opencode/skills/mcp-click-up/scripts/install.sh",
-      ".opencode/skills/mcp-click-up/references/cupt_commands.md",
       ".opencode/skills/mcp-click-up/references/mcp_tools.md",
       ".opencode/skills/mcp-click-up/references/troubleshooting.md",
       ".opencode/skills/mcp-click-up/examples/task-queue-workflow.sh",
@@ -78,6 +78,18 @@
         "source": "derived"
       },
       {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-click-up/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "cupt_commands.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-click-up/references/cupt_commands.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-click-up/README.md",
@@ -93,18 +105,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/mcp-click-up/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "install.sh",
-        "kind": "script",
-        "path": ".opencode/skills/mcp-click-up/scripts/install.sh",
-        "source": "derived"
-      },
-      {
-        "name": "cupt_commands.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-click-up/references/cupt_commands.md",
         "source": "derived"
       },
       {
@@ -218,7 +218,7 @@
     ],
     "causal_summary": "No `mcp-click-up` skill exists in `.opencode/skills/`",
     "created_at": "2026-05-31T00:00:00Z",
-    "last_save_at": "2026-06-23T03:49:51.421Z",
+    "last_save_at": "2026-07-09T10:02:46.100Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-31T10:00:00Z",
     "source_docs": [
@@ -229,14 +229,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19621ab4ddfeec24a845bb82e4894a49aa8cf56f3b1fbc3f7ecdc8c516df21f3",
+    "source_fingerprint": "sha256:91bcc28290ba5117db09f00b181ed439bb1482b298084eeaaa83260a4efeff64",
     "source_doc_hashes": {
-      "spec.md": "3426e79c392b6827fe0963311c5d5373c6c04f428fec72c99a60d5a6f7d7c4b9",
-      "plan.md": "ddf5b9d379c58a49daed417662213d2793d2435869a20698a04675f0f307607d",
-      "tasks.md": "03e7a0c7372d79460021510db6bb77c12b385d98100c2ad1fe84e18630edef82",
-      "checklist.md": "59427543ed05f7bfe7e55a780c6a4686be8e85f5665c531245ca120bb4fa5600",
-      "decision-record.md": "d4721aa1b7495f1cb5818bc51d409f5f7340953615529e99d233580bdde85566",
-      "implementation-summary.md": "72b530de15604b11470a0ecff0b4de539d0e65bd93fdc6bc5616ab4da0c98d83"
+      "spec.md": "d35b4257c559aa4297f8ae3cbb0bc38022ac805159273b442a4ee8239b6a2c9a",
+      "plan.md": "408f416a95f287511762c193c137c666829bbdee08cd3d2ba06ec037415dc168",
+      "tasks.md": "5130392bcfa7035b4a686b481a637a603e868c72beb75c3ad18597d8f04b5d9c",
+      "checklist.md": "b32e45f03435dd3212a9718b94f08e1abb4e574c5cd42cf68ef8d17b4dff6c21",
+      "decision-record.md": "db05824ddda73cbfa58ba393ef6d34fe84ba877018d7a0828801035cc2fef9a2",
+      "implementation-summary.md": "3467b8f93b4db0d5e9e97f9997559b8c7f9647c8cf3dca18119792ff5554d387"
     },
     "last_active_child_id": null,
     "last_active_at": null

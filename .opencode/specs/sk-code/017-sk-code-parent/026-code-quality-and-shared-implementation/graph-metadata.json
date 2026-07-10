@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The sibling research packet `025-code-quality-and-shared-research` ran ten capped-converged deep-research iterations and produced a ranked, owner-bounded backlog of five upgrade proposals for the `sk-code/code-quality` sub-skill and `sk-code/shared` assets",
     "created_at": "2026-07-07T00:00:00.000Z",
-    "last_save_at": "2026-07-07T17:16:31.165Z",
+    "last_save_at": "2026-07-09T10:02:44.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,9 +218,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86bcfc672b759650341a22c00b7405e86c7865025acc9e9bc67692250968abd2",
+    "source_fingerprint": "sha256:a75f155987039c24d811c163631df25485592b7a64c19304577643634ac7cedd",
     "source_doc_hashes": {
-      "spec.md": "b89a4e64674763adecafa520fd41a4eca4459eb0ed5596c5c6bc60b25d37ffae",
+      "spec.md": "8a6528fdb1f1d64a7cc6097e0b3b11466d9d5bc85c5c15c0c6dc7e9c914c75df",
       "plan.md": "159161ab57d90a4a52dbb84b03bcebe13136300c5ca92dc7e8a56729efec6ed5",
       "tasks.md": "ac27d6357030bd8efc87fdf5d12fb8ad8bc33074ed2fa83c35e9dab9ed0b4ac0",
       "checklist.md": "bc8ff5fa5c1c73f4aec522721fb9f1d4b722af97db208adbfc3faedb92e2fa69",

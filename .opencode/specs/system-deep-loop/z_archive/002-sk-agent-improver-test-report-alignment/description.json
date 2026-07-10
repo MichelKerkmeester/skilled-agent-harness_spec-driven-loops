@@ -1,22 +1,12 @@
 {
   "specFolder": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment",
-  "description": "Phase-parent root spec. Five-phase end-to-end methodology campaign on the sk-improve-agent triad — research → initial implementation + R1 → followup",
+  "description": "Phase-parent root spec.",
   "keywords": [
     "phase-parent",
     "root",
-    "spec",
-    "five-phase",
-    "end-to-end",
-    "methodology",
-    "campaign",
-    "sk-improve-agent",
-    "triad",
-    "research",
-    "initial",
-    "implementation",
-    "followup"
+    "spec"
   ],
-  "lastUpdated": "2026-07-08T13:06:20.542Z",
+  "lastUpdated": "2026-07-09T10:02:48.361Z",
   "specId": "002",
   "folderSlug": "sk-agent-improver-test-report-alignment",
   "parentChain": [

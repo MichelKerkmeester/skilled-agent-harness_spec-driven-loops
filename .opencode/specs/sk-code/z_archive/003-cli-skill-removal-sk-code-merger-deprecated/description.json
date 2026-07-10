@@ -6,15 +6,13 @@
     "sk-code-full-stack",
     "sk-code-web",
     "soft-deprecated",
-    "2026-04-30",
     "packet",
     "054-sk-code-merger",
-    "created",
     "new",
     "umbrella"
   ],
-  "lastUpdated": "2026-07-07T16:37:54.769Z",
-  "specId": "004",
+  "lastUpdated": "2026-07-09T10:02:44.255Z",
+  "specId": "003",
   "folderSlug": "cli-skill-removal-sk-code-merger-deprecated",
   "parentChain": [
     "sk-code",

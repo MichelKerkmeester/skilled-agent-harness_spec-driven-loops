@@ -7,7 +7,6 @@
     "four-reviewer",
     "post-ship",
     "audit",
-    "2026-07-03",
     "goal",
     "plugin",
     "found",
@@ -18,7 +17,7 @@
     "mismatches",
     "none"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.545Z",
+  "lastUpdated": "2026-07-09T10:02:47.959Z",
   "specId": "016",
   "folderSlug": "plugin-correctness-fixes",
   "parentChain": [

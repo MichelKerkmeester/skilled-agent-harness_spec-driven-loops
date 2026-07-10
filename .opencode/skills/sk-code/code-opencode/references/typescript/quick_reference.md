@@ -8,7 +8,7 @@ trigger_phrases:
   - "typescript naming cheat sheet"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.8
+version: 1.0.0.11
 ---
 
 # TypeScript Quick Reference
@@ -42,15 +42,15 @@ settings are only fallback defaults for workspaces that do not override them.
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import path from 'path';
-import fs from 'fs';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import Database from 'better-sqlite3';
 
-import { loadConfig } from './core/config';
-import { MemoryError, ErrorCode } from './errors/core';
+import { loadConfig } from './core/config.js';
+import { ErrorCodes, MemoryError } from './errors/core.js';
 
-import type { SearchOptions, SearchResult } from '../types';
+import type { SearchOptions, SearchResult } from '../types.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -72,6 +72,9 @@ type OperationOutcome = 'success' | 'failure' | 'timeout';
 
 const DEFAULT_TIMEOUT = 5_000;
 const MAX_RETRIES = 3;
+const DEFAULT_ERROR_DETAILS = Object.freeze({
+  source: 'module-name',
+} satisfies Record<string, unknown>);
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -99,8 +102,9 @@ export async function mainFunction(
 ): Promise<SearchResult[]> {
   if (!validateInput(input)) {
     throw new MemoryError(
+      ErrorCodes.INVALID_PARAMETER,
       'Invalid input: expected non-empty string',
-      ErrorCode.ValidationFailed,
+      DEFAULT_ERROR_DETAILS,
     );
   }
 
@@ -139,8 +143,8 @@ export type { ModuleConfig, OperationOutcome };
 | Classes           | `PascalCase`       | `MemoryError`             |
 | Interfaces        | `PascalCase`       | `SearchResult`            |
 | Type aliases      | `PascalCase`       | `MemoryState`             |
-| Enums             | `PascalCase`       | `ErrorCode`               |
-| Enum members      | `PascalCase`       | `ErrorCode.NotFound`      |
+| Const maps        | `PascalCase`       | `ErrorCodes`              |
+| Const map keys    | `UPPER_SNAKE_CASE` | `ErrorCodes.INVALID_PARAMETER` |
 | Generics          | `T`-prefix         | `<T>`, `<TResult>`        |
 | Local variables   | `camelCase`        | `searchResults`           |
 | Module variables  | `camelCase`        | `dbConnection`            |
@@ -157,7 +161,7 @@ export type { ModuleConfig, OperationOutcome };
 
 ```
 1. IMPORTS           (Node built-ins, third-party, local, type-only)
-2. TYPE DEFINITIONS  (Interfaces, types, enums)
+2. TYPE DEFINITIONS  (Interfaces, types, const-derived unions)
 3. CONSTANTS         (Configuration values)
 4. HELPERS           (Internal utility functions)
 5. CORE LOGIC        (Main implementation)
@@ -275,21 +279,23 @@ type SearchReturn = ReturnType<typeof searchMemories>;
 
 ```typescript
 // 1. Node.js built-ins
-import path from 'path';
-import fs from 'fs';
+import fs from 'node:fs';
+import path from 'node:path';
 
 // 2. Third-party
 import Database from 'better-sqlite3';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 
 // 3. Local modules
-import { loadConfig } from './core/config';
-import { MemoryError } from './errors/core';
+import { loadConfig } from './core/config.js';
+import { MemoryError } from './errors/core.js';
 
-// 4. Type-only imports (always last)
-import type { SearchOptions, SearchResult } from '../types';
-import type { DatabaseConfig } from './core/config';
+// 4. Type-only imports (grouped together)
+import type { SearchOptions, SearchResult } from '../types.js';
+import type { DatabaseConfig } from './core/config.js';
 ```
+
+Under `module: "nodenext"`, source files stay `.ts`, but relative import specifiers use the emitted `.js` extension. Use the `node:` prefix for built-in modules.
 
 ### Export Patterns
 
@@ -303,16 +309,16 @@ export const MAX_RESULTS = 100;
 export type { SearchResult, SearchOptions };
 
 // Barrel file (index.ts)
-export { MemoryError, ErrorCode } from './errors/core';
-export { VectorIndex } from './search/vector-index';
-export type { SearchResult } from '../types';
+export { ErrorCodes, MemoryError } from './errors/core.js';
+export { VectorIndex } from './search/vector-index.js';
+export type { SearchResult } from '../types.js';
 
 // Default export (use sparingly — named exports preferred)
 export default class ContextServer { }
 
 // Re-export everything from a module
-export * from './module';
-export type * from './types';
+export * from './module.js';
+export type * from './types.js';
 ```
 
 ---
@@ -341,20 +347,23 @@ try {
 ### Custom Error Class
 
 ```typescript
+import type { RecoveryHint } from './recovery-hints.js';
+
 class MemoryError extends Error {
-  readonly code: ErrorCode;
-  readonly context: Record<string, unknown>;
+  public code: string;
+  public details: Record<string, unknown>;
+  public recoveryHint?: RecoveryHint;
 
   constructor(
+    code: string,
     message: string,
-    code: ErrorCode,
-    context: Record<string, unknown> = {},
+    details: Record<string, unknown> = {},
   ) {
     super(message);
     this.name = 'MemoryError';
     this.code = code;
-    this.context = context;
-    Object.setPrototypeOf(this, new.target.prototype);
+    this.details = details;
+    Object.setPrototypeOf(this, MemoryError.prototype);
   }
 }
 ```
@@ -365,15 +374,17 @@ class MemoryError extends Error {
 function processData(input: unknown): SearchResult {
   if (typeof input !== 'string') {
     throw new MemoryError(
+      ErrorCodes.INVALID_PARAMETER,
       'Invalid input: expected string',
-      ErrorCode.ValidationFailed,
+      { valueType: typeof input },
     );
   }
 
   if (input.length === 0) {
     throw new MemoryError(
+      ErrorCodes.INVALID_PARAMETER,
       'Invalid input: empty string',
-      ErrorCode.ValidationFailed,
+      { length: 0 },
     );
   }
 
@@ -394,7 +405,7 @@ interface SuccessResult<T> {
 interface ErrorResult {
   readonly success: false;
   readonly error: string;
-  readonly code: ErrorCode;
+  readonly code: string;
 }
 
 type Result<T> = SuccessResult<T> | ErrorResult;
@@ -404,12 +415,12 @@ async function safeFetch(id: string): Promise<Result<MemoryRecord>> {
   try {
     const record = await database.get(id);
     if (!record) {
-      return { success: false, error: 'Not found', code: ErrorCode.NotFound };
+      return { success: false, error: 'Not found', code: ErrorCodes.FILE_NOT_FOUND };
     }
     return { success: true, data: record };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
-    return { success: false, error: message, code: ErrorCode.ConnectionFailed };
+    return { success: false, error: message, code: ErrorCodes.DB_CONNECTION_FAILED };
   }
 }
 ```
@@ -492,11 +503,11 @@ module settings where their package boundary requires ESM.
 # Standard build (type check + emit dist/)
 npm run build                        # runs: tsc --build
 
-# Build bypassing pre-existing type errors (emit only)
-npx tsc --build --noCheck --force
+# Satellite package build overlay (type check + emit dist/)
+npm run build                        # runs: tsc -p tsconfig.build.json
 
 # Type check without emitting files
-npx tsc --noEmit
+npm run typecheck                    # often adds: --noEmit --composite false
 
 # Watch mode for incremental builds
 npx tsc --build --watch
@@ -507,7 +518,7 @@ npm run test:cli
 
 **After editing `.ts` source files**: Always rebuild `dist/` — the MCP server and CLI scripts run from compiled `.js`, not `.ts` source.
 
-**When `tsc --build` fails with pre-existing type errors**: Use `--noCheck --force` to emit JavaScript without type checking. Common with strict mode + third-party SDK type mismatches (e.g., MCP SDK `Record<string, unknown>`).
+**Package-aware build rule**: The spec-kit root uses `tsc --build`. Satellite packages with their own package boundary, such as `system-skill-advisor/mcp_server`, use `tsc -p tsconfig.build.json`; their typecheck script may add `--noEmit --composite false` over that same overlay.
 
 ---
 

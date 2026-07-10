@@ -42,14 +42,14 @@
       "doctor",
       "command",
       "surface",
-      "update",
       "memory",
       "causal-graph",
       "deep-loop",
       "cocoindex",
       "orchestrator",
       "spec-kit",
-      "version"
+      "version",
+      "migration"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -223,7 +223,7 @@
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit ecosystem into alignment with their current codebase and skill set",
     "created_at": "2026-05-10T06:24:00.129Z",
-    "last_save_at": "2026-07-02T05:31:12.771Z",
+    "last_save_at": "2026-07-09T10:02:54.208Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

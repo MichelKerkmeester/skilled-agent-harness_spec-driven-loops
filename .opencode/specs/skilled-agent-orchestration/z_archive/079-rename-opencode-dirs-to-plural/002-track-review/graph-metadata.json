@@ -27,18 +27,18 @@
       "097 track review summary"
     ],
     "key_topics": [
-      "097",
       "track",
       "review",
       "deep-review",
       "skilled-agent-orchestration",
-      "093-096",
       "architectural",
       "cross-phase",
       "audit",
       "recent",
       "packets",
-      "post-rename"
+      "post-rename",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -49,6 +49,9 @@
       "checklist.md",
       "implementation-summary.md",
       ".claude/settings.local.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/002-track-review/review/review-report.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/002-track-review/review/resource-map.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/002-track-review/implementation-summary.md",
       "review/review-report.md",
       "review/resource-map.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
@@ -82,7 +85,7 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/002-track-review/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -94,7 +97,7 @@
       {
         "name": "review-report.md",
         "kind": "doc",
-        "path": "review/review-report.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/002-track-review/review/review-report.md",
         "source": "derived"
       },
       {
@@ -202,7 +205,7 @@
     ],
     "causal_summary": "Four packets shipped in close succession on 2026-05-07: 093 (sk-code-review + sk-git playbooks),",
     "created_at": "2026-05-07T14:46:56Z",
-    "last_save_at": "2026-06-23T03:49:50.061Z",
+    "last_save_at": "2026-07-09T10:02:45.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07ec071b256fd15c0b002bad6ccf3b35a078d0938d10de92c38ee843bebe2807",
+    "source_fingerprint": "sha256:3053258903af54769159c001f8c36dfcd984b2f136296ad8df24e43f888d0b58",
     "source_doc_hashes": {
-      "spec.md": "d221ab45d8d325611bd385c1125df28b4a581dcaa1aa859907c50e02b18dd2b2",
-      "plan.md": "119a053a1697cde4c8f638e52a9c6e51db2812031ea1460c089ce204650e20a6",
-      "tasks.md": "2ea979ba1d5c9582d9afb433a09b72af6a635e64f1ac5a528447ada665af1f64",
-      "checklist.md": "7b389ccccba674c817e71d8cc98ec7d597ee5221bd02c2d808d3a08d3424b22a",
-      "implementation-summary.md": "f308fe1a02176de817745faa3c8f0d105243a39f8c6ef4a0c8ba0af554a9e034"
+      "spec.md": "1d3b011c2e66e65a93632b86a61491b321635850e6a75443f99cc1d2ef8d20af",
+      "plan.md": "8ef75c73d2b1c89d56ca1589860ac71c884205e42400c1c5befaa0a56721b584",
+      "tasks.md": "31e87a6dc350a22df4068d88acb943dee9cd4fac105e8d98ea31afd275c923dd",
+      "checklist.md": "bae2a489d6d3f07c88d002c017fe05801b8e658c9a7b6189e0fa89e64d28405a",
+      "implementation-summary.md": "11129a0cf1a9006efb64c271a87faa778965f68fd90f0536908ed4c1eca3acb9"
     },
     "last_active_child_id": null,
     "last_active_at": null

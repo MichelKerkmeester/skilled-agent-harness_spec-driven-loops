@@ -11,13 +11,12 @@
     "conditional",
     "verdict",
     "aggregate",
-    "100",
     "frozen",
     "benchmark",
     "baseline",
     "run"
   ],
-  "lastUpdated": "2026-07-06T06:46:08.267Z",
+  "lastUpdated": "2026-07-09T10:02:44.474Z",
   "specId": "008",
   "folderSlug": "smart-routing-optimization",
   "parentChain": [

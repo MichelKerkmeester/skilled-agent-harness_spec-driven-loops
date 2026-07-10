@@ -40,5 +40,5 @@ Private procedure card for applying the existing design-audit anti-slop review w
 
 ## 4. RELATED CARDS
 
-- `../design-foundations/procedures/hierarchy_rhythm_review.md` for scale and hierarchy cleanup.
-- `../shared/procedures/polish_gate_orchestration.md` for final delivery review.
+- `../../design-foundations/procedures/hierarchy_rhythm_review.md` for scale and hierarchy cleanup.
+- `../../shared/procedures/polish_gate_orchestration.md` for final delivery review.

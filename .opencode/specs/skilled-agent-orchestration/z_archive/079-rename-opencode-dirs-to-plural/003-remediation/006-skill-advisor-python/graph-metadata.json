@@ -25,15 +25,15 @@
       "skill",
       "advisor",
       "python",
-      "098",
       "phase",
-      "006",
-      "097",
       "remediation",
       "infrastructure",
       "quality",
       "006-skill-advisor-python",
-      "checklist"
+      "checklist",
+      "implementation",
+      "migration",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "draft",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Advisor freshness still writes `.opencode/skill/.advisor-state`, regenerating a stale survivor directory",
     "created_at": "2026-05-18T07:49:27.244Z",
-    "last_save_at": "2026-06-23T03:49:50.102Z",
+    "last_save_at": "2026-07-09T10:02:45.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd176a759d74b6ab30788292cfa3f6e1c8fe9c989561b02f98dcb40845a36415",
+    "source_fingerprint": "sha256:ea430aec626fb95d1fe096ef8d1d41ab237dde90910e200915e45193f08c9ed5",
     "source_doc_hashes": {
-      "spec.md": "5d67bc70634fd9866e65c9de85b6bfc671b7c4ed93f8e8fec90e7d1226f67c04",
-      "plan.md": "68314156d3ff065d947635c975fd6bbf55f996be56eaf568a52584afa6c61ee7",
-      "tasks.md": "0d36bb4a4c4e914bbcc3066343361963f684e7ab2739d00df3f7e5ec2ec0f0d0",
-      "checklist.md": "894f4c2acc5313e0b9c2e8601ef3c79298741e866a02ac86e1b8b0046469da77",
-      "implementation-summary.md": "8d1434b5052e3818e5a399463149f5dc8788be66c9e684395e4d8ccf4eb36e2b"
+      "spec.md": "c6ab5b60e5fdddedd7a3b8cdc49910acd15a91bd97beaf3ec9096e67ca232cee",
+      "plan.md": "02dd24286c3633425633fdfd25f39ec57e5c6d0cc77591aa117267888714bee8",
+      "tasks.md": "f531050c30e9420c1a666ebe268bbc320ce07e3909f916a5f7d2582e3cea4d95",
+      "checklist.md": "97a01fabefe916d6da9197c58c291be610f15e93e9b461aadb8cb5f7949f195f",
+      "implementation-summary.md": "d0570673781cf80038de95206a9c0e2a0f3f52375b0b8ccac275ff28d9298d46"
     },
     "last_active_child_id": null,
     "last_active_at": null

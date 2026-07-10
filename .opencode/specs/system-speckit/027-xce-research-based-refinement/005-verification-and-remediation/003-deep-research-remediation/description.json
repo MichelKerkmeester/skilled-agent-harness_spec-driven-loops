@@ -1,21 +1,20 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
-  "description": "The tri-system deep-research program (`../028-tri-system-deep-research`) and the command-adherence research (`../011-command-presentation-workflow-sep",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
+  "description": "The tri-system deep-research program (`../028-tri-system-deep-research`) and the command-adherence research",
   "keywords": [
     "tri-system",
     "deep-research",
     "program",
     "028-tri-system-deep-research",
     "command-adherence",
-    "research",
-    "011-command-presentation-workflow-sep"
+    "research"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.940Z",
+  "lastUpdated": "2026-07-09T10:02:55.832Z",
   "specId": "003",
   "folderSlug": "deep-research-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation"
   ],

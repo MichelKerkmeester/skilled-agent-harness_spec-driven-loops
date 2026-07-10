@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/085-alignment-file-paths",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/085-alignment-file-paths",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/085-alignment-file-paths",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/085-alignment-file-paths",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -25,7 +25,6 @@
       "implementation summary"
     ],
     "key_topics": [
-      "085",
       "alignment",
       "validator",
       "file",
@@ -36,7 +35,8 @@
       "checklist",
       "paths",
       "summary",
-      "memory"
+      "memory",
+      "files"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths",
     "created_at": "2026-04-12T09:02:53.557Z",
-    "last_save_at": "2026-06-23T03:49:59.377Z",
+    "last_save_at": "2026-07-09T10:02:57.416Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

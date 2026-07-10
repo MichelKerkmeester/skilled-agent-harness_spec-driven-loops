@@ -41,13 +41,7 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md",
       ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-integrity-helpers.md",
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-serialize-diff.md",
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md",
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/jsonl-repair.md",
-      ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -55,45 +49,9 @@
     ],
     "entities": [
       {
-        "name": "loop-lock.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md",
-        "source": "derived"
-      },
-      {
         "name": "goal-opencode-plugin.md",
         "kind": "doc",
         "path": ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
-        "source": "derived"
-      },
-      {
-        "name": "atomic-state-integrity-helpers.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-integrity-helpers.md",
-        "source": "derived"
-      },
-      {
-        "name": "atomic-state-serialize-diff.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-serialize-diff.md",
-        "source": "derived"
-      },
-      {
-        "name": "atomic-state-deferred-writer.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md",
-        "source": "derived"
-      },
-      {
-        "name": "jsonl-repair.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/jsonl-repair.md",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-salvage-recovery.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md",
         "source": "derived"
       },
       {
@@ -197,11 +155,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Eight",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Each",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The remediation fixed several state-safety, fan-out, and goal-plugin defects, each backed by a regression test, but the manual-testing playbooks carried only \"does this feature match the docs\" scenarios",
     "created_at": "2026-06-29T10:43:19Z",
-    "last_save_at": "2026-07-04T18:02:21.152Z",
+    "last_save_at": "2026-07-09T10:02:47.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12b5b9a3965ca6d6d63cdd293f03202605e17e612abc906c8f56b1a5ad94439d",
+    "source_fingerprint": "sha256:81cb9885dd9ba877a11b03937dc89dc5093fb5901aedfed7662fd6996c1ee767",
     "source_doc_hashes": {
-      "spec.md": "f8de77efc1fbd88b778d421c51be318cb3ae7d5148a0d6d19ba636168d3197b7",
-      "plan.md": "b5b386a40594300043167e8d6b9e5f44dae30dd31272c89c29b9e4e7aabbc886",
-      "tasks.md": "ade29cef6836ecaceadec962a473d0303e834cf4d5f0061beb5d246569a187cd",
-      "implementation-summary.md": "8d7bae5fe2dc4c01b6135ab873cbc9fb525a2d36319abca655999400b035ab8d"
+      "spec.md": "f4935de1a92b4cecef44511cda97c0b776b1d9898f59cea2a0f5393b6bab3af0",
+      "plan.md": "23480b91c72b04b1229717e253ba444bb8568fa18d175bd54745367a94992133",
+      "tasks.md": "8198b899dc39028750655347132a9e9b4aeb43d8e0fcfb501226f2d14cc41b88",
+      "implementation-summary.md": "af01e1eed1de86def3f7e53aa1ef21caf3635b59fa320b0704d0ceffa9ef044e"
     },
     "last_active_child_id": null,
     "last_active_at": null

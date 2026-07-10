@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The P0 MVP makes benchmarking config-driven and gates correctness, but its trust verdict uses a minimal single-sample heuristic, the dispatcher does not capture latency/tokens/cost (so \"token efficiency\" is approximated by word count), provider quirks (`--agent` omission, token-plan slugs) live in prose, and the fixture set is just a couple of T3 tasks",
     "created_at": "2026-06-02T05:21:22.239Z",
-    "last_save_at": "2026-06-23T03:49:51.530Z",
+    "last_save_at": "2026-07-09T10:02:46.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:226b449e7c4c456444481d0b315e1d19993e562bf8d865e261b2fe9a3a6e4eb0",
+    "source_fingerprint": "sha256:4c589689fe8615968ffcb6b383a5611d5ec1bcac11bb58f71c2acbd7e7742d8b",
     "source_doc_hashes": {
-      "spec.md": "604d8a806e01b9dcf23d919088121286491eccd9deb58a1aee03a73f7ed04b06",
-      "plan.md": "127db274121cd1a36103ae8d53fe398e566cac4c191737b2e8db08b15015a608",
-      "tasks.md": "0c1d6f340ef9e1d2d055a576ebe92dcbe2ed9d49b677c76d70dbb4c33b36711f",
-      "checklist.md": "301554768933ab6224ba3656f97d4bf6787228bb10f68a7147e37d26b65b0fcf",
-      "implementation-summary.md": "ecff66c7e727ec51414bec4daff6263d95fe60b93ef81111d2ac3097d1606fa6"
+      "spec.md": "2b417aafd3586e0db797548014a2cbf3414b3555c8fc35e03d987d7e15bf9c77",
+      "plan.md": "312622078faa36fc437b859596cd4a390cf7a66c51e8807a4a150868302179d4",
+      "tasks.md": "1a17baa6447e23cdb8c2afb6f9f8245852a91b6c6e0d0487d21fb50a61f8ded5",
+      "checklist.md": "75d91db945a0646d568e04b0357fe0cdf1d13be4af326be754f843e376648a40",
+      "implementation-summary.md": "95d0e794d0e32e36afb9285f00da098d30cbdf11b9f247bfa9619adf82a2ba1e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,10 +8,9 @@
     "001-peck-teachings-adoption",
     "002-gem-team-adoption"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine",
   "description": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces",
   "keywords": [
-    "027",
     "program",
     "drew",
     "external",
@@ -26,11 +25,11 @@
     "agent",
     "surfaces"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.050Z",
+  "lastUpdated": "2026-07-09T10:02:55.006Z",
   "specId": "001",
   "folderSlug": "research-and-doctrine",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,

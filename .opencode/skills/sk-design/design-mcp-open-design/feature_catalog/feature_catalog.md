@@ -51,7 +51,7 @@ List projects, read the active context, read a design system's files, and fetch 
 
 ### Read-only content access
 
-The read-only tools are always safe to call: `list_projects`, `get_active_context`, `get_project`, `get_file`, `search_files`, `list_files`, `get_artifact`, `list_skills`, `list_plugins`, `list_agents`, and `get_run`. From the CLI directly, `node "$OD_BIN" tools design-systems read --path <manifest-path>` reads a registered design system's pull-layer files. A design system is a `DESIGN.md` (9-section prose), a paste-ready `tokens.css` (a `:root` block), and an optional `components.html`.
+Read-only tools split into two axes (see [`references/tool_surface.md`](../references/tool_surface.md) §2): pure-transport reads (`list_projects`, `list_files`, `list_skills`, `list_plugins`, `list_agents`) are always safe to call, since they return inventory only. Design-feeding reads (`get_active_context`, `get_project`, `get_file`, `search_files`, `get_artifact`, `get_run`) are guarded — their output needs `sk-design`'s ground → token-system → critique before it shapes a design decision, except `get_file`/`search_files` with a non-design-use receipt. From the CLI directly, `node "$OD_BIN" tools design-systems read --path <manifest-path>` reads a registered design system's pull-layer files. A design system is a `DESIGN.md` (9-section prose), a paste-ready `tokens.css` (a `:root` block), and an optional `components.html`.
 
 See [`02--reading/read-only-content.md`](02--reading/read-only-content.md) for the tool list and the live-content rule.
 

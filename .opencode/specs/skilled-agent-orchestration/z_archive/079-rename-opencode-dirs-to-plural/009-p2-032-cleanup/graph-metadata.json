@@ -36,11 +36,13 @@
       "rename",
       "cosmetic",
       "followup",
-      "096"
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/007-track-rereview/review/deep-review-strategy.md",
+      "specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/008-remediation/implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,6 +50,12 @@
       "resource-map.md"
     ],
     "entities": [
+      {
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": "specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/007-track-rereview/review/deep-review-strategy.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,17 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 007-track-rereview deep-review strategy doc lists `aliases.ts` as one of the \"6 surfaces\" 101-cli-opencode-executor touched",
     "created_at": "2026-05-08T20:45:00Z",
-    "last_save_at": "2026-06-23T03:49:50.144Z",
+    "last_save_at": "2026-07-09T10:02:45.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:dbc17417786e3f0d330f09057cb0bdcf5b89ffeb0c53beacf6604ffac900f5ad",
+    "source_fingerprint": "sha256:7d6c43429513c7130a973f5c24e0801da283dec327a48ab65b06f1bf99445082",
     "source_doc_hashes": {
-      "spec.md": "87bf13725d42b244a28973609dc005166165e44e4712f8047b761a546fa5f46a",
-      "plan.md": "f5503aeec76678641e9675bb9fbd488f936847c49b411e8fa307daa038bee6d0",
-      "tasks.md": "6e97e2f8ab933df6bcafec3970a3a7474a4b7b0214a15a8f49e67539ccdf5bd6",
-      "implementation-summary.md": "1e48f0be3ca8f005edcbe740872e288f8bcb5278674893e09d41e669bb6111d8",
-      "resource-map.md": "d37493b9a7bbf7dedb06e1bc6d957509730858caed966344a9099645d6560b43"
+      "spec.md": "47ed9e85306d0fd67100a187117770a6a9a96c5b7ab26cbe81a7c9c1c5e5b475",
+      "plan.md": "283c77e395510d8e8d6d45ea2e17e46e189f39adcdb75ceb0f4c0334b97b7abc",
+      "tasks.md": "444f4e7967f6dd29a782cc401ad3704a18c09db4b900e59b5899494a74f0612d",
+      "implementation-summary.md": "80657a41e6b824bdcfbfa57d5fd44708d3cd2c73eb674be71be5e6bf2564367b",
+      "resource-map.md": "30abf3f4cb0e377586f74a7b70ab9f387e349ed0956ca0e8c4426d94243dc682"
     },
     "last_active_child_id": null,
     "last_active_at": null

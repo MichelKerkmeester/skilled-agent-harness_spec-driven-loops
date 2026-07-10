@@ -1,30 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-design/009-sk-design-claude-parity/016-hub-routing-optimization",
-  "description": "Brings sk-design's hub-routing registries (mode-registry.json, hub-router.json, command-metadata.json) up to the command-field + hub-identity structur",
+  "description": "`sk-code` and `sk-doc` (the other two parent hubs in this repo) both carry two structural conventions in their `mode-registry.json`/`hub-router.json`",
   "keywords": [
-    "brings",
-    "sk-design",
-    "hub-routing",
-    "registries",
-    "mode-registry",
-    "json",
-    "hub-router",
-    "command-metadata",
-    "command-field",
-    "hub-identity",
-    "structural",
-    "pattern",
-    "established",
     "sk-code",
     "sk-doc",
-    "resyncs",
-    "phase",
-    "015",
-    "live",
-    "argument-hint",
-    "values"
+    "two",
+    "parent",
+    "hubs",
+    "repo",
+    "carry",
+    "structural",
+    "conventions",
+    "mode-registry",
+    "json",
+    "hub-router"
   ],
-  "lastUpdated": "2026-07-06T19:49:55.714Z",
+  "lastUpdated": "2026-07-09T10:02:44.535Z",
   "specId": "016",
   "folderSlug": "hub-routing-optimization",
   "parentChain": [
@@ -32,6 +24,5 @@
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

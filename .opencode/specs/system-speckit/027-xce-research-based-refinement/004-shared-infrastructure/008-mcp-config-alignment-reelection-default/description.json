@@ -1,8 +1,8 @@
 {
   "level": "1",
   "status": "complete",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default",
-  "description": "Daemon re-election was \"default-on\" only by convention: the launcher's `daemonReelectionEnabled` returned true exclusively for an explicit `1`/`on`, s",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default",
+  "description": "Daemon re-election was \"default-on\" only by convention: the launcher's `daemonReelectionEnabled` returned true exclusively for an explicit `1`/`on`,",
   "keywords": [
     "daemon",
     "re-election",
@@ -16,11 +16,11 @@
     "exclusively",
     "explicit"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.856Z",
+  "lastUpdated": "2026-07-09T10:02:55.749Z",
   "specId": "008",
   "folderSlug": "mcp-config-alignment-reelection-default",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure"
   ],

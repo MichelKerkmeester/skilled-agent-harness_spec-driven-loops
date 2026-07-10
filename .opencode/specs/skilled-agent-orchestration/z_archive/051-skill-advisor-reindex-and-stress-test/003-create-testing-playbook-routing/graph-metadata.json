@@ -33,18 +33,18 @@
       "testing playbook routing resources"
     ],
     "key_topics": [
-      "065",
-      "003",
       "testing",
       "playbook",
       "routing",
-      "create",
       "cp-105",
       "plan",
       "tasks",
       "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "resource",
+      "map",
+      "resources"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Plan phase to route testing-playbook creation prompts to create:testing-playbook instead of generic documentation skills.",
     "created_at": "2026-05-18T07:49:27.133Z",
-    "last_save_at": "2026-06-23T03:49:49.564Z",
+    "last_save_at": "2026-07-09T10:02:45.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:90c641a4933acacb7218b9272b1858b55bdb5045c64780d82d04517440a52d6c",
+    "source_fingerprint": "sha256:28667c445e24758382de617f14711cd16f9dc9c42ef56e3198e909401c7c1f25",
     "source_doc_hashes": {
-      "spec.md": "263124172ca25c6b9f43391ab9c3f189e2beaba73b4d35b684b2d6c042220c43",
-      "plan.md": "6e6578a4ac330724027d708b385edaa2dbdf57b06485252c120317b837ae8679",
-      "tasks.md": "89f9d36fd41fd53a17b9d3a3b71dc6e8353cd7494afae4a9533c5051d642c998",
-      "checklist.md": "134851f51acda90b0515b60e8597fb64446e8f753bdc8ed3bfe81b3cdb753ac9",
-      "implementation-summary.md": "17e5eae0f8429ce9f40896d5cb603b77cc1af232f7616adc5e2856689ad8b667",
-      "resource-map.md": "b905c07c8db695d166d09a63d7932b2cbfae121511614a8fb77cf2f5dcbcb09c"
+      "spec.md": "500f82ce63d31f1f64b6bb156fc5b1c8717045f5c3c6badf918ac24369ff74cf",
+      "plan.md": "81b271c4f8198f6b912dc6c7a3263112aaeec79d04571ed515a338b9b99236c0",
+      "tasks.md": "72fe587d2ab35bcf1ee724193085ab6314c9ce7e20374440f313ff332172f682",
+      "checklist.md": "9e3f690fe2b15f33a42f02f39985e07d0c5ffe9eeef3f17ac5439aee6f500805",
+      "implementation-summary.md": "010e1261393bc2355bc3f25de06597fccea679236d57a93b4b3d96f68583af86",
+      "resource-map.md": "768bcff6ca52ee58aa7b63e15547157318fe4e680a26c12dd585eb9539cf62a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

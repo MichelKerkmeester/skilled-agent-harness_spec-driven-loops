@@ -46,7 +46,7 @@ Improve my legal-contract summarization prompt with @prompt-improver; verify DEP
 
 1. `sk-prompt: I'm crafting a prompt to summarize legal contracts — ensure it goes through every DEPTH phase, no shortcuts.`
 2. `agent: @prompt-improver raw_task="Improve a prompt for summarizing legal contracts while proving every DEPTH phase runs in order." task_type=generation target_cli=opencode complexity_hint=8 constraints="Show phase-order evidence."`
-3. `bash: rg 'Phase Exit Criteria|D -- DISCOVER|E -- ENGINEER|P -- PROTOTYPE|T -- TEST|H -- HARMONIZE' .opencode/skills/sk-prompt/references/depth_framework.md`
+3. `bash: rg 'Phase Exit Criteria|D -- DISCOVER|E -- ENGINEER|P -- PROTOTYPE|T -- TEST|H -- HARMONIZE' .opencode/skills/sk-prompt/prompt-improve/references/depth_framework.md`
 
 ### Expected
 

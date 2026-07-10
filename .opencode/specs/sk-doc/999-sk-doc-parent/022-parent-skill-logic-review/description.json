@@ -1,22 +1,21 @@
 {
+  "level": 1,
   "specFolder": "sk-doc/999-sk-doc-parent/022-parent-skill-logic-review",
-  "description": "One Fable-5 xhigh deep-review round of the parent-hub pattern: doctrine, four implementations, advisor integration; 18 findings (1 P0, 7 P1, 10 P2).",
+  "description": "The parent-hub (parent-skill) pattern — one advisor identity, a `mode-registry.json`, a `hub-router.json`, one `graph-metadata.json`, and nested",
   "keywords": [
-    "one",
-    "fable-5",
-    "xhigh",
-    "deep-review",
-    "round",
     "parent-hub",
+    "parent-skill",
     "pattern",
-    "doctrine",
-    "four",
-    "implementations",
+    "one",
     "advisor",
-    "integration",
-    "findings"
+    "identity",
+    "mode-registry",
+    "json",
+    "hub-router",
+    "graph-metadata",
+    "nested"
   ],
-  "lastUpdated": "2026-07-07T15:48:20.675Z",
+  "lastUpdated": "2026-07-08T05:23:49.318Z",
   "specId": "022",
   "folderSlug": "parent-skill-logic-review",
   "parentChain": [
@@ -24,6 +23,5 @@
     "999-sk-doc-parent"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

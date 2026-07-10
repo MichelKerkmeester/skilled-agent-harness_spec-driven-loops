@@ -51,10 +51,7 @@
       ".opencode/skills/sk-design/shared/procedures/polish_gate_orchestration.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md",
-      ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
@@ -124,24 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "skill_asset_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_asset_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_reference_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
-        "source": "derived"
-      },
-      {
         "name": "Procedure Card Template Alignment",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,11 +179,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Path",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 invented a private procedure-card schema (`shared/procedurecardschema.md`) and fourteen cards without checking whether the pattern should conform to sk-doc's existing template canon (`skillassettemplate.md`, `skillreferencetemplate.md`, `featurecatalogsnippettemplate.md`)",
     "created_at": "2026-07-06T04:33:38.235Z",
-    "last_save_at": "2026-07-06T06:20:17.918Z",
+    "last_save_at": "2026-07-09T10:02:44.463Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

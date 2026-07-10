@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "wave",
-      "005",
       "transform",
       "verb",
       "tv-002",
@@ -36,7 +35,8 @@
       "results",
       "audit",
       "routing",
-      "clarify"
+      "clarify",
+      "alias"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The sk-design manual-testing-playbook category `03--transform-verb-framing` has three scenario files (`should-it-be-audit.md`, `clarify-alias-only.md`, `foundations-excluded-aliases.md`) that assert precise routing contracts for `transformVerbRouting` in `mode-registry.json`: \"should it be\"-framed transform verbs must resolve to `audit`; `clarify` must resolve to `interface` (as an alias-only entry excluded from command projection parity); and `typeset`/`colorize` must never resolve to `foundations` solely by themselves",
     "created_at": "2026-07-07T15:08:39.400Z",
-    "last_save_at": "2026-07-07T15:11:49.716Z",
+    "last_save_at": "2026-07-09T10:02:44.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

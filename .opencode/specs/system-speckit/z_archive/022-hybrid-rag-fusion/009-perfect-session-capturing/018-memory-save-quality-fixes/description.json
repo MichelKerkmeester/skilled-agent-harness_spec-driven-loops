@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/018-memory-save-quality-fixes",
-  "description": "After the Sprint 1 pipeline hardening landed, a `/memory:save` run still produced a memory file that scored 88/100 while carrying 10 structural qualit",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/018-memory-save-quality-fixes",
+  "description": "After the Sprint 1 pipeline hardening landed, a `/memory:save` run still produced a memory file that scored 88/100 while carrying 10 structural",
   "keywords": [
     "sprint",
     "pipeline",
@@ -13,17 +13,15 @@
     "produced",
     "file",
     "scored",
-    "100",
     "while",
     "carrying",
-    "structural",
-    "qualit"
+    "structural"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.138Z",
+  "lastUpdated": "2026-07-09T10:02:58.311Z",
   "specId": "018",
   "folderSlug": "memory-save-quality-fixes",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

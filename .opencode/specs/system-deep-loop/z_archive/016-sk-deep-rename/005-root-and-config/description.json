@@ -3,7 +3,6 @@
   "description": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
   "keywords": [
     "packet",
-    "070",
     "renames",
     "old",
     "deep-loop",
@@ -12,7 +11,7 @@
     "deep-review",
     "deep-research"
   ],
-  "lastUpdated": "2026-07-08T13:06:42.762Z",
+  "lastUpdated": "2026-07-09T10:02:49.271Z",
   "specId": "005",
   "folderSlug": "root-and-config",
   "parentChain": [

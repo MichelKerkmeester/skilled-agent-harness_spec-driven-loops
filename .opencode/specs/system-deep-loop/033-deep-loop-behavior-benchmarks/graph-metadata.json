@@ -3,6 +3,7 @@
   "packet_id": "system-deep-loop/033-deep-loop-behavior-benchmarks",
   "spec_folder": "system-deep-loop/033-deep-loop-behavior-benchmarks",
   "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
   "children_ids": [
     "system-deep-loop/033-deep-loop-behavior-benchmarks/001-framework-and-harness",
     "system-deep-loop/033-deep-loop-behavior-benchmarks/002-pilot-deep-review",
@@ -40,17 +41,10 @@
     "status": "planned",
     "key_files": [
       "001-framework-and-harness/decision-record.md",
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
       "spec.md",
       "research/research.md"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -126,7 +120,7 @@
     ],
     "causal_summary": "Parent packet giving each of the five deep-loop-workflows sub-skills its own durable behavior_benchmark package: what an executor model actually outputs/presents when the command surface is triggered with realistic vague/concise user prompts, whether it dispatches the required sub-agents unprompted, whether it gets stuck, and how its latency compares to a Claude baseline. Measured executors: gpt-5.5-fast medium + high via cli-opencode.",
     "created_at": "2026-07-02T05:41:36.143Z",
-    "last_save_at": "2026-07-07T15:43:52.202Z",
+    "last_save_at": "2026-07-09T10:02:48.007Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

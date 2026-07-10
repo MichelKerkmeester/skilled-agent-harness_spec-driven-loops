@@ -30,9 +30,9 @@
       "implementation",
       "summary",
       "mentioned",
-      "1760",
       "historical",
-      "files"
+      "files",
+      "specs"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "cli-devin is mentioned in ~1760 historical files (specs/, changelog/, benchmark state/eval)",
     "created_at": "2026-06-08T16:10:30Z",
-    "last_save_at": "2026-06-23T03:49:52.004Z",
+    "last_save_at": "2026-07-09T10:02:46.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fda95c235729e0a49a1a7066661fe9060a48da9f3556c563547caf43da1d408",
+    "source_fingerprint": "sha256:4e90db25cad619ab405d0a61f6ee53f4bd2563c36e92cb2ee448a4b1130faeb0",
     "source_doc_hashes": {
-      "spec.md": "0ec9f69a8e312d1a192b190bfdbcd6ec3188902d398c3f6f53bd65c8fdda579d",
-      "plan.md": "a7f4debdf9dfc6591d27e41a3fa0f1540b69dd16a9a850d70d3ae45f41022576",
-      "tasks.md": "a68f7b2d5ecc9406312f0bbfb3c349ba949ebc2e80bc05410d534ff6360507f1",
-      "implementation-summary.md": "c519632facc7f103b13c1cb1559477c0b2194cab8ca326d085acf27092439825"
+      "spec.md": "f01d0cf601515721c6999a166c3ea76145439e6bd140ed3cedec9a9935846c94",
+      "plan.md": "a4058cd1e87ecd448af5fd5bca20ca2489852a590755b23e71845cf807b72f20",
+      "tasks.md": "1faa9f5689053ffb1a66435ddd02f6baaa9ff5b0ea05501c44b897bebb1aba34",
+      "implementation-summary.md": "760bea6345ac2c24543bd43cdb93e483982a3596ab46280557019d5851f263a9"
     },
     "last_active_child_id": null,
     "last_active_at": null

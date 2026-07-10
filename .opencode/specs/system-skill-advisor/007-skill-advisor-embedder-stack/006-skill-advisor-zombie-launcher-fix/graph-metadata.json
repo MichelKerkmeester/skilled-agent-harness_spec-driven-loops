@@ -30,13 +30,13 @@
       "launcher",
       "mk-skill-advisor-launcher",
       "duplicates",
-      "007",
-      "fix",
       "daemon",
       "sqlite",
       "race",
       "plan",
-      "spawn-three"
+      "spawn-three",
+      "verification",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After Phase 006 shipped, a live process audit at 2026-05-18T16:47Z still observed three `mk-skill-advisor-launcher` processes while `mk-code-index-launcher` and `mk-spec-memory-launcher` each held at one",
     "created_at": "2026-05-18T16:55:50.377Z",
-    "last_save_at": "2026-07-07T11:48:30.718Z",
+    "last_save_at": "2026-07-09T10:02:50.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:981912a694254385ba2f5837bca0a815b2bfa756c6aea86a3156e80a3638d313",
+    "source_fingerprint": "sha256:0df13dc3063e280e98b3c9427a2b83b10a6903b6ff97e006544da9a5c05bb21e",
     "source_doc_hashes": {
-      "spec.md": "e1400489c8aea39f85a13465c693020df4ddce1f36e7e4a85e93aef81bb4d996",
-      "plan.md": "3ae2540ba19a43e47e95c36a53bdad6527f71ed081e4813e42746e41b6e0265e",
-      "tasks.md": "dfe5d730f9ae5d184c271deb1ccf134ef08ff3c1026d6c1e8cf3320d81f3f76d",
-      "checklist.md": "d8a7a7e78f222bdbe1758afc39e067ba715fe55a6324332f9a2f1aefd65ad473",
-      "implementation-summary.md": "83975b6f25dbdc3ce45fddd52d22229b242765cb9644e6a9f2cac7f14c6218da"
+      "spec.md": "21dbbd3af885c4479dafb2101863ae3499f7134143c8f66d5dd757153d8ef40c",
+      "plan.md": "bef0f0fd6c5978d2eadb0e307a6c0da318f1023942ae74ad8fc8e19165ce1645",
+      "tasks.md": "c389a16c08109d1e2e1c5be8675daeca3ef0a82a817aafeb958b1b2e87e8844c",
+      "checklist.md": "926f73641c77248f420ace2c9f1ce54f16862a7a38bf9da3ab571cca836c7069",
+      "implementation-summary.md": "d3a7d6c6a285b8c8780aeabdac328ffde365360df75e0fb81ade01ffaad7b7c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

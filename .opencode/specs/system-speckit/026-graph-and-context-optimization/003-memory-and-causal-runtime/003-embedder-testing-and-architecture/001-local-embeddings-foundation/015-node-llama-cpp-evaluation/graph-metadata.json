@@ -27,7 +27,6 @@
       "node llama cpp evaluation done"
     ],
     "key_topics": [
-      "015",
       "node",
       "llama",
       "cpp",
@@ -38,7 +37,8 @@
       "node-llama-cpp",
       "embeddinggemma",
       "mcp",
-      "gguf"
+      "gguf",
+      "provider"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The Memory MCP local embedding path currently defaults to `hf-local`, which uses `@huggingface/transformers` with the ONNX EmbeddingGemma export and q8 dtype",
     "created_at": "2026-05-13T09:52:09Z",
-    "last_save_at": "2026-07-02T05:31:11.581Z",
+    "last_save_at": "2026-07-09T10:02:52.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:56:14Z",
     "source_docs": [

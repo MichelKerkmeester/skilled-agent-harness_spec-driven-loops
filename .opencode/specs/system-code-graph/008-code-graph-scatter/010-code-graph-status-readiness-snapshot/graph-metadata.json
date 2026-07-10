@@ -38,7 +38,7 @@
       "probe",
       "status",
       "plan",
-      "014"
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "v1.0.2 stress test pre-flight detected a 4-hour staleness drift on the live code graph (`010 findings.md` lines 123-126)",
     "created_at": "2026-04-27T19:54:00.000Z",
-    "last_save_at": "2026-07-07T16:18:33.919Z",
+    "last_save_at": "2026-07-09T10:02:47.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -106,9 +106,9 @@ state_paths:
   dashboard: "{spec_folder}/improvement/agent-improvement-dashboard.md"
   registry: "{spec_folder}/improvement/experiment-registry.json"
   journal: "{spec_folder}/improvement/improvement-journal.jsonl"
-  benchmark_root: ".opencode/skills/sk-prompt-models/benchmarks/{run_label}"
-  benchmark_report: ".opencode/skills/sk-prompt-models/benchmarks/{run_label}/report.json"
-  reviewer_report: ".opencode/skills/sk-prompt-models/benchmarks/{run_label}/reviewer-report.json"
+  benchmark_root: ".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}"
+  benchmark_report: ".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/report.json"
+  reviewer_report: ".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/reviewer-report.json"
   lock_file: "{spec_folder}/improvement/.deep-improvement.lock"
 
 # ─────────────────────────────────────────────────────────────────
@@ -143,7 +143,7 @@ workflow:
         action: "Bind {profile} to the user-supplied profile or, when empty, to .opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json; verify it resolves to an existing profile JSON."
       step_create_directories:
         description: "Create benchmark runtime directories including the outputs dir"
-        command: "mkdir -p .opencode/skills/sk-prompt-models/benchmarks/{run_label}"
+        command: "mkdir -p .opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}"
       step_copy_templates:
         description: "Copy config template into runtime root"
         action: "Copy the improvement config template into the runtime root"
@@ -162,10 +162,10 @@ workflow:
       step_run_benchmark:
         description: "Run the model-benchmark loop host, or route reviewer fixtures to the flagged reviewer scorer"
         reviewer_fixture_route: "When scoring_method is reviewer, require SPECKIT_REVIEWER_BENCHMARKS and run reviewer-scorer.cjs instead of the default pattern/5dim runner. Reviewer selection is by fixture shape only; code-task and skill fixtures keep their defaults."
-        command: "if [ \"{scoring_method}\" = \"reviewer\" ]; then SPECKIT_REVIEWER_BENCHMARKS=${SPECKIT_REVIEWER_BENCHMARKS:-0} node .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt-models/benchmarks/{run_label}\" --output \".opencode/skills/sk-prompt-models/benchmarks/{run_label}/reviewer-report.json\" --state-log \"{spec_folder}/improvement/agent-improvement-state.jsonl\" --grader \"{grader}\"; else node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt-models/benchmarks/{run_label}\" --state-log \"{spec_folder}/improvement/agent-improvement-state.jsonl\" --scorer \"{scoring_method}\" --grader \"{grader}\"; fi"
+        command: "if [ \"{scoring_method}\" = \"reviewer\" ]; then SPECKIT_REVIEWER_BENCHMARKS=${SPECKIT_REVIEWER_BENCHMARKS:-0} node .opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}\" --output \".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/reviewer-report.json\" --state-log \"{spec_folder}/improvement/agent-improvement-state.jsonl\" --grader \"{grader}\"; else node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}\" --state-log \"{spec_folder}/improvement/agent-improvement-state.jsonl\" --scorer \"{scoring_method}\" --grader \"{grader}\"; fi"
       step_emit_journal_event_benchmark_completed:
         description: "Emit benchmark_completed journal event after report.json exists"
-        command: "RPT=$([ \"{scoring_method}\" = \"reviewer\" ] && echo reviewer-report.json || echo report.json); test -f .opencode/skills/sk-prompt-models/benchmarks/{run_label}/$RPT && node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"profile\":\"{profile}\",\"benchmarkOutputPath\":\".opencode/skills/sk-prompt-models/benchmarks/{run_label}/$RPT\",\"scoringMethod\":\"{scoring_method}\"}'"
+        command: "RPT=$([ \"{scoring_method}\" = \"reviewer\" ] && echo reviewer-report.json || echo report.json); test -f .opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/$RPT && node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"profile\":\"{profile}\",\"benchmarkOutputPath\":\".opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/$RPT\",\"scoringMethod\":\"{scoring_method}\"}'"
       step_append_ledger:
         description: "Verify the benchmark_run ledger row written by run-benchmark.cjs"
         ledger_ownership: "run-benchmark.cjs is the sole ledger writer. The workflow passes --state-log explicitly because benchmark outputs live outside {spec_folder}/improvement, so path inference is not available. This step VERIFIES that row exists. The orchestrator does NOT append a duplicate."
@@ -188,11 +188,11 @@ workflow:
         command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
       step_recommendation:
         description: "Recommend continue, promote, or stop based on reducer output and the benchmark report scoringMethod"
-        action: "Check experiment-registry.json for the best benchmark record and stopStatus; read scoringMethod from .opencode/skills/sk-prompt-models/benchmarks/{run_label}/report.json (reviewer runs write reviewer-report.json instead; read that file for reviewer scoring)"
+        action: "Check experiment-registry.json for the best benchmark record and stopStatus; read scoringMethod from .opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/report.json (reviewer runs write reviewer-report.json instead; read that file for reviewer scoring)"
       step_promote_candidate:
         description: "Offer optional promotion of the accepted benchmark variant to canonical target (guarded benchmark-mode path, requires benchmark evidence)"
-        promotion_evidence: "Lane B promotes on benchmark evidence. The gate is the benchmark report (report.json, or reviewer-report.json for reviewer runs, under .opencode/skills/sk-prompt-models/benchmarks/{run_label}/) passed via --benchmark-report. promote-candidate.cjs runs its benchmark-mode path when --score is omitted, reads status, recommendation, target, profileId, and aggregateScore from the report, and refuses promotion unless status is benchmark-complete with a benchmark-pass recommendation and a passing aggregate and repeatability gate. There is no scored agent file and no --score argument in Lane B."
-        command: 'node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report=.opencode/skills/sk-prompt-models/benchmarks/{run_label}/$([ "{scoring_method}" = "reviewer" ] && echo reviewer-report.json || echo report.json) --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve'
+        promotion_evidence: "Lane B promotes on benchmark evidence. The gate is the benchmark report (report.json, or reviewer-report.json for reviewer runs, under .opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/) passed via --benchmark-report. promote-candidate.cjs runs its benchmark-mode path when --score is omitted, reads status, recommendation, target, profileId, and aggregateScore from the report, and refuses promotion unless status is benchmark-complete with a benchmark-pass recommendation and a passing aggregate and repeatability gate. There is no scored agent file and no --score argument in Lane B."
+        command: 'node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report=.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/$([ "{scoring_method}" = "reviewer" ] && echo reviewer-report.json || echo report.json) --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve'
       step_report_status:
         description: "Report STATUS with the benchmark outcome and scoring method"
         action: "Report STATUS=benchmark-complete with scoringMethod={scoring_method}, grader={grader}, and the final aggregate score. For reviewer runs, include any REVIEWER_BENCHMARK mismatch lines from reviewer-report.json."

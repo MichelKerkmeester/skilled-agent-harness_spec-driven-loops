@@ -12,11 +12,11 @@
   "derived": {
     "trigger_phrases": [
       "102 p1 p2 remediation",
-      "deep-review remediation"
+      "sk-doc deep-review remediation"
     ],
     "key_topics": [
-      "102",
       "remediation",
+      "sk-doc",
       "deep-review",
       "phase-parent",
       "iterations",
@@ -33,8 +33,6 @@
     "key_files": [
       "evidence/codex-remediation-dispatch.txt",
       "evidence/codex-sd019-meta-analysis.txt",
-      ".codex/agents/markdown.toml",
-      ".codex/config.toml",
       "tasks.md",
       "implementation-summary.md",
       "spec.md",
@@ -52,18 +50,6 @@
         "name": "codex-sd019-meta-analysis.txt",
         "kind": "file",
         "path": "evidence/codex-sd019-meta-analysis.txt",
-        "source": "derived"
-      },
-      {
-        "name": "markdown.toml",
-        "kind": "file",
-        "path": ".codex/agents/markdown.toml",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -185,11 +171,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 102 phase-parent deep-review (5 iterations, converged at iter 4) returned verdict CONDITIONAL with 0 P0, 7 P1, and 9 P2 findings",
     "created_at": "2026-05-11T08:28:00Z",
-    "last_save_at": "2026-06-23T03:49:50.282Z",
+    "last_save_at": "2026-07-09T10:02:44.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +197,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3badb51abf8c7517d37e5c82ae2766ab77c215cb9c7ba5434dad10e67b5b458",
+    "source_fingerprint": "sha256:daaeac39b47dbc60af79081d3084e480e0837b89abba3dbf13cc3aa32649b09c",
     "source_doc_hashes": {
-      "spec.md": "a09176568ad980e4286469bebab2cb1aaa34a92cab0a6f241b4622095628e157",
-      "plan.md": "fa619fdacf4aaef953d27ab6cf257b41e55ddda4fccfe3f07127f287efbbb054",
-      "tasks.md": "145404bcc05111841e6c1d2c8b7f6b6b64600c29c95d69f6cd0c08ca00ef8582",
-      "checklist.md": "bca45fd3be77139d9b5d1913da58f9e7e1ffe8cb41f32429d97d0551a9584d31",
-      "implementation-summary.md": "9f28f1497a4f7ee5e39b43e91c6930bfa47c75dd8f3afdb4ece7fe886b6df053"
+      "spec.md": "ebeb85605215e79c06561773a32f107110c2a989215e3537d3e092ca5acbb6a7",
+      "plan.md": "907f6a7a41b455431c99c19e5a9aa475bcf987ccff2656dfc3a9fe4478f8755f",
+      "tasks.md": "ebcf1a23718f49dccbf4157c0f8c0e945ead9f9393c5f4f22e4a98b945b83ed9",
+      "checklist.md": "998eaade446910b2cf4dd1dbeed1205e668fad250e1ab128c4086a128559fd5c",
+      "implementation-summary.md": "dc5875d1cea9c0f6124f46e3f9bcb505e778f4fad1578f0f4fe1fe9904f7f971"
     },
     "last_active_child_id": null,
     "last_active_at": null

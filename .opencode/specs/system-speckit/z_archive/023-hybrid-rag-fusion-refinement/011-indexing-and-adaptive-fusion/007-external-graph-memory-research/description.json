@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/007-external-graph-memory-research",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/007-external-graph-memory-research",
   "description": "The Spec Kit Memory graph subsystem is structurally sound but underutilized",
   "keywords": [
     "spec",
@@ -11,11 +11,11 @@
     "sound",
     "underutilized"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.531Z",
+  "lastUpdated": "2026-07-09T10:02:58.833Z",
   "specId": "007",
   "folderSlug": "external-graph-memory-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement",
     "011-indexing-and-adaptive-fusion"

@@ -15,7 +15,6 @@
     "trigger_phrases": [],
     "key_topics": [
       "phase",
-      "005",
       "validation",
       "second-packaging",
       "rollout"
@@ -71,7 +70,7 @@
     ],
     "causal_summary": "Phase 005: Validation + Second-Packaging Rollout",
     "created_at": "2026-07-08T06:29:37.757Z",
-    "last_save_at": "2026-07-08T13:43:28.769Z",
+    "last_save_at": "2026-07-09T10:02:49.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

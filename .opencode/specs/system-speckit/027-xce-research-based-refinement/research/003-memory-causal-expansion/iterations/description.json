@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/research/003-memory-causal-expansion/iterations",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/research/003-memory-causal-expansion/iterations",
   "description": "Research iteration artifacts for 003-memory-causal-expansion.",
   "keywords": [
     "research",
@@ -10,11 +10,11 @@
     "027-xce-research-based-refinement",
     "iterations"
   ],
-  "lastUpdated": "2026-06-08T15:25:36.982Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "003",
   "folderSlug": "memory-causal-expansion-iterations",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "research",
     "003-memory-causal-expansion"

@@ -13,7 +13,7 @@
   "derived": {
     "trigger_phrases": [
       "feature catalog",
-      "manual testing playbook",
+      "sk-doc manual testing playbook",
       "sk-doc templates",
       "references/global",
       "references/specific",
@@ -28,10 +28,10 @@
     "key_topics": [
       "feature",
       "catalog",
+      "sk-doc",
       "manual",
       "testing",
       "playbook",
-      "sk-doc",
       "templates",
       "references",
       "global",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The original spec packet captured only the first part of the work: refactoring manual testing playbooks toward a feature-catalog-like package shape",
     "created_at": "2026-04-12T09:02:50.221Z",
-    "last_save_at": "2026-07-07T17:12:10.715Z",
+    "last_save_at": "2026-07-09T10:02:44.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ac4087d4911b0eb057ce64f73690db3253ece5aaec8e75a6475c942f6f6c22f",
+    "source_fingerprint": "sha256:36115c2ae1f58fdca5ad88698ab0d8d413a0ce79c9a2cc3075d6fccde054dee3",
     "source_doc_hashes": {
-      "spec.md": "5abea6a6f97faffae5f0eee81848d5580c6e414161beaf4f6fdaf96fa7471b85",
+      "spec.md": "374ce09130a24fdc0615eaa134d62af5e9739ebf09d066a2b95326bb80840be2",
       "plan.md": "74d7e5b67190f168651e8aeaaa71889ba5ac06d84546b0f74ea07d9a98b65a56",
       "tasks.md": "70f564bb225a937fb28663f9d9ff424956cb5e57b7ffda9419b4303e8e1b46ee",
       "checklist.md": "cfb9392a338f0e41f23b96bda6996745a85062be4b25cb58be49659f81581724",
-      "implementation-summary.md": "c6aaed9364b21b4711fe99fbb54b1609fa9ba0fc13d8ca9d8e1c5194ebc09610"
+      "implementation-summary.md": "2027627c10d8a717055de93230f65f6ffb99e1ae136e98175959c0fd28072c2d"
     },
     "last_active_child_id": null,
     "last_active_at": null

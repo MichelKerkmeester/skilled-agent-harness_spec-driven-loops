@@ -109,7 +109,7 @@ All four lanes share the same candidate, dispatcher and scorer seams.
 | C: Skill-Benchmark | `/deep:skill-benchmark` | A skill's routing, discovery, efficiency and usefulness |
 | D: Non-Dev-AI-System Refine | `/deep:ai-system-improvement` | An AI-system packaging benchmarked, independently re-graded and auto-refined behind guardrails |
 
-Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`; benchmark reports include `outcomeScoreDelta` and helped/hurt fixture deltas so promotion can block regressions instead of relying on pass/fail alone. Lane C runs through `loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane D runs through `loop-host.cjs --mode=non-dev-ai-system-refine`; the guarded loop itself is packaging-owned (`<packaging-root>/benchmark/_loop/loop.py`) and loop-host only adapts to it, with dry-run as the default. Lane D also has a command-level `--self-target <profile>` guard for runtime/-style self-improvement profiles, validating frozen surfaces and allowed technique-doc diffs before compiling to the existing adapter invocation. Lane A is the default path when no mode flag is set.
+Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/`; benchmark reports include `outcomeScoreDelta` and helped/hurt fixture deltas so promotion can block regressions instead of relying on pass/fail alone. Lane C runs through `loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane D runs through `loop-host.cjs --mode=non-dev-ai-system-refine`; the guarded loop itself is packaging-owned (`<packaging-root>/benchmark/_loop/loop.py`) and loop-host only adapts to it, with dry-run as the default. Lane D also has a command-level `--self-target <profile>` guard for runtime/-style self-improvement profiles, validating frozen surfaces and allowed technique-doc diffs before compiling to the existing adapter invocation. Lane A is the default path when no mode flag is set.
 
 ---
 
@@ -131,7 +131,7 @@ Skip it for open-ended prompt rewrites across many agent families at once. Skip 
 | `deep-review` | Audits code for bugs and security gaps. Run it after implementation, not during improvement. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Feed it context from `@context` or `/speckit:plan`, not an agent file. |
 
-`deep-improvement` is the only deep loop that can mutate a file. Every other deep loop is read-only or advisory. This one writes only when the promotion gate opens, and even then it records a rollback path. `system-spec-kit` owns the spec folder, validation and memory continuity for the run. `runtime/` provides the shared coverage graph and atomic-state layer. `sk-prompt-models` owns the benchmark output tree that Lane B writes into.
+`deep-improvement` is the only deep loop that can mutate a file. Every other deep loop is read-only or advisory. This one writes only when the promotion gate opens, and even then it records a rollback path. `system-spec-kit` owns the spec folder, validation and memory continuity for the run. `runtime/` provides the shared coverage graph and atomic-state layer. `sk-prompt/prompt-models` owns the benchmark output tree that Lane B writes into.
 
 ---
 

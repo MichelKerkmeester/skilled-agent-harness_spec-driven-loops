@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate",
   "description": "`runShadowEvaluation()` computes a `promotionGate` result (pass/fail with NDCG/MRR/Kendall-tau metrics and a recommendation), but nothing acts on it",
   "keywords": [
     "runshadowevaluation",
@@ -16,11 +16,11 @@
     "nothing",
     "acts"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.495Z",
+  "lastUpdated": "2026-07-09T10:02:58.786Z",
   "specId": "001",
   "folderSlug": "wire-promotion-gate",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement",
     "011-indexing-and-adaptive-fusion"

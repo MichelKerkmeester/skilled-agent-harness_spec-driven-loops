@@ -1,10 +1,8 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/004-sk-doc-template-alignment",
   "description": "Packets 031 through 036 changed operator documentation, runtime references, matrix-runner README files, matrix prompt templates and packet-local spec",
   "keywords": [
     "packets",
-    "031",
-    "036",
     "changed",
     "operator",
     "documentation",
@@ -19,11 +17,11 @@
     "packet-local",
     "spec"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.479Z",
+  "lastUpdated": "2026-07-09T10:02:51.088Z",
   "specId": "004",
   "folderSlug": "sk-doc-template-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "004-followup-post-program",

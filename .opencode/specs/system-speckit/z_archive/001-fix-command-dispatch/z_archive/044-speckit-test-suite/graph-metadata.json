@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -29,26 +29,18 @@
       "kit",
       "test",
       "suite",
-      "044",
       "speckit",
       "implementation",
       "plan",
       "tasks",
       "checklist",
       "decision",
-      "record"
+      "record",
+      "memory"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/spec.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/plan.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/tasks.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/checklist.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/decision-record.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/memory-mcp-test-plan.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/BUG-checkpoint-database-null.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/implementation-summary.md",
       "scratch/test-agent-02-search/TEST-REPORT.md",
       "scratch/test-agent-04-crud/TEST-REPORT.md",
       "scratch/test-agent-06-checkpoint/TEST-REPORT.md",
@@ -56,61 +48,15 @@
       "scratch/test-agent-09-tiers/TEST-REPORT.md",
       "scratch/test-agent-10-e2e/TEST-REPORT.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/comprehensive-analysis.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/RESTART-REQUIRED.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-mcp-test-plan.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/memory-mcp-test-plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "BUG-checkpoint-database-null.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/BUG-checkpoint-database-null.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "TEST-REPORT.md",
         "kind": "doc",
@@ -124,15 +70,45 @@
         "source": "derived"
       },
       {
-        "name": "comprehensive-analysis.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/comprehensive-analysis.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "RESTART-REQUIRED.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/RESTART-REQUIRED.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -206,11 +182,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Total",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Cases",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shell Scripts",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Spec Kit Memory MCP and related tools lacked comprehensive testing:",
     "created_at": "2026-04-12T09:02:53.528Z",
-    "last_save_at": "2026-06-23T03:49:59.132Z",
+    "last_save_at": "2026-07-09T10:02:57.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

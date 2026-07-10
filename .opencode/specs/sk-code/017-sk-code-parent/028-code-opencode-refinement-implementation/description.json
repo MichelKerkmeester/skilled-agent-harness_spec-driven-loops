@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation",
+  "description": "Execute the Fable-5-validated refinement backlog for the sk-code code-opencode surface sub-skill: 24 P1 + 21 P2 + 7 P3 documentation/asset fixes",
+  "keywords": [
+    "execute",
+    "fable-5-validated",
+    "refinement",
+    "backlog",
+    "sk-code",
+    "code-opencode",
+    "surface",
+    "sub-skill",
+    "documentation",
+    "asset"
+  ],
+  "lastUpdated": "2026-07-09T10:02:44.236Z",
+  "specId": "028",
+  "folderSlug": "code-opencode-refinement-implementation",
+  "parentChain": [
+    "sk-code",
+    "017-sk-code-parent"
+  ],
+  "memorySequence": 28,
+  "memoryNameHistory": []
+}

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -31,16 +31,17 @@
       "manual",
       "testing",
       "phase",
-      "010",
       "tests",
       "playbook",
-      "016",
-      "175",
-      "implementation"
+      "implementation",
+      "plan",
+      "workflow",
+      "execution"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "mcp_server/lib/search/graph-search-fn.ts",
       "mcp_server/lib/cognitive/co-activation.ts",
       "mcp_server/lib/storage/causal-edges.ts",
@@ -58,10 +59,15 @@
       "implementation-summary.md",
       "mcp_server/handlers/causal-graph.ts",
       "mcp_server/lib/search/result-explainability.ts",
-      "spec.md",
       "plan.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "graph-search-fn.ts",
         "kind": "code",
@@ -159,12 +165,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Manual test scenarios for graph-signal-activation need structured per-phase documentation instead of relying on scattered playbook rows",
     "created_at": "2026-04-12T09:02:50.296Z",
-    "last_save_at": "2026-06-23T03:50:00.272Z",
+    "last_save_at": "2026-07-09T10:02:58.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -26,8 +26,8 @@
       "itself",
       "audit",
       "prompts",
-      "007",
-      "graduation"
+      "graduation",
+      "suite"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The 007 graduation suite adopted the CUT verdict for the explicit advisor self-recommendation guard (`SPECKITADVISORSELFRECOMMENDATIONGUARD`); the guard code remains in `fusion.ts` pending deletion in the gated code window",
     "created_at": "2026-06-24T07:59:12.248Z",
-    "last_save_at": "2026-07-07T17:37:36.534Z",
+    "last_save_at": "2026-07-09T10:02:50.471Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

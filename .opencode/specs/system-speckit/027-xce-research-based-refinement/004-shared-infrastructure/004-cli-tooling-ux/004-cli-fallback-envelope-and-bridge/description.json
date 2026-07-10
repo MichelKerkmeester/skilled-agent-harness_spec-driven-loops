@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
   "description": "The three hook fallback helpers return inconsistent result envelopes, so agents and plugins handle `skipped`, `failopen`, `exitCode`, and retryability",
   "keywords": [
     "three",
@@ -19,11 +19,11 @@
     "exitcode",
     "retryability"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.824Z",
+  "lastUpdated": "2026-07-09T10:02:55.717Z",
   "specId": "004",
   "folderSlug": "cli-fallback-envelope-and-bridge",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "004-cli-tooling-ux"

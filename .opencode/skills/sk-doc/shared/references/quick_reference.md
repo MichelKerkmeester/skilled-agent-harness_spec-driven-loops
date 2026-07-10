@@ -365,11 +365,11 @@ Validation note: the current validator checks the root playbook and does not rec
 ### Templates
 - [skill_md_template.md](../../create-skill/assets/skill/skill_md_template.md) - SKILL.md file templates
 - [frontmatter_templates.md](../assets/frontmatter_templates.md) - Frontmatter by document type
-- [command_template.md](../../create-command/assets/command/command_template.md) - Command file templates
-- [feature_catalog_template.md](../../create-feature-catalog/assets/feature_catalog/feature_catalog_template.md) - Feature catalog template
-- [feature_catalog_snippet_template.md](../../create-feature-catalog/assets/feature_catalog/feature_catalog_snippet_template.md) - Per-feature catalog template
-- [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_template.md) - Playbook creation template
-- [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/testing_playbook/manual_testing_playbook_snippet_template.md) - Per-feature snippet template
+- [command_template.md](../../create-command/assets/command_template.md) - Command file templates
+- [feature_catalog_template.md](../../create-feature-catalog/assets/feature_catalog_template.md) - Feature catalog template
+- [feature_catalog_snippet_template.md](../../create-feature-catalog/assets/feature_catalog_snippet_template.md) - Per-feature catalog template
+- [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_template.md) - Playbook creation template
+- [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_snippet_template.md) - Per-feature snippet template
 
 ### Related Skills
 - `git-commit` - Git commit workflows

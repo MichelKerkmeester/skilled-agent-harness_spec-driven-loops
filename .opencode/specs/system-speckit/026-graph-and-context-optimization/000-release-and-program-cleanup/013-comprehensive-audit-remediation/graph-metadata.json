@@ -32,8 +32,6 @@
     "key_topics": [
       "audit",
       "remediation",
-      "013",
-      "fix",
       "findings",
       "deep",
       "review",
@@ -41,7 +39,9 @@
       "surfaced",
       "verified",
       "one",
-      "true"
+      "true",
+      "infrastructure",
+      "two"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -143,15 +143,15 @@
     ],
     "causal_summary": "The packet-012 audit surfaced ~50 verified findings — one true infrastructure P0, two governed-scope findings calibrated to P1 under the local single-user model, and pervasive contract/metadata/doc drift — clustering into five systemic root causes",
     "created_at": "2026-06-04T20:45:40Z",
-    "last_save_at": "2026-07-02T05:31:10.977Z",
+    "last_save_at": "2026-07-09T10:02:51.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e0e4db02c2a2f12bfd2c4fb9cc8aba5718706f226b1b8ea26fdff6aafda81c29",
+    "source_fingerprint": "sha256:f8a1ee0ac7ad267def3d9d928b86f8983c222ec83a6ffb10441276cdfe6f96e8",
     "source_doc_hashes": {
-      "spec.md": "8a59194f185be9fc2fd57253c3ac992b8f11fb179bb548b9a91cb50983667f4a"
+      "spec.md": "b043ff14556ed78027908ddc979b01c8b1c907d834954bf98fbdf0f0c5530bfb"
     },
     "last_active_child_id": null,
     "last_active_at": null

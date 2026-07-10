@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands",
   "description": "The speckit commands command family owns presentation instructions inline with routing instructions",
   "keywords": [
     "speckit",
@@ -13,11 +13,11 @@
     "inline",
     "routing"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.678Z",
+  "lastUpdated": "2026-07-09T10:02:55.578Z",
   "specId": "002",
   "folderSlug": "speckit-commands",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation"

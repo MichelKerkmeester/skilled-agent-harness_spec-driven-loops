@@ -41,9 +41,8 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".claude/mcp.json",
-      ".agents/settings.json",
-      ".codex/config.toml",
       "research/research.md",
       ".opencode/agents/context.md",
       "plan.md",
@@ -53,27 +52,19 @@
       "implementation-summary.md",
       "scripts/common.sh",
       "scripts/doctor.sh",
-      "spec.md",
-      ".claude/agents/context.md",
-      ".codex/agents/context.toml"
+      ".claude/agents/context.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".agents/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -128,18 +119,6 @@
         "name": "doctor.sh",
         "kind": "script",
         "path": "scripts/doctor.sh",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "context.toml",
-        "kind": "file",
-        "path": ".codex/agents/context.toml",
         "source": "derived"
       },
       {
@@ -201,11 +180,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode had no semantic code search capability",
     "created_at": "2026-04-12T09:02:50.170Z",
-    "last_save_at": "2026-06-23T03:49:49.004Z",
+    "last_save_at": "2026-07-09T10:02:45.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +213,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:46c9cd73c3ae2e034b38e207022250e854938c115936a45d518991c9aa545cf1",
+    "source_fingerprint": "sha256:7dc65ddbb9a787003e6f0147379db69c9f8d8ae1527485ab9fef1483e11b55d9",
     "source_doc_hashes": {
-      "spec.md": "8c186bc33adf9c77eb615404f704e41d35c4efb01c1946c61b7eb11102f627c7",
-      "plan.md": "bd573561658d30bb4148b597bafef14aa99fff029d695766233bda61b8b4e996",
-      "tasks.md": "5e4980c6859f4c5171e82f0e33b8416f1dcc05000b07eaa40e658a3178dfb71e",
-      "checklist.md": "e369c1de5f078ee128e430a69e3b7a20524404b298fd0ca280e1e33ff4d38e90",
-      "implementation-summary.md": "3fab68303ab7f423e44d225e9dcfb510c3c7fb4fe3f14c2745009885d9e03bd1",
-      "research/research.md": "3474cb3062ab8383f8ebd8f8a2bd5200ba22ee2d673ea0fc56065f00e18b7081"
+      "spec.md": "f6095c78e03db61d6437c59851681b2fbacdf3178ace80de2c8969dd7966de06",
+      "plan.md": "230bce8849a083f27891cc0484fd81698826232f99e18d3f6b74878840d7b7cf",
+      "tasks.md": "4fbd4c5133ae14e78d6f775501036f42a1de2fd0682499f489bfaabf7214dd8c",
+      "checklist.md": "14b06bf2250e873d1002a6efde499c0f67266c61afe1d23ca2222b387bfa91ff",
+      "implementation-summary.md": "a76a82e25e8adb61442e63c68141f554efab178a84587d6177e27f0024365f40",
+      "research/research.md": "054f1b7f15d7dd71df7aa12c7dd47420dc8792fc25a56284a3ae292a8878cd7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

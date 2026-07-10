@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/054-smart-routing-benchmark-program/001-live-scoring-fix",
+  "spec_folder": "system-deep-loop/054-smart-routing-benchmark-program/001-live-scoring-fix",
+  "parent_id": "system-deep-loop/054-smart-routing-benchmark-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live scoring fix",
+      "asset recall fold",
+      "live intent drop",
+      "resourceRecall assets channel",
+      "skill benchmark live mode",
+      "live scoring fix plan",
+      "asset recall fold plan",
+      "live scoring fix tasks",
+      "live scoring fix checklist",
+      "live scoring fix summary",
+      "asset fold intent drop results"
+    ],
+    "key_topics": [
+      "live",
+      "scoring",
+      "asset",
+      "recall",
+      "fold",
+      "intent",
+      "drop",
+      "resourcerecall",
+      "assets",
+      "channel",
+      "skill",
+      "benchmark"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/live-asset-recall.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "live-asset-recall.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/live-asset-recall.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Scoring Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Live",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a RED",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Legend",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent program's live (Mode-B) scores under-represented real routing quality",
+    "created_at": "2026-07-09T05:03:16.116Z",
+    "last_save_at": "2026-07-09T10:02:48.262Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9782e03565222cff3d80bf480ac28bd5d15585e5bdb2418c95a95150ca4aea1c",
+    "source_doc_hashes": {
+      "spec.md": "5a4cc7c9bdd5f91e39191eea0a6bd666d5c7a0f1cae6a0a17d68165495d20b61",
+      "plan.md": "0cf91b5493c89aa687b53f2ed98a2f1ff79c736b7aabb37665b4f47f6a45a02b",
+      "tasks.md": "b0a5e16750aaca104181fa6866cf76e7822b7e69309c5d297e6140fab7d8bc81",
+      "checklist.md": "e5fa8f7aa929ba17bb3850bb6027a4a1faa4edddf55b58c5f27615fbeedfe45b",
+      "implementation-summary.md": "063d48c6f4ec7bf2c1afdce8cc7e83a6de226872f75634ccef10c9de2e9a9f89"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

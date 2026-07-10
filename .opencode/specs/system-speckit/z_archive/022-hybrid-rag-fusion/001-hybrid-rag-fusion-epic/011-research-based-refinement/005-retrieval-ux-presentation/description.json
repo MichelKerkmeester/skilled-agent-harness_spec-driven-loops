@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/005-retrieval-ux-presentation",
-  "description": "Add empty-result recovery UX, two-tier explainability, mode-aware response shapes, per-result calibrated confidence, progressive disclosure, and retri",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/005-retrieval-ux-presentation",
+  "description": "Add empty-result recovery UX, two-tier explainability, mode-aware response shapes, per-result calibrated confidence, progressive disclosure, and",
   "keywords": [
-    "add",
     "empty-result",
     "recovery",
     "two-tier",
@@ -14,14 +13,13 @@
     "calibrated",
     "confidence",
     "progressive",
-    "disclosure",
-    "retri"
+    "disclosure"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.738Z",
+  "lastUpdated": "2026-07-09T10:02:57.810Z",
   "specId": "005",
   "folderSlug": "retrieval-ux-presentation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic",

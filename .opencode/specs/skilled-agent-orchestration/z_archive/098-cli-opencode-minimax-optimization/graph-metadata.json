@@ -101,15 +101,15 @@
     ],
     "causal_summary": "cli-opencode currently supports two providers (`opencode-go` default, `deepseek` direct-API) and the shared small-model registry (`sk-prompt/assets/model-profiles.json`) covers SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1 (+ two optional stubs)",
     "created_at": "2026-05-28T08:38:25Z",
-    "last_save_at": "2026-06-23T03:49:51.143Z",
+    "last_save_at": "2026-07-09T10:02:46.074Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:285335139f54b7eed96fba3a53ea656fe53a3b341ae9b63a0745b143bc1bbfdd",
+    "source_fingerprint": "sha256:53a4b6c8de7c83956cf631b78e64ae49401e44ff830432761babca0ce148f627",
     "source_doc_hashes": {
-      "spec.md": "156717d9a766dcd805116c83a4e5920108362204366ca4bb30c6e879df4c15cf"
+      "spec.md": "3f8f635b77b0383b0a619d390c78a60179d26343e16c0293e9e39bc93671c68e"
     },
     "last_active_child_id": "skilled-agent-orchestration/z_archive/098-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
     "last_active_at": "2026-06-01T06:51:08.073Z"

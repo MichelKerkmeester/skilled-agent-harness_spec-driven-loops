@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/054-smart-routing-benchmark-program/001-live-scoring-fix",
+  "description": "The parent program's live (Mode-B) scores under-represented real routing quality",
+  "keywords": [
+    "parent",
+    "program",
+    "live",
+    "mode-b",
+    "scores",
+    "under-represented",
+    "real",
+    "routing",
+    "quality"
+  ],
+  "lastUpdated": "2026-07-09T05:03:15.999Z",
+  "specId": "001",
+  "folderSlug": "live-scoring-fix",
+  "parentChain": [
+    "system-deep-loop",
+    "054-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

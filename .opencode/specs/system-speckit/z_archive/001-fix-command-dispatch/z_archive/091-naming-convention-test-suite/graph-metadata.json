@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -31,12 +31,12 @@
       "convention",
       "test",
       "spec",
-      "091",
       "implementation",
       "plan",
       "tasks",
       "suite",
-      "checklist"
+      "checklist",
+      "migration"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The naming convention migration (spec 090) renames identifiers across ~206 JS files, 9 skill docs, and touches shell/Python scripts",
     "created_at": "2026-04-12T09:02:53.561Z",
-    "last_save_at": "2026-06-23T03:49:59.413Z",
+    "last_save_at": "2026-07-09T10:02:57.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

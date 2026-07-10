@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
   "description": "The Track A release-alignment review (`../001-readmes-vs-027/review/findings-all.json`) surfaced confirmed README / code-README staleness: the READMEs",
   "keywords": [
     "track",
@@ -16,11 +16,11 @@
     "staleness",
     "readmes"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.032Z",
+  "lastUpdated": "2026-07-09T10:02:55.925Z",
   "specId": "003",
   "folderSlug": "readme-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",
     "007-release-alignment-review"

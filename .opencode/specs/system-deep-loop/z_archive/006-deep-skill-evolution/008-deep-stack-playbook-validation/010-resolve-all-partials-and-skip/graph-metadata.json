@@ -27,15 +27,15 @@
       "resolve",
       "partials",
       "skip",
-      "007",
       "phase",
-      "010",
       "ready",
       "push",
-      "fix",
       "green",
       "plan",
-      "tasks"
+      "tasks",
+      "summary",
+      "implementation",
+      "matrix"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After 009 the 007 matrix stands at 145 PASS / 31 PARTIAL / 0 FAIL / 1 SKIP",
     "created_at": "2026-05-28T00:00:00.000Z",
-    "last_save_at": "2026-07-08T13:43:57.057Z",
+    "last_save_at": "2026-07-09T10:02:48.913Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

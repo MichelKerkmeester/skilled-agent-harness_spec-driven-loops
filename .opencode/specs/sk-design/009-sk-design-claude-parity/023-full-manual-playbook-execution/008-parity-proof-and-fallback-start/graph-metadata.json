@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "wave",
-      "008",
       "parity",
       "proof",
       "fallback",
@@ -36,7 +35,8 @@
       "fr-001",
       "polish",
       "gate",
-      "selection"
+      "selection",
+      "variation"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The larger 023 manual-playbook-execution packet needs every `manualtestingplaybook` scenario actually dispatched through the real `cli-opencode` orchestrator (not just read or reasoned about) and graded strictly against that scenario file's own Pass/Fail Criteria",
     "created_at": "2026-07-07T15:09:17.527Z",
-    "last_save_at": "2026-07-07T15:11:17.645Z",
+    "last_save_at": "2026-07-09T10:02:44.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

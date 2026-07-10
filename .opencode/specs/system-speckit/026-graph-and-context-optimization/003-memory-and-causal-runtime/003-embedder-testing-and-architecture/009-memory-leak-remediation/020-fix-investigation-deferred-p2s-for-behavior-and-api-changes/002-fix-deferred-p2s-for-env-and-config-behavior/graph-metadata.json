@@ -25,8 +25,6 @@
       "020 002 implementation summary"
     ],
     "key_topics": [
-      "020",
-      "002",
       "env",
       "config",
       "behavior",
@@ -36,7 +34,9 @@
       "f46",
       "sidecar",
       "rerank",
-      "allowlist"
+      "allowlist",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Four deferred P2 findings remain in the rerank sidecar env/config surface",
     "created_at": "2026-05-23T10:01:51Z",
-    "last_save_at": "2026-07-02T05:31:12.304Z",
+    "last_save_at": "2026-07-09T10:02:53.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

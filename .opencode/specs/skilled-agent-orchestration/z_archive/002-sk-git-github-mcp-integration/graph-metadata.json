@@ -31,12 +31,12 @@
       "mcp",
       "integration",
       "spec",
-      "002",
       "git",
       "implementation",
       "plan",
       "tasks",
-      "verification"
+      "verification",
+      "sk-git"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The sk-git skill documented GitHub MCP usage with incorrect call syntax, incomplete tool coverage, and weak guidance on when to use GitHub MCP instead of local git or `gh`",
     "created_at": "2026-04-12T09:02:50.200Z",
-    "last_save_at": "2026-06-23T03:49:48.876Z",
+    "last_save_at": "2026-07-09T10:02:45.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

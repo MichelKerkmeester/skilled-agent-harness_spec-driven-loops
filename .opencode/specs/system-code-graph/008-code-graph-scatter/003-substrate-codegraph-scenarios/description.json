@@ -5,12 +5,8 @@
   "keywords": [
     "deferred",
     "goal",
-    "make",
     "substrate",
     "scenarios",
-    "403",
-    "404",
-    "407",
     "run",
     "real",
     "instead",
@@ -20,7 +16,7 @@
     "playbooks",
     "call"
   ],
-  "lastUpdated": "2026-07-07T16:10:52.180Z",
+  "lastUpdated": "2026-07-09T10:02:47.182Z",
   "specId": "003",
   "folderSlug": "substrate-codegraph-scenarios",
   "parentChain": [

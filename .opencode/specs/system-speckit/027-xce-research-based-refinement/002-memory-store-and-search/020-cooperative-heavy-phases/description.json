@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases",
-  "description": "020's marker keeps a busy daemon un-reaped, but a blocked event loop is still the failure mode that breaks re-election: it cannot answer a competing l",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases",
+  "description": "020's marker keeps a busy daemon un-reaped, but a blocked event loop is still the failure mode that breaks re-election: it cannot answer a competing",
   "keywords": [
-    "020",
     "marker",
     "keeps",
     "busy",
@@ -20,11 +19,11 @@
     "answer",
     "competing"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.422Z",
+  "lastUpdated": "2026-07-09T10:02:55.449Z",
   "specId": "020",
   "folderSlug": "cooperative-heavy-phases",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

@@ -140,7 +140,7 @@ When editing this file, no mirroring step is required — the delegating cards r
 ## 8. Related Resources
 
 - `../SKILL.md`
-- `../../sk-prompt/references/patterns_evaluation.md`
-- `../../sk-prompt/references/depth_framework.md`
-- `../../cli-claude-code/assets/prompt_quality_card.md`
-- `../../cli-opencode/assets/prompt_quality_card.md`
+- `../../prompt-improve/references/patterns_evaluation.md`
+- `../../prompt-improve/references/depth_framework.md`
+- `../../../cli-claude-code/assets/prompt_quality_card.md`
+- `../../../cli-opencode/assets/prompt_quality_card.md`

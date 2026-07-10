@@ -26,7 +26,6 @@
       "149 phase map"
     ],
     "key_topics": [
-      "149",
       "operate",
       "like",
       "fable-5",
@@ -37,7 +36,8 @@
       "program",
       "phase",
       "map",
-      "profile"
+      "profile",
+      "claim"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -134,16 +134,16 @@
     ],
     "causal_summary": "The \"fable-5\" operating profile (claim legibility, blast-radius sizing, mechanism-over-narration, measured efficiency) lives in external source material, not in this framework's behavioral surfaces",
     "created_at": "2026-06-15T11:53:02.676Z",
-    "last_save_at": "2026-06-23T03:49:48.464Z",
+    "last_save_at": "2026-07-09T10:02:46.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:48aee58321a493acbff1a225511530e11b4210d6a2b838a85418b1cdde66838a",
+    "source_fingerprint": "sha256:8c5bc845756fcd7a6570142e93962cf50d9229be0d0613d2e23f633d9217b31f",
     "source_doc_hashes": {
-      "spec.md": "baec1e41ab9e7067ffe91292862338b82ded5eaba7458851d2678f18faad5db0",
+      "spec.md": "d4d988841e218c104f295877210beb78e529bafbdcea62d7de9be1cb23376977",
       "research/research.md": "68d1e7272f9a4e7d9d4cd20a7213a8b4979dc43697783b18a8b06b9afd1f196b"
     },
     "last_active_child_id": null,

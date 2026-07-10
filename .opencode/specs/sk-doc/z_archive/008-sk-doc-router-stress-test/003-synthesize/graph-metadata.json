@@ -18,8 +18,6 @@
       "071/003 summary"
     ],
     "key_topics": [
-      "071",
-      "003",
       "synthesize",
       "plan",
       "tasks",
@@ -29,10 +27,12 @@
       "logs",
       "phase",
       "contain",
-      "cli-specific"
+      "cli-specific",
+      "output",
+      "formats"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "45 raw cell logs from Phase 2 contain CLI-specific output formats (codex stdout with token line, copilot Tokens summary block, opencode JSONL stream)",
     "created_at": "2026-05-05T10:27:21Z",
-    "last_save_at": "2026-06-23T03:49:49.771Z",
+    "last_save_at": "2026-07-09T10:02:44.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0af234a0fb5f26cbafc395f7e014a2a240e9b20540a54c717f1dfdd334b4d4f5",
+    "source_fingerprint": "sha256:a7f5f8f491faaa00bc747e003b9112b0f65f44bdcd9d838a0b02fab7d5959f59",
     "source_doc_hashes": {
-      "spec.md": "f8d8c1ca028aa0c150d7a084fcd00fc31693653fbccbe122fc8f0999dfbc8082",
-      "plan.md": "24dd04b48632b051c00d3902338855e92e0072d6cba246c7db575fbea789c82b",
-      "tasks.md": "2bdaeab169f527b6f8c33b846f415c6e610695c09f35ab0bc6bf508cb7139ef3",
-      "implementation-summary.md": "2bcbf85a54c680f7263ba99ed430ca2e48ec0e7cc68ddb5a7a1a5907a727413a"
+      "spec.md": "bd87462d2ad64c3de251b919707830a14f6b28ac695709fb3700576c71b2fab6",
+      "plan.md": "60a6729a9dfeb11c86b32f816167a8dfe32f595f099c4b29602366cb00d997d8",
+      "tasks.md": "ffc4c1147baee210850a36091463cc689369e7e2b01843fe77dc2dd6f5876936",
+      "implementation-summary.md": "5c98c4a5d53f3b6da2be7aae35ef2df24ad6a37fbd270bfcd46b70f3c7e89d0c"
     },
     "last_active_child_id": null,
     "last_active_at": null

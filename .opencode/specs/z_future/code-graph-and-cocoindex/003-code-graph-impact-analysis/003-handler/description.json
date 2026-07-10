@@ -23,7 +23,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
+  "specFolder": "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
   "description": "Feature Specification: 027/004/003 Impact Analysis Handler",
   "keywords": [
     "feature",
@@ -35,12 +35,12 @@
     "analysis",
     "handler"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.081Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "003",
   "folderSlug": "handler",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex",
+    "z_future",
+    "code-graph-and-cocoindex",
     "003-code-graph-impact-analysis"
   ],
   "memorySequence": 0,

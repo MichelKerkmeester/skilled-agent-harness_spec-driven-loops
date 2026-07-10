@@ -27,7 +27,6 @@
       "codegraph decoupling summary"
     ],
     "key_topics": [
-      "020",
       "codegraph",
       "decoupling",
       "spec-kit",
@@ -38,7 +37,8 @@
       "imports",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "adr"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Remove system-spec-kit MCP server source imports from system-code-graph and lock a process-boundary integration pattern.",
     "created_at": "2026-05-15T08:24:07Z",
-    "last_save_at": "2026-07-02T05:31:11.162Z",
+    "last_save_at": "2026-07-09T10:02:49.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-15T09:35:00Z",
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dbe91c48c8401e8e87c7a5807462c5107bf91b77aa9ce936ccb19294ea8e185b",
+    "source_fingerprint": "sha256:043f49ac7b4a0eb1d76452f19c586dc9cf86665075c288c4c89ca133aed78561",
     "source_doc_hashes": {
-      "spec.md": "7fe13c6039d5f7846bb3af788aae567a85aa8ff158b9db4a1e164350b02eb43d",
-      "plan.md": "0e604a11a85754e3d472fc0f5b9b478170a16183312a26a8f6de2c2b5a4d5441",
-      "tasks.md": "d1449448827a15478a4d60a7d2cf9c26cc4dac0ff753785e2e3355ec23433a63",
-      "checklist.md": "7bb1d29d0ed90fda4c48137f5dd2787f146e028ee56d1d0105ac50b0aff45039",
-      "decision-record.md": "a4abab67c87e034a3f25b84760c3b65b7a254f27b9afae9058e6a5d94d21f65a",
-      "implementation-summary.md": "6bf2b67049817c9f5903272dd7ffd2981bd4c95350578da46c5df6de214d3605"
+      "spec.md": "5ead81dfdc12cccbe11d5725a0b6104040d65bd2b1bc3e747e225ba60de170a6",
+      "plan.md": "1545a9a30507242ff5de52d1d76f9c54ed68a1459363980b7556c25cb3593832",
+      "tasks.md": "7dadb97d4276772fa401c35b82a80e7fbede7978583f58b7efef63a41a4a5906",
+      "checklist.md": "c1b3593eb858dd90c75946e81c0b5c56c29fd1a70a460c2bf58aab0efcc85fcf",
+      "decision-record.md": "9f11acb8ad0eea3247cfee6895708415a267c394c57f09d4b3cd3d4f70e5c751",
+      "implementation-summary.md": "4d031229cf6b7768dd934d7e7df585aa002d918a0ccba376c9fe21040ca94016"
     },
     "last_active_child_id": null,
     "last_active_at": null

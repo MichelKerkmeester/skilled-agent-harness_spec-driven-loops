@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation",
-  "description": "Daemon re-election was defaulted on for all users, but the changelog admitted the full multi-session behavior was only under live observation, not pro",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation",
+  "description": "Daemon re-election was defaulted on for all users, but the changelog admitted the full multi-session behavior was only under live observation, not",
   "keywords": [
     "daemon",
     "re-election",
@@ -14,14 +14,13 @@
     "behavior",
     "only",
     "live",
-    "observation",
-    "pro"
+    "observation"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.594Z",
+  "lastUpdated": "2026-07-09T10:02:54.575Z",
   "specId": "028",
   "folderSlug": "live-session-reelection-validation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

@@ -26,7 +26,6 @@
     "key_topics": [
       "substrate",
       "stress",
-      "049",
       "vitest",
       "gate",
       "plan",
@@ -35,7 +34,8 @@
       "verification",
       "implementation",
       "summary",
-      "canonical"
+      "canonical",
+      "suite"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The canonical Vitest stress suite in `mcpserver/stresstest/` is provider-agnostic by design",
     "created_at": "2026-05-14T21:40:55.576Z",
-    "last_save_at": "2026-07-02T05:31:11.702Z",
+    "last_save_at": "2026-07-09T10:02:52.553Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

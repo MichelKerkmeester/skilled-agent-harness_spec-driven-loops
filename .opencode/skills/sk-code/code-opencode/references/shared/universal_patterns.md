@@ -8,7 +8,7 @@ trigger_phrases:
   - "reference comment patterns"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.17
+version: 1.0.0.22
 ---
 
 # Universal Patterns - Cross-Language Code Standards
@@ -233,6 +233,15 @@ const score = calculateDecay(baseScore, age); // weighted decay
 ## 4. REFERENCE COMMENT PATTERNS
 
 > **Governed by the canonical rule.** Comments must never embed an ephemeral-artifact pointer — a spec folder/number, a packet/phase/task/checklist/requirement id, a feature-catalog entry, an ADR id, or a ticket id. See [`../../universal/code_style_guide.md`](../../../shared/references/universal/code_style_guide.md) §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract. Only a **durable** external standard may be cited in a comment.
+
+### Hard-Block Comment-Hygiene Gate
+
+Comment hygiene is not a soft style preference in OpenCode system code. Ephemeral-artifact pointers are a HARD-BLOCK gate for code comments: do not write spec-folder paths, ADR ids, requirement ids, checklist ids, task ids, packet/phase ids, or ticket-local references into comments. Replace them with the durable WHY that will still be true after a packet is renamed, archived, or deleted.
+
+This is enforced in two real hooks:
+
+- `.opencode/hooks/pre-commit` runs the shared checker against staged code files and blocks the commit when violations are found.
+- `.opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh` runs the same checker after Write/Edit tool use and surfaces immediate comment-hygiene warnings for the edited file.
 
 ### Allowed Reference Comments
 
@@ -536,4 +545,4 @@ readonly MAX_RETRIES=3
 ### Related Documents
 
 - `code_organization.md` - Module organization, file structure
-- `../../../assets/opencode/checklists/universal_checklist.md` - Cross-language validation items
+- `../../assets/checklists/universal_checklist.md` - Cross-language validation items

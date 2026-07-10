@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection",
   "description": "The provenance-injection change correctly introduced write-path tagging, but review found two regressions and one verification question:",
   "keywords": [
     "provenance-injection",
@@ -17,11 +17,11 @@
     "verification",
     "question"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.315Z",
+  "lastUpdated": "2026-07-09T10:02:55.334Z",
   "specId": "013",
   "folderSlug": "provenance-injection",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

@@ -39,19 +39,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/glm-5.2-frameworks.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "glm-5.2-frameworks.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/glm-5.2-frameworks.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`glm-5.2` is registered in Phase 001 with a reasoned-but-unverified framework: `recommendedframeworks.primary` is `craft` and `status` is `default-unverified` (chosen from Z.AI prompting guidance, not a benchmark)",
     "created_at": "2026-06-28T10:15:17.430Z",
-    "last_save_at": "2026-07-02T05:31:09.461Z",
+    "last_save_at": "2026-07-09T10:02:45.062Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

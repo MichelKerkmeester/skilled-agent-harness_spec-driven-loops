@@ -19,8 +19,6 @@
       "016/001 summary"
     ],
     "key_topics": [
-      "016",
-      "001",
       "embedder",
       "adapter",
       "interface",
@@ -30,7 +28,9 @@
       "lookup",
       "plan",
       "tasks",
-      "summary"
+      "summary",
+      "phase",
+      "pluggable"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Phase 1 of 016 pluggable embedder architecture. Foundational types: define EmbedderAdapter interface + EmbedderRegistry lookup. Pure TypeScript design work — no runtime wiring yet.",
     "created_at": "2026-05-17T06:35:17.033Z",
-    "last_save_at": "2026-07-02T05:31:11.733Z",
+    "last_save_at": "2026-07-09T10:02:52.611Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

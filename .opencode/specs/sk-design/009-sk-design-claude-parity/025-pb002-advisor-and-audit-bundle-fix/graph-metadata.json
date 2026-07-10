@@ -26,17 +26,17 @@
     ],
     "key_topics": [
       "phase",
-      "025",
       "sk-design",
       "pb-002",
       "advisor",
-      "fix",
       "audit",
       "foundations",
       "bundle",
       "fresh",
       "remediation",
-      "plan"
+      "plan",
+      "workflow",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "A fresh, independent Opus-max audit of sk-design's parent hub and all 6 subskills (dispatched after phase 024 closed its 8 bugs) cross-referenced the manual-testing playbook's remaining never-fixed items and confirmed `PB-002` still had two real, live defects: the advisor probe loses `sk-design` top-1 to `sk-code` for a design-scoped review prompt, and the live dispatch resolves a bundled `audit`+`foundations` instead of pure `foundations`, contradicting `sk-design/SKILL.md`'s own Mode Vocabulary Guardrails rule about which mode owns review framing",
     "created_at": "2026-07-07T20:49:01.958Z",
-    "last_save_at": "2026-07-07T20:49:01.958Z",
+    "last_save_at": "2026-07-09T10:02:44.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

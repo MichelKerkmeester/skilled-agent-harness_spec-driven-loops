@@ -29,14 +29,14 @@
       "benchmarks",
       "validator",
       "promotion",
-      "124",
       "parent",
       "rollup",
       "benchmark",
       "plan",
       "parent-skill-check",
       "tasks",
-      "checklist"
+      "checklist",
+      "verification"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 124 parent-hub program is only complete after all three hub families have fresh, comparable Lane-C benchmark baselines, parent-skill-check migration checks 5-9 can be promoted from warning posture to failure posture, and the parent phase rollup metadata reflects phases 010-019 instead of the stale 001-009 child list",
     "created_at": "2026-07-05T05:46:27.012Z",
-    "last_save_at": "2026-07-07T17:16:30.242Z",
+    "last_save_at": "2026-07-09T10:02:44.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

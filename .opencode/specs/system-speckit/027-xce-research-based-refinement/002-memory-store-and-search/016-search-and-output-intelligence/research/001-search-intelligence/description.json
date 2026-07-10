@@ -1,23 +1,22 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research/001-search-intelligence",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research/001-search-intelligence",
   "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
     "broken",
     "missing",
     "inefficient",
-    "2-3",
     "sentences",
     "describing",
     "specific",
     "pain",
     "point"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.390Z",
+  "lastUpdated": "2026-07-09T10:02:55.415Z",
   "specId": "001",
   "folderSlug": "search-intelligence",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "016-search-and-output-intelligence",

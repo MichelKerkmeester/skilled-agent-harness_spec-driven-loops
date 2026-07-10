@@ -14,7 +14,7 @@
       "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/005-claudest",
   "description": "`CodeEnvironment/Public` already has Spec Kit Memory MCP (semantic search, intent-aware routing, importance tiers), Code Graph for structural queries,",
   "keywords": [
     "codeenvironment",
@@ -35,11 +35,11 @@
     "structural",
     "queries"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.136Z",
+  "lastUpdated": "2026-07-09T10:02:51.830Z",
   "specId": "005",
   "folderSlug": "claudest",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "001-research-and-baseline"
   ],

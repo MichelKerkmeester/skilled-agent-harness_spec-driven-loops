@@ -109,3 +109,85 @@ describe('sk-code router sync — machine block vs filesystem and prose', () => 
     expect(missing).toEqual([]);
   });
 });
+
+// Decentralization guard: the two surface children now each own an inline
+// INTENT_SIGNALS/RESOURCE_MAP router over their own references/assets. The parent
+// surface RESOURCE_MAP must stay EXACTLY the union of those children (each path
+// re-prefixed with its surface folder) plus a fixed parent-owned tier that no
+// single surface child owns. This makes the children the single source of truth
+// and fails closed if the parent projection or a child slice drifts apart.
+const SURFACES = ['code-webflow', 'code-opencode'];
+
+// The universal/shared tier the parent surface map owns directly (belongs to no
+// single surface child): the surface-agnostic quality/error/checklist docs, the
+// shared patterns readme, and the one code-review checklist the parent cites.
+const PARENT_TIER_ALLOWLIST = new Set([
+  'references/universal/multi_agent_research.md',
+  'references/universal/code_quality_standards.md',
+  'references/universal/code_style_guide.md',
+  'references/universal/error_recovery.md',
+  'references/universal-debugging_checklist.md',
+  'references/universal-verification_checklist.md',
+  'references/performance_loading_checklist.md',
+  'shared/assets/patterns/README.md',
+  'code-review/assets/code_quality_checklist.md',
+]);
+
+const norm = (p: string): string => p.replace(/^\.\//, '');
+
+function childResourceMap(surface: string): Record<string, string[]> {
+  const md = readFileSync(join(SKCODE, surface, 'SKILL.md'), 'utf8');
+  const router = parseRouter(md, join(SKCODE, surface));
+  return (router.resourceMap || {}) as Record<string, string[]>;
+}
+
+describe('sk-code surface children own the parent projection', () => {
+  const parent = loadSurfaceRouter(SKCODE);
+  const parentMap: Record<string, string[]> = (parent && parent.resourceMap) || {};
+  const children: Record<string, Record<string, string[]>> = {};
+  for (const s of SURFACES) children[s] = childResourceMap(s);
+
+  it('each surface child router parses with a non-empty resource map', () => {
+    for (const s of SURFACES) {
+      expect(Object.keys(children[s]).length, `${s} resourceMap empty`).toBeGreaterThan(0);
+    }
+  });
+
+  it('every surface-child path exists at the child root', () => {
+    const dead: string[] = [];
+    for (const s of SURFACES) {
+      for (const paths of Object.values(children[s])) {
+        for (const p of paths) {
+          if (!existsSync(join(SKCODE, s, norm(p)))) dead.push(`${s}/${p}`);
+        }
+      }
+    }
+    expect(dead).toEqual([]);
+  });
+
+  it('parent surface map == union(re-prefix(children)) + parent tier (no drift)', () => {
+    const intents = new Set<string>([
+      ...Object.keys(parentMap),
+      ...SURFACES.flatMap((s) => Object.keys(children[s])),
+    ]);
+    const overExtraction: string[] = []; // a child path absent from the parent map
+    const uncovered: string[] = []; // a parent surface path no child owns
+    const tierViolations: string[] = []; // a parent non-surface path outside the allowlist
+    for (const it of intents) {
+      const union = new Set<string>();
+      for (const s of SURFACES) {
+        for (const p of children[s][it] || []) union.add(`${s}/${norm(p)}`);
+      }
+      const parentPaths = new Set((parentMap[it] || []).map(norm));
+      for (const c of union) if (!parentPaths.has(c)) overExtraction.push(`${it}: ${c}`);
+      for (const p of parentPaths) {
+        if (union.has(p)) continue;
+        if (/^code-(webflow|opencode)\//.test(p)) uncovered.push(`${it}: ${p}`);
+        else if (!PARENT_TIER_ALLOWLIST.has(p)) tierViolations.push(`${it}: ${p}`);
+      }
+    }
+    expect(overExtraction).toEqual([]);
+    expect(uncovered).toEqual([]);
+    expect(tierViolations).toEqual([]);
+  });
+});

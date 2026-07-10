@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/029-headroom-utilization",
+  "specFolder": "system-speckit/029-headroom-utilization",
   "description": "We have vendored the Headroom project under `external/`",
   "keywords": [
     "vendored",
@@ -8,11 +8,11 @@
     "project",
     "external"
   ],
-  "lastUpdated": "2026-06-28T09:26:31.497Z",
+  "lastUpdated": "2026-07-09T10:02:56.737Z",
   "specId": "029",
   "folderSlug": "headroom-utilization",
   "parentChain": [
-    "system-spec-kit"
+    "system-speckit"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-code/z_archive/015-sk-code-ponytail-based-refinement/002-ceiling-comment-convention",
-  "description": "Define a neutral 'ceiling:' comment convention for deliberate shortcuts in sk-code, and let sk-code-review treat a present ceiling comment as P2-downg",
+  "description": "Define a neutral 'ceiling:' comment convention for deliberate shortcuts in sk-code, and let sk-code-review treat a present ceiling comment as",
   "keywords": [
     "define",
     "neutral",
@@ -14,10 +14,9 @@
     "let",
     "sk-code-review",
     "treat",
-    "present",
-    "p2-downg"
+    "present"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.455Z",
+  "lastUpdated": "2026-07-09T10:02:44.387Z",
   "specId": "002",
   "folderSlug": "ceiling-comment-convention",
   "parentChain": [

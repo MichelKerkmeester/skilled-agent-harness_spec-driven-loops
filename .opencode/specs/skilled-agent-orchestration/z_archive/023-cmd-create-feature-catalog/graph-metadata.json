@@ -25,7 +25,6 @@
       "/create:feature-catalog decision record"
     ],
     "key_topics": [
-      "create",
       "feature",
       "catalog",
       "command",
@@ -36,17 +35,18 @@
       "plan",
       "tasks",
       "checklist",
-      "adr"
+      "adr",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/commands/create/feature-catalog.md",
       ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
       ".opencode/commands/create/assets/create_feature_catalog_confirm.yaml",
       ".opencode/commands/create/README.txt",
       ".opencode/commands/README.txt",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -54,6 +54,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "feature-catalog.md",
         "kind": "doc",
@@ -76,12 +82,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/create/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The repo has a shipped feature-catalog contract and `sk-doc` now teaches that contract through dedicated templates and creation references, but there is no dedicated create command that can scaffold it consistently",
     "created_at": "2026-04-12T09:02:50.173Z",
-    "last_save_at": "2026-06-23T03:49:49.024Z",
+    "last_save_at": "2026-07-09T10:02:45.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b05fdf40cbc21e172fe83aa004ccced6c508394189a0568b602f8a42405594f1",
+    "source_fingerprint": "sha256:aa9ea57cf6bbac7f0814472b27b2e366dcd3a756c9d671f150bf09b9131a9e3d",
     "source_doc_hashes": {
-      "spec.md": "c1e9e15f854a11ed6a4baca5b580e45fc8c10af1ab6f3b0bab5178f21898c211",
-      "plan.md": "5ead7034ad1fe2903559189f983bfef233923e1ad24124f96df2ed7809826cfc",
-      "tasks.md": "5bc9ef7984a5fab13ae0b226d0a05a7fa4742757e8575e98e27eabfc414bbb0a",
-      "checklist.md": "4ccaee20133a3053e757b1d584c2a8bf185ee15180f2d3b4cd99601dc0ed3147",
-      "decision-record.md": "34a43dbc81b2794ecf536b208b31b5ba92a4ae2a45b87de7e23aa44fb6659073",
-      "implementation-summary.md": "3b467473de16221634a0a0c8bb9c936af56c89e1514bba7f1657c1d225efa603"
+      "spec.md": "da5d62efddae5ce934813ea506c026b15e22625510ca0c9c973478ac214623f4",
+      "plan.md": "dca1b2327436a6d84ebbc115aff8bff981af82cd854cd031d8fcf5043df7f69e",
+      "tasks.md": "182888d2335172742148f95c085c24ed7666c7408f6efb665c81c3148d57c7a5",
+      "checklist.md": "523a1e12814b685952922427a93b3920cadc6684d390def11d2e0fad5e365b5f",
+      "decision-record.md": "a9d415e3f30a5d9552e855bda2167123c847551fd064afca08382ba38a1acfb5",
+      "implementation-summary.md": "ea599a6a0363caaadc864e131f7b24f6c6b40bf791facd53940639b658c29370"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment",
-  "description": "Ten governance drift findings exist across sk-doc, sk-code, and system-spec-kit/constitutional: the sk-doc spec frontmatter row instructs agents to re",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment",
+  "description": "Ten governance drift findings exist across sk-doc, sk-code, and system-spec-kit/constitutional: the sk-doc spec frontmatter row instructs agents to",
   "keywords": [
     "ten",
     "governance",
@@ -19,11 +19,11 @@
     "instructs",
     "agents"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.065Z",
+  "lastUpdated": "2026-07-09T10:02:51.735Z",
   "specId": "007",
   "folderSlug": "governance-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "013-comprehensive-audit-remediation"

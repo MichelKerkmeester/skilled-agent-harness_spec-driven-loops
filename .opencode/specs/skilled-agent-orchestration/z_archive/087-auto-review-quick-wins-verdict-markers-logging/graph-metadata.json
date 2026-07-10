@@ -26,7 +26,6 @@
       "packet 107 follow-on"
     ],
     "key_topics": [
-      "108",
       "sk-code-review",
       "auto-review",
       "uplift",
@@ -37,17 +36,28 @@
       "loop-prevention",
       "markers",
       "async-iife",
-      "logging"
+      "logging",
+      "packet"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
+      "001-h1-final-line-contract/spec.md",
+      "002-h2-loop-prevention-markers/spec.md",
+      "003-h3-async-iife-h6-lazy-mkdir/spec.md",
+      "004-stretch-goals/spec.md",
       "ai-council/council-report.md",
-      ".opencode/skills/sk-code-review/SKILL.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
-      "spec.md"
+      "skilled-agent-orchestration/z_archive/086-opencode-auto-review-teachings-research/research/review-report.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "council-report.md",
         "kind": "doc",
@@ -55,21 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "review-report.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code-review/SKILL.md",
+        "path": "skilled-agent-orchestration/z_archive/086-opencode-auto-review-teachings-research/research/review-report.md",
         "source": "derived"
       },
       {
         "name": "metrics.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -111,15 +115,15 @@
     ],
     "causal_summary": "Packet 106 identified 9 HIGH-impact + 6 MEDIUM-impact reusable patterns from the upstream `dzianisv/opencode-plugins` `auto-review` package",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-06-23T03:49:50.330Z",
+    "last_save_at": "2026-07-09T10:02:45.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6535023ada70e96fa9e6eb8f8057362a2f169e81a11f5983dadf05d5123ad338",
+    "source_fingerprint": "sha256:56c0d6220028bd31426b636324f395dfa616430077aededb100c33f50e978272",
     "source_doc_hashes": {
-      "spec.md": "fefd954abfebea4284f025239e8e7bab9c3cc3197b7c27d55bdcd4fed692a774"
+      "spec.md": "d3fd13b3b589f6c379c2ae2acd0d3a08ea70e36b327269a386b3732baa5a7666"
     },
     "last_active_child_id": null,
     "last_active_at": null

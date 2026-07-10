@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
-  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
-  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
+  "packet_id": "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld",
+  "spec_folder": "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld",
+  "parent_id": "z_future/code-graph-and-cocoindex",
   "children_ids": [
-    "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract",
-    "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl",
-    "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/003-handler",
-    "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/004-test"
+    "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract",
+    "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl",
+    "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld/003-handler",
+    "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld/004-test"
   ],
   "manual": {
     "depends_on": [],
@@ -90,7 +90,7 @@
     ],
     "causal_summary": "This phase parent coordinates the contract-first delivery of a deterministic HLD/LLD narrative layer. The root outcome is a `code_graph_hld_lld` surface, plus compatible generator, handler, and test coverage, without LLM dependency, schema migration, or upstream parser changes.",
     "created_at": "2026-05-08T15:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.852Z",
+    "last_save_at": "2026-07-09T11:26:11.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

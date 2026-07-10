@@ -34,8 +34,8 @@
       "toml",
       "deep-loop-workflows",
       "phase",
-      "005",
-      "agent-mirror-repoint"
+      "agent-mirror-repoint",
+      "loop"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -44,11 +44,8 @@
       "plan.md",
       "tasks.md",
       "spec.md",
-      ".codex/agents/README.txt",
-      ".opencode/agents/deep-context.md",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
-      ".claude/agents/deep-context.md",
       ".claude/agents/deep-research.md",
       ".claude/agents/deep-review.md",
       ".opencode/agents/deep-improvement.md",
@@ -80,18 +77,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".codex/agents/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "deep-context.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-context.md",
         "source": "derived"
       },
       {
@@ -201,11 +186,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5)",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-07-02T05:31:05.036Z",
+    "last_save_at": "2026-07-09T10:02:47.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7acfed0c80ddd29e1cf907d24719cd49ee0404b0afcd2b0b4fb2a077e55f4e64",
+    "source_fingerprint": "sha256:231e9ad9409f1ed695ea7fd57cd237dd90b277423a18c93e9925b2d619206f77",
     "source_doc_hashes": {
-      "spec.md": "e6fb4cc40d26166c52f4874c183cf97f11530905db912cf8d07e413cb2a26856",
-      "plan.md": "677c7ccbfeb5f938a15596deadd5a58ccabcc45101095043d98b14deb976728b",
-      "tasks.md": "4d96961c29fbe436a640f75a7def3d9cf6a4ad4c57bd2ddb721e5243f7247f89",
-      "checklist.md": "3f8cfb5cee2b1d92b847c5eb08ef2030ca3d4a39afce1b7e4d797be443b7ed46",
-      "implementation-summary.md": "3b053a214e5f891f7ae484095897e4d662ad6cd9a4eaa123aca75026d135af48"
+      "spec.md": "ed992ea2390cced4867df89aaecfbaf33d321687bd3e5371699f21d765aa1ec9",
+      "plan.md": "f50dadc43882f915726ed5853cdafc1064e506dc887c929cbe3753248d1b9476",
+      "tasks.md": "568f04279f0060ad3f3d5c3106cfa61087740e0d11bf06dbfe2eb02dbac9128a",
+      "checklist.md": "476736d91fcde6eb4db40a1f3144020e1a778e374912ab1354972e0bddff37db",
+      "implementation-summary.md": "a5d9a27db717315053b1f0081646cab76f7bfae22b33fe6a81c69ad0162b9a86"
     },
     "last_active_child_id": null,
     "last_active_at": null

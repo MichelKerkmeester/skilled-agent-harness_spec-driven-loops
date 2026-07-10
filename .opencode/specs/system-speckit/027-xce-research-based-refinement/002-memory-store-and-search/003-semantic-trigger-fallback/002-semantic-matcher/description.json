@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/002-semantic-matcher",
   "description": "With cached trigger embeddings available, the system still needs a similarity matcher to score a prompt embedding against trigger embeddings",
   "keywords": [
     "cached",
@@ -17,11 +17,11 @@
     "embedding",
     "against"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.189Z",
+  "lastUpdated": "2026-07-09T10:02:55.184Z",
   "specId": "002",
   "folderSlug": "semantic-matcher",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "003-semantic-trigger-fallback"

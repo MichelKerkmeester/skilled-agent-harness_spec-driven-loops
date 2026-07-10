@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-orchestrator-placeholder-parity",
-  "description": "The canonical Node validator (`mcpserver/lib/validation/orchestrator.ts` `validatePlaceholders`) and the legacy shell rule (`scripts/rules/check-place",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/005-orchestrator-placeholder-parity",
+  "description": "The canonical Node validator (`mcpserver/lib/validation/orchestrator.ts` `validatePlaceholders`) and the legacy shell rule",
   "keywords": [
     "canonical",
     "node",
@@ -13,16 +13,13 @@
     "validateplaceholders",
     "legacy",
     "shell",
-    "rule",
-    "scripts",
-    "rules",
-    "check-place"
+    "rule"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.807Z",
+  "lastUpdated": "2026-07-09T10:02:51.983Z",
   "specId": "005",
   "folderSlug": "orchestrator-placeholder-parity",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals"
   ],

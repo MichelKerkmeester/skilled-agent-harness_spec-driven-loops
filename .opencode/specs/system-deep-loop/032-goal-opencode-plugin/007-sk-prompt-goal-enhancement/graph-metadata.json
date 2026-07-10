@@ -27,14 +27,14 @@
       "goal",
       "enhancement",
       "prompt",
-      "4000",
       "chars",
       "improve",
       "input",
       "metadata",
       "generation",
       "plan",
-      "mk-goal"
+      "mk-goal",
+      "goalprompt"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`/goal set` currently stores and injects the sanitized raw user objective",
     "created_at": "2026-06-30T16:17:28Z",
-    "last_save_at": "2026-07-03T13:21:41.316Z",
+    "last_save_at": "2026-07-09T10:02:47.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8fbf4dd64a0272efad77817da34da2ea9874ba5ea3e5395db230f26f6edb3d6d",
+    "source_fingerprint": "sha256:dee2c533e0856c11248402e77df3141b4727ace36bfa5e98297e19ac1d2933f6",
     "source_doc_hashes": {
-      "spec.md": "e49e6014e6089e67f50b853be2a7e9ce4b40af6a2fede561ca71313df5e7dc58",
-      "plan.md": "af9ff47245938eef2ac55cd39be76b4bfab962bb92ca63e1882921669f526f4c",
-      "tasks.md": "d42265c015fb523e0a960fc562d4b818aa7e3c0f709204b90be3df25461ecadd",
-      "implementation-summary.md": "0c4d68d39ed0e546deb31c3b1c625e5d16e3d0ef49eae59fd4bb63ea4a30f05d"
+      "spec.md": "4a08c5dce9b46b8e3268c6f9f6fb83081f188a4bc2cfd12bb48b5882c1664690",
+      "plan.md": "bbd2a055a74f47bf7a8ba2203aadcbde79ff35c9eb001ba908cc506577fbf842",
+      "tasks.md": "1c026b08ef39bf4940ba9efda846eee4ba95af2013080c0178dfc66de4b28f59",
+      "implementation-summary.md": "622b3cc1969b70010de5eda477ed703e03c4d21b4b15367b9d52360cecd71d1d"
     },
     "last_active_child_id": null,
     "last_active_at": null

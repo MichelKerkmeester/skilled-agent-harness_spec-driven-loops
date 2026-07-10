@@ -9,7 +9,6 @@
     "generation",
     "counter",
     "code-graph-context",
-    "320",
     "computefreshness",
     "reports",
     "only",
@@ -17,7 +16,7 @@
     "staleness",
     "bucket"
   ],
-  "lastUpdated": "2026-07-06T16:45:37.883Z",
+  "lastUpdated": "2026-07-09T10:02:46.685Z",
   "specId": "003",
   "folderSlug": "generation-watermark",
   "parentChain": [

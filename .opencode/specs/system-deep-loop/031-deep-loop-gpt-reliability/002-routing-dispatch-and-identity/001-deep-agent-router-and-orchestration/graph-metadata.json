@@ -190,7 +190,7 @@
     ],
     "causal_summary": "GPT-backed models running inside OpenCode do not properly invoke deep skills (deep-research, deep-review, deep-context, deep-ai-council)",
     "created_at": "2026-06-30T11:47:52.750Z",
-    "last_save_at": "2026-07-05T06:45:59.168Z",
+    "last_save_at": "2026-07-09T10:02:47.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:493b7d3ca047e94e7e656fdc435a936b9b5300a434ded1c8a548fe72eafd2e35",
+    "source_fingerprint": "sha256:a6f7890eb2c3e460d0e0fcdda420e6019d240395654a9dd187b0da27c8bd75c1",
     "source_doc_hashes": {
-      "spec.md": "a74c8729073e4eae139f6a73d10034dbd4dc2d25f1f2d8873cd0322d74bc753a",
-      "plan.md": "2a537661d789bc5d2ec515883709a22998670fdb139c7b65e9a950a22fa24b53",
-      "tasks.md": "7e3f7cc61e7a8c66d5084340cf872d1c84d9cab8ef62fc7922864fde07687468",
-      "implementation-summary.md": "bfe35d15d8eef7c0869927ebcde8c3c64bd50d08fbfa7e388e66df096c8c6b5f",
+      "spec.md": "e24e59cf90435765576c0f3aa379a9214264bc021e9c718be32c0b4b077484e9",
+      "plan.md": "0fe2b14dd0600568ad52017a64ef563c1292fe07be7d100b5ca333ec80edeced",
+      "tasks.md": "61e99323680ea84c25fa97d7b1cdb3540aca589892688000252ec105abbe2fa5",
+      "implementation-summary.md": "4b8500d6ff111b61bcf428e1db20b8fa92843b11a5c2dce925a1dbb97f9ea780",
       "research/research.md": "075024bd0222550a7cabe9996cd7617b00455b6798917c472c6512beaf6167e3"
     },
     "last_active_child_id": null,

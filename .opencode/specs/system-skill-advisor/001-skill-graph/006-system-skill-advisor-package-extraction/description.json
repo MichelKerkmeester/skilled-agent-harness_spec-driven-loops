@@ -17,14 +17,11 @@
     "package",
     "own"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.223Z",
+  "lastUpdated": "2026-07-08T05:23:49.625Z",
   "specId": "006",
   "folderSlug": "system-skill-advisor-package-extraction",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "001-skill-graph"
   ],
   "memorySequence": 4,

@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/011-template-compliance",
-  "description": "The deferred R-12 work still relied on draft assumptions that do not match the current repo: there are no checked-in `.fingerprint` sidecars, the vali",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/011-template-compliance",
+  "description": "The deferred R-12 work still relied on draft assumptions that do not match the current repo: there are no checked-in `.fingerprint` sidecars, the",
   "keywords": [
     "deferred",
     "r-12",
@@ -14,14 +14,13 @@
     "repo",
     "checked-in",
     "fingerprint",
-    "sidecars",
-    "vali"
+    "sidecars"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.061Z",
+  "lastUpdated": "2026-07-09T10:02:58.224Z",
   "specId": "011",
   "folderSlug": "template-compliance",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

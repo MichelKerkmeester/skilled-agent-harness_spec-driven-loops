@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research",
-  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research",
-  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
+  "packet_id": "z_future/code-graph-and-cocoindex/009-cocoindex-memory-port-research",
+  "spec_folder": "z_future/code-graph-and-cocoindex/009-cocoindex-memory-port-research",
+  "parent_id": "z_future/code-graph-and-cocoindex",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "This is **Phase 009** of the 027 XCE Research-Based Refinement packet. Prior phases (001–012) focused on the **code_graph + skill_advisor** subsystems and on the **cocoindex-code** MCP wrapper as a code-search vehicle. Phase 009 opens a NEW research stream targeting the **non-code spec_kit_memory** subsystems and using the **upstream `cocoindex-main`** library (not the wrapper) as the source-of-inspiration.",
     "created_at": "2026-05-13T07:26:19Z",
-    "last_save_at": "2026-05-30T10:12:02.901Z",
+    "last_save_at": "2026-07-09T11:26:11.531Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

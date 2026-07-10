@@ -27,9 +27,6 @@
       "013/009/011 ADR"
     ],
     "key_topics": [
-      "013",
-      "009",
-      "011",
       "mcp",
       "server",
       "full",
@@ -38,7 +35,10 @@
       "graph",
       "lifecycle",
       "advisor",
-      "lib"
+      "lib",
+      "move",
+      "plan",
+      "transfer"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`systemskilladvisor` owned the public `skillgraph` tools, but the SQLite DB/query library and lifecycle still lived in `system-spec-kit/mcpserver`",
     "created_at": "2026-05-18T08:53:19.871Z",
-    "last_save_at": "2026-07-02T05:31:11.133Z",
+    "last_save_at": "2026-07-09T10:02:49.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a2a9bfea0c61541d8a2f7e39058ac5a4c1d07a20085db91448239c9608aeb692",
+    "source_fingerprint": "sha256:d79d3139135b057de7a597f86b21eb5c5f06c8c0616ec719d248c41d0fe0d73b",
     "source_doc_hashes": {
-      "spec.md": "d845f1e6cba6894bf7f4cc1da6b36a5b9b13c906f7be0f9c43ebbfabe9064e79",
-      "plan.md": "3fac4c715f683c9c09022e715085ffcfe77423a19ba3dd2d58c8c263c4a9810a",
-      "tasks.md": "1b7281cafedbc317080d2a79633aee3e3da7c16c037093748b4501d777646d52",
-      "checklist.md": "b8c62c1faea6c61173eb8f94ad7faa88833ba67780036783653a7384ad43c0d1",
-      "decision-record.md": "6186acd3d661feef89d63fb3bdcf004c54a282e7de82995da0df7491681bb1d2",
-      "implementation-summary.md": "beec5cb598a0bf079af476c60ee39611236970a543c1ae3fb4db9e4729544b72"
+      "spec.md": "f1df7b43b6a8ddbe7a025db5f01695efd22a7b91ddb332983bad0c6d00cf381d",
+      "plan.md": "ccca49dafe9930e420ae70e0e3ce446ec88b1e08a0776f9b2b6e3d340d967341",
+      "tasks.md": "b7d72ef6c477a5ec89a92261a5ac3d19d7018012cab3eb2e0ecee773bc77b725",
+      "checklist.md": "2b02a9122920bc3508649d7a26ef481b4c68b1758e9d9c747e2c4177000523fa",
+      "decision-record.md": "b9cff6d93522d74fe9aff3f416d261cd47cad9b74f33de738d1cb46202386a20",
+      "implementation-summary.md": "ef29466f4116449894e93cb1f45431608a2c092d77782130adcae723b811e3d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

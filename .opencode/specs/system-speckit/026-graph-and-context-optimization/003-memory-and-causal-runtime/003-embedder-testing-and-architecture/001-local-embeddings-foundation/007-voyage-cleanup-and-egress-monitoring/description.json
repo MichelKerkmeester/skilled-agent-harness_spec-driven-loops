@@ -1,15 +1,13 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring",
-  "description": "After 003 purged `VOYAGEAPIKEY` from every shell-propagating source and 004 rebuilt the memory vec store under hf-local, three sqlite files at `.openc",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/007-voyage-cleanup-and-egress-monitoring",
+  "description": "After 003 purged `VOYAGEAPIKEY` from every shell-propagating source and 004 rebuilt the memory vec store under hf-local, three sqlite files at",
   "keywords": [
-    "003",
     "purged",
     "voyageapikey",
     "every",
     "shell-propagating",
     "source",
-    "004",
     "rebuilt",
     "memory",
     "vec",
@@ -17,14 +15,13 @@
     "hf-local",
     "three",
     "sqlite",
-    "files",
-    "openc"
+    "files"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.969Z",
+  "lastUpdated": "2026-07-09T10:02:52.231Z",
   "specId": "007",
   "folderSlug": "voyage-cleanup-and-egress-monitoring",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

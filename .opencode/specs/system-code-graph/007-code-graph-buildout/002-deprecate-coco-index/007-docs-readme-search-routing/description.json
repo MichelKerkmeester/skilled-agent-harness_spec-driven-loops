@@ -7,10 +7,9 @@
     "cocoindex",
     "rerank-sidecar",
     "deprecation",
-    "arc",
-    "014"
+    "arc"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.782Z",
+  "lastUpdated": "2026-07-09T10:02:46.793Z",
   "specId": "007",
   "folderSlug": "docs-readme-search-routing",
   "parentChain": [

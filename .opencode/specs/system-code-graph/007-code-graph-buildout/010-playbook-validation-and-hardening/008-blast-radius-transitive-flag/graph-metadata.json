@@ -30,13 +30,13 @@
       "include",
       "transitive",
       "f-022-1",
-      "fix",
-      "029",
       "phase",
-      "008",
       "flag",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "finding",
+      "codegraphquery"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Finding F-022-1 (phase 007): `codegraphquery` blastradius ignores the `includeTransitive` flag",
     "created_at": "2026-05-27T04:57:41.642Z",
-    "last_save_at": "2026-07-07T16:18:33.883Z",
+    "last_save_at": "2026-07-09T10:02:47.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -85,15 +85,15 @@
     ],
     "causal_summary": "The project no longer supports a Gemini surface, yet active tooling still depends on one in two places: the checked-in project runtime directory and skill, and the command-layer YAMLs that still carry Gemini executor branches and references",
     "created_at": "2026-06-08T16:11:50.603Z",
-    "last_save_at": "2026-06-23T03:49:51.674Z",
+    "last_save_at": "2026-07-09T10:02:46.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f7e678d130c36090889c08a742af166c58f7bd09bc46fed5833ab2002508e2ed",
+    "source_fingerprint": "sha256:695ed05f601aa38c4161255ff71d562f7d58f9ef9673dd7bf6b205c375903905",
     "source_doc_hashes": {
-      "spec.md": "48a2ce70e49d1e8b761548bba10f931fcad2575af8a9168e807e2f92396cb0b0"
+      "spec.md": "62e6031683338a7a447578e756558dd2155707ad8ff8b30d4e8c9692bcb7d1cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

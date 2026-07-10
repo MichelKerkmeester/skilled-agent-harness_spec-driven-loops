@@ -31,9 +31,9 @@
       "socket",
       "mk-code-index",
       "launcher",
-      "32000",
       "prevent",
-      "plan"
+      "plan",
+      "tridimensional"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The launcher decides daemon liveness from `process.kill(pid,0)` plus a launcher-written heartbeat — with zero socket-health correlation",
     "created_at": "2026-06-29T10:17:13.087Z",
-    "last_save_at": "2026-07-07T16:18:33.716Z",
+    "last_save_at": "2026-07-09T10:02:46.709Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

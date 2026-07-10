@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/020-feature-flag-reference-audit",
-  "description": "The code audit for feature flag reference (catalog phase 020) identified that 7 flag categories were audited with 6 MATCH and 1 PARTIAL, plus a post-a",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/020-feature-flag-reference-audit",
+  "description": "The code audit for feature flag reference (catalog phase 020) identified that 7 flag categories were audited with 6 MATCH and 1 PARTIAL, plus a",
   "keywords": [
     "code",
     "audit",
@@ -9,20 +9,18 @@
     "reference",
     "catalog",
     "phase",
-    "020",
     "identified",
     "categories",
     "audited",
     "match",
     "partial",
-    "plus",
-    "post-a"
+    "plus"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.335Z",
+  "lastUpdated": "2026-07-09T10:02:58.545Z",
   "specId": "020",
   "folderSlug": "feature-flag-reference-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

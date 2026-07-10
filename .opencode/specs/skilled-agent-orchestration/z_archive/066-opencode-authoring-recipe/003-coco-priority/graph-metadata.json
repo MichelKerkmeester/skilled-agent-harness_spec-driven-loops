@@ -21,35 +21,28 @@
       "mcp-coco-index v1.1.0"
     ],
     "key_topics": [
-      "078",
-      "003",
       "coco-priority",
       "plan",
       "tasks",
       "summary",
       "mcp-coco-index",
-      "077",
       "finding",
       "f-001-002",
       "defaultexcludedpatterns",
-      "includes"
+      "includes",
+      "hidden",
+      "directories",
+      "excludes"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code/assets/opencode/checklists/skill_authoring.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "skill_authoring.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/assets/opencode/checklists/skill_authoring.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -187,11 +180,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "077 finding F-001-002: `DEFAULTEXCLUDEDPATTERNS` includes `/.` (hidden directories) which excludes `.opencode/skills/sk-code/assets/opencode/` from default ingestion",
     "created_at": "2026-05-05T17:36:53Z",
-    "last_save_at": "2026-06-23T03:49:49.853Z",
+    "last_save_at": "2026-07-09T10:02:45.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88fdd1012c0d67b0b8e50831f185fce84c1123a699e7f4b6a0e9f3dcb380e38c",
+    "source_fingerprint": "sha256:55c2c8284021108e1b0b5a1785bd08268f5a0e7ce189a2a4527d528ecd5f407a",
     "source_doc_hashes": {
-      "spec.md": "1fd135abe0a65fdef22db527426a11cb5c7b677bb6681e3a34cfc6d8a0d58e81",
-      "plan.md": "071b658f51649de1ec9c8fe263602505765738615497cdab388745d3b49ed7ec",
-      "tasks.md": "a371f8def341076373be83ad2ef3225f2059d7d4bfdff373f4b2f75d992d437c",
-      "implementation-summary.md": "452dcfbec26519818e7b4544e7fa58de5db16934f151dcc6044a159f569d31a7"
+      "spec.md": "8559e48e0cf483f0f62ac7c912ac8642bbeed9e16dadfe7979e04718ad2e2e0d",
+      "plan.md": "952f46896ce3db02a523f052d501eaa320ba6197413d44ab0c14937efd91403b",
+      "tasks.md": "4e0eeeef085c5421f04d67655e398971f09015979d28a6ca7b54c125f4f1436a",
+      "implementation-summary.md": "b3b356c7431c79f63d4f7ba39a213042921805d9374440ccaa282a39db039c27"
     },
     "last_active_child_id": null,
     "last_active_at": null

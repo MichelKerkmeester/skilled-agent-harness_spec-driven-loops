@@ -13,7 +13,7 @@
   "status": "complete",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
   "description": "Align every skill SKILL.md, README, assets, and references with shipped flags and behaviors while preserving the narrative house voice",
   "keywords": [
     "align",
@@ -31,11 +31,11 @@
     "house",
     "voice"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.871Z",
+  "lastUpdated": "2026-07-09T10:02:54.866Z",
   "specId": "002",
   "folderSlug": "skill-docs-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup"
   ],

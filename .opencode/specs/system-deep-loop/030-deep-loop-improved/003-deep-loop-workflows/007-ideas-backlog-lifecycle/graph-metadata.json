@@ -35,36 +35,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       ".opencode/agents/deep-research.md",
-      ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "loop_protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "state_jsonl.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/references/state/state_jsonl.md",
-        "source": "derived"
-      },
       {
         "name": "deep_research_auto.yaml",
         "kind": "config",
@@ -75,12 +53,6 @@
         "name": "deep-research.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-reduce-state.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,11 +162,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research loop has no threshold-gated idea promotion; ideas surface in one iteration and disappear in the next without any canonical lifecycle record",
     "created_at": "2026-06-28T14:02:11Z",
-    "last_save_at": "2026-07-04T18:02:10.961Z",
+    "last_save_at": "2026-07-09T10:02:47.546Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:acc4dd974519a4e0010fee0650e8b63e2777f35b3b0323951dc567c7eddc63dc",
+    "source_fingerprint": "sha256:53b63cb47fdf851e6a784e236a385e92d623065303e4fa98703dda95cc54511f",
     "source_doc_hashes": {
-      "spec.md": "10a87e3551975487be851ca5e42fe1e7d880b99f868aba31ba755bcbcb0c9ba4",
-      "plan.md": "6f7f65142c99c89978c8638f16433505808572ff4a561f4d89d992567c6f64a8",
-      "tasks.md": "ebb32ef62d101e30644cb27e139bb85cb001e85f9fe310d5beef528a912ad40e",
-      "implementation-summary.md": "3ac2aef19409b3fec63f6b6d13718d71ad86dcdb4e959eb7d29c2ef84304ac51"
+      "spec.md": "e53ecbec0633f0f649a2a601f99169b6d6bf030b441516e5a0457f310ad0bd25",
+      "plan.md": "d1857707f9f533e954148f8b5132dcce130342eeb3f8339c1a2e9b8b1dcdf5fd",
+      "tasks.md": "153ebd4da43044a10929fd72071c287a76c15bba518fafb3b551854c4c500a31",
+      "implementation-summary.md": "a58afe2d9825dbced44d9ca60f99b9022b135c4871fd68a1b02d7e3faa895f48"
     },
     "last_active_child_id": null,
     "last_active_at": null

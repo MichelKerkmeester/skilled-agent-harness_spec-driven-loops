@@ -32,11 +32,11 @@
       "package",
       "extraction",
       "child",
-      "002",
       "graph-metadata",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "ADR-001 (`015/009/001/decision-record.md`) locked the \"Standalone Advisor MCP With Legacy Tool Bridge\" shape and committed to a 5-phase migration sequence",
     "created_at": "2026-05-14T03:30:00Z",
-    "last_save_at": "2026-07-02T05:31:11.099Z",
+    "last_save_at": "2026-07-09T10:02:49.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T03:30:00Z",
     "source_docs": [
@@ -216,13 +216,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f2aee764e6587955497cf171d2e6f831ac66aba3f0e858ba3254a2a1aaa9dd4",
+    "source_fingerprint": "sha256:cbfad3be0c77c6fd9988115a5755f3379016d65e189afc1cbba4fa66c45392ed",
     "source_doc_hashes": {
-      "spec.md": "04753b359a35890c2d1d09645a39540c85f1b6881f759b7566e82e0b30991955",
-      "plan.md": "7afde8ee16277adca3e10d4b6254a54147c6508256a70961240143572e2560d7",
-      "tasks.md": "fe32e798197cebe753adb8831dfa99a3f490139e34bb9c38a2fdd1833e64ae68",
-      "checklist.md": "488d5f72c7fc4a7f6efc98dce3e4863f0ccea3bd095517d61b926019b3241d66",
-      "implementation-summary.md": "fbcc7f11ec3c6a77c6183eb801a92276665c2e2c31d794e631882f4c0609cfce"
+      "spec.md": "5053004bb92924a47856d9589e6d8950486701c095ab3c5615624c2aa6455daa",
+      "plan.md": "0de2384e056e97b5c2729a416f67d278915db5157995379fc559d6d99ff61ff6",
+      "tasks.md": "d33e89f2c799ffa619bbf52c9ccbc84e69ea46535ca4ddd42e06ac846158a508",
+      "checklist.md": "466445e1b105fbce2d60fe86c320d2b8edd1ccccb54df9322026a00836a60216",
+      "implementation-summary.md": "b1b4709e0cc7fe2d2462b67a32db9d13fe452775ac77f1f80cacf43f88c98bcb"
     },
     "last_active_child_id": null,
     "last_active_at": null

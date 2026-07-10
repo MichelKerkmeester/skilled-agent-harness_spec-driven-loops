@@ -46,11 +46,11 @@
       "model-benchmark",
       "phase",
       "parent",
-      "120",
-      "003",
       "rig",
       "run",
-      "model"
+      "model",
+      "against",
+      "fixtures"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -103,7 +103,7 @@
     ],
     "causal_summary": "The 120/003 benchmark rig (run a model against fixtures under prompt-framework variants, score, hill-climb) is packet-local and one-off",
     "created_at": "2026-05-28T00:00:00Z",
-    "last_save_at": "2026-07-08T13:43:09.261Z",
+    "last_save_at": "2026-07-09T10:02:48.920Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The 014 setup-A line shipped local EmbeddingGemma 300m at ~6ms per embed via llama-cpp + Metal",
     "created_at": "2026-05-13T19:30:00Z",
-    "last_save_at": "2026-07-02T05:31:11.208Z",
+    "last_save_at": "2026-07-09T10:02:49.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T19:30:00Z",
     "source_docs": [
@@ -203,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d122e4da31ec310796042ebd05db42c321b1a23c2edb855b2290d35f4243a43",
+    "source_fingerprint": "sha256:fecc8e77a0b97d366a31047a69aa7e32b547409bf3d3fe9e98c780820cc6cfef",
     "source_doc_hashes": {
-      "spec.md": "f15414a00542b62e234ffecd6fc0ae17f30a173ed912d0816824e7fbca19ca40",
-      "plan.md": "394ae34feb68b3831ebf8cb15757b925f7885513a08a2f9d6da7528141c51d52",
-      "tasks.md": "2cf2dd4ac944f5ba8d4ff247bc82723c0f279d50f7ba04754be6e904782935d9",
-      "checklist.md": "e0ca9333a9a1625e547c5bb9b51456e72b5bb5b81243c894a02fba4978e80ca3",
-      "implementation-summary.md": "58c68101a685ad477535d2f30a284515801947056cc337e9727061618e7b4aac"
+      "spec.md": "40e616b5e32dc44327a5ab3417be0dce03055c4a13db0fe92e8153854ed1bb68",
+      "plan.md": "8294459ee8ea456ee20bab1241c94aa9752aaeaa1aede278711d2ec11032bc99",
+      "tasks.md": "ea4d3c81dec8e0032cca518f3c8ecf589f31b1f397aa4084dd3474ce8a9bfc4a",
+      "checklist.md": "db89f42e99e1c49dc7f911628c55bb722811f2c41d250995031f498b29c46cde",
+      "implementation-summary.md": "7d6413ce51b2348efe02bce2440e27af07e953428c77b141c5c79582c464af65"
     },
     "last_active_child_id": null,
     "last_active_at": null

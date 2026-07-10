@@ -23,15 +23,15 @@
       "command",
       "contract",
       "compiler",
-      "036",
       "compiled",
       "design-first",
       "structural",
       "packet",
       "carved",
-      "035",
       "gpt-reliability",
-      "fixes"
+      "phase-003",
+      "design",
+      "pass"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -89,17 +89,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is research-sized, not a single implementation phase. Builds the build-time unified command-contract compiler that collapses the ~14-file resolution chain into one self-contained typed contract per command, plus the deterministic setup loader, the drift-guard contract, the retrofit of all deep commands + 14 agent files to contract pointers, the deferred AGENTS.md autonomous-precedence bridge, the rollout emitter-wiring, and pacing/resume. Phase 001 is the",
+    "causal_summary": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is research-sized, not a single implementation phase. Builds the build-time unified command-contract compiler that collapses the ~14-file resolution chain into one self-contained typed contract per command, plus the deterministic setup loader, the drift-guard contract, the retrofit of all deep commands + 14 agent files to contract pointers, the deferred AGENTS.md autonomous-precedence bridge, the rollout emitter-wiring, and pacing/resume.",
     "created_at": "2026-07-05T02:24:11.411Z",
-    "last_save_at": "2026-07-05T03:39:01.173Z",
+    "last_save_at": "2026-07-09T10:02:47.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b6a89cc67a5406c6bf924026f3406c7cbac2f599cf414fbaace82f9b7d383350",
+    "source_fingerprint": "sha256:fc0174fe4f408f027d3a9f7196224c797bce7f5861df3b2d0b24177f4231f965",
     "source_doc_hashes": {
-      "spec.md": "333894748d3068f2fbc724116036a57d8b0cd341b8320397c770176bbc138c0c"
+      "spec.md": "1cb1f32f08a0934aa6763c3ff75a2194ff4438b4fe56f3522ea5d8b530e0bece"
     },
     "last_active_child_id": null,
     "last_active_at": null

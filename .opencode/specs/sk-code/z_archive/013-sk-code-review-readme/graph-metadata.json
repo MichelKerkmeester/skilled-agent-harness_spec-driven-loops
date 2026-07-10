@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The sk-code-review README is a tabular reference card with stray non-numbered headings (`## Findings`, `## Review Context`) breaking the section sequence, and it documents the output contract wrong: it shows `## Findings` before `## Code Review Summary`, invents a `## Review Context` heading that does not exist, and omits the mandatory `Review status:` final line that downstream automation parses",
     "created_at": "2026-06-07T13:52:39Z",
-    "last_save_at": "2026-07-07T16:45:58.072Z",
+    "last_save_at": "2026-07-09T10:02:44.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9af751b20f1b2f4bf41fefe35578e86766d2713cc3829aaa73c4e7205959798",
+    "source_fingerprint": "sha256:f6cc28c9654a6bd18dde52e1de196be4bb8b0b7623dbf64ba5006b072c5836fa",
     "source_doc_hashes": {
-      "spec.md": "99c6a447858b34ebd9524f045c12b1ff0fa67449284f635bafb60ddd5a4b0fbd",
-      "plan.md": "e07a4e06c6005a37d1acb9c1eb77a6d3e294ebd42d5342146b2fd548326a0558",
-      "tasks.md": "c0c9b83b28f2de2e4aed14d702276a0d3603ba30156f736af70ad5bdf2f3601f",
-      "implementation-summary.md": "6ec6f97f52b0a34d34df39f52ab50b90ae4e761e8169b936a5feda1a0eb3ed4f"
+      "spec.md": "fea4a4567f1b7e3681e4fba7ca5b4c8b083703be69866b286ceea4f0fd31ae1a",
+      "plan.md": "4a919f6e6cde9a3cbdbd2db5e8946e8820fca6b307b80d905a98ad98650afeb3",
+      "tasks.md": "471ecd038175636d5ca546b49fe776395d99e647e8c52c1935c87683b740e1f7",
+      "implementation-summary.md": "f146dc1d526f4de655ecc02cfc0c1367a114ff8cdff6bcf304143e5bc670d91e"
     },
     "last_active_child_id": null,
     "last_active_at": null

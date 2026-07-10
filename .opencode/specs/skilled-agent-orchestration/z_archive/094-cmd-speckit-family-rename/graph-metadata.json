@@ -41,13 +41,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js",
+      ".opencode/commands/README.txt",
       "scripts/tests/test-phase-command-workflows.js",
       "scripts/tests/memory-learn-command-docs.vitest.ts",
       "scripts/tests/yaml-intake-event-payloads.vitest.ts",
       "mcp_server/tests/full-spec-doc-indexing.vitest.ts",
       "mcp_server/scripts/tests/resource-map-extractor.vitest.ts",
       "scripts/spec/scaffold-debug-delegation.sh",
-      ".opencode/commands/README.txt",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -57,7 +58,13 @@
       {
         "name": "test-phase-command-workflows.js",
         "kind": "code",
-        "path": "scripts/tests/test-phase-command-workflows.js",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
         "source": "derived"
       },
       {
@@ -88,12 +95,6 @@
         "name": "scaffold-debug-delegation.sh",
         "kind": "script",
         "path": "scripts/spec/scaffold-debug-delegation.sh",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/README.txt",
         "source": "derived"
       },
       {
@@ -201,7 +202,7 @@
     ],
     "causal_summary": "The SpecKit slash-command directory was named `speckit/` (snakecase with underscore), inconsistent with the recent rename convention shipping `speckit` (single token) across the repo — e.g., `/create:sk-skill → /create:skill` and `doctor/help.md → doctor/speckit.md`",
     "created_at": "2026-05-23T14:01:41.753Z",
-    "last_save_at": "2026-06-23T03:49:50.557Z",
+    "last_save_at": "2026-07-09T10:02:45.996Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +211,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74acdc2141c229bb94e217cd79e8896409ae6a89956485b6649ad0d4c031b535",
+    "source_fingerprint": "sha256:dda74a1de5498151523c5164d73b6195ac49776be9d078de07658f94db3997b6",
     "source_doc_hashes": {
-      "spec.md": "427a5947525ef68ab6d73b0b80842e6b2c0fba59f553541d723d04eee39948ae",
-      "plan.md": "9c2d44bcbc7bcc33ff2b0998bef0e6f4e500fd71ecee098f69035fe7ce83c43f",
-      "tasks.md": "b7258857a802ebac35c59bf101f7c6cb190cd2174362130c6aa0d10081b298a3",
-      "implementation-summary.md": "96ad4a813e433fdec31151d8dcc765171c9c335585dd7e69e919596e8bc3edf4"
+      "spec.md": "1b2334e0e575adb5b0bbd4686a903fba054c19f5a294d88fd24c6758a391f0f3",
+      "plan.md": "868b6a291e48a0eaa9f279578088d3a1e0b17da4ce0440009f30399c9a846c55",
+      "tasks.md": "e5b51ee3e501d9fd8c195777fada212158a42ceb2db6fe2caf75172d55d81655",
+      "implementation-summary.md": "d3b214a9efe0625b039bf4ead8bbcbad583652254e35d8bd06b6621c02e66fcd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,7 +8,7 @@ version: 3.5.0.5
 
 ## 1. OVERVIEW
 
-This scenario protects the generic-node guard introduced in Packet 069. A bare Motion.dev prompt outside Webflow markers is cross-stack Motion work, not Webflow work. The AI should report `UNKNOWN` or `N/A` for implementation surface, load `motion_dev/` peer resources, and ask for runtime plus verification commands before implementation.
+This scenario protects the generic-node guard. A bare Motion.dev prompt outside Webflow markers is cross-stack Motion work, not Webflow work. The AI should report `UNKNOWN` or `N/A` for implementation surface, load `motion_dev/` peer resources, and ask for runtime plus verification commands before implementation.
 
 ---
 
@@ -59,7 +59,7 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 
 ## 3. TEST EXECUTION
 
-Run this scenario through the Phase 005 universal prompt using `SCENARIO_ID=CS-002`. Grade the emitted YAML against the binary rules above.
+Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-002`. Grade the emitted YAML against the binary rules above.
 
 Evidence files:
 - `/tmp/skc-CS-002-<cli>.txt`

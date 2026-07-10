@@ -6,10 +6,9 @@
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
   "specFolder": "skilled-agent-orchestration/z_archive/100-feature-catalog-template-improvements/001-template-improvements",
-  "description": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 cate",
+  "description": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7",
   "keywords": [
     "cross-analysis",
-    "370",
     "feature",
     "catalog",
     "files",
@@ -17,12 +16,10 @@
     "three",
     "skills",
     "system-spec-kit",
-    "314",
     "categories",
-    "system-skill-advisor",
-    "cate"
+    "system-skill-advisor"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.154Z",
+  "lastUpdated": "2026-07-09T10:02:46.111Z",
   "specId": "001",
   "folderSlug": "template-improvements",
   "parentChain": [

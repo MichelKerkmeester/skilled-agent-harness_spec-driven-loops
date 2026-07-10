@@ -48,10 +48,24 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
       "spec.md",
       "research/research.md"
     ],
     "entities": [
+      {
+        "name": "cli_prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -139,17 +153,17 @@
     ],
     "causal_summary": "Prompt-engineering knowledge across the skills system is duplicated, structurally inconsistent, and poorly connected",
     "created_at": "2026-06-02T18:04:09Z",
-    "last_save_at": "2026-06-23T03:49:51.566Z",
+    "last_save_at": "2026-07-09T10:02:46.250Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:eb479494cf29c1e3666c3a97ad88228d3da9531f0cbd132f1d517c83e35719b4",
+    "source_fingerprint": "sha256:a053fcf31b9389950afb65c6414ae476be31eca4840e79ee18e738d7d801e11d",
     "source_doc_hashes": {
-      "spec.md": "4091cc005d581540e78fd6411418610c18727d6adefcfe0dc96c0d2876592dbf",
-      "research/research.md": "9032932d8208016227d9e6442201ffad666214964303be161fcac301b09c65c8"
+      "spec.md": "ba5b276a90a49bb9d6493b8612b0679c871d58a9561f12d7ffc434089fcd1e29",
+      "research/research.md": "02849bc394500e94894669761f30036d89f02b8920606a07dbd10ef41a516cac"
     },
     "last_active_child_id": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/009-refine-hub-cli-connections",
     "last_active_at": "2026-06-03T07:05:23.009Z"

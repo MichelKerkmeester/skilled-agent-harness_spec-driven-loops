@@ -20,7 +20,6 @@
       "005-agent-orchestrate",
       "orchestrate",
       "optimization",
-      "855",
       "loc",
       "sk-improve-agent",
       "lens",
@@ -28,14 +27,14 @@
       "agent",
       "sub-phase",
       "061-agent-optimization",
-      "applying"
+      "applying",
+      "validated"
     ],
     "importance_tier": "high",
     "status": "planned",
     "key_files": [
       ".opencode/agents/orchestrate.md",
       ".claude/agents/orchestrate.md",
-      ".codex/agents/orchestrate.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -46,12 +45,6 @@
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.toml",
-        "kind": "file",
-        "path": ".codex/agents/orchestrate.toml",
         "source": "derived"
       },
       {
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Journal Events",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`@orchestrate` (855 LOC) has not been through the sk-improve-agent v2 lens",
     "created_at": "2026-05-18T07:49:27.105Z",
-    "last_save_at": "2026-06-23T03:49:49.464Z",
+    "last_save_at": "2026-07-09T10:02:45.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de4ceedc3752d704250e4eedf64bdc56cc11510bb460eaf08305710a4815954d",
+    "source_fingerprint": "sha256:0e2156fad737df6e15d0f1f760d5efb76dc4d131a37a569b671d49164d00dd6b",
     "source_doc_hashes": {
-      "spec.md": "e98752d14050b515bc0043f9a48743d05bdd231d9d5beec38499f5c8ea62c6b1",
-      "plan.md": "e01db815d466aca0bcf52c8930fea720aca79cd2aec432722a3f33f32f17e29d",
-      "tasks.md": "e8c40b756953e42c7e9fecec5368722ef2a7ff0db91bff1e69839531e45f7638",
-      "implementation-summary.md": "4ee48ec1d1b3668c7fc599c1fbbf7291e7faab91d48f309b664d23e80a81622f"
+      "spec.md": "1c19678f1949a8cf41519afe23163c504c06fe2adf2ff1f36d4930cc0ff15f46",
+      "plan.md": "ad853d69033aaaf4314f32536acd133159bcc1645c29d51a8913417eb45065df",
+      "tasks.md": "9bc483de7e758552067f60f9b97146211d52ffea213ef3a9b05354ede49b87ee",
+      "implementation-summary.md": "16203c744074827e0fc499448f3abac9747923dbf3429682fc4cc55e9dad4f4d"
     },
     "last_active_child_id": null,
     "last_active_at": null

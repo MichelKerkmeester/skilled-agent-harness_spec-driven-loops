@@ -32,7 +32,6 @@
     "key_topics": [
       "observability",
       "automation",
-      "006",
       "dashboard",
       "sparkline",
       "single",
@@ -41,35 +40,22 @@
       "event",
       "envelope",
       "run-now",
-      "control"
+      "control",
+      "per-iteration"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs",
       ".opencode/commands/deep/research.md",
       ".opencode/commands/deep/assets/deep_research_confirm.yaml",
       "spec.md"
     ],
     "entities": [
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "observability-events.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/observability-events.cjs",
         "source": "derived"
       },
       {
@@ -123,15 +109,15 @@
     ],
     "causal_summary": "Operators running deep-loop research, review, or context passes receive no in-progress trend data (novelty/score history invisible), no telemetry parity between single-executor and fan-out runs (one dashboard for two modes is absent), no canonical event envelope (producers emit native formats that no single reader can index), no forced-run mechanism (only cadence-based triggers), no incremental memory persistence (findings only land in Spec Kit Memory at final save), and no safe dry-run mode to inspect setup/convergence without side-effects",
     "created_at": "2026-06-29T05:08:46.224Z",
-    "last_save_at": "2026-07-04T18:02:18.346Z",
+    "last_save_at": "2026-07-09T10:02:47.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c9978492d28d06b1ff039496878095c2762ceb79a61ad5c1d55c73d849267238",
+    "source_fingerprint": "sha256:6e0a8c12075431a4045a61112a9194c7c9233b561be4c988321b1d806867653d",
     "source_doc_hashes": {
-      "spec.md": "88a31f28437041d0b99e8593cf849f2fbcb984b56eb450fb556e3dc469081916"
+      "spec.md": "79981b4a3462dda291ae2b12aae59a023ae6222e62650fda5db752ef978dc9d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

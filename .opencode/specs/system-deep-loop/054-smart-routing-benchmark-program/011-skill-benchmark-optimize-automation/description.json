@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/054-smart-routing-benchmark-program/011-skill-benchmark-optimize-automation",
+  "description": "Build the planned loop-host --mode=skill-benchmark-optimize → optimize-skill-benchmark.cjs that turns benchmark signals into propose-by-default",
+  "keywords": [
+    "planned",
+    "loop-host",
+    "mode",
+    "skill-benchmark-optimize",
+    "optimize-skill-benchmark",
+    "cjs",
+    "turns",
+    "benchmark",
+    "signals",
+    "propose-by-default"
+  ],
+  "lastUpdated": "2026-07-09T12:18:01.494Z",
+  "specId": "011",
+  "folderSlug": "skill-benchmark-optimize-automation",
+  "parentChain": [
+    "system-deep-loop",
+    "054-smart-routing-benchmark-program"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

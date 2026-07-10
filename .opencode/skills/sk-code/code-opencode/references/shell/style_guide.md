@@ -8,7 +8,7 @@ trigger_phrases:
   - "bash naming conventions"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.11
+version: 1.0.0.14
 ---
 
 # Shell Style Guide
@@ -34,8 +34,9 @@ Applies to all shell files in:
 
 | File | Evidence |
 |------|----------|
-| `lib/common.sh` | Color definitions, logging functions, utilities |
-| `spec/create.sh` | Strict mode, argument parsing, control flow |
+| `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh` | JSON escaping, repo-root + phase-parent detection utilities |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Color definitions, TTY detection, logging functions, exit-code counters |
+| `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Strict mode, argument parsing, control flow |
 
 ---
 
@@ -49,7 +50,7 @@ Applies to all shell files in:
 #!/usr/bin/env bash
 ```
 
-**Evidence**: `lib/common.sh:1`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh:1`
 
 ### File Header
 
@@ -81,7 +82,7 @@ Use the standard header format for identification:
 #   └── level_3/        # Core + Verification + Architecture (~540 LOC)
 ```
 
-**Evidence**: `spec/create.sh:1-20`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:1-20`
 
 ### Strict Mode
 
@@ -97,7 +98,7 @@ set -euo pipefail
 | `-u` | Error on undefined variables |
 | `-o pipefail` | Pipe fails if any command fails |
 
-**Evidence**: `spec/create.sh:22`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/create.sh:22`
 
 ### Section Organization
 
@@ -121,7 +122,7 @@ log_info() {
 }
 ```
 
-**Evidence**: `lib/common.sh:9-35`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:74-77`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:340-343`
 
 ---
 
@@ -158,7 +159,7 @@ _json_escape() {
 }
 ```
 
-**Evidence**: `lib/common.sh:37-45`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh:37-45`
 
 ### Variables
 
@@ -184,7 +185,7 @@ WARNINGS=0
 JSON_MODE=false
 ```
 
-**Evidence**: `lib/common.sh:28-31`, `spec/create.sh:24-33`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:45-47`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh:24-33`
 
 ---
 
@@ -212,7 +213,7 @@ if [[ ! -t 1 ]]; then
 fi
 ```
 
-**Evidence**: `lib/common.sh:13-22`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:74-77`
 
 ### Usage in Output
 
@@ -257,7 +258,7 @@ log_info() {
 }
 ```
 
-**Evidence**: `lib/common.sh:47-88`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:335-343`
 
 ### Detail Logging
 
@@ -269,7 +270,7 @@ log_detail() {
 }
 ```
 
-**Evidence**: `lib/common.sh:90-92`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:345`
 
 ### Inline Comments
 
@@ -384,7 +385,7 @@ timeout="${TIMEOUT:-30}"
 required_var="${REQUIRED_VAR:?Error: REQUIRED_VAR must be set}"
 ```
 
-**Evidence**: `spec/create.sh:27`
+This example is illustrative; no current system-spec-kit script uses this exact pattern.
 
 ---
 
@@ -497,7 +498,7 @@ while [[ $# -gt 0 ]]; do
 done
 ```
 
-**Evidence**: `spec/create.sh:42-60`
+**Evidence**: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh:121-133`
 
 ---
 

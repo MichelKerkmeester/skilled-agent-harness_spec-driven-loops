@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "wave",
-      "009",
       "fallback",
       "hub",
       "intake",
@@ -36,7 +35,8 @@
       "fr-001",
       "fr-002",
       "hm-001",
-      "hm-002"
+      "hm-002",
+      "hm-003"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The sk-design `manualtestingplaybook` documents real-orchestrator scenarios but none of the fallback-and-resilience (`07--fallback-and-resilience/`) or hub-manager-intake (`08--hub-manager-intake/`) scenarios had ever been run through a real `opencode run` dispatch against the live GPT-5.5-fast executor",
     "created_at": "2026-07-07T15:21:16.287Z",
-    "last_save_at": "2026-07-07T15:22:45.697Z",
+    "last_save_at": "2026-07-09T10:02:44.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

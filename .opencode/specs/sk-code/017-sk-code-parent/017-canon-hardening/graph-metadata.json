@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "phase",
-      "017",
       "canon",
       "hardening",
       "bundlerules",
@@ -36,7 +35,8 @@
       "hub",
       "implementation",
       "plan",
-      "validator"
+      "validator",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary",
     "created_at": "2026-07-05T05:46:26.440Z",
-    "last_save_at": "2026-07-07T17:16:29.973Z",
+    "last_save_at": "2026-07-09T10:02:44.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -7,7 +7,6 @@
     "validate",
     "invocation",
     "path",
-    "uses",
     "opencode",
     "skills",
     "system-spec-kit",
@@ -18,7 +17,7 @@
     "hand-written",
     "typescript"
   ],
-  "lastUpdated": "2026-07-04T18:02:30.813Z",
+  "lastUpdated": "2026-07-09T10:02:47.716Z",
   "specId": "006",
   "folderSlug": "validate-sh-registry-bridge",
   "parentChain": [

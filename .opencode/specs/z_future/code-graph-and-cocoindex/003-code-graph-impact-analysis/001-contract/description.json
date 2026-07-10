@@ -24,7 +24,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract",
+  "specFolder": "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract",
   "description": "Feature Specification: 027/004/001 Impact Analysis Contract",
   "keywords": [
     "feature",
@@ -36,12 +36,12 @@
     "analysis",
     "contract"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.072Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "001",
   "folderSlug": "contract",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex",
+    "z_future",
+    "code-graph-and-cocoindex",
     "003-code-graph-impact-analysis"
   ],
   "memorySequence": 0,

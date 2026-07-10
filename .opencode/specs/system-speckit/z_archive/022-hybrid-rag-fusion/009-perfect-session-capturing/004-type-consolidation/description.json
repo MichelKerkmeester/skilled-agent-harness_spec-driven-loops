@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/004-type-consolidation",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/004-type-consolidation",
   "description": "Canonical typing is partial and inverted",
   "keywords": [
     "canonical",
@@ -7,11 +7,11 @@
     "partial",
     "inverted"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.019Z",
+  "lastUpdated": "2026-07-09T10:02:58.169Z",
   "specId": "004",
   "folderSlug": "type-consolidation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

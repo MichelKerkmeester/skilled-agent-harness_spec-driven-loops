@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/006-command-contract-structural",
-  "description": "Weak instruction-followers (Kimi K2.7 always, MiMo v2.5 Pro intermittently) dropped the `/memory:search` query and fell back to the startup question e",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/006-command-contract-structural",
+  "description": "Weak instruction-followers (Kimi K2.7 always, MiMo v2.5 Pro intermittently) dropped the `/memory:search` query and fell back to the startup question",
   "keywords": [
     "weak",
     "instruction-followers",
@@ -19,11 +19,11 @@
     "startup",
     "question"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.371Z",
+  "lastUpdated": "2026-07-09T10:02:55.398Z",
   "specId": "006",
   "folderSlug": "command-contract-structural",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "016-search-and-output-intelligence"

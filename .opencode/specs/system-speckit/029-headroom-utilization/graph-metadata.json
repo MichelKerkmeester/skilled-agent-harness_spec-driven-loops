@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/029-headroom-utilization",
-  "spec_folder": "system-spec-kit/029-headroom-utilization",
+  "packet_id": "system-speckit/029-headroom-utilization",
+  "spec_folder": "system-speckit/029-headroom-utilization",
   "parent_id": null,
   "children_ids": [
     "system-spec-kit/029-headroom-utilization/001-research",
@@ -9,7 +9,13 @@
     "system-spec-kit/029-headroom-utilization/003-compression-exclusion-guard",
     "system-spec-kit/029-headroom-utilization/004-cachealigner-detector",
     "system-spec-kit/029-headroom-utilization/005-rtk-shell-output-trial",
-    "system-spec-kit/029-headroom-utilization/006-compress-pilot"
+    "system-spec-kit/029-headroom-utilization/006-compress-pilot",
+    "system-speckit/029-headroom-utilization/001-research",
+    "system-speckit/029-headroom-utilization/002-cache-stability-audit",
+    "system-speckit/029-headroom-utilization/003-compression-exclusion-guard",
+    "system-speckit/029-headroom-utilization/004-cachealigner-detector",
+    "system-speckit/029-headroom-utilization/005-rtk-shell-output-trial",
+    "system-speckit/029-headroom-utilization/006-compress-pilot"
   ],
   "manual": {
     "depends_on": [],
@@ -25,7 +31,6 @@
       "headroom proxy mcp wrap"
     ],
     "key_topics": [
-      "029",
       "headroom",
       "utilization",
       "context",
@@ -36,13 +41,15 @@
       "proxy",
       "mcp",
       "wrap",
-      "vendored"
+      "vendored",
+      "project"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-research/spec.md",
+      "external/README.md",
       "001-research/research/research.md"
     ],
     "entities": [
@@ -50,6 +57,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "external/README.md",
         "source": "derived"
       },
       {
@@ -91,7 +104,7 @@
     ],
     "causal_summary": "We have vendored the Headroom project under `external/`",
     "created_at": "2026-06-28T06:52:23.133Z",
-    "last_save_at": "2026-06-28T09:26:33.413Z",
+    "last_save_at": "2026-07-09T10:02:56.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

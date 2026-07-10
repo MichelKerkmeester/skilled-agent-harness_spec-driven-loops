@@ -25,7 +25,7 @@
     "layout": "phase-root-children",
     "rationale": "Structural metadata only. See ./context-index.md for the carve-out + renumber narrative."
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
   "description": "The MCP runtime serves four high-traffic surfaces — `memorycontext`, `memorysearch`, `codegraphquery`, `memorycausalstats` — that AI assistants depend",
   "keywords": [
     "mcp",
@@ -41,11 +41,11 @@
     "assistants",
     "depend"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.522Z",
+  "lastUpdated": "2026-07-09T10:02:51.155Z",
   "specId": "003",
   "folderSlug": "fix-mcp-runtime-stress-findings",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test"

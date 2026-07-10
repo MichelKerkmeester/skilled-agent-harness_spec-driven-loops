@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "description": "The root `022-hybrid-rag-fusion` folder had child packets but no parent `spec.md`, `plan.md`, or `tasks.md`",
   "keywords": [
     "root",
@@ -12,11 +12,11 @@
     "plan",
     "tasks"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.630Z",
+  "lastUpdated": "2026-07-09T10:02:57.683Z",
   "specId": "022",
   "folderSlug": "hybrid-rag-fusion",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

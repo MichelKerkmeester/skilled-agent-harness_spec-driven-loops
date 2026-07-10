@@ -10,12 +10,10 @@
     "playbook",
     "contract",
     "dedicated",
-    "create",
     "command",
-    "generate",
     "reliably"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.032Z",
+  "lastUpdated": "2026-07-09T10:02:45.253Z",
   "specId": "024",
   "folderSlug": "cmd-create-manual-testing-playbook",
   "parentChain": [

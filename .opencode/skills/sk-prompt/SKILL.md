@@ -1,482 +1,136 @@
 ---
 name: sk-prompt
-description: "Prompt engineering specialist: structured AI prompts via 7 frameworks, DEPTH thinking, CLEAR scoring."
-allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 2.3.0.0
+description: "Prompt engineering parent hub: routes to prompt-improve (7-framework, DEPTH-thinking, CLEAR-scored prompt enhancement) and prompt-models (read-only per-model prompt-craft profiles for small-model dispatch) through mode-registry.json; holds no packet-local logic."
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+version: 1.0.0.0
 ---
 
-<!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, DEPTH, RICCE, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->
+<!-- Keywords: sk-prompt, prompt-engineering, mode-registry, hub-router, workflowmode, packetkind, prompt-improve, prompt-models, DEPTH, CLEAR-scoring, framework-selection, small-model-dispatch -->
 
-# Prompt Engineering Specialist - Multi-Framework Enhancement with DEPTH Processing
+# Prompt Engineering Hub (sk-prompt)
 
-Transforms vague or basic inputs into highly effective, structured AI prompts. Provides 7 text frameworks with automatic framework selection and CLEAR quality scoring.
-
-**Core Principle**: Clarity, logic, expression, and reliability through structured methodology.
+One advisor identity, two workflow packets. `sk-prompt` is the parent hub for prompt engineering: transforming requests into structured, scored prompts, and dispatching small-model prompt craft. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder.
 
 ---
 
 ## 1. WHEN TO USE
 
-### Activation Triggers
+Use this skill for prompt engineering and small-model prompt-craft lookup. The hub classifies the request and loads the matching nested packet.
 
-**Use when**:
-- Enhancing or improving an AI prompt for any purpose
-- Evaluating prompt quality with CLEAR scoring
-- Selecting the right prompt framework for a given task
-- Transforming vague requests into structured, effective prompts
-- Supporting indirect invocation from `@prompt-improver` agent dispatches (the deep-path escalation target for CLI fast-path prompt cards)
-
-**Keyword Triggers**:
-- `$improve`, `$text`, `$short`, `$refine`, `$json`, `$yaml`
-- `$raw` (skip DEPTH, fast pass-through)
-- "improve my prompt", "enhance this prompt", "prompt engineering"
-- "create a prompt for", "optimize this prompt"
-
-### Use Cases
-
-#### Text Prompt Enhancement
-Transform vague requests into structured prompts using RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, or CRAFT frameworks with CLEAR scoring (40+/50 threshold).
-
-#### Design-Generation Prompt
-Construct a grounded, anti-default generation brief for the design tool the framework drives (`mcp-open-design` `start_run`). Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. See [design_generation_patterns.md](./references/design_generation_patterns.md). This skill owns the prompt only, never the design judgment (`sk-design`) or the run transport.
+| Mode | Use it for | Packet | Command |
+|------|------------|--------|---------|
+| **prompt-improve** | Transform a request into a structured, scored AI prompt via 7 frameworks + DEPTH thinking + CLEAR scoring | `prompt-improve/` | `/prompt-improve` |
+| **prompt-models** | Look up the recommended framework/scaffold/gotchas for a specific small model (DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro, GLM-5.2) before dispatching via `cli-opencode` | `prompt-models/` | none — advisor + cross-skill reference only |
 
 ### When NOT to Use
-
-**Skip this skill when:**
-- Writing code or debugging (use sk-code skills instead)
-- Creating documentation (use sk-doc instead)
-- Simple text editing without prompt structure needs
-- Direct API calls that do not need prompt optimization
+- Code implementation, tests, or debugging — use `sk-code`.
+- Documentation/skill authoring — use `sk-doc`.
+- Executor mechanics (binary flags, invocation wrappers) for any CLI — use `cli-opencode`/`cli-claude-code`; `prompt-models` owns per-model prompt-craft only, never executor plumbing.
 
 ---
 
 ## 2. SMART ROUTING
 
+Routing is **registry-driven**. `mode-registry.json` is the single source of truth; the hub reads it and does not re-derive the mapping. The advisor routes any prompt-engineering query to the single identity `sk-prompt`; the hub then picks the packet.
 
-<!-- CRITICAL: Keep one authoritative Smart Router Pseudocode block in this section.
-     Detection context may appear before pseudocode. Do NOT duplicate routing logic in separate lookup tables. -->
+### The discriminator
+- **`workflowMode`** — the public packet key (`prompt-improve` or `prompt-models`).
+- **`packetKind`** — `workflow` for both sk-prompt packets. `prompt-models` is `workflow`, not `surface`, because its real consuming workflow (`cli-opencode`'s pre-dispatch step) lives outside this hub — the surface-packet contract requires the consumer to be a same-hub primary workflow.
+- **`backendKind`** — `prompt-engine` for `prompt-improve`'s DEPTH/CLEAR pipeline, `profile-lookup` for `prompt-models`' read-only reference.
 
-### Primary Detection Signal
-
-The primary routing signal is the **command prefix** (`$improve`, `$text`, `$refine`, `$short`, `$json`, `$yaml`, `$raw`). When present, the prefix determines the operating mode directly. When absent, the router falls back to **keyword-weighted intent scoring** against the request text, selecting the top-scoring intent (or top-2 when scores are close). A zero-score fallback defaults to `TEXT_ENHANCE` with a disambiguation checklist.
-
-### Phase Detection
-
-```text
-USER REQUEST
-    |
-    +- STEP 0: Detect mode ($command prefix or keyword signals)
-    +- STEP 1: Score intents (top-2 when ambiguity is small)
-    +- Phase 1: Framework Selection (7 frameworks evaluated)
-    +- Phase 2: DEPTH Processing (3-10 rounds based on mode)
-    +- Phase 3: Scoring & Validation (CLEAR)
-    +- Phase 4: Output Delivery (formatted prompt)
+### Routing rule
 ```
+SKILL_ROOT = path containing this SKILL.md
+REGISTRY = SKILL_ROOT / "mode-registry.json"
+HUB_ROUTER = SKILL_ROOT / "hub-router.json"
 
-### Resource Domains
+def _guard_in_skill(relative_path):
+  resolved = (SKILL_ROOT / relative_path).resolve()
+  resolved.relative_to(SKILL_ROOT)
+  if resolved.suffix.lower() not in {".md", ".json"}:
+    raise ValueError("only skill-local markdown/json router resources are routable")
+  return resolved.relative_to(SKILL_ROOT).as_posix()
 
-This skill uses a **simple intent router**, not a keyed resource-subdirectory router. Its real resources are flat markdown files under `references/` and `assets/`; there are no `references/<key>/` or `assets/<key>/` runtime-key directories to select. The router therefore discovers markdown resources recursively from `references/` and `assets/`, then applies command-prefix and intent scoring against the discovered inventory.
+def load_if_available(relative_path, seen):
+  guarded = _guard_in_skill(relative_path)
+  if guarded not in seen and (SKILL_ROOT / guarded).exists():
+    load(guarded)
+    seen.add(guarded)
+    return True
+  return False
 
-- `references/` for DEPTH methodology, framework definitions, and CLEAR scoring.
-- `assets/` for format-specific deep-dives (Markdown, JSON, YAML).
+seen = set()
+if not REGISTRY.exists() or not HUB_ROUTER.exists():
+  return defer("router metadata missing; inspect sk-prompt/mode-registry.json and sk-prompt/hub-router.json")
 
-```text
-references/depth_framework.md            - DEPTH methodology, RICCE integration
-references/patterns_evaluation.md        - 7 frameworks, CLEAR scoring
-references/design_generation_patterns.md - Design-generation briefs (open-design start_run), seed-of-thought, discovery-form pre-answer
-assets/format_guide_markdown.md          - Markdown format deep-dive
-assets/format_guide_json.md              - JSON format deep-dive
-assets/format_guide_yaml.md              - YAML format deep-dive
+read mode-registry.json and hub-router.json
+classify the request to one or more workflowMode values using hub-router.json
+  (dominant prompt-engineering intent; a bare small-model name leans prompt-models)
+
+if confidence is low, intent is contradictory, or routerPolicy.defaultMode is null and no mode wins:
+  load_if_available("prompt-improve/SKILL.md", seen)
+  return UNKNOWN_FALLBACK with a checklist to confirm workflowMode, target prompt/model, and delivery format
+
+for each resolved workflowMode:
+  entry = the matching mode-registry.json modes[] item
+  if entry is missing or entry.packetKind != "workflow":
+    return defer("unknown sk-prompt workflowMode; extend mode-registry.json and create a packet first")
+  if not load_if_available(f"{entry.packet}/SKILL.md", seen):
+    return defer("registered packet SKILL.md is missing; repair the packet before routing")
+
+return single or orderedBundle according to hub-router.json routerPolicy.outcomes
 ```
+`routerPolicy.defaultMode` is `"prompt-improve"` — the higher-traffic, more general mode. `hub-router.json` carries the router signals, vocabulary classes, and default fallback resource. Outcomes are `single`, `orderedBundle`, or `defer` — there is no `surfaceBundle` (no surface axis).
 
-### Resource Loading Levels
-
-| Level       | When to Load             | Resources                                                                  |
-| ----------- | ------------------------ | -------------------------------------------------------------------------- |
-| ALWAYS      | Every skill invocation   | SKILL.md (this file)                                                       |
-| CONDITIONAL | If intent signals match  | references/depth_framework.md, references/patterns_evaluation.md           |
-| CONDITIONAL | If design-generation signals match | references/design_generation_patterns.md                         |
-| ON_DEMAND   | Only on explicit request | assets/format_guide_markdown.md, assets/format_guide_json.md, assets/format_guide_yaml.md |
-
-### Smart Router Pseudocode
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/depth_framework.md"
-PATTERNS_RESOURCE = "references/patterns_evaluation.md"
-
-COMMAND_INTENTS = {
-    "$text": "TEXT_ENHANCE",
-    "$improve": "TEXT_ENHANCE",
-    "$refine": "TEXT_ENHANCE",
-    "$short": "TEXT_ENHANCE",
-    "$json": "FORMAT_JSON",
-    "$yaml": "FORMAT_YAML",
-    "$raw": "RAW",
-}
-
-INTENT_MODEL = {
-    "TEXT_ENHANCE": {"keywords": [("improve", 4), ("enhance", 4), ("prompt", 3), ("text", 3), ("refine", 4)]},
-    "FRAMEWORK": {"keywords": [("framework", 4), ("rcaf", 5), ("costar", 5), ("tidd-ec", 5), ("scoring", 3)]},
-    "DESIGN_GEN": {"keywords": [("open design", 5), ("start_run", 5), ("design generation", 5), ("generate ui", 4), ("canvas", 3), ("design brief", 4), ("variations", 3)]},
-    "FORMAT_MARKDOWN": {"keywords": [("markdown", 4), ("md", 2), ("readme", 3)]},
-    "FORMAT_JSON": {"keywords": [("json", 5), ("schema", 3), ("api-ready", 3)]},
-    "FORMAT_YAML": {"keywords": [("yaml", 5), ("frontmatter", 3), ("config", 2)]},
-}
-
-RESOURCE_MAP = {
-    "TEXT_ENHANCE": ["references/depth_framework.md", "references/patterns_evaluation.md"],
-    "FRAMEWORK": ["references/patterns_evaluation.md"],
-    "DESIGN_GEN": ["references/design_generation_patterns.md", "references/patterns_evaluation.md"],
-    "FORMAT_MARKDOWN": ["assets/format_guide_markdown.md", "references/patterns_evaluation.md"],
-    "FORMAT_JSON": ["assets/format_guide_json.md", "references/patterns_evaluation.md"],
-    "FORMAT_YAML": ["assets/format_guide_yaml.md", "references/patterns_evaluation.md"],
-    "RAW": [],
-}
-
-ON_DEMAND_KEYWORDS = ["deep dive", "full template", "all frameworks", "format guide", "overnight-agent prompt", "system prompt", "prompt package", "prompt variant", "operator prompt", "evaluator prompt", "dispatch prompt"]
-
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Is this a prompt enhancement request or a different task?",
-    "Does the user want a specific framework applied?",
-    "Is the user asking about scoring or evaluation?",
-    "Should this route to sk-doc or sk-code instead?",
-]
-
-AMBIGUITY_DELTA = 1
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def _task_text(task) -> str:
-    if isinstance(task, str):
-        return task.lower()
-    return " ".join(
-        str(task.get(f, "")) for f in ("text", "query", "description", "keywords")
-    ).lower()
-
-def detect_command_intent(task):
-    text = _task_text(task).strip()
-    for prefix, intent in COMMAND_INTENTS.items():
-        if text.startswith(prefix):
-            return intent
-    return None
-
-def score_intents(task) -> dict[str, float]:
-    text = _task_text(task)
-    scores = {intent: 0 for intent in INTENT_MODEL}
-    for intent, cfg in INTENT_MODEL.items():
-        for keyword, weight in cfg["keywords"]:
-            if keyword in text:
-                scores[intent] += weight
-    return scores
-
-def select_intents(task, scores, ambiguity_delta=AMBIGUITY_DELTA, max_intents=2):
-    command_intent = detect_command_intent(task)
-    if command_intent:
-        return (command_intent, None)
-    ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
-    primary, primary_score = ranked[0]
-    if primary_score == 0:
-        return ("TEXT_ENHANCE", None)
-    secondary, secondary_score = ranked[1]
-    if secondary_score > 0 and (primary_score - secondary_score) <= ambiguity_delta:
-        return (primary, secondary)
-    return (primary, None)
-
-def route_prompt_improver_resources(task):
-    inventory = discover_markdown_resources()
-    text = _task_text(task)
-    scores = score_intents(task)
-    command_intent = detect_command_intent(task)
-    primary, secondary = select_intents(task, scores)
-    intents = [primary] + ([secondary] if secondary else [])
-    loaded = []
-    seen = set()
-
-    def load_if_available(relative_path: str):
-        guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in seen:
-            load(guarded)
-            loaded.append(guarded)
-            seen.add(guarded)
-
-    # Prefixes are authoritative; RAW skips DEPTH and reference loading.
-    if command_intent == "RAW":
-        return {"intents": intents, "intent_scores": scores, "resources": loaded, "load_level": "RAW"}
-
-    # Unknown fallback: when no command prefix or keywords match at all.
-    if not command_intent and scores.get(primary, 0) == 0:
-        load_if_available(DEFAULT_RESOURCE)
-        return {
-            "intents": intents,
-            "intent_scores": scores,
-            "load_level": "UNKNOWN_FALLBACK",
-            "resources": loaded,
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-        }
-
-    # Standard routing: DEPTH default + intent-mapped resources.
-    if primary != "FRAMEWORK":
-        load_if_available(DEFAULT_RESOURCE)
-    else:
-        load_if_available(PATTERNS_RESOURCE)
-    for intent in intents:
-        for relative_path in RESOURCE_MAP.get(intent, []):
-            load_if_available(relative_path)
-
-    # ON_DEMAND: load all mapped markdown resources when trigger keywords are present.
-    if any(kw in text for kw in ON_DEMAND_KEYWORDS):
-        for paths in RESOURCE_MAP.values():
-            for relative_path in paths:
-                load_if_available(relative_path)
-
-    return {"intents": intents, "intent_scores": scores, "resources": loaded}
-```
+Per-packet behavior is **not flattened**: each packet keeps its own authoring contract, references, assets, and validation.
 
 ---
 
 ## 3. HOW IT WORKS
 
-### Enhancement Pipeline
-
-Every prompt enhancement follows this pipeline:
-
+### Layout
 ```
-STEP 1: Mode Detection
-       ├─ Command prefix check ($text, $improve, $refine, $short, etc.)
-       ├─ Keyword signal analysis (>=80% confidence = auto-route)
-       └─ Ambiguous? Ask ONE comprehensive question
-       ↓
-STEP 2: Framework Selection
-       ├─ Evaluate 7 frameworks against request characteristics
-       ├─ Score: complexity, urgency, audience, creativity, precision
-       └─ Select primary framework + alternative
-       ↓
-STEP 3: DEPTH Processing (5-10 rounds)
-       ├─ Discover: 5 perspectives, assumption audit, RICCE Role & Context
-       ├─ Engineer: Framework application, RICCE Constraints & Instructions
-       ├─ Prototype: Template build, RICCE validation
-       ├─ Test: Scoring (CLEAR), quality gates
-       └─ Harmonize: Final polish, RICCE completeness
-       ↓
-STEP 4: Scoring & Delivery
-       ├─ Apply context-appropriate scoring system
-       ├─ Verify threshold met (CLEAR 40+/50)
-       └─ Deliver enhanced prompt with transparency report
+sk-prompt/
+  SKILL.md               # this routing hub (no per-packet logic)
+  mode-registry.json     # 2 workflow modes, zero extensions
+  hub-router.json        # base 3 outcomes, defaultMode: prompt-improve
+  description.json       # hub advisor descriptor
+  graph-metadata.json    # the ONE advisor identity for the whole skill
+  changelog/  manual_testing_playbook/  benchmark/
+  prompt-improve/         # workflow packet — 7-framework/DEPTH/CLEAR prompt engine
+  prompt-models/          # workflow packet — read-only small-model prompt-craft profiles
 ```
 
-See the Smart Routing pseudocode (Section 2) for the complete routing logic.
+Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, and its `references/`/`assets/`) and carries **no** `graph-metadata.json`, so the advisor discovers exactly one `sk-prompt` identity.
 
-### Operating Modes
-
-| Mode | Command | DEPTH Rounds | Scoring | Use Case |
-|------|---------|-------------|---------|----------|
-| Interactive | (default) | 10 | CLEAR | Guided enhancement |
-| Text | `$text` | 10 | CLEAR | Standard text prompt |
-| Short | `$short` | 3 | CLEAR | Quick refinement |
-| Improve | `$improve` | 10 | CLEAR | Standard enhancement |
-| Refine | `$refine` | 10 | CLEAR | Maximum optimization |
-| JSON | `$json` | 10 | CLEAR | API-ready format |
-| YAML | `$yaml` | 10 | CLEAR | Config format |
-| Raw | `$raw` | 0 | None | Skip DEPTH |
-
-### Framework Selection Matrix
-
-| Complexity | Primary Need | Framework | Success Rate |
-|-----------|-------------|-----------|-------------|
-| 1-3 | Speed | RACE | 88% |
-| 1-4 | Clarity | RCAF | 92% |
-| 3-6 | Audience | COSTAR | 94% |
-| 4-6 | Instructions | CIDI | 90% |
-| 5-7 | Creativity | CRISPE | 87% |
-| 6-8 | Precision | TIDD-EC | 93% |
-| 7-10 | Comprehensive | CRAFT | 91% |
-See [patterns_evaluation.md](./references/patterns_evaluation.md) for complete framework details.
-See [depth_framework.md](./references/depth_framework.md) for the DEPTH methodology.
-
-### Scoring Systems
-
-**CLEAR** (50-point scale): Correctness (10) + Logic (10) + Expression (15) + Arrangement (10) + Reusability (5). Threshold: 40+.
+### Zero extensions
+This hub declares no named extensions (no `surface-axis`, `runtime-loop`, `advisor-projection`, `transform-verbs`, `transport-axis`) — the pure two-tier core, mirroring `sk-doc`'s own shape. `prompt-models` keeps a read-only `toolSurface` (Read/Grep/Glob only, `mutatesWorkspace: false`) as a plain `workflow` mode, not via a surface-axis declaration.
 
 ---
 
 ## 4. RULES
 
-### ✅ ALWAYS
+### ALWAYS
+- **ALWAYS** resolve a packet through `mode-registry.json`; never hardcode a router mapping in the hub.
+- **ALWAYS** keep authoring contracts in the packets; the hub stays routing-only.
+- **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one identity.
+- **ALWAYS** keep changelogs as real files at the hub and in each packet — never symlinked.
 
-1. **ALWAYS ask ONE comprehensive question** before processing
-   - Gather: What needs enhancement? Use case/goal? Requirements?
-   - Exception: `$raw` mode skips questions entirely
+### NEVER
+- **NEVER** add a `graph-metadata.json` inside `prompt-improve/` or `prompt-models/`.
+- **NEVER** put per-packet authoring logic in the hub.
+- **NEVER** duplicate executor mechanics (binary flags, invocation wrappers, budgets) inside `prompt-models/` — those stay in `cli-opencode`.
 
-2. **ALWAYS apply DEPTH processing** for the detected mode
-   - 10 rounds for text modes, 3 for $short, 0 for $raw
-
-3. **ALWAYS enforce minimum 3 perspectives** during DEPTH Discover phase
-   - Target 5 perspectives; 3 is the blocking minimum
-   - Perspectives: Prompt Engineering, AI Interpretation, User Clarity, Framework Selection, Token Efficiency
-
-4. **ALWAYS validate with RICCE** before delivery
-   - Role, Instructions, Context, Constraints, Examples must be present or justified
-
-5. **ALWAYS apply scoring** and verify threshold met
-   - CLEAR 40+/50
-
-6. **ALWAYS provide a transparency report** after delivering the enhanced prompt
-   - Framework selected, DEPTH rounds applied, score breakdown, assumptions flagged
-
-### ❌ NEVER
-
-1. **NEVER answer own questions**
-   - Wait for user response before proceeding with enhancement
-
-2. **NEVER skip framework evaluation**
-   - Even for simple prompts, score at least 3 frameworks before selecting
-
-3. **NEVER deliver without scoring**
-   - Every enhanced prompt must have a CLEAR score (except $raw)
-
-4. **NEVER use second-person voice in enhanced prompts**
-   - Use imperative or third-person form in the output
-
-5. **NEVER exceed context with full reference loading**
-   - Load only the references needed for the detected mode
-
-### ⚠️ ESCALATE IF
-
-1. **ESCALATE IF mode detection confidence < 50%**
-   - Ask: "What type of prompt are you creating? Can you describe the use case?"
-
-2. **ESCALATE IF CLEAR score below threshold after DEPTH**
-   - Suggest: "Score is below target. Options: A) Additional refinement round B) Switch framework C) Accept as-is"
-
-3. **ESCALATE IF request conflicts with prompt engineering scope**
-   - Redirect: "This appears to be a [code/doc/debug] task. Consider using [sk-code/sk-doc] instead."
+### ESCALATE IF
+- A new prompt-engineering workflow is needed — extend `mode-registry.json` and open a packet; do not bolt logic onto the hub.
+- `prompt-models`' routing accuracy regresses under `routingClass: "metadata"` — see the phase 124/007 Lane-C benchmark before adding a lexical carve-out.
 
 ---
 
 ## 5. REFERENCES
 
-### Core References
-
-- [depth_framework.md](./references/depth_framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
-- [patterns_evaluation.md](./references/patterns_evaluation.md) - 7 framework definitions, CLEAR scoring
-- [design_generation_patterns.md](./references/design_generation_patterns.md) - Design-generation prompt patterns for open-design: grounded anti-default brief, seed-of-thought variation, discovery-form pre-answer, sk-code handoff
-
-### Asset Files
-
-- [format_guide_markdown.md](./assets/format_guide_markdown.md) - Markdown format deep-dive: fundamentals, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
-- [format_guide_json.md](./assets/format_guide_json.md) - JSON format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
-- [format_guide_yaml.md](./assets/format_guide_yaml.md) - YAML format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, templates, validation, best practices
-
-### Reference Loading Notes
-
-- Load only references needed for current intent
-- Smart Routing (Section 2) is the single authority for loading rules
-- SKILL.md (this file) is always loaded; conditionally load mode-specific references
-
----
-
-## 6. SUCCESS CRITERIA
-
-### Enhancement Complete When
-
-- ✅ Mode detected and framework selected with reasoning
-- ✅ DEPTH rounds completed per mode specification
-- ✅ Scoring applied and threshold verified
-- ✅ RICCE validation passed
-- ✅ Enhanced prompt delivered with transparency report
-- ✅ User can iterate or accept
-
-### Quality Targets
-
-- **CLEAR Score**: 40+ out of 50
-- **Framework Selection Accuracy**: Match task characteristics to framework with >85% alignment
-
----
-
-## 7. AGENT INVOCATION CONTRACT
-
-`@prompt-improver` is the fresh-context escalation surface for this skill. The agent loads the references in this skill, applies the same framework-selection and CLEAR rules, and returns a structured block that the caller can inject into a CLI dispatch without loading the full skill inline.
-
-### Expected Input Payload
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `raw_task` | Yes | Raw task description or draft prompt to improve |
-| `task_type` | No | One of `generation`, `review`, `research`, `edit`, `analyze` |
-| `target_cli` | No | One of `claude-code`, `opencode`, `copilot` |
-| `complexity_hint` | No | Integer `1-10` used to choose Quick vs Standard DEPTH energy |
-| `constraints` | No | Compliance, security, audience, or output requirements |
-
-### Deterministic Agent Rules
-
-- Use `references/patterns_evaluation.md` as the framework-selection source of truth.
-- Use `references/depth_framework.md` for DEPTH flow and CLEAR dimension floors.
-- Choose Quick DEPTH energy for low-complexity routine prompts and Standard DEPTH energy for escalated prompts.
-- Require `CLEAR >= 40/50` and all per-dimension floors before returning success.
-- If the first pass scores below threshold, iterate once and then return the best validated prompt with explicit escalation notes.
-
-### Structured Output Block
-
-```text
-FRAMEWORK: <name>
-CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)
-RATIONALE: <1-2 lines>
-ENHANCED_PROMPT: |
-  <multi-line ready-to-dispatch prompt>
-ESCALATION_NOTES: <remaining ambiguity, risk, or follow-up>
-```
-
-### Contract Guarantees
-
-- The returned prompt is ready for CLI handoff without another framework-selection pass.
-- The output preserves caller-supplied constraints unless the agent flags them as contradictory or underspecified.
-- The agent remains read-only and leaf-only; it does not write files or spawn other sub-agents.
-
----
-
-## 8. INTEGRATION POINTS
-
-### Framework Integration
-
-This skill operates within the behavioral framework defined in AGENTS.md.
-
-Key integrations:
-- **Gate 2**: Skill routing via `skill_advisor.py` with prompt-related intent boosters
-- **Tool Routing**: Per AGENTS.md Section 6 decision tree
-- **Memory**: Context preserved via Spec Kit Memory MCP
-
-### Tool Usage Guidelines
-
-- **Read**: Load reference files from references/ directory
-- **Write**: Output enhanced prompts to user-specified location
-- **Glob**: Discover available reference files in skill directory
-- **Bash**: Run validation scripts if needed
-
----
-
-## 9. REFERENCES AND RELATED RESOURCES
-
-The router discovers reference, asset, and script docs dynamically. Start with `references/depth_framework.md`, `references/patterns_evaluation.md`, `references/design_generation_patterns.md`, `assets/format_guide_json.md`, `assets/format_guide_markdown.md`, `assets/format_guide_yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
-
-## RELATED PLAYBOOK
-
-Manual validation lives at `manual_testing_playbook/manual_testing_playbook.md`.
-
-Related skills: `sk-doc` for documentation outputs, `sk-code` for code-generation prompt context, and the `cli-*` skills that use the prompt quality card before dispatch.
+- Registry: `mode-registry.json` (2 packets; `packetKind: workflow`).
+- Hub router: `hub-router.json` (signals + vocabulary classes).
+- Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
+- Packets: `prompt-improve/`, `prompt-models/`.
+- Parent-skill pattern: `sk-doc/create-skill/references/parent_skill/parent_skills_nested_packets.md`.

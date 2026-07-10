@@ -15,7 +15,7 @@
       "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline",
   "description": "The parent folder held the authoritative research deliverables for the graph-and-context optimization program, but it had no root Level 3 packet tying",
   "keywords": [
     "parent",
@@ -32,11 +32,11 @@
     "packet",
     "tying"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.101Z",
+  "lastUpdated": "2026-07-09T10:02:51.783Z",
   "specId": "001",
   "folderSlug": "research-and-baseline",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization"
   ],
   "memorySequence": 4,

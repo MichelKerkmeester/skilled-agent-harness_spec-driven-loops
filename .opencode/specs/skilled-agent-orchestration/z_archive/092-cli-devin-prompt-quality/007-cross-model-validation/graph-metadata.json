@@ -25,8 +25,6 @@
       "deepseek kimi dispatch tasks"
     ],
     "key_topics": [
-      "113",
-      "007",
       "cross",
       "model",
       "validation",
@@ -36,13 +34,18 @@
       "bundle",
       "gate",
       "aversion",
-      "confirmation"
+      "confirmation",
+      "framework",
+      "anti"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
       "state/cross-model-results.jsonl",
       "scripts/analyze-only.cjs",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/007-cross-model-validation/analysis.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/007-cross-model-validation/implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -53,6 +56,12 @@
     ],
     "entities": [
       {
+        "name": "cross-model-confirm.cjs",
+        "kind": "file",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
+        "source": "derived"
+      },
+      {
         "name": "cross-model-results.jsonl",
         "kind": "file",
         "path": "state/cross-model-results.jsonl",
@@ -62,6 +71,18 @@
         "name": "analyze-only.cjs",
         "kind": "file",
         "path": "scripts/analyze-only.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "analysis.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/007-cross-model-validation/analysis.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/092-cli-devin-prompt-quality/007-cross-model-validation/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -89,21 +110,9 @@
         "source": "derived"
       },
       {
-        "name": "cross-model-confirm.cjs",
-        "kind": "file",
-        "path": "scripts/cross-model-confirm.cjs",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -189,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 113/003 eval-loop produced bundle-gate-aversion and framework-dominates-anti-hallucination signals on SWE 1.6",
     "created_at": "2026-05-17T12:18:35Z",
-    "last_save_at": "2026-06-23T03:49:50.491Z",
+    "last_save_at": "2026-07-09T10:02:45.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44ec5f343fccd05524af77ff0fe1ab408135b11fd875597d734a1f5478bcebba",
+    "source_fingerprint": "sha256:9a3e9c2a98d932b360845e4cb357418d39636566a1a77f0ef776bc45e54ae952",
     "source_doc_hashes": {
-      "spec.md": "b935aea0bdd4e9608f36f3169aed5bf7c1bb95af1db8beb9b041bd24e121bbd5",
-      "plan.md": "44cd01bf429c341aa2d767c723d029104f210689b8572abe07f050ed92537279",
-      "tasks.md": "ad82b333911fbc7783932347577f688028cf71aa0d71a567847407edbc1578b0",
-      "checklist.md": "44971abb9edc71bf3497eaa3e698c414459870d98447a2e134866bb63b08e867",
-      "decision-record.md": "d8ab83b8d8b259f083f01f5b2bc0c8ea1d7e615258c16b10f12c09b21af4916f",
-      "implementation-summary.md": "228b7fe38f8504411f1f30468018944dd2b3c9ed7423b376fbd53e252acc4b49"
+      "spec.md": "05418799a216a320e9693a3a2aa4b3b9986e425a1cd42a7bea4bc3a3fbe30036",
+      "plan.md": "5c7f140edc8f101fa7166550261923cb9f6625bb478a992b43c50adec2c18412",
+      "tasks.md": "19e2cc7f2cf660e722358e35ee963a2393e8c25cd3ddbffd2090908e226b6df3",
+      "checklist.md": "468db74e1c69722bfb7ce066e8e3b02187bdb0211ae8e86de7d38f9dc16fd425",
+      "decision-record.md": "59bb6ddc381a79b64f6a66c236e5911763b727bdbad4b6e3efe17af54dd989bd",
+      "implementation-summary.md": "0081b62c08bff9ab5458cd3d866265fff124a787465358f885a90cc411f2a06f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/025-mcp-runtime-hardening",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/025-mcp-runtime-hardening",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/025-mcp-runtime-hardening",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/025-mcp-runtime-hardening",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -36,11 +36,12 @@
       "provider",
       "log",
       "sanitization",
-      "025"
+      "follow-on"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "lib/utils/cleanup-helpers.ts",
       "mcp_server/tests/db-dimension-integrity.vitest.ts",
       "mcp_server/tests/lifecycle-shutdown.vitest.ts",
@@ -55,13 +56,18 @@
       "tests/lifecycle-shutdown.vitest.ts",
       "tests/stage2b-enrichment-extended.vitest.ts",
       "tests/error-sanitization.vitest.ts",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "cleanup-helpers.ts",
         "kind": "code",
@@ -108,12 +114,6 @@
         "name": "descriptions.json",
         "kind": "config",
         "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The `024-codex-memory-mcp-fix` packet documented six follow-on recommendations (T020-T025) for runtime hardening, but none were implemented",
     "created_at": "2026-04-12T09:02:50.314Z",
-    "last_save_at": "2026-06-23T03:50:00.406Z",
+    "last_save_at": "2026-07-09T10:02:58.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

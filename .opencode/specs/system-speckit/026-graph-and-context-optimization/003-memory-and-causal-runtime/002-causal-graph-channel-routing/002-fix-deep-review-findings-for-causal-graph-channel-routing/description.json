@@ -1,9 +1,8 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing",
   "description": "The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` produced a CONDITIONAL verdict because of two release-blocking P1s and 39",
   "keywords": [
-    "2026-05-11",
     "deep",
     "review",
     "001-deliver-causal-graph-channel-routing-mvp",
@@ -15,11 +14,11 @@
     "release-blocking",
     "p1s"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.916Z",
+  "lastUpdated": "2026-07-09T10:02:52.164Z",
   "specId": "002",
   "folderSlug": "fix-deep-review-findings-for-causal-graph-channel-routing",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "002-causal-graph-channel-routing"

@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/005-mk-deep-loop-guard",
+  "description": "Fix plan for the mk-deep-loop-guard audit findings; two-model designs, review-hardened; actionable fixes + reclassified non-issues.",
+  "keywords": [
+    "mk-deep-loop-guard",
+    "remediation",
+    "fixes",
+    "plugin",
+    "review",
+    "plan"
+  ],
+  "lastUpdated": "2026-07-10T11:42:16.945Z",
+  "specId": "005",
+  "folderSlug": "mk-deep-loop-guard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "129-opencode-plugins-hooks-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

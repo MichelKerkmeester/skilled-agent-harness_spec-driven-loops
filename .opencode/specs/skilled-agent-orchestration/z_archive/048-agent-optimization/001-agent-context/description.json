@@ -3,12 +3,11 @@
   "description": "`@context` (444 LOC) has not been through the sk-improve-agent v2 lens",
   "keywords": [
     "context",
-    "444",
     "loc",
     "sk-improve-agent",
     "lens"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.485Z",
+  "lastUpdated": "2026-07-09T10:02:45.356Z",
   "specId": "001",
   "folderSlug": "agent-context",
   "parentChain": [

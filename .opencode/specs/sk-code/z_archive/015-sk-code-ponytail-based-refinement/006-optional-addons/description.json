@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-code/z_archive/015-sk-code-ponytail-based-refinement/006-optional-addons",
-  "description": "Lower-urgency ponytail-derived add-ons: a code_loc/over-engineering metric folded into the existing correctness-gated benchmark, a SK_CODE_REVIEW_DEPT",
+  "description": "Lower-urgency ponytail-derived add-ons: a code_loc/over-engineering metric folded into the existing correctness-gated benchmark, a",
   "keywords": [
     "lower-urgency",
     "ponytail-derived",
@@ -13,7 +13,7 @@
     "correctness-gated",
     "benchmark"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.475Z",
+  "lastUpdated": "2026-07-09T10:02:44.409Z",
   "specId": "006",
   "folderSlug": "optional-addons",
   "parentChain": [

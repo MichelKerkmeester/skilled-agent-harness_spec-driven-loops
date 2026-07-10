@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-003-council-target",
+  "spec_folder": "system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-003-council-target",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "design",
+      "question",
+      "rate-limit",
+      "strategy",
+      "slug",
+      "api"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "src/slugify.js",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "slugify.js",
+        "kind": "code",
+        "path": "src/slugify.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Question",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Limit Strategy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Decision",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Choose",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "justification",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Design Question: Rate-Limit Strategy for the Slug API",
+    "created_at": "2026-07-09T10:02:48.052Z",
+    "last_save_at": "2026-07-09T10:02:48.052Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:3120d1f6e34fc42be62a822487ec1e624b95ced599c147e945f9845da097471d",
+    "source_doc_hashes": {
+      "spec.md": "f0d9f99d9618088b39e9431ca2b7f5a6a7e00678b71eb45c675a3afc8719b316"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -4,7 +4,6 @@
   "description": "Packet 072's review-report-v2.md surfaced P1-072-001: cli-copilot (claude-opus-4.7) HALLUCINATES sk-doc resource paths — citing files like",
   "keywords": [
     "packet",
-    "072",
     "review-report-v2",
     "surfaced",
     "p1-072-001",
@@ -18,7 +17,7 @@
     "files",
     "like"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.522Z",
+  "lastUpdated": "2026-07-09T10:02:45.489Z",
   "specId": "063",
   "folderSlug": "cli-copilot-hallucination-caveat",
   "parentChain": [

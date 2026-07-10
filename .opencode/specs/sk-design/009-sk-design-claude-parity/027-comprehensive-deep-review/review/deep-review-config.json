@@ -1,0 +1,122 @@
+{
+  "topic": "Review: .opencode/skills/sk-design (hub + 6 modes: interface/foundations/motion/audit/md-generator/mcp-open-design transport)",
+  "sessionId": "2026-07-09T05:15:59.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 300,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/sk-design/009-sk-design-claude-parity/027-comprehensive-deep-review",
+  "createdAt": "2026-07-09T05:15:59.000Z",
+  "status": "in_progress",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/skills/sk-design",
+  "reviewTargetType": "skill",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".opencode/skills/sk-design/{SKILL.md,README.md,command-metadata.json,description.json,graph-metadata.json,hub-router.json,mode-registry.json} (hub tier)",
+    ".opencode/skills/sk-design/design-interface/ (56 files)",
+    ".opencode/skills/sk-design/design-foundations/ (40 files)",
+    ".opencode/skills/sk-design/design-audit/ (63 files)",
+    ".opencode/skills/sk-design/design-motion/ (33 files)",
+    ".opencode/skills/sk-design/design-mcp-open-design/ (33 files, transport axis, combined lighter pass)",
+    ".opencode/skills/sk-design/design-md-generator/ (2847 files, representative sampling disclosed, node_modules excluded)",
+    ".opencode/skills/sk-design/shared/ (23 files)",
+    ".opencode/skills/sk-design/benchmark/ (15 files)",
+    ".opencode/skills/sk-design/feature_catalog/ (6 files)",
+    ".opencode/skills/sk-design/changelog/ (7 files)",
+    ".opencode/skills/sk-design/manual_testing_playbook/ (39 files)",
+    "EXCLUDED: design-md-generator/node_modules/, benchmark baseline artifacts (read-only evidence, not reviewed for bugs)"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "dispatchMode": "wave-parallel",
+  "waveDispatch": {
+    "note": "Iterations within a wave run concurrently (multiple deep-review LEAF agent calls dispatched in one turn). Reduce/convergence/strategy-update bridge steps run once per wave, after all agents in that wave complete and are individually mechanically verified, not once per iteration.",
+    "waves": [
+      { "wave": 0, "iterations": [1], "parallel": false, "areas": ["inventory"] },
+      { "wave": 1, "iterations": [2, 3, 4, 5], "parallel": true, "areas": ["hub", "hub-cross-cutting"] },
+      { "wave": 2, "iterations": [6, 7, 8, 9], "parallel": true, "areas": ["design-interface", "design-foundations"] },
+      { "wave": 3, "iterations": [10, 11, 12, 13], "parallel": true, "areas": ["design-audit", "design-motion"] },
+      { "wave": 4, "iterations": [14, 15, 16, 17], "parallel": true, "areas": ["design-mcp-open-design", "design-md-generator-backend"] },
+      { "wave": 5, "iterations": [18, 19, 20], "parallel": true, "areas": ["design-md-generator-gapfill", "cross-hub-consistency", "sk-doc-sweep"] }
+    ]
+  },
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  }
+}

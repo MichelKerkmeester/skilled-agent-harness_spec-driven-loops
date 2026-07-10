@@ -10,10 +10,9 @@
     "006-deep-review-017-021-remediation",
     "007-release-alignment-review"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation",
   "description": "The 027 program produced review and research evidence that had to become terminal, verified work queues rather than assumed-true claims",
   "keywords": [
-    "027",
     "program",
     "produced",
     "review",
@@ -28,11 +27,11 @@
     "assumed-true",
     "claims"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.869Z",
+  "lastUpdated": "2026-07-09T10:02:55.754Z",
   "specId": "005",
   "folderSlug": "verification-and-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,

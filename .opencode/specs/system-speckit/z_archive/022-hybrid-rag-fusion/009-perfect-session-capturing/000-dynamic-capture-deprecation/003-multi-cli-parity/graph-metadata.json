@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/003-multi-cli-parity",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/scripts/tests/phase-classification.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
@@ -53,7 +54,6 @@
       "scripts/tests/task-enrichment.vitest.ts",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md",
       "plan.md",
       "checklist.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -63,6 +63,12 @@
       "research/research.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "phase-classification.vitest.ts",
         "kind": "test",
@@ -136,12 +142,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 016 had already landed its runtime behavior in the live code, but the phase folder still claimed completion without direct parity-specific proof",
     "created_at": "2026-04-12T09:02:50.266Z",
-    "last_save_at": "2026-06-23T03:49:59.982Z",
+    "last_save_at": "2026-07-09T10:02:58.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

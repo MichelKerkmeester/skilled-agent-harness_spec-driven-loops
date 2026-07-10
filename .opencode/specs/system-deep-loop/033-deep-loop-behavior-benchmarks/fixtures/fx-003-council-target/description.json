@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-deep-loop/033-deep-loop-behavior-benchmarks/fixtures/fx-003-council-target",
+  "description": "Design Question: Rate-Limit Strategy for the Slug API",
+  "keywords": [
+    "design",
+    "question",
+    "rate-limit",
+    "strategy",
+    "slug",
+    "api"
+  ],
+  "lastUpdated": "2026-07-09T10:02:48.053Z",
+  "specId": "",
+  "folderSlug": "fx-003-council-target",
+  "parentChain": [
+    "system-deep-loop",
+    "033-deep-loop-behavior-benchmarks",
+    "fixtures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

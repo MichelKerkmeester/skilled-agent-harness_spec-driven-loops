@@ -24,18 +24,18 @@
       "113/004 summary"
     ],
     "key_topics": [
-      "113",
-      "004",
       "skill",
       "uplift",
       "cli-devin",
-      "update",
       "swe",
       "winners",
       "application",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "decisions",
+      "summary",
+      "synthesis"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The synthesis.md from 003 lists winning prompt patterns, but they live in eval-loop packet artifacts — invisible to future cli-devin dispatches",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-06-23T03:49:50.473Z",
+    "last_save_at": "2026-07-09T10:02:45.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a41ff5b77115b98908406744a5e0b4d02280bf7503a585b2b6c37d23b75c8a0f",
+    "source_fingerprint": "sha256:4aacca788726834f4a1a8b08e34d3a8e802dc0c922f65dc931bb6eebb18672a7",
     "source_doc_hashes": {
-      "spec.md": "aa0213ac548bea5a1a9a8af4361e59a194806f5e26b11bd6e479e5573073134d",
-      "plan.md": "4bc4dc785eee6eb27eeafa68cefb1f17cd3adbe971a21e0d290e1319979993b8",
-      "tasks.md": "91522a86531f8f29aeaa9613b6933dfaa8c6c0b1c36c1d377fd390ef52c82bc2",
-      "checklist.md": "d8b4238bba7f11ec4d3a44e3b3c1b62057a5ad9c3243e09d068f60d07673377b",
-      "decision-record.md": "5f203cd368f300b1a56bdbc45f943f9fd08a75444e82067b11d4dc44ccfbd9d6",
-      "implementation-summary.md": "5726062b6636e2ab1150e0ca78d1f7db9c6b5b7edaf5059f3b9f3c617050ab00"
+      "spec.md": "ead2732169483b54678fcd0f2990a1126ec2e4b045d0af2d812d5151479a903a",
+      "plan.md": "ffd2def8c6a2f2e4a6558d9d03ca6026dc4ca148345d377586f697f50d5c2838",
+      "tasks.md": "f26301af9a2b4b7a385cc6979694a08e2e3dffddf8c6a45a6992eed2af0ef88e",
+      "checklist.md": "1f6a40e593fbe640ec18247a59f1e463aad4a6056ab59e8f177aeb4690ed4355",
+      "decision-record.md": "0a6c2f5bc2960dd5ab96f9210e5b8251385f7395f401f8bd4cf0c1db109c9405",
+      "implementation-summary.md": "2bc420f0a4f3277e119d0e1812b46bbccfc2dc2dfda43e6f9c2ca43ec3319f4e"
     },
     "last_active_child_id": null,
     "last_active_at": null

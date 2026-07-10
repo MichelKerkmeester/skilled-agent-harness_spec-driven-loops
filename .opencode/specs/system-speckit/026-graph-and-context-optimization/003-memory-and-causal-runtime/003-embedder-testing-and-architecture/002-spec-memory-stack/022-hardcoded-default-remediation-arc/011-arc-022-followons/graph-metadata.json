@@ -24,18 +24,18 @@
       "022/011 shipped"
     ],
     "key_topics": [
-      "022",
-      "011",
       "arc",
       "followons",
       "recovery",
       "validate-doc-model-refs",
-      "fix",
       "opencode-persistent",
       "wrapper",
       "reactive-eof",
       "idle",
-      "kill"
+      "kill",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Bundle of follow-on fixes after the 022 arc shipped: mk_skill_advisor MCP -32000 recovery (build doesn't copy data/*.json), validator script 6-bug fix, opencode v1.15.10 reactive-EOF idle-kill mitigation (wrapper + memory + SKILL.md elevation), RERANKER_CANONICAL voyage/cohere vendor canonical fill. LANE_WEIGHTS_JSON structural deferred.",
     "created_at": "2026-05-23T18:30:00.000000Z",
-    "last_save_at": "2026-07-02T05:31:11.850Z",
+    "last_save_at": "2026-07-09T10:02:52.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

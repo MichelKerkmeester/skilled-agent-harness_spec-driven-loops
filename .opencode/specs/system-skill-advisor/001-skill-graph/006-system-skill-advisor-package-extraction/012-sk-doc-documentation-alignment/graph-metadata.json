@@ -26,9 +26,6 @@
       "advisor doc alignment summary"
     ],
     "key_topics": [
-      "013",
-      "009",
-      "012",
       "doc",
       "alignment",
       "sk-doc",
@@ -37,7 +34,10 @@
       "plan",
       "tasks",
       "advisor",
-      "checklist"
+      "checklist",
+      "verification",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The `system-skill-advisor` package had grown through extraction packets",
     "created_at": "2026-05-18T08:53:19.989Z",
-    "last_save_at": "2026-07-02T05:31:11.137Z",
+    "last_save_at": "2026-07-09T10:02:49.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1846677c165d097b99f1f67d4e044b3f52a3e6871dc6492c74c6e8e9b12114f9",
+    "source_fingerprint": "sha256:0ce7ccc718e719d4e8d164632de1e63ed8dfd7728032acc36d2a8798e47c0d0d",
     "source_doc_hashes": {
-      "spec.md": "339ddd30423fdcb1f7cbd8da1750b4beb6045b30815af9586e9306e3b3b2630d",
-      "plan.md": "2b01549384f6f9757c0e7cffa0891e4408b1c8a3f1ad794f080f27707c0a8dff",
-      "tasks.md": "a2f1d692ff6a967f030722008ed4aebe1b476a74a9c0b5ffdd1a2762114f1092",
-      "checklist.md": "41423d9acc6843f9fb0efae2cb13805a959f4e631f15d2adaff3b9439358ec63",
-      "implementation-summary.md": "d3dd20a9e5e4941a98b3997fc25a546d68214bf3634f7657474a610167a83c08"
+      "spec.md": "8add301b1f561bfdd88e75cba25b10d0d5bad854f08452c69a58449f17780097",
+      "plan.md": "912d5fc1733b268a0489d92f8694c3cc24d4fb66d5a4ffa94033df8f183affaa",
+      "tasks.md": "971aed759546525f5c623a83422810a8729ac8ac08fa30a0393835315b35d8fc",
+      "checklist.md": "763e20cb8b3e0a42c32f6f4bd1aeb74efe969a4750cd47b44e20f668dc4b464b",
+      "implementation-summary.md": "e3a4c4a7206c5aac8ef2b29c22fa7b7f781658c03d00183ecf079b124694f539"
     },
     "last_active_child_id": null,
     "last_active_at": null

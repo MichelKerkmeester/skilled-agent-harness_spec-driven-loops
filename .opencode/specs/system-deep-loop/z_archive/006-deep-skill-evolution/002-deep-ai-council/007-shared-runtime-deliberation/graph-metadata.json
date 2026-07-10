@@ -35,10 +35,10 @@
       "extraction",
       "council",
       "hybrid",
-      "124",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`sk-ai-council` already contains runtime-like helpers for artifact persistence, append-only JSONL state, graph replay, and convergence guidance",
     "created_at": "2026-05-23T05:04:55Z",
-    "last_save_at": "2026-07-08T13:43:53.584Z",
+    "last_save_at": "2026-07-09T10:02:48.632Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-23T05:04:55Z",
     "source_docs": [

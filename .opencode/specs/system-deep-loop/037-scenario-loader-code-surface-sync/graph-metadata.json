@@ -3,6 +3,7 @@
   "packet_id": "system-deep-loop/037-scenario-loader-code-surface-sync",
   "spec_folder": "system-deep-loop/037-scenario-loader-code-surface-sync",
   "parent_id": "system-deep-loop",
+  "parent_id_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,9 +43,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/spec.md",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/code-surface-path-parse.vitest.ts",
       ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/plan.md",
       ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/tasks.md",
       ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/checklist.md",
@@ -62,24 +60,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "load-playbook-scenarios.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "live-executor.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "code-surface-path-parse.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/code-surface-path-parse.vitest.ts",
         "source": "derived"
       },
       {
@@ -201,11 +181,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Diagnose Lane",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes",
     "created_at": "2026-07-05T18:53:23.765Z",
-    "last_save_at": "2026-07-06T08:41:30.599Z",
+    "last_save_at": "2026-07-09T10:02:48.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9dee4576db9a5e627c41b93ff88bf07c9d29d80b05e206943dbd0aaef497bebd",
+    "source_fingerprint": "sha256:e2cd0316a5fb3a57a3c6f5397a9005528910acd36136c8d66b33eeb9fa83fd73",
     "source_doc_hashes": {
-      "spec.md": "f9b0c59d80fca54ec38d9b35ecafdf38d20bb33570348617f55e4f9e56568650",
-      "plan.md": "a183115842d276d3969d8716fe655c98aa526375b966d03c87a80cc94a8c7fff",
-      "tasks.md": "484d830818bfc400298a4e2aa38ac45da7836d226402394a0ca4dbaef97994ec",
-      "checklist.md": "02932a8335d17ecd41747313ae4bc2441d3da9d48a11c5dfc99e4f5fcfe17da4",
-      "implementation-summary.md": "ea0a4dd36e6d4c6f635997078600226f550f210090340a2bcb8e09e15177206e"
+      "spec.md": "31e7340d83b3f7b9baf6972189b6193bd235d2baa7a0454ee29b860d35496267",
+      "plan.md": "3067f84ecd6e67999154b58faeb1b86a1781dbf0e7214f834b1139f0b5770562",
+      "tasks.md": "899c00c9ae880eb3e11e3f0f327d24182b85e07e695476ce12eaf753a01a78d1",
+      "checklist.md": "77df8eb6ab21ec0ec0d4b55121168958eb040a2349a3b2eda2557acb41c0f8d8",
+      "implementation-summary.md": "d7eb9d05a54cbd4b1f6d952f13525537bc8be0eab0ef5326d522a327fea75f0f"
     },
     "last_active_child_id": null,
     "last_active_at": null

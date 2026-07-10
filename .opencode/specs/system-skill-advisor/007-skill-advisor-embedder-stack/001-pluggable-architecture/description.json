@@ -8,7 +8,6 @@
     "embedders",
     "module",
     "mirroring",
-    "016",
     "pattern",
     "embedderadapter",
     "manifests",
@@ -17,7 +16,7 @@
     "dim",
     "schema"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.040Z",
+  "lastUpdated": "2026-07-09T10:02:50.224Z",
   "specId": "001",
   "folderSlug": "pluggable-architecture",
   "parentChain": [

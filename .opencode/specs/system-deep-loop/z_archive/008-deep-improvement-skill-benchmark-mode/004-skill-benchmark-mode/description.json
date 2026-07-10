@@ -3,7 +3,6 @@
   "description": "Design and build Lane C (skill-benchmark) in the renamed deep-improvement skill: scenario fixtures, hint-free dispatcher capturing resource-load",
   "keywords": [
     "design",
-    "build",
     "lane",
     "skill-benchmark",
     "renamed",
@@ -16,7 +15,7 @@
     "capturing",
     "resource-load"
   ],
-  "lastUpdated": "2026-07-08T13:06:55.367Z",
+  "lastUpdated": "2026-07-09T10:02:49.055Z",
   "specId": "004",
   "folderSlug": "skill-benchmark-mode",
   "parentChain": [

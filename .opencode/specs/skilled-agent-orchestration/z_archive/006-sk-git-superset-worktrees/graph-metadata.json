@@ -31,12 +31,12 @@
       "worktree",
       "git",
       "skill",
-      "update",
       "plan",
       "implementation",
       "tasks",
-      "006",
-      "workflow"
+      "workflow",
+      "designed",
+      "manual"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The sk-git skill's worktree workflow is designed for manual, single-user operation",
     "created_at": "2026-04-12T09:02:50.202Z",
-    "last_save_at": "2026-06-23T03:49:48.903Z",
+    "last_save_at": "2026-07-09T10:02:45.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

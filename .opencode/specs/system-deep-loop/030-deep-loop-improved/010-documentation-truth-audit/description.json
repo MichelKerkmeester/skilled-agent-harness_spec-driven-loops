@@ -4,7 +4,6 @@
   "description": "Packet 030 shipped nine phases of loop-system work, most recently an 11-child research-backlog remediation phase that changed fan-out merge behavior,",
   "keywords": [
     "packet",
-    "030",
     "shipped",
     "nine",
     "phases",
@@ -20,7 +19,7 @@
     "merge",
     "behavior"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.346Z",
+  "lastUpdated": "2026-07-09T10:02:47.686Z",
   "specId": "010",
   "folderSlug": "documentation-truth-audit",
   "parentChain": [

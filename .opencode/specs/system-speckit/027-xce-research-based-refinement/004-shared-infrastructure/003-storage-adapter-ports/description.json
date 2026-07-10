@@ -1,15 +1,14 @@
 {
   "level": "1",
   "status": "complete",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/003-storage-adapter-ports",
-  "description": "Driver coupling is scattered across roughly 127 production files: vector access, lexical search, graph traversal, maintenance (vacuum/checkpoint famil",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/003-storage-adapter-ports",
+  "description": "Driver coupling is scattered across roughly 127 production files: vector access, lexical search, graph traversal, maintenance (vacuum/checkpoint",
   "keywords": [
     "driver",
     "coupling",
     "scattered",
     "across",
     "roughly",
-    "127",
     "production",
     "files",
     "vector",
@@ -20,14 +19,13 @@
     "traversal",
     "maintenance",
     "vacuum",
-    "checkpoint",
-    "famil"
+    "checkpoint"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.794Z",
+  "lastUpdated": "2026-07-09T10:02:55.687Z",
   "specId": "003",
   "folderSlug": "storage-adapter-ports",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure"
   ],

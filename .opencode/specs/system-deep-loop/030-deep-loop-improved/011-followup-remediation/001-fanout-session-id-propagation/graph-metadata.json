@@ -19,22 +19,20 @@
       "session",
       "propagation",
       "f002",
-      "fix",
       "fanout-run",
       "cjs",
-      "1500",
-      "generates",
       "concrete",
       "sessionid",
-      "lineage"
+      "lineage",
+      "label",
+      "runid",
+      "threads"
     ],
     "importance_tier": "medium",
     "status": "complete",
     "key_files": [
       ".opencode/commands/deep/assets/deep_review_auto.yaml",
       ".opencode/commands/deep/assets/deep_review_confirm.yaml",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,18 +49,6 @@
         "name": "deep_review_confirm.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_review_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -184,11 +170,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`fanout-run.cjs:1500` generates a concrete `sessionId` (`fanout-${lineage.label}-${runId}`) and threads it into the CLI subprocess prompt as a free-text `sessionid: ${sessionId}` line (`fanout-run.cjs:894`)",
     "created_at": "2026-07-01T19:38:04.132Z",
-    "last_save_at": "2026-07-04T18:02:28.698Z",
+    "last_save_at": "2026-07-09T10:02:47.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +195,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a7090e6e4944d67330334f42d5d3f973b34a4901eee08181b9c699e0d1adf8b",
+    "source_fingerprint": "sha256:e32cdc6e89cfa4f211b87a6d5fe6d07dfe2326c0d2c99e580b5e06418b8e20fa",
     "source_doc_hashes": {
-      "spec.md": "f5b20d69287ccd1467d27657e51b34cfc59c6d7e9b726156a5a1ae8de28d73a9",
-      "plan.md": "286ce4dec023e96704a8981a1cfaa361dfdf5914403a479539d8651b48434c01",
-      "tasks.md": "b85ac2723b428ae4809e53cb5382e1442c43d0785b0cc450a97768842ea3ff0a",
-      "implementation-summary.md": "e98c8930321daf8e68773d157c88bd5585c8b7f853ff7d7845f21e01ffe6ea2f"
+      "spec.md": "176781788114fbd4e090c98185d3d82f51d6baae3424dd8479fb6f41f69d2dfe",
+      "plan.md": "e8abfc5c2a7da95e68d7103b0269abec1dd8364fdc77993cf71678d254971861",
+      "tasks.md": "7de9adca44ad168e81d1f38227126358dae750f19516c332d276b4f30c77d0e8",
+      "implementation-summary.md": "9e09a0c73d78d66936b32e63b5b793adc19ddbec26295893663b9419fcdb92ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

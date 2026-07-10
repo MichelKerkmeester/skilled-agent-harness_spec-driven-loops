@@ -34,9 +34,9 @@
       "argv-positional",
       "routing",
       "manifest-driven",
-      "013",
-      "004",
-      "plan"
+      "plan",
+      "implementation",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The 10 `/doctor:` markdown commands in `.opencode/commands/doctor/` share ~50 lines of duplicated boilerplate per file",
     "created_at": "2026-05-11T16:00:00.000Z",
-    "last_save_at": "2026-07-02T05:31:12.789Z",
+    "last_save_at": "2026-07-09T10:02:54.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

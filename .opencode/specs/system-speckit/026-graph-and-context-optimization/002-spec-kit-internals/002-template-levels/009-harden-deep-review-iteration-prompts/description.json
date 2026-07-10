@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/009-harden-deep-review-iteration-prompts",
-  "description": "The deep-review iteration dispatch hands the executor unrestricted filesystem write access (`opencode run --dangerously-skip-permissions --dir {reporo",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/009-harden-deep-review-iteration-prompts",
+  "description": "The deep-review iteration dispatch hands the executor unrestricted filesystem write access (`opencode run --dangerously-skip-permissions --dir",
   "keywords": [
     "deep-review",
     "iteration",
@@ -15,14 +15,13 @@
     "opencode",
     "run",
     "dangerously-skip-permissions",
-    "dir",
-    "reporo"
+    "dir"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.788Z",
+  "lastUpdated": "2026-07-09T10:02:51.960Z",
   "specId": "009",
   "folderSlug": "harden-deep-review-iteration-prompts",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals",
     "002-template-levels"

@@ -103,22 +103,84 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [
-      "archive",
-      "cold-tier",
-      "container"
+    "trigger_phrases": [
+      "resource map",
+      "z_archive resource map",
+      "path catalog z_archive"
     ],
-    "importance_tier": "archived",
-    "status": "archived",
-    "key_files": [],
-    "entities": [],
-    "causal_summary": "Hand-authored archived container node for cold-tier graph discoverability under system-speckit/z_archive/001-fix-command-dispatch/z_archive; indexes 92 direct child folder(s), no canonical spec documents.",
+    "key_topics": [
+      "resource",
+      "map",
+      "path",
+      "catalog",
+      "phased",
+      "decomposition",
+      "children",
+      "artifact",
+      "references"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "resource-map.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. READMEs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Documents",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "7. Scripts",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Path catalog for z_archive phased decomposition: 79 children, 805 artifact references",
     "created_at": "2026-07-06T09:52:21.000Z",
-    "last_save_at": "2026-07-06T09:52:21.000Z",
+    "last_save_at": "2026-07-09T11:23:18.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": [],
-    "source_doc_hashes": {}
+    "source_docs": [
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:1db258b544b9ce7358bada678c78b36057dc3df549c35469b75ffd5ef7cf3498",
+    "source_doc_hashes": {
+      "resource-map.md": "408add243560f7d8ab76c7e2233a7d429e5ff8cf87a3c684ac5ae33cdab4873e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

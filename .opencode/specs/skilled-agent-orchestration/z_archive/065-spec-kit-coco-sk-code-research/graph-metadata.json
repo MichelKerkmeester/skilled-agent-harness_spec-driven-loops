@@ -21,7 +21,6 @@
       "077 summary"
     ],
     "key_topics": [
-      "077",
       "spec-kit-coco-sk-code-research",
       "research",
       "findings",
@@ -32,11 +31,14 @@
       "tasks",
       "summary",
       "three",
-      "skill"
+      "skill",
+      "ecosystem"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/z_archive/065-spec-kit-coco-sk-code-research/research/research.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/065-spec-kit-coco-sk-code-research/research/resource-map.md",
       "research/scripts/dispatch-iter.sh",
       "research/scripts/run-loop.sh",
       "research/research.md",
@@ -49,6 +51,12 @@
     ],
     "entities": [
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/065-spec-kit-coco-sk-code-research/research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "dispatch-iter.sh",
         "kind": "script",
         "path": "research/scripts/dispatch-iter.sh",
@@ -58,12 +66,6 @@
         "name": "run-loop.sh",
         "kind": "script",
         "path": "research/scripts/run-loop.sh",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -195,7 +197,7 @@
     ],
     "causal_summary": "Three OpenCode skill ecosystem surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — have grown organically and accumulated drift between docs and code, coverage gaps, and missing integration paths",
     "created_at": "2026-05-05T16:28:14Z",
-    "last_save_at": "2026-06-23T03:49:49.830Z",
+    "last_save_at": "2026-07-09T10:02:45.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +207,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:09c755dc909a2844a4dc9cce808de122c66e1e71b580454f6110c45faa450ba7",
+    "source_fingerprint": "sha256:b7ddbf54e2b586ac8eed92456f27b07d3ad1efc8520871af79204dd0b26d2434",
     "source_doc_hashes": {
-      "spec.md": "eebe4baf9ccd5cd3d8f59937ab501288353bbe538d5907f799ae35f211bd604c",
-      "plan.md": "406e687e6e99994312fb1a958ae9fd633740a71d03e270b8da7d6b785c838e2d",
-      "tasks.md": "c8d9853bba39be067bdf6ed9620fc42bcde587286b638f40c9351feda6c182e3",
-      "implementation-summary.md": "01bcedf137a0bb6dbed8c71341ed4e8214c58b7a8ffc6c3af916664d081b2e00",
+      "spec.md": "8e049e9ead267446744f082df4fab3121e464b9066b1e8f2fdbd2c2dac6a7ebb",
+      "plan.md": "48ba745bb08856a7ece1808a4ff1828ca5a56e1bb3095a39dadfed15d6f4164b",
+      "tasks.md": "f0910fa8484d05bbae4f358f3fab97a65479d291e72b70ed76dba6498d6deed4",
+      "implementation-summary.md": "d47bc3f5dc1803a4d4358b8f648d1b7743fa7bd1d02a50e6bc857951ddf95d5a",
       "research/research.md": "db1ef1ee25e76956fdf0cd0ac32f709292a1e2106fa7301220447f0e5bd75233"
     },
     "last_active_child_id": null,

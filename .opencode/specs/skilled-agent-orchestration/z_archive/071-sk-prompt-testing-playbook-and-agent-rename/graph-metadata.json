@@ -23,7 +23,6 @@
       "prompt-improver agent"
     ],
     "key_topics": [
-      "085",
       "sk-prompt",
       "playbook",
       "agent",
@@ -34,20 +33,28 @@
       "testing",
       "two",
       "related",
-      "gaps"
+      "gaps",
+      "surfaced"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "001-prompt-improver-rename/spec.md",
+      "002-sk-prompt-testing-playbook/spec.md",
       ".opencode/commands/prompt.md",
       ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
       ".opencode/specs/descriptions.json",
-      ".codex/config.toml",
       "manual_testing_playbook/manual_testing_playbook.md",
-      ".claude/CLAUDE.md",
-      "spec.md"
+      ".claude/CLAUDE.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "prompt.md",
         "kind": "doc",
@@ -67,12 +74,6 @@
         "source": "derived"
       },
       {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
         "path": "manual_testing_playbook/manual_testing_playbook.md",
@@ -82,12 +83,6 @@
         "name": "CLAUDE.md",
         "kind": "doc",
         "path": ".claude/CLAUDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -129,15 +124,15 @@
     ],
     "causal_summary": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` → `sk-prompt`:",
     "created_at": "2026-05-06T15:30:00Z",
-    "last_save_at": "2026-06-23T03:49:49.942Z",
+    "last_save_at": "2026-07-09T10:02:45.567Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:da6171ed6a5888e9cb22c01d505bc4644d2e34ea76d7940082908fc10615ba03",
+    "source_fingerprint": "sha256:43dcd6a6afd88723b27d23a846b95fbb363eb5280f5e7ec3b3dcd2173771b309",
     "source_doc_hashes": {
-      "spec.md": "818210b82966f3d15d4af460812d573f7f4722d639fb043c6dda9f4ec8caa065"
+      "spec.md": "c3f30290517374691fc12272a3abed4556728ec5073ed642ee1eb9b8859ce174"
     },
     "last_active_child_id": null,
     "last_active_at": null

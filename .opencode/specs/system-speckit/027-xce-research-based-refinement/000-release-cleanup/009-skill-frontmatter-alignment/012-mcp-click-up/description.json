@@ -1,8 +1,8 @@
 {
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up",
-  "description": "mcp-click-up reference/asset frontmatter is inconsistent with the repo-wide contract: 3 of 3 references and 0 of 0 assets carry the detailed memory-st",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up",
+  "description": "mcp-click-up reference/asset frontmatter is inconsistent with the repo-wide contract: 3 of 3 references and 0 of 0 assets carry the detailed",
   "keywords": [
     "mcp-click-up",
     "reference",
@@ -14,14 +14,13 @@
     "references",
     "assets",
     "carry",
-    "detailed",
-    "memory-st"
+    "detailed"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.986Z",
+  "lastUpdated": "2026-07-09T10:02:54.959Z",
   "specId": "012",
   "folderSlug": "mcp-click-up",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup",
     "009-skill-frontmatter-alignment"

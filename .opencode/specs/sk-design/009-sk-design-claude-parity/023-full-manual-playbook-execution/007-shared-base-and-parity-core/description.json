@@ -1,9 +1,9 @@
 {
+  "level": "2",
   "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core",
   "description": "Phase 023 (full manual playbook execution) requires every `manualtestingplaybook` scenario to be dispatched for real through `cli-opencode` with the",
   "keywords": [
     "phase",
-    "023",
     "full",
     "manual",
     "playbook",
@@ -16,17 +16,14 @@
     "real",
     "cli-opencode"
   ],
-  "lastUpdated": "2026-07-07T15:11:21.920Z",
+  "lastUpdated": "2026-07-09T10:02:44.613Z",
   "specId": "007",
   "folderSlug": "shared-base-and-parity-core",
   "parentChain": [
-    ".opencode",
-    "specs",
     "sk-design",
     "009-sk-design-claude-parity",
     "023-full-manual-playbook-execution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

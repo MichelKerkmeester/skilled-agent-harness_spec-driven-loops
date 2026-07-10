@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Add a standalone canary guard that locks automation-parsed exact strings (the Review status triplet) and, after canonicalizing the 3-way-drifted Iron Law wording, a minimal Iron Law invariant. Wired as a script + CI workflow (the proven comment-hygiene.yml pattern), not a vitest.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-07-07T16:45:58.056Z",
+    "last_save_at": "2026-07-09T10:02:44.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43884850fcf27301e9f5d06c9ce6bccdbcf32681c7f36760a0e89292f6766d6e",
+    "source_fingerprint": "sha256:72fbd7616b6b1e0f3be27c8311cc4fa240dc8df736e2c4340cdbcc3b036e5e51",
     "source_doc_hashes": {
-      "spec.md": "838d39b6a0bb64d9795a2f411fe734a0fd4d7dcfd2dfbf53d002e84dbd5f7f03",
-      "plan.md": "ab94ea4c066f3a9da49b7c412907d68b39a0fa654490292898a167aab1785139",
-      "tasks.md": "9c829be1803f607d69647253bb89ae3f3fbe23a97962f493ae4ce59fd4ea68c3",
-      "implementation-summary.md": "812657393679b11755bb6e552fb1ac1d8107d6e7794550f55b4c6c74cf03499d"
+      "spec.md": "b1a5e7694d1ff6d70cf44fd70a53ce122dca3d34b8701285be05c09a5dec4099",
+      "plan.md": "bcc58127bc290e0cec9efc9969ed0dab6ddee96450f50bdf6c2e87ab701507f8",
+      "tasks.md": "09ad2e4dfc4d9c28d47d67c9fc52f63ff6094f8d80c31e22aaccfe836ab8438a",
+      "implementation-summary.md": "7ca9db787b846f23ac1a9ae9ee38072b5255702436bc80a28d5a342e92c1c8aa"
     },
     "last_active_child_id": null,
     "last_active_at": null

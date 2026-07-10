@@ -29,28 +29,21 @@
       "verdict",
       "machine-parseable",
       "output",
-      "108",
       "phase",
       "plan",
       "implementation",
-      "tasks"
+      "tasks",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code-review/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code-review/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Our review skills (sk-code-review, deep-review) emit free-form verdicts that are unreliable to parse via regex or NLP",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-06-23T03:49:50.336Z",
+    "last_save_at": "2026-07-09T10:02:45.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4db7fe7907b36e9b9414739c0627d94aac5ac848c60682bd8140e46e82b2139",
+    "source_fingerprint": "sha256:1ed9eeb36327d4372439988038f040ba33391dc6aa1d6ed7e828c905cd74f55e",
     "source_doc_hashes": {
-      "spec.md": "bc4d60c0536bc52b1d6ffe0814571f1a16af8717ef54088686a8d25c165b9693",
-      "plan.md": "8e70747c8b91d1558a91e9c1b40a0986ddcb82364f8492a70393e0c488611151",
-      "tasks.md": "b085aef9404d1d60f6cb6a830a8a3c31d5d8d9efb1fad46efc5e6a0f33735810",
-      "implementation-summary.md": "c65cef9545e997b3f4e26e4147d6cfb8ed901741e0df116c046cc1a3f19df1e0"
+      "spec.md": "1aa688374b327394d751fb6c51b89e6fb2570fd501a7952eaa06916d927e888c",
+      "plan.md": "0bdf985493c06bebb64a08c567d44a4433626a766f4d93f287ad60035a4a6d31",
+      "tasks.md": "3282c2897dab7e1d53e1d1a9492d7b604453eb3e8417161765cfa809594a478f",
+      "implementation-summary.md": "3d73f23ce6dcf3862ae0946b54fb2b55c40084d1d25166f830c77ff13d21bb9c"
     },
     "last_active_child_id": null,
     "last_active_at": null

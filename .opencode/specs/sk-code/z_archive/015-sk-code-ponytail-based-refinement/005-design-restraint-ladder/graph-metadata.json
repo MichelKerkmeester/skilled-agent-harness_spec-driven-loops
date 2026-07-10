@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Encode ponytail's 6-rung 'do you really need this?' ladder as a ~15-line subsection in sk-code's always-loaded universal quality doc, attached at the Phase 0->1 transition and gated to implementation intent — run AFTER surface+intent routing. The only recommendation touching the actual workflow; its clean integration must be proven before merge.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-07-07T16:45:58.059Z",
+    "last_save_at": "2026-07-09T10:02:44.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,12 +188,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2415e9339cb0ff9f5f700ec158bff48e531062314279d4d0000d1c1dbb4d0f39",
+    "source_fingerprint": "sha256:88f150c24affae36cae39d769d9eb784c187ac009d9c33f6327f8a69e01cfd1a",
     "source_doc_hashes": {
-      "spec.md": "8637d26317538bdd32d9d53faf16e7453ba343462f42b0519ee528c43afbf37c",
-      "plan.md": "66747ca1df29b4c4550fc612074e540a5a25d244046055c3c8b48da1c0d84f3b",
-      "tasks.md": "3649d693910ec36921ee553a60754e4080d8a9c342b9dfe59c37e3b0b4b8fff8",
-      "implementation-summary.md": "c274928038e609f45a7fa9c4cf0df5797b4baad702f239a167d97503d975f125"
+      "spec.md": "4d9ff8cf8ee5087bd2408b09d382f7c46f6368cc13537a829a62d0b510ca8fe2",
+      "plan.md": "532293b13bf2d249c9a443802dc68ca530e9f2abfe111050bfd3e174f3950aa5",
+      "tasks.md": "04c7672dd14605adcad8458b71bbb81b980f174fc70973ce213a5ad896cf1976",
+      "implementation-summary.md": "9c5c0bb08ce7a7c4079e1357a33af75bf51223c22ce335b138d3f27c5838174e"
     },
     "last_active_child_id": null,
     "last_active_at": null

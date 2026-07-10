@@ -60,8 +60,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
-      ".opencode/skills/deep-loop-workflows/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -74,18 +72,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "parent_skills_nested_packets.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -217,11 +203,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "tradeoffs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Parent skills route to nested mode packets, but those packets are not invocable through the runtime `Skill` tool",
     "created_at": "2026-06-26T05:52:39.211Z",
-    "last_save_at": "2026-07-02T05:31:09.124Z",
+    "last_save_at": "2026-07-09T10:02:45.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -5,7 +5,6 @@
     "five",
     "findings",
     "packet",
-    "046",
     "deep",
     "research",
     "describe",
@@ -22,7 +21,7 @@
     "degraded",
     "behavior"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.243Z",
+  "lastUpdated": "2026-07-09T10:02:51.503Z",
   "specId": "004",
   "folderSlug": "resource-leaks-silent-errors",
   "parentChain": [

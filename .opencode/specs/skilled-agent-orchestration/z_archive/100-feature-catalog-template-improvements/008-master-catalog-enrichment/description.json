@@ -8,10 +8,8 @@
   "specFolder": "skilled-agent-orchestration/z_archive/100-feature-catalog-template-improvements/008-master-catalog-enrichment",
   "description": "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits.",
   "keywords": [
-    "add",
     "master",
     "files",
-    "fix",
     "remaining",
     "stale",
     "references",
@@ -19,13 +17,13 @@
     "scope",
     "edits"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.471Z",
+  "lastUpdated": "2026-07-09T10:02:46.153Z",
   "specId": "008",
   "folderSlug": "master-catalog-enrichment",
   "parentChain": [
     "skilled-agent-orchestration",
     "z_archive",
-    "125-feature-catalog-template-improvements"
+    "100-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

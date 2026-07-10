@@ -1,10 +1,8 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
-  "description": "Phases 001 and 002 shipped the lean-trio policy end-to-end: validator phase-parent branches across five rules, the new content-discipline validator, t",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
+  "description": "Phases 001 and 002 shipped the lean-trio policy end-to-end: validator phase-parent branches across five rules, the new content-discipline validator,",
   "keywords": [
     "phases",
-    "001",
-    "002",
     "shipped",
     "lean-trio",
     "policy",
@@ -18,11 +16,11 @@
     "new",
     "content-discipline"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.283Z",
+  "lastUpdated": "2026-07-09T10:02:50.840Z",
   "specId": "003",
   "folderSlug": "phase-parent-reference-readme-sync",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass",

@@ -26,7 +26,6 @@
     ],
     "key_topics": [
       "wave",
-      "001",
       "mode",
       "routing",
       "core",
@@ -36,7 +35,8 @@
       "mr-004",
       "mr-006",
       "dispatch",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-design `manualtestingplaybook`'s `01--mode-routing` category has never been dispatched for real",
     "created_at": "2026-07-07T15:09:43.419Z",
-    "last_save_at": "2026-07-07T15:11:10.868Z",
+    "last_save_at": "2026-07-09T10:02:44.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

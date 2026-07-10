@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript section organization"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.12
+version: 1.0.0.17
 ---
 
 # JavaScript Style Guide

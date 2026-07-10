@@ -20,7 +20,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton",
+  "specFolder": "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton",
   "description": "Feature Specification: 001 Harness Skeleton",
   "keywords": [
     "feature",
@@ -29,12 +29,12 @@
     "harness",
     "skeleton"
   ],
-  "lastUpdated": "2026-05-28T21:38:20.094Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "001",
   "folderSlug": "harness-skeleton",
   "parentChain": [
-    "system-spec-kit",
-    "028-code-graph-and-cocoindex",
+    "z_future",
+    "code-graph-and-cocoindex",
     "004-code-graph-adoption-eval"
   ],
   "memorySequence": 0,

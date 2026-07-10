@@ -27,20 +27,18 @@
       "telemetry",
       "heartbeat",
       "executor",
-      "002",
       "orchestration",
       "status",
       "parity",
       "002-single-loop-telemetry-heartbeat",
       "summary",
-      "deep-loop"
+      "deep-loop",
+      "dashboard"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,18 +49,6 @@
         "name": "deep_research_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "atomic-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "atomic-state.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,11 +176,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop dashboard and status tooling reads `orchestration-status.log` rows emitted by fan-out runs",
     "created_at": "2026-06-28T17:09:26.615Z",
-    "last_save_at": "2026-07-04T18:02:16.115Z",
+    "last_save_at": "2026-07-09T10:02:47.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ba398774dc358ac8f743dda5c293b0a20d389c960a7d5297b91f0da81fd7040",
+    "source_fingerprint": "sha256:bf00d1ad9fa986a106cd542ac4e52aa4cd4114ce84827212a4598159cf05eec0",
     "source_doc_hashes": {
-      "spec.md": "3b51b28aa2d9790abbb6599e7cb6520fa105080c6096981428028d1560af442e",
-      "plan.md": "ec2131fae5eefb298c725d549ba3eba8f144a8b4bd7885a048dd3df09453f5b2",
-      "tasks.md": "2b63a51eaeebffe78d4e30e7cd0127a1f7e2ad633b185e64468568f9a5dc31ee",
-      "implementation-summary.md": "b437b5192ee5862781bd46deee6c4126d6e43b595752ba9cdb861d81a4561b78"
+      "spec.md": "ece97122019919f2cef8b87d8208d89d621d316979391f71a3159779f2aa1035",
+      "plan.md": "2d69cbfc2e473dc731b911b1382d718fb4fe41a378e0dc3de90009b38817866f",
+      "tasks.md": "98f621155ff08fb8504fae42c8848bdd557426b7e75b358b580df6b7d921e20e",
+      "implementation-summary.md": "e1f0fb37a0d0ca401442700ba6cc7ab609d755c57640de199d4e2f7317d7ffa8"
     },
     "last_active_child_id": null,
     "last_active_at": null

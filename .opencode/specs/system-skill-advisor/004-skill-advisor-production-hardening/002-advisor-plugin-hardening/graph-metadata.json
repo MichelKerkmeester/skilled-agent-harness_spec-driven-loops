@@ -38,7 +38,7 @@
       "size",
       "caps",
       "lru",
-      "026"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Three latent risks in `spec-kit-skill-advisor.js` deferred from 007 Phase 5:",
     "created_at": "2026-04-23T08:35:00.000Z",
-    "last_save_at": "2026-07-07T11:42:17.499Z",
+    "last_save_at": "2026-07-09T10:02:49.948Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac97dff14a0a9516fddf098857d8dedbb587bfa345e01ba56feb1d197ec664da",
+    "source_fingerprint": "sha256:440c3167025350251a611e93fc14f0dfc69214f6082823220517fce77036ef62",
     "source_doc_hashes": {
-      "spec.md": "9820be3cb8c70492fd46483d948f439b51ddd7bfaa4e6519a90f85d9181f411e",
-      "plan.md": "e35e9141f8cc9a2f93b132db8cfa1897e9ee7b149791b6ce00fabd49df9e94e3",
-      "tasks.md": "3774ac132a06a1cc72bd8c37b59f51581d1dbf3d723a73cab991ad35f63d07eb",
-      "checklist.md": "60b7c5a6db4defc0ff9c3209d56f3ac08af8c5d22bcc88bbd070661efd271f74",
-      "implementation-summary.md": "f9dc45ca6bd375f06b2153cd5c7a1ad6812495c0130d1e7a6c5e3b3bb66995b6"
+      "spec.md": "3dfafe3614889295373455f44e5cc998d38853762a67545fb542c92189679d9e",
+      "plan.md": "85b4b60cb1d1bd9901e129b64b04f0a6d3910a1e039b0d84504d4a27f469d098",
+      "tasks.md": "de2a316472704e8e99cab33d2b6e1dd1f55f6506e4f95817925c793847baa3c7",
+      "checklist.md": "6b67c5fab206a7cec0a101436203c24708c19b82ccbb5ff2f44d911e9e8e74eb",
+      "implementation-summary.md": "063d8838ece79916e8a59181e61603605161b0d9a7a8e961360eeef96016bd3a"
     },
     "last_active_child_id": null,
     "last_active_at": null

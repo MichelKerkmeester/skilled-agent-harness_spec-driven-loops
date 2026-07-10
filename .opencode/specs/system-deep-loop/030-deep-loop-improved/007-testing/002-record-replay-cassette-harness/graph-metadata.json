@@ -26,45 +26,24 @@
       "replay",
       "cassette",
       "harness",
-      "002",
       "convergence",
       "regression",
       "recordscriptrun",
       "replayscriptrun",
       "002-record-replay-cassette-harness",
       "summary",
-      "math"
+      "math",
+      "cjs"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
-      ".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spawn-cjs.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts",
-        "source": "derived"
-      },
-      {
-        "name": "convergence-script.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/integration/convergence-script.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,11 +169,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Convergence math in `convergence.cjs` is modified frequently (score-delta, observation-threshold, time-decay, fuzzy-merge) but there is no way to verify that a change does not regress existing convergence behavior without re-running a full live deep-loop session",
     "created_at": "2026-06-28T20:20:49.706Z",
-    "last_save_at": "2026-07-04T18:02:19.133Z",
+    "last_save_at": "2026-07-09T10:02:47.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d60466fb531f515c1d828a7537d94eb324b712cb6ae7bc9d1dd0e49e6afb7518",
+    "source_fingerprint": "sha256:1556d5ad455b14a0c58fe08102b9a64073b71c576e1330d3c870d455febfef2e",
     "source_doc_hashes": {
-      "spec.md": "8d2a888722d6f99bc5343a7d7340117c8581bce34dcdea17b87702b1d57aa51d",
-      "plan.md": "fb1c0698480d61a9350e3bea4a68f41f5ac978c6afda39c762eda8609d28d405",
-      "tasks.md": "aaa48b3b729d7108d9e2cbcaaca8793d002cc8fa445eb2e3d56fa1505d285a50",
-      "implementation-summary.md": "263debb223ceccb5a8ab89cf695c0b65ea0b48da354cf845429fcfb07321873c"
+      "spec.md": "aa603147cc0f14a23007a3121fad1794055a3cbb5fa89367f710548f66c6b449",
+      "plan.md": "7c57fae70e1691f73463907faef78b6a3ce128c980461e0c83bd472d39ce1d19",
+      "tasks.md": "2a1c11e07d0b71e051fc0142f35d7ad1dfa7163bf7febdf6073d0e77347af37b",
+      "implementation-summary.md": "bb36417b867e5044b038e4b5d3193920bfd46102eec612fddadcef5316975b1c"
     },
     "last_active_child_id": null,
     "last_active_at": null

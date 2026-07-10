@@ -1,6 +1,6 @@
 {
   "specFolder": "system-code-graph/z_archive/017-opencode-graph-plugin/004-cross-runtime-startup-surfacing-parity",
-  "description": "OpenCode now injects a structured startup digest and session-context surfacing through the packet-030 plugin layer, but the other repo-managed CLI run",
+  "description": "OpenCode now injects a structured startup digest and session-context surfacing through the packet-030 plugin layer, but the other repo-managed CLI",
   "keywords": [
     "opencode",
     "now",
@@ -14,10 +14,9 @@
     "plugin",
     "layer",
     "repo-managed",
-    "cli",
-    "run"
+    "cli"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.802Z",
+  "lastUpdated": "2026-07-09T10:02:47.386Z",
   "specId": "004",
   "folderSlug": "cross-runtime-startup-surfacing-parity",
   "parentChain": [

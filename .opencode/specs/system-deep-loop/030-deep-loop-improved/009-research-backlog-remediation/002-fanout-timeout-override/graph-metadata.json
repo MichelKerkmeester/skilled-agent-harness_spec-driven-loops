@@ -35,8 +35,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       ".opencode/commands/deep/research.md",
       ".opencode/commands/deep/review.md",
       "spec.md",
@@ -45,18 +43,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "review.md",
         "kind": "doc",
@@ -188,11 +174,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`fanout-run.cjs:884-888` `computeLineageTimeoutMs(lineage)` computes `Math.min(iters  timeoutSeconds  2  1000, 4  60  60  1000)` — the `Math.min` saturates to a hardcoded 4-hour ceiling for any lineage whose `iterations  timeoutSeconds  2` exceeds it, with no CLI flag, env var, or config field to raise it",
     "created_at": "2026-07-01T07:15:38.350Z",
-    "last_save_at": "2026-07-04T18:02:23.604Z",
+    "last_save_at": "2026-07-09T10:02:47.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e4986cab7045c9fd3cf68bff698bf6ae396e339a9413a8ee8ebb36a9c7ae5c2",
+    "source_fingerprint": "sha256:6813afba439033fd12ab4cdc87c383b6b0fe46e96f157113c331471b7820a3b6",
     "source_doc_hashes": {
-      "spec.md": "e1bfdc4fd4d98a835a70564fd84594d7dcf3f8a892c066c1760d95df1e93084f",
-      "plan.md": "7c483f3e2e7c6c029f46b6ddc18fb2d6132734bf0dedcef823dbdc52f15f5e14",
-      "tasks.md": "836ef3c77fef337aa3438082d7a389106248d5e480361b725de97a3d91360173",
-      "implementation-summary.md": "c7514603076f23ac3304374c98bb0f5353b2ba1bb770ac66d8c7e4222ef325b2"
+      "spec.md": "7834e9884dd74f8c24959aa03e75812a2c87fd54c1e3d4e73248d560067758f5",
+      "plan.md": "cda65aa404b228eb7483b16321f39150caa338f6b3c48f3632a458527123e821",
+      "tasks.md": "3b46a2334057d8be157286b3d036a5dfaa09825266a16ad4626e9052cd5cf1a2",
+      "implementation-summary.md": "e2ddbd872fa5c3c7e828c55b8eeb8b7f8fc0833042635642cb296bbe0f9d70be"
     },
     "last_active_child_id": null,
     "last_active_at": null

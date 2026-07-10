@@ -48,14 +48,10 @@
       "tasks.md",
       ".opencode/specs/system-deep-loop/029-deep-loop-workflows/007-governance-consolidation/checklist.md",
       ".opencode/specs/system-deep-loop/029-deep-loop-workflows/007-governance-consolidation/implementation-summary.md",
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
-      ".opencode/skills/deep-loop-runtime/README.md",
       ".opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
-      ".opencode/skills/deep-loop-workflows/SKILL.md",
-      ".opencode/skills/deep-loop-workflows/graph-metadata.json",
       "implementation-summary.md"
     ],
     "entities": [
@@ -96,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
@@ -111,12 +101,6 @@
         "name": "quick_reference.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -202,11 +186,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cross-repo documentation is written around a five-skill model: the root README enumerates five loop skills (including a brittle slash-enumeration and per-skill README links that will 404), .opencode/skills/README.md counts \"23 skills\" and \"deep- (6)\", CLAUDE.md and AGENTS.md are hand-mirrored at identical line numbers, the deep-loop-runtime README is built around a five-consumer model, and constitutional/deep-skill-workflow-required.md enumerates all five names",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-07-02T05:31:05.050Z",
+    "last_save_at": "2026-07-09T10:02:47.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75993257b1394e0a91a88872dc99d474d9f0505157b96bb81f31e723d6308054",
+    "source_fingerprint": "sha256:d6e2f6566326483d5c8555e6d1f6967949bffbc5f851f1a22336ca684ef777b0",
     "source_doc_hashes": {
-      "spec.md": "04168e97e4125e9b4a5175f24c6e02c3ee3b5ec84794e0ea8890f1a1fe2e1b3f",
-      "plan.md": "66c23d3354fa137708c109c9662ea225c44aeae21da699fede96d613805128e7",
-      "tasks.md": "bc621bfafd7080d3258e60eb304581928d80c228a483a7ce94168d3fd89914dd",
-      "checklist.md": "ca1dfce333734a0bb9c7a461bee76c609a8fa748ae543fe54192c659b7b040c7",
-      "implementation-summary.md": "770c6c5facd765101910cfbc5559f8fa9acfc06f40c2819aae4942aa42becbfc"
+      "spec.md": "cdc02e16845ebe901348893d5e0fe9198dfbd82a769d27e0f3cf6d750c65259f",
+      "plan.md": "250b3e38433031d4ff6bc3f6350e63011993f00b2565a57259e6262ca213f727",
+      "tasks.md": "d39c9ddf277f6b048195ae6c976e81c19ed27962a250711619b8d3efa2d1d04a",
+      "checklist.md": "2bc3551b15150f2b192aadac65defacf1605842ef04fcccac344113c67f362f7",
+      "implementation-summary.md": "eaf396fab7f04a0d5ae06c8ca073d3f37cde958456383c2b3ef85dd02642dc6b"
     },
     "last_active_child_id": null,
     "last_active_at": null

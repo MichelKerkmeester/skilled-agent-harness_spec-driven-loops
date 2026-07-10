@@ -35,18 +35,30 @@
       "mitigation",
       "plan",
       "phase",
-      "006",
-      "tasks"
+      "tasks",
+      "status"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "plan.md",
-      "tasks.md",
+      "spec.md",
       "implementation-summary.md",
-      "spec.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -57,18 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo dispatch at `--variant high`, `kimi-for-coding/k2p7` over-explores (many sequential file reads) and exceeds a 600s timeout WITHOUT emitting — and because opencode flushes only the final assistant message to stdout, the killed run yields 0 bytes (looks like a hang though the model was working)",
     "created_at": "2026-06-17T11:00:00Z",
-    "last_save_at": "2026-06-23T03:49:48.780Z",
+    "last_save_at": "2026-07-09T10:02:46.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8b991f2173877be1b4f02b34f837804709469e28a3b364ddf4eacc7648e92f0",
+    "source_fingerprint": "sha256:2f1f2a97468027b2d24a3c478595958679d7b79fc377c4133b30a6b4896e3318",
     "source_doc_hashes": {
-      "spec.md": "911cf57fb94200fcabbcef9641bf9513e6e9a78a02e2ef48b7969d7c2a83f662",
-      "plan.md": "1097ddfd5b50a9d5efab9ea7b530f3757eb5579d962fbc788dee21436ab1f41f",
-      "tasks.md": "09762731c8b7005ec69196d3018f4f07d53350318d02cb2cccab08195ef1ce00",
-      "implementation-summary.md": "91a2bc736b113a8b8f48b681462cbc4eb1e96b42bbbe8c17d07f9918bca36411"
+      "spec.md": "6e607c122bb0a1822910891a5b3e29ca67ed2ccf93e42d9363128bf55f79bda5",
+      "plan.md": "d7143a2cfdabc55873ab6e450b3433a02729ed6ce175a91653c4f79d3adc6f8c",
+      "tasks.md": "3e589dd5de91e83d89f40c032e903ab616e5b15c60a1a953d9a6523bc4021ca6",
+      "implementation-summary.md": "46681b0d45122998e261750ad4700491dfca981656e5279930b91b0cdf4a3426"
     },
     "last_active_child_id": null,
     "last_active_at": null

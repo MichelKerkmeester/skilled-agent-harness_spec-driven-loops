@@ -30,12 +30,12 @@
       "scenarios",
       "skill",
       "advisor",
-      "028",
       "phase",
-      "002",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "verdicts",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The native MCP tool scenarios NC-001..009 exercise `advisorrecommend`, `advisorstatus`, `advisorvalidate`, `advisorrebuild`, `skillgraphstatus/query/validate`",
     "created_at": "2026-05-26T20:10:25.890Z",
-    "last_save_at": "2026-07-02T05:31:11.356Z",
+    "last_save_at": "2026-07-09T10:02:50.132Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9150af00522b8402fe7639665e5c4e4785fbf306621db08388a7abde748bd167",
+    "source_fingerprint": "sha256:92c29e7752614b436c90bb6cd0b0b662ad8ab5c26675943b0897c9121163b25f",
     "source_doc_hashes": {
-      "spec.md": "29af26cfe2048fabde97a160092eee2ef1110bf5271a71e31cf1876e4bb8bd97",
-      "plan.md": "042e844a0262c645892ff909b95db189dec568d3f2a192872532f22c1f4ae24e",
-      "tasks.md": "3e23e0b5e44c386eb70a29ea0066ba0289f0952f2a6d6f42d196f69a129eaa2e",
-      "checklist.md": "01d2e9ac9a4fc8d2b3c78316e143b5ea8fb7266c5efd1e8e71560d5774a0a628",
-      "implementation-summary.md": "a3dc093e375f30aaa5f6a20fb6381a55017dc2ab25b7379b18502a8618396b2b"
+      "spec.md": "49c0178509f6bda9bf5c8ab29ff18df362520ff8b33f413ac0faf32574d4047a",
+      "plan.md": "f1e682e4cccbfd5b8ee6b737e54a99307df1027b41703c0e6100238a6379f869",
+      "tasks.md": "1328377f2193174409d9d8cc078a413d8203e64f897cc1114943a783324345d1",
+      "checklist.md": "fff39b5541889b09212229d3277be97c528682bea8c530197ab994e7f51ce62a",
+      "implementation-summary.md": "24bf9367a383789c852bd9ad52ca9e8962ba28e0e86453be6e013c56919819ff"
     },
     "last_active_child_id": null,
     "last_active_at": null

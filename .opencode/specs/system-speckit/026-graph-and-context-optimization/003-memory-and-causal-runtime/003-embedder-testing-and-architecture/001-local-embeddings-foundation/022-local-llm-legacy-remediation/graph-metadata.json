@@ -30,15 +30,15 @@
       "local-llm",
       "legacy",
       "remediation",
-      "022",
       "post-021",
-      "fixes",
-      "014",
-      "017",
       "narrative",
       "correction",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "substrate",
+      "repair",
+      "complete"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -47,7 +47,6 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
-      ".codex/config.toml",
       ".claude/mcp.json",
       "spec.md",
       ".opencode/install_guides/README.md",
@@ -62,7 +61,8 @@
       ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
       ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
       ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts"
+      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js"
     ],
     "entities": [
       {
@@ -87,12 +87,6 @@
         "name": "response-builder.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -168,6 +162,12 @@
         "source": "derived"
       },
       {
+        "name": "test-utils.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31)",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-07-02T05:31:11.608Z",
+    "last_save_at": "2026-07-09T10:02:52.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [

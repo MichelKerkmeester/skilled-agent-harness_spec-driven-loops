@@ -21,7 +21,6 @@
       "implementation summary"
     ],
     "key_topics": [
-      "fix",
       "iteration",
       "quality",
       "class",
@@ -32,7 +31,8 @@
       "detection",
       "completeness",
       "checklist",
-      "fix-010-v2"
+      "fix-010-v2",
+      "planning"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Prior fix cycles closed cited sites but missed sibling producers, downstream consumers, matrix rows, or algorithm invariants",
     "created_at": "2026-05-09T19:30:52.609Z",
-    "last_save_at": "2026-07-07T16:18:33.806Z",
+    "last_save_at": "2026-07-09T10:02:46.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

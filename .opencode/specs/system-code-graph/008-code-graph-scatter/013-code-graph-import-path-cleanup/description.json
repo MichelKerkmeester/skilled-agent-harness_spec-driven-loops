@@ -4,7 +4,6 @@
   "description": "The `mcpserver` build emitted stale shared-package files under `.opencode/skills/system-spec-kit/mcpserver/dist/system-spec-kit/shared/`",
   "keywords": [
     "mcpserver",
-    "build",
     "emitted",
     "stale",
     "shared-package",
@@ -15,7 +14,7 @@
     "dist",
     "shared"
   ],
-  "lastUpdated": "2026-07-07T16:10:55.581Z",
+  "lastUpdated": "2026-07-09T10:02:47.241Z",
   "specId": "013",
   "folderSlug": "code-graph-import-path-cleanup",
   "parentChain": [

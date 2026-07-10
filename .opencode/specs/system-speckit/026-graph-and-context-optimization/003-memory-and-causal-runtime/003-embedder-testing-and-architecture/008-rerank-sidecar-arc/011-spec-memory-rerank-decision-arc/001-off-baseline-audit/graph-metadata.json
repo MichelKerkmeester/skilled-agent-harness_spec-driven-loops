@@ -21,8 +21,6 @@
       "011/001 summary"
     ],
     "key_topics": [
-      "011",
-      "001",
       "baseline",
       "audit",
       "weight",
@@ -32,7 +30,9 @@
       "spec-memory",
       "plan",
       "tasks",
-      "summary"
+      "summary",
+      "mk-spec-memory",
+      "reports"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`mk-spec-memory` reports `requestQuality: 'weak'` on every `memorysearch` because the local reranker provider slot in `cross-encoder.ts:54` has no sidecar to talk to",
     "created_at": "2026-05-23T11:55:15.627Z",
-    "last_save_at": "2026-07-02T05:31:12.168Z",
+    "last_save_at": "2026-07-09T10:02:53.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

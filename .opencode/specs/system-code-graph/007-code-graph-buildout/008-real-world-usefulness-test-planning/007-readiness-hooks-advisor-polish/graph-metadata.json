@@ -27,10 +27,6 @@
       "cluster a to e verification"
     ],
     "key_topics": [
-      "026",
-      "007",
-      "012",
-      "006",
       "cluster",
       "code",
       "graph",
@@ -38,7 +34,11 @@
       "hooks",
       "polish",
       "f-007",
-      "f-018"
+      "f-018",
+      "f-019",
+      "f-014",
+      "f-015",
+      "f-016"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The Phase 012 deep research identified 12 remaining P1 findings after the P0 remediation packets",
     "created_at": "2026-05-18T08:15:53.451Z",
-    "last_save_at": "2026-07-07T16:18:33.856Z",
+    "last_save_at": "2026-07-09T10:02:47.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

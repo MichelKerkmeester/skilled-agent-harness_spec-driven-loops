@@ -40,7 +40,6 @@
       "remove",
       "sk-code-full-stack",
       "sk-code-web",
-      "055",
       "sk-code-merger",
       "cleanup",
       "plan",
@@ -48,7 +47,8 @@
       "checklist",
       "implementation",
       "summary",
-      "deprecated"
+      "deprecated",
+      "removed"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -220,7 +220,7 @@
     ],
     "causal_summary": "The skills `sk-code-full-stack` and `sk-code-web` were soft-deprecated on 2026-04-30 by packet `054-sk-code-merger`, which created the new umbrella skill `sk-code` and gated the deprecated pair to advisor weight 0",
     "created_at": "2026-04-30T10:00:00Z",
-    "last_save_at": "2026-07-07T16:45:58.019Z",
+    "last_save_at": "2026-07-09T10:02:44.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -230,13 +230,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d837cf1ce31a6f664e5f3bdd4b0afebc221f5d2d5f05b99c88ed267f6b286fe4",
+    "source_fingerprint": "sha256:c83460f5294fd6dce956459435783e7e450bc91aeb821cff5d5138114647bfa3",
     "source_doc_hashes": {
-      "spec.md": "c8a1d7aa2d0ed853868609a797ecd88c1efee7dc1a0dd803d5b5777ae2da2d21",
-      "plan.md": "555558c7932bf4ad0cd3fb837ace16a251bc528f9377720d373bfd662bfbbf3f",
-      "tasks.md": "c789ceaea26cc54165f72673a25b046ef86ae1f3f8759f133547a055e4d5660f",
-      "checklist.md": "c0aace4d7bdae589b4fa9ac9d7272cf9aa81f3edb57b2b0b59a5ee9ef01fa024",
-      "implementation-summary.md": "58b1c278a1dd8230bde9bada2c3588eafce9ea1f8f9a55df2531d69bbd5f7539"
+      "spec.md": "f35b775e7cf4e7cbbe56e298ffb7542e3063d3af6b216c95d48db28d5ce84fb3",
+      "plan.md": "f42deaff4f6ceb6d032f694074b3d5da10bb512bac934b3fcf0e8f1939710869",
+      "tasks.md": "603fcb4744ee8bc8a75329410982e5c5aeecc8769a81a635ee64f077aa353a05",
+      "checklist.md": "da43b786b7dcebdbb66811123ee3e3fe05830da64810af99b4813146824f3032",
+      "implementation-summary.md": "0f288dcd9592b79a5be6687d49730b15f245bf094ae1a1f54a27a0c592662423"
     },
     "last_active_child_id": null,
     "last_active_at": null

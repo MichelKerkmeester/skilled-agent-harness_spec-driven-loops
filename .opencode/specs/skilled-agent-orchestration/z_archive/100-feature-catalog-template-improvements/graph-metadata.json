@@ -32,35 +32,21 @@
       "catalog",
       "rework",
       "retroactive",
-      "update",
       "standards",
       "trigger",
       "phrases",
       "snippet",
       "subheadings",
       "cross-analysis",
-      "370"
+      "files",
+      "across"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "feature_catalog_snippet_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -106,15 +92,15 @@
     ],
     "causal_summary": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 categories; system-code-graph: 15 files, 7 categories) reveals pervasive drift from the desired standard:",
     "created_at": "2026-05-31T00:00:00.000Z",
-    "last_save_at": "2026-06-23T03:49:51.428Z",
+    "last_save_at": "2026-07-09T10:02:46.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bd44f5f1a19558597262123177bf7db385aaa627def7fe40e9b8a73581e8eee2",
+    "source_fingerprint": "sha256:de7682400400f104897d7fa6b92c271bfcbc99bf4938c465033b878cd9fe4296",
     "source_doc_hashes": {
-      "spec.md": "87be33278730ecef6e0d6da01708fb7d24c9d66dc0cce1f7620ffbc70b6df894"
+      "spec.md": "080e7ac0c6b8baf41bf107fd730b57d8d33312ce0af34031716becc056748e2c"
     },
     "last_active_child_id": "skilled-agent-orchestration/z_archive/100-feature-catalog-template-improvements/001-template-improvements",
     "last_active_at": null

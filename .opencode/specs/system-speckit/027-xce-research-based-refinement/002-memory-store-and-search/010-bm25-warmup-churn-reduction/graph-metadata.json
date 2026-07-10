@@ -36,7 +36,7 @@
       "name"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "On a realistic corpus the packed BM25 warmup spikes process RSS to ~687MB (4.6x over the 150MB budget) even though retained heap after GC is only ~105MB",
     "created_at": "2026-06-11T05:11:29Z",
-    "last_save_at": "2026-07-02T05:31:13.697Z",
+    "last_save_at": "2026-07-09T10:02:55.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

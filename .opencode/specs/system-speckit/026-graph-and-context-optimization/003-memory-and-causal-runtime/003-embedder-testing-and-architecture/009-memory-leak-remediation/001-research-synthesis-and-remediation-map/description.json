@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map",
   "description": "The two source packets identify overlapping process, sidecar, daemon, lock, and host-memory hazards",
   "keywords": [
     "two",
@@ -15,11 +15,11 @@
     "host-memory",
     "hazards"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.076Z",
+  "lastUpdated": "2026-07-09T10:02:53.462Z",
   "specId": "001",
   "folderSlug": "research-synthesis-and-remediation-map",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

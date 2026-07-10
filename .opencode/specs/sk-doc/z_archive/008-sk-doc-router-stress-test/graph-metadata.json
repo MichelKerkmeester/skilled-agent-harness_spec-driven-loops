@@ -18,21 +18,21 @@
   "derived": {
     "trigger_phrases": [
       "071-sk-doc-router-stress-test",
-      "phase parent"
+      "sk-doc router stress test phase parent"
     ],
     "key_topics": [
       "071-sk-doc-router-stress-test",
+      "sk-doc",
+      "router",
+      "stress",
+      "test",
       "phase",
       "parent",
-      "sk-doc",
       "smart",
-      "router",
       "skill",
       "intentmodel",
       "resourcemap",
-      "scoreintents",
-      "selectintents",
-      "manualtestingplaybook"
+      "scoreintents"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -92,15 +92,15 @@
     ],
     "causal_summary": "sk-doc has a smart router (§2 of SKILL.md) with INTENTMODEL, RESOURCEMAP, scoreintents(), selectintents() — but NO manualtestingplaybook to verify it works correctly across model interpretations",
     "created_at": "2026-05-05T10:27:19Z",
-    "last_save_at": "2026-07-07T17:13:13.903Z",
+    "last_save_at": "2026-07-09T10:02:44.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:df068c5c8bd4ab887dbdb7265c3e2519807b264c149c61ccc9684c45c5ae9b18",
+    "source_fingerprint": "sha256:1657dfeb73612707236475f5847cdfd389263de89e540bb06ebfef1a553b0691",
     "source_doc_hashes": {
-      "spec.md": "e4a1b5a9e786e95a43e6beb8c8025caa6002b5e37d33d7ce43cbb70659364d0e"
+      "spec.md": "3a89efa67b71736c766a867f2762b0df5ca6bae9a426a81b7334c5b53a7e80dd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,9 +28,9 @@
       "description",
       "json",
       "truncation",
-      "fix",
       "plan",
-      "tasks"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "medium",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`review/lineages/glm/deep-review-findings-registry.json` has 9 findings whose `disposition` field still reads `\"active\"`, even though `008-loop-systems-remediation/007-fan-out-hardening` (shipped, 549-test-suite-verified) fixed 6 of the underlying P1s plus the P2 — the registry JSON was never updated to reflect the fix, only the prose implementation-summary was (`research/researcharchive/20260701T071133Z-gen1/research.md` §4.2, F-004/G-002)",
     "created_at": "2026-07-01T07:23:17.795Z",
-    "last_save_at": "2026-07-04T18:02:25.231Z",
+    "last_save_at": "2026-07-09T10:02:47.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3b52c3a60265be43b371d32438790e227a92135ca2f652cdf43bdfa28a239ce",
+    "source_fingerprint": "sha256:30a9012fb3ada55a783ba8afe6ccdbb7c9504e2ed9bc0eed2e5b92a51d15a879",
     "source_doc_hashes": {
-      "spec.md": "b1ec476f9d3b17ec928c8f69609bdebed289385ae825728d830900993bc22385",
-      "plan.md": "9d08a22b31a8441a0546c2a37b15f93c10540744f22326eeca27cf5651856757",
-      "tasks.md": "9111ed9433723f6d346eb5007f6a5fe6d2eaf5adaed4b867e48a4aa71e330a9d",
-      "implementation-summary.md": "80624a7b4f9d57cec68a825ccb278bd5800687267dda54582a8bf4a625b52655"
+      "spec.md": "c8a1a66e87f78ea2e9b710adac8b004f88bce0d0290c4032e247c07d7a139002",
+      "plan.md": "a141d880760b13aac87fc5668885e1af24abb6fe7e3511257443babe19388d9a",
+      "tasks.md": "f7449328fb577ecf354d2082ec437f54c497070a21388829b264d816b0b32986",
+      "implementation-summary.md": "5d663f3be6354435be1649b37044fe3f7087fd614951daea8eafc2f1374cde2a"
     },
     "last_active_child_id": null,
     "last_active_at": null

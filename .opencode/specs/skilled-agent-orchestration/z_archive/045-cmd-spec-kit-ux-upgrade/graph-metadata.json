@@ -27,7 +27,6 @@
       "spar-kit synthesis verification"
     ],
     "key_topics": [
-      "057",
       "spec",
       "kit",
       "spar-kit",
@@ -38,11 +37,14 @@
       "external",
       "research",
       "plan",
-      "synthesis"
+      "synthesis",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
       "research/research.md",
       "research/resource-map.md",
       "research/deep-research-state.jsonl",
@@ -50,9 +52,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
       "skilled-agent-orchestration/graph-metadata.json",
-      ".opencode/skills/system-spec-kit/SKILL.md",
       "scripts/dist/memory/generate-context.js",
       "research/deep-research-strategy.md",
       "research/findings-registry.json",
@@ -61,6 +61,18 @@
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -98,21 +110,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "graph-metadata.json",
         "kind": "config",
         "path": "skilled-agent-orchestration/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Our internal `system-spec-kit` surface area has accumulated UX friction over 56 packets of evolution: mode/flag overlap (`:auto` vs `:confirm` vs `:with-phases` vs `:with-research`), 99 templates with core/level naming drift (e.g",
     "created_at": "2026-05-01T07:30:00Z",
-    "last_save_at": "2026-06-23T03:49:49.378Z",
+    "last_save_at": "2026-07-09T10:02:45.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:66d5b8f7a23cd5e3f92acc3a6b4a2faba7ecf807a78e4fe4cee47d2b72c5c8c3",
+    "source_fingerprint": "sha256:19e59133b7973426b29e86c4b9aa5ba7f843e2b169bbc59d0e177e5c710650ab",
     "source_doc_hashes": {
-      "spec.md": "1dc605898cd637a53ae4c07987b134a2ba545e7c5db88bcf4f2bbca1ad1a2c5c",
-      "plan.md": "3a6d5f87e24e7cd2c99798265b2f68925ba8a555e83c840541f004ed139c7ffb",
-      "tasks.md": "d8e72d10b42ce3e494f34777d20e1f70decd2149ff945edeb157db188d9bf19f",
-      "checklist.md": "4030cb90e5a37daea38c2da7823807f32b8464c082f50920f849af2ee6f17a8c",
-      "implementation-summary.md": "dd30b01b86a368a844fa5f6e8fba76c7a3daf80607182b2ab4346b067a869d92",
-      "research/research.md": "b7857e81b662ccd8fa44dcf208088ae30a3caa4ac3b6f95a0addf02491c35b5c"
+      "spec.md": "569a73fdcc46c1570b9f584c829569c5ab9088d6cde0703c5a11446385161be3",
+      "plan.md": "7471d1dae70a45c999696fe0c1436e7ddafd19b8dfcac8d9c6547a616377bcd0",
+      "tasks.md": "b3c8fb8acbc330ff387eb40c16d78fe77e39f4d4de3a9d8750a9cd827c717ff3",
+      "checklist.md": "04bb4f36666b1819432ba4d8a69d854359bbcad8d71089037f701b27b498aea7",
+      "implementation-summary.md": "d952db9389b6b416f9b092632484de75507f72222e9d8648d1611b3080398aac",
+      "research/research.md": "8f2fba7f965c9594aa2931cb5b5a13dd3c450ce9cdaf6b1d48ed921a913f7c87"
     },
     "last_active_child_id": null,
     "last_active_at": null

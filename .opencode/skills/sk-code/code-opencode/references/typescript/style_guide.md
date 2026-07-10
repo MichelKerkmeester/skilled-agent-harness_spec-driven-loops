@@ -8,7 +8,7 @@ trigger_phrases:
   - "typescript strict mode style"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.12
+version: 1.0.0.17
 ---
 
 # TypeScript Style Guide
@@ -66,8 +66,9 @@ ES2022 ESM, and the root CommonJS setting is only a fallback default.
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import path from 'path';
-import type { SearchOptions } from '../types';
+import path from 'node:path';
+
+import type { SearchOptions } from '../types.js';
 ```
 
 ---
@@ -136,13 +137,13 @@ Both formats serve the same purpose: visual separation of major code sections wi
 | Order | Section Name      | Purpose                                |
 |-------|-------------------|----------------------------------------|
 | 1     | IMPORTS           | Module dependencies (with type imports)|
-| 2     | TYPE DEFINITIONS  | Interfaces, types, enums               |
+| 2     | TYPE DEFINITIONS  | Interfaces, types, const-derived unions|
 | 3     | CONSTANTS         | Configuration values, magic numbers    |
 | 4     | HELPERS           | Internal utility functions              |
 | 5     | CORE LOGIC        | Main implementation                    |
 | 6     | EXPORTS           | Module public interface                |
 
-**Key difference from JavaScript**: TypeScript files include a TYPE DEFINITIONS section (section 2) between imports and constants. This is where all interfaces, type aliases, and enums are defined.
+**Key difference from JavaScript**: TypeScript files include a TYPE DEFINITIONS section (section 2) between imports and constants. This is where interfaces, type aliases, and const-derived unions are defined.
 
 Number sections from the first divider actually present in the file. File headers and module banners do not count, so a file whose first numbered divider is `TYPE DEFINITIONS` should label that divider `1`, not `2`.
 
@@ -164,11 +165,13 @@ interface SearchConfig {
 type MemoryState = 'active' | 'archived' | 'pending';
 
 /** Error codes for memory operations. */
-enum ErrorCode {
-  NotFound = 'NOT_FOUND',
-  Timeout = 'TIMEOUT',
-  ConnectionFailed = 'CONNECTION_FAILED',
-}
+const ErrorCodes = {
+  NOT_FOUND: 'NOT_FOUND',
+  TIMEOUT: 'TIMEOUT',
+  CONNECTION_FAILED: 'CONNECTION_FAILED',
+} as const;
+
+type ErrorCodeKey = keyof typeof ErrorCodes;
 ```
 
 ---
@@ -212,28 +215,31 @@ type searchResult = { };        // camelCase
 type search_result = { };       // snake_case
 ```
 
-### Enum Names and Members
+### Const Object Names and Members
 
-**Style**: `PascalCase` name, `PascalCase` members
+**Style**: Prefer `as const` objects over `enum`, with `PascalCase` object names and `UPPER_SNAKE_CASE` keys for code maps.
 
 ```typescript
 // CORRECT
-enum ErrorCode {
-  NotFound = 'NOT_FOUND',
-  Timeout = 'TIMEOUT',
-  ConnectionFailed = 'CONNECTION_FAILED',
-}
+export const ErrorCodes = {
+  NOT_FOUND: 'NOT_FOUND',
+  TIMEOUT: 'TIMEOUT',
+  CONNECTION_FAILED: 'CONNECTION_FAILED',
+} as const;
 
-enum MemoryTier {
-  Constitutional = 'constitutional',
-  Working = 'working',
-  LongTerm = 'long_term',
-}
+export type ErrorCodeKey = keyof typeof ErrorCodes;
+
+export const MemoryTier = {
+  CONSTITUTIONAL: 'constitutional',
+  WORKING: 'working',
+  LONG_TERM: 'long_term',
+} as const;
+
+export type MemoryTierKey = keyof typeof MemoryTier;
 
 // INCORRECT
-enum errorCode { }              // camelCase name
-enum ErrorCode { notFound }     // camelCase member
-enum ERROR_CODE { }             // UPPER_SNAKE name
+const errorCodes = { NOT_FOUND: 'NOT_FOUND' } as const;  // camelCase object name
+const ErrorCodes = { notFound: 'NOT_FOUND' } as const;   // camelCase key
 ```
 
 ### Generic Type Parameters
@@ -358,8 +364,8 @@ function fromRow(row: MemoryRow): MemoryRecord {
 | Classes           | `PascalCase`       | `MemoryError`               |
 | Interfaces        | `PascalCase`       | `SearchResult`              |
 | Type aliases      | `PascalCase`       | `MemoryState`               |
-| Enums             | `PascalCase`       | `ErrorCode`                 |
-| Enum members      | `PascalCase`       | `ErrorCode.NotFound`        |
+| Const maps        | `PascalCase`       | `ErrorCodes`                |
+| Const map keys    | `UPPER_SNAKE_CASE` | `ErrorCodes.NOT_FOUND`      |
 | Generics          | `T`-prefix         | `<T>`, `<TResult>`          |
 | Local variables   | `camelCase`        | `searchResults`             |
 | Module variables  | `camelCase`        | `dbConnection`              |
@@ -499,36 +505,38 @@ TypeScript imports follow a four-group ordering with blank lines between groups:
 
 ```typescript
 // 1. Node.js built-in modules
-import path from 'path';
-import fs from 'fs';
+import fs from 'node:fs';
+import path from 'node:path';
 
 // 2. Third-party packages
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import Database from 'better-sqlite3';
 
 // 3. Local modules (project code)
-import { loadConfig } from './core/config';
-import { MemoryError } from './errors/core';
-import { validateInputLengths } from './utils/validation';
+import { loadConfig } from './core/config.js';
+import { MemoryError } from './errors/core.js';
+import { validateInputLengths } from './utils/validation.js';
 
-// 4. Type-only imports (separate line, always last)
-import type { SearchOptions, SearchResult } from '../types';
-import type { DatabaseConfig } from './core/config';
+// 4. Type-only imports (grouped together)
+import type { SearchOptions, SearchResult } from '../types.js';
+import type { DatabaseConfig } from './core/config.js';
 ```
+
+Under `module: "nodenext"`, TypeScript source remains `.ts`, but every relative import specifier must use the emitted `.js` extension. Built-in modules use the `node:` protocol prefix.
 
 ### Type-Only Imports
 
-Use `import type` for imports used only in type positions. This ensures they are erased at compile time and do not create runtime dependencies.
+Use `import type` for imports used only in type positions. This ensures they are erased at compile time and do not create runtime dependencies. Group type-only imports together; do not interleave value and type imports from the same module.
 
 ```typescript
 // CORRECT — type-only import (erased at compile time)
-import type { EmbeddingProfile } from '../shared/types';
+import type { EmbeddingProfile } from '../shared/types.js';
 
 // CORRECT — mixed: value import (needed at runtime)
-import { MemoryError } from './errors/core';
+import { MemoryError } from './errors/core.js';
 
 // INCORRECT — importing a type without `import type`
-import { SearchResult } from '../types';  // Only used as a type
+import { SearchResult } from '../types.js';  // Only used as a type
 ```
 
 **Rule**: If an import is ONLY used in type annotations, parameter types, return types, or generic constraints, use `import type`.
@@ -537,13 +545,13 @@ import { SearchResult } from '../types';  // Only used as a type
 
 ```typescript
 // Re-export everything
-export * from './module';
+export * from './module.js';
 
 // Re-export specific items
-export { MemoryError, ErrorCode } from './errors/core';
+export { ErrorCodes, MemoryError } from './errors/core.js';
 
 // Re-export types only
-export type { SearchResult, SearchOptions } from '../types';
+export type { SearchResult, SearchOptions } from '../types.js';
 ```
 
 ---
@@ -619,29 +627,29 @@ During the transitional period where the codebase contains both JavaScript and T
 
 ### TypeScript Importing JavaScript
 
-Use `require()` with a type assertion or `@ts-ignore` when importing untyped `.js` modules:
+Use ESM imports for local modules and keep the emitted `.js` extension in the specifier. For CommonJS-only packages or modules, create a scoped `require` with `createRequire(import.meta.url)`; bare `require(...)` is a runtime `ReferenceError` in ESM even when `tsc` accepts it.
 
 ```typescript
-// Option A — require() with type assertion
-const config = require('./legacy-config') as LegacyConfig;
+// Option A — local JS module through ESM
+import config from './legacy-config.js';
 
-// Option B — @ts-ignore for modules without type declarations
-// @ts-ignore — legacy JS module, no .d.ts available
-const legacyHelper = require('./helper');
+// Option B — CommonJS-only dependency
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const legacyHelper = require('legacy-helper') as LegacyHelper;
 ```
 
-For frequently imported JS modules, prefer declaring module types in a `.d.ts` file:
+For frequently imported JS modules, add a `.d.ts` declaration file co-located with the JS module and sharing its exact basename. A relative `declare module './legacy-config.js' { ... }` block does NOT type an untyped local sibling — it fails with `TS7016 (Could not find a declaration file for module …)`; use plain top-level declarations instead:
 
 ```typescript
-// types/legacy-config.d.ts
-declare module './legacy-config' {
-  export interface LegacyConfig {
-    version: string;
-    features: string[];
-  }
-  const config: LegacyConfig;
-  export default config;
+// legacy-config.d.ts — same directory and exact basename as legacy-config.js
+export interface LegacyConfig {
+  version: string;
+  features: string[];
 }
+declare const config: LegacyConfig;
+export default config;
 ```
 
 ### Dynamic require() with try-catch
@@ -649,6 +657,10 @@ declare module './legacy-config' {
 For optional dependencies (e.g., native modules that may not be installed):
 
 ```typescript
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+
 let sqliteVec: any;
 try {
   // eslint-disable-next-line @typescript-eslint/no-var-requires

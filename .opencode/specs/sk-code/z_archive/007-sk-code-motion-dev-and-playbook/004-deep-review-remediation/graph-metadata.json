@@ -27,7 +27,6 @@
       "packet 069 deep review remediation summary"
     ],
     "key_topics": [
-      "069",
       "deep",
       "review",
       "remediation",
@@ -38,7 +37,8 @@
       "findings",
       "sk-code",
       "phase",
-      "004"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The 7-iteration deep review for Packet 069 ended with a FAIL verdict",
     "created_at": "2026-05-05T12:00:00Z",
-    "last_save_at": "2026-07-07T16:45:58.040Z",
+    "last_save_at": "2026-07-09T10:02:44.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [
@@ -222,13 +222,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b776315bec2161d6673c1f03cb6a7d1e52f987d75938714c5dbd65d5d1466b9b",
+    "source_fingerprint": "sha256:8a1c1de8eb3969770c7799195a3b2b0fba59a4d6e43f6fe257e1685ad016da2a",
     "source_doc_hashes": {
       "spec.md": "1a77c1d445b3a5dbe5d94c794e172c37655547e2d56a9c6360985dfb2ec6e999",
       "plan.md": "7f2347381cb2d6c24804ac6bc6490a0fcf0b502244493e35c52415f2bfb29fe7",
       "tasks.md": "ff947bb4fa896fb7a76b063aeec20ac1bffec50c437f1ba5fdc2fe1af0f7223e",
       "checklist.md": "caca4d6d9fda9dadae8d323d674be3747cac3715eb7442beae72784a3c3e522a",
-      "implementation-summary.md": "378cebcbed553eb70e9982fa39c93dcd8ff9fcbc892e0810b49bd1faecd68f4b"
+      "implementation-summary.md": "f24e360e8e88db946eb50abe9897fb49bae36d3a94cd232fd8a0edf164e44bf5"
     },
     "last_active_child_id": null,
     "last_active_at": null

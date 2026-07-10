@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal",
-  "description": "`verifyintegrity({ autoClean: true })` only auto-cleans orphan vectors and orphan chunks — it never deletes memoryindex rows whose `filepath` is missi",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal",
+  "description": "`verifyintegrity({ autoClean: true })` only auto-cleans orphan vectors and orphan chunks — it never deletes memoryindex rows whose `filepath` is",
   "keywords": [
     "verifyintegrity",
     "autoclean",
@@ -16,14 +16,13 @@
     "memoryindex",
     "rows",
     "whose",
-    "filepath",
-    "missi"
+    "filepath"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.414Z",
+  "lastUpdated": "2026-07-09T10:02:50.992Z",
   "specId": "029",
   "folderSlug": "autoclean-orphan-file-removal",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

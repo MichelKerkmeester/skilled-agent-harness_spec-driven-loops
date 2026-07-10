@@ -4,21 +4,17 @@
   "description": "Packet 005 (`a1a1ca9d3`) refined the 3 system- skill READMEs",
   "keywords": [
     "packet",
-    "005",
     "a1a1ca9d3",
     "refined",
     "system",
     "skill",
     "readmes"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.633Z",
+  "lastUpdated": "2026-07-09T10:02:50.111Z",
   "specId": "006",
   "folderSlug": "skill-readme-refinement-survey",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "005-skill-advisor-documentation"
   ],
   "memorySequence": 0,

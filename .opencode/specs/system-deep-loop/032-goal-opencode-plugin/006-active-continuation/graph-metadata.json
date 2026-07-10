@@ -39,7 +39,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
       ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The goal plugin could verify goals on idle, but it could not continue active work after a `notmet` verifier result",
     "created_at": "2026-06-28T20:44:11Z",
-    "last_save_at": "2026-07-01T17:58:31.269Z",
+    "last_save_at": "2026-07-09T10:02:47.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e1c47cd123341224829db5cbdf0082a87dcec93392290eb1772ed08981eedd2",
+    "source_fingerprint": "sha256:ac65b7ea87858f08e915ecc0b626e80f35cd85ce552949bf9fa32ea6dcee32c0",
     "source_doc_hashes": {
-      "spec.md": "d7aeb96537567494fbec4e85cf3064b1e58c43cecb8667a1831277598085a9ed",
-      "plan.md": "1709e314835965d97a4f8f46a06d5a41c664628040647f1e5d7faa62aaf0ceca",
-      "tasks.md": "64db9a7ca522b584b8c3f42af4ff2e63ddf4303f6b14a0b3f3b32497022fba5c",
-      "implementation-summary.md": "fb67eede185f89976abfcdb5cc9947b0b2174dd68ac44d7d69310a569a12b9cb"
+      "spec.md": "fbc4405ceac3f8d262dece1bc54b8dc2c5ef3cbb41810514b88438951fcaeb7a",
+      "plan.md": "ed4fadea486ae4f09609755b07bcf60c4fe1756f3f4454c02cadd212435477c9",
+      "tasks.md": "0b1d1eb36ed95a80de63153d6e421fc1754d39e33782a45c3b63fa6c50428975",
+      "implementation-summary.md": "104a10338926f8561facbccdc7d3329a09bb8f68d452ef88b596c7fed835e491"
     },
     "last_active_child_id": null,
     "last_active_at": null

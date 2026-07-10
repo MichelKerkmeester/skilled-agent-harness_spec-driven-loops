@@ -32,9 +32,9 @@
       "edge",
       "propagation",
       "007-cross-skill-enhancement-edge-propagation",
-      "026",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "When a new skill ships, system-skill-advisor's daemon + indexer correctly auto-discover the new skill's own outbound edges",
     "created_at": "2026-05-15T15:30:00.000Z",
-    "last_save_at": "2026-07-02T05:31:11.195Z",
+    "last_save_at": "2026-07-09T10:02:49.783Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:acf60765d0c4af75e60b773b71e28cccfda74d9b0c1f8c0fc92cab2f02e743b2",
+    "source_fingerprint": "sha256:fbfd995c235c54884bee48368724b48a04c54d8737bdee38fdb93802a7984645",
     "source_doc_hashes": {
-      "spec.md": "1e29b872c36ebc53a263c09b9b4035129e45b5b0866d15784180cbaebc77e39a",
-      "plan.md": "b6ef32c32ca5c8785f69df45d6028b94eb3692cb851894c622f3724a7f69f7ed",
-      "tasks.md": "23c094a8f8749d5839e77837a4727aacbd003216d052687c12dc71930be6dee6",
-      "checklist.md": "c272e9ea0485ecaf443e34291ce31dd633e64e09f3dcdf26684a905b74159a2c",
-      "implementation-summary.md": "efc47204fa60bff606ab360e3907f80528c997fc0e004465fd126d6aeeed5cba"
+      "spec.md": "1b90e9949468f3b0ad813879a7126a21e8c28abf8400fad9068c483c6e729571",
+      "plan.md": "b61f955332b52fc2eed92a0af608c6a76dc0a5ca45a35688f6019d5ebb4da2e8",
+      "tasks.md": "181ddc0f90d51b5d276d2c151c437019e475e3e1a11e6b0709cb7038f58d8cfd",
+      "checklist.md": "3715110adc882f15dbf84455d9c2ee0b27707dc9719f279d0d68c0218546871d",
+      "implementation-summary.md": "7af597d60e4f29f36699cfae069722626d16d8e988d373eaacc70534c0f58023"
     },
     "last_active_child_id": null,
     "last_active_at": null

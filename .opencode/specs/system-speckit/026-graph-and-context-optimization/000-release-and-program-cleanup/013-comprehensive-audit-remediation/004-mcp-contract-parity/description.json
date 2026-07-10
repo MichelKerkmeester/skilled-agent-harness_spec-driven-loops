@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity",
   "description": "The four contract-parity MCP tools drifted across their public JSON schema, Zod validation schema, the allow-list, the handlers, and the docs",
   "keywords": [
     "four",
@@ -18,11 +18,11 @@
     "handlers",
     "docs"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.046Z",
+  "lastUpdated": "2026-07-09T10:02:51.713Z",
   "specId": "004",
   "folderSlug": "mcp-contract-parity",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "013-comprehensive-audit-remediation"

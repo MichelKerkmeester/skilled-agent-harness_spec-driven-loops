@@ -26,19 +26,16 @@
       "mode",
       "denominator",
       "drag",
-      "fix",
       "checklist",
       "verification",
       "decisions",
       "architecture",
-      "decision"
+      "decision",
+      "record"
     ],
     "importance_tier": "medium",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -48,24 +45,6 @@
       "decision-record.md"
     ],
     "entities": [
-      {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-signals.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-signals.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +170,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`ADR-001: Sliding-Window Convergence Mode For Long Loops` (`.opencode/specs/system-deep-loop/030-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) proved via generation-2 forced-depth research — two real 35-iteration lineages run under `stopPolicy=max-iterations` — that the current full-history convergence-novelty calculation suffers \"denominator drag\" on 30+ iteration loops",
     "created_at": "2026-07-01T19:38:04.144Z",
-    "last_save_at": "2026-07-04T18:02:31.531Z",
+    "last_save_at": "2026-07-09T10:02:47.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cd45cb397c23197f0d09b09b941ab0c01d816caa8de84ed6861af8d8194583b",
+    "source_fingerprint": "sha256:7840c1998c60cd362de765c5e034c2d94456e009cd9d50671ec3f81c81cdf34f",
     "source_doc_hashes": {
-      "spec.md": "34af7ca67156a2bef9c872be74eaf4b0e044894f42dfc7564b161b057142c2f8",
-      "plan.md": "e0135726d48a99e5575b9803451635e8112d5da65ac0951000afb27fee685f67",
-      "tasks.md": "6ecb75b33c756e86f949536774d6cbd17e86ade09f33ead036de897bbcab4fcc",
-      "checklist.md": "774d54b75a334535d9c12169f435250f668fce541f600697bf1f6b28f35e51be",
-      "decision-record.md": "d9573a2d3c4291e367d9b684cfaae7cb5b3a6a1fb45697db2380217d250e8dd9",
-      "implementation-summary.md": "20e20f8b4641ab7296eee1f868b298c200f5d7cde7295500a69615b749c86576"
+      "spec.md": "adfdfc5cd14bddd647871d08c9ff94abc2f266635cb684eab3cc7a9b7c544a5a",
+      "plan.md": "8cc60015effee63960ef5682bd3eb5c60240e655086c90b92d20fad15cc37dfc",
+      "tasks.md": "b8672078c531485cc466058b0954b0c478d6823b0fe512a30d31de2dd1550422",
+      "checklist.md": "3aeeb2e76455ea8454de0c9e2106aeeecb0789717e5d34af3303d22ae212ac16",
+      "decision-record.md": "5c6635c4363e48fc163442228b776dc60b71d22467bd3f1ab95549b4b42cdee5",
+      "implementation-summary.md": "06fc921e4e8b42b470334a6f784bae51736f5660517ab4dc0905fa7da9ac9d79"
     },
     "last_active_child_id": null,
     "last_active_at": null

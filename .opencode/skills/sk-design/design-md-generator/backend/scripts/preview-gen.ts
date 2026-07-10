@@ -9,7 +9,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import type { DesignTokens, ColorToken, TypographyLevel, ShadowToken, RadiusToken } from './types';
-import { ensureWritableFile } from './output-policy';
+import { ensureWritableFile, requireOutputPath } from './output-policy';
 import { safeColor, safeLength, safeLineHeight, safeFontWeight, safeFontFamily, safeShadow } from './render-safety';
 
 // ────────────────────────────────────────────────────────────────
@@ -252,9 +252,13 @@ ${shadows.map((s) => `  <div class="shadow-card" style="box-shadow:${safeShadow(
 // ─── Main Export ─────────────────────────────────────────────────────────────
 
 export function generatePreview(tokensPath: string, outputDir: string, options: { force?: boolean } = {}): void {
+  // Output must live in a spec folder or an approved sandbox, same boundary
+  // enforced by extract.ts/guided-run.ts, so a standalone preview-gen.ts
+  // invocation can't write generated HTML outside the allowlist.
+  const resolvedOutputDir = requireOutputPath(outputDir);
   const tokens: DesignTokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
   const html = generatePreviewHtml(tokens);
-  const outPath = path.join(outputDir, 'preview.html');
+  const outPath = path.join(resolvedOutputDir, 'preview.html');
   ensureWritableFile(outPath, options);
   fs.writeFileSync(outPath, html);
   console.log(`  Generated preview.html`);

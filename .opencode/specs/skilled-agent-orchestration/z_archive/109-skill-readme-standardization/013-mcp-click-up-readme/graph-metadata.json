@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The mcp-click-up README is a tabular reference card with a Version History section and no problem-first entry point",
     "created_at": "2026-06-07T12:50:50Z",
-    "last_save_at": "2026-06-23T03:49:51.893Z",
+    "last_save_at": "2026-07-09T10:02:46.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:405245801f17c4985115b5f71ccb80748c0e38c6c0ec5873d6da34b3c2026413",
+    "source_fingerprint": "sha256:1faa2269b82802d8929adddc6b323b973a9322cda873878ff1c150422f07833e",
     "source_doc_hashes": {
-      "spec.md": "5eb4682299b3ed8b25a1f0af0b00bcce9892c2ecb03e34f691aa2fd31a7648d0",
-      "plan.md": "1f073e5a61fc6d804887ccaf817ff16ec708158568cf4ac9c05d820f7642a162",
-      "tasks.md": "25e865a0bd6e28182f42a82b0ba6aaea33cbd5dbd7b7ea7faa51ff25cafeaa96",
-      "implementation-summary.md": "a149fc10ddb10a440a87cedd4be8f37757bd1327c602c3db0b0eb928c5438abc"
+      "spec.md": "3be48f5031af13256e1e2bac7643a52a0b373079d2da9e798ebdf8a54857a67f",
+      "plan.md": "efdbd71c28fe98a59d7f20548a30cfb38d752acf9df1f6742b2fb3af3fce1b62",
+      "tasks.md": "c6586ad3733a5d217d44547654b1731219763c799d987b3cf66dd146db1456b0",
+      "implementation-summary.md": "826fbec87649ef18961b4b3ffe95fcab4767fa73b16b44a34416b725b02a9457"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -39,28 +39,15 @@
       "regeneration"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/commands/deep/context.md",
-      ".opencode/commands/deep/assets/compiled/deep_context.contract.md",
-      ".opencode/commands/deep/assets/legacy/deep_context.body.md",
-      ".opencode/commands/deep/assets/deep_context_presentation.txt",
-      ".opencode/commands/deep/assets/deep_context_auto.yaml",
-      ".opencode/commands/deep/assets/deep_context_confirm.yaml",
       ".opencode/commands/deep/assets/compiled/manifest.jsonl",
-      ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-loop-workflows/deep-review/SKILL.md",
-      ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md",
-      ".opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -88,75 +75,9 @@
         "source": "derived"
       },
       {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/context.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_context.contract.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/compiled/deep_context.contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_context.body.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/legacy/deep_context.body.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_context_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/deep/assets/deep_context_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "deep_context_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_context_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_context_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_context_confirm.yaml",
-        "source": "derived"
-      },
-      {
         "name": "manifest.jsonl",
         "kind": "file",
         "path": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "deep_review_strategy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "review_mode_contract.yaml",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml",
         "source": "derived"
       },
       {
@@ -169,12 +90,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "compile-command-contracts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/compile-command-contracts.cjs",
         "source": "derived"
       },
       {
@@ -206,11 +121,83 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Baseline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Standalone `deep-context` still has an executable asset chain: presentation text, auto YAML, confirm YAML, a compiled command contract, deep-context packet docs, and a dedicated agent",
     "created_at": "2026-07-04T14:32:35Z",
-    "last_save_at": "2026-07-04T17:51:07.125Z",
+    "last_save_at": "2026-07-09T10:02:48.074Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:530696258a3fb13bbf2b567b8ace246b0d1b02ee97edbc296598575d52da4b1a",
+    "source_fingerprint": "sha256:125a08e268276c34e9c0a57735d028c39a186969620ee43069374070a4b5c297",
     "source_doc_hashes": {
-      "spec.md": "1593a09562631c8bb6fd2570a1c7e229dde6a810cbf2982975b5ef8c634deaeb",
-      "plan.md": "d0666712f89e5eb0f2aac0063e5916cae80545e0f29b9a514f0c07f5ea520fd1",
-      "tasks.md": "2ab7663c4f00d7a4f8f3be17baac5895d82cfbfbda6e2051b7eb77cbb311b8bf",
-      "checklist.md": "61261431243b108fb5629bff35304731b9ec51dcfc760825918cc1fc32f5e49f",
-      "decision-record.md": "881113f9cfd013c4e5fcbf2ac8a43f22080053d2309d35bae899092e373a363e",
-      "implementation-summary.md": "533f177c9327bd195b682339759fae7e6536f4ff33281cbaf659eefa916affc2"
+      "spec.md": "0dbfad50d536b534783c1763596c81506a4013f34d9eaa7a6cd2305f5bacc3d0",
+      "plan.md": "fcd10dfd6a7db9d1e491f749b9a477dfd5a784274c3302a7ee03b44eed191243",
+      "tasks.md": "4cb0c2327798c73ac5376dda4baed2ab520428080ab0ed66950da223a802bb46",
+      "checklist.md": "a8ca306a46918522c7cc53b5e7d0945943f7bb9265f2e9101d00d1793417a6b9",
+      "decision-record.md": "1f8beeb7c2c264367fc0856f1e11c0d11792cbddb1479463cf845965d87ddc4b",
+      "implementation-summary.md": "722f300e5afc2f836773b5b59d0cc6ff7bef6aaa043069fe3d8cf083453f8d07"
     },
     "last_active_child_id": null,
     "last_active_at": null

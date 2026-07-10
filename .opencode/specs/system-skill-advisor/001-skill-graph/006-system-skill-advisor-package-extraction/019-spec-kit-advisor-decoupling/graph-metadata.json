@@ -27,9 +27,6 @@
       "decoupling verification"
     ],
     "key_topics": [
-      "013",
-      "009",
-      "019",
       "spec-kit",
       "advisor",
       "decoupling",
@@ -38,7 +35,10 @@
       "isolation",
       "plan",
       "tasks",
-      "task"
+      "task",
+      "ledger",
+      "019-spec-kit-advisor-decoupling",
+      "checklist"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`system-spec-kit/mcpserver` still contained advisor source imports after advisor extraction",
     "created_at": "2026-05-15T06:55:51.323Z",
-    "last_save_at": "2026-07-02T05:31:11.159Z",
+    "last_save_at": "2026-07-09T10:02:49.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a60aa8d7b0e52148b03e9673bf770df2a9ca6420e8bc9e1399b1056ec325c9f",
+    "source_fingerprint": "sha256:cf8dadc9a3d385dac84c0d17d54699d7cfc5aa24237bfa64dde8935ea65386e9",
     "source_doc_hashes": {
-      "spec.md": "2046993408c47c13897fce20f632e535c60c1636512095c405f6bb00c14c12d8",
-      "plan.md": "a5ae898ed10117157e20517e384e45e7cd3db955b98eb5a85f6756371c866155",
-      "tasks.md": "fac43f7298876ff71b49304cd93f4fc3e5f36928f0c690117bda350e3518051d",
-      "checklist.md": "da81d072bd265648d4e582be38ff0e2cd1b886cbac664892ffebb9d627eaf327",
-      "decision-record.md": "2a670a894ea8c8c626d9d157768648a215f9f90a44b504bac1a00785545db689",
-      "implementation-summary.md": "23ae1cd0f250b1d7f4c929be2420665d128d269628be0d740e071c8996b96736"
+      "spec.md": "68ba19a96f007ac32edf678575d35c6553ee7f71d3483259ffa0baa0ebec9bea",
+      "plan.md": "5c4409f0e7668ac67921fde7876967d1b94e34fbac826f22e3dafdc40fbafa93",
+      "tasks.md": "b25bfd574eb4622f9022b47cd1599ee9d32733bb9148d99f66d8047cc1c70c8f",
+      "checklist.md": "22e4feb058882b910ef66e5ac31e6dfb7a14dbcd8fdc327f314c0112f41fbf05",
+      "decision-record.md": "e037fcfc6040d4e82495926ceb6cb2cc02c8f7125100b68af07f0c936f88d87b",
+      "implementation-summary.md": "2ab18443c7a4cdf5789378c01927754d505915a154e0fd573d4281e86408c632"
     },
     "last_active_child_id": null,
     "last_active_at": null

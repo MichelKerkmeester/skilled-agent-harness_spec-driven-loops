@@ -1,9 +1,9 @@
 {
+  "level": "2",
   "specFolder": "sk-design/009-sk-design-claude-parity/024-manual-playbook-bug-remediation",
   "description": "Phase 023's first-ever full manual execution of sk-design's `manualtestingplaybook` (56 real dispatches through `cli-opencode`, `openai/gpt-5.5-fast",
   "keywords": [
     "phase",
-    "023",
     "first-ever",
     "full",
     "manual",
@@ -17,16 +17,13 @@
     "gpt-5",
     "5-fast"
   ],
-  "lastUpdated": "2026-07-07T19:18:45.427Z",
+  "lastUpdated": "2026-07-09T10:02:44.640Z",
   "specId": "024",
   "folderSlug": "manual-playbook-bug-remediation",
   "parentChain": [
-    ".opencode",
-    "specs",
     "sk-design",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

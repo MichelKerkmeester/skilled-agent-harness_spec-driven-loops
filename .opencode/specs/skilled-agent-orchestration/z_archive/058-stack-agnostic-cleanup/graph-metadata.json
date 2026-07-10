@@ -47,6 +47,7 @@
       "scratch/initial-inventory.md",
       "decision-record.md",
       "tasks.md",
+      "specs/skilled-agent-orchestration/z_archive/058-stack-agnostic-cleanup/scratch/initial-inventory.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -200,7 +201,7 @@
     ],
     "causal_summary": "Non-`sk-code` skills currently include frontend stack names, library names, repo-specific paths, and internal surface tag examples",
     "created_at": "2026-05-05T19:14:28Z",
-    "last_save_at": "2026-06-23T03:49:49.782Z",
+    "last_save_at": "2026-07-09T10:02:45.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6302cbee34b8e9449f0d93bfcd263417e639dc2f3dbbc1c139c7966e24110c73",
+    "source_fingerprint": "sha256:5d45a5463d5375c334382fc674744a9fbb43e3a85b18ce5e9229a2686724aca8",
     "source_doc_hashes": {
-      "spec.md": "a0eadcca7e407cb589128ab1fc4a40ee3f62b8658bc24d9ef1d11e654ab1617b",
-      "plan.md": "03f4ee43fb335a93cfb8c7507f748c773d2e873b3aefab32df2ff6067f367881",
-      "tasks.md": "5869626535653c422fcedb7c323eb6f7253cade6661efefaa66dfc1e751b48d5",
-      "checklist.md": "f561933339007182c7af18a1a69f48a0ae25d8c3bb6d072eb9cd35cb443725a8",
-      "decision-record.md": "ae55c9d36d237b238ecc12ff8c075eb6bfd7282f1ef471502c4c51798d2cec54",
-      "implementation-summary.md": "16790c507e9e4d7ce7c3f521a5ffab7a782f1582897dee1bee6b987fdf385548"
+      "spec.md": "1d705ef6c9ce2d3db114b03d75b65543335f9c2d27057c78cc2e8c7c5b94abce",
+      "plan.md": "9d465c00b904f9a67f6dd8ada30dfedcf5a563528491b925bf17d24fc8b0c1e9",
+      "tasks.md": "0650f179b3e658a4e5f43e7abe7d0c0fef1950447523b871804f67f146891c22",
+      "checklist.md": "e82d8cd9ed09cee3e96a490e126f06ea8d9630dcdc835052edc6d7d3ba072c0e",
+      "decision-record.md": "076a399cd58967d205f13b96ef68c1e24b35062df8d437951015bc1b61c673b8",
+      "implementation-summary.md": "8157df88aefee4192d36cb6847acbf6a25dbf95b0733d4c49f94930f3f2dfef3"
     },
     "last_active_child_id": null,
     "last_active_at": null

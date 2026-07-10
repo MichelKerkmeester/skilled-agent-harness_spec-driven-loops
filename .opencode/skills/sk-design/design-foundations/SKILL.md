@@ -90,13 +90,13 @@ The folders are intentionally split-ready so `color`, `type`, and `layout` could
 | ALWAYS | Any foundations task | `references/corpus_map.md` plus the matching axis reference |
 | ALWAYS | Any design or UI build task | `../shared/context_loading_contract.md` (register-first gate, build bundle, context manifest, the four required proof fields, and hard gates) |
 | CONDITIONAL | Color or theme work | `references/color/oklch_workflow.md`, `references/color/palette_theming.md` |
-| CONDITIONAL | Any UI build with changed foreground/background text or surface pairs | `references/color/oklch_workflow.md` Section 4 plus the mandatory contrast-pair inventory `assets/contrast_pair_inventory.md`, with every ratio computed by `scripts/contrast_check.py` (a calculator, not eyeballed); see `../shared/context_loading_contract.md` |
+| CONDITIONAL | Any UI build with changed foreground/background text or surface pairs | `references/color/oklch_workflow.md` Section 4 plus the mandatory contrast-pair inventory `assets/contrast_pair_inventory.md`; every ratio traces to `scripts/contrast_check.py` (a calculator, not eyeballed), run downstream per §5 Scripts and `../shared/context_loading_contract.md` |
 | CONDITIONAL | Typography work | `references/type/typography_system.md` |
 | CONDITIONAL | Layout or responsive work | `references/layout/layout_responsive.md` |
 | CONDITIONAL | Data visualization, charts, or data tables | `references/data_viz.md` |
 | CONDITIONAL | Calibrating what a complete foundations answer looks like | `references/worked_examples.md` (illustrative dashboard and brand landing examples, never presets) |
 | CONDITIONAL | Device, input, or context adaptation | `references/layout/adaptation_matrix.md` |
-| CONDITIONAL | Scaffolding a new token system or handing tokens to sk-code | `assets/token_starter.md` (fill-in OKLCH ramp, type scale, and spacing scale) and `../shared/sk_code_handoff.md` (final foundations handoff card) |
+| CONDITIONAL | Scaffolding a new token system or handing tokens to sk-code | `assets/token_starter.md` (fill-in OKLCH ramp, type scale, and spacing scale) and `../shared/sk_code_handoff.md` (final foundations handoff card); validated downstream by §5 Scripts' `baseline_rhythm_check.py` and `naming_doc_check.py` |
 | CONDITIONAL | Internal procedure support | `procedures/tweakable_design_controls.md`, `procedures/component_system_inventory.md`, `procedures/hierarchy_rhythm_review.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Cross-axis token-system work | Load all three axis folders plus parent `sk-design/references/design_token_vocabulary.md` |
 
@@ -104,139 +104,7 @@ The private procedure-card selection table in Section 3 is part of this routing 
 
 ### Smart Router Pseudocode
 
-The authoritative routing logic discovers markdown at runtime, guards every path inside the skill folder, scores the static axis as a routing key, loads only files that exist, and returns an `UNKNOWN_FALLBACK` checklist when confidence is too low. See [skill_smart_router.md](../../sk-doc/create-skill/assets/skill/skill_smart_router.md) for the full resilience pattern.
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = ["references/corpus_map.md", "../shared/register.md", "../shared/context_loading_contract.md"]
-
-INTENT_SIGNALS = {
-    "COLOR": {"weight": 4, "keywords": ["oklch", "palette", "color", "contrast", "theme", "dark mode", "gamut", "semantic color", "surface scale"]},
-    "TYPE": {"weight": 4, "keywords": ["typography", "font", "type scale", "measure", "line length", "pairing", "tabular numerals", "type roles"]},
-    "LAYOUT": {"weight": 4, "keywords": ["layout", "spacing", "grid", "responsive", "breakpoint", "density", "container query", "rhythm", "hierarchy"]},
-    "ADAPTATION": {"weight": 4, "keywords": ["adaptation matrix", "context adaptation", "device adaptation", "input method", "orientation", "print", "posture", "constrained surface"]},
-    "DATA_VIZ": {"weight": 4, "keywords": ["data visualization", "chart", "chart type", "axis", "sparkline", "data table", "color-for-data", "encoding", "data-viz"]},
-    "WORKED_EXAMPLES": {"weight": 4, "keywords": ["worked example", "worked examples", "complete foundations answer", "annotated example", "example output", "not a preset", "dashboard example", "brand landing example"]},
-    "TOKENS": {"weight": 4, "keywords": ["token starter", "token scaffold", "design tokens", "token system", "starter scaffold", "handoff", "fill-in scaffold"]},
-}
-
-RESOURCE_MAP = {
-    "COLOR": ["references/corpus_map.md", "references/color/oklch_workflow.md", "references/color/palette_theming.md"],
-    "TYPE": ["references/corpus_map.md", "references/type/typography_system.md"],
-    "LAYOUT": ["references/corpus_map.md", "references/layout/layout_responsive.md"],
-    "ADAPTATION": ["references/corpus_map.md", "references/layout/adaptation_matrix.md"],
-    "DATA_VIZ": ["references/corpus_map.md", "references/data_viz.md"],
-    "WORKED_EXAMPLES": ["references/corpus_map.md", "references/worked_examples.md"],
-    "TOKENS": ["references/corpus_map.md", "assets/token_starter.md", "references/color/oklch_workflow.md", "references/type/typography_system.md", "references/layout/layout_responsive.md", "../shared/design_token_vocabulary.md", "../shared/sk_code_handoff.md"],
-}
-
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the static axis: color, typography, or layout",
-    "Confirm the system role: brand, product, data, marketing, or platform adaptation",
-    "Provide one concrete input, brand constraint, or target UI",
-    "Confirm verification expectations (contrast, measure, breakpoints) before completion",
-]
-
-AMBIGUITY_DELTA = 1
-
-def _guard_in_skill(relative_path: str) -> str:
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    shared_root = (SKILL_ROOT.parent / "shared").resolve()
-    # The sibling shared/ dir holds family docs like the operating register, a
-    # sanctioned cross-packet location. Every other parent path is rejected.
-    if not (resolved.is_relative_to(SKILL_ROOT) or resolved.is_relative_to(shared_root)):
-        raise ValueError(f"Resource escapes the skill root: {relative_path}")
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return relative_path if resolved.is_relative_to(shared_root) else resolved.relative_to(SKILL_ROOT).as_posix()
-
-def discover_markdown_resources() -> set[str]:
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(path for path in base.rglob("*.md") if path.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def get_routing_key(task, intents: list[str]) -> str:
-    override = str(getattr(task, "routing_key", "")).strip().lower()
-    if override:
-        return override
-    return (intents[0] if intents else "unknown").lower()
-
-def classify_intents(user_request, task=None):
-    text = (user_request or "").lower()
-    scores = {intent: 0 for intent in INTENT_SIGNALS}
-    for intent, cfg in INTENT_SIGNALS.items():
-        weight = cfg["weight"]
-        for keyword in cfg["keywords"]:
-            if keyword in text:
-                scores[intent] += weight
-
-    ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
-    primary, primary_score = ranked[0]
-    if primary_score == 0:
-        return ("COLOR", None, scores)
-
-    secondary, secondary_score = ranked[1]
-    if secondary_score > 0 and (primary_score - secondary_score) <= AMBIGUITY_DELTA:
-        return (primary, secondary, scores)
-    return (primary, None, scores)
-
-def route_foundations_resources(user_request, task=None):
-    inventory = discover_markdown_resources()
-    primary, secondary, scores = classify_intents(user_request, task)
-    intents = [primary] + ([secondary] if secondary else [])
-    routing_key = get_routing_key(task, intents)
-    reference_prefix = f"references/{routing_key}/"
-    keyed_refs = sorted(path for path in inventory if path.startswith(reference_prefix))
-    loaded = []
-    seen = set()
-
-    def load_if_available(relative_path: str):
-        guarded = _guard_in_skill(relative_path)
-        available = guarded in inventory or (SKILL_ROOT / guarded).resolve().exists()
-        if available and guarded not in seen:
-            load(guarded)
-            loaded.append(guarded)
-            seen.add(guarded)
-
-    for default_path in DEFAULT_RESOURCE:
-        load_if_available(default_path)
-    baseline_count = len(loaded)
-    if max(scores.values() or [0]) < 0.5:
-        # No-signal / unscoped request: load one reference from each axis as a safe fallback.
-        for relative_path in RESOURCE_MAP["COLOR"] + RESOURCE_MAP["TYPE"] + RESOURCE_MAP["LAYOUT"]:
-            load_if_available(relative_path)
-        return {
-            "routing_key": routing_key,
-            "intents": intents,
-            "intent_scores": scores,
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    for intent in intents:
-        for relative_path in RESOURCE_MAP.get(intent, []):
-            load_if_available(relative_path)
-    for relative_path in keyed_refs:
-        load_if_available(relative_path)
-
-    if routing_key == "unknown" or (len(loaded) == baseline_count and not keyed_refs):
-        return {
-            "routing_key": routing_key,
-            "intents": intents,
-            "intent_scores": scores,
-            "notice": f"No keyed knowledge base found for routing key '{routing_key}'",
-            "resources": loaded,
-        }
-
-    return {"routing_key": routing_key, "intents": intents, "intent_scores": scores, "resources": loaded}
-```
+The authoritative routing logic discovers markdown at runtime via `discover_markdown_resources()`, guards every path inside the skill folder via `_guard_in_skill()`, scores the static axis as a routing key, loads only files that exist, and returns an `UNKNOWN_FALLBACK` checklist when confidence is too low. See [skill_smart_router.md](../../sk-doc/create-skill/assets/skill/skill_smart_router.md) for the general resilience pattern, and [references/smart_router_pseudocode.md](references/smart_router_pseudocode.md) for this mode's full `INTENT_SIGNALS`, `RESOURCE_MAP`, and `route_foundations_resources()` implementation.
 
 ---
 
@@ -271,7 +139,7 @@ If no procedure card matches, state `Procedure applied: none - baseline foundati
 
 Record the context basis before system decisions: public mode `foundations`, loaded references, selected procedure card or no-procedure fallback, system role, source evidence, pinned tokens, target platforms, accessibility bar, and unknowns. Before a ready or handoff claim, include proof naming the selected procedure card, evidence labels, token/scale decisions, and verification risks.
 
-This mode must run directly with Read, Glob, and Grep only. If subagents are unavailable or disallowed, do not dispatch; execute the same procedure selection, context capture, and proof checks in the current session. The fallback keeps the same proof bar and cannot rely on Write, Edit, Bash, or Task.
+This mode must run directly with Read, Glob, and Grep only. If subagents are unavailable or disallowed, do not dispatch; execute the same procedure selection, context capture, and proof checks in the current session. The fallback keeps the same proof bar and cannot rely on Write, Edit, Bash, or Task. This includes the packet's deterministic scripts (§5 Scripts): they are never invoked by this mode in any execution path, direct or subagent, because they need Bash; they run downstream, in whichever step builds, ships, or maintains the artifact.
 
 ### Foundations sk-code Handoff Card
 
@@ -334,10 +202,19 @@ When foundations sends a static system to `sk-code`, fill the shared envelope fr
 - [`references/data_viz.md`](references/data_viz.md) - Chart-type selection, axis and encoding, color-for-data scales, sparklines and data-table alignment.
 - [`references/worked_examples.md`](references/worked_examples.md) - Two annotated examples, a dense product dashboard and a generous brand landing, marked illustrative and not reusable presets.
 - [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
+- [`references/smart_router_pseudocode.md`](references/smart_router_pseudocode.md) - This mode's full smart-router implementation (`INTENT_SIGNALS`, `RESOURCE_MAP`, `route_foundations_resources()`), split out of this file to keep SKILL.md within its word budget.
 
 ### Assets
 
 - [`assets/token_starter.md`](assets/token_starter.md) - Fill-in scaffold for an OKLCH ramp, type scale, and spacing scale, keyed to the shared register for color strategy and density.
+
+### Scripts
+
+Three deterministic checks ship with this packet. `foundations` is a read-only `Read`/`Glob`/`Grep` mode (`mode-registry.json` forbids `Write`/`Edit`/`Bash` for this mode) and never executes them itself, in any execution path, direct or subagent. Each runs downstream, in whichever step actually builds, ships, or maintains the artifact (typically `sk-code` implementation, a human check, or CI) — see `../shared/context_loading_contract.md`'s deterministic-enforcement gate, which wires the same rule for the contrast check.
+
+- [`scripts/contrast_check.py`](scripts/contrast_check.py) - WCAG/APCA contrast calculator for `assets/contrast_pair_inventory.md` rows; a pair stays `not assessed` until this has actually run.
+- [`scripts/baseline_rhythm_check.py`](scripts/baseline_rhythm_check.py) - Baseline-rhythm gate for the `assets/token_starter.md` Section 5 spacing table; rejects one-off spacing values that do not resolve to the baseline.
+- [`scripts/naming_doc_check.py`](scripts/naming_doc_check.py) - Naming and required-heading gate for filled token, component, or library artifacts, such as a completed `assets/token_starter.md`.
 
 ### Parent Shared Base
 

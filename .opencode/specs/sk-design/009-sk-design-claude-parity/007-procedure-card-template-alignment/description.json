@@ -7,7 +7,6 @@
   "description": "Phase 003 invented a private procedure-card schema (`shared/procedurecardschema.md`) and fourteen cards without checking whether the pattern should",
   "keywords": [
     "phase",
-    "003",
     "invented",
     "private",
     "procedure-card",
@@ -21,7 +20,7 @@
     "whether",
     "pattern"
   ],
-  "lastUpdated": "2026-07-06T06:16:56.455Z",
+  "lastUpdated": "2026-07-09T10:02:44.466Z",
   "specId": "007",
   "folderSlug": "procedure-card-template-alignment",
   "parentChain": [

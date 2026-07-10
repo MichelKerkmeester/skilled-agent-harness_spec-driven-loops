@@ -190,7 +190,7 @@
     ],
     "causal_summary": "cli-devin had registry entries (sk-prompt-models model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata.json + 2 JSON exports, skill-advisor docs + the 'devin' runtime enum + Devin hooks (.devin/hooks.v1.json + hooks/devin/ sources), and the swe-1.6 model was cli-devin-exclusive",
     "created_at": "2026-06-08T16:10:29Z",
-    "last_save_at": "2026-06-23T03:49:51.992Z",
+    "last_save_at": "2026-07-09T10:02:46.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7765f3556e23a306439bafdb88ae562d0ac05b22b0a0ba1619aa40ab60d5d2a",
+    "source_fingerprint": "sha256:de0320b12b55edcd15c4ee116c9534add780db0fab5546dfa8b080a9cd49a129",
     "source_doc_hashes": {
-      "spec.md": "0f0982c0b09d20274a84e0f3986e58da88d602dda4aac4b9e0ff7454ecfd39c7",
-      "plan.md": "24006c5260550224c33c3263d260293a1bcf01d90cd89c75ce289c265d6a0940",
-      "tasks.md": "a64bb5126dbee08ddc1989427a70df7022893720f8c1613366536d9774fb0088",
-      "implementation-summary.md": "b303c4761b822d3f8d52472d8d9295e235a0e100e8457385aa9b396a91f41e03"
+      "spec.md": "6771818b4851b1c3341463189ce41290700dece92f9f274c7c82aa553685fcd3",
+      "plan.md": "ed0be0c7b3c8504d8afe29502ea637cf057958627eeb60f75f23700e5268eb73",
+      "tasks.md": "419727c3f3ac383f28a1448ba10b4f5dc2d9ededc1746629f0a4eac962bd2d4a",
+      "implementation-summary.md": "05988472765d9dfcd10eec69c70449633fa634836d9fd0ca5ada51eb7d2fef27"
     },
     "last_active_child_id": null,
     "last_active_at": null

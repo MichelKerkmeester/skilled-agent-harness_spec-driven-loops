@@ -19,8 +19,6 @@
       "019/002 summary"
     ],
     "key_topics": [
-      "019",
-      "002",
       "install",
       "guide",
       "embedder",
@@ -30,7 +28,9 @@
       "chooser",
       "section",
       "plan",
-      "tasks"
+      "tasks",
+      "summary",
+      "document"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Document the default + alternatives + swap runbook in INSTALL_GUIDE and README",
     "created_at": "2026-05-18T08:18:02.784Z",
-    "last_save_at": "2026-07-02T05:31:11.904Z",
+    "last_save_at": "2026-07-09T10:02:52.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

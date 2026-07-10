@@ -27,9 +27,7 @@
       "skill folder rename verification"
     ],
     "key_topics": [
-      "070",
       "phase",
-      "002",
       "skill",
       "folder",
       "rename",
@@ -38,7 +36,9 @@
       "sk-deep-research",
       "deep-research",
       "plan",
-      "graph"
+      "graph",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase 001 measured 130 Phase 002 files: the two old skill folder roots and `.opencode/skills/system-spec-kit/mcpserver/skilladvisor/scripts/skill-graph.json`",
     "created_at": "2026-05-05T19:20:00Z",
-    "last_save_at": "2026-07-08T13:43:13.010Z",
+    "last_save_at": "2026-07-09T10:02:49.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:20:00Z",
     "source_docs": [

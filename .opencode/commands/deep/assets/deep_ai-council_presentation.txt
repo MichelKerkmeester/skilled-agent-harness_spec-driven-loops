@@ -325,4 +325,4 @@ Key references:
 
 - Command workflow assets: `.opencode/commands/deep/assets/deep_ai-council_auto.yaml` and `.opencode/commands/deep/assets/deep_ai-council_confirm.yaml`
 - Skill package: `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md`
-- State hierarchy ADR: `.opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/001-deep-ai-council/008-iterative-research-and-architecture/decision-record.md`
+- State hierarchy ADR: `.opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/008-iterative-research-and-architecture/decision-record.md`

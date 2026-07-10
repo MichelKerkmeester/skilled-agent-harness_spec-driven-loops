@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
-  "description": "Independent gpt-5.5 deep-review audit of the memory store, index, and write-lifecycle code of the system-spec-kit MCP server — the 002-memory-store-an",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
+  "description": "Independent gpt-5.5 deep-review audit of the memory store, index, and write-lifecycle code of the system-spec-kit MCP server — the",
   "keywords": [
     "independent",
     "gpt-5",
@@ -13,14 +13,13 @@
     "code",
     "system-spec-kit",
     "mcp",
-    "server",
-    "002-memory-store-an"
+    "server"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.014Z",
+  "lastUpdated": "2026-07-09T10:02:55.907Z",
   "specId": "",
   "folderSlug": "b-rest-of-002",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",
     "006-deep-review-017-021-remediation",

@@ -31,10 +31,10 @@
       "helpers",
       "smoke",
       "vitest",
-      "101",
-      "008",
       "plan",
-      "tasks"
+      "tasks",
+      "summary",
+      "closed"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After 101/007 closed the six earlier residual gaps, three smaller items remained: (1) SKILL.md does not reference the new artifacts shipped in 007 (`CONTRIBUTING.md`, `featurecatalog/`, `scripts/replay-graph-from-artifacts.cjs`), so a fresh consumer reading the skill entry point wouldn't discover them; (2) the `changelog/` directory only carries `v1.0.0.0.md` covering 101/001 and 101/003 — there's no published changelog entry for the 101/001..007 series as a whole; (3) the replay helper and bash matrix runner have no automated regression tests, so JSONL-mapping or shell-command-shape",
     "created_at": "2026-05-11T11:35:00Z",
-    "last_save_at": "2026-07-08T13:43:23.448Z",
+    "last_save_at": "2026-07-09T10:02:48.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

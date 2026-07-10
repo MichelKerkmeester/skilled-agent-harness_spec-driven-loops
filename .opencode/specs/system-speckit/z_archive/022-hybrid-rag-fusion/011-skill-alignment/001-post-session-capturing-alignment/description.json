@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
-  "description": "Several completed packets under `009-perfect-session-capturing` introduced documentation drift in `system-spec-kit` guidance that had not yet been fol",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
+  "description": "Several completed packets under `009-perfect-session-capturing` introduced documentation drift in `system-spec-kit` guidance that had not yet been",
   "keywords": [
     "several",
     "completed",
@@ -10,14 +10,13 @@
     "documentation",
     "drift",
     "system-spec-kit",
-    "guidance",
-    "fol"
+    "guidance"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.166Z",
+  "lastUpdated": "2026-07-09T10:02:58.346Z",
   "specId": "001",
   "folderSlug": "post-session-capturing-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "011-skill-alignment"

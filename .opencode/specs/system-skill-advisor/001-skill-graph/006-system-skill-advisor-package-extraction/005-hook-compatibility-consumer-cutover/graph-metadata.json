@@ -27,9 +27,6 @@
       "advisor consumer cutover verification"
     ],
     "key_topics": [
-      "013",
-      "009",
-      "005",
       "hooks",
       "compat",
       "advisor",
@@ -38,7 +35,10 @@
       "system",
       "skill",
       "hook",
-      "legacy"
+      "legacy",
+      "proxy",
+      "plan",
+      "migration"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -58,7 +58,6 @@
       ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
       ".opencode/commands/doctor/assets/doctor_update.yaml",
       ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-      ".codex/config.toml",
       ".claude/mcp.json",
       "tools/index.ts"
     ],
@@ -148,12 +147,6 @@
         "source": "derived"
       },
       {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
@@ -206,11 +199,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Runtime Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "ADR-001 split the advisor into a standalone package and MCP server, but live consumers still carry mixed assumptions",
     "created_at": "2026-05-14T10:38:05Z",
-    "last_save_at": "2026-07-02T05:31:11.109Z",
+    "last_save_at": "2026-07-09T10:02:49.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b8175a41ac595289c823ec30ca52348f5a171c5524a599121515a934207d291",
+    "source_fingerprint": "sha256:d4973b2a2cc4d104168020e32383a37c47d90998642e030f304699be472698ac",
     "source_doc_hashes": {
-      "spec.md": "a4e9c9008e20e851b076879f9e094f2b2057886d702128feb3a5f858f5a04868",
-      "plan.md": "0aea8015e70ee2d0946c10cffc39be244a68b8bdf3ee117e8a58c3a2943fe0fd",
-      "tasks.md": "3f197d8cb57f6fd56c3c306672a0d1c6f43dac1122f8848b48f053b3ee3e34a0",
-      "checklist.md": "c905e055cd337f183be3506ef14cbcfe33255c2a5f61e601ce474bfcbc50f824",
-      "decision-record.md": "29d14f75a5d531815818f70fd31c2a31d28d0d0e9e49719dadf762cb22420d58",
-      "implementation-summary.md": "3eaaecc7e0a72f067cc6204c612d875ac3b5d83333bdad4e8c0b97b874c123ac"
+      "spec.md": "61d2e6e494bfd36c5ca89814004371408d31f0c44ec87dd30258c226ea983c44",
+      "plan.md": "5ff84d6bff53cfcfc26c2f72a03e9e60da4008ca22a08a39f552842b9dc803f4",
+      "tasks.md": "38d7bec9f33b771553abe0e188e0fc773a3c284fe37d0f940713983451fc4f66",
+      "checklist.md": "8a879fbb10aae1df4020f9265397352ef66a5d721955671f32c250c2647ac320",
+      "decision-record.md": "1a2ab63d5735181c08a391391ad2c4327321ca75512fa05c4fae4be65490d4c7",
+      "implementation-summary.md": "a420ecd50f72928a7a3092d2347410db75f943fcdb302dbda3337cd2822347f4"
     },
     "last_active_child_id": null,
     "last_active_at": null

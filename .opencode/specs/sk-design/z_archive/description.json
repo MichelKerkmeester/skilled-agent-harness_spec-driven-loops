@@ -9,10 +9,12 @@
     "sk-design",
     "empty"
   ],
-  "lastUpdated": "2026-07-06T09:52:21.000Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "",
   "folderSlug": "z_archive",
-  "parentChain": [],
+  "parentChain": [
+    "sk-design"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

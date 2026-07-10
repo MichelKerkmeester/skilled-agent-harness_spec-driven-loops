@@ -1,6 +1,6 @@
 ---
 title: Config Style Guide
-description: Formatting standards and conventions for JSON and JSONC configuration files in the OpenCode development environment.
+description: Formatting standards and conventions for JSONC behavior config and strict-JSON machine descriptors in the OpenCode development environment.
 trigger_phrases:
   - "opencode config style guide"
   - "jsonc formatting standards"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "json style conventions"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.9
+version: 1.0.0.12
 ---
 
 # Config Style Guide
 
-Formatting standards and conventions for JSON and JSONC configuration files in the OpenCode development environment.
+Formatting standards and conventions for JSONC behavior config and strict-JSON machine descriptors in the OpenCode development environment.
 
 ---
 
@@ -21,28 +21,33 @@ Formatting standards and conventions for JSON and JSONC configuration files in t
 
 ### Purpose
 
-Defines consistent styling rules for configuration files to ensure readability and maintainability across all OpenCode config files.
+Defines consistent styling rules for configuration files to ensure readability and maintainability across OpenCode behavior config and machine descriptor files.
 
 ### Scope
 
-Applies to all configuration files:
-- `.opencode/skills/*/config/*.jsonc` - Skill configuration
-- `.opencode/config/` - Global configuration
-- `*.json`, `*.jsonc` - Project configuration files
+Applies to two config genres:
+- **JSONC behavior config** — human-maintained runtime settings such as `.opencode/skills/system-spec-kit/config/config.jsonc`. Comments and trailing commas are syntactically allowed; keep comments purposeful and follow the local file's existing comma style.
+- **Strict-JSON machine descriptors** — no comments and no trailing commas. This includes advisor descriptors (`description.json`), skill-graph identity (`graph-metadata.json`), hub registries (`mode-registry.json`), and the root OpenCode runtime config (`opencode.json`).
 
 ### Key Sources
 
 | File | Evidence |
 |------|----------|
-| `config/config.jsonc` | Header format, section comments, structure |
+| `.opencode/skills/system-spec-kit/config/config.jsonc` | Header format, section comments, structure |
+| `.opencode/skills/sk-code/description.json` | Advisor descriptor shape |
+| `.opencode/skills/sk-code/graph-metadata.json` | Skill-graph identity shape |
+| `.opencode/skills/sk-code/mode-registry.json` | Hub registry shape |
+| `opencode.json` | Root OpenCode runtime config shape |
 
 ---
 
 ## 2. FILE STRUCTURE
 
+Use JSONC structure rules only for JSONC behavior config. Strict-JSON machine descriptors must stay parseable as plain JSON: no comments, no trailing commas, and no header blocks.
+
 ### JSONC Header
 
-Use the standard comment header for configuration files:
+Use the standard comment header for JSONC behavior config files:
 
 ```jsonc
 // ───────────────────────────────────────────────────────────────
@@ -53,11 +58,11 @@ Use the standard comment header for configuration files:
 }
 ```
 
-**Evidence**: `config/config.jsonc:1-3`
+**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:1-3`
 
 ### Section Organization
 
-Organize configuration into numbered sections:
+Organize JSONC behavior configuration into numbered sections:
 
 ```jsonc
 {
@@ -77,7 +82,7 @@ Organize configuration into numbered sections:
 }
 ```
 
-**Evidence**: `config/config.jsonc:5-24`
+**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:5-24`
 
 ---
 
@@ -102,7 +107,7 @@ Organize configuration into numbered sections:
 }
 ```
 
-**Evidence**: `config/config.jsonc` throughout
+**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc` throughout
 
 ### Boolean Properties
 
@@ -139,11 +144,13 @@ Use descriptive names for nested configuration sections:
 }
 ```
 
-**Evidence**: `config/config.jsonc:19-30`
+**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:19-30`
 
 ---
 
 ## 4. COMMENTS (JSONC)
+
+Comments belong only in JSONC behavior config. Strict-JSON machine descriptors (`description.json`, `graph-metadata.json`, `mode-registry.json`, `opencode.json`) cannot contain comments.
 
 ### Section Headers
 
@@ -157,7 +164,7 @@ Use consistent section header format:
 
 The divider line should be 67 characters (same as header width).
 
-**Evidence**: `config/config.jsonc:5-7`
+**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:5-7`
 
 ### Inline Comments
 
@@ -194,7 +201,7 @@ Add documentation comments for complex settings:
 }
 ```
 
-**Evidence**: `config/config.jsonc:39-47`
+**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:39-47`
 
 ---
 
@@ -264,7 +271,7 @@ Use `null` for explicitly unset values:
 }
 ```
 
-**Evidence**: `config/config.jsonc:19-24`
+**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:19-24`
 
 ### Tier/Level Configuration
 
@@ -280,7 +287,7 @@ Use `null` for explicitly unset values:
 }
 ```
 
-**Evidence**: `config/config.jsonc:53-60`
+**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:53-60`
 
 ### Rule Configuration
 
@@ -298,7 +305,7 @@ Use `null` for explicitly unset values:
 }
 ```
 
-**Evidence**: `config/config.jsonc:76-87`
+**Evidence**: `.opencode/skills/system-spec-kit/config/config.jsonc:76-87`
 
 ---
 
@@ -347,7 +354,8 @@ Use 2 spaces for indentation (consistent with JSON convention):
 
 ### Spacing
 
-- No trailing commas (JSON requirement, JSONC allows but avoid)
+- Strict JSON: no trailing commas
+- JSONC behavior config: trailing commas are syntactically allowed, but follow the existing file's comma style
 - One property per line
 - Blank lines between sections
 
@@ -370,22 +378,31 @@ Use 2 spaces for indentation (consistent with JSON convention):
 
 | Type | Pattern | Example |
 |------|---------|---------|
-| Main config | `config.jsonc` | `config/config.jsonc` |
-| Feature config | `[feature].jsonc` | `filters.jsonc` |
-| Settings | `[scope]-config.jsonc` | `complexity-config.jsonc` |
+| JSONC behavior config | `config.jsonc` | `.opencode/skills/system-spec-kit/config/config.jsonc` |
+| Advisor descriptor | `description.json` | `.opencode/skills/sk-code/description.json` |
+| Skill-graph identity | `graph-metadata.json` | `.opencode/skills/sk-code/graph-metadata.json` |
+| Hub registry | `mode-registry.json` | `.opencode/skills/sk-code/mode-registry.json` |
+| Root OpenCode runtime config | `opencode.json` | `opencode.json` |
+| Command route assets | `*.yaml` | `.opencode/commands/create/assets/create_skill_auto.yaml` |
 
 ### Location
 
 ```
+opencode.json                         # Root OpenCode runtime config (strict JSON)
 .opencode/
-├── config/
-│   └── opencode.json         # Main OpenCode config
-└── skill/
-    └── [skill-name]/
-        └── config/
-            ├── config.jsonc        # Main skill config
-            ├── filters.jsonc       # Feature-specific
-            └── complexity-config.jsonc
+├── commands/
+│   ├── doctor/_routes.yaml           # Command router table (YAML)
+│   └── [command]/assets/
+│       └── [route]_{auto,confirm}.yaml
+├── plugins/
+│   └── *.js                          # OpenCode plugin entrypoints
+└── skills/
+    ├── sk-code/
+    │   ├── description.json          # Advisor descriptor (strict JSON)
+    │   ├── graph-metadata.json       # Skill-graph identity (strict JSON)
+    │   └── mode-registry.json        # Hub registry (strict JSON)
+    └── system-spec-kit/config/
+        └── config.jsonc              # JSONC behavior config
 ```
 
 ---

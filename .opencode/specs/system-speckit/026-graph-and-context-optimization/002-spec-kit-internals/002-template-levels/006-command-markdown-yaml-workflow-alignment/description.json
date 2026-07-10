@@ -1,7 +1,7 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/006-command-markdown-yaml-workflow-alignment",
-  "description": "The slash-command entry docs and their YAML workflow assets may still mention deleted artifacts such as `compose.sh`, `wrap-all-templates`, legacy tem",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/006-command-markdown-yaml-workflow-alignment",
+  "description": "The slash-command entry docs and their YAML workflow assets may still mention deleted artifacts such as `compose.sh`, `wrap-all-templates`, legacy",
   "keywords": [
     "slash-command",
     "entry",
@@ -15,14 +15,13 @@
     "artifacts",
     "compose",
     "wrap-all-templates",
-    "legacy",
-    "tem"
+    "legacy"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.771Z",
+  "lastUpdated": "2026-07-09T10:02:51.943Z",
   "specId": "006",
   "folderSlug": "command-markdown-yaml-workflow-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals",
     "002-template-levels"

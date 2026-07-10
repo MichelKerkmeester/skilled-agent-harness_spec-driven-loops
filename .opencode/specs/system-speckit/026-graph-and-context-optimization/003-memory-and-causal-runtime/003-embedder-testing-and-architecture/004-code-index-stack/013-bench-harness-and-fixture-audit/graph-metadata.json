@@ -25,9 +25,6 @@
       "bench harness verification"
     ],
     "key_topics": [
-      "016",
-      "004",
-      "013",
       "bench",
       "harness",
       "hardening",
@@ -35,8 +32,11 @@
       "path",
       "extraction",
       "regex",
-      "fix",
-      "code"
+      "code",
+      "retrieval",
+      "fixture",
+      "audit",
+      "probe"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Measurement-quality prerequisite for the cocoindex-retrieval-pipeline future-proofing arc (013→018). Hardens the path-extraction regex in run-phase2-smoke.sh (strips backticks, import statement wrappers, mock-data literals, quoted paths) so true hits are not misclassified as misses. Then audits all 18 probes in the baseline fixture against live DB presence — flags any probe whose expected_source_path is unindexed (per CocoIndex project settings exclusions, e.g. probe 10's `**/dist` exclusion). Outputs a hardened harness + a corrected fixture (or annotated probe-status table). Without this, no",
+    "causal_summary": "Measurement-quality prerequisite for the cocoindex-retrieval-pipeline future-proofing arc (013→018). Hardens the path-extraction regex in run-phase2-smoke.sh (strips backticks, import statement wrappers, mock-data literals, quoted paths) so true hits are not misclassified as misses. Then audits all 18 probes in the baseline fixture against live DB presence — flags any probe whose expected_source_path is unindexed (per CocoIndex project settings exclusions, e.g. probe 10's `**/dist` exclusion). Outputs a hardened harness + a corrected fixture (or annotated probe-status table).",
     "created_at": "2026-05-19T10:32:52.990Z",
-    "last_save_at": "2026-07-02T05:31:11.928Z",
+    "last_save_at": "2026-07-09T10:02:52.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

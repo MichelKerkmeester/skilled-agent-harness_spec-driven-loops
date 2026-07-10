@@ -21,10 +21,8 @@
       "014 commit message ready"
     ],
     "key_topics": [
-      "008",
       "finalize",
       "commit",
-      "014",
       "bundled",
       "local",
       "embeddings",
@@ -32,7 +30,9 @@
       "plan",
       "tasks",
       "done",
-      "message"
+      "message",
+      "ready",
+      "touched"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "014 touched ~12 source files (TS + Python) plus ~50 spec-doc files plus 4 sqlite deletes plus user-local config (`~/.cocoindexcode/globalsettings.yml`)",
     "created_at": "2026-05-12T16:27:52Z",
-    "last_save_at": "2026-07-02T05:31:11.555Z",
+    "last_save_at": "2026-07-09T10:02:52.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

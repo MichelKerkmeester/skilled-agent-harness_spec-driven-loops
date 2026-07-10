@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/017-phase-reorg-and-renumber",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/017-phase-reorg-and-renumber",
   "description": "026 accumulated 17 flat top-level phases through repeated ad-hoc restructures",
   "keywords": [
-    "026",
     "accumulated",
     "flat",
     "top-level",
@@ -11,11 +10,11 @@
     "ad-hoc",
     "restructures"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.842Z",
+  "lastUpdated": "2026-07-09T10:02:54.831Z",
   "specId": "017",
   "folderSlug": "phase-reorg-and-renumber",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-4-2026-05-26-reorg"

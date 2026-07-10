@@ -3,14 +3,13 @@
   "description": "Packet 037's 20-iter deep-review surfaced 2 P0 + 25 P1 + ~30 P2 findings on system-code-graph v1.0.0.0",
   "keywords": [
     "packet",
-    "037",
     "20-iter",
     "deep-review",
     "surfaced",
     "findings",
     "system-code-graph"
   ],
-  "lastUpdated": "2026-07-07T16:12:51.938Z",
+  "lastUpdated": "2026-07-09T10:02:47.416Z",
   "specId": "021",
   "folderSlug": "system-code-graph-deep-review-remediation",
   "parentChain": [

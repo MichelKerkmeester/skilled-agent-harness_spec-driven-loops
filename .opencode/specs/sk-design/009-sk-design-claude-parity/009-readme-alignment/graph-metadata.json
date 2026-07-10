@@ -37,14 +37,14 @@
       "alignment",
       "sk-design",
       "hub",
-      "update",
       "mode",
       "packet",
       "procedure",
       "card",
       "gap",
       "implementation",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -62,7 +62,6 @@
       "implementation-summary.md",
       "manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       ".opencode/skills/sk-design/mode-registry.json"
     ],
     "entities": [
@@ -112,12 +111,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr_rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
         "source": "derived"
       },
       {
@@ -209,11 +202,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "State Audit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-design`'s hub `README.md` and its five mode-packet `README.md` files describe a snapshot of the skill that predates Phases 002-005",
     "created_at": "2026-07-06T04:34:29.707Z",
-    "last_save_at": "2026-07-06T07:23:10.327Z",
+    "last_save_at": "2026-07-09T10:02:44.480Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,12 +222,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24b3ace8360b5aa82bc55c555c8bcae2fc909305b2e765def3e8b55895b330b5",
+    "source_fingerprint": "sha256:9a43cf1bc8267c67f813c032d9a83ad41d57b48be65982901514054d462dc28c",
     "source_doc_hashes": {
-      "spec.md": "8dfaadb2ccb4df30e404a6bcf01401a119a39b9fb87b362d1f41726173cd6863",
-      "plan.md": "390ba6439f6bb74a032fdad8f14d498c5590efe8722aa6a7f798d55c4bbbb626",
-      "tasks.md": "7ee00578ec4201cc882989248cfbdac94cf9b6bc29d2c95275679287b961dbe0",
-      "checklist.md": "cdbb646b248714754f4ba88673af821df398bf47178ecb43e4dbc4ed3f8c7379",
+      "spec.md": "2ec523d2e8add7eb75cca963637497d3502efb6499492297d9f6c6b9c5b279a1",
+      "plan.md": "a198277fb3f26070aa1214632d506668cdb43ace9fc3e4e0736a1e5b65b46d11",
+      "tasks.md": "01a35301aa6b5b71b54f7ac51feae4fbbb9b1a86018117bc12de94de09094d86",
+      "checklist.md": "b769081c73aa3954b86a18c873dfbdcdada4d48e0a36ff17622bcb7c8f79eafb",
       "implementation-summary.md": "f7da629c8d6b7630f6085960488b802022d94c907130a4bf00499c6ca69fcba4"
     },
     "last_active_child_id": null,

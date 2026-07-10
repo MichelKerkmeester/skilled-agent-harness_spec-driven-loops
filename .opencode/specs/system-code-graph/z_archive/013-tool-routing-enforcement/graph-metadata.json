@@ -30,14 +30,14 @@
       "routing",
       "enforcement",
       "cocoindex",
-      "used",
       "code",
       "graph",
       "misjudgment",
-      "use",
       "instead",
       "grep",
-      "semantic"
+      "semantic",
+      "search",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "AI assistants across all CLI runtimes (Claude Code, Codex CLI, Copilot CLI, Gemini CLI) consistently default to Grep/Glob for code search tasks even when CocoIndex (semantic search) and Code Graph (structural queries) are available and appropriate",
     "created_at": "2026-04-12T09:02:53.431Z",
-    "last_save_at": "2026-07-07T16:18:33.980Z",
+    "last_save_at": "2026-07-09T10:02:47.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

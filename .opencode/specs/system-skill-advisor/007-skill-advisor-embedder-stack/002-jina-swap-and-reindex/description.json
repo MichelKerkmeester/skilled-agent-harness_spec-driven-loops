@@ -8,9 +8,6 @@
     "default",
     "gemma",
     "jina-embeddings-v3",
-    "using",
-    "022",
-    "001",
     "pluggable",
     "layer",
     "reindex",
@@ -19,7 +16,7 @@
     "smoke-test",
     "semantic-shadow"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.044Z",
+  "lastUpdated": "2026-07-09T10:02:50.232Z",
   "specId": "002",
   "folderSlug": "jina-swap-and-reindex",
   "parentChain": [

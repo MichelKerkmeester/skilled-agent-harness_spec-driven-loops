@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -29,18 +29,19 @@
       "scripts",
       "audit",
       "code",
-      "016",
       "tree",
       "thinning",
       "architecture",
       "boundary",
       "enforcement",
       "progressive",
-      "validation"
+      "validation",
+      "dead"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
       "scripts/utils/template-structure.js",
       "mcp_server/api/index.ts",
@@ -59,10 +60,15 @@
       "scripts/core/workflow.ts",
       "plan.md",
       "tasks.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "template_compliance_contract.md",
         "kind": "doc",
@@ -172,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Tooling and Scripts category spans validation rules, CLI entrypoints, migration utilities, watcher logic, and session-capture plumbing",
     "created_at": "2026-04-12T09:02:50.253Z",
-    "last_save_at": "2026-06-23T03:49:59.877Z",
+    "last_save_at": "2026-07-09T10:02:57.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

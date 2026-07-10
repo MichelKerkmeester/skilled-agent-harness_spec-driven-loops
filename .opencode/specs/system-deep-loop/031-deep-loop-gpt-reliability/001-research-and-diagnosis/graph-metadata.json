@@ -26,11 +26,11 @@
       "deep-loop",
       "behavioral",
       "hardening",
-      "031",
       "gpt-backed",
       "opencode",
       "mis-handled",
-      "routing"
+      "routing",
+      "host"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -86,15 +86,15 @@
     ],
     "causal_summary": "GPT-backed OpenCode mis-handled deep-loop routing, host identity, and orchestration",
     "created_at": "2026-07-04T18:47:57.345Z",
-    "last_save_at": "2026-07-04T18:55:41.012Z",
+    "last_save_at": "2026-07-09T10:02:47.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b6a48c4360cdbb3cc1a907056177639dccca5accf37e665d721083cc05e2c829",
+    "source_fingerprint": "sha256:1f3dcb52c0a148ec6f37f851b34c74ce0614d02564ba9950ac2fdac7fadf2edf",
     "source_doc_hashes": {
-      "spec.md": "d4904abda842b01d000691bf0162440ac190a6c7f53a890e8cc916afde3c1b8a"
+      "spec.md": "2113f43f8d8d59ab34c647a034a4fdba6e66001f6fbe0bac93773ac9ee769b8b"
     },
     "last_active_child_id": null,
     "last_active_at": null

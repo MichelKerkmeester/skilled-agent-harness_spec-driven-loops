@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
-  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
-  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
+  "packet_id": "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
+  "spec_folder": "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
+  "parent_id": "z_future/code-graph-and-cocoindex/003-code-graph-impact-analysis",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The deterministic analyzer needs an MCP-facing entry point with validation, readiness checks, response envelopes, and optional narrative enrichment that cannot run unless explicitly configured. This child owns both `handlers/impact-analysis.ts` and the optional `code-graph-llm-risk-enrich.ts` adapter.",
     "created_at": "2026-05-12T00:00:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.867Z",
+    "last_save_at": "2026-07-09T11:26:11.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

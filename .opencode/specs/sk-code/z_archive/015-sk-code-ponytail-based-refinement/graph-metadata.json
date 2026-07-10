@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Packet 146 bundles the external ponytail project (`external/ponytail-main/`) and asks how its logic, hooks, etc",
     "created_at": "2026-06-13T11:19:39.612Z",
-    "last_save_at": "2026-07-07T16:45:58.050Z",
+    "last_save_at": "2026-07-09T10:02:44.368Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c953ef2f6676e01d70eb5aed98815f3069225f3693776c9612713d07502c50a0",
+    "source_fingerprint": "sha256:b5109faf08da59e7230c9d5cbff5cdcc3eeddfbfff303a72056947a8c068e2ae",
     "source_doc_hashes": {
-      "spec.md": "8706c568b2be8e191cbf934b8ab4ab76e5a54d293335339bb943088480d08933",
-      "plan.md": "7dc321e66ca93be79abb555af5ac641daec45370c02238b59fdb9adf7e67d9dc",
-      "tasks.md": "86e4bb72fd9501ae042df3ecb97394d6227da309935e5ece2804f6e3ddad0206",
-      "checklist.md": "1c15ff8bc738ffebd9badf7069afaa1e56c125ae9bc0461fa8e1fb02e444ee45",
-      "implementation-summary.md": "1859a87cc190ab61f7bb270c53c3a5e14a4ad6b169e1f29d0bf5cd42b8686605",
-      "research/research.md": "b048accfaa2d73e03f7f96c064c05d239893d3f0e00173557289bafa858cb104"
+      "spec.md": "cf19091a67717efe3a8c606bfe13362362885f14360c04de2a84cb5990e20be9",
+      "plan.md": "233c376cc1c38d8607fe3f7dc599d09f5f04ebdf9bd013f8601b9f61414780d8",
+      "tasks.md": "0e6c85ebf7c164dcb519f4cbdaa4c00e216e4d3d8b8d92f98e739824851b5506",
+      "checklist.md": "6d044a949553116d4984fa1b0476c37e01a2e06748cc7331f04e16018ccae8af",
+      "implementation-summary.md": "418a36ff2ad11696e6af55009321ddd11098e294ff1a902244832db41c22b44b",
+      "research/research.md": "516a0b486df39a0ce4eb1a042cf478f127103e5bb9fec470ca1c7ef6b312f926"
     },
     "last_active_child_id": "sk-code/z_archive/015-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
     "last_active_at": "2026-06-13T11:40:00Z"

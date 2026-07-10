@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The `/goal` plugin existed as OpenCode plugin code and a dedicated implementation packet, but `system-spec-kit` did not yet route, catalog, or explain it alongside the other OpenCode plugin surfaces",
     "created_at": "2026-06-30T17:33:02Z",
-    "last_save_at": "2026-07-03T13:21:41.472Z",
+    "last_save_at": "2026-07-09T10:02:47.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c0a3c535b0bcda88c9dd3c0be99a144173b0ca9684eba00e33792c9edf2618a",
+    "source_fingerprint": "sha256:800dc847666270b239613cce5dac81127f198577137588dc46169d3f4c81e1d6",
     "source_doc_hashes": {
-      "spec.md": "cc17450e1939a3d71c78c6b6418b2c5559b6742b0ddf21f2ef16beb6e45a38dc",
-      "plan.md": "c8bbaee33e78a190d979114804b3591766c06a7e9e71feddfc3270c07070aba0",
-      "tasks.md": "fce7f43e0885a2c9093e1fdd0565fe948649ecb3fe4d51b782f98ac9cb6e22cd",
-      "implementation-summary.md": "27b525663317d2c8bec0a17b4d3f98b00edc478df61b6b2b105265093c3dcaef"
+      "spec.md": "15ee32fe476b48a7aec0ab917b5b2646e200f47be907394d2c5d9e4a8bd5532f",
+      "plan.md": "a734cb9f58c8112e251013cbe64f7947d15ebebabe56a0d0ee076a1ea61751ed",
+      "tasks.md": "b698b6d5a2465dcfcaa5d5c340324a9fd9d7899ad44016ff3862bf738df78d32",
+      "implementation-summary.md": "ac9a79d37f374fa8faae2e490be45e8d9752ba1a58e1ca9783cef8f766d658c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

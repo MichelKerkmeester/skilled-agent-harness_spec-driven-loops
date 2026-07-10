@@ -10,7 +10,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { chromium } from 'playwright';
 import type { DesignTokens } from './types';
-import { ensureWritableFile } from './output-policy';
+import { ensureWritableFile, requireOutputPath } from './output-policy';
 
 // ─── Color Math ─────────────────────────────────────────────────────────────
 
@@ -306,6 +306,12 @@ async function runProof(
   previewPath?: string,
   options: { force?: boolean } = {},
 ): Promise<void> {
+  // Output must live in a spec folder or an approved sandbox, same boundary
+  // enforced by extract.ts/guided-run.ts, so a standalone proof.ts invocation
+  // can't write generated HTML/JSON outside the allowlist. Checked before the
+  // tokens-file read below so an out-of-bounds --output fails fast.
+  const resolvedOutputDir = requireOutputPath(outputDir);
+
   // A missing or corrupt tokens file must fail with a clear message, not an
   // uncaught ENOENT/SyntaxError stack trace.
   if (!fs.existsSync(tokensPath)) {
@@ -322,8 +328,8 @@ async function runProof(
 
   // Check overwrite guards before the expensive browser/sampling work below,
   // so a --force-less re-run fails fast instead of after minutes of capture.
-  const proofDataPath = path.join(outputDir, 'proof-data.json');
-  const proofHtmlPath = path.join(outputDir, 'proof.html');
+  const proofDataPath = path.join(resolvedOutputDir, 'proof-data.json');
+  const proofHtmlPath = path.join(resolvedOutputDir, 'proof.html');
   ensureWritableFile(proofDataPath, options);
   ensureWritableFile(proofHtmlPath, options);
 
@@ -399,7 +405,7 @@ async function runProof(
   await origCtx.close();
 
   // 2. Screenshot preview
-  const resolvedPreview = previewPath ?? path.join(outputDir, 'preview.html');
+  const resolvedPreview = previewPath ?? path.join(resolvedOutputDir, 'preview.html');
   if (!fs.existsSync(resolvedPreview)) {
     console.error(`  Preview not found at ${resolvedPreview}. Run preview-gen.ts first.`);
     await browser.close();

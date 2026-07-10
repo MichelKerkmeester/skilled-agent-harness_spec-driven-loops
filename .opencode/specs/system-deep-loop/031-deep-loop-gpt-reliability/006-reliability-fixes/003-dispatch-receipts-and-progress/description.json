@@ -1,25 +1,14 @@
 {
   "level": "1",
   "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/006-reliability-fixes/003-dispatch-receipts-and-progress",
-  "description": "Phase 004 of packet 035 (the last acute-fix phase). Two standalone dispatch-integrity mechanisms (packet 036's compiled contract will reference them):",
+  "description": "Phase 004 of packet 035 (the last acute-fix phase).",
   "keywords": [
     "phase",
-    "004",
     "packet",
-    "035",
     "last",
-    "acute-fix",
-    "two",
-    "standalone",
-    "dispatch-integrity",
-    "mechanisms",
-    "036",
-    "compiled",
-    "contract",
-    "reference",
-    "them"
+    "acute-fix"
   ],
-  "lastUpdated": "2026-07-04T19:14:56.870Z",
+  "lastUpdated": "2026-07-09T10:02:47.864Z",
   "specId": "003",
   "folderSlug": "dispatch-receipts-and-progress",
   "parentChain": [

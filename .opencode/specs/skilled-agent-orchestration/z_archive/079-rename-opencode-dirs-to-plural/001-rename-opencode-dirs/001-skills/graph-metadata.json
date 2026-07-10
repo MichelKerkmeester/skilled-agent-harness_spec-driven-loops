@@ -21,8 +21,6 @@
       "096/001 implementation summary"
     ],
     "key_topics": [
-      "096",
-      "001",
       "skills",
       "rename",
       "opencode",
@@ -32,7 +30,9 @@
       "checklist",
       "implementation",
       "summary",
-      "project-level"
+      "project-level",
+      "discovery",
+      "looks"
     ],
     "importance_tier": "high",
     "status": "draft",
@@ -42,7 +42,8 @@
       "tasks.md",
       "checklist.md",
       "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/003-remediation/005-checklist-evidence/implementation-summary.md"
     ],
     "entities": [
       {
@@ -192,7 +193,7 @@
     ],
     "causal_summary": "opencode's project-level skill discovery looks for `.opencode/skills/` (plural per `https://opencode.ai/docs/skills`)",
     "created_at": "2026-05-18T07:49:27.232Z",
-    "last_save_at": "2026-06-23T03:49:50.037Z",
+    "last_save_at": "2026-07-09T10:02:45.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73a723a43e552acd1cd74672565d2ca9bbbcf35e32d5886aa04f38c906b81357",
+    "source_fingerprint": "sha256:a8c1d8bdb9ace3f71c196504abd39671b717d467975a828b70ce5c08a3a83eff",
     "source_doc_hashes": {
-      "spec.md": "024bbd6941155e6b81654ee9d62efb5e60bc38dd7b6ff03b8e92d551bd1f7d4a",
-      "plan.md": "c9a30b3fee49365f7583265c174ae60ba986fe9e43e2d0a66bb0357ed2160561",
-      "tasks.md": "20cca125d866dd28759e87b1dfcc285f545fe42315d0378350349399f334b4d7",
-      "checklist.md": "2a17ae52176ab51148c190a5fffc20ca890cfd2a3b35be9afc62b298300dc3bd",
-      "implementation-summary.md": "2d5c9a01c823d0f3b7a27f56db44170fc2f7ad06ee74b78c61bc3e2c84959145"
+      "spec.md": "beb73be2935ca9f65d24e4407cf177f363be4e54d58776545843818fd4955057",
+      "plan.md": "add6543c645e60aa5bb700afd24da8f9c7da13affe6b1aadb94f9737b82f6a88",
+      "tasks.md": "839f70dec565b5861a66ff3941d17aba4bdaa0831c5935157558ed60a7648227",
+      "checklist.md": "cb5e5c5929aa9239bb97a127def7863935de56a19d2c3929fcd89f0f51c367f1",
+      "implementation-summary.md": "39e5444c35eab52be492ef06b46739b4c0f64d5248fe8aef81f9bd38159bec3f"
     },
     "last_active_child_id": null,
     "last_active_at": null

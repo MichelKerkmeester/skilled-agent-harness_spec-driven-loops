@@ -33,10 +33,10 @@
       "card",
       "system",
       "phase",
-      "010",
       "implementation",
       "plan",
-      "tasks"
+      "tasks",
+      "verification"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -56,11 +56,11 @@
       ".opencode/skills/sk-design/design-md-generator/feature_catalog/08--procedure-cards/md-generator-procedure-card-inventory.md",
       ".opencode/skills/sk-design/design-md-generator/feature_catalog/feature_catalog.md",
       ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
       ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-design/feature_catalog/feature_catalog.md",
       ".opencode/skills/sk-design/shared/procedure_card_schema.md",
-      ".opencode/skills/sk-design/design-interface/feature_catalog/feature_catalog.md"
+      ".opencode/skills/sk-design/design-interface/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-design/design-foundations/feature_catalog/feature_catalog.md"
     ],
     "entities": [
       {
@@ -142,12 +142,6 @@
         "source": "derived"
       },
       {
-        "name": "feature_catalog_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/SKILL.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Primary Area",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Only one of the six `sk-design` packages — `design-md-generator` — has a `featurecatalog/` package (`design-md-generator/featurecatalog/featurecatalog.md`, 7 categories)",
     "created_at": "2026-07-06T04:35:22.460Z",
-    "last_save_at": "2026-07-06T10:36:46.256Z",
+    "last_save_at": "2026-07-09T10:02:44.489Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f00995e00667bef889211d0f111286b3bec14973beec96b224f6cef4eea7c090",
+    "source_fingerprint": "sha256:91565a702a08ba839d29fb68c68be8e5168bb560405f190d7116c48fa8578df0",
     "source_doc_hashes": {
-      "spec.md": "a22172ecb4d7bacf05cdab048937c1130636bcda5e329950080d26348a6c16d6",
-      "plan.md": "4650d16d358b60dd9cb9fed45f3da27e429d0950351f1f8022f85515435321c6",
-      "tasks.md": "e11576d2ea35316f1055f4d86d72af622567cfe889a3bf9e9a6d48d650aae3cd",
-      "checklist.md": "70894848aebaf725eb701ee82de922a968443e52e967b4440074b827b6419e69",
-      "implementation-summary.md": "ea436da85e989643365587fb0a46071be9e71b476f2a8f3c202f43215ff8a1e3"
+      "spec.md": "b40caca682569a46ef5a103d97072c056fedd54f4997d30653c976a36b0475d4",
+      "plan.md": "9cc7a884bb20799d83a37d3f05b42bf8db6ccdcc7a6c2bdbff812b4709846698",
+      "tasks.md": "68502dfc022a915dd8520eb099ee9b0f3afe92424e8e6ec4e1bc56b0bfc47b80",
+      "checklist.md": "c485db9ea29aa84b91fed6a9109f9592f9cb0833fdfc1a156bcd9d3b2a00993b",
+      "implementation-summary.md": "2024aca77f383be8adb7693d77783af85b0873667da45201f2d868fa03530946"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -40,16 +40,9 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       ".opencode/commands/deep/assets/deep_review_auto.yaml",
-      ".opencode/skills/deep-loop-workflows/deep-ai-council/assets/prompt_pack_round.md",
       ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
-      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/orchestrate-topic.vitest.ts",
-      ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/orchestrate-session.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -57,12 +50,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
       {
         "name": "deep_research_auto.yaml",
         "kind": "config",
@@ -76,39 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "prompt_pack_round.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/assets/prompt_pack_round.md",
-        "source": "derived"
-      },
-      {
         "name": "deep_ai-council_auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate-session.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-session.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate-topic.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/orchestrate-topic.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate-topic.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/orchestrate-topic.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate-session.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-workflows/deep-ai-council/scripts/tests/orchestrate-session.vitest.ts",
         "source": "derived"
       },
       {
@@ -200,11 +157,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Basis",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The research evidence identifies role-resolution overhead as the dominant GPT-slow mechanism",
     "created_at": "2026-06-30T15:15:00Z",
-    "last_save_at": "2026-07-05T06:46:00.371Z",
+    "last_save_at": "2026-07-09T10:02:47.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20b200fe1cd88a724187fec5363f57bd8e2b76ff21eaaa54e60ef7b9f475a5b5",
+    "source_fingerprint": "sha256:f0fafb8837139b259aecb19b0e17ebb5a96804a1a6ef11f98d4860c133d7c069",
     "source_doc_hashes": {
-      "spec.md": "984051d7f6c03af07a54b9184f206d97eb688fe5f965b1748ba6e25a34819279",
-      "plan.md": "3e7b914a0e21c624a7ce50a06c0af73d6320883c2d045ac1cfb9542f3fea6187",
-      "tasks.md": "cc480ac465561141fdac08f41dd70a484e8d20f8f92f1a65dc564afdbb8f85bd",
-      "checklist.md": "a005bc067d1f2f3afa9c78a951d347d102ea02af296c72b9cbdbd00a697228ce",
-      "implementation-summary.md": "40c321a54911d8183bf90e951782a525afb0f525b053ea05dbd291b17bb2bd07"
+      "spec.md": "49d76e182c03f06cb4c0b82b227676eb8104126ba28a34a04b57af8f23e282d8",
+      "plan.md": "f0a582c59f88157f87076a7436ced42d560ed7359e2bbdccad2ce7a09c80e7a2",
+      "tasks.md": "b705014697c79c75c5866b409658a95669488e3e5e54d9ed4eb185511ee1ab5c",
+      "checklist.md": "466a3185f0b518531aff5d8e993e28f46c355c191bd4ace09729a97c8d72c0a2",
+      "implementation-summary.md": "48872f80f266ef98a2f863f9e16a57fbda65cc64247f1a8ac5ad248739b8a625"
     },
     "last_active_child_id": null,
     "last_active_at": null

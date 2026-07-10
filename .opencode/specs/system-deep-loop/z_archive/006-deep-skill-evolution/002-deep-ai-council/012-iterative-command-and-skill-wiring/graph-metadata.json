@@ -16,18 +16,18 @@
       "129 005 command and skill wiring"
     ],
     "key_topics": [
-      "129",
-      "005",
       "command",
       "skill",
       "wiring",
-      "add",
       "deep",
       "ask-ai-council",
       "auto",
       "confirm",
       "workflow",
-      "docs"
+      "docs",
+      "four-runtime",
+      "mirror",
+      "sync"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Add /deep:ask-ai-council auto/confirm workflow, skill docs, and four-runtime mirror sync",
     "created_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-07-08T13:43:52.557Z",
+    "last_save_at": "2026-07-09T10:02:48.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

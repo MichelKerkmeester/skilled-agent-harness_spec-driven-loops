@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The five per-skill benchmark packages (phases 002-004) need one shared, trustworthy measurement substrate",
     "created_at": "2026-07-02T05:53:05.516Z",
-    "last_save_at": "2026-07-04T19:33:23.867Z",
+    "last_save_at": "2026-07-09T10:02:48.009Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5d7298bb76f635c5d7282face8df272f39f261c9853b6460e417317dd66f241",
+    "source_fingerprint": "sha256:25824b77a4f6a11120d30186f5131516273072b6b67da84fa6d4a2fa14d81969",
     "source_doc_hashes": {
-      "spec.md": "f50bc7385b6ff81315ac6c4b7f68c100b4c5cf46d2011e32541a709be1ab3586",
-      "plan.md": "03bc64a759419a3b3f5f9152960a18c3e61b047d14c59885f299202b4d70497f",
-      "tasks.md": "9707c940e8942a359c08d28135d5868eb8512e55f39845b521a8b16378bb3ec8",
-      "checklist.md": "652b46f0b51e68fc8a3af9aa163d25e0606e792625952f83771619a4199c8d75",
-      "decision-record.md": "3ac74584bd4afef1aab2dc62d07a0e7bfd3edf6c81760d815ad8430491d42a88",
-      "implementation-summary.md": "e985c584ec7c1b3906d0b897350eb8aa56195a4f5b620597681f3759fac86614"
+      "spec.md": "9500b390e30592ea329b6eb29393062df3408e371c8ca874c659611a9e18be71",
+      "plan.md": "7900b51444ebdd7e8df70f1321e5c81dd02f228395a8089b3466137a11165179",
+      "tasks.md": "7bae92ea8234a517f704ef5174261c44b7819349d0a7c0f399a4d82e65578990",
+      "checklist.md": "dd35f5a76345e890c8df273b96b3118512bc11e93517075ae1919e1f08f85eee",
+      "decision-record.md": "20b59c641a705de8b9ea8d390e7fb0b345ff94d1de46e900b9a13d4496162af9",
+      "implementation-summary.md": "06a603cda16625b67b258341aa33ab3ba89726eaca0c5e0277f8e9d9e5ce8899"
     },
     "last_active_child_id": null,
     "last_active_at": null

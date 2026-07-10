@@ -41,14 +41,10 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
-      ".opencode/skills/sk-doc/assets/agent_template.md",
       ".opencode/skills/sk-doc/scripts/quick_validate.py",
       ".opencode/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
-      ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
       ".opencode/commands/create/assets/create_agent_confirm.yaml",
       ".opencode/commands/doctor/scripts/audit_descriptions.py",
-      ".opencode/commands/create/sk-skill.md",
       ".opencode/commands/create/agent.md",
       "spec.md",
       "plan.md",
@@ -56,18 +52,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "skill_md_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/agent_template.md",
-        "source": "derived"
-      },
       {
         "name": "quick_validate.py",
         "kind": "file",
@@ -81,12 +65,6 @@
         "source": "derived"
       },
       {
-        "name": "create_sk_skill_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
-        "source": "derived"
-      },
-      {
         "name": "create_agent_confirm.yaml",
         "kind": "config",
         "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
@@ -96,12 +74,6 @@
         "name": "audit_descriptions.py",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/audit_descriptions.py",
-        "source": "derived"
-      },
-      {
-        "name": "sk-skill.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/sk-skill.md",
         "source": "derived"
       },
       {
@@ -199,11 +171,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "description-length",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 083 (skill description budget trim) and 084 (ambiguity dual-margin fix) revealed that skill/command/agent description authoring has hidden constraints with no current enforcement: (1) total skill-metadata budget caps at 8,000 chars (`SLASHCOMMANDTOOLCHARBUDGET`); (2) per-item hard cap is 1,536 chars; (3) a memory-rule \"stack-agnostic phrasing\" forbids enumerating Webflow/Go/Next.js etc",
     "created_at": "2026-05-06T13:33:18.960Z",
-    "last_save_at": "2026-06-23T03:49:49.959Z",
+    "last_save_at": "2026-07-09T10:02:45.589Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b5d6fd5470ac16003290606a98b92fa79206cac89b7ea234d3ef2ea38310610",
+    "source_fingerprint": "sha256:61496a50971b5194fc4cc3a41e47b4ea3eb5022d876a86909ccab5c7cedd35c2",
     "source_doc_hashes": {
-      "spec.md": "01142b77b5944d5f496ce99dec116359a92e07780a38bf22681ea43d6cdbb355",
-      "plan.md": "d2dedffb4170d79e3607ad540266ed024b285977cc9c4e7c3699ca114c9818b5",
-      "tasks.md": "5ac34b4abc4100c7f3129e158f5ae1bfa3d3022ac5b4422eb5416533657ef5d4",
-      "implementation-summary.md": "a661a75f56dd8bb3f29e364e7a0a47369db38f134de7fe3d6ee254367be7596b"
+      "spec.md": "dccc9636532c0107855ac0fbab311f340ea9fffe28078014a05afc4510e2118a",
+      "plan.md": "3ef6d8f5ec15b6259eba4ab7ef13b719e67b92674c7426402851af767ae39e03",
+      "tasks.md": "cd8b40c66c951a21eb4cf1566b6a21d709097cf70bbd1896b17200192b7fba22",
+      "implementation-summary.md": "fe1fcc9c5e3f82dcce2c5c91c3ab0478c1c53aa46944dd582debcb0a7634b8f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

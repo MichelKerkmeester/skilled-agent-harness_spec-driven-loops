@@ -3,7 +3,6 @@
   "specFolder": "skilled-agent-orchestration/z_archive/066-opencode-authoring-recipe",
   "description": "The 077 deep-research audit surfaced 22 P1 + 20 P2 findings across system-spec-kit, mcp-coco-index, and sk-code OpenCode side",
   "keywords": [
-    "077",
     "deep-research",
     "audit",
     "surfaced",
@@ -15,7 +14,7 @@
     "opencode",
     "side"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.837Z",
+  "lastUpdated": "2026-07-09T10:02:45.498Z",
   "specId": "066",
   "folderSlug": "opencode-authoring-recipe",
   "parentChain": [

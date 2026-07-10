@@ -37,7 +37,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".claude/agents/deep-context.md",
       ".github/workflows/prompt-card-sync.yml",
       ".opencode/commands/deep/model-benchmark.md",
       "spec.md",
@@ -46,12 +45,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep-context.md",
-        "kind": "doc",
-        "path": ".claude/agents/deep-context.md",
-        "source": "derived"
-      },
       {
         "name": "prompt-card-sync.yml",
         "kind": "config",
@@ -189,11 +182,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `/deep:model-benchmark` and `/deep:context` workflows hardcode `.opencode/skills/sk-prompt-small-model/...` paths — the benchmark workflow writes outputs to and promotes from `sk-prompt-small-model/benchmarks/{runlabel}`, and the context workflow loads `promptframing` from the SKILL.md",
     "created_at": "2026-06-28T13:47:21.858Z",
-    "last_save_at": "2026-07-02T05:31:09.785Z",
+    "last_save_at": "2026-07-09T10:02:45.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

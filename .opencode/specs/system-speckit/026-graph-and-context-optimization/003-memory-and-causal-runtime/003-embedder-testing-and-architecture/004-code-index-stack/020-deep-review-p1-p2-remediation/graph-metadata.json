@@ -27,7 +27,6 @@
       "020 P1 remediation checklist"
     ],
     "key_topics": [
-      "020",
       "deep",
       "review",
       "remediation",
@@ -38,7 +37,8 @@
       "rrf",
       "defaults",
       "plan",
-      "rerank"
+      "rerank",
+      "nomic"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 019 deep-review packet found nine P1 defects across the mcp-coco-index stack: stale defaults, docs that contradicted production behavior, unsafe env parsing, misleading success reporting, benchmark evidence hazards, overpowering hybrid boosts, and missing RCA for query-expansion regression",
     "created_at": "2026-05-19T17:59:30Z",
-    "last_save_at": "2026-07-02T05:31:11.988Z",
+    "last_save_at": "2026-07-09T10:02:53.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

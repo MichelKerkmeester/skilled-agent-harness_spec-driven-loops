@@ -190,7 +190,7 @@
     ],
     "causal_summary": "sk-doc keeps creation guides in references specific, but the requested structure moves those guides to the root references folder",
     "created_at": "2026-05-10T10:33:22Z",
-    "last_save_at": "2026-06-23T03:49:50.259Z",
+    "last_save_at": "2026-07-09T10:02:44.942Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,14 +201,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:8315fb52624c20f0a27fb33ae4c9413f3101c3143dad1df66ff540440ba85f27",
+    "source_fingerprint": "sha256:fa2d9552a30f379cec5c6421c46cec068564ab4dc38596844483f7c70a95515e",
     "source_doc_hashes": {
-      "spec.md": "f7b3b32b8953d290ffd55a7c0e9d395db8e341d0cef390c747891e87de84e6f1",
-      "plan.md": "cfaf8fff927d2527be5d90c88fa5050b530cb96baee96cca8bd2d388bede0eee",
-      "tasks.md": "6aa4111ff502a8551d0f13db8b1a5824d2da06f53efc0588e669c7aeeda0ca73",
-      "checklist.md": "63e4d47711c1f19774be09e2ea089067b1f83088d4c1daf2290acf11d5fc02b5",
-      "implementation-summary.md": "19acf03454d2245e69e8c7f9021733e61b8883940fd59b6ee5ca205ca3945e48",
-      "resource-map.md": "c98143e42e2b3577c09df9c453fb8f579a47c433ccfb65f0f0f680624152d11e"
+      "spec.md": "3cac40831ee9dc36631ad47906163733ad65bdaed2a09989fc149ce9f72f108a",
+      "plan.md": "c0c366853dccf765ace227621e997ecdf10e3c4a1664b05b347b47b40864cd30",
+      "tasks.md": "c48eec7553de38f1e9534f2b0dbd374f1b12fe6cbae2b660fb745c639a56ec00",
+      "checklist.md": "4f7ead19a587fb5c43371f96ac789b3b25d1078c92757a6e13af2bfbcf3b6602",
+      "implementation-summary.md": "8f8b715bc69f359037b79676e3d5c793c91860c1f88c0845ec4bc499a758ec36",
+      "resource-map.md": "148f28dc1ad3c07f3c121c0e388f8ee4bb961639e78a8d6467b166981a28b3e5"
     },
     "last_active_child_id": null,
     "last_active_at": null

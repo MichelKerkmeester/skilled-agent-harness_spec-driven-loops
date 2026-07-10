@@ -15,13 +15,11 @@
     "lib",
     "scorer",
     "lanes",
-    "8-23",
-    "50-85",
     "routing",
     "quality",
     "depends"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.124Z",
+  "lastUpdated": "2026-07-09T10:02:50.360Z",
   "specId": "006",
   "folderSlug": "advisor-packed-bm25-lexical",
   "parentChain": [

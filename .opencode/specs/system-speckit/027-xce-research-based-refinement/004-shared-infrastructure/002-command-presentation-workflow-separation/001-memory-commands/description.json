@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands",
   "description": "The memory commands command family owns presentation instructions inline with routing instructions",
   "keywords": [
     "memory",
@@ -13,11 +13,11 @@
     "inline",
     "routing"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.648Z",
+  "lastUpdated": "2026-07-09T10:02:55.549Z",
   "specId": "001",
   "folderSlug": "memory-commands",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation"

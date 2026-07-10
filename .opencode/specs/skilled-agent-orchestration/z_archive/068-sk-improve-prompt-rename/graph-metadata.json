@@ -30,7 +30,6 @@
       "082 file ledger"
     ],
     "key_topics": [
-      "082",
       "sk-improve-prompt",
       "rename",
       "sk-prompt",
@@ -41,32 +40,40 @@
       "resource",
       "map",
       "file",
-      "ledger"
+      "ledger",
+      "currently"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "resource-map.md",
+      "001-discovery-impact-map/spec.md",
+      "002-skill-folder-rename/spec.md",
+      "003-opencode-internals/spec.md",
+      "004-runtime-mirrors/spec.md",
+      "005-root-and-config/spec.md",
+      "006-advisor-and-validate/spec.md",
       ".opencode/commands/prompt.md",
       ".claude/CLAUDE.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename/spec.md",
       ".opencode/specs/descriptions.json",
       ".opencode/commands/README.txt",
       ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
-      ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
-      ".opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
       ".opencode/install_guides/SET-UP - AGENTS.md",
       ".opencode/install_guides/README.md",
       ".opencode/skills/README.md",
-      ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
-      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
-      ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
-      "spec.md"
+      ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/068-sk-improve-prompt-rename/spec.md",
+        "source": "derived"
+      },
       {
         "name": "resource-map.md",
         "kind": "doc",
@@ -110,12 +117,6 @@
         "source": "derived"
       },
       {
-        "name": "mcp_server_authoring.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
-        "source": "derived"
-      },
-      {
         "name": "SET-UP - AGENTS.md",
         "kind": "doc",
         "path": ".opencode/install_guides/SET-UP - AGENTS.md",
@@ -131,30 +132,6 @@
         "name": "v3.4.0.0.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "smart-router-measurement-results.jsonl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "smart-router-measurement-report.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "v2.4.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -210,21 +187,33 @@
         "kind": "key_phrase",
         "path": "resource-map.md",
         "source": "derived"
+      },
+      {
+        "name": "historical",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/prompt`) and agent (`@improve-prompt`)",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-06-23T03:49:49.889Z",
+    "last_save_at": "2026-07-09T10:02:45.532Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:cf9b319af2c845c2866c2ab2ee29c86770d0d19114a1478cee80d06b4406961b",
+    "source_fingerprint": "sha256:f8614a8dcc8af274fe12da1fdccb97d6b1bba8ef1e32b10d92bc2d9417f7481a",
     "source_doc_hashes": {
-      "spec.md": "9db602923711e2cae8a609a438f963daa997d6a5e3a2e445176f01e7ffdf537d",
-      "resource-map.md": "00ec7568666c3f53684da984232d4bba6921aab0752cdc6c8f6ca7b9dcf02a32"
+      "spec.md": "4b0edb6d102cd9f1b2001e0d6b961a66c95b174b4ee39a388832f2b7c147ed9c",
+      "resource-map.md": "45e1468cb776134d8e411fa01698f2eec2f3b7e9bb2d10e6a3402996ca5b8330"
     },
     "last_active_child_id": null,
     "last_active_at": null

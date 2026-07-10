@@ -32,11 +32,11 @@
       "runtime",
       "playbook",
       "run",
-      "007",
       "phase",
-      "001",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "verdict"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`deep-loop-runtime` is the shared foundation for the other four deep-loop skills (executor, prompt-pack, post-dispatch validation, atomic state, JSONL repair, loop lock, permissions gate, Bayesian scorer, coverage-graph DB/query/signals, the four `.cjs` script entry points, and council durability)",
     "created_at": "2026-05-27T07:08:08.391Z",
-    "last_save_at": "2026-07-08T13:43:43.022Z",
+    "last_save_at": "2026-07-09T10:02:48.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

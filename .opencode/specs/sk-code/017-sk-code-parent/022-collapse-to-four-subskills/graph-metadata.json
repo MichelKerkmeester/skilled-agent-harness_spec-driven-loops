@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-opencode`, `code-webflow`, `code-animation`) and five workflow-mode skills (`code-implement`, `code-debug`, `code-verify`, `code-quality`, `code-review`)",
     "created_at": "2026-07-06T06:49:42.937Z",
-    "last_save_at": "2026-07-07T17:16:30.645Z",
+    "last_save_at": "2026-07-09T10:02:44.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32e092a034f05d8cb4bbaa42a1a89854b863c8f43609dec17e835ab0e1411970",
+    "source_fingerprint": "sha256:befcabfb40d569f40ddb62b029f045b386ef6c5789d0b25085ba9c3eac9005d3",
     "source_doc_hashes": {
-      "spec.md": "fcd983b8fe0aed525b3bfa30ff4ce09ebfaeb54db924571e1b6a06aafd0095b5",
+      "spec.md": "bb3635a19cc80f581bca5a83b94fef49927d34d26281cb1794869bad19888de8",
       "plan.md": "3ea9987bddff0e2fb22437e72418efc88a420dd9d391d54c9cff5b128e08ce3c",
       "tasks.md": "19f38d89fdcb8d2187c62d10a22614cf18adbab60776fd98ba3e7522d80b350e",
       "checklist.md": "952efb1cf3364248bbcd7bbefb3dc824899f7500adeeeae5fd7c7e48281e770e",

@@ -21,7 +21,6 @@
       "022/004b shipped"
     ],
     "key_topics": [
-      "022",
       "004b",
       "skill-advisor",
       "interface",
@@ -32,7 +31,8 @@
       "plan",
       "tasks",
       "checklist",
-      "shipped"
+      "shipped",
+      "cli-opencode"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched waves 2-4: RoutingCalibration interface expansion, env-var overrides (SPECKIT_ADVISOR_*), prompt-policy externalization to JSON. 9 P1 + 2 P2 closed. Bundle gate PASSED.",
     "created_at": "2026-05-23T18:00:00.000000Z",
-    "last_save_at": "2026-07-07T11:37:50.259Z",
+    "last_save_at": "2026-07-09T10:02:50.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e6a5c0237e4c2d92f4e5f41dbb967d0ea86c8abbaa14ba749a229ca47584343",
+    "source_fingerprint": "sha256:7cefceed039442e051911ac3ea2ee16bad2b3a596b6b0cdbfecd63ce9ee56453",
     "source_doc_hashes": {
-      "spec.md": "a709ec1aaa541f6eefdefa66605ba8e9b3bb2104887d815b19d6a3d25afbb4ed",
-      "plan.md": "f488ed0e23ed21bedb8f6d5d3da7f4381bcd200843371bd2f5705c63a0df5949",
-      "tasks.md": "d09d21745a89757b85731d33d43daecc95c61951cfbf7f2a09b6bbd10525b53f",
-      "checklist.md": "a93bca4ce50ec365ef26ba0dff7446da53004b2f5cf06741af16133b1fad6e97",
-      "implementation-summary.md": "aa79bd6ef4a6879ba8c0dbec6240badfca219620adf0cb07de4744267e116f96"
+      "spec.md": "46cbb4a7cbbff2acec9453ecc4b193dc337969e582c1d9a57698bb2180a7d24e",
+      "plan.md": "f8673d2e4970b5705ba3a583a35ebea81660789ddce98b001fc0408c8205918a",
+      "tasks.md": "832883e2a9cf6fdcb6d40da6252b8d9e7047ebc8aaa993018f5274e89aa55073",
+      "checklist.md": "30fc8d4f2d21220e21e68335513346962721422b02f90284af68cf2aa76e5fb4",
+      "implementation-summary.md": "b3bbb8adf8f9850662ab302e6567ce4e539ed714576184f1c2d418f51d10c192"
     },
     "last_active_child_id": null,
     "last_active_at": null

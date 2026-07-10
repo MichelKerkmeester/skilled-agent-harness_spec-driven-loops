@@ -2,8 +2,6 @@
   "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode",
   "description": "The 120/003 benchmark rig (run a model against fixtures under prompt-framework variants, score, hill-climb) is packet-local and one-off",
   "keywords": [
-    "120",
-    "003",
     "benchmark",
     "rig",
     "run",
@@ -17,7 +15,7 @@
     "packet-local",
     "one-off"
   ],
-  "lastUpdated": "2026-07-08T13:06:22.044Z",
+  "lastUpdated": "2026-07-09T10:02:48.922Z",
   "specId": "007",
   "folderSlug": "deep-agent-improvement-benchmark-mode",
   "parentChain": [

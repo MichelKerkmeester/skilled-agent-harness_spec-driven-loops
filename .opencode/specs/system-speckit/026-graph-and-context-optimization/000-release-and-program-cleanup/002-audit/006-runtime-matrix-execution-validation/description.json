@@ -1,20 +1,19 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/006-runtime-matrix-execution-validation",
   "description": "Packet 030 designed a full v1.0.4 matrix but intentionally did not execute it",
   "keywords": [
     "packet",
-    "030",
     "designed",
     "full",
     "matrix",
     "intentionally",
     "execute"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.189Z",
+  "lastUpdated": "2026-07-09T10:02:50.703Z",
   "specId": "006",
   "folderSlug": "runtime-matrix-execution-validation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "002-audit"

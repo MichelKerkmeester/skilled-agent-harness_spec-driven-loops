@@ -172,6 +172,6 @@ The following content lives only in `.opencode/commands/deep/assets/deep_model-b
 
 ## 6. WORKFLOW SUMMARY
 
-The selected YAML workflow invokes the deep-improvement model-benchmark lane, materializes benchmark fixtures before scoring, records mode-aware benchmark state, and writes benchmark outputs to `.opencode/skills/sk-prompt-models/benchmarks/{run_label}/`. This command never mutates canonical agent files and never loads the agent-improvement workflow.
+The selected YAML workflow invokes the deep-improvement model-benchmark lane, materializes benchmark fixtures before scoring, records mode-aware benchmark state, and writes benchmark outputs to `.opencode/skills/sk-prompt/prompt-models/benchmarks/{run_label}/`. This command never mutates canonical agent files and never loads the agent-improvement workflow.
 
 Use `/deep:agent-improvement` to improve an agent definition. Related follow-on routes are `/speckit:complete` for full spec-driven development, `/prompt` for prompt improvement, and `/deep:review` for iterative code review.

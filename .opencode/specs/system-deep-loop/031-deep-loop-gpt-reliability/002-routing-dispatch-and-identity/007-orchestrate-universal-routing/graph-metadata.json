@@ -41,7 +41,6 @@
     "key_files": [
       ".opencode/agents/orchestrate.md",
       ".claude/agents/orchestrate.md",
-      ".opencode/skills/deep-loop-workflows/mode-registry.json",
       "spec.md",
       "implementation-summary.md",
       "plan.md",
@@ -53,12 +52,6 @@
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`orchestrate.md`'s \"Agent Selection (Priority Order)\" table (`.opencode/agents/orchestrate.md:97-105`) is the single deterministic routing surface for ALL of orchestrate's dispatch decisions — it already lists `@context`, `@deep-research`, `@ai-council`, `@markdown`, `@review`, `@code`, `@debug`",
     "created_at": "2026-07-01T10:56:26.768Z",
-    "last_save_at": "2026-07-05T06:46:01.697Z",
+    "last_save_at": "2026-07-09T10:02:47.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2df5609e5f03dd7f25d8dfc89cc183780928cd61d536a10480a646632052c71a",
+    "source_fingerprint": "sha256:c634208a471ad7c716a226c91490dbaca3c001c743fb60128c48e44a61b68077",
     "source_doc_hashes": {
-      "spec.md": "f4eea2f4d03ab80f4638f4ee4bd6d712c5499090111235dffe60778db5cf0b1d",
-      "plan.md": "bf59ddd2b0a7a78fb001c04099fd7e2ea0f2075abced976703dee14e001aca61",
-      "tasks.md": "e760071bfd4364a5e32834f0912334e1c101bc4284aea2cf20aaf2f84f3b11fe",
-      "checklist.md": "7ebe2ec6d8ca9e3fd53a0990b23a7eaf8577cdcad6e9c5bf9306f7600c1e8579",
-      "implementation-summary.md": "b214cd5a018f92e2c77f6429d018efe44ff8177530d8452410e8cbf55d782e6d"
+      "spec.md": "af2846f00652d9d28110bc3e977a109166a042c686953a53ab32a52a197def39",
+      "plan.md": "783a9a528fb511c815d490360ad76ab362f84b9776f7eb4543ae2b24aea784c6",
+      "tasks.md": "11a719562dab4a5b315a4a44a5536e6908548e877149685351b18563f76f1c54",
+      "checklist.md": "2303794961aa93e9d8fd210093beb913f9a8848a986222e15427a5a60f472a38",
+      "implementation-summary.md": "418a5729ef7d4c0b27b350856fbb1bc46c9df3ef4118d0f2ad971429f4c713ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

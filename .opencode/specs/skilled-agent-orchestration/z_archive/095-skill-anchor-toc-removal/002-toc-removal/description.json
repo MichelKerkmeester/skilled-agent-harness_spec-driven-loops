@@ -3,7 +3,6 @@
   "specFolder": "skilled-agent-orchestration/z_archive/095-skill-anchor-toc-removal/002-toc-removal",
   "description": "384 in-scope skill markdown files carry a `## TABLE OF CONTENTS` block (heading plus a list of anchor links)",
   "keywords": [
-    "384",
     "in-scope",
     "skill",
     "markdown",
@@ -18,7 +17,7 @@
     "anchor",
     "links"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.106Z",
+  "lastUpdated": "2026-07-09T10:02:46.010Z",
   "specId": "002",
   "folderSlug": "toc-removal",
   "parentChain": [

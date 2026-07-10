@@ -36,15 +36,12 @@
       "agents",
       "global",
       "plan",
-      "046"
+      "tasks"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".codex/AGENTS.md",
-      ".opencode/skills/cli-codex/SKILL.md",
-      ".opencode/skills/cli-codex/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -56,24 +53,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-codex/README.md",
         "source": "derived"
       },
       {
@@ -195,11 +174,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "clear",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Codex-family models (GPT-5.4, GPT-5.3-codex) and the Codex APP product default to a response style that differs from Claude Opus in observable, friction-producing ways: (1) opens with pleasantries (\"Certainly!\", \"Absolutely!\", \"Great question!\"); (2) declares conclusions without showing reasoning or trade-offs; (3) agrees with faulty user premises for conversational flow; (4) silently over-engineers and gold-plates beyond the stated scope; (5) reports partial work as a \"good stopping point\"; (6) hedges less when uncertain; (7) rarely surfaces assumptions explicitly",
     "created_at": "2026-04-19T11:24:29.406Z",
-    "last_save_at": "2026-06-23T03:49:49.301Z",
+    "last_save_at": "2026-07-09T10:02:45.289Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c1d14cc0f80f8b87eb9cd3e106f0957bd387a3f0432e9bef0435d0e209b8bc5",
+    "source_fingerprint": "sha256:f9df8e92427f8a925614ef35bbd84cb361f04dc57e3e9bdf6758b281ded6f876",
     "source_doc_hashes": {
-      "spec.md": "bea48fad8f7feaf7a45dfb6b976827f2b784e3166c6b6582fec18d9de6814b12",
-      "plan.md": "8772a6495231d0177173d1092369000db6f1a34de5172ea92025ff34d6278510",
-      "tasks.md": "ebe0a290972c40e2c2c73ceaf9160ab67a13aa5c28687eaf879a3d9dd32ccb6e",
-      "checklist.md": "206decd4f8122a8c4364b5a357573d3fa52e73234a9761c730e22647ba5cb212",
-      "decision-record.md": "3a0fe34ccc53360df603e11935cf44ffa5986ab8763a176ea1709fd9ff3c0998",
-      "implementation-summary.md": "0a96e23873b58e5ea282669391107395070d5d1663a81aabff7f579f0025d255"
+      "spec.md": "031f3dc4f7d50958515b20220850c0f78a979d686007fcd86abfa43c20f39850",
+      "plan.md": "640aafeb187fdd3789cd5ee76524aa02abda100ab210602ed5e02608e47ede8b",
+      "tasks.md": "91a75a619b65acf87bd47a21111ed3de842c6eeb4dd86286cb6323acc1d1187a",
+      "checklist.md": "a2c9b4d218aa25543054969eee1cbee4a8e2e0b94a66f015328385414566a861",
+      "decision-record.md": "a7b18070bb17b1184d0096b9eb23826643a280644f7195defc25fd7f525e9931",
+      "implementation-summary.md": "b2d439389c6eab239e92b1e6804d6a5056d36a48b034e4a08b2fd17a565d5e0c"
     },
     "last_active_child_id": null,
     "last_active_at": null

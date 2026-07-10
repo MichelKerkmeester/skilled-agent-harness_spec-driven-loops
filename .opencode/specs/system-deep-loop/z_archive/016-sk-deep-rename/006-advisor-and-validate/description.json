@@ -3,7 +3,6 @@
   "description": "Phases 001-005 completed the broad rename from `sk-deep-review`/`sk-deep-research` to `deep-review`/`deep-research`, but Packet 070 still needs final",
   "keywords": [
     "phases",
-    "001-005",
     "completed",
     "broad",
     "rename",
@@ -12,12 +11,11 @@
     "deep-review",
     "deep-research",
     "packet",
-    "070",
     "still",
     "needs",
     "final"
   ],
-  "lastUpdated": "2026-07-08T13:06:42.529Z",
+  "lastUpdated": "2026-07-09T10:02:49.278Z",
   "specId": "006",
   "folderSlug": "advisor-and-validate",
   "parentChain": [

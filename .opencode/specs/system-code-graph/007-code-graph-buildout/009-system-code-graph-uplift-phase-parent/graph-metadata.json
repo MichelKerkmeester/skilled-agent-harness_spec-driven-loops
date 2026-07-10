@@ -26,7 +26,6 @@
       "paths analyzed"
     ],
     "key_topics": [
-      "029",
       "system-code-graph",
       "uplift",
       "marketing",
@@ -37,7 +36,8 @@
       "map",
       "paths",
       "deep-research",
-      "preflight"
+      "preflight",
+      "analyzed"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -211,7 +211,7 @@
     ],
     "causal_summary": "The `system-code-graph` skill ships a runtime that works but a doc surface that under-sells it",
     "created_at": "2026-05-16T09:37:48Z",
-    "last_save_at": "2026-07-07T16:18:33.862Z",
+    "last_save_at": "2026-07-09T10:02:47.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,11 +219,11 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:c2e153ebe72ac1b5cb4ae677d17e622540b4d284770ad0db914d1cd2799e5103",
+    "source_fingerprint": "sha256:a543a1a16be3139ccb67d310c8e312100885ec1ea74c98b093a53922b2a72a0a",
     "source_doc_hashes": {
       "spec.md": "04de0c9f9994b8c23d432cef0618a1169e32bd5d4ff32b01abbc36dee6f76e01",
       "research/research.md": "611dd415bd8f2bc6ffeee54194081ef4b51a3ece8de1e9601e9e28878fe0c43d",
-      "resource-map.md": "b39d8a6e21fb9314b7cff2f9c9c4fd4e93e2e0cff8a6def2bc62e4f8b7ec2aba"
+      "resource-map.md": "659312eca356962c1b45fee3645461093b7c4ab66f252db9c21bf06582edb7d4"
     },
     "last_active_child_id": null,
     "last_active_at": null

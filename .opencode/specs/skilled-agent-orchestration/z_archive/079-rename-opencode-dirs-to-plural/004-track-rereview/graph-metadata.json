@@ -27,51 +27,37 @@
       "099 implementation summary"
     ],
     "key_topics": [
-      "099",
       "track",
       "rereview",
       "deep-review",
-      "093-096",
-      "098",
       "verdict",
       "flip",
       "post-remediation",
       "audit",
       "verdict-flip",
-      "confirmation"
+      "confirmation",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "review/resource-map.md",
-      "review/review-report.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
       "spec.md",
       "plan.md",
-      "review/deep-review-dashboard.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "review/resource-map.md",
+      "review/review-report.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/004-track-rereview/review/review-report.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/004-track-rereview/review/resource-map.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/004-track-rereview/implementation-summary.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/002-track-review/review/review-report.md",
+      "review/deep-review-dashboard.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-research-paths.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,12 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "deep-review-dashboard.md",
-        "kind": "doc",
-        "path": "review/deep-review-dashboard.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -100,6 +80,30 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/004-track-rereview/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-dashboard.md",
+        "kind": "doc",
+        "path": "review/deep-review-dashboard.md",
         "source": "derived"
       },
       {
@@ -169,6 +173,12 @@
         "source": "derived"
       },
       {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -191,17 +201,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 097 (track-review of 093-096) converged with verdict FAIL on 2026-05-07: 1 active P0 (live",
     "created_at": "2026-05-07T19:05:00Z",
-    "last_save_at": "2026-06-23T03:49:50.114Z",
+    "last_save_at": "2026-07-09T10:02:45.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5f5af27856dab8f40ce5a4211fc71a20d71bed518d6fc6eddd64e5b6ac2a284",
+    "source_fingerprint": "sha256:a4c425ad3841c5804feb478d2000bf039a9f545acd6c1b57c081e312e85426a8",
     "source_doc_hashes": {
-      "spec.md": "96dda1b233b4c8686c08b33061e50bf29c545291b5c08e5522660091623129fb",
-      "plan.md": "8b9b9515efbbf2ab90fe3bc62ec5a60cfd654cc47bb12b060431464063febdee",
-      "tasks.md": "46dd53111b54807d5fcf078d575cdcf6d2e7557ec38af23bbcb40e05ecb80ddd",
-      "checklist.md": "0cdfc421041ac760968a0304680937097dc00ec07675438e0dc5f10e365b7329",
-      "implementation-summary.md": "86bcbc7990186e34aa1c24267d985bd9c83618a3d9b11d6a35f16294e148e29b"
+      "spec.md": "2b9dd789fbabe31312c13bd49f593747244d3e02216bbbac9dcc43d1c6ad9cf0",
+      "plan.md": "65ac3b3c975ecf8ab6fcf9ba38e1230bba3770b4cb11ba336b5fe4fdb2a6e559",
+      "tasks.md": "3b1a585c33306c9c182c0e96d057709c7bda991ef7609adcde17da8fe5c5ccbe",
+      "checklist.md": "640b06749bee8da96eee558eefe93858fa0679e7fa60d237a44d5c31c265fcdf",
+      "implementation-summary.md": "f0acd270f4932b6994d1c6cadbb2545fb5c06a005f49635581f970cab34f0f1d"
     },
     "last_active_child_id": null,
     "last_active_at": null

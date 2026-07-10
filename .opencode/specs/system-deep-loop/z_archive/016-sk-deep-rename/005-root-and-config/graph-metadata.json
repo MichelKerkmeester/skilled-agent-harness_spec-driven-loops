@@ -27,9 +27,7 @@
       "root docs config verification"
     ],
     "key_topics": [
-      "070",
       "phase",
-      "005",
       "root",
       "docs",
       "config",
@@ -38,7 +36,9 @@
       "references",
       "deep-review",
       "deep-research",
-      "configs"
+      "configs",
+      "plan",
+      "grep"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
     "created_at": "2026-05-05T19:30:00Z",
-    "last_save_at": "2026-07-08T13:43:26.371Z",
+    "last_save_at": "2026-07-09T10:02:49.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:45:00Z",
     "source_docs": [

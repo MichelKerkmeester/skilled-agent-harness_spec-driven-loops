@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The cli-devin README is a tabular reference card with no problem-first entry point, and it carries two stale facts: a version of 1.0.2.0 (the skill is 1.0.13.0) and a reference count of 5 (the directory holds 10)",
     "created_at": "2026-06-07T11:00:00Z",
-    "last_save_at": "2026-06-23T03:49:51.838Z",
+    "last_save_at": "2026-07-09T10:02:46.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64a9e1af530193722adfd46a158946bd6b5bcba0641877caf0ececc3232b4cef",
+    "source_fingerprint": "sha256:bcbe53a752b8b7a4851a9a0a9b179c6c5b1bb8c80caaa348343600778584efcb",
     "source_doc_hashes": {
-      "spec.md": "1d8bf519fc833f05f6862122b449315d49b1c9464d6acf48d2cefcd69aa32fd8",
-      "plan.md": "44a2c5c442c439df11e1aca0f0c426b58729187d9536693389ea4f5d8b922f8e",
-      "tasks.md": "b736fc161371edb514eb3855a272a2c599a086b8ce9ef2ee6138345ff55356a1",
-      "implementation-summary.md": "e2fb38e7851ab7765addcd96aa8c69c5efd45253d7a7424cc0aa27b3bc13da1f"
+      "spec.md": "fdd431be3500c872f04b09a903ce1570b2f014d13859935506f98f0888bc1b86",
+      "plan.md": "0c0ebf57e97b59a649d6e9065e66781096658d740dcb8dd2de2dfe068ed6642c",
+      "tasks.md": "9645935761141c0d02a7d53230d03e5660643abfab493d1c3fda7303ab8ea588",
+      "implementation-summary.md": "bda761467487306f3387f5d8fd06b475c179cc0827bb5629734a533f435efec8"
     },
     "last_active_child_id": null,
     "last_active_at": null

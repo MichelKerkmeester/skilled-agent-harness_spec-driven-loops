@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Packets 1 and 2 created motion.dev playbook coverage and a populated cross-stack `motiondev/` reference package, but existing Webflow docs still mention Motion mostly as Webflow-local guidance",
     "created_at": "2026-05-05T08:30:57.522Z",
-    "last_save_at": "2026-07-07T16:45:58.038Z",
+    "last_save_at": "2026-07-09T10:02:44.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64327d1080364c0851edba891de6516086f39376520eb1d33d0bbdc2b848777d",
+    "source_fingerprint": "sha256:7773f608c807ef3bfb96c3974496ebb3b39d123f8edb20a5427d99dbabbe3979",
     "source_doc_hashes": {
       "spec.md": "c4e0df2179d510a883e0ebc62fe583ce78aa3f81e37b94d41f1070d9221f5013",
       "plan.md": "bcd5a5f38b2609d45195ac671d8bcc8f49955b515892ea282126ba94c124ea14",
       "tasks.md": "4c115bee8977f48cbf73ff8d8f514f96586f571a174b943af1509b8f7e35c696",
       "checklist.md": "a874c09710a01f9638b735bce0f16d0f5c0a9dd9f5930cc1d9af17aa53015aa7",
-      "implementation-summary.md": "ec23cac3dc05eaf18b4dde1a4d1c390d41e91e5dac280f03cb309b45e47bc487"
+      "implementation-summary.md": "1078259ac8aff6a17ee4c718af9b6a2f63615276c0df8bbb432fbc819f55c47b"
     },
     "last_active_child_id": null,
     "last_active_at": null

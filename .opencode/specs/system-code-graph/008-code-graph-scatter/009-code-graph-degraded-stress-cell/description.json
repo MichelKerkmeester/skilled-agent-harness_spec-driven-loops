@@ -3,20 +3,18 @@
   "description": "Packet 010's v1.0.2 stress run produced a NEUTRAL verdict for packet 005 (code-graph fast-fail) because the Q1 cells did not exercise",
   "keywords": [
     "packet",
-    "010",
     "stress",
     "run",
     "produced",
     "neutral",
     "verdict",
-    "005",
     "code-graph",
     "fast-fail",
     "because",
     "cells",
     "exercise"
   ],
-  "lastUpdated": "2026-07-07T16:10:54.198Z",
+  "lastUpdated": "2026-07-09T10:02:47.218Z",
   "specId": "009",
   "folderSlug": "code-graph-degraded-stress-cell",
   "parentChain": [

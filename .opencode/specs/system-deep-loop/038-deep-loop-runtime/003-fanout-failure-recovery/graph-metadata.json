@@ -44,11 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
       "checklist.md",
       "implementation-summary.md"
     ],
@@ -69,36 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-guards.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -196,11 +161,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop fan-out runtime (`.opencode/skills/deep-loop-runtime/scripts/`) is a fire-and-exit BATCH orchestrator [CONFIRMED iter-12: `fanout-run.cjs` `process.exit` per run]",
     "created_at": "2026-06-19T06:06:27.159Z",
-    "last_save_at": "2026-07-06T16:24:27.369Z",
+    "last_save_at": "2026-07-09T10:02:48.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +211,7 @@
       "plan.md": "d6444c0e722c248943a87eed399bf7e0e4eb78af7bcbd53ad18f2e0c6c0f8cb8",
       "tasks.md": "f3c9f81b412d53fe1145842618fbd83646552e6cad365780b98174273563a087",
       "checklist.md": "ab433ebe4be883d066e45d5d33dc631b7332862de2919a772453fe1b179d8da2",
-      "implementation-summary.md": "b5a87c4e3b08ccc024790ecace7ada654d320ec3129da2c746fe10602a3470e9"
+      "implementation-summary.md": "fbccf5f5b0089749c23ee4a2ffba6fdce1eb2a15c35281266255b9893c62dce0"
     },
     "last_active_child_id": null,
     "last_active_at": null

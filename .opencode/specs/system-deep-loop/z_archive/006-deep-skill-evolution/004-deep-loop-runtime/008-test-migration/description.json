@@ -4,7 +4,6 @@
   "description": "After phases 001-006 land, the test layout in `system-spec-kit/mcpserver/tests/deep-loop/` is out of sync with the runtime code's new home in",
   "keywords": [
     "phases",
-    "001-006",
     "land",
     "test",
     "layout",
@@ -18,7 +17,7 @@
     "new",
     "home"
   ],
-  "lastUpdated": "2026-07-08T13:07:16.925Z",
+  "lastUpdated": "2026-07-09T10:02:48.755Z",
   "specId": "008",
   "folderSlug": "test-migration",
   "parentChain": [

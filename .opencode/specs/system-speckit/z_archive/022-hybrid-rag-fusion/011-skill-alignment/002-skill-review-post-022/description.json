@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022",
-  "description": "After the `022-hybrid-rag-fusion` root packet moved to a coordination-root model, the `system-spec-kit` documentation still taught older navigation, v",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022",
+  "description": "After the `022-hybrid-rag-fusion` root packet moved to a coordination-root model, the `system-spec-kit` documentation still taught older navigation,",
   "keywords": [
     "022-hybrid-rag-fusion",
     "root",
@@ -15,11 +15,11 @@
     "older",
     "navigation"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.180Z",
+  "lastUpdated": "2026-07-09T10:02:58.352Z",
   "specId": "002",
   "folderSlug": "skill-review-post-022",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "011-skill-alignment"

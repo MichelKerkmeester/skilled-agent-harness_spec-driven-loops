@@ -24,18 +24,18 @@
       "post-arc docs sweep summary"
     ],
     "key_topics": [
-      "010",
       "public",
       "repo",
       "docs",
       "alignment",
-      "023",
       "post-arc",
       "readme",
       "sweep",
       "qwen3",
       "nomic",
-      "plan"
+      "plan",
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Bring public-repo documentation back into alignment with current code defaults (Qwen3-Reranker-0.6B, nomic-embed-text-v1.5, nomic-CodeRankEmbed, mcp_server feature-grouped layout) after the May 2026 retrieval-pipeline arc, the 023B Qwen3 promotion, and the post-restructure rename of benchmark-2026-05-20-expanded → benchmark-2026-05-20.",
     "created_at": "2026-05-20T15:20:22.326Z",
-    "last_save_at": "2026-07-02T05:31:12.020Z",
+    "last_save_at": "2026-07-09T10:02:53.081Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -16,7 +16,6 @@
       "advisor extraction parent metadata"
     ],
     "key_topics": [
-      "018",
       "parent",
       "doc",
       "drift",
@@ -27,7 +26,8 @@
       "extraction",
       "metadata",
       "still",
-      "opened"
+      "opened",
+      "original"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The parent handover still opened with the original seven-child framing even though graph metadata already listed children 001-021",
     "created_at": "2026-05-15T10:50:18Z",
-    "last_save_at": "2026-07-02T05:31:11.179Z",
+    "last_save_at": "2026-07-09T10:02:49.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50a1f2b1076e487d3d07b9d1323ac48b2b1541330c807476822fa57d5a695f9a",
+    "source_fingerprint": "sha256:bcbe4a19881fe5dc9bac29311b1a697c7d11b876549f1e8a0ff25f42b101698b",
     "source_doc_hashes": {
-      "spec.md": "64a3c646e85883f8c0a12e93c934eff3ba7918a47ec42a0c9e79f95b412c6e6a",
-      "plan.md": "7673c18c72285559562deb8240ea9bf0d1fa2e78b1046a6ec35fcc206103e4de",
-      "tasks.md": "00cbf864d262f6cde3970e3ce0b6b0c59e1be40464e173560365ba91599ea66b",
-      "checklist.md": "8c5f5d0ae7352b6f14276b28602619a9767ec62d159a09a05d018fa88accf241",
-      "implementation-summary.md": "d99b3687f7628dd5d1ff05139a93f2f98ece52714cb7a813077a3446e5869bfc"
+      "spec.md": "602c5d5978603d1f721e62cc33e087cb600f8e10afe7af7656f81e5575d0a8a9",
+      "plan.md": "66efef4f676f934d53431125c3122a495b7fb761276b2a46182d35f1a491b2ed",
+      "tasks.md": "e48c287809c5023d2e7ca21e771799fb0c74ad9207711670a1420da27612a402",
+      "checklist.md": "b9a4d1d3a99fe124eb449e1e6b7f5b5568b1ff7a9e4c9c8dc7c37554fb4418eb",
+      "implementation-summary.md": "d48f2692ec6920624f9ef09aecd0ed3d577089592b5ccfec54b5c2f6ae4e4cbf"
     },
     "last_active_child_id": null,
     "last_active_at": null

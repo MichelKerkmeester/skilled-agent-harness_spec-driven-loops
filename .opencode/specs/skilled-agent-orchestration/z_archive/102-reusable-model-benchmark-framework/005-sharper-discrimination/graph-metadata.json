@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 004 capability run discriminated only on the margins: 3 of 4 hard fixtures saturated (both MiniMax-M3 and MiMo-V2.5-Pro scored 1.0), so correctness could not rank and the framework fell back to a format-TIE",
     "created_at": "2026-06-02T09:30:00.000Z",
-    "last_save_at": "2026-06-23T03:49:51.542Z",
+    "last_save_at": "2026-07-09T10:02:46.236Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb6ab4f72fee765f6770073fdc86174299b572652c9653e301e70c7ed11a8eff",
+    "source_fingerprint": "sha256:226dd1a5210c076bba9fd774252a9a552866412cba91147513fa284c7b8e4c4c",
     "source_doc_hashes": {
-      "spec.md": "e26de5ee84dd9f11ed3c766c31fe80bbd34db989a05b893fb9f3e4f2cf03cc63",
-      "plan.md": "9027eb6955513a4892c17522a6b7266c456533c1f03fc14fb030441025db7547",
-      "tasks.md": "19c23560b37f31459d29ad3010478a40c302a57ce10aee101ecbd9eb0aec0d48",
-      "checklist.md": "45787f8610a126d0cf1023b98cd94487400d31886a46b49f3aaefa6e986bea68",
-      "implementation-summary.md": "de02ed3f45f2877a55c6c9eb9beeefe04896b5bcbdc3a5565d380a269154803d"
+      "spec.md": "ddce3cd69a2c05a5344568f4e5985b60226ca34ec0d34a16a3b6b9eff02f17c0",
+      "plan.md": "fbd83cf33038249be038f8b388dc20113e90491af37304b284d2a2193d46b936",
+      "tasks.md": "623f6e0353d0ecb8b0d10b2406ca3d745d9a9076af7f503a914e10657901ff45",
+      "checklist.md": "4d9802afd74ac728333f4b50a410344ae207d90e033886714eca4cd36b77b452",
+      "implementation-summary.md": "0d3c3bff2650253d185ac4618b153c2c430c944b915db2ed6d0499ff53fd2416"
     },
     "last_active_child_id": null,
     "last_active_at": null

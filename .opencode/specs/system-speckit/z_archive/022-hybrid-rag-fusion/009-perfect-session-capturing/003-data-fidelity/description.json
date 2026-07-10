@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/003-data-fidelity",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/003-data-fidelity",
   "description": "Normalization is lossy at multiple pipeline boundaries",
   "keywords": [
     "normalization",
@@ -8,11 +8,11 @@
     "pipeline",
     "boundaries"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.013Z",
+  "lastUpdated": "2026-07-09T10:02:58.162Z",
   "specId": "003",
   "folderSlug": "data-fidelity",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

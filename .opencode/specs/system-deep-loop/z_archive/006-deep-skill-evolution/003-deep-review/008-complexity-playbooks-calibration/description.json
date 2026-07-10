@@ -4,7 +4,6 @@
   "description": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary",
   "keywords": [
     "phases",
-    "002-007",
     "shipped",
     "review-depth",
     "contract",
@@ -18,7 +17,7 @@
     "graph",
     "vocabulary"
   ],
-  "lastUpdated": "2026-07-08T13:07:04.063Z",
+  "lastUpdated": "2026-07-09T10:02:48.700Z",
   "specId": "008",
   "folderSlug": "complexity-playbooks-calibration",
   "parentChain": [

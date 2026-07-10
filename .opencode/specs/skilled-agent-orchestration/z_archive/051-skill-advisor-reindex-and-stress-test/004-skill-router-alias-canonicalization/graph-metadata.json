@@ -33,8 +33,6 @@
       "alias canonicalization resources"
     ],
     "key_topics": [
-      "065",
-      "004",
       "alias",
       "canonicalization",
       "skill",
@@ -44,7 +42,9 @@
       "review",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Plan phase to normalize accepted aliases between command ids and skill ids in router scenarios and advisor outputs.",
     "created_at": "2026-05-18T07:49:27.134Z",
-    "last_save_at": "2026-06-23T03:49:49.570Z",
+    "last_save_at": "2026-07-09T10:02:45.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:cf9004a6714e8b87fa87cb0950d5505be75807a9c69f2564339e380436747a1b",
+    "source_fingerprint": "sha256:f39f285308c5b54f25135e0ff79d541264ff05542cf756bd17b7e280629adb18",
     "source_doc_hashes": {
-      "spec.md": "ca9c6556eee00f906e9fb6df27b54d872e2c46f22019108581320691b1d5caaf",
-      "plan.md": "3b77fe291bcfd90626ba37c943b020a1fb87e7a0c10f243595364aa8b78ce31e",
-      "tasks.md": "07230959b3969088fb6d4b685c53c0f569368937fc24b85a72282560c0e7c4eb",
-      "checklist.md": "6636577f11b125b87ffe693b7daf680d37baf38038580c02998cf39529947795",
-      "implementation-summary.md": "ac8ab72411e7cf50afb5f20f2de3fa29a9e5c8003ffb3fa9d004986939af4c9f",
-      "resource-map.md": "38c24dcac37b2f1cb5c13842b359e76f7d5baffb2542899fe3dcc35129a9decf"
+      "spec.md": "cd48438928f7201d638a6bcf580d9786110e10674a94d27e1203b27f4c6cc54b",
+      "plan.md": "e351092c06c59541c57d8895144f6333665fe5118cb9987b9a770fdf79eaa0c9",
+      "tasks.md": "c87435dc7710f5f13502591cfca23490fb32c2b5f928343c6b6253b2250ab33a",
+      "checklist.md": "deceb9e8e6ffd3ec97f7ecbfe862314a66032e67b2d06f57047215993f062040",
+      "implementation-summary.md": "83f17f2907d8721caeedf9c080fcddc69e96073d7f5aacffd26435dcdc0aac94",
+      "resource-map.md": "319bc57784d61a351c7e64cf909e31f9db400e1bbf48f5f854f8af4a6cca10a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

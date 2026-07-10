@@ -1,26 +1,24 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/005-test-and-scenario-remediation",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/005-test-and-scenario-remediation",
   "description": "After completing the ESM migration (Phases 1-4), the test suite shows 11 failing test files (58 failed tests out of 8994)",
   "keywords": [
     "completing",
     "esm",
     "migration",
     "phases",
-    "1-4",
     "test",
     "suite",
     "shows",
     "failing",
     "files",
     "failed",
-    "tests",
-    "8994"
+    "tests"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.456Z",
+  "lastUpdated": "2026-07-09T10:02:58.724Z",
   "specId": "005",
   "folderSlug": "test-and-scenario-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],

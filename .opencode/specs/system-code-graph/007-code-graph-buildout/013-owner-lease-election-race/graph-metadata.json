@@ -35,7 +35,7 @@
       "writeleasefile",
       "reprobe",
       "non-atomic",
-      "026"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The launcher (`mk-code-index-launcher.cjs`) elects the single writer through several gates before spawning the daemon, but two of them are non-atomic: the owner-lease reclaim (`acquireOwnerLeaseFile`, lines 373-386) and the `writeLeaseFile()` + `readLeaseFile()` reprobe (lines 948-954) both detect only overlapping concurrent writes via a read-after-write, not sequential ones",
     "created_at": "2026-05-29T16:10:52.725Z",
-    "last_save_at": "2026-07-07T16:18:33.895Z",
+    "last_save_at": "2026-07-09T10:02:47.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

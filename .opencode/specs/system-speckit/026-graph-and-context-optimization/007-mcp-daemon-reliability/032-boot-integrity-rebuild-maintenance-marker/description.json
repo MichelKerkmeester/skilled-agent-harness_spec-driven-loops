@@ -6,11 +6,10 @@
     "schedulebootftsintegritycheck",
     "fires",
     "context-server",
-    "2467",
     "right",
     "daemon"
   ],
-  "lastUpdated": "2026-07-08T10:51:40.002Z",
+  "lastUpdated": "2026-07-09T10:02:54.595Z",
   "specId": "032",
   "folderSlug": "boot-integrity-rebuild-maintenance-marker",
   "parentChain": [

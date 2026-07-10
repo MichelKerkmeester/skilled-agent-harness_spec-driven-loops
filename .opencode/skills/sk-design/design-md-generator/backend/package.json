@@ -4,6 +4,9 @@
   "private": true,
   "description": "Embedded extract-write-validate backend that captures a live website's real CSS into a v3 Style Reference DESIGN.md for the design-md-generator skill.",
   "main": "dist/cli.js",
+  "bin": {
+    "design-system-extractor": "dist/cli.js"
+  },
   "engines": {
     "node": ">=20"
   },

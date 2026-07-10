@@ -25,7 +25,6 @@
       "impl summary core"
     ],
     "key_topics": [
-      "build",
       "benchmark",
       "mode",
       "deep-agent-improvement",
@@ -36,7 +35,8 @@
       "implementation",
       "plan",
       "name",
-      "template"
+      "template",
+      "core"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "deep-agent-improvement can improve agent definitions but cannot benchmark models/prompts; the 120/003 benchmark rig is packet-local and one-off",
     "created_at": "2026-05-28T16:24:06Z",
-    "last_save_at": "2026-07-08T13:43:34.624Z",
+    "last_save_at": "2026-07-09T10:02:48.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -12,10 +12,9 @@
     "pure-function",
     "router",
     "replay",
-    "skill",
-    "used"
+    "skill"
   ],
-  "lastUpdated": "2026-07-08T13:06:55.604Z",
+  "lastUpdated": "2026-07-09T10:02:49.078Z",
   "specId": "010",
   "folderSlug": "skill-benchmark-live-playbook-mode",
   "parentChain": [

@@ -35,54 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-pool.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,11 +148,47 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop-runtime fan-out pool assigns work in FIFO order with no dependency or write-domain metadata; blocked slots (waiting on another lineage) and overlapping slots (both writing to the same path) consume concurrency slots without making progress and risk file conflicts",
     "created_at": "2026-06-28T14:02:15Z",
-    "last_save_at": "2026-07-04T18:02:13.097Z",
+    "last_save_at": "2026-07-09T10:02:47.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b372810621a3113ddcc4bba393e9d426bc87147217bd64051bf8864a62e6106e",
+    "source_fingerprint": "sha256:f4205d418188db24ac6293ca234f5c6aa39a384bfd889d72bebda4281b1f6b96",
     "source_doc_hashes": {
-      "spec.md": "181db06fbd84ff573af0ad73433a5dacfdcb2654c0bf7314d4f95175fea68c6a",
-      "plan.md": "5ca43a923379739f39e0e07649c643c8e84d6a8687c04778fd3e75b1e488e4a4",
-      "tasks.md": "5f0d4805b48da9d27c3ac38a2b08e1b5705726ecb175067ec354f1b0853316a5",
-      "implementation-summary.md": "c7727d5b51a2a75d01afa5cc31d19e62fe5194ba5f635ee8642dee11d92e43cb"
+      "spec.md": "77c5545bc95a0d560c13f74cffe0429b1984de2bba7a857a43a3025c55ac23b3",
+      "plan.md": "d84e3f4a29923f65627712c544ffde16f5171de8a61019b93783b6053f635ec7",
+      "tasks.md": "248fdeb5c8156208bbdf27c3e93dcf7b02b0150e014a25ec1e61093f90309b92",
+      "implementation-summary.md": "a30979213d650d67951385173eb205644ca2965f4f4374f7293f01e36f6c298d"
     },
     "last_active_child_id": null,
     "last_active_at": null

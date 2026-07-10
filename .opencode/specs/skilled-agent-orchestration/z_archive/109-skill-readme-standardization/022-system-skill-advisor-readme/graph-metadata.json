@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The system-skill-advisor README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T16:45:00Z",
-    "last_save_at": "2026-06-23T03:49:51.945Z",
+    "last_save_at": "2026-07-09T10:02:46.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d806178576b6e6e34dd56c6a1812bec69f21ba403a9016df56eef1e0ea0f385f",
+    "source_fingerprint": "sha256:d322132617b58e66574e042cffdc6435761a82aa43c3b89c8b114c19a5a07f44",
     "source_doc_hashes": {
-      "spec.md": "aeb7c25d28fcbc2353f8ef92f7d886379e6d8baae9e87bb2ec837f40ef992e2b",
-      "plan.md": "fcd115d2089da53f7976d492c46d5a75fc89334839bc3a97497c43c7ab8b4658",
-      "tasks.md": "4e37ee3937071fb4a8e273cffbf34238c1046ad9c1ba1ef17bf652286781623c",
-      "implementation-summary.md": "88833ff610df6f89f602d1d33d9a082f8bca54592a74e3f8bbd40ebbbdcb4f75"
+      "spec.md": "5a16f3200e507b8276d146fbd7d508e9e12db49ccfd6e4e5d6261052323621ad",
+      "plan.md": "ecc6cec2334d3e28dac2586e6ef104a5c94d514edb652ada797918ddb1dd4736",
+      "tasks.md": "493eadacb7524aa10ca2d3b54fdcbc5eed8482a87c70277b45d5a4351aac9ff5",
+      "implementation-summary.md": "6409bcb9ff48de90ddfb6bd23e22dff1800eae2a85aa658afe6ee5bc5ee2cf38"
     },
     "last_active_child_id": null,
     "last_active_at": null

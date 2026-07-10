@@ -1,11 +1,10 @@
 {
-  "specFolder": "system-spec-kit/z_archive/021-spec-kit-phase-system",
+  "specFolder": "system-speckit/z_archive/021-spec-kit-phase-system",
   "description": "Large, multi-session tasks (500+ LOC, 15+ files, cross-domain scope) currently produce monolithic spec folders whose documentation grows unwieldy and",
   "keywords": [
     "large",
     "multi-session",
     "tasks",
-    "500",
     "loc",
     "files",
     "cross-domain",
@@ -20,11 +19,11 @@
     "grows",
     "unwieldy"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.625Z",
+  "lastUpdated": "2026-07-09T10:02:57.676Z",
   "specId": "021",
   "folderSlug": "spec-kit-phase-system",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 2,

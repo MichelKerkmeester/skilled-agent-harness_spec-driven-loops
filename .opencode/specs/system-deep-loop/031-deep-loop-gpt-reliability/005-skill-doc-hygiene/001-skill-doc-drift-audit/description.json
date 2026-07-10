@@ -3,9 +3,7 @@
   "description": "Packet 031 (phases 008-013) changed real runtime behavior: `ai-council.md` converted from `mode: all` to `mode: subagent`, `orchestrate.md` gained",
   "keywords": [
     "packet",
-    "031",
     "phases",
-    "008-013",
     "changed",
     "real",
     "runtime",
@@ -17,7 +15,7 @@
     "orchestrate",
     "gained"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.463Z",
+  "lastUpdated": "2026-07-09T10:02:47.835Z",
   "specId": "001",
   "folderSlug": "skill-doc-drift-audit",
   "parentChain": [

@@ -4,7 +4,6 @@
   "description": "Packet 082 renames `sk-improve-prompt` to `sk-prompt` across active repo surfaces",
   "keywords": [
     "packet",
-    "082",
     "renames",
     "sk-improve-prompt",
     "sk-prompt",
@@ -13,7 +12,7 @@
     "repo",
     "surfaces"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.736Z",
+  "lastUpdated": "2026-07-09T10:02:45.537Z",
   "specId": "001",
   "folderSlug": "discovery-impact-map",
   "parentChain": [

@@ -27,7 +27,6 @@
       "code",
       "graph",
       "scatter",
-      "027",
       "migrated",
       "packets",
       "phase",
@@ -35,7 +34,8 @@
       "lean",
       "collecting",
       "four",
-      "code-graph"
+      "code-graph",
+      "spec"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -88,7 +88,7 @@
     ],
     "causal_summary": "Lean phase parent collecting four code-graph spec packets moved out of the 027 refinement tree.",
     "created_at": "2026-07-07T00:00:00Z",
-    "last_save_at": "2026-07-07T16:15:43.216Z",
+    "last_save_at": "2026-07-09T10:02:47.280Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

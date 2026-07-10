@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl",
-  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl",
-  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
+  "packet_id": "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl",
+  "spec_folder": "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl",
+  "parent_id": "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The parent packet needs deterministic HLD/LLD output, but implementation should not proceed until the public contract exists. This child owns the generator behavior after `001-contract` publishes types and signatures.",
     "created_at": "2026-05-18T08:15:28.145Z",
-    "last_save_at": "2026-05-30T10:12:02.854Z",
+    "last_save_at": "2026-07-09T11:26:11.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

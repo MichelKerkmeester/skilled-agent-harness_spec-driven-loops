@@ -35,10 +35,10 @@
       "mcp",
       "research",
       "arc",
-      "010",
       "phase",
-      "001",
-      "deep"
+      "deep",
+      "plan",
+      "strategy"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The system-spec-kit MCP sidecar surface has grown quickly across TypeScript client/worker code, a Node ensure helper, and supporting embedder lifecycle logic",
     "created_at": "2026-05-22T21:00:18Z",
-    "last_save_at": "2026-07-02T05:31:12.236Z",
+    "last_save_at": "2026-07-09T10:02:53.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

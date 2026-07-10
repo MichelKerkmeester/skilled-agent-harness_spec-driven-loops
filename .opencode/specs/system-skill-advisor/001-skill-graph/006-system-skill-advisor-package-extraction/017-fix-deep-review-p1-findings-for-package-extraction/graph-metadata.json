@@ -24,9 +24,6 @@
       "P1 remediation summary"
     ],
     "key_topics": [
-      "013",
-      "009",
-      "017",
       "r-004",
       "lockdir",
       "s-004",
@@ -35,7 +32,10 @@
       "plan",
       "remediation",
       "tasks",
-      "checklist"
+      "checklist",
+      "implementation",
+      "summary",
+      "10-iteration"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 10-iteration review identified two P1 edge-case risks in the extracted `mkskilladvisor` server: a stale bootstrap lock directory could block a clean checkout after a hard crash, and the shadow delta sink accepted an environment-controlled path without workspace containment validation",
     "created_at": "2026-05-19T15:11:02.194Z",
-    "last_save_at": "2026-07-02T05:31:11.153Z",
+    "last_save_at": "2026-07-09T10:02:49.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47d82c7f628d81ae74d90d65829312ef70f1b024712b5fc1815dec0801cb8c8d",
+    "source_fingerprint": "sha256:d24d6fd4dfb8873186d9dfc58bbda05979fba3802e823a786eed86c945f48fa6",
     "source_doc_hashes": {
-      "spec.md": "4edaeb0c9e492021294a1c7b5964b892c9ce2b7f0c0ada9861296cf9e659dc9e",
-      "plan.md": "2cda2de1372dbc25fc11f2b197f0edd74302d5c6e0129645e19c3b23096f760e",
-      "tasks.md": "bd30e81fabd1b653039fcda32aa2aeed9c6a512f6a514af59233690da829dc79",
-      "checklist.md": "a64bd281bdda0736f3ec3ac7b5c274dc9ee0028b3915fc692997366cd3e91281",
-      "implementation-summary.md": "af7301b165f82deff68d5fc3e4252777b938b9bf85612df7840e1fd5587a4c33"
+      "spec.md": "5f127644da19d8cb31c201079f2531f09b434e96de2fa99aa9a8f50a130bbfc8",
+      "plan.md": "387850d4ea473be9948d8cc150edba59abc7cd687f372fc143723b4a04f7bf78",
+      "tasks.md": "1717216d1c5d72456b1aa488e2bfa28ce1ca3e445f2d74e317e5527cac7bd6d2",
+      "checklist.md": "a429943b3fcc07e5800d8668195fd79f9aa23584fc5a01195422ffe436a6137c",
+      "implementation-summary.md": "8ff7c860dcf66a94bd2aba86879849ea95229ef71c5f1a7bb647e8925b7a5c5f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,7 +28,6 @@
       "status",
       "decision",
       "fingerprint",
-      "fix",
       "fsync",
       "error",
       "logging",
@@ -36,7 +35,8 @@
       "health",
       "dimension",
       "implementation",
-      "plan"
+      "plan",
+      "design"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Research's 9-design-fork cross-check (iteration 7) found the shipped plugin faithfully realizes 7 of 9 original design forks, but fork #6 (status set) is only partially realized: `usagelimited` is declared in the enum and documented as first-class in the feature catalog, but has zero production writers — a planned-but-unimplemented contract",
     "created_at": "2026-07-01T10:04:52Z",
-    "last_save_at": "2026-07-03T13:21:41.944Z",
+    "last_save_at": "2026-07-09T10:02:47.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b769c712f6a9a99d85240ebb6ec6b82908ef3d52d73349ec5aeec64747d99bb6",
+    "source_fingerprint": "sha256:9819f37f66e23c8f06f5f86ea827fa7c32a7e305665088d5fb5b10b04683b7be",
     "source_doc_hashes": {
-      "spec.md": "2ed42f00dbb1f16e282a48c62901fdb88a1219504305f5d043c039e53acc6c43",
-      "plan.md": "bf34aaa73463d5b4e95e3def3731876eaf29d85136d7402191d0cff708fbbf74",
-      "tasks.md": "a1687e4c2af66d17406fbc94355fff110e967fc320568cb3750a94116b450707",
-      "implementation-summary.md": "4e84749dd9bf54fd859300a2bc39e0cbb213f57c0200216934aa61a274afb5d6"
+      "spec.md": "c0093c9e6baa75a408261ef724b294056b05383a7f7ab1770706bdf73a5eb15d",
+      "plan.md": "364f524e15d186c2cb53e431390211a9aed16d2e9ebab07414a55e8ca6e492b1",
+      "tasks.md": "8745f70cb41e799b3aacac1fca7b9e87b4f63260fba816e5813f9c3cdc600568",
+      "implementation-summary.md": "2c498cc27b14c967dab72e63919d9c6901ada6839177cf53584feaa01fd7724d"
     },
     "last_active_child_id": null,
     "last_active_at": null

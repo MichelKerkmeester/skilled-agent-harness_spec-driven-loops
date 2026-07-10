@@ -28,14 +28,14 @@
       "preconditions",
       "skill",
       "advisor",
-      "build",
       "precondition",
-      "028",
       "phase",
-      "001",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "summary",
+      "global",
+      "require"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The playbook's §2 global preconditions require a current MCP server build, an unset `SPECKITSKILLADVISORHOOKDISABLED` flag, and evidence workspaces before any scenario can run",
     "created_at": "2026-05-26T20:10:23.387Z",
-    "last_save_at": "2026-07-02T05:31:11.353Z",
+    "last_save_at": "2026-07-09T10:02:50.124Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59f170cba7f00f81f37d76799fe98e2e0c678ec9ca5510fb239c775f69e1797d",
+    "source_fingerprint": "sha256:c86b9c0efe3e7d8e2d039d1e2f22bdcbd95557e4ecf5c10a1f29298cc32f81e9",
     "source_doc_hashes": {
-      "spec.md": "1fa56db2aca88852bcec500c05c9547efbd519a50dbb18fb29c1a4a3544c5653",
-      "plan.md": "701cfbd8855e77a3c5182f5a78f66d60f1f2a7dcf8202fcf1925fc130516a85f",
-      "tasks.md": "87448fd3db23a10df292319e9c337122af2f21d96a8dbecf2c6e727d526e9d18",
-      "checklist.md": "ff4ca27818b0bd7fcabfe2675d75a3c4b277b99e369da2483ebf2473a9ef6a1e",
-      "implementation-summary.md": "a564cc4e76121648431ef04d4c4611be5ebef07b079179011d6dd7e82e643d65"
+      "spec.md": "41c486dbe6fccd2749fe1b3f6a8aa5085ce59b99d41014cc02b7b5738180aead",
+      "plan.md": "0d046fd01aba2e5c8a0efaafa9b6067da6065d72661cf81f25d387c44812aace",
+      "tasks.md": "1aa5ed9843c34f9e4ff3c72f6b2cdab546ae10df4c25bf66690458a84e276015",
+      "checklist.md": "1f0e2d5e966481e3b444c03823f4e5bf75f8e14f80818186c5f59b8dd500bef5",
+      "implementation-summary.md": "9cc765a8ab03bd21d869ca7a605452d406020ef9bf26a40d0b9160a9b407582f"
     },
     "last_active_child_id": null,
     "last_active_at": null

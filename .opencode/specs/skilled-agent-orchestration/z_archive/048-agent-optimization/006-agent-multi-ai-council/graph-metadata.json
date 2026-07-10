@@ -25,12 +25,12 @@
       "rename",
       "multi-ai-council",
       "promotion",
-      "526",
       "loc",
       "sk-improve-agent",
       "lens",
       "spec",
-      "agent"
+      "agent",
+      "sub-phase"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "`@ultra-think` (526 LOC) has not been through the sk-improve-agent v2 lens",
     "created_at": "2026-05-18T07:49:27.106Z",
-    "last_save_at": "2026-06-23T03:49:49.470Z",
+    "last_save_at": "2026-07-09T10:02:45.381Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8907c5a2c26a7fd7b72cadfe656751f5710ae9fd78427258891438f614971299",
+    "source_fingerprint": "sha256:bb023ad77dabbe1ac9c1363ed9cb2098c0c171be8db6bc0c67e7b5a474059b2f",
     "source_doc_hashes": {
-      "spec.md": "a779666a5e0acc1eac3cf70274f622496f81a0fafc2e320073c70a7dd01ddb3f",
-      "plan.md": "9dc18954349785340f8678b747579971cb90367a1ee273d2d831e6ca6aee3b42",
-      "tasks.md": "657888f1220fc727e01426b9f7abed83e05035b263426aad5f86501798c5b04f",
-      "implementation-summary.md": "75fefaffddac871914850ab3344cdb5b6a07a554380e8b2f2c373d1993d27d3c"
+      "spec.md": "12765562b9ecdde89855f056b00543609bdb73501c256907e9badb31384a6909",
+      "plan.md": "19c903d6a6db51c2d2b3c6071aed117fa7a5c7b5f8b715a417d85ab88aabae44",
+      "tasks.md": "ab12f7b4f63c24f25226c221217b0c272da54e1f8fd9dbfba2d26e492b49ebaa",
+      "implementation-summary.md": "ee9952752014d3979df5a223f7e2b4350b9f902c32224f6910c6abe00201385c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -3,7 +3,6 @@
   "specFolder": "sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation",
   "description": "The 102 phase-parent deep-review (5 iterations, converged at iter 4) returned verdict CONDITIONAL with 0 P0, 7 P1, and 9 P2 findings",
   "keywords": [
-    "102",
     "phase-parent",
     "deep-review",
     "iterations",
@@ -14,7 +13,7 @@
     "conditional",
     "findings"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.935Z",
+  "lastUpdated": "2026-07-09T10:02:44.968Z",
   "specId": "005",
   "folderSlug": "deep-review-p1-p2-remediation",
   "parentChain": [

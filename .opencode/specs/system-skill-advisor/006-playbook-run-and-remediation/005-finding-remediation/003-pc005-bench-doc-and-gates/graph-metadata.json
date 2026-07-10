@@ -21,7 +21,6 @@
     "key_topics": [
       "pc-005",
       "bench",
-      "fix",
       "gate",
       "calibration",
       "dataset",
@@ -30,7 +29,8 @@
       "gates",
       "tasks",
       "implementation",
-      "summary"
+      "summary",
+      "fails"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "PC-005 fails two ways that are not a scorer regression (the native scorer bench passes at 3.69/6.71 ms)",
     "created_at": "2026-05-26T21:20:44.527Z",
-    "last_save_at": "2026-07-02T05:31:11.374Z",
+    "last_save_at": "2026-07-09T10:02:50.169Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67478ef8d60783f8f3ccfda5a336e0bdef3a24c34e167a2826fadb2c7f4f8ae4",
+    "source_fingerprint": "sha256:a142e5a2b5e98f9b168be43f55629adf4c2159bcdd4baa458a6935fae916b86c",
     "source_doc_hashes": {
-      "spec.md": "75185605be50551c1d0f76d1a6158dbb083a75ffcf184cbb08b3c4d4fad8766b",
-      "plan.md": "83f68871ac640a1eea2db4ed39819f92f2a8be558df361ab164fe43e31e99660",
-      "tasks.md": "6f619218ddea5e1b8c979417cea1978603526f03bd73ed843e86495b39b77df0",
-      "implementation-summary.md": "fd71bcb265c48bcfeeb53fa7d5f118961c4f8511798decd5835785b4b240baa0"
+      "spec.md": "a9aa1cfb2ec29d9a50af799dc5c0d8baf9f775b29225fc49721b1ba9a6094c4b",
+      "plan.md": "42fa58a4bb72f2dc402c803d2d52cb51f2c05463f64fcd2c280c79b60fa11313",
+      "tasks.md": "74f5b9398e52dfb73567eacde7c4774ceb4abcaf197ba3c6df96d3fefaa70e84",
+      "implementation-summary.md": "d3ef16fb3e4652f0f64804ee6e2d8ed9f5cc9e71117fe2f55b6086898fbdfe39"
     },
     "last_active_child_id": null,
     "last_active_at": null

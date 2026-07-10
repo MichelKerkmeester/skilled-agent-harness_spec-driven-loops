@@ -36,6 +36,20 @@ const SEVERITY_PENALTY = { P0: 40, P1: 12, P2: 3 };
  * @param {string} skillRoot - Absolute path to the skill root.
  * @returns {string[]} Skill-root-relative paths to each markdown file found.
  */
+// Read a skill's optional routing-allowlist (skill-relative markdown paths that
+// are intentionally not routed). Returns an empty Set when absent or malformed,
+// so the default behavior for every skill without one is unchanged.
+function readRoutingAllowlist(skillRoot) {
+  const file = path.join(skillRoot, 'routing-allowlist.json');
+  try {
+    const raw = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const entries = Array.isArray(raw) ? raw : (raw.intentionally_unrouted || []);
+    return new Set(entries.map((e) => (typeof e === 'string' ? e : e && e.path)).filter(Boolean));
+  } catch {
+    return new Set();
+  }
+}
+
 function listMarkdownRefs(skillRoot) {
   const out = [];
   for (const dir of ['references', 'assets']) {
@@ -332,9 +346,19 @@ function scanConnectivity({ skillRoot }) {
     }
   }
 
-  const orphanReferences = listMarkdownRefs(skillRoot).filter((ref) => !routedRefs.has(ref));
+  // Some markdown is legitimately not task-routable — directory-index READMEs,
+  // reference-only archaeology, auto-generated dashboards. A skill may declare
+  // those in a routing-allowlist so an honest "leave it unrouted" is not scored
+  // as a coverage defect (and cannot be laundered into a fake intent to pass a
+  // gate). Absent the file, behavior is unchanged.
+  const allowlist = readRoutingAllowlist(skillRoot);
+  const unrouted = listMarkdownRefs(skillRoot).filter((ref) => !routedRefs.has(ref));
+  const orphanReferences = unrouted.filter((ref) => !allowlist.has(ref));
   for (const orphan of orphanReferences) {
     findings.push({ class: 'orphan_reference', severity: 'P2', locus: orphan, detail: `${orphan} is not reachable from any RESOURCE_MAP intent` });
+  }
+  for (const exempt of unrouted.filter((ref) => allowlist.has(ref))) {
+    findings.push({ class: 'orphan_allowlisted', severity: 'info', locus: exempt, detail: `${exempt} is intentionally unrouted (routing-allowlist)` });
   }
 
   // Hard gate: any P0 (dead path / escape / unparseable). Dead intent keys (P1)

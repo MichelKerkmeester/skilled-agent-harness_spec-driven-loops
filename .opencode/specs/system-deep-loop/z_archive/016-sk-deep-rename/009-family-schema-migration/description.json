@@ -3,7 +3,6 @@
   "description": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts",
   "keywords": [
     "phase",
-    "008",
     "attempted",
     "sk-deep",
     "deep-loop",
@@ -18,7 +17,7 @@
     "rejects",
     "inserts"
   ],
-  "lastUpdated": "2026-07-08T13:06:42.991Z",
+  "lastUpdated": "2026-07-09T10:02:49.305Z",
   "specId": "009",
   "folderSlug": "family-schema-migration",
   "parentChain": [

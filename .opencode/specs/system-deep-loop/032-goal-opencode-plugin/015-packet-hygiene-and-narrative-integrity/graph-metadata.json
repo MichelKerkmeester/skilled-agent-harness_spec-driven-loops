@@ -26,14 +26,14 @@
       "hygiene",
       "narrative",
       "integrity",
-      "032",
       "spec",
       "folder",
       "bookkeeping",
-      "fix",
       "section",
       "counts",
-      "validator"
+      "validator",
+      "recalibration",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "A four-reviewer audit (plugin code, documentation, spec packet, speckit integration) found that packet 032's own bookkeeping has drifted from reality across phases 007-014: three-way status disagreements, stale \"N of M\" phase-count labels contradicted by later phases, a false rename history repeated in four documents, an overstated \"packet-wide\" fingerprint fix, and dangling cross-references left behind when review/research folders were archived and their paths reused by later audits",
     "created_at": "2026-07-03T07:30:47Z",
-    "last_save_at": "2026-07-04T08:33:06.048Z",
+    "last_save_at": "2026-07-09T10:02:47.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1d4b90e4441b90b9996e5c5d38e5a5de83de1dcb12fcf41514cfc5bd78ec1c8",
+    "source_fingerprint": "sha256:eb36e6ae9cdbc01aa5891dc5339b6fc771b4f7458b03e02f46ac9e4a27eb2079",
     "source_doc_hashes": {
-      "spec.md": "5da35c3adac6bf62838ebee5cf77e96db4a137870ece4a475f849142aee46f45",
-      "plan.md": "7777cdeb1decd2eb5b1439bd3e68843ca11fdd7e4595d27b969d738e8ee8dd1c",
-      "tasks.md": "d298fdd3f5cfeaafcf6d8d29e9ed8b11cef6f98227034bb0623b008cb14b4b08",
-      "implementation-summary.md": "30a939ab33d9552b9fda600a3813d4f06b53450b1f43cc6766a898e28cd1297e"
+      "spec.md": "ce8e0bde6d5cfa2e502d755c55c1be332650fa3a17d4734852a179f95f39327d",
+      "plan.md": "d6dd90cc8cf469804f6af98c77b7a15d399aa42d30669a499d26f97be44036b1",
+      "tasks.md": "8c77f8af971a86fb68dd9dc1adeb42ed5cfd0181157015ba4d7dac689f406019",
+      "implementation-summary.md": "7aecf354d0b871fb347f3c6cb1e16109e740efacb48dcca8348b399500afd8b6"
     },
     "last_active_child_id": null,
     "last_active_at": null

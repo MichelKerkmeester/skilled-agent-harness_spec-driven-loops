@@ -21,10 +21,8 @@
       "dev null fix file ledger"
     ],
     "key_topics": [
-      "097",
       "cli-opencode",
       "stdin",
-      "fix",
       "opencode",
       "run",
       "hangs",
@@ -32,24 +30,59 @@
       "null",
       "background",
       "dispatch",
-      "hang"
+      "hang",
+      "automation",
+      "resource"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/integration_patterns.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
       ".opencode/skills/cli-opencode/README.md",
       "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
+      "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/spec.md",
+      "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/plan.md",
+      "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/tasks.md",
+      "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/checklist.md",
+      "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/description.json",
+      "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/graph-metadata.json",
+      "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/implementation-summary.md",
+      "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/resource-map.md",
+      "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/changelog.md",
       "resource-map.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/checklist.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -83,37 +116,31 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/description.json",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/graph-metadata.json",
         "source": "derived"
       },
       {
         "name": "resource-map.md",
         "kind": "doc",
-        "path": "resource-map.md",
+        "path": "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog.md",
+        "kind": "doc",
+        "path": "specs/skilled-agent-orchestration/z_archive/080-cli-opencode-stdin-fix/changelog.md",
         "source": "derived"
       },
       {
@@ -175,29 +202,11 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "corrected",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "OVERVIEW",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "rationale",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`opencode run` is the entry point for cross-AI dispatch from Claude Code, Codex, Gemini, and shell automation",
     "created_at": "2026-05-08T13:30:00Z",
-    "last_save_at": "2026-06-23T03:49:50.151Z",
+    "last_save_at": "2026-07-09T10:02:45.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +217,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:2700796e214bcbee989b8dcacdba02e8a6dbbc69ea4387952ff7337419007872",
+    "source_fingerprint": "sha256:5edfca35bc3a1878562041a29c1d9eb314b4bb23386b9feec6b38fdeb22547c8",
     "source_doc_hashes": {
-      "spec.md": "886d2255ceecbc1c4b4255d2f34177c91e59cfdea3f18cbb7ff74814bbe95106",
-      "plan.md": "ba3ad45d4b9761de40ef31615e6a9faa878d4ffcc507348d153a50a7b2448fce",
-      "tasks.md": "742ea2d6ce68f572b5a3404bbe5f25dd559068fdc69090c16d3632af7fcfc3f3",
+      "spec.md": "8fa886b94d9466dd8389817dae7d81f6bf2853527db44444795a8ca692b9e470",
+      "plan.md": "fc503f996a2c3eb84dfcf93bc41ec9ea619b2f749ccfcf6c45716018df1e0d34",
+      "tasks.md": "e71eb3a3b0db239211243ff5a8edf2911d036ede42271ce65e354120e9600152",
       "checklist.md": "5a3cb2f3dcc3d066b785df0cd1671aaaecd101aa097446ecaedbf07222377ef6",
-      "implementation-summary.md": "db8835ac5618fe51ed586ee067bc31c6a785fade367c53ce4866638a4ad938d3",
-      "resource-map.md": "74f9dcf5fe0ba1c9b37d7b2e2d463db28a726f19ef4abf903853a86edc951126"
+      "implementation-summary.md": "c277e795961604e4b48d103a97818989105e2df2ce11ef7ce8d61cf27c41289c",
+      "resource-map.md": "6667365ab122a9974a149571968771e6d251709bf0add20f76b876bc903773f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

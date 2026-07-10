@@ -1,25 +1,12 @@
 {
   "level": "1",
   "specFolder": "system-deep-loop/031-deep-loop-gpt-reliability/007-compiled-contract-compiler/003-generalization-probes",
-  "description": "Phase 003 of packet 036. Prove the compiled-command-contract behavior flip generalizes beyond review/research to the context and council modes, and",
+  "description": "Phase 003 of packet 036.",
   "keywords": [
     "phase",
-    "003",
-    "packet",
-    "036",
-    "prove",
-    "compiled-command-contract",
-    "behavior",
-    "flip",
-    "generalizes",
-    "beyond",
-    "review",
-    "research",
-    "context",
-    "council",
-    "modes"
+    "packet"
   ],
-  "lastUpdated": "2026-07-04T19:18:11.818Z",
+  "lastUpdated": "2026-07-09T10:02:47.890Z",
   "specId": "003",
   "folderSlug": "generalization-probes",
   "parentChain": [

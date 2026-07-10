@@ -3,7 +3,6 @@
   "description": "The Packet 070 deep review failed because child phase documentation still contains over-replaced identity-renames such as `deep-review to deep-review`",
   "keywords": [
     "packet",
-    "070",
     "deep",
     "review",
     "failed",
@@ -17,7 +16,7 @@
     "identity-renames",
     "deep-review"
   ],
-  "lastUpdated": "2026-07-08T13:06:42.296Z",
+  "lastUpdated": "2026-07-09T10:02:49.286Z",
   "specId": "007",
   "folderSlug": "deep-review-remediation",
   "parentChain": [

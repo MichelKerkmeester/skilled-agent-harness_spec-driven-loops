@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
-  "description": "The user-facing command READMEs and the `system-spec-kit` references/assets had accumulated documentation drift: stale paths, outdated tool API signat",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
+  "description": "The user-facing command READMEs and the `system-spec-kit` references/assets had accumulated documentation drift: stale paths, outdated tool API",
   "keywords": [
     "user-facing",
     "command",
@@ -16,14 +16,13 @@
     "paths",
     "outdated",
     "tool",
-    "api",
-    "signat"
+    "api"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.919Z",
+  "lastUpdated": "2026-07-09T10:02:51.575Z",
   "specId": "009",
   "folderSlug": "readme-and-references-accuracy",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup"
   ],

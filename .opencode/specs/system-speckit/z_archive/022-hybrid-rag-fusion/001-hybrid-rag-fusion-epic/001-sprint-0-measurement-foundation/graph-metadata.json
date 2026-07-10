@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -29,25 +29,31 @@
       "measurement",
       "foundation",
       "graph",
-      "fix",
       "eval",
       "infrastructure",
       "plan",
       "tasks",
       "checklist",
       "channel",
-      "completely"
+      "completely",
+      "broken"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -64,12 +70,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The graph channel is completely broken — 0% hit rate in production due to `mem:${edgeId}` string IDs being compared against numeric memory IDs",
     "created_at": "2026-04-12T09:02:50.225Z",
-    "last_save_at": "2026-06-23T03:49:59.642Z",
+    "last_save_at": "2026-07-09T10:02:57.699Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

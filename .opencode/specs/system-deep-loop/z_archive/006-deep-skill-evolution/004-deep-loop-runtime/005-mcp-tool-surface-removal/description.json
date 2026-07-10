@@ -4,14 +4,11 @@
   "description": "After phases 001 (runtime skill scaffold), 002 (lib migration), and 003 (script shims + DB relocation) complete, the four `deeploopgraph` MCP tools",
   "keywords": [
     "phases",
-    "001",
     "runtime",
     "skill",
     "scaffold",
-    "002",
     "lib",
     "migration",
-    "003",
     "script",
     "shims",
     "relocation",
@@ -21,7 +18,7 @@
     "mcp",
     "tools"
   ],
-  "lastUpdated": "2026-07-08T13:07:16.365Z",
+  "lastUpdated": "2026-07-09T10:02:48.735Z",
   "specId": "005",
   "folderSlug": "mcp-tool-surface-removal",
   "parentChain": [

@@ -4,7 +4,6 @@
   "description": "Packet 119 identified three P2 hygiene gaps: duplicate ruled-out directions could accumulate, workflow YAML script references lacked a direct",
   "keywords": [
     "packet",
-    "119",
     "identified",
     "three",
     "hygiene",
@@ -20,7 +19,7 @@
     "lacked",
     "direct"
   ],
-  "lastUpdated": "2026-07-08T13:06:27.474Z",
+  "lastUpdated": "2026-07-09T10:02:48.797Z",
   "specId": "006",
   "folderSlug": "hygiene-fix-pack",
   "parentChain": [

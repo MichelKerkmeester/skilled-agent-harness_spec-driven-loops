@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The packet plan lists sk-git as one of the twenty-two skill READMEs to standardize",
     "created_at": "2026-06-07T14:29:02Z",
-    "last_save_at": "2026-06-23T03:49:51.920Z",
+    "last_save_at": "2026-07-09T10:02:46.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6c7fad8348c1df5f7b64c193d97d21a6ea2182a14997f3d54277d6b22526c37",
+    "source_fingerprint": "sha256:7fe014ec04c2453344daf1740eb5062370e6c70812d185e73789371371e084c3",
     "source_doc_hashes": {
-      "spec.md": "88446e56cd687e73f436fbde1c2bab887738fb38bc00e231c99ebf5b3810a221",
-      "plan.md": "f881cfba450d2b6a26139d7e64b21691f21ce3383d10cb283d35e63cb71922f3",
-      "tasks.md": "869cb0b642a7bb832dab5ff9d5af10b618848cf0695fe516ce13ff60b92bed84",
-      "implementation-summary.md": "07eb4ea0a445b22e73f21744ed17d4af806b883aef634b72e401aa3a98c8d0e7"
+      "spec.md": "3a5cd69e0d887caf6dc217465c5a89447680ca5dd0c4b3f4ce9a04c7d179a33e",
+      "plan.md": "9f79e3ca2001cf3752f91ef601849cad825515022f626c3340912b3c4cc3b476",
+      "tasks.md": "b6f1b756da81081ecd4d45f4b34c6d2d92f9e06b9fce04ca1c929aabd561d2b6",
+      "implementation-summary.md": "21a9d81afb193d2ca9a257eebbf82785ece194b2617e7efa1304bded272fa8de"
     },
     "last_active_child_id": null,
     "last_active_at": null

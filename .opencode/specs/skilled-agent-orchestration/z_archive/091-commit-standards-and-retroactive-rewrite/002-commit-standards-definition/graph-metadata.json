@@ -37,8 +37,11 @@
       "adrs"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       "decision-record.md",
       "evidence/sample-20.txt",
       "evidence/sample-packet-id.txt",
@@ -47,12 +50,27 @@
       "implementation-summary.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/assets/commit_message_template.md",
-      ".opencode/skills/sk-git/references/commit_workflows.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/skills/sk-git/references/commit_workflows.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -105,24 +123,6 @@
         "name": "commit_workflows.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/references/commit_workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The repo has standards on paper but no decisions locked in for the cases that actually matter for a retroactive rewrite",
     "created_at": "2026-05-16T09:42:33Z",
-    "last_save_at": "2026-06-23T03:49:50.414Z",
+    "last_save_at": "2026-07-09T10:02:45.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12d4e2d41bfe79d9108fa84637beffb18ed5ff39999aaff6d388411a9c024fd6",
+    "source_fingerprint": "sha256:52ec69c05aaa3e69f29f172a16bd1b99071b63a90c718f45bf53f025d7d47bcf",
     "source_doc_hashes": {
-      "spec.md": "bf9751de436afcf5db3326ea04bf62edb4aa83e3887a970efaed01fe4955f7fc",
-      "plan.md": "214701ec5fad86f442484bae2fba4d468c0465a379e68d5046fb32811b05d0d3",
-      "tasks.md": "de34b78abb7e810c39e3e04d08453401352614e42437da4f59f1968ac9d872b2",
+      "spec.md": "53925b61c1a04c3cab89ce44741e668ff9a1a72dd745ae526c22c7bd74cdb87e",
+      "plan.md": "70e4ac7c79246ca7981e2cc060d60dc351fe280af5b402e6d02ac42d739aff9f",
+      "tasks.md": "ce52749a053e7634b3a8ea0d84dfb3dc236efdb2887ea41fe9bc8d5683cf674c",
       "decision-record.md": "a96efeb121269ae0ce7cba5d65e9cb1fe04340d844be5176c643adf2d8ff1cdc",
-      "implementation-summary.md": "1cd51f53d8fa6fe1f0659cff049b78e2ccedb37e575516681bd9e04a5418196f"
+      "implementation-summary.md": "089200129a2d6c8335aa2fba3b3301d424e93c38f7b862de5bf320355852e689"
     },
     "last_active_child_id": null,
     "last_active_at": null

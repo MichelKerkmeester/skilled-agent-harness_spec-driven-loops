@@ -45,7 +45,7 @@ Run sk-prompt on a low-complexity prompt. Verify it passes the CLEAR check inlin
 ### Commands
 
 1. `sk-prompt: Quick check on my prompt -- handle it inline without escalating to a deep pass.`
-2. `bash: rg 'CLEAR|Correctness|Logic|Expression|Arrangement|Reusability' .opencode/skills/sk-prompt/references/patterns_evaluation.md`
+2. `bash: rg 'CLEAR|Correctness|Logic|Expression|Arrangement|Reusability' .opencode/skills/sk-prompt/prompt-improve/references/patterns_evaluation.md`
 
 ### Expected
 

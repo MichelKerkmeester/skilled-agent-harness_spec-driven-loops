@@ -4,7 +4,6 @@
   "description": "After the P0 routing fixes and alias-awareness work, the regression suite still has non-alias P1 failures: ~6 in the Python harness and ~11 in the TS",
   "keywords": [
     "routing",
-    "fixes",
     "alias-awareness",
     "work",
     "regression",
@@ -15,7 +14,7 @@
     "python",
     "harness"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.031Z",
+  "lastUpdated": "2026-07-09T10:02:50.210Z",
   "specId": "006",
   "folderSlug": "p1-routing-tuning",
   "parentChain": [

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/026-memory-database-refinement",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/026-memory-database-refinement",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/026-memory-database-refinement",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/026-memory-database-refinement",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "review/review-report.md",
       "lib/storage/lineage-state.ts",
       "shared/embeddings/factory.js",
@@ -59,10 +60,15 @@
       "handlers/causal-graph.ts",
       "lib/search/vector-index-schema.ts",
       "lib/cache/embedding-cache.ts",
-      "handlers/chunking-orchestrator.ts",
-      "lib/chunking/anchor-chunker.ts"
+      "handlers/chunking-orchestrator.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "review-report.md",
         "kind": "doc",
@@ -172,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "anchor-chunker.ts",
-        "kind": "code",
-        "path": "lib/chunking/anchor-chunker.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Spec Kit Memory MCP server is a 70K+ LOC system with 31 MCP tools, a 57-column `memoryindex` table, 5-channel hybrid search, causal graph traversal, FSRS-based scheduling, PE-gating, reconsolidation, lineage versioning, and a 2,500-LOC monolithic save pipeline",
     "created_at": "2026-04-12T09:02:50.315Z",
-    "last_save_at": "2026-06-23T03:50:00.412Z",
+    "last_save_at": "2026-07-09T10:02:58.656Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

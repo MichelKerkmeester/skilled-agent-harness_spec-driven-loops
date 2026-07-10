@@ -1,10 +1,8 @@
 {
   "level": "1",
   "specFolder": "system-skill-advisor/001-skill-graph/003-skill-metadata-embedding-quality-audit",
-  "description": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0–V6, includ",
+  "description": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0–V6,",
   "keywords": [
-    "015",
-    "004",
     "seeded",
     "sweep",
     "proved",
@@ -18,17 +16,13 @@
     "24-prompt",
     "corpus",
     "regardless",
-    "weight",
-    "includ"
+    "weight"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.205Z",
+  "lastUpdated": "2026-07-09T10:02:49.552Z",
   "specId": "003",
   "folderSlug": "skill-metadata-embedding-quality-audit",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "001-skill-graph"
   ],
   "memorySequence": 0,

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The Skill Advisor has a load-time staleness blind spot",
     "created_at": "2026-06-19T08:00:00.000Z",
-    "last_save_at": "2026-07-07T09:40:25.034Z",
+    "last_save_at": "2026-07-09T10:02:50.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55d7f34a50468de2fe468e10069526382bdc55850c9f62883b8cdf1eeca186f7",
+    "source_fingerprint": "sha256:f6270274bceaa9f5e1081f5bc4a1bfd4dfd4495cf0d0b9eba73ffee1ea8b92af",
     "source_doc_hashes": {
-      "spec.md": "f064b08e9f4b386bdb0d98dda0431860c9fe67ce71642b1c6cc4a79bf6f42793",
-      "plan.md": "306a2cf603c2e81fc1e40762bd57fae91f0857024f798b0e64129379354688fc",
-      "tasks.md": "69867193ac71997f8db07f19060e730b69e92e13fa5dc148adea295295d59024",
-      "checklist.md": "ed2dd9e0be36288e194cc9929ec67833d846d984ef765bdfd51bafbf13f0a7c3",
-      "implementation-summary.md": "47f0022bc809a36e9770406480eee301a117a46361fac52e0420707099e7b5e7"
+      "spec.md": "ffb2d024fe926197ee3765ebe15d024cd0908acb761b938aceeff9f590e96975",
+      "plan.md": "0b098502e6f2b1ca3fbbe349e02318c60b0692f9dae6c8b5de5808a62b3d3881",
+      "tasks.md": "cfb4778dd6c9fa0caabf63063febe9c6017188aa45dc28b4c973f78d3d788b83",
+      "checklist.md": "54341d69c871040ef2a8bcadc54bf2f5abbe132f0f0f99182ab7fc1a8f69f263",
+      "implementation-summary.md": "db1059b167e4cac6a0249a653e66ce744bf0a1a30c5c710cc1fe203a48f69a46"
     },
     "last_active_child_id": null,
     "last_active_at": null

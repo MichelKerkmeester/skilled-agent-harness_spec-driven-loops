@@ -23,9 +23,7 @@
       "031 006 001"
     ],
     "key_topics": [
-      "035",
       "phase",
-      "001",
       "acceptance",
       "rollout",
       "foundation",
@@ -34,7 +32,9 @@
       "plan",
       "tasks",
       "implementation",
-      "summary"
+      "summary",
+      "packet",
+      "unified"
     ],
     "importance_tier": "high",
     "status": "planned",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 001 of packet 035 (unified command-contract architecture). Closes F-014, F-025 and builds the rollout mechanism (plan-review GAP-47). Two jobs, both prerequisites for safely landing any rewrite: make the 033 behavior-benchmark trustworthy as the acceptance harness, and build the per-command feature-flag rollout kill-switch with a byte-identical pre-035 fallback. Absorbs plan-review gaps GAP-01/03/06/08/14/37/38/39/40/45/47/49.",
     "created_at": "2026-07-03T14:05:28.028Z",
-    "last_save_at": "2026-07-05T06:46:07.832Z",
+    "last_save_at": "2026-07-09T10:02:47.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0affa75f18349f5aeb6ce7f009e95ee08f2f77c05da5eb3b8f115e61e2ec104",
+    "source_fingerprint": "sha256:2b0988d7b5073d4e47a424bf4db628d9a923b6ccab9333b1aa87645f2eda1d5d",
     "source_doc_hashes": {
-      "spec.md": "a7dd69270673fb40c1d17920d5409aa38c0f73387b91265d52f58f7f13bf011d",
-      "plan.md": "080c052163937030203ae6faa8eb7bf48ca4ea70e73e4bb64ea3074e45bd6a25",
-      "tasks.md": "4f7b8aa022952cfef2ef9f5e78f32a7114bc5077b3cd851289f479f53d5ebd76",
-      "implementation-summary.md": "d7d44529718d4e226b9e6d120ff3b2da511834bb1a8783726d48dc445b329af0"
+      "spec.md": "ec3a30d272cfee5f1c71ccad49860f14496907cf752935e72b1353be6a63a005",
+      "plan.md": "9cadc0a21bccdd3450298d988b2850b57bac3853c1beb625865c377336b1a5f7",
+      "tasks.md": "3789d51da1de21d0e652240c4d42d11f42463aba11886dfa44c06384bd95f4d0",
+      "implementation-summary.md": "7313906af28c78ec59162d92dc71baa96ad0cbc2f83c5f537fa288ed6c070bed"
     },
     "last_active_child_id": null,
     "last_active_at": null

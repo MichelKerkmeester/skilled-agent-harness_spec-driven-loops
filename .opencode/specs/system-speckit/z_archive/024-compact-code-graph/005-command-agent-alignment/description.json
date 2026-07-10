@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/005-command-agent-alignment",
+  "specFolder": "system-speckit/z_archive/024-compact-code-graph/005-command-agent-alignment",
   "description": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
   "keywords": [
     "phase",
@@ -12,11 +12,11 @@
     "tracked",
     "packet"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.600Z",
+  "lastUpdated": "2026-07-09T10:02:58.923Z",
   "specId": "005",
   "folderSlug": "command-agent-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "024-compact-code-graph"
   ],

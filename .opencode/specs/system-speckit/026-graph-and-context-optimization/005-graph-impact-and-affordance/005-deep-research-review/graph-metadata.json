@@ -27,18 +27,18 @@
       "006 review research implementation summary"
     ],
     "key_topics": [
-      "008",
       "deep-research",
       "review",
-      "006",
-      "007",
       "closure",
       "verification",
       "research",
       "plan",
       "retrospective",
       "tasks",
-      "checklist"
+      "checklist",
+      "implementation",
+      "summary",
+      "phase"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook coverage needed independent audit",
     "created_at": "2026-04-25T23:20:00.000Z",
-    "last_save_at": "2026-07-07T12:30:09.878Z",
+    "last_save_at": "2026-07-09T10:02:54.160Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

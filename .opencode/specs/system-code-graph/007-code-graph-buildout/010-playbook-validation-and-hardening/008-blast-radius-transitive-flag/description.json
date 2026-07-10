@@ -5,14 +5,13 @@
     "finding",
     "f-022-1",
     "phase",
-    "007",
     "codegraphquery",
     "blastradius",
     "ignores",
     "includetransitive",
     "flag"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.119Z",
+  "lastUpdated": "2026-07-09T10:02:47.117Z",
   "specId": "008",
   "folderSlug": "blast-radius-transitive-flag",
   "parentChain": [

@@ -7,15 +7,12 @@
     "memory-db-lifecycle",
     "work",
     "packets",
-    "008",
     "checkpoint-on-close",
-    "009",
     "shutdown-durability",
-    "010",
     "at-rest-wal",
     "code-graph"
   ],
-  "lastUpdated": "2026-07-07T16:10:51.825Z",
+  "lastUpdated": "2026-07-09T10:02:47.174Z",
   "specId": "002",
   "folderSlug": "deep-review-shutdown-and-codegraph",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution",
   "description": "sk-design's `manualtestingplaybook` (37 scenarios, 8 categories) has only ever been exercised by the automated Lane C skill-benchmark harness, which",
   "keywords": [
@@ -14,16 +15,13 @@
     "skill-benchmark",
     "harness"
   ],
-  "lastUpdated": "2026-07-07T14:55:39.807Z",
+  "lastUpdated": "2026-07-09T10:02:44.575Z",
   "specId": "023",
   "folderSlug": "full-manual-playbook-execution",
   "parentChain": [
-    ".opencode",
-    "specs",
     "sk-design",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

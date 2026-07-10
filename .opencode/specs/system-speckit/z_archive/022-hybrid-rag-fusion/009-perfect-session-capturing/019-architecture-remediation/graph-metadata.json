@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/019-architecture-remediation",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/019-architecture-remediation",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/019-architecture-remediation",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/019-architecture-remediation",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -27,7 +27,6 @@
     "key_topics": [
       "architecture",
       "remediation",
-      "019",
       "deep",
       "dive",
       "session",
@@ -36,11 +35,13 @@
       "plan",
       "tasks",
       "wave",
-      "agents"
+      "agents",
+      "synthesis"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "decision-record.md",
       "tasks.md",
@@ -59,10 +60,15 @@
       "scratch/opus-2-spec-alignment.md",
       "scratch/opus-3-architecture.md",
       "scratch/opus-4-git-diff.md",
-      "spec.md",
       "lib/semantic-summarizer.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -172,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "semantic-summarizer.ts",
         "kind": "code",
         "path": "lib/semantic-summarizer.ts",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The perfect-session-capturing subsystem has grown to 20 child phases (000-019), 96+ TypeScript source files, 44 MCP handlers, and multiple audit passes",
     "created_at": "2026-04-12T09:02:50.282Z",
-    "last_save_at": "2026-06-23T03:50:00.142Z",
+    "last_save_at": "2026-07-09T10:02:58.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

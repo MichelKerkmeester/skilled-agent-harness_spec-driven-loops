@@ -8,12 +8,11 @@
     "findings-first",
     "review",
     "baseline",
-    "used",
     "deep-review",
     "speckit"
   ],
-  "lastUpdated": "2026-07-07T16:37:57.180Z",
-  "specId": "012",
+  "lastUpdated": "2026-07-09T10:02:44.352Z",
+  "specId": "010",
   "folderSlug": "sk-code-review-playbook",
   "parentChain": [
     "sk-code",

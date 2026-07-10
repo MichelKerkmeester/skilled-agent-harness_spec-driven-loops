@@ -46,7 +46,7 @@ Improve my SQL query prompt; verify every DEPTH phase reports exit criteria and 
 
 1. `sk-prompt: I want to see the DEPTH process show me each phase's exit criteria as it runs — make my SQL query prompt better.`
 2. `agent: @prompt-improver raw_task="Improve a SQL query prompt and report every DEPTH phase exit gate." task_type=generation target_cli=opencode complexity_hint=7 constraints="Include gate name, status, and remediation for each phase."`
-3. `bash: rg 'Phase Exit Criteria|Exit:' .opencode/skills/sk-prompt/references/depth_framework.md`
+3. `bash: rg 'Phase Exit Criteria|Exit:' .opencode/skills/sk-prompt/prompt-improve/references/depth_framework.md`
 
 ### Expected
 

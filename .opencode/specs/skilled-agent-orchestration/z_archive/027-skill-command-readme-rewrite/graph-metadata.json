@@ -32,47 +32,45 @@
       "overhaul",
       "plan",
       "tasks",
-      "033",
       "verification",
       "checklist",
       "implementation",
-      "readmes"
+      "readmes",
+      "vary"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       ".opencode/commands/README.txt",
       ".opencode/commands/create/README.txt",
       ".opencode/commands/memory/README.txt",
       ".opencode/commands/speckit/README.txt",
-      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/README.md",
       ".opencode/skills/cli-claude-code/README.md",
-      ".opencode/skills/cli-codex/README.md",
       ".opencode/skills/mcp-chrome-devtools/README.md",
       ".opencode/skills/mcp-code-mode/README.md",
       ".opencode/skills/mcp-figma/README.md",
-      ".opencode/skills/sk-code-review/README.md",
       ".opencode/skills/sk-doc/README.md",
       ".opencode/skills/sk-git/README.md",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md",
-      "plan.md"
+      "plan.md",
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "hvr_rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
         "source": "derived"
       },
       {
@@ -94,15 +92,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -210,7 +208,7 @@
     ],
     "causal_summary": "Skill READMEs and command READMEs vary in quality, structure and voice",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-06-23T03:49:49.072Z",
+    "last_save_at": "2026-07-09T10:02:45.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +218,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e3152b4dd451ae735a60da0c2310c406be88821ed13e860a22356bd27ee620d",
+    "source_fingerprint": "sha256:f76a4bc8ef428ee1c3b3c391a3271abf8aa26322d9264cbd37d6b72cb5da5bf6",
     "source_doc_hashes": {
-      "spec.md": "7f1998873ef70797016a050afd106c70de1d9c7a79a4679cf589d5e1e24fa74a",
-      "plan.md": "c1f1e16c24a901a60812b5f300f952d6976ac0e3e08dfc81f5aed9384414da8e",
-      "tasks.md": "0d4fa8e2cdfb6325999f6581534bb3149dc340a3fd36e53a02e596794e1f30b1",
-      "checklist.md": "2e9e94a5dc3010db45d4bc5c7c881fb18a3ee31144ba1c4fe5e1a5cc9189e259",
-      "implementation-summary.md": "53f3cf5f046dbcd56dea7fd9464a76d5ab9c02229538af6736b177dbe2413f29"
+      "spec.md": "5f163cfc5c5bddc6d4dcb363f3df16f13b9049872653c4379f535158672c07b3",
+      "plan.md": "77f57b4322b6d0c35102b98c88ec0ea135f9686c2dd7009aa258fe71adaeae68",
+      "tasks.md": "67db2a344d82c12d96832fb1b8468c1256452e4956e19cc31b3f4afbcf89ffae",
+      "checklist.md": "10eb4bbfc3df377efe08d151f33882e169312e549e299791bb919c6d770f871c",
+      "implementation-summary.md": "18364d4abf5b56695afb63b5b1f79466c2950df9ac283462737f84aabe18b501"
     },
     "last_active_child_id": null,
     "last_active_at": null

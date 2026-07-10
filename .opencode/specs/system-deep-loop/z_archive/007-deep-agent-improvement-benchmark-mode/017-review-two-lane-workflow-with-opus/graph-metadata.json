@@ -29,14 +29,14 @@
       "opus",
       "deep",
       "review",
-      "017",
       "post-remediation",
       "cross-check",
       "second",
       "opinion",
       "benchmark",
       "mode",
-      "plan"
+      "plan",
+      "post-015"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The two-lane program (008-013) was reviewed once by cli-codex gpt-5.5 in packet 014 (CONDITIONAL: 1 P0 + a P1 cluster) and all findings were remediated in packet 015",
     "created_at": "2026-05-29T13:38:55Z",
-    "last_save_at": "2026-07-08T13:43:33.921Z",
+    "last_save_at": "2026-07-09T10:02:49.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

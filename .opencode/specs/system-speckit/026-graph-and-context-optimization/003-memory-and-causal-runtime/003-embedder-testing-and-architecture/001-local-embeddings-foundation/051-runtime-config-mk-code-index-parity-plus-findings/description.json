@@ -1,7 +1,7 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings",
-  "description": "The `mk-code-index` rename had landed in source and `.claude/mcp.json`, but `opencode.json`, `.codex/config.toml`, and `.gemini/settings.json` still u",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings",
+  "description": "The `mk-code-index` rename had landed in source and `.claude/mcp.json`, but `opencode.json`, `.codex/config.toml`, and `.gemini/settings.json` still",
   "keywords": [
     "mk-code-index",
     "rename",
@@ -18,11 +18,11 @@
     "settings",
     "still"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.242Z",
+  "lastUpdated": "2026-07-09T10:02:52.569Z",
   "specId": "051",
   "folderSlug": "runtime-config-mk-code-index-parity-plus-findings",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

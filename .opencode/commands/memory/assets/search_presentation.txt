@@ -44,11 +44,11 @@ Use compact, parseable output for model dispatch. No option dumps, score bars, l
 ```text
 MEMORY:SEARCH "<query>" intent=<detected_intent> results=<count>
 --------------------------------------------------
-<leaf-folder>/
+<specFolder>/
   <score>  #<id>  <title>
   <score>  #<id>  <title>
 
-<leaf-folder>/
+<specFolder>/
   <score>  #<id>  <title>
 
 STATUS=OK RESULTS=<count> INTENT=<detected_intent>
@@ -59,11 +59,11 @@ Filled example:
 ```text
 MEMORY:SEARCH "deep research remediation handover" intent=find_spec results=3
 --------------------------------------------------
-L8-command-adherence/
+system-speckit/028-memory-search-intelligence/005-L8-command-adherence/
   0.91  #1842  Command adherence remediation handover
   0.87  #1819  Dynamic presentation contract findings
 
-029-deep-research-remediation/
+system-deep-loop/029-deep-research-remediation/
   0.74  #1763  Research-based refinement implementation summary
 
 STATUS=OK RESULTS=3 INTENT=find_spec
@@ -76,7 +76,7 @@ Field mapping:
 | User query or `memory_context.input` | `"<query>"` |
 | Detected or explicit intent | `intent=<detected_intent>` and `INTENT=<detected_intent>` |
 | Count of result rows actually rendered | `results=<count>` and `RESULTS=<count>`. When rows are omitted under the output budget render `<shown> of <total>` (for example `RESULTS=2 of 5`) so the count never exceeds the visible rows |
-| `result.specFolder` leaf | `<leaf-folder>/` |
+| `result.specFolder` | `<specFolder>/` |
 | `result.score`, `result.similarity`, or normalized relevance score | `<score>` — render as 0–1 similarity with two decimals (`0.79`, never `79.44`; divide percentage-scaled scores by 100) |
 | `result.id` or `result.memory_id` | `#<id>` |
 | `result.title` | `<title>` |
@@ -96,15 +96,16 @@ Score mandate — one score, one scale, one name:
 - Do not add a second ranking number under any other name, and do not relabel `similarity` as `confidence`.
 
 Surface-parity clause:
-- The core-slot set and the 0–1 / two-decimal similarity scale are mandatory on every surface: `--command` dispatch, a direct prompt, and natural conversation.
-- Conversational answers may wrap the block in prose, but the field set, field names, and scale do not change — two surfaces return comparable, diffable rows for the same result.
+- The core-slot set and the 0–1 / two-decimal similarity scale are mandatory when this command contract is loaded through `--command` dispatch or another route that explicitly reads this presentation asset.
+- Raw one-shot natural-language prompts that bypass this command contract cannot guarantee the same render policy. Prefer the command form when diffable, comparable rows are required.
+- Conversational answers may wrap the block in prose, but once this contract is loaded the field set, field names, and scale do not change.
 
 Verdict render slots:
 - `requestQuality` and `citationPolicy` are the only sanctioned extras beyond the core slots.
 - When present, render each as a named trailing field between the scored result block and the `STATUS` footer, so the footer stays the terminal line:
 
 ```text
-<leaf-folder>/
+<specFolder>/
   <score>  #<id>  <title>
 
 requestQuality <value>
@@ -118,9 +119,9 @@ STATUS=OK RESULTS=<count> INTENT=<detected_intent>
 
 Folder display rules:
 - Group by spec folder.
-- Show only the leaf folder name unless two leaves collide.
+- Show the full `specFolder` breadcrumb.
 - Each result line shows only score, id, and title.
-- Render the leaf folder name or a short title for `<title>`, never the full folder path, so long paths do not force a `(truncated)` cut.
+- Render the full folder path as the group header; keep `<title>` to the record title.
 - Include trace/provenance only when requested or needed to explain a degraded result.
 
 Truncation-resilient rendering:
@@ -143,7 +144,7 @@ MEMORY:SEARCH "<query>" intent=<detected_intent> results=0
 No spec-doc records matched this query via semantic or lexical search.
 
 Trigger-matched spec-doc records
-  <leaf-folder>/
+  <specFolder>/
     #<id>  <title>
 
 Constitutional rules

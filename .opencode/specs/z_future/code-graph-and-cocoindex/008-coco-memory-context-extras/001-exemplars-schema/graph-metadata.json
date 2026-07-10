@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema",
-  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema",
-  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras",
+  "packet_id": "z_future/code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema",
+  "spec_folder": "z_future/code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema",
+  "parent_id": "z_future/code-graph-and-cocoindex/008-coco-memory-context-extras",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "CocoIndex has no storage contract for user-validated query examples. The existing code-chunk vector table is shaped for source chunks, so reusing it for examples would blur history, ranking, and maintenance responsibilities.",
     "created_at": "2026-05-12T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.894Z",
+    "last_save_at": "2026-07-09T11:26:11.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T00:00:00Z",
     "source_docs": [

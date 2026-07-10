@@ -35,26 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
-      ".opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "lifecycle-taxonomy.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-taxonomy-guards.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/lifecycle-taxonomy-guards.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Exported",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Active loop statuses (`running`, `waiting`, `paused`, `idle`, `stopped`) and terminal stop reasons are scattered as ad-hoc string literals across multiple files with no single authoritative source",
     "created_at": "2026-06-28T14:01:54Z",
-    "last_save_at": "2026-07-04T18:02:02.191Z",
+    "last_save_at": "2026-07-09T10:02:47.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:004730f36f2e13c98170fa9895f95d6a0f0b7c0bbc34e25ad9dd106e70a64ecc",
+    "source_fingerprint": "sha256:fb2c022e3148caa66b41c5c8251e786241f751c38534edef2325f3692db8b6da",
     "source_doc_hashes": {
-      "spec.md": "8a9cf64ad9135ce03372eca1a19ed00e34ee0dbad718ec31bee53a775c4a51b9",
-      "plan.md": "d512a3a05aa222e5c9cd82d18b3bc54d7b9d3c220c04cef519b02c4c6552bb3b",
-      "tasks.md": "eec10e7cd291da546f236705df3c33004301f1e9a7850af075b0b2c33a058c46",
-      "implementation-summary.md": "c98500b9ee20fefd265e4df6ac532606f8bb5c28d1bf1c6829c78be5aeee9ffc"
+      "spec.md": "4f109be40cf79eda01212704b5eedd7d5412efa29ec38251c10e940ff1a922f7",
+      "plan.md": "cc79a2d474f05d47d9b18e411683da970d41e84e18428a89242d7cf679e232ca",
+      "tasks.md": "b326ab2b559e1f0047567184ebf6ec8e835279f5dedd9bd19630b52849fec7fd",
+      "implementation-summary.md": "00a532a564aa81dff7c6936f84d7e12c2a8f39fddc81622d0091272efde922c1"
     },
     "last_active_child_id": null,
     "last_active_at": null

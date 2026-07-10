@@ -24,21 +24,28 @@
     "key_topics": [
       "checklist",
       "evidence",
-      "098",
       "phase",
-      "005",
-      "097",
       "remediation",
       "infrastructure",
       "quality",
       "005-checklist-evidence",
       "implementation",
-      "summary"
+      "summary",
+      "level",
+      "unchecked",
+      "required"
     ],
     "importance_tier": "high",
     "status": "draft",
     "key_files": [
       "implementation-summary.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/076-testing-playbooks-code-review-and-git/002-sk-git-playbook/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/077-playbook-prompt-naturalness/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/001-skills/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/002-agents/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/003-commands/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/076-testing-playbooks-code-review-and-git/spec.md",
       "tasks.md",
       "spec.md",
       "plan.md",
@@ -192,7 +199,7 @@
     ],
     "causal_summary": "094 Level 2 checklist has unchecked required CHK- items despite complete status, and the pattern repeats across 093/095/096",
     "created_at": "2026-05-18T07:49:27.242Z",
-    "last_save_at": "2026-06-23T03:49:50.096Z",
+    "last_save_at": "2026-07-09T10:02:45.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:930301e67115448936803709677ca3518d2929e39acd48d500457a40f7602739",
+    "source_fingerprint": "sha256:ab2774bf5fc9d40f7f2d59dbecb2dd3c0d0a3827221dd45434d7280c6ed57d82",
     "source_doc_hashes": {
-      "spec.md": "bfa0ce43c0cf60fb0453f508e8a44c59fdab24013bd4af2403ee5046039d89ce",
-      "plan.md": "fb69bcadf7e63e31b336a5951e9dafbf28d4ebc52499df197f7d0c56143334c1",
-      "tasks.md": "0eff1e9767eb87723b63207916ab59c69e712fe7579d20c051eac1ae21c24854",
-      "checklist.md": "23ccd2066101f6bcbd1fb06e39066fd5476bc45e690d8ab4ed8411a53e9cc101",
-      "implementation-summary.md": "b27a9d2797128b29138a2b86ca554c9e9fd27db1e6e739da7a36ace265a6fec4"
+      "spec.md": "95d7c783c988320924710af9dc27b9ccfe0647765df0b89d81f41af94678d821",
+      "plan.md": "14af65042dc8f3298753df9359d160dd3fdc3cec96e6721de83df1c8b3c103a3",
+      "tasks.md": "c20e07f774bd3eda64d912b05ea7e692894dc9abccb122b3d998d68fa5d36baa",
+      "checklist.md": "ed098589d7453763ac942f7f3a92b5ecc2afa2ef6bf41fbe7644c836174c1aae",
+      "implementation-summary.md": "82e87a251265612bf6cb906fd86142f1e99a1ff9d749e0f4ac6a63461ac32906"
     },
     "last_active_child_id": null,
     "last_active_at": null

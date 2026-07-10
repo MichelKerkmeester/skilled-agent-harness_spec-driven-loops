@@ -27,9 +27,7 @@
       "advisor rebuild verification"
     ],
     "key_topics": [
-      "070",
       "phase",
-      "006",
       "advisor",
       "rebuild",
       "validation",
@@ -38,7 +36,9 @@
       "probes",
       "final",
       "grep",
-      "audit"
+      "audit",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Phases 001-005 completed the broad rename from `sk-deep-review`/`sk-deep-research` to `deep-review`/`deep-research`, but Packet 070 still needs final advisor freshness, active-scope audits, and strict validation evidence",
     "created_at": "2026-05-05T20:00:00Z",
-    "last_save_at": "2026-07-08T13:43:26.108Z",
+    "last_save_at": "2026-07-09T10:02:49.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T20:00:00Z",
     "source_docs": [

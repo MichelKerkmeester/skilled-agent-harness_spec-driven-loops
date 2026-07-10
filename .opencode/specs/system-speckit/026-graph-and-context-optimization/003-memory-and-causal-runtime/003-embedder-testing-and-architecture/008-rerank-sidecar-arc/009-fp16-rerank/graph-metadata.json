@@ -21,7 +21,6 @@
       "009 fp16 summary"
     ],
     "key_topics": [
-      "009",
       "fp16",
       "rerank",
       "half",
@@ -31,8 +30,9 @@
       "tasks",
       "summary",
       "packet",
-      "007",
-      "found"
+      "found",
+      "qwen3-reranker-0",
+      "mps"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -178,7 +178,7 @@
     ],
     "causal_summary": "Packet 007 found that Qwen3-Reranker-0.6B on MPS OOMs in attention forwards at spec-memory's default 50-doc batch size — Metal tried to allocate a 76 GB MTLBuffer",
     "created_at": "2026-05-23T11:55:15.622Z",
-    "last_save_at": "2026-07-02T05:31:12.160Z",
+    "last_save_at": "2026-07-09T10:02:53.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

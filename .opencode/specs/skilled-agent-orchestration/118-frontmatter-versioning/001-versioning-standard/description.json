@@ -9,7 +9,6 @@
     "standard",
     "templates",
     "validators",
-    "create",
     "generators",
     "version",
     "only",
@@ -18,7 +17,7 @@
     "skill",
     "field"
   ],
-  "lastUpdated": "2026-06-30T12:42:36.340Z",
+  "lastUpdated": "2026-07-09T10:02:45.013Z",
   "specId": "001",
   "folderSlug": "versioning-standard",
   "parentChain": [

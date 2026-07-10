@@ -35,26 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "coverage-graph-signals.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-signals.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/coverage-graph-signals.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Old FINDING/SOURCE nodes accumulate in the coverage graph and continue to exert full convergence force long after their evidence is stale; this causes premature stop signals on runs that revisit old territory",
     "created_at": "2026-06-28T14:02:01Z",
-    "last_save_at": "2026-07-04T18:02:05.564Z",
+    "last_save_at": "2026-07-09T10:02:47.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c93d812395d481b753d2c7b3b862d02217d013075ebeaf58f1497604a8f46e2e",
+    "source_fingerprint": "sha256:ff4bbde1b405e9ce64716ad3a97930f8022bea877ce559fba3ea8bcf52a288d3",
     "source_doc_hashes": {
-      "spec.md": "1b85abd3d919648bc3dbfbf2d30e56e3ce28a5a3c3dd1c8b615fca07bddeee58",
-      "plan.md": "4865a6b466f0654dc997d794b7870fd71fc2c92856e4c738266b4afb40f27232",
-      "tasks.md": "b5d3bf48d63143ef405ab15d317a0f60b5aa8d1819c3226c5d0493e8aaa7af04",
-      "implementation-summary.md": "783f3e8cd5f086d76a20634ce7a514cfafe698dc71d6080a03cafc630e0ba98c"
+      "spec.md": "c4712933e3af1c5ce2d9c36596add582815e96b4b10307841263e96cd3fef73b",
+      "plan.md": "f424165b60c2f1f92434f145681403fefa5f228549d20febc82cfcc3237b2f55",
+      "tasks.md": "3c184046474a3cf248a65f9d902ed3b39c43714ac97d3badb8d82cb5e9552c90",
+      "implementation-summary.md": "62e0d02fd7afd6f56af21f4b08347cd30f2786fbf87f15603668b09abcaf851f"
     },
     "last_active_child_id": null,
     "last_active_at": null

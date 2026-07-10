@@ -35,33 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/sleep.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "sleep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/sleep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sleep.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/sleep.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "executor-audit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -187,11 +166,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Wait calls are scattered across the deep-loop executor as bare `setTimeout` promises with no cancellation support — a cancelled run must wait the full timeout before cleanup can begin and crash-resume restart can proceed",
     "created_at": "2026-06-28T14:01:54Z",
-    "last_save_at": "2026-07-04T18:02:01.807Z",
+    "last_save_at": "2026-07-09T10:02:47.493Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8514b7f426f74691a5d2042d891c1a7dbdf65782a2bede9c98f1b2f7d3595eee",
+    "source_fingerprint": "sha256:5ef49cab7ad36c52c35889a6b1ccde940422ae8b9348d54954c78a1f59819ecd",
     "source_doc_hashes": {
-      "spec.md": "4fff1635afd7fc452954704b0e4231e6449e157896a6f2a9112a1e84b47cec83",
-      "plan.md": "e41d3c9bfa4b07571aed0064e3bf5181f8cc4f12b02982637224b25f22cbc669",
-      "tasks.md": "2cc39945fc1802840895c262c12c13c33b6e3d24beaeccbd564ff589466592c8",
-      "implementation-summary.md": "2f5912fa1182760b25e08668047fddd0f6e90685a62698be53f78c16ff507fa1"
+      "spec.md": "1d16b8004c10bcaecc6bfbff39c8380540dfb39a27e188365802e21cf011fcad",
+      "plan.md": "afe62dd6d972ff8d417abb21622059e0be03d0514855c926c9a00d4c4e84ed3a",
+      "tasks.md": "189aaf9b16baf25f951e954c4a24ae9e08280021ba1558abd15679c63289e537",
+      "implementation-summary.md": "210d3f7d5cab7d0c6b2ccba68b42f4ba7897fb8b8e0e26cb5ca0402b644055ed"
     },
     "last_active_child_id": null,
     "last_active_at": null

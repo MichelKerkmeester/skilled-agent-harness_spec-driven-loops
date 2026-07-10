@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/001-mvp-monolithic",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/001-mvp-monolithic",
   "description": "1. No quality enforcement: Incomplete specs pass silently",
   "keywords": [
     "quality",
@@ -9,11 +9,11 @@
     "pass",
     "silently"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.947Z",
+  "lastUpdated": "2026-07-09T10:02:56.910Z",
   "specId": "001",
   "folderSlug": "mvp-monolithic",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive",

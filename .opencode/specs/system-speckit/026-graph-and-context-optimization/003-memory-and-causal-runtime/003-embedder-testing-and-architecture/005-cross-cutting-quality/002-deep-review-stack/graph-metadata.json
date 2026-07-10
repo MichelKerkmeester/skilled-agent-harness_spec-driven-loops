@@ -19,10 +19,8 @@
       "020 summary"
     ],
     "key_topics": [
-      "020",
       "deep",
       "review",
-      "016-019",
       "stack",
       "embedder",
       "rescue",
@@ -30,7 +28,9 @@
       "cli-devin",
       "swe",
       "run",
-      "plan"
+      "plan",
+      "tasks",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "20-iteration spec_kit:deep-review run covering all code work in packets 016-019 plus dist-freshness vitest. Executor cli-devin SWE 1.6 with 3-check bundle gate. Synthesize P0/P1/P2 findings into review-report.md.",
     "created_at": "2026-05-18T16:14:38.218Z",
-    "last_save_at": "2026-07-02T05:31:12.032Z",
+    "last_save_at": "2026-07-09T10:02:53.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

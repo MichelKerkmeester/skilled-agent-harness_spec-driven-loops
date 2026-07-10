@@ -20,7 +20,6 @@
       "advisor state spec folder leak"
     ],
     "key_topics": [
-      "027",
       "advisor",
       "code",
       "graph",
@@ -31,7 +30,8 @@
       "feature",
       "adoption",
       "codegraph",
-      "skill"
+      "skill",
+      "cross"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -84,7 +84,7 @@
     ],
     "causal_summary": "The code-graph carried recursive-CTE traversals that defeated its indexes and needed a shared snapshot-equivalent BFS helper",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-07-07T16:24:48.270Z",
+    "last_save_at": "2026-07-09T10:02:55.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

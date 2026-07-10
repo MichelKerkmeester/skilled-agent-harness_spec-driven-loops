@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Seven adjudicated P2 findings remain in `mk-goal.js`",
     "created_at": "2026-07-04T09:31:20.024Z",
-    "last_save_at": "2026-07-04T10:09:36.768Z",
+    "last_save_at": "2026-07-09T10:02:48.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:507e68a1f46b0951eb1ad9364077731a5c0d9db68e7ac69d5268cf361d630718",
+    "source_fingerprint": "sha256:f1c61feaab7f3deb6dc091c569906b733cec7147f89dc2e63691f4c25ccf9196",
     "source_doc_hashes": {
-      "spec.md": "05d7be73661614cd784db856179ca0a21d2d5bfc9a22bff1ecbf6cd3fcbe1d9b",
-      "plan.md": "0474c1ebe188826dcde241c86f1e92f1b1aba13b8704d6e866de593a8653d86d",
-      "tasks.md": "017230b302ee50e1f89dc0a25fcfd361291b4fd7327baa8ef62c9498e2246497",
-      "checklist.md": "85c6d2c5c7efe115bb26d29af06d243508bfe85fe6aa5d1273e6ae252ea62f16",
-      "implementation-summary.md": "3538ceea2dc5562568efcb06c29a57e5361ec755b8476e35be7ebc580dcb155c"
+      "spec.md": "c2b1a2ad90352762ec6efc0436588df1df569f0f6dbd94e18ac7c3d11b1cdcd5",
+      "plan.md": "d41ed146f9d642289a147ee991c213f86a7ec291d6a930391bd95dcfe4316814",
+      "tasks.md": "ca11bf92b6f8febc471ccb60f815ca73de9b41df11a5ce3f27c96747fb4f0609",
+      "checklist.md": "a726fc87392553877a10f51cd1dd5590d4ddba82ac4cacf4a167131c5850bd4d",
+      "implementation-summary.md": "afe23b923f5e7c24bba09365ae6bdbeb897162ce53cf27cbbaf70947b5137aca"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,26 +1,17 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off",
-  "description": "mk-spec-memory's authoritative text-embedder benchmark. Entry hypothesis (mxbai-embed-large) failed; expanded into a 6-candidate bake-off (mxbai, jina",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off",
+  "description": "mk-spec-memory's authoritative text-embedder benchmark.",
   "keywords": [
     "mk-spec-memory",
     "authoritative",
     "text-embedder",
-    "benchmark",
-    "entry",
-    "hypothesis",
-    "mxbai-embed-large",
-    "failed",
-    "expanded",
-    "6-candidate",
-    "bake-off",
-    "mxbai",
-    "jina"
+    "benchmark"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.298Z",
+  "lastUpdated": "2026-07-09T10:02:52.639Z",
   "specId": "004",
   "folderSlug": "spec-memory-embedder-bake-off",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

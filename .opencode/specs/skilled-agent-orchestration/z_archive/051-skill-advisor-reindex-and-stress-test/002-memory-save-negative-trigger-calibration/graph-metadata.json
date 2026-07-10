@@ -33,8 +33,6 @@
       "memory save calibration resources"
     ],
     "key_topics": [
-      "065",
-      "002",
       "memory",
       "save",
       "calibration",
@@ -44,7 +42,9 @@
       "prompt",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Plan phase to reduce memory:save false positives for ordinary file-save prompts while preserving context-preservation routing.",
     "created_at": "2026-05-18T07:49:27.132Z",
-    "last_save_at": "2026-06-23T03:49:49.558Z",
+    "last_save_at": "2026-07-09T10:02:45.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:3ba68ae1fe97360357e83bb2c419291f42c537145bde22e907e0e5cb3c3d40a3",
+    "source_fingerprint": "sha256:31503db1754972baa1f37e3384e2a3ddcc359f805ded52fe6d6ab0e5d7730f0f",
     "source_doc_hashes": {
-      "spec.md": "b4186418a5aca044bae4f87d68a64646e93f7e0fd98dea149bc801988156e7e1",
-      "plan.md": "3b168c3f976768d92701dd0a0dfd786469d71095afc03e8a37d345507211077b",
-      "tasks.md": "a17fd5c3e8ee7241cb4b3e2d48e42aff4ab6a3de5df2691e0f19474ad7ff7fea",
-      "checklist.md": "24d770b3c698ce91efc513f019720df859409ad975af9fdbdbb303e49e16066b",
-      "implementation-summary.md": "4541bbfd7e32cd71e668e9106796ae1acadfdba2ed76a64728802a08204e06fc",
-      "resource-map.md": "e32c124c3910adac0a0e653904dfaaf68b54e6dfd2cc43f2f4bb3c4c25f15b0b"
+      "spec.md": "f184377b6d28723111ece00f09469080bd6ddffc6efdb0f167022a93e9c928c7",
+      "plan.md": "52fa5a6cb11927e3ffa9456346481377f414917a569d44340738378fffa52250",
+      "tasks.md": "7a45cad6a66f64d96d0fba944643dce1560a56b3fa78a709bf4e52c219aacd3a",
+      "checklist.md": "8abdffcd5dff39e3d64907f619286c67ed078e937dedb4dc95559c7157d96620",
+      "implementation-summary.md": "811e7e555cf6ca8dd43d07a2f64ab4beb1ac99581b517dff4684b438949010fa",
+      "resource-map.md": "62f5f9667426730a81edb242d8c720a732fda05a85e2e1ccbd623574d9a4d63f"
     },
     "last_active_child_id": null,
     "last_active_at": null

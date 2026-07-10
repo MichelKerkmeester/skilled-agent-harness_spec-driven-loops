@@ -7,7 +7,6 @@
     "routing",
     "dispatch",
     "track",
-    "002",
     "needed",
     "detection",
     "layer",
@@ -15,7 +14,7 @@
     "catch",
     "regressions"
   ],
-  "lastUpdated": "2026-07-05T12:13:05.438Z",
+  "lastUpdated": "2026-07-09T10:02:47.781Z",
   "specId": "003",
   "folderSlug": "guard-and-enforcement",
   "parentChain": [

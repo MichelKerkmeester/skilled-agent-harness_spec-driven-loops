@@ -22,8 +22,6 @@
       "relocate summary"
     ],
     "key_topics": [
-      "068",
-      "001",
       "relocate",
       "sk-doc",
       "asset",
@@ -33,24 +31,19 @@
       "summary",
       "skill",
       "assets",
-      "directory"
+      "directory",
+      "accreted",
+      "two-level"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/agent_template.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "agent_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/agent_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built You",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc skill's `assets/` directory has accreted a two-level hierarchy where heavy-traffic templates and package folders sit one level deeper than they need to be (`assets/agents/agenttemplate.md`, `assets/documentation/featurecatalog/`, etc.)",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-06-23T03:49:49.627Z",
+    "last_save_at": "2026-07-09T10:02:44.885Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [
@@ -201,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9963e8bf0164a8ac0bcd4154e4fde79595875016e62324c4fabb75f8fb688ae",
+    "source_fingerprint": "sha256:9a869e90c050f532b31aa655ca081a22c4f170f2b05e748d8d4aacdf146452fd",
     "source_doc_hashes": {
-      "spec.md": "a7062a2beb57af4d6a6764a6553c9ce112617f656eedf9750699388168c32d1e",
-      "plan.md": "8459f4451a5abb0fafdd5dca416e4fd639072703e53d19b007fcd8887746fca5",
-      "tasks.md": "9de1f97548c6cecc57af65bca6e053c9ff2db531371f3a646d2ad4f1f9ca0feb",
-      "implementation-summary.md": "a4f497388297953be5e015bcffbd283df4ab07ea6436a4836878125ca2fccdb1"
+      "spec.md": "e95d370ad634f046132436c52f9389325d9ae2316e13d7031804210fc41c1837",
+      "plan.md": "63a867d25377f8462f5604f9477965b82e3080b96bddf316f71da8ba44a5b24d",
+      "tasks.md": "5323b230466ba52ac981185760777c8cc5b541125f70020eb33c08adc99cda2a",
+      "implementation-summary.md": "66cb0869b4b74e44b26ad320d85f9c4e699aa6d966c14a6dc9659af6c1addce3"
     },
     "last_active_child_id": null,
     "last_active_at": null

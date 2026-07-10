@@ -46,7 +46,7 @@ Apply CRAFT to my technical-spec authoring prompt; verify it overrides automatic
 
 1. `sk-prompt: Apply CRAFT framework to my prompt for technical specification authoring.`
 2. `agent: @prompt-improver raw_task="Apply CRAFT framework to a technical specification authoring prompt." task_type=generation target_cli=opencode complexity_hint=4 constraints="User explicitly requested CRAFT; honor and log override."`
-3. `bash: rg 'CRAFT|Framework Selection|user' .opencode/skills/sk-prompt/references/patterns_evaluation.md .opencode/skills/sk-prompt/SKILL.md`
+3. `bash: rg 'CRAFT|Framework Selection|user' .opencode/skills/sk-prompt/prompt-improve/references/patterns_evaluation.md .opencode/skills/sk-prompt/SKILL.md`
 
 ### Expected
 

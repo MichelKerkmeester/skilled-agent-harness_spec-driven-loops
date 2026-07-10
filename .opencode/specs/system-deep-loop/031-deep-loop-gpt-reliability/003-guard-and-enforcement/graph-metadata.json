@@ -91,15 +91,15 @@
     ],
     "causal_summary": "Correct routing and dispatch (track 002) needed a detection layer to enforce it and catch regressions",
     "created_at": "2026-07-04T19:09:01.407Z",
-    "last_save_at": "2026-07-05T04:19:07.921Z",
+    "last_save_at": "2026-07-09T10:02:47.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:38ea9a81fbb300170f9638b66c5d0a9e1ceea456f1ccbd9458f627f1744868e7",
+    "source_fingerprint": "sha256:12507fd5c8fc796cf862e9ae0dc2e72d267f367ecdbb13d57393be052c0e2daf",
     "source_doc_hashes": {
-      "spec.md": "0bc42e4a6fd9bbe9b01da68be67e2c41baa00068a35958d982a0b9b3c889633a"
+      "spec.md": "1a4cfdf9c7b6e86f085b980a9d1ba40e4818aa980bebd9a40dca7f75e2c22c95"
     },
     "last_active_child_id": null,
     "last_active_at": null

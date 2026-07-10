@@ -4,7 +4,6 @@
   "description": "Packet 071's 003-synthesize/review-report.md flagged P1-001: cli-copilot's resource accuracy was reported as 5.6%, but this number is inflated-low",
   "keywords": [
     "packet",
-    "071",
     "003-synthesize",
     "review-report",
     "flagged",
@@ -16,7 +15,7 @@
     "number",
     "inflated-low"
   ],
-  "lastUpdated": "2026-07-07T17:13:14.433Z",
+  "lastUpdated": "2026-07-09T10:02:44.927Z",
   "specId": "009",
   "folderSlug": "sk-doc-router-rerun-refined-extraction",
   "parentChain": [

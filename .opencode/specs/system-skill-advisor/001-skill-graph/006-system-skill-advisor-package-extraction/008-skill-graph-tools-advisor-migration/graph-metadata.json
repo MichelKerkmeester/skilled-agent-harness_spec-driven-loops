@@ -33,12 +33,12 @@
       "tools",
       "advisor",
       "ownership",
-      "013",
-      "009",
-      "008",
       "plan",
       "proxy",
-      "cleanup"
+      "cleanup",
+      "tasks",
+      "checklist",
+      "verification"
     ],
     "importance_tier": "critical",
     "status": "planned",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The advisor extraction is structurally complete, but the four `skillgraph` MCP tools still live under `speckitmemory`",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.121Z",
+    "last_save_at": "2026-07-09T10:02:49.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:00:00Z",
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b621bffe0a1de64282901b69ad967fba394e80f4ca01ec53c3a7c429ba3b33c1",
+    "source_fingerprint": "sha256:016f367a6ca65d60c19913d26558422fefd834eeb160b622ec7fc8b147ee6b2d",
     "source_doc_hashes": {
-      "spec.md": "6ae422665718706375ecfb59f2ed82310c428f580ec3cd37bfb93e51e94af1a2",
-      "plan.md": "d1974ae7a4a8d9c951bb49b5fad5027680830a390835cf258392b5a7f10f474e",
-      "tasks.md": "362e38bac4f0b7d2b1b002e1f33b998adeeb232325d278e40c37d5a2e26d61be",
-      "checklist.md": "c3eaf64f677a8e21b6722284d6eea735e8a45f6e656e82d665cbfdb55a33414a",
-      "decision-record.md": "261bb5ca3bf5f302604e010c4a2af29dfb503ad7c4bb1009f3d3c75675592c1d",
-      "implementation-summary.md": "64566ffc18a3ecc0fdd2f5e3bb67c93645dd2b56a2c7132ac1b600da9de090be"
+      "spec.md": "af891a38d8b276aa633d2c369042874b530bd3a43d7bd54f5fcbe967633ba10a",
+      "plan.md": "e94c037ad5bd24aa0f5fd9bc937873ba73de07c3b1ba2301b5aae24dcbd70279",
+      "tasks.md": "7396c16677f8b9070d1b7418434ecfed6c777e4b3b211f98f8ba3f3009c118dc",
+      "checklist.md": "d09216cec22448707063efc67594c9776db57673e3991b28b5e9c6414ecbb0aa",
+      "decision-record.md": "103ca254898940e22e55157a8e4d88a04e47a74e31770ecb8c56a5ecf3834b6f",
+      "implementation-summary.md": "c7a1cbf2a844515982acd8fd046ddb61d2c7cbd8bd997564f9b22c97b40e79fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -31,8 +31,8 @@
     "004-shared-infrastructure",
     "005-verification-and-remediation"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-  "description": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback, sk",
+  "specFolder": "system-speckit/027-xce-research-based-refinement",
+  "description": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback,",
   "keywords": [
     "spec",
     "kit",
@@ -51,11 +51,11 @@
     "learning",
     "feedback"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.848Z",
+  "lastUpdated": "2026-07-09T10:02:54.838Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
   "parentChain": [
-    "system-spec-kit"
+    "system-speckit"
   ],
   "memorySequence": 5,
   "memoryNameHistory": [

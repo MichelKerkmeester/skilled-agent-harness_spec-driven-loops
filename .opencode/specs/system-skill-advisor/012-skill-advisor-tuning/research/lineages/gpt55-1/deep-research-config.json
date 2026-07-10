@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "mode": "research",
+  "loopType": "research",
+  "status": "complete",
+  "sessionId": "fanout-gpt55-1-1783437123377-4illnj",
+  "lineageLabel": "gpt55-1",
+  "lineageMode": "fanout-detached",
+  "generation": 1,
+  "specFolder": ".opencode/specs/system-skill-advisor/012-skill-advisor-tuning",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-skill-advisor/012-skill-advisor-tuning/research/lineages/gpt55-1",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  },
+  "topic": "Skill-advisor scorer parent-hub compatibility for .opencode/specs/system-skill-advisor/012-skill-advisor-tuning and the mcp_server/lib/scorer code it documents",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "resource_map_present": false,
+  "createdAt": "2026-07-07T12:00:00.000Z",
+  "completedAt": "2026-07-07T12:00:00.000Z",
+  "stopReason": "maxIterationsReached",
+  "constraints": {
+    "readOnlyAdvisorScorerCode": true,
+    "writeBoundary": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-skill-advisor/012-skill-advisor-tuning/research/lineages/gpt55-1",
+    "resolveArtifactRootSkipped": true
+  },
+  "fileProtection": {
+    "deep-research-config.json": "workflow-owned",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "workflow-reducer-owned",
+    "deep-research-findings-registry.json": "workflow-reducer-owned",
+    "deep-research-dashboard.md": "auto-generated",
+    "iterations/iteration-NNN.md": "write-once",
+    "research.md": "workflow-synthesis-owned"
+  }
+}

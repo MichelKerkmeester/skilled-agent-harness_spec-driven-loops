@@ -27,9 +27,7 @@
       "070 phase 004 checklist"
     ],
     "key_topics": [
-      "070",
       "phase",
-      "004",
       "runtime",
       "mirrors",
       "claude",
@@ -38,7 +36,9 @@
       "deep",
       "skill",
       "rename",
-      "sk-deep-review"
+      "sk-deep-review",
+      "deep-review",
+      "sk-deep-research"
     ],
     "importance_tier": "important",
     "status": "blocked",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Phase 001 found runtime mirror files in `.claude`, `.codex`, and `.gemini` that still reference the old deep-loop skill names",
     "created_at": "2026-05-05T16:20:37Z",
-    "last_save_at": "2026-07-08T13:43:25.480Z",
+    "last_save_at": "2026-07-09T10:02:49.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T16:20:37Z",
     "source_docs": [

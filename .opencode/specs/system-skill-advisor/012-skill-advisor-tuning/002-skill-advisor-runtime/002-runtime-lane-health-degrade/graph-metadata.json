@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The Skill Advisor fuses five lanes (`explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05`, `lane-registry.ts:8-19`) and normalizes confidence against a `liveTotal` denominator built from registry-static live weights filtered only by the config `disabled` set, never by runtime emptiness (`fusion.ts:343-345`, `liveNormalized = score / liveTotal` at `fusion.ts:388`) [CONFIRMED: research.md Internal Baseline, iter-003 F5/F7]",
     "created_at": "2026-06-19T05:52:29.584Z",
-    "last_save_at": "2026-07-07T09:40:25.029Z",
+    "last_save_at": "2026-07-09T10:02:50.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e25063723e290c234956c86472f1b0f39b3bb5fb292f1860514d7ae14211043",
+    "source_fingerprint": "sha256:729ad77b4e41484dec41d7683b02544519e61755b63ef0523aa4e786c2c4140b",
     "source_doc_hashes": {
-      "spec.md": "43145e71aaadbba39350ecbc4ccb4ccc383b0a4889a3585cc698b57f82a7f0b3",
-      "plan.md": "478b6b14e06e09be01115c3231448e26e773d833eb6912bf92deb796009210ea",
-      "tasks.md": "ff8071a8da007df937f128a48eb99c2b7503742491cbd96b8ba5cdc4fc60cb72",
-      "checklist.md": "3138dd45bc3c0f256f4e52708682a742dc76fe37b19dbab9af940bbbb93ecc0e",
-      "implementation-summary.md": "797f626467755484ae8f713d731be78acc8d5a3c9f598c8876ab5aa504d1135f"
+      "spec.md": "372d42417b17b7b63f58d1b9af8013920c617f7813f8368ee662d5f39c4aac46",
+      "plan.md": "b48e98d4c38446b48a1325eef6827c737bcb0e10b725dacec99dfb18c574321f",
+      "tasks.md": "50743a093366408f5100b3a11c75ea1086c4b8c120db30fa6969add2dd7052da",
+      "checklist.md": "9873a5d17067c6a3e43f57d8bd2f669a80a17bd2860e4a15e4c02872071b6f05",
+      "implementation-summary.md": "784ce43bc232e7a509126779f3e40f7eb1dbab9207028689fd6f4b5eb290cda8"
     },
     "last_active_child_id": null,
     "last_active_at": null

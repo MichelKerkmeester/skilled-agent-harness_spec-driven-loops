@@ -9,19 +9,15 @@
     "unrelated",
     "databases",
     "still",
-    "used",
     "filename",
     "skill-graph",
     "sqlite"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.269Z",
+  "lastUpdated": "2026-07-09T10:02:49.619Z",
   "specId": "007",
   "folderSlug": "skill-advisor-db-rename",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "001-skill-graph",
     "006-system-skill-advisor-package-extraction"
   ],

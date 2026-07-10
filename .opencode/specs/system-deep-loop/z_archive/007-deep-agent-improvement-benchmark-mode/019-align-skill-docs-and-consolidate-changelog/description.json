@@ -4,7 +4,6 @@
   "specFolder": "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog",
   "description": "After 121 reshaped the skill into two co-equal lanes, the skill `README.md` still described the pre-121 flat single-lane layout (wrong `references/`",
   "keywords": [
-    "121",
     "reshaped",
     "skill",
     "two",
@@ -20,7 +19,7 @@
     "wrong",
     "references"
   ],
-  "lastUpdated": "2026-07-08T13:06:45.065Z",
+  "lastUpdated": "2026-07-09T10:02:49.031Z",
   "specId": "019",
   "folderSlug": "align-skill-docs-and-consolidate-changelog",
   "parentChain": [

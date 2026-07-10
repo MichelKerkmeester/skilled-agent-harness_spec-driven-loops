@@ -35,26 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
-      ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "atomic-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/atomic-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "atomic-state.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/deep-loop-runtime/tests/unit/atomic-state.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "There is no integrity check on loaded registry or config JSON between iterations; a partially-written snapshot or externally tampered file is indistinguishable from a clean one and silently corrupts the loop session on resume",
     "created_at": "2026-06-28T14:01:52Z",
-    "last_save_at": "2026-07-04T18:02:01.046Z",
+    "last_save_at": "2026-07-09T10:02:47.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:483717c1d7a811843afa0936d1cdbee263904fa5090ba8289080d99147e070fb",
+    "source_fingerprint": "sha256:16a73e4b7091b9adfc6dd6b036651d15810a2003fc3c7e3f566de6e3c5755ac8",
     "source_doc_hashes": {
-      "spec.md": "fc73fff6ab8cbe272b15639a1f6d46f756414ba17a590b582cebbc4b14a773c2",
-      "plan.md": "6ffa06ecca34f54d4cf0ce1c3dfb56a7dde4c572f3ddd172ab04b368d2eee01e",
-      "tasks.md": "1a3c85151b5edde9b115cf44cc91e05e71a9bae6be6035c78310b935b73cb126",
-      "implementation-summary.md": "fee7d93162b7deb9357ab16ddc9275f523fd6ad985fed02eff54fd0ecb5df60c"
+      "spec.md": "e8c517167c69cb608c6ce0f35269a48cfa971bc5bb56cec02f0bcb223f125777",
+      "plan.md": "4cd6306350b7f4c1fcdf7388bd2f7c31e8b410a96e02e5289a5d2f2eb4a30110",
+      "tasks.md": "37edfb627523023e14de300089e3c3933f234d558e913ecea3e9f51ff959d58f",
+      "implementation-summary.md": "18c87a4d8748ffd8112ded701d3bb28e1eef97b5950b5d3dd252c323a3b9e63a"
     },
     "last_active_child_id": null,
     "last_active_at": null

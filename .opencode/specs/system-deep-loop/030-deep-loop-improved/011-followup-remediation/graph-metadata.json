@@ -25,44 +25,30 @@
       "scaffold content authoring 002-007"
     ],
     "key_topics": [
-      "030",
       "followup",
       "remediation",
       "packet",
       "review",
       "findings",
-      "fix",
       "sliding",
       "window",
       "convergence",
       "implementation",
-      "scaffold"
+      "scaffold",
+      "content",
+      "authoring"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
       "spec.md"
     ],
     "entities": [
       {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
         "name": "orchestrator.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
         "source": "derived"
       },
       {
@@ -110,15 +96,15 @@
     ],
     "causal_summary": "Phase 009's own changelog (`changelog-009-root.md` Follow-Ups) documented 4 deliberately-deferred items: 2 review findings that remained genuinely active in the prior codex deep-review lineage, a sliding-window convergence mode a decision record recommends building next, a validate.sh architectural gap where the default invocation path never runs 2 rules shipped this packet, and scaffold-marker content debt across phases 002-007 that becomes blocking (not cosmetic) the moment the validate.sh gap is fixed",
     "created_at": "2026-07-01T19:38:04.125Z",
-    "last_save_at": "2026-07-04T18:02:31.925Z",
+    "last_save_at": "2026-07-09T10:02:47.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5c5619ec78be40a583be28a95ade27cdb70e4f2ad4a3c81f9ab4b6f893d1a88a",
+    "source_fingerprint": "sha256:1f6c7f82673c10eeaf3a6c7aef9b95b12e710744bcd95be778bafa8064090dc9",
     "source_doc_hashes": {
-      "spec.md": "f519d651bd8282cadeead74432356731debc4511e899ea3e9d3b28f4fafcf3c0"
+      "spec.md": "baaa47fd69f2d2d32b57c61ee2f1d24f9307f10086e000c0998df6c2335c5b75"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,14 +28,14 @@
       "mcp-clickup",
       "delete",
       "skill",
-      "053",
       "plan",
       "removal",
       "tasks",
       "checklist",
       "implementation",
       "summary",
-      "removed"
+      "removed",
+      "decommissioned"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The `mcp-clickup` skill is being decommissioned",
     "created_at": "2026-04-30T08:00:00Z",
-    "last_save_at": "2026-06-23T03:49:49.349Z",
+    "last_save_at": "2026-07-09T10:02:45.326Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:522ea67aa8155ab3126a6365257f94191f3903da69e1d414b176f61c840de3f6",
+    "source_fingerprint": "sha256:046678a8f6dc0f620b69b99bc1b4817f947bc2e600afd7a006921b91db3f752b",
     "source_doc_hashes": {
-      "spec.md": "d5db1d1f1941e636cfb86e3d877f47151fb5da2143114e3ba03b56e3a84f2baa",
-      "plan.md": "bfa42e81c54aa05ba96462ff566c65cf9a4ce115dbd2abf55b2b9bc02663e671",
-      "tasks.md": "53ca29eb23169128a4e4dfe60b253d49072021ca1016c6ee817e4a39a1a935ac",
-      "checklist.md": "a5dee3daeca5ad2f27d3787891d4a6007b97db71fe78165c2dc2031cd793ff60",
-      "implementation-summary.md": "0464dcfddc1ff4bbe4f61846826c0ecf385da87e1e32a640c8c013d333c240d0"
+      "spec.md": "0b125602aefe6253c6210e7d86637a3f2a8935532c2e561347e17d9e7da992d5",
+      "plan.md": "a931f4b42c1888302fbb6de0323fa6043cd608f816f66fe07e4cf3a7a16924f9",
+      "tasks.md": "803dd77db590229fdd822bfda3425ebe29d206b1e5d2e9a75c5bf92976a6dff7",
+      "checklist.md": "f83e51eb5502adc587338693c2e3f274efa7674eee88cffaa97123868d16fe41",
+      "implementation-summary.md": "7c20ce3fa04745a3ec8bf06b55d1f6fabd5272afa8c3fbb3145ff3df49c28415"
     },
     "last_active_child_id": null,
     "last_active_at": null

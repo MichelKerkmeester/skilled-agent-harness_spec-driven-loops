@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-007-copilot-writer-wiring",
-  "description": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in .claude/sett",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-007-copilot-writer-wiring",
+  "description": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in",
   "keywords": [
     "route",
     "copilot",
@@ -12,15 +12,13 @@
     "replacing",
     "bash",
     "true",
-    "no-ops",
-    "claude",
-    "sett"
+    "no-ops"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.693Z",
+  "lastUpdated": "2026-07-09T10:02:54.667Z",
   "specId": "009",
   "folderSlug": "007-copilot-writer-wiring",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"

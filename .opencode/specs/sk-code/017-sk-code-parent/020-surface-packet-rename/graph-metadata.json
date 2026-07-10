@@ -36,7 +36,7 @@
       "tasks",
       "checklist",
       "verification",
-      "013"
+      "two-axis"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -48,7 +48,6 @@
       ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
-      ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -90,12 +89,6 @@
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the phase 013 two-axis restructure, four sk-code sub-skills kept bare folder names — `review`, `webflow`, `opencode`, `animation` — while the four workflow-mode packets already carried the `code-` prefix (`code-implement`, `code-quality`, `code-debug`, `code-verify`)",
     "created_at": "2026-07-05T14:37:02.169Z",
-    "last_save_at": "2026-07-07T17:16:30.384Z",
+    "last_save_at": "2026-07-09T10:02:44.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

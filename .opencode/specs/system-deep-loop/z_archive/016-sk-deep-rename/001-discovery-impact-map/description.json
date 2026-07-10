@@ -3,14 +3,13 @@
   "description": "Packet 070 will rename `sk-deep-review` to `deep-review` and `sk-deep-research` to `deep-research`",
   "keywords": [
     "packet",
-    "070",
     "rename",
     "sk-deep-review",
     "deep-review",
     "sk-deep-research",
     "deep-research"
   ],
-  "lastUpdated": "2026-07-08T13:06:51.135Z",
+  "lastUpdated": "2026-07-09T10:02:49.241Z",
   "specId": "001",
   "folderSlug": "discovery-impact-map",
   "parentChain": [

@@ -10,7 +10,6 @@
   "description": "Phase 001 found that `deep-review` can validate active findings while still failing to prove enough pre-finding candidate search",
   "keywords": [
     "phase",
-    "001",
     "found",
     "deep-review",
     "validate",
@@ -25,7 +24,7 @@
     "candidate",
     "search"
   ],
-  "lastUpdated": "2026-07-08T13:07:04.642Z",
+  "lastUpdated": "2026-07-09T10:02:48.671Z",
   "specId": "002",
   "folderSlug": "complexity-seeded-fixture-harness",
   "parentChain": [

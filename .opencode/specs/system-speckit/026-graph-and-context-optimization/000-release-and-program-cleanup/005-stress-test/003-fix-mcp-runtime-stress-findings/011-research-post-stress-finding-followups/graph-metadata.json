@@ -31,14 +31,14 @@
       "follow-up",
       "research",
       "post-stress",
-      "010",
       "deep-research",
       "intelligence",
       "system",
       "seam",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "stress-test"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The v1.0.2 stress-test rerun closed with four follow-ups tagged in `../010-stress-test-close-loop-measurement-rerun/findings.md` Recommendations §1-5 — three concrete P0/P1/P2 bugs and one telemetry-leverage opportunity",
     "created_at": "2026-04-27T18:45:00Z",
-    "last_save_at": "2026-07-02T05:31:10.763Z",
+    "last_save_at": "2026-07-09T10:02:51.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,19 +1,18 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/083-speckit-reimagined-test-suite",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/083-speckit-reimagined-test-suite",
   "description": "The 082-speckit-reimagined implementation introduced 33 features with 107 implementation tasks",
   "keywords": [
     "082-speckit-reimagined",
     "implementation",
     "introduced",
     "features",
-    "107",
     "tasks"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.367Z",
+  "lastUpdated": "2026-07-09T10:02:57.405Z",
   "specId": "083",
   "folderSlug": "speckit-reimagined-test-suite",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

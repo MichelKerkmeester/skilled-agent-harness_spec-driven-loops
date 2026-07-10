@@ -14,24 +14,26 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "119/001",
-      "deep-research",
-      "10-iter",
-      "cli-devin",
-      "cli-codex",
-      "research-report"
+      "packet",
+      "metadata",
+      "derived",
+      "canonical",
+      "spec",
+      "documents"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [],
     "entities": [],
-    "causal_summary": "10-iter deep-research dispatch hosting the research workspace. Mixed-executor: cli-devin SWE-1.6 iters 1-8 + cli-codex gpt-5.5 high fast iters 9-10. Outputs research-report.md + per-iter narratives, deltas, prompts, logs.",
+    "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-05-23T06:00:00.000Z",
-    "last_save_at": "2026-05-23T06:00:00.000Z",
+    "last_save_at": "2026-07-09T10:02:48.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
+    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

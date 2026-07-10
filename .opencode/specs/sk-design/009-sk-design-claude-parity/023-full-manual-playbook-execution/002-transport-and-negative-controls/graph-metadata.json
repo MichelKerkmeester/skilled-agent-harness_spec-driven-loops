@@ -26,22 +26,21 @@
     ],
     "key_topics": [
       "wave",
-      "002",
       "transport",
       "negative",
       "controls",
       "phase",
-      "023",
       "sk-design",
       "mr-007",
       "ai-002",
       "ai-003",
-      "ai-004"
+      "ai-004",
+      "sr-001",
+      "plan"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
       "implementation-summary.md",
       ".opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md",
       ".opencode/skills/sk-design/manual_testing_playbook/05--shared-reference-base/interface-shared-references.md",
@@ -51,12 +50,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 023's parent scoped this child wave to 5 dispatches spanning two different playbook categories: the Open Design transport mode's routing contract (`MR-007`) and four advisor-integration boundary checks (`AI-002`, `AI-003`, `AI-004`, `SR-001`) that prove `sk-design` neither false-fires on pure-code/documentation/backend-review prompts nor skips its own mandatory shared-resource loading contract when it does legitimately win",
     "created_at": "2026-07-07T15:18:40.673Z",
-    "last_save_at": "2026-07-07T15:20:38.212Z",
+    "last_save_at": "2026-07-09T10:02:44.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

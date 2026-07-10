@@ -1,0 +1,35 @@
+{
+  "formatVersion": 2,
+  "createdAt": "2026-07-10T09:09:44.267Z",
+  "specFolder": null,
+  "gitBranch": null,
+  "embedderSlug": "ollama__nomic-embed-text-v1.5__768",
+  "includeEmbeddings": true,
+  "mainTables": [
+    "memory_index",
+    "working_memory",
+    "causal_edges",
+    "weight_history",
+    "memory_history",
+    "mutation_ledger",
+    "memory_conflicts",
+    "memory_corrections",
+    "adaptive_signal_events",
+    "negative_feedback_events",
+    "learned_feedback_audit",
+    "session_learning",
+    "governance_audit",
+    "session_state",
+    "session_sent_memories",
+    "memory_summaries"
+  ],
+  "vecTables": [
+    "vec_memories",
+    "vec_metadata"
+  ],
+  "schemaVersion": 41,
+  "memoryCount": 13542,
+  "vectorCount": 3148,
+  "mainBytes": 635604992,
+  "vecBytes": 137191424
+}

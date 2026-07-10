@@ -1,12 +1,11 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/z_archive/107-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication",
-  "description": "After the executor purge in phases 001-003, \"Gemini\" still existed in the repo in two separate roles that phase 003 explicitly deferred: as a host run",
+  "description": "After the executor purge in phases 001-003, \"Gemini\" still existed in the repo in two separate roles that phase 003 explicitly deferred: as a host",
   "keywords": [
     "executor",
     "purge",
     "phases",
-    "001-003",
     "gemini",
     "still",
     "existed",
@@ -15,13 +14,11 @@
     "separate",
     "roles",
     "phase",
-    "003",
     "explicitly",
     "deferred",
-    "host",
-    "run"
+    "host"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.257Z",
+  "lastUpdated": "2026-07-09T10:02:46.404Z",
   "specId": "004",
   "folderSlug": "gemini-runtime-and-model-eradication",
   "parentChain": [

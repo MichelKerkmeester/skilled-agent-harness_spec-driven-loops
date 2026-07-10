@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The system-code-graph README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T15:16:11Z",
-    "last_save_at": "2026-06-23T03:49:51.938Z",
+    "last_save_at": "2026-07-09T10:02:46.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4666ba3beb516ce4deac00debf28ff6d1a1429cafd8f63f60acce9405ad463d",
+    "source_fingerprint": "sha256:05c422a2b14f6e352afd39e00c855827f89bf169c30c7d197a0a6256c35fa6f5",
     "source_doc_hashes": {
-      "spec.md": "16498ad875b90ee7bec42df11c8338a5ed46d997285954092ea6654ddf04fbd6",
-      "plan.md": "e8aba34e2624913b37fba7a574be65d6aab630e9307646d44df99e06d15436f6",
-      "tasks.md": "9f1a1a2720c1d398692c91dde991c789d5a23e094417a26227916027f60a26a9",
-      "implementation-summary.md": "64e67ec6c7a3ce37baaf9f47083601ec1d022c45e4046aa0aec288bca3fb6005"
+      "spec.md": "68eb1d312c6778d7d5e965884b133a327a6235010a7da4d9b9ed01feb34f2bcb",
+      "plan.md": "6be777349e7cfe134a3e76dfb470cac42510cb3c0461e4b35f8897b19d3bb1c3",
+      "tasks.md": "f59683b64cafab2d4d313214148fd0f417cfc378d22ddd9896dcb7cda79607b7",
+      "implementation-summary.md": "678aa50c3aae0bd9b791c2ee4d9b4f8dd87e57ac8899f4c8bc7094fd68d6b6a7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,14 +13,11 @@
     "system-code-graph",
     "triad"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.627Z",
+  "lastUpdated": "2026-07-08T05:23:49.923Z",
   "specId": "005",
   "folderSlug": "cross-skill-documentation-decoupling",
   "parentChain": [
-    "system-spec-kit",
-    "026-graph-and-context-optimization",
-    "002-spec-kit-internals",
-    "002-skill-advisor",
+    "system-skill-advisor",
     "005-skill-advisor-documentation"
   ],
   "memorySequence": 0,

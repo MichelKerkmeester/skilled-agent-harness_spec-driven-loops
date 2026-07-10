@@ -22,9 +22,7 @@
       "generalization probe results"
     ],
     "key_topics": [
-      "036",
       "phase",
-      "003",
       "generalization",
       "probes",
       "compiled",
@@ -33,7 +31,9 @@
       "plan",
       "probe",
       "tasks",
-      "summary"
+      "summary",
+      "results",
+      "packet"
     ],
     "importance_tier": "medium",
     "status": "complete",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 003 of packet 036. Prove the compiled-command-contract behavior flip generalizes beyond review/research to the context and council modes, and check whether the leaf-reliability check lifts the pass rate. Prepares behavior-benchmark scenario cells (context CXB-004, council ACB-005, review re-probe) and runs them fix-vs-fallback on the gpt-fast-med leg; results and the generalization verdict are recorded here.",
     "created_at": "2026-07-04T14:19:08.954Z",
-    "last_save_at": "2026-07-05T06:46:10.308Z",
+    "last_save_at": "2026-07-09T10:02:47.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38be33ce6dc40633dba3891c0e0e818b72e7eaa7177683620e9c779523cc82c1",
+    "source_fingerprint": "sha256:2469bb8420c056f5e1722d846765ae0192937b3c2cbfa2d0c83eb6750a9b96f5",
     "source_doc_hashes": {
-      "spec.md": "e8aafe8e18750b35193c24184ff3171dcf2a99b4b4d168744d35d1272479cc3c",
-      "plan.md": "c25a9a5a2284382eb513f8707c177cf6492b00ed70b097a73a9eeb6cb4214015",
-      "tasks.md": "a816a4b19989825849120150159353084ae95382f5d3d815259b8aa72565cb9e",
-      "implementation-summary.md": "86e9cc6618d9ca083a321ef2cf22d2b1aae274a5bb7888e48a4431f72993c187"
+      "spec.md": "051c4ab624f8e1ad67ade33e11c2389bd0e6467a6aacb1d5ecdcc1339c15de35",
+      "plan.md": "5b5f9bfd9588480cf3f31b986f2e2d8d0185669b1da9fc735fa0cf6096ef932b",
+      "tasks.md": "16c8d32f910dbfacd959e759c1f218bd73b39c564031159fe30505efe003fc51",
+      "implementation-summary.md": "1d6065a583d0cd1cc5a6c51d60f0612cc4734ad3c9dc22cc7d6f173728a33988"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,6 @@
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/002-deep-ai-council/012-iterative-command-and-skill-wiring",
   "description": "Add /deep:ask-ai-council auto/confirm workflow, skill docs, and four-runtime mirror sync",
   "keywords": [
-    "add",
     "deep",
     "ask-ai-council",
     "auto",
@@ -22,7 +21,7 @@
     "mirror",
     "sync"
   ],
-  "lastUpdated": "2026-07-08T13:07:02.166Z",
+  "lastUpdated": "2026-07-09T10:02:48.652Z",
   "specId": "012",
   "folderSlug": "iterative-command-and-skill-wiring",
   "parentChain": [

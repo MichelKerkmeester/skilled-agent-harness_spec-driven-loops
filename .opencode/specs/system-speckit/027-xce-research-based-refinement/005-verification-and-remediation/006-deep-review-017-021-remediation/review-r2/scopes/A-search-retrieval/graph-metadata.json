@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval",
+  "packet_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval",
+  "spec_folder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -111,7 +111,7 @@
     ],
     "causal_summary": "Independent gpt-5.5 deep-review audit of the search/retrieval code of the system-spec-kit MCP server",
     "created_at": "2026-06-22T18:55:03.565Z",
-    "last_save_at": "2026-06-23T03:49:58.008Z",
+    "last_save_at": "2026-07-09T10:02:55.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

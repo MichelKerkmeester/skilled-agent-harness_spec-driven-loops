@@ -1,11 +1,10 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-command-allignment",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-command-allignment",
   "description": "Comprehensive analysis of specs 072-075 in 003-memory-and-spec-kit combined with current system-spec-kit state to determine command alignment needs.",
   "keywords": [
     "comprehensive",
     "analysis",
     "specs",
-    "072-075",
     "003-memory-and-spec-kit",
     "combined",
     "current",
@@ -16,11 +15,11 @@
     "alignment",
     "needs"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.293Z",
+  "lastUpdated": "2026-07-09T10:02:57.305Z",
   "specId": "075",
   "folderSlug": "post-speckit-template-upgrade-command-allignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

@@ -40,6 +40,8 @@ A `DESIGN.md` is only useful because it is hallucination-proof. That property ho
 
 You MUST complete each phase before proceeding to the next; VALIDATE and REPORT can also run standalone on an existing pair.
 
+**Script inventory.** The embedded `backend/scripts/` directory contains 20 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `build-write-prompt.ts` (Phase 2 doc-as-view: pre-renders the v3 Tokens — Colors / Spacing & Shapes / Surfaces / Quick Start sections and a FACTS block), `validate.ts` (Phase 3, v3-schema-aware with a Quick-Start fidelity check), `report-gen.ts`, and `preview-gen.ts` (Phase 4). `formatters-v3.ts` holds the deterministic v3 emitters — the hue+lightness colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start renderers (every value verbatim from tokens) — that `build-write-prompt.ts` calls. The remaining modules are internal pipeline stages called by the orchestrator.
+
 #### Phase 1: EXTRACT
 
 **Actions**:

@@ -13,10 +13,9 @@
     "events",
     "advisorvalidate",
     "schemas",
-    "advisor-tool-schemas",
-    "240-250"
+    "advisor-tool-schemas"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.140Z",
+  "lastUpdated": "2026-07-09T10:02:50.376Z",
   "specId": "008",
   "folderSlug": "advisor-feedback-calibration",
   "parentChain": [

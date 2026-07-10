@@ -22,7 +22,6 @@
   "description": "Phases 001-005 refactored `sk-design` toward Claude Design-like manager behavior while preserving the OpenCode-native parent-hub shape: one advisor",
   "keywords": [
     "phases",
-    "001-005",
     "refactored",
     "sk-design",
     "toward",
@@ -38,7 +37,7 @@
     "one",
     "advisor"
   ],
-  "lastUpdated": "2026-07-06T05:28:20.807Z",
+  "lastUpdated": "2026-07-09T10:02:44.456Z",
   "specId": "006",
   "folderSlug": "parent-skill-canon-verification",
   "parentChain": [

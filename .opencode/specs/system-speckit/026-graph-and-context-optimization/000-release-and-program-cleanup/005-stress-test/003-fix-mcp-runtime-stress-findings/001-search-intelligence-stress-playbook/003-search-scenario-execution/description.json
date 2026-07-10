@@ -9,10 +9,9 @@
     "execution scaffold",
     "manual scoring workflow"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/003-search-scenario-execution",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook/003-search-scenario-execution",
   "description": "001 ships the design (corpus + rubric + matrix); without an execution harness those artifacts produce no signal",
   "keywords": [
-    "001",
     "ships",
     "design",
     "corpus",
@@ -25,11 +24,11 @@
     "produce",
     "signal"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.546Z",
+  "lastUpdated": "2026-07-09T10:02:51.189Z",
   "specId": "003",
   "folderSlug": "search-scenario-execution",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

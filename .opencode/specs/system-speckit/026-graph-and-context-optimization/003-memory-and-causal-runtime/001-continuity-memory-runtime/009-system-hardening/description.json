@@ -16,10 +16,9 @@
       "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening",
-  "description": "The 2026-04-18 consolidation that shipped `016-foundational-runtime`, `017-sk-deep-cli-runtime-execution`, and `018-cli-executor-remediation` closed t",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening",
+  "description": "The 2026-04-18 consolidation that shipped `016-foundational-runtime`, `017-sk-deep-cli-runtime-execution`, and `018-cli-executor-remediation` closed",
   "keywords": [
-    "2026-04-18",
     "consolidation",
     "shipped",
     "016-foundational-runtime",
@@ -27,11 +26,11 @@
     "018-cli-executor-remediation",
     "closed"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.882Z",
+  "lastUpdated": "2026-07-09T10:02:52.115Z",
   "specId": "009",
   "folderSlug": "system-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "001-continuity-memory-runtime"

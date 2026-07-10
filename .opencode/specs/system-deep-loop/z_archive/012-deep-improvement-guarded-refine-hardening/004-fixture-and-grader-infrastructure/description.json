@@ -4,12 +4,11 @@
   "description": "Phase 004: Fixture + Grader Infrastructure",
   "keywords": [
     "phase",
-    "004",
     "fixture",
     "grader",
     "infrastructure"
   ],
-  "lastUpdated": "2026-07-08T13:43:28.423Z",
+  "lastUpdated": "2026-07-09T10:02:49.203Z",
   "specId": "004",
   "folderSlug": "fixture-and-grader-infrastructure",
   "parentChain": [

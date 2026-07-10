@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
-  "description": "The phase creation workflow breaks when the parent folder lives inside a nested spec tree such as `system-spec-kit/023-hybrid-rag-fusion-refinement/01",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/008-create-sh-phase-parent",
+  "description": "The phase creation workflow breaks when the parent folder lives inside a nested spec tree such as",
   "keywords": [
     "phase",
     "creation",
@@ -12,15 +12,13 @@
     "inside",
     "nested",
     "spec",
-    "tree",
-    "system-spec-kit",
-    "023-hybrid-rag-fusion-refinement"
+    "tree"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.537Z",
+  "lastUpdated": "2026-07-09T10:02:58.842Z",
   "specId": "008",
   "folderSlug": "create-sh-phase-parent",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement",
     "011-indexing-and-adaptive-fusion"

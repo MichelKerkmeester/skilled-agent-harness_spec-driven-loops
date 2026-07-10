@@ -4,7 +4,6 @@
   "description": "Phase 005 rides the live per-turn skill-advisor hook to keep the fable-5 governor capsule in front of main-session agents, but that hook does not fire",
   "keywords": [
     "phase",
-    "005",
     "rides",
     "live",
     "per-turn",
@@ -19,12 +18,13 @@
     "agents",
     "fire"
   ],
-  "lastUpdated": "2026-06-23T03:49:48.508Z",
+  "lastUpdated": "2026-07-09T10:02:46.608Z",
   "specId": "006",
   "folderSlug": "subagent-governor-recursion",
   "parentChain": [
     "skilled-agent-orchestration",
-    "144-operate-like-fable-5"
+    "z_archive",
+    "114-operate-like-fable-5"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

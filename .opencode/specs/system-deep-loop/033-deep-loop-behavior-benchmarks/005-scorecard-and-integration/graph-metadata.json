@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Close the program: aggregate every scored run from phases 002-004 into one cross-skill scorecard (5 modes x 3 executors), analyze per-checkpoint latency ratios and bucket distributions, and explicitly confirm or refute packet 031's three headline findings per mode (3-10x latency gap, role-absorption risk, inconsistent Command-only routing discipline)",
     "created_at": "2026-07-02T05:53:06.653Z",
-    "last_save_at": "2026-07-02T21:33:36.047Z",
+    "last_save_at": "2026-07-09T10:02:48.025Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d29fc6f26693093fd2173ff71cf91c5555ea4316b9406a52199518719e96377b",
+    "source_fingerprint": "sha256:4603f6c64d2c13416ebfa4bd5cb60ccb1f67966ef7e05cb3a0b45c7b0981f682",
     "source_doc_hashes": {
-      "spec.md": "e74499dd2403bc77b81575a3276565194d64d82cc1d49d6ac8297e97ec146cfd",
-      "plan.md": "1fcdfbf93eabdfc2f720886f9b5e089aaf12204353a8d21d4e72a85f1db0f778",
-      "tasks.md": "e7133cfa3b854906aded0f0720901c505e4e8277d57987c9116a051fc04f4581",
-      "checklist.md": "8cce988b2db7560a60610a95ef5b770af1af33810845a55348e94bf80b3d2c6f",
-      "implementation-summary.md": "e61ea5396e8e45f5910270f096a0c8fe089be73d5a6e15079d63fff944125238"
+      "spec.md": "c224ac55760b916d09502d1699824e50ca55ff64361334a98007f4fa6c66852c",
+      "plan.md": "768e6f539535b94ef8c9188b70f516583b92af26e83160d857b1bc50649454d0",
+      "tasks.md": "95ffa3f898a95dcf2d08d54971076b505548fd16ecde243a0830342f8a990045",
+      "checklist.md": "fe1180c88dc2ffccdd257b79086a862075328bd1978f23aaa5351f447ca45547",
+      "implementation-summary.md": "bb0be76216ed8b778baf9b73c99a2330cd5b343da3c819bfc7574ae5cae467ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

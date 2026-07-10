@@ -1,0 +1,47 @@
+# Skill Benchmark Report — code-quality
+
+> Rendered from report.json (do not hand-edit). Scoring: `mode-a-router-replay` · trace mode: `router`.
+
+**Verdict: PASS** · aggregate 89/100
+
+## Coverage
+
+- Scored (text executors): **1** · routed out to browser harness: **0**
+- By class — routing: 1 · advisor: 0 · browser: 0
+
+## Dimension scores
+
+| Dimension | Weight | Score |
+| --------- | ------ | ----- |
+| D1 inter (advisor) | 12pts | _unscored-mode-a_ |
+| D1 intra (router) | 13pts | 60/100 |
+| D2 discovery | 20pts | 100/100 |
+| D3 efficiency | 15pts | 100/100 |
+| D4 usefulness | 25pts | _unscored-mode-a_ |
+| D5 connectivity (hard gate) | 15pts | 100/100 |
+
+_Unscored in this run (need live mode): D1inter, D4._
+
+### Advisory signals (NOT in the weighted aggregate)
+
+- **D4 task-outcome** — routine-task usefulness (skill-on vs off), separate from D4 hallucination: _unscored (run --d4 in live mode)_
+- **Asset support recall** — deferred `assets/*` gold (router defers these on demand): _deferred (router) or no asset gold_
+
+## Funnel
+
+- passed: 1
+
+## Ranked bottlenecks
+
+_None._
+
+## Scenarios
+
+| Scenario | Class | Score | First failing stage |
+| -------- | ----- | ----- | ------------------- |
+| CQ-001 | routing | 89/100 | passed |
+
+## Methodology / caveats
+
+- Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode. Advisory signals: mode precision unscored; relative ranking unscored (no advisor probe or no rank-below gold); route gold rows 0; telemetry missing n/a (0/0); route misses n/a (0/0); alias misses n/a (0/0); bundle misses n/a (0/0); recipe misses n/a (0/0).
+- Scenario count: 1.

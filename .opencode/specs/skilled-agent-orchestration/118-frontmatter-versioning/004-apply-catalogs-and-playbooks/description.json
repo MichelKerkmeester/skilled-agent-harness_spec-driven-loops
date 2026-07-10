@@ -9,7 +9,6 @@
     "catalog",
     "playbook",
     "leaves",
-    "700",
     "files",
     "frontmatter",
     "varies",
@@ -18,7 +17,7 @@
     "title",
     "description"
   ],
-  "lastUpdated": "2026-07-01T12:31:47.315Z",
+  "lastUpdated": "2026-07-09T10:02:45.030Z",
   "specId": "004",
   "folderSlug": "apply-catalogs-and-playbooks",
   "parentChain": [

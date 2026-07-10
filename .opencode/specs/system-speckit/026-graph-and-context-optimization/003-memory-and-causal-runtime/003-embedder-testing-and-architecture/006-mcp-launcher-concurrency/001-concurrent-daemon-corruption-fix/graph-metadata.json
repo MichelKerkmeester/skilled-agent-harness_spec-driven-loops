@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Between 2026-05-17 16:42 UTC and 22:51 UTC (~6 hours), the skill-advisor's `mcpserver/database/` accumulated 1005 `skill-graph.sqlite.<ms-timestamp>.corrupt` quarantine files — a rate of ~167/hour",
     "created_at": "2026-05-18T04:46:08Z",
-    "last_save_at": "2026-07-07T12:30:10.026Z",
+    "last_save_at": "2026-07-09T11:23:16.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

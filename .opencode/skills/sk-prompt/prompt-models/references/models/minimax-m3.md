@@ -86,7 +86,7 @@ This mirrors `model_profiles.json` `recommended_frameworks` for `minimax-m3`:
 
 ## 5. TUNED TEMPLATE SNIPPET
 
-For the **generic TIDD-EC framework definition** (component meanings, scoring rubric, usage guidance), see [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md). The scaffold below is the MiniMax-M3-specific fill — copy-paste-ready, executor-agnostic (no invocation wrapper).
+For the **generic TIDD-EC framework definition** (component meanings, scoring rubric, usage guidance), see [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md). The scaffold below is the MiniMax-M3-specific fill — copy-paste-ready, executor-agnostic (no invocation wrapper).
 
 ```markdown
 ## Task
@@ -129,7 +129,7 @@ Output shape: a `<pre-plan>` block (dense, 4-5 steps), then fenced code blocks e
 
 ## Design-Task Variant
 
-Use this variant when MiniMax-M3 is dispatched for UI build, redesign, design review, accessibility/readiness review, or design recommendations that may become implementation guidance. It keeps the tuned TIDD-EC + dense pre-plan scaffold above and adds the shared design-loading contract from [`../../../sk-design/shared/context_loading_contract.md`](../../../sk-design/shared/context_loading_contract.md).
+Use this variant when MiniMax-M3 is dispatched for UI build, redesign, design review, accessibility/readiness review, or design recommendations that may become implementation guidance. It keeps the tuned TIDD-EC + dense pre-plan scaffold above and adds the shared design-loading contract from [`../../../../sk-design/shared/context_loading_contract.md`](../../../../sk-design/shared/context_loading_contract.md).
 
 ```markdown
 ## Task
@@ -196,7 +196,7 @@ Output shape: a `<pre-plan>` block, then the Design Manifest, then the Context L
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for capability fields: [`../../../sk-prompt-models/assets/model_profiles.json`](../../../sk-prompt-models/assets/model_profiles.json) → `models[id="minimax-m3"].capability`.
+Source of truth for capability fields: [`../../assets/model_profiles.json`](../../assets/model_profiles.json) → `models[id="minimax-m3"].capability`.
 
 | Capability field | Value | Dispatch rule |
 |---|---|---|
@@ -208,7 +208,7 @@ Source of truth for capability fields: [`../../../sk-prompt-models/assets/model_
 | `quota_pool` (Token Plan) | `minimax-token-plan` | Subscription; resets on a 5-hour rolling window |
 | `quota_pool` (Direct API) | `minimax-api` | Pay-per-token; large-context runs can be expensive |
 
-**Non-TTY / automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any `> file` redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--format json`, `--dir`, redirects) lives in [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
+**Non-TTY / automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any `> file` redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--format json`, `--dir`, redirects) lives in [`../../../../cli-opencode/assets/prompt_templates.md`](../../../../cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
 
 **Slug availability note:** Plain `minimax-coding-plan/MiniMax-M3` is confirmed live (2026-06-02; re-verified on opencode 1.16.2 on 2026-06-06). There is **no `MiniMax-M3-highspeed`** on opencode 1.16.2. Dispatch the plain `MiniMax-M3` slug.
 
@@ -216,8 +216,8 @@ Source of truth for capability fields: [`../../../sk-prompt-models/assets/model_
 
 ## 7. SEE ALSO
 
-- [`../../../sk-prompt-models/assets/model_profiles.json#minimax-m3`](../../../sk-prompt-models/assets/model_profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
-- [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
-- [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
-- [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — per-model override block for MiniMax (cross-model pre-planning density context)
-- [`../../SKILL.md`](../../SKILL.md) — sk-prompt-models hub workflow, dispatch matrix, escalation rules
+- [`../../assets/model_profiles.json#minimax-m3`](../../assets/model_profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, recommended_frameworks)
+- [`../../../prompt-improve/references/patterns_evaluation.md`](../../../prompt-improve/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
+- [`../../../../cli-opencode/assets/prompt_templates.md`](../../../../cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
+- [`../../../../cli-opencode/assets/prompt_quality_card.md`](../../../../cli-opencode/assets/prompt_quality_card.md) — per-model override block for MiniMax (cross-model pre-planning density context)
+- [`../../SKILL.md`](../../SKILL.md) — prompt-models hub workflow, dispatch matrix, escalation rules

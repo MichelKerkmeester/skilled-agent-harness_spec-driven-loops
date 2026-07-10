@@ -4,10 +4,8 @@
   "description": "The phase 002 bakeoff (run 006) scored every prompt framework at correctness 1.0 because its T3 fixtures were too easy for a frontier coding model, so",
   "keywords": [
     "phase",
-    "002",
     "bakeoff",
     "run",
-    "006",
     "scored",
     "every",
     "prompt",
@@ -21,7 +19,7 @@
     "coding",
     "model"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.522Z",
+  "lastUpdated": "2026-07-09T10:02:46.654Z",
   "specId": "004",
   "folderSlug": "discriminating-bakeoff",
   "parentChain": [

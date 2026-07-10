@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Promote the existing 3-runtime mirror-sync check from a promotion-only gate to a repo-wide pre-commit + CI gate, and add a STACK_FOLDERS-to-on-disk binding check for sk-code. Fixes the two structural drift bugs found during the 146 research.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-07-07T16:45:58.058Z",
+    "last_save_at": "2026-07-09T10:02:44.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c76743cb513ed5671d9a1e7ecb5226cb8aec47265962c13c3922095c320eb68",
+    "source_fingerprint": "sha256:864dd96ad28484c8e87d2aca4eec6b01bf0952da8b235df209724b2293ae9945",
     "source_doc_hashes": {
-      "spec.md": "e412727e72393d8f0b04d1a1baed0202b31a8bb88625c9e48e39caf4de323b7e",
-      "plan.md": "2923e695d23a3378ee7b5dfa5b25c67175ca033ca5eb3c15a8921799e4526487",
-      "tasks.md": "687bc17f903c32e46deab5cde0859b83565a9f22bcbbd6d856685aa2eaf98d7d",
-      "implementation-summary.md": "ca5193789f343bf0b5a0c3d34f23e6e9eff43122d2b0e385b73fe00c63b19593"
+      "spec.md": "db2be55c04a5e7e22f118ce89ceb720f2347384ce1d9494eea634cf897da14eb",
+      "plan.md": "81118ac61a4411ed7dfd231c0cb35e9b8e2fdadaf0769ae5dcb47091cd62fea0",
+      "tasks.md": "13589f5afea4a5b69fa8574caa7a68daf39bdffe555bab84b39227a5047ccb82",
+      "implementation-summary.md": "e7576167a866590579c44c8a0bdae616ab3ffa3d8bc0713e9fa0f7969c0ec5f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

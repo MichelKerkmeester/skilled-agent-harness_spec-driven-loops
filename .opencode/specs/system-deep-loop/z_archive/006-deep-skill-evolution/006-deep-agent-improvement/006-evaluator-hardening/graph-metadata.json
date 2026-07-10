@@ -28,7 +28,6 @@
     ],
     "key_topics": [
       "packet",
-      "126",
       "deep-agent-improvement",
       "evaluator",
       "hardening",
@@ -38,7 +37,8 @@
       "dai-022",
       "plan",
       "dai",
-      "tasks"
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Level 3 specification for scorer reproducibility, promotion gates, dedup hardening, mirror coverage, and dashboard transparency.",
     "created_at": "2026-05-23T00:00:00.000Z",
-    "last_save_at": "2026-07-08T13:44:06.227Z",
+    "last_save_at": "2026-07-09T10:02:48.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

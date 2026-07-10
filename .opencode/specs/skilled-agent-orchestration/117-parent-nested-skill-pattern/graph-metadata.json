@@ -29,10 +29,10 @@
       "pattern",
       "routing",
       "optimization",
-      "152",
       "epic",
       "merged",
-      "five"
+      "five",
+      "deep-loop"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -128,7 +128,7 @@
     ],
     "causal_summary": "The 152 epic merged five deep-loop skills into one `deep-loop-workflows` skill structured as a thin hub `SKILL.md` + `mode-registry.json` + five internal mode packets, with the packets deliberately non-discoverable (one advisor identity)",
     "created_at": "2026-06-15T09:09:33.215Z",
-    "last_save_at": "2026-07-02T05:31:08.521Z",
+    "last_save_at": "2026-07-09T10:02:44.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

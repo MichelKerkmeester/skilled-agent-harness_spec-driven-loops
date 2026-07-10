@@ -135,6 +135,28 @@ Note that the `.opencode/hooks/pre-commit` hook additionally enforces a staged a
 
 Run `scripts/check-comment-hygiene.sh <file>` on each modified file that can contain comments. Zero violations are required before a quality pass.
 
+### 2b. Machine-Readable Router (thin, Type-1 benchmark)
+
+code-quality routes primarily by TARGET PATH (the surface + checklist map above), verified by a unit test — not by prompt keywords. Its parent-to-child discoverability is the hub `quality` signal. This thin prompt-intent projection exists only so the deterministic skill-benchmark router-replay can score code-quality's one routable checklist in Mode-A; it deliberately does not model the path-keyed dispatch.
+
+```python
+# Thin prompt-intent router: code-quality owns a single routable checklist. Its
+# real routing is target-path-keyed (the checklist map above, covered by a unit
+# test) and its parent discoverability is the hub quality signal — this block only
+# makes the one asset scoreable by the deterministic router-replay.
+DEFAULT_RESOURCE = [
+    "assets/code_quality_checklist.md",
+]
+
+INTENT_SIGNALS = {
+    "QUALITY": {"weight": 1, "keywords": ["quality gate", "comment hygiene", "p0 p1 p2", "code smell", "dist staleness", "naming", "standards", "checklist", "author quality gate"]},
+}
+
+RESOURCE_MAP = {
+    "QUALITY": ["assets/code_quality_checklist.md"],
+}
+```
+
 ---
 
 ## 3. HOW IT WORKS

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/research/001-xce-adoption-matrix/iterations",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/research/001-xce-adoption-matrix/iterations",
   "description": "Research iteration artifacts for 001-xce-adoption-matrix.",
   "keywords": [
     "research",
@@ -10,11 +10,11 @@
     "027-xce-research-based-refinement",
     "iterations"
   ],
-  "lastUpdated": "2026-06-08T15:25:36.972Z",
+  "lastUpdated": "2026-07-09T11:26:11.531Z",
   "specId": "001",
   "folderSlug": "xce-adoption-matrix-iterations",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "research",
     "001-xce-adoption-matrix"

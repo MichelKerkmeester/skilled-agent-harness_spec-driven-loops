@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/002-indexing-normalization",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/002-indexing-normalization",
   "description": "The index scan currently collects files from both `specs/` and `.opencode/specs/` roots",
   "keywords": [
     "index",
@@ -11,11 +11,11 @@
     "opencode",
     "roots"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.746Z",
+  "lastUpdated": "2026-07-09T10:02:57.821Z",
   "specId": "002",
   "folderSlug": "indexing-normalization",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

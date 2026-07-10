@@ -40,6 +40,10 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback/tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback/checklist.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback/decision-record.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback/implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -55,6 +59,30 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback/checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback/decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback/implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -64,30 +92,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -195,7 +199,7 @@
     ],
     "causal_summary": "Today cli- skills repeat model-selection guidance per skill (cli-devin §3, cli-opencode §3, sk-prompt clipromptqualitycard.md)",
     "created_at": "2026-05-18T12:40:53.971Z",
-    "last_save_at": "2026-06-23T03:49:50.530Z",
+    "last_save_at": "2026-07-09T10:02:45.975Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5bca6dba2b1d92ba69f24cee293e09a62c4c9470137ee323523f37007f89482f",
+    "source_fingerprint": "sha256:733ab4621b076fc88d535740e468ad262b865277119482c307895e08831b7e14",
     "source_doc_hashes": {
-      "spec.md": "f3caec9714512de9e605b9ad54a442e70d9bb29424c39c723baf250d4cc9d8aa",
-      "plan.md": "d727d4716b9d6fc6c7dd58abacfbbc51cfab0718be4732bb08bf0feda12191d1",
-      "tasks.md": "af7a42d7c0df0eab057ba9db3a01da0ef9e8adbd34f3a0f583299ca0ebe01a27",
-      "checklist.md": "a07df18924cf9025c5d87476d64271091c75b7bf7c7afffb6533f6da0bd60f10",
-      "decision-record.md": "49c155546f020a2423ce9775848caf9c05822aef8cae64af57c3a1eeb254f7b6",
-      "implementation-summary.md": "4f36059ebc9bcda4513d46336977305ed902cc232bb1ac8946b85fdb876d1fe9"
+      "spec.md": "0b6da564b5a181d7aed10fb63174600b19dd176be77875f21ebce967c8c3d8bf",
+      "plan.md": "f7ad48b7928096d7d6f2d1618ce826ec409e62371347f9d564ea1abd059a3682",
+      "tasks.md": "e3719c95b733c7380604c43348d473409b2c805aad232890dc65e8d6774f5de5",
+      "checklist.md": "6ac23f4416e4eb575e821a3a452ec0b539be0722f94152c4dde084c2a6552729",
+      "decision-record.md": "54bdce9c75aeb755bfcdf9153371504639f63d95738835c67a379bd219a7ee5a",
+      "implementation-summary.md": "6259a8e2e408ea400e7ccf655ec1bc9c85b0c740c2c614fa4491a5fcd3edb112"
     },
     "last_active_child_id": null,
     "last_active_at": null

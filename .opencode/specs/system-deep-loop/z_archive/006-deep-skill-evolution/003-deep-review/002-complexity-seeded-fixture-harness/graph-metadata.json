@@ -30,12 +30,12 @@
       "review-depth",
       "fixture",
       "harness",
-      "116",
       "plan",
       "tasks",
       "checklist",
       "verification",
-      "summary"
+      "summary",
+      "handoff"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Phase 001 found that `deep-review` can validate active findings while still failing to prove enough pre-finding candidate search",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-07-08T13:43:54.727Z",
+    "last_save_at": "2026-07-09T10:02:48.669Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

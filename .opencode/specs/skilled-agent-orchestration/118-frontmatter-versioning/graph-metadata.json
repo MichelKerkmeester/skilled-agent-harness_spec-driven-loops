@@ -28,7 +28,6 @@
       "skill",
       "frontmatter",
       "versioning",
-      "153",
       "doc",
       "version",
       "field",
@@ -36,7 +35,8 @@
       "retroactive",
       "changelog-anchored",
       "derivation",
-      "documentation"
+      "documentation",
+      "readme"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -94,7 +94,7 @@
     ],
     "causal_summary": "Skill documentation (`SKILL.md`, `README.md`, `references/.md`, `assets//.md`, feature catalogs, testing playbooks) carries YAML frontmatter consumed by the skill advisor and system-spec-kit",
     "created_at": "2026-06-23T07:33:08Z",
-    "last_save_at": "2026-07-02T05:31:08.812Z",
+    "last_save_at": "2026-07-09T10:02:45.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

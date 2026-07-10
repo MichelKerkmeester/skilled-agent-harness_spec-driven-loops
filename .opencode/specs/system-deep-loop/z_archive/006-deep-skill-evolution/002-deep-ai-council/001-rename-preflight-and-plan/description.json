@@ -10,13 +10,12 @@
     "rename-plan",
     "contract",
     "phases",
-    "002-005",
     "cannot",
     "run",
     "parallel",
     "safely"
   ],
-  "lastUpdated": "2026-07-08T13:07:03.464Z",
+  "lastUpdated": "2026-07-09T10:02:48.592Z",
   "specId": "001",
   "folderSlug": "rename-preflight-and-plan",
   "parentChain": [
