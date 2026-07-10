@@ -13,7 +13,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-memory-indexer-invariants"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants"
     last_updated_at: "2026-04-24T19:25:00+02:00"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Merged Track A + Track B ADRs into root decision record"

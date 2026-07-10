@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation"
     last_updated_at: "2026-06-18T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "README remediation fixed, audited, and corrected"

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 010 graduation follow-ups passed a cli test run and were reported graduate-ready, but the tests never exercised the real failure modes",
     "created_at": "2026-06-24T10:25:14.122Z",
-    "last_save_at": "2026-07-06T19:16:40.702Z",
+    "last_save_at": "2026-07-10T06:22:38.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "spec.md": "bbef5011f331f0fadd187ed1d4e64d2821fc64333a3e5bd1e5e83183cf5dff13",
       "plan.md": "f8d977fc71f67676c32d2366945f150cc12f8f96df17ad1a700900563c786edb",
       "tasks.md": "f75d1bbd051cde158175af22e8583e47c3f765aa084b2f05f7e6bfe84be11fd1",
-      "implementation-summary.md": "ec9b9aa9b553b2a4b68e9fc010ed80f8382015c1109009f0d888121c66b43f69"
+      "implementation-summary.md": "6bb892530484c19b455e3e12b22439ae89467eb70f71b080a3dffc637de9d4d2"
     },
     "last_active_child_id": null,
     "last_active_at": null

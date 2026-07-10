@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening"
     last_updated_at: "2026-06-07T16:45:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Added bounded consecutive-failure retry before owner reap"

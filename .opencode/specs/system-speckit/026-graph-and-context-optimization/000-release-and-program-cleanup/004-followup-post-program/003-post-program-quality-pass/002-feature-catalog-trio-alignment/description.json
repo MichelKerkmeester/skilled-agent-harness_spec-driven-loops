@@ -1,10 +1,8 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment",
   "description": "Packets 031-036 added MCP tools, hook diagnostics, CLI matrix runners, and changed freshness contracts",
   "keywords": [
     "packets",
-    "031-036",
-    "added",
     "mcp",
     "tools",
     "hook",
@@ -16,11 +14,11 @@
     "freshness",
     "contracts"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.467Z",
+  "lastUpdated": "2026-07-10T06:21:59.636Z",
   "specId": "002",
   "folderSlug": "feature-catalog-trio-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "004-followup-post-program",

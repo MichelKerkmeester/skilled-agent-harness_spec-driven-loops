@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs",
   "description": "When a spec folder has phase children (e.g",
   "keywords": [
     "spec",
@@ -7,11 +7,11 @@
     "phase",
     "children"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.269Z",
+  "lastUpdated": "2026-07-10T06:22:48.796Z",
   "specId": "001",
   "folderSlug": "phase-parent-validator-docs",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass",

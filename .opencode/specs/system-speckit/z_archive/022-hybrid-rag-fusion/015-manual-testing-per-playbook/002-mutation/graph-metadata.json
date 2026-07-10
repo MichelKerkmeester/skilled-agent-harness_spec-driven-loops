@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -29,18 +29,19 @@
       "manual",
       "testing",
       "phase",
-      "002",
       "spec",
       "kit",
       "memory",
       "tests",
       "hybrid",
       "rag",
-      "fusion"
+      "fusion",
+      "playbook"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "lib/storage/history.ts",
       "tasks.md",
       "checklist.md",
@@ -56,10 +57,15 @@
       "mcp_server/lib/storage/transaction-manager.ts",
       "mcp_server/lib/storage/history.ts",
       "mcp_server/schemas/tool-input-schemas.ts",
-      "spec.md",
       "plan.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "history.ts",
         "kind": "code",
@@ -145,12 +151,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -158,12 +158,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -193,6 +187,12 @@
         "source": "derived"
       },
       {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The mutation feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
     "created_at": "2026-04-12T09:02:50.290Z",
-    "last_save_at": "2026-06-23T03:50:00.224Z",
+    "last_save_at": "2026-07-10T06:22:21.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,9 +217,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03482842beb4a048bf4201edf0e29a5d12cdda58d6364b0b62c0506b521649b0",
+    "source_fingerprint": "sha256:57e75aedbf47f4ff38f1cbaec1745959725b7bfe796fde8d275276f60977cb17",
     "source_doc_hashes": {
-      "spec.md": "b4e8125aa00c57a2662d094193c28172afa4c1623cf793c2e0faa444918ab2b4",
+      "spec.md": "5f9ad81526ecb93f242004d1a9c95b6b6e4028ae7966a7b09e7863cc6de624de",
       "plan.md": "568f1a2f2c35d7c38a8055dafe49bb8aca49cb8c79681ff129aa34bc33c03654",
       "tasks.md": "140a5287bceb198d19cebbd87f66f2271c53c3f960ccfc728a2a78ccbe8546e7",
       "checklist.md": "3be682f11901358137fb42e48b48e1104611a3880870e41f231cfe0ee401a2d0",

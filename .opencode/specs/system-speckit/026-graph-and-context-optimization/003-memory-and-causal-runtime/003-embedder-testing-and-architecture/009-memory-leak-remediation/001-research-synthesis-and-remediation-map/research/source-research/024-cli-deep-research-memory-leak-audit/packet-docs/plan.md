@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/024-cli-deep-research-memory-leak-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs"
     last_updated_at: "2026-05-22T07:20:00Z"
     last_updated_by: "opencode"
     recent_action: "Completed fifteen research iterations and final synthesis addendum."

@@ -27,10 +27,8 @@
       "msgspec truncation resolved"
     ],
     "key_topics": [
-      "009",
       "cocoindex",
       "ipc",
-      "fix",
       "msgspec",
       "truncation",
       "search",
@@ -38,7 +36,9 @@
       "data",
       "truncated",
       "daemon",
-      "stall"
+      "stall",
+      "markdown",
+      "only"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `targetsqlite.db` (proven via direct sqlite-vec KNN returning relevant results at distance 0.97-1.03 on packet-local queries), but every search call through cocoindex's own MCP/CLI path returns `msgspec.DecodeError: Input data was truncated`",
     "created_at": "2026-05-12T21:35:00Z",
-    "last_save_at": "2026-07-02T05:31:11.559Z",
+    "last_save_at": "2026-07-10T06:24:26.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery"
     last_updated_at: "2026-05-08T21:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded Level 2 spec; baseline drift scoped to advisor/hook/scaffold/alignment/code-graph"

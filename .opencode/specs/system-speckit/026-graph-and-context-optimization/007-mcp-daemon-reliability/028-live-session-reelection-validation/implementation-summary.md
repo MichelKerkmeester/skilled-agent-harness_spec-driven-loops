@@ -7,7 +7,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation"
     last_updated_at: "2026-06-08T05:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Live test built, double-writer found and fixed, docs reconciled, suites green"

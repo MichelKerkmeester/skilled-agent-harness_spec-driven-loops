@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation"
     last_updated_at: "2026-06-11T02:15:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All 4 command families shipped; deep-review CONDITIONAL remediated"

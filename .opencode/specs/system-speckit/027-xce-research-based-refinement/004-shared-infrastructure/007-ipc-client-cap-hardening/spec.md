@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "completed"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/007-ipc-client-cap-hardening"
     last_updated_at: "2026-06-11T17:40:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Shipped cap raise (sources + 9 config env blocks) + banner suppression"

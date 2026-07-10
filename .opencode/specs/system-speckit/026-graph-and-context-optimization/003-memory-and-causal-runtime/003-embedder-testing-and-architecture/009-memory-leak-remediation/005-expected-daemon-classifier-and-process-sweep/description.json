@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/005-expected-daemon-classifier-and-process-sweep",
   "description": "Both packets warn that broad kill commands can either miss detached helpers or terminate legitimate warm services",
   "keywords": [
     "packets",
@@ -16,11 +16,11 @@
     "warm",
     "services"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.113Z",
+  "lastUpdated": "2026-07-10T06:22:44.063Z",
   "specId": "005",
   "folderSlug": "expected-daemon-classifier-and-process-sweep",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

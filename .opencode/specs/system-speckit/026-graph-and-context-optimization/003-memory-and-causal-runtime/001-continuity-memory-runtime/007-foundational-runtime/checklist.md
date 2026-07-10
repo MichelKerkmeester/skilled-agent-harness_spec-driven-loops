@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime"
     last_updated_at: "2026-04-17T14:10:00Z"
     last_updated_by: "claude-opus-4.7"
     recent_action: "Checklist scaffolded from tasks.md acceptance criteria"

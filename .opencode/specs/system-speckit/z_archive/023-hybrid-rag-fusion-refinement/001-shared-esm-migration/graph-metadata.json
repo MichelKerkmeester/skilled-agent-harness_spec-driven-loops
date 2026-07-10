@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/001-shared-esm-migration",
-  "spec_folder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/001-shared-esm-migration",
-  "parent_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement",
+  "packet_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/001-shared-esm-migration",
+  "spec_folder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/001-shared-esm-migration",
+  "parent_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -26,42 +26,35 @@
       "esm",
       "migration",
       "package",
-      "023",
       "phase",
       "plan",
       "tasks",
       "implementation",
       "summary",
       "closeout",
-      "spec-kit"
+      "spec-kit",
+      "type"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "shared/package.json",
-      "shared/tsconfig.json",
       "spec.md",
+      "shared/tsconfig.json",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": "shared/package.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "tsconfig.json",
         "kind": "config",
         "path": "shared/tsconfig.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`@spec-kit/shared` has no `\"type\": \"module\"` in its `package.json`, its `tsconfig.json` inherits the root CommonJS baseline (`module: \"commonjs\"`, `moduleResolution: \"node\"`), and its 48 relative imports lack the `.js` extension specifiers that Node ESM requires",
     "created_at": "2026-04-12T09:02:50.317Z",
-    "last_save_at": "2026-06-23T03:50:00.423Z",
+    "last_save_at": "2026-07-10T06:24:18.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

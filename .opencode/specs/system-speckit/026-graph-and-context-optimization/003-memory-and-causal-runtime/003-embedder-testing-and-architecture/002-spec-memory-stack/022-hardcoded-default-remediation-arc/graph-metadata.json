@@ -38,7 +38,6 @@
       "hardcoded-default",
       "remediation",
       "arc",
-      "022",
       "phase",
       "parent",
       "skill-advisor",
@@ -46,7 +45,8 @@
       "consolidation",
       "profile",
       "fallback",
-      "fix"
+      "cocoindex",
+      "doc"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -145,7 +145,7 @@
     ],
     "causal_summary": "The deep-research audit (packet 021) found 94 hardcoded-default findings that survived packet 020's `getCanonicalFallback()` migration",
     "created_at": "2026-05-23T13:27:06.924499Z",
-    "last_save_at": "2026-07-02T05:31:11.811Z",
+    "last_save_at": "2026-07-10T06:22:25.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,8 +1,8 @@
 {
   "level": "phase",
   "status": "phase-parent",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
-  "description": "The Spec Kit Memory system would benefit from a coherent set of write-safety and quality hardenings derived from a deep study of the caura-memclaw fle",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
+  "description": "The Spec Kit Memory system would benefit from a coherent set of write-safety and quality hardenings derived from a deep study of the caura-memclaw",
   "keywords": [
     "spec",
     "kit",
@@ -17,14 +17,13 @@
     "derived",
     "deep",
     "study",
-    "caura-memclaw",
-    "fle"
+    "caura-memclaw"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.235Z",
+  "lastUpdated": "2026-07-10T06:24:24.387Z",
   "specId": "005",
   "folderSlug": "memclaw-derived-memory-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

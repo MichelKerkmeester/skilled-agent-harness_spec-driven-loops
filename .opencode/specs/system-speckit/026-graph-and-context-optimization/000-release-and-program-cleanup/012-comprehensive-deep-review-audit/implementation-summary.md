@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit"
     last_updated_at: "2026-06-04T19:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Completed 8-slice deep-review + deep-research audit (5x gpt-5.5-xhigh per slice, worktree-isolated); consolidated and verified findings"

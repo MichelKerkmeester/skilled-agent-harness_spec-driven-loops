@@ -1,9 +1,8 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit",
-  "description": "014 touched ~12 source files (TS + Python) plus ~50 spec-doc files plus 4 sqlite deletes plus user-local config (`~/.cocoindexcode/globalsettings.yml`",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/008-finalize-and-commit",
+  "description": "014 touched ~12 source files (TS + Python) plus ~50 spec-doc files plus 4 sqlite deletes plus user-local config",
   "keywords": [
-    "014",
     "touched",
     "source",
     "files",
@@ -13,16 +12,13 @@
     "sqlite",
     "deletes",
     "user-local",
-    "config",
-    "cocoindexcode",
-    "globalsettings",
-    "yml"
+    "config"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.975Z",
+  "lastUpdated": "2026-07-10T06:24:18.742Z",
   "specId": "008",
   "folderSlug": "finalize-and-commit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

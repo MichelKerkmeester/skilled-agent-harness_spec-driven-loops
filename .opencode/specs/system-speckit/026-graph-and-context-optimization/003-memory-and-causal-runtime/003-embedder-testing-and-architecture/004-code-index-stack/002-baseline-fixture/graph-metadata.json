@@ -19,8 +19,6 @@
       "018/002 summary"
     ],
     "key_topics": [
-      "018",
-      "002",
       "baseline",
       "fixture",
       "code-retrieval",
@@ -30,7 +28,9 @@
       "plan",
       "tasks",
       "summary",
-      "author"
+      "author",
+      "deterministic",
+      "query"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Author 10-20 deterministic query→expected-source pairs for CocoIndex embedder benchmarking",
     "created_at": "2026-05-18T08:18:02.786Z",
-    "last_save_at": "2026-07-02T05:31:11.892Z",
+    "last_save_at": "2026-07-10T06:21:53.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

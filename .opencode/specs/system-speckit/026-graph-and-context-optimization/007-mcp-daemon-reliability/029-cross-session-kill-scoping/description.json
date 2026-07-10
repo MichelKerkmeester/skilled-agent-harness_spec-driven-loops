@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping",
   "description": "MCP transports kept dying mid-session despite the front-proxy work",
   "keywords": [
     "mcp",
@@ -12,11 +12,11 @@
     "front-proxy",
     "work"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.599Z",
+  "lastUpdated": "2026-07-10T06:23:16.129Z",
   "specId": "029",
   "folderSlug": "cross-session-kill-scoping",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

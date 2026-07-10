@@ -20,7 +20,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator"
     last_updated_at: "2026-05-12T04:55:46Z"
     last_updated_by: "spec-author"
     recent_action: "Folded former 014 doctor-command consolidation packet into 013 as phases 004 + 005"

@@ -48,13 +48,13 @@
       "context",
       "injection",
       "hook",
-      "024",
       "compact",
       "plan",
       "deep",
       "research",
       "report",
-      "code"
+      "code",
+      "024-compact-code-graph"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -64,7 +64,6 @@
       "handlers/memory-context.ts",
       ".opencode/agents/context.md",
       ".claude/agents/context.md",
-      ".codex/agents/context.toml",
       "resource-map.md",
       "research/research.md"
     ],
@@ -91,12 +90,6 @@
         "name": "context.md",
         "kind": "doc",
         "path": ".opencode/agents/context.md",
-        "source": "derived"
-      },
-      {
-        "name": "context.toml",
-        "kind": "file",
-        "path": ".codex/agents/context.toml",
         "source": "derived"
       },
       {
@@ -212,11 +205,17 @@
         "kind": "heading",
         "path": "resource-map.md",
         "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `024-compact-code-graph` packet spans a large phased workstream, but the parent folder originally had metadata without a canonical root `spec.md`",
     "created_at": "2026-04-12T09:02:50.341Z",
-    "last_save_at": "2026-06-23T03:50:00.567Z",
+    "last_save_at": "2026-07-10T06:23:36.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

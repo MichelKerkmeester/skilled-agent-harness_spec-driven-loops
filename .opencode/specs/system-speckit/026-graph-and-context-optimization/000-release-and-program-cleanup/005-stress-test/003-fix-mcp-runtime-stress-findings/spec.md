@@ -22,7 +22,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings"
     last_updated_at: "2026-04-29T09:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase H/I/J/K arc landed: v1.0.3 stress test (021), 5-iter deep research (022), live handler envelope test seam (023), harness telemetry export mode (024). 025 (degradedReadiness wiring) + 026 (readiness scaffolding cleanup) + 027 (memory_context structural channel research) dispatched in parallel via cli-codex."

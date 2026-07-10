@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-026-system-spec-kit-codegraph-residue-audit"
     last_updated_at: "2026-05-14T17:35:44Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-012"
     recent_action: "Completed audit and cleanup tasks; git staging blocked by sandbox"

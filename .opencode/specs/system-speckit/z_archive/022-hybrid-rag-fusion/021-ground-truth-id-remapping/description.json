@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/021-ground-truth-id-remapping",
-  "description": "The ablation study (`evalrunablation`) produces all-zero retrieval metrics — Recall, MRR, Precision, NDCG, MAP, and Hit Rate are all 0.0 — because `gr",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/021-ground-truth-id-remapping",
+  "description": "The ablation study (`evalrunablation`) produces all-zero retrieval metrics — Recall, MRR, Precision, NDCG, MAP, and Hit Rate are all 0.0 — because",
   "keywords": [
     "ablation",
     "study",
@@ -18,11 +18,11 @@
     "rate",
     "because"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.383Z",
+  "lastUpdated": "2026-07-10T06:24:49.254Z",
   "specId": "021",
   "folderSlug": "ground-truth-id-remapping",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

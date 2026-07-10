@@ -15,7 +15,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/024-compact-code-graph"
+    packet_pointer: "system-speckit/z_archive/024-compact-code-graph"
     last_updated_at: "2026-04-29T11:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Backfill _memory.continuity per Tier 4 sk-doc template alignment"

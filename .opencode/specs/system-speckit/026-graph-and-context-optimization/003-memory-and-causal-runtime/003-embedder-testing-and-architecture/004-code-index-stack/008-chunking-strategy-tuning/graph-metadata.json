@@ -20,9 +20,6 @@
       "016/011/002 summary"
     ],
     "key_topics": [
-      "016",
-      "011",
-      "002",
       "chunking",
       "strategy",
       "tuning",
@@ -31,7 +28,10 @@
       "tasks",
       "summary",
       "phase",
-      "structural"
+      "structural",
+      "retrieval",
+      "improvements",
+      "deep-research"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Research phase for §3 structural retrieval improvements. Deep-research informs implementation plan.",
     "created_at": "2026-05-18T05:13:46.123Z",
-    "last_save_at": "2026-07-02T05:31:11.910Z",
+    "last_save_at": "2026-07-10T06:22:25.795Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

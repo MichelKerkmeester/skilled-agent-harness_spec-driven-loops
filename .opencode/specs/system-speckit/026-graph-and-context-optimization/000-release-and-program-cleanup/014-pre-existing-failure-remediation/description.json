@@ -1,32 +1,28 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation",
-  "description": "The first real central verification of the 013 program surfaced ~38 failing tests/docs that predate 013/014/015 (confirmed via file provenance + origi",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation",
+  "description": "The first real central verification of the 013 program surfaced ~38 failing tests/docs that predate 013/014/015 (confirmed via file provenance +",
   "keywords": [
     "first",
     "real",
     "central",
     "verification",
-    "013",
     "program",
     "surfaced",
     "failing",
     "tests",
     "docs",
     "predate",
-    "014",
-    "015",
     "confirmed",
     "via",
     "file",
-    "provenance",
-    "origi"
+    "provenance"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.071Z",
+  "lastUpdated": "2026-07-10T06:22:19.708Z",
   "specId": "014",
   "folderSlug": "pre-existing-failure-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup"
   ],

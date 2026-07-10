@@ -43,7 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".codex/config.toml",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
@@ -55,12 +54,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
       {
         "name": "ENV_REFERENCE.md",
         "kind": "doc",
@@ -198,11 +191,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After `010-multi-client-stdio-socket-bridge` shipped (`feat(016/006/010)` at `088cb82a0`), the codex runtime could not complete the MCP handshake for `mkskilladvisor`, `mkcodeindex`, and intermittently `mk-spec-memory`",
     "created_at": "2026-05-23T11:55:15.585Z",
-    "last_save_at": "2026-07-02T05:31:12.099Z",
+    "last_save_at": "2026-07-10T06:22:21.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

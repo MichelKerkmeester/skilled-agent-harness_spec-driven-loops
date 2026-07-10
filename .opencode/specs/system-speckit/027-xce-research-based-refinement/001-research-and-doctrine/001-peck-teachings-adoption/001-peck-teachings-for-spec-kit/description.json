@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
   "description": "The user asked whether the external repo `gytis-ivaskevicius/peck` contains any teachings that could",
   "keywords": [
     "user",
@@ -13,11 +13,11 @@
     "contains",
     "teachings"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.061Z",
+  "lastUpdated": "2026-07-10T06:22:29.904Z",
   "specId": "001",
   "folderSlug": "peck-teachings-for-spec-kit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "001-research-and-doctrine",
     "001-peck-teachings-adoption"

@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/023-self-healing-model-consolidation"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation"
     last_updated_at: "2026-07-09T20:30:10.000Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored verification checklist scaffold, all items unchecked"

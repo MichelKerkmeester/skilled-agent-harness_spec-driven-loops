@@ -47,20 +47,20 @@
       ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "scripts/regen-worker.sh",
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scripts/fix-packet-pointer.mjs",
       "mcp_server/lib/config/capability-flags.ts",
       "scripts/census-validation-rule.sh",
       "scripts/census-worker.sh",
-      "implementation-summary.md",
       ".opencode/bin/worktree-session.sh",
-      "decision-record.md",
       "scripts/rules/check-status-cross-doc-consistency.sh",
-      "scripts/rules/check-metadata-disk-consistency.sh",
-      "scripts/rules/check-graph-metadata-child-drift.sh",
-      "scripts/dist/spec/is-phase-parent.js",
-      "scripts/spec/is-phase-parent.ts",
-      "dist/spec/is-phase-parent.js"
+      "scripts/rules/check-metadata-disk-consistency.sh"
     ],
     "entities": [
       {
@@ -100,6 +100,12 @@
         "source": "derived"
       },
       {
+        "name": "regen-worker.sh",
+        "kind": "script",
+        "path": "scripts/regen-worker.sh",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -109,6 +115,36 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fix-packet-pointer.mjs",
+        "kind": "file",
+        "path": "scripts/fix-packet-pointer.mjs",
         "source": "derived"
       },
       {
@@ -124,33 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "worktree-session.sh",
         "kind": "script",
         "path": ".opencode/bin/worktree-session.sh",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "is-phase-parent.js",
-        "kind": "code",
-        "path": "scripts/dist/spec/is-phase-parent.js",
-        "source": "derived"
-      },
-      {
-        "name": "is-phase-parent.ts",
-        "kind": "code",
-        "path": "scripts/spec/is-phase-parent.ts",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail validation today, because each is gated by its own default-`false` enforce flag:",
     "created_at": "2026-07-09T20:32:08.332Z",
-    "last_save_at": "2026-07-10T06:11:39.095Z",
+    "last_save_at": "2026-07-10T06:32:56.566Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9da9090df110c06e4a207838e017c823d044c05950a630b0e43cb76120efc76f",
+    "source_fingerprint": "sha256:b71e5a7649f6f83605f43695e653b6a41698f3a2e196b0016106809226cf8029",
     "source_doc_hashes": {
-      "spec.md": "08db44a05e9ce7f55d45d080c495a4c0f67e7063d7b380eee8e4f1ade8100d7a",
+      "spec.md": "3ce6a33457959e2814fba1bb8f70e3d7412c52f8383027695014cd2e92f8541a",
       "plan.md": "da02a972e878da7d84e4e6400e55350cbab34757a58ca63302e213339a1e0f8e",
-      "tasks.md": "4b61cc726d12852e9e709f6c94d9d0194135d9ebdfb6b156295fe389378ef605",
-      "checklist.md": "4b27671447b8c312e1b0a583447839143fe5c3cf29e573b73586d9001044c0b4",
+      "tasks.md": "b540cf96ff84c55801b7520b1fed11e723d1597e4fc0d012a413c401ee76f943",
+      "checklist.md": "a4847659e334cab35a3618b262425b1eff0a5628f24709e2cb7665bda98b9228",
       "decision-record.md": "b33d33ac0b39eda3af10282c560ab6c99da16e178a226df5c3ea957be9922c46",
-      "implementation-summary.md": "f21a0d651acc98e08be91b45d8d90af44906fcbc0908f0f3b8f3b1055809e114"
+      "implementation-summary.md": "7faf55522faeca536f9c1f311ae7111c6a1c4fa74aaa6e33e84d29ad9ea0c5c0"
     },
     "last_active_child_id": null,
     "last_active_at": null

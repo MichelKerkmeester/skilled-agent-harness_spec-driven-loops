@@ -27,16 +27,16 @@
     "key_topics": [
       "vector-and-checkpoint-durability",
       "remediation",
-      "027",
       "finding",
       "lane",
-      "004",
       "epic",
       "sweep",
       "plan",
       "verify",
       "first",
-      "pipeline"
+      "pipeline",
+      "tasks",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -182,7 +182,7 @@
     ],
     "causal_summary": "The epic deep-review sweep left this lane with 12 unverified P1 claims and 19 P2 clusters",
     "created_at": "2026-06-11T19:10:00Z",
-    "last_save_at": "2026-07-02T05:31:14.010Z",
+    "last_save_at": "2026-07-10T06:24:51.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

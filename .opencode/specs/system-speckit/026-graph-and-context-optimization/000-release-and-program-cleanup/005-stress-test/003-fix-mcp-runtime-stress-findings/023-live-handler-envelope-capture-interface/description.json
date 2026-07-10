@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface",
-  "description": "The v1.0.3 stress test (Phase H) tried to capture full live-handler `SearchDecisionEnvelope` rows by importing `handleMemorySearch` directly and invok",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/023-live-handler-envelope-capture-interface",
+  "description": "The v1.0.3 stress test (Phase H) tried to capture full live-handler `SearchDecisionEnvelope` rows by importing `handleMemorySearch` directly and",
   "keywords": [
     "stress",
     "test",
@@ -13,14 +13,13 @@
     "rows",
     "importing",
     "handlememorysearch",
-    "directly",
-    "invok"
+    "directly"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.705Z",
+  "lastUpdated": "2026-07-10T06:23:11.953Z",
   "specId": "023",
   "folderSlug": "live-handler-envelope-capture-interface",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

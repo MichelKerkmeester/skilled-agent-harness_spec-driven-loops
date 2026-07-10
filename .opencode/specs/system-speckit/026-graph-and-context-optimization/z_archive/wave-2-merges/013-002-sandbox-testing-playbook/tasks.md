@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/013-002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T16:15:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored task graph T-001 through T-068 across 5 phases"

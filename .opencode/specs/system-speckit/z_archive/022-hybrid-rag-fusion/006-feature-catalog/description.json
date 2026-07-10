@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
-  "description": "This packet still preserves important historical audit evidence, but downstream wrapper packets were reading its milestone counts as if they were curr",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
+  "description": "This packet still preserves important historical audit evidence, but downstream wrapper packets were reading its milestone counts as if they were",
   "keywords": [
     "packet",
     "still",
@@ -14,14 +14,13 @@
     "packets",
     "reading",
     "milestone",
-    "counts",
-    "curr"
+    "counts"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.775Z",
+  "lastUpdated": "2026-07-10T06:23:21.387Z",
   "specId": "006",
   "folderSlug": "feature-catalog",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

@@ -84,7 +84,7 @@ FAILURE MODES:
 ## Testing
 
 - [x] CHK-020 [P0] Phase 1 tree-wide census reports zero `STATUS_CROSS_DOC_CONSISTENCY` violations before the flip (REQ-002) — 2,423 inspected, 2,421 pass, 2 individually-explained residuals (not silently rounded to zero), 0 errors
-- [ ] CHK-021 [P0] Phase 2's census is confirmed fresh (timestamped, not reused from 008) and reports zero violations before the flip (REQ-003)
+- [x] CHK-021 [P0] Phase 2's census is confirmed fresh (timestamped, not reused from 008) and reports zero violations before the flip (REQ-003) — Evidence: `scripts/census-validation-rule.sh` fresh run 2026-07-10, 2,349/2,423 pass, 74 individually-categorized non-production residuals
 - [ ] CHK-022 [P0] Phase 3's dist-presence guard fixture matrix (missing/stale/fresh × enforce on/off) all pass before the flip (REQ-004)
 - [ ] CHK-023 [P1] Phase 3's tree-wide `GRAPH_METADATA_CHILD_DRIFT` census reports zero violations before the flip (REQ-005)
 - [ ] CHK-024 [P1] Existing advisory/enforce unit coverage for all three rules (`validation-gate-hardening.vitest.ts`, `check-graph-metadata-child-drift.sh`) still passes after each flip
@@ -205,11 +205,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 16 | 8/16 |
+| P0 Items | 16 | 9/16 |
 | P1 Items | 25 | 0/25 |
 | P2 Items | 7 | 0/7 |
 
-**Verification Date**: 2026-07-10 — Phase 1 of 3 complete (`SPECKIT_STATUS_CROSS_DOC_ENFORCE` graduated). Phases 2-3 (`SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE`, `SPECKIT_CHILD_DRIFT_ENFORCE`) not yet started.
+**Verification Date**: 2026-07-10 — Phases 1-2 of 3 complete (`SPECKIT_STATUS_CROSS_DOC_ENFORCE`, `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE` graduated). Phase 3 (`SPECKIT_CHILD_DRIFT_ENFORCE`) not yet started.
 <!-- /ANCHOR:summary -->
 
 ---

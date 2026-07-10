@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/003-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/002-spec-data-quality/004-novel-research/025-novel-per-doc-quality-slas"
     last_updated_at: "2026-07-06T19:16:37.597Z"
     last_updated_by: "markdown-agent"
     recent_action: "Scaffolded planned per-doc quality SLA doc set"

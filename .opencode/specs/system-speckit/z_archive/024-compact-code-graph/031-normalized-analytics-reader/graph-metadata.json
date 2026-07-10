@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
-  "spec_folder": "system-spec-kit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
-  "parent_id": "system-spec-kit/z_archive/024-compact-code-graph",
+  "packet_id": "system-speckit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
+  "spec_folder": "system-speckit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
+  "parent_id": "system-speckit/z_archive/024-compact-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,19 +34,18 @@
       "token",
       "reader-owned",
       "model",
-      "024",
       "compact",
-      "code"
+      "code",
+      "graph"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".claude/settings.local.json",
+      "spec.md",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -61,9 +60,9 @@
     ],
     "entities": [
       {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -88,12 +87,6 @@
         "name": "session-stop-replay.jsonl",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -203,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Stop hook already captures token snapshots and now persists transcript identity plus cache-token carry-forward data, but that state remains stranded in per-session JSON files",
     "created_at": "2026-04-12T09:02:53.440Z",
-    "last_save_at": "2026-06-23T03:50:00.821Z",
+    "last_save_at": "2026-07-10T06:22:15.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

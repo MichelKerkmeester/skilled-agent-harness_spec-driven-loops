@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening",
   "description": "A deeper audit of the command tree after the presentation/router split found two consistency defects",
   "keywords": [
     "deeper",
@@ -14,11 +14,11 @@
     "consistency",
     "defects"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.788Z",
+  "lastUpdated": "2026-07-10T06:23:26.145Z",
   "specId": "008",
   "folderSlug": "router-consistency-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation"

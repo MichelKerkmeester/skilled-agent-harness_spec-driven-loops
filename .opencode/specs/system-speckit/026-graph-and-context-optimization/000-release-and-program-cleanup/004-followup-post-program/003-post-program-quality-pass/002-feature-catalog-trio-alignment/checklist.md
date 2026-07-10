@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/002-feature-catalog-trio-alignment"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment"
     last_updated_at: "2026-04-29T17:38:44+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Catalog checklist verified"

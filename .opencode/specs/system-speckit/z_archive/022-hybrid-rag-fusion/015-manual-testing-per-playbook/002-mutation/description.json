@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
   "description": "The mutation feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
   "keywords": [
     "mutation",
@@ -15,11 +15,11 @@
     "official",
     "playbook"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.226Z",
+  "lastUpdated": "2026-07-10T06:22:22.727Z",
   "specId": "002",
   "folderSlug": "mutation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

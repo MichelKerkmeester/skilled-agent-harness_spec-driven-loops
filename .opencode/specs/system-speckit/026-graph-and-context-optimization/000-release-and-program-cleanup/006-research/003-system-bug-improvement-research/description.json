@@ -1,9 +1,8 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research",
-  "description": "After packets 042-045 closed the documented stress-coverage backlog and known drift findings, the next layer of risk is unknowns: latent production-co",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research",
+  "description": "After packets 042-045 closed the documented stress-coverage backlog and known drift findings, the next layer of risk is unknowns: latent",
   "keywords": [
     "packets",
-    "042-045",
     "closed",
     "documented",
     "stress-coverage",
@@ -15,14 +14,13 @@
     "layer",
     "risk",
     "unknowns",
-    "latent",
-    "production-co"
+    "latent"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.811Z",
+  "lastUpdated": "2026-07-10T06:24:40.748Z",
   "specId": "003",
   "folderSlug": "system-bug-improvement-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "006-research"

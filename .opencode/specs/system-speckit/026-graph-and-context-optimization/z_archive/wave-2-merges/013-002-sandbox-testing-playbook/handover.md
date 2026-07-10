@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/013-002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T18:35:00Z"
     last_updated_by: "spec-kit-handover"
     recent_action: "Wired v3.4 fixture; harness end-to-end smoke verified; no scenarios actually executed"

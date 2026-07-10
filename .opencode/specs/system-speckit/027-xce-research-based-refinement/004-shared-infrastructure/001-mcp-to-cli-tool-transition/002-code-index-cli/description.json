@@ -20,8 +20,8 @@
     "002-hardening-and-tests",
     "003-runtime-integration"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
-  "description": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session tran",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli",
+  "description": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session",
   "keywords": [
     "mkcodeindex",
     "mcp",
@@ -34,14 +34,13 @@
     "surface",
     "protocol",
     "layer",
-    "mid-session",
-    "tran"
+    "mid-session"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.571Z",
+  "lastUpdated": "2026-07-10T06:24:41.263Z",
   "specId": "002",
   "folderSlug": "code-index-cli",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "001-mcp-to-cli-tool-transition"

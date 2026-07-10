@@ -190,7 +190,7 @@
     ],
     "causal_summary": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but those tags are inert today",
     "created_at": "2026-06-27T17:15:36.837Z",
-    "last_save_at": "2026-07-06T18:49:41.978Z",
+    "last_save_at": "2026-07-10T06:23:52.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed50bbdaea5f7e7081051956d9be6cdf2acfd8833f9fd856fee9870c4e003b45",
+    "source_fingerprint": "sha256:393ecedf13dca09b1d722a5a3c5ed756884650097149646f08f8f38e6a2fa2e0",
     "source_doc_hashes": {
       "spec.md": "de03545f6c6ec6f9e2fe54d24b15bac3a326c7707266630f9341413cc61e3c2d",
       "plan.md": "64d5f718f62226b8018f4c88abc8ca4ab9be241147e4eb79f4a5bfb26ad81c7c",
       "tasks.md": "52389f4bf9a897997070916fd0ea7d10f1a368a3f0c1733cef6163cd3976bebb",
       "checklist.md": "45bc6fab303ab3190bada5d5b70cc13acbb8e4529b89d7aa93d894f08232247e",
-      "implementation-summary.md": "9a5fad95fec5a4c3b96c6a6cebf6728489cf8ba955464cdc8c57531cf1734a43"
+      "implementation-summary.md": "7aab82862e5c4666ee448399b05f50b5c41812f6e2d192dcfb499db6b6182744"
     },
     "last_active_child_id": null,
     "last_active_at": null

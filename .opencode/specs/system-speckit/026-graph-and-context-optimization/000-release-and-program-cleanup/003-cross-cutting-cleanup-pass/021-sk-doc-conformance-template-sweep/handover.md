@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-template-sweep"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep"
     last_updated_at: "2026-04-30T11:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All Tier 1-4 work substantively complete. 17/17 modified root surfaces pass validate_document.py 0 issues. validate.sh --strict still fails on 1 error + 3 warnings — documented pre-existing strict-mode quirks unrelated to this packet's scope."

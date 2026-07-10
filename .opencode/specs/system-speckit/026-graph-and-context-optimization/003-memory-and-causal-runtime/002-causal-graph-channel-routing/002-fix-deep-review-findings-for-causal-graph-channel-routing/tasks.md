@@ -3,7 +3,7 @@ title: "Tasks: 002 Deep-Review Remediation"
 description: "21 batches across 4 tiers, each one cli-codex dispatch. Update as each batch lands."
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing"
     last_updated_at: "2026-05-11T11:30:00Z"
     last_updated_by: "cli-codex-gpt-5.5"
     recent_action: "All T1-T4 batches closed"

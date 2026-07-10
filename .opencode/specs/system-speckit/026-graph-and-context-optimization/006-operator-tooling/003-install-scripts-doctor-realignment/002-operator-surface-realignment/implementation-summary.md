@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-install-scripts-doctor-realignment/002-operator-surface-realignment"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment"
     last_updated_at: "2026-05-26T09:25:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Applied all CORE install/scripts/doctor edits and verified both route validators"

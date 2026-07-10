@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [
     "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/001-retrieval",
     "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
@@ -25,7 +25,29 @@
     "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference",
     "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/020-feature-flag-reference-audit",
     "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/021-remediation-revalidation",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/022-implement-and-remove-deprecated-features"
+    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/022-implement-and-remove-deprecated-features",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/001-retrieval",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/005-lifecycle",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/008-bug-fixes-and-data-integrity",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/009-evaluation-and-measurement",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/011-scoring-and-calibration",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/013-memory-quality-and-indexing",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/015-retrieval-enhancements",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/016-tooling-and-scripts",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/017-governance",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/018-ux-hooks",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/020-feature-flag-reference-audit",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/021-remediation-revalidation",
+    "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/022-implement-and-remove-deprecated-features"
   ],
   "manual": {
     "depends_on": [],
@@ -222,7 +244,7 @@
     ],
     "causal_summary": "Feature Specification: manual-testing-per-playbook",
     "created_at": "2026-04-12T09:02:50.288Z",
-    "last_save_at": "2026-06-23T03:50:00.215Z",
+    "last_save_at": "2026-07-10T06:24:27.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -233,9 +255,9 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:aa26e81bc4b0429a1d7be4f57d11609ca8ed6a6062aafd4920cf592dbbaf3bb6",
+    "source_fingerprint": "sha256:aac38e839dd60434f63fc4e9a152c7b3fa2a37a0b0ac15f51d5230c88a2ddcbd",
     "source_doc_hashes": {
-      "spec.md": "aea60d96977ef6b2127092b33782b136b5c66056d841d13d40ae5505415eafd9",
+      "spec.md": "a160db6b1c376d9573977a93e83b1819c4239d7b9f462b723beabc893efba561",
       "plan.md": "7757a044f86cd4f376671bf30de54e5e7a6fd952b2f9a4a14d0cbb96d21a1aad",
       "tasks.md": "06d3122458f706d8477154e2ccb6c83fea4a2c21085358ab45d7dc3b4e84f470",
       "checklist.md": "1b1a957068b0af5911273902dca190ebba023b9576ab87e2d11f005dd8155e8a",

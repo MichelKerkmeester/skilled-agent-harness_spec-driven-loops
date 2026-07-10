@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/plan.md"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety"
     last_updated_at: "2026-06-16T15:20:00Z"
     last_updated_by: "cli-frontdoor-remediation"
     recent_action: "Executed plan; 6 findings resolved, CLI vitest green"

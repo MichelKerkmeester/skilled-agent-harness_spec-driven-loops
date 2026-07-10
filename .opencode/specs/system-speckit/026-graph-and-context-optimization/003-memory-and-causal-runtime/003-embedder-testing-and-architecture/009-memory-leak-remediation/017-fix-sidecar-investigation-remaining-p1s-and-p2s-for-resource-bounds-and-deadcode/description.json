@@ -8,23 +8,20 @@
     ],
     "related_to": []
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
   "description": "arc 010/002 closed 18 findings (3 P0 + 15 P1) from arc 010/001's deep-research synthesis",
   "keywords": [
     "arc",
-    "010",
-    "002",
     "closed",
     "findings",
-    "001",
     "deep-research",
     "synthesis"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.234Z",
+  "lastUpdated": "2026-07-10T06:21:49.928Z",
   "specId": "017",
   "folderSlug": "fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

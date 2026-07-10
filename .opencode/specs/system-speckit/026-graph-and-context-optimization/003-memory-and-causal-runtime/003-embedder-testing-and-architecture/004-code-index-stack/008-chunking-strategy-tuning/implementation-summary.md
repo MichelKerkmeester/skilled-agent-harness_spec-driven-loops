@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/008-chunking-strategy-tuning"
     last_updated_at: "2026-05-18T06:20:46Z"
     last_updated_by: "cli-codex"
     recent_action: "Implemented Stage A chunking defaults and environment overrides"

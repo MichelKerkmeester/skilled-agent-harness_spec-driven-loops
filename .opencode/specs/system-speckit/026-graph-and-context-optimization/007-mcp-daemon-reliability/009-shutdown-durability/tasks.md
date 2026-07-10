@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability"
     last_updated_at: "2026-05-29T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented shutdown durability guards"

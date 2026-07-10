@@ -25,9 +25,6 @@
       "jina-v3 hold decision"
     ],
     "key_topics": [
-      "016",
-      "013",
-      "004",
       "newer",
       "text",
       "embedders",
@@ -36,7 +33,10 @@
       "embedder",
       "mk-spec-memory",
       "candidate",
-      "refresh"
+      "refresh",
+      "crawl",
+      "plan",
+      "post"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -45,9 +45,7 @@
       "research.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/references/benchmark_creation.md",
-      ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -78,18 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/benchmark_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark_report_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verdict Count",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Live HuggingFace crawl for text embedders released after May 2026 (when ADR-012 selected jina-embeddings-v3 as the mk-spec-memory production default). Research-only survey by default. Measurement only triggers if a candidate looks clearly stronger than jina-v3 on paper (better MTEB + paraphrase-tuned + Apple Silicon compatible + reasonable size).",
     "created_at": "2026-05-18T23:25:32.898Z",
-    "last_save_at": "2026-07-02T05:31:12.127Z",
+    "last_save_at": "2026-07-10T06:24:19.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

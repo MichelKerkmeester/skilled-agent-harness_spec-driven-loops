@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux"
     last_updated_at: "2026-06-11T03:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All 5 CLI-tooling child phases shipped; deep-review CONDITIONAL remediated"

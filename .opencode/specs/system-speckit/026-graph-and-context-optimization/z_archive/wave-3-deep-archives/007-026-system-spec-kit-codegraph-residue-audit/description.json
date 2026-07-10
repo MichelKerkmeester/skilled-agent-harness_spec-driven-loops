@@ -1,10 +1,9 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-026-system-spec-kit-codegraph-residue-audit",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-026-system-spec-kit-codegraph-residue-audit",
   "description": "Packet 014 moved code-graph ownership out of `system-spec-kit` into the standalone `.opencode/skills/system-code-graph/` skill",
   "keywords": [
     "packet",
-    "014",
     "moved",
     "code-graph",
     "ownership",
@@ -15,11 +14,11 @@
     "system-code-graph",
     "skill"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.779Z",
+  "lastUpdated": "2026-07-10T06:21:49.068Z",
   "specId": "007",
   "folderSlug": "026-system-spec-kit-codegraph-residue-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-3-deep-archives"

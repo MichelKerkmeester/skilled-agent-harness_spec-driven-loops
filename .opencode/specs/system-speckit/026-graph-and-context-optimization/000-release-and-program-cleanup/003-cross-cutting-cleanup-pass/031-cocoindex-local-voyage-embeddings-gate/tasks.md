@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/031-cocoindex-local-voyage-embeddings-gate"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate"
     last_updated_at: "2026-05-10T12:35:00Z"
     last_updated_by: "spec-author"
     recent_action: "Tasks list authored retroactively; all tasks pre-completed in live session"

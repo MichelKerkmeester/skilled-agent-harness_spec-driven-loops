@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "remediation"
 _memory:
   continuity:
-    packet_pointer: "026-graph-and-context-optimization/014-local-embeddings-setup-a/022-local-llm-legacy-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation"
     last_updated_at: "2026-05-13T14:30:00Z"
     last_updated_by: "main-agent"
     recent_action: "Scaffolded L2 remediation packet; 5 batches defined; awaiting dispatch"

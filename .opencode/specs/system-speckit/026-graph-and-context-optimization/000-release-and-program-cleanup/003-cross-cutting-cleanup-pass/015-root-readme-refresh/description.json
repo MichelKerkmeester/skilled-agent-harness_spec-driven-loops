@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh",
   "description": "The root `README.md` described stale runtime counts and omitted several recently added MCP server capabilities",
   "keywords": [
     "root",
@@ -11,16 +11,15 @@
     "omitted",
     "several",
     "recently",
-    "added",
     "mcp",
     "server",
     "capabilities"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.327Z",
+  "lastUpdated": "2026-07-10T06:24:38.403Z",
   "specId": "015",
   "folderSlug": "root-readme-refresh",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

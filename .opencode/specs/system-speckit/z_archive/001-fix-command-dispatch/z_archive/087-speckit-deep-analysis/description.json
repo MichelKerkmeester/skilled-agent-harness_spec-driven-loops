@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/087-speckit-deep-analysis",
-  "description": "6 Opus agents analyzed the system-spec-kit ecosystem and found: (1) a SQL CHECK constraint that silently rejects valid `CREATELINKED` PE decisions, lo",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/087-speckit-deep-analysis",
+  "description": "6 Opus agents analyzed the system-spec-kit ecosystem and found: (1) a SQL CHECK constraint that silently rejects valid `CREATELINKED` PE decisions,",
   "keywords": [
     "opus",
     "agents",
@@ -17,11 +17,11 @@
     "createlinked",
     "decisions"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.390Z",
+  "lastUpdated": "2026-07-10T06:23:52.745Z",
   "specId": "087",
   "folderSlug": "speckit-deep-analysis",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

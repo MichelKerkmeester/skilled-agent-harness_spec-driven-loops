@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "027/002/017/005-cosine-topn-reorder"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder"
     last_updated_at: "2026-06-17T09:15:00Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Shipped cosine-primary top-N head reorder; plan superseded by impl-summary"

@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands",
   "description": "The doctor commands command family owns presentation instructions inline with routing instructions",
   "keywords": [
     "doctor",
@@ -13,11 +13,11 @@
     "inline",
     "routing"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.739Z",
+  "lastUpdated": "2026-07-10T06:24:14.662Z",
   "specId": "004",
   "folderSlug": "doctor-commands",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation"

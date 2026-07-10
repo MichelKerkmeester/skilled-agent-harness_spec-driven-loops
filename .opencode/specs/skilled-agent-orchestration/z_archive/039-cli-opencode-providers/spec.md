@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "051-cli-opencode-providers"
+    packet_pointer: "skilled-agent-orchestration/z_archive/039-cli-opencode-providers"
     last_updated_at: "2026-04-29T10:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Author Level 1 spec for provider realignment"

@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/009-embedding-optimization",
-  "description": "Before this phase, the scripts-side indexer embedded raw markdown via `generateEmbedding(content)`, while the MCP save path normalized content but sti",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/009-embedding-optimization",
+  "description": "Before this phase, the scripts-side indexer embedded raw markdown via `generateEmbedding(content)`, while the MCP save path normalized content but",
   "keywords": [
     "phase",
     "scripts-side",
@@ -15,14 +15,13 @@
     "mcp",
     "save",
     "path",
-    "normalized",
-    "sti"
+    "normalized"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.049Z",
+  "lastUpdated": "2026-07-10T06:22:04.608Z",
   "specId": "009",
   "folderSlug": "embedding-optimization",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

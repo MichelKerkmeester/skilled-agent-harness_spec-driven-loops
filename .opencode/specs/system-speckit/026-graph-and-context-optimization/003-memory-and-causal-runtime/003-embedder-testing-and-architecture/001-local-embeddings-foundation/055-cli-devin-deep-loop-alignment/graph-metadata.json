@@ -22,7 +22,6 @@
       "059 resource map"
     ],
     "key_topics": [
-      "059",
       "spec",
       "cli-devin",
       "deep-loop",
@@ -33,7 +32,8 @@
       "tasks",
       "implementation",
       "resource",
-      "map"
+      "map",
+      "first-class"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Make cli-devin a first-class deep-loop executor across the codebase",
     "created_at": "2026-05-15T19:00:00Z",
-    "last_save_at": "2026-07-02T05:31:11.726Z",
+    "last_save_at": "2026-07-10T06:22:02.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

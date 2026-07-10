@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit"
     last_updated_at: "2026-05-15T20:00:00Z"
     last_updated_by: "claude-opus-4-7-015-close"
     recent_action: "remediation_applied_10_mcp_pins_3_memory_entries_packet_closed"

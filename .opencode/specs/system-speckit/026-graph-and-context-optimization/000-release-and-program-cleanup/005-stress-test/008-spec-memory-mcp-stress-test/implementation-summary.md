@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-spec-memory-mcp-stress-test"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/008-spec-memory-mcp-stress-test"
     last_updated_at: "2026-05-17T11:54:33Z"
     last_updated_by: "main_agent"
     recent_action: "016/004 ADR-010 retrieval rescue closed cat-24/409 at 8/10 top-3"

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-baseline-recovery-followup"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup"
     last_updated_at: "2026-05-09T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Plan executed through final zero-failure vitest run"

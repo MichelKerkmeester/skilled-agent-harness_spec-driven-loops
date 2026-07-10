@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/014-stateless-quality-gates",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
       ".opencode/skills/system-spec-kit/scripts/memory/validate-memory-quality.ts",
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
@@ -52,13 +53,18 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md",
       "tests/generate-context-cli-authority.vitest.ts",
       "tests/contamination-filter.vitest.ts",
       "tests/quality-scorer-calibration.vitest.ts",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "workflow.ts",
         "kind": "code",
@@ -123,12 +129,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Before this phase shipped, `node generate-context.js \"014-stateless-quality-gates\"` entered stateless mode and still applied file-mode assumptions to raw CLI captures",
     "created_at": "2026-04-12T09:02:50.275Z",
-    "last_save_at": "2026-06-23T03:50:00.078Z",
+    "last_save_at": "2026-07-10T06:21:53.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -8,7 +8,7 @@
   ],
   "contextType": "implementation",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
   "description": "stresstest had useful coverage but uneven sk-code-opencode alignment and no scoped catalog coverage map",
   "keywords": [
     "stresstest",
@@ -21,11 +21,11 @@
     "catalog",
     "map"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.764Z",
+  "lastUpdated": "2026-07-10T06:24:17.116Z",
   "specId": "005",
   "folderSlug": "stress-test-expansion-alignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test"

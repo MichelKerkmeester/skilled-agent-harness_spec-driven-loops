@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/003-node-modules-relocation",
+  "specFolder": "system-speckit/z_archive/003-node-modules-relocation",
   "description": "This archived folder captures work that relocated nodemodules closer to the MCP server dependency boundary",
   "keywords": [
     "archived",
@@ -14,11 +14,11 @@
     "dependency",
     "boundary"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.425Z",
+  "lastUpdated": "2026-07-10T06:21:55.692Z",
   "specId": "003",
   "folderSlug": "node-modules-relocation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

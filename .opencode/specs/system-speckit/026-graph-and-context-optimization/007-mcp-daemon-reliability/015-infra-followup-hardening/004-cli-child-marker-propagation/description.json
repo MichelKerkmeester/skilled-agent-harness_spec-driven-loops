@@ -1,11 +1,8 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation",
-  "description": "036/003 added the `AISESSIONCHILD=1` dispatch rule to cli-codex and cli-opencode but deferred the other three cli- dispatchers (cli-claude-code, cli-g",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation",
+  "description": "036/003 added the `AISESSIONCHILD=1` dispatch rule to cli-codex and cli-opencode but deferred the other three cli- dispatchers (cli-claude-code,",
   "keywords": [
-    "036",
-    "003",
-    "added",
     "aisessionchild",
     "dispatch",
     "rule",
@@ -15,14 +12,13 @@
     "three",
     "cli",
     "dispatchers",
-    "cli-claude-code",
-    "cli-g"
+    "cli-claude-code"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.507Z",
+  "lastUpdated": "2026-07-10T06:24:29.577Z",
   "specId": "004",
   "folderSlug": "cli-child-marker-propagation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability",
     "015-infra-followup-hardening"

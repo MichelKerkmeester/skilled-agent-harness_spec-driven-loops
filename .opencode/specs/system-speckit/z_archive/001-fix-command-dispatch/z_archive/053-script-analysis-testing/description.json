@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/053-script-analysis-testing",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/053-script-analysis-testing",
   "description": "The Spec Kit Memory workflow involves multiple interconnected components (gates, memory tools, generate-context.js script)",
   "keywords": [
     "spec",
@@ -15,11 +15,11 @@
     "generate-context",
     "script"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.189Z",
+  "lastUpdated": "2026-07-10T06:22:00.152Z",
   "specId": "053",
   "folderSlug": "script-analysis-testing",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

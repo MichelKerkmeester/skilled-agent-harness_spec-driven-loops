@@ -1,9 +1,8 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface",
-  "description": "Phase 1 of 016 pluggable embedder architecture. Foundational types: define EmbedderAdapter interface + EmbedderRegistry lookup. Pure TypeScript design",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/001-adapter-interface",
+  "description": "Phase 1 of 016 pluggable embedder architecture. Foundational types: define EmbedderAdapter interface + EmbedderRegistry lookup.",
   "keywords": [
     "phase",
-    "016",
     "pluggable",
     "embedder",
     "architecture",
@@ -13,16 +12,13 @@
     "embedderadapter",
     "interface",
     "embedderregistry",
-    "lookup",
-    "pure",
-    "typescript",
-    "design"
+    "lookup"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.278Z",
+  "lastUpdated": "2026-07-10T06:22:34.806Z",
   "specId": "001",
   "folderSlug": "adapter-interface",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/024-compact-code-graph/007-testing-validation",
-  "spec_folder": "system-spec-kit/z_archive/024-compact-code-graph/007-testing-validation",
-  "parent_id": "system-spec-kit/z_archive/024-compact-code-graph",
+  "packet_id": "system-speckit/z_archive/024-compact-code-graph/007-testing-validation",
+  "spec_folder": "system-speckit/z_archive/024-compact-code-graph/007-testing-validation",
+  "parent_id": "system-speckit/z_archive/024-compact-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -29,18 +29,19 @@
       "testing",
       "validation",
       "spec",
-      "007",
       "plan",
       "tasks",
-      "024",
       "checklist",
       "implementation",
       "summary",
-      "addresses"
+      "addresses",
+      "concrete",
+      "context-preservation"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "tests/fixtures/runtime-fixtures.ts",
       "tests/runtime-routing.vitest.ts",
       "tests/hook-session-start.vitest.ts",
@@ -51,13 +52,18 @@
       "tests/session-token-resume.vitest.ts",
       "tests/edge-cases.vitest.ts",
       "tests/dual-scope-hooks.vitest.ts",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "runtime-fixtures.ts",
         "kind": "code",
@@ -116,12 +122,6 @@
         "name": "dual-scope-hooks.vitest.ts",
         "kind": "test",
         "path": "tests/dual-scope-hooks.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.347Z",
-    "last_save_at": "2026-06-23T03:50:00.610Z",
+    "last_save_at": "2026-07-10T06:24:43.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

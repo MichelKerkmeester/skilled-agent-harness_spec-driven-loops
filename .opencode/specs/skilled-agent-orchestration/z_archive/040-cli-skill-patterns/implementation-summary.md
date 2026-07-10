@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "052-cli-skill-patterns"
+    packet_pointer: "skilled-agent-orchestration/z_archive/040-cli-skill-patterns"
     last_updated_at: "2026-04-29T13:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All 5 SKILL.md files harmonized; 4 siblings adapted Provider Auth Pre-Flight from cli-opencode donor; cli-copilot got Error Handling table; do-not-collapse grep gate passed for all 33 unique terms"

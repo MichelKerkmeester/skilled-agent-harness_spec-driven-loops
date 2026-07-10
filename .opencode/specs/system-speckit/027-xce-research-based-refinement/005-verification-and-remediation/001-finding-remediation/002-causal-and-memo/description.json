@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo",
   "description": "The epic deep-review sweep left this lane with 14 unverified P1 claims and 5 P2 clusters",
   "keywords": [
     "epic",
@@ -11,11 +11,11 @@
     "claims",
     "clusters"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.886Z",
+  "lastUpdated": "2026-07-10T06:23:05.560Z",
   "specId": "002",
   "folderSlug": "causal-and-memo",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",
     "001-finding-remediation"

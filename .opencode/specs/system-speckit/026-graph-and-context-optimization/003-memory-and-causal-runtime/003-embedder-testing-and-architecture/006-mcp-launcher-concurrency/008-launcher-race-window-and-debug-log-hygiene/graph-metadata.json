@@ -22,7 +22,6 @@
       "skill-advisor 008 done"
     ],
     "key_topics": [
-      "008",
       "race",
       "window",
       "debug",
@@ -33,7 +32,8 @@
       "pid",
       "guard",
       "inside",
-      "bootstrap"
+      "bootstrap",
+      "lock"
     ],
     "importance_tier": "useful",
     "status": "complete",
@@ -168,7 +168,7 @@
     ],
     "causal_summary": "Closes 2 P2 findings from 007 deep-review: move skill-advisor PID guard write inside the bootstrap-lock critical section, and gate verbose error/path logging behind MK_SKILL_ADVISOR_DEBUG.",
     "created_at": "2026-05-18T18:05:16.895Z",
-    "last_save_at": "2026-07-02T05:31:12.091Z",
+    "last_save_at": "2026-07-10T06:21:57.682Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

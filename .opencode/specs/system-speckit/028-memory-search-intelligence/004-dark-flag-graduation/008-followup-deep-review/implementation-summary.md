@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/008-followup-deep-review"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/008-followup-deep-review"
     last_updated_at: "2026-07-06T19:16:40.702Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Closed the packet, FAIL cleared and second batch confirmed at zero findings"

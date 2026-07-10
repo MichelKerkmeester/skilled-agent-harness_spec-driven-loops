@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/003-hybrid-handler"
     last_updated_at: "2026-06-10T10:25:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Recorded hybrid handler verification"

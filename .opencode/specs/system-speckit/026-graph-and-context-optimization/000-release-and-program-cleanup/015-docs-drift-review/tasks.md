@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/015-docs-drift-review"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/015-docs-drift-review"
     last_updated_at: "2026-06-05T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Recorded Phase 1-3 tasks for the partitioned drift review"

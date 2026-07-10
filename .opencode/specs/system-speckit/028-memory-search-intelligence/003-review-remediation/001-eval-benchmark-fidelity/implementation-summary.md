@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-review-remediation/001-eval-benchmark-fidelity"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-review-remediation/001-eval-benchmark-fidelity"
     last_updated_at: "2026-07-06T19:16:38.570Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Fixed flag-eval driver routing + dropped trigger noise row, re-ran criterion-4"

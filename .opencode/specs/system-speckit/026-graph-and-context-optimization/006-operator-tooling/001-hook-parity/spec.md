@@ -18,7 +18,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity"
     last_updated_at: "2026-04-25T11:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Renamed hook-parity parent to 007-hook-parity after 026 phase root reorder"

@@ -26,14 +26,13 @@
     "last_active_child_id": null
   },
   "lastUpdatedAt": "2026-05-08T23:20:00Z",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery",
   "description": "After Unit A (memory search Clusters 4-7 remediation) shipped, a full-repo `pnpm vitest run` reported 198 failed tests across 166 files out of 11,829",
   "keywords": [
     "unit",
     "memory",
     "search",
     "clusters",
-    "4-7",
     "remediation",
     "shipped",
     "full-repo",
@@ -41,19 +40,16 @@
     "vitest",
     "run",
     "reported",
-    "198",
     "failed",
     "tests",
     "across",
-    "166",
-    "files",
-    "829"
+    "files"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.225Z",
+  "lastUpdated": "2026-07-10T06:22:50.008Z",
   "specId": "003",
   "folderSlug": "vitest-baseline-recovery",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

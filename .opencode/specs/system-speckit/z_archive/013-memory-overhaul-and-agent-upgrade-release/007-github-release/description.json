@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/013-memory-overhaul-and-agent-upgrade-release/007-github-release",
+  "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/007-github-release",
   "description": "Specify the GitHub tagged release for spec 130, following `PUBLICRELEASE.md` conventions",
   "keywords": [
     "specify",
@@ -7,16 +7,15 @@
     "tagged",
     "release",
     "spec",
-    "130",
     "following",
     "publicrelease",
     "conventions"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.531Z",
+  "lastUpdated": "2026-07-10T06:24:53.085Z",
   "specId": "007",
   "folderSlug": "github-release",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "013-memory-overhaul-and-agent-upgrade-release"
   ],

@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features",
-  "description": "The Memory MCP server's internal data structures are rich (6 score fields, causal graph, anchor metadata, pipeline traces) but the external API surfac",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features",
+  "description": "The Memory MCP server's internal data structures are rich (6 score fields, causal graph, anchor metadata, pipeline traces) but the external API",
   "keywords": [
     "memory",
     "mcp",
@@ -18,14 +18,13 @@
     "pipeline",
     "traces",
     "external",
-    "api",
-    "surfac"
+    "api"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.701Z",
+  "lastUpdated": "2026-07-10T06:23:20.467Z",
   "specId": "010",
   "folderSlug": "sprint-9-extra-features",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic"

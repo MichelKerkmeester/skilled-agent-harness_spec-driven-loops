@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-scouted-bugfix-batch-1"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1"
     last_updated_at: "2026-06-03T05:31:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Verification items confirmed via shell live tests + typecheck/build + targeted vitest"

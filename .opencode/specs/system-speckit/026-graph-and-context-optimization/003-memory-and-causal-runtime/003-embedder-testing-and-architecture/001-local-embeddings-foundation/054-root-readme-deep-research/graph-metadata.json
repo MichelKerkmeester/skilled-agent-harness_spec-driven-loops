@@ -24,7 +24,6 @@
       "056 resource map"
     ],
     "key_topics": [
-      "056",
       "spec",
       "root",
       "readme",
@@ -35,12 +34,12 @@
       "sweep",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       "research/delta-verified.md",
       "research/deep-research-state.jsonl",
       "research/research.md",
@@ -58,16 +57,9 @@
       ".opencode/skills/system-skill-advisor/SKILL.md",
       ".opencode/skills/system-code-graph/SKILL.md",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".codex/config.toml",
       ".claude/mcp.json"
     ],
     "entities": [
-      {
-        "name": "hvr_rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
-        "source": "derived"
-      },
       {
         "name": "delta-verified.md",
         "kind": "doc",
@@ -159,12 +151,6 @@
         "source": "derived"
       },
       {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
@@ -205,11 +191,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Catch the depth Phase D missed",
     "created_at": "2026-05-15T13:35:00Z",
-    "last_save_at": "2026-07-02T05:31:11.722Z",
+    "last_save_at": "2026-07-10T06:24:13.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

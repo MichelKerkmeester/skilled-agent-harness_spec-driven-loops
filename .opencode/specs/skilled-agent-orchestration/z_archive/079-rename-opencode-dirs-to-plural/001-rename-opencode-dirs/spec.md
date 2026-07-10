@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "infrastructure-quality"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural"
+    packet_pointer: "skilled-agent-orchestration/z_archive/079-rename-opencode-dirs-to-plural/001-rename-opencode-dirs"
     last_updated_at: "2026-05-07T14:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded phase parent and 4 children"

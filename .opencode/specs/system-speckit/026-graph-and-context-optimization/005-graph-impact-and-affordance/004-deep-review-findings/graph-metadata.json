@@ -19,18 +19,18 @@
       "006 remediation summary"
     ],
     "key_topics": [
-      "010",
       "review",
       "remediation",
-      "007",
       "phase",
       "follow-up",
-      "006",
       "implementation",
       "summary",
       "sub-phases",
-      "001-006",
-      "shipped"
+      "shipped",
+      "sandbox-blocked",
+      "verification",
+      "feature",
+      "specification"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
     "created_at": "2026-04-25T13:51:18.730Z",
-    "last_save_at": "2026-07-02T05:31:12.733Z",
+    "last_save_at": "2026-07-10T06:24:04.215Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

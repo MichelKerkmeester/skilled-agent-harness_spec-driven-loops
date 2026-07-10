@@ -21,7 +21,6 @@
       "008 vitest summary"
     ],
     "key_topics": [
-      "008",
       "vitest",
       "stabilization",
       "spec-memory",
@@ -31,8 +30,9 @@
       "plan",
       "tasks",
       "summary",
-      "016",
-      "deep-research"
+      "deep-research",
+      "dispatch",
+      "iters"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 016 deep-research dispatch (iters 1-9) flagged the vitest suite as red",
     "created_at": "2026-05-22T07:42:13.848Z",
-    "last_save_at": "2026-07-02T05:31:12.059Z",
+    "last_save_at": "2026-07-10T06:23:39.127Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

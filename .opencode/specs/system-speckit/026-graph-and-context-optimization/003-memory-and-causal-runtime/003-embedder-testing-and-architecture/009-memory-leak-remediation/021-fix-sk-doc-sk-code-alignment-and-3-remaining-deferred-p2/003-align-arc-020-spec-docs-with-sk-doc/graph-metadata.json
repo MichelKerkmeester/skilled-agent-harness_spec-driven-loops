@@ -27,18 +27,18 @@
       "021 003 implementation summary"
     ],
     "key_topics": [
-      "021",
-      "003",
       "sk-doc",
       "arc",
-      "020",
       "alignment",
       "spec",
       "docs",
       "sweep",
       "skill",
       "surface",
-      "evergreen"
+      "evergreen",
+      "packet",
+      "check",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Arc 020 closed the deferred-P2 behavior and API changes, but its child packet docs need a final sk-doc structure sweep before arc 021 can close",
     "created_at": "2026-05-23T14:00:00Z",
-    "last_save_at": "2026-07-02T05:31:12.332Z",
+    "last_save_at": "2026-07-10T06:23:40.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

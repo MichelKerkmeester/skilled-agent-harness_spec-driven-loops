@@ -23,7 +23,6 @@
       "hf-local",
       "selector",
       "probe",
-      "fix",
       "shared",
       "socket",
       "econnreset",
@@ -31,7 +30,8 @@
       "readiness",
       "retry",
       "plan",
-      "implementation"
+      "implementation",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -39,7 +39,6 @@
       "shared/embeddings/auto-select.ts",
       "shared/embeddings/providers/hf-local.ts",
       ".claude/mcp.json",
-      ".codex/config.toml",
       "references/memory/embedder_architecture.md",
       "tests/embedder-auto-selection.vitest.ts",
       "tests/embedders/hf-local-client.vitest.ts",
@@ -65,12 +64,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The zero-install fallback is silently broken: `probeHfLocal` (`auto-select.ts:435-449`) still gates hf-local selection on a Python `import sentencetransformers` probe, but the post-029 server is pure-Node with zero Python, so a normal Node-only machine fails the probe, rejects hf-local, and falls through to an error or silent cloud egress",
     "created_at": "2026-05-29T11:22:57.372Z",
-    "last_save_at": "2026-07-02T05:31:12.384Z",
+    "last_save_at": "2026-07-10T06:22:04.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

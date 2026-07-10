@@ -41,7 +41,7 @@
       "command"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/commands/memory/search.md",
       ".opencode/commands/memory/assets/search_presentation.txt",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Weak instruction-followers (Kimi K2.7 always, MiMo v2.5 Pro intermittently) dropped the `/memory:search` query and fell back to the startup question even when invoked with a real query",
     "created_at": "2026-06-17T19:57:25.107Z",
-    "last_save_at": "2026-07-02T05:31:13.737Z",
+    "last_save_at": "2026-07-10T06:21:53.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/013-v4-cleanup"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/013-v4-cleanup"
     last_updated_at: "2026-05-13T09:45:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Completed v4 cleanup code and doc fixes"

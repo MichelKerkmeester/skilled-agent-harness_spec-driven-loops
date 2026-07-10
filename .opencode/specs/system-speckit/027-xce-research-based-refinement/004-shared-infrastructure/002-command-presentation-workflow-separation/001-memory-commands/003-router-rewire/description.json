@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/003-router-rewire",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/003-router-rewire",
   "description": "Memory Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract",
   "keywords": [
     "memory",
@@ -19,11 +19,11 @@
     "routing",
     "display-contract"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.666Z",
+  "lastUpdated": "2026-07-10T06:23:22.819Z",
   "specId": "003",
   "folderSlug": "router-rewire",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation",

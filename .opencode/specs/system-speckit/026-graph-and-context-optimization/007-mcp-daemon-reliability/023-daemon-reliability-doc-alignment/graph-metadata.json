@@ -28,14 +28,14 @@
       "reliability",
       "doc",
       "alignment",
-      "018-022",
       "feature",
       "catalog",
       "playbook",
       "launcher",
       "flags",
       "hardening",
-      "docs"
+      "docs",
+      "aligned"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The five daemon-reliability features (018 persistent log, 019 reap hardening, 020 code-index reconnecting proxy, 021 orphan-sweep activation, 022 RC-2 re-election) shipped as code + spec packets, but a gpt-5.5 doc-alignment audit plus a grep pre-scan confirmed they were absent from every operator-facing surface: 0 of 8 new env flags in ENVREFERENCE, no featurecatalog entries, no playbook scenarios, and no README/SKILL mentions",
     "created_at": "2026-06-07T18:10:00Z",
-    "last_save_at": "2026-07-02T05:31:12.927Z",
+    "last_save_at": "2026-07-10T06:22:36.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

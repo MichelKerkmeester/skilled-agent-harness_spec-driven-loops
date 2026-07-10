@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/011-template-compliance",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/011-template-compliance",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/011-template-compliance",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/011-template-compliance",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -31,16 +31,22 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
       "scripts/tests/template-structure.vitest.ts",
       "scripts/tests/test-phase-command-workflows.js",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "template-structure.js",
         "kind": "code",
@@ -57,12 +63,6 @@
         "name": "test-phase-command-workflows.js",
         "kind": "code",
         "path": "scripts/tests/test-phase-command-workflows.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The deferred R-12 work still relied on draft assumptions that do not match the current repo: there are no checked-in `.fingerprint` sidecars, the validator only partially enforced template structure, and runtime speckit prompts mostly pointed at template paths instead of carrying inline structure for the exact document being written",
     "created_at": "2026-04-12T09:02:50.273Z",
-    "last_save_at": "2026-06-23T03:50:00.059Z",
+    "last_save_at": "2026-07-10T06:24:07.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

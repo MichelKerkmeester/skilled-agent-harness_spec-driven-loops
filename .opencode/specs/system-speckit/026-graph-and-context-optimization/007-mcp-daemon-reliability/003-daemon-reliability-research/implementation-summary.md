@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research"
     last_updated_at: "2026-05-28T18:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Iters 2-3 (Opus, adversarial) corrected RC-1 to the sidecar, refuted RC-5, hardened roadmap (§6)"

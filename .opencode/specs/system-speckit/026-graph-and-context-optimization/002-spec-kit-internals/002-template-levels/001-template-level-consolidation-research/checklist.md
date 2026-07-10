@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "architecture"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-template-levels"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research"
     last_updated_at: "2026-05-01T07:34:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Checklist scaffolded; will be checked off post-research"

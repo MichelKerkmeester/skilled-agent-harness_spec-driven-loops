@@ -27,9 +27,6 @@
       "016/004/018 checklist"
     ],
     "key_topics": [
-      "016",
-      "004",
-      "018",
       "rerank",
       "matrix",
       "fairness",
@@ -38,7 +35,10 @@
       "reranker",
       "verdict",
       "bge",
-      "jina-v3"
+      "jina-v3",
+      "corrected",
+      "pipeline",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Re-benchmarks ALL reranker candidates (BGE-baseline, BGE+path-class, jina-reranker-v3, no-rerank ablation) under the FULLY-FIXED candidate-set pipeline produced by 013/014/015/016/017. Closes the loop on '011 deep-research said jina-v3 won' — but that measurement was made on the BROKEN pipeline. After all upstream pipeline defects are fixed, who actually wins? Embedder fixed (bge-code-v1). Hybrid fixed (017 recalibrated). Chunking fixed (015). Dedup fixed (014). Queries fixed (016). The only variable is the reranker. This is the final arc deliverable + ADR-021 locking the production reranker",
+    "causal_summary": "Re-benchmarks ALL reranker candidates (BGE-baseline, BGE+path-class, jina-reranker-v3, no-rerank ablation) under the FULLY-FIXED candidate-set pipeline produced by 013/014/015/016/017. Closes the loop on '011 deep-research said jina-v3 won' — but that measurement was made on the BROKEN pipeline. After all upstream pipeline defects are fixed, who actually wins? Embedder fixed (bge-code-v1). Hybrid fixed (017 recalibrated). Chunking fixed (015). Dedup fixed (014). Queries fixed (016). The only variable is the reranker.",
     "created_at": "2026-05-19T15:29:56.011Z",
-    "last_save_at": "2026-07-02T05:31:11.984Z",
+    "last_save_at": "2026-07-10T06:22:34.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

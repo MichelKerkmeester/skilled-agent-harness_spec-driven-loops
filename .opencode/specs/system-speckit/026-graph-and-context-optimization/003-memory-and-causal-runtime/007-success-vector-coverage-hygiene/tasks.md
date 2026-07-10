@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "026-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored Level 1 task breakdown for success-vector coverage hygiene"

@@ -1,8 +1,8 @@
 {
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
-  "description": "Some skill reference and asset docs carry a detailed memory-style frontmatter block (`triggerphrases`, `importancetier`, `contextType`) while most car",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation",
+  "description": "Some skill reference and asset docs carry a detailed memory-style frontmatter block (`triggerphrases`, `importancetier`, `contextType`) while most",
   "keywords": [
     "skill",
     "reference",
@@ -16,14 +16,13 @@
     "triggerphrases",
     "importancetier",
     "contexttype",
-    "while",
-    "car"
+    "while"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.920Z",
+  "lastUpdated": "2026-07-10T06:21:40.359Z",
   "specId": "001",
   "folderSlug": "frontmatter-benefit-investigation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup",
     "009-skill-frontmatter-alignment"

@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002-cocoindex-embedder-doc-drift-resync",
-  "description": "4 doc edits closing the embedder-side P0 doc drift from packet 021: config_templates.md _NOTE_2 (3 sites) + embedder-pluggability.md historical annota",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002-cocoindex-embedder-doc-drift-resync",
+  "description": "4 doc edits closing the embedder-side P0 doc drift from packet 021: config_templates.md _NOTE_2 (3 sites) + embedder-pluggability.md historical",
   "keywords": [
     "doc",
     "edits",
@@ -9,17 +9,15 @@
     "embedder-side",
     "drift",
     "packet",
-    "021",
     "sites",
     "embedder-pluggability",
-    "historical",
-    "annota"
+    "historical"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.415Z",
+  "lastUpdated": "2026-07-10T06:22:57.505Z",
   "specId": "002",
   "folderSlug": "cocoindex-embedder-doc-drift-resync",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

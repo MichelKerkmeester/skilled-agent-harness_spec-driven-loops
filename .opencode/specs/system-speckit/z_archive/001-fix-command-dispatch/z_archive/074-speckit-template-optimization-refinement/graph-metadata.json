@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/074-speckit-template-optimization-refinement",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/074-speckit-template-optimization-refinement",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/074-speckit-template-optimization-refinement",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/074-speckit-template-optimization-refinement",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -31,12 +31,12 @@
       "template",
       "optimization",
       "spec",
-      "074",
       "implementation",
       "plan",
       "tasks",
       "refinement",
-      "verification"
+      "verification",
+      "achieved"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The Spec 073 template optimization achieved significant template reduction (74-82%) but required comprehensive review to validate implementation quality, identify gaps, and implement refinements",
     "created_at": "2026-04-12T09:02:53.545Z",
-    "last_save_at": "2026-06-23T03:49:59.284Z",
+    "last_save_at": "2026-07-10T06:23:30.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

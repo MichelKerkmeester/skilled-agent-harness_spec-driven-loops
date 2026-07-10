@@ -17,7 +17,6 @@
       "012/005 implementation summary"
     ],
     "key_topics": [
-      "012",
       "memory",
       "trust",
       "display",
@@ -25,10 +24,11 @@
       "causal",
       "edge",
       "freshness",
-      "005",
       "implementation",
       "summary",
-      "display-only"
+      "display-only",
+      "confidence",
+      "orphan"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Display-only trust badges (confidence, extraction_age, last_access_age, orphan, weight_history) on MemoryResultEnvelope. NO schema change. NO new relations. NO storage of code/process/tool facts.",
     "created_at": "2026-04-25T10:48:09.300Z",
-    "last_save_at": "2026-07-07T12:30:09.731Z",
+    "last_save_at": "2026-07-10T06:22:50.009Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7656f7c3f51caf7c7ab3a959f806bb6a50f068cc0f3a82525d9c939055c74a94",
+    "source_fingerprint": "sha256:1ec00cb20b030bb354cb56ede5b70aeb214e8f25e92e40f1e87b49413b53c793",
     "source_doc_hashes": {
-      "spec.md": "0657f9cb7b1b2cb41dbf5391d7c5b16ac1c4c9b50b9ec65a7cebcf842096f461",
+      "spec.md": "c5a7a14cb882a5ae1cc5fd5e78bfc8ec284fb522a8e9ab05bc78ab8b3cb1a4c5",
       "plan.md": "652a9c61a1c60790aab79a4b21154128d040c055c08b61c60db684f67d405f3c",
       "tasks.md": "bc11bc1eb120a38fc946fa5b662b36570422738e5169450d57341d32ef9b1ba4",
       "checklist.md": "08093789879f84c462252017ff5cb52176677675e7a5ae9a71e17798d637fc39",

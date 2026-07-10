@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite",
   "description": "The Spec Kit Memory MCP and related tools lacked comprehensive testing:",
   "keywords": [
     "spec",
@@ -12,11 +12,11 @@
     "comprehensive",
     "testing"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.135Z",
+  "lastUpdated": "2026-07-10T06:23:07.706Z",
   "specId": "044",
   "folderSlug": "speckit-test-suite",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

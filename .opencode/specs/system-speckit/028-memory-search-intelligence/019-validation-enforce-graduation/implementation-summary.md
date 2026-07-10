@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_3/implementation-summary.md]"
-description: "Status IN PROGRESS. Phase 1 (SPECKIT_STATUS_CROSS_DOC_ENFORCE) complete and graduated 2026-07-10. Phases 2-3 (metadata disk-path, child drift) not yet started."
+description: "Status IN PROGRESS. Phases 1-2 (SPECKIT_STATUS_CROSS_DOC_ENFORCE, SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE) complete and graduated 2026-07-10. Phase 3 (child drift) not yet started."
 trigger_phrases:
   - "validation enforce graduation summary"
   - "status cross-doc enforce flip summary"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation"
     last_updated_at: "2026-07-09T23:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Phase 1 graduated (SPECKIT_STATUS_CROSS_DOC_ENFORCE)"
-    next_safe_action: "Start Phase 2 (SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE, fresh census)"
+    recent_action: "Phase 2 graduated (SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE)"
+    next_safe_action: "Start Phase 3 (dist-presence guard, then SPECKIT_CHILD_DRIFT_ENFORCE)"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh"
@@ -22,11 +22,13 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh"
       - ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs"
       - ".opencode/specs/system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation/scripts/census-validation-rule.sh"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation/scripts/regen-worker.sh"
+      - ".opencode/specs/system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation/scripts/fix-packet-pointer.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "phase1-019-validation-enforce-graduation"
+      session_id: "phase2-019-validation-enforce-graduation"
       parent_session_id: null
-    completion_pct: 33
+    completion_pct: 67
     open_questions: []
     answered_questions: []
 ---
@@ -44,8 +46,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 019-validation-enforce-graduation |
-| **Status** | In Progress — Phase 1 of 3 landed, Phases 2-3 pending |
-| **Completed** | Phase 1 of 3 (2026-07-10) |
+| **Status** | In Progress — Phases 1-2 of 3 landed, Phase 3 pending |
+| **Completed** | Phases 1-2 of 3 (2026-07-10) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +56,32 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Phase 1 (`SPECKIT_STATUS_CROSS_DOC_ENFORCE`) is COMPLETE.** Phases 2-3 remain unimplemented.
+**Phases 1-2 (`SPECKIT_STATUS_CROSS_DOC_ENFORCE`, `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE`) are COMPLETE.** Phase 3 remains unimplemented.
+
+### Phase 2: a ~9x-larger, but fully mechanical, backlog
+
+A fresh `METADATA_DISK_PATH_CONSISTENCY` census found 1,130 real mismatches across the same ~2,420-folder tree (roughly 9x Phase 1's 128) — but unlike Phase 1's Status-field reconciliation, this rule's fix requires no per-folder human/AI judgment, so it was done directly rather than dispatched.
+
+Root-caused by reading `check-metadata-disk-consistency-helper.cjs` directly: it checks five fields per folder (`description.json.specFolder`, `graph-metadata.json.spec_folder`/`.packet_id`/`.parent_id`, and a `continuity.packet_pointer` field inside every spec-doc's YAML frontmatter) against the folder's real on-disk path. Two genuinely distinct, both fully mechanical fixes were needed:
+
+1. **The JSON-stored fields** — fixed by re-running the canonical generators (`backfill-graph-metadata.ts` + `generate-description.ts`) against every violating folder. New disposable worker: `scripts/regen-worker.sh`. Of 1,130 folders, 1,059 succeeded; 71 were correctly refused by the generator itself ("target is not a spec folder") — these are `.backup-YYYYMMDD-HHMMSS/` timestamped snapshot directories that happen to carry a `description.json`/`graph-metadata.json` but have no `spec.md` and are not real spec folders at all.
+2. **`continuity.packet_pointer`** — a plain YAML string embedded in every spec-doc file's frontmatter (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`), which the JSON generators never touch. This turned out to be the dominant sub-pattern: a repo-wide `system-spec-kit`→`system-speckit` (hyphenated→unhyphenated) directory rename left most folders' stored pointer stale. New disposable script: `scripts/fix-packet-pointer.mjs` — derives the correct value the exact same way the checker itself does (the folder's real path relative to `.opencode/specs/`, never guessed), and rewrites every file in a folder that carries a stale value. Ran across all 1,130 folders: 969 files fixed across 6 doc types, 161 already-correct no-ops, 0 errors.
+
+Both fixes were verified together against a 5-folder hand-picked sample (mixing both mismatch types) before running at scale, confirming zero residual mismatches on that sample.
+
+### Phase 2's residual: 74 folders, all confirmed non-production
+
+A post-fix census dropped from 1,130 to 74 warnings. Categorizing every one of the 74 (not just spot-checking) confirmed all are legitimately out of this rule's real intent — none are a genuine production-path defect:
+- 5 `.backup-*` timestamped snapshot directories (same class the generator itself already refused in step 1)
+- 38 folders under `z_future/code-graph-and-cocoindex/` — a reserved, not-yet-built namespace
+- 20 folders under a `scratch/` or `test-fixtures/` path segment — deliberately-synthetic fixtures this repo's own validator test suite uses (some are intentionally malformed on purpose; "fixing" them would break the tests that depend on their exact content)
+- 11 auxiliary `research/`/`scopes/`/`packet-docs/`/`sandbox-test/` subdirectories nested inside real packets — working/evidence directories that picked up a `description.json` at some point but were never meant to be independently validated as standalone spec folders
+
+None were force-fixed. This matches spec.md's own REQ-002/REQ-003 acceptance language and this repo's established precedent (008, 015) for documenting an honest residual rather than manufacturing a false zero.
+
+### The flip
+
+`check-metadata-disk-consistency.sh`'s default changed from `${SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE:-false}` to `${SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE:-true}` (same file-target correction as Phase 1 — `capability-flags.ts` has zero references to this flag either), with a graduation comment. `ENV_REFERENCE.md`'s two rows updated. Verified with zero environment override: a `z_future/` residual folder correctly reports `warn`, and an unrelated real folder correctly reports `pass`.
 
 ### Correction to the original spec/plan: the flag flip target
 
@@ -88,7 +115,7 @@ The correct, simpler resolution — matching spec.md's own REQ-002 language ("an
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Dispatched to GPT-5.6-terra-fast (`--variant high`) via `cli-opencode`, run in parallel across isolated git worktrees for the 4 reconciliation batches (avoiding collisions on the shared, heavily concurrent-session working tree), plus 2 parallel background general-purpose agents for the residual cleanup round. Each dispatch's claimed commit was independently re-verified (real `git log`/`git show` diff review, not trusted from self-report alone) before being merged into an isolated integration worktree. The census driver's performance fix, the `legacy_grandfathered` investigation-and-revert, and the final flag flip + docs were done directly rather than dispatched, given their small, bounded, decision-heavy nature.
+Phase 1 was dispatched to GPT-5.6-terra-fast (`--variant high`) via `cli-opencode`, run in parallel across isolated git worktrees for the 4 reconciliation batches (avoiding collisions on the shared, heavily concurrent-session working tree), plus 2 parallel background general-purpose agents for the residual cleanup round. Each dispatch's claimed commit was independently re-verified (real `git log`/`git show` diff review, not trusted from self-report alone) before being merged into an isolated integration worktree. Phase 2 turned out to have a fully mechanical fix (no per-folder judgment call, unlike Status reconciliation), so it was done directly rather than dispatched — two small purpose-built scripts, tested on samples, then run at full scale. The census driver's performance fix, the `legacy_grandfathered` investigation-and-revert, and both flag flips + docs were also done directly.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -114,17 +141,20 @@ See `decision-record.md` for full ADR documentation (ADR-001..003, all status Pr
 
 | Check | Result |
 |-------|--------|
-| Implementation | Phase 1 of 3 COMPLETE |
+| Implementation | Phases 1-2 of 3 COMPLETE |
 | Unit (census driver fixture) | PASS — 3-folder known-answer fixture (2 warn, 1 pass) matched exactly |
 | Phase 1 census, before reconciliation | 2,520 inspected, 128 warnings, 0 errors |
-| Phase 1 census, after batch reconciliation (4 batches) | 69 warnings (38 note-only "resolutions" confirmed not to satisfy the rule, 31 still-pending in a batch that needed a retry) |
 | Phase 1 census, after full reconciliation | 2,423 inspected, 2,421 pass, 2 individually-explained residuals, 0 errors |
-| Flip verification, zero env override | PASS — residual folder correctly warns, unrelated N/A folder correctly passes |
-| Phase 2 census (`METADATA_DISK_PATH_CONSISTENCY`, fresh) | PENDING — not started |
+| Phase 1 flip verification, zero env override | PASS — residual folder correctly warns, unrelated N/A folder correctly passes |
+| Phase 2 census (`METADATA_DISK_PATH_CONSISTENCY`, fresh) | 2,423 inspected, 1,293 pass, 1,130 warnings, 0 errors |
+| Phase 2 regen batch (JSON fields) | 1,059/1,130 succeeded; 71 correctly refused (`.backup-*` non-spec-folders) |
+| Phase 2 frontmatter fix (`continuity.packet_pointer`) | 969 files fixed, 161 already-correct, 0 errors, across all 1,130 folders |
+| Phase 2 census, after full reconciliation | 2,423 inspected, 2,349 pass, 74 individually-categorized residuals (all confirmed non-production paths), 0 errors |
+| Phase 2 flip verification, zero env override | PASS — a `z_future/` residual folder correctly warns, an unrelated real folder correctly passes |
 | Phase 3 census (`GRAPH_METADATA_CHILD_DRIFT`) | PENDING — not started |
-| Repo-wide post-flip sweep (Phase 4 of tasks.md, all 3 flags) | PENDING — cannot run until Phases 2-3 also land |
+| Repo-wide post-flip sweep (Phase 4 of tasks.md, all 3 flags) | PENDING — cannot run until Phase 3 also lands |
 
-Phase 1's own packet-doc verification:
+This packet's own packet-doc verification:
 
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation --strict
@@ -138,7 +168,7 @@ Full-tree typecheck (`npm run typecheck` in `mcp_server/`) could not run cleanly
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Phases 2-3 not yet implemented.** `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE` and `SPECKIT_CHILD_DRIFT_ENFORCE` remain default-OFF-advisory.
+1. **Phase 3 not yet implemented.** `SPECKIT_CHILD_DRIFT_ENFORCE` remains default-OFF-advisory; it additionally needs a new dist-presence guard built first per spec.md's own design, not just a census-and-flip.
 2. **Two genuine, honestly-documented `STATUS_CROSS_DOC_CONSISTENCY` residuals remain, by design, not oversight:**
    - `.opencode/specs/system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook` — its 22 child phases are all complete, but a later-layered wrapper truth-sync/traceability-remediation checklist is 0/27 checked and `spec.md` explicitly describes that layer as still open; `implementation-summary.md` predates the remediation work. Forcing either bucket would misrepresent one real, currently-open sub-scope on top of otherwise-complete work.
    - `.opencode/specs/sk-doc/z_archive/006-sk-doc-agent-template-alignment` — sub-scope 063b (template alignment) shipped; sub-scope 063a (remove a `RELATED RESOURCES` section from 40 agent files) did not fully land — independently re-verified via `grep -rl "## .*RELATED RESOURCES" .opencode/agents .claude/agents"`: `markdown.md` still carries it in both trees. Forcing "Complete" would misstate real drift still on disk; forcing "Planned" would ignore the ~95% that did land.
@@ -147,7 +177,9 @@ Full-tree typecheck (`npm run typecheck` in `mcp_server/`) could not run cleanly
 3. **That same `sk-doc/006` folder separately carries a pre-existing, unrelated `GENERATED_METADATA_INTEGRITY` `SOURCE_FINGERPRINT_MISMATCH` error**, confirmed present in the exact commit (`d26faba25e`) this work forked from, already independently fixed in the live main tree by a different concurrent session (not yet part of any commit this packet could cleanly build on). Out of scope for this packet; not fixed here.
 4. **A `validate.sh`/`orchestrator.js` symlink limitation was discovered (not fixed, out of scope).** Running the FULL, unscoped `validate.sh --strict` (not the `SPECKIT_RULES=`-scoped path this packet's own census driver uses) from *within* a git worktree whose `mcp_server/dist` is symlinked to the main tree silently no-ops (exit 0, zero output) — `orchestrator.js`'s own CLI-entry self-check (`path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)`) fails when invoked through a symlink. Workaround used throughout this packet's work: invoke from the main tree's own CWD with an absolute `--folder` path into the worktree. The `SPECKIT_RULES=`-scoped census-driver path is unaffected — verified working correctly at full ~2,420-folder scale, repeatedly.
 5. **`npm run typecheck` could not be run to a clean baseline** due to a pre-existing, unrelated `tsconfig.json` `TS5101` deprecation error. Every individual file this packet touched was still hand-verified for syntactic/semantic correctness before committing.
-6. **Full tree-wide `validate.sh --strict` sweep (tasks.md Phase 4) cannot run yet** — it requires all three flags at their final defaults, and Phases 2-3 have not landed.
+6. **Full tree-wide `validate.sh --strict` sweep (tasks.md Phase 4) cannot run yet** — it requires all three flags at their final defaults, and Phase 3 has not landed.
+7. **74 `METADATA_DISK_PATH_CONSISTENCY` residual folders remain, all confirmed non-production** (5 `.backup-*` snapshots, 38 `z_future/` reserved-namespace folders, 20 test fixtures/scratch directories, 11 auxiliary research/review subdirectories nested inside real packets) — see the "Phase 2's residual" section above for the full categorization. None represent a genuine production-path defect; none were force-fixed.
+8. **A full, unscoped `validate.sh --strict` run against this packet's own folder could not be captured cleanly at write time** — the shared `mcp_server/dist` (symlinked from this worktree to the main tree per this repo's own worktree-isolation convention) kept re-flagging as stale immediately after every rebuild, most plausibly because other concurrent AI sessions were actively editing files under `mcp_server/lib/{validation,config,graph,...}` in the shared main tree between each rebuild and the next check — a real race condition this packet's work did not cause and cannot fully control. Confirmed instead via the scoped path this packet's own census driver already relies on throughout: `SPECKIT_RULES=STATUS_CROSS_DOC_CONSISTENCY,METADATA_DISK_PATH_CONSISTENCY bash validate.sh <folder> --strict --json` reports both rules `pass` cleanly with `"passed": true`. A full unscoped sweep should be re-attempted once the shared dist is quiescent.
 <!-- /ANCHOR:limitations -->
 
 ---

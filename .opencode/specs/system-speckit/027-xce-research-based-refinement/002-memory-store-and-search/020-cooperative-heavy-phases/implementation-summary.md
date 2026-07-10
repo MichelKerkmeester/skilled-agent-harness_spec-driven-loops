@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "027/002/021-cooperative-heavy-phases"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases"
     last_updated_at: "2026-06-17T18:35:00Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Live clone reindex: max event-loop lag 634ms, no block — gap closed"

@@ -25,8 +25,6 @@
       "021 002 implementation summary"
     ],
     "key_topics": [
-      "021",
-      "002",
       "rerank",
       "sidecar",
       "sk-code",
@@ -36,7 +34,9 @@
       "sidecar-worker",
       "tsdoc",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "adr"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two sidecar files have documented sk-code drift",
     "created_at": "2026-05-23T11:55:36.907Z",
-    "last_save_at": "2026-07-02T05:31:12.329Z",
+    "last_save_at": "2026-07-10T06:24:09.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

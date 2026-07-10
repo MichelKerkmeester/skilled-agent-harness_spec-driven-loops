@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/023-tsconfig-references-restructure"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-023-tsconfig-references-restructure"
     last_updated_at: "2026-05-14T16:26:51Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-009"
     recent_action: "Planned Option A and verification from clean emitted output"

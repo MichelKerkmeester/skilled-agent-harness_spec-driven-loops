@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli",
   "description": "The epic deep-review sweep left this lane with 18 unverified P1 claims and 19 P2 clusters",
   "keywords": [
     "epic",
@@ -11,11 +11,11 @@
     "claims",
     "clusters"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.912Z",
+  "lastUpdated": "2026-07-10T06:24:44.646Z",
   "specId": "006",
   "folderSlug": "launchers-and-cli",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation",
     "001-finding-remediation"

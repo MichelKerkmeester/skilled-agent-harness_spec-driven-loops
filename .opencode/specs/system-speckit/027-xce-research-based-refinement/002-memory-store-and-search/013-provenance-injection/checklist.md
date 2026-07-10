@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection"
     last_updated_at: "2026-06-11T12:10:00Z"
     last_updated_by: "opencode"
     recent_action: "Prepared verification checklist for provenance injection remediation."

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/011-embeddinggemma-unification",
   "description": "Setup A ended in a split-model state: Spec Kit Memory used `onnx-community/embeddinggemma-300m-ONNX` while CocoIndex used a heavier code-side model",
   "keywords": [
     "setup",
@@ -10,7 +10,6 @@
     "spec",
     "kit",
     "memory",
-    "used",
     "onnx-community",
     "embeddinggemma-300m-onnx",
     "while",
@@ -19,11 +18,11 @@
     "code-side",
     "model"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.993Z",
+  "lastUpdated": "2026-07-10T06:24:38.451Z",
   "specId": "011",
   "folderSlug": "embeddinggemma-unification",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

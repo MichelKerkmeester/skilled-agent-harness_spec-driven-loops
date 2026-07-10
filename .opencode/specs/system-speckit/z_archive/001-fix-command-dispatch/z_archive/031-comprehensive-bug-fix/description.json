@@ -1,14 +1,14 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/031-comprehensive-bug-fix",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/031-comprehensive-bug-fix",
   "description": "id: 018-comprehensive-bug-fix",
   "keywords": [
     "018-comprehensive-bug-fix"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.064Z",
+  "lastUpdated": "2026-07-10T06:23:42.855Z",
   "specId": "031",
   "folderSlug": "comprehensive-bug-fix",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

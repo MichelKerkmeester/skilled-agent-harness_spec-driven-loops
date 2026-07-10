@@ -8,7 +8,7 @@
   ],
   "contextType": "implementation",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit",
   "description": "Runtime command and agent docs can drift when tool names, paths, hook contracts, and MCP surfaces change quickly",
   "keywords": [
     "runtime",
@@ -26,11 +26,11 @@
     "change",
     "quickly"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.195Z",
+  "lastUpdated": "2026-07-10T06:22:32.280Z",
   "specId": "007",
   "folderSlug": "runtime-command-agent-alignment-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "002-audit"

@@ -4,7 +4,6 @@
   "description": "`SPECKITRETRIEVALCLASSROUTING` is built, default-off, and never measured against the real corpus on the production path",
   "keywords": [
     "speckitretrievalclassrouting",
-    "built",
     "default-off",
     "never",
     "measured",
@@ -14,7 +13,7 @@
     "production",
     "path"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.768Z",
+  "lastUpdated": "2026-07-10T06:22:56.657Z",
   "specId": "002",
   "folderSlug": "retrieval-class-weights",
   "parentChain": [

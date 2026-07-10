@@ -1,9 +1,8 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
-  "description": "The 026 program subsystems (memory MCP, code-graph, skill-advisor, deep-loop runtime, and the cli executors) accumulate latent drift, small correctnes",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
+  "description": "The 026 program subsystems (memory MCP, code-graph, skill-advisor, deep-loop runtime, and the cli executors) accumulate latent drift, small",
   "keywords": [
-    "026",
     "program",
     "subsystems",
     "memory",
@@ -17,14 +16,13 @@
     "accumulate",
     "latent",
     "drift",
-    "small",
-    "correctnes"
+    "small"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.925Z",
+  "lastUpdated": "2026-07-10T06:22:47.745Z",
   "specId": "010",
   "folderSlug": "scouted-bugfix-train",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup"
   ],

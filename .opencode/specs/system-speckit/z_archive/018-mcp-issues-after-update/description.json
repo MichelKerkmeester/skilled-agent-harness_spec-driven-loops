@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/018-mcp-issues-after-update",
+  "specFolder": "system-speckit/z_archive/018-mcp-issues-after-update",
   "description": "This archived system-spec-kit archive folder captures work related to MCP Issues After Update",
   "keywords": [
     "archived",
@@ -10,14 +10,13 @@
     "work",
     "related",
     "mcp",
-    "issues",
-    "update"
+    "issues"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.560Z",
+  "lastUpdated": "2026-07-10T06:21:45.033Z",
   "specId": "018",
   "folderSlug": "mcp-issues-after-update",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

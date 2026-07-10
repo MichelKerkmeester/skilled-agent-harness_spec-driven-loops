@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/008-rename-memory-check",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/008-rename-memory-check",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/008-rename-memory-check",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/008-rename-memory-check",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -25,14 +25,14 @@
       "rename",
       "memory",
       "command",
-      "008",
       "plan",
       "tasks",
       "two",
       "unified",
       "dashboard",
       "check",
-      "update"
+      "references",
+      "across"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "Rename the unified memory dashboard command from /memory to /memory:check and update all references across the codebase.",
     "created_at": "2026-04-12T09:02:53.510Z",
-    "last_save_at": "2026-06-23T03:49:58.876Z",
+    "last_save_at": "2026-07-10T06:24:42.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/134-scouted-bugfix-batch-1"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1"
     last_updated_at: "2026-06-03T05:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "8-agent scout (40 candidates -> top 5); 5 gpt-5.5-fast deep-dives confirmed/refuted each"

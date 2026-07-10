@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-fix-audit-drift-findings"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/008-fix-audit-drift-findings"
     last_updated_at: "2026-05-01T05:40:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Tasks authored"

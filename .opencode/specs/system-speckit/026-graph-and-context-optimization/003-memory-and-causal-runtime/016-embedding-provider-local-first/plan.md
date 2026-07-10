@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/132-embedding-provider-local-first"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first"
     last_updated_at: "2026-06-02T21:05:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Implemented + verified: 6 embedder test files green (62 passed, 0 failed)"

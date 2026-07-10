@@ -1,28 +1,26 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience",
   "description": "A live defect class was observed on 2026-06-10: the active embedder shard context-vectorsollamanomic-embed-text-v1.5768.sqlite reported database disk",
   "keywords": [
     "live",
     "defect",
     "class",
     "observed",
-    "2026-06-10",
     "active",
     "embedder",
     "shard",
     "context-vectorsollamanomic-embed-text-v1",
-    "5768",
     "sqlite",
     "reported",
     "database",
     "disk"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.285Z",
+  "lastUpdated": "2026-07-10T06:23:42.876Z",
   "specId": "008",
   "folderSlug": "vector-read-path-resilience",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

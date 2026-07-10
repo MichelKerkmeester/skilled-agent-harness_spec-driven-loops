@@ -19,8 +19,6 @@
       "019/001 summary"
     ],
     "key_topics": [
-      "019",
-      "001",
       "declarative",
       "registry",
       "embedder",
@@ -30,7 +28,9 @@
       "embedders",
       "plan",
       "tasks",
-      "summary"
+      "summary",
+      "code-embedder",
+      "candidates"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Catalog of vetted code-embedder candidates with metadata for new-user selection",
     "created_at": "2026-05-18T08:18:02.785Z",
-    "last_save_at": "2026-07-02T05:31:11.902Z",
+    "last_save_at": "2026-07-10T06:22:23.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

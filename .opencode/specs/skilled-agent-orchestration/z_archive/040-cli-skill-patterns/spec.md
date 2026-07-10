@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "052-cli-skill-patterns"
+    packet_pointer: "skilled-agent-orchestration/z_archive/040-cli-skill-patterns"
     last_updated_at: "2026-04-29T12:05:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored Level 2 spec scope, REQs, do-not-collapse list, harmonization rules"

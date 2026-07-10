@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "027/002/017/001-token-budget-truncation-safety"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety"
     last_updated_at: "2026-06-17T08:15:00Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Shipped Problem 3 token-budget truncation safety; spec superseded by impl-summary"

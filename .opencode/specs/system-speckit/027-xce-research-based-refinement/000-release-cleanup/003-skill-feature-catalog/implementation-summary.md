@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog"
     last_updated_at: "2026-06-10T16:15:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed feature catalog release cleanup"

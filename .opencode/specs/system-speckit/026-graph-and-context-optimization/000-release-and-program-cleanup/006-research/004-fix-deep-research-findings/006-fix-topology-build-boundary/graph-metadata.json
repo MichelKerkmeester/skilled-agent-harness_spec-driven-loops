@@ -32,11 +32,11 @@
       "f-020-d5-03",
       "f-020-d5-04",
       "topology",
-      "build",
       "dist",
       "boundary",
       "remediation",
-      "phase"
+      "phase",
+      "path"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist artifacts the existing tooling cannot see:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-07-07T12:30:13.474Z",
+    "last_save_at": "2026-07-10T06:24:16.370Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

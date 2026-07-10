@@ -10,7 +10,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set"
     last_updated_at: "2026-05-09T20:40:00Z"
     last_updated_by: "spec-kit-handover"
     recent_action: "Patched FIX-12 (signal_d head-1 bug) and FIX-13 (backfill --active-only)"

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/017-phase-reorg-and-renumber"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/017-phase-reorg-and-renumber"
     last_updated_at: "2026-05-26T16:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Stage 0-1 complete: worktree Public-026-reorg + DB snapshot taken; preflight baselines captured (ref-counts, JSON-parse 1177/0, strict baseline 1 pre-existing root error); rename-plan.json authored (46 moves, disjoint, naming-clean)."

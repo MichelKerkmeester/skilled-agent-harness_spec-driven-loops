@@ -54,7 +54,6 @@
       "research/deep-research-strategy.md",
       "research/findings-registry.json",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".claude/settings.local.json",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       "resource-map.md"
@@ -124,12 +123,6 @@
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -203,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "012's 7-iteration deep research produced a 50-row automation reality map (14 auto / 14 half / 18 manual / 4 P1 aspirational) but stopped on `maxiterations` with newInfoRatio=0.18 — STILL ABOVE the 0.10 convergence threshold",
     "created_at": "2026-04-29T14:35:00.000Z",
-    "last_save_at": "2026-07-02T05:31:10.860Z",
+    "last_save_at": "2026-07-10T06:23:13.691Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

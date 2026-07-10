@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings",
   "description": "The 2026-04-21 hook parity review found 10 runtime-hook issues",
   "keywords": [
-    "2026-04-21",
     "hook",
     "parity",
     "review",
@@ -10,11 +9,11 @@
     "runtime-hook",
     "issues"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.226Z",
+  "lastUpdated": "2026-07-10T06:22:48.765Z",
   "specId": "001",
   "folderSlug": "fix-runtime-hook-parity-findings",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "006-operator-tooling",
     "001-hook-parity"

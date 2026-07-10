@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration",
   "description": "The lean-trio policy is enforced for new phase parents (validator, template, generator, resume, docs)",
   "keywords": [
     "lean-trio",
@@ -14,11 +14,11 @@
     "resume",
     "docs"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.289Z",
+  "lastUpdated": "2026-07-10T06:22:27.813Z",
   "specId": "004",
   "folderSlug": "legacy-phase-parent-migration",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass",

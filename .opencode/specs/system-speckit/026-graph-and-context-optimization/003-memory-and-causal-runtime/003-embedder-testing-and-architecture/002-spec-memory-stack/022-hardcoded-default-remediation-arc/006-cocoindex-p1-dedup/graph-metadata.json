@@ -32,8 +32,6 @@
       "022/006 shipped"
     ],
     "key_topics": [
-      "022",
-      "006",
       "cocoindex",
       "dedup",
       "chunk-size",
@@ -43,7 +41,9 @@
       "checklist",
       "shipped",
       "dedups",
-      "constants"
+      "constants",
+      "values",
+      "consolidated"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "2 dedups: chunk-size constants (3 values) consolidated from indexer.py + config.py to single source in config.py; COCOINDEX_RERANK_VIA_SIDECAR default consolidated to module-level _DEFAULT_RERANK_VIA_SIDECAR constant. Closes 2 P1 audit findings.",
     "created_at": "2026-05-23T17:30:00.000000Z",
-    "last_save_at": "2026-07-02T05:31:11.830Z",
+    "last_save_at": "2026-07-10T06:21:53.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

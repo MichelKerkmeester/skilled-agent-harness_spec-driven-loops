@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/025-nested-changelog-per-spec",
+  "specFolder": "system-speckit/z_archive/025-nested-changelog-per-spec",
   "description": "System Spec Kit already had `implementation-summary.md`, but packet-local changelog history was ad hoc and drift-prone",
   "keywords": [
     "system",
@@ -13,11 +13,11 @@
     "hoc",
     "drift-prone"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.846Z",
+  "lastUpdated": "2026-07-10T06:24:33.386Z",
   "specId": "025",
   "folderSlug": "nested-changelog-per-spec",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 1,

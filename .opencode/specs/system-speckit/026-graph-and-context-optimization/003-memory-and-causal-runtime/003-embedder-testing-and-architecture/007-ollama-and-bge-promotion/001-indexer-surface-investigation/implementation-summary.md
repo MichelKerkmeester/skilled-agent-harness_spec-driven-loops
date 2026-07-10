@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/001-indexer-surface-investigation"
     last_updated_at: "2026-05-22T16:19:13Z"
     last_updated_by: "codex"
     recent_action: "Added Level 1 closeout for strict validation."

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/010-integration-testing",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/010-integration-testing",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/010-integration-testing",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/010-integration-testing",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -28,7 +28,6 @@
       "feature",
       "specifica",
       "spec",
-      "010",
       "integration",
       "implementation",
       "plan",
@@ -36,22 +35,29 @@
       "integrati",
       "verification",
       "checklist",
-      "summary"
+      "summary",
+      "runtime"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "tests/fixtures/session-data-factory.ts",
       "scripts/tests/fixtures/session-data-factory.ts",
       "scripts/tests/test-integration.vitest.ts",
       "scripts/tests/task-enrichment.vitest.ts",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "session-data-factory.ts",
         "kind": "code",
@@ -68,12 +74,6 @@
         "name": "task-enrichment.vitest.ts",
         "kind": "test",
         "path": "scripts/tests/task-enrichment.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The runtime gap is now closed: `workflow-e2e.vitest.ts` exercises the real save path with temp-repo isolation, real markdown writes, real `description.json` mutation, and real post-write indexing handoff behavior",
     "created_at": "2026-04-12T09:02:50.272Z",
-    "last_save_at": "2026-06-23T03:50:00.053Z",
+    "last_save_at": "2026-07-10T06:23:59.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

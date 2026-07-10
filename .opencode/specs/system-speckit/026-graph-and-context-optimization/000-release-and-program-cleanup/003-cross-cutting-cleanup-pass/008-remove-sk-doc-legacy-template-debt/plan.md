@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/008-remove-sk-doc-legacy-template-debt"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt"
     last_updated_at: "2026-04-29T11:10:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Completed grouped sk-doc audit remediation and verification"

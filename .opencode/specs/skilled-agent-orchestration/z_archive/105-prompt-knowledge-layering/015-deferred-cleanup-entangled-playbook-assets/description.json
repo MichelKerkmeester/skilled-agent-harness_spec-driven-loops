@@ -6,16 +6,15 @@
     "three",
     "deferred",
     "items",
-    "remained",
-    "014"
+    "remained"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.658Z",
+  "lastUpdated": "2026-07-10T06:23:01.554Z",
   "specId": "015",
   "folderSlug": "deferred-cleanup-entangled-playbook-assets",
   "parentChain": [
     "skilled-agent-orchestration",
     "z_archive",
-    "130-prompt-knowledge-layering"
+    "105-prompt-knowledge-layering"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "checklist"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike"
     last_updated_at: "2026-05-19T20:22:26Z"
     last_updated_by: "codex"
     recent_action: "Prepared verification checklist"

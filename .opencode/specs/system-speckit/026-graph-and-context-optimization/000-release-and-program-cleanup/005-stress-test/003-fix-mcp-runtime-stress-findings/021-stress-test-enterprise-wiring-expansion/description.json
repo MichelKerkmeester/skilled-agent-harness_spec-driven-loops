@@ -7,7 +7,7 @@
     "decision audit stress run",
     "shadow sink stress run"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/021-stress-test-enterprise-wiring-expansion",
   "description": "Phase G wired W8-W13 telemetry and runtime consumers after the earlier W3-W7 measurement work",
   "keywords": [
     "phase",
@@ -21,11 +21,11 @@
     "measurement",
     "work"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.692Z",
+  "lastUpdated": "2026-07-10T06:23:34.073Z",
   "specId": "021",
   "folderSlug": "stress-test-enterprise-wiring-expansion",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

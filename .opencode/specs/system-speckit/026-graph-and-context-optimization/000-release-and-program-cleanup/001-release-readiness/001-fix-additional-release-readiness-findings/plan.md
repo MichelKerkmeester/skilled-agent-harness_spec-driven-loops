@@ -4,7 +4,7 @@ template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 description: "Four-section plan grouped by Tier 2 source review: D (Copilot hook current-turn), E (plugin-loader doc drift), F (Copilot hook routing + cleanup), G (006/008 state hygiene). H deferred."
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-fix-additional-release-readiness-findings"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"

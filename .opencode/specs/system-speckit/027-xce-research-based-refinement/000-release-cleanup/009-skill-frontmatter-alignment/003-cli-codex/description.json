@@ -1,7 +1,7 @@
 {
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/003-cli-codex",
   "description": "cli-codex reference/asset frontmatter is inconsistent with the repo-wide contract: 1 of 5 references and 0 of 2 assets carry the detailed memory-style",
   "keywords": [
     "cli-codex",
@@ -17,11 +17,11 @@
     "detailed",
     "memory-style"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.932Z",
+  "lastUpdated": "2026-07-10T06:22:06.499Z",
   "specId": "003",
   "folderSlug": "cli-codex",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup",
     "009-skill-frontmatter-alignment"

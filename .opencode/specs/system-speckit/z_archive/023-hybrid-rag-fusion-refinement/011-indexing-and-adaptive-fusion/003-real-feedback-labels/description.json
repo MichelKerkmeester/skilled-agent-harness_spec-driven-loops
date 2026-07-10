@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/003-real-feedback-labels",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/003-real-feedback-labels",
   "description": "`buildReplayRanks()` originally derived replay relevance from the shadow proposal itself",
   "keywords": [
     "buildreplayranks",
@@ -11,11 +11,11 @@
     "proposal",
     "itself"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.507Z",
+  "lastUpdated": "2026-07-10T06:22:19.407Z",
   "specId": "003",
   "folderSlug": "real-feedback-labels",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement",
     "011-indexing-and-adaptive-fusion"

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
   "description": "The 120-seat epic deep-review sweep adjudicated only its 41 strongest finding clusters (23 confirmed and fixed)",
   "keywords": [
     "120-seat",
@@ -12,14 +12,13 @@
     "strongest",
     "finding",
     "clusters",
-    "confirmed",
-    "fixed"
+    "confirmed"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.876Z",
+  "lastUpdated": "2026-07-10T06:24:48.302Z",
   "specId": "001",
   "folderSlug": "finding-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation"
   ],

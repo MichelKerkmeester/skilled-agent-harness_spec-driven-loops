@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/001-initial-enrichment",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/001-initial-enrichment",
   "description": "The original phase-016 pack had drifted away from the code that actually shipped",
   "keywords": [
     "original",
@@ -11,11 +11,11 @@
     "actually",
     "shipped"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.101Z",
+  "lastUpdated": "2026-07-10T06:24:53.025Z",
   "specId": "001",
   "folderSlug": "initial-enrichment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing",

@@ -144,16 +144,16 @@
     ],
     "causal_summary": "After this session's wave of remediation work (013 research → 031-044 implementation + audits + finalization), the 026-graph-and-context-optimization wrapper packet is approximately release-ready",
     "created_at": "2026-04-29T22:00:00.000Z",
-    "last_save_at": "2026-07-07T12:30:11.203Z",
+    "last_save_at": "2026-07-10T06:21:47.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:6baeb81156ffae6a24a42af50d62825d6d1ab76b401c4dc112de8b311a114405",
+    "source_fingerprint": "sha256:d8197cd268db22343e6175941051043b900cb9cfcc5769caa7bda56b2464830b",
     "source_doc_hashes": {
-      "spec.md": "676e111b20a3a18c302895311f4ec98a27e79c09c6e1c9db49f59c19a65f6b6e",
+      "spec.md": "65efaffb2af71efe50f79bf8940cbd2eec76dbf7e024ef23b9cc7b6ab07be403",
       "resource-map.md": "b41ec1a24d3844b7e2d53ed4b5edc7cb514acfa7714e9e4697f9df75fade9aae"
     },
     "last_active_child_id": null,

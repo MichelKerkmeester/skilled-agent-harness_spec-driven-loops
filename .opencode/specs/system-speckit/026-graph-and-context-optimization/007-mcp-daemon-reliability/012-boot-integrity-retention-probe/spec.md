@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe"
     last_updated_at: "2026-05-29T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Implemented boot integrity-check, retention durability, probe deepProbe fix"

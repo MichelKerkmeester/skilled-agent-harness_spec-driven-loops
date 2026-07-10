@@ -4,7 +4,6 @@
   "description": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, release cleanup, review",
   "keywords": [
     "packet",
-    "028",
     "owns",
     "planning",
     "record",
@@ -19,7 +18,7 @@
     "cleanup",
     "review"
   ],
-  "lastUpdated": "2026-07-06T19:47:57.920Z",
+  "lastUpdated": "2026-07-10T06:24:41.615Z",
   "specId": "028",
   "folderSlug": "memory-search-intelligence",
   "parentChain": [

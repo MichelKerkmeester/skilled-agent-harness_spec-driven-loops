@@ -2,9 +2,17 @@
 # ───────────────────────────────────────────────────────────────
 # RULE: CHECK-METADATA-DISK-CONSISTENCY
 # ───────────────────────────────────────────────────────────────
-# Advisory-by-default: flags a description.json/graph-metadata.json
-# path mismatch against the folder's on-disk path. Set
-# SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE=true to fail --strict.
+# Enforcing-by-default: flags a description.json/graph-metadata.json
+# path mismatch against the folder's on-disk path. Graduated to enforcing
+# only after a real tree-wide census showed the tree was clean enough to
+# trust by default: 1,130 real mismatches found and reconciled via the
+# canonical generators plus a frontmatter continuity-pointer fix; the
+# remaining residual is entirely non-production paths (deliberately
+# synthetic test fixtures, a reserved not-yet-built namespace, timestamped
+# backup snapshots, and auxiliary research/scratch subdirectories that were
+# never meant to be validated as standalone spec folders), each individually
+# categorized rather than forced to a false zero. Set
+# SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE=false to fall back to advisory-only.
 
 set -euo pipefail
 
@@ -52,13 +60,13 @@ run_check() {
         [[ -n "$details" ]] && RULE_DETAILS+=("$details")
     done < <(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); for (const item of data.mismatches || []) console.log(item);' 2>/dev/null || true)
 
-    if [[ "${SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE:-false}" == "true" ]]; then
+    if [[ "${SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE:-true}" == "true" ]]; then
         RULE_STATUS="warn"
         RULE_MESSAGE="Generated metadata path drift detected against on-disk folder: $actual_path"
         RULE_REMEDIATION="Refresh description.json and graph-metadata.json from the canonical save path so stored ids match the real folder."
     else
         RULE_STATUS="pass"
-        RULE_MESSAGE="metadata disk-path ADVISORY — $mismatch_count mismatch(es) against on-disk folder: $actual_path (set SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE=true to enforce)"
+        RULE_MESSAGE="metadata disk-path ADVISORY — $mismatch_count mismatch(es) against on-disk folder: $actual_path (set SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE=false to fall back to advisory)"
         RULE_REMEDIATION="Advisory only — does not fail validation until enforcement is enabled."
     fi
 }

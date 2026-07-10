@@ -4,7 +4,7 @@ template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 description: "T1..T20 across 4 source-review sections (D/E/F/G). H deferred to human verification."
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-fix-additional-release-readiness-findings"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Strict-validator closure pass"

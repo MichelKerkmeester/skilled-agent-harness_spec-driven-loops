@@ -23,13 +23,13 @@
       "test",
       "suite",
       "completion",
-      "028",
       "missing",
       "groups",
       "local",
       "llm",
       "perf",
-      "benches"
+      "benches",
+      "phase"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Phase 028 promised a comprehensive local-LLM feature suite, but the cleanup decision keeps 028 as historical/rescoped documentation and moves the missing implementation into this action packet",
     "created_at": "2026-05-23T11:55:15.369Z",
-    "last_save_at": "2026-07-02T05:31:11.622Z",
+    "last_save_at": "2026-07-10T06:24:53.047Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-root-memory-cleanup-followup-fixes"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes"
     last_updated_at: "2026-05-08T09:15:00Z"
     last_updated_by: "implementer"
     recent_action: "REQ-001 + REQ-003 implemented; REQ-002 root-caused and deferred"

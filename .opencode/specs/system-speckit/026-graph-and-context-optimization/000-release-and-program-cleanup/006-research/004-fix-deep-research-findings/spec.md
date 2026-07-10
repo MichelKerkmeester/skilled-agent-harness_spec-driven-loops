@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-fix-deep-research-findings"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings"
     last_updated_at: "2026-05-01T07:20:00Z"
     last_updated_by: "remediation-orchestrator"
     recent_action: "Phase parent + 10 children scaffolded; manifest authored"

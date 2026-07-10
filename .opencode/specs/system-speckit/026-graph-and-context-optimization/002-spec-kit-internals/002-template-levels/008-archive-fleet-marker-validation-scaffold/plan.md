@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-archive-fleet-marker-validation-scaffold"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/008-archive-fleet-marker-validation-scaffold"
     last_updated_at: "2026-05-02T09:34:31Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/037-post-merge-refinement-2",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/037-post-merge-refinement-2",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/037-post-merge-refinement-2",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/037-post-merge-refinement-2",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -29,12 +29,12 @@
       "phase",
       "library",
       "spec",
-      "037",
       "plan",
       "tasks",
       "checklist",
       "split-brain",
-      "issue"
+      "issue",
+      "two"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "We have a \\\"Split-Brain\\\" issue with two versions of vector-index.js",
     "created_at": "2026-04-12T09:02:53.524Z",
-    "last_save_at": "2026-06-23T03:49:59.096Z",
+    "last_save_at": "2026-07-10T06:21:48.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

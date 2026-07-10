@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment"
     last_updated_at: "2026-06-10T15:30:42Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Aligned agent runtime mirrors to shipped agent-io and verification doctrine"

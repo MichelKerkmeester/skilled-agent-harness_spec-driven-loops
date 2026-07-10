@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -28,7 +28,6 @@
       "pipeline",
       "architecture",
       "testing",
-      "014",
       "phase",
       "manual",
       "4-stage",
@@ -36,7 +35,8 @@
       "test",
       "execution",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The pipeline architecture category (14--pipeline-architecture) contains 22 features spanning the 4-stage pipeline refactor, chunk-to-memory aggregation, schema validation, DB path standardisation, cross-process rebinding, and lineage projection",
     "created_at": "2026-04-12T09:02:50.301Z",
-    "last_save_at": "2026-06-23T03:50:00.296Z",
+    "last_save_at": "2026-07-10T06:22:23.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

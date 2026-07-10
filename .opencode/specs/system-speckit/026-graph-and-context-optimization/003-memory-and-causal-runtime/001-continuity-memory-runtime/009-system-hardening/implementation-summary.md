@@ -8,7 +8,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening"
     last_updated_at: "2026-04-18T17:15:00Z"
     last_updated_by: "claude-opus-4.7-1m"
     recent_action: "Umbrella packet scaffolded"

@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "010-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator"
     last_updated_at: "2026-05-11T08:15:00Z"
     last_updated_by: "main-claude-opus-4.7"
     recent_action: "Authored Level-2 checklist with one row per finding"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/001-fusion-scoring-intelligence",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/001-fusion-scoring-intelligence",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/001-fusion-scoring-intelligence",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/001-fusion-scoring-intelligence",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,14 +41,20 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
+      "spec.md",
       "shared/algorithms/rrf-fusion.ts",
       "shared/ranking/learned-combiner.ts",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "rrf-fusion.ts",
         "kind": "code",
@@ -59,12 +65,6 @@
         "name": "learned-combiner.ts",
         "kind": "code",
         "path": "shared/ranking/learned-combiner.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The current fusion pipeline relies on flat heuristic constants: a fixed RRF K=60, a flat convergence bonus of +0.10, a static graph boost of 1.5x, and hard-coded Stage 2 signal weights",
     "created_at": "2026-04-12T09:02:50.234Z",
-    "last_save_at": "2026-06-23T03:49:59.711Z",
+    "last_save_at": "2026-07-10T06:24:47.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

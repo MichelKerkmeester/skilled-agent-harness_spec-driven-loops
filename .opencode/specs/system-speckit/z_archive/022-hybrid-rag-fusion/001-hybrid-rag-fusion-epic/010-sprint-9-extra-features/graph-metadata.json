@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -31,15 +31,16 @@
       "tooling",
       "implementation",
       "plan",
-      "010",
       "tasks",
       "verificatio",
       "checklist",
-      "010-sprint-9-extra-features"
+      "010-sprint-9-extra-features",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       "mcp_server/tool-schemas.ts",
       "mcp_server/handlers/memory-search.ts",
       "mcp_server/formatters/search-results.ts",
@@ -58,10 +59,15 @@
       "lib/search/pipeline/types.ts",
       "handlers/memory-search.ts",
       "lib/ops/job-queue.ts",
-      "handlers/index.ts",
-      "handlers/memory-save.ts"
+      "handlers/index.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "tool-schemas.ts",
         "kind": "code",
@@ -199,17 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Layered",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP server's internal data structures are rich (6 score fields, causal graph, anchor metadata, pipeline traces) but the external API surface does not fully expose this richness",
     "created_at": "2026-04-12T09:02:50.232Z",
-    "last_save_at": "2026-06-23T03:49:59.698Z",
+    "last_save_at": "2026-07-10T06:23:19.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

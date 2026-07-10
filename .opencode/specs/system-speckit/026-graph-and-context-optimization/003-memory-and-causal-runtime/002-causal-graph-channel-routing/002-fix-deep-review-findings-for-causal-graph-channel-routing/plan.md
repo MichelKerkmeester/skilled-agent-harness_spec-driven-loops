@@ -3,7 +3,7 @@ title: "Plan: 002 Deep-Review Remediation for 012 Causal Graph Channel Routing"
 description: "Sequenced implementation plan across 4 tiers (T1 release blockers, T2 code, T2 docs, T3 metadata) — 25 task batches dispatched via cli-codex gpt-5.5 reasoning=high service_tier=fast."
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing"
     last_updated_at: "2026-05-11T11:30:00Z"
     last_updated_by: "cli-codex-gpt-5.5"
     recent_action: "Plan locked; all 21 batches dispatched"

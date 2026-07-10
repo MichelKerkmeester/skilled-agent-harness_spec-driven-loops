@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/057-root-readme-deeper-rewrite"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-057-root-readme-deeper-rewrite"
     last_updated_at: "2026-05-15T14:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored impl-summary stub"

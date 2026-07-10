@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
-  "description": "Coordinate release readiness, system audits, cross-cutting cleanup, stress testing, and program-level adoption follow-ups for the graph-and-context pr",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup",
+  "description": "Coordinate release readiness, system audits, cross-cutting cleanup, stress testing, and program-level adoption follow-ups for the graph-and-context",
   "keywords": [
     "coordinate",
     "release",
@@ -16,11 +16,11 @@
     "follow-ups",
     "graph-and-context"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.040Z",
+  "lastUpdated": "2026-07-10T06:22:37.412Z",
   "specId": "000",
   "folderSlug": "release-and-program-cleanup",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization"
   ],
   "memorySequence": 1,

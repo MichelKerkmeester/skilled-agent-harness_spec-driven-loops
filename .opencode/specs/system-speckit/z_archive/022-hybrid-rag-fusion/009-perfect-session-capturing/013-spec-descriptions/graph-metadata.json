@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/013-spec-descriptions",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/013-spec-descriptions",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/013-spec-descriptions",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/013-spec-descriptions",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,6 +41,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "specs/descriptions.json",
       "mcp_server/lib/search/folder-discovery.ts",
       "scripts/spec/create.sh",
@@ -49,13 +50,18 @@
       "scripts/spec-folder/generate-description.ts",
       "mcp_server/tests/folder-discovery.vitest.ts",
       "mcp_server/tests/folder-discovery-integration.vitest.ts",
-      "spec.md",
       "plan.md",
       "checklist.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "descriptions.json",
         "kind": "config",
@@ -102,12 +108,6 @@
         "name": "folder-discovery-integration.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/folder-discovery-integration.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The centralized `specs/descriptions.json` stores all spec folder descriptions in a single file, creating three problems:",
     "created_at": "2026-04-12T09:02:50.274Z",
-    "last_save_at": "2026-06-23T03:50:00.071Z",
+    "last_save_at": "2026-07-10T06:22:09.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

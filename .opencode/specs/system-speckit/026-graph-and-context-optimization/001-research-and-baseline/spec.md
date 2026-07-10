@@ -11,7 +11,7 @@ importance_tier: "critical"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/001-research-and-baseline"
     last_updated_at: "2026-04-21T13:00:00Z"
     last_updated_by: "copilot-gpt-5-4"
     recent_action: "Merged single original phase root"

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation"
     last_updated_at: "2026-06-06T10:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Added Phase 4: backlog item 4 (fan-out diversity) run + verified"

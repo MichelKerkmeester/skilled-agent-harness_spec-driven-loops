@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/027-missing-code-readme-resource-map"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/027-missing-code-readme-resource-map"
     last_updated_at: "2026-05-02T16:15:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Created and validated all 65 target README files"

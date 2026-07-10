@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/005-q4-quantization",
   "description": "HfLocalProvider hardcodes `dtype: 'fp32'` in the `@huggingface/transformers` `pipeline()` call",
   "keywords": [
     "hflocalprovider",
@@ -12,11 +12,11 @@
     "pipeline",
     "call"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.957Z",
+  "lastUpdated": "2026-07-10T06:21:45.025Z",
   "specId": "005",
   "folderSlug": "q4-quantization",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands"
     last_updated_at: "2026-06-11T13:30:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Completed deep-commands split: 6 routers + 6 presentation assets + sk-doc alignment"

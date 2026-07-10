@@ -19,8 +19,6 @@
       "021/001 summary"
     ],
     "key_topics": [
-      "021",
-      "001",
       "skill",
       "mds",
       "audit",
@@ -30,7 +28,9 @@
       "docs",
       "sweep",
       "plan",
-      "tasks"
+      "tasks",
+      "summary",
+      "readme"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Sweep all skill SKILL.md / README.md / references/ / assets/ for stale embedder defaults + outdated architecture claims",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-07-02T05:31:12.037Z",
+    "last_save_at": "2026-07-10T06:24:15.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

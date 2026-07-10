@@ -32,18 +32,17 @@
       "hook",
       "daemon",
       "alignment",
-      "026",
-      "009",
-      "012",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "summary",
+      "external",
+      "documentation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "references/config/hook_system.md",
-      ".claude/settings.local.json",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       ".opencode/skills/system-spec-kit/README.md",
@@ -66,12 +65,6 @@
         "name": "hook_system.md",
         "kind": "doc",
         "path": "references/config/hook_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -205,11 +198,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Supporting Docs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Update 13 external documentation files flagged by the 009 impact analysis (10 HIGH + 3 MED) to reflect the hook, advisor, plugin-loader, renderer, and Copilot wrapper behavior actually shipped across sub-packets 001-011. Source of truth is impact-analysis/merged-impact-report.md.",
     "created_at": "2026-04-23T19:40:00Z",
-    "last_save_at": "2026-07-02T05:31:12.977Z",
+    "last_save_at": "2026-07-10T06:24:14.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

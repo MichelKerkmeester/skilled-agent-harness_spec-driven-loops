@@ -33,10 +33,10 @@
       "folder",
       "remediation",
       "packet",
-      "create",
       "fallback",
       "plan",
-      "rule"
+      "rule",
+      "core"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "AI-derived spec-folder and phase slugs frequently default to generic placeholders that do not describe the concrete work being shipped",
     "created_at": "2026-05-19T07:48:17Z",
-    "last_save_at": "2026-07-07T11:28:48.286Z",
+    "last_save_at": "2026-07-10T06:23:52.519Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

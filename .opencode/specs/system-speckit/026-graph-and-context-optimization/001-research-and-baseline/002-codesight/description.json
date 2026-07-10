@@ -14,8 +14,8 @@
       "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight",
-  "description": "`CodeEnvironment/Public` already has CocoIndex semantic search, Code Graph MCP for structural queries, and Spec Kit Memory for context preservation, b",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/002-codesight",
+  "description": "`CodeEnvironment/Public` already has CocoIndex semantic search, Code Graph MCP for structural queries, and Spec Kit Memory for context preservation,",
   "keywords": [
     "codeenvironment",
     "public",
@@ -34,11 +34,11 @@
     "context",
     "preservation"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.115Z",
+  "lastUpdated": "2026-07-10T06:23:59.761Z",
   "specId": "002",
   "folderSlug": "codesight",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "001-research-and-baseline"
   ],

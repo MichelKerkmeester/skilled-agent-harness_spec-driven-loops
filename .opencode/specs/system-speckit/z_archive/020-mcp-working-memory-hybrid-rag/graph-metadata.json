@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag",
-  "spec_folder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag",
+  "packet_id": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag",
+  "spec_folder": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag",
   "parent_id": null,
   "children_ids": [
     "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/001-foundation-phases-0-1-1-5",
@@ -10,7 +10,14 @@
     "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/004-post-research-wave-1-governance-foundations",
     "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/005-post-research-wave-2-controlled-delivery",
     "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/006-post-research-wave-3-outcome-confirmation",
-    "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/007-documentation-alignment"
+    "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/007-documentation-alignment",
+    "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/001-foundation-phases-0-1-1-5",
+    "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/002-extraction-rollout-phases-2-3",
+    "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/003-memory-quality-qp-0-4",
+    "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/004-post-research-wave-1-governance-foundations",
+    "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/005-post-research-wave-2-controlled-delivery",
+    "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/006-post-research-wave-3-outcome-confirmation",
+    "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/007-documentation-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -183,7 +190,7 @@
     ],
     "causal_summary": "This archived system-spec-kit archive folder captures work related to MCP Working Memory Hybrid Rag",
     "created_at": "2026-04-12T09:02:53.570Z",
-    "last_save_at": "2026-06-23T03:49:59.569Z",
+    "last_save_at": "2026-07-10T06:23:08.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

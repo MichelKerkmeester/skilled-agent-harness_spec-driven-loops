@@ -16,7 +16,6 @@
       "completion claim reconciliation"
     ],
     "key_topics": [
-      "026",
       "integrity",
       "audit",
       "changelog",
@@ -26,8 +25,9 @@
       "reconciliation",
       "program",
       "tracks",
-      "634",
-      "sub-packets"
+      "sub-packets",
+      "recently",
+      "drift"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -80,7 +80,7 @@
     ],
     "causal_summary": "The 026 program (8 tracks, ~634 sub-packets) recently had changelog audit drift and completion-claim reconciliation remediated",
     "created_at": "2026-06-04T18:53:35.320Z",
-    "last_save_at": "2026-07-02T05:31:10.969Z",
+    "last_save_at": "2026-07-10T06:24:35.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

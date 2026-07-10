@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log"
     last_updated_at: "2026-06-07T16:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Marked implementation + verification tasks complete"

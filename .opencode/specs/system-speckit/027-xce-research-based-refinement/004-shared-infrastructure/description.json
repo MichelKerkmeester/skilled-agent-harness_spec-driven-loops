@@ -12,11 +12,10 @@
     "008-mcp-config-alignment-reelection-default",
     "009-code-graph-code-only-indexing"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
-  "description": "Several 027 phases live in the shared layers that span subsystems: the daemon CLI front-doors, command presentation/workflow separation, the storage a",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure",
+  "description": "Several 027 phases live in the shared layers that span subsystems: the daemon CLI front-doors, command presentation/workflow separation, the storage",
   "keywords": [
     "several",
-    "027",
     "phases",
     "live",
     "shared",
@@ -32,11 +31,11 @@
     "separation",
     "storage"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.525Z",
+  "lastUpdated": "2026-07-10T06:24:17.972Z",
   "specId": "004",
   "folderSlug": "shared-infrastructure",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement"
   ],
   "memorySequence": 0,

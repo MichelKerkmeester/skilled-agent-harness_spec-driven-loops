@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate"
     last_updated_at: "2026-06-10T11:05:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Implemented idempotency receipts and near-duplicate hints"

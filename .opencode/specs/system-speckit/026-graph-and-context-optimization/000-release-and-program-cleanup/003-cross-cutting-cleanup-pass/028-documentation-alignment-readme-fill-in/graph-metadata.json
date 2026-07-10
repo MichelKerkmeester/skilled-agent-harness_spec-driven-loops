@@ -28,7 +28,6 @@
       "doc",
       "alignment",
       "phase",
-      "053",
       "multi-ai-council",
       "frontmatter",
       "extension",
@@ -36,7 +35,8 @@
       "migration",
       "predicates",
       "folder",
-      "readme"
+      "readme",
+      "utils"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -53,14 +53,14 @@
       "shared/predicates/README.md",
       ".opencode/skills/system-spec-kit/shared/predicates/README.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/cli-claude-code/references/integration_patterns.md",
       ".opencode/skills/system-spec-kit/shared/parsing/README.md",
       ".opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md",
-      ".opencode/skills/system-spec-kit/templates/manifest/EXTENSION_GUIDE.md"
+      ".opencode/skills/system-spec-kit/templates/manifest/EXTENSION_GUIDE.md",
+      ".opencode/skills/system-spec-kit/templates/manifest/MIGRATION.md",
+      ".opencode/skills/system-spec-kit/shared/predicates/boolean-expr.ts"
     ],
     "entities": [
       {
@@ -124,18 +124,6 @@
         "source": "derived"
       },
       {
-        "name": "skill_reference_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/SKILL.md",
@@ -157,6 +145,12 @@
         "name": "base-non-interactive-invocation.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md",
+        "source": "derived"
+      },
+      {
+        "name": "boolean-expr.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/predicates/boolean-expr.ts",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Approach Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Five doc-quality drift items have accumulated under `.opencode/skills/system-spec-kit/`: (1) the `references/multi-ai-council/` directory has 6 files with inconsistent frontmatter (only 1 of 6 conforms to `skillreferencetemplate.md`); (2) two manifest maintainer docs (`templates/manifest/EXTENSIONGUIDE.md`, `MIGRATION.md`) lack reference frontmatter entirely; (3) `shared/predicates/` (560 LOC, 1 source + tests) has no folder README despite all 9 sibling directories under `shared/` having one; (4) `mcpserver/codegraph/lib/utils/` (64 LOC) has no folder README; (5) `mcpserver/skilladvisor/`",
     "created_at": "2026-05-07T10:45:30Z",
-    "last_save_at": "2026-07-02T05:31:10.646Z",
+    "last_save_at": "2026-07-10T06:24:15.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

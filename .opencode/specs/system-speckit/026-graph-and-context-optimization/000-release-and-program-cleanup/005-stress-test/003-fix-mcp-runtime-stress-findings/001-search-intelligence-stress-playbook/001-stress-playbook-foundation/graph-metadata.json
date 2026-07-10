@@ -39,7 +39,7 @@
       "comparison"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The system-spec-kit search and intelligence surfaces (memorysearch, memorycontext, codegraphquery, advisorrecommend, the intent classifier) grew organically across 26+ optimization packets",
     "created_at": "2026-06-08T11:31:18.243Z",
-    "last_save_at": "2026-07-02T05:31:10.721Z",
+    "last_save_at": "2026-07-10T06:24:31.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

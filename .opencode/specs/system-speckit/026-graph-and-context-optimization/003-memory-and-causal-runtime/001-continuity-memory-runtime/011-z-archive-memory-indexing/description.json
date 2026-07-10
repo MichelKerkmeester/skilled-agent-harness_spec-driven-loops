@@ -9,25 +9,18 @@
       "skilled-agent-orchestration/113-z-archive-memory-indexing"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing",
-  "description": "Un-exclude z_archive from memory index. ARCHIVE_MULTIPLIERS already penalizes z_archive content with multiplier 0.1 in scoring; the redundant EXCLUDED",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/011-z-archive-memory-indexing",
+  "description": "Un-exclude z_archive from memory index.",
   "keywords": [
     "un-exclude",
     "memory",
-    "index",
-    "already",
-    "penalizes",
-    "content",
-    "multiplier",
-    "scoring",
-    "redundant",
-    "excluded"
+    "index"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.897Z",
+  "lastUpdated": "2026-07-10T06:24:45.594Z",
   "specId": "011",
   "folderSlug": "z-archive-memory-indexing",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "001-continuity-memory-runtime"

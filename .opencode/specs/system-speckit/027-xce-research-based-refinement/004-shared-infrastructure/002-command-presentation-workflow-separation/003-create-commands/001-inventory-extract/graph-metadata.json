@@ -24,7 +24,6 @@
     "key_topics": [
       "003-create-commands",
       "001-inventory-extract",
-      "create",
       "commands",
       "inventory",
       "extract",
@@ -33,7 +32,8 @@
       "markdown",
       "plan",
       "workflow",
-      "tasks"
+      "tasks",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Create Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:13.922Z",
+    "last_save_at": "2026-07-10T06:22:14.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

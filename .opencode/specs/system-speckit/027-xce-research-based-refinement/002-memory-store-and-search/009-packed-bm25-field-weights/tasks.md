@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights"
     last_updated_at: "2026-06-10T20:40:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "All implementation and verification tasks completed with measured packed BM25 evidence"

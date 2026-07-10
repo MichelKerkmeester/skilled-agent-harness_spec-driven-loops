@@ -37,8 +37,8 @@
       "pid",
       "check",
       "arc",
-      "010",
-      "004"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "25 stale reranksidecar workers accumulated on this machine consuming ~16 GB RAM",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-02T05:31:12.276Z",
+    "last_save_at": "2026-07-10T06:22:55.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

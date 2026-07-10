@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage"
     last_updated_at: "2026-06-07T19:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Scaffolded packet and dispatched 2 gpt-5.5 agents for the two fixes"

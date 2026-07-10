@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/003-unified-graph-retrieval",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/003-unified-graph-retrieval",
   "description": "The current server contains useful graph-related signals, but they are distributed across subsystems and do not form one coherent retrieval path",
   "keywords": [
     "current",
@@ -17,11 +17,11 @@
     "retrieval",
     "path"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.939Z",
+  "lastUpdated": "2026-07-10T06:24:00.732Z",
   "specId": "003",
   "folderSlug": "unified-graph-retrieval",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "008-hydra-db-based-features"

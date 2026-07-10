@@ -7,7 +7,7 @@ importance_tier: "useful"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/006-mcp-launcher-concurrency/009-launcher-eperm-parity-fix"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/009-launcher-eperm-parity-fix"
     last_updated_at: "2026-05-18T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "All tasks complete"

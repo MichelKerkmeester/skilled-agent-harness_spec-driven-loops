@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/006-bge-m3-hybrid-evaluation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/006-bge-m3-hybrid-evaluation"
     last_updated_at: "2026-05-12T22:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Planning scaffold; 009 must ship first"

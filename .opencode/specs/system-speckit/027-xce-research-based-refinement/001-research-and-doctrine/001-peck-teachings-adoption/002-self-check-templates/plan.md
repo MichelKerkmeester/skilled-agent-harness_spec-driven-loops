@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates"
     last_updated_at: "2026-06-10T04:32:22Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed self-check guidance in manifest templates"

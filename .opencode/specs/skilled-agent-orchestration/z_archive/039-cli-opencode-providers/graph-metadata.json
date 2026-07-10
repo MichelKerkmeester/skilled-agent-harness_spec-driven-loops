@@ -39,17 +39,17 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/README.md",
+      ".opencode/skills/cli-opencode/graph-metadata.json",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
       ".opencode/skills/cli-opencode/references/integration_patterns.md",
       ".opencode/skills/cli-opencode/references/opencode_tools.md",
       ".opencode/skills/cli-opencode/references/agent_delegation.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
       ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/cli-opencode/graph-metadata.json",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -66,6 +66,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -105,12 +111,6 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-opencode/graph-metadata.json",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -147,12 +147,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -171,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "Provider Auth Pre",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -178,12 +178,6 @@
       },
       {
         "name": "Default Invocation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Provider Auth Pre",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,11 +193,17 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-opencode skill currently treats `github-copilot` as the default provider with `gpt-5.4` and `claude-sonnet-4.6` surfaced by name across SKILL.md, README.md, references, prompt templates, and the manual testing playbook",
     "created_at": "2026-04-29T10:45:14Z",
-    "last_save_at": "2026-06-23T03:49:49.336Z",
+    "last_save_at": "2026-07-10T06:22:31.214Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,9 +212,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1fb8e0cb1f59a00e5e6c18cd93a53451de16a7709feb2992d7e0aabda576fafe",
+    "source_fingerprint": "sha256:23562dce2ecea23e53f493a155acf2e33668f56732eeb2c0bbd4824ec1418d0e",
     "source_doc_hashes": {
-      "spec.md": "6099af635075581760bac8e5d26a717cb68b074031dfed932af8ad63d87822e4",
+      "spec.md": "23e762689dc6447f3e3a24ce006fb7b33e1f613f0c5d177cb914c4b62647f6d6",
       "plan.md": "b0bdef2e029bad79ef61257bcbdfcb02603d4466cd5cd9e2314dc6bf8699026a",
       "tasks.md": "0f1fb70a796304f584235ba90df1775bdb93f2fe999e83fd1dad23810238d166",
       "implementation-summary.md": "eb2f20e513c2ff96ad1a1bebf6af645d9da173c72d1ce72ea9697742f1e56753"

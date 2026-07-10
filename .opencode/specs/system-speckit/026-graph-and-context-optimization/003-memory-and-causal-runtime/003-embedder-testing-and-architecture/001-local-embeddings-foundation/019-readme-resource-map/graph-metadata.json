@@ -22,7 +22,6 @@
       "readme staleness map"
     ],
     "key_topics": [
-      "019",
       "readme",
       "resource",
       "map",
@@ -33,7 +32,8 @@
       "audit",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Inventory every README in the repo, identify staleness against the 014 line, and apply the edits to align canonical READMEs with current code state.",
     "created_at": "2026-05-13T15:30:00Z",
-    "last_save_at": "2026-07-02T05:31:11.595Z",
+    "last_save_at": "2026-07-10T06:24:03.067Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-13T15:30:00Z",
     "source_docs": [
@@ -211,9 +211,9 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:959f541ed275ba3eae11091209b63f296f610edbba7d3e70ad2ef5f8c8a451f5",
+    "source_fingerprint": "sha256:c2ed016a9eb1cfc0efd8f501440df2189acc49efc1a959336f987da537427fd6",
     "source_doc_hashes": {
-      "spec.md": "5034942d07c04e91e424d1a09b28b1bea43fd59186f2a448dc47bd3483c691d5",
+      "spec.md": "11b6fec11047896a9180a156584b4ed03dfc18d1568ad763210c585c90f33686",
       "plan.md": "422db39b9c03dbf400151eb5ce34e9f24bf7d46aa6a11ab4f4ce21aaa5763def",
       "tasks.md": "a1da33b8f3cf1d6716056007d1ef655c9a5715c5bcf857e4b9e2917452ef5524",
       "implementation-summary.md": "bb015bffdca55ba2ae1fb18e9c767923a31071effaa5e6f6161358cd07a0edb4",

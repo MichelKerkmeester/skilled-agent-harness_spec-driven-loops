@@ -45,7 +45,6 @@
     "status": "complete",
     "key_files": [
       ".claude/mcp.json",
-      ".codex/config.toml",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/changelog/v3.5.0.4.md",
       "spec.md",
@@ -59,12 +58,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Daemon re-election is the only thing that keeps the shared mk-spec-memory daemon alive when its owning session disposes, but it shipped default-off and was enabled only in a gitignored machine-local `.env.local`",
     "created_at": "2026-06-07T20:00:57Z",
-    "last_save_at": "2026-07-02T05:31:12.938Z",
+    "last_save_at": "2026-07-10T06:23:43.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

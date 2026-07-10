@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/009-causal-graph-channel-routing"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp"
     last_updated_at: "2026-05-08T16:30:00Z"
     last_updated_by: "handover-refinement"
     recent_action: "Packet closed 2026-05-08; 2026-05-11 deep review verdict CONDITIONAL; remediation tracked in 002-fix-deep-review-findings-for-causal-graph-channel-routing/"

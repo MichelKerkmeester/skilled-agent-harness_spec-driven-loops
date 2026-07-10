@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set",
   "description": "Per-result `confidence.value` was only ~40% absolute relevance, so a strong-but-isolated high-cosine hit could be capped at \"medium\" - dragged down by",
   "keywords": [
     "per-result",
@@ -16,11 +16,11 @@
     "medium",
     "dragged"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.359Z",
+  "lastUpdated": "2026-07-10T06:24:17.929Z",
   "specId": "004",
   "folderSlug": "confidence-calibration-labeled-set",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "016-search-and-output-intelligence"

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability"
     last_updated_at: "2026-06-11T08:10:00Z"
     last_updated_by: "gpt-5.5"
     recent_action: "Verified vector durability remediation"

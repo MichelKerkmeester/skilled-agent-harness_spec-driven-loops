@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/006-presentation-adherence-research",
   "description": "Live bare-command tests showed mixed presentation-contract adherence: the doctor router menu and Gate-3 blocks rendered verbatim while /memory:search",
   "keywords": [
     "live",
@@ -20,11 +20,11 @@
     "memory",
     "search"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.776Z",
+  "lastUpdated": "2026-07-10T06:24:08.500Z",
   "specId": "006",
   "folderSlug": "presentation-adherence-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation"

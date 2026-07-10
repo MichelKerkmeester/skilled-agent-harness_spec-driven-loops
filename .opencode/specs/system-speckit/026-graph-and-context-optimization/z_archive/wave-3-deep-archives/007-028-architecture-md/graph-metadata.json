@@ -26,7 +26,6 @@
       "system-code-graph",
       "architecture",
       "mk-code-index",
-      "014",
       "implementation",
       "plan",
       "tasks",
@@ -34,7 +33,8 @@
       "extracted",
       "skill",
       "runtime",
-      "readme"
+      "readme",
+      "documentation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The extracted `system-code-graph` skill has runtime and README documentation, but it lacks a dedicated `architecture.md` that mirrors the sibling `system-spec-kit` architecture pattern",
     "created_at": "2026-05-14T17:43:18Z",
-    "last_save_at": "2026-07-02T05:31:13.029Z",
+    "last_save_at": "2026-07-10T06:24:29.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,12 +1,11 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands",
   "description": "The current `/memory:search` command (667 lines) combines two fundamentally different concerns:",
   "keywords": [
     "current",
     "memory",
     "search",
     "command",
-    "667",
     "lines",
     "combines",
     "two",
@@ -14,11 +13,11 @@
     "different",
     "concerns"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.253Z",
+  "lastUpdated": "2026-07-10T06:22:58.704Z",
   "specId": "068",
   "folderSlug": "memory-index-commands",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

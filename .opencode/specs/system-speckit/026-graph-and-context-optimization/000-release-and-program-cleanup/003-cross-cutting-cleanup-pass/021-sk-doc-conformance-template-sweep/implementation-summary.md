@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/021-sk-doc-conformance-template-sweep"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep"
     last_updated_at: "2026-04-30T11:42:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "ALL TIER 1-4 SUBSTANTIVELY COMPLETE. 17/17 modified root surfaces pass validate_document.py 0 issues. handover.md authored. generate-context.js full save indexed packet 040. Pre-existing strict-mode validator quirks (1 error + 3 warnings) documented as known limitations from session start, content unaffected."

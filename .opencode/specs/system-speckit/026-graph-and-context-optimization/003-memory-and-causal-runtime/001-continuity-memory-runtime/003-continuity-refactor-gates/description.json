@@ -16,8 +16,8 @@
       "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
-  "description": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into siblin",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates",
+  "description": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into",
   "keywords": [
     "006-continuity-refactor-gates",
     "now",
@@ -31,14 +31,13 @@
     "promoted",
     "former",
     "follow-on",
-    "work",
-    "siblin"
+    "work"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.839Z",
+  "lastUpdated": "2026-07-10T06:23:16.500Z",
   "specId": "003",
   "folderSlug": "continuity-refactor-gates",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "001-continuity-memory-runtime"

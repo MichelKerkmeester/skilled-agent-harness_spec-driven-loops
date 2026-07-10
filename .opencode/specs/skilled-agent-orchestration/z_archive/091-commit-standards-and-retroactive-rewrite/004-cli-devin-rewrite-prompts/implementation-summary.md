@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-cli-devin-rewrite-prompts"
+    packet_pointer: "skilled-agent-orchestration/z_archive/091-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts"
     last_updated_at: "2026-05-16T09:42:35Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

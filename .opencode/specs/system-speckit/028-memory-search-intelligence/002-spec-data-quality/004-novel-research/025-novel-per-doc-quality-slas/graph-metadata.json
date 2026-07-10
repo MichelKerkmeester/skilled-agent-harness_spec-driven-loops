@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time",
     "created_at": "2026-06-27T17:15:39.283Z",
-    "last_save_at": "2026-07-06T19:16:37.597Z",
+    "last_save_at": "2026-07-10T06:21:54.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "plan.md": "e8f6d0e0aacdf38d722d8ad3afe8824a19083158f42a3dad5b740ebe9a1ba725",
       "tasks.md": "a90c4272c4235c07a510a334e2543feaf9e2c30fba742e93cb4aba29041cd034",
       "checklist.md": "f9d6d0ea2f8ce4bdb8b71e533b5adfebb495d71c43bc04cec8d4563d84e07b5a",
-      "implementation-summary.md": "f1a0e434da7030d3f03842636f7f923da381a7db8976bfaf9f609aa16b32d115"
+      "implementation-summary.md": "41a59d2e17de1f4f361338fc1e0463b3dd9efa8151fcb4a189a2c6039880d8b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

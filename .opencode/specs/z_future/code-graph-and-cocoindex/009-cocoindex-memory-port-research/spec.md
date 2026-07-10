@@ -16,7 +16,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research"
+    packet_pointer: "z_future/code-graph-and-cocoindex/009-cocoindex-memory-port-research"
     last_updated_at: "2026-05-13T07:30:00Z"
     last_updated_by: "claude-opus-4-7-plan-mode"
     recent_action: "Scaffolded packet, restored parent metadata, authored research scope"

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives"
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives"
     last_updated_at: "2026-04-24T14:55:00Z"
     last_updated_by: "copilot-gpt-5-4"
     recent_action: "Backfilled memory block"

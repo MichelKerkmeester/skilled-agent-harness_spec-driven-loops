@@ -31,8 +31,8 @@
       "heartbeat",
       "mk-spec-memory",
       "dual",
-      "fix",
-      "launcher-lease"
+      "launcher-lease",
+      "regression"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Under concurrent multi-session use mk-spec-memory could (O6-1) form a duplicate owner/daemon on concurrent cold start (lease checked before the bootstrap lock; a loser could skip the lock and both write a self-owned lease + launch); (O6-2) race a secondary's dead-socket respawn against the owner's scheduled relaunch (no reap of the recorded owner, no lease revalidation in launchServer()); and (O6-3) corrupt a client's MCP stream during the owner boot gap with a plaintext `LEASEHELDBY` line",
     "created_at": "2026-06-05T06:23:26.342Z",
-    "last_save_at": "2026-07-02T05:31:12.114Z",
+    "last_save_at": "2026-07-10T06:24:36.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

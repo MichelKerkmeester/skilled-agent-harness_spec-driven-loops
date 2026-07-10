@@ -3,7 +3,6 @@
   "description": "Packet 042 surfaced 36 features with thin or absent stress coverage that were not blocking but represent ongoing release-readiness debt: 6 P1 (thin",
   "keywords": [
     "packet",
-    "042",
     "surfaced",
     "features",
     "thin",
@@ -16,7 +15,7 @@
     "release-readiness",
     "debt"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.222Z",
+  "lastUpdated": "2026-07-10T06:22:44.972Z",
   "specId": "005",
   "folderSlug": "fix-stress-test-coverage-gap",
   "parentChain": [

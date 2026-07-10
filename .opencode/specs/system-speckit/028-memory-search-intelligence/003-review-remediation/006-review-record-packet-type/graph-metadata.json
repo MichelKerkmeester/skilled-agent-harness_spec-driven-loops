@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Lean review-record spec packets carry a spec.md plus a review report under `review/review-report.md` and nothing else: no plan, no tasks, no checklist, no implementation-summary",
     "created_at": "2026-06-24T15:54:41.278Z",
-    "last_save_at": "2026-07-06T19:16:40.092Z",
+    "last_save_at": "2026-07-10T06:22:37.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "spec.md": "a4d88b002cd1ecf8aa7c120c0dc44cda3b7f39de676d6123fcbb2ad4e1b78812",
       "plan.md": "ffe51e7dbbfdf90423d12ba9d7f491dec1769e94a4035735a98e085ec71d9b94",
       "tasks.md": "b167ed191678fdf66f3f4543f919aa6a60af0dbe74e5a409bd64f72db2d3c82f",
-      "implementation-summary.md": "6249c495f42e17e7ef993133a49e71b3f4ce0d2fd00a1e775fa62f1bd1db1407"
+      "implementation-summary.md": "805713135c1167dbb11d6ede5bb1d6a345aadd20116aa19d90d99942e229afa0"
     },
     "last_active_child_id": null,
     "last_active_at": null

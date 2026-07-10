@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/003-true-citation-ledger"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/003-true-citation-ledger"
     last_updated_at: "2026-07-06T18:50:01.047Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented both refinements behind the flag, re-benchmarked, verdict stays REFINE"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-harden-deep-review-iteration-prompts"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/009-harden-deep-review-iteration-prompts"
     last_updated_at: "2026-05-11T05:45:03Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

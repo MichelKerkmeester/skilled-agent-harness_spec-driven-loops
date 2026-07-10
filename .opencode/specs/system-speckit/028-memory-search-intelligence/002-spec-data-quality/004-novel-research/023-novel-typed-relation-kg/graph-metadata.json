@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The save-time LLM typed-relation backfill is scaffolded but unwired",
     "created_at": "2026-06-27T17:15:38.746Z",
-    "last_save_at": "2026-07-06T18:49:50.596Z",
+    "last_save_at": "2026-07-10T06:22:27.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "plan.md": "51f98d64a70b5a165ec4913e249100f28edc57868e1ff09a49fd60e01f87837c",
       "tasks.md": "f307f2bc8f87e8cddb13eeeeefb8c8e0e4be0965c5e1d20f15548b8bfc9620f7",
       "checklist.md": "1758735d14df4147d84df68fc661543c2631592ea459e5f764ed7449d1033d45",
-      "implementation-summary.md": "993af49642c09b8841be0d76f6fafdf2dd057c73953d699e2acc4f89cc69aeb4"
+      "implementation-summary.md": "82f19cafa7337e32c38a2b609d194aa8958165d77eab3573962174ae2479dec4"
     },
     "last_active_child_id": null,
     "last_active_at": null

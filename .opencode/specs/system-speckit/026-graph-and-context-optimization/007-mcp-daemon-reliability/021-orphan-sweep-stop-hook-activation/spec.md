@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation"
     last_updated_at: "2026-06-07T17:20:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Added flag-gated orphan-sweep fallback to session-cleanup.sh (default off)"

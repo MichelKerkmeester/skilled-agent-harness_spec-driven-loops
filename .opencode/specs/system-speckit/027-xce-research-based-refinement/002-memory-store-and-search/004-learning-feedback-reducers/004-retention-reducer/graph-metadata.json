@@ -23,10 +23,8 @@
       "009 retention reducer implementation summary"
     ],
     "key_topics": [
-      "009",
       "retention",
       "reducer",
-      "004",
       "feedback-retention-reducer",
       "edge-tier-basement",
       "plan",
@@ -34,7 +32,9 @@
       "checklist",
       "implementation",
       "summary",
-      "level"
+      "level",
+      "child",
+      "packet"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Level 2 child packet for learned retention and edge-floor reducer logic.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-07-02T05:31:13.650Z",
+    "last_save_at": "2026-07-10T06:23:40.883Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

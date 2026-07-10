@@ -27,7 +27,6 @@
       "spec doc health bypass tasks"
     ],
     "key_topics": [
-      "044",
       "template",
       "contract",
       "divergence",
@@ -38,7 +37,8 @@
       "doc",
       "manual",
       "fallback",
-      "save"
+      "save",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "During the 2026-05-14 substrate repair wave, several Codex-authored spec packets passed `validate.sh --strict` but `memorysave` dry-runs rejected the same canonical docs with `missingblanklineafterfrontmatter` and `missingsection` violations",
     "created_at": "2026-05-14T16:44:57Z",
-    "last_save_at": "2026-07-02T05:31:11.688Z",
+    "last_save_at": "2026-07-10T06:24:46.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

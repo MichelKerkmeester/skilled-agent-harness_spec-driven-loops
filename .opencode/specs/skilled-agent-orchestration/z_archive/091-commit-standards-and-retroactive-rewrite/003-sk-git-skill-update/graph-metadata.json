@@ -24,7 +24,6 @@
     "key_topics": [
       "112-sk-git-skill-update",
       "sk-git",
-      "update",
       "commit",
       "standards",
       "git-007",
@@ -33,20 +32,39 @@
       "refresh",
       "plan",
       "tasks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/assets/commit_message_template.md",
       ".opencode/skills/sk-git/references/commit_workflows.md",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -69,24 +87,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "sk-git documents commit standards in two places — SKILL.md §3 and `assets/commitmessagetemplate.md` — and both are partially stale relative to the decisions locked in Phase 002",
     "created_at": "2026-05-16T09:42:34Z",
-    "last_save_at": "2026-06-23T03:49:50.420Z",
+    "last_save_at": "2026-07-10T06:22:55.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:353a216c5bef4ef96c633dd025ac33084fbda65438e0524612f9042cb98884e3",
+    "source_fingerprint": "sha256:8b72bca3e5f549a7796566ba97eb632a2b0f72990db3ed844f914d5f36a7a825",
     "source_doc_hashes": {
-      "spec.md": "bc5b8980c386061987a08066d5b698424518e5e9b97e49d23c5bdc5a3738a0e8",
-      "plan.md": "8c2c347855fda243eabc9251df4fb71f1e85c29634ea0f1d219b7ee46f23d3f6",
-      "tasks.md": "c86246d6bfd6cf0583241438c8ead2c041649434a77ced8ddfc4a48c03a56efc",
+      "spec.md": "52de8586d3792e152bda69821960d03dbf2eb4ac881b5977565b7023f58fb5f7",
+      "plan.md": "70cc757b6d84824b5a6022611bf46aad4f5ba53936e12674071d75b570f173b2",
+      "tasks.md": "41f6652e1c3fc4d479b745aee43670c8d80cabc25f1e5bd92221efd61566fccf",
       "implementation-summary.md": "b0ab7371b242501b3b5d66aa19fde99d767c778623bf7c7364ac821bd130f9c1"
     },
     "last_active_child_id": null,

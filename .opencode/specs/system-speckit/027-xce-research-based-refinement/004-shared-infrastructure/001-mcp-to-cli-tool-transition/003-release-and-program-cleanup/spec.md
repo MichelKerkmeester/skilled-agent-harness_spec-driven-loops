@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-release-and-program-cleanup"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-release-and-program-cleanup"
     last_updated_at: "2026-06-10T06:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Phase complete: doc surface aligned, SC-001/SC-002 green, stress set executed"

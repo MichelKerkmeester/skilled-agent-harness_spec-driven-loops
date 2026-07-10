@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals"
     last_updated_at: "2026-05-26T17:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored phase-parent map during the 026 wave-4 phase work."

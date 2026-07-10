@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/006-causal-graph-relation-window-metrics"
     last_updated_at: "2026-04-27T10:05:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Implemented source/test patches; targeted Vitest and dist marker checks pass"

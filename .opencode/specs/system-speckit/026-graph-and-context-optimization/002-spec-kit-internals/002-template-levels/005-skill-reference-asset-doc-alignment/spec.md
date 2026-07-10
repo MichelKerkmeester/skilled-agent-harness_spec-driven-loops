@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "spec"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-skill-reference-asset-doc-alignment"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment"
     last_updated_at: "2026-05-02T06:36:10Z"
     last_updated_by: "codex"
     recent_action: "Defined audit scope"

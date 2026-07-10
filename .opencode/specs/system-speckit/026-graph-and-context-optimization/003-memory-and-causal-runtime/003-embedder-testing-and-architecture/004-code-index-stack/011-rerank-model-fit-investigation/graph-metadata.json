@@ -97,6 +97,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Cohere Rerank",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,12 +110,6 @@
       },
       {
         "name": "Apple Silicon",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Does Voyage",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -181,21 +181,21 @@
         "source": "derived"
       },
       {
-        "name": "Phase",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
+        "name": "Sentence Transformers",
+        "kind": "proper_noun",
+        "path": "research.md",
         "source": "derived"
       },
       {
-        "name": "Sentence Transformers",
+        "name": "Hugging Face",
         "kind": "proper_noun",
         "path": "research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Investigate whether BAAI/bge-reranker-v2-m3 is the right cross-encoder for code-retrieval queries on a 4-mirror codebase. The May 18 evening instrumented bench surfaced a structural failure mode: the reranker demotes implementations below tests/refs on paraphrase-heavy queries (lexical-cue density rewarded over semantic role). This packet researches alternative cross-encoder reranker models trained on code (or code-adjacent retrieval), measures the four failure-case probes (3, 10, 14, 18) against the alternatives, and recommends a swap if any alternative materially improves the failure-mode",
+    "causal_summary": "Investigate whether BAAI/bge-reranker-v2-m3 is the right cross-encoder for code-retrieval queries on a 4-mirror codebase. The May 18 evening instrumented bench surfaced a structural failure mode: the reranker demotes implementations below tests/refs on paraphrase-heavy queries (lexical-cue density rewarded over semantic role).",
     "created_at": "2026-05-18T19:21:19.316Z",
-    "last_save_at": "2026-07-02T05:31:11.921Z",
+    "last_save_at": "2026-07-10T06:23:38.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:739fa116e94a9cf1e0a8edcf4da41b50e565ae4b223ff0cdeb9019e333071ecd",
+    "source_fingerprint": "sha256:25805e92bd1278f4ff1f5c77a931c746bffb61b12b328fd93c37496f3a27f4c9",
     "source_doc_hashes": {
-      "spec.md": "e901243e8768b4c62766c0315b5871329853d46aaea76392012c13ffab9bf0c3",
+      "spec.md": "90d4490f14ad2aeecbd76fe256d08554226f9e66a426a24f178e7ce0cdbd22c0",
       "plan.md": "f67bfcfd871705f17a0f0022ea35b8d869bbba280d01d79f7245372c0e7412e2",
       "tasks.md": "cdceaf8781e06a930313aa10f1805dad6e9719e4c73ba27d42a22e113c0760b9",
-      "implementation-summary.md": "26ac2fa13a560a8ec546a24b2031f009b59b0869142c1b54389731b5fbe0b194",
+      "implementation-summary.md": "068b7b75f76dfffc95b506240b10d195e2ebf752ff5039a178e5a09cb7c55770",
       "research.md": "a9c4374f702a4ff79546d5933c42238e84878a68e818c900b16f2c12eb89eb0c"
     },
     "last_active_child_id": null,

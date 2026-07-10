@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-fix-template-deferred-followups"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups"
     last_updated_at: "2026-05-01T20:32:55Z"
     last_updated_by: "codex"
     recent_action: "Tracked packet checks"

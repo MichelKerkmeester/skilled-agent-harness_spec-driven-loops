@@ -27,7 +27,6 @@
       "028 review remediation schema concurrency"
     ],
     "key_topics": [
-      "028",
       "memory",
       "schema",
       "concurrency",
@@ -35,10 +34,11 @@
       "derived-id",
       "identity",
       "split",
-      "fix",
       "consolidation",
       "embedding",
-      "lock"
+      "lock",
+      "retention",
+      "spare-only"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Three confirmed P1 defects sit in the memory schema and storage layer: a content-addressed identity that splits across the migration versus live-write boundary, a semantic-edge embedding pass that runs inside a write lock without refreshing its maintenance marker and a retention sweep that applies stale pre-transaction delete decisions on its new spare axes",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:38.875Z",
+    "last_save_at": "2026-07-10T06:23:58.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "plan.md": "0118dd2cfe91f715aad6a7a1c254145d6ccadc13364ac34a5a93723f3c3dde6e",
       "tasks.md": "715797efeb56dc5a121efb66d98807fd7625b32cf82db73f56aaf2fb5ac2db2b",
       "checklist.md": "7fa91a3fec9f0bf0338553f967ac59f2b4f692012a32618550ba00194b0033ff",
-      "implementation-summary.md": "e5ed2cff78f95006a26b99774e5b0403b9f0892566d41585dfcd7f79fd792e1b"
+      "implementation-summary.md": "ab0653f2b8b19ecf4b66c875c0ef50005970386833a08e6828305e2fb15a9cbe"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "026-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene"
     last_updated_at: "2026-05-27T08:53:23Z"
     last_updated_by: "main_agent"
     recent_action: "implemented-success-vector-coverage-repair-flag-on-reconcile-tool-4-tests-green"

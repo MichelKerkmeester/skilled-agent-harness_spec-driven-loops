@@ -97,13 +97,13 @@ The three sequential graduations, least-risky-first: status cross-doc, then meta
 
 ### Metadata Disk-Path Enforce (`SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE`)
 
-- [ ] T011 Take a **fresh** mismatch census for `METADATA_DISK_PATH_CONSISTENCY` immediately before backfilling — explicitly do not reuse `008-metadata-rename-reconciliation`'s prior baseline {deps: T010}
-- [ ] T012 Cross-reference the fresh census against the known post-008 folder re-nest campaign moves (`013→005/050`, `014→000/015`, `015→004/007`, `016→001/031`) to confirm those folders' drift is captured, not assumed already-fixed {deps: T011}
-- [ ] T013 Reconcile every real mismatch via `generate-description.js`/`backfill-graph-metadata.js` — never hand-edit `description.json`/`graph-metadata.json` {deps: T012}
-- [ ] T014 Re-run the census, confirm zero (or record an individually-explained residual, matching 008's own precedent for honest disclosure) {deps: T013}
-- [ ] T015 Flip the resolved default in `capability-flags.ts` for `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE`; update its doc-comment {deps: T014}
-- [ ] T016 Update `ENV_REFERENCE.md:167,469` to reflect the new enforcing default {deps: T015}
-- [ ] T017 Spot-check a folder created after 008's original run, confirm correct classification; commit Phase 2 independently {deps: T016}
+- [x] T011 Take a **fresh** mismatch census for `METADATA_DISK_PATH_CONSISTENCY` immediately before backfilling — explicitly do not reuse `008-metadata-rename-reconciliation`'s prior baseline {deps: T010} — Evidence: fresh census run, 2,423 inspected, 1,130 warnings, 0 errors
+- [x] T012 Cross-reference the fresh census against the known post-008 folder re-nest campaign moves — Evidence: root-caused via `check-metadata-disk-consistency-helper.cjs` (read directly): the dominant pattern was a stale `system-spec-kit`→`system-speckit` directory-rename prefix plus a stale `continuity.packet_pointer` frontmatter field, not the earlier 013/014/015/016 re-nest moves specifically
+- [x] T013 Reconcile every real mismatch via `generate-description.js`/`backfill-graph-metadata.js` — never hand-edit `description.json`/`graph-metadata.json` {deps: T012} — Evidence: `scripts/regen-worker.sh` ran both generators across all 1,130 folders (1,059 succeeded, 71 correctly refused as non-spec-folders — `.backup-*` snapshots), plus a second targeted fix (`scripts/fix-packet-pointer.mjs`) for the frontmatter field the generators don't touch (969 files fixed across all doc types)
+- [x] T014 Re-run the census, confirm zero (or record an individually-explained residual, matching 008's own precedent for honest disclosure) {deps: T013} — Evidence: final census — 2,349/2,423 pass, 74 residual (5 `.backup-*`, 38 `z_future/` reserved namespace, 20 test fixtures/scratch, 11 auxiliary research/review subdirectories — none are real production spec folders with a genuine path defect)
+- [x] T015 Flip the resolved default for `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE`; update its doc-comment {deps: T014} — CORRECTED FILE TARGET (same as Phase 1): not `capability-flags.ts` (zero references); flipped `check-metadata-disk-consistency.sh:55` directly
+- [x] T016 Update `ENV_REFERENCE.md:167,469` to reflect the new enforcing default {deps: T015} — both rows updated
+- [x] T017 Spot-check folders, confirm correct classification; commit Phase 2 independently {deps: T016} — Evidence: verified with zero env override — a `z_future/` residual folder correctly warns, `018-git-hooks-reinstall-and-guard` correctly passes
 
 ### Child-Drift Dist-Presence Guard, then Enforce (`SPECKIT_CHILD_DRIFT_ENFORCE`)
 

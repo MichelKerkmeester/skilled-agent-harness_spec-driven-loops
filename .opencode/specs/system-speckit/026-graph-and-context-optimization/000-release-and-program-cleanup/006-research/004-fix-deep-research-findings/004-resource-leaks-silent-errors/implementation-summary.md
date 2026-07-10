@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-fix-deep-research-findings/005-resource-leaks-silent-errors"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/004-resource-leaks-silent-errors"
     last_updated_at: "2026-04-30T09:48:00Z"
     last_updated_by: "remediation-orchestrator"
     recent_action: "Implementation complete; 5 findings closed; 11 vitests added; stress baseline preserved"

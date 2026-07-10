@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/001-multihop-tail-appends"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/001-multihop-tail-appends"
     last_updated_at: "2026-07-06T18:49:58.292Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped the tail-append rewire and re-benchmarked, GRADUATE for deep-K"

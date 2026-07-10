@@ -40,13 +40,13 @@
       "concurrency",
       "arc",
       "lease",
-      "012",
       "daemon",
       "corruption",
       "umbrella",
       "12-child",
       "delivered",
-      "single-writer"
+      "single-writer",
+      "enforcement"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -111,7 +111,7 @@
     ],
     "causal_summary": "Umbrella for the 12-child launcher concurrency arc that delivered single-writer lease enforcement at the launcher boundary across all 3 MCP launchers (skill-advisor, code-graph, spec-memory), plus the review-driven hardening that followed.",
     "created_at": "2026-05-18T08:15:00Z",
-    "last_save_at": "2026-07-02T05:31:12.063Z",
+    "last_save_at": "2026-07-10T06:24:30.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

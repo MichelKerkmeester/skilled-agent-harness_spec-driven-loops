@@ -21,8 +21,8 @@
     "002-hardening-and-tests",
     "003-runtime-integration"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli",
-  "description": "The mk-spec-memory daemon's only client surface is the MCP protocol layer: mid-session transport disconnects permanently remove the tools, every sessi",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli",
+  "description": "The mk-spec-memory daemon's only client surface is the MCP protocol layer: mid-session transport disconnects permanently remove the tools, every",
   "keywords": [
     "mk-spec-memory",
     "daemon",
@@ -38,14 +38,13 @@
     "permanently",
     "remove",
     "tools",
-    "every",
-    "sessi"
+    "every"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.536Z",
+  "lastUpdated": "2026-07-10T06:24:27.834Z",
   "specId": "001",
   "folderSlug": "spec-memory-cli",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "001-mcp-to-cli-tool-transition"

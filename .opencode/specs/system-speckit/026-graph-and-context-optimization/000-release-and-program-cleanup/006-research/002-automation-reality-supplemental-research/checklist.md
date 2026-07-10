@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-automation-reality-supplemental-research"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research"
     last_updated_at: "2026-04-29T15:15:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All 21 checklist items verified"

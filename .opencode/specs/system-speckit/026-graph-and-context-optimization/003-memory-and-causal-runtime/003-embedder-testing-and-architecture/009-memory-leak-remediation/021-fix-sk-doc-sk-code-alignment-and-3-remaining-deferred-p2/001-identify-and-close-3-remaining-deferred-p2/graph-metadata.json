@@ -27,8 +27,6 @@
       "remaining deferred p2 implementation summary"
     ],
     "key_topics": [
-      "021",
-      "001",
       "identify",
       "deferred",
       "find",
@@ -38,10 +36,12 @@
       "tasks",
       "checklist",
       "adr",
-      "implementation"
+      "implementation",
+      "summary",
+      "investigation"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "scratch/p2-closure-tally.csv",
       "scratch/reconciliation-error.md",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The 015 investigation found 68 P2 findings",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-02T05:31:12.325Z",
+    "last_save_at": "2026-07-10T06:22:57.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,9 +212,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:937d18d4541f4da71090d10facdffc0075ba6a6d833014dcc764ac3e30e2230a",
+    "source_fingerprint": "sha256:485e6c5a88e908cfe7d0e7eff9330df18e45ceaf596939918ceb697c3c5d7c7d",
     "source_doc_hashes": {
-      "spec.md": "a5714def81a13bceaf628a1854ce5fb79506bc14fe7141e5772949559d36df99",
+      "spec.md": "0e14c7ddbf145c2c517da49b2e3cbaf8f7489544b964e87976abc60b9f1fc880",
       "plan.md": "e104a1dc8df140c0eed3768ff43b92ca8c948831d9f4f3f1a5a2cf61f4496ecb",
       "tasks.md": "8b9e14c7687e533e3f9cdb571f257eeb7257edd7a1b6c5ba9a023c03e863d39c",
       "checklist.md": "3d0c1cda2964cff25f2432a954d7e7e6fac0dea6b395b9b00e85f8c9f30d05a1",

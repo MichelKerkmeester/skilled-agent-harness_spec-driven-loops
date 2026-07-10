@@ -27,8 +27,8 @@
       "cli-copilot (fallback)"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
-  "description": "Reviewers, auditors, and successor phases have no quick way to answer \"what files did this packet touch\" without reading implementation-summary end-to",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation",
+  "description": "Reviewers, auditors, and successor phases have no quick way to answer \"what files did this packet touch\" without reading implementation-summary",
   "keywords": [
     "reviewers",
     "auditors",
@@ -42,14 +42,13 @@
     "touch",
     "without",
     "reading",
-    "implementation-summary",
-    "end-to"
+    "implementation-summary"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.167Z",
+  "lastUpdated": "2026-07-10T06:21:46.841Z",
   "specId": "002",
   "folderSlug": "resource-map-template-creation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals",
     "001-resource-map-deep-loop-fix"

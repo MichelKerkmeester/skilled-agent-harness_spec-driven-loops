@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration"
     last_updated_at: "2026-06-10T11:55:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed env docs and reducer integration tests"

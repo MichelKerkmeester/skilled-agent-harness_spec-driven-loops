@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating",
   "description": "`context-server.ts` opens SQLite and starts memory-owned background work during MCP startup",
   "keywords": [
     "context-server",
@@ -13,11 +13,11 @@
     "mcp",
     "startup"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.333Z",
+  "lastUpdated": "2026-07-10T06:23:10.925Z",
   "specId": "011",
   "folderSlug": "lazy-startup-gating",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

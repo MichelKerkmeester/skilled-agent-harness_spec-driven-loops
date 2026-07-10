@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/006-description-enrichment",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/006-description-enrichment",
   "description": "Two different quality gates validate file descriptions at different pipeline stages with partial overlap and divergent coverage",
   "keywords": [
     "two",
@@ -16,11 +16,11 @@
     "divergent",
     "coverage"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.031Z",
+  "lastUpdated": "2026-07-10T06:23:49.622Z",
   "specId": "006",
   "folderSlug": "description-enrichment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

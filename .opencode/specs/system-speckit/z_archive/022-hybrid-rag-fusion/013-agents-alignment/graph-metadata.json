@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/013-agents-alignment",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -25,7 +25,6 @@
       "summary"
     ],
     "key_topics": [
-      "013",
       "agent",
       "alignment",
       "runtime",
@@ -36,7 +35,8 @@
       "tasks",
       "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "original"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses",
     "created_at": "2026-04-12T09:02:50.287Z",
-    "last_save_at": "2026-06-23T03:50:00.200Z",
+    "last_save_at": "2026-07-10T06:22:47.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

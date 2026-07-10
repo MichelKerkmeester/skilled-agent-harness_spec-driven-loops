@@ -44,8 +44,6 @@
       ".opencode/skills/cli-opencode/references/agent_delegation.md",
       ".opencode/skills/cli-opencode/references/opencode_tools.md",
       ".opencode/skills/cli-opencode/SKILL.md",
-      ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
-      ".opencode/skills/sk-doc/references/global/quick_reference.md",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
@@ -57,7 +55,9 @@
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -94,18 +94,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "evergreen_packet_id_rule.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/quick_reference.md",
         "source": "derived"
       },
       {
@@ -154,6 +142,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Evergreen docs were carrying mutable packet and phase references",
     "created_at": "2026-04-29T20:05:00.000Z",
-    "last_save_at": "2026-07-02T05:31:10.599Z",
+    "last_save_at": "2026-07-10T06:24:34.910Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

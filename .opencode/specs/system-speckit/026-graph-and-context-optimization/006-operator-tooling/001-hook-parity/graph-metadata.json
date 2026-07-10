@@ -49,7 +49,6 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".claude/settings.local.json",
       ".github/hooks/superset-notify.json",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
@@ -61,12 +60,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "heading",
         "path": "resource-map.md",
         "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Runtime hook coverage drifted across Claude, Codex, Copilot, and the OpenCode plugin loader",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-07-07T12:26:24.837Z",
+    "last_save_at": "2026-07-10T06:23:00.695Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

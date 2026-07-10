@@ -1,12 +1,11 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/022-spec-doc-indexing-bypass",
-  "description": "`memoryindexscan({ force: true })` rejects 1,807 out of 1,807 spec documents (spec.md, plan.md, tasks.md, checklist.md, etc.) with status `rejected` a",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/022-spec-doc-indexing-bypass",
+  "description": "`memoryindexscan({ force: true })` rejects 1,807 out of 1,807 spec documents (spec.md, plan.md, tasks.md, checklist.md, etc.) with status `rejected`",
   "keywords": [
     "memoryindexscan",
     "force",
     "true",
     "rejects",
-    "807",
     "spec",
     "documents",
     "plan",
@@ -16,11 +15,11 @@
     "status",
     "rejected"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.389Z",
+  "lastUpdated": "2026-07-10T06:22:07.261Z",
   "specId": "022",
   "folderSlug": "spec-doc-indexing-bypass",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

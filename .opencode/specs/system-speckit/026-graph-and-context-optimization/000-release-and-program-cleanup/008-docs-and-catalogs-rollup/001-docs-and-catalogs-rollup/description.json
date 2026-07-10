@@ -1,20 +1,19 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
   "description": "Spec 026 shipped capabilities across 8 tracks over months",
   "keywords": [
     "spec",
-    "026",
     "shipped",
     "capabilities",
     "across",
     "tracks",
     "months"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.904Z",
+  "lastUpdated": "2026-07-10T06:23:13.341Z",
   "specId": "001",
   "folderSlug": "docs-and-catalogs-rollup",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "008-docs-and-catalogs-rollup"

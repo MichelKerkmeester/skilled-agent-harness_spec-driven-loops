@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-literal-spec-folder-names",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-literal-spec-folder-names",
   "description": "AI-derived spec-folder and phase slugs frequently default to generic placeholders that do not describe the concrete work being shipped",
   "keywords": [
     "ai-derived",
@@ -16,11 +16,11 @@
     "work",
     "shipped"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.795Z",
+  "lastUpdated": "2026-07-10T06:23:53.896Z",
   "specId": "003",
   "folderSlug": "literal-spec-folder-names",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals"
   ],

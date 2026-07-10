@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/024-compact-code-graph/001-precompact-hook",
-  "spec_folder": "system-spec-kit/z_archive/024-compact-code-graph/001-precompact-hook",
-  "parent_id": "system-spec-kit/z_archive/024-compact-code-graph",
+  "packet_id": "system-speckit/z_archive/024-compact-code-graph/001-precompact-hook",
+  "spec_folder": "system-speckit/z_archive/024-compact-code-graph/001-precompact-hook",
+  "parent_id": "system-speckit/z_archive/024-compact-code-graph",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -30,18 +30,18 @@
       "context",
       "injection",
       "spec",
-      "001",
       "precompact",
       "plan",
       "hook",
       "tasks",
-      "024",
-      "checklist"
+      "checklist",
+      "addresses",
+      "concrete"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".claude/settings.local.json",
+      "spec.md",
       "mcp_server/hooks/claude/compact-inject.ts",
       "mcp_server/hooks/claude/session-prime.ts",
       "mcp_server/hooks/claude/shared.ts",
@@ -53,7 +53,6 @@
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
       "hooks/claude/shared.ts",
       "hooks/claude/hook-state.ts",
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -61,9 +60,9 @@
     ],
     "entities": [
       {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -94,12 +93,6 @@
         "name": "memory-surface.ts",
         "kind": "code",
         "path": "hooks/memory-surface.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -203,11 +196,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.343Z",
-    "last_save_at": "2026-06-23T03:50:00.574Z",
+    "last_save_at": "2026-07-10T06:24:42.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

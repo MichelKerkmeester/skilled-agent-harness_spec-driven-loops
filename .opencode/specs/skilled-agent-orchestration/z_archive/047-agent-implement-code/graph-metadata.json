@@ -41,6 +41,9 @@
     "importance_tier": "high",
     "status": "draft",
     "key_files": [
+      ".opencode/agents/review.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/skills/sk-code/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -49,20 +52,35 @@
       "implementation-summary.md",
       "handover.md",
       ".opencode/agents/code.md",
-      ".opencode/agents/orchestrate.md",
       "research/synthesis.md",
-      ".opencode/agents/review.md",
-      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/022-mcp-coco-integration/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/022-mcp-coco-integration/description.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/022-mcp-coco-integration/context-index.md",
+      "specs/skilled-agent-orchestration/z_archive/047-agent-implement-code/research/synthesis.md",
+      "specs/skilled-agent-orchestration/z_archive/022-mcp-coco-integration/context-index.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-      "research/stream-01-oh-my-opencode-slim/deep-research-config.json",
-      "research/stream-02-opencode-swarm-main/deep-research-config.json",
-      "research/stream-01-oh-my-opencode-slim/research.md",
-      "research/stream-02-opencode-swarm-main/research.md",
-      "research/stream-03-internal-agent-inventory/research/research.md"
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
     ],
     "entities": [
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -112,27 +130,27 @@
         "source": "derived"
       },
       {
-        "name": "orchestrate.md",
-        "kind": "doc",
-        "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
         "name": "synthesis.md",
         "kind": "doc",
         "path": "research/synthesis.md",
         "source": "derived"
       },
       {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/review.md",
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/022-mcp-coco-integration/graph-metadata.json",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/022-mcp-coco-integration/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/z_archive/022-mcp-coco-integration/context-index.md",
         "source": "derived"
       },
       {
@@ -145,12 +163,6 @@
         "name": "generate-context.js",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-config.json",
-        "kind": "config",
-        "path": "research/stream-01-oh-my-opencode-slim/deep-research-config.json",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Driven Design",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Agent Files",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `.opencode/agents/` inventory has 10 agents (review, orchestrate, debug, write, context, deep-research, deep-review, improve-agent, improve-prompt, ultra-think) but no write-capable code-implementation sub-agent",
     "created_at": "2026-05-01T14:39:36.273Z",
-    "last_save_at": "2026-06-23T03:49:49.392Z",
+    "last_save_at": "2026-07-10T06:23:55.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,16 +223,16 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:3a87962f476d697510cfab6ffffcdf6711633ea0af01f9e5e9e1f8e988161dfa",
+    "source_fingerprint": "sha256:433899a5b8c1cac87d3bfd9c2c9f943cf8ca5af53c9ab618fd302efc38e33d43",
     "source_doc_hashes": {
-      "spec.md": "b537b47073e202c15edcb57c65ef6d43c0a43648176430f4dfdeaea2523b1497",
-      "plan.md": "a83647b3b730980cd1976a31ecf6b09ecc716441caa59c9133e38c410fb9d0f6",
-      "tasks.md": "fba1e72ccae6cbdd6614fd203a16daba80c5ffc74468790c222ef68a0a43a640",
-      "checklist.md": "3ea09a3f4583db4154da58480cf26b5f34e32d8c88dcf78c7bcc461871b26f9f",
-      "decision-record.md": "2ccc78f5858fdeaa2aa4bb572e9e4e98a681d439f50cac5f4c929ec1ebe4ffd8",
-      "implementation-summary.md": "c66877f9016ba24365a120a59651187d79c53cc58db19f7a7aff298a770948ab",
-      "handover.md": "95183cb4733cc3806baeb5a4332fc244b70f2e21b78a408d32d330c78825a619",
-      "resource-map.md": "02df8082253b01e5cc511e93904492196b22ba54fc9482b2bd0c64e7fbfe156c"
+      "spec.md": "eec26898f1bf2b557064eb2056b7c4f7f050ecacfd4fe992f8aeaa1a43de70fe",
+      "plan.md": "bdf5ccddaba9c628e0415b7667be57170c47b973ea48b62475f1ba19f6e03b6a",
+      "tasks.md": "f1862aea7382dc4f83c71e28fc23326090b9c088f4e0702b72de149e17b1fa19",
+      "checklist.md": "0ebc96886e1fbfb458a6e2ef079c22fcc24e8a6138f74829ec1ddb160a2e06c3",
+      "decision-record.md": "e978c738535ac67bcd29357555bee237b227876b18c6cc3d00c6848016482c4a",
+      "implementation-summary.md": "4d312fec764671500bb8d433f2cc75d81052c697a3440369028dc8101cccf158",
+      "handover.md": "9ef2be8d243ddd893e877ac017df4fcafea8d0e3feffe0db36729cba0982f23c",
+      "resource-map.md": "fa0f2029219ba9c41c982a325d3db9744faf87a797d508f10d9feebe8fd150db"
     },
     "last_active_child_id": null,
     "last_active_at": null

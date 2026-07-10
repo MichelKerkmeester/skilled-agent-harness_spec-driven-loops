@@ -61,8 +61,6 @@
       "embedder adapter architecture"
     ],
     "key_topics": [
-      "016",
-      "001",
       "mk-spec-memory",
       "stack",
       "pluggable",
@@ -72,7 +70,9 @@
       "parent",
       "ollama",
       "hf-local",
-      "nomic"
+      "nomic",
+      "cascade",
+      "coderankembed"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -125,7 +125,7 @@
     ],
     "causal_summary": "mk-spec-memory stack parent for adapter architecture, Ollama + hf-local Nomic cascade, Nomic/CodeRankEmbed default, retrieval-rescue closure, and later metadata repair packets. mxbai was tested and rolled back.",
     "created_at": "2026-05-18T07:50:58.091Z",
-    "last_save_at": "2026-07-02T05:31:11.731Z",
+    "last_save_at": "2026-07-10T06:21:59.690Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Two finished search features ship dark behind default-off flags with no measured verdict",
     "created_at": "2026-06-24T04:55:43.757Z",
-    "last_save_at": "2026-07-06T18:49:58.292Z",
+    "last_save_at": "2026-07-10T06:23:31.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "plan.md": "33619fa6dd8d5589705c4f85fa168b0f4022cecf9d2d154fd984735b518bda20",
       "tasks.md": "a92d2c26bae098069c258438587dd3ae029e6c12129c2e9924ace8a2bd8feb78",
       "checklist.md": "5b42ee6a515400f8ea331408f53a6af3f29eb68cb739a0395141f82137ea3b71",
-      "implementation-summary.md": "0f0ef96738d1c41f30656e949e2df14bc534ae106cd926012f16f831046892ee"
+      "implementation-summary.md": "fb8e8b20d6ed7cc2b3559a05a54e2b0c7382738aa83a04c6bd311cd402e40fa0"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -24,7 +24,7 @@
     "completion_pct": 100,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety",
   "description": "`../005-learning-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes",
   "keywords": [
     "005-learning-feedback-reducers",
@@ -34,14 +34,13 @@
     "learning",
     "reducers",
     "three",
-    "safety",
-    "fixes"
+    "safety"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.139Z",
+  "lastUpdated": "2026-07-10T06:21:50.355Z",
   "specId": "001",
   "folderSlug": "memory-write-safety",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

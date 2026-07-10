@@ -9,7 +9,7 @@ contextType: "implementation"
 status: "completed"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/001-inventory-extract"
     last_updated_at: "2026-06-10T20:07:37Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed inventory and extraction map for doctor command presentation contracts."

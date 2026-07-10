@@ -21,8 +21,8 @@
     "006-operator-tooling",
     "007-mcp-daemon-reliability"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization",
-  "description": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fix",
+  "specFolder": "system-speckit/026-graph-and-context-optimization",
+  "description": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off",
   "keywords": [
     "spec-kit",
     "graph",
@@ -36,14 +36,13 @@
     "program",
     "rather",
     "scattered",
-    "one-off",
-    "fix"
+    "one-off"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.035Z",
+  "lastUpdated": "2026-07-10T06:22:00.121Z",
   "specId": "026",
   "folderSlug": "graph-and-context-optimization",
   "parentChain": [
-    "system-spec-kit"
+    "system-speckit"
   ],
   "memorySequence": 10,
   "memoryNameHistory": [

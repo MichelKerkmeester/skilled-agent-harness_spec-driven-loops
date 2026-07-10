@@ -12,8 +12,6 @@
   "description": "Packet 046 fixed the release-blocking P0s and a small Tier beta set, but 24 P1",
   "keywords": [
     "packet",
-    "046",
-    "fixed",
     "release-blocking",
     "p0s",
     "small",
@@ -21,7 +19,7 @@
     "beta",
     "set"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.218Z",
+  "lastUpdated": "2026-07-10T06:21:52.990Z",
   "specId": "004",
   "folderSlug": "fix-remaining-priority-findings",
   "parentChain": [

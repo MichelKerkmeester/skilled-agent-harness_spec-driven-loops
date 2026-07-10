@@ -10,7 +10,7 @@ contextType: "decision"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split"
     last_updated_at: "2026-05-14T16:45:00Z"
     last_updated_by: "codex"
     recent_action: "Accepted ADR-004 for explicit refresh"

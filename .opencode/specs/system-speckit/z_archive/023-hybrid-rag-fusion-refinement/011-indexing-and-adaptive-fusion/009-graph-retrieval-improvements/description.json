@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/009-graph-retrieval-improvements",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/009-graph-retrieval-improvements",
   "description": "The graph is structurally healthy but does not meaningfully improve retrieval",
   "keywords": [
     "graph",
@@ -9,11 +9,11 @@
     "improve",
     "retrieval"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.544Z",
+  "lastUpdated": "2026-07-10T06:24:13.775Z",
   "specId": "009",
   "folderSlug": "graph-retrieval-improvements",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement",
     "011-indexing-and-adaptive-fusion"

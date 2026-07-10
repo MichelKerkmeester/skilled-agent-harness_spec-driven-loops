@@ -1,10 +1,9 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-018-rewire-consumers-and-tool-registration",
-  "description": "After Phase 003 moves the code-graph source tree, system-spec-kit handlers, hooks, tests, and registration code still reference the old local `codegra",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-018-rewire-consumers-and-tool-registration",
+  "description": "After Phase 003 moves the code-graph source tree, system-spec-kit handlers, hooks, tests, and registration code still reference the old local",
   "keywords": [
     "phase",
-    "003",
     "moves",
     "code-graph",
     "source",
@@ -18,14 +17,13 @@
     "still",
     "reference",
     "old",
-    "local",
-    "codegra"
+    "local"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.664Z",
+  "lastUpdated": "2026-07-10T06:22:37.400Z",
   "specId": "007",
   "folderSlug": "018-rewire-consumers-and-tool-registration",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"

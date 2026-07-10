@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/008-rename-memory-check",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/008-rename-memory-check",
   "description": "Rename the unified memory dashboard command from /memory to /memory:check and update all references across the codebase.",
   "keywords": [
     "rename",
@@ -8,16 +8,15 @@
     "dashboard",
     "command",
     "check",
-    "update",
     "references",
     "across",
     "codebase"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.878Z",
+  "lastUpdated": "2026-07-10T06:24:43.345Z",
   "specId": "008",
   "folderSlug": "rename-memory-check",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

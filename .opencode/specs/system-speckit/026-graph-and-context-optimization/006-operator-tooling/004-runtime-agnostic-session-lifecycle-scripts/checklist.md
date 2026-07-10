@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts"
     last_updated_at: "2026-05-30T12:40:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Verified all phases; checklist marked with evidence"

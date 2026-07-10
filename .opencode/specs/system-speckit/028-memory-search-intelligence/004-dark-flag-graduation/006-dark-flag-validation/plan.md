@@ -3,7 +3,7 @@ title: "Plan: Dark Flag Validation"
 description: "Deep-review audit plan for the five graduate-ready dark-flag clusters before graduation."
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/006-dark-flag-validation"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "opencode"
 ---

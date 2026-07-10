@@ -1,8 +1,8 @@
 {
   "level": "1",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode",
-  "description": "cli-opencode reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 7 references and 0 of 2 assets carry the detailed memory-st",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode",
+  "description": "cli-opencode reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 7 references and 0 of 2 assets carry the detailed",
   "keywords": [
     "cli-opencode",
     "reference",
@@ -14,14 +14,13 @@
     "references",
     "assets",
     "carry",
-    "detailed",
-    "memory-st"
+    "detailed"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.938Z",
+  "lastUpdated": "2026-07-10T06:22:43.277Z",
   "specId": "004",
   "folderSlug": "cli-opencode",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup",
     "009-skill-frontmatter-alignment"

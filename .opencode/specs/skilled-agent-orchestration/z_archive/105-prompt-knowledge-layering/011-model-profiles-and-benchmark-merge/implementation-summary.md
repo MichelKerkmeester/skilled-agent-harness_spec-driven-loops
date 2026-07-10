@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "130-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge"
+    packet_pointer: "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge"
     last_updated_at: "2026-06-03T09:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase 011 content complete + verified"

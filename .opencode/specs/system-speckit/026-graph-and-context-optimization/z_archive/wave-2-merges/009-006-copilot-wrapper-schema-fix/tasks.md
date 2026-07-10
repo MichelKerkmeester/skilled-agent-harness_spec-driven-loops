@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/006-copilot-wrapper-schema-fix"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-006-copilot-wrapper-schema-fix"
     last_updated_at: "2026-04-23T15:20:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Patch reverted in 6cd00aa51b — fields no longer present in settings.local.json"

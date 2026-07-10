@@ -7,7 +7,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout"
     last_updated_at: "2026-06-07T22:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Re-election enabled for all users; docs + changelog reconciled"

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency"
     last_updated_at: "2026-06-11T19:10:00Z"
     last_updated_by: "claude-fable"
     recent_action: "All tasks complete"

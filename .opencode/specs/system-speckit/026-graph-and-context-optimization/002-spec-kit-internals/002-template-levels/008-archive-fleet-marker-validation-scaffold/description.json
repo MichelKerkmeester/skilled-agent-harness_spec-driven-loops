@@ -1,23 +1,22 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/008-archive-fleet-marker-validation-scaffold",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/008-archive-fleet-marker-validation-scaffold",
   "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
     "broken",
     "missing",
     "inefficient",
-    "2-3",
     "sentences",
     "describing",
     "specific",
     "pain",
     "point"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.783Z",
+  "lastUpdated": "2026-07-10T06:22:07.294Z",
   "specId": "008",
   "folderSlug": "archive-fleet-marker-validation-scaffold",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals",
     "002-template-levels"

@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment"
     last_updated_at: "2026-06-07T19:15:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Remediated sk-doc/sk-code audit findings across daemon-reliability docs"

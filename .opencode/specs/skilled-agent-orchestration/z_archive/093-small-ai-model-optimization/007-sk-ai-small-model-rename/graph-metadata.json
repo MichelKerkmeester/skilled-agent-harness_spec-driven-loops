@@ -41,19 +41,14 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-prompt-small-model/changelog/v0.3.0.0.md",
+      ".opencode/skills/cli-opencode/graph-metadata.json",
+      ".opencode/specs/skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/spec.md",
       ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
       "checklist.md",
       ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
-      ".opencode/skills/cli-opencode/graph-metadata.json",
       ".opencode/skills/cli-opencode/references/permissions-matrix.md",
       ".opencode/skills/cli-opencode/assets/permissions-matrix.example-packet-local.json",
       ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-prompt-small-model/SKILL.md",
-      ".opencode/skills/sk-prompt-small-model/README.md",
-      ".opencode/skills/sk-prompt-small-model/description.json",
-      ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -61,9 +56,9 @@
     ],
     "entities": [
       {
-        "name": "v0.3.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/changelog/v0.3.0.0.md",
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -85,12 +80,6 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-opencode/graph-metadata.json",
-        "source": "derived"
-      },
-      {
         "name": "permissions-matrix.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/references/permissions-matrix.md",
@@ -106,30 +95,6 @@
         "name": "manual_testing_playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt-small-model/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -203,11 +168,41 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sentinel skill `sk-small-model` was shipped by Phase 002 (foundation-routing) on 2026-05-18 and has been live ever since with `enhances` edges to `cli-devin` + `cli-opencode`",
     "created_at": "2026-05-21T06:22:25Z",
-    "last_save_at": "2026-06-23T03:49:50.543Z",
+    "last_save_at": "2026-07-10T06:23:41.919Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20a38f5a3459dcf85422869cffee7087a10caabd39ea98ea09e090de390f4caf",
+    "source_fingerprint": "sha256:7dd652c59e7f9f17ebd67536c6c4460218743fcb529f992710b2b98e1b36a73f",
     "source_doc_hashes": {
-      "spec.md": "e9580b12591b6cd9c8879ff00b017d4d87b4326f9379f1483235037c47f522e9",
-      "plan.md": "089079bf2ccbc82ab3294d6d79b80b7b132e1bcab34bedf0bbbbb0b6f8947cba",
-      "tasks.md": "c2b41a405230f7f3ced83864078327827a954427d17c81ef66f9aeca39ff20ec",
-      "checklist.md": "90f5e73c9e7eebf84dae131662ddc72c17fc2d6b7e5323764b69127e9695ed54",
-      "implementation-summary.md": "2188ea39874cfc8a7b1760e79adcecaad61f329e029ddcf465adf7c9a0cbb0f9"
+      "spec.md": "0e0c1535c89ef0539931919577661110118adc113a365abd09f5a66bad64420d",
+      "plan.md": "5fae3f4556482777036d443cd5dce3b4415e923940b09705c958449c53ea502d",
+      "tasks.md": "fc2ca2f5e1be6c8e7aecde2a4beaa91b0311ff5678831704217534c070037ef5",
+      "checklist.md": "db56a1a912a921546a8459841433153e892784d9bb15458cec02b48a8639a6fd",
+      "implementation-summary.md": "5caab638c6a533c33dbdfe1ebb4eae3198d5da6073483765a99d3ce7ba6fa651"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/010-template-compliance-enforcement",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/010-template-compliance-enforcement",
   "description": "Agents across all 4 CLI surfaces (Claude Code, Copilot, ChatGPT, Codex) produce structurally non-compliant spec folder documents",
   "keywords": [
     "agents",
@@ -18,11 +18,11 @@
     "folder",
     "documents"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.153Z",
+  "lastUpdated": "2026-07-10T06:22:31.058Z",
   "specId": "010",
   "folderSlug": "template-compliance-enforcement",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

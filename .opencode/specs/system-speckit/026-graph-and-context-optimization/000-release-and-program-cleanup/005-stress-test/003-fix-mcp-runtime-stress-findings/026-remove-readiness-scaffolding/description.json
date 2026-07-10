@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/026-remove-readiness-scaffolding",
-  "description": "Packet `005-vestigial-embedding-readiness-gate-removal` (commit `e91d2c7c2`) deleted the readiness gate at `memory-search.ts:927-932` but kept the sur",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/026-remove-readiness-scaffolding",
+  "description": "Packet `005-vestigial-embedding-readiness-gate-removal` (commit `e91d2c7c2`) deleted the readiness gate at `memory-search.ts:927-932` but kept the",
   "keywords": [
     "packet",
     "005-vestigial-embedding-readiness-gate-removal",
@@ -10,15 +10,13 @@
     "readiness",
     "gate",
     "memory-search",
-    "927-932",
-    "kept",
-    "sur"
+    "kept"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.724Z",
+  "lastUpdated": "2026-07-10T06:24:29.978Z",
   "specId": "026",
   "folderSlug": "remove-readiness-scaffolding",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

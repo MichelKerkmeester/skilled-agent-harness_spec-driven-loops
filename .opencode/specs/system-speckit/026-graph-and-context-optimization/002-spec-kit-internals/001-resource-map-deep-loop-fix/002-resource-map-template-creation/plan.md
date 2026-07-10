@@ -10,7 +10,7 @@ contextType: "planning"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/002-resource-map-deep-loop-fix-creation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation"
     last_updated_at: "2026-04-24T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored Level 2 plan"

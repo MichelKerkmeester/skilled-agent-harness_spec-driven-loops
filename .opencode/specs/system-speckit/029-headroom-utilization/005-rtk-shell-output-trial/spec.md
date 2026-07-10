@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-headroom-utilization/005-rtk-shell-output-trial"
+    packet_pointer: "system-speckit/029-headroom-utilization/005-rtk-shell-output-trial"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded the rtk-shell-output-trial phase"

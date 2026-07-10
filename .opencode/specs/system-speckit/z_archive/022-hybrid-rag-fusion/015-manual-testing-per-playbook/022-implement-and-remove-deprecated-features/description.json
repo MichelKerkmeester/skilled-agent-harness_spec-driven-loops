@@ -1,25 +1,23 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/022-implement-and-remove-deprecated-features",
-  "description": "The implement-and-remove-deprecated-features phase (catalog phase 022) targets 6 features: 3 deprecated modules to wire into production (graph calibra",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/022-implement-and-remove-deprecated-features",
+  "description": "The implement-and-remove-deprecated-features phase (catalog phase 022) targets 6 features: 3 deprecated modules to wire into production (graph",
   "keywords": [
     "implement-and-remove-deprecated-features",
     "phase",
     "catalog",
-    "022",
     "targets",
     "features",
     "deprecated",
     "modules",
     "wire",
     "production",
-    "graph",
-    "calibra"
+    "graph"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.347Z",
+  "lastUpdated": "2026-07-10T06:23:02.974Z",
   "specId": "022",
   "folderSlug": "implement-and-remove-deprecated-features",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"
