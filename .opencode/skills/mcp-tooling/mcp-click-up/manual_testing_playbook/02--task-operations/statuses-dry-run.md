@@ -37,9 +37,9 @@ Verify `cupt statuses TASK_ID` lists statuses and `cupt done TASK_ID --dry-run` 
 2. `cupt done TASK_ID --dry-run`  # → DRY RUN message with resolved status
 3. Verify task status in ClickUp UI is UNCHANGED
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-023 | Status Schema + Dry-Run — CRITICAL PATH | Verify `cupt statuses TASK_ID` lists statuses and `cupt | `Show the status schema for task TASK_ID and preview com` | Step 1: status list printed with closed status marked. Step 2: 'DRY RUN' message | PASS if dry-run message printed AND task status unchanged in Cl; FAIL if task status changed in ClickUp (dry-run wrote) OR no DR | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-023 | Status Schema + Dry-Run — CRITICAL PATH | Verify `cupt statuses TASK_ID` lists statuses and `cupt done TASK_ID --dry-run` shows resolved status without writing | `Show the status schema for task TASK_ID and preview completing it.` | 1. `cupt statuses TASK_ID`  # → list of statuses, closed status marked 2. `cupt done TASK_ID --dry-run`  # → DRY RUN message with resolved status 3. Verify task status in ClickUp UI is UNCHANGED | Step 1: status list printed with closed status marked. Step 2: 'DRY RUN' message with resolved status name; exit 0. Step 3: task status in UI unchanged. | Terminal output of the command sequence above | PASS if dry-run message printed AND task status unchanged in ClickUp; FAIL if task status changed in ClickUp (dry-run wrote) OR no DRY RUN message | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ Verify `cupt statuses TASK_ID` lists statuses and `cupt done TASK_ID --dry-run` 
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/04--cupt-task-completion/dry-run.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/04--cupt-task-completion/dry-run.md`](../../feature_catalog/04--cupt-task-completion/dry-run.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

@@ -37,9 +37,9 @@ Verify `cupt list --tag nonexistent_xyz --json` returns `[]` with exit 0 — not
 2. `bash: echo $EXIT_CODE`  # → 0
 3. `bash: echo $RESULT | jq length`  # → 0
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| FAIL-002 | Empty Queue Is Valid | Verify `cupt list --tag nonexistent_xyz --json` returns | `Fetch tasks with tag 'nonexistent_xyz_789' and confirm ` | Step 1: `[]` printed; exit 0. Step 3: `jq length` returns 0. | PASS if output is `[]` AND exit code is 0; FAIL if non-zero exit code OR non-JSON output | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| FAIL-002 | Empty Queue Is Valid | Verify `cupt list --tag nonexistent_xyz --json` returns `[]` with exit 0 — not an error | `Fetch tasks with tag 'nonexistent_xyz_789' and confirm empty result is valid.` | 1. `cupt list --tag nonexistent_xyz_789 --json`  # → [] 2. `bash: echo $EXIT_CODE`  # → 0 3. `bash: echo $RESULT \| jq length`  # → 0 | Step 1: `[]` printed; exit 0. Step 3: `jq length` returns 0. | Terminal output of the command sequence above | PASS if output is `[]` AND exit code is 0; FAIL if non-zero exit code OR non-JSON output | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ Verify `cupt list --tag nonexistent_xyz --json` returns `[]` with exit 0 — not
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/02--cupt-task-listing/list-assigned.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/02--cupt-task-listing/list-assigned.md`](../../feature_catalog/02--cupt-task-listing/list-assigned.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

@@ -33,12 +33,12 @@ Verify `clickup_get_task` returns full task object for a known task ID is requir
 
 ### Recommended Orchestration Process
 
-1. Code Mode: `clickup.clickup_get_task({task_id: 'TASK_ID'})`
+1. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})`
 2. `bash: jq '.id, .name, .status.status' <<< "$RESULT"`  # → task ID, name, status
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| MCP-H002 | Get Task via MCP | Verify `clickup_get_task` returns full task object for  | `Get all fields for task TASK_ID using the MCP.` | MCP returns JSON with `id`, `name`, `status`, `priority`, `assignees`, `tags`; e | PASS if response includes `id`, `name`, and `status` fields; FAIL if 404/not found OR response missing required fields | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| MCP-H002 | Get Task via MCP | Verify `clickup_get_task` returns full task object for a known task ID | `Get all fields for task TASK_ID using the MCP.` | 1. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})` 2. `bash: jq '.id, .name, .status.status' <<< "$RESULT"`  # → task ID, name, status | MCP returns JSON with `id`, `name`, `status`, `priority`, `assignees`, `tags`; exit 0. | Code Mode response + terminal output of the verification step(s) above | PASS if response includes `id`, `name`, and `status` fields; FAIL if 404/not found OR response missing required fields | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -48,15 +48,15 @@ Verify `clickup_get_task` returns full task object for a known task ID is requir
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/11--mcp-high-priority/get-task.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/11--mcp-high-priority/get-task.md`](../../feature_catalog/11--mcp-high-priority/get-task.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

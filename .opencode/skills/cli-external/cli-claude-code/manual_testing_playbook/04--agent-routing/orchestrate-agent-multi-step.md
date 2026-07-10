@@ -61,7 +61,7 @@ If the plan names exactly 3 agents but skips handoff description, re-prompt with
 
 | File | Role |
 |---|---|
-| `MANUAL_TESTING_PLAYBOOK.md` | Root directory page and scenario summary |
+| `manual_testing_playbook.md` | Root directory page and scenario summary |
 | `../../references/agent_delegation.md` | Orchestrate agent role per the documented roster |
 
 ### Implementation And Test Anchors
@@ -77,5 +77,5 @@ If the plan names exactly 3 agents but skips handoff description, re-prompt with
 
 - Group: Agent Routing
 - Playbook ID: CC-022
-- Canonical root source: `MANUAL_TESTING_PLAYBOOK.md`
+- Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `04--agent-routing/orchestrate-agent-multi-step.md`

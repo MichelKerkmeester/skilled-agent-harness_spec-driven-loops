@@ -24,7 +24,7 @@ cupt auth launches an interactive credential wizard supporting two flows: (1) Pe
 
 ## 2. HOW IT WORKS
 
-Credentials stored encrypted in `~/.cupt/config.yaml`. Exit 0 on success. AuthError on failure.
+Credentials stored as plaintext YAML in `~/.cupt/config.yaml`, protected by owner-only file permissions (mode `0600`) — not encrypted. Exit 0 on success. AuthError on failure.
 
 ---
 

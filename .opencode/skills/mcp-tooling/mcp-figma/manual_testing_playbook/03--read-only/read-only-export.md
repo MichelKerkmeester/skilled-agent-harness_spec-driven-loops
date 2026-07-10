@@ -44,15 +44,15 @@ Operators run the exact command sequence for `EXPORT-001` and confirm the expect
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: Choose an explicit output path in a throwaway location that does not already contain a file of that name. Verify the exact output flag via `figma-ds-cli export --help`.
+PRE: Choose an explicit output path in a throwaway location that does not already contain a file of that name. `export` is a command group: `export screenshot [-o file] [-s scale] [-f png|jpg|svg|pdf]` exports the selected node or current page, `export node <nodeId> [-o file] ...` exports a specific node, and `extract [output]` (not `export`) writes a `DESIGN.md`. Verify exact flags via `figma-ds-cli export screenshot --help`.
 
 1. choose explicit non-existing path `<out>`  # -> explicit path chosen
-2. `figma-ds-cli export ... --out <out>` (verify flag via `--help`)  # -> file written to `<out>`, no Figma mutation
+2. `figma-ds-cli export screenshot -f svg --output <out>` (the current selection, `-o`/`--output <file>` flag, not a bare `--out`)  # -> file written to `<out>`, no Figma mutation
 3. re-run to `<out>` and confirm overwrite is refused/prompted  # -> collision surfaced, not silently clobbered
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| EXPORT-001 | Read-only export | Verify export targets an explicit path and never silently overwrites | `Export the current selection as SVG to a file I name.` | 1. choose explicit non-existing path `<out>` -> 2. `figma-ds-cli export ... --out <out>` (verify flag via `--help`) -> 3. re-run to `<out>` and confirm overwrite is refused/prompted | Step 1: explicit path chosen. Step 2: file written to `<out>`, no Figma mutation. Step 3: collision surfaced, not silently clobbered | Transcript of the export, the written artifact path, and the overwrite-collision result | PASS if export wrote to the explicit path AND no Figma write occurred AND an existing-path collision was surfaced. FAIL if export wrote with no explicit path OR silently overwrote an existing file OR mutated the Figma document | 1. Confirm an explicit `--out`/path was passed (verify exact flag via `--help`). 2. Confirm the path did not pre-exist for the first write. 3. Confirm the re-run did not silently overwrite. |
+| EXPORT-001 | Read-only export | Verify export targets an explicit path and never silently overwrites | `Export the current selection as SVG to a file I name.` | 1. choose explicit non-existing path `<out>` -> 2. `figma-ds-cli export screenshot -f svg --output <out>` (`-o`/`--output <file>` flag, not a bare `--out`) -> 3. re-run to `<out>` and confirm overwrite is refused/prompted | Step 1: explicit path chosen. Step 2: file written to `<out>`, no Figma mutation. Step 3: collision surfaced, not silently clobbered | Transcript of the export, the written artifact path, and the overwrite-collision result | PASS if export wrote to the explicit path AND no Figma write occurred AND an existing-path collision was surfaced. FAIL if export wrote with no explicit path OR silently overwrote an existing file OR mutated the Figma document | 1. Confirm an explicit `-o`/`--output` path was passed (verify exact flag via `--help`). 2. Confirm the path did not pre-exist for the first write. 3. Confirm the re-run did not silently overwrite. |
 
 ### Optional Supplemental Checks
 

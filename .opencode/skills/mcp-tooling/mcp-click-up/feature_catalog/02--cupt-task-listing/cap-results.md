@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Stops pagination after N tasks are collected. Useful for large workspaces when only the first batch is needed.
+Does NOT stop pagination — cupt fetches and filters the full result set first, then slices the first N rows from that already-fetched list. Useful for trimming display output, not for reducing API calls or pages walked.
 
 ---
 

@@ -75,7 +75,6 @@ At the end of your response, include a structured handback inside delimiters:
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent general \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
@@ -114,12 +113,13 @@ opencode run \
   --share \
   --port 4096 \
   --model deepseek/deepseek-v4-pro \
-  --agent deep-research \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
 ```
+
+For an actual deep-research iteration, do not pass `--agent deep-research` (command-owned; rejected the same way any other subagent slug is at the top level). Dispatch the real iterative loop via `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet instead; the command owns the packet-local JSONL/strategy/dashboard state that this template's "State file" / "Strategy file" context lines describe. This template's own bash block is for a generic parallel-detached worker, not a raw deep-research iteration.
 
 ---
 
@@ -156,7 +156,6 @@ Memory Epilogue: include MEMORY_HANDBACK delimiters as in Template 1.
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent general \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
@@ -170,19 +169,23 @@ opencode run \
 **Framework:** RCAF
 **Use case:** Any (1, 2, or 3)
 
-Dispatch a task to a specific agent slug. See `../references/agent_delegation.md` for the full routing matrix.
+Dispatch a task to a specific agent slug. See `../references/agent_delegation.md` for the full routing matrix and the primary/subagent/command-owned dispatch classes below — `<slug>` in this template's bash block is valid ONLY for `orchestrate` (or `plan`, an OpenCode built-in); every other slug routes a different way.
 
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent <slug> \
+  --agent orchestrate \
   --variant high \
   --format json \
   --dir /repo \
-  "<prompt>" 2>&1
+  "Use the <slug> subagent: <prompt>" 2>&1
 ```
 
-Common slugs: `general`, `context`, `orchestrate`, `write`, `review`, `debug`, `deep-research`, `deep-review`, `ai-council`, `deep-improvement`.
+- **Default / general** — omit `--agent` entirely; never pass `--agent general` (rejected at the top level).
+- **Primary, directly `--agent`-dispatchable** — `orchestrate` (shown above), `plan` (OpenCode built-in).
+- **Subagents, routed via `--agent orchestrate`'s Task-dispatch (never direct)** — `context`, `markdown`, `review`, `debug`.
+- **`ai-council`** — command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch; never direct `--agent ai-council` (`mode: subagent`).
+- **Command-owned loop executors (never direct `--agent`)** — `deep-research` (via `/deep:research`), `deep-review` (via `/deep:review`), `deep-improvement` (via `/deep:agent-improvement`), `prompt-improver` (via `/prompt`'s deep-path escalation).
 
 ---
 
@@ -218,26 +221,27 @@ Context: Spec folder: <path> (pre-approved, skip Gate 3).
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent review \
   --variant high \
   --format json \
   --dir /repo \
   "<prompt>" 2>&1
 ```
 
+No `--agent` flag — `review` is a subagent, not directly invokable at the top level. The `As @review:` prompt prefix above carries the role instead (or route via `--agent orchestrate` and ask it to dispatch the review subagent).
+
 ---
 
 ## 7. TEMPLATE 6 — ITERATIVE DEEP RESEARCH
 
 **Framework:** CRISPE
-**Agent:** `deep-research`
-**Use case:** 2 (parallel detached) or 1 (single iteration from external runtime)
+**Agent:** `deep-research` — command-owned by `/deep:research`; this template documents the shape of ONE iteration's context, not a copy-paste raw dispatch
+**Use case:** Command-owned loop, driven by `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet
 
 ```text
 Run iteration N of the deep-research loop on packet <packet-id>.
 
-State file: <path to iteration-N.jsonl>
-Strategy file: <path to strategy.md>
+State file: <spec_folder>/research/deep-research-state.jsonl
+Strategy file: <spec_folder>/research/deep-research-strategy.md
 
 Capacity: leaf-agent execution — single iteration only, no nested dispatches.
 Insight: <what the prior iteration converged on>
@@ -246,12 +250,12 @@ Personality: rigorous, evidence-first, no speculation.
 Experiment: <list of files to read and queries to run>
 ```
 
+Do NOT dispatch this shape with a raw `opencode run --agent deep-research`; that flag is command-owned and rejected at the top level the same way any other subagent slug is. Trigger a real iteration by invoking the owning command instead:
+
 ```bash
 opencode run \
-  --share \
-  --port 4096 \
+  --command deep/research \
   --model deepseek/deepseek-v4-pro \
-  --agent deep-research \
   --variant high \
   --format json \
   --dir /repo \
@@ -288,7 +292,6 @@ opencode run \
   --share \
   --port 4097 \
   --model deepseek/deepseek-v4-pro \
-  --agent general \
   --variant high \
   --format json \
   --dir /repo \
@@ -324,7 +327,6 @@ for n in $(seq 1 8); do
     --share \
     --port "$port" \
     --model deepseek/deepseek-v4-pro \
-    --agent general \
     --variant high \
     --format json \
     --dir /repo \
@@ -357,7 +359,6 @@ Format: structured JSON event stream. Memory Epilogue at the end.
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent general \
   --variant high \
   --format json \
   --dir /repo \
@@ -411,7 +412,7 @@ Format: markdown.
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent write \
+  --agent markdown \
   --variant high \
   --format json \
   --dir /repo \
@@ -628,7 +629,6 @@ Output:
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent general \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \

@@ -1,49 +1,87 @@
-# clickup-cli
+---
+title: "clickup-cli (cupt)"
+description: "Vendored install pointer for cupt, the ClickUp Task Management CLI that mcp-click-up drives for daily task operations."
+trigger_phrases:
+  - "clickup cli"
+  - "cupt install"
+  - "cupt cli"
+  - "install cupt"
+version: 1.0.0.0
+---
 
-cupt CLI embedded in the mcp-click-up skill. cupt (ClickUP Terminal) is the primary tool for daily ClickUp task operations.
+# clickup-cli (cupt)
 
-## Source
+> Install and verify the `cupt` CLI that mcp-click-up's daily task operations run on.
 
-- **GitHub:** https://github.com/newz2000/cupt
-- **PyPI:** https://pypi.org/project/cupt/
+---
 
-## Install
+## 1. AT A GLANCE
 
-**Recommended — isolated environment via pipx:**
+| Aspect | What you get |
+|---|---|
+| **Use it for** | Installing and verifying `cupt`, the primary CLI mcp-click-up drives for daily ClickUp task operations. |
+| **Invoke with** | `bash setup.sh`, then `cupt --version` and `cupt status`. |
+| **Works on** | Python 3.8+ with `pipx` (preferred) or `pip`. |
+| **Produces** | A working `cupt` binary on `PATH`, authenticated against a ClickUp workspace. |
+
+---
+
+## 2. OVERVIEW
+
+### Why This Package Exists
+
+mcp-click-up drives daily ClickUp task operations (listing, completing, time tracking, notes, attachments) through `cupt`, a real third-party CLI, rather than reimplementing that surface. This folder is not vendored source. It is the install pointer and pinned version constraint that the parent skill's `SKILL.md` and `scripts/install.sh` read from.
+
+### What It Does
+
+`cupt` (ClickUp Task Management CLI) is an actively maintained third-party project. `setup.sh` installs it in an isolated environment via `pipx`, falling back to `pip install --user` when `pipx` is unavailable, and no-ops if a `cupt` binary is already on `PATH`. `requirements.txt` pins the minimum supported version for `pip install -r requirements.txt` use.
+
+---
+
+## 3. QUICK START
+
+**Step 1: Install.**
+
 ```bash
 bash setup.sh
 ```
 
-Or manually:
-```bash
-# macOS / Linux (recommended)
-pipx install cupt
+Installs `cupt` via `pipx` when available, otherwise `pip install --user cupt`. Prints `cupt already installed` and exits cleanly if a `cupt` binary is already on `PATH`.
 
-# Fallback
-pip install --user cupt
-```
-
-**Verify:**
-```bash
-cupt --version   # → cupt 0.7.1
-cupt status      # → workspace name + user
-```
-
-## Requirements
-
-- Python 3.8+
-- pipx (recommended) or pip
-
-`requirements.txt` pins `cupt>=0.7.1` for use with `pip install -r requirements.txt`.
-
-## Authenticate
+**Step 2: Authenticate.**
 
 ```bash
-cupt auth                          # Interactive wizard (OAuth or Personal API Token)
-# OR:
+cupt auth
+# or non-interactively:
 cupt config --api-token pk_YOUR_TOKEN_HERE
 ```
 
-Get your Personal API Token at https://app.clickup.com/settings/apps
+Get a Personal API Token at https://app.clickup.com/settings/apps. Credentials are stored as plaintext YAML at `~/.cupt/config.yaml`, protected by owner-only file permissions (mode `0600`). This is not encryption.
 
-See `../../references/install_guide.md §3-§4` for full authentication and MCP config steps.
+**Step 3: Verify.**
+
+```bash
+cupt --version
+cupt status
+```
+
+Expected: `cupt, version <installed version>`, then two lines — `OK: Authenticated as: <user>` and `OK: Workspace: <name>`.
+
+---
+
+## 4. TROUBLESHOOTING
+
+| What you see | Why | Fix |
+|---|---|---|
+| `cupt: command not found` after install | The `pip install --user` script directory is not on `PATH` | Re-run via `pipx install cupt`, or add the `pip --user` scripts directory to `PATH` |
+| `cupt status` reports an auth failure | No token configured, or the stored token was revoked | Run `cupt auth` again, or `cupt config --api-token pk_xxx` with a fresh token |
+
+---
+
+## 5. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`../../SKILL.md`](../../SKILL.md) | Runtime routing between `cupt` and the official ClickUp MCP |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | Full `cupt` command reference with agent patterns |
+| [`../../references/install_guide.md`](../../references/install_guide.md) | Step-by-step install with validation checkpoints |

@@ -46,7 +46,7 @@ Operators run the exact prompt and command sequence for `BDG-021` and confirm th
 
 1. `bash: bdg https://example.com 2>&1; echo "EXIT=$?"` — start a fresh throwaway session
 2. `bash: bdg status 2>&1` — confirm session is active and points at example.com
-3. `bash: pkill -9 -f "chrome.*--remote-debugging" 2>&1; echo "EXIT=$?"` — kill the bdg-owned Chrome process
+3. `bash: BDG_CHROME_PID=$(pgrep -f "chrome.*--user-data-dir=.*\.bdg/chrome-profile" | head -1); [ -n "$BDG_CHROME_PID" ] && kill -9 "$BDG_CHROME_PID" && echo "EXIT=0 (killed $BDG_CHROME_PID)" || echo "EXIT=1 (no bdg-owned Chrome process found)"` — kill only the Chrome process matching bdg's own `--user-data-dir` default (`~/.bdg/chrome-profile`, confirmed by live `bdg --help`), never a broad `chrome.*--remote-debugging` match that could hit an unrelated remote-debugging Chrome (e.g. a concurrent `chrome_devtools_1`/`chrome_devtools_2` MCP session)
 4. `bash: bdg dom screenshot /tmp/bdg-dead.png 2>&1; echo "EXIT=$?"` — expect non-zero with session-error message
 5. `bash: bdg https://example.com 2>&1; echo "EXIT=$?"` — restart with new session
 6. `bash: bdg dom screenshot /tmp/bdg-recovered.png 2>&1; echo "EXIT=$?"` — confirm recovery
@@ -56,7 +56,7 @@ Operators run the exact prompt and command sequence for `BDG-021` and confirm th
 
 - Step 1: exit 0; session active
 - Step 2: status reports `https://example.com` as the URL
-- Step 3: exit 0 (pkill found and killed at least one process)
+- Step 3: exit 0 (the bdg-owned Chrome process, matched by its `--user-data-dir`, was found and killed)
 - Step 4: exit != 0; stderr contains "session" / "disconnected" / "target closed" / "browser closed"
 - Step 5: exit 0
 - Step 6: exit 0
@@ -73,7 +73,7 @@ Capture all command outputs, exit codes, the post-kill error message verbatim, a
 
 ### Failure Triage
 
-1. If `pkill` returns exit 1 (no matching process): the bdg-owned Chrome may have a different argv pattern — list with `bash: pgrep -fl chrome` and adjust the kill pattern; cross-reference BDG-002 to confirm a session was actually started.
+1. If no bdg-owned PID is found (EXIT=1): confirm a session was actually started (cross-reference BDG-002) and that bdg is using its default profile; if a custom `-u`/`--user-data-dir` was passed to `bdg`, match that path instead of the default `~/.bdg/chrome-profile`. List candidates with `bash: pgrep -afl "chrome.*--user-data-dir"` before adjusting the pattern, and never fall back to the broad `chrome.*--remote-debugging` match.
 2. If post-kill screenshot returns success or hangs: bdg's state file may be stale — clean up manually with `bash: rm -rf ~/.bdg/ 2>/dev/null; bdg status 2>&1` and re-run from step 5; cross-reference BDG-022 for cleanup-leak detection on the previous session.
 
 ### Optional Supplemental Checks

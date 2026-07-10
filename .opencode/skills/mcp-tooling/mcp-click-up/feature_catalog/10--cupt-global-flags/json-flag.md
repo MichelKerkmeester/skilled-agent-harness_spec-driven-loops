@@ -1,6 +1,6 @@
 ---
 title: "JSON Output Flag"
-description: "--json — structured JSON output on all read commands. Required for agent workflows."
+description: "--json — per-command flag (not global) on list, show, statuses, and teams. Required for agent workflows on those commands."
 trigger_phrases:
   - "json output flag"
   - "--json"
@@ -18,13 +18,13 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Switches the output format from human-readable to JSON on all read commands: `cupt list --json`, `cupt show <id> --json`, `cupt statuses <id> --json`. JSON output is stable and parseable.
+`--json` is a per-command option, not a global flag — it exists on exactly four commands: `cupt list --json`, `cupt show <id> --json`, `cupt statuses <id> --json`, and `cupt teams --json`. It is NOT available on `notes`, `attach list`, `summary`, `context`, or `cupt time status`. JSON output is stable and parseable where supported.
 
 ---
 
 ## 2. HOW IT WORKS
 
-Always use `--json` in agent code. Never parse human-readable cupt output — it is not a stable format and may change between versions. Empty list result is `[]` (valid JSON array).
+Use `--json` in agent code on the four commands that support it. Never parse human-readable cupt output — it is not a stable format and may change between versions. Empty list result is `[]` (valid JSON array).
 
 ---
 

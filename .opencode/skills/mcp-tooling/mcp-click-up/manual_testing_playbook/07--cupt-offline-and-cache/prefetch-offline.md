@@ -37,9 +37,9 @@ Verify `cupt prefetch` populates cache and `cupt show TASK_ID --offline` succeed
 2. `cupt show TASK_ID --offline`  # → task details from cache, no API call
 3. Verify no network request was made (use `--debug` to check logs)
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-020 | Prefetch + Offline Mode | Verify `cupt prefetch` populates cache and `cupt show T | `Prefetch tasks, then show a task without network access` | Step 1: prefetch exits 0. Step 2: task details returned without network call; ex | PASS if prefetch exits 0 AND `--offline show` returns task deta; FAIL if prefetch fails OR offline show makes API call OR return | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-020 | Prefetch + Offline Mode | Verify `cupt prefetch` populates cache and `cupt show TASK_ID --offline` succeeds without network | `Prefetch tasks, then show a task without network access.` | 1. `cupt prefetch`  # → exit 0 with caching confirmation 2. `cupt show TASK_ID --offline`  # → task details from cache, no API call 3. Verify no network request was made (use `--debug` to check logs) | Step 1: prefetch exits 0. Step 2: task details returned without network call; exit 0. | Terminal output of the command sequence above | PASS if prefetch exits 0 AND `--offline show` returns task details; FAIL if prefetch fails OR offline show makes API call OR returns error | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ Verify `cupt prefetch` populates cache and `cupt show TASK_ID --offline` succeed
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/09--cupt-workspace/prefetch.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/09--cupt-workspace/prefetch.md`](../../feature_catalog/09--cupt-workspace/prefetch.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

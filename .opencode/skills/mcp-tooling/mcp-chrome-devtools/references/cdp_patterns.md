@@ -648,24 +648,25 @@ bdg cdp --search intercept
 
 ## 8. ADVANCED PATTERNS
 
-### Multi-Session Management
+### Sequential Sessions Only (bdg Has No Session Selector)
+
+Live `bdg 0.6.10 --help` exposes one global `status` / `stop` lifecycle with no session-id, name, or selector option, so backgrounding two `bdg <url>` invocations does not give two independently addressable sessions: `bdg status` always reports the single active session, and killing a captured `$!` PID bypasses bdg's own cleanup instead of using it. Finish one session (start, use, `bdg stop`) before starting the next:
 
 ```bash
-# Session 1: Monitor network
-bdg https://example.com 2>&1 &
-SESSION_1_PID=$!
-
-# Session 2: Different URL
-bdg https://test.com 2>&1 &
-SESSION_2_PID=$!
-
-# Check both sessions
+# Session 1: start, use, stop
+bdg https://example.com 2>&1
 bdg status 2>&1
+# ... run the CDP/dom/network/console commands for this session ...
+bdg stop 2>&1
 
-# Stop specific session (requires manual intervention or session IDs)
-kill $SESSION_1_PID
-kill $SESSION_2_PID
+# Session 2: only after session 1 has been stopped
+bdg https://test.com 2>&1
+bdg status 2>&1
+# ... run the CDP/dom/network/console commands for this session ...
+bdg stop 2>&1
 ```
+
+For genuine parallel browser control, use `mcp-chrome-devtools`'s multiple registered MCP instances (`chrome_devtools_1`, `chrome_devtools_2` in `.utcp_config.json`, see `SKILL.md`) instead of backgrounding the `bdg` CLI.
 
 ### Conditional Execution
 

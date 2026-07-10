@@ -1,6 +1,6 @@
 ---
 title: "Timer Status"
-description: "cupt time status — current timer state: running task + elapsed, or 'no timer running'."
+description: "cupt time status — current timer state: task ID + start time, or 'no timer running'."
 trigger_phrases:
   - "timer status"
   - "cupt time status"
@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Returns the current timer state: if a timer is running, shows the task name, task ID, and elapsed duration. If no timer is running, returns a clear 'no timer running' message.
+Returns the current timer state: if a timer is running, shows the task ID and the start timestamp — not the task name, and not a computed elapsed duration. If no timer is running, prints "No timer is currently running".
 
 ---
 

@@ -8,9 +8,13 @@ trigger_phrases:
   - "cross-team task visibility"
   - "task in multiple lists"
 version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # clickup_add_task_to_multiple_lists
+
+Add an existing task to additional lists without duplicating it.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -34,7 +38,7 @@ The task exists in multiple lists but is a single entity — changes in one list
 
 | File | Layer | Role |
 |------|-------|------|
-| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

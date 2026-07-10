@@ -1,6 +1,6 @@
 ---
 title: "List Attachments"
-description: "cupt attach list <id> — all attached files with names, sizes, and upload dates."
+description: "cupt attach list <id> — index, size, and filename for each attached file."
 trigger_phrases:
   - "list attachments"
   - "cupt attach list"
@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Returns metadata for all files attached to the task: filename, file size (bytes), uploader name, and upload timestamp.
+Returns metadata for all files attached to the task: 1-based index, human-readable file size, and filename. Does not include uploader name or upload timestamp.
 
 ---
 

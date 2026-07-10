@@ -33,14 +33,14 @@ Verify `clickup_manage_lists` creates a list in SPACE_ID and returns a list_id i
 
 ### Recommended Orchestration Process
 
-PRE: Obtain a SPACE_ID from `clickup.clickup_get_workspace`.
-1. Code Mode: `clickup.clickup_manage_lists({action: 'create', space_id: 'SPACE_ID', name: 'MCP Test List'})`
+PRE: Obtain a SPACE_ID from `clickup_official.clickup_official_clickup_get_workspace`.
+1. Code Mode: `clickup_official.clickup_official_clickup_manage_lists({action: 'create', space_id: 'SPACE_ID', name: 'MCP Test List'})`
 2. `bash: jq .id <<< "$RESULT"`  # → list_id
 3. Confirm list visible in ClickUp
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| MCP-M007 | Manage Lists via MCP | Verify `clickup_manage_lists` creates a list in SPACE_I | `Create a list named 'MCP Test List' in space SPACE_ID.` | MCP returns list object with `id`; list visible in ClickUp; exit 0. | PASS if response includes `id` AND list visible in ClickUp; FAIL if `id` missing OR MCP error | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| MCP-M007 | Manage Lists via MCP | Verify `clickup_manage_lists` creates a list in SPACE_ID and returns a list_id | `Create a list named 'MCP Test List' in space SPACE_ID.` | 1. Code Mode: `clickup_official.clickup_official_clickup_manage_lists({action: 'create', space_id: 'SPACE_ID', name: 'MCP Test List'})` 2. `bash: jq .id <<< "$RESULT"`  # → list_id 3. Confirm list visible in ClickUp | MCP returns list object with `id`; list visible in ClickUp; exit 0. | Code Mode response + terminal output of the verification step(s) above | PASS if response includes `id` AND list visible in ClickUp; FAIL if `id` missing OR MCP error | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -50,15 +50,15 @@ PRE: Obtain a SPACE_ID from `clickup.clickup_get_workspace`.
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/12--mcp-medium-priority/manage-lists.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/12--mcp-medium-priority/manage-lists.md`](../../feature_catalog/12--mcp-medium-priority/manage-lists.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

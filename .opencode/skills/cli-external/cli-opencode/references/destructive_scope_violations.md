@@ -106,10 +106,9 @@ Dispatch into a `git worktree` cloned from current HEAD instead of the live work
 # Cut a worktree from the recovery-baseline commit
 git worktree add --detach /Users/<you>/MEGA/Development/Code_Environment/<short-name>-review HEAD
 
-# Dispatch INSIDE the worktree
+# Dispatch INSIDE the worktree (no --agent flag; the default agent runs when --agent is omitted)
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent general \
   --variant high \
   --format json \
   --dangerously-skip-permissions \

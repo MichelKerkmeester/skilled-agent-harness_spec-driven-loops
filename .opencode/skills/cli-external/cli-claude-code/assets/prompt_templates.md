@@ -291,7 +291,7 @@ Framework: RCAF
 
 ```bash
 claude -p "Generate a comprehensive README.md for this project. Include: overview, installation, usage, API reference, configuration, contributing guidelines. Base on codebase analysis." \
-  --agent write --output-format text 2>&1
+  --agent markdown --output-format text 2>&1
 ```
 
 ### API Documentation
@@ -300,14 +300,14 @@ Framework: RCAF
 
 ```bash
 claude -p "Generate API documentation for all endpoints in @./[api-dir]. Include: method, path, request body, response format, auth requirements, error codes. Format as markdown." \
-  --agent write --output-format text 2>&1
+  --agent markdown --output-format text 2>&1
 ```
 
 **Example:**
 
 ```bash
 claude -p "Generate API documentation for all endpoints in @./src/api/. Include: method, path, request body, response format, auth requirements, error codes. Format as markdown." \
-  --agent write --output-format text 2>&1
+  --agent markdown --output-format text 2>&1
 ```
 
 ### Inline Documentation
@@ -438,9 +438,14 @@ claude -p "Classify each of these error messages into categories (syntax/runtime
 
 Framework: RCAF
 
+There is no `handover` agent in the current roster. Use the default agent (no `--agent` flag) and append the canonical Memory Epilogue block from §13 below, so the calling AI can extract structured JSON via `generate-context.js` instead of relying on freeform prose:
+
 ```bash
-claude -p "Create a handover document capturing: current state, completed work, pending tasks, blockers, next steps, and context needed to continue." \
-  --agent handover --output-format text 2>&1
+claude -p "Create a handover summary capturing: current state, completed work, pending tasks, blockers, next steps, and context needed to continue. $(cat <<'EPILOGUE'
+<paste the Memory Epilogue template from §13 MEMORY EPILOGUE here>
+EPILOGUE
+)" \
+  --output-format text 2>&1
 ```
 
 ---

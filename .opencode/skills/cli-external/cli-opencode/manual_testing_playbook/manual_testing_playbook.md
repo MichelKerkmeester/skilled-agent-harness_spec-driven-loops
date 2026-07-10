@@ -8,7 +8,7 @@ version: 1.3.0.34
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `opencode run` invocations, inspect real outputs, capture real exit codes and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, OpenCode, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords. The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration_patterns.md §5).
+> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords. The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration_patterns.md §5).
 
 This document combines the full manual-validation contract for the `cli-opencode` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide. It explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors and validation criteria.
 
@@ -32,13 +32,13 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 34 deterministic scenarios across 9 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 34 deterministic scenarios across 9 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID; 32 of the 34 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 17).
 
 Coverage note (2026-04-26): Covers the canonical default invocation (`deepseek/deepseek-v4-pro` + `--variant high` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (deepseek direct API default with full variant range, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
 
 ### Realistic Test Model
 
-1. A realistic user request is given to an orchestrator running on a non-OpenCode runtime (Claude Code, OpenCode, Copilot or raw shell), OR an in-OpenCode operator with explicit parallel-session keywords.
+1. A realistic user request is given to an orchestrator running on a non-OpenCode runtime (Claude Code, Copilot or raw shell), OR an in-OpenCode operator with explicit parallel-session keywords.
 2. The orchestrator decides whether to delegate to OpenCode CLI via cli-opencode, picks the right model + agent + variant + format + dir and constructs a Role -> Context -> Action -> Format prompt per the prompt quality card.
 3. The operator captures both the dispatch command and the user-visible outcome (JSON event stream parsed, tool.calls surfaced, session.completed summary).
 4. The scenario passes only when the dispatch is sound, the OpenCode output matches the expected signals and the returned result would satisfy a real user.
@@ -134,7 +134,7 @@ Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 34`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 34`; currently `COVERED_FEATURES == 32` because CO-007 and CO-021 have no feature file yet, so this criterion stays unmet and release stays BLOCKED until both are authored).
 4. No unresolved blocking triage item remains.
 5. Self-invocation guard has been tested at least once (CO-008) and refused correctly.
 6. The cross-repo nested guard (CO-031) has confirmed cross-repo alone does NOT bypass the self-invocation refusal.
@@ -154,7 +154,7 @@ This section records wave planning and capacity guidance for the manual testing 
 ### Operational Rules
 
 1. Probe runtime capacity at start - confirm OpenCode CLI version, provider auth, MCP server registration and budget headroom.
-2. Reserve one external-AI conductor (Claude Code, OpenCode, Copilot or raw shell) for use cases 1 and 3. Never use OpenCode itself as the conductor for those.
+2. Reserve one external-AI conductor (Claude Code, Copilot or raw shell) for use cases 1 and 3. Never use OpenCode itself as the conductor for those.
 3. Saturate remaining worker slots only when scenarios are non-destructive AND independent.
 4. Pre-assign explicit scenario IDs and matching per-feature files to each wave before execution.
 5. Run parallel detached scenarios (CO-026, CO-027, CO-028) in a dedicated wave with isolated port range (e.g., 4096-4299) to avoid port collisions with other workloads.

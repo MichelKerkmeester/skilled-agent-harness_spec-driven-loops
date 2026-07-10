@@ -152,7 +152,7 @@ Every command carries one mutation class. The full per-command taxonomy and gati
 
 ### The destructive set (memorize for gating)
 
-`var delete-all`, `var delete-batch <ids>`, `delete` / `remove [node]`, `node delete <ids>`, `undo` (removes the last render), `unwrap <node>` (deletes the wrapper), `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear`, `annotate clear`. **[CONFIRMED: `iter-001.out` per-command table, source-verified]**
+`var delete-all`, `var delete-batch <ids>`, `delete` / `remove [node]`, `node delete <ids>`, `undo` (removes the last render), `unwrap <node>` (deletes the wrapper), `arrange` (rearranges ALL top-level frames; the binary's own `--help` labels it destructive), `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear`, `annotate clear`. **[CONFIRMED: live `figma-ds-cli 1.2.0 arrange --help`, plus `iter-001.out` per-command table, source-verified]**
 
 ### Arbitrary mutation
 
@@ -240,7 +240,8 @@ figma-ds-cli import design-system.md --type designmd -c brand
 | `create icon <name> [-s size] [-c color] [...]` | MUT | Creates an Iconify/Lucide-style SVG icon. |
 | `create image <url> [-w] [-h] [...]` | MUT | Creates an image node from a URL. |
 | top-level aliases: `rect\|rectangle`, `ellipse\|circle`, `text`, `line`, `component`, `group`, `autolayout\|al` | MUT | Convenience primitives (source-verified). |
-| layout: `sizing`, `padding\|pad`, `gap`, `align`, `set autolayout\|al`, `set pin`, `arrange`, `unstack [--dry-run]` | MUT | Auto-layout / constraints (a `--dry-run` variant is RO). |
+| layout: `sizing`, `padding\|pad`, `gap`, `align`, `set autolayout\|al`, `set pin`, `unstack [--dry-run]` | MUT | Auto-layout / constraints (a `--dry-run` variant is RO). |
+| `arrange [-g] [-c]` | **DESTR** | Rearranges ALL top-level frames on canvas, sorted alphabetically. The binary's own `--help` labels this destructive (no per-frame target, no simple undo of the full layout). Use `unstack` instead for a bounded overlap fix. |
 | `set fill\|stroke\|radius\|size\|scale\|pos\|opacity\|name\|text ... [-n] [-q]` | MUT | Changes node properties. |
 | `duplicate\|dup [nodeId] [--offset n]` | MUT | Duplicates a node/selection. |
 | `node to-component <nodeIds...>` | MUT | Converts frames to components. |
@@ -346,7 +347,7 @@ These groups mix classes per verb, so see [tool_surface.md](tool_surface.md) for
 - **Component / dev:** `component prop add\|combine` (MUT), `component prop list` (RO), **`component prop delete` (DESTR)**; `dev link\|edit` (MUT), `dev list` (RO), **`dev unlink` (DESTR)**. **[CONFIRMED]**
 - **FigJam (`fj` / `figjam`):** `fj list\|info\|nodes` (RO); `fj sticky\|shape\|text\|connect\|move\|update` (MUT); `fj eval` (arbitrary MUT); **`fj delete` (DESTR)**. **[CONFIRMED]**
 - **Plugins / API:** `plugins list` (RO), `plugins install\|setup` (MUT), **`plugins uninstall` (DESTR)**; `api index\|context\|list\|search\|gap\|age` (RO), `api setup` / `api index` write local docs (MUT). **[CONFIRMED]**
-- **Selection / misc:** `select <nodeId>` (MUT: changes selection only); `use\|theme <collection> [--dry-run]` (MUT; `--dry-run` RO); **`unwrap <nodeId>` (DESTR)**; **`undo` (DESTR: removes the last render)**; `config set` (MUT). **[CONFIRMED]**
+- **Selection / misc:** `select <nodeId>` (MUT: changes selection only); `use\|theme <collection> [--dry-run]` (MUT; `--dry-run` RO); **`unwrap <nodeId>` (DESTR)**; **`undo` (DESTR: removes the last render)**; **`arrange [-g] [-c]` (DESTR: rearranges ALL top-level frames, per the binary's own `--help`)**; `config set` (MUT). **[CONFIRMED]**
 
 ---
 

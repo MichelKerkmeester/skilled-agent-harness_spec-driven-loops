@@ -8,9 +8,13 @@ trigger_phrases:
   - "discover board views"
   - "available view types"
 version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # clickup_get_views
+
+List all views (list view, board, calendar, etc.) for a workspace, space, or list.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -34,7 +38,7 @@ Use to discover available views before rendering or filtering. View IDs can be u
 
 | File | Layer | Role |
 |------|-------|------|
-| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

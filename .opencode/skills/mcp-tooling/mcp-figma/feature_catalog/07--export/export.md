@@ -24,7 +24,7 @@ A typical caller names an output path and runs an export. Everything in this are
 
 ## 2. HOW IT WORKS
 
-`figma-ds-cli export screenshot|node <node> <output>` exports a node as a screenshot, PNG, or SVG to an explicit path. `figma-ds-cli export css|tailwind <node> <output>` exports node styles as CSS or Tailwind, `figma-ds-cli export-jsx <node> <output>` exports a node as JSX, and `figma-ds-cli export-storybook <output>` exports components as Storybook stories. Each one takes an explicit output path. None of them change the Figma document, but because they write local files the agent picks a non-existing path and refuses or asks before overwriting an existing file.
+`figma-ds-cli export screenshot [-o file] [-s scale] [-f png|jpg|svg|pdf]` exports the selected node or current page as a screenshot, PNG, or SVG; `figma-ds-cli export node <nodeId> [-o file] [-s scale] [-f png|svg|pdf|jpg]` exports one specific node by id. `figma-ds-cli export css` and `figma-ds-cli export tailwind` export the file's variables as CSS custom properties or a Tailwind config and take no node or output argument in this release. `figma-ds-cli export-jsx [nodeId] [-o file] [--pretty]` exports a node (or the selection) as JSX, and `figma-ds-cli export-storybook [nodeId] [-o file]` exports Storybook stories; both print to stdout unless `-o`/`--output` names a file. None of these change the Figma document, but every form that writes a local file needs an explicit output path, and the agent refuses or asks before overwriting an existing one.
 
 ---
 

@@ -74,7 +74,7 @@ Capture all three counts (`B`, `S`, `P`), the process lists from steps 4 and 7, 
 ### Failure Triage
 
 1. If `S == B`: bdg did not launch a Chrome process — cross-reference BDG-002 (session start) and BDG-019 (missing browser); the launch may have silently fallen back to an attached browser without spawning a child.
-2. If `P > B`: TRUE CLEANUP LEAK. Cross-reference BDG-021 (dead session). Manual recovery: identify leaked PIDs with `bash: pgrep -af "chrome.*--remote-debugging"` and kill with `bash: pkill -9 -f "chrome.*--remote-debugging"`. Then file a bug against bdg's `stop` implementation with the captured `S` and `P` counts and the process list.
+2. If `P > B`: TRUE CLEANUP LEAK. Cross-reference BDG-021 (dead session). Manual recovery: identify the specific leaked PID by bdg's own `--user-data-dir` marker (`bash: pgrep -af "chrome.*--user-data-dir=.*\.bdg/chrome-profile"`, confirmed by live `bdg --help`) and kill only that PID (`bash: kill -9 <pid>`); never a broad `pkill -f "chrome.*--remote-debugging"`, which can also match unrelated remote-debugging Chrome processes (e.g. a concurrent `chrome_devtools_1`/`chrome_devtools_2` MCP session). Then file a bug against bdg's `stop` implementation with the captured `S` and `P` counts and the process list.
 
 ### Optional Supplemental Checks
 

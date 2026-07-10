@@ -8,9 +8,15 @@ trigger_phrases:
   - "create multiple tasks at once"
   - "sprint setup bulk import"
 version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # clickup_create_bulk_tasks
+
+Create 5 or more tasks in one API call. More efficient than sequential creation.
+
+> **Capability status: UNSUPPORTED.** Unlike single-task creation, dedicated bulk-create was one of the capability classes the last successful `list_tools()` inventory (`references/mcp_tools.md`) explicitly reported absent from the registered server. Treat this card as an unsupported historical assumption — use repeated single `clickup_create_task` calls instead — until a fresh `tool_info()`/`list_tools()` capture confirms an exact bulk-create callable name and schema.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -34,7 +40,7 @@ Use for sprint setup, project initialization, or any scenario requiring 5+ tasks
 
 | File | Layer | Role |
 |------|-------|------|
-| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

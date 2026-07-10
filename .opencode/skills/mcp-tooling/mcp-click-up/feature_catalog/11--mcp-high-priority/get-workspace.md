@@ -8,9 +8,13 @@ trigger_phrases:
   - "discover user ids"
   - "verify mcp connection"
 version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # clickup_get_workspace
+
+Get workspace (team) details including ID, name, members, and plan information.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -34,7 +38,7 @@ Primary use: discovering user IDs for `assignees` fields, confirming workspace i
 
 | File | Layer | Role |
 |------|-------|------|
-| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

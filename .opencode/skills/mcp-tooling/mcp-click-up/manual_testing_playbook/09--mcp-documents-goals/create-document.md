@@ -33,13 +33,13 @@ Verify `clickup_create_document` creates a document and returns a doc_id is requ
 
 ### Recommended Orchestration Process
 
-1. Code Mode: `clickup.clickup_create_document({name: 'Playbook Test Doc', parent: {type: 4, id: 'LIST_ID'}, content: '# Test\n\nCreated by playbook MCP-M015.', content_format: 'markdown'})`
+1. Code Mode: `clickup_official.clickup_official_clickup_create_document({name: 'Playbook Test Doc', parent: {type: 4, id: 'LIST_ID'}, content: '# Test\n\nCreated by playbook MCP-M015.', content_format: 'markdown'})`
 2. `bash: jq .id <<< "$RESULT"`  # → doc_id
 3. Confirm document visible in ClickUp
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| MCP-M015 | Create Document via MCP — CRITICAL PATH | Verify `clickup_create_document` creates a document and | `Create document 'Playbook Test Doc' in list LIST_ID wit` | MCP returns JSON with `id` (doc_id); document visible in ClickUp; exit 0. | PASS if response includes `id` (doc_id) AND document visible in; FAIL if `id` missing from response OR document not visible | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| MCP-M015 | Create Document via MCP — CRITICAL PATH | Verify `clickup_create_document` creates a document and returns a doc_id | `Create document 'Playbook Test Doc' in list LIST_ID with markdown content.` | 1. Code Mode: `clickup_official.clickup_official_clickup_create_document({name: 'Playbook Test Doc', parent: {type: 4, id: 'LIST_ID'}, content: '# Test\n\nCreated by playbook MCP-M015.', content_format: 'markdown'})` 2. `bash: jq .id <<< "$RESULT"` 3. Confirm document visible in ClickUp | MCP returns JSON with `id` (doc_id); document visible in ClickUp; exit 0. | Code Mode response + terminal output of the verification step(s) above | PASS if response includes `id` (doc_id) AND document visible in ClickUp; FAIL if `id` missing from response OR document not visible | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ Verify `clickup_create_document` creates a document and returns a doc_id is requ
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/12--mcp-medium-priority/create-document.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/12--mcp-medium-priority/create-document.md`](../../feature_catalog/12--mcp-medium-priority/create-document.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

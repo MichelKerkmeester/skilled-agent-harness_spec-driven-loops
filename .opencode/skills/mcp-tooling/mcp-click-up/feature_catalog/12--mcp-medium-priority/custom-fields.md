@@ -8,9 +8,13 @@ trigger_phrases:
   - "custom field definition"
   - "list field schema"
 version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # clickup_manage_custom_fields
+
+Create or update custom field definitions for a list.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -34,7 +38,7 @@ Custom field definitions apply to all tasks in the list. To set values on indivi
 
 | File | Layer | Role |
 |------|-------|------|
-| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

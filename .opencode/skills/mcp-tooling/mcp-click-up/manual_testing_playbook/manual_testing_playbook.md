@@ -20,25 +20,27 @@ End-to-end manual testing reference for the mcp-click-up skill. Every scenario v
 
 | Category | Features | Scenarios |
 |----------|---------|---------|
-| cupt Authentication & Config | 8 | 8 |
-| cupt Task Listing | 14 | 10 |
-| cupt Task Details | 6 | 6 |
-| cupt Task Completion | 4 | 4 |
-| cupt Notes & Comments | 2 | 2 |
-| cupt Time Tracking | 4 | 4 |
-| cupt Tag Management | 2 | 2 |
-| cupt Attachments | 3 | 2 |
-| cupt Workspace Discovery | 3 | 3 |
-| cupt Global Flags | 4 | 3 |
+| cupt Authentication & Config | 8 | 4 |
+| cupt Task Listing | 14 | 1 |
+| cupt Task Details | 6 | 1 |
+| cupt Task Completion | 4 | 2 |
+| cupt Notes & Comments | 2 | 1 |
+| cupt Time Tracking | 4 | 2 |
+| cupt Tag Management | 2 | 0 |
+| cupt Attachments | 3 | 1 |
+| cupt Workspace Discovery | 3 | 0 |
+| cupt Global Flags | 4 | 0 |
 | cupt Advanced Listing | (stacked, no-tag, -n, verbose) | 4 |
-| cupt Offline & Cache | (prefetch, offline, clear-cache) | 3 |
+| cupt Offline & Cache | (prefetch, offline, clear-cache) | 2 |
 | MCP Task CRUD | HIGH: create, get, update, delete, search | 5 |
 | MCP Bulk & Comments | HIGH: bulk, comments, workspace | 3 |
-| MCP Documents | MEDIUM: create, get, update, pages | 4 |
-| MCP Goals & Structure | MEDIUM: goals, lists, spaces, folders | 4 |
-| MCP Webhooks & Checklists | LOW: webhooks, checklists | 4 |
-| Recovery and Failure | auth fail, empty queue, status errors, MCP fail | 5 |
-| **TOTAL** | **96 features** | **76 scenarios** |
+| MCP Documents | MEDIUM: create, get, update, pages | 3 |
+| MCP Goals & Structure | MEDIUM: goals, lists, spaces, folders | 3 |
+| MCP Webhooks & Checklists | LOW: webhooks, checklists | 2 |
+| Recovery and Failure | auth fail, empty queue, status errors, MCP fail | 3 |
+| **TOTAL** | **96 features** | **37 scenarios** |
+
+Scenario count verified by direct file count against the 10 numbered scenario category folders (39 files; 37 distinct IDs -- `MCP-M015` and `MCP-M019` each currently have two canonical files pending de-duplication, counted once above). The routing-recall holdout set validates smart-router intent selection on a separate ID scheme and is not an executable manual-testing scenario, so it is excluded from this count.
 
 ### Realistic Test Model
 

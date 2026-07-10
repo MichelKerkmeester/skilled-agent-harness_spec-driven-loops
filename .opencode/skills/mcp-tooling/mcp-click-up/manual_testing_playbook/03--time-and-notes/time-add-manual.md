@@ -36,9 +36,9 @@ Verify `cupt time add TASK_ID 1h30m` creates a time entry visible in ClickUp is 
 1. `cupt time add TASK_ID 1h30m`  # → exit 0 with confirmation
 2. Open ClickUp UI and check Time Tracked on the task
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-030 | Log Time Manually | Verify `cupt time add TASK_ID 1h30m` creates a time ent | `Log 1h30m of work on task TASK_ID.` | Step 1: confirmation message with duration logged; exit 0. Step 2: ClickUp shows | PASS if exit 0 AND time entry appears in ClickUp; FAIL if exit non-zero OR time entry missing from ClickUp | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-030 | Log Time Manually | Verify `cupt time add TASK_ID 1h30m` creates a time entry visible in ClickUp | `Log 1h30m of work on task TASK_ID.` | 1. `cupt time add TASK_ID 1h30m`  # → exit 0 with confirmation 2. Open ClickUp UI and check Time Tracked on the task | Step 1: confirmation message with duration logged; exit 0. Step 2: ClickUp shows 1h30m in time tracked. | Terminal output of the command sequence above | PASS if exit 0 AND time entry appears in ClickUp; FAIL if exit non-zero OR time entry missing from ClickUp | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -48,15 +48,15 @@ Verify `cupt time add TASK_ID 1h30m` creates a time entry visible in ClickUp is 
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/06--cupt-time-tracking/log-manual.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/06--cupt-time-tracking/log-manual.md`](../../feature_catalog/06--cupt-time-tracking/log-manual.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

@@ -40,14 +40,13 @@ Operators run the exact prompt and command sequence for `CC-027` and confirm the
 
 1. Restate the user request in plain user language.
 2. Define the small read-only prompt.
-3. Dispatch in the background with `</dev/null` and output redirection.
-4. Run an unrelated quick command in the parent shell to confirm responsiveness.
-5. `wait` for the background dispatch and verify exit 0.
-6. Return a verdict naming the temp file, the wait exit code and a short response snippet.
+3. In ONE shell invocation: clear prior artifacts, dispatch in the background with `</dev/null` and output redirection, capture `$!`, run an unrelated quick command to confirm responsiveness, then `wait` for that same captured PID and print its exit code — a later, separate shell cannot `wait` on a PID it did not fork.
+4. Verify the captured output file is non-empty.
+5. Return a verdict naming the temp file, the wait exit code and a short response snippet.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CC-027 | Background execution | Confirm a backgrounded claude -p dispatch with `</dev/null` runs without blocking and wait collects exit 0 | `Run Claude Code in the background, keep the shell responsive, then verify wait exit 0 and non-empty captured output.` | 1. `bash: rm -f /tmp/cc-027-output.txt /tmp/cc-027-pid.txt` -> 2. `bash: claude -p "Summarize the core principle of cli-claude-code in one sentence based on @./.opencode/skills/cli-external/cli-claude-code/SKILL.md." --permission-mode plan --output-format text > /tmp/cc-027-output.txt 2>&1 </dev/null & echo $! > /tmp/cc-027-pid.txt` -> 3. `bash: echo "PID: $(cat /tmp/cc-027-pid.txt)" && date '+%H:%M:%S baseline'` -> 4. `bash: wait $(cat /tmp/cc-027-pid.txt) ; echo "wait_exit=$?"` -> 5. `bash: test -s /tmp/cc-027-output.txt && echo OK_NONEMPTY` -> 6. `bash: head -c 80 /tmp/cc-027-output.txt` | Step 1: prior artifacts cleared; Step 2: PID captured immediately, parent did not block; Step 3: PID and timestamp printed without delay; Step 4: `wait_exit=0` printed; Step 5: `OK_NONEMPTY` printed; Step 6: first 80 chars of response printed | `/tmp/cc-027-output.txt`, `/tmp/cc-027-pid.txt`, terminal exit codes and snippet | PASS if wait exits 0 AND captured file is non-empty AND parent shell stayed responsive (steps 2 and 3 returned promptly); FAIL if wait errors or output is empty or parent shell blocked | 1. If the parent shell blocked, the `</dev/null` redirect was missing, re-test with the redirect explicit; 2. If wait returns non-zero, inspect the captured file for the error message and fix the prompt; 3. If output is empty but wait returned 0, check stderr was captured into the same file via `2>&1` |
+| CC-027 | Background execution | Confirm a backgrounded claude -p dispatch with `</dev/null` runs without blocking and wait collects exit 0 | `Run Claude Code in the background, keep the shell responsive, then verify wait exit 0 and non-empty captured output.` | 1. `bash: rm -f /tmp/cc-027-output.txt /tmp/cc-027-pid.txt; claude -p "Summarize the core principle of cli-claude-code in one sentence based on @./.opencode/skills/cli-external/cli-claude-code/SKILL.md." --permission-mode plan --output-format text > /tmp/cc-027-output.txt 2>&1 </dev/null & pid=$!; echo "$pid" > /tmp/cc-027-pid.txt; echo "PID: $pid"; date '+%H:%M:%S baseline'; wait "$pid"; echo "wait_exit=$?"; test -s /tmp/cc-027-output.txt && echo OK_NONEMPTY; head -c 80 /tmp/cc-027-output.txt` | Step 1 (single shell): prior artifacts cleared; PID captured immediately after backgrounding (parent did not block); PID and baseline timestamp printed without delay; `wait_exit=0` printed for the SAME captured PID; `OK_NONEMPTY` printed; first 80 chars of response printed | `/tmp/cc-027-output.txt`, `/tmp/cc-027-pid.txt`, terminal exit codes and snippet | PASS if wait exits 0 for the captured PID AND captured file is non-empty AND the PID/timestamp echo returned promptly (proving the parent shell stayed responsive before the `wait`); FAIL if wait errors, `wait: pid ... is not a child of this shell`, output is empty, or parent shell blocked | 1. If the parent shell blocked, the `</dev/null` redirect was missing, re-test with the redirect explicit; 2. If `wait` reports the PID is not a child of this shell, the launch and `wait` steps were split across separate tool-call shell invocations — re-run them as one shell block as shown above; 3. If wait returns non-zero, inspect the captured file for the error message and fix the prompt; 4. If output is empty but wait returned 0, check stderr was captured into the same file via `2>&1` |
 
 ### Optional Supplemental Checks
 
@@ -61,7 +60,7 @@ For full parallel validation, fan out 3 backgrounded dispatches with distinct pr
 
 | File | Role |
 |---|---|
-| `MANUAL_TESTING_PLAYBOOK.md` | Root directory page and scenario summary |
+| `manual_testing_playbook.md` | Root directory page and scenario summary |
 | `../../references/integration_patterns.md` | Background execution pattern |
 
 ### Implementation And Test Anchors
@@ -77,5 +76,5 @@ For full parallel validation, fan out 3 backgrounded dispatches with distinct pr
 
 - Group: Cost And Background
 - Playbook ID: CC-027
-- Canonical root source: `MANUAL_TESTING_PLAYBOOK.md`
+- Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `08--cost-and-background/background-execution.md`

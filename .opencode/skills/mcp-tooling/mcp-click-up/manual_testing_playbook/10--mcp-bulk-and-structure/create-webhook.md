@@ -16,6 +16,8 @@ Validates that **Create Webhook via MCP** behaves as defined in the feature cata
 
 Verify `clickup_manage_webhooks` creates a webhook and returns a webhook_id is required for correct agent operation. Failure here means `id` missing or 403 insufficient permissions.
 
+> **Capability status: SKIP.** Webhook tools were confirmed absent from the last live `list_tools()` inventory (`references/mcp_tools.md`). Do not execute this scenario against the current server; it will fail with a tool-not-found error, not the pass/fail signals below. Re-enable only after a fresh `tool_info()`/`list_tools()` capture confirms an exact callable name and schema.
+
 ---
 
 ## 2. SCENARIO CONTRACT
@@ -25,7 +27,7 @@ Verify `clickup_manage_webhooks` creates a webhook and returns a webhook_id is r
 - **Prompt:** `Create a webhook for taskCreated events pointing to https://example.com/webhook.`
 - **Expected signals:** MCP returns webhook object with `id`; exit 0.
 - **Desired user-visible outcome:** Agent reports: webhook created with ID WEBHOOK_ID for taskCreated events.
-- **Pass/fail:** PASS if response includes `id`; FAIL if `id` missing OR 403 insufficient permissions
+- **Pass/fail:** SKIP — webhooks confirmed absent from the live server (see capability status above). If a future capture proves otherwise: PASS if response includes `id`; FAIL if `id` missing OR 403 insufficient permissions
 
 ---
 
@@ -33,12 +35,12 @@ Verify `clickup_manage_webhooks` creates a webhook and returns a webhook_id is r
 
 ### Recommended Orchestration Process
 
-1. Code Mode: `clickup.clickup_manage_webhooks({action: 'create', team_id: 'WORKSPACE_ID', endpoint: 'https://example.com/webhook', events: ['taskCreated']})`
+1. Code Mode: `clickup_official.clickup_official_clickup_manage_webhooks({action: 'create', team_id: 'WORKSPACE_ID', endpoint: 'https://example.com/webhook', events: ['taskCreated']})`
 2. `bash: jq .id <<< "$RESULT"`  # → webhook_id
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| MCP-L004 | Create Webhook via MCP | Verify `clickup_manage_webhooks` creates a webhook and  | `Create a webhook for taskCreated events pointing to htt` | MCP returns webhook object with `id`; exit 0. | PASS if response includes `id`; FAIL if `id` missing OR 403 insufficient permissions | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| MCP-L004 | Create Webhook via MCP | Verify `clickup_manage_webhooks` creates a webhook and returns a webhook_id | `Create a webhook for taskCreated events pointing to https://example.com/webhook.` | NOT EXECUTABLE — see capability status above | MCP returns webhook object with `id`; exit 0. | N/A — tool confirmed absent | SKIP — webhooks confirmed absent from the live server; do not attempt | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -48,15 +50,15 @@ Verify `clickup_manage_webhooks` creates a webhook and returns a webhook_id is r
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/13--mcp-low-priority/manage-webhooks.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/13--mcp-low-priority/manage-webhooks.md`](../../feature_catalog/13--mcp-low-priority/manage-webhooks.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

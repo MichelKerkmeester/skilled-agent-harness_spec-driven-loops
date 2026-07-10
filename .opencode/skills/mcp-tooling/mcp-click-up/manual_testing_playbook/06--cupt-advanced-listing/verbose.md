@@ -35,9 +35,9 @@ Verify `cupt list --verbose` adds assignee and time columns to the output is req
 
 1. `cupt list --verbose`  # → includes Assignee and Tracked columns
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-015 | Verbose Output — --verbose | Verify `cupt list --verbose` adds assignee and time col | `List tasks with verbose output showing assignee and tim` | Output includes column headers 'Assignee' and 'Tracked' (or equivalent) in the t | PASS if output includes assignee and time column headers; FAIL if output identical to `cupt list` without verbose columns | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-015 | Verbose Output — --verbose | Verify `cupt list --verbose` adds assignee and time columns to the output | `List tasks with verbose output showing assignee and time tracked.` | 1. `cupt list --verbose`  # → includes Assignee and Tracked columns | Output includes column headers 'Assignee' and 'Tracked' (or equivalent) in the table; exit 0. | Terminal output of the command sequence above | PASS if output includes assignee and time column headers; FAIL if output identical to `cupt list` without verbose columns OR exit non-zero | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -47,15 +47,15 @@ Verify `cupt list --verbose` adds assignee and time columns to the output is req
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/02--cupt-task-listing/verbose.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/02--cupt-task-listing/verbose.md`](../../feature_catalog/02--cupt-task-listing/verbose.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

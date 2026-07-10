@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `CC-007` and confirm the
 
 ### Optional Supplemental Checks
 
-Optionally verify that the global CLAUDE.md and project AGENTS.md echo the same forbid rule. Cross-check `cli-opencode` and `cli-opencode` skills for parallel rules to confirm the cross-AI delegation family treats bypass uniformly.
+Optionally verify that the global CLAUDE.md and project AGENTS.md echo the same forbid rule. Cross-check the `cli-opencode` skill (the cross-AI delegation family's other sibling) for a parallel rule to confirm the cli-* family treats bypass/dangerous-skip-permissions uniformly.
 
 ---
 

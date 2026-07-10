@@ -18,13 +18,13 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Filters tasks by tag name using a server-side API parameter. Multiple `--tag` flags use AND logic: the task must carry ALL specified tags.
+Filters tasks by tag name. The ClickUp API's `tags[]` parameter is OR semantics — the server returns tasks bearing ANY listed tag. cupt then applies AND enforcement client-side over that candidate set, so the net result matches only tasks carrying ALL specified tags.
 
 ---
 
 ## 2. HOW IT WORKS
 
-Tag filters are fast because they run server-side. Tag names are case-sensitive. Stackable: `--tag sprint --tag backend` returns only tasks with both tags.
+Tag filtering combines a fast server-side OR prefetch with client-side AND enforcement. Tag name matching is case-insensitive. Stackable: `--tag sprint --tag backend` returns only tasks with both tags.
 
 ---
 

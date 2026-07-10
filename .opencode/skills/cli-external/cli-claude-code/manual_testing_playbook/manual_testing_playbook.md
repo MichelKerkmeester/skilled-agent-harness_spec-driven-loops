@@ -106,13 +106,12 @@ For each executed scenario, check:
 
 Scenario verdict:
 - `PASS`: all acceptance checks true
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
 - `FAIL`: expected behavior missing, contradictory output, self-invocation guard tripped when it should not have or critical check failed
+- `SKIP`: a specific sandbox blocker prevented execution (documented blocker required; never a substitute for a genuine `FAIL`)
 
 ### Feature Verdict Rules
 
-- `PASS`: all mapped scenarios for feature are `PASS`
-- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`
+- `PASS`: all mapped scenarios for feature are `PASS` (or `SKIP` with a documented blocker)
 - `FAIL`: any mapped scenario is `FAIL`
 
 Hard rule:

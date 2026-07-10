@@ -8,9 +8,13 @@ trigger_phrases:
   - "strip tag mcp"
   - "mcp tag remove"
 version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # clickup_remove_tag_from_task
+
+Remove a tag from a task via MCP. Equivalent to cupt tag remove.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -34,7 +38,7 @@ Functionally equivalent to `cupt tag remove`. Use when already in an MCP workflo
 
 | File | Layer | Role |
 |------|-------|------|
-| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

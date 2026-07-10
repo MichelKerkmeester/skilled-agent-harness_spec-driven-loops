@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the Prompt templates inventory for `CO-023`. It focuses on confirming the cli-opencode `assets/prompt_templates.md` ships exactly the documented 16 templates (per the file's overview and SKILL.md §5) and each template includes the documented framework tag, target use case, prompt body and invocation shape.
+This scenario validates the Prompt templates inventory for `CO-023`. It focuses on confirming the cli-opencode `assets/prompt_templates.md` ships exactly the documented 16 templates (per the file's overview and SKILL.md §5 `prompt_templates.md` entry) and each template includes the documented framework tag, target use case, prompt body and invocation shape.
 
 ### Why This Matters
 
@@ -24,13 +24,13 @@ The 16 templates are the operator's first stop for routine cli-opencode dispatch
 
 Operators run the exact prompt and command sequence for `CO-023` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm `assets/prompt_templates.md` contains exactly 13 numbered templates (TEMPLATE 1 through TEMPLATE 13), each with a framework tag and an invocation shape (or refusal-message body for Template 12).
-- Real user request: `Open assets/prompt_templates.md and confirm we have all 16 templates: 1-3 for the three use cases, 4-11 for specialized agents and patterns, 12 for the refusal surface, 13 for the Memory Epilogue tail.`
-- RCAF Prompt: `As an external-AI conductor wanting to verify the prompt template inventory before constructing a dispatch, load assets/prompt_templates.md and count the TEMPLATE N section headers. Verify all 16 templates are present, each named template includes a Framework tag, and each invocation template includes a bash code block (Templates 1-11). Template 12 is the refusal surface (no bash block). Template 13 is the Memory Epilogue (no bash block). Return a concise pass/fail verdict naming the template count and any missing templates.`
-- Expected execution process: External-AI orchestrator greps the templates file for `## N. TEMPLATE` headers, counts to confirm 13, then validates each template has a Framework: line and Templates 1-11 each include a bash code block.
-- Expected signals: 13 unique TEMPLATE headers (TEMPLATE 1 through TEMPLATE 13). Each template includes a `**Framework:**` line. Templates 1-11 each include a `bash` fenced code block. Templates 12 and 13 do NOT require a bash block.
-- Desired user-visible outcome: Verdict naming the template count and confirming all 13 are present.
-- Pass/fail: PASS if exactly 16 templates AND each has Framework tag AND Templates 1-11 each have bash block. FAIL if count != 13 or any template is structurally incomplete.
+- Objective: Confirm `assets/prompt_templates.md` contains exactly 16 numbered templates (TEMPLATE 1 through TEMPLATE 16), with a bash invocation block on every template except Template 12 (self-invocation refusal surface) and Template 13 (Memory Epilogue reusable tail), which are text bodies, not dispatch commands.
+- Real user request: `Open assets/prompt_templates.md and confirm we have all 16 templates: 1-11 are dispatch patterns, 12 is the refusal surface, 13 is the Memory Epilogue tail, and 14-16 are the MiniMax/MiMo/Design dispatch patterns.`
+- RCAF Prompt: `As an external-AI conductor wanting to verify the prompt template inventory before constructing a dispatch, load assets/prompt_templates.md and count the TEMPLATE N section headers. Verify all 16 templates are present and every template except Template 12 (refusal surface) and Template 13 (Memory Epilogue) includes a bash code block. Return a concise pass/fail verdict naming the template count and any missing templates.`
+- Expected execution process: External-AI orchestrator greps the templates file for `## N. TEMPLATE` headers, counts to confirm 16, then validates that 14 of the 16 templates (all except 12 and 13) each include a bash code block.
+- Expected signals: 16 unique TEMPLATE headers (TEMPLATE 1 through TEMPLATE 16). Templates 1-11 and 14-16 each include at least one `bash` fenced code block (14 templates, 15 total bash blocks since Template 15 carries two). Templates 12 (refusal surface) and 13 (Memory Epilogue) carry zero bash blocks by design — they are prose/text bodies, not standalone dispatch commands.
+- Desired user-visible outcome: Verdict naming the template count and confirming all 16 are present.
+- Pass/fail: PASS if exactly 16 templates AND Templates 1-11 plus 14-16 each have >= 1 bash block AND Templates 12/13 are present as non-bash bodies. FAIL if count != 16 or any dispatch template is missing its bash block.
 
 ---
 
@@ -40,14 +40,13 @@ Operators run the exact prompt and command sequence for `CO-023` and confirm the
 
 1. Restate the user request in plain user language.
 2. Grep template headers and count.
-3. Grep Framework lines and count.
-4. Count bash code blocks across the file.
-5. Spot-check Templates 12 and 13 are present without bash blocks.
-6. Return a verdict naming the template count and structural status.
+3. Count bash code blocks across the file.
+4. Spot-check Templates 12 and 13 are present without bash blocks (by design).
+5. Return a verdict naming the template count and structural status.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-023 | Prompt templates inventory (16 templates) | Confirm assets/prompt_templates.md contains exactly 13 numbered templates with framework tags and invocation shapes where applicable | `As an external-AI conductor wanting to verify the prompt template inventory before constructing a dispatch, load assets/prompt_templates.md and count the TEMPLATE N section headers. Verify all 16 templates are present, each named template includes a Framework tag, and each invocation template includes a bash code block (Templates 1-11). Template 12 is the refusal surface (no bash block). Template 13 is the Memory Epilogue (no bash block). Return a concise pass/fail verdict naming the template count and any missing templates.` | 1. `bash: grep -c '^## .*TEMPLATE [0-9]' .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md` -> 2. `bash: grep -E '^## .*TEMPLATE [0-9]' .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md \| sort -t' ' -k4 -n` -> 3. `bash: grep -c '\*\*Framework:\*\*' .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md` -> 4. `bash: grep -c '^\`\`\`bash' .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md` -> 5. `bash: grep -nE 'TEMPLATE 12.*SELF-INVOCATION REFUSAL\|TEMPLATE 13.*MEMORY EPILOGUE' .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md` | Step 1: header count = 13; Step 2: list shows all 16 templates in numerical order; Step 3: Framework count >= 12 (Template 12 may not have a Framework line — operator confirms manually); Step 4: bash code block count >= 11 (Templates 1-11); Step 5: matches show Template 12 (refusal) and Template 13 (epilogue) present | Terminal grep counts and template enumeration | PASS if exactly 16 templates AND >= 12 Framework lines AND >= 11 bash blocks AND Templates 12 + 13 present; FAIL if count is wrong or any template is structurally incomplete | 1. If count != 13, list which TEMPLATE numbers are missing (e.g., gap between 8 and 10 means 9 is missing) — file a documentation bug; 2. If a template is missing the Framework tag, surface it for manual patching; 3. If Template 12 or 13 are missing, the refusal surface or Memory Epilogue documentation has regressed — file a P0 bug; 4. If the count is higher than 13, a template was added without a corresponding numbered entry — clean up duplicates |
+| CO-023 | Prompt templates inventory (16 templates) | Confirm assets/prompt_templates.md contains exactly 16 numbered templates with bash invocation shapes on every template except the refusal-surface and Memory Epilogue templates | `As an external-AI conductor wanting to verify the prompt template inventory before constructing a dispatch, load assets/prompt_templates.md and count the TEMPLATE N section headers. Verify all 16 templates are present and every template except Template 12 (refusal surface) and Template 13 (Memory Epilogue) includes a bash code block. Return a concise pass/fail verdict naming the template count and any missing templates.` | 1. `bash: grep -c '^## .*TEMPLATE [0-9]' .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md` -> 2. `bash: grep -E '^## .*TEMPLATE [0-9]' .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md \| sort -t' ' -k4 -n` -> 3. `bash: grep -c '^\`\`\`bash' .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md` -> 4. `bash: grep -nE 'TEMPLATE 12 —\|TEMPLATE 13 —' .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md` | Step 1: header count = 16; Step 2: list shows all 16 templates in numerical order (1 through 16, no gaps or duplicates); Step 3: bash code block count = 15 (11 templates with one block each for Templates 1-11, plus 1+2+1 across Templates 14/15/16); Step 4: Template 12 (SELF-INVOCATION REFUSAL SURFACE) and Template 13 (MEMORY EPILOGUE) both present | Terminal grep counts and template enumeration | PASS if exactly 16 templates AND bash block count is 14 or 15 (allowing for a template with more than one worked example) AND Templates 12 + 13 are present; FAIL if count != 16 or a dispatch template (anything other than 12/13) is missing its bash block | 1. If count != 16, list which TEMPLATE numbers are missing (e.g., gap between 8 and 10 means 9 is missing) — file a documentation bug; 2. If Template 12 or 13 unexpectedly gained a bash block or a dispatch template unexpectedly lost one, re-verify against the live file structure before assuming regression; 3. If the refusal-surface or Memory Epilogue templates are missing, that documentation has regressed — file a P0 bug; 4. If the count is higher than 16, a template was added without a corresponding numbered entry — clean up duplicates |
 
 ### Optional Supplemental Checks
 
@@ -69,7 +68,7 @@ For each template, optionally validate the Framework tag matches the prompt_qual
 | File | Role |
 |---|---|
 | `../../SKILL.md` | §5 references list (`prompt_templates.md`, 16 templates) |
-| `../../assets/prompt_templates.md` | §1 OVERVIEW + numbered templates 1-13 + §15 RELATED RESOURCES |
+| `../../assets/prompt_templates.md` | §1 OVERVIEW + numbered templates 1-16 + RELATED RESOURCES |
 
 ---
 

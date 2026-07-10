@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Expands the result set from self-assigned to all tasks in the workspace regardless of assignee.
+Expands the result set from self-assigned to all tasks in the workspace regardless of assignee. Bounded, not exhaustive: without `--team`, fetches at most 5 pages and stops early once 100 tasks are collected — very large workspaces may be truncated.
 
 ---
 

@@ -24,7 +24,7 @@ Sets the Personal API Token directly without the interactive wizard. Token must 
 
 ## 2. HOW IT WORKS
 
-Stored encrypted in `~/.cupt/config.yaml`. Overwrites any existing OAuth credentials.
+Stored as plaintext YAML in `~/.cupt/config.yaml`, protected by owner-only file permissions (mode `0600`) — not encrypted. Overwrites any existing OAuth credentials.
 
 ---
 

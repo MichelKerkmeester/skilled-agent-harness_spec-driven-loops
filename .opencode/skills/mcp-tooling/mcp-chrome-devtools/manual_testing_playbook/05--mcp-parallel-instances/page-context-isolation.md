@@ -48,10 +48,12 @@ Operators run the exact prompt and command sequence for `BDG-018` and confirm th
    await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' });
    await chrome_devtools_2.chrome_devtools_2_navigate_page({ url: 'https://example.com' });
    await chrome_devtools_1.chrome_devtools_1_evaluate_script({
-     script: "document.cookie = 'bdg_test=BDG-018; path=/'"
+     function: "() => { document.cookie = 'bdg_test=BDG-018; path=/'; return document.cookie; }"
    });
-   const c1 = await chrome_devtools_1.chrome_devtools_1_get_cookies({});
-   const c2 = await chrome_devtools_2.chrome_devtools_2_get_cookies({});
+   // No dedicated cookie-retrieval tool is registered for chrome_devtools_1/2, so read
+   // document.cookie via evaluate_script independently in each instance.
+   const c1 = await chrome_devtools_1.chrome_devtools_1_evaluate_script({ function: "() => document.cookie" });
+   const c2 = await chrome_devtools_2.chrome_devtools_2_evaluate_script({ function: "() => document.cookie" });
    const has = (cs: any) => JSON.stringify(cs).includes('bdg_test');
    return { in1: has(c1), in2: has(c2) };
    ```
@@ -91,7 +93,7 @@ Capture the Code Mode script, returned object, and explicit boolean values for b
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | get_cookies / evaluate_script reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | evaluate_script reference (no dedicated cookie-retrieval tool is registered; cookies are read via `document.cookie` inside `evaluate_script`) |
 | `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode invocation contract |
 
 ---

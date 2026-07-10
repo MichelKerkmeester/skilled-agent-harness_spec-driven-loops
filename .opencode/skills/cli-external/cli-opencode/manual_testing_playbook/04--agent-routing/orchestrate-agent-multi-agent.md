@@ -61,7 +61,7 @@ For full multi-agent flow validation, dispatch the first specialist named by the
 
 | File | Role |
 |---|---|
-| `MANUAL_TESTING_PLAYBOOK.md` | Root directory page and scenario summary |
+| `manual_testing_playbook.md` | Root directory page and scenario summary |
 | `../../references/agent_delegation.md` (§3 + §6) | Documents the orchestrate agent and multi-agent contract |
 
 ### Implementation And Test Anchors
@@ -78,5 +78,5 @@ For full multi-agent flow validation, dispatch the first specialist named by the
 
 - Group: Agent Routing
 - Playbook ID: CO-034
-- Canonical root source: `MANUAL_TESTING_PLAYBOOK.md`
+- Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `04--agent-routing/orchestrate-agent-multi-agent.md`

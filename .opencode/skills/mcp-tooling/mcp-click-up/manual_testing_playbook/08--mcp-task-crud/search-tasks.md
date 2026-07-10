@@ -33,12 +33,12 @@ Verify `clickup_search_tasks` returns tasks matching a keyword is required for c
 
 ### Recommended Orchestration Process
 
-1. Code Mode: `clickup.clickup_search_tasks({query: 'test'})`
+1. Code Mode: `clickup_official.clickup_official_clickup_search_tasks({query: 'test'})`
 2. Verify response is an array of task objects
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| MCP-H005 | Search Tasks via MCP | Verify `clickup_search_tasks` returns tasks matching a  | `Search for tasks containing the word 'test' in the work` | MCP returns JSON array of matching tasks; each task includes `id` and `name`; ex | PASS if response is a JSON array (may be empty if no tasks matc; FAIL if non-array response OR MCP error | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| MCP-H005 | Search Tasks via MCP | Verify `clickup_search_tasks` returns tasks matching a keyword | `Search for tasks containing the word 'test' in the workspace.` | 1. Code Mode: `clickup_official.clickup_official_clickup_search_tasks({query: 'test'})` 2. Verify response is an array of task objects | MCP returns JSON array of matching tasks; each task includes `id` and `name`; exit 0. | Code Mode response + terminal output of the verification step(s) above | PASS if response is a JSON array (may be empty if no tasks match); FAIL if non-array response OR MCP error | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -48,15 +48,15 @@ Verify `clickup_search_tasks` returns tasks matching a keyword is required for c
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/11--mcp-high-priority/search-tasks.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/11--mcp-high-priority/search-tasks.md`](../../feature_catalog/11--mcp-high-priority/search-tasks.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

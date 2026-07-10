@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Deletes the local cache of task details, comments, and list metadata stored under `~/.cupt/cache/`. Forces fresh API fetch on next `cupt list` or `cupt show`.
+Deletes the local cache of task details, comments, and list metadata: `~/.cupt/parent_cache.json`, `~/.cupt/tasks_cache.json`, and every file under `~/.cupt/task_cache/`. Forces fresh API fetch on next `cupt list` or `cupt show`.
 
 ---
 

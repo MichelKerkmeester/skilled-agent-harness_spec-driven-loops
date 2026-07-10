@@ -36,9 +36,9 @@ Verify `cupt note TASK_ID text` adds a comment and `cupt notes TASK_ID` lists it
 1. `cupt note TASK_ID 'Playbook test comment — CU-027'`  # → exit 0
 2. `cupt notes TASK_ID`  # → list with comment text visible
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-027 | Add Comment + List Comments | Verify `cupt note TASK_ID text` adds a comment and `cup | `Add a test comment to TASK_ID, then list all comments.` | Step 1: exit 0. Step 2: comment with text 'Playbook test comment — CU-027' appea | PASS if comment text appears in `cupt notes` output; FAIL if comment missing from `cupt notes` output OR exit non-ze | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-027 | Add Comment + List Comments | Verify `cupt note TASK_ID text` adds a comment and `cupt notes TASK_ID` lists it | `Add a test comment to TASK_ID, then list all comments.` | 1. `cupt note TASK_ID 'Playbook test comment — CU-027'`  # → exit 0 2. `cupt notes TASK_ID`  # → list with comment text visible | Step 1: exit 0. Step 2: comment with text 'Playbook test comment — CU-027' appears with author and timestamp. | Terminal output of the command sequence above | PASS if comment text appears in `cupt notes` output; FAIL if comment missing from `cupt notes` output OR exit non-zero | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -48,15 +48,15 @@ Verify `cupt note TASK_ID text` adds a comment and `cupt notes TASK_ID` lists it
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/05--cupt-notes-comments/add-comment.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/05--cupt-notes-comments/add-comment.md`](../../feature_catalog/05--cupt-notes-comments/add-comment.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

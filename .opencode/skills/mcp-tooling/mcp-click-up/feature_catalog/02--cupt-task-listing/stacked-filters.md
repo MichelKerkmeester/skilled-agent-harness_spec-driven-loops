@@ -24,7 +24,7 @@ cupt list supports stacking filters freely: `--tag A --tag B` requires both tags
 
 ## 2. HOW IT WORKS
 
-Most efficient pattern: server-side tag filters first, then client-side team filters. Example: `cupt list --all --tag ai_ready --tag sprint --team Engineering --json`. Agent should document the combined intent clearly.
+Most efficient pattern: tag filters first (server-side OR prefetch + client-side AND enforcement), then client-side team filters. Example: `cupt list --all --tag ai_ready --tag sprint --team Engineering --json`. Agent should document the combined intent clearly.
 
 ---
 

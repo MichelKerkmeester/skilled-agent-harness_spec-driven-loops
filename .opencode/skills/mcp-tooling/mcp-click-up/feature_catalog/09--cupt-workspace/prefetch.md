@@ -1,6 +1,6 @@
 ---
 title: "Prefetch Cache"
-description: "cupt prefetch — eagerly download and cache task details for offline use."
+description: "cupt prefetch — eagerly download and cache the current user's task details for offline use."
 trigger_phrases:
   - "prefetch cache"
   - "cupt prefetch"
@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Fetches all tasks and their details proactively, populating the local cache. After prefetch, all `cupt show <id> --offline` and `cupt list --offline` calls work without network access.
+Fetches tasks assigned to the configured user — not the whole workspace — and their details proactively, populating the local cache. Supports `-n`/`--limit` to cap how many tasks are prefetched. After prefetch, `cupt show <id> --offline` and `cupt list --offline` work for the cached tasks without network access.
 
 ---
 

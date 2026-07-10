@@ -77,7 +77,7 @@ Calling AI (CONDUCTOR — RESULT HANDBACK)
 
 ### Invocation pattern
 
-cli-opencode dispatches use the `--agent <slug>` flag. The flag loads the agent definition from `.opencode/agents/<slug>.md` (project-local) or the user-level fallback. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
+`--agent <slug>` is valid at the top level ONLY for the primary agent `orchestrate` (and `plan`, an OpenCode built-in) — never for `general` (rejected, omit `--agent` instead) and never for a subagent slug (`context`, `markdown`, `review`, `debug`, `ai-council`) or a command-owned loop executor (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`), all of which route through `--agent orchestrate`'s Task-dispatch or their owning `/deep:*` command (§3-4 below). When `--agent orchestrate` IS used, the flag loads the agent definition from `.opencode/agents/orchestrate.md` (project-local) or the user-level fallback. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
 
 ```bash
 opencode run \
@@ -118,20 +118,21 @@ The `--variant high` flag is the cli-opencode default for cross-AI dispatches. T
 
 ## 3. AGENT ROSTER
 
-The repo ships these agents under `.opencode/agents/`. The cli-opencode skill can route to any of them. The summary table below is followed by per-agent property tables for the most-dispatched roles.
+The repo ships these agents under `.opencode/agents/`. Three dispatch classes apply — a fix agent (or operator) MUST route each slug through its correct class, not treat the whole roster as uniformly `--agent`-dispatchable. The summary table below is followed by per-agent property tables for the most-dispatched roles.
 
-| Slug | Role | When to dispatch |
-|------|------|-------------------|
-| `general` | Default subagent — implementation, complex tasks | Routine multi-step work that does not match a specialist |
-| `context` | Read-only retrieval and codebase exploration | Search, pattern discovery, context loading. LEAF agent — no sub-dispatches, no writes |
-| `orchestrate` | Multi-agent coordination | Complex workflows that span several agents |
-| `write` | Documentation generation | Creating READMEs, skills, guides |
-| `review` | Code review and PR analysis | Pre-merge reviews, quality gates. READ-ONLY |
-| `debug` | Fresh-perspective debugging | Root cause analysis after 3+ failed debug attempts. Exclusive write access for `debug-delegation.md` |
-| `deep-research` | Iterative research loop executor | Single research-cycle dispatches. State externalized to JSONL + strategy.md. Dispatched only by `/deep:research` command |
-| `deep-review` | Iterative code review loop executor | Single review-cycle dispatches. P0/P1/P2 findings, severity-weighted convergence. Dispatched only by `/deep:review` command |
-| `ai-council` | Multi-strategy planning architect | Complex planning that benefits from comparing multiple solution strategies. PLANNING-ONLY |
-| `deep-agent-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via `/deep:agent-improvement` command loop |
+| Slug | Class | Role | When to dispatch |
+|------|-------|------|-------------------|
+| `general` | Primary — top-level `--agent` REJECTED, use default (omit `--agent`) | Default implementation, complex tasks | Routine multi-step work that does not match a specialist. Never pass `--agent general`; the default agent already runs when `--agent` is omitted |
+| `orchestrate` | Primary — directly invokable via `--agent orchestrate` | Multi-agent coordination | Complex workflows that span several agents, or to Task-dispatch a subagent below |
+| `context` | Subagent — routed via `--agent orchestrate`, never direct | Read-only retrieval and codebase exploration | Search, pattern discovery, context loading. LEAF agent — no sub-dispatches, no writes |
+| `markdown` | Subagent — routed via `--agent orchestrate`, never direct | Template-first documentation generation | Creating READMEs, skills, guides, spec docs |
+| `review` | Subagent — routed via `--agent orchestrate`, never direct | Code review and PR analysis | Pre-merge reviews, quality gates. READ-ONLY |
+| `debug` | Subagent — routed via `--agent orchestrate`, never direct | Fresh-perspective debugging | Root cause analysis after 3+ failed debug attempts. Exclusive write access for `debug-delegation.md` |
+| `ai-council` | Command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch; never direct `--agent ai-council` | Multi-strategy planning architect | Complex planning that benefits from comparing multiple solution strategies. Scoped-write: writes ONLY packet-local `ai-council/**` artifacts |
+| `deep-research` | Command-owned by `/deep:research`; never direct `--agent deep-research` | Iterative research loop executor | Single research-cycle dispatches. State externalized to packet-local JSONL + strategy.md |
+| `deep-review` | Command-owned by `/deep:review`; never direct `--agent deep-review` | Iterative code review loop executor | Single review-cycle dispatches. P0/P1/P2 findings, severity-weighted convergence |
+| `deep-improvement` | Command-owned by `/deep:agent-improvement`; never direct `--agent deep-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via the `/deep:agent-improvement` command loop |
+| `prompt-improver` | Command-owned by `/prompt`; never direct `--agent prompt-improver` | Dispatch-ready prompt package generation | Deep-path prompt escalation per the cli-* prompt-quality-card Tier 3 trigger |
 
 ---
 
@@ -188,13 +189,13 @@ The repo ships these agents under `.opencode/agents/`. The cli-opencode skill ca
 | Property | Value |
 |----------|-------|
 | **Role** | Multi-strategy planning across diverse thinking lenses |
-| **Sandbox** | Read-only |
-| **Modifies files** | Never |
-| **LEAF constraint** | PLANNING-ONLY (no file modifications) |
+| **Sandbox** | Scoped-write |
+| **Modifies files** | Yes — but ONLY packet-local `ai-council/**` artifacts (never any other path) |
+| **LEAF constraint** | SCOPED-WRITE (writes and edits confined to `ai-council/**`; never touches code or other spec docs) |
 
 **Best for:** Architecture decisions, complex planning that benefits from comparing 3+ solution strategies.
 
-**Command-only (as of `mode: subagent`).** Direct `opencode run --agent ai-council` is no longer reachable — `ai-council.md` is `mode: subagent`, not directly selectable as a top-level session agent. Dispatch via `/deep:ai-council` for a full session, or via `opencode run --agent general "..."` and let `general`/`orchestrate`'s own routing Task-dispatch to `@ai-council` for a single planning pass.
+**Command-only (as of `mode: subagent`).** Direct `opencode run --agent ai-council` is no longer reachable — `ai-council.md` is `mode: subagent`, not directly selectable as a top-level session agent. Dispatch via `/deep:ai-council` for a full session, or via `opencode run --agent orchestrate "..."` and let `orchestrate`'s own routing Task-dispatch to `@ai-council` for a single planning pass (never `--agent general`, which is rejected at the top level).
 
 **Delegate when:** The calling AI needs a fundamentally different planning approach or wants to compare strategies before committing to one.
 
@@ -215,20 +216,20 @@ Both are LEAF agents. Each iteration is fresh-context. The parent command owns c
 
 ## 4. AGENT ROUTING MATRIX
 
-Pick the agent that matches the task type. Default to `general` when no specialist fits.
+Pick the agent that matches the task type. Default to omitting `--agent` (the `general` default) when no specialist fits.
 
 | Task type | Agent | Invocation pattern |
 |-----------|-------|---------------------|
-| Codebase exploration | `context` | `opencode run --agent context --variant high --format json --dir /repo "Map the dependency graph for src/"` |
+| Codebase exploration | `context` | **Subagent — route via `orchestrate`.** `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the context subagent: map the dependency graph for src/"` |
 | Multi-agent coordination | `orchestrate` | `opencode run --agent orchestrate --variant high --format json --dir /repo "Coordinate review and testing of auth module"` |
-| Documentation generation | `write` | `opencode run --agent write --variant high --format json --dir /repo "Generate README for the cli-opencode skill"` |
-| Code review | `review` | `opencode run --agent review --variant high --format json --dir /repo "Review @src/auth.ts for security issues"` |
-| Root cause debugging | `debug` | `opencode run --agent debug --variant high --format json --dir /repo "Debug this error: <error>"` |
+| Documentation generation | `markdown` | **Subagent — route via `orchestrate`.** `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the markdown subagent: generate a README for the cli-opencode skill"` |
+| Code review | `review` | **Subagent — route via `orchestrate`.** `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the review subagent: review @src/auth.ts for security issues"` (or the `As @review:` prompt-prefix pattern in §5, no `--agent` flag at all) |
+| Root cause debugging | `debug` | **Subagent — route via `orchestrate`.** `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the debug subagent: debug this error: <error>"` |
 | Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden; the parent command owns iteration state, JSONL, and convergence. |
 | Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden; the parent command owns iteration state and severity-weighted convergence. |
-| Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or `opencode run --agent general --variant high --format json --dir /repo "Plan the authentication redesign — compare three strategies."` and let orchestrate's routing Task-dispatch `@ai-council`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
-| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/deep:agent-improvement`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. |
-| Default / unspecified | `general` | `opencode run --agent general --variant high --format json --dir /repo "<prompt>"` |
+| Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
+| Agent improvement | `deep-improvement` | **Command-only.** Dispatch via `/deep:agent-improvement`. Direct `opencode run --agent deep-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. |
+| Default / unspecified | (none — omit `--agent`) | `opencode run --variant high --format json --dir /repo "<prompt>"` — never pass `--agent general`, it is rejected at the top level |
 
 ---
 
@@ -289,16 +290,16 @@ If the calling AI is already decomposing tasks, delegate directly to leaf agents
 
 ## 7. LEAF-AGENT CONSTRAINTS
 
-Some agents are LEAF agents by design. They MUST NOT dispatch sub-agents, use the Task tool, or write files (read-only). The cli-opencode skill MUST honor these constraints:
+Some agents are LEAF agents by design. Most MUST NOT dispatch sub-agents, use the Task tool, or write files (read-only); `ai-council` is the one LEAF exception, confined to a scoped-write subtree instead of full read-only. The cli-opencode skill MUST honor these constraints:
 
 | Agent | Constraint |
 |-------|-----------|
 | `context` | LEAF — no sub-dispatches, no writes. All results returned to the caller |
 | `deep-research` | LEAF — single iteration, externalized state, no nested dispatches |
 | `deep-review` | LEAF — single iteration, externalized state, no nested dispatches |
-| `ai-council` | PLANNING-ONLY — no file modifications |
+| `ai-council` | LEAF — no sub-dispatches, but SCOPED-WRITE (not read-only): writes and edits confined to the pre-bound packet's `ai-council/**` subtree only |
 
-The calling AI must NOT request a write or sub-dispatch from a LEAF agent. If the prompt would require either, route to `general` or `orchestrate` instead.
+The calling AI must NOT request a write outside `ai-council/**` or a sub-dispatch from a LEAF agent. If the prompt would require either, route to `orchestrate` instead (never `general`, which is rejected at the top level).
 
 ---
 
@@ -308,12 +309,11 @@ Two end-to-end examples covering the most common dispatch patterns.
 
 ### Example 1: Code review via `@review`
 
-The calling AI wants a security-focused review of a single file.
+The calling AI wants a security-focused review of a single file. No `--agent` flag — `review` is a subagent, not directly invokable at the top level; the `As @review:` prompt prefix carries the role instead (or route via `--agent orchestrate` and ask it to dispatch the review subagent).
 
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent review \
   --variant high \
   --format json \
   --dir /path/to/repo \
@@ -329,12 +329,11 @@ opencode run \
 
 ### Example 2: Root cause debugging via `@debug`
 
-The calling AI's first 3 debug attempts failed. Escalate to a fresh-context dispatch.
+The calling AI's first 3 debug attempts failed. Escalate to a fresh-context dispatch. No `--agent` flag — `debug` is a subagent, not directly invokable at the top level; the `As @debug:` prompt prefix carries the role instead (or route via `--agent orchestrate` and ask it to dispatch the debug subagent).
 
 ```bash
 opencode run \
   --model deepseek/deepseek-v4-pro \
-  --agent debug \
   --variant high \
   --format json \
   --dir /path/to/repo \
@@ -352,13 +351,13 @@ opencode run \
 ### Capturing output
 
 ```bash
-# Capture JSON event stream to file
-opencode run --agent review --variant high --format json --dir /repo \
-  "Review @src/auth.ts" > /tmp/review-events.jsonl
+# Capture JSON event stream to file (no --agent; subagent role carried in the prompt)
+opencode run --variant high --format json --dir /repo \
+  "As @review: review @src/auth.ts" > /tmp/review-events.jsonl
 
-# Capture stdout to a variable
-RESULT=$(opencode run --agent context --variant high --format json --dir /repo \
-  "List exported symbols in src/")
+# Capture stdout to a variable (no --agent; subagent role carried in the prompt)
+RESULT=$(opencode run --variant high --format json --dir /repo \
+  "As @context: list exported symbols in src/")
 
 # Check exit status
 if [ $? -eq 0 ]; then

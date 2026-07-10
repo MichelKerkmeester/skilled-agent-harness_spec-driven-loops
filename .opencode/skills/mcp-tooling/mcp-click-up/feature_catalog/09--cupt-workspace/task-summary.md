@@ -1,11 +1,11 @@
 ---
 title: "Task Summary"
-description: "cupt summary — workspace-wide task state overview."
+description: "cupt summary — your daily task overview: time tracked, due today, overdue, completed; --all for workspace-wide."
 trigger_phrases:
   - "task summary"
   - "cupt summary"
-  - "workspace overview"
-  - "task count by status"
+  - "daily task overview"
+  - "due today overdue completed"
   - "situational awareness dashboard"
 version: 1.0.0.3
 ---
@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Generates a high-level summary of the workspace task state: counts by status, counts by assignee, and counts by priority.
+Generates a daily summary scoped to the authenticated user by default: time tracked today, tasks due today, overdue tasks, and tasks completed today. Pass `--all` to scope the same four sections to the whole workspace instead.
 
 ---
 
