@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix/005-validate-and-rebenchmark",
+  "spec_folder": "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix/005-validate-and-rebenchmark",
+  "parent_id": "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validate de-numbering migration",
+      "benchmark regression proof de-numbering"
+    ],
+    "key_topics": [
+      "validate",
+      "de-numbering",
+      "migration",
+      "benchmark",
+      "regression",
+      "proof",
+      "phase",
+      "gate",
+      "executes",
+      "prove",
+      "nothing",
+      "regressed"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "End Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Regression Proof",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "delta",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Strict",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Final",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 005, the gate. After the migration executes, prove nothing regressed: recursive validate.sh --strict across every touched skill (with catalog/playbook leaves still classified as their typed documents), the whole-workspace markdown-link CI guard, any hard-coded-path tests, and a re-run of the Lane C smart-routing benchmark on affected skills compared against a pre-migration baseline captured before Phase 004. Finally prove the no-new-numbers guard fires by attempting a fresh numbered folder.",
+    "created_at": "2026-07-10T18:51:13.165Z",
+    "last_save_at": "2026-07-10T18:51:13.165Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:105d85aa06cd432386121627db15b1a2ff0f2f589128a2a9e9c0a84ed4048c38",
+    "source_doc_hashes": {
+      "spec.md": "cd69ec1046a87c83fa74377e162c1c06a5ea016c9a2a234bab634511b51dc599",
+      "plan.md": "860c870bbb0835e4400d0ab40566e07dbe4375a5a6fc31239bf0791e1922456f",
+      "tasks.md": "3284243583d4b0ea7d563cbd361518b40c0678d5b326ff3fd15cd19370a327a1",
+      "checklist.md": "f081bca81a36f761c82ad47f1cc97e674ab442a0bdeebd097cad3f79bc587a8a",
+      "implementation-summary.md": "f0681d81b3fe2455d30e6381aa1f0a0ca8fd85395a32d1957d10b60feaba5cc1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

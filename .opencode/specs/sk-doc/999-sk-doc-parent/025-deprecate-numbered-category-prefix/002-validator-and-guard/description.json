@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix/002-validator-and-guard",
+  "description": "Phase 002 of the numbered-prefix deprecation.",
+  "keywords": [
+    "phase",
+    "numbered-prefix",
+    "deprecation"
+  ],
+  "lastUpdated": "2026-07-10T18:49:18.098Z",
+  "specId": "002",
+  "folderSlug": "validator-and-guard",
+  "parentChain": [
+    "sk-doc",
+    "999-sk-doc-parent",
+    "025-deprecate-numbered-category-prefix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

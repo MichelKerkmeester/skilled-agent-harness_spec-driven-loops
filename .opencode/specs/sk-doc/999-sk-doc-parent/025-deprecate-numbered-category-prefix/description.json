@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/999-sk-doc-parent/025-deprecate-numbered-category-prefix",
+  "description": "Every skill's feature_catalog/NN--<name>/ and manual_testing_playbook/NN--<name>/ category folders carry a two-digit NN-- ordinal prefix.",
+  "keywords": [
+    "every",
+    "skill",
+    "name",
+    "category",
+    "folders",
+    "carry",
+    "two-digit",
+    "ordinal",
+    "prefix"
+  ],
+  "lastUpdated": "2026-07-10T18:34:26.418Z",
+  "specId": "025",
+  "folderSlug": "deprecate-numbered-category-prefix",
+  "parentChain": [
+    "sk-doc",
+    "999-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
