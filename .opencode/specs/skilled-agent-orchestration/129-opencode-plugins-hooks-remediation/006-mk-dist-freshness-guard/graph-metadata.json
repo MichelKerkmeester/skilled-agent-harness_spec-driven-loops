@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/006-mk-dist-freshness-guard",
+  "spec_folder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/006-mk-dist-freshness-guard",
+  "parent_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mk-dist-freshness-guard remediation",
+      "mk-dist-freshness-guard fixes",
+      "mk-dist-freshness-guard bug fixes",
+      "opencode plugin remediation"
+    ],
+    "key_topics": [
+      "mk-dist-freshness-guard",
+      "remediation",
+      "bug",
+      "opencode",
+      "plugin",
+      "audit",
+      "packet",
+      "surfaced",
+      "confirmed",
+      "findings",
+      "claude",
+      "hook"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/plugins/mk-dist-freshness-guard.js",
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      ".opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh",
+      ".opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-dist-freshness-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-dist-freshness-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-posttooluse.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Severity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "startup",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The audit (packet 127) surfaced 12 confirmed findings in `mk-dist-freshness-guard` and its Claude hook version (5 P1 / 2 P2 / 5 refinement)",
+    "created_at": "2026-07-10T09:27:09.660Z",
+    "last_save_at": "2026-07-10T09:27:09.660Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:15b80400ae3858bb22707b255d8c1ca36f4680b9b5200717a9f9149d3ced0682",
+    "source_doc_hashes": {
+      "spec.md": "094edde65a8aee808a60ec71e9fa39950d239ed406e5f9979abd1a376bd9c664",
+      "plan.md": "73c52442e3f905ece75cf5968666fb213a4b462c6c186d29b9b98b64bb54942d",
+      "tasks.md": "0f0a39bb1f39170745844a47bbc70ad5d81efbd4eb38b9ecbf204d15bdc0d501"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
