@@ -358,7 +358,9 @@ async function maybeAppendCodeIndexCliWarmFallback(
   sections: OutputSection[],
   source: string,
 ): Promise<OutputSection[]> {
-  if ((source !== 'startup' && source !== 'resume') || hasStructuralContextSection(sections)) {
+  // A compaction replaces the transcript, so refresh the structural-context section there too,
+  // not only at session start/resume — otherwise Claude carries stale code-graph status across a compact.
+  if ((source !== 'startup' && source !== 'resume' && source !== 'compact') || hasStructuralContextSection(sections)) {
     return sections;
   }
   const section = await buildWarmCodeGraphStatusSection({
