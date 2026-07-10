@@ -45,13 +45,18 @@ const MESSAGES_TRANSFORM_ENABLED = true;
 const MESSAGES_TRANSFORM_MODE = 'schema_aligned';
 const SYNTHETIC_METADATA_KEY = 'mkCodeGraph';
 const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs', import.meta.url));
+let lastConfigError = null;
 
 async function loadConfig() {
   const path = join(homedir(), '.config', 'opencode', 'plugin', 'mk-code-graph.json');
   try {
     const raw = await readFile(path, 'utf-8');
     return JSON.parse(raw);
-  } catch {
+  } catch (error) {
+    if (error?.code !== 'ENOENT') {
+      lastConfigError = stringifyError(error);
+      emitRuntimeDiagnostic(`Configuration load failed: ${lastConfigError}`);
+    }
     return {};
   }
 }
@@ -98,6 +103,7 @@ const configPromise = loadConfig();
 // ─────────────────────────────────────────────────────────────────────────────
 
 const transportCache = new Map();
+const transportInFlight = new Map();
 let runtimeReady = false;
 let lastRuntimeError = null;
 
@@ -165,6 +171,14 @@ function cacheKeyForSession(sessionID, specFolder) {
   return `${specFolder ?? '__workspace__'}::${normalizeSessionID(sessionID)}`;
 }
 
+function isValidTransportBlock(block) {
+  return Boolean(block)
+    && typeof block === 'object'
+    && typeof block.title === 'string'
+    && typeof block.content === 'string'
+    && typeof block.dedupeKey === 'string';
+}
+
 /**
  * Parse a bridge response into an OpenCode transport plan.
  *
@@ -190,7 +204,11 @@ export function parseTransportPlan(responseText) {
     if (!plan || typeof plan !== 'object') {
       return null;
     }
-    if (plan.transportOnly !== true || !Array.isArray(plan.messagesTransform)) {
+    if (plan.transportOnly !== true
+      || !Array.isArray(plan.messagesTransform)
+      || !plan.messagesTransform.every(isValidTransportBlock)
+      || (plan.systemTransform !== undefined && !isValidTransportBlock(plan.systemTransform))
+      || (plan.compaction !== undefined && !isValidTransportBlock(plan.compaction))) {
       return null;
     }
     return /** @type {TransportPlan} */ (plan);
@@ -221,6 +239,11 @@ function diagnoseTransportPlanFailure(responseText) {
     }
     if (!Array.isArray(plan.messagesTransform)) {
       return 'Bridge opencodeTransport.messagesTransform was not an array; plugin injection will no-op';
+    }
+    if (!plan.messagesTransform.every(isValidTransportBlock)
+      || (plan.systemTransform !== undefined && !isValidTransportBlock(plan.systemTransform))
+      || (plan.compaction !== undefined && !isValidTransportBlock(plan.compaction))) {
+      return 'Bridge opencodeTransport contained a malformed block; plugin injection will no-op';
     }
     return 'Bridge returned invalid OpenCode transport payload; plugin injection will no-op';
   } catch (error) {
@@ -294,36 +317,53 @@ async function loadTransportPlan({ projectDir, sessionID, specFolder, cacheTtlMs
     return cached.plan;
   }
 
-  try {
-    const bridgeResult = await runTransportBridge({
-      projectDir,
-      specFolder,
-      nodeBinary,
-      bridgeTimeoutMs,
-    });
-    const plan = bridgeResult.plan;
+  const existing = transportInFlight.get(key);
+  if (existing) {
+    return existing;
+  }
 
-    if (!plan) {
-      lastRuntimeError = bridgeResult.diagnostic || 'Bridge returned no OpenCode transport payload';
-      emitRuntimeDiagnostic(lastRuntimeError);
+  const pending = (async () => {
+    try {
+      const bridgeResult = await runTransportBridge({
+        projectDir,
+        specFolder,
+        nodeBinary,
+        bridgeTimeoutMs,
+      });
+      const plan = bridgeResult.plan;
+
+      if (!plan) {
+        lastRuntimeError = bridgeResult.diagnostic || 'Bridge returned no OpenCode transport payload';
+        emitRuntimeDiagnostic(lastRuntimeError);
+        runtimeReady = false;
+        transportCache.delete(key);
+        return null;
+      }
+
+      const completedAt = Date.now();
+      runtimeReady = true;
+      lastRuntimeError = null;
+      transportCache.set(key, {
+        plan,
+        expiresAt: completedAt + cacheTtlMs,
+        updatedAt: new Date(completedAt).toISOString(),
+      });
+      return plan;
+    } catch (error) {
       runtimeReady = false;
+      lastRuntimeError = stringifyError(error);
       transportCache.delete(key);
       return null;
     }
+  })();
+  transportInFlight.set(key, pending);
 
-    runtimeReady = true;
-    lastRuntimeError = null;
-    transportCache.set(key, {
-      plan,
-      expiresAt: now + cacheTtlMs,
-      updatedAt: new Date(now).toISOString(),
-    });
-    return plan;
-  } catch (error) {
-    runtimeReady = false;
-    lastRuntimeError = stringifyError(error);
-    transportCache.delete(key);
-    return null;
+  try {
+    return await pending;
+  } finally {
+    if (transportInFlight.get(key) === pending) {
+      transportInFlight.delete(key);
+    }
   }
 }
 
@@ -369,8 +409,7 @@ function extractEventSessionID(event) {
 }
 
 function shouldInvalidateEvent(eventType) {
-  return typeof eventType === 'string'
-    && (eventType.startsWith('session.') || eventType.startsWith('message.'));
+  return eventType === 'session.created' || eventType === 'session.deleted';
 }
 
 function invalidateTransportCache(sessionID, specFolder) {
@@ -408,7 +447,10 @@ export default async function mkCodeGraphPlugin(ctx, rawOptions) {
       if (!shouldInvalidateEvent(event?.type)) {
         return;
       }
-      invalidateTransportCache(extractEventSessionID(event), options.specFolder);
+      const sessionID = extractEventSessionID(event);
+      if (sessionID) {
+        invalidateTransportCache(sessionID, options.specFolder);
+      }
     },
 
     tool: {
@@ -431,6 +473,7 @@ export default async function mkCodeGraphPlugin(ctx, rawOptions) {
             `node_binary=${options.nodeBinary}`,
             `bridge_timeout_ms=${options.bridgeTimeoutMs}`,
             `bridge_path=${BRIDGE_PATH}`,
+            `config_error=${lastConfigError ?? 'none'}`,
             `last_runtime_error=${lastRuntimeError ?? 'none'}`,
             `cache_entries=${transportCache.size}`,
             entries || 'cache=empty',
@@ -460,7 +503,7 @@ export default async function mkCodeGraphPlugin(ctx, rawOptions) {
       }
 
       const rendered = `${block.title}\n${block.content}`;
-      if (output.system.some((entry) => entry.includes(rendered))) {
+      if (output.system.some((entry) => typeof entry === 'string' && entry.includes(rendered))) {
         return;
       }
 
@@ -469,6 +512,9 @@ export default async function mkCodeGraphPlugin(ctx, rawOptions) {
 
     'experimental.chat.messages.transform': async (_input, output) => {
       if (!MESSAGES_TRANSFORM_ENABLED) {
+        return;
+      }
+      if (!output || typeof output !== 'object' || !Array.isArray(output.messages)) {
         return;
       }
 
@@ -538,7 +584,7 @@ export default async function mkCodeGraphPlugin(ctx, rawOptions) {
       }
 
       const rendered = `${block.title}\n${block.content}`;
-      if (output.context.some((entry) => entry.includes(rendered))) {
+      if (output.context.some((entry) => typeof entry === 'string' && entry.includes(rendered))) {
         return;
       }
 
