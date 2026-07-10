@@ -54,7 +54,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-07-09 |
 | **Branch** | `022-drift-marker-native-consolidation` |
 <!-- /ANCHOR:metadata -->
@@ -434,6 +434,7 @@ for the first time.
 
 ### Resolved Questions
 
-None yet — both items above are resolved during planning (see plan.md) before implementation
-begins, not left open in shipped code.
+The implementation selected the smaller diffs documented in plan.md and `decision-record.md`:
+an optional `staleMs` parameter on `isReclaimableLock()` with its existing five-minute default,
+and the unchanged `MEMORY_DRIFT_DIFF`/`MEMORY_DRIFT_REPO_ROOT`/`MEMORY_DRIFT_SOURCE` transport.
 <!-- /ANCHOR:questions -->

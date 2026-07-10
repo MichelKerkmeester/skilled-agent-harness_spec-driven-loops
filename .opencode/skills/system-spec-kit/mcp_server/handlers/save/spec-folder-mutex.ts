@@ -22,7 +22,7 @@ type LockOwnerState = 'alive' | 'dead' | 'unknown';
 
 const lockHeartbeats = new Map<string, ReturnType<typeof setInterval>>();
 
-interface InterprocessLockHandle {
+export interface InterprocessLockHandle {
   lockDir: string;
 }
 
@@ -86,7 +86,7 @@ function getLockOwnerState(lockDir: string): LockOwnerState {
 // A lock is reclaimable only when its owner is provably gone (dead), or when the
 // owner record is unreadable AND the dir has aged past the stale threshold.
 // An alive owner is never reclaimable, regardless of age.
-function isReclaimableLock(lockDir: string): boolean {
+function isReclaimableLock(lockDir: string, staleMs: number = LOCK_STALE_MS): boolean {
   let ageMs: number;
   try {
     const stats = fs.statSync(lockDir);
@@ -95,7 +95,7 @@ function isReclaimableLock(lockDir: string): boolean {
     return false;
   }
   const ownerState = getLockOwnerState(lockDir);
-  return ownerState === 'dead' || (ownerState === 'unknown' && ageMs > LOCK_STALE_MS);
+  return ownerState === 'dead' || (ownerState === 'unknown' && ageMs > staleMs);
 }
 
 function reclaimInterprocessLock(lockDir: string): boolean {
