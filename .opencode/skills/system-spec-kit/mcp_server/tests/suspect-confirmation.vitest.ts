@@ -356,9 +356,11 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
     mockLeaseAndScaffolding();
     const workspace = makeTempWorkspace('suspect-confirm-partial-error-');
     const { handler, vectorIndex, driftHealing } = await loadRealModules(workspace);
+    let failingId: number | undefined;
     try {
       const db = vectorIndex.getDb()!;
       const failing = seedSuspectCandidate(vectorIndex, workspace, 'suspect-partial-error/001-fails');
+      failingId = failing.id;
       const succeeding = seedSuspectCandidate(vectorIndex, workspace, 'suspect-partial-error/002-succeeds');
       // Both files are genuinely missing, so both are tombstone candidates -- but
       // deleteMemory is rigged to throw for exactly the first one.
@@ -378,7 +380,24 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
       // proving the per-id try/catch in deleteIndexedRecordIds isolates failures.
       expect(vectorIndex.getMemory(failing.id, db)).not.toBeNull();
       expect(vectorIndex.getMemory(succeeding.id, db)).toBeNull();
+
+      // A failed delete must also stay queued for the next confirmation pass
+      // to retry -- it must not be silently dropped just because this pass
+      // already tried and failed once.
+      expect(driftHealing.readMemoryDriftSuspects(db).map((suspect) => suspect.id)).toEqual([failing.id]);
     } finally {
+      try {
+        // The underlying drift-suspect queue database is shared across tests
+        // in this file (not per-workspace), so a suspect intentionally left
+        // behind by a failed-delete assertion above must be cleared here --
+        // otherwise it leaks into the next test own queue read.
+        const db = vectorIndex.getDb();
+        if (db && failingId !== undefined) {
+          driftHealing.removeMemoryDriftSuspects(db, [failingId]);
+        }
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
       try {
         vectorIndex.closeDb();
       } catch (_error: unknown) {

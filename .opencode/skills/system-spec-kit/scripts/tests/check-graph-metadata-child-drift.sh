@@ -192,6 +192,35 @@ echo "Running: child-drift — foreign same-basename entry does not mask drift"
 }
 
 # ───────────────────────────────────────────────────────────────
+# TEST 3c (cross-track collision): a foreign parent under a DIFFERENT track,
+# sharing this parent basename, must not satisfy a local child either. Needs
+# a real .opencode/specs/ path so the rule can compare full specs-relative
+# paths rather than falling back to a bare basename compare.
+# ───────────────────────────────────────────────────────────────
+echo ""
+echo "Running: child-drift — cross-track same-basename entry does not mask drift"
+{
+    root=$(make_temp_root)
+    parent="$root/.opencode/specs/track-a/900-shared-name"
+    mkdir -p "$parent/001-foo"
+    write_graph_metadata "$parent" '["track-b/900-shared-name/001-foo"]'
+    run_rule "$parent" enforce
+    if [[ "$RULE_STATUS" == "warn" && "$(details_str)" == *001-foo* ]]; then
+        pass "cross-track track-b/900-shared-name/001-foo does not satisfy local track-a/900-shared-name/001-foo"
+    else
+        fail "cross-track same-basename expected warn+001-foo, got status=$RULE_STATUS details='$(details_str)'"
+    fi
+
+    write_graph_metadata "$parent" '["track-a/900-shared-name/001-foo"]'
+    run_rule "$parent" enforce
+    if [[ "$RULE_STATUS" == "pass" ]]; then
+        pass "own-track track-a/900-shared-name/001-foo correctly satisfies local child"
+    else
+        fail "own-track entry expected pass, got status=$RULE_STATUS details='$(details_str)'"
+    fi
+}
+
+# ───────────────────────────────────────────────────────────────
 # TEST 4 (writer-parity): a bare-number/underscore folder is a writer child.
 # The strict slug rule would miss 010_experiment; the drift check must not.
 # ───────────────────────────────────────────────────────────────

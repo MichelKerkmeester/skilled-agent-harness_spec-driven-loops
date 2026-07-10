@@ -259,6 +259,7 @@ interface ScanKeyOptions {
 interface RecordDeleteResult {
   deleted: number;
   failed: number;
+  deletedIds: number[];
   actions: StatediffAction[];
 }
 
@@ -700,11 +701,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   const deleteIndexedRecordIds = (recordIds: number[]): RecordDeleteResult => {
     if (recordIds.length === 0) {
-      return { deleted: 0, failed: 0, actions: [] };
+      return { deleted: 0, failed: 0, deletedIds: [], actions: [] };
     }
 
     let deleted = 0;
     let failed = 0;
+    const deletedIds: number[] = [];
     const actions: StatediffAction[] = [];
 
     for (const staleRecordId of recordIds) {
@@ -742,6 +744,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
         if (rowDeleted) {
           deleted++;
+          deletedIds.push(staleRecordId);
           actions.push(createStatediffAction('delete', {
             target: 'memory_index',
             key: String(staleRecordId),
@@ -774,12 +777,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       }
     }
 
-    return { deleted, failed, actions };
+    return { deleted, failed, deletedIds, actions };
   };
 
   const deleteStaleIndexedRecords = (paths: string[]): RecordDeleteResult => {
     if (paths.length === 0) {
-      return { deleted: 0, failed: 0, actions: [] };
+      return { deleted: 0, failed: 0, deletedIds: [], actions: [] };
     }
 
     return deleteIndexedRecordIds(incrementalIndex.listIndexedRecordIdsForDeletedPaths(paths));
@@ -921,7 +924,9 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }
 
     const deleteResult = deleteIndexedRecordIds(idsToTombstone);
-    removeMemoryDriftSuspects(database, [...idsToClear, ...idsToTombstone]);
+    // A failed delete must stay queued for retry -- only ids that actually
+    // cleared (row reappeared) or were actually deleted leave the queue.
+    removeMemoryDriftSuspects(database, [...idsToClear, ...deleteResult.deletedIds]);
     return {
       tombstoned: deleteResult.deleted,
       failed: deleteResult.failed,
@@ -1551,7 +1556,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   }
   ctx.onPhase?.('post-processing');
 
-  if (filesToDelete.length > 0) {
+  // A scoped (marker-triggered) scan's toDelete set is a heuristic candidate list,
+  // not a ground-truth corpus diff, so it goes through the same suspect-queue
+  // confirmation funnel as every other candidate discoverer -- only a full,
+  // unscoped scan's toDelete set is a real corpus comparison and stays a direct
+  // delete. Deferred until after this cycle's own confirmation pass runs below,
+  // so a candidate discovered this scan is never confirmable in the same call
+  // that discovered it.
+  if (filesToDelete.length > 0 && scopedScanPaths.length === 0) {
     if (results.failed === 0) {
       const staleDeleteResult = deleteStaleIndexedRecords(filesToDelete);
       results.staleDeleted = staleDeleteResult.deleted;
@@ -1567,6 +1579,16 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   results.suspectCleared = suspectConfirmation.cleared;
   results.suspectFailed = suspectConfirmation.failed;
   scanAppliedActions.push(...suspectConfirmation.actions);
+
+  if (filesToDelete.length > 0 && scopedScanPaths.length > 0 && results.failed === 0) {
+    const recordIds = incrementalIndex.listIndexedRecordIdsForDeletedPaths(filesToDelete);
+    try {
+      appendMemoryDriftSuspects(vectorIndex.getDb() ?? requireDb(), recordIds);
+    } catch (error: unknown) {
+      results.staleDeleteFailed += recordIds.length;
+      console.warn(`[memory-index-scan] Could not queue scoped drift suspects: ${toErrorMessage(error)}`);
+    }
+  }
 
   const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
   results.orphanSwept = orphanSweepResult.enqueued;

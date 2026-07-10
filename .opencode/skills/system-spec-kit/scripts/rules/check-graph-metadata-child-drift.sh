@@ -84,7 +84,6 @@ run_check() {
     drift_rc=0
     drift_missing=$(node --input-type=module - "$graph_file" "$folder" "$child_scanner" 2>/dev/null <<'NODE_DRIFT'
 import { readFileSync } from 'node:fs';
-import { basename } from 'node:path';
 import { pathToFileURL } from 'node:url';
 const [graphFile, folder, scanner] = process.argv.slice(2);
 let listDerivedChildNames;
@@ -100,15 +99,36 @@ try {
 } catch {
   process.exit(21); // unreadable graph metadata — presence check owns that
 }
-// Compare the immediate parent segment to the checked folder name. This keeps
-// tolerance for leading-prefix drift while preventing another parent with the
-// same child basename from satisfying the local child.
-const parentName = basename(folder);
+// When the checked folder path resolves under a real specs root, compare an
+// entry full parent path against the folder own specs-root-relative path,
+// not just the immediate parent basename alone. Matching only one segment let
+// a same-named parent folder elsewhere in the tree (a different track sharing
+// this basename) falsely satisfy a local child. Outside a real specs root
+// (test fixtures, or any folder whose location cannot be normalized this way)
+// there is no reliable path to compare against, so this falls back to the
+// original single-segment compare, which still tolerates a synthetic
+// children_ids entry whose own prefix never matched the real filesystem path.
+let folderRelative = null;
+for (const marker of ['/.opencode/specs/', '/specs/']) {
+  const markerIndex = String(folder).indexOf(marker);
+  if (markerIndex >= 0) {
+    folderRelative = String(folder).slice(markerIndex + marker.length);
+    break;
+  }
+}
+const folderSegments = folderRelative !== null
+  ? folderRelative.split('/').filter(Boolean)
+  : String(folder).split('/').filter(Boolean).slice(-1);
 const listed = new Set();
 for (const entry of Array.isArray(parsed.children_ids) ? parsed.children_ids : []) {
   const segments = String(entry).split('/').filter(Boolean);
-  if (segments.length >= 2 && segments[segments.length - 2] === parentName) {
-    listed.add(segments[segments.length - 1]);
+  if (segments.length <= folderSegments.length) continue;
+  const childName = segments[segments.length - 1];
+  const parentSuffix = segments.slice(0, -1).slice(-folderSegments.length);
+  const matchesFolder = parentSuffix.length === folderSegments.length
+    && parentSuffix.every((segment, index) => segment === folderSegments[index]);
+  if (matchesFolder) {
+    listed.add(childName);
   }
 }
 const missing = listDerivedChildNames(folder).filter((name) => !listed.has(name));
