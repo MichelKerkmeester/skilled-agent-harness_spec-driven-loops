@@ -7,8 +7,9 @@
 
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { openSync, fstatSync, readSync, closeSync, statSync, type Stats } from 'node:fs';
+import { createReadStream, openSync, fstatSync, readSync, closeSync, type Stats } from 'node:fs';
 import { dirname, resolve } from 'node:path';
+import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
 import {
   parseHookStdin, hookLog, withTimeout, HOOK_TIMEOUT_MS, getRequiredSessionId,
@@ -18,8 +19,7 @@ import {
   ensureStateDir, loadState, updateState, cleanStaleStates,
   type HookState, type HookProducerMetadata, type PersistedHookState,
 } from './hook-state.js';
-import { runWarmSpecMemoryCliTool } from '../spec-memory-cli-fallback.js';
-import { parseTranscript, parseAssistantTextTurns, estimateCost, type TranscriptUsage } from './claude-transcript.js';
+import { estimateCost, type TranscriptUsage } from './claude-transcript.js';
 import { runTrueCitationEmit } from './true-citation-mining.js';
 
 /** Default max age (ms) for stale state cleanup in --finalize mode */
@@ -68,7 +68,7 @@ function resolveGenerateContextScriptPath(): string | null {
   return null;
 }
 
-export type SessionStopAutosaveOutcome = 'ran' | 'skipped' | 'failed' | 'deferred';
+export type SessionStopAutosaveOutcome = 'ran' | 'skipped' | 'failed';
 export type SessionStopRetargetReason =
   | 'detected_different_packet'
   | 'no_previous_packet'
@@ -101,32 +101,6 @@ interface SpecFolderDetectionResult {
  * create a torn-state window where interleaved writers could re-compose
  * fields between the stop hook's atomic write and the autosave spawn.
  */
-async function runContextAutosaveCliFallback(
-  sessionId: string,
-  state: PersistedHookState,
-  primaryOutcome: SessionStopAutosaveOutcome,
-  reason: string,
-): Promise<SessionStopAutosaveOutcome> {
-  const specFolder = state.lastSpecFolder?.trim();
-  if (!specFolder) {
-    return primaryOutcome;
-  }
-  const result = await runWarmSpecMemoryCliTool({
-    toolName: 'session_resume',
-    args: { specFolder, sessionId, minimal: true },
-    sessionId,
-    timeoutMs: Math.min(1000, AUTOSAVE_TIMEOUT_MS),
-  });
-  if (result.status === 'ok') {
-    hookLog('warn', 'session-stop', `Context auto-save deferred after ${reason}; CLI warm path reached the daemon in ${result.durationMs}ms`);
-    return 'deferred';
-  }
-  if (result.exitCode === 75 || result.reason) {
-    hookLog('warn', 'session-stop', `Context auto-save CLI fallback skipped (${result.reason ?? `exit=${result.exitCode}`})`);
-  }
-  return primaryOutcome;
-}
-
 async function runContextAutosave(
   sessionId: string,
   state: PersistedHookState,
@@ -140,8 +114,8 @@ async function runContextAutosave(
 
   const scriptPath = resolveGenerateContextScriptPath();
   if (!scriptPath) {
-    hookLog('warn', 'session-stop', 'Auto-save skipped: generate-context.js not found');
-    return runContextAutosaveCliFallback(sessionId, state, 'skipped', 'missing autosave script');
+    hookLog('warn', 'session-stop', 'Auto-save skipped: generate-context.js not found; no save occurred');
+    return 'skipped';
   }
 
   const payload = {
@@ -175,7 +149,7 @@ async function runContextAutosave(
   const stdout = (result.stdout ?? '').trim();
   const errorText = stderr || stdout || result.error?.message || `exit=${String(result.status)}`;
   hookLog('warn', 'session-stop', `Context auto-save failed: ${errorText}`);
-  return runContextAutosaveCliFallback(sessionId, state, 'failed', 'primary autosave failure');
+  return 'failed';
 }
 
 export interface SessionStopProcessOptions {
@@ -183,7 +157,7 @@ export interface SessionStopProcessOptions {
 }
 
 export interface OperationResult<T = void> {
-  status: 'ran' | 'skipped' | 'failed' | 'deferred';
+  status: 'ran' | 'skipped' | 'failed';
   reason?: string;
   detail?: string;
   value?: T;
@@ -278,12 +252,10 @@ function logTokenSnapshot(
 }
 
 /**
- * Build producer metadata from a pre-captured transcript stat.
+ * Build producer metadata from the descriptor snapshot used for parsing.
  *
- * The caller MUST pass a transcript stat snapshotted BEFORE
- * `parseTranscript()` runs, so the metadata describes the same
- * transcript generation that was parsed. A re-stat here would produce
- * metadata pointing at a later state than the tokens/offset reflect.
+ * The parser is bounded to this stat's size so usage, cursor, and metadata
+ * always describe one transcript generation.
  */
 function buildProducerMetadata(
   transcriptPath: string,
@@ -308,6 +280,73 @@ function buildProducerMetadata(
       cacheReadInputTokens: usage.cacheReadTokens,
     },
   };
+}
+
+function emptyTranscriptUsage(): TranscriptUsage {
+  return {
+    promptTokens: 0,
+    completionTokens: 0,
+    cacheCreationTokens: 0,
+    cacheReadTokens: 0,
+    totalTokens: 0,
+    messageCount: 0,
+    model: null,
+  };
+}
+
+async function parseTranscriptSnapshot(
+  transcriptPath: string,
+  fileDescriptor: number,
+  startOffset: number,
+  endOffset: number,
+): Promise<{ usage: TranscriptUsage; newOffset: number }> {
+  const usage = emptyTranscriptUsage();
+  if (startOffset >= endOffset) {
+    return { usage, newOffset: endOffset };
+  }
+
+  const stream = createReadStream(transcriptPath, {
+    fd: fileDescriptor,
+    autoClose: false,
+    encoding: 'utf-8',
+    start: startOffset,
+    end: endOffset - 1,
+  });
+  const lineReader = createInterface({ input: stream, crlfDelay: Infinity });
+  for await (const line of lineReader) {
+    if (!line.trim()) continue;
+    try {
+      const parsed = JSON.parse(line) as {
+        message?: {
+          model?: string;
+          usage?: {
+            input_tokens?: number;
+            output_tokens?: number;
+            cache_creation_input_tokens?: number;
+            cache_read_input_tokens?: number;
+          };
+        };
+      };
+      const message = parsed.message;
+      if (message?.usage) {
+        const prompt = message.usage.input_tokens ?? 0;
+        const completion = message.usage.output_tokens ?? 0;
+        usage.promptTokens += prompt;
+        usage.completionTokens += completion;
+        usage.cacheCreationTokens += message.usage.cache_creation_input_tokens ?? 0;
+        usage.cacheReadTokens += message.usage.cache_read_input_tokens ?? 0;
+        usage.totalTokens += prompt + completion;
+        usage.messageCount += 1;
+      }
+      if (message?.model && !usage.model) {
+        usage.model = message.model;
+      }
+    } catch {
+      // Malformed transcript rows do not block Stop processing.
+    }
+  }
+
+  return { usage, newOffset: endOffset };
 }
 
 export async function processStopHook(
@@ -371,23 +410,17 @@ export async function processStopHook(
   if (input.transcript_path) {
     const transcriptPath = input.transcript_path as string;
     const startOffset = stateBeforeStop?.metrics?.lastTranscriptOffset ?? 0;
-
-    // Snapshot transcript stat BEFORE parseTranscript() runs so the
-    // fingerprint/size/mtime describe the same generation the
-    // parser will consume. A re-stat inside buildProducerMetadata would
-    // capture a later state than the bytes actually parsed (cursor and
-    // metadata describing different transcript generations).
-    let preParseStat: Stats | null = null;
+    let fileDescriptor: number | null = null;
     try {
-      preParseStat = statSync(transcriptPath);
-    } catch (err: unknown) {
-      // Leave preParseStat null; the parse attempt below will surface the
-      // real error and we simply skip producer-metadata construction.
-      hookLog('warn', 'session-stop', `Pre-parse transcript stat failed: ${err instanceof Error ? err.message : String(err)}`);
-    }
-
-    try {
-      const { usage, newOffset } = await parseTranscript(transcriptPath, startOffset);
+      const openedDescriptor = openSync(transcriptPath, 'r');
+      fileDescriptor = openedDescriptor;
+      const transcriptStat = fstatSync(openedDescriptor);
+      const { usage, newOffset } = await parseTranscriptSnapshot(
+        transcriptPath,
+        openedDescriptor,
+        startOffset,
+        transcriptStat.size,
+      );
 
       parsedMessageCount = usage.messageCount;
       if (usage.messageCount > 0) {
@@ -401,27 +434,19 @@ export async function processStopHook(
           },
         };
 
-        if (preParseStat) {
-          try {
-            producerMetadata = buildProducerMetadata(transcriptPath, preParseStat, usage);
-            producerMetadataOutcome = {
-              status: 'ran',
-              value: producerMetadata,
-            };
-          } catch (err: unknown) {
-            producerMetadataOutcome = {
-              status: 'failed',
-              reason: 'producer_metadata_failed',
-              detail: err instanceof Error ? err.message : String(err),
-            };
-            hookLog('warn', 'session-stop', `Producer metadata build failed: ${producerMetadataOutcome.detail}`);
-          }
-        } else {
+        try {
+          producerMetadata = buildProducerMetadata(transcriptPath, transcriptStat, usage);
+          producerMetadataOutcome = {
+            status: 'ran',
+            value: producerMetadata,
+          };
+        } catch (err: unknown) {
           producerMetadataOutcome = {
             status: 'failed',
             reason: 'producer_metadata_failed',
-            detail: 'Pre-parse transcript stat unavailable',
+            detail: err instanceof Error ? err.message : String(err),
           };
+          hookLog('warn', 'session-stop', `Producer metadata build failed: ${producerMetadataOutcome.detail}`);
         }
 
         patch.metrics = {
@@ -458,6 +483,10 @@ export async function processStopHook(
         detail,
       };
       hookLog('warn', 'session-stop', `Transcript parsing failed: ${detail}`);
+    } finally {
+      if (fileDescriptor !== null) {
+        closeSync(fileDescriptor);
+      }
     }
   }
 
@@ -564,8 +593,8 @@ export async function processStopHook(
   if (autosaveMode === 'enabled') {
     if (stateWriteFailed) {
       autosaveOutcome = 'failed';
-    } else if (!autosaveState) {
-      // No pre-existing state and no patch attempted → nothing to save.
+    } else if (!autosaveState || !patch.sessionSummary) {
+      // Autosave only content extracted by this Stop invocation.
       autosaveOutcome = 'skipped';
     } else {
       autosaveOutcome = await runContextAutosave(sessionId, autosaveState);

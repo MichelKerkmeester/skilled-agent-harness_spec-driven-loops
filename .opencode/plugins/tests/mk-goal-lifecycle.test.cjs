@@ -24,6 +24,40 @@ async function importFreshPlugin(label) {
   return import(`${pluginUrl}?${label}-${Date.now()}-${Math.random()}`);
 }
 
+function nativeSessionEvent(type, sessionID) {
+  return { type, properties: { info: { id: sessionID } } };
+}
+
+function nativeAssistantMessageUpdated(sessionID, messageID, tokens = {}) {
+  return {
+    type: 'message.updated',
+    properties: {
+      info: {
+        id: messageID,
+        sessionID,
+        role: 'assistant',
+        tokens,
+      },
+    },
+  };
+}
+
+function nativeTextPartUpdated(sessionID, messageID, text, role) {
+  return {
+    type: 'message.part.updated',
+    properties: {
+      part: {
+        id: `${messageID}-part`,
+        sessionID,
+        messageID,
+        type: 'text',
+        text,
+        ...(role ? { role } : {}),
+      },
+    },
+  };
+}
+
 async function withState(fn) {
   const pluginModule = await loadPluginModule();
   const helpers = pluginModule.default.__test;
@@ -89,14 +123,75 @@ test('session.created keeps an active goal intact', async () => withState(async 
 
   await createLifecycleGoal(helpers, stateDir);
   await plugin.event({
-    event: {
-      type: 'session.created',
-      properties: { sessionID: 'session-life' },
-    },
+    event: nativeSessionEvent('session.created', 'session-life'),
   });
   const goal = await helpers.readGoal('session-life', { stateDir });
   assert.equal(goal.status, 'active');
   assert.equal(goal.goalId, 'event-goal');
+}));
+
+test('native message headers charge tokens while only explicit assistant text parts become evidence', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  await createLifecycleGoal(helpers, stateDir);
+  const header = nativeAssistantMessageUpdated('session-life', 'native-msg-1', {
+    input: 40,
+    output: 20,
+    reasoning: 5,
+    cache: { read: 3, write: 2 },
+  });
+
+  await plugin.event({ event: header });
+  let goal = await helpers.readGoal('session-life', { stateDir });
+  assert.equal(goal.tokensUsed, 70);
+  assert.equal(goal.usageSource, 'opencode-native-tokens');
+  assert.equal(goal.lastEvidence, null);
+
+  await plugin.event({ event: nativeTextPartUpdated('session-life', 'native-msg-1', 'Role-less text is ignored') });
+  await plugin.event({ event: nativeTextPartUpdated('session-life', 'native-msg-1', 'User text is ignored', 'user') });
+  goal = await helpers.readGoal('session-life', { stateDir });
+  assert.equal(goal.lastEvidence, null);
+  assert.equal(goal.tokensUsed, 70);
+
+  await plugin.event({ event: nativeTextPartUpdated(
+    'session-life',
+    'native-msg-1',
+    'The native implementation and tests are complete.',
+    'assistant',
+  ) });
+  goal = await helpers.readGoal('session-life', { stateDir });
+  assert.match(goal.lastEvidence, /native implementation and tests are complete/);
+  assert.equal(goal.lastActivityMessageID, 'native-msg-1');
+  assert.equal(goal.tokensUsed, 70);
+
+  await plugin.event({ event: header });
+  goal = await helpers.readGoal('session-life', { stateDir });
+  assert.equal(goal.tokensUsed, 70);
+}));
+
+test('usage ledger retains old message totals beyond 64 message ids', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  await helpers.setGoal('session-long-ledger', 'Deduplicate old cumulative usage', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'long-ledger-goal',
+    tokenBudget: 1000,
+  });
+  for (let index = 0; index < 65; index += 1) {
+    await plugin.event({
+      event: nativeAssistantMessageUpdated('session-long-ledger', `native-ledger-${index}`, { output: 1 }),
+    });
+  }
+  await plugin.event({
+    event: nativeAssistantMessageUpdated('session-long-ledger', 'native-ledger-0', { output: 1 }),
+  });
+  let goal = await helpers.readGoal('session-long-ledger', { stateDir });
+  assert.equal(goal.tokensUsed, 65);
+
+  await plugin.event({
+    event: nativeAssistantMessageUpdated('session-long-ledger', 'native-ledger-0', { output: 4 }),
+  });
+  goal = await helpers.readGoal('session-long-ledger', { stateDir });
+  assert.equal(goal.tokensUsed, 68);
 }));
 
 test('message.updated accounts assistant usage once per message id', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
@@ -643,6 +738,72 @@ test('session.deleted flushes volatile session status before later idle handling
   assert.equal(continuationEntries.at(-1).reason, 'smoke_mode');
 }));
 
+test('malformed session deletion preserves another session verifier lock', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  let releaseVerifier;
+  const verifierGate = new Promise((resolve) => {
+    releaseVerifier = resolve;
+  });
+  let verifierCalls = 0;
+  const plugin = await pluginModule.default({}, {
+    stateDir,
+    nowMs: 1000,
+    verifierTimeoutMs: 500,
+    supervisorVerifier: async () => {
+      verifierCalls += 1;
+      await verifierGate;
+      return { verdict: 'not_met', reason: 'still active', confidence: 0.5, evidence: 'still active' };
+    },
+  });
+  const goal = await helpers.setGoal('session-lock-preserved', 'Preserve verifier lock', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'lock-preserved-goal',
+  });
+  await helpers.writeGoalAtomic({ ...goal, lastEvidence: 'Evidence for the pending verifier' }, { stateDir });
+
+  const firstIdle = plugin.event({
+    event: { type: 'session.idle', properties: { sessionID: 'session-lock-preserved' } },
+  });
+  while (verifierCalls === 0) await new Promise((resolve) => setImmediate(resolve));
+  await plugin.event({ event: { type: 'session.deleted', properties: {} } });
+  const secondIdle = plugin.event({
+    event: { type: 'session.idle', properties: { sessionID: 'session-lock-preserved' } },
+  });
+  await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(verifierCalls, 1);
+  releaseVerifier();
+  await Promise.all([firstIdle, secondIdle]);
+}));
+
+test('verifier timeout releases the session lock for a later idle event', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  let verifierCalls = 0;
+  const plugin = await pluginModule.default({}, {
+    stateDir,
+    verifierTimeoutMs: 20,
+    supervisorVerifier: async () => {
+      verifierCalls += 1;
+      return new Promise(() => {});
+    },
+  });
+  const goal = await helpers.setGoal('session-timeout-lock', 'Release verifier timeout lock', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'timeout-lock-goal',
+  });
+  await helpers.writeGoalAtomic({ ...goal, lastEvidence: 'Evidence for timeout lock release' }, { stateDir });
+
+  await plugin.event({
+    event: { type: 'session.idle', properties: { sessionID: 'session-timeout-lock' } },
+  });
+  await plugin.event({
+    event: { type: 'session.idle', properties: { sessionID: 'session-timeout-lock' } },
+  });
+  assert.equal(verifierCalls, 2);
+  const after = await helpers.readGoal('session-timeout-lock', { stateDir });
+  assert.equal(after.status, 'active');
+  assert.equal(after.lastVerifierReason, 'verifier_timeout');
+}));
+
 test('app.disposed flushes volatile state before later idle handling', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
   process.env.MK_GOAL_AUTONOMY = 'smoke';
@@ -722,15 +883,32 @@ test('session.deleted archives an existing goal file exactly', async () => withS
   );
   const archiveSourceRaw = await readFile(archiveSourcePath, 'utf8');
   await archivePlugin.event({
-    event: {
-      type: 'session.deleted',
-      properties: { sessionID: 'session-archive-existing' },
-    },
+    event: nativeSessionEvent('session.deleted', 'session-archive-existing'),
   });
   assert.equal(await fileExists(archiveSourcePath), false);
   const archiveTargetRaw = await readFile(archiveTargetPath, 'utf8');
   assert.equal(JSON.parse(archiveTargetRaw).goalId, 'archive-existing-goal');
   assert.deepEqual(JSON.parse(archiveTargetRaw), JSON.parse(archiveSourceRaw));
+}));
+
+test('session deletion archive failures preserve active state and write an event error', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
+  await helpers.setGoal('session-archive-failure', 'Preserve state when archive fails', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'archive-failure-goal',
+  });
+  const sourcePath = helpers.goalPathForSession('session-archive-failure', { stateDir });
+  await writeFile(join(stateDir, '.archive'), 'archive path blocker', 'utf8');
+
+  await assert.doesNotReject(() => plugin.event({
+    event: nativeSessionEvent('session.deleted', 'session-archive-failure'),
+  }));
+  assert.equal(await fileExists(sourcePath), true);
+  const entries = await readGoalEventEntries(stateDir);
+  assert.ok(entries.some((entry) => entry.type === 'event_error'
+    && entry.eventType === 'session.deleted'
+    && entry.sid === 'session-archive-failure'));
 }));
 
 test('session.deleted does not reject when the active goal file is missing', async () => withState(async ({ pluginModule, stateDir }) => {

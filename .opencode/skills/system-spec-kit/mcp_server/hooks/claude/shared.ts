@@ -10,6 +10,7 @@ export const HOOK_TIMEOUT_MS = 1800;
 export const COMPACTION_TOKEN_BUDGET = 4000;
 /** Token budget for session priming (startup/resume) */
 export const SESSION_PRIME_TOKEN_BUDGET = 2000;
+const MAX_HOOK_STDIN_BYTES = 1024 * 1024;
 
 /** Parsed JSON from Claude Code hook stdin */
 export interface HookInput {
@@ -42,10 +43,18 @@ export function getRequiredSessionId(sessionId: unknown, surface: string): strin
 export async function parseHookStdin(): Promise<HookInput | null> {
   try {
     const chunks: Buffer[] = [];
+    let totalBytes = 0;
     for await (const chunk of process.stdin) {
-      chunks.push(chunk as Buffer);
+      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      totalBytes += buffer.length;
+      if (totalBytes > MAX_HOOK_STDIN_BYTES) {
+        process.stdin.destroy();
+        hookLog('warn', 'stdin', `Hook stdin exceeded ${MAX_HOOK_STDIN_BYTES} bytes`);
+        return null;
+      }
+      chunks.push(buffer);
     }
-    const raw = Buffer.concat(chunks).toString('utf-8').trim();
+    const raw = Buffer.concat(chunks, totalBytes).toString('utf-8').trim();
     if (!raw) return null;
     return JSON.parse(raw) as HookInput;
   } catch (err: unknown) {

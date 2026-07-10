@@ -19,6 +19,7 @@ const { pathToFileURL } = require('node:url');
 
 const REJECT_ENV = 'MK_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'MK_DEEP_LOOP_GUARD_REJECT_LOOP';
+const WARN_LOG_MAX_BYTES_ENV = 'MK_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES';
 const GUARD_LOG_RELATIVE = ['.opencode', 'skills', '.loop-guard-state', 'guard-warnings.log'];
 
 function writeFixtureRegistry(dir) {
@@ -30,6 +31,11 @@ function writeFixtureRegistry(dir) {
       modes: [
         { workflowMode: 'ai-council', agent: 'ai-council' },
         { workflowMode: 'research', agent: 'deep-research' },
+        { workflowMode: 'review', agent: 'deep-review' },
+        { workflowMode: 'agent-improvement', agent: 'deep-improvement' },
+        { workflowMode: 'model-benchmark', agent: 'deep-improvement' },
+        { workflowMode: 'skill-benchmark', agent: 'deep-improvement' },
+        { workflowMode: 'ai-system-improvement', agent: 'deep-improvement' },
       ],
     }),
   );
@@ -37,6 +43,10 @@ function writeFixtureRegistry(dir) {
 
 function guardLogPath(dir) {
   return path.join(dir, ...GUARD_LOG_RELATIVE);
+}
+
+function degradedGuardLogPath(dir) {
+  return `${path.join(dir, '.opencode', 'skills', '.loop-guard-state')}.guard-warnings.log`;
 }
 
 // Soft warnings land in the state-dir log, not console. Read/clear it per check
@@ -51,10 +61,12 @@ function readGuardLog(dir) {
 }
 
 function clearGuardLog(dir) {
-  try {
-    fs.rmSync(guardLogPath(dir), { force: true });
-  } catch (_) {
-    // best-effort: an absent log is the same clean state the assertions want.
+  for (const logPath of [guardLogPath(dir), `${guardLogPath(dir)}.1`]) {
+    try {
+      fs.rmSync(logPath, { force: true });
+    } catch (_) {
+      // Best-effort: an absent log is the same clean state the assertions want.
+    }
   }
 }
 
@@ -88,6 +100,44 @@ async function main() {
   // No mode declared in the prompt at all: no-op, no throw (absence, not disagreement).
   await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'do the thing' } });
 
+  // Mode and target identity comparisons are case-insensitive.
+  clearGuardLog(tmpDir);
+  await beforeHook(
+    { tool: 'task' },
+    { args: { subagent_type: 'general', prompt: 'Deep Route: mode=RESEARCH; target_agent=@DEEP-RESEARCH' } },
+  );
+  assert.doesNotMatch(readGuardLog(tmpDir), /mode mismatch/i);
+
+  // Every workflow mode registered to a multiplexed agent remains valid.
+  for (const workflowMode of ['agent-improvement', 'model-benchmark', 'skill-benchmark', 'ai-system-improvement']) {
+    clearGuardLog(tmpDir);
+    await beforeHook(
+      { tool: 'task' },
+      { args: { subagent_type: 'general', prompt: `Deep Route: mode=${workflowMode}; target_agent=@deep-improvement` } },
+    );
+    assert.doesNotMatch(readGuardLog(tmpDir), /mode mismatch/i, `${workflowMode} should remain valid for deep-improvement`);
+  }
+
+  clearGuardLog(tmpDir);
+  await beforeHook(
+    { tool: 'task' },
+    { args: { subagent_type: 'general', prompt: 'Deep Route: mode=nonsense; target_agent=@deep-improvement' } },
+  );
+  assert.match(readGuardLog(tmpDir), /registry modes="agent-improvement\|ai-system-improvement\|model-benchmark\|skill-benchmark"/);
+
+  // The Deep Route line wins over unrelated mode tokens elsewhere in the prompt.
+  clearGuardLog(tmpDir);
+  await beforeHook(
+    { tool: 'task' },
+    {
+      args: {
+        subagent_type: 'general',
+        prompt: 'mode=ai-council in quoted prose\nDeep Route: mode=research; target_agent=@deep-research\nmore prose mode=review',
+      },
+    },
+  );
+  assert.doesNotMatch(readGuardLog(tmpDir), /mode mismatch/i);
+
   // Mismatch, warn mode (default): records to the warning log, does not throw.
   clearGuardLog(tmpDir);
   await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' } });
@@ -104,7 +154,9 @@ async function main() {
   // Fail-open: registry unreadable, mismatch present, reject mode on -- must not throw.
   fs.rmSync(path.join(tmpDir, '.opencode', 'skills', 'system-deep-loop', 'mode-registry.json'));
   process.env[REJECT_ENV] = '1';
+  clearGuardLog(tmpDir);
   await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' } });
+  assert.match(readGuardLog(tmpDir), /reject-mode degraded.*mode registry unavailable/i);
   delete process.env[REJECT_ENV];
   writeFixtureRegistry(tmpDir);
 
@@ -148,6 +200,7 @@ async function main() {
     { args: { subagent_type: 'general', prompt: 'Agent: @deep-review\nmode=review do the thing again' } },
   );
   assert.match(readGuardLog(tmpDir), /loop-like repeated dispatch/, '2nd hand-off must warn about loop-repeat');
+  assert.doesNotMatch(readGuardLog(tmpDir), /orchestrate/i, 'the warning must not claim an unobservable caller identity');
 
   // 3rd non-command-driven hand-off, default (warn) mode: warns, does not throw.
   clearGuardLog(tmpDir);
@@ -168,6 +221,17 @@ async function main() {
   );
   delete process.env[REJECT_LOOP_ENV];
 
+  // Mixed-case agent identity still reaches loop rejection.
+  const sessionUppercase = 'session-loop-uppercase';
+  await beforeHook({ tool: 'task', sessionID: sessionUppercase }, { args: { subagent_type: 'general', prompt: 'Agent: @DEEP-REVIEW\nmode=REVIEW one' } });
+  await beforeHook({ tool: 'task', sessionID: sessionUppercase }, { args: { subagent_type: 'general', prompt: 'Agent: @Deep-Review\nmode=Review two' } });
+  process.env[REJECT_LOOP_ENV] = '1';
+  await assert.rejects(
+    () => beforeHook({ tool: 'task', sessionID: sessionUppercase }, { args: { subagent_type: 'general', prompt: 'Agent: @DEEP-REVIEW\nmode=REVIEW three' } }),
+    /mk-deep-loop-guard: loop-like repeated dispatch/,
+  );
+  delete process.env[REJECT_LOOP_ENV];
+
   // Command-driven dispatches (iteration-state markers present) never count toward the threshold.
   const sessionC = 'session-loop-c';
   clearGuardLog(tmpDir);
@@ -178,6 +242,46 @@ async function main() {
     );
   }
   assert.doesNotMatch(readGuardLog(tmpDir), /loop-like/, 'command-driven iterations must never trigger loop-repeat warn');
+
+  // Human-readable review iteration markers remain valid when their bounds are sane.
+  const sessionReviewIteration = 'session-review-iteration';
+  clearGuardLog(tmpDir);
+  for (let i = 1; i <= 3; i += 1) {
+    await beforeHook(
+      { tool: 'task', sessionID: sessionReviewIteration },
+      { args: { subagent_type: 'general', prompt: `Agent: @deep-review\nReview Iteration: ${i} of 3\nmode=review` } },
+    );
+  }
+  assert.doesNotMatch(readGuardLog(tmpDir), /loop-like/, 'bounded review iteration markers must remain command-driven');
+
+  // Prose collisions and impossible iteration bounds do not bypass repeat counting.
+  const markerNearMisses = [
+    'This prose mentions STATE SUMMARY but is not an iteration envelope.',
+    'Discuss Iteration: 2 of 5 without treating it as a marker.',
+    'Iteration: 5 of 3',
+  ];
+  for (const [index, markerText] of markerNearMisses.entries()) {
+    const sessionID = `session-marker-near-miss-${index}`;
+    clearGuardLog(tmpDir);
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      await beforeHook(
+        { tool: 'task', sessionID },
+        { args: { subagent_type: 'general', prompt: `Agent: @deep-review\nmode=review\n${markerText}` } },
+      );
+    }
+    assert.match(readGuardLog(tmpDir), /loop-like repeated dispatch/, `${markerText} must not bypass repeat counting`);
+  }
+
+  // Prompt improvement is not a command-owned deep-loop executor.
+  const promptImproverSession = 'session-prompt-improver';
+  clearGuardLog(tmpDir);
+  for (let i = 0; i < 5; i += 1) {
+    await beforeHook(
+      { tool: 'task', sessionID: promptImproverSession },
+      { args: { subagent_type: 'prompt-improver', prompt: 'Improve this prompt again.' } },
+    );
+  }
+  assert.doesNotMatch(readGuardLog(tmpDir), /loop-like/, 'prompt-improver must remain outside deep-loop repeat counting');
 
   // Non-loop-executor targets (e.g. ai-council) are never loop-counted, even when repeated.
   const sessionD = 'session-loop-d';
@@ -207,8 +311,13 @@ async function main() {
     { tool: 'task', sessionID: 'session-loop-failopen' },
     { args: { subagent_type: 'general', prompt: 'Agent: @deep-improvement\nmode=agent-improvement go' } },
   );
+  assert.match(
+    fs.readFileSync(degradedGuardLogPath(tmpDir), 'utf8'),
+    /reject-mode degraded.*loop state persistence unavailable/i,
+  );
   delete process.env[REJECT_LOOP_ENV];
   fs.rmSync(blockedStateDirPath, { force: true });
+  fs.rmSync(degradedGuardLogPath(tmpDir), { force: true });
 
   // --- Retention: sweep archives stale per-session state, prune deletes old archives ---
 
@@ -224,10 +333,18 @@ async function main() {
   const freshKey = sessionKeyFor('session-retention-fresh');
   const staleStatePath = path.join(retentionStateDir, `${staleKey}.json`);
   const freshStatePath = path.join(retentionStateDir, `${freshKey}.json`);
+  const staleTempPath = `${staleStatePath}.${process.pid}.${Date.now()}.tmp`;
+  const freshTempPath = `${freshStatePath}.${process.pid}.${Date.now()}.tmp`;
+  const unrelatedTempPath = path.join(retentionStateDir, 'unrelated.tmp');
   fs.writeFileSync(staleStatePath, JSON.stringify({ sessionId: 'session-retention-stale', dispatches: {} }));
   fs.writeFileSync(freshStatePath, JSON.stringify({ sessionId: 'session-retention-fresh', dispatches: {} }));
+  fs.writeFileSync(staleTempPath, 'stale temp');
+  fs.writeFileSync(freshTempPath, 'fresh temp');
+  fs.writeFileSync(unrelatedTempPath, 'unrelated temp');
   const threeDaysAgo = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000);
   fs.utimesSync(staleStatePath, threeDaysAgo, threeDaysAgo);
+  fs.utimesSync(staleTempPath, threeDaysAgo, threeDaysAgo);
+  fs.utimesSync(unrelatedTempPath, threeDaysAgo, threeDaysAgo);
 
   process.env['MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS'] = '1';
   const retentionHooks1 = await pluginModule.default({ directory: tmpDir });
@@ -237,6 +354,21 @@ async function main() {
   assert.equal(fs.existsSync(staleStatePath), false, 'a state file untouched past the active-retention window should be archived out of the active dir');
   assert.equal(fs.existsSync(path.join(retentionArchiveDir, `${staleKey}.json`)), true, 'the archived file should land in .archive/ under the same filename');
   assert.equal(fs.existsSync(freshStatePath), true, 'a recently-touched state file should remain active, untouched by the sweep');
+  assert.equal(fs.existsSync(staleTempPath), false, 'a stale guard-owned atomic temp file should be pruned');
+  assert.equal(fs.existsSync(freshTempPath), true, 'a fresh guard-owned atomic temp file should survive');
+  assert.equal(fs.existsSync(unrelatedTempPath), true, 'an unrelated temp file should not be pruned');
+
+  // A live cross-process sweep lock makes another sweep a no-op.
+  const lockedKey = sessionKeyFor('session-retention-locked');
+  const lockedStatePath = path.join(retentionStateDir, `${lockedKey}.json`);
+  fs.writeFileSync(lockedStatePath, JSON.stringify({ sessionId: 'session-retention-locked', dispatches: {} }));
+  fs.utimesSync(lockedStatePath, threeDaysAgo, threeDaysAgo);
+  const sweepLockPath = path.join(retentionStateDir, '.sweep.lock');
+  fs.mkdirSync(sweepLockPath);
+  const lockedHooks = await pluginModule.default({ directory: tmpDir });
+  await lockedHooks.event({ event: { type: 'session.created' } });
+  assert.equal(fs.existsSync(lockedStatePath), true, 'a second process must not sweep while the lock is live');
+  fs.rmdirSync(sweepLockPath);
 
   // Second session.created on the SAME plugin instance, immediately after: throttled, no-op.
   const secondKey = sessionKeyFor('session-retention-second');
@@ -267,8 +399,29 @@ async function main() {
   await retentionHooks3.event({ event: { type: 'session.idle' } });
   assert.equal(fs.existsSync(untouchedStatePath), true, 'a non-session.created event must never trigger the sweep');
 
+  // Warning logs rotate by size and receive maintenance on session creation.
+  clearGuardLog(tmpDir);
+  process.env[WARN_LOG_MAX_BYTES_ENV] = '512';
+  for (let i = 0; i < 6; i += 1) {
+    await beforeHook(
+      { tool: 'task' },
+      { args: { subagent_type: 'ai-council', prompt: `mode=research generate warning ${i}` } },
+    );
+  }
+  assert.equal(fs.existsSync(`${guardLogPath(tmpDir)}.1`), true, 'size overflow should retain one rotated warning-log generation');
+  assert.ok(fs.statSync(guardLogPath(tmpDir)).size <= 512, 'the active warning log should remain within its byte cap');
+
+  clearGuardLog(tmpDir);
+  fs.mkdirSync(path.dirname(guardLogPath(tmpDir)), { recursive: true });
+  fs.writeFileSync(guardLogPath(tmpDir), 'x'.repeat(1024));
+  const warningMaintenanceHooks = await pluginModule.default({ directory: tmpDir });
+  await warningMaintenanceHooks.event({ event: { type: 'session.created' } });
+  assert.equal(fs.existsSync(guardLogPath(tmpDir)), false, 'startup maintenance should rotate an oversized active log');
+  assert.equal(fs.existsSync(`${guardLogPath(tmpDir)}.1`), true, 'startup maintenance should preserve the rotated generation');
+
   delete process.env['MK_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS'];
   delete process.env['MK_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS'];
+  delete process.env[WARN_LOG_MAX_BYTES_ENV];
 
   fs.rmSync(tmpDir, { recursive: true, force: true });
   console.log('mk-deep-loop-guard.test.cjs: all assertions passed');

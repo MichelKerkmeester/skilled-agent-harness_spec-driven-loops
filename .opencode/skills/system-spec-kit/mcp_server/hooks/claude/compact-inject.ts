@@ -7,11 +7,12 @@
 // and caches to hook state for later injection by SessionStart hook.
 // stdout is NOT injected on PreCompact — we only cache here.
 
+import { spawnSync } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
-import { readFileSync } from 'node:fs';
-import { pathToFileURL } from 'node:url';
+import { closeSync, fstatSync, openSync, readFileSync, readSync } from 'node:fs';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
-  parseHookStdin, hookLog, truncateToTokenBudget,
+  parseHookStdin, hookLog,
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, getRequiredSessionId,
 } from './shared.js';
 import { ensureStateDir, updateState } from './hook-state.js';
@@ -22,6 +23,7 @@ import {
   createSharedPayloadEnvelope,
   createPreMergeSelectionMetadata,
   type SharedPayloadEnvelope,
+  type SharedPayloadSection,
 } from '../../lib/context/shared-payload.js';
 import {
   CANONICAL_FOLD_VERSION,
@@ -37,15 +39,55 @@ const COMPACT_FEEDBACK_GUARDS = [
   /^\s*##\s+Recovery Instructions/i,
   /\bauto-recovered\b/i,
 ];
+const TAIL_READ_CHUNK_BYTES = 64 * 1024;
+const MAX_TAIL_READ_BYTES = 1024 * 1024;
+const PERSISTENCE_MARGIN_MS = 150;
+const MIN_OPTIONAL_BUDGET_MS = 50;
+const SNAPSHOT_STDIO_BYTES = 64 * 1024;
 
 /** Extract the last N lines from a file */
 export function tailFile(filePath: string, lines: number): string[] {
+  if (!Number.isInteger(lines) || lines <= 0) return [];
+  let fileDescriptor: number | null = null;
   try {
-    const content = readFileSync(filePath, 'utf-8');
-    const allLines = content.split('\n');
-    return allLines.slice(Math.max(0, allLines.length - lines));
+    fileDescriptor = openSync(filePath, 'r');
+    const { size } = fstatSync(fileDescriptor);
+    if (size === 0) return [];
+
+    const chunks: Buffer[] = [];
+    let bytesCollected = 0;
+    let newlineCount = 0;
+    while (
+      bytesCollected < size
+      && bytesCollected < MAX_TAIL_READ_BYTES
+      && newlineCount <= lines
+    ) {
+      const bytesToRead = Math.min(
+        TAIL_READ_CHUNK_BYTES,
+        size - bytesCollected,
+        MAX_TAIL_READ_BYTES - bytesCollected,
+      );
+      const startPosition = size - bytesCollected - bytesToRead;
+      const buffer = Buffer.allocUnsafe(bytesToRead);
+      const bytesRead = readSync(fileDescriptor, buffer, 0, bytesToRead, startPosition);
+      if (bytesRead <= 0) break;
+      const chunk = buffer.subarray(0, bytesRead);
+      chunks.unshift(chunk);
+      bytesCollected += bytesRead;
+      for (const byte of chunk) {
+        if (byte === 0x0a) newlineCount += 1;
+      }
+    }
+
+    const readStart = size - bytesCollected;
+    const allLines = Buffer.concat(chunks, bytesCollected).toString('utf-8').split('\n');
+    if (readStart > 0) allLines.shift();
+    if (allLines.at(-1) === '') allLines.pop();
+    return allLines.slice(-lines);
   } catch {
     return [];
+  } finally {
+    if (fileDescriptor !== null) closeSync(fileDescriptor);
   }
 }
 
@@ -184,7 +226,7 @@ function renderConstitutionalMemories(
     return details.join('\n');
   });
 
-  return `## Constitutional Rules\n${lines.join('\n')}`;
+  return lines.join('\n');
 }
 
 function renderTriggeredMemories(
@@ -207,7 +249,7 @@ function renderTriggeredMemories(
     return `- ${memory.title} (matched: ${matchedPhrases.join(', ')})`;
   });
 
-  return `## Relevant Memories\n${lines.join('\n')}`;
+  return lines.join('\n');
 }
 
 async function renderCliCompactionFallback(sessionState: string): Promise<string> {
@@ -219,7 +261,51 @@ async function renderCliCompactionFallback(sessionState: string): Promise<string
       hookLog('info', 'compact-inject', `CLI warm fallback ${result.status} reason=${result.reason ?? 'none'} exit=${result.exitCode ?? 'none'} duration=${result.durationMs}ms`);
     },
   });
-  return section ? `## ${section.title}\n${section.content}` : '';
+  return section?.content ?? '';
+}
+
+interface CompactResult {
+  text: string;
+  payloadContract: SharedPayloadEnvelope;
+}
+
+function remainingMs(deadline: number, reserveMs: number = 0): number {
+  return Math.max(0, Math.floor(deadline - performance.now() - reserveMs));
+}
+
+function renderBudgetedSections(
+  sections: SharedPayloadSection[],
+  maxTokens: number,
+): { text: string; sections: SharedPayloadSection[] } {
+  const maxChars = maxTokens * 4;
+  const rendered: string[] = [];
+  const retained: SharedPayloadSection[] = [];
+  let usedChars = 0;
+
+  for (const section of sections) {
+    const separator = rendered.length > 0 ? '\n\n' : '';
+    const heading = `## ${section.title}\n`;
+    const availableContentChars = maxChars - usedChars - separator.length - heading.length;
+    if (availableContentChars <= 0) break;
+
+    let content = section.content;
+    let wasTruncated = false;
+    if (content.length > availableContentChars) {
+      const marker = '\n[...truncated to fit token budget]';
+      content = marker.length >= availableContentChars
+        ? content.slice(0, availableContentChars)
+        : `${content.slice(0, availableContentChars - marker.length).trimEnd()}${marker}`;
+      wasTruncated = true;
+    }
+    if (!content.trim()) break;
+
+    rendered.push(`${heading}${content}`);
+    retained.push({ ...section, content });
+    usedChars += separator.length + heading.length + content.length;
+    if (wasTruncated) break;
+  }
+
+  return { text: rendered.join('\n\n'), sections: retained };
 }
 
 /**
@@ -227,7 +313,10 @@ async function renderCliCompactionFallback(sessionState: string): Promise<string
  * Extracts session state from transcript, then delegates budget allocation
  * and section rendering to mergeCompactBrief.
  */
-async function buildMergedContext(transcriptLines: string[]): Promise<string> {
+export async function buildMergedCompactResult(
+  transcriptLines: string[],
+  deadline: number = performance.now() + HOOK_TIMEOUT_MS,
+): Promise<CompactResult> {
   const sanitizedLines = stripRecoveredCompactLines(transcriptLines);
   const filePaths = extractFilePaths(sanitizedLines);
   const topics = extractTopics(sanitizedLines);
@@ -284,13 +373,36 @@ async function buildMergedContext(transcriptLines: string[]): Promise<string> {
   });
 
   const mergeInput: MergeInput = {
-    constitutional: '',   // Constitutional rules come from Memory MCP, not available in hooks
+    constitutional: '',
     codeGraph,
-    triggered: '',        // Triggered memories not available in hooks
+    triggered: '',
     sessionState,
   };
 
-  // Merge with timing
+  let cliFallback = '';
+  const surfaceBudget = remainingMs(deadline, PERSISTENCE_MARGIN_MS);
+  const autoSurfaced = surfaceBudget >= MIN_OPTIONAL_BUDGET_MS
+    ? await withTimeout(autoSurfaceAtCompaction(sessionState), surfaceBudget, null)
+    : null;
+  if (autoSurfaced) {
+    mergeInput.constitutional = renderConstitutionalMemories(autoSurfaced);
+    mergeInput.triggered = renderTriggeredMemories(autoSurfaced);
+    hookLog(
+      'info',
+      'compact-inject',
+      `Compaction auto-surface returned ${autoSurfaced.constitutional.length} constitutional and ${autoSurfaced.triggered.length} triggered memories (${autoSurfaced.latencyMs}ms)`,
+    );
+  } else {
+    const fallbackBudget = remainingMs(deadline, PERSISTENCE_MARGIN_MS);
+    if (fallbackBudget >= MIN_OPTIONAL_BUDGET_MS) {
+      cliFallback = await withTimeout(
+        renderCliCompactionFallback(sessionState || sanitizedLines.slice(-10).join('\n')),
+        fallbackBudget,
+        '',
+      );
+    }
+  }
+
   const t0 = performance.now();
   const merged = mergeCompactBrief(mergeInput, COMPACTION_TOKEN_BUDGET, undefined, selection);
   const elapsed = performance.now() - t0;
@@ -301,89 +413,139 @@ async function buildMergedContext(transcriptLines: string[]): Promise<string> {
     hookLog('info', 'compact-inject', `Merge pipeline completed in ${elapsed.toFixed(0)}ms (${merged.metadata.sourceCount} sections, ~${merged.metadata.totalTokenEstimate} tokens)`);
   }
 
-  const autoSurfaced = await autoSurfaceAtCompaction(sessionState);
-  if (!autoSurfaced) {
-    const cliFallback = await renderCliCompactionFallback(sessionState || sanitizedLines.slice(-10).join('\n'));
-    return cliFallback && merged.text
-      ? `${cliFallback}\n\n${merged.text}`
-      : (cliFallback || merged.text);
-  }
-
-  hookLog(
-    'info',
-    'compact-inject',
-    `Compaction auto-surface returned ${autoSurfaced.constitutional.length} constitutional and ${autoSurfaced.triggered.length} triggered memories (${autoSurfaced.latencyMs}ms)`,
-  );
-
-  const constitutionalSection = renderConstitutionalMemories(autoSurfaced);
-  const triggeredSection = renderTriggeredMemories(autoSurfaced);
-  const surfacedSections = [constitutionalSection, triggeredSection]
-    .filter((section) => section.length > 0);
-
-  if (surfacedSections.length === 0) {
-    return merged.text;
-  }
-
-  const surfacedContext = surfacedSections.join('\n\n');
-
-  return merged.text
-    ? `${surfacedContext}\n\n${merged.text}`
-    : surfacedContext;
+  const rendered = renderBudgetedSections([
+    ...(cliFallback
+      ? [{
+        key: 'spec-memory-cli-fallback',
+        title: 'Spec Memory CLI Fallback',
+        content: cliFallback,
+        source: 'operational' as const,
+      }]
+      : []),
+    ...merged.payloadContract.sections,
+  ], COMPACTION_TOKEN_BUDGET);
+  return {
+    text: rendered.text,
+    payloadContract: {
+      ...merged.payloadContract,
+      sections: rendered.sections,
+    },
+  };
 }
 
-async function buildMergedPayloadContract(transcriptLines: string[]): Promise<SharedPayloadEnvelope> {
-  const sanitizedLines = stripRecoveredCompactLines(transcriptLines);
-  const filePaths = extractFilePaths(sanitizedLines);
-  const topics = extractTopics(sanitizedLines);
-  const attentionSignals = extractAttentionSignals(sanitizedLines);
-  const sessionParts: string[] = [];
-  const specFolder = detectSpecFolder(sanitizedLines);
-  if (specFolder) {
-    sessionParts.push(`Active spec folder: ${specFolder}`);
-  }
-  if (attentionSignals.length > 0) {
-    sessionParts.push('Working memory attention:\n' + attentionSignals.join('\n'));
-  }
-  if (topics.length > 0) {
-    sessionParts.push('Recent topics:\n' + topics.map((topic) => `- ${topic}`).join('\n'));
-  }
-  const meaningfulLines = sanitizedLines.filter((line) => line.trim().length > 10 && !line.startsWith('{')).slice(-5);
-  if (meaningfulLines.length > 0) {
-    sessionParts.push('Recent context:\n' + meaningfulLines.join('\n'));
-  }
-
-  const selection = createPreMergeSelectionMetadata({
-    selectedFrom: ['transcript-tail', 'active-files', 'recent-topics', 'attention-signals'],
-    fileCount: filePaths.length,
-    topicCount: topics.length,
-    attentionSignalCount: attentionSignals.length,
-    notes: [
-      sanitizedLines.length !== transcriptLines.length
-        ? 'Recovered compact transcript lines were removed before pre-merge selection.'
-        : 'No recovered compact transcript lines detected in the current tail.',
-      specFolder ? `Spec folder anchored: ${specFolder}` : 'No active spec folder detected in transcript tail.',
-    ],
-    antiFeedbackGuards: [
-      'Strip recovered hook-cache source markers before transcript summarization.',
-      'Do not reuse Recovery Instructions text as session-state evidence.',
-      'Build pre-merge candidates before section assembly.',
-    ],
-  });
-
-  const mergeInput: MergeInput = {
-    constitutional: '',
-    codeGraph: filePaths.length > 0 ? 'Active files:\n' + filePaths.map((filePath) => `- ${filePath}`).join('\n') : '',
-    triggered: '',
-    sessionState: sessionParts.join('\n\n'),
+function buildLegacyCompactResult(transcriptLines: string[], timestamp: string): CompactResult {
+  const rendered = renderBudgetedSections([{
+    key: 'legacy-compact-context',
+    title: 'Legacy Compact Context',
+    content: buildCompactContext(transcriptLines),
+    source: 'session',
+  }], COMPACTION_TOKEN_BUDGET);
+  return {
+    text: rendered.text,
+    payloadContract: createSharedPayloadEnvelope({
+      kind: 'compaction',
+      sections: rendered.sections,
+      summary: 'Legacy compaction cache assembled before optional enrichment',
+      provenance: {
+        producer: 'hook_cache',
+        sourceSurface: 'compact-cache',
+        trustState: 'cached',
+        generatedAt: timestamp,
+        lastUpdated: null,
+        sourceRefs: ['compact-inject', 'hook-state'],
+        sanitizerVersion: CANONICAL_FOLD_VERSION,
+        runtimeFingerprint: getUnicodeRuntimeFingerprint(),
+      },
+    }),
   };
+}
 
-  return mergeCompactBrief(mergeInput, COMPACTION_TOKEN_BUDGET, undefined, selection).payloadContract;
+function persistCompactResult(
+  sessionId: string,
+  result: CompactResult,
+  timestamp: string,
+): boolean {
+  return updateState(sessionId, {
+    pendingCompactPrime: {
+      payload: result.text,
+      cachedAt: timestamp,
+      payloadContract: {
+        ...result.payloadContract,
+        provenance: {
+          ...result.payloadContract.provenance,
+          producer: 'hook_cache',
+          sourceSurface: 'compact-cache',
+          trustState: 'cached',
+          sanitizerVersion: CANONICAL_FOLD_VERSION,
+          runtimeFingerprint: getUnicodeRuntimeFingerprint(),
+        },
+      },
+    },
+  }).persisted;
+}
+
+function runAuthoredSnapshotWorker(): void {
+  const input = JSON.parse(readFileSync(0, 'utf-8')) as {
+    specFolder: string | null;
+    sessionId: string;
+  };
+  const result = refreshAuthoredContinuitySnapshot({
+    enabled: true,
+    specFolder: input.specFolder,
+    sessionId: input.sessionId,
+    actor: 'precompact-hook',
+  });
+  process.stdout.write(JSON.stringify(result));
+}
+
+function runAuthoredSnapshot(
+  transcriptLines: string[],
+  sessionId: string,
+  deadline: number,
+): void {
+  const timeout = remainingMs(deadline);
+  if (timeout < MIN_OPTIONAL_BUDGET_MS) {
+    hookLog('warn', 'compact-inject', 'Authored continuity snapshot skipped: hook deadline exhausted');
+    return;
+  }
+  const result = spawnSync(
+    process.execPath,
+    [fileURLToPath(import.meta.url), '--authored-snapshot-worker'],
+    {
+      input: JSON.stringify({ specFolder: detectSpecFolder(transcriptLines), sessionId }),
+      encoding: 'utf-8',
+      timeout,
+      maxBuffer: SNAPSHOT_STDIO_BYTES,
+      killSignal: 'SIGKILL',
+    },
+  );
+  if (result.error || result.status !== 0) {
+    hookLog('warn', 'compact-inject', 'Authored continuity snapshot failed or exceeded its remaining budget');
+    return;
+  }
+  try {
+    const snapshotResult = JSON.parse(result.stdout) as {
+      status: string;
+      docsUpdated?: unknown[];
+      createdMemoryRecords?: number;
+      indexMutations?: number;
+      reason?: string;
+    };
+    if (snapshotResult.status === 'updated') {
+      hookLog('info', 'compact-inject', `Authored continuity snapshot refreshed ${snapshotResult.docsUpdated?.length ?? 0} doc(s); memory records=${snapshotResult.createdMemoryRecords ?? 0}; index mutations=${snapshotResult.indexMutations ?? 0}`);
+    } else if (snapshotResult.status === 'skipped') {
+      hookLog('warn', 'compact-inject', `Authored continuity snapshot skipped: ${snapshotResult.reason ?? 'unknown'}`);
+    }
+  } catch {
+    hookLog('warn', 'compact-inject', 'Authored continuity snapshot returned invalid worker output');
+  }
 }
 
 async function main(): Promise<void> {
+  const deadline = performance.now() + HOOK_TIMEOUT_MS;
   ensureStateDir();
 
-  const input = await withTimeout(parseHookStdin(), HOOK_TIMEOUT_MS, null);
+  const input = await withTimeout(parseHookStdin(), remainingMs(deadline), null);
   if (!input) {
     hookLog('warn', 'compact-inject', 'No stdin input received');
     return;
@@ -398,91 +560,38 @@ async function main(): Promise<void> {
     hookLog('info', 'compact-inject', `Read ${transcriptLines.length} transcript lines`);
   }
 
-  try {
-    const snapshotResult = refreshAuthoredContinuitySnapshot({
-      enabled: authoredSnapshotEnabled(input),
-      specFolder: detectSpecFolder(transcriptLines),
-      sessionId,
-      actor: 'precompact-hook',
-    });
-    if (snapshotResult.status === 'updated') {
-      hookLog('info', 'compact-inject', `Authored continuity snapshot refreshed ${snapshotResult.docsUpdated.length} doc(s); memory records=${snapshotResult.createdMemoryRecords}; index mutations=${snapshotResult.indexMutations}`);
-    } else if (snapshotResult.status === 'skipped') {
-      hookLog('warn', 'compact-inject', `Authored continuity snapshot skipped: ${snapshotResult.reason}`);
-    }
-  } catch (error: unknown) {
-    hookLog('warn', 'compact-inject', `Authored continuity snapshot failed: ${error instanceof Error ? error.message : String(error)}`);
-  }
-
-  // Use the 3-source merge pipeline, falling back to legacy on error
-  let payload: string;
-  try {
-    const mergedContext = await buildMergedContext(transcriptLines);
-    payload = truncateToTokenBudget(mergedContext, COMPACTION_TOKEN_BUDGET);
-    const payloadContract = await buildMergedPayloadContract(transcriptLines);
-    const timestamp = new Date().toISOString();
-    const updateResult = updateState(sessionId, {
-      pendingCompactPrime: {
-        payload,
-        cachedAt: timestamp,
-        payloadContract: {
-          ...payloadContract,
-          provenance: {
-            ...payloadContract.provenance,
-            producer: 'hook_cache',
-            sourceSurface: 'compact-cache',
-            trustState: 'cached',
-            sanitizerVersion: CANONICAL_FOLD_VERSION,
-            runtimeFingerprint: getUnicodeRuntimeFingerprint(),
-          },
-        },
-      },
-    });
-    if (!updateResult.persisted) {
-      hookLog('warn', 'compact-inject', `Compact context cache was not persisted for session ${sessionId}`);
-      return;
-    }
-    hookLog('info', 'compact-inject', `Cached compact context (${payload.length} chars) for session ${sessionId}`);
-    return;
-  } catch (err: unknown) {
-    hookLog('warn', 'compact-inject', `Merge pipeline failed, falling back to legacy: ${err instanceof Error ? err.message : String(err)}`);
-    const rawContext = buildCompactContext(transcriptLines);
-    payload = truncateToTokenBudget(rawContext, COMPACTION_TOKEN_BUDGET);
-  }
-
-  const timestamp = new Date().toISOString();
-  const updateResult = updateState(sessionId, {
-    pendingCompactPrime: {
-      payload,
-      cachedAt: timestamp,
-      payloadContract: createSharedPayloadEnvelope({
-        kind: 'compaction',
-        sections: [{
-          key: 'legacy-compact-context',
-          title: 'Legacy Compact Context',
-          content: payload,
-          source: 'session',
-        }],
-        summary: 'Legacy compaction cache assembled after merge fallback',
-        provenance: {
-          producer: 'hook_cache',
-          sourceSurface: 'compact-cache',
-          trustState: 'cached',
-          generatedAt: timestamp,
-          lastUpdated: null,
-          sourceRefs: ['compact-inject', 'hook-state'],
-          sanitizerVersion: CANONICAL_FOLD_VERSION,
-          runtimeFingerprint: getUnicodeRuntimeFingerprint(),
-        },
-      }),
-    },
-  });
-  if (!updateResult.persisted) {
+  const baselineTimestamp = new Date().toISOString();
+  const baseline = buildLegacyCompactResult(transcriptLines, baselineTimestamp);
+  if (!persistCompactResult(sessionId, baseline, baselineTimestamp)) {
     hookLog('warn', 'compact-inject', `Legacy compact context cache was not persisted for session ${sessionId}`);
     return;
   }
+  hookLog('info', 'compact-inject', `Cached baseline compact context (${baseline.text.length} chars) for session ${sessionId}`);
 
-  hookLog('info', 'compact-inject', `Cached compact context (${payload.length} chars) for session ${sessionId}`);
+  const enrichmentBudget = remainingMs(deadline, PERSISTENCE_MARGIN_MS);
+  if (enrichmentBudget >= MIN_OPTIONAL_BUDGET_MS) {
+    try {
+      const enriched = await withTimeout(
+        buildMergedCompactResult(transcriptLines, deadline),
+        enrichmentBudget,
+        null,
+      );
+      if (enriched && remainingMs(deadline) >= PERSISTENCE_MARGIN_MS) {
+        const enrichedTimestamp = new Date().toISOString();
+        if (persistCompactResult(sessionId, enriched, enrichedTimestamp)) {
+          hookLog('info', 'compact-inject', `Cached enriched compact context (${enriched.text.length} chars) for session ${sessionId}`);
+        } else {
+          hookLog('warn', 'compact-inject', `Enriched compact context cache was not persisted for session ${sessionId}`);
+        }
+      }
+    } catch (err: unknown) {
+      hookLog('warn', 'compact-inject', `Merge pipeline failed; baseline cache retained: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  }
+
+  if (authoredSnapshotEnabled(input)) {
+    runAuthoredSnapshot(transcriptLines, sessionId, deadline);
+  }
 }
 
 function isCliEntrypoint(): boolean {
@@ -492,7 +601,10 @@ function isCliEntrypoint(): boolean {
 
 // Run — exit cleanly even on error (hooks must never block Claude)
 if (isCliEntrypoint()) {
-  main().catch((err: unknown) => {
+  const operation = process.argv.includes('--authored-snapshot-worker')
+    ? Promise.resolve().then(runAuthoredSnapshotWorker)
+    : main();
+  operation.catch((err: unknown) => {
     hookLog('error', 'compact-inject', `Unhandled error: ${err instanceof Error ? err.message : String(err)}`);
   }).finally(() => {
     process.exit(0);
