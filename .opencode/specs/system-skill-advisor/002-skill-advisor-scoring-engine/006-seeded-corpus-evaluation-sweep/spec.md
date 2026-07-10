@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Implemented; seeded sweep skipped under default provider |
 | **Created** | 2026-05-14 |
 | **Branch** | `004-corpus-seeded-sweep` |
 <!-- /ANCHOR:metadata -->

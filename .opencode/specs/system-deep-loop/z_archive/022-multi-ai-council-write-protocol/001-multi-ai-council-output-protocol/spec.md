@@ -57,7 +57,7 @@ The `@multi-ai-council` agent today returns deliberation results inline to chat 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | DONE; CHK-022/023 deferred (orchestrator-level writes scoped to follow-on) |
 | **Created** | 2026-05-06 |
 | **Branch** | `main` |
 | **Parent Track** | `skilled-agent-orchestration` |

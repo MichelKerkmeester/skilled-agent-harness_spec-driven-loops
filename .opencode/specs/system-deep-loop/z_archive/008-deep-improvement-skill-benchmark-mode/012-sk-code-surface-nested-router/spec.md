@@ -50,7 +50,7 @@ Phase 011's 3-iteration deep research recommended a concrete remediation for sk-
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned — build pending |
+| **Status** | Implemented and live-validated |
 | **Created** | 2026-06-01 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

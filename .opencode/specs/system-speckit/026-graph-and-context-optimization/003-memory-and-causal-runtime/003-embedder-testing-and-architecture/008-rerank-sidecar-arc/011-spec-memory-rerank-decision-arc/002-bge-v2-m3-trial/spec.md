@@ -30,7 +30,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | Planned (gated on Phase 1 OFF_DEFICIENT) |
+| **Status** | Complete (HOLD; no source patch) |
 | **Created** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `011-spec-memory-rerank-decision-arc` |

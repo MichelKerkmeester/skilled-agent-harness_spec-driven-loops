@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation |
-| **Status** | not-started (authoring step complete; no fixes applied) |
+| **Status** | In Progress — implementation work pending |
 | **Level** | 3 |
 | **Created** | 2026-06-17 |
 | **Source reviews** | 017 (CONDITIONAL) · 018 / 019 / 020 / 021 (PASS) |
