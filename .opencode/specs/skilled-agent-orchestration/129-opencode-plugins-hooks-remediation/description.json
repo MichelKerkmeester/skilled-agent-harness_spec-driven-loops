@@ -1,7 +1,7 @@
 {
   "level": "phase",
   "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation",
-  "description": "Phase-parent for fixing all findings from the plugins/hooks audit (packet 127); per-plugin fix plans in child phase folders.",
+  "description": "Phase-parent for fixing all findings from the plugins/hooks audit (packet 127); two-model fix designs, review-hardened (Fable 5 + Sol xhigh).",
   "keywords": [
     "opencode",
     "plugins",
@@ -9,9 +9,9 @@
     "hooks",
     "remediation",
     "fixes",
-    "bugs"
+    "review"
   ],
-  "lastUpdated": "2026-07-10T09:27:08.489Z",
+  "lastUpdated": "2026-07-10T11:42:16.945Z",
   "specId": "129",
   "folderSlug": "opencode-plugins-hooks-remediation",
   "parentChain": [

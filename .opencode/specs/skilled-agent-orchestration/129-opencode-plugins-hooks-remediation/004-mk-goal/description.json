@@ -1,16 +1,16 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/004-mk-goal",
-  "description": "Fix plan for the mk-goal audit findings; one task per finding, planned not implemented.",
+  "description": "Fix plan for the mk-goal audit findings; two-model designs, review-hardened; actionable fixes + reclassified non-issues.",
   "keywords": [
     "mk-goal",
     "remediation",
     "fixes",
     "plugin",
-    "bugs",
+    "review",
     "plan"
   ],
-  "lastUpdated": "2026-07-10T09:27:08.489Z",
+  "lastUpdated": "2026-07-10T11:42:16.945Z",
   "specId": "004",
   "folderSlug": "mk-goal",
   "parentChain": [

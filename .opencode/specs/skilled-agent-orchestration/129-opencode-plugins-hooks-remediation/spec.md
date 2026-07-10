@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation"
-    last_updated_at: "2026-07-10T09:27:08.451Z"
+    last_updated_at: "2026-07-10T11:42:16.907Z"
     last_updated_by: "gpt-5.6-sol-fast-audit"
     recent_action: "Planned 108 fixes across 7 plugin children"
     next_safe_action: "Implement per-plugin P1 fixes first"
@@ -79,6 +79,10 @@ A per-plugin fix plan: every finding becomes an ordered, verifiable task so reme
 ### Fix Rollup
 
 108 fixes planned - 42 P1 / 40 P2 / 26 refinement. Sourced from audit packet 127 (GPT-5.6-Sol-Fast iteration 1, Opus 4.8 iteration-2 cross-check).
+
+Every finding carries a code-verified fix design from BOTH GPT-5.6-Sol (high) and Opus 4.8 (high): 101 both-agree (high confidence) and 7 disputed (one model calls it a non-issue, operator decides). Full per-finding designs in each child's fix-design/fix-design.md.
+
+**Independent review (Fable 5 + Sol xhigh, both re-verified against real code):** of 108 findings, **103 remain actionable fixes**, **5 were RECLASSIFIED** as non-issue / by-design (no code change), and **14 carry a REVIEW-FLAG** (a defect in the proposed design to correct before coding). Combined verdict: **NOT-READY** until the flagged designs are corrected, 3 operator decisions are made, and cross-file coordination is planned. See `review-synthesis.md`.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|

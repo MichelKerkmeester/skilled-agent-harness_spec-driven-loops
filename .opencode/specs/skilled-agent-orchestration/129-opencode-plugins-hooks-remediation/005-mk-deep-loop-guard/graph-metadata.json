@@ -36,6 +36,7 @@
       ".opencode/plugins/mk-deep-loop-guard.js",
       ".claude/settings.json",
       ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
+      "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -57,6 +58,12 @@
         "name": "mk-deep-loop-guard.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 13 confirmed findings in `mk-deep-loop-guard` and its Claude hook version (6 P1 / 5 P2 / 2 refinement)",
-    "created_at": "2026-07-10T09:27:09.464Z",
-    "last_save_at": "2026-07-10T09:27:09.464Z",
+    "created_at": "2026-07-10T11:42:17.733Z",
+    "last_save_at": "2026-07-10T11:42:17.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,11 +197,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:ca91e561c845b27eba893b6ccf3369f3c8c46763801e20dbe6eb3e316ba1ca47",
+    "source_fingerprint": "sha256:05738894c72f16d2ba6512ca9c4b47b682795306723f0f5f969c6efe826948f1",
     "source_doc_hashes": {
-      "spec.md": "049fc03c37b959bd34a27d23f67568d85ae95e12f077045518c3bf20a1beada9",
-      "plan.md": "99a407836bd1cad39f4ddf3dd3ca286759e4b978debbc408d159cf7b56ee26c8",
-      "tasks.md": "f6eb945a8d67c062c8b508d65b05c7c0442292e1aa2a15aac318dc7a41ee3c4f"
+      "spec.md": "bcf32ede09868bee67cc91bdc085ced1ef69281c16853464260808c3ffa30497",
+      "plan.md": "0763c7386ed5852d7dd6a0d8bbac22aeb6cc970681c7e130fa782473807da834",
+      "tasks.md": "4bd9e43ea01d22511d582d1cb2c4a0c7dcc13b322564c9159d07f0f27a14359a"
     },
     "last_active_child_id": null,
     "last_active_at": null

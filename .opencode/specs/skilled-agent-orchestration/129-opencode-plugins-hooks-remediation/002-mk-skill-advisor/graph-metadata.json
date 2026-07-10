@@ -38,6 +38,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
       ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -65,6 +66,12 @@
         "name": "mk-skill-advisor-bridge.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -180,17 +187,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 17 confirmed findings in `mk-skill-advisor` and its Claude hook version (6 P1 / 8 P2 / 3 refinement)",
-    "created_at": "2026-07-10T09:27:08.868Z",
-    "last_save_at": "2026-07-10T09:27:08.868Z",
+    "created_at": "2026-07-10T11:42:17.263Z",
+    "last_save_at": "2026-07-10T11:42:17.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,11 +199,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:964fe3c4ec0725f9ad299f8ee35912902d26a426a9894ee1a63f2190d45814f7",
+    "source_fingerprint": "sha256:0bf908e4bd76f7a536c4e5999b61e466ab764b3d1bbcbf3c00d3c788b00b68de",
     "source_doc_hashes": {
-      "spec.md": "90be49ee61a00270e02794b49de37e235d2672b1bb38765447834b72cd73b251",
-      "plan.md": "a03c6b4ca641fb89a9715996752a497cf64cf599ab824d495860773b286fcbce",
-      "tasks.md": "771ac0a82035048d9a54ba261e9507a019679097a9936fe5e1963a84fdfe9460"
+      "spec.md": "12e1cd71f42c601007b417fdfe6aa90c615c7afeda744866f22b55faa1c2e2cc",
+      "plan.md": "429791e0ccd7e680dd3553ce7fdb562ba249665e1828d2f3d8228acd5632875b",
+      "tasks.md": "7ec4bdf474d4d29386711bdbf60339059c1591a1b2198ee1b56020bf90350a9f"
     },
     "last_active_child_id": null,
     "last_active_at": null

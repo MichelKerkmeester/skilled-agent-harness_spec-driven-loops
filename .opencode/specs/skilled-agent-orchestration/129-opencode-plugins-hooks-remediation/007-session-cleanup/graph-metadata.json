@@ -40,6 +40,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-stop-hook-orphan-sweep.vitest.ts",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       ".opencode/bin/worktree-guard.sh",
+      "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -85,6 +86,12 @@
         "name": "worktree-guard.sh",
         "kind": "script",
         "path": ".opencode/bin/worktree-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -182,17 +189,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 17 confirmed findings in `session-cleanup` and its Claude hook version (3 P1 / 7 P2 / 7 refinement)",
-    "created_at": "2026-07-10T09:27:09.849Z",
-    "last_save_at": "2026-07-10T09:27:09.849Z",
+    "created_at": "2026-07-10T11:42:18.110Z",
+    "last_save_at": "2026-07-10T11:42:18.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +201,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:1044b5a5dbf4827f4bb25288fe49e4d33b50454b299ecd7508a66d9ef757f491",
+    "source_fingerprint": "sha256:cb470662ed78ff1cb16e200e602a810598509c802b513bb53fbd4fc5e957ed2c",
     "source_doc_hashes": {
-      "spec.md": "5ee6e5cc68f19e41b5bf224142d5c3bd93ef57b10beaa6df1a2c14eca5ab31b7",
-      "plan.md": "ba8d1ffb1fa073f8d085bb5ff2f3aadbcfa751df859e110a23308cc47b744145",
-      "tasks.md": "688dc06429bf45c649ee329a78fc421def04909bfa9aece8ad19a09675b53b03"
+      "spec.md": "15ed16a52dba7d6145ba0d55161081348b8b92f7f27fc86a87fd1991d4a9ad9e",
+      "plan.md": "9b1a067b8fdc829a6f35cc55fb7e730e44cab7dc8f7e08b4c47a23a191dd4862",
+      "tasks.md": "b3917675563b708158cb5734318e539b33782618b2319deb2afeea0ffeabb4ec"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -37,6 +37,7 @@
       ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
       ".claude/settings.json",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+      "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -64,6 +65,12 @@
         "name": "session-prime.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -169,27 +176,21 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "The Claude",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "detached",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "stderr",
-        "kind": "key_phrase",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 13 confirmed findings in `mk-code-graph` and its Claude hook version (3 P1 / 7 P2 / 3 refinement)",
-    "created_at": "2026-07-10T09:27:09.049Z",
-    "last_save_at": "2026-07-10T09:27:09.049Z",
+    "created_at": "2026-07-10T11:42:17.415Z",
+    "last_save_at": "2026-07-10T11:42:17.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,11 +198,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:33881c770dc337d45d5d8505013a3c674950bcb2e3bb4c28f88315c1219fb7c3",
+    "source_fingerprint": "sha256:99169b833f1c05dbb35f2545c7ba545e4ecbc28a9546c4f159b7bb5ea1923f49",
     "source_doc_hashes": {
-      "spec.md": "d7234d9c248d10ccca347799e24ea6d612fe55727df4367018bb39f632b8b577",
-      "plan.md": "4483dd79ecf3bb5090adb1a3554845f7c8b217616957d9959864692d6e919c8d",
-      "tasks.md": "0868ed04426307c4f18e230aee9dd99587e24ea7e0fd2bef27f7cc8246fc47b9"
+      "spec.md": "6484fe6c286c8c33b8c50db055ecf5c4232a7974a537108695ae7a21ac51acac",
+      "plan.md": "afdcf92e933a52112ccf56cb7beb896882dbba5fe4e0c2c328b69fc82efc9766",
+      "tasks.md": "3ba1726b9fdd58c5640e9615d92c1541f1b7ee56c36542b1665fd58a53ed5f9e"
     },
     "last_active_child_id": null,
     "last_active_at": null

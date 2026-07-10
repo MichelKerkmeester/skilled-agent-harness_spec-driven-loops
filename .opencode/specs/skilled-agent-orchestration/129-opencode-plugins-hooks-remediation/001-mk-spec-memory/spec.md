@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/001-mk-spec-memory"
-    last_updated_at: "2026-07-10T09:27:08.451Z"
+    last_updated_at: "2026-07-10T11:42:16.907Z"
     last_updated_by: "gpt-5.6-sol-fast-audit"
     recent_action: "Planned 19 fixes for mk-spec-memory"
     next_safe_action: "Implement P1 fixes first after baseline tests"
@@ -66,13 +66,14 @@ A scoped fix plan: one task per finding, ordered by severity, so remediation can
 ## 3. SCOPE
 
 ### In Scope
-- Fixing the 19 audit findings in `.opencode/plugins/mk-spec-memory.js` and its Claude hook version
+- Fixing the 19 actionable audit findings in `.opencode/plugins/mk-spec-memory.js` and its Claude hook version (0 reclassified out of scope by review; 2 need a design correction before coding - see tasks.md REVIEW-FLAG lines)
 - The affected files: `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`, `.opencode/plugins/mk-spec-memory.js`, `.claude/settings.json`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs`
 - A baseline test + parity check before and after
 
 ### Out of Scope
 - Findings refuted by the iteration-2 cross-check (no fix needed):
   - F3: Optional citation telemetry can abort all Stop-hook persistence - REFUTED. runTrueCitationEmit wraps its entire body in try/catch and returns the `empty` result on ANY error (true-citation-mining.ts:46-79), and short-circuits when the flag is off (line 43). It cannot throw, so the un-try/catch'd await at session-stop.ts:471-484 cannot abort the later atomic state write / autosave at 551-573. The 'shadow-only, fail-safe' comment is accurate.
+- Findings RECLASSIFIED by the Fable 5 + Sol xhigh review as non-issue / by-design (no code change): none
 - Behavior changes beyond fixing the listed findings
 
 ### Files to Change

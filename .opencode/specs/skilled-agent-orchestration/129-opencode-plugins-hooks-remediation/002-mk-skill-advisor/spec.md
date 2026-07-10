@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/002-mk-skill-advisor"
-    last_updated_at: "2026-07-10T09:27:08.451Z"
+    last_updated_at: "2026-07-10T11:42:16.907Z"
     last_updated_by: "gpt-5.6-sol-fast-audit"
     recent_action: "Planned 17 fixes for mk-skill-advisor"
     next_safe_action: "Implement P1 fixes first after baseline tests"
@@ -66,12 +66,14 @@ A scoped fix plan: one task per finding, ordered by severity, so remediation can
 ## 3. SCOPE
 
 ### In Scope
-- Fixing the 17 audit findings in `.opencode/plugins/mk-skill-advisor.js` and its Claude hook version
+- Fixing the 16 actionable audit findings in `.opencode/plugins/mk-skill-advisor.js` and its Claude hook version (1 reclassified out of scope by review; 2 need a design correction before coding - see tasks.md REVIEW-FLAG lines)
 - The affected files: `.opencode/plugins/mk-skill-advisor.js`, `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts`, `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`, `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`
 - A baseline test + parity check before and after
 
 ### Out of Scope
 - Findings refuted by the iteration-2 cross-check (no fix needed): none
+- Findings RECLASSIFIED by the Fable 5 + Sol xhigh review as non-issue / by-design (no code change):
+  - O5 [non-issue]: session.deleted purge resolves session id via a different path than the cache-write key, so entries may not be evicted
 - Behavior changes beyond fixing the listed findings
 
 ### Files to Change
