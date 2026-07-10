@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 20 on-demand skills across five families, with routing guidance and creation workflow."
+description: "Catalog and front door to 12 top-level skill identities across five catalog families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,7 +21,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Five: `cli-*` (3), `deep-*` (2), `mcp-*` (5), `sk-*` (7), `system-*` (3) |
+| **Families** | Five catalog families: `cli-*` (1), deep loops (1), `mcp-*` (2), `sk-*` (5), system foundations (3) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
@@ -30,7 +30,7 @@ trigger_phrases:
 
 ### Why This Library Exists
 
-Twenty skills live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
+Twelve top-level skill identities live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
 
 ### What It Is
 
@@ -46,26 +46,20 @@ Each skill name links to its own README. The one-line descriptions come from the
 
 | Skill | What it does |
 |---|---|
-| [`cli-claude-code`](cli-claude-code/README.md) | Dispatch a task to Anthropic's `claude` CLI for deep reasoning, surgical edits or scheduled work |
-| [`cli-opencode`](cli-opencode/README.md) | Dispatch a task to OpenAI's `opencode` CLI for sandboxed code generation, web research and parallel work |
-| [`cli-opencode`](cli-opencode/README.md) | Dispatch a task into OpenCode's full project runtime in one shot from any external AI assistant |
+| [`cli-external`](cli-external/README.md) | Parent hub for external CLI dispatch: routes to `cli-opencode` (OpenCode runtime dispatch) and `cli-claude-code` (Claude Code CLI) |
 
 ### deep-*: Autonomous Loops and the Shared Runtime
 
 | Skill | What it does |
 |---|---|
-| [`system-deep-loop`](system-deep-loop/README.md) | The unified deep-loop skill: routes a request to one of five modes (context, research, review, ai-council, improvement) over the shared runtime |
-| [`runtime/`](runtime//README.md) | The shared foundation every deep loop rides, a runtime library rather than a loop you invoke directly |
+| [`system-deep-loop`](system-deep-loop/README.md) | Parent hub for deep research, deep review, AI council, and improvement modes over nested `runtime/` infrastructure |
 
 ### mcp-*: External Tool Surfaces
 
 | Skill | What it does |
 |---|---|
-| [`mcp-chrome-devtools`](mcp-chrome-devtools/README.md) | Drive a real browser from your agent or terminal, with a fast CLI and an MCP fallback |
-| [`mcp-click-up`](mcp-click-up/README.md) | Manage ClickUp tasks from your agent or terminal |
+| [`mcp-tooling`](mcp-tooling/README.md) | Parent hub for MCP tool bridges: browser debugging (`mcp-chrome-devtools`), ClickUp task management (`mcp-click-up`), and a read-only Figma Desktop transport (`mcp-figma`) |
 | [`mcp-code-mode`](mcp-code-mode/README.md) | Execute TypeScript with direct access to every external MCP tool registered in `.utcp_config.json` |
-| [`mcp-open-design`](mcp-open-design/README.md) | Drive the installed Open Design desktop app from the terminal: read and reuse local design systems and commission gated generation runs, via the `od` CLI and MCP |
-| [`mcp-figma`](mcp-figma/README.md) | Drive Figma Desktop from the terminal to read, author, modify, and export designs, tokens, and components, with an optional Figma MCP via Code Mode |
 
 ### sk-*: Code, Docs, Git and Prompts
 
@@ -74,9 +68,8 @@ Each skill name links to its own README. The one-line descriptions come from the
 | [`sk-code`](sk-code/README.md) | The single code-work skill that detects your surface, loads your standards and verifies before claiming done |
 | [`sk-doc`](sk-doc/README.md) | Document quality that starts with structure, with a deterministic script that extracts and scores |
 | [`sk-git`](sk-git/README.md) | Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch discipline |
-| [`sk-design`](sk-design/README.md) | Set distinctive visual direction (palette, typography, layout, motion) that avoids templated AI defaults, grounding against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode), then hand the build to sk-code |
-| [`sk-prompt`](sk-prompt/README.md) | Turn a vague ask into a structured prompt, auto-selected from seven frameworks |
-| [`sk-prompt-models`](sk-prompt-models/README.md) | Before you dispatch any small model, read that model's prompt-craft profile here |
+| [`sk-design`](sk-design/README.md) | Set distinctive visual direction (palette, typography, layout, motion) that avoids templated AI defaults, grounding against real design systems (`design-mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode), then hand the build to sk-code |
+| [`sk-prompt`](sk-prompt/README.md) | Parent hub for prompt improvement (`prompt-improve`) and per-model prompt-craft profiles (`prompt-models`) |
 
 ### system-*: The Runtime Foundation
 
@@ -203,4 +196,4 @@ The family is the prefix before the first hyphen: `cli-*`, `deep-*`, `mcp-*`, `s
 | [`sk-git/README.md`](sk-git/README.md) | Git workflow: worktrees, Conventional Commits and PR integration |
 | [`sk-doc/README.md`](sk-doc/README.md) | Documentation quality, validation scripts and the DQI score |
 | [`sk-prompt/README.md`](sk-prompt/README.md) | Structured prompt engineering across seven frameworks |
-| [`sk-prompt-models/README.md`](sk-prompt-models/README.md) | Per-model prompt-craft profiles for small-model dispatch |
+| [`sk-prompt/prompt-models/README.md`](sk-prompt/prompt-models/README.md) | Per-model prompt-craft profiles for small-model dispatch |

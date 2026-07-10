@@ -108,7 +108,7 @@ The skill is complete with the CLI alone, but when the agent needs to pull desig
 
 ---
 
-## 5. INTEGRATION AND NAVIGATION
+## 5. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
