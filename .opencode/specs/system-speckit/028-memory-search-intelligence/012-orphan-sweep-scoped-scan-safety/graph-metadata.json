@@ -35,7 +35,7 @@
       "maintenance",
       "marker"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
