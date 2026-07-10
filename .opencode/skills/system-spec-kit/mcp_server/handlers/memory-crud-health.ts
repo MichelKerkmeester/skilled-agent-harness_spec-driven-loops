@@ -31,6 +31,7 @@ import {
   getSnapshot as getRoutingTelemetrySnapshot,
   WINDOW_SIZE as ROUTING_TELEMETRY_WINDOW_SIZE,
 } from '../lib/search/routing-telemetry.js';
+import { getContentRichShortQueryGraphPreservationCount } from '../lib/search/query-router.js';
 import {
   getByteEstimate as getEmbeddingCacheByteEstimate,
   getEmbeddingCacheByProfileStats,
@@ -1455,6 +1456,16 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     const hint = `Graph channel metrics unavailable (${errClass}: ${errMsg})`.slice(0, 160);
     hints.push(hint);
   }
+  let contentRichShortQueryGraphPreservationCount: number;
+  try {
+    contentRichShortQueryGraphPreservationCount = getContentRichShortQueryGraphPreservationCount();
+  } catch (err: unknown) {
+    contentRichShortQueryGraphPreservationCount = 0;
+    const errClass = err instanceof Error ? err.constructor.name : typeof err;
+    const errMsg = err instanceof Error ? err.message : String(err);
+    const hint = `Content-rich-short query graph preservation counter unavailable (${errClass}: ${errMsg})`.slice(0, 160);
+    hints.push(hint);
+  }
   // True-citation ledger density probe. Gated behind the emitter's own default-off
   // flag and a live DB, so when the flag is off (or no DB) the health payload is
   // byte-identical to before this surface existed. When on, it reports how many
@@ -1533,6 +1544,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
           degreeResultCount: graphChannelMetrics.degreeResultCount,
           degreeHitRate: graphChannelMetrics.degreeHitRate,
         },
+        contentRichShortQueryGraphPreservationCount,
         totalRecorded: routingTelemetry.totalRecorded,
         windowSize: routingTelemetry.windowSize,
       },

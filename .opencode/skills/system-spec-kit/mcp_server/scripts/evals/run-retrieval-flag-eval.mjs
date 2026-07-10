@@ -197,7 +197,7 @@ function readActiveEmbedder(dbPath) {
   }
 }
 
-async function prepareEvalDatabase(sourceDbPath) {
+export async function prepareEvalDatabase(sourceDbPath) {
   const evalRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-retrieval-eval-'));
   const evalDbPath = path.join(evalRoot, 'context-index.sqlite');
   await backupSqlite(sourceDbPath, evalDbPath);
@@ -241,7 +241,7 @@ function forceFlag(flag, enabled) {
   process.env[flag.env] = enabled ? 'true' : 'false';
 }
 
-function normalizeSearchResults(rows) {
+export function normalizeSearchResults(rows) {
   return rows.map((row, index) => ({
     memoryId: Number(row.parentMemoryId ?? row.parent_id ?? row.parentId ?? row.id),
     score: typeof row.score === 'number' && Number.isFinite(row.score) ? row.score : 0,
@@ -249,7 +249,7 @@ function normalizeSearchResults(rows) {
   })).filter((row) => Number.isInteger(row.memoryId));
 }
 
-function groupGroundTruth(relevances) {
+export function groupGroundTruth(relevances) {
   const byQuery = new Map();
   for (const row of relevances) {
     if (!byQuery.has(row.queryId)) byQuery.set(row.queryId, []);
@@ -267,7 +267,7 @@ function groupGroundTruth(relevances) {
 // for a grouped row. Queries with no ground truth are skipped (same contract the
 // recall-only predecessor used), so `evaluatedQueries` is the per-metric denominator
 // and is what the reconciliation check weights by.
-function computeMeanMetrics(queries, relevancesByQuery, resultMap, metrics) {
+export function computeMeanMetrics(queries, relevancesByQuery, resultMap, metrics) {
   const recalls = [];
   const ndcgs = [];
   const mrrs = [];

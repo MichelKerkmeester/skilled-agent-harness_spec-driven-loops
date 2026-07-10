@@ -1,0 +1,147 @@
+{
+  "generatedAt": "2026-07-10T12:25:58.349Z",
+  "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+  "dbPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-retrieval-eval-SuYjOZ/context-index.sqlite",
+  "sourceShardPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+  "evalShardPath": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-retrieval-eval-SuYjOZ/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite",
+  "preflight": {
+    "quiescent": true,
+    "blockers": [],
+    "embeddingCounts": {
+      "pending": 0,
+      "retry": 0,
+      "failed": 0
+    },
+    "activeScanJob": false,
+    "activeEmbedderJob": false,
+    "checkedAt": "2026-07-10T12:25:29.753Z"
+  },
+  "recallK": 20,
+  "ndcgK": 10,
+  "mrrK": 20,
+  "queryCount": 60,
+  "relevanceCount": 131,
+  "sliceDistribution": {
+    "content_rich_short": 26,
+    "single_hop": 18,
+    "control": 16
+  },
+  "flags": [
+    {
+      "flag": "retrieval_class_routing",
+      "env": "SPECKIT_RETRIEVAL_CLASS_ROUTING",
+      "currentDefault": "off",
+      "recallOff": 0.741667,
+      "recallOn": 0.741667,
+      "recallDelta": 0,
+      "ndcgOff": 0.49392,
+      "ndcgOn": 0.488652,
+      "ndcgDelta": -0.005268,
+      "mrrOff": 0.455731,
+      "mrrOn": 0.457708,
+      "mrrDelta": 0.001978,
+      "bySlice": {
+        "content_rich_short": {
+          "recallOff": 0.730769,
+          "recallOn": 0.730769,
+          "recallDelta": 0,
+          "ndcgOff": 0.461385,
+          "ndcgOn": 0.461385,
+          "ndcgDelta": 0,
+          "mrrOff": 0.41527,
+          "mrrOn": 0.41527,
+          "mrrDelta": 0,
+          "n": 26
+        },
+        "single_hop": {
+          "recallOff": 0.694444,
+          "recallOn": 0.694444,
+          "recallDelta": 0,
+          "ndcgOff": 0.481751,
+          "ndcgOn": 0.464191,
+          "ndcgDelta": -0.017559,
+          "mrrOff": 0.444665,
+          "mrrOn": 0.451257,
+          "mrrDelta": 0.006592,
+          "n": 18
+        },
+        "control": {
+          "recallOff": 0.8125,
+          "recallOn": 0.8125,
+          "recallDelta": 0,
+          "ndcgOff": 0.560479,
+          "ndcgOn": 0.560479,
+          "ndcgDelta": 0,
+          "mrrOff": 0.533929,
+          "mrrOn": 0.533929,
+          "mrrDelta": 0,
+          "n": 16
+        }
+      },
+      "controlSliceNeutral": true,
+      "controlSliceNoiseBand": 0.02,
+      "evaluatedQueries": {
+        "off": 60,
+        "on": 60
+      }
+    },
+    {
+      "flag": "content_rich_short_query_graph_preservation",
+      "env": "SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION",
+      "currentDefault": "off",
+      "recallOff": 0.741667,
+      "recallOn": 0.741667,
+      "recallDelta": 0,
+      "ndcgOff": 0.49392,
+      "ndcgOn": 0.49392,
+      "ndcgDelta": 0,
+      "mrrOff": 0.455731,
+      "mrrOn": 0.455731,
+      "mrrDelta": 0,
+      "bySlice": {
+        "content_rich_short": {
+          "recallOff": 0.730769,
+          "recallOn": 0.730769,
+          "recallDelta": 0,
+          "ndcgOff": 0.461385,
+          "ndcgOn": 0.461385,
+          "ndcgDelta": 0,
+          "mrrOff": 0.41527,
+          "mrrOn": 0.41527,
+          "mrrDelta": 0,
+          "n": 26
+        },
+        "single_hop": {
+          "recallOff": 0.694444,
+          "recallOn": 0.694444,
+          "recallDelta": 0,
+          "ndcgOff": 0.481751,
+          "ndcgOn": 0.481751,
+          "ndcgDelta": 0,
+          "mrrOff": 0.444665,
+          "mrrOn": 0.444665,
+          "mrrDelta": 0,
+          "n": 18
+        },
+        "control": {
+          "recallOff": 0.8125,
+          "recallOn": 0.8125,
+          "recallDelta": 0,
+          "ndcgOff": 0.560479,
+          "ndcgOn": 0.560479,
+          "ndcgDelta": 0,
+          "mrrOff": 0.533929,
+          "mrrOn": 0.533929,
+          "mrrDelta": 0,
+          "n": 16
+        }
+      },
+      "controlSliceNeutral": true,
+      "controlSliceNoiseBand": 0.02,
+      "evaluatedQueries": {
+        "off": 60,
+        "on": 60
+      }
+    }
+  ]
+}

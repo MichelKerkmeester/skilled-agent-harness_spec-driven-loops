@@ -12,28 +12,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/021-graph-preservation-quality-benchmark"
-    last_updated_at: "2026-07-09T20:40:00Z"
+    last_updated_at: "2026-07-10T14:30:00Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored spec/plan/tasks/checklist/implementation-summary scaffold, status PLANNED"
-    next_safe_action: "Resolve plan.md open questions, then start Phase 1"
+    recent_action: "Implemented full packet: REQ-003 amended, F15 wired, fixture authored, driver run"
+    next_safe_action: "None -- packet complete"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/retrieval-class-classifier.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-retrieval-flag-eval.mjs"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-graph-preservation-flag-eval.mjs"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/eval/graph-preservation-ground-truth-data.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/graph-preservation-ground-truth.json"
+      - "benchmark-results.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-028-021-graph-preservation-quality-benchmark"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the 50+ new labeled queries extend ground-truth.json in place (new category values) or live in a scoped sibling fixture file, decided in plan.md."
-      - "Whether the reindexed before/after snapshot reuses run-retrieval-flag-eval.mjs's prepareEvalDatabase() copy-and-restore pattern verbatim or needs a variant that also re-derives entity-density edges."
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Fixture location: scoped sibling file (graph-preservation-ground-truth.json). Reindex mechanism: scripted quiescence-verified clone-first preflight, not a manual command. See plan.md's answered_questions for the full rationale."
 ---
 # Feature Specification: Graph Preservation Quality Benchmark
 
@@ -87,7 +85,7 @@ F15 counter and `memory_health` `routing` block, both landed in sibling packet `
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P3 |
-| **Status** | PLANNED |
+| **Status** | COMPLETE |
 | **Created** | 2026-07-09 |
 | **Branch** | `021-graph-preservation-quality-benchmark` |
 | **Estimated LOC** | ~350-500 (new eval driver, fixture data, memory_health wiring, tests) |
@@ -250,7 +248,7 @@ for a follow-up packet, made after this one's findings exist.
 |----|-------------|---------------------|
 | REQ-001 | The fixture SHALL contain at least 50 labeled queries with graded-relevance (known-correct) expected results, distributed across the content-rich-short activation predicate, the SingleHop activation predicate, and a control slice that matches neither. | A test asserts the fixture query count is ≥50, every query has at least one relevance row, and each query's predicate membership (content-rich-short / SingleHop / control) is programmatically verifiable by running the query through `isContentRichShortQuery()` and the `SINGLE_HOP_PATTERNS` matcher, not just hand-labeled. |
 | REQ-002 | The benchmark SHALL measure `SPECKIT_RETRIEVAL_CLASS_ROUTING` and `SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION` each in isolation (one flag toggled, the other held at its shipped default) against the same reindexed before/after snapshot, reusing `run-retrieval-flag-eval.mjs`'s `prepareEvalDatabase()` and per-class metric machinery rather than new parallel infrastructure. | A test asserts each flag's before/after run only changes that flag's env var, the eval DB snapshot path is a fresh copy created via the reused `prepareEvalDatabase()` call, and the report attributes the measured delta to a single flag. |
-| REQ-003 | The benchmark run SHALL execute against a freshly reindexed snapshot (embeddings and causal_edges regenerated, not a stale copy), so the entity-density signal `shouldPreserveGraph()` reads (`query-router.ts:297-302`) reflects current graph state. | The findings record documents the reindex step taken immediately before the benchmark run (command, timestamp, and a confirmation the causal_edges count changed or was freshly regenerated versus the pre-reindex snapshot). |
+| REQ-003 | The benchmark run SHALL execute against a health-verified, quiescent snapshot — embeddings confirmed fully processed (no pending/failed vectors) and the `causal_edges` table confirmed consistent with that embedding state (not mid-scan) — copied read-only into the eval temp root, so the entity-density signal `shouldPreserveGraph()` reads (`query-router.ts:297-302`) reflects a coherent graph state. **AMENDED 2026-07-10**: no shipped tool performs a full `causal_edges` regeneration; `reindex-embeddings.ts` only forces an embedding rescan (`memory_index_scan({force:true})`), which creates edges solely for changed folders and can still classify unchanged rows as unchanged. Requiring "regenerated" causal edges is therefore unsatisfiable with existing tooling. This packet requires quiescence-verification instead of regeneration-from-scratch; a follow-up packet may add true clone-only causal-edge rebuild if a future benchmark needs it. | The findings record documents the pre-flight health check taken immediately before the benchmark run (command, timestamp, embedding pending/failed counts = 0, and confirmation no scan job was active), plus the source `memory_health` state the snapshot was copied from. |
 | REQ-004 | Findings SHALL be recorded in `benchmark-results.md` with per-flag, per-slice (content-rich-short / SingleHop / control) Recall@K, nDCG@10, and MRR deltas, not just an aggregate before/after result set-size comparison. | `benchmark-results.md` exists after the run and contains a delta table per flag broken out by slice, matching the granularity the existing `040-flag-graduation-benchmark/benchmark-results.md` sibling establishes as this parent's convention. |
 | REQ-005 | This packet SHALL NOT change either flag's default value in `search-flags.ts`, nor change `shouldPreserveGraph()`, `shouldPreserveGraphForContentRichShortQuery()`, or `isSingleHopRetrieval()`'s decision logic. | A diff of `search-flags.ts`, `query-router.ts`'s routing-decision functions, and `retrieval-class-classifier.ts` after this packet's implementation phase shows no behavioral change outside the new counter export; both flags' `isOptInEnabled(...)` calls are byte-identical to today. |
 
