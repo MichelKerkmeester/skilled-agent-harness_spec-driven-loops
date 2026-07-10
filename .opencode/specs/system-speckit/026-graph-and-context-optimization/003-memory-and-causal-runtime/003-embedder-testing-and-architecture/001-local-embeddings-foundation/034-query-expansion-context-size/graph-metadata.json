@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Packet 039 made the llama-cpp embedding worker resilient by truncating over-budget input through the model tokenizer",
     "created_at": "2026-05-14T15:40:13Z",
-    "last_save_at": "2026-07-09T10:02:52.438Z",
+    "last_save_at": "2026-07-10T06:23:06.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

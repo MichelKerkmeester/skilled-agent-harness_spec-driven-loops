@@ -15,7 +15,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/013-002-sandbox-testing-playbook"
     last_updated_at: "2026-05-09T16:05:00Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Level 3 spec for 23 scenarios plus sandbox harness"
@@ -61,7 +61,7 @@ This packet adds the validation layer for sibling `001-doctor-commands`: 23 manu
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete (~95%, superseded by router/cutover phases) |
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -70,6 +70,7 @@ This packet adds the validation layer for sibling `001-doctor-commands`: 23 manu
 | **Predecessor** | 001-doctor-commands |
 | **Successor** | None |
 | **Handoff Criteria** | 23 playbook scenarios authored + valid; root playbook updated; sandbox Dockerfile + harness + fetch script authored; bash -n + JSON/YAML syntax pass; strict spec-folder validate exits 0 (acknowledge known cross-packet template-manifest issue). |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

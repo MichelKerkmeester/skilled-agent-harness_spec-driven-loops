@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Packet 007 found that Qwen3-Reranker-0.6B on Apple Silicon MPS OOMs in attention forwards when spec-memory's local provider sends its default 50-document batch to `/rerank`",
     "created_at": "2026-05-23T11:55:15.621Z",
-    "last_save_at": "2026-07-09T10:02:53.392Z",
+    "last_save_at": "2026-07-10T06:22:46.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,9 +199,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6ec6c4046210a3a66dd0edcf282d77aeee6ba1e219d0467bc7626f8bdc8b26e",
+    "source_fingerprint": "sha256:2c45fe7729a884d1236c6ee902eaacb58e691b771ba55108a07686989afe75ba",
     "source_doc_hashes": {
-      "spec.md": "12b7f04d0558087a84c0b7a0aae8e52c587b5bcfe50098cb7d5d849b03fb87fc",
+      "spec.md": "8ca523024e247c280ba98459932ab8d3e361e7e7f29d68b6d7438277fa86039e",
       "plan.md": "a13abb0e81db95833c68c56ffdae3526097857d0dadb9d5d54f23795ddea3216",
       "tasks.md": "564349db49297a6c41216ba4b7837afbef4d2dc14db7edad31404005b580d235",
       "implementation-summary.md": "9b8582c9ef34acca286abb8b51f15bb880885d245ae2c017c4be06cff9fcf0b9"

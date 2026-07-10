@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "027/002/018-reindex-scan-responsiveness-and-cancellation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation"
     last_updated_at: "2026-06-17T14:05:00Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Broke down tasks for the reindex-scan responsiveness fix"

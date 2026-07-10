@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/008-sk-prompt-models-rename"
+    packet_pointer: "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/008-sk-prompt-small-model-rename"
     last_updated_at: "2026-05-23T13:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored implementation-summary.md (re-application post stash-revert)"

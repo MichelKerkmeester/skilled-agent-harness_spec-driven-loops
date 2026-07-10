@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-vitest-broad-suite-honesty"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/007-vitest-broad-suite-honesty"
     last_updated_at: "2026-04-29T11:18:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Completed checklist evidence after broad Vitest investigation"

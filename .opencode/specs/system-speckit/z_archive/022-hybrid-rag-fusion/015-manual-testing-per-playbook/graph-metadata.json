@@ -244,7 +244,7 @@
     ],
     "causal_summary": "Feature Specification: manual-testing-per-playbook",
     "created_at": "2026-04-12T09:02:50.288Z",
-    "last_save_at": "2026-07-09T10:02:58.380Z",
+    "last_save_at": "2026-07-10T06:24:27.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -255,9 +255,9 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:aa26e81bc4b0429a1d7be4f57d11609ca8ed6a6062aafd4920cf592dbbaf3bb6",
+    "source_fingerprint": "sha256:aac38e839dd60434f63fc4e9a152c7b3fa2a37a0b0ac15f51d5230c88a2ddcbd",
     "source_doc_hashes": {
-      "spec.md": "aea60d96977ef6b2127092b33782b136b5c66056d841d13d40ae5505415eafd9",
+      "spec.md": "a160db6b1c376d9573977a93e83b1819c4239d7b9f462b723beabc893efba561",
       "plan.md": "7757a044f86cd4f376671bf30de54e5e7a6fd952b2f9a4a14d0cbb96d21a1aad",
       "tasks.md": "06d3122458f706d8477154e2ccb6c83fea4a2c21085358ab45d7dc3b4e84f470",
       "checklist.md": "1b1a957068b0af5911273902dca190ebba023b9576ab87e2d11f005dd8155e8a",

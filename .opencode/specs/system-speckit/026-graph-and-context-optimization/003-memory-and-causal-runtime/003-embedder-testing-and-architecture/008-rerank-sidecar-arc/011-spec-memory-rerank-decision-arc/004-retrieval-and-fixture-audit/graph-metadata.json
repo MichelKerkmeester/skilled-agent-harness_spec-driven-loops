@@ -39,7 +39,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
-      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
       "mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
       "lib/search/pipeline/stage3-rerank.ts",
       "evidence/probe-classification-2026-05-21.json",
@@ -57,12 +56,6 @@
         "name": "rerank-ab-fixture.json",
         "kind": "config",
         "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/rerank-ab-fixture.json",
-        "source": "derived"
-      },
-      {
-        "name": "context-index.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced identical retrieval metrics to three sig figs:",
     "created_at": "2026-05-23T11:55:15.634Z",
-    "last_save_at": "2026-07-09T10:02:53.442Z",
+    "last_save_at": "2026-07-10T06:24:07.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

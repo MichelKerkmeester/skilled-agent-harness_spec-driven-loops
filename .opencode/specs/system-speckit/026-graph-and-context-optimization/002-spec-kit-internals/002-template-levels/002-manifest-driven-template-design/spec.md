@@ -13,7 +13,7 @@ importance_tier: "high"
 contextType: "architecture"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-template-levels/002-manifest-driven-template-design"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design"
     last_updated_at: "2026-05-01T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded packet; spec.md authored from claude+copilot merged scope"

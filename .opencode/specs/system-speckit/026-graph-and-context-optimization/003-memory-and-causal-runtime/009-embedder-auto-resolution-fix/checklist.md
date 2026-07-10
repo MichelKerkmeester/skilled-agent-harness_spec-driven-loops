@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix"
     last_updated_at: "2026-05-27T13:45:00Z"
     last_updated_by: "main_agent"
     recent_action: "009-all-checks-green-plus-live-auto-resolution-confirmed"

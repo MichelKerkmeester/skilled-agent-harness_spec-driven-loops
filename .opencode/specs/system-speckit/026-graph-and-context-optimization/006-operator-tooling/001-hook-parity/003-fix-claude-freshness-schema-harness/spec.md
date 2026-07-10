@@ -15,7 +15,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/004-fix-claude-freshness-schema-harness"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/003-fix-claude-freshness-schema-harness"
     last_updated_at: "2026-04-23T13:55:57Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Implemented T004-T013; AS-003/AS-004 blocked"

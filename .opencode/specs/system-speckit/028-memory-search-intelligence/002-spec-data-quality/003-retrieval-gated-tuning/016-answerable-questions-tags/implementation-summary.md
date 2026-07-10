@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/002-spec-data-quality/003-retrieval-gated-tuning/016-answerable-questions-tags"
     last_updated_at: "2026-07-06T18:49:41.978Z"
     last_updated_by: "markdown-agent"
     recent_action: "Scaffolded planned phase docs"

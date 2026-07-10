@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability"
     last_updated_at: "2026-06-10T13:03:37Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Documented completed observability phase"

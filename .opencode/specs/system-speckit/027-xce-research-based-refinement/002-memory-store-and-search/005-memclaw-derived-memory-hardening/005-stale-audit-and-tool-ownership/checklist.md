@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership"
     last_updated_at: "2026-06-10T14:35:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Verified read-only audit and ownership lint"

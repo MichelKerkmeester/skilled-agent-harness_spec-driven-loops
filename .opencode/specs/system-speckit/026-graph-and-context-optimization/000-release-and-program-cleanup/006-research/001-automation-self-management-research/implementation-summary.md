@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/001-automation-self-management-research"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/001-automation-self-management-research"
     last_updated_at: "2026-04-29T13:16:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Completed automation reality research"

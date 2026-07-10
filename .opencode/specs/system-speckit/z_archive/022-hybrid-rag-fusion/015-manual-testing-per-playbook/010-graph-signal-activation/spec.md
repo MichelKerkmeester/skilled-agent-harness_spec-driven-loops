@@ -11,7 +11,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation"
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -32,12 +32,15 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-03-22 |
 | **Branch** | `main` |
 | **Parent Spec** | [../spec.md](../spec.md) |
 | **Predecessor** | [009-evaluation-and-measurement](../009-evaluation-and-measurement/spec.md) |
 | **Successor** | [011-scoring-and-calibration](../011-scoring-and-calibration/spec.md) |
+
+> **Historical record:** This archived specification retains its original Not Started status; the corresponding implementation summary records the completed manual-test execution.
+
 <!-- /ANCHOR:metadata -->
 
 ---

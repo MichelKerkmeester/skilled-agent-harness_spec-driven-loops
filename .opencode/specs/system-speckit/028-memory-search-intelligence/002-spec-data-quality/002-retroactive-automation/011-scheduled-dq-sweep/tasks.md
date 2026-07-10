@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/002-spec-data-quality/002-retroactive-automation/011-scheduled-dq-sweep"
     last_updated_at: "2026-06-27T17:15:35.490Z"
     last_updated_by: "benchmark-spec-author"
     recent_action: "Mirrored benchmark and test into Phase 3 tasks"

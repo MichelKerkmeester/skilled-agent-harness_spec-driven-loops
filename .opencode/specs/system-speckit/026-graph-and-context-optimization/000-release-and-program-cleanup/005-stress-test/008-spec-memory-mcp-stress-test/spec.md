@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-spec-memory-mcp-stress-test"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/008-spec-memory-mcp-stress-test"
     last_updated_at: "2026-05-16T13:55:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded 008 phase with handover"
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | Target Level | 1 |
 | Priority | P1 |
-| Status | Not Started |
+| Status | Complete - 345/345 coverage; 51/51 failures closed |
 | Created | 2026-05-16 |
 | Branch | `main` |
 | Predecessor | `113-z-archive-memory-indexing` |

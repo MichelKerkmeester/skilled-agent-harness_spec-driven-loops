@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027/002/019-maintenance-grace-daemon-survives-reelection"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection"
     last_updated_at: "2026-06-17T16:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Added maintenance-active marker writer plus launcher adopt guards at both sites"

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The mkcodeindex daemon has no CLI front door: 8 tools are MCP-only, so transport-down sessions, hooks, cron, and scripts cannot reach structural code search at all",
     "created_at": "2026-06-06T14:45:13Z",
-    "last_save_at": "2026-07-09T10:02:55.516Z",
+    "last_save_at": "2026-07-10T06:22:06.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Following the system-memory to system-spec-kit merger (specs 035-040), a comprehensive 10-agent analysis revealed 75+ issues across documentation, code, UX, and integration",
     "created_at": "2026-04-12T09:02:53.526Z",
-    "last_save_at": "2026-07-09T10:02:57.081Z",
+    "last_save_at": "2026-07-10T06:24:33.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

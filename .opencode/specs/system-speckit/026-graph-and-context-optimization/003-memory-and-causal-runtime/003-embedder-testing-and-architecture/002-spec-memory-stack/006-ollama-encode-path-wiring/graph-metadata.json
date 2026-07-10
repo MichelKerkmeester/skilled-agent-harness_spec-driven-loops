@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Wire the shared embeddings factory to Ollama-backed active embedders so query-time encoding matches the re-indexed vec_<dim> table.",
     "created_at": "2026-05-18T19:18:20.873Z",
-    "last_save_at": "2026-07-09T10:02:52.645Z",
+    "last_save_at": "2026-07-10T06:21:11.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

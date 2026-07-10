@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After 003's config rollout, every MCP child sees Setup A env vars, but the on-disk vec stores still reflect the previous embedding model identities",
     "created_at": "2026-05-12T16:27:49Z",
-    "last_save_at": "2026-07-09T10:02:52.205Z",
+    "last_save_at": "2026-07-10T06:22:27.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T20:00:00Z",
     "source_docs": [
@@ -207,9 +207,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f84a64133ec94179088328ccea13b222677a6f8ef047f562d496b6406b262daf",
+    "source_fingerprint": "sha256:4c2b85b96e4d6f4b907f7f9d1b8d7385486be6f3a004285c88cbb99cc58018e1",
     "source_doc_hashes": {
-      "spec.md": "77c1dfca4ad4159bed3974986416031710648557d1e18fe4c3563c8f997ec267",
+      "spec.md": "d26ec8dacf8a1cd811ac2e551e4c51d93e9c23213c28e4a880bebc1dddb3cf32",
       "plan.md": "6176e6f32333aa42e10478507531f0e604c6211a6709de0f888ace3cab74a264",
       "tasks.md": "87ae1649c75c72222974e311e42b7d91c5d218bb6e6f4412d1956173d8854150",
       "implementation-summary.md": "248bd72c33c24dde8aa1501f91eb76e271954ca48e3ca2df8575b0c6d4333a31"

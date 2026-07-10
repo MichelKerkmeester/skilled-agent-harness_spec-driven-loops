@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/019-sk-prompt-models-readme"
+    packet_pointer: "skilled-agent-orchestration/z_archive/109-skill-readme-standardization/019-sk-prompt-small-model-readme"
     last_updated_at: "2026-06-07T14:42:36Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped sk-prompt-models README; Batch D 5 of 6"

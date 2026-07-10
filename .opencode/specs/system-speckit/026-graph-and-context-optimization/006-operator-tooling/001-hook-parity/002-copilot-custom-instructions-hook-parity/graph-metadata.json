@@ -48,7 +48,6 @@
       ".github/hooks/superset-notify.json",
       "tests/copilot-user-prompt-submit-hook.vitest.ts",
       "tests/copilot-hook-wiring.vitest.ts",
-      ".claude/settings.local.json",
       "hooks/claude/user-prompt-submit.ts",
       "implementation-summary.md",
       "decision-record.md",
@@ -87,12 +86,6 @@
         "name": "copilot-hook-wiring.vitest.ts",
         "kind": "test",
         "path": "tests/copilot-hook-wiring.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -202,11 +195,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two distinct runtime behaviors diverge across CLIs:",
     "created_at": "2026-04-22T06:13:42.052Z",
-    "last_save_at": "2026-07-09T10:02:54.190Z",
+    "last_save_at": "2026-07-10T06:22:39.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

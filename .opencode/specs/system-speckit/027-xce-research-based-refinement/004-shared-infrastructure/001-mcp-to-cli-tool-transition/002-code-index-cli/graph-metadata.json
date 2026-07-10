@@ -94,7 +94,7 @@
     ],
     "causal_summary": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session transport disconnect removes the tools until restart (Code Graph showed \"unavailable\" at this session's own startup), every session pays schema token overhead, and hooks/cron/CI have no sanctioned shell path",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-07-09T10:02:55.502Z",
+    "last_save_at": "2026-07-10T06:24:40.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

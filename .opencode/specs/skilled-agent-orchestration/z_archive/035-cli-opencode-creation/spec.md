@@ -56,7 +56,7 @@ Add `cli-opencode` as a fifth sibling under `.opencode/skills/cli-*/` so externa
 | **Track** | skilled-agent-orchestration |
 | **Level** | 3 |
 | **Created** | 2026-04-26 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Sibling skills (existing)** | cli-claude-code, cli-codex, cli-copilot, cli-gemini |
 | **Upstream reference** | 046-cli-codex-tone-of-voice (most recent cli-* sibling spec) |
 | **Target binary** | `/Users/michelkerkmeester/.superset/bin/opencode` (v1.3.17 confirmed) |

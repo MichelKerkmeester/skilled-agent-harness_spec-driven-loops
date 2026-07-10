@@ -38,7 +38,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code/code-review/SKILL.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -47,15 +46,27 @@
     ],
     "entities": [
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-review/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,9 +202,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "After the live-scoring fix (sibling packet 001), `code-review` still scored lowest of all children — CONDITIONAL 69 vs 80-100",
-    "created_at": "2026-07-09T05:03:22.142Z",
-    "last_save_at": "2026-07-09T05:10:55.429Z",
+    "causal_summary": "Two unknowns block downstream phases: (1) `git-filter-repo` is not currently installed on this Mac (verified at planning time — Phase 005 needs it for the message-callback rewrite), and (2) no point-in-time backup of HEAD history exists, so a botched rewrite would have no easy recovery path",
+    "created_at": "2026-05-16T09:42:33Z",
+    "last_save_at": "2026-07-10T06:22:48.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +214,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e6b41b95c288f727c00c1f633b50cc0930a7973e8b19b7c3afecae6e18158e8",
+    "source_fingerprint": "sha256:c47b876ae64a2eb576d945011a0269861eb55def589b3b497de3f67764cdfbe8",
     "source_doc_hashes": {
-      "spec.md": "d64e44e75ef9928746a27bdb097818d4dbd94fdb7ee6e0edf9b7b2c9297a65fb",
-      "plan.md": "ccf23ea0346c682073b2e1485c727732d12c9598a46fe444fe9b42d1f55e9a1f",
-      "tasks.md": "41aca10a948014a9877a7e4c52479379065ccfe62bdfc50ce70da7f42e8c4fc9",
-      "checklist.md": "e81d213b3de26caa349c55f8280632dc164e38dc22d45328fb2509e562a954e8",
-      "implementation-summary.md": "09063b3b1d26720303e8678e87df25830ff3f05c2d6eca975aef033340409999"
+      "spec.md": "a65965c0b04d1665a7bb4d1cd325969440dada7c4165ffb27cff3b2eee9d2c51",
+      "plan.md": "dc392c38af1c26c3d4d2936c40bf233afe829c3d14ab4cf4ebaf1fee83ae5214",
+      "tasks.md": "24932451073b5cf1ce1a76526989791e5563919bd1ccef93f0f6e13a34b83c7d",
+      "implementation-summary.md": "fa4bec84afe3be0512be62441e362d68212ba347af2e898f25f528676a1cab07"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -208,7 +208,7 @@
     ],
     "causal_summary": "After completing the ESM migration (Phases 1-4), the test suite shows 11 failing test files (58 failed tests out of 8994)",
     "created_at": "2026-04-12T09:02:50.319Z",
-    "last_save_at": "2026-07-09T10:02:58.722Z",
+    "last_save_at": "2026-07-10T06:22:54.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

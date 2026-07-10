@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-install-scripts-doctor-realignment/004-deferred-followups-and-cleanup"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/004-deferred-followups-and-cleanup"
     last_updated_at: "2026-05-26T11:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Completed all 5 work streams via cli-codex and verified independently"

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/001-inventory-extract"
     last_updated_at: "2026-06-10T19:14:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Inventoried memory commands and extracted presentation sections"

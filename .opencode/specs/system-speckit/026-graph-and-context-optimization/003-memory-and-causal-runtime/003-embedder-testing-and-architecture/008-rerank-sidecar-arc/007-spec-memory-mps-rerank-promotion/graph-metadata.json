@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Spec-memory's `SPECKITCROSSENCODER=true` path stays default-off because Qwen3-Reranker-0.6B on Apple Silicon CPU is too slow under the MCP rerank-gate timeout:",
     "created_at": "2026-05-23T11:55:15.619Z",
-    "last_save_at": "2026-07-09T10:02:53.385Z",
+    "last_save_at": "2026-07-10T06:23:15.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,9 +202,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b134738d97a99abd3a6aed82b85b2d672815161284cb6e583347955926c947b2",
+    "source_fingerprint": "sha256:d326103f9894189d837c215a44da1aee87e826790dc04392d5554833ceec50bc",
     "source_doc_hashes": {
-      "spec.md": "7afb66810fe64e0a42578f1e2b7577d9063a5d17e30463a1bc347a267f937e85",
+      "spec.md": "fe0d7ecfa82005b8eef9ba9cef8bb21624bf9cc920b6bd0fa0e5fee8ca0ef9ae",
       "plan.md": "9444cab807f1c607528ef74a2e278e37a77ed3adce5d1974a72ad461b5ce2274",
       "tasks.md": "b3e8ab3f7cee4233e2d837a9b252939a20d5eddd1b750e8f1a19a06ccaf56724",
       "implementation-summary.md": "6834560e37499a3956e62e410418a5f85f75fcda6ebb3de2d5050839979a6cab"

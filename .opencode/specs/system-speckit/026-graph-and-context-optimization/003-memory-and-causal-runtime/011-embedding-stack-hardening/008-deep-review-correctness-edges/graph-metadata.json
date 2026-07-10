@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 20-iteration deep review flagged seven correctness findings as \"isolated.\" The handover mandates re-validating each against HEAD before fixing",
     "created_at": "2026-05-29T21:04:05.407Z",
-    "last_save_at": "2026-07-09T10:02:53.918Z",
+    "last_save_at": "2026-07-10T06:23:07.657Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

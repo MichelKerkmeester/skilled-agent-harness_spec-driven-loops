@@ -9,7 +9,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/001-dependency-security-supply-chain-audit"
     last_updated_at: "2026-05-15T19:30:00Z"
     last_updated_by: "claude-opus-4-7-015-synthesis"
     recent_action: "campaign_complete_25_iterations_synthesized_to_review_report"

@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-deferred-followups-and-cleanup"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/004-deferred-followups-and-cleanup"
     last_updated_at: "2026-05-26T08:28:23Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

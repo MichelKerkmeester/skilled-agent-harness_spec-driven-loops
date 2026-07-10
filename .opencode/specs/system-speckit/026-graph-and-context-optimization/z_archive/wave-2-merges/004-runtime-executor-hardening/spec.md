@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening"
     last_updated_at: "2026-04-21T13:00:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Renumbered nested phases"

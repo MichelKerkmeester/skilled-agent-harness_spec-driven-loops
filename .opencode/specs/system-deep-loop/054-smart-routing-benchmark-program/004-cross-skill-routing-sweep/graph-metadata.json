@@ -38,8 +38,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/specs/system-deep-loop/054-smart-routing-benchmark-program/003-routing-optimization-mode/assets/cross-skill-routing-audit.md",
-      "assets/phase0-triage.md",
+      ".opencode/skills/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-opencode/SKILL.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "decision-record.md",
+      "scratch/provider-auth-preflight-template.md",
+      "implementation-summary.md",
       "checklist.md",
       "assets/code-opencode-language-split-design.md",
       "assets/deep-research-router-precision-finding.md",
@@ -122,12 +126,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -140,14 +138,14 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Provider Auth Pre",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
@@ -192,11 +190,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Do",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The 003 audit flagged routing defects beyond code-review: orphan references (deep-improvement 18, deep-research/deep-review 4 each, deep-ai-council 1) and D3 over-routing below 100 across ~6 skills",
-    "created_at": "2026-07-09T05:40:53.305Z",
-    "last_save_at": "2026-07-09T09:47:45.767Z",
+    "causal_summary": "The 5 cli- skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an external CLI from another AI runtime — and were authored from the same 8-section template",
+    "created_at": "2026-04-29T12:04:01Z",
+    "last_save_at": "2026-07-10T06:23:07.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +222,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a3034d7174ce9027a5f75f62afe60466e5e392355336ae9837ddb64d9224ce4",
+    "source_fingerprint": "sha256:3c0e1c7f254c0b4452635ca22a55d4bcdaf449052e48c3fef5193fe4f6a3c4f1",
     "source_doc_hashes": {
-      "spec.md": "5ad882c8a65c280be4eae0a20382bd1d29f9f6bc75e15dd63ee64bfcd637d67e",
-      "plan.md": "10819b47de0c3d932f5af7a0f814cdc92fed2c96eb6f2c04cf9e211a6b7c9370",
-      "tasks.md": "71dfbbdc62f9783467b21f23de956a898fcb0523150c7e821d0419d37a050873",
-      "checklist.md": "b09c5e1dddc6b397427130178d61d2d0c9edc71b5ac52d1d153c97e991c7e455",
-      "implementation-summary.md": "db1d278c944e08d3ec1f0d55073f7d861355c42df52d4bedc35ee1534c161eb2"
+      "spec.md": "689a656c92f15aa85b88b957ab9bc5c07d85f47da17868598df8746f129725cb",
+      "plan.md": "d748c10e97f266f0195df3df2fe59b36a090000da63adf16fd39d2c92e773ac0",
+      "tasks.md": "6a5d163f79679c4dab47a0ffa989f4dbbfe80ccbe1ca42cd4d69e80add6ead2e",
+      "checklist.md": "fcbb6f0617c0626bd2f39f9a7b97f16e2f3f46fd3b20dadd2c8121b8f9f1e7cd",
+      "decision-record.md": "0b2a7573b5c8123be7121cc84e94b73049fb313a28f09c35e27c9442605d51fe",
+      "implementation-summary.md": "0583e5584b0aeb27bcec19f4727a594752f3b5b04e83bd90400d791868a54459"
     },
     "last_active_child_id": null,
     "last_active_at": null

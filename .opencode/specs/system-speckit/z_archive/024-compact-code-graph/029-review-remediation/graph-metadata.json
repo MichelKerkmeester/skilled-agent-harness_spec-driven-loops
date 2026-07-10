@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The completed deep review for `024-compact-code-graph` found seven active issues that leave the packet internally inconsistent across runtime contracts, hook safety, evidence traceability, and cross-runtime guidance",
     "created_at": "2026-04-12T09:02:53.434Z",
-    "last_save_at": "2026-07-09T10:02:58.983Z",
+    "last_save_at": "2026-07-10T06:23:54.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

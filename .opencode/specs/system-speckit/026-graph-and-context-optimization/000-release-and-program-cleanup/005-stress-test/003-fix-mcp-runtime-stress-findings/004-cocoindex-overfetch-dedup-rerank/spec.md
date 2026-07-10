@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/004-cocoindex-overfetch-dedup-rerank"
     last_updated_at: "2026-04-27T09:38:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded packet from 007 §5 Q2/Q3 + §11 Rec #2"

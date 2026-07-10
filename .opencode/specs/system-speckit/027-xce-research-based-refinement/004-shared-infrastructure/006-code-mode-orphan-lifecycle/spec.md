@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "completed"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle"
     last_updated_at: "2026-06-11T16:30:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Shipped lifecycle fix + reaped 16 accumulated orphans"

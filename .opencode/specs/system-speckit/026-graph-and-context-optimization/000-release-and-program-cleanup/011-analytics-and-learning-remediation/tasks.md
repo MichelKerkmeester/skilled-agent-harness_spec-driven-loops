@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation"
     last_updated_at: "2026-06-03T11:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All confirm + implement tasks complete; 3 fixes verified by tests"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation"
     last_updated_at: "2026-06-13T13:30:00Z"
     last_updated_by: "orchestrate-tail-grind"
     recent_action: "Original-backlog tail closed: 10 commits, verify-first"

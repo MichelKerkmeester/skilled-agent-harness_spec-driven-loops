@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Spec 026 shipped hundreds of phases across 8 tracks over months of work, but the packet-local changelog history is roughly 16 percent complete (103 of about 553 shipped phases)",
     "created_at": "2026-05-31T19:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:51.560Z",
+    "last_save_at": "2026-07-10T06:23:10.885Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

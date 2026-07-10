@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The v1.0.2 stress-test rerun closed with four follow-ups tagged in `../010-stress-test-close-loop-measurement-rerun/findings.md` Recommendations §1-5 — three concrete P0/P1/P2 bugs and one telemetry-leverage opportunity",
     "created_at": "2026-04-27T18:45:00Z",
-    "last_save_at": "2026-07-09T10:02:51.264Z",
+    "last_save_at": "2026-07-10T06:22:19.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,9 +216,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2bc0542c9ff192b3a3ad3c0b8895b88a6474b001c742679a61756fcd5bbcc3a7",
+    "source_fingerprint": "sha256:5001bea5bed436a524c93f5e6078f2c5fdad793857c90cf0268a2410ebfa8115",
     "source_doc_hashes": {
-      "spec.md": "6b4bed95a1470c33475679402ca5504b0ef35629f8b4d47af6a820c75dba881c",
+      "spec.md": "bf5ec5b656f6ef149ac4ae17147a97fa16e3dfd646995cdda091b61b054f7bf9",
       "plan.md": "178a8916233e9b43965ba14f198ac26f2e5aedce3ea2eef44fb669b3546c3787",
       "tasks.md": "2a3f1f64a20c06d228d22b47e8cd767472a007a59a4328df30b18e99e68ba75e",
       "checklist.md": "faa4ec8bea4b7421d3047d168bd2427847b20fbeae37503b9e27ceeb002e1fa0",

@@ -224,7 +224,7 @@
     ],
     "causal_summary": "The MCP runtime serves four high-traffic surfaces — `memorycontext`, `memorysearch`, `codegraphquery`, `memorycausalstats` — that AI assistants depend on for retrieval and grounding",
     "created_at": "2026-04-27T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:51.152Z",
+    "last_save_at": "2026-07-10T06:21:42.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

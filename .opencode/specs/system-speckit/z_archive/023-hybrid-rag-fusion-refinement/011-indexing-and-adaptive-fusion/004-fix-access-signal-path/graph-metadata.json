@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Adaptive ranking needed access events from the main search pipeline, not only from storage-side batching paths",
     "created_at": "2026-04-12T09:02:50.333Z",
-    "last_save_at": "2026-07-09T10:02:58.807Z",
+    "last_save_at": "2026-07-10T06:24:24.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

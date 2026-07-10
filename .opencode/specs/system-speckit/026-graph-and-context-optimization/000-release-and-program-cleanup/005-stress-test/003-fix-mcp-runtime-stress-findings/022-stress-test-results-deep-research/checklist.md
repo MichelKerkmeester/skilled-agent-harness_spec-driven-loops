@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "checklist"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/022-stress-test-results-deep-research"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/022-stress-test-results-deep-research"
     last_updated_at: "2026-04-29T07:57:15Z"
     last_updated_by: "codex"
     recent_action: "Completed verification checklist"

@@ -53,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 (upgrade to 3 on activation — decision-record.md pre-staged) |
 | **Priority** | P0 |
-| **Status** | Draft (current user focus) |
+| **Status** | Complete |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -61,6 +61,7 @@ _memory:
 | **Predecessor** | 001-prerequisites-and-baseline |
 | **Successor** | 003-sk-git-skill-update |
 | **Handoff Criteria** | `commit-standards.md`, `derivation-heuristics.md`, `hand-sample-validation.md` exist; 20/20 random commits show deterministic rewrite; `decision-record.md` ADRs cover the 7 lock-in decisions; `validate.sh --strict` exits 0 |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

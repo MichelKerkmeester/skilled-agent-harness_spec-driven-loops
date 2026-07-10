@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "027/002/017/007-output-surface-parity"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity"
     last_updated_at: "2026-06-17T08:40:00Z"
     last_updated_by: "contract-engineer"
     recent_action: "Mandated similarity-only render + surface-parity clause; plan superseded by impl-summary"

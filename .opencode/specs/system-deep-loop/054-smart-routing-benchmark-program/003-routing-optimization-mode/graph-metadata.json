@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/054-smart-routing-benchmark-program/003-routing-optimization-mode",
-  "spec_folder": "system-deep-loop/054-smart-routing-benchmark-program/003-routing-optimization-mode",
-  "parent_id": "system-deep-loop/054-smart-routing-benchmark-program",
+  "packet_id": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/008-sk-prompt-small-model-rename",
+  "spec_folder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/008-sk-prompt-small-model-rename",
+  "parent_id": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,36 +11,40 @@
   },
   "derived": {
     "trigger_phrases": [
-      "skill routing optimization mode",
-      "routing optimization command",
-      "orphan reference sweep",
-      "deep-improvement lane c optimize",
-      "routing optimization mode plan",
-      "routing optimization mode tasks",
-      "routing optimization mode checklist",
-      "routing optimization mode summary",
-      "skill benchmark optimize command"
+      "rename sk-ai-small-model",
+      "sk-prompt-small-model",
+      "small-model sentinel rename 008",
+      "skill rename phase 008",
+      "rewrite-all historical doc policy",
+      "rename sk-ai-small-model plan",
+      "sk-prompt-small-model plan",
+      "phase 8 rename plan",
+      "phase 8 tasks",
+      "sk-prompt-models tasks",
+      "rename verification 008",
+      "sk-prompt-models checklist"
     ],
     "key_topics": [
+      "rename",
+      "sk-ai-small-model",
+      "sk-prompt-small-model",
+      "small-model",
+      "sentinel",
       "skill",
-      "routing",
-      "optimization",
-      "mode",
-      "command",
-      "orphan",
-      "reference",
-      "sweep",
-      "deep-improvement",
-      "lane",
-      "optimize",
+      "phase",
+      "rewrite-all",
+      "historical",
+      "doc",
+      "policy",
       "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
-      ".opencode/commands/deep/skill-benchmark.md",
-      "assets/cross-skill-routing-audit.md",
+      ".opencode/skills/README.md",
+      ".opencode/skills/sk-prompt-models/changelog/v0.4.0.0.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      "checklist.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -193,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Lane C skill-benchmark (`/deep:skill-benchmark`) diagnoses routing quality but is diagnostic-only — it emits a ranked report and never proposes or applies fixes",
-    "created_at": "2026-07-09T05:03:27.232Z",
-    "last_save_at": "2026-07-09T05:11:00.480Z",
+    "causal_summary": "`sk-ai-small-model` over-claims its scope",
+    "created_at": "2026-05-23T13:10:01Z",
+    "last_save_at": "2026-07-10T06:23:30.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +209,14 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e847dd94e9e5c41c78b6e98377a6ccff1d7ef2fcafa21950e7e74742ff35f04e",
+    "source_fingerprint": "sha256:281796d0c00f0370c714f6bdb11d0dab3a3be5e71612789fbb580c559a2e04d3",
     "source_doc_hashes": {
-      "spec.md": "5e400e852620d9e1def9051dd9d2b3c8e1353b6cde1bfaaf9287d3aa5061d8f0",
-      "plan.md": "30b78d031af4f00185fc83b5b44053abda20ad627879732ceb5241d78c465504",
-      "tasks.md": "b4cd9ff7e2ad509c5ab1a139828417b457eb1ed975b65fcaaef6100d65cebd5c",
-      "checklist.md": "503b2d043dfb0b619b7cc73dbdaa0d37ea35907030eec80c7c563dd7716dbb1c",
-      "implementation-summary.md": "ad36d3c1d79f7281fc7d50675f96fd01c99e5801bdba4b8cfb906d39ee5811eb"
+      "spec.md": "26400289402a2645e16680bb48bf0e542a258cdfc285a966a16a75e5468e6354",
+      "plan.md": "7888966893aec5bab19e2db50e8f2cbee3a7f43a9e22fbd7db21639868197186",
+      "tasks.md": "6dbb60d7da55e6ee398ae1e6c48065b2b4b2fc3e8d83d456f6b1abe540f71206",
+      "checklist.md": "183cdb27240ec314f01d5b1880e81562a14d58fef11d569c6cefb001ef49ce8c",
+      "decision-record.md": "a33f9720b956d686323fa45f57a7ad56a06bc31b926dd631a9a2b478bf472bac",
+      "implementation-summary.md": "3fe0468577fb841fe5a0f04e4b6179d877b8239a7307dee6174d4f72ea1f0a63"
     },
     "last_active_child_id": null,
     "last_active_at": null

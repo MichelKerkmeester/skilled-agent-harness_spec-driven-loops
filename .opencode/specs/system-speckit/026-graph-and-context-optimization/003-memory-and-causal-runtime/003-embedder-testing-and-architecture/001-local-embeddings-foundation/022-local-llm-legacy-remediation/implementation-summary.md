@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation"
     last_updated_at: "2026-05-14T11:00:00Z"
     last_updated_by: "main-agent"
     recent_action: "Backfilled implementation-summary with actual session work; marked packet complete; followups tracked in 032-substrate-repair-followups"

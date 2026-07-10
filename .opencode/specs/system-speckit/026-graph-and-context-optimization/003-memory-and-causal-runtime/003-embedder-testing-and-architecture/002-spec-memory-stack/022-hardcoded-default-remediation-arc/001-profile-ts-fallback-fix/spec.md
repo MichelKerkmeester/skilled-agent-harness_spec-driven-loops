@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/001-profile-ts-fallback-fix"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/001-profile-ts-fallback-fix"
     last_updated_at: "2026-05-23T15:35:00Z"
     last_updated_by: "main_agent"
     recent_action: "Phase scaffolded; awaiting cli-devin SWE-1.6 dispatch"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | In Progress (scaffolded; dispatch pending) |
+| Status | Complete |
 | Type | Mechanical TS refactor + new invariant test |
 | Owner | cli-devin SWE-1.6 executor (RCAF + medium pre-planning) |
 | Parent | `../spec.md` (022-hardcoded-default-remediation-arc) |

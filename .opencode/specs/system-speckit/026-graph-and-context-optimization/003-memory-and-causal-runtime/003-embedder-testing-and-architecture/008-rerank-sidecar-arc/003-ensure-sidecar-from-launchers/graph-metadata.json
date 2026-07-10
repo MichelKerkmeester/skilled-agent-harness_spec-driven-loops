@@ -196,7 +196,7 @@
     ],
     "causal_summary": "After phase 002 ships a runnable sidecar, neither MCP launcher knows to start it or attach to it",
     "created_at": "2026-05-23T11:55:15.607Z",
-    "last_save_at": "2026-07-09T10:02:53.353Z",
+    "last_save_at": "2026-07-10T06:24:12.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04641b39380f97d44bb05c1b9189dcd3811f5d617e9c818dec14d547a54c13f1",
+    "source_fingerprint": "sha256:59fe95350b0948dbc7afb8626bfe0e84d785e6266c9539fe9e0c870fad2eb864",
     "source_doc_hashes": {
-      "spec.md": "237f859c001c1b52ae1a34a8edcc2da4e8053af80bd740a474010b2bff2af860",
+      "spec.md": "04234265ba0d8fb12ff8ab00848fb892300e8200b50f337ac9cda91a25942bf3",
       "plan.md": "80fa580d20850feece7a18fda772f57dc2792b3cfcc72d4654ee55683d33b62b",
       "tasks.md": "909fc426c7484f4ed144a354bfb6c150d7a56e6c51094293cec6282a9933666a",
       "implementation-summary.md": "a7f25b98b27efc78e8e75c3aa953337180063caae17962fb47678e049e5184d3"

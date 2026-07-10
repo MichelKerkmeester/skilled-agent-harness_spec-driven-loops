@@ -42,7 +42,6 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "shared/package.json",
       "shared/paths.ts",
       "api/index.ts",
       "mcp_server/scripts/map-ground-truth-ids.ts",
@@ -67,12 +66,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "shared/package.json",
         "source": "derived"
       },
       {
@@ -103,6 +96,12 @@
         "name": "context-server.ts",
         "kind": "code",
         "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
         "source": "derived"
       },
       {
@@ -200,17 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 10-iteration deep review found 14 P1 (required) and 4 P2 (advisory) findings across 5 workstreams",
     "created_at": "2026-04-12T09:02:50.320Z",
-    "last_save_at": "2026-07-09T10:02:58.730Z",
+    "last_save_at": "2026-07-10T06:22:38.660Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

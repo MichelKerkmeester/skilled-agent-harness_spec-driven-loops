@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/003-spec-data-quality/004-novel-research/019-novel-contradiction-detection"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/002-spec-data-quality/004-novel-research/019-novel-contradiction-detection"
     last_updated_at: "2026-07-06T18:49:46.032Z"
     last_updated_by: "markdown-agent"
     recent_action: "Scaffolded planned status for the detector build"

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/006-fix-stress-test-coverage-gap"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/005-fix-stress-test-coverage-gap"
     last_updated_at: "2026-04-30T19:25:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Plan authored"

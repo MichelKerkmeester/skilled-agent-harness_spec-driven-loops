@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation"
     last_updated_at: "2026-06-17T00:00:00Z"
     last_updated_by: "deep-review-remediation-author"
     recent_action: "Authored 35-task ledger across 8 workstreams from 017-021 syntheses"

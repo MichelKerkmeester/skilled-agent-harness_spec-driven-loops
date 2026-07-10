@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/009-p2-cleanup-from-review"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/004-launcher-diagnostics-and-signal-coverage"
     last_updated_at: "2026-05-18T06:42:51Z"
     last_updated_by: "template-author"
     recent_action: "Closed launcher lease P2 cleanup"

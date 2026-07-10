@@ -118,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "On May",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -131,12 +137,6 @@
       },
       {
         "name": "these",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Re-run 018/003 benchmark harness against 2 additional candidates: nomic-CodeRankEmbed (previously failed) + stella_en_400M_v5 (newly registered). Measure hit-rate + p95 latency on the same 18-pair fixture.",
     "created_at": "2026-05-18T05:13:47.028Z",
-    "last_save_at": "2026-07-09T10:02:52.893Z",
+    "last_save_at": "2026-07-10T06:21:51.214Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:efad7b887526e0506e5ad7508724d3a1e105768bfca8d31f07d346570e7cc358",
+    "source_fingerprint": "sha256:17c8d312057f70fe3265a87c8bc864c2b7325707b5dff7a3f805d0f330433062",
     "source_doc_hashes": {
-      "spec.md": "3bed28f0a8fa867b7c292870f29c9a8b5b3b51f39dfd357529bb8688e1682c2a",
+      "spec.md": "1f08ada699a8c836bf0e1b6c3caa75755101df3be2025b7d1c4d81cb7f621e22",
       "plan.md": "2feee7779082b267717a28ab47db294d3c11b687ba1522e750b004be38923dd7",
       "tasks.md": "e9a01c1ce95762820313a6c44ba73fd6d173736a947eb11fcc69a598d1e4baa9",
-      "implementation-summary.md": "2c70b25a2db5221a95383162f672ecfec68382923e714feb4ea2a5e50a715052"
+      "implementation-summary.md": "480a51cca401f24d4585d4c52bc6582cd2f7f782135e613fdcafca2b61074039"
     },
     "last_active_child_id": null,
     "last_active_at": null

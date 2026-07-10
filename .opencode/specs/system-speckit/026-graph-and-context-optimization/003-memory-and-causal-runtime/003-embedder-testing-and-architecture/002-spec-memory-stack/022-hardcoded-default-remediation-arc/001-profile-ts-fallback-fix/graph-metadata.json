@@ -128,12 +128,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,6 +147,12 @@
       },
       {
         "name": "RCAF",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "whatever",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "3 P0 audit findings (f-iter001-001, f-iter001-002, f-iter001-003) from packet 021. profile.ts has 4 inline `||` fallbacks in resolveActiveProfileModel (voyage/openai/ollama/hf-local) — 2 of them contradict ADR-014 (hf-local BAAI is CONFIRMED ACTIVE for CLI scripts; ollama jina is LATENT). embeddings.ts:774 has a parallel `|| 'jina-embeddings-v3'` shadowed by upstream config (DEAD CODE per audit). Phase 001 replaces all 4 profile.ts inline fallbacks with getCanonicalFallback(provider) calls + removes the dead-code fallback in embeddings.ts + ships profile.test.ts ban-list invariant.",
     "created_at": "2026-05-23T13:29:12.045886Z",
-    "last_save_at": "2026-07-09T10:02:52.773Z",
+    "last_save_at": "2026-07-10T06:23:25.296Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,9 +212,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0848eed893c182510fa7babc8c22d605aaff03a08c7c676acef108eb9f8f8f8f",
+    "source_fingerprint": "sha256:c7efaf5f9375a72f9970f0da43a3783d9b47116f2489f01673bb54de71914b43",
     "source_doc_hashes": {
-      "spec.md": "c1fc962b832c22578c4f53decd820918b75c2e595796ecc1fc899aabe03b99ac",
+      "spec.md": "829698f8665a3162269862a3736b9e7a1da0de250cfa137c0607652b4e4a71c0",
       "plan.md": "3ed375865d820b62849985378b3f8ebb180210a73518970ee673964ab7337ed9",
       "tasks.md": "cc827f98202825ed17f3443ccf05528aab514deeab350dbd0c52fa3f26e1558b",
       "checklist.md": "69a0112296137644a9378de022466ed8932bc886e1e384140bc83e9147277d35",

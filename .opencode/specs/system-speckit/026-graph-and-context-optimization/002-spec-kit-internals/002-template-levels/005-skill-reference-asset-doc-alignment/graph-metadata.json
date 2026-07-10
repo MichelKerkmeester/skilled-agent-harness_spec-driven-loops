@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Earlier rounds cleaned `.opencode/agents/`, `.opencode/commands/speckit/`, `AGENTS.md`, `CLAUDE.md`, and three top-level READMEs",
     "created_at": "2026-05-02T06:36:10Z",
-    "last_save_at": "2026-07-09T10:02:51.933Z",
+    "last_save_at": "2026-07-10T06:23:44.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

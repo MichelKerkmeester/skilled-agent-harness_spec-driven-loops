@@ -36,14 +36,28 @@
       "six"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
+      ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "cli_prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -175,23 +189,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Six sk-doc packets wrap their templates in a redundant single subfolder whose name just repeats the packet domain — e.g",
-    "created_at": "2026-07-07T14:54:33.162Z",
-    "last_save_at": "2026-07-09T10:02:44.846Z",
+    "causal_summary": "`clipromptqualitycard.md` (model overrides, precedence, per-cli mirrors) lived inside `sk-prompt`,",
+    "created_at": "2026-06-05T12:47:32.525Z",
+    "last_save_at": "2026-07-10T06:23:45.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb793a60e43c8de60e62ce6b2b530efe19b35294ae81f24cf8ad1da4781b43bf",
+    "source_fingerprint": "sha256:aa4f72944c0bcb2febcc06f73c8dd4032000dc4389afe263c2a6dda448efe51b",
     "source_doc_hashes": {
-      "spec.md": "110cee0d15b6d7d622068acb2656919e4aab011a37c3d4bb61c13e558f3b9bf5",
-      "plan.md": "0a345d58db7c2ce0d692231a5c7c47ed04cea31662621bbeb5088fb4b25af5aa",
-      "tasks.md": "415963840524028c7a41c5f8de003f707eb9f2ba7c0abbc6b20da0df3e58ab9d",
-      "implementation-summary.md": "59b5adcdbb00fcd2cfd8bdc9b3f37714e99ac1041192517bd7a710145d742e38"
+      "spec.md": "25d6de8de927e1a9831107b0079a1ff631ba7a61151b133340b17741ca277fd1",
+      "plan.md": "cc4648a302bc014fd9ab434f1e2e968b6770bb419cd92b14874965482b4f8b7d",
+      "tasks.md": "bcbcd2a21c30be1e8f8a738150e391f0b37a9ce042e769c3ec8ca8f0c69ee0ab",
+      "implementation-summary.md": "eed8e0d74b217287c6db3b81da7d26a89401ca98e931e36b743ba3e49c81274a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap"
     last_updated_at: "2026-05-28T21:20:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored F3′ plan (handshake probe + reap + wx lock) verified by Opus pass"

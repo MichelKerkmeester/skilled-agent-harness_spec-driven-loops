@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "026/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy"
     last_updated_at: "2026-06-04T21:00:00Z"
     last_updated_by: "claude-sonnet-4-6"
     recent_action: "All 10 F-cluster findings implemented and verified"

@@ -16,10 +16,12 @@
 # away. The child set comes from the one shared writer-mirroring scanner so this
 # check and the writer can never disagree on what a child is.
 #
-# Advisory by default: emits a passing line that surfaces the gap without
-# failing --strict, so a repo with known-unreconciled parents still passes. Set
-# SPECKIT_CHILD_DRIFT_ENFORCE=true to emit a warning that --strict escalates to
-# a failure, once the repo has been reconciled. Flag-only: never edits a file.
+# Enforcing by default: emits a warning that --strict escalates to a failure.
+# Graduated to enforcing only after a real tree-wide census showed the repo
+# was clean enough to trust by default, and after a dist-presence freshness
+# guard was built and fixture-tested so the fail-closed rc=20/21 branch below
+# can never silently hide a stale-but-loadable scanner build. Flag-only: never
+# edits a file. Set SPECKIT_CHILD_DRIFT_ENFORCE=false to fall back to advisory.
 
 set -euo pipefail
 
@@ -51,6 +53,30 @@ run_check() {
 
     local rule_dir child_scanner drift_missing drift_rc
     rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || rule_dir=""
+
+    # Dist-presence/freshness guard: under enforce, a stale-but-loadable scanner
+    # dist would silently implement outdated child-detection logic without ever
+    # tripping the existing rc=20 "module unavailable" branch below, which only
+    # catches total unavailability. Checked ahead of the scanner import so a
+    # build that went stale fails closed with a clear remediation command
+    # instead of quietly reporting clean. Skipped when SPECKIT_CHILD_SCANNER is
+    # overridden (the existing test-injection hook for the rc=20/21 branches),
+    # and in advisory mode (this guard only matters once enforcement is real).
+    if [[ -z "${SPECKIT_CHILD_SCANNER:-}" && "${SPECKIT_CHILD_DRIFT_ENFORCE:-true}" == "true" ]]; then
+        local freshness_checker="$rule_dir/../lib/dist-freshness.cjs"
+        if [[ -f "$freshness_checker" ]]; then
+            local freshness_output="" freshness_rc=0
+            freshness_output=$(node "$freshness_checker" check --package system-spec-kit/scripts --entry is-phase-parent 2>&1) || freshness_rc=$?
+            if [[ "$freshness_rc" -eq 69 ]]; then
+                RULE_STATUS="warn"
+                RULE_MESSAGE="child-drift scanner dist is stale; children_ids currency is unverified"
+                RULE_DETAILS=("$freshness_output")
+                RULE_REMEDIATION="cd .opencode/skills/system-spec-kit/scripts && npm run build, then rerun validation."
+                return 0
+            fi
+        fi
+    fi
+
     # Override hook: lets a caller point at a relocated scanner dist, and lets
     # tests drive the dependency-unavailable branch deterministically.
     child_scanner="${SPECKIT_CHILD_SCANNER:-$rule_dir/../dist/spec/is-phase-parent.js}"
@@ -58,7 +84,6 @@ run_check() {
     drift_rc=0
     drift_missing=$(node --input-type=module - "$graph_file" "$folder" "$child_scanner" 2>/dev/null <<'NODE_DRIFT'
 import { readFileSync } from 'node:fs';
-import { basename } from 'node:path';
 import { pathToFileURL } from 'node:url';
 const [graphFile, folder, scanner] = process.argv.slice(2);
 let listDerivedChildNames;
@@ -74,15 +99,36 @@ try {
 } catch {
   process.exit(21); // unreadable graph metadata — presence check owns that
 }
-// Compare the immediate parent segment to the checked folder name. This keeps
-// tolerance for leading-prefix drift while preventing another parent with the
-// same child basename from satisfying the local child.
-const parentName = basename(folder);
+// When the checked folder path resolves under a real specs root, compare an
+// entry full parent path against the folder own specs-root-relative path,
+// not just the immediate parent basename alone. Matching only one segment let
+// a same-named parent folder elsewhere in the tree (a different track sharing
+// this basename) falsely satisfy a local child. Outside a real specs root
+// (test fixtures, or any folder whose location cannot be normalized this way)
+// there is no reliable path to compare against, so this falls back to the
+// original single-segment compare, which still tolerates a synthetic
+// children_ids entry whose own prefix never matched the real filesystem path.
+let folderRelative = null;
+for (const marker of ['/.opencode/specs/', '/specs/']) {
+  const markerIndex = String(folder).indexOf(marker);
+  if (markerIndex >= 0) {
+    folderRelative = String(folder).slice(markerIndex + marker.length);
+    break;
+  }
+}
+const folderSegments = folderRelative !== null
+  ? folderRelative.split('/').filter(Boolean)
+  : String(folder).split('/').filter(Boolean).slice(-1);
 const listed = new Set();
 for (const entry of Array.isArray(parsed.children_ids) ? parsed.children_ids : []) {
   const segments = String(entry).split('/').filter(Boolean);
-  if (segments.length >= 2 && segments[segments.length - 2] === parentName) {
-    listed.add(segments[segments.length - 1]);
+  if (segments.length <= folderSegments.length) continue;
+  const childName = segments[segments.length - 1];
+  const parentSuffix = segments.slice(0, -1).slice(-folderSegments.length);
+  const matchesFolder = parentSuffix.length === folderSegments.length
+    && parentSuffix.every((segment, index) => segment === folderSegments[index]);
+  if (matchesFolder) {
+    listed.add(childName);
   }
 }
 const missing = listDerivedChildNames(folder).filter((name) => !listed.has(name));
@@ -97,7 +143,7 @@ NODE_DRIFT
     # enforcement: a real gap could hide behind an unavailable dependency, so fail
     # closed there. Advisory mode stays best-effort and reports clean.
     if [[ "$drift_rc" -eq 20 || "$drift_rc" -eq 21 ]]; then
-        if [[ "${SPECKIT_CHILD_DRIFT_ENFORCE:-false}" == "true" ]]; then
+        if [[ "${SPECKIT_CHILD_DRIFT_ENFORCE:-true}" == "true" ]]; then
             RULE_STATUS="warn"
             RULE_MESSAGE="child-drift check could not run (dependency unavailable, rc=$drift_rc); children_ids currency is unverified"
             RULE_DETAILS=("child-drift dependency unavailable under enforce (rc=$drift_rc)")
@@ -108,7 +154,7 @@ NODE_DRIFT
 
     [[ "$drift_rc" -eq 9 ]] || return 0
 
-    if [[ "${SPECKIT_CHILD_DRIFT_ENFORCE:-false}" == "true" ]]; then
+    if [[ "${SPECKIT_CHILD_DRIFT_ENFORCE:-true}" == "true" ]]; then
         RULE_STATUS="warn"
         RULE_MESSAGE="children_ids is missing on-disk phase children: $drift_missing"
         RULE_DETAILS=("Missing from children_ids: $drift_missing")

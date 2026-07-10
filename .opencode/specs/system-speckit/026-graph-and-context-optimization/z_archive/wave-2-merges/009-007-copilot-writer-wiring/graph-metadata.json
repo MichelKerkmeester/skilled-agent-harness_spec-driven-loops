@@ -41,7 +41,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".claude/settings.local.json",
       ".github/hooks/superset-notify.json",
       "implementation-summary.md",
       "spec.md",
@@ -49,12 +48,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
       {
         "name": "superset-notify.json",
         "kind": "config",
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Current State Commit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in .claude/settings.local.json with the actual writer commands. Bypasses the Superset-wrapper clobber of .github/hooks/superset-notify.json and makes the $HOME/.copilot/copilot-instructions.md Refreshed: timestamp advance per-prompt under Copilot.",
     "created_at": "2026-04-22T16:05:25.902Z",
-    "last_save_at": "2026-07-09T10:02:54.666Z",
+    "last_save_at": "2026-07-10T06:23:08.633Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

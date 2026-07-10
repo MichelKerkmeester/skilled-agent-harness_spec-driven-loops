@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/026-system-spec-kit-codegraph-residue-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-026-system-spec-kit-codegraph-residue-audit"
     last_updated_at: "2026-05-15T13:30:00Z"
     last_updated_by: "main-agent-026-phase2"
     recent_action: "phase2_complete_strict_validate_passed"

@@ -17,10 +17,12 @@ contextType: "planning"
 | Field | Value |
 |-------|-------|
 | **Spec ID** | 054-remaining-bugs-remediation |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Level** | 3 (≥500 LOC expected) |
 | **Created** | 2026-01-01 |
 | **Parent** | 003-memory-and-spec-kit |
+
+> **Historical record:** This archived specification retains its original Draft status; the corresponding implementation summary records the completed 13-bug remediation.
 
 ---
 

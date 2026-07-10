@@ -11,7 +11,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation"
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -32,12 +32,13 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-03-22 |
 | **Parent Spec** | [../spec.md](../spec.md) |
 | **Phase** | 002-mutation |
 | **Predecessor** | [001-retrieval](../001-retrieval/spec.md) |
 | **Successor** | [003-discovery](../003-discovery/spec.md) |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

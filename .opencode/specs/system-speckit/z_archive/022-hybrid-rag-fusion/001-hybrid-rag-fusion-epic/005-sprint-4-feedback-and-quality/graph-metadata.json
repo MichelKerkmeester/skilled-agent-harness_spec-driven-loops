@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Chunked memories are scored individually without aggregation — a memory with 5 matching chunks gets no advantage over one with 1 chunk, losing valuable signal",
     "created_at": "2026-04-12T09:02:50.228Z",
-    "last_save_at": "2026-07-09T10:02:57.728Z",
+    "last_save_at": "2026-07-10T06:22:08.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

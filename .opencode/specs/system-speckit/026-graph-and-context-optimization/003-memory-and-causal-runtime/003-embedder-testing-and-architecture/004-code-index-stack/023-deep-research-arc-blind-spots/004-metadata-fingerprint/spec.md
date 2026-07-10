@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "spec"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/004-metadata-fingerprint"
     last_updated_at: "2026-05-19T22:45:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented metadata fingerprint compatibility"

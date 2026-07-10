@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Implemented default-on SQLite FTS5 + RRF fusion for CocoIndex retrieval.",
     "created_at": "2026-05-18T05:13:46.575Z",
-    "last_save_at": "2026-07-09T10:02:52.926Z",
+    "last_save_at": "2026-07-10T06:23:33.888Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

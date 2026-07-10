@@ -144,7 +144,7 @@
     ],
     "causal_summary": "Umbrella phase parent for embedder and reranker architecture across mk-spec-memory, mcp-coco-index, skill-advisor, launcher support, cross-cutting QA, Ollama/BGE historical promotion work, the shared rerank sidecar arc, and memory-leak remediation (absorbed sidecar investigation as phases 015-019 in 009). Current defaults: nomic-ai/CodeRankEmbed bi-encoder; Qwen/Qwen3-Reranker-0.6B for CocoIndex rerank via sidecar; cross-encoder/ms-marco-MiniLM-L-6-v2 for mk-spec-memory rerank when opt-in.",
     "created_at": "2026-05-17T06:35:11.664Z",
-    "last_save_at": "2026-07-09T10:02:52.170Z",
+    "last_save_at": "2026-07-10T06:23:02.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

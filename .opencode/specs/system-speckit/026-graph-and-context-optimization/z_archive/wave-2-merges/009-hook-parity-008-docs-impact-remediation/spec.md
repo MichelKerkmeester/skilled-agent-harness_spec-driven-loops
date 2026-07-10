@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation"
     last_updated_at: "2026-04-23T19:40:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Spec folder scaffolded from merged-impact-report.md (13 target files)"

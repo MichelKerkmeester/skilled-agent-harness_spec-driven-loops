@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/002-scripts"
+    packet_pointer: "z_future/code-graph-and-cocoindex/005-cocoindex-complete-fork/002-scripts"
     last_updated_at: "2026-05-12T07:20:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded child packet for Adapt Lifecycle Scripts"

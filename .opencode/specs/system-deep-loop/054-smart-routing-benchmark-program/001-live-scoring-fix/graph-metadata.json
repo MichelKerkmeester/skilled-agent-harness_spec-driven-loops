@@ -24,43 +24,31 @@
       "asset fold intent drop results"
     ],
     "key_topics": [
-      "live",
-      "scoring",
-      "asset",
-      "recall",
-      "fold",
-      "intent",
-      "drop",
-      "resourcerecall",
-      "assets",
-      "channel",
-      "skill",
-      "benchmark"
+      "112-sk-git-skill-update",
+      "sk-git",
+      "commit",
+      "standards",
+      "git-007",
+      "trailer",
+      "test",
+      "refresh",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/live-asset-recall.vitest.ts",
       "spec.md",
       "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/assets/commit_message_template.md",
+      ".opencode/skills/sk-git/references/commit_workflows.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "score-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "live-asset-recall.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/live-asset-recall.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,25 +62,25 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-asset-recall.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/live-asset-recall.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Update",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -194,9 +182,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The parent program's live (Mode-B) scores under-represented real routing quality",
-    "created_at": "2026-07-09T05:03:16.116Z",
-    "last_save_at": "2026-07-09T10:02:48.262Z",
+    "causal_summary": "sk-git documents commit standards in two places — SKILL.md §3 and `assets/commitmessagetemplate.md` — and both are partially stale relative to the decisions locked in Phase 002",
+    "created_at": "2026-05-16T09:42:34Z",
+    "last_save_at": "2026-07-10T06:22:55.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +194,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9782e03565222cff3d80bf480ac28bd5d15585e5bdb2418c95a95150ca4aea1c",
+    "source_fingerprint": "sha256:8b72bca3e5f549a7796566ba97eb632a2b0f72990db3ed844f914d5f36a7a825",
     "source_doc_hashes": {
-      "spec.md": "5a4cc7c9bdd5f91e39191eea0a6bd666d5c7a0f1cae6a0a17d68165495d20b61",
-      "plan.md": "0cf91b5493c89aa687b53f2ed98a2f1ff79c736b7aabb37665b4f47f6a45a02b",
-      "tasks.md": "b0a5e16750aaca104181fa6866cf76e7822b7e69309c5d297e6140fab7d8bc81",
-      "checklist.md": "e5fa8f7aa929ba17bb3850bb6027a4a1faa4edddf55b58c5f27615fbeedfe45b",
-      "implementation-summary.md": "063d48c6f4ec7bf2c1afdce8cc7e83a6de226872f75634ccef10c9de2e9a9f89"
+      "spec.md": "52de8586d3792e152bda69821960d03dbf2eb4ac881b5977565b7023f58fb5f7",
+      "plan.md": "70cc757b6d84824b5a6022611bf46aad4f5ba53936e12674071d75b570f173b2",
+      "tasks.md": "41f6652e1c3fc4d479b745aee43670c8d80cabc25f1e5bd92221efd61566fccf",
+      "implementation-summary.md": "b0ab7371b242501b3b5d66aa19fde99d767c778623bf7c7364ac821bd130f9c1"
     },
     "last_active_child_id": null,
     "last_active_at": null

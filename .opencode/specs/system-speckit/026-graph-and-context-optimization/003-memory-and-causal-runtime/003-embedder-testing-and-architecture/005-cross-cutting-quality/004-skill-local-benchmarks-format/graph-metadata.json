@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Cross-cutting introduction of a new `mcp_server/benchmarks/` convention for any MCP server in this repo (our own + forks). Promotes spec-packet bake-off evidence + curated headline docs from `specs/` into skill-local discoverable locations. First two adopters: mk-spec-memory (May 17, 2026 text-embedder bake-off) and mcp-coco-index (May 18, 2026 code-embedder bake-off). Includes historical FORMAT.md convention doc + per-skill READMEs + per-bench dated subfolders with structured benchmark_report.md per sk-doc standards.",
     "created_at": "2026-05-18T17:04:31.398Z",
-    "last_save_at": "2026-07-09T10:02:53.149Z",
+    "last_save_at": "2026-07-10T06:24:08.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

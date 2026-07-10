@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/007-fix-external-project-adoption-deep-review-findings"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings"
     last_updated_at: "2026-04-25T13:50:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Initialized remediation sub-phase with 6 themed task groups derived from per-sub-phase deep-review reports"

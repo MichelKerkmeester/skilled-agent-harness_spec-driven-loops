@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/019-readme-resource-map"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map"
     last_updated_at: "2026-05-13T15:50:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored plan capturing the two-phase research+execution flow"

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval"
+    packet_pointer: "z_future/code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton"
     last_updated_at: "2026-05-09T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Converted Phase 004 decision record to Level 3 ADR structure"

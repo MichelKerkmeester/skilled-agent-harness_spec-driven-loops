@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 032/002 evidence recorded only 2 PASS / 2 PARTIAL / 11 FAIL across scenarios 401-415, with many failures caused by substrate defects rather than scenario behavior",
     "created_at": "2026-05-14T16:11:01Z",
-    "last_save_at": "2026-07-09T10:02:52.517Z",
+    "last_save_at": "2026-07-10T06:21:50.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

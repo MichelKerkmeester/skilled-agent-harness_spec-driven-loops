@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`LlamaCppProvider` currently caps input by characters before passing text to `LlamaEmbeddingContext.getEmbeddingFor`",
     "created_at": "2026-05-14T14:21:37Z",
-    "last_save_at": "2026-07-09T10:02:52.481Z",
+    "last_save_at": "2026-07-10T06:22:25.581Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

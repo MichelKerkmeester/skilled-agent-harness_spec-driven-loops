@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Audit all command configuration files in `.opencode/commands/` to ensure agent routing patterns (spec 014), memory command capabilities (specs 126–128), and speckit command references (specs 124, 128, 129) are current and consistent",
     "created_at": "2026-05-26T19:43:14.237Z",
-    "last_save_at": "2026-07-09T10:02:57.551Z",
+    "last_save_at": "2026-07-10T06:24:09.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

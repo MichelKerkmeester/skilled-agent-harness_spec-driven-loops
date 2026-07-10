@@ -152,6 +152,26 @@ test('stored goals drop unknown fields and reject non-numeric token budgets', as
   await rm(whitelistPath, { force: true });
 }));
 
+test('active state rejects an embedded session id that differs from its file path', async () => withState(async ({ helpers, stateDir }) => {
+  const sessionB = await helpers.setGoal('session-b', 'Preserve session B', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'session-b-goal',
+  });
+  const sessionBRaw = await readFile(helpers.goalPathForSession('session-b', { stateDir }), 'utf8');
+  await writeFile(
+    helpers.goalPathForSession('session-a', { stateDir }),
+    `${JSON.stringify({ ...sessionB, objective: 'Misdirected session A state' }, null, 2)}\n`,
+    'utf8',
+  );
+
+  await assert.rejects(
+    helpers.readGoal('session-a', { stateDir }),
+    { code: 'INVALID_GOAL_STATE' },
+  );
+  assert.equal(await readFile(helpers.goalPathForSession('session-b', { stateDir }), 'utf8'), sessionBRaw);
+}));
+
 test('fsyncDirectory failure logs to the state root', async () => withState(async ({ helpers, stateDir }) => {
   process.env.MK_GOAL_DEBUG = '1';
   const failedArchiveDir = join(stateDir, '.archive', 'missing-archive-dir');
@@ -236,6 +256,47 @@ test('appendGoalBrief caches present and missing goal lookups', async () => with
   assert.equal(cacheMetrics.briefReadFile || 0, 0);
 }));
 
+test('goal brief cache bounds missing sessions and clears on disposal', async () => {
+  const cacheStateDir = await mkdtemp(join(tmpdir(), 'mk-goal-cache-bound-'));
+  try {
+    const cacheModule = await importFreshPlugin('cache-bound');
+    const metrics = {};
+    const plugin = await cacheModule.default({}, { stateDir: cacheStateDir, metrics });
+    for (let index = 0; index < 520; index += 1) {
+      await plugin['experimental.chat.system.transform'](
+        { sessionID: `missing-cache-${index}` },
+        { system: [] },
+      );
+    }
+    assert.equal(metrics.goalBriefCacheSize, 512);
+
+    await plugin.event({ event: { type: 'app.disposed' } });
+    await plugin['experimental.chat.system.transform'](
+      { sessionID: 'missing-cache-after-disposal' },
+      { system: [] },
+    );
+    assert.equal(metrics.goalBriefCacheSize, 1);
+  } finally {
+    await rm(cacheStateDir, { recursive: true, force: true });
+  }
+});
+
+test('system transform failures remain fail-open and write a durable diagnostic', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const plugin = await pluginModule.default({}, { stateDir, nowMs: 4000 });
+  await writeFile(helpers.goalPathForSession('session-corrupt-transform', { stateDir }), '{ invalid json', 'utf8');
+  const output = { system: ['existing context'] };
+
+  await assert.doesNotReject(() => plugin['experimental.chat.system.transform'](
+    { sessionID: 'session-corrupt-transform' },
+    output,
+  ));
+  assert.deepEqual(output.system, ['existing context']);
+  const entries = await readGoalEventEntries(stateDir);
+  assert.ok(entries.some((entry) => entry.type === 'event_error'
+    && entry.eventType === 'system.transform'
+    && entry.sid === 'session-corrupt-transform'));
+}));
+
 test('ensureGoalStateDir is memoized per state directory', async () => {
   const mkdirStateDir = await mkdtemp(join(tmpdir(), 'mk-goal-mkdir-spy-'));
   try {
@@ -315,6 +376,38 @@ test('goal status can omit injection preview without rendering it', async () => 
   );
   assert.doesNotMatch(setGoalPreview, /^injection_preview=/m);
   assert.equal(previewMetrics.renderGoalInjection || 0, 0);
+}));
+
+test('same-objective refresh resumes paused timing without charging the pause', async () => withState(async ({ helpers, stateDir }) => {
+  await helpers.setGoal('session-paused-refresh', 'Refresh paused goal timing', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'paused-refresh-goal',
+    maxWallMs: 10000,
+  });
+  await helpers.markGoalStatus('session-paused-refresh', 'paused', {
+    stateDir,
+    nowMs: 2000,
+    maxWallMs: 10000,
+  });
+  const pausedStatus = await helpers.executeGoalStatus(
+    { sessionID: 'session-paused-refresh' },
+    { stateDir, nowMs: 10000, maxWallMs: 10000, includeInjectionPreview: false },
+  );
+  assert.match(pausedStatus, /remaining_wall_ms=9000/);
+
+  const refreshed = await helpers.setGoal('session-paused-refresh', 'Refresh paused goal timing', {
+    stateDir,
+    nowMs: 10000,
+    maxWallMs: 10000,
+  });
+  assert.equal(refreshed.startedAtMs, 9000);
+  assert.equal(refreshed.activeWallMs, 0);
+  const resumedStatus = await helpers.executeGoalStatus(
+    { sessionID: 'session-paused-refresh' },
+    { stateDir, nowMs: 11000, maxWallMs: 10000, includeInjectionPreview: false },
+  );
+  assert.match(resumedStatus, /remaining_wall_ms=8000/);
 }));
 
 test('transform appends active goal injection after existing system context', async () => withState(async ({ pluginModule, stateDir }) => {

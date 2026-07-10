@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose"
     last_updated_at: "2026-05-28T21:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored F2′ plan incl. three-site coverage + native-run gate, verified by Opus adversarial pass"

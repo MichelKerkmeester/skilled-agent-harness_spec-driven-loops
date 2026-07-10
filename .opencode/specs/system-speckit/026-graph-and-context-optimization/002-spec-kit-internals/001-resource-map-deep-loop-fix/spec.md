@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix"
     last_updated_at: "2026-04-24T00:00:00Z"
     last_updated_by: "claude-sonnet-4-6"
     recent_action: "Created packet-root Level 3 spec docs synthesizing all three sub-phases"

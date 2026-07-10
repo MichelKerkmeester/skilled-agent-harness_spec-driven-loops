@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`../005-learning-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes",
     "created_at": "2026-05-11T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:55.122Z",
+    "last_save_at": "2026-07-10T06:21:49.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-11T00:00:00Z",
     "source_docs": [

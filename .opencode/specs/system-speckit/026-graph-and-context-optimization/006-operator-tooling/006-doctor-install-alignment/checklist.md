@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/131-doctor-install-alignment"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/006-doctor-install-alignment"
     last_updated_at: "2026-06-02T20:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Verification items confirmed via adversarial verifiers + final re-grep"

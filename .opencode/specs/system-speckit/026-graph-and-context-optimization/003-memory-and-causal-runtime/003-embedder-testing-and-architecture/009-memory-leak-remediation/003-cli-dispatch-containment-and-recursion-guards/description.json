@@ -17,7 +17,7 @@
     "self-invocation",
     "guards"
   ],
-  "lastUpdated": "2026-07-09T10:02:53.492Z",
+  "lastUpdated": "2026-07-10T06:24:12.116Z",
   "specId": "003",
   "folderSlug": "cli-dispatch-containment-and-recursion-guards",
   "parentChain": [

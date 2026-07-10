@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-validation-and-cleanup"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-020-validation-and-cleanup"
     last_updated_at: "2026-05-14T09:13:21Z"
     last_updated_by: "claude"
     recent_action: "Recalibration backfill post-manual-reorg"

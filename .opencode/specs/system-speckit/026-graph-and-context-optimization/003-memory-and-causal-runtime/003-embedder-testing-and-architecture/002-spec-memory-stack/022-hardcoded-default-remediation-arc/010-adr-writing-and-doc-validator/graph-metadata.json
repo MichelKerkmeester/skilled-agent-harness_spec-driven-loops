@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Closing the 022 hardcoded-default-remediation arc by authoring 4 ADRs governing what was implemented across packets 022/001, 022/004a, and 022/004b, plus a sk-doc validator that catches future doc-implementation drift early. ADR-A: skill-advisor calibration as contractual constants. ADR-B: verification clause amendment for ADR-013 + ADR-014. ADR-C: profile.ts scope coverage (parallel resolution chains). ADR-D: doc-implementation cross-checking mandate with validate-doc-model-refs.js script.",
     "created_at": "2026-05-23T15:17:00.000000Z",
-    "last_save_at": "2026-07-09T10:02:52.831Z",
+    "last_save_at": "2026-07-10T06:21:11.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Bundle of follow-on fixes after the 022 arc shipped: mk_skill_advisor MCP -32000 recovery (build doesn't copy data/*.json), validator script 6-bug fix, opencode v1.15.10 reactive-EOF idle-kill mitigation (wrapper + memory + SKILL.md elevation), RERANKER_CANONICAL voyage/cohere vendor canonical fill. LANE_WEIGHTS_JSON structural deferred.",
     "created_at": "2026-05-23T18:30:00.000000Z",
-    "last_save_at": "2026-07-09T10:02:52.839Z",
+    "last_save_at": "2026-07-10T06:23:39.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

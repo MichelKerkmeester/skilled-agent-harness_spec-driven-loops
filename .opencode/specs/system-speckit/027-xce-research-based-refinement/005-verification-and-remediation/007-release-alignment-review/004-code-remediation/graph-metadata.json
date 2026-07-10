@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The Track B review (`../002-code-vs-sk-code-opencode/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode code surface",
     "created_at": "2026-06-18T12:41:12.578Z",
-    "last_save_at": "2026-07-09T10:02:55.931Z",
+    "last_save_at": "2026-07-10T06:23:29.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

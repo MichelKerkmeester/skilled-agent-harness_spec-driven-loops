@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The evaluation category contains 6 manual test scenarios covering ablation studies (channel-level Recall@20 delta measurement), reporting dashboard (sprint/channel trend aggregation), evaluation dashboard generation, ablation study execution with custom parameters, baseline comparison reporting, and learning history retrieval",
     "created_at": "2026-04-12T09:02:50.294Z",
-    "last_save_at": "2026-07-09T10:02:58.435Z",
+    "last_save_at": "2026-07-10T06:22:40.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

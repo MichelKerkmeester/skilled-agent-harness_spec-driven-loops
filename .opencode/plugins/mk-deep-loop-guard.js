@@ -5,8 +5,8 @@
 // ║          deep-loop sub-agents -- flags/blocks a Deep Route header whose  ║
 // ║          declared mode disagrees with mode-registry.json's entry for    ║
 // ║          the resolved target agent, and flags/blocks repeated/loop-like ║
-// ║          orchestrate-to-command-owned-loop-executor dispatches within a ║
-// ║          session while allowing exactly one legitimate bounded hand-off.║
+// ║          non-command-driven dispatches to command-owned loop executors   ║
+// ║          within a session while allowing one bounded hand-off.          ║
 // ║          Also sweeps/archives/prunes its own per-session state so the   ║
 // ║          .loop-guard-state directory does not grow unbounded.          ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
@@ -22,6 +22,7 @@ import {
   readdirSync,
   readFileSync,
   renameSync,
+  rmdirSync,
   statSync,
   unlinkSync,
   writeFileSync,
@@ -36,8 +37,12 @@ const REGISTRY_RELATIVE_PATH = '.opencode/skills/system-deep-loop/mode-registry.
 const LOOP_GUARD_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.loop-guard-state';
 const LOOP_GUARD_ARCHIVE_DIR_NAME = '.archive';
 const WARN_LOG_FILENAME = 'guard-warnings.log';
+const WARN_LOG_BACKUP_SUFFIX = '.1';
+const WARN_LOG_MAX_BYTES_ENV = 'MK_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES';
 const REJECT_MODE_ENV = 'MK_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'MK_DEEP_LOOP_GUARD_REJECT_LOOP';
+const SWEEP_LOCK_DIR_NAME = '.sweep.lock';
+const LOOP_STATE_TEMP_FILE_REGEX = /^[0-9a-f]+\.json\.\d+\.\d+\.tmp$/;
 
 // Retention/cleanup env vars, mirroring the mk-goal.js sweep/archive/prune
 // pattern: an active state file untouched past ACTIVE_RETENTION_DAYS is
@@ -49,21 +54,20 @@ const LOOP_GUARD_SWEEP_INTERVAL_MS_ENV = 'MK_DEEP_LOOP_GUARD_SWEEP_INTERVAL_MS';
 const DEFAULT_ACTIVE_RETENTION_DAYS = 2;
 const DEFAULT_ARCHIVE_RETENTION_DAYS = 90;
 const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
+const DEFAULT_WARN_LOG_MAX_BYTES = 256 * 1024;
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 // Command-owned loop executors: dispatched only by their parent /deep:* command,
-// which owns iteration state and convergence. orchestrate may perform exactly one
-// bounded hand-off to these -- repeated hand-offs re-implement the loop outside
-// its owning command. Generic subagents (context/review/write/debug) and
+// which owns iteration state and convergence. One bounded external hand-off is
+// tolerated, while repeated hand-offs re-implement the loop outside its owning
+// command. Generic subagents (context/review/write/debug) and
 // ai-council (also reachable via /deep:ai-council for multi-turn planning) are
 // intentionally excluded from loop-repeat counting.
-const LOOP_EXECUTOR_AGENTS = new Set(['deep-research', 'deep-review', 'deep-improvement', 'prompt-improver']);
+const LOOP_EXECUTOR_AGENTS = new Set(['deep-research', 'deep-review', 'deep-improvement']);
 
-// A dispatch carrying one of these markers originates from the parent command's
-// own iteration loop (e.g. the rendered prompt pack for iteration N), not from
-// orchestrate re-implementing the loop -- so it must not count toward the
-// loop-repeat threshold.
-const ITERATION_MARKER_REGEX = /(?:^|\n)\s*Iteration:\s*\d+\s*of\s*\d+|STATE SUMMARY/i;
+// The parent commands retain a readable iteration line. Anchoring it and
+// checking its bounds prevents incidental prose from gaining command authority.
+const ITERATION_MARKER_REGEX = /(?:^|\n)\s*(?:Review\s+)?Iteration:\s*(\d+)\s+of\s+(\d+)\b/i;
 
 const WARN_AT_COUNT = 2;
 const BLOCK_AT_COUNT = 3;
@@ -78,7 +82,13 @@ function loadRegistryAgents(registryPath) {
     const data = JSON.parse(raw);
     const map = new Map();
     for (const mode of data.modes || []) {
-      if (mode.agent) map.set(mode.agent, mode);
+      const agent = typeof mode.agent === 'string' ? mode.agent.toLowerCase() : '';
+      const workflowMode = typeof mode.workflowMode === 'string' ? mode.workflowMode.toLowerCase() : '';
+      if (!agent || !workflowMode) continue;
+
+      const entry = map.get(agent) || { workflowModes: new Set() };
+      entry.workflowModes.add(workflowMode);
+      map.set(agent, entry);
     }
     return map;
   } catch (_) {
@@ -87,17 +97,29 @@ function loadRegistryAgents(registryPath) {
 }
 
 function declaredModeFromPrompt(promptText) {
-  const match = /mode=([a-z0-9-]+)/i.exec(promptText || '');
-  return match ? match[1] : null;
+  const text = promptText || '';
+  const deepRouteMatch = /(?:^|\n)\s*Deep Route:[^\n]*?\bmode=([a-z0-9-]+)/i.exec(text);
+  const match = deepRouteMatch || /mode=([a-z0-9-]+)/i.exec(text);
+  return match ? match[1].toLowerCase() : null;
 }
 
-function mismatchDetail(subagentType, registryMode, declaredMode) {
+function mismatchDetail(subagentType, registryModes, declaredMode) {
+  const allowedModes = [...registryModes].sort().join('|');
   return [
     'mk-deep-loop-guard: Deep Route mode mismatch --',
     `dispatch targets subagent_type="${subagentType}"`,
-    `(registry mode="${registryMode}")`,
+    `(registry modes="${allowedModes}")`,
     `but the prompt declares mode="${declaredMode}"`,
   ].join(' ');
+}
+
+function isCommandDrivenIteration(promptText) {
+  const match = ITERATION_MARKER_REGEX.exec(promptText || '');
+  if (!match) return false;
+
+  const iteration = Number(match[1]);
+  const maxIterations = Number(match[2]);
+  return iteration >= 1 && maxIterations >= 1 && iteration <= maxIterations;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -122,12 +144,14 @@ function mismatchDetail(subagentType, registryMode, declaredMode) {
 function resolveTargetIdentity(subagentType, promptText) {
   const text = promptText || '';
   const deepRouteMatch = /target_agent=@?([a-z0-9-]+)/i.exec(text);
-  if (deepRouteMatch) return deepRouteMatch[1];
+  if (deepRouteMatch) return deepRouteMatch[1].toLowerCase();
 
   const agentLineMatch = /(?:^|\n)\s*Agent:\s*@?([a-z0-9-]+)/i.exec(text);
-  if (agentLineMatch) return agentLineMatch[1];
+  if (agentLineMatch) return agentLineMatch[1].toLowerCase();
 
-  if (subagentType && subagentType !== 'general') return subagentType;
+  if (typeof subagentType === 'string' && subagentType.toLowerCase() !== 'general') {
+    return subagentType.toLowerCase();
+  }
   return null;
 }
 
@@ -157,16 +181,18 @@ function writeLoopStateAtomic(stateDir, sessionID, state) {
   try {
     mkdirSync(stateDir, { recursive: true });
   } catch (_) {
-    return; // Fail open: cannot create state dir, skip persistence this call.
+    return false;
   }
   const finalPath = loopStatePath(stateDir, sessionID);
   const tempPath = `${finalPath}.${process.pid}.${Date.now()}.tmp`;
   try {
     writeFileSync(tempPath, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
     renameSync(tempPath, finalPath);
+    return true;
   } catch (_) {
     try { unlinkSync(tempPath); } catch (_ignored) { /* best-effort cleanup */ }
     // Fail open: a persistence error must never block the dispatch it guards.
+    return false;
   }
 }
 
@@ -178,7 +204,7 @@ function writeLoopStateAtomic(stateDir, sessionID, state) {
  * @param {string} sessionID - current session id
  * @param {string} targetAgent - resolved loop-executor identity
  * @param {boolean} commandDriven - true when the dispatch carries iteration-state markers
- * @returns {number} updated non-command-driven dispatch count for targetAgent
+ * @returns {{ count: number, persisted: boolean }} updated count and persistence status
  */
 function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
   const state = readLoopState(stateDir, sessionID);
@@ -192,21 +218,21 @@ function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
   entry.lastTimestamp = new Date().toISOString();
   dispatches[targetAgent] = entry;
 
-  writeLoopStateAtomic(stateDir, sessionID, {
+  const persisted = writeLoopStateAtomic(stateDir, sessionID, {
     sessionId: sessionID,
     dispatches,
   });
 
-  return entry.count;
+  return { count: entry.count, persisted };
 }
 
 function loopRepeatDetail(targetAgent, count) {
   return [
     'mk-deep-loop-guard: loop-like repeated dispatch --',
-    `orchestrate has dispatched "${targetAgent}" ${count} times`,
+    `"${targetAgent}" received ${count} non-command-driven hand-offs`,
     'in this session without a command-driven iteration marker;',
     'command-owned loop executors should be dispatched by their parent /deep:* command,',
-    'not repeatedly hand off from orchestrate.',
+    'not repeatedly handed off by another agent.',
   ].join(' ');
 }
 
@@ -216,13 +242,31 @@ function loopRepeatDetail(targetAgent, count) {
 // without corrupting the interactive session. Fail-open -- a logging error must
 // never affect or block the dispatch this hook guards.
 function appendWarningLog(stateDir, detail) {
+  const line = `${new Date().toISOString()} [mk-deep-loop-guard] WARN: ${detail}\n`;
   try {
-    pruneStaleWarningLog(stateDir);
     mkdirSync(stateDir, { recursive: true });
-    const line = `${new Date().toISOString()} [mk-deep-loop-guard] WARN: ${detail}\n`;
-    appendFileSync(join(stateDir, WARN_LOG_FILENAME), line, 'utf8');
+    const logPath = join(stateDir, WARN_LOG_FILENAME);
+    maintainWarningLogPath(logPath, Buffer.byteLength(line));
+    appendFileSync(logPath, line, 'utf8');
+    return true;
   } catch (_) {
     // Fail open: swallow logging errors so the guarded dispatch is untouched.
+    return false;
+  }
+}
+
+function appendRejectModeDegradedAudit(stateDir, reason) {
+  const detail = `reject-mode degraded -- ${reason}; dispatch allowed`;
+  if (appendWarningLog(stateDir, detail)) return;
+
+  // A sibling fallback remains writable when the configured state path is a file.
+  const fallbackPath = `${stateDir}.${WARN_LOG_FILENAME}`;
+  const line = `${new Date().toISOString()} [mk-deep-loop-guard] WARN: ${detail}\n`;
+  try {
+    maintainWarningLogPath(fallbackPath, Buffer.byteLength(line));
+    appendFileSync(fallbackPath, line, 'utf8');
+  } catch (_) {
+    // Fail open even when both audit locations are unavailable.
   }
 }
 
@@ -235,19 +279,36 @@ function positiveIntFromEnv(envName, fallback) {
   return Number.isFinite(raw) && raw > 0 ? Math.trunc(raw) : fallback;
 }
 
-// Whole-file log rotation, mirroring mk-goal.js's pruneJsonlLog: a log that has
-// gone untouched past the archive-retention window is dropped entirely before
-// the next append, rather than growing forever. Ordinary active use (frequent
-// appends) never triggers this -- only long dormancy does.
-function pruneStaleWarningLog(stateDir) {
-  const logPath = join(stateDir, WARN_LOG_FILENAME);
+function maintainWarningLogPath(logPath, incomingBytes = 0) {
+  const retentionMs = positiveIntFromEnv(
+    LOOP_GUARD_ARCHIVE_RETENTION_DAYS_ENV,
+    DEFAULT_ARCHIVE_RETENTION_DAYS,
+  ) * MS_PER_DAY;
+
+  for (const candidatePath of [logPath, `${logPath}${WARN_LOG_BACKUP_SUFFIX}`]) {
+    try {
+      const fileStats = statSync(candidatePath);
+      if (Date.now() - fileStats.mtimeMs > retentionMs) unlinkSync(candidatePath);
+    } catch (_) {
+      // Absent or unreadable logs require no maintenance.
+    }
+  }
+
   try {
     const fileStats = statSync(logPath);
-    const retentionMs = positiveIntFromEnv(LOOP_GUARD_ARCHIVE_RETENTION_DAYS_ENV, DEFAULT_ARCHIVE_RETENTION_DAYS) * MS_PER_DAY;
-    if (Date.now() - fileStats.mtimeMs > retentionMs) unlinkSync(logPath);
+    const maxBytes = positiveIntFromEnv(WARN_LOG_MAX_BYTES_ENV, DEFAULT_WARN_LOG_MAX_BYTES);
+    if (fileStats.size + incomingBytes <= maxBytes) return;
+
+    const backupPath = `${logPath}${WARN_LOG_BACKUP_SUFFIX}`;
+    try { unlinkSync(backupPath); } catch (_ignored) { /* A prior generation is optional. */ }
+    renameSync(logPath, backupPath);
   } catch (_) {
-    // Absent or unreadable: nothing to prune.
+    // Absent or unreadable logs require no rotation.
   }
+}
+
+function maintainWarningLog(stateDir) {
+  maintainWarningLogPath(join(stateDir, WARN_LOG_FILENAME));
 }
 
 function ensureLoopGuardArchiveDir(stateDir) {
@@ -285,28 +346,56 @@ function pruneLoopGuardArchive(stateDir) {
   }
 }
 
+function acquireSweepLock(stateDir, intervalMs, now) {
+  try {
+    mkdirSync(stateDir, { recursive: true });
+  } catch (_) {
+    return null;
+  }
+
+  const lockPath = join(stateDir, SWEEP_LOCK_DIR_NAME);
+  try {
+    mkdirSync(lockPath, { mode: 0o700 });
+    return lockPath;
+  } catch (error) {
+    if (!error || error.code !== 'EEXIST') return null;
+  }
+
+  try {
+    const lockStats = statSync(lockPath);
+    if (now - lockStats.mtimeMs <= intervalMs) return null;
+    rmdirSync(lockPath);
+    mkdirSync(lockPath, { mode: 0o700 });
+    return lockPath;
+  } catch (_) {
+    return null;
+  }
+}
+
 /**
  * Archive per-session loop-guard state files that have gone untouched past the
  * active-retention window, then prune the archive itself. Throttled to once
  * per sweep interval via runtimeState, mirroring mk-goal.js's
  * sweepOrphanedActiveStates/maybePruneArchive pair.
  *
- * Every operation here is synchronous (readdirSync/statSync/renameSync), and
- * this plugin's only other hook (tool.execute.before) is likewise free of any
- * `await` before it touches loop-guard state files. Node runs synchronous code
- * to completion before yielding the event loop, so a sweep in progress cannot
- * interleave with a concurrent dispatch's state write -- no separate mutation
- * queue is needed the way mk-goal.js's fully-async I/O requires.
+ * The state directory is shared by multiple OpenCode processes. An atomic
+ * directory lock prevents concurrent sweep passes, while a final re-stat keeps
+ * freshly touched state active.
  *
  * @param {string} stateDir - loop-guard state directory
  * @param {{ lastLoopGuardSweepAtMs?: number }} runtimeState - per-plugin-instance throttle state
  */
 function sweepStaleLoopGuardStates(stateDir, runtimeState) {
+  let lockPath = null;
   try {
     const intervalMs = positiveIntFromEnv(LOOP_GUARD_SWEEP_INTERVAL_MS_ENV, DEFAULT_SWEEP_INTERVAL_MS);
     const now = Date.now();
     if (now - (runtimeState.lastLoopGuardSweepAtMs || 0) <= intervalMs) return;
+    lockPath = acquireSweepLock(stateDir, intervalMs, now);
+    if (!lockPath) return;
     runtimeState.lastLoopGuardSweepAtMs = now;
+
+    maintainWarningLog(stateDir);
 
     let entries;
     try {
@@ -319,11 +408,25 @@ function sweepStaleLoopGuardStates(stateDir, runtimeState) {
 
     const activeRetentionMs = positiveIntFromEnv(LOOP_GUARD_ACTIVE_RETENTION_DAYS_ENV, DEFAULT_ACTIVE_RETENTION_DAYS) * MS_PER_DAY;
     for (const entry of entries) {
-      if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
+      if (!entry.isFile()) continue;
       const sourcePath = join(stateDir, entry.name);
+
+      if (LOOP_STATE_TEMP_FILE_REGEX.test(entry.name)) {
+        try {
+          const fileStats = statSync(sourcePath);
+          if (now - fileStats.mtimeMs > activeRetentionMs) unlinkSync(sourcePath);
+        } catch (_) {
+          // Fail open on a single entry; the rest of the sweep pass still runs.
+        }
+        continue;
+      }
+
+      if (!entry.name.endsWith('.json')) continue;
       try {
-        const fileStats = statSync(sourcePath);
-        if (now - fileStats.mtimeMs <= activeRetentionMs) continue;
+        const candidateStats = statSync(sourcePath);
+        if (now - candidateStats.mtimeMs <= activeRetentionMs) continue;
+        const currentStats = statSync(sourcePath);
+        if (now - currentStats.mtimeMs <= activeRetentionMs) continue;
         renameSync(sourcePath, join(archiveDir, entry.name));
       } catch (_) {
         // Fail open on a single entry; the rest of the sweep pass still runs.
@@ -333,6 +436,10 @@ function sweepStaleLoopGuardStates(stateDir, runtimeState) {
     pruneLoopGuardArchive(stateDir);
   } catch (_) {
     // Fail open: a sweep error must never affect session startup.
+  } finally {
+    if (lockPath) {
+      try { rmdirSync(lockPath); } catch (_) { /* A lost lock must not affect startup. */ }
+    }
   }
 }
 
@@ -352,7 +459,8 @@ function sweepStaleLoopGuardStates(stateDir, runtimeState) {
  *   deep-research again) -- only repeated hand-offs to the SAME executor.
  * - Fails open on its own errors (missing/unreadable registry or state,
  *   unexpected arg shapes) so a bug here never blocks unrelated, correctly-
- *   routed work.
+ *   routed work. Reject enforcement is best-effort and emits an audit line when
+ *   a required dependency is unavailable.
  *
  * @param {{ directory?: string } | undefined} ctx - OpenCode plugin context.
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
@@ -384,12 +492,16 @@ export default async function MkDeepLoopGuardPlugin(ctx) {
 
         // -- Check 1: Deep Route mode mismatch (existing behavior, identity-fixed) --
         const registry = loadRegistryAgents(registryPath);
-        if (registry) {
+        if (!registry) {
+          if (process.env[REJECT_MODE_ENV] === '1') {
+            appendRejectModeDegradedAudit(loopStateDir, 'mode registry unavailable');
+          }
+        } else {
           const entry = registry.get(targetAgent);
           if (entry) {
             const declaredMode = declaredModeFromPrompt(args.prompt);
-            if (declaredMode && declaredMode !== entry.workflowMode) {
-              const detail = mismatchDetail(targetAgent, entry.workflowMode, declaredMode);
+            if (declaredMode && !entry.workflowModes.has(declaredMode)) {
+              const detail = mismatchDetail(targetAgent, entry.workflowModes, declaredMode);
               if (process.env[REJECT_MODE_ENV] === '1') throw new Error(detail);
               appendWarningLog(loopStateDir, detail);
             }
@@ -398,8 +510,20 @@ export default async function MkDeepLoopGuardPlugin(ctx) {
 
         // -- Check 2: loop-like repeated hand-off to a command-owned loop executor --
         if (LOOP_EXECUTOR_AGENTS.has(targetAgent) && input.sessionID) {
-          const commandDriven = ITERATION_MARKER_REGEX.test(args.prompt || '');
-          const count = recordLoopDispatch(loopStateDir, input.sessionID, targetAgent, commandDriven);
+          const commandDriven = isCommandDrivenIteration(args.prompt);
+          const { count, persisted } = recordLoopDispatch(
+            loopStateDir,
+            input.sessionID,
+            targetAgent,
+            commandDriven,
+          );
+
+          if (!persisted) {
+            if (process.env[REJECT_LOOP_ENV] === '1') {
+              appendRejectModeDegradedAudit(loopStateDir, 'loop state persistence unavailable');
+            }
+            return;
+          }
 
           if (!commandDriven && count >= WARN_AT_COUNT) {
             const detail = loopRepeatDetail(targetAgent, count);

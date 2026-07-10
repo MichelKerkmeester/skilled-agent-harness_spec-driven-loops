@@ -46,7 +46,6 @@
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
       ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
       ".opencode/plugins/mk-code-graph.js",
-      ".claude/settings.local.json",
       ".claude/mcp.json",
       "plan.md",
       "tasks.md",
@@ -81,12 +80,6 @@
         "name": "mk-code-graph.js",
         "kind": "code",
         "path": ".opencode/plugins/mk-code-graph.js",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A working code-index CLI no runtime calls does not close the transport-down class — and the existing OpenCode plugin bridge (mk-code-graph-bridge.mjs) is currently non-functional from post-extraction import drift",
     "created_at": "2026-06-06T14:45:15Z",
-    "last_save_at": "2026-07-09T10:02:55.529Z",
+    "last_save_at": "2026-07-10T06:24:25.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

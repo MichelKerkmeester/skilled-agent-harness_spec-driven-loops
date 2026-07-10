@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "review"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-audits/008-validator-spec-document-integrity-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/007-validator-spec-document-integrity-audit"
     last_updated_at: "2026-04-29T19:47:00Z"
     last_updated_by: "codex"
     recent_action: "Task ledger completed"

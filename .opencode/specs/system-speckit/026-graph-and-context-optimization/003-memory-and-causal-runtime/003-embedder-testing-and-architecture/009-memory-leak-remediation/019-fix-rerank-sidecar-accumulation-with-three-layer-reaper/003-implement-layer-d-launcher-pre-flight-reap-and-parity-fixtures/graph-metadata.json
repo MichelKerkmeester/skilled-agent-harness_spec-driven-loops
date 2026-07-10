@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The detached rerank sidecar launchers could reuse or spawn sidecars without first removing rows whose registered launcher owners were all dead",
     "created_at": "2026-05-23T07:46:28Z",
-    "last_save_at": "2026-07-09T10:02:53.685Z",
+    "last_save_at": "2026-07-10T06:21:58.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/011-enrichment-and-scan-shutdown-fence"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/011-enrichment-and-scan-shutdown-fence"
     last_updated_at: "2026-06-15T08:00:00Z"
     last_updated_by: "main-agent"
     recent_action: "Authored implementation plan"

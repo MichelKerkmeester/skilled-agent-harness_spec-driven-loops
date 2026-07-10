@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Batch reindex discovered substantially more files on disk than were inserted into the memory index",
     "created_at": "2026-04-12T09:02:50.322Z",
-    "last_save_at": "2026-07-09T10:02:58.759Z",
+    "last_save_at": "2026-07-10T06:24:48.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

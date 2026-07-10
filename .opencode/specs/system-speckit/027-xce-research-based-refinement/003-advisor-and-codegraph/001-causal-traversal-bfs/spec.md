@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs"
     last_updated_at: "2026-06-10T20:30:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Shared BFS traversal helper shipped and verified"

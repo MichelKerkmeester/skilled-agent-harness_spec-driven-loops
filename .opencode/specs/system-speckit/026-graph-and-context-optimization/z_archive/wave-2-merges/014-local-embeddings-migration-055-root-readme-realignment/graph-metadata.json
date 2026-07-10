@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Audit the README's factual claims (tool counts, file paths, server names, integration patterns) against current reality",
     "created_at": "2026-05-15T12:55:00Z",
-    "last_save_at": "2026-07-09T10:02:54.707Z",
+    "last_save_at": "2026-07-10T06:23:06.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

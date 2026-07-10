@@ -37,11 +37,14 @@ _memory:
 |---|---|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-05-02 |
 | **Branch** | `main` |
 | **Parent** | 061-agent-optimization |
 | **Target** | `@debug` (506 LOC) |
+
+> **Historical record:** This archived specification retains its planned status; the implementation summary records the completed evaluation and later promotion decision.
+
 <!-- /ANCHOR:metadata -->
 
 ---

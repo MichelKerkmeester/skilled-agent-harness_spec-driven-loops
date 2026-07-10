@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety"
     last_updated_at: "2026-06-10T00:00:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Shipped 3 P0 fixes + secret scrubber; build green, 60 focused tests"

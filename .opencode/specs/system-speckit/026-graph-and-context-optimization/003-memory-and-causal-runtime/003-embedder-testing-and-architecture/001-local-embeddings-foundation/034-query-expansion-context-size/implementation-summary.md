@@ -9,7 +9,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size"
     last_updated_at: "2026-05-14T15:40:13Z"
     last_updated_by: "main-agent"
     recent_action: "Implemented bounded combinedQuery helper and passed build/vitest/strict validation"

@@ -44,11 +44,8 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "external/skills/graphify/skill.md",
       "implementation-summary.md",
-      "external/worked/mixed-corpus/GRAPH_REPORT.md",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-      "external/worked/karpathy-repos/GRAPH_REPORT.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
@@ -63,21 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "skill.md",
-        "kind": "doc",
-        "path": "external/skills/graphify/skill.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "GRAPH_REPORT.md",
-        "kind": "doc",
-        "path": "external/worked/mixed-corpus/GRAPH_REPORT.md",
         "source": "derived"
       },
       {
@@ -199,11 +184,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Public already has Code Graph MCP for structural code queries (442.9K nodes, 225.4K edges), CocoIndex for semantic retrieval, Spec Kit Memory for persistent context, and hook-based context injection patterns",
     "created_at": "2026-04-12T09:02:53.448Z",
-    "last_save_at": "2026-07-02T05:31:11.034Z",
+    "last_save_at": "2026-07-10T06:24:21.693Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

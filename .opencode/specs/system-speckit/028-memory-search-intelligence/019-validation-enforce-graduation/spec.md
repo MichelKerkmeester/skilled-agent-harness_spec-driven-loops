@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Validation Advisory-to-Enforce Graduation — Status Cross-Doc, Metadata Disk-Path, Child Drift"
-description: "Three validate.sh rules (STATUS_CROSS_DOC_CONSISTENCY, METADATA_DISK_PATH_CONSISTENCY, GRAPH_METADATA_CHILD_DRIFT) ship advisory-only behind default-OFF *_ENFORCE flags. This packet applies the repo's proven SPECKIT_GENERATED_METADATA_GRANDFATHER graduation pattern (backfill every violation to zero, verify zero via a tree-wide advisory census, then flip) to all three, sequenced least-to-most risky, with the child-drift flip additionally gated on a new dist-presence freshness guard since its enforce mode fails closed on a missing scanner dist."
+description: "Three validate.sh rules (STATUS_CROSS_DOC_CONSISTENCY, METADATA_DISK_PATH_CONSISTENCY, GRAPH_METADATA_CHILD_DRIFT) ship advisory-only behind default-OFF *_ENFORCE flags. This packet applied the repo's proven SPECKIT_GENERATED_METADATA_GRANDFATHER graduation pattern (backfill every violation to zero, verify zero via a tree-wide advisory census, then flip) to all three, sequenced least-to-most risky, with the child-drift flip additionally gated on a new dist-presence freshness guard since its enforce mode fails closed on a missing scanner dist. All three flags now default to enforcing; a final tree-wide sweep confirmed zero net-new regression."
 trigger_phrases:
   - "validation enforce graduation"
   - "status cross-doc enforce flip"
@@ -12,12 +12,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation"
-    last_updated_at: "2026-07-09T23:00:00.000Z"
+    last_updated_at: "2026-07-10T07:22:00.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored spec.md from the three rule scripts and the grandfather flag precedent"
-    next_safe_action: "Run generate-description.js and backfill-graph-metadata.js, then write plan.md"
-    blockers:
-      - "017 (flag parsing trustworthiness) not yet landed — implementation cannot start until then"
+    recent_action: "Landed and verified all 3 phases"
+    next_safe_action: "Packet 019 closed — proceed to packet 023 (self-healing model consolidation)"
+    blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh"
       - ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh"
@@ -27,9 +26,9 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "planning-019-validation-enforce-graduation"
+      session_id: "phase3-019-validation-enforce-graduation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +48,7 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-Three `validate.sh` rules — `STATUS_CROSS_DOC_CONSISTENCY`, `METADATA_DISK_PATH_CONSISTENCY`, and `GRAPH_METADATA_CHILD_DRIFT` — already ship real detection logic but stay advisory-only: each reports `pass` with an advisory message today and only escalates to a `--strict`-failing `warn` once its own `SPECKIT_*_ENFORCE` env flag is explicitly set `true`. All three flags default `false` (advisory) as of this spec. This packet graduates all three to enforcing-by-default, reusing the exact backfill-to-zero → tree-wide-verify → flip sequence this repo already proved out for `SPECKIT_GENERATED_METADATA_GRANDFATHER` (`mcp_server/lib/config/capability-flags.ts:77-103`) and for the full-tree reconciliation pass in `008-metadata-rename-reconciliation`. The three graduations are sequenced least-to-most risky — status cross-doc first (pure shell, zero daemon risk), metadata disk-path second (same bar, but a fresh census, not 008's stale one), child drift last (its enforce mode fails closed on a missing scanner dependency, so it additionally needs a new dist-presence guard before it can safely flip). This packet is planning-only: it authors the spec/plan/tasks/checklist/decision-record so implementation can start once its blocking dependency lands.
+Three `validate.sh` rules — `STATUS_CROSS_DOC_CONSISTENCY`, `METADATA_DISK_PATH_CONSISTENCY`, and `GRAPH_METADATA_CHILD_DRIFT` — already ship real detection logic but stay advisory-only: each reports `pass` with an advisory message today and only escalates to a `--strict`-failing `warn` once its own `SPECKIT_*_ENFORCE` env flag is explicitly set `true`. All three flags default `false` (advisory) as of this spec. This packet graduates all three to enforcing-by-default, reusing the exact backfill-to-zero → tree-wide-verify → flip sequence this repo already proved out for `SPECKIT_GENERATED_METADATA_GRANDFATHER` (`mcp_server/lib/config/capability-flags.ts:77-103`) and for the full-tree reconciliation pass in `008-metadata-rename-reconciliation`. The three graduations are sequenced least-to-most risky — status cross-doc first (pure shell, zero daemon risk), metadata disk-path second (same bar, but a fresh census, not 008's stale one), child drift last (its enforce mode fails closed on a missing scanner dependency, so it additionally needed a new dist-presence guard before it could safely flip). All three phases are now complete and verified.
 
 **Key Decisions**: Reuse the grandfather backfill→verify→flip pattern rather than invent a new graduation mechanism (ADR-001); sequence least-risky-first per the task's own ordering rationale (ADR-002); build a dist-presence freshness guard for the child-drift scanner before flipping that one flag (ADR-003).
 
@@ -64,7 +63,7 @@ Three `validate.sh` rules — `STATUS_CROSS_DOC_CONSISTENCY`, `METADATA_DISK_PAT
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete — all 3 phases landed (SPECKIT_STATUS_CROSS_DOC_ENFORCE, SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE, SPECKIT_CHILD_DRIFT_ENFORCE all graduated to enforcing-by-default), tree-wide post-flip sweep clean |
 | **Created** | 2026-07-09 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |
@@ -288,5 +287,4 @@ Turn all three rules from silently-advisory to actually-enforcing, using the rep
 LEVEL 3 SPEC
 - Core + L2 + L3 addendums
 - Executive summary, risk matrix, user stories, open questions
-- Planning-only: Status Draft, 0% implemented
 -->

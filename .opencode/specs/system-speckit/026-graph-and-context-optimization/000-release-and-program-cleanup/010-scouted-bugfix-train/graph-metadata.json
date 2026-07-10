@@ -92,7 +92,7 @@
     ],
     "causal_summary": "The 026 program subsystems (memory MCP, code-graph, skill-advisor, deep-loop runtime, and the cli executors) accumulate latent drift, small correctness defects, and refinement opportunities that no single feature packet owns",
     "created_at": "2026-06-03T00:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:51.580Z",
+    "last_save_at": "2026-07-10T06:22:46.856Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

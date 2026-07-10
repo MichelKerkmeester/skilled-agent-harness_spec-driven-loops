@@ -30,28 +30,15 @@
       "intents",
       "javascript"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "in_progress",
     "key_files": [
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -71,7 +58,13 @@
         "source": "derived"
       },
       {
-        "name": "Slice Intent Gate",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rewrite Prompts",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -185,9 +178,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Split code-opencode's single LANGUAGE_STANDARDS intent into per-language intents (JAVASCRIPT/TYPESCRIPT/PYTHON/SHELL) so a single-language task stops routing all four languages' guides; mirror the split into the sk-code parent projection under the existing drift guards.",
-    "created_at": "2026-07-09T10:01:23.261Z",
-    "last_save_at": "2026-07-09T10:06:20.433Z",
+    "causal_summary": "A 2,795-commit retroactive rewrite is too large for a single cli-devin dispatch",
+    "created_at": "2026-05-16T09:42:35Z",
+    "last_save_at": "2026-07-10T06:22:05.155Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +190,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0bf0b4d6d2ceca00801129ed7b42b209cc297908c7ba121b61b6d509f250f80b",
+    "source_fingerprint": "sha256:79b94a3ba58063aafbc0f129a20c42872ffb9da375230ad71bed6db719843729",
     "source_doc_hashes": {
-      "spec.md": "f6046cf64129d8c2eee22d8541defc96553d11d6827bfb70180d133ef68fb29b",
-      "plan.md": "f64d8f9a88e780ae5f0ad2e9a52863122072c16d7577bf0375f1c272f8c02aba",
-      "tasks.md": "8c38f64036e561a87ca6975a19d1491978fca2a6b448e600f15c5ba9f9f550a3",
-      "checklist.md": "61da1027c9e2552dad9a532c33832fd1955e3fbcb5cad402390c15ea9583e0cf",
-      "implementation-summary.md": "3be2e90635da2b031ba24ff85ed2e1de3e54d712b531a586c1f84f410e0af632"
+      "spec.md": "d1d94be7dcb0e5ea0da2274baadc1f173cc7b7267fe599c3b992d92707af3f35",
+      "plan.md": "a7cd9c8f2acac75c90808a68ad219a1f67c657faf88fa7f21a5677ec3e9ce566",
+      "tasks.md": "ecb6f358ebafd5a5c166df68633cfab49f029e2c6cc0a0db51d8ef262b67b7a1",
+      "implementation-summary.md": "00a7022abd716e7253e94bed3b5844812c98bcbe7cd55fea20ab4c1558e33b50"
     },
     "last_active_child_id": null,
     "last_active_at": null

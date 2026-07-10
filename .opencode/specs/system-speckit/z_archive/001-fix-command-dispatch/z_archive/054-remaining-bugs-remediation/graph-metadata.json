@@ -39,7 +39,7 @@
       "comprehensive"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "mcp_server/configs/search-weights.json",
       "decision-record.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Following comprehensive analysis of spec folders 052-codebase-fixes and 053-script-analysis-testing, along with a deep bug hunt of the Spec Kit Memory system, 13 bugs were ident...",
     "created_at": "2026-04-12T09:02:53.534Z",
-    "last_save_at": "2026-07-09T10:02:57.181Z",
+    "last_save_at": "2026-07-10T06:24:40.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d31791ceadd52eaa79b7fbb32503fa203653279257ca5a5103d2174285a8b1dc",
+    "source_fingerprint": "sha256:4f19953d320632b771444ff429f3aba306d754e884cb0663f3e05ddd97ce90f9",
     "source_doc_hashes": {
-      "spec.md": "5eb43681b986f9872bd556745ad3cb3c7a05ba6de80c8eebeb75146692b3f888",
+      "spec.md": "275d0030649dcadc9b7ac7aaa9334d9aa28a622cd45dc6d126164b391d9be0ec",
       "plan.md": "7819a88ece458f20451cdda7c2f4d8514e7a3cb35d426e91e91420fa67572134",
       "tasks.md": "c43538b06fe2e01e6bf9281734491dfa9fae04488ab90101ed8b6e3ef0045b22",
       "checklist.md": "eb5b267cdd461be5632a95033a757de4d8069cac08e3e87af77bb8e997593cb1",

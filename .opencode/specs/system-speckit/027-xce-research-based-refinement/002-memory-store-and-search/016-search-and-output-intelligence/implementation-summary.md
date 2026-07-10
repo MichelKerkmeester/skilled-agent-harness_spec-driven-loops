@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "027/002/017-search-and-output-intelligence-implementation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence"
     last_updated_at: "2026-06-17T09:57:00Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Phase parent rollup: all 7 children shipped (S1-S5 + O1-O2); per-child detail in children"

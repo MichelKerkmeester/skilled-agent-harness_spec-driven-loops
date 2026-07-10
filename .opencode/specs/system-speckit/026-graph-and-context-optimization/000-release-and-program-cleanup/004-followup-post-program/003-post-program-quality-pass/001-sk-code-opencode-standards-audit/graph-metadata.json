@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code",
     "created_at": "2026-04-29T15:28:00.000Z",
-    "last_save_at": "2026-07-09T10:02:51.054Z",
+    "last_save_at": "2026-07-10T06:21:55.766Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

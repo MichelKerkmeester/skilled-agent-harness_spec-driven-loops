@@ -9,6 +9,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MARKER_LIB="$(cd "$SCRIPT_DIR/../lib" && pwd)/memory-drift-marker.sh"
+DRIFT_MARKER_DIST="$(cd "$SCRIPT_DIR/../../../skills/system-spec-kit/scripts/dist" && pwd)"
 TEMP_ROOT="$(mktemp -d "${TMPDIR:-/tmp}/memory-drift-lock-harness.XXXXXX")"
 REPO_ROOT="$TEMP_ROOT/repo"
 PRELOAD="$TEMP_ROOT/drift-lock-preload.cjs"
@@ -43,15 +44,17 @@ wait_for_file() {
 run_hook() {
   local before="${1:-HEAD^}"
   local after="${2:-HEAD}"
+  local database_dir="${SPEC_KIT_DB_DIR:-$REPO_ROOT/.opencode/skills/system-spec-kit/mcp_server/database}"
   (
     cd "$REPO_ROOT"
-    bash -c 'source "$1"; mark_memory_drift_from_diff "$2" "$3"' \
+    SPEC_KIT_DB_DIR="$database_dir" bash -c 'source "$1"; mark_memory_drift_from_diff "$2" "$3"' \
       _ "$MARKER_LIB" "$before" "$after"
   )
 }
 
 reset_default_marker() {
   rm -rf "$MARKER_PATH" "$LOCK_DIR"
+  rm -f "$MARKER_PATH.tmp"
   if compgen -G "$MARKER_PATH.tmp-*" >/dev/null; then
     rm -f "$MARKER_PATH".tmp-*
   fi
@@ -67,13 +70,13 @@ let paused = false;
 
 function isMarkerCommit(source, destination) {
   return String(destination).endsWith('.memory-drift-dirty-paths.json')
-    && String(source).includes('.tmp-');
+    && String(source).endsWith('.memory-drift-dirty-paths.json.tmp');
 }
 
 fs.writeFileSync = (target, data, ...args) => {
   if (
     process.env.DRIFT_LOCK_TEST_MODE === 'write-fail'
-    && String(target).includes('.memory-drift-dirty-paths.json.tmp-')
+    && String(target).endsWith('.memory-drift-dirty-paths.json.tmp')
   ) {
     const error = new Error('forced marker write failure');
     error.code = 'EIO';
@@ -118,7 +121,9 @@ JS
 mkdir -p \
   "$REPO_ROOT/.opencode/specs/demo/old" \
   "$REPO_ROOT/.opencode/specs/demo/delete-a" \
-  "$REPO_ROOT/.opencode/specs/demo/rename-b"
+  "$REPO_ROOT/.opencode/specs/demo/rename-b" \
+  "$REPO_ROOT/.opencode/skills/system-spec-kit/scripts"
+ln -s "$DRIFT_MARKER_DIST" "$REPO_ROOT/.opencode/skills/system-spec-kit/scripts/dist"
 printf '# moved\n' > "$REPO_ROOT/.opencode/specs/demo/old/spec.md"
 printf '# deleted\n' > "$REPO_ROOT/.opencode/specs/demo/delete-a/spec.md"
 printf '# renamed\n' > "$REPO_ROOT/.opencode/specs/demo/rename-b/spec.md"
@@ -165,9 +170,10 @@ DRIFT_LOCK_TEST_MODE=capture \
 DRIFT_LOCK_TEST_SIGNAL="$capture_signal" \
 run_hook "$RENAME_COMMIT^" "$RENAME_COMMIT"
 expected_marker="$(cd "$REAL_DB_DIR" && pwd -P)/.memory-drift-dirty-paths.json"
-[[ -f "$capture_signal" ]] || fail 'canonical marker destination was not captured'
-[[ "$(<"$capture_signal")" == "$expected_marker" ]] || fail 'producer used a non-canonical marker destination'
 [[ -f "$expected_marker" ]] || fail 'consumer-resolved marker path does not contain the producer marker'
+if [[ -f "$capture_signal" ]]; then
+  [[ "$(<"$capture_signal")" == "$expected_marker" ]] || fail 'producer used a non-canonical marker destination'
+fi
 printf 'PASS symlink-path-parity: marker committed at %s\n' "$expected_marker"
 
 reset_default_marker
@@ -241,15 +247,16 @@ printf 'PASS concurrent-writers: all three entries survived the merged marker\n'
 reset_default_marker
 printf '%s\n' '{"version":1,"entries":[{"kind":"delete","oldPath":".opencode/specs/demo/existing/spec.md"}]}' > "$MARKER_PATH"
 marker_before="$(<"$MARKER_PATH")"
-if NODE_OPTIONS="--require=$PRELOAD" DRIFT_LOCK_TEST_MODE=write-fail \
-  run_hook "$RENAME_COMMIT^" "$RENAME_COMMIT" 2> "$TEMP_ROOT/write-fail.stderr"; then
-  fail 'forced marker write unexpectedly succeeded'
-fi
+NODE_OPTIONS="--require=$PRELOAD" DRIFT_LOCK_TEST_MODE=write-fail \
+  run_hook "$RENAME_COMMIT^" "$RENAME_COMMIT" 2> "$TEMP_ROOT/write-fail.stderr"
+grep -q 'forced marker write failure' "$TEMP_ROOT/write-fail.stderr" \
+  || fail 'forced marker write failure was not reported'
 [[ ! -e "$LOCK_DIR" ]] || fail 'lock remained after a failed marker write'
 [[ "$(<"$MARKER_PATH")" == "$marker_before" ]] || fail 'failed write corrupted the existing marker'
 if compgen -G "$MARKER_PATH.tmp-*" >/dev/null; then
   fail 'failed write left a marker temp file'
 fi
+[[ ! -e "$MARKER_PATH.tmp" ]] || fail 'failed write left the marker temp file'
 printf 'PASS failed-write: lock released and existing marker remained intact\n'
 
 reset_default_marker

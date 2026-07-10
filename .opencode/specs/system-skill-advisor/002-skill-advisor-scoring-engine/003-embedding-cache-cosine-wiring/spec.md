@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented — verification complete with one pre-existing full-suite caveat |
 | **Created** | 2026-05-13 |
 | **Branch** | `001-embed-cache-and-cosine-wiring` |
 <!-- /ANCHOR:metadata -->

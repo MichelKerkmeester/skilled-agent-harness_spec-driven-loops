@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs"
     last_updated_at: "2026-06-11T06:30:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Remediated review findings: multi-root parity, advisory latency gate, p95 evidence"

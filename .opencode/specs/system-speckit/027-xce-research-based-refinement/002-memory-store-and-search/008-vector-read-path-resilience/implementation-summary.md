@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience"
     last_updated_at: "2026-06-10T21:05:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Implemented vector shard read-path resilience and benchmark coverage"

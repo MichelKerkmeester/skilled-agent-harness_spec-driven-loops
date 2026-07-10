@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Ten governance drift findings exist across sk-doc, sk-code, and system-spec-kit/constitutional: the sk-doc spec frontmatter row instructs agents to remove required frontmatter; command required-section lists diverge across three docs; the comment-hygiene checker misses half the forbidden patterns the constitutional rule lists; enforcement docs miscount enforcement gates and misstate bypass behavior; and the alignment verifier false-positives on Python scripts with .sh extensions while passing on P0 header gaps",
     "created_at": "2026-06-04T20:45:44Z",
-    "last_save_at": "2026-07-09T10:02:51.733Z",
+    "last_save_at": "2026-07-10T06:23:44.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

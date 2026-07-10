@@ -11,7 +11,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection"
     last_updated_at: "2026-06-07T17:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Landed the flag-gated default-off RC-2 foundation (detached spawn + release-on-shutdown)"

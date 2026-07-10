@@ -177,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Manual test scenarios for graph-signal-activation need structured per-phase documentation instead of relying on scattered playbook rows",
     "created_at": "2026-04-12T09:02:50.296Z",
-    "last_save_at": "2026-07-09T10:02:58.457Z",
+    "last_save_at": "2026-07-10T06:21:54.660Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,9 +219,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:572e3568561db20e04d5b774f1ce8c13ea3f4ef3428cfa631e418e592bdd9540",
+    "source_fingerprint": "sha256:02c6d2a83073215a86fb2302e4708a661e68a25e6afa1116d9905ec94e8da20c",
     "source_doc_hashes": {
-      "spec.md": "909ffd66d3df276c6fefe78c1aa6f6953f147f58356749c4e1b50958d8d08f91",
+      "spec.md": "7621a9defcc8ba026ac90b9633836a7a4838d8c7ed4e5c28ceaa5edb5345b818",
       "plan.md": "a46d0c24a0ac9e6eb93e60a785e77e7fc84c68c351b876ff22d9b01c48044dbd",
       "tasks.md": "05878f4e8dd2696491e84c9b227f6253beebbe0d9b945174af6e3a0738f6cdb0",
       "checklist.md": "97b24611a138f4818d4512f3df0821d6bb2238d839c003a79ea678f5908bc202",

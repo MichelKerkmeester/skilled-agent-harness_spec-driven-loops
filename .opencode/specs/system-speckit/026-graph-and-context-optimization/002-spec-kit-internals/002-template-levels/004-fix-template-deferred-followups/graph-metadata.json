@@ -166,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -179,6 +173,12 @@
       },
       {
         "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 003 implementation packet left ten Gate 7 items deferred after the round-3 sweep",
     "created_at": "2026-05-01T20:32:55Z",
-    "last_save_at": "2026-07-02T05:31:11.416Z",
+    "last_save_at": "2026-07-10T06:21:52.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,9 +221,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6c5caa62439b448732a1fb248f5ef4bf83cd4807e78930f3e53fa1910f765c9",
+    "source_fingerprint": "sha256:c978cbe94c3b0954a28b08da157b92e69f381a73078f12f797851858ede1dd71",
     "source_doc_hashes": {
-      "spec.md": "fb4bc953992ada3534ce0acb6b7a105fae1b7843e7dc7ab404d5269f6b6f9bfe",
+      "spec.md": "eb2072e3998b9b7119695c5b0ba003a612156a420647efba806c07a2eadc8228",
       "plan.md": "8fc060a61badd5022d05444026ca98c5ed4151b81475d9085c6f887f62218240",
       "tasks.md": "636c5c8b31ddd6fed7ae3fbcb5c2d2e1be3a6fe809533cefbfb31ce2e735fcc0",
       "checklist.md": "ebe11855fb882f29eae11fab818461b312d42ed63feb76ad4e4f3e7b10c636f4",

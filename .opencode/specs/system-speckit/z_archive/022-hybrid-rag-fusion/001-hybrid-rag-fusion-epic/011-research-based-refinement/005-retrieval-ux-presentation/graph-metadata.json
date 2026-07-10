@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Add empty-result recovery UX, two-tier explainability, mode-aware response shapes, per-result calibrated confidence, progressive disclosure, and retrieval session state.",
     "created_at": "2026-04-12T09:02:50.236Z",
-    "last_save_at": "2026-07-09T10:02:57.809Z",
+    "last_save_at": "2026-07-10T06:23:01.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

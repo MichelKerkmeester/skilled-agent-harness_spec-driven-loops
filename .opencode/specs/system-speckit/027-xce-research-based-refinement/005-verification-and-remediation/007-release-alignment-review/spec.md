@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review"
     last_updated_at: "2026-06-18T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Author release-alignment-review phase-parent control trio"

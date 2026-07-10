@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/011-rerank-model-fit-investigation"
     last_updated_at: "2026-05-18T19:23:09Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded research-only packet"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-18 evening) |
+| Status | In Progress — Phase 2 targeted bench gated |
 | Type | Research-only HF survey + targeted bench (4 failure probes only, not full 18) |
 | Owner | Main agent |
 | Parent | `../spec.md` (004-code-index-stack) |

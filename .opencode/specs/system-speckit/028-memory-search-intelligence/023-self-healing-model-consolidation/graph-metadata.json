@@ -32,9 +32,8 @@
       "orphan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
-      "mcp_server/handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
@@ -48,7 +47,7 @@
       {
         "name": "memory-index.ts",
         "kind": "code",
-        "path": "mcp_server/handlers/memory-index.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
         "source": "derived"
       },
       {
@@ -118,13 +117,13 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Implementation Result",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Once   Layer",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -154,7 +153,7 @@
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Implemented Outcomes",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -178,21 +177,21 @@
         "source": "derived"
       },
       {
-        "name": "listIndexedRecordIdsForDeletedPaths",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "appendMemoryDriftSuspects",
-        "kind": "key_phrase",
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The self-healing system ships in three layers (`011-automatic-drift-self-healing/spec.md` section 3), and its own",
     "created_at": "2026-07-09T20:28:41.704Z",
-    "last_save_at": "2026-07-09T20:30:47.614Z",
+    "last_save_at": "2026-07-10T07:58:37.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cd2287f366b7b3cec695e91b89c16ecae94ecb185b6581dfc6e6bf265510f9f",
+    "source_fingerprint": "sha256:03b68597e327a41f6ba3c7a8ea94a057886a20d5a91f77c90c6f1b43d1379308",
     "source_doc_hashes": {
-      "spec.md": "825e298a3cacb407f426a4d12f36d2d8bcaf6822c5ae28eb3db98482450ba61b",
-      "plan.md": "b6e02a00c2ed46e5284222ff5dc9947e48686163a1c77df33ff59fb77e41836b",
-      "tasks.md": "7305d7fc3ecf822a7bde9bb176ca79904af70d330ab127f4232555c7ed0b9f28",
-      "checklist.md": "ccdc22fef5ff96c92a070f79f7b0c621f30f9e949dbbc8b11b69d6c75c0093d1",
-      "implementation-summary.md": "aedd5b7affba6c2dfe0e717174a14afa28684a120250a8a7d9307ee0f77b32ce"
+      "spec.md": "33ad516323d8b5ad2f9c4d633ca8411b73d43532a7f5799dc83495d313faed3a",
+      "plan.md": "d5052059eb29b59273b0eaa479d62dc80f6fe58b8cc40f428fa30913caedb85d",
+      "tasks.md": "799719f341ba94298367fcb158520c83ea784eb7cd73d8c3da7213fa1519562f",
+      "checklist.md": "cf2c0020e2c561ab928281ea041c62cdcb4318a337b8a35f1e8feab29afac2ff",
+      "implementation-summary.md": "f7f2154febf1c663fb058c711fa1ea8c628dc5ed0a9491591c50afbf32dc0e77"
     },
     "last_active_child_id": null,
     "last_active_at": null

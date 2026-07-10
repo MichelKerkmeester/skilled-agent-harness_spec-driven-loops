@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard"
     last_updated_at: "2026-05-29T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented standalone save daemon guard"

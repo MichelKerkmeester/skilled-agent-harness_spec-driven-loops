@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`execution-router.ts` has 7 P1 findings from arc 010/001 deep-research",
     "created_at": "2026-05-23T06:21:18Z",
-    "last_save_at": "2026-07-09T10:02:53.619Z",
+    "last_save_at": "2026-07-10T06:24:47.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

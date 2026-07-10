@@ -213,7 +213,7 @@
     ],
     "causal_summary": "032 surfaced a persistent root issue in the local llama-cpp embedding worker: `node-llama-cpp`'s `getEmbeddingFor()` returns `null` on substantive content",
     "created_at": "2026-05-14T14:09:05Z",
-    "last_save_at": "2026-07-09T10:02:52.463Z",
+    "last_save_at": "2026-07-10T06:24:01.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -9,7 +9,7 @@ contextType: "implementation"
 status: "completed"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/002-author-presentation-md"
     last_updated_at: "2026-06-10T19:45:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Created dedicated presentation Markdown assets for all create commands"

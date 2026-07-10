@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The deep research (spec `019-deep-research-rag-improvement`) produced 29 prioritized recommendations from 5 GPT 5.4 agents (1.35M tokens, ~52 web searches)",
     "created_at": "2026-04-12T09:02:50.233Z",
-    "last_save_at": "2026-07-09T10:02:57.775Z",
+    "last_save_at": "2026-07-10T06:22:00.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `004-standalone-mcp-launcher-runtime-configs` |
-| **Status** | Implemented with runtime-manager caveats |
+| **Status** | In Progress |
 | **Created** | 2026-05-14 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

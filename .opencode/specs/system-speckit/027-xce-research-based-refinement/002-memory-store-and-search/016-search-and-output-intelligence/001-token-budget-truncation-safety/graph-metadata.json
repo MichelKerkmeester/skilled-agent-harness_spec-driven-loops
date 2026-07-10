@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The token-budget truncator sorted candidates by score and hard-stopped on the first result that overflowed the budget, so one large top memory starved every smaller fitting result and collapsed a populated search to a single result (5→1)",
     "created_at": "2026-06-17T19:57:25.101Z",
-    "last_save_at": "2026-07-09T10:02:55.362Z",
+    "last_save_at": "2026-07-10T06:22:44.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

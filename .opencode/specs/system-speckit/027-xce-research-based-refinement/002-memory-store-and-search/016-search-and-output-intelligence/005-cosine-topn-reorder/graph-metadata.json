@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Compressed RRF fusion magnitudes buried the most semantically-on-target memory below position 1, because ordering ignored the one absolute relevance signal the corpus carries (cosine)",
     "created_at": "2026-06-17T19:57:25.105Z",
-    "last_save_at": "2026-07-09T10:02:55.390Z",
+    "last_save_at": "2026-07-10T06:24:20.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

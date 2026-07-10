@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-orchestrator-placeholder-parity"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/005-orchestrator-placeholder-parity"
     last_updated_at: "2026-05-29T12:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Verified parity, rebuilt dist, strict-validate PASSED"

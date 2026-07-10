@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_2"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures"
     last_updated_at: "2026-05-01T04:14:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

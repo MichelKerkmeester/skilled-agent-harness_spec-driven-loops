@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "architecture"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/028-architecture-md"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-028-architecture-md"
     last_updated_at: "2026-05-14T17:44:37Z"
     last_updated_by: "codex"
     recent_action: "Validated system-code-graph architecture.md and packet docs"

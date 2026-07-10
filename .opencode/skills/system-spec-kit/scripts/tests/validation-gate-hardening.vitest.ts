@@ -142,13 +142,19 @@ describe('validation gate hardening', () => {
     ]);
   });
 
-  it('keeps metadata disk drift advisory by default and enforcing when flagged', () => {
+  it('metadata disk drift is enforcing by default, advisory when disabled, enforcing when flagged', () => {
     const workspace = makeWorkspace();
     const folder = createPacket(workspace, 'system-speckit/999-real-packet', {
       metadataId: 'system-speckit/999-stale-packet',
       parentId: 'system-speckit',
     });
-    const advisory = runValidate(folder, 'METADATA_DISK_PATH_CONSISTENCY');
+    const byDefault = runValidate(folder, 'METADATA_DISK_PATH_CONSISTENCY');
+    expect(byDefault.code).toBe(2);
+    expect(byDefault.stdout).toContain('Generated metadata path drift detected');
+
+    const advisory = runValidate(folder, 'METADATA_DISK_PATH_CONSISTENCY', {
+      SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE: 'false',
+    });
     expect(advisory.code).toBe(0);
     expect(advisory.stdout).toContain('ADVISORY');
     expect(advisory.stdout).toContain('description.specFolder=system-speckit/999-stale-packet expected=system-speckit/999-real-packet');
@@ -160,13 +166,19 @@ describe('validation gate hardening', () => {
     expect(enforced.stdout).toContain('Generated metadata path drift detected');
   });
 
-  it('keeps status drift advisory by default and enforcing when flagged', () => {
+  it('status drift is enforcing by default, advisory when disabled, enforcing when flagged', () => {
     const workspace = makeWorkspace();
     const folder = createPacket(workspace, 'system-speckit/998-status-drift', {
       specStatus: 'Planned',
       implementationStatus: 'Complete',
     });
-    const advisory = runValidate(folder, 'STATUS_CROSS_DOC_CONSISTENCY');
+    const byDefault = runValidate(folder, 'STATUS_CROSS_DOC_CONSISTENCY');
+    expect(byDefault.code).toBe(2);
+    expect(byDefault.stdout).toContain('spec.md and implementation-summary.md statuses disagree');
+
+    const advisory = runValidate(folder, 'STATUS_CROSS_DOC_CONSISTENCY', {
+      SPECKIT_STATUS_CROSS_DOC_ENFORCE: 'false',
+    });
     expect(advisory.code).toBe(0);
     expect(advisory.stdout).toContain('status cross-doc ADVISORY');
 

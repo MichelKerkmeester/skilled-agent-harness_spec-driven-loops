@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/012-hybrid-search-scope-then-limit"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/012-hybrid-search-scope-then-limit"
     last_updated_at: "2026-06-11T09:55:00Z"
     last_updated_by: "opencode"
     recent_action: "Completed the BM25 scope-then-limit fix and documented verification evidence."

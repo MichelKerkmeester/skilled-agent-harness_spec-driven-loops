@@ -202,7 +202,7 @@
     ],
     "causal_summary": "3 inline cascade-probe timing constants in auto-select.ts (DEFAULT_TIMEOUT_MS=2500, DEFAULT_LOCK_STALE_MS=30000, DEFAULT_SLEEP_MS=25) now accept env-var overrides via SPECKIT_CASCADE_PROBE_TIMEOUT_MS / _LOCK_STALE_MS / _SLEEP_MS. Closes 1 P1 multi-site finding.",
     "created_at": "2026-05-23T17:55:00.000000Z",
-    "last_save_at": "2026-07-09T10:02:52.823Z",
+    "last_save_at": "2026-07-10T06:23:25.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

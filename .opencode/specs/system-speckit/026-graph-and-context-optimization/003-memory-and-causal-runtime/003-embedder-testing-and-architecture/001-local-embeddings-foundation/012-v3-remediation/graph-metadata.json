@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Setup A's shipped behavior and its documentation drifted from the intended local default",
     "created_at": "2026-05-13T08:30:00Z",
-    "last_save_at": "2026-07-09T10:02:52.268Z",
+    "last_save_at": "2026-07-10T06:24:41.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T08:30:00Z",
     "source_docs": [

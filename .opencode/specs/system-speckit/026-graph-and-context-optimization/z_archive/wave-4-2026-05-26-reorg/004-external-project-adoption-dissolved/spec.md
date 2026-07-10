@@ -15,7 +15,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved"
     last_updated_at: "2026-04-25T11:00:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Initialized Level 3 phase with 6 sub-phases derived from converged pt-01 + pt-02 research"

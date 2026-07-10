@@ -13,6 +13,8 @@ const DEFAULT_SOCKET_DIR = '/tmp/mk-code-index';
 const DEFAULT_TIMEOUT_MS = 2500;
 const DEFAULT_PROBE_TIMEOUT_MS = 100;
 const MAX_STDIO_BYTES = 1024 * 1024;
+const EXIT_SETTLE_GRACE_MS = 25;
+const TERMINATION_GRACE_MS = 100;
 const CLI_SHIM = fileURLToPath(new URL('../../../../bin/code-index.cjs', import.meta.url));
 const BRIDGE_PATH = fileURLToPath(new URL('../../../../bin/lib/launcher-ipc-bridge.cjs', import.meta.url));
 const DB_DIR = fileURLToPath(new URL('../database', import.meta.url));
@@ -343,6 +345,7 @@ async function runCli(input) {
   return new Promise((resolveResult) => {
     const child = spawn(process.execPath, cliArgs, {
       cwd: typeof input.workspaceRoot === 'string' && input.workspaceRoot.trim() ? input.workspaceRoot.trim() : REPO_ROOT,
+      detached: process.platform !== 'win32',
       env: {
         ...process.env,
         SPECKIT_IPC_SOCKET_DIR: process.env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR,
@@ -354,10 +357,29 @@ async function runCli(input) {
     let stderr = '';
     let settled = false;
     let timedOut = false;
+    let exitTimer = null;
+    let terminationTimer = null;
+    const killProcessGroup = (signal) => {
+      if (process.platform !== 'win32' && child.pid) {
+        try {
+          process.kill(-child.pid, signal);
+          return;
+        } catch {
+          // Fall through when the process group has already exited.
+        }
+      }
+      try {
+        child.kill(signal);
+      } catch {
+        // Settlement remains timer-bounded even when the direct child is gone.
+      }
+    };
     const finish = (exitCode, error) => {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
+      clearTimeout(exitTimer);
+      clearTimeout(terminationTimer);
       const payload = parseStdout(stdout);
       const durationMs = Date.now() - startedAt;
       if (exitCode === 0 && payload) {
@@ -368,7 +390,7 @@ async function runCli(input) {
           brief,
           data: {
             toolName,
-            codeGraphStatus: payload,
+            ...(!input.minimal ? { codeGraphStatus: payload } : {}),
             ...(opencodeTransport ? { opencodeTransport } : {}),
           },
           metadata: {
@@ -377,6 +399,9 @@ async function runCli(input) {
             warm: true,
             durationMs,
             exitCode,
+            specFolder: typeof input.specFolder === 'string' && input.specFolder.trim()
+              ? input.specFolder.trim()
+              : null,
             socketPath: '[code-index-socket]',
           },
         }));
@@ -402,10 +427,14 @@ async function runCli(input) {
     };
     const timer = setTimeout(() => {
       timedOut = true;
-      child.kill('SIGTERM');
-      setTimeout(() => {
-        if (!settled) child.kill('SIGKILL');
-      }, 100).unref?.();
+      killProcessGroup('SIGTERM');
+      terminationTimer = setTimeout(() => {
+        if (!settled) {
+          killProcessGroup('SIGKILL');
+          finish(null, 'timeout');
+        }
+      }, TERMINATION_GRACE_MS);
+      terminationTimer.unref?.();
     }, remainingMs);
     timer.unref?.();
     child.stdout?.setEncoding?.('utf8');
@@ -417,6 +446,10 @@ async function runCli(input) {
       stderr = capOutput(stderr, chunk);
     });
     child.on('error', (error) => finish(null, error.message));
+    child.on('exit', (code) => {
+      exitTimer = setTimeout(() => finish(code, null), EXIT_SETTLE_GRACE_MS);
+      exitTimer.unref?.();
+    });
     child.on('close', (code) => finish(code, null));
   });
 }

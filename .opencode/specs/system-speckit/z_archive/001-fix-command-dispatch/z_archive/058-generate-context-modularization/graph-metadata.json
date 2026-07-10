@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The `generate-context.js` script is a 4,837-line monolithic file containing 84 functions across 18 sections",
     "created_at": "2026-04-12T09:02:53.536Z",
-    "last_save_at": "2026-07-09T10:02:57.209Z",
+    "last_save_at": "2026-07-10T06:23:10.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

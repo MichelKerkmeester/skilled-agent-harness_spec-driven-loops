@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level_2"
+    packet_pointer: "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

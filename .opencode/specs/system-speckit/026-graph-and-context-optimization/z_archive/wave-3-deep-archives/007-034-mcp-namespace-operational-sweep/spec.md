@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/034-mcp-namespace-operational-sweep"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-034-mcp-namespace-operational-sweep"
     last_updated_at: "2026-05-14T21:55:00Z"
     last_updated_by: "orchestrator-mcp-sweep"
     recent_action: "Renamed 13 stale mcp__system_code_graph__* refs across 3 operational files"

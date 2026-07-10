@@ -119,12 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -138,6 +132,12 @@
       },
       {
         "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phase 004 maintenance scenarios must be executed from scratch",
     "created_at": "2026-04-12T09:02:50.291Z",
-    "last_save_at": "2026-07-09T10:02:58.412Z",
+    "last_save_at": "2026-07-10T06:22:39.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3b9ced9d5357c889044078fbf58ec0a6d38c8b7d8a0a598d2650aac086a88d5",
+    "source_fingerprint": "sha256:626bf6789ed621c1ef6de333b4c6a7dac99819dfc06f32532a54ec9cb7ae07a7",
     "source_doc_hashes": {
-      "spec.md": "cc4b72886eeef8c10676664e223b9d127fc9b9807908be5188990b3cd812dc50",
+      "spec.md": "04e8d5d60d6b92d087c6c50bfd330e3b8302312bd846d097c18f354e53a92ea2",
       "plan.md": "77a43a44048e3ff962fb980c6af6a76a69ba145a8e8c63d955079d86421d372d",
       "tasks.md": "d80fc4a33e712c5de98538f9a3f962d804501e21ee037fd93b54a9d7718847e1",
       "checklist.md": "197a2ee27f3827d949ff85d0267c69ff125a991778ddec2c8651f44ce92b9db1",

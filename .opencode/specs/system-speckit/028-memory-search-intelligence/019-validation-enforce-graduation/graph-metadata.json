@@ -39,7 +39,7 @@
       "advisory"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
       ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
@@ -48,19 +48,19 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "spec.md",
+      "scripts/tests/check-graph-metadata-child-drift.sh",
+      "scripts/regen-worker.sh",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "scripts/rules/check-status-cross-doc-consistency.sh",
-      "scripts/rules/check-metadata-disk-consistency.sh",
-      "scripts/rules/check-graph-metadata-child-drift.sh",
-      "scripts/dist/spec/is-phase-parent.js",
-      "scripts/spec/is-phase-parent.ts",
-      "dist/spec/is-phase-parent.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/check-graph-metadata-child-drift.sh"
+      "scripts/fix-packet-pointer.mjs",
+      "mcp_server/lib/config/capability-flags.ts",
+      "scripts/census-validation-rule.sh",
+      "scripts/census-worker.sh",
+      ".opencode/bin/worktree-session.sh",
+      "scripts/rules/check-status-cross-doc-consistency.sh"
     ],
     "entities": [
       {
@@ -106,6 +106,12 @@
         "source": "derived"
       },
       {
+        "name": "regen-worker.sh",
+        "kind": "script",
+        "path": "scripts/regen-worker.sh",
+        "source": "derived"
+      },
+      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -136,21 +142,27 @@
         "source": "derived"
       },
       {
-        "name": "is-phase-parent.js",
-        "kind": "code",
-        "path": "scripts/dist/spec/is-phase-parent.js",
+        "name": "fix-packet-pointer.mjs",
+        "kind": "file",
+        "path": "scripts/fix-packet-pointer.mjs",
         "source": "derived"
       },
       {
-        "name": "is-phase-parent.ts",
-        "kind": "code",
-        "path": "scripts/spec/is-phase-parent.ts",
+        "name": "census-validation-rule.sh",
+        "kind": "script",
+        "path": "scripts/census-validation-rule.sh",
         "source": "derived"
       },
       {
-        "name": "validation-gate-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
+        "name": "census-worker.sh",
+        "kind": "script",
+        "path": "scripts/census-worker.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail validation today, because each is gated by its own default-`false` enforce flag:",
     "created_at": "2026-07-09T20:32:08.332Z",
-    "last_save_at": "2026-07-09T20:45:55.335Z",
+    "last_save_at": "2026-07-10T07:23:00.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:948a976c0b2577ae9559ef24b3210538276e69948522ad2b4ec7c575658e30fa",
+    "source_fingerprint": "sha256:ef1980a412d8510094b5a3a17afe211ef591cbf788e7d35dd2901d88ff6ac902",
     "source_doc_hashes": {
-      "spec.md": "6df1b900be01ca6292de4c0445300189afd034a46d7fe48f94d03cc6c7bb21ee",
+      "spec.md": "171320712d1c8223ecc73eae7cd63a36f1104a3eedb6a6bd601c401632b431ba",
       "plan.md": "da02a972e878da7d84e4e6400e55350cbab34757a58ca63302e213339a1e0f8e",
-      "tasks.md": "dc7f9806faf0fd89d23260f3909f0bb8eb47f3595cff963e1dec3d9e5c66f183",
-      "checklist.md": "667594bf76b8215bdae5ce1108dc5ba06477b1facf82bad7a2f4cbe0c55e84b8",
-      "decision-record.md": "b33d33ac0b39eda3af10282c560ab6c99da16e178a226df5c3ea957be9922c46",
-      "implementation-summary.md": "c2ea4ab6b296c9aebc7ad3b104f35528e933dd42ea7048012e2bbbc05f8aea5b"
+      "tasks.md": "f973c6cb45eb29aa3bdaf689de3eb9348b874e18906d4815e69df2223a6d55c0",
+      "checklist.md": "1cd3e3deeb51b32673e03d40531e54b8ebea4db009d0c738eaa72c3bf8043ccb",
+      "decision-record.md": "9d7d09a2eb34c44303f30434a01a75920a3501468678a1f5af0f66b83adc1785",
+      "implementation-summary.md": "90f09a5c1ab1ddf2267c32f2eeed66e697d7feed999f0b6f1f472b6b4915342c"
     },
     "last_active_child_id": null,
     "last_active_at": null

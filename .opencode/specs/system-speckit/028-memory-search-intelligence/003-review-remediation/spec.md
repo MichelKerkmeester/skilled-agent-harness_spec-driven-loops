@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-review-remediation"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-review-remediation"
     last_updated_at: "2026-07-04T14:11:00.937Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "002/004 absorbed into 016 (008/009+013); parent rolled up complete"

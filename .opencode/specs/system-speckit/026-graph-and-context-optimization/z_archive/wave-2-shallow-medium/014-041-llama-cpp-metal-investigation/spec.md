@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/041-llama-cpp-metal-investigation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-shallow-medium/014-041-llama-cpp-metal-investigation"
     last_updated_at: "2026-05-14T15:23:23Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-041"
     recent_action: "Created research-only packet for llama-cpp Metal backend failures"

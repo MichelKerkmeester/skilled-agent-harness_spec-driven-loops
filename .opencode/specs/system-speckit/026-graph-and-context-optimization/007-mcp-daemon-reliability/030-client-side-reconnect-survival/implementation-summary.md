@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival"
     last_updated_at: "2026-06-08T15:19:04Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Register phase 030 as planned from the client-reconnect investigation"

@@ -6,6 +6,11 @@ import * as core from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
 import type { HealthArgs, StatsArgs } from '../handlers/memory-crud-types';
 import { getTokenBudget } from '../lib/architecture/layer-definitions';
+import {
+  routeQuery,
+  resetContentRichShortQueryGraphPreservationCount,
+} from '../lib/search/query-router';
+import { withFeatureFlag } from './__helpers__/test-env';
 
 type ErrorLike = {
   name?: string;
@@ -294,7 +299,45 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
           degreeHits: expect.any(Number),
           degreeResultCount: expect.any(Number),
         }),
+        contentRichShortQueryGraphPreservationCount: expect.any(Number),
       }));
+    });
+
+    it('021-REQ006: F15 counter surfaces in memory_health routing block, increments on a content-rich-short query, and resets via the test-only hook', async () => {
+      resetContentRichShortQueryGraphPreservationCount();
+
+      const before = await handler.handleMemoryHealth({});
+      const beforeParsed = parseResponse(before);
+      expect(beforeParsed.data?.routing?.contentRichShortQueryGraphPreservationCount).toBe(0);
+
+      withFeatureFlag('SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION', 'true', () => {
+        routeQuery('why chose this');
+      });
+
+      const after = await handler.handleMemoryHealth({});
+      const afterParsed = parseResponse(after);
+      expect(afterParsed.data?.routing?.contentRichShortQueryGraphPreservationCount).toBe(1);
+
+      resetContentRichShortQueryGraphPreservationCount();
+      const reset = await handler.handleMemoryHealth({});
+      const resetParsed = parseResponse(reset);
+      expect(resetParsed.data?.routing?.contentRichShortQueryGraphPreservationCount).toBe(0);
+    });
+
+    it('021-REQ007: F15 counter wiring is additive-only -- no other routing field or routeQuery() output changes', async () => {
+      resetContentRichShortQueryGraphPreservationCount();
+
+      const firstHealth = await handler.handleMemoryHealth({});
+      const secondHealth = await handler.handleMemoryHealth({});
+      const firstRouting = parseResponse(firstHealth).data?.routing;
+      const secondRouting = parseResponse(secondHealth).data?.routing;
+      expect(secondRouting).toEqual(firstRouting);
+
+      const fixedQuery = 'refactor the database connection module';
+      const routeBefore = JSON.stringify(routeQuery(fixedQuery));
+      await handler.handleMemoryHealth({});
+      const routeAfter = JSON.stringify(routeQuery(fixedQuery));
+      expect(routeAfter).toBe(routeBefore);
     });
 
     it('T519-H3: Invalid reportMode returns error response', async () => {

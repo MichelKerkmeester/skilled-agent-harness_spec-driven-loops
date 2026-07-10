@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink"
     last_updated_at: "2026-06-04T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All tasks complete; vitest 41 passed, tsc clean"

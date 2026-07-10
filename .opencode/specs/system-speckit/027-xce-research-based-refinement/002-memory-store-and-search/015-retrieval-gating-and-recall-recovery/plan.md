@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery"
     last_updated_at: "2026-06-16T18:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Reconciled plan: cold-tier inclusion by default; rerank rejected"

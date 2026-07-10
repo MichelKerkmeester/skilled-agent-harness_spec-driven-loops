@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability"
     last_updated_at: "2026-05-28T20:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Consolidated daemon-reliability phases under 007; authored parent map for 7 phases"

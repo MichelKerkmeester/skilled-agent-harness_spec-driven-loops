@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure"
     last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Reconcile phase map + child topology/status to nine on-disk children"

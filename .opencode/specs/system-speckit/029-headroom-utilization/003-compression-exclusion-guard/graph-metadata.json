@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Any future use of compression near our content risks corrupting control-plane data whose exact bytes are load-bearing: generated `description.json` / `graph-metadata.json`, continuity frontmatter, MCP request/response envelopes, deep-loop state/deltas, code-graph readiness/diffs/identifiers, and source citations",
     "created_at": "2026-06-28T09:17:58.919Z",
-    "last_save_at": "2026-07-09T10:02:56.751Z",
+    "last_save_at": "2026-07-10T06:24:27.696Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

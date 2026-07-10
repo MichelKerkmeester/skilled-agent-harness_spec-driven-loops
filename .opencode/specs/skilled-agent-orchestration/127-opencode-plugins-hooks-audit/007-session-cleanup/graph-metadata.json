@@ -31,10 +31,10 @@
       "hook"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/plugins/session-cleanup.js",
-      "review/review-report.md",
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/sk-prompt-models/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -42,15 +42,15 @@
     ],
     "entities": [
       {
-        "name": "session-cleanup.js",
-        "kind": "code",
-        "path": ".opencode/plugins/session-cleanup.js",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "review-report.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "review/review-report.md",
+        "path": ".opencode/skills/sk-prompt-models/README.md",
         "source": "derived"
       },
       {
@@ -178,17 +178,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The `session-cleanup` OpenCode plugin (Session-end MCP cleanup plugin) and its related Claude hook version were audited for bugs, silent-breakage, correctness errors, cross-runtime parity drift, and refinements",
-    "created_at": "2026-07-10T06:47:46.012Z",
-    "last_save_at": "2026-07-10T06:47:46.012Z",
+    "causal_summary": "The hub's `SKILL.md` §2 declared \"this skill has no runtime router of its own\" — a no-op that",
+    "created_at": "2026-06-05T12:47:32.521Z",
+    "last_save_at": "2026-07-10T06:24:19.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +191,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:934042f0a4ebaf380cfe056c36e928c1f7fc07a8345464c16c006ea0e56f85f7",
+    "source_fingerprint": "sha256:b819d3473a55fcfefe9f8d43933bad5c7858f6c99d76c25904846515dbce7501",
     "source_doc_hashes": {
-      "spec.md": "e7883a8301dd8b47cf026c258d7ac8e56974869cb91ca089509abef0621113e6",
-      "plan.md": "403a3e238cafd1fdff7873eb30b93527a79949b2bcfe5bbbdc4e117669ac78fa",
-      "tasks.md": "2c44967427ba2eb11be0e8e1f4131ed5661e970973d410a187f2bbdf01b38ada",
-      "implementation-summary.md": "826d1a07f3528b1cc64daa53e2fdfa207499119f70606a103c30076a1723d2c3"
+      "spec.md": "e1eaf65edd8f31d72ba569a24295b698a7c8a9facc1105c44dd6bc990e5bda4a",
+      "plan.md": "8b237522803f8de3b4637e02905cec54c092c96aeb7abfa743fa0a79dc2579a8",
+      "tasks.md": "ab411a2aa1dad340767f07e30757fdf24a57b16a02b9ed6aaa9d7f1698c3b113",
+      "implementation-summary.md": "c10331889c3026473f1fb670cd1b1b4cf6037f18bd836ea20911e196d7dbfd96"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -38,11 +38,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned (scaffold) |
+| **Status** | Complete (shipped as part of the deep-loop merge; per-phase checklist gate not independently run) |
 | **Created** | 2026-06-14 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Phase** | 005 of 009 (parent: `147-deep-loop-workflows`) |
 | **Depends on** | 004 |
+
+> **Status reconciliation:** This phase shipped in the deep-loop merge, but its standalone checklist was not independently gate-run; the differing summary status records that scoped delivery evidence.
+
 <!-- /ANCHOR:metadata -->
 
 ---

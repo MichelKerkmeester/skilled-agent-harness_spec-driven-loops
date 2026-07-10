@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-vitest-baseline-recovery-followup"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup"
     last_updated_at: "2026-05-09T05:30:00Z"
     last_updated_by: "codex"
     recent_action: "Closed Unit H parked vitest cases and measured 11,804 passed / 0 failed / 90 skipped / 11 todo"

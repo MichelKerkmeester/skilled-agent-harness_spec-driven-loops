@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The pipeline runs three quality checks with a split contract: stored/indexed quality uses the 0.0-1.0 scale, but workflow gating uses 0-100",
     "created_at": "2026-04-12T09:02:50.267Z",
-    "last_save_at": "2026-07-09T10:02:58.147Z",
+    "last_save_at": "2026-07-10T06:21:41.252Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

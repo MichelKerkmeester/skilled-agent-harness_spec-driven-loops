@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-retrieval-scope-hardening"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening"
     last_updated_at: "2026-06-04T20:45:41Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Implemented B1-B5 retrieval-scope hardening fixes"

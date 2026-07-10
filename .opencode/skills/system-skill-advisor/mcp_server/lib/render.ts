@@ -200,6 +200,11 @@ export function renderAdvisorBrief(
   ) + GOVERNOR_DIRECTIVE;
 }
 
+/** Render the constitutional context retained when no advisor brief is available. */
+export function renderAdvisorFallbackDirective(): string {
+  return HYGIENE_DIRECTIVE.slice(1) + GOVERNOR_DIRECTIVE;
+}
+
 // Shared timeout-fallback renderer. Previously the OpenCode hook
 // emitted a bespoke `Advisor: stale (cold-start timeout)\nFallback marker: ...`
 // string inline. Centralizing the format here keeps every runtime that needs

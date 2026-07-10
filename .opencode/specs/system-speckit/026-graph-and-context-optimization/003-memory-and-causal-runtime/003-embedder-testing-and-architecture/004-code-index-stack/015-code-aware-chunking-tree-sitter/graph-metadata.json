@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Replaces RecursiveSplitter's blind line-windowing with AST-aware chunking that respects class/function/interface/method boundaries. Uses tree-sitter grammars for TypeScript, Python, JavaScript, Go, Rust, Java, and falls back to RecursiveSplitter for unsupported languages. Each top-level definition becomes its own chunk (with full body + JSDoc/docstring), so the highest-ranked chunk for a query has rich semantic content instead of a 9-line import header. Future-proof: new languages drop in by adding a grammar. Embedder-agnostic, reranker-agnostic.",
     "created_at": "2026-05-19T12:33:28.231Z",
-    "last_save_at": "2026-07-09T10:02:52.977Z",
+    "last_save_at": "2026-07-10T06:23:29.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

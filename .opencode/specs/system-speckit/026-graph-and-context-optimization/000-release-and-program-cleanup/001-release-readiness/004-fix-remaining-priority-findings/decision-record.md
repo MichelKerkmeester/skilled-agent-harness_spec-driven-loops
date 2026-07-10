@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/005-fix-remaining-priority-findings"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/004-fix-remaining-priority-findings"
     last_updated_at: "2026-04-30T00:00:00+02:00"
     last_updated_by: "codex"
     recent_action: "Recorded defaults"

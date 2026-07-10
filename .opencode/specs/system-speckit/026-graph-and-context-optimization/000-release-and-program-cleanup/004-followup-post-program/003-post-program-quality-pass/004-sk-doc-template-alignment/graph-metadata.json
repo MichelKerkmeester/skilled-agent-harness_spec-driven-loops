@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Packets 031 through 036 changed operator documentation, runtime references, matrix-runner README files, matrix prompt templates and packet-local spec docs",
     "created_at": "2026-04-29T15:41:50.000Z",
-    "last_save_at": "2026-07-09T10:02:51.085Z",
+    "last_save_at": "2026-07-10T06:23:59.575Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

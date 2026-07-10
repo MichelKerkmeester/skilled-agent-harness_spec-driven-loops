@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction"
     last_updated_at: "2026-06-11T07:55:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Deep review applied: peak-sampled RSS gate + width-promotion tests; 136.5MB"

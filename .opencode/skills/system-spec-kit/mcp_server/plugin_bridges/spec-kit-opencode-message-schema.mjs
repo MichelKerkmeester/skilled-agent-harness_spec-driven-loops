@@ -113,11 +113,17 @@ export function createSyntheticTextPart({ id, sessionID, messageID, text, metada
  */
 export function hasSyntheticTextPartMarker(parts, markerKey, dedupeKey) {
   return parts.some((part) => {
-    const parsed = textPartSchema.safeParse(part);
-    if (!parsed.success) {
+    if (!part || typeof part !== 'object' || Array.isArray(part)) {
       return false;
     }
-    return parsed.data.metadata?.[markerKey] === dedupeKey;
+    if (Reflect.get(part, 'type') !== 'text') {
+      return false;
+    }
+    const metadata = Reflect.get(part, 'metadata');
+    if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) {
+      return false;
+    }
+    return Reflect.get(metadata, markerKey) === dedupeKey;
   });
 }
 

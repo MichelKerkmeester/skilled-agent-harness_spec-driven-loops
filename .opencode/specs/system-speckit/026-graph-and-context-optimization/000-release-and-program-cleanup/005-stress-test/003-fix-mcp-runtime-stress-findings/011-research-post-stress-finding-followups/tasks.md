@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "tasks-ledger"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups"
     last_updated_at: "2026-04-27T18:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored tasks.md"

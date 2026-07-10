@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/114-operate-like-fable-5"
+    packet_pointer: "skilled-agent-orchestration/z_archive/114-operate-like-fable-5/001-initial-refinement"
     last_updated_at: "2026-06-14T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored Level 2 plan for the Fable 5 distribution work"

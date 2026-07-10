@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "013-comprehensive-audit-remediation/004-mcp-contract-parity"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity"
     last_updated_at: "2026-06-04T20:45:43Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Marked all contract-parity tasks complete"

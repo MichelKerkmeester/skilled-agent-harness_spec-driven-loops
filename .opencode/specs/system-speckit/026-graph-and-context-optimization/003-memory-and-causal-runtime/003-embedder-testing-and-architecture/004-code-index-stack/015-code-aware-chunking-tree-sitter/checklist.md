@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/015-code-aware-chunking-tree-sitter"
     last_updated_at: "2026-05-19T15:35:00Z"
     last_updated_by: "main-agent"
     recent_action: "Bench gate completed via main agent recovery; CHK-024 + CHK-025 closed"

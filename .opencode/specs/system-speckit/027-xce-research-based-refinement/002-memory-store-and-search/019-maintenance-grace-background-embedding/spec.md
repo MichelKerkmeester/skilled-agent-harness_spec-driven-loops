@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027/002/020-maintenance-grace-background-embedding"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-background-embedding"
     last_updated_at: "2026-06-17T16:00:00Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Extracted a shared reference-counted marker and wired the embedding queue into it"

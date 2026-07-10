@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme"
     last_updated_at: "2026-06-10T16:40:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Rewrote the public root README to current framework state and reconciled phase evidence"

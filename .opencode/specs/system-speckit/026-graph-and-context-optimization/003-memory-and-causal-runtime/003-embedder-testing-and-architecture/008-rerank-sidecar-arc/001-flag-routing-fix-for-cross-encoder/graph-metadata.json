@@ -198,7 +198,7 @@
     ],
     "causal_summary": "spec-memory has two reranker entry points and the flag contract between them shadows the path we actually want to use:",
     "created_at": "2026-05-23T11:55:15.601Z",
-    "last_save_at": "2026-07-09T10:02:53.339Z",
+    "last_save_at": "2026-07-10T06:24:17.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d713e4f90b30808b46c34edbae237ad3634a861efb0ba904d0506874d46968ac",
+    "source_fingerprint": "sha256:eec5569160e7959d794d071f3131c107a9e1c9cd782a17eaabc83ac893b5ecd6",
     "source_doc_hashes": {
-      "spec.md": "e5ede5cc1a92ef884ed256f9d951f4f7bb000caf144e510d705ce0e5abaa5eb5",
+      "spec.md": "d23fb3d0ea2cea78d4641ba2c0459c5eccca3d3f1fa5a460173be9be3f6bafea",
       "plan.md": "34a22376ce6cf7273247aad4d67892dbb573a2f2a8294ec69c3374ef0575c322",
       "tasks.md": "0728fdfb2712139c9bbdf192e590e507bb5b633f35a5a4842ba66c2dc5e847fc",
       "implementation-summary.md": "425e852c2df99fcb4b6abfbe1a5a8803892ad499f5f175270575cad515734889"

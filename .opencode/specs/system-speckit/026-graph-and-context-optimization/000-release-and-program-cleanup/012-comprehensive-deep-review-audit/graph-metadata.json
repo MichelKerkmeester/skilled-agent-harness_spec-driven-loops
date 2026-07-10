@@ -217,7 +217,7 @@
     ],
     "causal_summary": "The 026 program (`graph-and-context-optimization`) is large and mostly complete (8 tracks, ~711 spec.md, ~634 sub-packets) and touched the spec-kit MCP core, the memory/causal runtime, code-graph, the feature catalog + testing playbook, and governance",
     "created_at": "2026-06-04T18:53:35.311Z",
-    "last_save_at": "2026-07-09T10:02:51.638Z",
+    "last_save_at": "2026-07-10T06:22:31.200Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

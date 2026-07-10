@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap"
     last_updated_at: "2026-05-28T23:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Implemented probe+reap+single-winner; 3 review defects fixed; probe 4/4 green"

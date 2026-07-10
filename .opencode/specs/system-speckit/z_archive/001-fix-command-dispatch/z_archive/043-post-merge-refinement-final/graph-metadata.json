@@ -39,7 +39,7 @@
       "major"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "scripts/rules/check-files.sh",
       "scripts/rules/check-evidence.sh",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After the major Spec Kit + Memory system merger (spec 035), eight refinement attempts (036-042) identified ~300+ issues",
     "created_at": "2026-04-12T09:02:53.527Z",
-    "last_save_at": "2026-07-09T10:02:57.099Z",
+    "last_save_at": "2026-07-10T06:22:21.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,9 +210,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:808e38f9ee56226454b1da0a5eb7307f1035d25778bd6033da7d85e1371dffd4",
+    "source_fingerprint": "sha256:8f16d0d85abcd77b9f4517f5f8260b84f21523c511465f6930aaede29a74182c",
     "source_doc_hashes": {
-      "spec.md": "c9661a47b55b85ceb866f95ed2fc4ed39b3acbe672adefdd362cb98e6c1b02ae",
+      "spec.md": "99ebfabea0fd42902c0b97c0ab9c9472a4772cc651eddc62e0fb1bb03cbb535b",
       "plan.md": "38bc3522e8173aa95e356a6f57e03ead66487f89c16ecc32a55d2b4e6162a286",
       "tasks.md": "2c7e3bfd5394fad1830c2eaf6727b4da73ffed5a30f06bb6711454c7984c544e",
       "checklist.md": "63a0fd9db45824398bce8e7a40cf9c70da21efcff7b8f6bd8b9034442285531b",

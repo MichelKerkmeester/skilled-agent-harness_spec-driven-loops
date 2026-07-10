@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping"
     last_updated_at: "2026-06-06T17:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Both fixes shipped and drilled; live index salvaged"

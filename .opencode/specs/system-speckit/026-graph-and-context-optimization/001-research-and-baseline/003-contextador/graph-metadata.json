@@ -45,10 +45,6 @@
     "key_files": [
       "spec.md",
       "implementation-summary.md",
-      "external/src/mcp.ts",
-      "external/src/lib/core/feedback.ts",
-      "external/src/lib/providers/config.ts",
-      "external/src/cli.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -66,30 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.ts",
-        "kind": "code",
-        "path": "external/src/mcp.ts",
-        "source": "derived"
-      },
-      {
-        "name": "feedback.ts",
-        "kind": "code",
-        "path": "external/src/lib/core/feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "config.ts",
-        "kind": "code",
-        "path": "external/src/lib/providers/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli.ts",
-        "kind": "code",
-        "path": "external/src/cli.ts",
         "source": "derived"
       },
       {
@@ -199,11 +171,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Loop",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`CodeEnvironment/Public` already operates CocoIndex, Code Graph MCP, and Spec Kit Memory",
     "created_at": "2026-04-12T09:02:53.447Z",
-    "last_save_at": "2026-07-02T05:31:11.030Z",
+    "last_save_at": "2026-07-10T06:24:17.126Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

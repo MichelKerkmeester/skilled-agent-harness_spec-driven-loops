@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune"
     last_updated_at: "2026-05-21T12:55:17Z"
     last_updated_by: "cli-codex"
     recent_action: "Phase A/B setup complete"
@@ -32,7 +32,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | Phase A/B complete |
+| **Status** | Planned (gated on Phases 1+2 outcomes) |
 | **Created** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `011-spec-memory-rerank-decision-arc` |

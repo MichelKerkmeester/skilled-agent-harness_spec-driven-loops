@@ -183,8 +183,8 @@
       }
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 42 findings (21 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
-    "created_at": "2026-07-09T10:02:55.878Z",
-    "last_save_at": "2026-07-09T10:02:55.878Z",
+    "created_at": "2026-07-10T06:23:51.463Z",
+    "last_save_at": "2026-07-10T06:23:51.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"
+    packet_pointer: "z_future/code-graph-and-cocoindex/005-cocoindex-complete-fork"
     last_updated_at: "2026-05-12T07:20:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Refactored populated Level 3 packet into a six-child phase parent scaffold"

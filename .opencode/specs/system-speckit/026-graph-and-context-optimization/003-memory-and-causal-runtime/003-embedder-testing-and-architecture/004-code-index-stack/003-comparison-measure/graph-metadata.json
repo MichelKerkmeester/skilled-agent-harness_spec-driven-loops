@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Run gemma vs CodeRankEmbed (and optional jina-code, bge-code) on 018/002 fixture + author ADR-001 ratifying CocoIndex production embedder",
     "created_at": "2026-05-18T08:18:02.785Z",
-    "last_save_at": "2026-07-09T10:02:52.887Z",
+    "last_save_at": "2026-07-10T06:24:39.709Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

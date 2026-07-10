@@ -11,7 +11,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner"
     last_updated_at: "2026-05-14T17:53:33Z"
     last_updated_by: "cli-codex-gpt-5-5-high"
     recent_action: "Wired second cocoindex_code MCP client; 403/404/407/410 PASS via shared daemon"

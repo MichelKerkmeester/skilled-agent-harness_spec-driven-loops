@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Planned (blocked on 022/001) |
+| Status | In Progress |
 | Level | 1 |
 | Owner | main agent |
 <!-- /ANCHOR:metadata -->

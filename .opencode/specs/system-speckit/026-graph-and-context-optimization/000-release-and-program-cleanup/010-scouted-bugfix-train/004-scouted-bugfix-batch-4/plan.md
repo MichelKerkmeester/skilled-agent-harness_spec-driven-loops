@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4"
     last_updated_at: "2026-06-03T09:00:00Z"
     last_updated_by: "claude-sonnet"
     recent_action: "9 confirm deep-dives done; 9 implement agents fixed ~18 files; builds + regression tests green"

@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Audit the 18-pair code-retrieval fixture for expected-path correctness. Probe 10 (`context save command that reads structured JSON` expected as the `.js` dist artifact) is the immediate trigger — the `.ts` source variant is arguably more correct. Audit pass: read every probe's expected_source_path against the actual codebase, decide whether the expected path is the BEST answer to the query, recommend updates.",
     "created_at": "2026-05-18T19:21:19.321Z",
-    "last_save_at": "2026-07-09T10:02:52.950Z",
+    "last_save_at": "2026-07-10T06:24:00.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,9 +218,9 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:444817e8ac45f80954b67e8b6303e2e1e85179f98cfa0b5545fb9ee6783f1437",
+    "source_fingerprint": "sha256:ee2292ea33d780339a4fecabab04a21cdfe66d6afe2a9658d0c43db36d9c92bf",
     "source_doc_hashes": {
-      "spec.md": "51e9abb2652174ca5d223cf0e9f8012ec772696e3562411a9a306a8f22995349",
+      "spec.md": "a5972efc629bbe4cc49df0a4980677e4aef00969fc8cabe164cf9e1bb34687aa",
       "plan.md": "9f0f697d828096687c9bac2259406690d899f9f8103dba2b3d933b2d06415b2f",
       "tasks.md": "35eb4928a1b34d92cf1809ca21ec786691f8ce8b2f08eba1a4613cff4a099df1",
       "implementation-summary.md": "74f1ebd8b104d39148f65666c1102aa1123134127d6560bc02773b1d3512e5f8",

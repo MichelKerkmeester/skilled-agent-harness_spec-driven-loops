@@ -45,7 +45,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".claude/mcp.json",
-      ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
       ".opencode/bin/mk-code-index-launcher.cjs"
     ],
     "entities": [
@@ -77,12 +76,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "New Post",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Manual testing verification packet for the mk-code-index rename and post-014 work. Layer-1 execution of every scenario in the manual_testing_playbook plus Layer-2 smoke probes.",
     "created_at": "2026-05-18T08:15:28.162Z",
-    "last_save_at": "2026-07-09T10:02:54.788Z",
+    "last_save_at": "2026-07-10T06:22:25.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

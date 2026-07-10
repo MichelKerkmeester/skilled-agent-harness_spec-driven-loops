@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The 2026-04-18 consolidation that shipped `016-foundational-runtime`, `017-sk-deep-cli-runtime-execution`, and `018-cli-executor-remediation` closed the 026 train's core runtime and executor work",
     "created_at": "2026-04-18T16:46:13.781Z",
-    "last_save_at": "2026-07-09T10:02:52.112Z",
+    "last_save_at": "2026-07-10T06:22:08.342Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "spec-kit ships verification-discipline rules and gates (the 009 freshness/anti-softening/read-budget rules, the 011 AC-coverage gate) onto reviewer agents and the completion gate, but it has no regression harness that answers \"does this reviewer prompt still catch this known bug class.\" The deep-improvement benchmark Lanes do not cover the reviewer-prompt-vs-expected-verdict shape: Lane B fixtures are function/code-task oracles (`code-task-scorer.cjs` returns a correctness pass-rate, zero verdict lexicon; fixtures carry `{name,args,expect}`, no `expectedVerdict`), and Lane C gold is",
     "created_at": "2026-06-06T10:22:05.630Z",
-    "last_save_at": "2026-07-09T10:02:55.045Z",
+    "last_save_at": "2026-07-10T06:23:26.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

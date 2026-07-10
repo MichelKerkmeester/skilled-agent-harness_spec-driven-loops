@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog"
     last_updated_at: "2026-05-28T23:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Implemented T002-T007 + REQ-007 reap fix; 12/12 tests; T001/T008 deferred"

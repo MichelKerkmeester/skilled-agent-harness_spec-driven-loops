@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/135-scouted-bugfix-batch-2"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2"
     last_updated_at: "2026-06-03T07:32:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Fixed 13 confirmed+partial defects across 22 files; builds exit 0; regression tests green"

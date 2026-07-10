@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phase 3 of 016. Expose embedder_list / embedder_set / embedder_status MCP tools + background re-index orchestrator. User-facing surface.",
     "created_at": "2026-05-17T06:35:17.961Z",
-    "last_save_at": "2026-07-09T10:02:52.626Z",
+    "last_save_at": "2026-07-10T06:21:51.228Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

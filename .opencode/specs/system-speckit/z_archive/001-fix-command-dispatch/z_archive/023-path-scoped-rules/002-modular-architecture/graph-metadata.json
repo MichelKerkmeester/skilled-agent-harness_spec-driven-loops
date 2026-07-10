@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The current validate-spec.sh script is a monolithic ~600 line file. Adding all planned features (PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, .speckit.yaml config, glob pattern...",
     "created_at": "2026-04-12T09:02:53.516Z",
-    "last_save_at": "2026-07-09T10:02:56.915Z",
+    "last_save_at": "2026-07-10T06:22:50.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

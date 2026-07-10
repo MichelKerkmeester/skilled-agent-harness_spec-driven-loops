@@ -72,8 +72,7 @@ FAILURE MODES:
 > (`memory-index.ts:811-853` sweep-to-completion loop, `memory-index.ts:862-920` suspect confirm/tombstone
 > pass). `npm run typecheck`, `npm run build`, and the packet's targeted vitest suite all pass clean (110/138
 > tests passed, 0 failed, 28 skipped -- re-run fresh in this pass). Status is **In Progress**, not Complete,
-> because four checklist items remain open: REQ-008's numeric Layer 1 latency benchmark was never executed
-> (CHK-064), `npm run lint` and `npm run test:core` are not fully green (CHK-010/CHK-011 -- the lint failures
+> because three checklist items remain open: `npm run lint` and `npm run test:core` are not fully green (CHK-010/CHK-011 -- the lint failures
 > were re-checked in this pass and confirmed to sit outside this packet's diff), and a scratch-cleanup audit
 > was not separately performed (CHK-051). See `implementation-summary.md` for full evidence and
 > `checklist.md` for the itemized gap list.

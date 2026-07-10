@@ -39,7 +39,7 @@
       "migration"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       ".opencode/commands/doctor/assets/doctor_code-graph.yaml",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Sibling packet `001-doctor-commands/` shipped 5 doctor commands (`/doctor memory`, `causal-graph`, `deep-loop`, `cocoindex`, `update`), 10 active YAML assets, and a migration manifest for spec-kit version migration (3.3.0.0 → 3.4.1.0)",
     "created_at": "2026-05-09T14:45:34.083Z",
-    "last_save_at": "2026-07-02T05:31:12.982Z",
+    "last_save_at": "2026-07-10T06:23:33.730Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,9 +216,9 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:8d49cc2ab349b370d75f04f7f3620cbffc55f2c1df232c26576cf58acf445b73",
+    "source_fingerprint": "sha256:ff828ea8ff1fdf545d8ef208a25d936623f3462a7408f390cc8e4dd9f4665f11",
     "source_doc_hashes": {
-      "spec.md": "4e2b29ee30efcd2572d468ba540ffd64f8fff3305ce73549ee6f29d0d029cb6d",
+      "spec.md": "726e05cc2fa6f991cd77daa699e8a0894f21e004af4af8661664aa13adfcf347",
       "plan.md": "4d88442fb405ebfb0bd4ff80442c666869679bea1cee305ddfba8cb87582c434",
       "tasks.md": "f39e227e1fc2572218b65ee3851faea16ead0d345853fe5d38df230828c146da",
       "checklist.md": "33c83c45c99944b42165daa34f19f8683fab0e4c4c21a93f3e18418249f6a768",

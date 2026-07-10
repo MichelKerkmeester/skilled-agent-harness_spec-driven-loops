@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two playbook scenarios (`SP-023` CLI card fast path, `SP-024` escalation thresholds) tested the CLI",
     "created_at": "2026-06-05T12:47:32.530Z",
-    "last_save_at": "2026-07-09T10:02:46.349Z",
+    "last_save_at": "2026-07-10T06:24:19.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

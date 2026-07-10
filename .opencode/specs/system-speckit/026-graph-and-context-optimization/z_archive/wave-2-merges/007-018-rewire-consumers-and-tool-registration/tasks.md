@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/018-rewire-consumers-and-tool-registration"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-018-rewire-consumers-and-tool-registration"
     last_updated_at: "2026-05-14T08:15:39Z"
     last_updated_by: "codex"
     recent_action: "Completed Phase 004 task ledger"

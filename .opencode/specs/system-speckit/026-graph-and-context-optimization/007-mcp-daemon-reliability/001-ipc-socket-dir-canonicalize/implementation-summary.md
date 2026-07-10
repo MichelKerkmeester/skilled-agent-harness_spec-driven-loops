@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize"
     last_updated_at: "2026-05-28T17:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Shipped canonicalize-missing fix + regression test; dist built; manual dir removed"

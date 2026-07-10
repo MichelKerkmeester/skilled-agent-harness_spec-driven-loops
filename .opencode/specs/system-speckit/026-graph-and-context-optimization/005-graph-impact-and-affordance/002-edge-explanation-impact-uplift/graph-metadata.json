@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Add reason/step fields to edge metadata + display; enrich blast_radius with depth groups, risk levels, min-confidence filter, ambiguity candidates, structured failure-fallback. No SQLite migration.",
     "created_at": "2026-04-25T10:48:07.859Z",
-    "last_save_at": "2026-07-09T10:02:54.136Z",
+    "last_save_at": "2026-07-10T06:24:43.594Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

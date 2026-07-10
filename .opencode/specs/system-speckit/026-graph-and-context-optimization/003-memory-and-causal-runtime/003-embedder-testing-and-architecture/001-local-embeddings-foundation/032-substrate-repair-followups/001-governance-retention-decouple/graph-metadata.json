@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Passing `retentionPolicy: \"ephemeral\"` to `memorysave` silently triggered governed-ingest validation and required the full audit chain",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-07-09T10:02:52.399Z",
+    "last_save_at": "2026-07-10T06:23:02.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:10:00Z",
     "source_docs": [

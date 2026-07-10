@@ -9,7 +9,7 @@ contextType: "documentation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-stress-test-pattern-documentation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/002-stress-test-pattern-documentation"
     last_updated_at: "2026-04-29T07:55:00Z"
     last_updated_by: "codex-gpt-5.5"
     recent_action: "Authored Level 2 task breakdown for stress test pattern documentation"

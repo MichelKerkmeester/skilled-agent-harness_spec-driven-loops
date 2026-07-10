@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Reviewers, auditors, and successor phases have no quick way to answer \"what files did this packet touch\" without reading implementation-summary end-to-end or diffing git",
     "created_at": "2026-04-24T00:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:51.862Z",
+    "last_save_at": "2026-07-10T06:21:45.962Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

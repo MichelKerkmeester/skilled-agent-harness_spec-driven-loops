@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion"
     last_updated_at: "2026-06-10T14:30:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Marked delivered tombstone phase tasks"

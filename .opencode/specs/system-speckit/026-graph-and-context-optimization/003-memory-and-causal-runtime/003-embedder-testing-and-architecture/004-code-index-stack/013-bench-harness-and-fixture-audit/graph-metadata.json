@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Measurement-quality prerequisite for the cocoindex-retrieval-pipeline future-proofing arc (013→018). Hardens the path-extraction regex in run-phase2-smoke.sh (strips backticks, import statement wrappers, mock-data literals, quoted paths) so true hits are not misclassified as misses. Then audits all 18 probes in the baseline fixture against live DB presence — flags any probe whose expected_source_path is unindexed (per CocoIndex project settings exclusions, e.g. probe 10's `**/dist` exclusion). Outputs a hardened harness + a corrected fixture (or annotated probe-status table).",
     "created_at": "2026-05-19T10:32:52.990Z",
-    "last_save_at": "2026-07-09T10:02:52.959Z",
+    "last_save_at": "2026-07-10T06:23:10.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +209,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bfddad78048100c83d263788fdbc1531242b70b20143e38a227233b8ab1a9cdc",
+    "source_fingerprint": "sha256:a6a293cacfc4130bf60351314f06a40140f795606fc62deb99cb5c7492f227ff",
     "source_doc_hashes": {
-      "spec.md": "c0f7fd857349f941a81497f042a82f064f3069f5cb542cdcb8784f95d822ab37",
+      "spec.md": "b89f4ccbab40b61a00a8a33ae24862639dc9beee1b8f5594d97990123a3d7430",
       "plan.md": "7e174f549142c72ca6cbacf586b978300b694b8f99da8db00d098c71fbb201a3",
       "tasks.md": "eb7248065919c481411de52f98b2b4632eab920b73bf21bf9a8915173fcf080a",
       "checklist.md": "5be4f3b8b9a5bb5644f75b90c0ce6d20465bfa0e2638a9a95e8ffde292b1129e",

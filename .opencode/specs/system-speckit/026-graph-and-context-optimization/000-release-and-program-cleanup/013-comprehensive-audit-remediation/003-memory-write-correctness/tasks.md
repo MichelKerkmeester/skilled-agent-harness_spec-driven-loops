@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-memory-write-correctness"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness"
     last_updated_at: "2026-06-04T20:45:42Z"
     last_updated_by: "cluster-c-write-correctness"
     recent_action: "Completed C1 source wiring and C1/C2 regression tests"

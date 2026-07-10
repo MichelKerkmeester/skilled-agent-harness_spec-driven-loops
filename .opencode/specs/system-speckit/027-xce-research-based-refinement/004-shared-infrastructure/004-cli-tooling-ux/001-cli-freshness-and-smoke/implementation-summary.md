@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke"
     last_updated_at: "2026-06-11T03:00:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Delivered hash freshness gates, stale-dist status, and offline smoke"

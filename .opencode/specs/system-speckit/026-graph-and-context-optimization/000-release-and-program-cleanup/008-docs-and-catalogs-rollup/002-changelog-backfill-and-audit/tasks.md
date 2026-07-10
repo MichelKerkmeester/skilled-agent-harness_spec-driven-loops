@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit"
     last_updated_at: "2026-05-31T19:00:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "All tasks complete and verified against shipped work"

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The pipeline architecture category (14--pipeline-architecture) contains 22 features spanning the 4-stage pipeline refactor, chunk-to-memory aggregation, schema validation, DB path standardisation, cross-process rebinding, and lineage projection",
     "created_at": "2026-04-12T09:02:50.301Z",
-    "last_save_at": "2026-07-09T10:02:58.488Z",
+    "last_save_at": "2026-07-10T06:22:23.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

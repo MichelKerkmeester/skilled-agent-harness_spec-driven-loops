@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Packets 015 and 016 showed that `llama-cpp` is much faster than the current `hf-local` Memory MCP embedding backend and that the smaller 200-row retrieval probe was rank-equivalent",
     "created_at": "2026-05-13T11:10:00Z",
-    "last_save_at": "2026-07-09T10:02:52.308Z",
+    "last_save_at": "2026-07-10T06:21:44.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T11:10:00Z",
     "source_docs": [

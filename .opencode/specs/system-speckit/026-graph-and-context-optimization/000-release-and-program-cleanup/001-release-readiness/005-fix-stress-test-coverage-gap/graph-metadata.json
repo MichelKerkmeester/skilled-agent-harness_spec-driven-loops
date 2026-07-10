@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Packet 042 surfaced 36 features with thin or absent stress coverage that were not blocking but represent ongoing release-readiness debt: 6 P1 (thin direct stress) and 30 P2 (`Maybe`-required, uncovered)",
     "created_at": "2026-04-30T19:19:34Z",
-    "last_save_at": "2026-07-09T10:02:50.591Z",
+    "last_save_at": "2026-07-10T06:22:44.005Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

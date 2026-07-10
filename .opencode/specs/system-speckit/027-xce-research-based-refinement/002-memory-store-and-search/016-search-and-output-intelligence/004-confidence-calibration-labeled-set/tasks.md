@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "027/002/017/004-confidence-calibration-labeled-set"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set"
     last_updated_at: "2026-06-17T09:05:00Z"
     last_updated_by: "implementer"
     recent_action: "Shipped (A) 0.45/0.55 rebalance + (B) flag-gated calibration infra; tasks superseded"

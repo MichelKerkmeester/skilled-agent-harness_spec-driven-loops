@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The feature catalog (`featurecatalog/featurecatalog.md` plus the per-capability files under `NN--category/`) is the inventory operators read to discover and reason about server behavior",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:54.001Z",
+    "last_save_at": "2026-07-10T06:22:56.296Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

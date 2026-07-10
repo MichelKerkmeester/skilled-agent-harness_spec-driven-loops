@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge"
     last_updated_at: "2026-05-18T19:52:00Z"
     last_updated_by: "main_agent"
     recent_action: "cli-codex 007 dispatched PID 20832; pre-compaction handover.md authored"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-18 evening; just-after 006 ship) |
+| Status | In Progress |
 | Type | Implementation (purge + new bootstrap probe + tests) |
 | Owner | cli-codex gpt-5.5 xhigh fast (dispatched); main agent commits on handoff |
 | Parent | `../spec.md` (002-spec-memory-stack) |

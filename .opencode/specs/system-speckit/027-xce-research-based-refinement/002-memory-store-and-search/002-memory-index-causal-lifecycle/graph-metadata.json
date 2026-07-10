@@ -157,7 +157,7 @@
     ],
     "causal_summary": "Phase-parent control packet grouping the memory store's incremental-index and causal-graph write lifecycle: incremental index foundation, causal-edge tombstones, deterministic metadata-edge promotion, and desired/prior write-path reconciliation.",
     "created_at": "2026-06-06T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:55.129Z",
+    "last_save_at": "2026-07-10T06:24:41.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

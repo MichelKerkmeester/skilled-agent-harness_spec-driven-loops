@@ -37,7 +37,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `systemarchitectureswimlane.md` flowchart example was box-widened wholesale (~40 borders) to satisfy the old box-width validator, which counted every horizontal rule — including connectors",
-    "created_at": "2026-07-07T11:15:05.809Z",
-    "last_save_at": "2026-07-09T10:02:44.822Z",
+    "causal_summary": "The benchmark rename was a filesystem operation git never saw",
+    "created_at": "2026-06-05T12:47:32.523Z",
+    "last_save_at": "2026-07-10T06:22:49.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff8f376223bcb4657dd153a98d2f0d3bb35146468f79899e11edb8248a1f8407",
+    "source_fingerprint": "sha256:a7469178fe4a979a907bdf4d6249a3f2ed5fc8b4a58c7b47c8f384dab6763974",
     "source_doc_hashes": {
-      "spec.md": "b86640ac7f0c89492dcf2a43c3808945ccdfc1096300874f03a5431262cb4902",
-      "plan.md": "f2008487496b3e062c583af47a91636562a0965c7c4d3afffe316b7a82bd643d",
-      "tasks.md": "8b10435a56083b4e8f7dd586571dc9de71ef9227a6a081e78b4ad3f93d4e65fb",
-      "implementation-summary.md": "d52b5328d106ae8e00603bf432450f293766c382bedc4b22aad30d4aea862207"
+      "spec.md": "c4ac51dd17149f887eba552334e906bc0ee2735c9fbe0ce41b69a3f7f453420a",
+      "plan.md": "f52a80028513daec3684f419c22252f954a4be4e41d0b03fe471aed5e55afa93",
+      "tasks.md": "91e081b1ad54c04fe46f8a52bf7200b9c276189e92f63049956581d40d28b2b1",
+      "implementation-summary.md": "30325b4dd53b390f911bc66f4b95e75dbfade065b24a32adf65aafec82b4209a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup"
     last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All 10 children shipped; statuses reconciled at epic close"

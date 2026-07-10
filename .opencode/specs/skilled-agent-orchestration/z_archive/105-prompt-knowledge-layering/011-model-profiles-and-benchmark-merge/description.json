@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
+  "description": "The benchmark rename was a filesystem operation git never saw",
+  "keywords": [
+    "benchmark",
+    "rename",
+    "filesystem",
+    "operation",
+    "git",
+    "never",
+    "saw"
+  ],
+  "lastUpdated": "2026-07-10T06:22:50.804Z",
+  "specId": "011",
+  "folderSlug": "model-profiles-and-benchmark-merge",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "105-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

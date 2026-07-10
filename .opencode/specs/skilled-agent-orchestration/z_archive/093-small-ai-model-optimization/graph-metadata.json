@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization",
+  "spec_folder": "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/001-smallcode-deep-research",
+    "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/002-sentinel-skill-foundation",
+    "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/003-structured-permissions-matrix",
+    "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/004-budget-and-output-verification",
+    "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/005-model-profiles-and-fallback",
+    "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/006-budget-pattern-propagation",
+    "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/007-sk-ai-small-model-rename",
+    "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/008-sk-prompt-small-model-rename"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "small model optimization",
+      "smallcode-master research",
+      "swe-1.6 output quality",
+      "small-ai-model deep research",
+      "cli-devin small-model patterns"
+    ],
+    "key_topics": [
+      "small",
+      "model",
+      "optimization",
+      "smallcode-master",
+      "research",
+      "swe-1",
+      "output",
+      "quality",
+      "small-ai-model",
+      "deep",
+      "cli-devin",
+      "small-model"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Our",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Our cli- dispatch surface (`cli-devin` for SWE-1.6, `cli-opencode` for DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) and `sk-prompt`'s framework selection got measurably better through the 113 arc — RCAF default, medium pre-plan, standard bundle-gate, cross-model validation",
+    "created_at": "2026-05-18T08:50:24.230Z",
+    "last_save_at": "2026-07-10T06:50:49.455Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:42c86133dc6ccf6ca3b16fecce7f64a236324b1ed946ca329f19a0ac03f28103",
+    "source_doc_hashes": {
+      "spec.md": "3a75c99136d1b4be45c6984e6fd09fa222eef06d08dd5437a82d48d898a369bd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

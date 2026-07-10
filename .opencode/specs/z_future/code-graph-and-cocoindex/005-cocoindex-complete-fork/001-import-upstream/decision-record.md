@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"
+    packet_pointer: "z_future/code-graph-and-cocoindex/005-cocoindex-complete-fork/001-import-upstream"
     last_updated_at: "2026-05-10T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Recorded fork strategy ADR"

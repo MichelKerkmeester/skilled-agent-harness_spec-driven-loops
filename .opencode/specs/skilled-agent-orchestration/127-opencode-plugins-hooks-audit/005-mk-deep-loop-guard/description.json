@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/127-opencode-plugins-hooks-audit/005-mk-deep-loop-guard",
+  "description": "GPT-5.6-Sol-Fast read-only audit of the mk-deep-loop-guard OpenCode plugin and its Claude hook version, documented as review findings.",
+  "keywords": [
+    "mk-deep-loop-guard",
+    "plugin",
+    "audit",
+    "review",
+    "claude-hook",
+    "parity"
+  ],
+  "lastUpdated": "2026-07-10T06:47:40.107Z",
+  "specId": "005",
+  "folderSlug": "mk-deep-loop-guard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "127-opencode-plugins-hooks-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

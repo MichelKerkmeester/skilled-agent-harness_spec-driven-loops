@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation"
     last_updated_at: "2026-06-05T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Authored the 4-stream parallel remediation plan + test round"

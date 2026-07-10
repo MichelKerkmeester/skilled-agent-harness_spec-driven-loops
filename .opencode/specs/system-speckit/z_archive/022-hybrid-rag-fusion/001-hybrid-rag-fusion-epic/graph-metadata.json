@@ -233,7 +233,7 @@
     ],
     "causal_summary": "The `001` parent packet had become a merged historical archive instead of a usable coordination document",
     "created_at": "2026-04-12T09:02:50.224Z",
-    "last_save_at": "2026-07-09T10:02:57.690Z",
+    "last_save_at": "2026-07-10T06:21:55.266Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

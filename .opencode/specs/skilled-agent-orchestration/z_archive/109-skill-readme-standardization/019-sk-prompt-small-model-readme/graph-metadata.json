@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The sk-prompt-models README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five executors\" claim (the hub dispatches through two active executors, cli-devin and cli-opencode, plus an optional third)",
     "created_at": "2026-06-07T14:42:36Z",
-    "last_save_at": "2026-07-09T10:02:46.489Z",
+    "last_save_at": "2026-07-10T06:21:09.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

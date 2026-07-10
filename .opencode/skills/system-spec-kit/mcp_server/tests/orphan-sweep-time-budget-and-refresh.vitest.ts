@@ -2,10 +2,9 @@
 // TEST: Orphan-sweep wall-clock time budget + marker-refresh cadence
 // ───────────────────────────────────────────────────────────────
 // Drives the REAL runGlobalOrphanSweep() closure (via the exported runIndexScan
-// test seam) against a REAL SQLite database with a DELETE-heavy synthetic orphan
+// test seam) against a REAL SQLite database with a synthetic orphan
 // backlog, so every row flows through incremental-index's real sweepOrphanIndexRows
-// scan AND the handler's real deleteIndexedRecordIds() cascade (vector-index row
-// delete, causal-edge cleanup, history-log insert) — not a scan-only mirror. Only
+// scan and into the handler's real drift-suspect queue — not a scan-only mirror. Only
 // the scan-lease/checkpoint/embedding-profile scaffolding is mocked, matching this
 // handler's existing test suite; none of that scaffolding touches the orphan-sweep
 // path itself.
@@ -13,6 +12,7 @@ import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { readMemoryDriftSuspects } from '../lib/storage/memory-drift-healing';
 
 const mocks = vi.hoisted(() => ({
   mockAcquireIndexScanLease: vi.fn(),
@@ -74,7 +74,7 @@ function makeTempWorkspace(prefix: string): string {
 // Seeds `count` genuine orphan rows: real memory_index rows (via the real
 // indexMemoryDeferred insert path) whose file_path is never created on disk, so
 // the real sweepOrphanIndexRows scan (resolved against MEMORY_BASE_PATH) finds
-// them absent and the real deleteIndexedRecordIds cascade actually runs on them.
+// them absent and the real orphan-sweep path queues them for later confirmation.
 function seedOrphanBacklog(vectorIndex: VectorIndexModule, workspace: string, count: number, specFolderPrefix: string): void {
   for (let i = 0; i < count; i += 1) {
     vectorIndex.indexMemoryDeferred({
@@ -129,6 +129,7 @@ function parseScanEnvelope(response: { content: Array<{ text: string }> }): {
     orphanSweepResumable: boolean;
     orphanSweepCursorPersistenceFailed: boolean;
     orphanSweepScanned: number;
+    suspectQueueSize: number;
   };
   hints: string[];
 } {
@@ -142,6 +143,7 @@ function parseScanEnvelope(response: { content: Array<{ text: string }> }): {
       orphanSweepResumable: boolean;
       orphanSweepCursorPersistenceFailed: boolean;
       orphanSweepScanned: number;
+      suspectQueueSize: number;
     };
     hints: string[];
   };
@@ -171,6 +173,56 @@ afterAll(() => {
   }
 });
 
+describe('orphan-sweep confirmation timing', () => {
+  it('queues a discovered orphan during one scan and tombstones it only on the next scan', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    // The suspect is enqueued by the scan itself (real observedAt = now), so it
+    // cannot be backdated at seed time -- disable the minimum-quarantine window
+    // instead (0 = no gate) so the follow-up scan tombstones it deterministically,
+    // without an artificial sleep or a real-time race.
+    process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS = '0';
+    const workspace = makeTempWorkspace('orphan-sweep-next-scan-');
+    const { handler, vectorIndex } = await loadRealModules(workspace);
+
+    try {
+      const id = vectorIndex.indexMemoryDeferred({
+        specFolder: 'orphan-next-scan/001',
+        filePath: path.join(workspace, 'missing.md'),
+        title: 'Orphan queued before confirmation',
+      });
+      const first = await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        {},
+      );
+      const firstData = JSON.parse((first as { content: Array<{ text: string }> }).content[0].text).data as Record<string, number>;
+
+      expect(firstData.orphanSwept).toBe(1);
+      expect(firstData.suspectTombstoned).toBe(0);
+      expect(firstData.suspectQueueSize).toBe(1);
+      expect(vectorIndex.getMemory(id, vectorIndex.getDb()!)).not.toBeNull();
+      expect(readMemoryDriftSuspects(vectorIndex.getDb()!).map((suspect) => suspect.id)).toEqual([id]);
+
+      const second = await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        {},
+      );
+      const secondData = JSON.parse((second as { content: Array<{ text: string }> }).content[0].text).data as Record<string, number>;
+
+      expect(secondData.suspectTombstoned).toBe(1);
+      expect(vectorIndex.getMemory(id, vectorIndex.getDb()!)).toBeNull();
+      expect(readMemoryDriftSuspects(vectorIndex.getDb()!)).toEqual([]);
+    } finally {
+      delete process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS;
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+});
+
 describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
   let handler!: MemoryIndexHandlerModule;
   let vectorIndex!: VectorIndexModule;
@@ -191,15 +243,23 @@ describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
     }
   });
 
-  it('re-fires ctx.onPhase during a DELETE-heavy sweep without firing sooner than the configured cadence', async () => {
-    // A scan-only pass over this many rows is known-fast (this packet's own
-    // empirical finding: ~4-5s for 200k rows), so what makes this loop cross even a
-    // short cadence repeatedly is the per-row DELETE cascade running for real. The
-    // cadence is overridden small so the assertion is fast and deterministic without
-    // needing a production-scale (tens-of-seconds) budget in a unit test.
+  afterEach(() => {
+    const db = vectorIndex.getDb();
+    db?.exec(`
+      DELETE FROM memory_index;
+      DELETE FROM config WHERE key IN ('memory_index.drift_suspect_rows', 'memory_index.orphan_sweep.cursor');
+    `);
+  });
+
+  it('re-fires ctx.onPhase during an enqueue-page-heavy sweep without firing sooner than the configured cadence', async () => {
     process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '20000';
     const refreshCadenceMs = 15;
     process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = String(refreshCadenceMs);
+    let now = Date.now();
+    vi.spyOn(Date, 'now').mockImplementation(() => {
+      now += refreshCadenceMs;
+      return now;
+    });
 
     seedOrphanBacklog(vectorIndex, workspace, 2500, 'refresh-cadence');
 
@@ -255,7 +315,7 @@ describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
 });
 
 describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
-  it('checks deadline and marker refresh between deletion chunks within one page', async () => {
+  it('checks deadline and marker refresh between enqueue pages', async () => {
     vi.resetModules();
     mockLeaseAndScaffolding();
     const workspace = makeTempWorkspace('orphan-sweep-intra-page-budget-');
@@ -264,7 +324,12 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
     try {
       process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '2';
       process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '1';
-      seedOrphanBacklog(vectorIndex, workspace, 200, 'intra-page-budget');
+      seedOrphanBacklog(vectorIndex, workspace, 400, 'page-budget');
+      let now = Date.now();
+      vi.spyOn(Date, 'now').mockImplementation(() => {
+        now += 2;
+        return now;
+      });
       const onPhase = vi.fn();
 
       const response = await handler.runIndexScan(
@@ -273,18 +338,18 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       );
       const envelope = parseScanEnvelope(response);
       const remaining = vectorIndex.getDb()?.prepare(
-        "SELECT COUNT(*) AS count FROM memory_index WHERE spec_folder LIKE 'intra-page-budget/%'",
+        "SELECT COUNT(*) AS count FROM memory_index WHERE spec_folder LIKE 'page-budget/%'",
       ).get() as { count?: number } | undefined;
       const orphanPhaseCalls = onPhase.mock.calls.filter(([phase]) => phase === 'orphan-sweep');
 
-      expect(envelope.data.orphanSwept).toBeGreaterThan(0);
-      expect(envelope.data.orphanSwept).toBeLessThan(200);
+      expect(envelope.data.orphanSwept).toBe(200);
+      expect(envelope.data.suspectQueueSize).toBe(200);
       expect(envelope.data.orphanSweepNextCursor).toBeGreaterThan(0);
       expect(envelope.data.status).toBe('partial');
       expect(envelope.data.repairStatus).toBe('partial');
       expect(envelope.data.orphanSweepResumable).toBe(true);
       expect(envelope.data.orphanSweepCursorPersistenceFailed).toBe(false);
-      expect(remaining?.count ?? 0).toBeGreaterThan(0);
+      expect(remaining?.count).toBe(400);
       expect(orphanPhaseCalls.length).toBeGreaterThan(1);
     } finally {
       try {
@@ -363,6 +428,19 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       expect(warnSpy).toHaveBeenCalledWith(
         '[memory-index-scan] Clamped SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS from 999999999 to 89999',
       );
+
+      process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '0';
+      process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '0';
+      await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        {},
+      );
+      expect(warnSpy).toHaveBeenCalledWith(
+        '[memory-index-scan] Clamped SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS from 0 to 2',
+      );
+      expect(warnSpy).toHaveBeenCalledWith(
+        '[memory-index-scan] Clamped SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS from 0 to 1',
+      );
     } finally {
       try {
         vectorIndex.closeDb();
@@ -384,6 +462,11 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       // completion-exit branch) to be the one that fires.
       process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '5';
       process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '20000';
+      // Rows discovered here are enqueued (not deleted directly), so a later
+      // confirmation pass must clear the minimum-quarantine window before it can
+      // tombstone them -- disable it (0 = no gate) so the follow-up invocations
+      // below converge to zero deterministically, without an artificial sleep.
+      process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS = '0';
 
       const TOTAL_ROWS = 900; // > ORPHAN_SWEEP_LIMIT (200), several pages
       seedOrphanBacklog(vectorIndex, workspace, TOTAL_ROWS, 'budget-exit');
@@ -419,6 +502,10 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
         cursorNow = row ? Number.parseInt(row.value ?? '0', 10) : 0;
       }
       expect(cursorNow).toBe(0);
+      finalResponse = await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        {},
+      );
 
       const finalEnvelope = parseScanEnvelope(finalResponse);
       expect(finalEnvelope.data.orphanSweepNextCursor).toBeNull();
@@ -432,6 +519,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       ).get() as { count?: number } | undefined;
       expect(remaining?.count ?? -1).toBe(0);
     } finally {
+      delete process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS;
       try {
         vectorIndex.closeDb();
       } catch (_error: unknown) {
@@ -455,6 +543,11 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       try {
         process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = budgetMs;
         process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '20000';
+        // Same rationale as the budget/cursor-resume test above: enqueued rows
+        // need the minimum-quarantine window disabled so the follow-up
+        // invocations below can actually tombstone them and converge to zero
+        // remaining, deterministically.
+        process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS = '0';
         seedOrphanBacklog(vectorIndex, workspace, ROWS, seedFolder);
 
         const db = vectorIndex.getDb();
@@ -475,6 +568,11 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
           if (cursorNow === 0) break;
         }
 
+        await handler.runIndexScan(
+          { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+          {},
+        );
+
         const remaining = new Set(
           (db?.prepare(`SELECT file_path FROM memory_index WHERE spec_folder LIKE '${seedFolder}/%'`).all() as Array<{ file_path: string }>)
             .map((row) => path.basename(row.file_path)),
@@ -483,6 +581,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
         const swept = new Set([...before].filter((filePath) => !remaining.has(filePath)));
         return swept;
       } finally {
+        delete process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS;
         try {
           vectorIndex.closeDb();
         } catch (_error: unknown) {

@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening"
     last_updated_at: "2026-06-04T09:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Code + tests landed; build green"

@@ -15,7 +15,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set"
     last_updated_at: "2026-05-09T11:30:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author Level 2 spec for 4 isolated doctor commands + unified /doctor:update orchestrator"
@@ -54,7 +54,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress — partial historical implementation; canonical doctor routing moved to successor packets |
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

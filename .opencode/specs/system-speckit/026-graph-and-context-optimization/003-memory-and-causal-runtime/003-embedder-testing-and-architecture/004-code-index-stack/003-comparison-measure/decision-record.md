@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure"
     last_updated_at: "2026-05-17T21:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Ratified CocoIndex production embedder as jina-code after primary fixture benchmark"

@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/020-enterprise-readiness-verification-expansion-research"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/020-enterprise-readiness-verification-expansion-research"
     last_updated_at: "2026-04-29T06:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Completed W3-W7 verification + expansion deep research"

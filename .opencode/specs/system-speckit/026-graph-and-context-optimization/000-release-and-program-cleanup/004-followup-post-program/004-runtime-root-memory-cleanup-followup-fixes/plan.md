@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-runtime-root-memory-cleanup-followup-fixes"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/004-runtime-root-memory-cleanup-followup-fixes"
     last_updated_at: "2026-05-08T08:36:14Z"
     last_updated_by: "spec-author"
     recent_action: "Plan three follow-on fixes"

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T12:37:22Z",
-    "last_save_at": "2026-07-09T10:02:51.914Z",
+    "last_save_at": "2026-07-10T06:23:09.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -33,8 +33,8 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-dist-freshness-guard.js",
-      "review/review-report.md",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/cli-claude-code/references/cli_reference.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -42,15 +42,15 @@
     ],
     "entities": [
       {
-        "name": "mk-dist-freshness-guard.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-dist-freshness-guard.js",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "review-report.md",
+        "name": "cli_reference.md",
         "kind": "doc",
-        "path": "review/review-report.md",
+        "path": ".opencode/skills/cli-claude-code/references/cli_reference.md",
         "source": "derived"
       },
       {
@@ -186,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The `mk-dist-freshness-guard` OpenCode plugin (Dist-freshness warn guard) and its related Claude hook version were audited for bugs, silent-breakage, correctness errors, cross-runtime parity drift, and refinements",
-    "created_at": "2026-07-10T06:47:45.199Z",
-    "last_save_at": "2026-07-10T06:47:45.199Z",
+    "causal_summary": "The sk-doc template requires a standalone `---` thematic break before every H2 section except the",
+    "created_at": "2026-06-05T12:47:32.527Z",
+    "last_save_at": "2026-07-10T06:21:55.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:106dbdb0359bf3c6693d84952949f2bf53a5c172c63018a4942846c58cc8ce13",
+    "source_fingerprint": "sha256:e40ee268710f3c1f539d01f69b028dfa78bf24a3fc73db2c9b9b32e9b9352bc7",
     "source_doc_hashes": {
-      "spec.md": "f15d1967bdcd19bc96043814d5cbfcf943927c8c7add597db5b4482545f6d6f8",
-      "plan.md": "2410eae4c949d07614d5cb318c6d56386d2ad971130ff181de17771b2d7ddbe5",
-      "tasks.md": "34ad7e901bb1764e5c3ebac0c02b2223f7d7ab4c409d97ab74b6f1c40a6ff800",
-      "implementation-summary.md": "3c2b15034ad1fa6a2ab61d27733b65ae3115f44fdff085e413447d0fd294d0c5"
+      "spec.md": "f0cafebd97dabcd43af84fbe21be91140e5e9d0107a8b775f02378bff36082a4",
+      "plan.md": "f28470c785923b8ffec2fdb6812208c9f84db2cc5f5ded19226a5043086781b0",
+      "tasks.md": "a7ed292b0b1cdd21abd1384f1c5e5d8e44410dcba6a0c499f353552874454288",
+      "implementation-summary.md": "5641da70c803ccb51901295748bc2cf7a869e11ad67940bb6ddf85157599cb3e"
     },
     "last_active_child_id": null,
     "last_active_at": null

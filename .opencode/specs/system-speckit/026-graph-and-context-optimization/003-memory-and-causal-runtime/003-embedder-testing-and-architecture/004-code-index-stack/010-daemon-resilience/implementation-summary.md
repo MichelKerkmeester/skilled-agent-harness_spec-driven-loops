@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience"
     last_updated_at: "2026-05-07T16:30:00Z"
     last_updated_by: "tier-1-to-4-batch-fix"
     recent_action: "filled impl-summary anchors and verification table"

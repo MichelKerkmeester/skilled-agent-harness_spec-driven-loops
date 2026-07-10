@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence"
+    packet_pointer: "system-speckit/028-memory-search-intelligence"
     last_updated_at: "2026-07-06T17:33:25.530Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Renumbered 028 top-level to a contiguous 000-005"

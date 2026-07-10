@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "completed"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands"
     last_updated_at: "2026-06-10T19:14:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed memory command presentation extraction and router slimming"

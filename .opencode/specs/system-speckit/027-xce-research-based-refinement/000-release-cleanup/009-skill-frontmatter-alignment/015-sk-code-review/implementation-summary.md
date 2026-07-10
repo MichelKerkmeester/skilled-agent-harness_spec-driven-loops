@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/015-sk-code-review"
     last_updated_at: "2026-06-11T12:55:00Z"
     last_updated_by: "claude-fable"
     recent_action: "Phase complete: 10 docs conform and smoke passed"

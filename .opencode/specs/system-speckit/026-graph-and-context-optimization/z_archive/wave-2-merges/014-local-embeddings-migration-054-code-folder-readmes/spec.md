@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/016-embedder-testing-and-architecture/001-local-embeddings-foundation/054-code-folder-readmes"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/014-local-embeddings-migration-054-code-folder-readmes"
     last_updated_at: "2026-05-15T12:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded Phase C packet after scope-discovery reduction"

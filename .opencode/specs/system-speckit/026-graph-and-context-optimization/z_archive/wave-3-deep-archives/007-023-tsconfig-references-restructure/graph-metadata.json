@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet 014 extracted code-graph ownership into `.opencode/skills/system-code-graph/`, but its TypeScript config kept both an `include` for `../system-spec-kit/shared//.ts` and a project `references` entry for `../system-spec-kit/shared`",
     "created_at": "2026-05-14T16:26:51Z",
-    "last_save_at": "2026-07-09T10:02:54.729Z",
+    "last_save_at": "2026-07-10T06:23:34.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

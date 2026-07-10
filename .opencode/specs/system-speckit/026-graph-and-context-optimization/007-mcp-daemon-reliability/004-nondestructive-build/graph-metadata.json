@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build` repopulates it over several seconds",
     "created_at": "2026-05-28T18:15:02Z",
-    "last_save_at": "2026-07-09T10:02:54.377Z",
+    "last_save_at": "2026-07-10T06:23:35.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

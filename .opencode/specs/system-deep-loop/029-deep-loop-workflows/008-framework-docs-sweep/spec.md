@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned (scaffold) |
+| **Status** | Complete - shipped in the deep-loop merge; per-phase checklist sign-off pending |
 | **Created** | 2026-06-14 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Phase** | 008 of 009 (parent: `147-deep-loop-workflows`) |

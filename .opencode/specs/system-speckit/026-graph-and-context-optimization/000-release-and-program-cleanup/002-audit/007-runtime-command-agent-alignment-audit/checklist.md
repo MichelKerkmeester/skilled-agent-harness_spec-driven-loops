@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "checklist"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/007-runtime-command-agent-alignment-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/007-runtime-command-agent-alignment-audit"
     last_updated_at: "2026-04-30T07:45:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Checklist verified"

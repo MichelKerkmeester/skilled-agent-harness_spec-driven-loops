@@ -43,8 +43,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
-      ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite"
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts"
     ],
     "entities": [
       {
@@ -81,12 +80,6 @@
         "name": "code-graph-verify.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001-005 completed the design, scaffold, physical source/database move, consumer rewire, and documentation/runtime migration for extracting code-graph into `.opencode/skills/system-code-graph/`",
     "created_at": "2026-05-14T08:43:25Z",
-    "last_save_at": "2026-07-09T10:02:54.654Z",
+    "last_save_at": "2026-07-10T06:24:44.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:43:25Z",
     "source_docs": [

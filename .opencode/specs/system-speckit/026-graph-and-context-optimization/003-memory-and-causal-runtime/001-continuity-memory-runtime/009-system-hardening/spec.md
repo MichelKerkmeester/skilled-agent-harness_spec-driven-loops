@@ -12,7 +12,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/003-system-hardening"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/009-system-hardening"
     last_updated_at: "2026-04-18T20:47:00Z"
     last_updated_by: "claude-opus-4.7-1m"
     recent_action: "AUTONOMOUS RUN COMPLETE. All 6 sub-packet research iterations converged (001-006). All 6 remediation children implemented via cli-codex gpt-5.4 high fast: 002 canonical-save (3 waves, 2 P0s + 5 validator rules), 003 NFKC unification (6 HPs, 91/91 adversarial tests), 004 routing accuracy (Gate 3 F1 68.6%->97.66%, advisor 53.5%->60.0%, joint FF 31->1), 005 description regen (field-level merge, 117/117 tests), 006 015-residuals (19 findings across 6 clusters in 4 waves), 007 template-validator (rule registry + semantic frontmatter + anchor parity)."

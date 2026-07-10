@@ -92,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -117,6 +111,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Name",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 005 lifecycle scenarios must be executed from scratch",
     "created_at": "2026-04-12T09:02:50.292Z",
-    "last_save_at": "2026-07-09T10:02:58.420Z",
+    "last_save_at": "2026-07-10T06:23:49.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67964dc832feaf3a40305d004b8bf92ba33df23fe9413693acf3a0bbe00440a0",
+    "source_fingerprint": "sha256:a7d7eaa1dd6a696aadc4113e3c26689c728c3ea7e4101b420cdfbf30d320a48f",
     "source_doc_hashes": {
-      "spec.md": "6d07ecb2b25d03ce8f55fd469f3ec77fd8bbc2eb257f3267e3a428a69c53b9ac",
+      "spec.md": "a82c0a164d4c29bbd584b0537c16893ba3e5b07e6dd193e63ecd5de086c7f27f",
       "plan.md": "56b643c0591761ca37e6d726ec5fe3fb3f49430791d30517cc942595b0a8d98f",
       "tasks.md": "ccf7fc8db80cdbdd7c90c0964b79491ddde134a784f772640274ed5787b5fc97",
       "checklist.md": "3fce39d30a5975408b1f2a489f1233d99b0f61316242e246a1782dde9f6b0e16",
-      "implementation-summary.md": "2cefc851cebaf51d01a72a41a4ca708d7fd8e7ad15ff4d7668a549891c1e0ddb"
+      "implementation-summary.md": "be7120dd7aaf5e030f46264ddf15af0c7eac2faf32efa422109590f896a84e66"
     },
     "last_active_child_id": null,
     "last_active_at": null

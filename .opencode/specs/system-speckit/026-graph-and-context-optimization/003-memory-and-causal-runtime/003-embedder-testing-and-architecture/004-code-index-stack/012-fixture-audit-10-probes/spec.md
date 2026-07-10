@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes"
     last_updated_at: "2026-05-18T19:23:09Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded research-only packet"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-18 evening) |
+| Status | Complete - research audit delivered; proposed fixture update not applied |
 | Type | Research-only (no code changes); may produce a fixture update if any expected paths are wrong |
 | Owner | Main agent |
 | Parent | `../spec.md` (004-code-index-stack) |

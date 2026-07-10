@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 2 of 016. Implement Ollama HTTP-API adapter + lazy vec_<dim> table creation + active-embedder pointer. The two-layer swap mechanism.",
     "created_at": "2026-05-17T06:35:17.505Z",
-    "last_save_at": "2026-07-09T10:02:52.619Z",
+    "last_save_at": "2026-07-10T06:23:02.860Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

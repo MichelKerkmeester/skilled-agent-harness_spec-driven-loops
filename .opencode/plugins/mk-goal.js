@@ -33,13 +33,16 @@ const DEFAULT_MAX_WALL_MS = 30 * 60 * 1000;
 const DEFAULT_ARCHIVE_RETENTION_DAYS = 90;
 const DEFAULT_ACTIVE_RETENTION_DAYS = 2;
 const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
+const DEFAULT_VERIFIER_TIMEOUT_MS = 30 * 1000;
+const DEFAULT_CONTINUATION_TIMEOUT_MS = 30 * 1000;
+const DEFAULT_JSONL_MAX_BYTES = 5 * 1024 * 1024;
+const DEFAULT_GOAL_BRIEF_CACHE_ENTRIES = 512;
 const GOAL_ID_MAX_CHARS = 160;
 const PROMPT_OVERHEAD_CHARS = 1900;
 const OBJECTIVE_PREVIEW_RATIO = 0.12;
 const OBJECTIVE_PREVIEW_MIN_CHARS = 60;
 const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
 const MIN_PROMPT_BUDGET_CHARS = 3;
-const MAX_ACCOUNTED_MESSAGES = 64;
 const NORMALIZED_OPTIONS_MARKER = Symbol('mkGoalNormalizedOptions');
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const DISABLED_ENV = 'MK_GOAL_PLUGIN_DISABLED';
@@ -52,6 +55,9 @@ const ACTIVE_RETENTION_DAYS_ENV = 'MK_GOAL_STATE_ACTIVE_RETENTION_DAYS';
 const SWEEP_INTERVAL_MS_ENV = 'MK_GOAL_STATE_SWEEP_INTERVAL_MS';
 const MAX_AUTO_TURNS_ENV = 'MK_GOAL_MAX_AUTO_TURNS';
 const MAX_WALL_MS_ENV = 'MK_GOAL_MAX_WALL_MS';
+const VERIFIER_TIMEOUT_MS_ENV = 'MK_GOAL_VERIFIER_TIMEOUT_MS';
+const CONTINUATION_TIMEOUT_MS_ENV = 'MK_GOAL_CONTINUATION_TIMEOUT_MS';
+const JSONL_MAX_BYTES_ENV = 'MK_GOAL_JSONL_MAX_BYTES';
 const CONTINUATION_LOG_FILENAME = '.continuation.log';
 const GOAL_EVENTS_LOG_FILENAME = '.goal-events.log';
 const OWNED_JSONL_LOGS = new Set([CONTINUATION_LOG_FILENAME, GOAL_EVENTS_LOG_FILENAME]);
@@ -154,6 +160,7 @@ const VALID_VERIFIER_VERDICTS = new Set(['met', 'not_met', 'blocked']);
 const EMPTY_INJECTION_PREVIEW = '';
 const GOAL_ACTIONS = ['set', 'show', 'clear', 'complete', 'pause', 'history', 'resume', 'doctor', 'health'];
 const mutationQueues = new Map();
+const jsonlAppendQueues = new Map();
 const knownStateDirs = new Set();
 const goalBriefCache = new Map();
 const lastArchivePruneAtMs = new Map();
@@ -215,6 +222,9 @@ function normalizeOptions(rawOptions = {}) {
   const envMaxEvidenceChars = Number(process.env.MK_GOAL_MAX_EVIDENCE_CHARS);
   const envMaxAutoTurns = Number(process.env[MAX_AUTO_TURNS_ENV]);
   const envMaxWallMs = Number(process.env[MAX_WALL_MS_ENV]);
+  const envVerifierTimeoutMs = Number(process.env[VERIFIER_TIMEOUT_MS_ENV]);
+  const envContinuationTimeoutMs = Number(process.env[CONTINUATION_TIMEOUT_MS_ENV]);
+  const envJsonlMaxBytes = Number(process.env[JSONL_MAX_BYTES_ENV]);
   const options = rawOptions && typeof rawOptions === 'object' ? rawOptions : {};
   const verifierMode = normalizeVerifierMode(options.verifierMode || process.env[VERIFIER_ENV]);
   const injectedSupervisorVerifier = typeof options.supervisorVerifier === 'function' ? options.supervisorVerifier : null;
@@ -249,9 +259,22 @@ function normalizeOptions(rawOptions = {}) {
       options.maxWallMs,
       normalizePositiveInt(envMaxWallMs, DEFAULT_MAX_WALL_MS),
     ),
+    verifierTimeoutMs: normalizePositiveInt(
+      options.verifierTimeoutMs,
+      normalizePositiveInt(envVerifierTimeoutMs, DEFAULT_VERIFIER_TIMEOUT_MS),
+    ),
+    continuationTimeoutMs: normalizePositiveInt(
+      options.continuationTimeoutMs,
+      normalizePositiveInt(envContinuationTimeoutMs, DEFAULT_CONTINUATION_TIMEOUT_MS),
+    ),
+    jsonlMaxBytes: normalizePositiveInt(
+      options.jsonlMaxBytes,
+      normalizePositiveInt(envJsonlMaxBytes, DEFAULT_JSONL_MAX_BYTES),
+    ),
     nowMs: Number.isFinite(options.nowMs) ? Math.trunc(options.nowMs) : null,
     goalIdFactory: typeof options.goalIdFactory === 'function' ? options.goalIdFactory : null,
     client: options.client && typeof options.client === 'object' ? options.client : null,
+    directory: typeof options.directory === 'string' ? options.directory.trim() : '',
     verifierMode,
     supervisorVerifier: injectedSupervisorVerifier,
     supervisorVerifierSource: injectedSupervisorVerifier ? 'injected' : `default-${verifierMode}`,
@@ -262,6 +285,24 @@ function normalizeOptions(rawOptions = {}) {
 
 function nowMs(options = {}) {
   return Number.isFinite(options.nowMs) ? Math.trunc(options.nowMs) : Date.now();
+}
+
+async function withDeadline(operation, timeoutMs, code, message) {
+  const controller = new AbortController();
+  let timer = null;
+  const operationPromise = Promise.resolve().then(() => operation(controller.signal));
+  operationPromise.catch(() => {});
+  const timeoutPromise = new Promise((_, reject) => {
+    timer = setTimeout(() => {
+      controller.abort();
+      reject(new GoalError(code, message));
+    }, timeoutMs);
+  });
+  try {
+    return await Promise.race([operationPromise, timeoutPromise]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
 }
 
 function retentionNowMs(rawOptions = {}) {
@@ -619,6 +660,7 @@ function eventPropertiesFrom(event) {
 function extractEventSessionID(event) {
   const payload = eventPayloadFrom(event);
   const properties = eventPropertiesFrom(payload);
+  const eventType = eventTypeFrom(payload);
   return normalizeSessionID(
     payload?.sessionID
       || payload?.sessionId
@@ -632,6 +674,7 @@ function extractEventSessionID(event) {
       || properties.message?.sessionId
       || properties.part?.sessionID
       || properties.part?.sessionId
+      || ((eventType === 'session.created' || eventType === 'session.deleted') ? properties.info?.id : null)
       || null,
   );
 }
@@ -702,7 +745,6 @@ function normalizeAccountedMessageUsage(value) {
   return Object.fromEntries(Object.entries(value)
     .map(([key, entry]) => [sanitizeInlineText(key, GOAL_ID_MAX_CHARS), Number(entry)])
     .filter(([key, entry]) => key && Number.isFinite(entry) && entry > 0)
-    .slice(-MAX_ACCOUNTED_MESSAGES)
     .map(([key, entry]) => [key, Math.trunc(entry)]));
 }
 
@@ -710,23 +752,50 @@ function rememberAccountedMessage(accountedMessageUsage, messageID, tokenTotal) 
   const next = { ...normalizeAccountedMessageUsage(accountedMessageUsage) };
   delete next[messageID];
   next[messageID] = Math.trunc(tokenTotal);
-  return Object.fromEntries(Object.entries(next).slice(-MAX_ACCOUNTED_MESSAGES));
+  return next;
 }
 
 async function appendGoalJsonl(filename, payload, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
   try {
-    const stateDir = await ensureGoalStateDir(rawOptions);
-    await pruneJsonlLog(filename, stateDir, rawOptions);
-    const timestamp = isoFromMs(nowMs(rawOptions));
+    const stateDir = await ensureGoalStateDir(options);
+    const timestamp = isoFromMs(nowMs(options));
     const entry = {
       ts: timestamp,
       goalId: payload?.goalId === undefined ? null : payload.goalId,
       ...payload,
     };
-    await appendFile(join(stateDir, filename), `${JSON.stringify(entry)}\n`, 'utf8');
+    const line = `${JSON.stringify(entry)}\n`;
+    const path = join(stateDir, filename);
+    const previous = jsonlAppendQueues.get(path) || Promise.resolve();
+    const run = previous.catch(() => undefined).then(async () => {
+      await pruneJsonlLog(filename, stateDir, options);
+      await rotateJsonlLog(filename, stateDir, Buffer.byteLength(line), options);
+      await appendFile(path, line, 'utf8');
+    });
+    jsonlAppendQueues.set(path, run);
+    try {
+      await run;
+    } finally {
+      if (jsonlAppendQueues.get(path) === run) jsonlAppendQueues.delete(path);
+    }
   } catch (error) {
     writeDebugStderr('appendGoalJsonl', error);
     return;
+  }
+}
+
+async function rotateJsonlLog(filename, stateDir, incomingBytes, rawOptions = {}) {
+  if (!OWNED_JSONL_LOGS.has(filename)) return;
+  const options = normalizeOptions(rawOptions);
+  const path = join(stateDir, filename);
+  try {
+    const fileStats = await stat(path);
+    if (fileStats.size + incomingBytes <= options.jsonlMaxBytes) return;
+    const segmentPath = `${path}.${nowMs(options)}-${randomUUID()}`;
+    await rename(path, segmentPath);
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
   }
 }
 
@@ -746,8 +815,19 @@ async function pruneJsonlLog(filename, stateDir, rawOptions = {}) {
     const retentionMs = retentionDaysFromEnv(ARCHIVE_RETENTION_DAYS_ENV, DEFAULT_ARCHIVE_RETENTION_DAYS) * MS_PER_DAY;
     const timestamp = retentionNowMs(rawOptions);
     const path = join(stateDir, filename);
-    const fileStats = await stat(path);
-    if (timestamp - fileStats.mtimeMs > retentionMs) await unlink(path);
+    try {
+      const fileStats = await stat(path);
+      if (timestamp - fileStats.mtimeMs > retentionMs) await unlink(path);
+    } catch (error) {
+      if (error?.code !== 'ENOENT') throw error;
+    }
+    const entries = await readdir(stateDir, { withFileTypes: true });
+    await Promise.all(entries.map(async (entry) => {
+      if (!entry.isFile() || !entry.name.startsWith(`${filename}.`)) return;
+      const segmentPath = join(stateDir, entry.name);
+      const segmentStats = await stat(segmentPath);
+      if (timestamp - segmentStats.mtimeMs > retentionMs) await unlink(segmentPath);
+    }));
   } catch {
     return;
   }
@@ -806,6 +886,15 @@ function tokenCountFromUsage(usage) {
     'token_count',
   ]);
   if (direct !== null) return direct;
+  const hasNativeFields = ['input', 'output', 'reasoning'].some((key) => Object.hasOwn(usage, key))
+    || (usage.cache && typeof usage.cache === 'object');
+  if (hasNativeFields) {
+    return (numericField(usage, ['input']) || 0)
+      + (numericField(usage, ['output']) || 0)
+      + (numericField(usage, ['reasoning']) || 0)
+      + (numericField(usage.cache, ['read']) || 0)
+      + (numericField(usage.cache, ['write']) || 0);
+  }
   const input = numericField(usage, ['inputTokens', 'input_tokens', 'promptTokens', 'prompt_tokens']) || 0;
   const output = numericField(usage, ['outputTokens', 'output_tokens', 'completionTokens', 'completion_tokens']) || 0;
   return input + output;
@@ -834,7 +923,11 @@ function extractUsageFromEvent(event) {
   const usage = candidates.find((candidate) => tokenCountFromUsage(candidate) > 0) || candidates[0] || null;
   const tokenDelta = tokenCountFromUsage(usage);
   const timeDeltaSeconds = secondsFromUsage(usage);
-  const source = sanitizeInlineText(usage?.source || usage?.usageSource || (tokenDelta > 0 ? 'message.updated' : 'unavailable'), 80);
+  const nativeUsage = usage === properties.info?.tokens;
+  const source = sanitizeInlineText(
+    usage?.source || usage?.usageSource || (nativeUsage ? 'opencode-native-tokens' : tokenDelta > 0 ? 'message.updated' : 'unavailable'),
+    80,
+  );
   return {
     tokenDelta,
     timeDeltaSeconds,
@@ -982,6 +1075,16 @@ function extractAssistantEvidence(event, rawOptions = {}) {
   return redacted || null;
 }
 
+function extractAssistantTextPartEvidence(event, rawOptions = {}) {
+  const payload = eventPayloadFrom(event);
+  const properties = eventPropertiesFrom(payload);
+  const part = payload?.part || properties.part;
+  if (!part || part.type !== 'text') return null;
+  const role = [part, payload?.info, properties.info, payload].map(roleFromObject).find(Boolean);
+  if (role !== 'assistant') return null;
+  return extractAssistantEvidence(event, rawOptions);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. STATE STORE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1030,12 +1133,31 @@ function invalidateGoalBriefCache(sessionID, rawOptions = {}) {
   }
 }
 
-function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
+function setGoalBriefCache(path, value, rawOptions = {}) {
+  goalBriefCache.delete(path);
+  goalBriefCache.set(path, value);
+  while (goalBriefCache.size > DEFAULT_GOAL_BRIEF_CACHE_ENTRIES) {
+    goalBriefCache.delete(goalBriefCache.keys().next().value);
+  }
+  if (rawOptions.metrics) rawOptions.metrics.goalBriefCacheSize = goalBriefCache.size;
+}
+
+function touchGoalBriefCache(path, value, rawOptions = {}) {
+  setGoalBriefCache(path, value, rawOptions);
+  return value;
+}
+
+function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}, expectedSessionID = null) {
   if (!rawGoal || typeof rawGoal !== 'object') {
     throw new GoalError('INVALID_GOAL_STATE', 'Goal state is not a JSON object');
   }
   const options = normalizeOptions(rawOptions);
-  const sessionID = requireSessionID(rawGoal.sessionId ?? fallbackSessionID);
+  const expected = normalizeSessionID(expectedSessionID);
+  const embedded = normalizeSessionID(rawGoal.sessionId);
+  if (expected && embedded && embedded !== expected) {
+    throw new GoalError('INVALID_GOAL_STATE', 'Goal state session id does not match its file path');
+  }
+  const sessionID = requireSessionID(expected || embedded || fallbackSessionID);
   const objective = sanitizeInlineText(rawGoal.objective, options.maxObjectiveChars);
   if (!objective) {
     throw new GoalError('INVALID_GOAL_STATE', 'Goal state is missing an objective');
@@ -1061,6 +1183,7 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}) {
     timeUsedSeconds: Number.isFinite(rawGoal.timeUsedSeconds) ? Math.max(0, Math.trunc(rawGoal.timeUsedSeconds)) : 0,
     createdAtMs,
     updatedAtMs,
+    revision: Number.isFinite(rawGoal.revision) ? Math.max(0, Math.trunc(rawGoal.revision)) : 0,
     createdAt: typeof rawGoal.createdAt === 'string' ? rawGoal.createdAt : isoFromMs(createdAtMs),
     updatedAt: typeof rawGoal.updatedAt === 'string' ? rawGoal.updatedAt : isoFromMs(updatedAtMs),
     continuationSuppressed: rawGoal.continuationSuppressed === true,
@@ -1129,7 +1252,7 @@ async function readGoal(sessionID, rawOptions = {}) {
   try {
     countMetric(rawOptions, 'readGoalReadFile');
     const raw = await readFile(path, 'utf8');
-    return normalizeStoredGoal(JSON.parse(raw), sessionID, rawOptions);
+    return normalizeStoredGoal(JSON.parse(raw), sessionID, rawOptions, requireSessionID(sessionID));
   } catch (error) {
     if (error?.code === 'ENOENT') return null;
     if (error instanceof GoalError) throw error;
@@ -1166,7 +1289,7 @@ async function fsyncDirectory(directoryPath, rawOptions = {}) {
  */
 async function writeGoalAtomic(goal, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
-  const normalized = normalizeStoredGoal(goal, goal?.sessionId, options);
+  const normalized = normalizeStoredGoal(goal, goal?.sessionId, options, goal?.sessionId);
   const stateDir = await ensureGoalStateDir(options);
   const finalPath = goalPathForSession(normalized.sessionId, options);
   const tempPath = `${finalPath}.${process.pid}.${nowMs(options)}.${Math.random().toString(16).slice(2)}.tmp`;
@@ -1263,6 +1386,12 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
       await rename(sourcePath, archivePath);
     } catch (error) {
       if (error?.code === 'ENOENT') return null;
+      await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
+        type: 'event_error',
+        eventType: 'session.deleted',
+        sid: normalizedSessionID,
+        error: redactEvidence(error?.message || 'archive failed', DEFAULT_MAX_REASON_CHARS),
+      }, options);
       return null;
     }
     await fsyncDirectory(options.stateDir, options);
@@ -1270,7 +1399,15 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
     invalidateGoalBriefCache(normalizedSessionID, options);
     await maybePruneArchive(options);
     return archivePath;
-  }).catch(() => null);
+  }).catch(async (error) => {
+    await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
+      type: 'event_error',
+      eventType: 'session.deleted',
+      sid: normalizeSessionID(sessionID),
+      error: redactEvidence(error?.message || 'archive failed', DEFAULT_MAX_REASON_CHARS),
+    }, rawOptions);
+    return null;
+  });
 }
 
 function sessionIDFromStateFilename(filename) {
@@ -1424,7 +1561,8 @@ async function mutateGoal(sessionID, mutator, rawOptions = {}) {
     const next = await mutator(current);
     if (next === null) return deleteGoalFile(normalizedSessionID, options);
     if (next === undefined) return current;
-    return writeGoalAtomic(next, options);
+    const revision = Math.max(current?.revision || 0, next?.revision || 0) + 1;
+    return writeGoalAtomic({ ...next, revision }, options);
   });
 }
 
@@ -1445,6 +1583,7 @@ function buildNewGoal(sessionID, objective, tokenBudget, rawOptions = {}) {
     timeUsedSeconds: 0,
     createdAtMs: timestamp,
     updatedAtMs: timestamp,
+    revision: 0,
     createdAt: isoFromMs(timestamp),
     updatedAt: isoFromMs(timestamp),
     continuationSuppressed: false,
@@ -1509,6 +1648,10 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
         goalPrompt: promptFields.goalPrompt,
         promptEnhancement: promptFields.promptEnhancement,
         tokenBudget,
+        startedAtMs: current.status === 'paused'
+          ? Math.max(0, timestamp - (current.activeWallMs || 0))
+          : current.startedAtMs,
+        activeWallMs: current.status === 'paused' ? 0 : current.activeWallMs,
         updatedAtMs: timestamp,
         updatedAt: isoFromMs(timestamp),
         continuationSuppressed: false,
@@ -1696,6 +1839,26 @@ async function refreshGoalActivity(sessionID, event, rawOptions = {}) {
   }, options);
 }
 
+async function recordMessagePartUpdated(sessionID, event, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const messageID = extractEventMessageID(event);
+  const evidence = extractAssistantTextPartEvidence(event, options);
+  if (!evidence) return readGoal(sessionID, options);
+
+  return mutateGoal(sessionID, (current) => {
+    if (!current) return null;
+    const timestamp = nowMs(options);
+    return {
+      ...current,
+      lastActivityAtMs: timestamp,
+      lastActivityMessageID: messageID || current.lastActivityMessageID,
+      lastEvidence: evidence,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, options);
+}
+
 async function recordMessageUpdated(sessionID, event, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   await recoverProviderUsageLimitIfDue(sessionID, options);
@@ -1863,25 +2026,48 @@ function parseLlmVerifierResponse(response) {
   return JSON.parse(candidate);
 }
 
-async function defaultLlmSupervisorVerifier({ goal, sessionID, evidence }, rawOptions = {}) {
-  const promptAsync = rawOptions.client?.session?.promptAsync;
-  if (typeof promptAsync !== 'function') {
-    throw new Error('promptAsync unavailable for default verifier');
+async function defaultLlmSupervisorVerifier({ goal, evidence, signal }, rawOptions = {}) {
+  const sessionClient = rawOptions.client?.session;
+  if (typeof sessionClient?.create !== 'function'
+    || typeof sessionClient?.prompt !== 'function'
+    || typeof sessionClient?.delete !== 'function') {
+    throw new Error('isolated session APIs unavailable for default verifier');
   }
-  const response = await promptAsync.call(rawOptions.client.session, {
-    path: { id: sessionID },
-    body: {
-      messageID: `goal-verifier-${randomUUID()}`,
-      parts: [{
-        type: 'text',
-        text: buildLlmVerifierPrompt(goal, evidence),
-      }],
-    },
-  });
-  return {
-    ...parseLlmVerifierResponse(response),
-    verifierSource: 'default-llm',
-  };
+
+  const query = rawOptions.directory ? { directory: resolvePath(rawOptions.directory) } : undefined;
+  let verifierSessionID = null;
+  try {
+    const createdResponse = await sessionClient.create.call(sessionClient, {
+      query,
+      body: {},
+    }, { signal });
+    const created = createdResponse?.data || createdResponse;
+    verifierSessionID = normalizeSessionID(created?.id || created?.info?.id);
+    if (!verifierSessionID) throw new Error('isolated verifier session missing id');
+
+    const response = await sessionClient.prompt.call(sessionClient, {
+      path: { id: verifierSessionID },
+      query,
+      body: {
+        parts: [{
+          type: 'text',
+          text: buildLlmVerifierPrompt(goal, evidence),
+        }],
+        tools: {},
+      },
+    }, { signal });
+    return {
+      ...parseLlmVerifierResponse(response?.data || response),
+      verifierSource: 'default-llm',
+    };
+  } finally {
+    if (verifierSessionID) {
+      await Promise.resolve(sessionClient.delete.call(sessionClient, {
+        path: { id: verifierSessionID },
+        query,
+      })).catch(() => {});
+    }
+  }
 }
 
 function defaultVerifierResult(reason, evidence = null, verifierSource = null) {
@@ -1891,6 +2077,7 @@ function defaultVerifierResult(reason, evidence = null, verifierSource = null) {
     reason,
     evidence,
     verifierSource,
+    timedOut: false,
   };
 }
 
@@ -1901,6 +2088,7 @@ function verifierResultEnvelope(result, fields = {}) {
     currentGoalId: fields.currentGoalId || null,
     verifierRunID: fields.verifierRunID || null,
     stale: fields.stale === true,
+    timedOut: result?.timedOut === true,
   };
 }
 
@@ -1924,6 +2112,7 @@ function normalizeVerifierResult(rawResult, fallbackEvidence, rawOptions = {}, v
     reason,
     evidence,
     verifierSource,
+    timedOut: rawResult.timedOut === true,
   };
 }
 
@@ -1933,13 +2122,24 @@ async function runSupervisorVerifier(goal, rawOptions = {}) {
     return defaultVerifierResult('No verifier evidence is available', null, options.supervisorVerifierSource);
   }
   try {
-    const result = await options.supervisorVerifier({
+    const result = await withDeadline((signal) => options.supervisorVerifier({
       goal,
       sessionID: goal.sessionId,
       evidence: goal.lastEvidence,
-    });
+      signal,
+    }), options.verifierTimeoutMs, 'VERIFIER_TIMEOUT', 'verifier_timeout');
     return normalizeVerifierResult(result, goal.lastEvidence, options, options.supervisorVerifierSource);
   } catch (error) {
+    if (error?.code === 'VERIFIER_TIMEOUT') {
+      return {
+        ...defaultVerifierResult(
+          'verifier_timeout',
+          redactEvidence(goal.lastEvidence, options.maxEvidenceChars),
+          options.supervisorVerifierSource,
+        ),
+        timedOut: true,
+      };
+    }
     const reason = redactEvidence(`Verifier failed: ${error?.message || 'unknown error'}`, DEFAULT_MAX_REASON_CHARS);
     return {
       verdict: 'blocked',
@@ -1947,6 +2147,7 @@ async function runSupervisorVerifier(goal, rawOptions = {}) {
       reason,
       evidence: redactEvidence(goal.lastEvidence, options.maxEvidenceChars),
       verifierSource: options.supervisorVerifierSource,
+      timedOut: false,
     };
   }
 }
@@ -1968,13 +2169,17 @@ async function maybeVerifyGoal(sessionID, rawOptions = {}) {
     });
   }
 
+  const snapshotRevision = goal.revision;
   const result = await runSupervisorVerifier(goal, options);
   const verifierRunID = `verifier-${randomUUID()}`;
   let resultApplied = false;
   let currentGoalID = null;
   await mutateGoal(sessionID, (current) => {
     currentGoalID = current?.goalId || null;
-    if (!current || current.goalId !== goal.goalId || current.status !== 'active') return current;
+    if (!current
+      || current.goalId !== goal.goalId
+      || current.status !== 'active'
+      || current.revision !== snapshotRevision) return undefined;
     resultApplied = true;
     const timestamp = nowMs(options);
     const next = {
@@ -2081,12 +2286,18 @@ async function reserveContinuationTurn(sessionID, goalID, rawOptions = {}) {
   const normalizedGoalID = normalizeGoalID(goalID);
   const messageID = `goal-continuation-${randomUUID()}`;
   let didReserve = false;
+  let previousReservation = null;
   const goal = await mutateGoal(sessionID, (current) => {
-    if (!current || current.goalId !== normalizedGoalID || current.status !== 'active') return current;
+    if (!current || current.goalId !== normalizedGoalID || current.status !== 'active') return undefined;
     const maxAutoTurns = Math.min(current.maxAutoTurns || rawOptions.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS, rawOptions.maxAutoTurns || DEFAULT_MAX_AUTO_TURNS);
-    if (current.autoTurnsUsed >= maxAutoTurns) return current;
+    if (current.autoTurnsUsed >= maxAutoTurns) return undefined;
     const timestamp = nowMs(rawOptions);
     didReserve = true;
+    previousReservation = {
+      autoTurnsUsed: current.autoTurnsUsed,
+      lastContinuationAtMs: current.lastContinuationAtMs,
+      lastContinuationMessageId: current.lastContinuationMessageId,
+    };
     return {
       ...current,
       autoTurnsUsed: current.autoTurnsUsed + 1,
@@ -2099,7 +2310,24 @@ async function reserveContinuationTurn(sessionID, goalID, rawOptions = {}) {
     };
   }, rawOptions);
 
-  return { didReserve, goal, messageID };
+  return { didReserve, goal, messageID, previousReservation };
+}
+
+async function rollbackContinuationReservation(sessionID, goalID, reservation, error, rawOptions = {}) {
+  return mutateGoal(sessionID, (current) => {
+    if (!current
+      || current.goalId !== normalizeGoalID(goalID)
+      || current.lastContinuationMessageId !== reservation.messageID) return undefined;
+    return {
+      ...current,
+      autoTurnsUsed: reservation.previousReservation.autoTurnsUsed,
+      lastContinuationAtMs: reservation.previousReservation.lastContinuationAtMs,
+      lastContinuationMessageId: reservation.previousReservation.lastContinuationMessageId,
+      lastContinuationError: sanitizeInlineText(error?.message || 'promptAsync failed', DEFAULT_MAX_REASON_CHARS),
+      continuationSuppressed: true,
+      continuationSuppressedReason: 'prompt_async_failed',
+    };
+  }, rawOptions);
 }
 
 async function buildPromptAsyncOptions(sessionID, goal, messageID, rawOptions = {}) {
@@ -2172,6 +2400,7 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
     if (!goal || goal.status !== 'active') return decision('suppressed', 'goal_not_active', autoTurnsUsed);
 
     const verifierResult = rawOptions.verifierResult || null;
+    if (verifierResult?.timedOut) return decision('suppressed', 'verifier_timeout', autoTurnsUsed);
     if (verifierResult?.stale) return decision('suppressed', 'stale_verifier_result', autoTurnsUsed);
     if (verifierResult?.goalId && verifierResult.goalId !== goal.goalId) {
       return decision('suppressed', 'verifier_goal_mismatch', autoTurnsUsed);
@@ -2225,21 +2454,32 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
     }
 
     try {
-      await promptAsync.call(
+      await withDeadline(async (signal) => promptAsync.call(
         rawOptions.client.session,
         await buildPromptAsyncOptions(normalizedSessionID, reserved.goal, reserved.messageID, rawOptions),
-      );
+        { signal },
+      ), options.continuationTimeoutMs, 'CONTINUATION_TIMEOUT', 'prompt_async_timeout');
       return decision('fired', 'prompt_async_sent', reserved.goal.autoTurnsUsed);
     } catch (error) {
-      await recordContinuationReason(
+      if (error?.code === 'CONTINUATION_TIMEOUT') {
+        const timedOutGoal = await recordContinuationReason(
+          normalizedSessionID,
+          reserved.goal.goalId,
+          'prompt_async_timeout',
+          options,
+          true,
+          'prompt_async_timeout',
+        );
+        return decision('suppressed', 'prompt_async_timeout', timedOutGoal?.autoTurnsUsed || reserved.goal.autoTurnsUsed);
+      }
+      const rolledBackGoal = await rollbackContinuationReservation(
         normalizedSessionID,
         reserved.goal.goalId,
-        'prompt_async_failed',
+        reserved,
+        error,
         options,
-        true,
-        error?.message || 'promptAsync failed',
       );
-      return decision('suppressed', 'prompt_async_failed', reserved.goal.autoTurnsUsed);
+      return decision('suppressed', 'prompt_async_failed', rolledBackGoal?.autoTurnsUsed || 0);
     }
   } finally {
     continuationLocks?.delete?.(normalizedSessionID);
@@ -2310,23 +2550,26 @@ async function readGoalForBrief(sessionID, rawOptions = {}) {
     fileStats = await stat(path);
   } catch (error) {
     if (error?.code !== 'ENOENT') throw error;
-    if (cached?.missing === true) return null;
-    goalBriefCache.set(path, { missing: true });
+    if (cached?.missing === true) {
+      touchGoalBriefCache(path, cached, options);
+      return null;
+    }
+    setGoalBriefCache(path, { missing: true }, options);
     return null;
   }
 
   const cacheKey = `${fileStats.mtimeMs}:${fileStats.size}`;
-  if (cached?.cacheKey === cacheKey) return cached.goal;
+  if (cached?.cacheKey === cacheKey) return touchGoalBriefCache(path, cached, options).goal;
 
   try {
     countMetric(options, 'briefReadFile');
     const raw = await readFile(path, 'utf8');
-    const goal = normalizeStoredGoal(JSON.parse(raw), sessionID, options);
-    goalBriefCache.set(path, { cacheKey, goal });
+    const goal = normalizeStoredGoal(JSON.parse(raw), sessionID, options, requireSessionID(sessionID));
+    setGoalBriefCache(path, { cacheKey, goal }, options);
     return goal;
   } catch (error) {
     if (error?.code === 'ENOENT') {
-      goalBriefCache.set(path, { missing: true });
+      setGoalBriefCache(path, { missing: true }, options);
       return null;
     }
     throw error;
@@ -2345,7 +2588,14 @@ async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions =
     const marker = `[active_goal:${goal.goalId}]`;
     if (output.system.some((entry) => typeof entry === 'string' && entry.includes(marker))) return;
     output.system.push(block);
-  } catch {
+  } catch (error) {
+    writeDebugStderr('appendGoalBrief', error);
+    await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
+      type: 'event_error',
+      eventType: 'system.transform',
+      sid: sessionIdFromInput(input),
+      error: redactEvidence(error?.message || 'unknown error', DEFAULT_MAX_REASON_CHARS),
+    }, rawOptions);
     return;
   }
 }
@@ -2371,7 +2621,9 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOp
   const options = normalizeOptions(rawOptions);
   const maxAutoTurns = Number.isFinite(goal.maxAutoTurns) ? Math.max(0, Math.trunc(goal.maxAutoTurns)) : options.maxAutoTurns;
   const autoTurnsUsed = Number.isFinite(goal.autoTurnsUsed) ? Math.max(0, Math.trunc(goal.autoTurnsUsed)) : 0;
-  const wallElapsedMs = Math.max(0, nowMs(options) - goal.startedAtMs);
+  const wallElapsedMs = goal.status === 'active'
+    ? Math.max(0, nowMs(options) - goal.startedAtMs)
+    : Math.max(0, goal.activeWallMs || 0);
   const remainingWallMs = Math.max(0, options.maxWallMs - wallElapsedMs);
   const lines = [
     `STATUS=OK ACTION=${action}`,
@@ -2560,6 +2812,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
     runtimeState.inFlightContinuations.clear();
     runtimeState.blockedByPromptSessions.clear();
     runtimeState.sessionStatuses.clear();
+    goalBriefCache.clear();
   }
 
   async function handleEvent(event) {
@@ -2582,6 +2835,11 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
 
     if (eventType === 'message.updated') {
       if (sessionID) await recordMessageUpdated(sessionID, event, eventOptions);
+      return;
+    }
+
+    if (eventType === 'message.part.updated') {
+      if (sessionID) await recordMessagePartUpdated(sessionID, event, eventOptions);
       return;
     }
 
@@ -2625,6 +2883,7 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
         verifierResult = await maybeVerifyGoal(sessionID, {
           ...rawOptions,
           client: ctx?.client,
+          directory: ctx?.directory,
         });
       } finally {
         runtimeState.inFlightVerifications.delete(sessionID);
@@ -2640,14 +2899,13 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
     }
 
     if (eventType === 'session.deleted') {
-      flushVolatileLocks(sessionID);
-      if (sessionID) {
-        try {
-          await archiveGoalStateFile(sessionID, eventOptions);
-        } catch {
-          return;
-        }
+      if (!sessionID) {
+        await logDebugEventError(event, new GoalError('MISSING_SESSION_ID', 'session.deleted missing session id'), eventOptions);
+        return;
       }
+      flushVolatileLocks(sessionID);
+      invalidateGoalBriefCache(sessionID, eventOptions);
+      await archiveGoalStateFile(sessionID, eventOptions);
       return;
     }
 

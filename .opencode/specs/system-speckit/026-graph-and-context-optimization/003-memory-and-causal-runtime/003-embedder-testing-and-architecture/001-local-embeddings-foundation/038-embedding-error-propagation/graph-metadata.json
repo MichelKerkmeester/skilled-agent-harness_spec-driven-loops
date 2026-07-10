@@ -209,7 +209,7 @@
     ],
     "causal_summary": "`generateDocumentEmbedding` catches real provider failures, records a circuit-breaker failure, logs a warning, and returns `null`",
     "created_at": "2026-05-14T14:31:45Z",
-    "last_save_at": "2026-07-09T10:02:52.473Z",
+    "last_save_at": "2026-07-10T06:23:45.699Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

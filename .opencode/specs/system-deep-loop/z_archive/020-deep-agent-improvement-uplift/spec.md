@@ -42,11 +42,14 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned — gated on council approval |
+| **Status** | Complete |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
 | **Phase Parent** | `110-auto-review-stretch-config-dedup-gates` |
 | **Source teaching** | M-3 from `106/research/review-report.md` §5 |
+
+> **Historical record:** This archived specification retains its original council-gated status; the corresponding implementation summary records the completed uplift.
+
 <!-- /ANCHOR:metadata -->
 
 ---

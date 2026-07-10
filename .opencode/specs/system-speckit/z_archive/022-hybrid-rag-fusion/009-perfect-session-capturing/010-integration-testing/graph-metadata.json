@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The runtime gap is now closed: `workflow-e2e.vitest.ts` exercises the real save path with temp-repo isolation, real markdown writes, real `description.json` mutation, and real post-write indexing handoff behavior",
     "created_at": "2026-04-12T09:02:50.272Z",
-    "last_save_at": "2026-07-09T10:02:58.215Z",
+    "last_save_at": "2026-07-10T06:23:59.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

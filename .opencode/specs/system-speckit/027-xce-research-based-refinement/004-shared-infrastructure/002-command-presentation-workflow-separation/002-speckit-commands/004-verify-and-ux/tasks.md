@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux"
     last_updated_at: "2026-06-10T19:51:18Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Verified speckit router asset references and presentation ownership checks"

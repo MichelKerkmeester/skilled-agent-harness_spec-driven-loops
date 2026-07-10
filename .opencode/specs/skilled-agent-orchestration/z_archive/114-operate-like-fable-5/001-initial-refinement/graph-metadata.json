@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`external/Fable5.md` is a distilled agent operating doctrine — verify before you claim, make confirmed-vs-inferred claims legible, capture a baseline before \"no regressions\" and report the delta, treat a finding as a hypothesis until you open the cited code, stay in scope, name the rollback before irreversible or outward actions, and match effort to blast radius",
     "created_at": "2026-06-14T07:21:49Z",
-    "last_save_at": "2026-07-09T10:02:46.569Z",
+    "last_save_at": "2026-07-10T06:21:41.285Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

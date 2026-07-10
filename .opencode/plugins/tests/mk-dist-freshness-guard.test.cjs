@@ -8,12 +8,36 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const test = require('node:test');
 const { pathToFileURL } = require('node:url');
 
 const GUARD_LOG_RELATIVE = path.join('.opencode', 'logs', 'dist-freshness-guard.log');
+const DIST_FRESHNESS_PATH = path.join(
+  __dirname,
+  '..',
+  '..',
+  'skills',
+  'system-spec-kit',
+  'scripts',
+  'lib',
+  'dist-freshness.cjs',
+);
+const CLAUDE_HOOK_PATH = path.join(
+  __dirname,
+  '..',
+  '..',
+  'skills',
+  'sk-code',
+  'code-quality',
+  'scripts',
+  'hooks',
+  'claude-posttooluse.sh',
+);
+const distFreshness = require(DIST_FRESHNESS_PATH);
 
 function writeFileWithMtime(filePath, content, mtimeMs) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -31,6 +55,35 @@ function writeCodeModeFixture(dir, stale) {
   writeFileWithMtime(path.join(packageDir, 'tsconfig.json'), '{"include":["index.ts"]}\n', sourceMtime);
   writeFileWithMtime(path.join(packageDir, 'index.ts'), 'export const value = 1;\n', sourceMtime);
   writeFileWithMtime(path.join(packageDir, 'dist', 'index.js'), 'export const value = 1;\n', distMtime);
+  return {
+    packageDir,
+    sourcePath: path.join(packageDir, 'index.ts'),
+    distPath: path.join(packageDir, 'dist', 'index.js'),
+  };
+}
+
+function fixtureContent(filePath) {
+  return path.extname(filePath) === '.json' ? '{}\n' : 'export const fixture = true;\n';
+}
+
+function writeAllPackageFixtures(dir) {
+  const sourceMtime = Date.now();
+  const distMtime = sourceMtime + 10_000;
+  for (const pkg of distFreshness.DIST_PACKAGES) {
+    const packageDir = path.join(dir, pkg.root);
+    for (const candidate of pkg.sourceCandidates) {
+      const candidatePath = path.resolve(packageDir, candidate);
+      const basename = path.basename(candidatePath);
+      if (path.extname(basename) || basename === 'package.json') {
+        writeFileWithMtime(candidatePath, fixtureContent(candidatePath), sourceMtime);
+      } else {
+        writeFileWithMtime(path.join(candidatePath, 'fixture.ts'), 'export const fixture = true;\n', sourceMtime);
+      }
+    }
+    for (const distEntry of Object.values(pkg.distEntries)) {
+      writeFileWithMtime(path.join(packageDir, distEntry), 'export const fixture = true;\n', distMtime);
+    }
+  }
 }
 
 async function loadPlugin() {
@@ -44,14 +97,6 @@ function guardLogLineCount(dir) {
     return text.trimEnd() ? text.trimEnd().split('\n').filter(Boolean).length : 0;
   } catch (_) {
     return 0;
-  }
-}
-
-function readGuardLog(dir) {
-  try {
-    return fs.readFileSync(path.join(dir, GUARD_LOG_RELATIVE), 'utf8');
-  } catch (_) {
-    return '';
   }
 }
 
@@ -76,99 +121,245 @@ async function runTrapped(callback) {
   return consoleCalls;
 }
 
-async function main() {
+function temporaryDirectory(t, prefix) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  return dir;
+}
+
+test('exports only the OpenCode plugin factory', async () => {
   const pluginModule = await loadPlugin();
   assert.deepEqual(Object.keys(pluginModule), ['default']);
   assert.equal(typeof pluginModule.default, 'function');
+});
 
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mk-dist-freshness-guard-'));
-  try {
-    writeCodeModeFixture(tmpDir, true);
+test('injects stale and check-error diagnostics without terminal output', async (t) => {
+  const tmpDir = temporaryDirectory(t, 'mk-dist-freshness-guard-diagnostics-');
+  writeCodeModeFixture(tmpDir, true);
+  const pluginModule = await loadPlugin();
+  const hooks = await pluginModule.default({ directory: tmpDir });
+  const beforeHook = hooks['tool.execute.before'];
+  const transformHook = hooks['experimental.chat.system.transform'];
+  const before = guardLogLineCount(tmpDir);
+  const output = { system: [] };
+
+  const consoleCalls = await runTrapped(async () => {
+    await beforeHook({ tool: 'bash' }, { args: { command: 'validate.sh fixture' } });
+    await transformHook({}, output);
+  });
+
+  assert.deepEqual(consoleCalls, []);
+  assert.equal(guardLogLineCount(tmpDir) - before, 1);
+  assert.equal(output.system.length, 1);
+  assert.match(output.system[0], /STALE DIST WARNING: @utcp\/code-mode-mcp/);
+  assert.match(output.system[0], /CHECK ERROR/);
+  assert.ok(output.system[0].split('\n').length <= 10, 'system brief must remain bounded');
+});
+
+test('invalidates a warm cache for watched source mutations', async (t) => {
+  for (const tool of ['write', 'edit', 'apply_patch']) {
+    const tmpDir = temporaryDirectory(t, `mk-dist-freshness-guard-${tool}-`);
+    writeAllPackageFixtures(tmpDir);
+    const fixture = writeCodeModeFixture(tmpDir, false);
+    assert.equal(distFreshness.preparePackageBuild('mcp-code-mode/mcp_server', { workspaceRoot: tmpDir }).status, 'prepared');
+    assert.equal(distFreshness.recordPackageBuild('mcp-code-mode/mcp_server', { workspaceRoot: tmpDir }).status, 'recorded');
+
+    const pluginModule = await loadPlugin();
     const hooks = await pluginModule.default({ directory: tmpDir });
-    const beforeHook = hooks['tool.execute.before'];
-    const eventHook = hooks.event;
-    const transformHook = hooks['experimental.chat.system.transform'];
-    assert.equal(typeof beforeHook, 'function');
-    assert.equal(typeof eventHook, 'function');
-    assert.equal(typeof transformHook, 'function');
+    const firstOutput = { system: [] };
+    await hooks['experimental.chat.system.transform']({}, firstOutput);
+    assert.deepEqual(firstOutput.system, [], `${tool} fixture must start fresh`);
 
-    // Non-bash and unrelated bash commands never trigger a freshness check.
-    let before = guardLogLineCount(tmpDir);
-    let console1 = await runTrapped(async () => {
-      await beforeHook({ tool: 'read' }, { args: { command: 'validate.sh fixture' } });
-      await beforeHook({ tool: 'bash' }, { args: { command: 'node scripts/safe.js' } });
-    });
-    assert.equal(console1.length, 0, 'plugin must never write to the console');
-    assert.equal(guardLogLineCount(tmpDir) - before, 0, 'non-risky commands must not log');
-
-    // Stale package + risky validate.sh logs exactly one warning (to file, not console).
-    before = guardLogLineCount(tmpDir);
-    let console2 = await runTrapped(async () => {
-      await beforeHook({ tool: 'bash' }, { args: { command: 'bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh fixture' } });
-    });
-    assert.equal(console2.length, 0, 'stale warning must not reach the console');
-    assert.equal(guardLogLineCount(tmpDir) - before, 1, 'stale package must log once before validate.sh');
-    let log = readGuardLog(tmpDir);
-    assert.match(log, /STALE DIST WARNING: @utcp\/code-mode-mcp/);
-    assert.match(log, /cd \.opencode\/skills\/mcp-code-mode\/mcp_server && npm run build/);
-
-    // The stale signal reaches the agent via bounded system-context injection.
-    const transformOut = { system: [] };
-    let console3 = await runTrapped(async () => {
-      await transformHook({}, transformOut);
-    });
-    assert.equal(console3.length, 0, 'transform must not reach the console');
-    assert.equal(transformOut.system.length, 1, 'stale dist must inject exactly one bounded system brief');
-    assert.match(transformOut.system[0], /dist-freshness-guard/);
-    assert.match(transformOut.system[0], /STALE DIST WARNING: @utcp\/code-mode-mcp/);
-
-    // Fallback arg stringify still detects opencode run.
-    before = guardLogLineCount(tmpDir);
-    let console4 = await runTrapped(async () => {
-      await beforeHook({ tool: 'bash' }, { args: { nested: { command: 'opencode run task' } } });
-    });
-    assert.equal(console4.length, 0, 'plugin must never write to the console');
-    assert.equal(guardLogLineCount(tmpDir) - before, 1, 'fallback arg stringify must detect opencode run');
-
-    // session.created logs once per session (dedupe).
-    before = guardLogLineCount(tmpDir);
-    let console5 = await runTrapped(async () => {
-      await eventHook({ event: { type: 'session.created', sessionID: 'session-a' } });
-      await eventHook({ event: { type: 'session.created', sessionID: 'session-a' } });
-    });
-    assert.equal(console5.length, 0, 'session warning must not reach the console');
-    assert.equal(guardLogLineCount(tmpDir) - before, 1, 'session.created summary must log once per session');
-
-    // Fresh dist: no new log line, and no system injection.
-    writeCodeModeFixture(tmpDir, false);
-    before = guardLogLineCount(tmpDir);
-    const freshTransformOut = { system: [] };
-    let console6 = await runTrapped(async () => {
-      await beforeHook({ tool: 'bash' }, { args: { command: 'validate.sh fixture' } });
-      await eventHook({ event: { type: 'session.created', sessionID: 'session-b' } });
-      await transformHook({}, freshTransformOut);
-    });
-    assert.equal(console6.length, 0, 'plugin must never write to the console');
-    assert.equal(guardLogLineCount(tmpDir) - before, 0, 'fresh dist must not log');
-    assert.equal(freshTransformOut.system.length, 0, 'fresh dist must not inject a system brief');
-
-    // Malformed fixtures never throw and never reach the console.
-    let console7 = await runTrapped(async () => {
-      await assert.doesNotReject(async () => {
-        await beforeHook({ tool: 'bash' }, { args: null });
-        await eventHook({ event: { type: 'session.created', sessionID: 'session-c' } });
-        await transformHook({}, null);
-      }, 'plugin must never throw on malformed fixtures');
-    });
-    assert.equal(console7.length, 0, 'plugin must never write to the console');
-  } finally {
-    fs.rmSync(tmpDir, { recursive: true, force: true });
+    const oldMtime = fs.statSync(fixture.sourcePath).mtime;
+    fs.writeFileSync(fixture.sourcePath, 'export const value = 2;\n');
+    fs.utimesSync(fixture.sourcePath, oldMtime, oldMtime);
+    const args = tool === 'apply_patch' ? {} : { filePath: fixture.sourcePath };
+    await hooks['tool.execute.before']({ tool }, { args });
+    const nextOutput = { system: [] };
+    await hooks['experimental.chat.system.transform']({}, nextOutput);
+    assert.match(nextOutput.system[0], /STALE DIST WARNING: @utcp\/code-mode-mcp/);
   }
+});
 
-  console.log('mk-dist-freshness-guard.test.cjs: all assertions passed');
-}
+test('bounds session state and rotates the audit log', async (t) => {
+  const tmpDir = temporaryDirectory(t, 'mk-dist-freshness-guard-retention-');
+  writeCodeModeFixture(tmpDir, true);
+  const logPath = path.join(tmpDir, GUARD_LOG_RELATIVE);
+  fs.mkdirSync(path.dirname(logPath), { recursive: true });
+  fs.writeFileSync(logPath, 'x'.repeat(256 * 1024));
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
+  const pluginModule = await loadPlugin();
+  const hooks = await pluginModule.default({ directory: tmpDir });
+  await hooks.event({ event: { type: 'session.created', sessionID: 'session-a' } });
+  const afterFirst = guardLogLineCount(tmpDir);
+  assert.ok(fs.existsSync(`${logPath}.1`));
+  assert.equal(fs.statSync(`${logPath}.1`).size, 256 * 1024);
+  assert.ok(fs.statSync(logPath).size < 256 * 1024);
+
+  await hooks.event({ event: { type: 'session.created', sessionID: 'session-a' } });
+  assert.equal(guardLogLineCount(tmpDir), afterFirst);
+  await hooks.event({ event: { type: 'session.deleted', properties: { info: { id: 'session-a' } } } });
+  await hooks.event({ event: { type: 'session.created', sessionID: 'session-a' } });
+  assert.equal(guardLogLineCount(tmpDir), afterFirst + 1);
+  await hooks.event({ event: { type: 'global.disposed' } });
+  await hooks.event({ event: { type: 'session.created', sessionID: 'session-a' } });
+  assert.equal(guardLogLineCount(tmpDir), afterFirst + 2);
+});
+
+test('evicts the oldest session ID when the deduplication cap is reached', async (t) => {
+  const tmpDir = temporaryDirectory(t, 'mk-dist-freshness-guard-session-cap-');
+  writeAllPackageFixtures(tmpDir);
+  const fixture = writeCodeModeFixture(tmpDir, true);
+  const pluginModule = await loadPlugin();
+  const hooks = await pluginModule.default({ directory: tmpDir });
+
+  for (let index = 0; index <= 1_000; index += 1) {
+    await hooks.event({ event: { type: 'session.created', sessionID: `session-${index}` } });
+  }
+  const beforeReplay = guardLogLineCount(tmpDir);
+  await hooks.event({ event: { type: 'session.created', sessionID: 'session-0' } });
+  assert.equal(guardLogLineCount(tmpDir), beforeReplay + 1);
+  assert.ok(fs.existsSync(fixture.sourcePath));
+});
+
+test('requires staged build provenance and verifies source and dist content', (t) => {
+  const tmpDir = temporaryDirectory(t, 'dist-freshness-attestation-');
+  const fixture = writeCodeModeFixture(tmpDir, false);
+  const options = { workspaceRoot: tmpDir };
+
+  assert.equal(distFreshness.preparePackageBuild('mcp-code-mode/mcp_server', options).status, 'prepared');
+  assert.equal(distFreshness.recordPackageBuild('mcp-code-mode/mcp_server', options).status, 'recorded');
+  assert.equal(distFreshness.checkPackageFreshness('mcp-code-mode/mcp_server', options).origin, 'build');
+
+  const sourceMtime = fs.statSync(fixture.sourcePath).mtime;
+  fs.writeFileSync(fixture.sourcePath, 'export const value = 2;\n');
+  fs.utimesSync(fixture.sourcePath, sourceMtime, sourceMtime);
+  assert.equal(distFreshness.checkPackageFreshness('mcp-code-mode/mcp_server', options).status, 'stale');
+
+  fs.writeFileSync(fixture.sourcePath, 'export const value = 1;\n');
+  fs.utimesSync(fixture.sourcePath, sourceMtime, sourceMtime);
+  const distStat = fs.statSync(fixture.distPath);
+  fs.writeFileSync(fixture.distPath, 'export const value = 2;\n');
+  fs.utimesSync(fixture.distPath, distStat.atime, distStat.mtime);
+  assert.equal(fs.statSync(fixture.distPath).size, distStat.size);
+  assert.equal(distFreshness.checkPackageFreshness('mcp-code-mode/mcp_server', options).status, 'stale');
+});
+
+test('refuses promotion when watched input changes during a build', (t) => {
+  const tmpDir = temporaryDirectory(t, 'dist-freshness-race-');
+  const fixture = writeCodeModeFixture(tmpDir, false);
+  const options = { workspaceRoot: tmpDir };
+  assert.equal(distFreshness.preparePackageBuild('mcp-code-mode/mcp_server', options).status, 'prepared');
+  fs.writeFileSync(fixture.sourcePath, 'export const value = 2;\n');
+  const result = distFreshness.recordPackageBuild('mcp-code-mode/mcp_server', options);
+  assert.equal(result.status, 'error');
+  assert.match(result.message, /changed while building/);
+});
+
+test('keeps JSON build inputs watched and preserves checker mtime fallback', (t) => {
+  const tmpDir = temporaryDirectory(t, 'dist-freshness-json-');
+  writeAllPackageFixtures(tmpDir);
+  const jsonPath = path.join(
+    tmpDir,
+    '.opencode',
+    'skills',
+    'system-skill-advisor',
+    'mcp_server',
+    'data',
+    'routing-prototypes.json',
+  );
+  writeFileWithMtime(jsonPath, '{"value":1}\n', Date.now());
+  assert.equal(distFreshness.packageForSourceFile(jsonPath, { workspaceRoot: tmpDir }).id, 'system-skill-advisor/mcp_server');
+
+  const fallback = distFreshness.checkPackageFreshness('mcp-code-mode/mcp_server', { workspaceRoot: tmpDir });
+  assert.equal(fallback.status, 'fresh');
+  assert.equal(fallback.origin, 'checker');
+
+  const options = { workspaceRoot: tmpDir };
+  assert.equal(distFreshness.preparePackageBuild('system-skill-advisor/mcp_server', options).status, 'prepared');
+  assert.equal(distFreshness.recordPackageBuild('system-skill-advisor/mcp_server', options).status, 'recorded');
+  const oldMtime = fs.statSync(jsonPath).mtime;
+  fs.writeFileSync(jsonPath, '{"value":2}\n');
+  fs.utimesSync(jsonPath, oldMtime, oldMtime);
+  assert.equal(distFreshness.checkPackageFreshness('system-skill-advisor/mcp_server', options).status, 'stale');
+});
+
+test('prunes only old matching cache temporaries', (t) => {
+  const tmpDir = temporaryDirectory(t, 'dist-freshness-temp-');
+  writeCodeModeFixture(tmpDir, false);
+  const options = { workspaceRoot: tmpDir };
+  const cached = distFreshness.writePackageSourceHashCache('mcp-code-mode/mcp_server', options);
+  const oldTemp = `${cached.cachePath}.99999.tmp`;
+  const recentTemp = `${cached.cachePath}.99998.tmp`;
+  fs.writeFileSync(oldTemp, 'old');
+  fs.writeFileSync(recentTemp, 'recent');
+  const oldDate = new Date(Date.now() - (48 * 60 * 60 * 1000));
+  fs.utimesSync(oldTemp, oldDate, oldDate);
+
+  distFreshness.writePackageSourceHashCache('mcp-code-mode/mcp_server', options);
+  assert.equal(fs.existsSync(oldTemp), false);
+  assert.equal(fs.existsSync(recentTemp), true);
+});
+
+test('reports aggregate checker errors as degraded with exit zero', (t) => {
+  const tmpDir = temporaryDirectory(t, 'dist-freshness-degraded-');
+  const result = spawnSync(
+    process.execPath,
+    [DIST_FRESHNESS_PATH, 'check-all', '--workspace-root', tmpDir, '--json'],
+    { encoding: 'utf8' },
+  );
+  assert.equal(result.status, 0);
+  const payload = JSON.parse(result.stdout);
+  assert.equal(payload.status, 'degraded');
+  assert.equal(payload.stale, false);
+  assert.equal(payload.degraded, true);
+  assert.ok(payload.errors.length > 0);
+});
+
+test('Claude hook rejects malformed envelopes without traceback', () => {
+  const malformed = [
+    'not-json',
+    '[]',
+    'null',
+    '"scalar"',
+    '{"tool_name":"Write","tool_input":null}',
+    '{"tool_name":"Write","tool_input":{"file_path":42}}',
+    '{"tool_name":"Write","tool_input":{"file_path":"/missing"},"cwd":null}',
+  ];
+  for (const input of malformed) {
+    const result = spawnSync(CLAUDE_HOOK_PATH, [], { input, encoding: 'utf8' });
+    assert.equal(result.status, 0, input);
+    assert.equal(result.stdout, '', input);
+    assert.doesNotMatch(result.stderr, /Traceback/, input);
+  }
+});
+
+test('Claude hook shares one deadline across sequential checkers', (t) => {
+  const tmpDir = temporaryDirectory(t, 'dist-freshness-hook-budget-');
+  const scriptsDir = path.join(tmpDir, '.opencode', 'skills', 'sk-code', 'code-quality', 'scripts');
+  const editedFile = path.join(tmpDir, 'edited.ts');
+  const commentChecker = path.join(scriptsDir, 'check-comment-hygiene.sh');
+  const distChecker = path.join(scriptsDir, 'check-dist-staleness.sh');
+  fs.mkdirSync(scriptsDir, { recursive: true });
+  fs.writeFileSync(editedFile, 'export const edited = true;\n');
+  fs.writeFileSync(commentChecker, '#!/usr/bin/env python3\nimport time\ntime.sleep(8.2)\n');
+  fs.writeFileSync(distChecker, '#!/usr/bin/env python3\nprint("DIST CHECK REACHED")\n');
+  fs.chmodSync(commentChecker, 0o755);
+  fs.chmodSync(distChecker, 0o755);
+
+  const startedAt = Date.now();
+  const result = spawnSync(CLAUDE_HOOK_PATH, [], {
+    input: JSON.stringify({
+      tool_name: 'Write',
+      tool_input: { file_path: editedFile },
+      cwd: tmpDir,
+    }),
+    encoding: 'utf8',
+    timeout: 11_000,
+  });
+  const elapsedMs = Date.now() - startedAt;
+  assert.equal(result.status, 0);
+  assert.ok(elapsedMs < 10_000, `hook exceeded host budget: ${elapsedMs}ms`);
+  assert.match(result.stderr, /comment hygiene checker failed/);
+  assert.ok(result.stdout.includes('DIST CHECK REACHED') || result.stderr.includes('deadline is exhausted'));
 });

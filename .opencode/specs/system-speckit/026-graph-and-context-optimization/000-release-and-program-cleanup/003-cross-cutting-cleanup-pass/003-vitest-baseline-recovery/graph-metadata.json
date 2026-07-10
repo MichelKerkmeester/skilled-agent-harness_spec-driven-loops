@@ -201,7 +201,7 @@
     ],
     "causal_summary": "After Unit A (memory search Clusters 4-7 remediation) shipped, a full-repo `pnpm vitest run` reported 198 failed tests across 166 files out of 11,829 total (11,587 passing)",
     "created_at": "2026-05-08T21:35:00Z",
-    "last_save_at": "2026-07-09T10:02:50.764Z",
+    "last_save_at": "2026-07-10T06:22:48.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

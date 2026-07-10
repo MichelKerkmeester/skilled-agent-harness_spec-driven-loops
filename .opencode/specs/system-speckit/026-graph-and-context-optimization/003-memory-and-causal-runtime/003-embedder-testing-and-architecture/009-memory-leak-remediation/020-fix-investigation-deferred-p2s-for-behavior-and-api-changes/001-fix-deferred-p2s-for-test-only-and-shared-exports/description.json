@@ -16,7 +16,7 @@
     "public",
     "barrels"
   ],
-  "lastUpdated": "2026-07-09T10:02:53.706Z",
+  "lastUpdated": "2026-07-10T06:21:59.648Z",
   "specId": "001",
   "folderSlug": "fix-deferred-p2s-for-test-only-and-shared-exports",
   "parentChain": [

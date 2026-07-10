@@ -195,7 +195,7 @@
     ],
     "causal_summary": "v4 deep-review found one remaining real startup path where Voyage auto-shadow warnings happened too late, a health-report gap for hf-local dtype, one mutable Python list default, and several documentation/config examples that still described the pre-42aa114e3 or wrong-slug state",
     "created_at": "2026-05-13T09:45:00Z",
-    "last_save_at": "2026-07-09T10:02:52.275Z",
+    "last_save_at": "2026-07-10T06:23:46.623Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:45:00Z",
     "source_docs": [

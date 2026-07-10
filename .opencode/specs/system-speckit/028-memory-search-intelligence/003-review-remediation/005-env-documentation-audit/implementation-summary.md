@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-review-remediation/005-env-documentation-audit"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-review-remediation/005-env-documentation-audit"
     last_updated_at: "2026-07-06T19:16:39.787Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Closed the packet, POOR remediated and three review errors corrected"
