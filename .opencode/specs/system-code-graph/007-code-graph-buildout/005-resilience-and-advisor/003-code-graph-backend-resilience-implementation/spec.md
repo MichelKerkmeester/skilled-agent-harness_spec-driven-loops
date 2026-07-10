@@ -47,7 +47,7 @@ _memory:
 | **Folder** | 005-code-graph-backend-resilience |
 | **Level** | 2 |
 | **Created** | 2026-04-25 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Upstream** | 006-code-graph-resilience-research |
 | **Sibling** | 005-doctor-diagnostic-command-phase-a |
 <!-- /ANCHOR:metadata -->

@@ -39,13 +39,15 @@ Phase 003 of the 008 rerank-sidecar arc. Plumb the running sidecar into both MCP
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete — historical implementation later removed |
 | **Created** | 2026-05-20 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` |
 | **Predecessor** | `002-system-rerank-sidecar-skill` |
 | **Successor** | `004-spec-memory-rerank-benchmark` |
 <!-- /ANCHOR:metadata -->
+
+> Historical status note: the local rerank sidecar and launcher integration were intentionally removed by a later deprecation; this packet remains implementation evidence, not a current runtime contract.
 
 ---
 
