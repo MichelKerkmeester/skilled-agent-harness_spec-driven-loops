@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Planned (created 2026-05-18) |
+| Status | In Progress |
 | Level | 1 |
 | Owner | Main agent |
 | Parent | `../spec.md` (016/006 — code-embedder-coderank) |

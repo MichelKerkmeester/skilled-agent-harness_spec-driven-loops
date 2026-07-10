@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-18 evening; just-after 006 ship) |
+| Status | In Progress |
 | Type | Implementation (purge + new bootstrap probe + tests) |
 | Owner | cli-codex gpt-5.5 xhigh fast (dispatched); main agent commits on handoff |
 | Parent | `../spec.md` (002-spec-memory-stack) |

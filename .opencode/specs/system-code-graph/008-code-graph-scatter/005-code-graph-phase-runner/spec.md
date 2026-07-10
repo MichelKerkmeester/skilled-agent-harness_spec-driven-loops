@@ -39,6 +39,9 @@ _memory:
 | **Status** | Draft (blocked on 012/001) |
 | **Created** | 2026-04-25 |
 | **Branch** | `012/002-code-graph-phase-runner-and-detect-changes` |
+
+> **Status reconciliation:** The summary records delivery, while this specification retains the blocked state for its deferred strict documentation conformance and commit handoff.
+
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | IMPLEMENTED WITH LIVE-SMOKE BLOCKER |
+| Status | In Progress — live-smoke blocker |
 | Branch | main |
 | Commit | Not committed per instruction |
 <!-- /ANCHOR:metadata -->

@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | COMPLETED (2026-05-18) |
+| Status | In Progress |
 | Primary artifact | `benchmark-results.md` (detailed 11-section results doc) |
 | Evidence | `evidence/cocoindex-embedder-comparison-with-hybrid-rerank.{csv,jsonl}` + `evidence/runlog-with-hybrid-rerank.txt` |
 | Owner | Main agent |

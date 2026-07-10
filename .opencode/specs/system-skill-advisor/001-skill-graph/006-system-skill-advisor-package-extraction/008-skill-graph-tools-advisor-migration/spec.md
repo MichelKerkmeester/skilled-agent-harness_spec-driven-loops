@@ -51,7 +51,7 @@ This packet completes the 013/009 advisor extraction by moving the four `skill_g
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-05-14 |
 | **Branch** | `main` |
 | **Spec Folder** | `008-skill-graph-tools-advisor-migration` |

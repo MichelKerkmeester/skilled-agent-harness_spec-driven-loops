@@ -22,6 +22,8 @@ contextType: "planning"
 | **Created** | 2026-01-01 |
 | **Parent** | 003-memory-and-spec-kit |
 
+> **Historical record:** This archived specification retains its original Draft status; the corresponding implementation summary records the completed 13-bug remediation.
+
 ---
 
 <!-- ANCHOR:metadata -->

@@ -49,6 +49,9 @@ _memory:
 | **Predecessor** | ../014-agents-md-alignment/spec.md |
 | **Successor** | ../016-rewrite-memory-mcp-readme/spec.md |
 | **Handoff Criteria** | Validator + phase-parent trio stay current while child packets remain the detailed execution surface |
+
+> **Historical record:** This archived phase parent remains In Progress for wrapper truth-sync and traceability remediation; the implementation summary preserves the completed historical execution coverage.
+
 <!-- /ANCHOR:metadata -->
 
 ---

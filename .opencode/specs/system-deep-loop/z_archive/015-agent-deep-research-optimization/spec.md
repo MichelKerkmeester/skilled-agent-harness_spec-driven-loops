@@ -42,6 +42,9 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | 061-agent-optimization |
 | **Target** | `@deep-research` (476 LOC) |
+
+> **Historical record:** This archived specification retains its planned status; the implementation summary records a closed evaluation session with promotion left to an operator decision.
+
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -38,6 +38,9 @@ _memory:
 | **Parent Spec** | [../spec.md](../spec.md) |
 | **Predecessor** | [009-evaluation-and-measurement](../009-evaluation-and-measurement/spec.md) |
 | **Successor** | [011-scoring-and-calibration](../011-scoring-and-calibration/spec.md) |
+
+> **Historical record:** This archived specification retains its original Not Started status; the corresponding implementation summary records the completed manual-test execution.
+
 <!-- /ANCHOR:metadata -->
 
 ---

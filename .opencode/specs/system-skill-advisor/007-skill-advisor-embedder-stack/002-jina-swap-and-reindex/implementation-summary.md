@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | UNBLOCKED 2026-05-18T00:18 (010/004 shipped at c0ec765f4; swap execution now possible — pending operator runbook execution) |
+| Status | In Progress — operator swap and reindex pending |
 | Artifact | `evidence/swap-runbook.md` (~200 lines, comprehensive) |
 | Owner | main agent (orig); next: operator executes runbook §"Swap procedure" |
 | Blockers | RESOLVED — 010/004 writer cross-wiring shipped 2026-05-18 |
