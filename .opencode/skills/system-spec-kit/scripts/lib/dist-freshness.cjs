@@ -31,9 +31,20 @@ const DIST_PACKAGES = Object.freeze([
     id: 'system-spec-kit/scripts',
     name: '@spec-kit/scripts',
     root: '.opencode/skills/system-spec-kit/scripts',
-    distEntries: { default: 'dist/tsconfig.tsbuildinfo' },
+    distEntries: {
+      default: 'dist/tsconfig.tsbuildinfo',
+      'is-phase-parent': 'dist/spec/is-phase-parent.js',
+    },
     rebuildCommand: 'cd .opencode/skills/system-spec-kit/scripts && npm run build',
     sourceCandidates: ['.'],
+    // is-phase-parent.ts imports only Node builtins (fs, path) -- no local
+    // project dependencies -- so its own freshness check is scoped to just
+    // that one file rather than the whole scripts/ tree. This keeps the
+    // child-drift guard immune to unrelated concurrent edits anywhere else
+    // under scripts/, which the whole-tree 'default' entry is not.
+    entrySourceCandidates: {
+      'is-phase-parent': ['package.json', 'tsconfig.json', 'spec/is-phase-parent.ts'],
+    },
     excludedSegments: ['tests', 'test-fixtures'],
   },
   {

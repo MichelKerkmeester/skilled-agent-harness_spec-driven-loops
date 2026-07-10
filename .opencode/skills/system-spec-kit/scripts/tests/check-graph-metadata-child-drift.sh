@@ -77,7 +77,9 @@ run_rule() {
     if [[ "$mode" == "enforce" ]]; then
         export SPECKIT_CHILD_DRIFT_ENFORCE=true
     else
-        unset SPECKIT_CHILD_DRIFT_ENFORCE 2>/dev/null || true
+        # Explicit "false", not unset: the rule now defaults to enforcing, so
+        # an unset var would exercise enforce mode here instead of advisory.
+        export SPECKIT_CHILD_DRIFT_ENFORCE=false
     fi
     source "$RULE_SCRIPT"
     run_check "$folder" "1"
@@ -97,7 +99,8 @@ orchestrator_rule_status() {
     if [[ "$mode" == "enforce" ]]; then
         json=$(SPECKIT_CHILD_DRIFT_ENFORCE=true bash "$VALIDATE_SCRIPT" "$folder" --strict --no-recursive --json 2>/dev/null || true)
     else
-        json=$(env -u SPECKIT_CHILD_DRIFT_ENFORCE bash "$VALIDATE_SCRIPT" "$folder" --strict --no-recursive --json 2>/dev/null || true)
+        # Explicit "false", not unset: the rule now defaults to enforcing.
+        json=$(SPECKIT_CHILD_DRIFT_ENFORCE=false bash "$VALIDATE_SCRIPT" "$folder" --strict --no-recursive --json 2>/dev/null || true)
     fi
     printf '%s' "$json" | node -e '
 let s = "";

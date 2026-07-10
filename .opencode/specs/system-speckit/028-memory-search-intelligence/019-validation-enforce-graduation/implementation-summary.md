@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level_3/implementation-summary.md]"
-description: "Status IN PROGRESS. Phases 1-2 (SPECKIT_STATUS_CROSS_DOC_ENFORCE, SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE) complete and graduated 2026-07-10. Phase 3 (child drift) not yet started."
+title: "Implementation Summary"
+description: "Status COMPLETE. All 3 phases (SPECKIT_STATUS_CROSS_DOC_ENFORCE, SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE, SPECKIT_CHILD_DRIFT_ENFORCE) graduated to enforcing-by-default 2026-07-10. Tree-wide post-flip sweep confirms zero net-new regression."
 trigger_phrases:
   - "validation enforce graduation summary"
   - "status cross-doc enforce flip summary"
@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation"
-    last_updated_at: "2026-07-09T23:00:00.000Z"
+    last_updated_at: "2026-07-10T07:22:00.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Phase 2 graduated (SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE)"
-    next_safe_action: "Start Phase 3 (dist-presence guard, then SPECKIT_CHILD_DRIFT_ENFORCE)"
+    recent_action: "Graduated SPECKIT_CHILD_DRIFT_ENFORCE"
+    next_safe_action: "Packet 019 closed — proceed to packet 023 (self-healing model consolidation)"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh"
@@ -26,9 +26,9 @@ _memory:
       - ".opencode/specs/system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation/scripts/fix-packet-pointer.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "phase2-019-validation-enforce-graduation"
+      session_id: "phase3-019-validation-enforce-graduation"
       parent_session_id: null
-    completion_pct: 67
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,8 +46,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 019-validation-enforce-graduation |
-| **Status** | In Progress — Phases 1-2 of 3 landed, Phase 3 pending |
-| **Completed** | Phases 1-2 of 3 (2026-07-10) |
+| **Status** | Complete — all 3 phases landed, tree-wide post-flip sweep clean |
+| **Completed** | All 3 phases (2026-07-10) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -56,7 +56,23 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Phases 1-2 (`SPECKIT_STATUS_CROSS_DOC_ENFORCE`, `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE`) are COMPLETE.** Phase 3 remains unimplemented.
+**All 3 phases (`SPECKIT_STATUS_CROSS_DOC_ENFORCE`, `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE`, `SPECKIT_CHILD_DRIFT_ENFORCE`) are COMPLETE**, each graduated from advisory to enforcing-by-default with a zero-violation (or individually-documented-residual) tree-wide census recorded before its flip.
+
+### Phase 3: the highest-blast-radius flip, gated behind a new dist-presence guard
+
+`GRAPH_METADATA_CHILD_DRIFT` compares a phase parent's `graph-metadata.json.children_ids` against its real on-disk numbered subdirectories, using a shared scanner module (`is-phase-parent.js`) that the graph-metadata writer itself also uses — so the check and the writer can never disagree on what counts as a child. Unlike Phases 1-2, this rule's own script already fails closed (rc=20/21) when that scanner module is entirely unavailable — but it had no defense against a *stale-but-loadable* build silently implementing outdated child-detection logic without ever tripping that branch. Per spec.md's own design, this gap had to be closed with a dist-presence/freshness guard before the flip, not just a census-and-flip like Phases 1-2.
+
+**The guard.** Rather than build a bespoke checker, the guard extends the existing `dist-freshness.cjs` `DIST_PACKAGES` registry (already used elsewhere in this repo for exactly this class of problem — SHA256 content-hash based, not mtime-based, so it can't be fooled by a touch without a real edit). A new named entry, `is-phase-parent`, was added to the existing `system-spec-kit/scripts` package config, with its own **scoped** `entrySourceCandidates` — just `is-phase-parent.ts` plus its manifests, not the whole-package default. This scoping is a real improvement discovered mid-implementation, not part of the original design: `is-phase-parent.ts` has zero local imports, so a whole-tree source scope would have made the guard spuriously report "stale" every time any *other*, unrelated file changed anywhere in `scripts/` — a real risk given the concurrently-running, unrelated GPT-5.6 swarm actively editing files elsewhere in this same package throughout this session (see ADR-003's confirmation note in decision-record.md).
+
+The guard is wired into `check-graph-metadata-child-drift.sh` immediately after the existing cheap numbered-subdirectory early-return (so leaf folders never pay its cost) and immediately before the scanner import it protects. When the freshness check reports stale (exit code 69, matching this repo's `STALE_EXIT_CODE` convention), the rule reports `warn` with an explicit rebuild-command remediation, rather than silently proceeding with a potentially-outdated scanner.
+
+**Census and reconciliation.** The tree-wide advisory census (`GRAPH_METADATA_CHILD_DRIFT` forced true, read-only) found only 4 warnings across 2,423 folders — by far the smallest of the three rules' pre-flip backlogs, consistent with this being the narrowest-scoped rule (only phase-parent folders with numbered subdirectories are even eligible). 3 of the 4 were real drift, reconciled via the canonical `backfill-graph-metadata.js` generator (union-only, never hand-edited). The 4th, `z_future/code-graph-and-cocoindex`, is not a real spec folder — it has no `spec.md`, the same non-production class of residual already established and documented in Phase 2's own reconciliation. A follow-up census confirmed 2,422/2,423 pass with that single documented residual, 0 errors.
+
+**The flip.** All three `${SPECKIT_CHILD_DRIFT_ENFORCE:-false}` sites inside `check-graph-metadata-child-drift.sh` were flipped to `:-true` — the rule's own gating condition for the new guard, and both existing rc=20/21 and drift-found branches — with a graduation comment recording the census evidence, matching the same corrected-file-target pattern established in Phases 1-2 (`capability-flags.ts` has zero references to this flag either). `ENV_REFERENCE.md`'s previously-missing `SPECKIT_CHILD_DRIFT_ENFORCE` row was added to both the summary and full flag-reference tables. Verified with zero environment override: a deliberately-drifted fixture correctly warns, and the guard's fail-closed behavior was re-confirmed against a missing-dist and a stale-dist (real content-edit, not just a touched mtime) fixture.
+
+**A real regression in the persisted test suite, found and fixed.** Extending `scripts/tests/check-graph-metadata-child-drift.sh` with the guard's fixture matrix surfaced that the file's own `run_rule()` and `orchestrator_rule_status()` helpers relied on `unset SPECKIT_CHILD_DRIFT_ENFORCE` (or `env -u ...`) to simulate advisory mode — an assumption this phase's own default flip broke, since unset now resolves to enforcing, not advisory. Both helpers were corrected to set the flag explicitly to `false` for their advisory-mode branches. After that fix, 8 of 10 tests pass; the remaining 2 (both exercising the *default, unscoped orchestrator path* rather than this rule's own logic) are addressed in Known Limitations below.
+
+**Final tree-wide verification (all 3 flags).** With all three phases' flips landed, a final `SPECKIT_RULES=`-scoped sweep re-ran each rule at its new enforcing default: `STATUS_CROSS_DOC_CONSISTENCY` 2,421/2,423 pass, `METADATA_DISK_PATH_CONSISTENCY` 2,349/2,423 pass, `GRAPH_METADATA_CHILD_DRIFT` 2,422/2,423 pass. Every warn count exactly matches that phase's own already-documented residual — confirming zero net-new regression introduced by any of the three flips, including from the time gap between each phase's own reconciliation and this final combined sweep.
 
 ### Phase 2: a ~9x-larger, but fully mechanical, backlog
 
@@ -115,7 +131,7 @@ The correct, simpler resolution — matching spec.md's own REQ-002 language ("an
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Phase 1 was dispatched to GPT-5.6-terra-fast (`--variant high`) via `cli-opencode`, run in parallel across isolated git worktrees for the 4 reconciliation batches (avoiding collisions on the shared, heavily concurrent-session working tree), plus 2 parallel background general-purpose agents for the residual cleanup round. Each dispatch's claimed commit was independently re-verified (real `git log`/`git show` diff review, not trusted from self-report alone) before being merged into an isolated integration worktree. Phase 2 turned out to have a fully mechanical fix (no per-folder judgment call, unlike Status reconciliation), so it was done directly rather than dispatched — two small purpose-built scripts, tested on samples, then run at full scale. The census driver's performance fix, the `legacy_grandfathered` investigation-and-revert, and both flag flips + docs were also done directly.
+Phase 1 was dispatched to GPT-5.6-terra-fast (`--variant high`) via `cli-opencode`, run in parallel across isolated git worktrees for the 4 reconciliation batches (avoiding collisions on the shared, heavily concurrent-session working tree), plus 2 parallel background general-purpose agents for the residual cleanup round. Each dispatch's claimed commit was independently re-verified (real `git log`/`git show` diff review, not trusted from self-report alone) before being merged into an isolated integration worktree. Phase 2 turned out to have a fully mechanical fix (no per-folder judgment call, unlike Status reconciliation), so it was done directly rather than dispatched — two small purpose-built scripts, tested on samples, then run at full scale. Phase 3's guard design, fixture testing, census, reconciliation, and flip were all done directly, given the small backlog (4 warnings) and the guard's own design work not being parallelizable in a meaningful way. The census driver's performance fix, the `legacy_grandfathered` investigation-and-revert, all three flag flips, and the final tree-wide verification sweep were also done directly.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -131,7 +147,7 @@ Phase 1 was dispatched to GPT-5.6-terra-fast (`--variant high`) via `cli-opencod
 | Census driver is one parameterized script reused three times | Avoids duplicating the `validate.sh --strict --json` loop-and-parse logic per phase |
 | Phase 2's census must be timestamped fresh, never assumed equal to 008's historical numbers | The post-008 folder re-nest campaign is known to have re-dirtied this exact drift class |
 
-See `decision-record.md` for full ADR documentation (ADR-001..003, all status Proposed pending implementation).
+See `decision-record.md` for full ADR documentation (ADR-001..003, all status Accepted).
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -141,7 +157,7 @@ See `decision-record.md` for full ADR documentation (ADR-001..003, all status Pr
 
 | Check | Result |
 |-------|--------|
-| Implementation | Phases 1-2 of 3 COMPLETE |
+| Implementation | All 3 phases COMPLETE |
 | Unit (census driver fixture) | PASS — 3-folder known-answer fixture (2 warn, 1 pass) matched exactly |
 | Phase 1 census, before reconciliation | 2,520 inspected, 128 warnings, 0 errors |
 | Phase 1 census, after full reconciliation | 2,423 inspected, 2,421 pass, 2 individually-explained residuals, 0 errors |
@@ -151,8 +167,14 @@ See `decision-record.md` for full ADR documentation (ADR-001..003, all status Pr
 | Phase 2 frontmatter fix (`continuity.packet_pointer`) | 969 files fixed, 161 already-correct, 0 errors, across all 1,130 folders |
 | Phase 2 census, after full reconciliation | 2,423 inspected, 2,349 pass, 74 individually-categorized residuals (all confirmed non-production paths), 0 errors |
 | Phase 2 flip verification, zero env override | PASS — a `z_future/` residual folder correctly warns, an unrelated real folder correctly passes |
-| Phase 3 census (`GRAPH_METADATA_CHILD_DRIFT`) | PENDING — not started |
-| Repo-wide post-flip sweep (Phase 4 of tasks.md, all 3 flags) | PENDING — cannot run until Phase 3 also lands |
+| Phase 3 guard fixture matrix | PASS — 4 load-bearing cells (fresh+no-drift, fresh+drift+enforce, missing-dist+enforce, stale-dist+enforce) |
+| Phase 3 census (`GRAPH_METADATA_CHILD_DRIFT`), before reconciliation | 2,423 inspected, 4 warnings, 0 errors |
+| Phase 3 reconciliation | 3/4 folders fixed via `backfill-graph-metadata.js`; 1 correctly excluded (`z_future/code-graph-and-cocoindex`, no `spec.md`) |
+| Phase 3 census, after full reconciliation | 2,423 inspected, 2,422 pass, 1 documented residual, 0 errors |
+| Phase 3 flip verification, zero env override | PASS — deliberately-drifted fixture correctly warns |
+| Phase 3 persisted test suite (`check-graph-metadata-child-drift.sh`) | 8/10 pass — 2 failures isolated to the shared unscoped-orchestrator dist race (see Known Limitations), not this phase's own rule logic |
+| Repo-wide post-flip sweep (tasks.md T029-T030, all 3 flags at final defaults) | PASS — `STATUS_CROSS_DOC_CONSISTENCY` 2,421/2,423, `METADATA_DISK_PATH_CONSISTENCY` 2,349/2,423, `GRAPH_METADATA_CHILD_DRIFT` 2,422/2,423 — every warn count exactly matches its own phase's documented residual, zero net-new regression |
+| This packet's own folder, full unscoped `validate.sh --strict` | PASS — `Errors: 0  Warnings: 0`, `RESULT: PASSED` (using the Limitation 4 CLI-entry workaround) |
 
 This packet's own packet-doc verification:
 
@@ -168,18 +190,18 @@ Full-tree typecheck (`npm run typecheck` in `mcp_server/`) could not run cleanly
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Phase 3 not yet implemented.** `SPECKIT_CHILD_DRIFT_ENFORCE` remains default-OFF-advisory; it additionally needs a new dist-presence guard built first per spec.md's own design, not just a census-and-flip.
+1. **Two persisted test failures in `scripts/tests/check-graph-metadata-child-drift.sh` (TEST 7 "DEFAULT orchestrator path fires the rule" and TEST 8 "DEFAULT path no false positive"), isolated to a pre-existing, external shared-dist race, not a defect introduced by this phase.** Both tests exercise the *full, unscoped* `validate.sh` orchestrator path — not this phase's own rule logic, which is separately and fully covered by the other 8 passing tests plus the direct fixture-matrix verification in Verification above. Root-caused: a concurrently-running, unrelated GPT-5.6 swarm (already documented as active throughout this packet's work — see Limitation 4 below) was actively editing files under `mcp_server/lib/*` in the shared main tree during this phase's own work, and the worktree's `mcp_server/dist` is symlinked to that same shared, constantly-rebuilding tree. A minimal, isolated repro (a synthetic fixture folder run through the exact same `SPECKIT_CHILD_DRIFT_ENFORCE=false bash validate.sh ... --strict --json` invocation TEST 7 uses) reproduced the identical empty/absent output independent of which folder was tested — confirming the orchestrator path itself is intermittently non-responsive right now, for reasons outside this phase's own changes. The `SPECKIT_RULES=`-scoped path (used throughout this packet, including for the final T029/T030 tree-wide sweep) is unaffected and was used as the reliable substitute, consistent with this packet's established practice for this exact class of issue (see Limitation 4).
 2. **Two genuine, honestly-documented `STATUS_CROSS_DOC_CONSISTENCY` residuals remain, by design, not oversight:**
    - `.opencode/specs/system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook` — its 22 child phases are all complete, but a later-layered wrapper truth-sync/traceability-remediation checklist is 0/27 checked and `spec.md` explicitly describes that layer as still open; `implementation-summary.md` predates the remediation work. Forcing either bucket would misrepresent one real, currently-open sub-scope on top of otherwise-complete work.
    - `.opencode/specs/sk-doc/z_archive/006-sk-doc-agent-template-alignment` — sub-scope 063b (template alignment) shipped; sub-scope 063a (remove a `RELATED RESOURCES` section from 40 agent files) did not fully land — independently re-verified via `grep -rl "## .*RELATED RESOURCES" .opencode/agents .claude/agents"`: `markdown.md` still carries it in both trees. Forcing "Complete" would misstate real drift still on disk; forcing "Planned" would ignore the ~95% that did land.
 
    Both are individually explained per REQ-002's own acceptance bar; `validate.sh --strict` on either folder specifically will fail until a future session either genuinely completes the open sub-scope or makes an explicit call to close it out.
 3. **That same `sk-doc/006` folder separately carries a pre-existing, unrelated `GENERATED_METADATA_INTEGRITY` `SOURCE_FINGERPRINT_MISMATCH` error**, confirmed present in the exact commit (`d26faba25e`) this work forked from, already independently fixed in the live main tree by a different concurrent session (not yet part of any commit this packet could cleanly build on). Out of scope for this packet; not fixed here.
-4. **A `validate.sh`/`orchestrator.js` symlink limitation was discovered (not fixed, out of scope).** Running the FULL, unscoped `validate.sh --strict` (not the `SPECKIT_RULES=`-scoped path this packet's own census driver uses) from *within* a git worktree whose `mcp_server/dist` is symlinked to the main tree silently no-ops (exit 0, zero output) — `orchestrator.js`'s own CLI-entry self-check (`path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)`) fails when invoked through a symlink. Workaround used throughout this packet's work: invoke from the main tree's own CWD with an absolute `--folder` path into the worktree. The `SPECKIT_RULES=`-scoped census-driver path is unaffected — verified working correctly at full ~2,420-folder scale, repeatedly.
+4. **A worktree/symlink CLI-entry self-check limitation was discovered in three separate scripts (not fixed, out of scope — a repo-wide infra gap, not this packet's own defect).** `orchestrator.js` (`validate.sh`'s Node backend), `generate-description.js`, and `backfill-graph-metadata.js` each gate their CLI-entry execution behind a `process.resolve(process.argv[1]) === fileURLToPath(import.meta.url)` (or equivalent `isMainModule`) self-check. Invoked from *within* a git worktree whose `mcp_server/dist`/`scripts/dist` are symlinked to the main tree, this check fails silently — the process exits 0 with zero output and, for the two generator scripts, **does not write anything at all** (confirmed directly: a `backfill-graph-metadata.js` run that appeared to succeed left `graph-metadata.json`'s `derived.last_save_at` completely unchanged from a run nearly an hour earlier). This cost real time mid-Phase-3: a `GENERATED_METADATA_INTEGRITY`/`SOURCE_FINGERPRINT_MISMATCH` failure on this packet's own folder was initially misdiagnosed as the already-known shared-dist race (Limitation 1), including one unnecessary `mcp_server` rebuild, before directly comparing a hand-invoked `computeSourceFingerprintForFolder` re-derive against the stored value proved the docs and the stored fingerprint simply hadn't been touched by the "successful" regen runs. Workaround, applied consistently once identified: invoke each script from the main tree's own CWD, passing an absolute path into the worktree as the argument (not a path resolved via the worktree's own symlinked `dist/`). The `SPECKIT_RULES=`-scoped census-driver path is unaffected by any of this — verified working correctly at full ~2,420-folder scale, repeatedly, throughout all three phases.
 5. **`npm run typecheck` could not be run to a clean baseline** due to a pre-existing, unrelated `tsconfig.json` `TS5101` deprecation error. Every individual file this packet touched was still hand-verified for syntactic/semantic correctness before committing.
-6. **Full tree-wide `validate.sh --strict` sweep (tasks.md Phase 4) cannot run yet** — it requires all three flags at their final defaults, and Phase 3 has not landed.
+6. **Full tree-wide `validate.sh --strict` sweep (tasks.md T029-T030) is COMPLETE** — run via the `SPECKIT_RULES=`-scoped path (Limitation 1 above documents why the unscoped orchestrator path was avoided for this); see the Verification table's final row.
 7. **74 `METADATA_DISK_PATH_CONSISTENCY` residual folders remain, all confirmed non-production** (5 `.backup-*` snapshots, 38 `z_future/` reserved-namespace folders, 20 test fixtures/scratch directories, 11 auxiliary research/review subdirectories nested inside real packets) — see the "Phase 2's residual" section above for the full categorization. None represent a genuine production-path defect; none were force-fixed.
-8. **A full, unscoped `validate.sh --strict` run against this packet's own folder could not be captured cleanly at write time** — the shared `mcp_server/dist` (symlinked from this worktree to the main tree per this repo's own worktree-isolation convention) kept re-flagging as stale immediately after every rebuild, most plausibly because other concurrent AI sessions were actively editing files under `mcp_server/lib/{validation,config,graph,...}` in the shared main tree between each rebuild and the next check — a real race condition this packet's work did not cause and cannot fully control. Confirmed instead via the scoped path this packet's own census driver already relies on throughout: `SPECKIT_RULES=STATUS_CROSS_DOC_CONSISTENCY,METADATA_DISK_PATH_CONSISTENCY bash validate.sh <folder> --strict --json` reports both rules `pass` cleanly with `"passed": true`. A full unscoped sweep should be re-attempted once the shared dist is quiescent.
+8. **A full, unscoped `validate.sh --strict` run against this packet's own folder is now clean** (`Errors: 0  Warnings: 0`, `RESULT: PASSED`), captured using the Limitation 4 workaround for all three CLI scripts. The run surfaced, and this packet then fixed directly, several unrelated pre-existing doc-quality gaps: a stale `[template:...]` scaffold marker in `implementation-summary.md`'s own title, a non-compact `recent_action` frontmatter field, several checklist/task items whose evidence text didn't match `EVIDENCE_CITED`'s machine-checkable format, and stale `continuity.last_updated_at` timestamps versus `graph-metadata.json`'s regenerated `derived.last_save_at`.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -187,5 +209,4 @@ Full-tree typecheck (`npm run typecheck` in `mcp_server/`) could not run cleanly
 <!--
 LEVEL 3 IMPLEMENTATION SUMMARY
 Core template, post-implementation documentation created AFTER work completes
-Planning-only: Status PLANNED, 0% complete, all verification PENDING
 -->

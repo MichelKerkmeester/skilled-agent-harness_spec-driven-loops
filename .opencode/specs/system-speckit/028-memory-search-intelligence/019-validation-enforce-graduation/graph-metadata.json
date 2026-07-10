@@ -39,7 +39,7 @@
       "advisory"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
       ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
@@ -47,8 +47,9 @@
       ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      "scripts/regen-worker.sh",
       "spec.md",
+      "scripts/tests/check-graph-metadata-child-drift.sh",
+      "scripts/regen-worker.sh",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -59,8 +60,7 @@
       "scripts/census-validation-rule.sh",
       "scripts/census-worker.sh",
       ".opencode/bin/worktree-session.sh",
-      "scripts/rules/check-status-cross-doc-consistency.sh",
-      "scripts/rules/check-metadata-disk-consistency.sh"
+      "scripts/rules/check-status-cross-doc-consistency.sh"
     ],
     "entities": [
       {
@@ -100,15 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "regen-worker.sh",
-        "kind": "script",
-        "path": "scripts/regen-worker.sh",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "regen-worker.sh",
+        "kind": "script",
+        "path": "scripts/regen-worker.sh",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail validation today, because each is gated by its own default-`false` enforce flag:",
     "created_at": "2026-07-09T20:32:08.332Z",
-    "last_save_at": "2026-07-10T06:32:56.566Z",
+    "last_save_at": "2026-07-10T07:23:00.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b71e5a7649f6f83605f43695e653b6a41698f3a2e196b0016106809226cf8029",
+    "source_fingerprint": "sha256:ef1980a412d8510094b5a3a17afe211ef591cbf788e7d35dd2901d88ff6ac902",
     "source_doc_hashes": {
-      "spec.md": "3ce6a33457959e2814fba1bb8f70e3d7412c52f8383027695014cd2e92f8541a",
+      "spec.md": "171320712d1c8223ecc73eae7cd63a36f1104a3eedb6a6bd601c401632b431ba",
       "plan.md": "da02a972e878da7d84e4e6400e55350cbab34757a58ca63302e213339a1e0f8e",
-      "tasks.md": "b540cf96ff84c55801b7520b1fed11e723d1597e4fc0d012a413c401ee76f943",
-      "checklist.md": "a4847659e334cab35a3618b262425b1eff0a5628f24709e2cb7665bda98b9228",
-      "decision-record.md": "b33d33ac0b39eda3af10282c560ab6c99da16e178a226df5c3ea957be9922c46",
-      "implementation-summary.md": "7faf55522faeca536f9c1f311ae7111c6a1c4fa74aaa6e33e84d29ad9ea0c5c0"
+      "tasks.md": "f973c6cb45eb29aa3bdaf689de3eb9348b874e18906d4815e69df2223a6d55c0",
+      "checklist.md": "1cd3e3deeb51b32673e03d40531e54b8ebea4db009d0c738eaa72c3bf8043ccb",
+      "decision-record.md": "9d7d09a2eb34c44303f30434a01a75920a3501468678a1f5af0f66b83adc1785",
+      "implementation-summary.md": "90f09a5c1ab1ddf2267c32f2eeed66e697d7feed999f0b6f1f472b6b4915342c"
     },
     "last_active_child_id": null,
     "last_active_at": null
