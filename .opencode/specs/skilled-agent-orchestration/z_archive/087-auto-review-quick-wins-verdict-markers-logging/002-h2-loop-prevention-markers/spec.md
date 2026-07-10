@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned — gated on council approval |
+| **Status** | Implemented — all 7 files modified |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
 | **Phase Parent** | `108-auto-review-quick-wins-verdict-markers-logging` |

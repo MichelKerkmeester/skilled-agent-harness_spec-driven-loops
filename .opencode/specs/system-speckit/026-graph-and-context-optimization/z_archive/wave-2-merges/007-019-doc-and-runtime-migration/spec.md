@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-05-14 |
 | **Branch** | `005-doc-and-runtime-migration` |
 <!-- /ANCHOR:metadata -->

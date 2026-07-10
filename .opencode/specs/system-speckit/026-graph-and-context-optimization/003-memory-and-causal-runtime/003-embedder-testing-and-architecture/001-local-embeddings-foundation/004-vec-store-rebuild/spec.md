@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | In Progress (memory ✓ complete; cocoindex schema ✓; cocoindex search blocked by upstream msgspec truncation — follow-on packet) |
+| **Status** | In Progress (memory rebuilt; cocoindex search blocked by upstream msgspec truncation) |
 | **Created** | 2026-05-12 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

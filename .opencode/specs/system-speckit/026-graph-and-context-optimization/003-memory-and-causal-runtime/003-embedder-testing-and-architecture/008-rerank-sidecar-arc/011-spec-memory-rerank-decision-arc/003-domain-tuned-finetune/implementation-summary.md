@@ -32,7 +32,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | Phase A/B complete |
+| **Status** | Planned (gated on Phases 1+2 outcomes) |
 | **Created** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `011-spec-memory-rerank-decision-arc` |

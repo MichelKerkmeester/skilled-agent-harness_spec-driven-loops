@@ -29,7 +29,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | Implementation complete; deploy pending |
+| **Status** | In Progress — deployment pending |
 | **Date** | 2026-06-04 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

@@ -62,7 +62,7 @@ Mine the external `smallcode-master` corpus (MIT, terminal-native AI coding agen
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | COMPLETE |
 | **Created** | 2026-05-18 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (114-small-ai-model-optimization phase parent) |
