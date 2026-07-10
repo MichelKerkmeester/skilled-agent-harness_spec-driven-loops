@@ -4,6 +4,13 @@
 //   node .../graph/backfill-graph-metadata.js <spec-folder> [--dry-run]
 //   node .../graph/backfill-graph-metadata.js --spec-folder <path> [--dry-run]
 //   node .../graph/backfill-graph-metadata.js --all [--dry-run] [--active-only] [--root <specs-dir>]
+//   node .../graph/backfill-graph-metadata.js <scope> --prune-report
+//   node .../graph/backfill-graph-metadata.js <scope> --prune --prune-confirm <report-hash>
+//
+// --prune-report writes .backfill-graph-metadata-prune-report.json under the
+// selected specs root and exits without changing graph metadata. Review that
+// artifact, then pass its contentHash to --prune-confirm. Apply refuses when
+// the artifact is absent or the current candidates differ from the report.
 //
 // A default invocation refreshes ONE packet only: it requires a target spec
 // folder, validates it against the supported specs roots, and never walks the
@@ -13,6 +20,7 @@
 // and z_archive/ is included unless --active-only is passed.
 // ───────────────────────────────────────────────────────────────
 
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -36,10 +44,34 @@ const moduleDir = dirnameFromImportMeta(import.meta.url);
 const SPEC_FOLDER_RE = /^\d{3}(?:[-_].+)?$/;
 const EXCLUDED_DIRS = new Set(['memory', 'scratch', 'node_modules', '.git', 'z_future']);
 const ARCHIVE_SEGMENT_RE = /(^|\/)(z_archive|z_future)(\/|$)/;
+const BACKFILL_PRUNE_REPORT_FILE = '.backfill-graph-metadata-prune-report.json';
+const PRUNE_REPORT_VERSION = 1;
 
 export type BackfillScope = 'scoped' | 'all';
 
-interface BackfillSummary {
+/** One persisted child relationship that an explicit prune would remove. */
+export interface PruneCandidate {
+  specFolder: string;
+  childId: string;
+  targetPath: string;
+  existsOnDisk: boolean;
+}
+
+/** Stable review artifact whose hash binds a scope to its prune candidates. */
+export interface PruneReportArtifact {
+  version: number;
+  scope: string;
+  candidates: PruneCandidate[];
+  contentHash: string;
+}
+
+/** Report location and confirmation token surfaced to the CLI caller. */
+export interface PruneReportReceipt {
+  path: string;
+  contentHash: string;
+}
+
+export interface BackfillSummary {
   dryRun: boolean;
   scope: BackfillScope;
   root: string;
@@ -55,7 +87,8 @@ interface BackfillSummary {
   // Report-only drift surface: which packets carry a stored synopsis field that drifted from
   // the current docs. Populated from a read-only re-derive, never a write side effect.
   drift: Array<{ specFolder: string; fields: string[] }>;
-  pruneCandidates: Array<{ specFolder: string; childId: string; targetPath: string; existsOnDisk: boolean }>;
+  pruneCandidates: PruneCandidate[];
+  pruneReportArtifact?: PruneReportReceipt;
 }
 
 export interface BackfillOptions {
@@ -64,6 +97,7 @@ export interface BackfillOptions {
   activeOnly?: boolean;
   prune?: boolean;
   pruneReport?: boolean;
+  pruneConfirm?: string;
   // When set, only this single packet folder is refreshed and no tree walk runs.
   specFolder?: string;
 }
@@ -71,6 +105,135 @@ export interface BackfillOptions {
 export type BackfillPlan =
   | { ok: true; options: BackfillOptions }
   | { ok: false; error: string };
+
+/** Result of applying the report gate around the low-level backfill operation. */
+export type BackfillExecutionResult =
+  | { ok: true; summary: BackfillSummary }
+  | { ok: false; error: string };
+
+function sortPruneCandidates(candidates: PruneCandidate[]): PruneCandidate[] {
+  return [...candidates].sort((left, right) => {
+    const leftKey = `${left.specFolder}\0${left.childId}\0${left.targetPath}\0${left.existsOnDisk}`;
+    const rightKey = `${right.specFolder}\0${right.childId}\0${right.targetPath}\0${right.existsOnDisk}`;
+    return leftKey.localeCompare(rightKey);
+  });
+}
+
+function hashPruneReportContent(
+  version: number,
+  scope: string,
+  candidates: PruneCandidate[],
+): string {
+  return crypto.createHash('sha256')
+    .update(JSON.stringify({ version, scope, candidates: sortPruneCandidates(candidates) }))
+    .digest('hex');
+}
+
+/** Build the deterministic report payload reviewed before a prune apply. */
+export function createPruneReportArtifact(
+  scope: string,
+  candidates: PruneCandidate[],
+): PruneReportArtifact {
+  const sortedCandidates = sortPruneCandidates(candidates);
+  return {
+    version: PRUNE_REPORT_VERSION,
+    scope,
+    candidates: sortedCandidates,
+    contentHash: hashPruneReportContent(PRUNE_REPORT_VERSION, scope, sortedCandidates),
+  };
+}
+
+/** Resolve an entry point's deterministic report path under its selected root. */
+export function pruneReportPath(root: string, fileName = BACKFILL_PRUNE_REPORT_FILE): string {
+  return path.join(path.resolve(root), fileName);
+}
+
+/** Persist a prune report in the stable JSON form operators review. */
+export function writePruneReportArtifact(
+  reportPath: string,
+  artifact: PruneReportArtifact,
+): void {
+  fs.writeFileSync(reportPath, `${JSON.stringify(artifact, null, 2)}\n`, 'utf-8');
+}
+
+function isPruneCandidate(value: unknown): value is PruneCandidate {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+  const candidate = value as Record<string, unknown>;
+  return typeof candidate.specFolder === 'string'
+    && typeof candidate.childId === 'string'
+    && typeof candidate.targetPath === 'string'
+    && typeof candidate.existsOnDisk === 'boolean';
+}
+
+function readPruneReportArtifact(reportPath: string): PruneReportArtifact | null {
+  try {
+    const value = JSON.parse(fs.readFileSync(reportPath, 'utf-8')) as Record<string, unknown>;
+    if (
+      value.version !== PRUNE_REPORT_VERSION
+      || typeof value.scope !== 'string'
+      || typeof value.contentHash !== 'string'
+      || !Array.isArray(value.candidates)
+      || !value.candidates.every(isPruneCandidate)
+    ) {
+      return null;
+    }
+    return value as unknown as PruneReportArtifact;
+  } catch {
+    return null;
+  }
+}
+
+/** Validate a prior report and confirmation against the candidates present now. */
+export function validatePruneConfirmation(
+  reportPath: string,
+  scope: string,
+  candidates: PruneCandidate[],
+  confirmation: string,
+): { ok: true } | { ok: false; error: string } {
+  if (!fs.existsSync(reportPath)) {
+    return {
+      ok: false,
+      error: `prune report artifact not found at ${reportPath}; run --prune-report first`,
+    };
+  }
+
+  const artifact = readPruneReportArtifact(reportPath);
+  if (!artifact) {
+    return {
+      ok: false,
+      error: `prune report artifact at ${reportPath} is invalid; run --prune-report again`,
+    };
+  }
+
+  const storedContentHash = hashPruneReportContent(
+    artifact.version,
+    artifact.scope,
+    artifact.candidates,
+  );
+  if (storedContentHash !== artifact.contentHash) {
+    return {
+      ok: false,
+      error: `prune report artifact at ${reportPath} failed its content hash; run --prune-report again`,
+    };
+  }
+  if (confirmation !== artifact.contentHash) {
+    return {
+      ok: false,
+      error: '--prune-confirm does not match the prior prune report contentHash',
+    };
+  }
+
+  const current = createPruneReportArtifact(scope, candidates);
+  if (current.contentHash !== artifact.contentHash) {
+    return {
+      ok: false,
+      error: 'prune report is stale because the candidates changed; run --prune-report again',
+    };
+  }
+  return { ok: true };
+}
 
 function resolveRepoRoot(): string {
   const cwdCandidate = path.resolve(process.cwd());
@@ -151,6 +314,7 @@ export function planBackfill(argv: string[]): BackfillPlan {
   let activeOnly = false;
   let prune = false;
   let pruneReport = false;
+  let pruneConfirm: string | undefined;
   let all = false;
   let root = path.join(resolveRepoRoot(), '.opencode', 'specs');
   let scopedTarget: string | null = null;
@@ -169,6 +333,15 @@ export function planBackfill(argv: string[]): BackfillPlan {
     if (arg === '--prune-report') {
       pruneReport = true;
       dryRun = true;
+      continue;
+    }
+    if (arg === '--prune-confirm') {
+      const value = argv[index + 1];
+      if (value === undefined || value.startsWith('--')) {
+        return { ok: false, error: '--prune-confirm requires a report content hash' };
+      }
+      pruneConfirm = value;
+      index += 1;
       continue;
     }
     if (arg === '--active-only') {
@@ -211,11 +384,27 @@ export function planBackfill(argv: string[]): BackfillPlan {
     sawPositional = true;
   }
 
+  if (prune && pruneReport) {
+    return { ok: false, error: 'cannot combine --prune with --prune-report' };
+  }
+  if (prune && !pruneConfirm) {
+    return {
+      ok: false,
+      error: '--prune requires --prune-confirm <hash> from a prior --prune-report run',
+    };
+  }
+  if (pruneConfirm && !prune) {
+    return { ok: false, error: '--prune-confirm requires --prune' };
+  }
+
   if (all) {
     if (scopedTarget !== null) {
       return { ok: false, error: 'cannot combine --all with a target spec folder' };
     }
-    return { ok: true, options: { dryRun, root, activeOnly, prune, pruneReport } };
+    return {
+      ok: true,
+      options: { dryRun, root, activeOnly, prune, pruneReport, pruneConfirm },
+    };
   }
 
   if (scopedTarget === null) {
@@ -229,7 +418,17 @@ export function planBackfill(argv: string[]): BackfillPlan {
   if (!resolved.ok) {
     return resolved;
   }
-  return { ok: true, options: { dryRun, root, specFolder: resolved.specFolder, prune, pruneReport } };
+  return {
+    ok: true,
+    options: {
+      dryRun,
+      root,
+      specFolder: resolved.specFolder,
+      prune,
+      pruneReport,
+      pruneConfirm,
+    },
+  };
 }
 
 function isArchivedTraversalPath(dirPath: string): boolean {
@@ -316,6 +515,23 @@ export function collectReviewFlags(specFolderPath: string, metadata: GraphMetada
   return flags;
 }
 
+function preserveExistingChildrenForPrediction(
+  specFolderPath: string,
+  existing: GraphMetadata | null,
+  derived: GraphMetadata,
+): GraphMetadata {
+  const retainedChildren = collectChildrenPruneCandidates(specFolderPath, existing, derived)
+    .filter((candidate) => candidate.existsOnDisk)
+    .map((candidate) => candidate.childId);
+  if (retainedChildren.length === 0) {
+    return derived;
+  }
+  return {
+    ...derived,
+    children_ids: [...new Set([...retainedChildren, ...derived.children_ids])],
+  };
+}
+
 /**
  * Backfill graph-metadata files across the selected scope.
  *
@@ -327,7 +543,14 @@ export function collectReviewFlags(specFolderPath: string, metadata: GraphMetada
  * @param options - Backfill execution options
  * @returns Aggregate summary of created, refreshed, skipped, and failed packets
  */
-export function runBackfill({ dryRun, root, activeOnly = false, prune = false, pruneReport = false, specFolder }: BackfillOptions): BackfillSummary {
+export function runBackfillCore({
+  dryRun,
+  root,
+  activeOnly = false,
+  prune = false,
+  pruneReport = false,
+  specFolder,
+}: BackfillOptions): BackfillSummary {
   const specFolders = specFolder
     ? [specFolder]
     : collectSpecFolders(root, { activeOnly });
@@ -368,7 +591,10 @@ export function runBackfill({ dryRun, root, activeOnly = false, prune = false, p
       }
 
       const derived = deriveGraphMetadata(specFolderPath, existing, { saveLineage });
-      const merged = mergeGraphMetadata(existing, derived, { prune });
+      const mergeInput = prune
+        ? preserveExistingChildrenForPrediction(specFolderPath, existing, derived)
+        : derived;
+      const merged = mergeGraphMetadata(existing, mergeInput, { prune });
       if (!existing || !graphMetadataEqualIgnoringVolatile(existing, merged)) {
         summary.changed += 1;
       }
@@ -385,7 +611,7 @@ export function runBackfill({ dryRun, root, activeOnly = false, prune = false, p
       }
 
       const metadata = dryRun
-        ? derived
+        ? merged
         : refreshGraphMetadataForSpecFolder(specFolderPath, { saveLineage, prune }).metadata;
 
       if (!existing) {
@@ -425,6 +651,72 @@ export function runBackfill({ dryRun, root, activeOnly = false, prune = false, p
   return summary;
 }
 
+function backfillPruneScope(options: BackfillOptions): string {
+  return JSON.stringify({
+    entryPoint: 'backfill-graph-metadata',
+    root: path.resolve(options.root),
+    scope: options.specFolder ? 'scoped' : 'all',
+    specFolder: options.specFolder ? path.resolve(options.specFolder) : null,
+    activeOnly: options.activeOnly ?? false,
+  });
+}
+
+/** Execute the report/confirm gate before delegating to the metadata writer. */
+export function executeBackfill(options: BackfillOptions): BackfillExecutionResult {
+  if (options.prune && !options.pruneConfirm) {
+    return {
+      ok: false,
+      error: '--prune requires --prune-confirm <hash> from a prior --prune-report run',
+    };
+  }
+  if (options.prune && options.pruneReport) {
+    return { ok: false, error: 'cannot combine --prune with --prune-report' };
+  }
+
+  if (!options.prune && !options.pruneReport) {
+    return { ok: true, summary: runBackfillCore(options) };
+  }
+
+  const reportSummary = runBackfillCore({
+    ...options,
+    dryRun: true,
+    prune: false,
+    pruneReport: true,
+  });
+  const scope = backfillPruneScope(options);
+  const reportPath = pruneReportPath(options.root);
+
+  if (options.pruneReport) {
+    const artifact = createPruneReportArtifact(scope, reportSummary.pruneCandidates);
+    writePruneReportArtifact(reportPath, artifact);
+    reportSummary.pruneReportArtifact = {
+      path: reportPath,
+      contentHash: artifact.contentHash,
+    };
+    return { ok: true, summary: reportSummary };
+  }
+
+  const validated = validatePruneConfirmation(
+    reportPath,
+    scope,
+    reportSummary.pruneCandidates,
+    options.pruneConfirm ?? '',
+  );
+  if (!validated.ok) {
+    return validated;
+  }
+  return { ok: true, summary: runBackfillCore(options) };
+}
+
+/** Run a backfill while enforcing the report/confirm contract for pruning. */
+export function runBackfill(options: BackfillOptions): BackfillSummary {
+  const result = executeBackfill(options);
+  if (!result.ok) {
+    throw new Error(result.error);
+  }
+  return result.summary;
+}
+
 function run(): void {
   const plan = planBackfill(process.argv.slice(2));
   if (!plan.ok) {
@@ -432,8 +724,13 @@ function run(): void {
     process.exitCode = 1;
     return;
   }
-  const summary = runBackfill(plan.options);
-  process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+  const result = executeBackfill(plan.options);
+  if (!result.ok) {
+    process.stderr.write(`backfill-graph-metadata: ${result.error}\n`);
+    process.exitCode = 1;
+    return;
+  }
+  process.stdout.write(`${JSON.stringify(result.summary, null, 2)}\n`);
 }
 
 if (isMainModule(import.meta.url)) {

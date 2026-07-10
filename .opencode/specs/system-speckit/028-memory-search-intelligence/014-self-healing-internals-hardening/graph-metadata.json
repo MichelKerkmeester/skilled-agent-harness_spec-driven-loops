@@ -166,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -179,12 +185,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Open Questions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "F8 — synchronous drift-suspect write can block the search hot path up to 10s ([MEDIUM], flag-gated OFF today)",
     "created_at": "2026-07-09T15:13:35.568Z",
-    "last_save_at": "2026-07-10T03:44:45.006Z",
+    "last_save_at": "2026-07-10T08:09:25.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f65838f25bb99dddb8e2ac1aebbf0683bf1327921b2d48686be3e1b119dee006",
+    "source_fingerprint": "sha256:8911fa9a32cc83e6f5801dbc8dba718ea031e8461e68010e68c6d8deab6cb672",
     "source_doc_hashes": {
-      "spec.md": "1b85e84ae36a45f24757c3fdd683237d96d5d5ad184015872cc6f6527260f1fe",
-      "plan.md": "2d3bfe25e36de4a09ff7da6cb2a4423cc5886da9ed2bdabff938c5f3ca307fe3",
-      "tasks.md": "ec1b9aa4f5c84b32891d7188f053d194ff0fe84de561683a568d59b18d057299",
-      "checklist.md": "3b72f75c5975e41104966c5693f498fa7449c1c967b4b4dc6674783882698207",
-      "implementation-summary.md": "7171b5f829b2611b45b62ae1470872420db8796ed30c555e9e59bb477678969c"
+      "spec.md": "aeeb9a179d846fa8a80b6b359aa46cab963de78b14ef82a7c1df0d1acfd5a9d6",
+      "plan.md": "9587eff16516c4f55094aad860eae5616589659b3eb2bb0cffa1d006b4b21017",
+      "tasks.md": "4e7fae135a9a520e64405cc29678cf063928b2584fa605a1413e520fc9f00796",
+      "checklist.md": "a7ad5615b51830c33f5a0d96263ebad55149f996131c93bed57fd6bd0bf6a81d",
+      "implementation-summary.md": "e32a0389a777ac3a5a1179bfcf73d83e523cd4b20712aedd718cb9f9f2b50f87"
     },
     "last_active_child_id": null,
     "last_active_at": null

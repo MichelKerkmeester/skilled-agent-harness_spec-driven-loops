@@ -1,13 +1,14 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: Suspect-confirmation tombstoning phase (runSuspectConfirmation)
 // ───────────────────────────────────────────────────────────────
-// Drives the REAL runSuspectConfirmation() closure (via the exported runIndexScan
-// test seam, wired in at handlers/memory-index.ts:1055/1549 via
-// timedPhase('suspect-confirmation', ...)) against a REAL SQLite database: seeds
+// Drives the REAL runSuspectConfirmation() closure via the exported runIndexScan
+// test seam and timedPhase('suspect-confirmation', ...) against a REAL SQLite
+// database: seeds
 // genuine memory_index rows plus genuine drift-suspect queue entries (via
 // appendMemoryDriftSuspects, matching memory-search.ts's real write path), then
-// confirms the phase's real confirm-then-tombstone-or-clear decision and its own
-// suspectTombstoned / suspectCleared / suspectFailed counters. Only the
+// confirms the phase's real confirm-then-tombstone-clear-or-retain decision and its
+// suspectTombstoned / suspectCleared / suspectFailed / suspectRetainedUnknown
+// counters. Only the
 // scan-lease/checkpoint/embedding-profile scaffolding is mocked, matching this
 // handler's existing test suite (see orphan-sweep-time-budget-and-refresh.vitest.ts);
 // none of that scaffolding touches the suspect-confirmation path itself. deleteMemory
@@ -26,12 +27,41 @@ const mocks = vi.hoisted(() => ({
   mockCheckDatabaseUpdated: vi.fn(),
   mockGetRestoreBarrierStatus: vi.fn(),
   mockGetEmbeddingProfile: vi.fn(),
+  deniedDirectories: new Set<string>(),
+  deleteCalls: [] as number[],
   // Set by the error-resilience test to make deleteMemory throw for exactly one
   // id, so the rest of the confirmation batch can be asserted to keep processing
   // regardless. Left null the rest of the time, in which case every call falls
   // through to the real implementation untouched.
   failingDeleteId: { current: null as number | null },
 }));
+
+vi.mock('fs', async (importOriginal) => {
+  const real = await importOriginal<typeof import('fs')>();
+  const isDenied = (candidate: unknown): boolean => {
+    const candidatePath = String(candidate);
+    return Array.from(mocks.deniedDirectories).some((directory) =>
+      candidatePath === directory
+      || candidatePath.startsWith(`${directory}/`)
+      || candidatePath.startsWith(`${directory}\\`)
+    );
+  };
+  return {
+    ...real,
+    readdirSync: (...args: unknown[]) => {
+      if (isDenied(args[0])) {
+        throw Object.assign(new Error('EACCES'), { code: 'EACCES' });
+      }
+      return Reflect.apply(real.readdirSync, real, args);
+    },
+    statSync: (...args: unknown[]) => {
+      if (isDenied(args[0])) {
+        throw Object.assign(new Error('EACCES'), { code: 'EACCES' });
+      }
+      return Reflect.apply(real.statSync, real, args);
+    },
+  };
+});
 
 vi.mock('../core/db-state', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../core/db-state')>();
@@ -72,6 +102,7 @@ vi.mock('../lib/search/vector-index', async (importOriginal) => {
   return {
     ...actual,
     deleteMemory: (id: number, database?: Parameters<typeof actual.deleteMemory>[1]) => {
+      mocks.deleteCalls.push(id);
       if (mocks.failingDeleteId.current === id) {
         throw new Error(`[test] simulated deleteMemory failure for memory ${id}`);
       }
@@ -86,8 +117,8 @@ vi.mock('../lib/search/vector-index', async (importOriginal) => {
 // on disk" criterion, so it would otherwise race suspect-confirmation and delete
 // a seeded row before this file's phase-under-test ever sees it. Stubbing out
 // only sweepOrphanIndexRows -- the orphan-sweep candidate query -- neutralizes
-// that overlap while leaving buildPathExistenceCache/cachedPathExists (what
-// runSuspectConfirmation itself actually calls) fully real.
+// that overlap while leaving the detailed existence cache and state lookup
+// (what runSuspectConfirmation itself actually calls) fully real.
 vi.mock('../lib/storage/incremental-index', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../lib/storage/incremental-index')>();
   return {
@@ -169,6 +200,7 @@ interface ScanEnvelope {
     suspectTombstoned: number;
     suspectCleared: number;
     suspectFailed: number;
+    suspectRetainedUnknown: number;
   };
 }
 
@@ -190,6 +222,8 @@ afterAll(() => {
 
 afterEach(() => {
   mocks.failingDeleteId.current = null;
+  mocks.deniedDirectories.clear();
+  mocks.deleteCalls.length = 0;
 });
 
 describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation phase)', () => {
@@ -256,6 +290,46 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
     }
   });
 
+  it('retains a suspect when filesystem access cannot confirm whether its file exists', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('suspect-confirm-unknown-');
+    const deniedDirectory = path.join(workspace, 'denied');
+    fs.mkdirSync(deniedDirectory);
+    const { handler, vectorIndex, driftHealing } = await loadRealModules(workspace);
+    try {
+      const db = vectorIndex.getDb()!;
+      const { id } = seedSuspectCandidate(
+        vectorIndex,
+        deniedDirectory,
+        'suspect-unknown/001-demo',
+      );
+      driftHealing.appendMemoryDriftSuspects(db, [id]);
+      mocks.deniedDirectories.add(path.resolve(deniedDirectory));
+
+      const response = await handler.runIndexScan(scanArgs, {});
+      expect(response.isError).not.toBe(true);
+      const envelope = parseEnvelope(response);
+
+      expect(envelope.data.suspectRetainedUnknown).toBe(1);
+      expect(envelope.data.suspectTombstoned).toBe(0);
+      expect(envelope.data.suspectCleared).toBe(0);
+      expect(envelope.data.suspectFailed).toBe(0);
+      expect(mocks.deleteCalls).not.toContain(id);
+      expect(vectorIndex.getMemory(id, db)).not.toBeNull();
+      expect(driftHealing.readMemoryDriftSuspects(db).map((suspect) => suspect.id)).toEqual([
+        id,
+      ]);
+      driftHealing.removeMemoryDriftSuspects(db, [id]);
+    } finally {
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+
   it('keeps processing the rest of the batch when one entry errors during confirmation, and reflects the split in its counters', async () => {
     vi.resetModules();
     mockLeaseAndScaffolding();
@@ -283,6 +357,10 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
       // proving the per-id try/catch in deleteIndexedRecordIds isolates failures.
       expect(vectorIndex.getMemory(failing.id, db)).not.toBeNull();
       expect(vectorIndex.getMemory(succeeding.id, db)).toBeNull();
+      expect(driftHealing.readMemoryDriftSuspects(db).map((suspect) => suspect.id)).toEqual([
+        failing.id,
+      ]);
+      driftHealing.removeMemoryDriftSuspects(db, [failing.id]);
     } finally {
       try {
         vectorIndex.closeDb();
@@ -320,6 +398,10 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
       expect(vectorIndex.getMemory(missing.id, db)).toBeNull();
       expect(vectorIndex.getMemory(reappeared.id, db)).not.toBeNull();
       expect(vectorIndex.getMemory(errored.id, db)).not.toBeNull();
+      expect(driftHealing.readMemoryDriftSuspects(db).map((suspect) => suspect.id)).toEqual([
+        errored.id,
+      ]);
+      driftHealing.removeMemoryDriftSuspects(db, [errored.id]);
     } finally {
       try {
         vectorIndex.closeDb();

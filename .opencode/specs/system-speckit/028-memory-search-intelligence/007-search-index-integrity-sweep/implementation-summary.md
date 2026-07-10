@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep"
-    last_updated_at: "2026-07-09T10:25:00.000Z"
-    last_updated_by: "opencode"
-    recent_action: "Verified resumed sweep state"
-    next_safe_action: "Fix verification failures; decide enrichment scope"
+    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_by: "claude-code"
+    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
+    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers:
       - "Full relevant test suites are not green"
       - "F12 enrichment backlog still has 6124 pending+failed rows"
@@ -156,6 +156,18 @@ Row-count deltas:
 | `memory_health` consistency | `rowsTotal=13529`, `ftsRowsTotal=13529`, `vecRowsTotal=13529`, `mismatchedIds=[]` |
 | Full filesystem/hash scan | `total=13529`, `existingFilePath=13529`, `missingFilePath=0`, `nullOrEmptyFilePath=0`, `contentHashNull=0`, `contentHashMismatch=0`, `contentHashNormalizedMatches=13529` |
 | Live daemon query | `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"post-sweep verification","mode":"resume"}' --format json --timeout-ms 20000` returned `summary: "Found 4 memories"`, `isError:false` |
+
+### Duplicate-Identity Verification (added 2026-07-10, remediation follow-up)
+
+The original sweep verified file-path presence, vector ownership, and row totals but never proved renamed identities duplicate-free. A dedicated read-only tool (`scripts/memory/verify-index-identity.ts`; fixture-tested, CLI-asserted DB size/mtime unchanged) now closes that gap. Live run against `context-index.sqlite` (13,542 rows — the index grew since the table above):
+
+| Check | Result |
+|-------|--------|
+| Canonical-identity duplicate clusters | **1,255 clusters / 2,573 rows / 1,318 excess rows** — exact grouping on canonical_file_path + anchor/document identity, not heuristic |
+| Historical-prefix (rename) pairs | **0 genuine pairs** under multi-signal detection (content_hash / title+anchor / >=3-segment path suffix with generic-basename guard). A naive basename heuristic had reported 11,853 pairs — all false positives; the rename-reconciliation itself left no unreconciled prefix pairs |
+| DB mutation self-check | size and mtime byte-identical before/after (tool-asserted) |
+
+The 1,318 excess duplicate rows are a real, open data-quality item — deduplication is deliberately NOT part of this remediation (destructive; needs operator decision + its own packet). Reproduce: run the tool read-only against the live DB.
 
 ### Verification Commands
 

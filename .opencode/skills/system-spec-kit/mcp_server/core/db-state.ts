@@ -7,6 +7,7 @@ import { resolveDatabasePaths, INDEX_SCAN_COOLDOWN } from './config.js';
 import type { DatabaseExtended } from '@spec-kit/shared/types';
 import type { GraphSearchFn } from '../lib/search/search-types.js';
 import { createUnifiedGraphSearchFn } from '../lib/search/graph-search-fn.js';
+import { isGraphUnifiedEnabled } from '../lib/search/graph-flags.js';
 
 // ────────────────────────────────────────────────────────────────
 // 1. TYPES 
@@ -105,7 +106,7 @@ let incrementalIndexRef: IncrementalIndexLike | null = null;
 let graphSearchFnRef: GraphSearchFn | null | undefined = undefined;
 let graphSearchFactoryRef: (database: DatabaseLike) => GraphSearchFn = (database) =>
   createUnifiedGraphSearchFn(database as Parameters<typeof createUnifiedGraphSearchFn>[0]);
-let graphSearchEnabledRef = process.env.SPECKIT_GRAPH_UNIFIED !== 'false';
+let graphSearchEnabledRef = isGraphUnifiedEnabled();
 const dbConsumersRef: DatabaseConsumerLike[] = [];
 let vectorIndexListenerCleanup: (() => void) | null = null;
 let subscribedVectorIndex: VectorIndexLike | null = null;
@@ -231,11 +232,12 @@ function rebindDatabaseConsumers(database: DatabaseLike): boolean {
   if (checkpoints) checkpoints.init(database);
   if (accessTracker) accessTracker.init(database);
   if (hybridSearch) {
-    const graphSearchFn = graphSearchEnabledRef && process.env.SPECKIT_GRAPH_UNIFIED !== 'false'
+    const graphSearchEnabled = graphSearchEnabledRef && isGraphUnifiedEnabled();
+    const graphSearchFn = graphSearchEnabled
       ? graphSearchFactoryRef(database)
       : null;
     graphSearchFnRef = graphSearchFn;
-    if (!graphSearchFn && process.env.SPECKIT_GRAPH_UNIFIED !== 'false') {
+    if (!graphSearchFn && graphSearchEnabled) {
       console.warn('[db-state] hybridSearch reinit missing graphSearchFn; graph retrieval channel is disabled');
     }
     hybridSearch.init(database, vectorIndex?.vectorSearch, graphSearchFn);

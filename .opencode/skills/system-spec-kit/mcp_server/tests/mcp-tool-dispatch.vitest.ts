@@ -1,115 +1,177 @@
 // TEST: MCP TOOL DISPATCH
-import { describe, it, expect } from 'vitest';
-import * as handlers from '../handlers/index';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const TOOL_HANDLER_MAP: Array<{ tool: string; handler: string; layer: string }> = [
-  { tool: 'memory_context', handler: 'handleMemoryContext', layer: 'L1' },
-  { tool: 'memory_search', handler: 'handleMemorySearch', layer: 'L2' },
-  { tool: 'memory_match_triggers', handler: 'handleMemoryMatchTriggers', layer: 'L2' },
-  { tool: 'memory_save', handler: 'handleMemorySave', layer: 'L2' },
-  { tool: 'memory_list', handler: 'handleMemoryList', layer: 'L3' },
-  { tool: 'memory_stats', handler: 'handleMemoryStats', layer: 'L3' },
-  { tool: 'memory_health', handler: 'handleMemoryHealth', layer: 'L3' },
-  { tool: 'memory_delete', handler: 'handleMemoryDelete', layer: 'L4' },
-  { tool: 'memory_update', handler: 'handleMemoryUpdate', layer: 'L4' },
-  { tool: 'memory_validate', handler: 'handleMemoryValidate', layer: 'L4' },
-  { tool: 'checkpoint_create', handler: 'handleCheckpointCreate', layer: 'L5' },
-  { tool: 'checkpoint_list', handler: 'handleCheckpointList', layer: 'L5' },
-  { tool: 'checkpoint_restore', handler: 'handleCheckpointRestore', layer: 'L5' },
-  { tool: 'checkpoint_delete', handler: 'handleCheckpointDelete', layer: 'L5' },
-  { tool: 'task_preflight', handler: 'handleTaskPreflight', layer: 'L6' },
-  { tool: 'task_postflight', handler: 'handleTaskPostflight', layer: 'L6' },
-  { tool: 'memory_drift_why', handler: 'handleMemoryDriftWhy', layer: 'L6' },
-  { tool: 'memory_causal_link', handler: 'handleMemoryCausalLink', layer: 'L6' },
-  { tool: 'memory_causal_stats', handler: 'handleMemoryCausalStats', layer: 'L6' },
-  { tool: 'memory_causal_unlink', handler: 'handleMemoryCausalUnlink', layer: 'L6' },
-  { tool: 'eval_run_ablation', handler: 'handleEvalRunAblation', layer: 'L6' },
-  { tool: 'eval_reporting_dashboard', handler: 'handleEvalReportingDashboard', layer: 'L6' },
-  { tool: 'memory_index_scan', handler: 'handleMemoryIndexScan', layer: 'L7' },
-  { tool: 'memory_get_learning_history', handler: 'handleGetLearningHistory', layer: 'L7' },
-];
+const handlerSpies = vi.hoisted(() => {
+  const handlerNames = [
+    'handleMemoryContext',
+    'handleMemorySearch',
+    'handleMemoryMatchTriggers',
+    'handleMemorySave',
+    'handleMemoryList',
+    'handleMemoryStats',
+    'handleMemoryHealth',
+    'handleMemoryDelete',
+    'handleMemoryUpdate',
+    'handleMemoryValidate',
+    'handleMemoryBulkDelete',
+    'handleMemoryRetentionSweep',
+    'handleMemoryLearnedExpire',
+    'handleMemoryLearnedClear',
+    'handleMemoryEmbeddingReconcile',
+    'handleEmbedderList',
+    'handleEmbedderSet',
+    'handleEmbedderStatus',
+    'handleMemoryDriftWhy',
+    'handleMemoryCausalLink',
+    'handleMemoryCausalStats',
+    'handleMemoryCausalUnlink',
+    'handleCheckpointCreate',
+    'handleCheckpointList',
+    'handleCheckpointRestore',
+    'handleCheckpointDelete',
+    'handleMemoryIndexScan',
+    'handleMemoryIndexScanStatus',
+    'handleMemoryIndexScanCancel',
+    'handleTaskPreflight',
+    'handleTaskPostflight',
+    'handleGetLearningHistory',
+    'handleMemoryIngestStart',
+    'handleMemoryIngestStatus',
+    'handleMemoryIngestCancel',
+    'handleEvalRunAblation',
+    'handleEvalReportingDashboard',
+    'handleSessionHealth',
+    'handleSessionResume',
+    'handleSessionBootstrap',
+  ] as const;
 
-const SNAKE_CASE_MAP: Array<{ camel: string; snake: string }> = [
-  { camel: 'handleMemorySearch', snake: 'handle_memory_search' },
-  { camel: 'handleMemoryMatchTriggers', snake: 'handle_memory_match_triggers' },
-  { camel: 'handleMemorySave', snake: 'handle_memory_save' },
-  { camel: 'handleMemoryList', snake: 'handle_memory_list' },
-  { camel: 'handleMemoryStats', snake: 'handle_memory_stats' },
-  { camel: 'handleMemoryHealth', snake: 'handle_memory_health' },
-  { camel: 'handleMemoryDelete', snake: 'handle_memory_delete' },
-  { camel: 'handleMemoryUpdate', snake: 'handle_memory_update' },
-  { camel: 'handleMemoryValidate', snake: 'handle_memory_validate' },
-  { camel: 'handleCheckpointCreate', snake: 'handle_checkpoint_create' },
-  { camel: 'handleCheckpointList', snake: 'handle_checkpoint_list' },
-  { camel: 'handleCheckpointRestore', snake: 'handle_checkpoint_restore' },
-  { camel: 'handleCheckpointDelete', snake: 'handle_checkpoint_delete' },
-  { camel: 'handleTaskPreflight', snake: 'handle_task_preflight' },
-  { camel: 'handleTaskPostflight', snake: 'handle_task_postflight' },
-  { camel: 'handleGetLearningHistory', snake: 'handle_get_learning_history' },
-  { camel: 'handleMemoryDriftWhy', snake: 'handle_memory_drift_why' },
-  { camel: 'handleMemoryCausalLink', snake: 'handle_memory_causal_link' },
-  { camel: 'handleMemoryCausalStats', snake: 'handle_memory_causal_stats' },
-  { camel: 'handleMemoryCausalUnlink', snake: 'handle_memory_causal_unlink' },
-  { camel: 'handleEvalRunAblation', snake: 'handle_eval_run_ablation' },
-  { camel: 'handleEvalReportingDashboard', snake: 'handle_eval_reporting_dashboard' },
-  { camel: 'handleMemoryIndexScan', snake: 'handle_memory_index_scan' },
-  { camel: 'handleMemoryContext', snake: 'handle_memory_context' },
-];
+  return Object.fromEntries(handlerNames.map((name) => [
+    name,
+    vi.fn(async () => ({
+      content: [{ type: 'text', text: JSON.stringify({ data: { results: [] }, meta: { tool: name } }) }],
+    })),
+  ]));
+});
 
-type ToolHandler = (args: Record<string, unknown>) => unknown;
+vi.mock('../handlers/index', () => handlerSpies);
 
-const handlerExports = handlers as Record<string, unknown>;
+import { TOOL_DEFINITIONS } from '../tool-schemas';
+import { TOOL_SCHEMAS } from '../schemas/tool-input-schemas';
+import {
+  ALL_DISPATCHERS,
+  dispatchTool,
+} from '../tools/index';
+import {
+  enforceEnvelopeResultBudget,
+  resolveEnvelopeTokenBudget,
+} from '../context-server';
+import {
+  serializeEnvelopeWithTokenCount,
+  syncEnvelopeTokenCount,
+} from '../hooks';
 
-function isPromiseLike(value: unknown): value is PromiseLike<unknown> {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'then' in value &&
-    typeof (value as { then?: unknown }).then === 'function'
-  );
+const MINIMAL_VALID_ARGS: Record<string, Record<string, unknown>> = {
+  memory_context: { input: 'context query' },
+  memory_search: { query: 'search query' },
+  memory_quick_search: { query: 'quick query' },
+  memory_match_triggers: { prompt: 'trigger prompt' },
+  memory_save: { filePath: '/tmp/context.md' },
+  memory_delete: { id: 1, confirm: true },
+  memory_update: { id: 1 },
+  memory_validate: { id: 1, wasUseful: true },
+  memory_bulk_delete: { tier: 'temporary', confirm: true },
+  memory_learned_clear: { confirm: true },
+  checkpoint_create: { name: 'checkpoint' },
+  checkpoint_restore: { name: 'checkpoint' },
+  checkpoint_delete: { name: 'checkpoint', confirmName: 'checkpoint' },
+  task_preflight: {
+    specFolder: 'specs/active',
+    taskId: 'implementation',
+    knowledgeScore: 50,
+    uncertaintyScore: 50,
+    contextScore: 50,
+  },
+  task_postflight: {
+    specFolder: 'specs/active',
+    taskId: 'implementation',
+    knowledgeScore: 75,
+    uncertaintyScore: 25,
+    contextScore: 75,
+  },
+  memory_drift_why: { memoryId: '1' },
+  memory_causal_link: { sourceId: '1', targetId: '2', relation: 'supports' },
+  memory_causal_unlink: { edgeId: 1 },
+  memory_get_learning_history: { specFolder: 'specs/active' },
+  memory_ingest_start: { paths: ['/tmp/context.md'] },
+  memory_ingest_status: { jobId: 'job-1' },
+  memory_ingest_cancel: { jobId: 'job-1' },
+  memory_index_scan_status: { jobId: 'job-1' },
+  memory_index_scan_cancel: { jobId: 'job-1' },
+  embedder_set: { name: 'embedder', dryRun: true },
+};
+
+function totalHandlerCalls(): number {
+  return Object.values(handlerSpies).reduce((total, spy) => total + spy.mock.calls.length, 0);
 }
 
-describe('MCP Protocol Tool Dispatch (T533) [deferred - requires DB test fixtures]', () => {
-
-  describe('Tool Dispatch Verification (24 tools)', () => {
-    TOOL_HANDLER_MAP.forEach((entry, i) => {
-      const testNum = i + 1;
-
-      it(`T533-${testNum}: ${entry.tool} dispatches to ${entry.handler}`, async () => {
-        const handlerFn = handlerExports[entry.handler];
-
-        // Handler exists as export
-        expect(handlerFn).toBeDefined();
-
-        // It's a function
-        expect(typeof handlerFn).toBe('function');
-
-        // Verify it's callable (async or sync)
-        if (typeof handlerFn === 'function') {
-          try {
-            const result = (handlerFn as ToolHandler)({});
-            if (isPromiseLike(result)) {
-              // It's a promise — catch any rejection from invalid args
-              try {
-                await result;
-              } catch (_: unknown) {
-                // Expected: invalid args cause errors. That's fine.
-              }
-            }
-          } catch (_: unknown) {
-            // Synchronous throw — still confirms it's callable
-          }
-        }
-      });
-    });
+describe('MCP protocol tool dispatch', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
   });
 
-  describe('Snake_case alias verification', () => {
-    SNAKE_CASE_MAP.forEach((entry) => {
-      it(`T533-alias: ${entry.snake} aliases ${entry.camel}`, () => {
-        const snakeFn = handlerExports[entry.snake];
-        expect(typeof snakeFn).toBe('function');
-      });
-    });
+  it('keeps advertised definitions, runtime schemas, and dispatcher names identical', () => {
+    const definitionNames = TOOL_DEFINITIONS.map((tool) => tool.name).sort();
+    const schemaNames = Object.keys(TOOL_SCHEMAS).sort();
+    const dispatcherNames = Array.from(new Set(
+      ALL_DISPATCHERS.flatMap((dispatcher) => Array.from(dispatcher.TOOL_NAMES)),
+    )).sort();
+
+    expect(schemaNames).toEqual(definitionNames);
+    expect(dispatcherNames).toEqual(definitionNames);
+  });
+
+  it('dispatches every advertised tool through exactly one real dispatcher', async () => {
+    expect(TOOL_DEFINITIONS).toHaveLength(41);
+
+    for (const definition of TOOL_DEFINITIONS) {
+      const owners = ALL_DISPATCHERS.filter((dispatcher) => dispatcher.TOOL_NAMES.has(definition.name));
+      expect(owners, definition.name).toHaveLength(1);
+
+      const before = totalHandlerCalls();
+      const result = await dispatchTool(definition.name, MINIMAL_VALID_ARGS[definition.name] ?? {});
+
+      expect(result, definition.name).not.toBeNull();
+      expect(totalHandlerCalls() - before, definition.name).toBe(1);
+    }
+  });
+
+  it('honors memory_context upward and downward budgets in the dispatch envelope', () => {
+    const rows = Array.from({ length: 20 }, (_, index) => ({
+      id: index + 1,
+      title: `Result ${index + 1}`,
+      content: 'x'.repeat(700),
+    }));
+    const envelope: Record<string, unknown> = {
+      data: { count: rows.length, results: rows },
+      hints: [],
+      meta: { tool: 'memory_context', tokenBudget: 12000 },
+    };
+    syncEnvelopeTokenCount(envelope);
+    const meta = envelope.meta as Record<string, unknown>;
+
+    expect(meta.tokenCount).toEqual(expect.any(Number));
+    expect(meta.tokenCount as number).toBeGreaterThan(3500);
+    expect(meta.tokenCount as number).toBeLessThan(12000);
+    expect(resolveEnvelopeTokenBudget('memory_context', meta)).toBe(12000);
+    expect(resolveEnvelopeTokenBudget('memory_context', { tokenBudget: 500 })).toBe(500);
+    expect(enforceEnvelopeResultBudget(
+      envelope,
+      resolveEnvelopeTokenBudget('memory_context', meta),
+      syncEnvelopeTokenCount,
+    )).toBe(false);
+
+    const serialized = serializeEnvelopeWithTokenCount(envelope);
+    const parsed = JSON.parse(serialized) as { data: { results: unknown[] } };
+    expect(parsed.data.results).toHaveLength(20);
   });
 });

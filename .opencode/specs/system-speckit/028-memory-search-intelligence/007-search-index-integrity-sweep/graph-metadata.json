@@ -47,6 +47,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite.backup-007-search-index-integrity-sweep-pre-mutation-20260709T0959Z",
       ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite.backup-007-search-index-integrity-sweep-final-pre-repair-20260709T1002Z",
       ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+      "scripts/memory/verify-index-identity.ts",
       "mcp_server/lib/storage/checkpoints.ts",
       "handlers/memory-save.ts",
       "handlers/save/dedup.ts",
@@ -121,6 +122,12 @@
         "source": "derived"
       },
       {
+        "name": "verify-index-identity.ts",
+        "kind": "code",
+        "path": "scripts/memory/verify-index-identity.ts",
+        "source": "derived"
+      },
+      {
         "name": "checkpoints.ts",
         "kind": "code",
         "path": "mcp_server/lib/storage/checkpoints.ts",
@@ -163,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -181,19 +194,7 @@
         "source": "derived"
       },
       {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -201,7 +202,7 @@
     ],
     "causal_summary": "The mk-spec-memory search backend (`memoryindex` + `vec768`) has drifted from the current on-disk spec corpus, primarily as a side effect of the July 2026 `system-spec-kit` → `system-speckit` re-nest, which moved and renamed thousands of spec folders without reconciling their old index rows",
     "created_at": "2026-07-09T06:17:43.016Z",
-    "last_save_at": "2026-07-10T03:44:44.065Z",
+    "last_save_at": "2026-07-10T08:09:24.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ee525e5d448de6dc00593bd024e7ddaf92877dd16db63e9031a0e498e3a4a41",
+    "source_fingerprint": "sha256:468066659bcb86fe7ef900f92eec4ab6a1cd2f3042b6a00939869d4b08bbf19c",
     "source_doc_hashes": {
-      "spec.md": "ea0167484a36602dbc09935bb7f9d2d3de3f9851677e56f09fedd61f3e1bde71",
-      "plan.md": "45c01ccb133e1d1cee181d77c26fc30437f7b8efb9c5b782c93826eadec5ad08",
-      "tasks.md": "4c42817f18886db516a9c5f9b1ca3a70ef5f30064b7cbd66a81ceab816ddc75a",
-      "checklist.md": "5956b7cb03fcb3a46adc3b4cf9298e3054b3684fa8a20bacd8c0210346f71088",
-      "implementation-summary.md": "04ff8e7cf3eac8cdddfcb67cfb9fd76213c728a768b22ac95e242c2edd3c229e"
+      "spec.md": "6bae646b8f01fdcb078a790f03435bbda319c8baf2cd3de8041657c3ec9f8083",
+      "plan.md": "4811f067a91ece3fb83db88a686ef3dee1d85b6cf3c28af29193415c4eaf400a",
+      "tasks.md": "b503f21b2688c7cc83a2f9744e1616175dd439de415d21c3cadade79f1474bf4",
+      "checklist.md": "310a19483fbd5ab5905e2e55c6d5f44859915f6aa99e8b98a66c910f8a5601c4",
+      "implementation-summary.md": "fc0b2ab2f59467598e4cbff89b2d30fa6e035d5d0dc78d0db79b448f083b80aa"
     },
     "last_active_child_id": null,
     "last_active_at": null

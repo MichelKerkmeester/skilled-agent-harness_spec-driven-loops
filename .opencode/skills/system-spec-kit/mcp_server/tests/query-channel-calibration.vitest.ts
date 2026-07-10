@@ -174,9 +174,8 @@ describe('query channel calibration', () => {
   beforeEach(() => {
     priorComplexityFlag = setEnv(COMPLEXITY_FLAG, 'true');
     priorGraphPreservationFlag = setEnv(GRAPH_PRESERVATION_FLAG, undefined);
-    // F5a flipped SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION to
-    // default-OFF (opt-in): unset now resolves to disabled, matching the
-    // shipped default. Tests that need the preservation ON opt in explicitly.
+    // The preservation flag is opt-in: unset resolves to the shipped disabled
+    // default, and tests that exercise preservation enable it explicitly.
     priorContentRichShortGraphFlag = setEnv(CONTENT_RICH_SHORT_GRAPH_FLAG, undefined);
     priorBm25EnabledFlag = setEnv(BM25_ENABLED_FLAG, 'true');
     priorBm25EngineFlag = setEnv(BM25_ENGINE_FLAG, 'legacy-inmemory');
@@ -199,11 +198,11 @@ describe('query channel calibration', () => {
   });
 
   it('measures higher graph and degree invocation on content-rich short queries without widening controls', () => {
-    // Default-off (unset) baseline post-F5a-flip.
+    // An unset flag captures the shipped default-off baseline.
     setEnv(CONTENT_RICH_SHORT_GRAPH_FLAG, undefined);
     const before = measureFixture();
 
-    // Explicit opt-in reproduces the pre-flip graduated-on behavior.
+    // Explicit opt-in provides the enabled-mode comparison.
     setEnv(CONTENT_RICH_SHORT_GRAPH_FLAG, 'true');
     const after = measureFixture();
 
@@ -239,7 +238,7 @@ describe('query channel calibration', () => {
     expect(shouldPreserveGraphForContentRichShortQuery(trigger.classification)).toBe(false);
   });
 
-  it('F15: increments the content-rich-short-query preservation counter additively without changing routing output', () => {
+  it('increments the content-rich-short-query preservation counter additively without changing routing output', () => {
     setEnv(CONTENT_RICH_SHORT_GRAPH_FLAG, 'true');
     expect(getContentRichShortQueryGraphPreservationCount()).toBe(0);
 
@@ -317,14 +316,20 @@ describe('query channel calibration', () => {
     process.env.SPECKIT_GRAPH_CONTEXT_INJECTION = 'true';
 
     causalBoost.init(createGraphFailureDb());
-    const boosted = causalBoost.applyCausalBoost([{ id: 1, score: 0.9 }]);
-    const context = causalBoost.injectGraphContext('memory graph edges', createGraphFailureDb());
+    const boosted = causalBoost.applyCausalBoost(
+      [{ id: 1, score: 0.9 }],
+      { query: 'memory graph edges' },
+    );
 
     expect(boosted.metadata.channelExceptions).toContainEqual(expect.objectContaining({
       channel: 'graph',
       source: 'causal-traversal',
     }));
-    expect(context.channelExceptions).toContainEqual(expect.objectContaining({
+    expect(boosted.metadata.channelExceptions).toContainEqual(expect.objectContaining({
+      channel: 'graph',
+      source: 'graph-context-injection',
+    }));
+    expect(boosted.metadata.graphContext?.channelExceptions).toContainEqual(expect.objectContaining({
       channel: 'graph',
       source: 'graph-context-injection',
     }));

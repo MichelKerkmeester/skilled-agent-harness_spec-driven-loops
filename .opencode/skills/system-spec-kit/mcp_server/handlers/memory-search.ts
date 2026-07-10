@@ -16,15 +16,18 @@ import * as intentClassifier from '../lib/search/intent-classifier.js';
 import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled, isResultExplainEnabled } from '../lib/search/search-flags.js';
 import { isRetrievalProfileWeightsEnabled } from '../lib/search/retrieval-profile.js';
 import { searchCommunities } from '../lib/search/community-search.js';
+import { appendChannelSkipDetail } from '../lib/search/channel-exceptions.js';
 // 4-stage pipeline architecture
 import { executePipeline } from '../lib/search/pipeline/index.js';
 import type { PipelineConfig, PipelineResult } from '../lib/search/pipeline/index.js';
 import {
+  type PipelineChannelTelemetry,
   resolveAbsoluteRelevance,
   type IntentWeightsConfig,
   type PipelineRow,
 } from '../lib/search/pipeline/types.js';
 import type { QueryPlan } from '../lib/query/query-plan.js';
+import type { ChannelSkipDetail } from '../lib/search/channel-exceptions.js';
 import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger.js';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
 // Artifact-class routing (spec/plan/tasks/checklist/memory)
@@ -89,6 +92,7 @@ import {
   type SessionTransitionTrace,
 } from '../lib/search/session-transition.js';
 import { shouldSample, logScoringObservation } from '../lib/telemetry/scoring-observability.js';
+import { registerShutdownHook } from '../lib/runtime/shutdown-hooks.js';
 
 // Mode-Aware Response Shape
 import {
@@ -218,10 +222,37 @@ interface QueryTimeExistenceFilterStats {
   suspectIds: number[];
 }
 
-// Fast-fail bound for the best-effort drift-suspect write below: well under the
-// connection's normal 10000ms busy_timeout, so a lock collision degrades the
-// search response by tens of milliseconds instead of blocking it for seconds.
-const DRIFT_SUSPECT_WRITE_BUSY_TIMEOUT_MS = 25;
+interface DeferredFeedbackWrite {
+  events: FeedbackEvent[];
+  sessionId: string | null;
+  normalizedQuery: string | null;
+  queryId: string;
+  shownIds: string[];
+  includeContent: boolean;
+}
+
+type DeferredSearchWrite =
+  | { kind: 'feedback'; payload: DeferredFeedbackWrite; attempts: number }
+  | { kind: 'drift-suspects'; suspectIds: number[]; attempts: number };
+
+const DEFERRED_WRITE_BUSY_TIMEOUT_MS = 25;
+const MAX_DEFERRED_WRITE_RETRIES = 2;
+const MAX_QUEUED_DEFERRED_WRITES = 256;
+
+const deferredSearchWriteQueue: DeferredSearchWrite[] = [];
+let deferredSearchWriteScheduled = false;
+let deferredSearchWriteActive = false;
+let deferredSearchWriteDroppedTotal = 0;
+let deferredSearchWriteFailureTotal = 0;
+let deferredSearchWriteRetryTotal = 0;
+let deferredSearchWriteRestoreFailureTotal = 0;
+let unhealthyDeferredWriteDbs = new WeakSet<object>();
+let deferredSearchWritesShuttingDown = false;
+
+registerShutdownHook(() => {
+  deferredSearchWritesShuttingDown = true;
+  deferredSearchWriteQueue.length = 0;
+});
 
 const CONTINUITY_ANCHOR_ID = '_memory.continuity';
 const CANONICAL_READER_CACHE_VERSION = 'gate-d-reader-ready-v1';
@@ -418,26 +449,196 @@ function applyQueryTimeExistenceFilter<T extends SessionAwareResult>(
     }
   }
 
-  if (stats.suspectIds.length > 0) {
-    const db = requireDb();
-    // Best-effort write: temporarily shorten the connection's busy_timeout so a
-    // held write lock fails fast instead of blocking the search response for up
-    // to the connection's full 10s timeout. Restored unconditionally below.
-    let originalBusyTimeoutMs: number | null = null;
-    try {
-      originalBusyTimeoutMs = db.pragma('busy_timeout', { simple: true }) as number;
-      db.pragma(`busy_timeout = ${DRIFT_SUSPECT_WRITE_BUSY_TIMEOUT_MS}`);
-      appendMemoryDriftSuspects(db, stats.suspectIds);
-    } catch (error: unknown) {
-      console.warn(`[memory-search] Could not queue drift suspect rows: ${toErrorMessage(error)}`);
-    } finally {
-      if (originalBusyTimeoutMs !== null) {
+  return { results: filtered, stats };
+}
+
+function getDeferredSearchWriteDiagnostics(): {
+  queued: number;
+  active: boolean;
+  maxQueued: number;
+  droppedTotal: number;
+  failureTotal: number;
+  retryTotal: number;
+  restoreFailureTotal: number;
+} {
+  return {
+    queued: deferredSearchWriteQueue.length,
+    active: deferredSearchWriteActive,
+    maxQueued: MAX_QUEUED_DEFERRED_WRITES,
+    droppedTotal: deferredSearchWriteDroppedTotal,
+    failureTotal: deferredSearchWriteFailureTotal,
+    retryTotal: deferredSearchWriteRetryTotal,
+    restoreFailureTotal: deferredSearchWriteRestoreFailureTotal,
+  };
+}
+
+function executeDeferredSearchWrite(job: DeferredSearchWrite): void {
+  const db = requireDb();
+  if (unhealthyDeferredWriteDbs.has(db)) {
+    throw new Error('database connection is marked unhealthy after busy_timeout restoration failed');
+  }
+
+  let originalBusyTimeoutMs: number | null = null;
+  let writeCompleted = false;
+  try {
+    originalBusyTimeoutMs = db.pragma('busy_timeout', { simple: true }) as number;
+    db.pragma(`busy_timeout = ${DEFERRED_WRITE_BUSY_TIMEOUT_MS}`);
+
+    const transaction = db.transaction(() => {
+      if (job.kind === 'drift-suspects') {
+        appendMemoryDriftSuspects(db, job.suspectIds);
+        return;
+      }
+
+      const { payload } = job;
+      logFeedbackEvents(db, payload.events);
+      if (payload.normalizedQuery) {
+        trackQueryAndDetect(
+          db,
+          payload.sessionId,
+          payload.normalizedQuery,
+          payload.queryId,
+          payload.shownIds,
+        );
+      }
+      if (payload.includeContent && payload.shownIds.length > 0) {
+        logResultCited(db, payload.sessionId, payload.queryId, payload.shownIds);
+      }
+    });
+    transaction.immediate();
+    writeCompleted = true;
+  } finally {
+    if (originalBusyTimeoutMs !== null) {
+      try {
         db.pragma(`busy_timeout = ${originalBusyTimeoutMs}`);
+      } catch (error: unknown) {
+        unhealthyDeferredWriteDbs.add(db);
+        deferredSearchWriteRestoreFailureTotal += 1;
+        try {
+          console.warn(
+            `[memory-search] Could not restore deferred-write busy_timeout; connection marked unhealthy `
+            + `(restoreFailures=${deferredSearchWriteRestoreFailureTotal}): ${toErrorMessage(error)}`,
+          );
+        } catch { /* Failure reporting must not replace the write or restore outcome */ }
+        if (!writeCompleted) {
+          throw error;
+        }
       }
     }
   }
+}
 
-  return { results: filtered, stats };
+function scheduleDeferredSearchWriteDrain(): void {
+  if (
+    deferredSearchWriteScheduled
+    || deferredSearchWriteActive
+    || deferredSearchWriteQueue.length === 0
+  ) {
+    return;
+  }
+
+  deferredSearchWriteScheduled = true;
+  setImmediate(() => {
+    deferredSearchWriteScheduled = false;
+    if (deferredSearchWritesShuttingDown) {
+      deferredSearchWriteQueue.length = 0;
+      return;
+    }
+    const job = deferredSearchWriteQueue.shift();
+    if (!job) {
+      return;
+    }
+
+    deferredSearchWriteActive = true;
+    try {
+      executeDeferredSearchWrite(job);
+    } catch (error: unknown) {
+      if (job.attempts < MAX_DEFERRED_WRITE_RETRIES) {
+        job.attempts += 1;
+        deferredSearchWriteRetryTotal += 1;
+        deferredSearchWriteQueue.push(job);
+      } else {
+        deferredSearchWriteFailureTotal += 1;
+        try {
+          console.warn(
+            `[memory-search] Deferred ${job.kind} write failed after ${job.attempts + 1} attempts `
+            + `(failures=${deferredSearchWriteFailureTotal}, dropped=${deferredSearchWriteDroppedTotal}): `
+            + toErrorMessage(error),
+          );
+        } catch { /* Failure reporting must not escape the deferred callback */ }
+      }
+    } finally {
+      deferredSearchWriteActive = false;
+      scheduleDeferredSearchWriteDrain();
+    }
+  });
+}
+
+function enqueueDeferredSearchWrite(job: DeferredSearchWrite): boolean {
+  if (deferredSearchWritesShuttingDown) {
+    return false;
+  }
+  const pendingCount = deferredSearchWriteQueue.length + (deferredSearchWriteActive ? 1 : 0);
+  if (pendingCount >= MAX_QUEUED_DEFERRED_WRITES) {
+    deferredSearchWriteDroppedTotal += 1;
+    if (deferredSearchWriteDroppedTotal <= 3 || deferredSearchWriteDroppedTotal % 100 === 0) {
+      console.warn(
+        `[memory-search] Deferred ${job.kind} write dropped by backpressure `
+        + `(dropped=${deferredSearchWriteDroppedTotal}, maxQueued=${MAX_QUEUED_DEFERRED_WRITES})`,
+      );
+    }
+    return false;
+  }
+
+  deferredSearchWriteQueue.push(job);
+  scheduleDeferredSearchWriteDrain();
+  return true;
+}
+
+function enqueueDeferredDriftSuspects(suspectIds: readonly number[]): boolean {
+  if (suspectIds.length === 0) {
+    return false;
+  }
+  return enqueueDeferredSearchWrite({
+    kind: 'drift-suspects',
+    suspectIds: [...suspectIds],
+    attempts: 0,
+  });
+}
+
+function enqueueDeferredFeedbackWrite(payload: DeferredFeedbackWrite): boolean {
+  if (payload.events.length === 0 && !payload.normalizedQuery && !payload.includeContent) {
+    return false;
+  }
+  return enqueueDeferredSearchWrite({
+    kind: 'feedback',
+    payload: {
+      ...payload,
+      events: payload.events.map((event) => ({ ...event })),
+      shownIds: [...payload.shownIds],
+    },
+    attempts: 0,
+  });
+}
+
+async function waitForDeferredSearchWritesForTests(): Promise<void> {
+  while (
+    deferredSearchWriteScheduled
+    || deferredSearchWriteActive
+    || deferredSearchWriteQueue.length > 0
+  ) {
+    await new Promise<void>((resolve) => setImmediate(resolve));
+  }
+}
+
+function resetDeferredSearchWriteDiagnosticsForTests(): void {
+  deferredSearchWriteQueue.length = 0;
+  deferredSearchWriteDroppedTotal = 0;
+  deferredSearchWriteFailureTotal = 0;
+  deferredSearchWriteRetryTotal = 0;
+  deferredSearchWriteRestoreFailureTotal = 0;
+  unhealthyDeferredWriteDbs = new WeakSet<object>();
+  deferredSearchWritesShuttingDown = false;
 }
 
 // ChunkReassemblyResult — now imported from lib/search/chunk-reassembly.ts
@@ -481,8 +682,8 @@ interface SearchArgs {
   applyStateLimits?: boolean;
   rerank?: boolean;
   applyLengthPenalty?: boolean;
-  trackAccess?: boolean; // opt-in access tracking (default false)
-  includeArchived?: boolean; // Include archived memories in search (default false)
+  trackAccess?: boolean; // Access tracking is default-on; explicit false disables it.
+  includeArchived?: boolean; // Archived and deprecated tiers require explicit inclusion.
   enableSessionBoost?: boolean;
   enableCausalBoost?: boolean;
   minQualityScore?: number;
@@ -935,6 +1136,30 @@ function applyFolderBoostRanking(results: SessionAwareResult[], folderBoost: Fol
 
 function isPlainRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function mergeChannelTelemetryIntoQueryPlan(
+  queryPlan: QueryPlan,
+  telemetry: PipelineChannelTelemetry | undefined,
+): QueryPlan {
+  if (!telemetry) return queryPlan;
+
+  const skippedChannelDetails: ChannelSkipDetail[] = [];
+  for (const entry of queryPlan.skippedChannels) {
+    appendChannelSkipDetail(skippedChannelDetails, {
+      channel: entry.channel,
+      reason: entry.reason,
+      type: 'planned',
+    });
+  }
+  for (const detail of telemetry.skippedChannelDetails) {
+    appendChannelSkipDetail(skippedChannelDetails, detail);
+  }
+
+  return {
+    ...queryPlan,
+    skippedChannels: skippedChannelDetails.map(({ channel, reason }) => ({ channel, reason })),
+  };
 }
 
 function isDisclosureResult(value: unknown): value is DisclosureResult {
@@ -1444,13 +1669,16 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
   let _evalChannelPayloads: EvalChannelPayload[] = [];
   const cacheKey = toolCache.generateCacheKey('memory_search', cacheArgs);
-  const cacheEnabled = toolCache.isEnabled() && !bypassCache;
+  // A cached result can outlive its backing file. Keep the opt-in existence
+  // filter authoritative by bypassing result-cache reads and writes while it is active.
+  const cacheEnabled = toolCache.isEnabled() && !bypassCache && !queryTimeExistenceFilterEnabled;
   const cachedPayload = cacheEnabled
     ? toolCache.get<SearchCachePayload>(cacheKey)
     : null;
 
   let responseToReturn: MCPResponse;
   let goalRefinementPayload: Record<string, unknown> | null = null;
+  let driftSuspectIdsToQueue: number[] = [];
 
   if (cachedPayload) {
     trackCachedResultAccess(cachedPayload, trackAccess);
@@ -1601,6 +1829,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         stats: { enabled: false, checked: 0, excluded: 0, suspectIds: [] },
       };
     resultsForFormatting = queryTimeExistenceFilter.results;
+    driftSuspectIdsToQueue = [...queryTimeExistenceFilter.stats.suspectIds];
     const avgScore = computeAverageScore(resultsForFormatting as Array<Record<string, unknown>>);
     const requestQualityLabel = pipelineResult.metadata.stage4.evidenceGapDetected ? 'gap' : 'weak';
     const qualityGapRouting = routeQuery(effectiveQuery, undefined, {
@@ -1611,6 +1840,10 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     if (qualityFallback.engaged) {
       queryPlan = qualityGapRouting.queryPlan;
     }
+    queryPlan = mergeChannelTelemetryIntoQueryPlan(
+      queryPlan,
+      pipelineResult.metadata.channelTelemetry,
+    );
 
     if (sessionId && isSessionRetrievalStateEnabled()) {
       const activeGoal = effectiveQuery.trim().length > 0 ? effectiveQuery : null;
@@ -1654,6 +1887,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       retrievalLevel,
       retrievalScope: retrievalLevel === 'global' ? 'community' : 'entity',
     };
+    if (pipelineResult.metadata.channelTelemetry) {
+      extraData.channelTelemetry = pipelineResult.metadata.channelTelemetry;
+    }
     if (lexicalCapability) {
       extraData.lexicalPath = lexicalCapability.lexicalPath;
       extraData.fallbackState = lexicalCapability.fallbackState;
@@ -1998,74 +2234,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   } catch (_error: unknown) { /* eval logging must never break search */ }
 
-  // Implicit feedback — log search_shown events for returned results
-  // Shadow-only: no ranking side effects. Fail-safe, never throws.
-  try {
-    if (isImplicitFeedbackLogEnabled()) {
-      const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
-      if (db) {
-        const shownMemoryIds = extractResponseResults(responseToReturn)
-          .map(r => r.id as number)
-          .filter(id => typeof id === 'number');
-
-        if (shownMemoryIds.length > 0) {
-          const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
-          // Firing trigger for the true-citation emitter: the emitter reconstructs the
-          // shown universe by session_id, so a search_shown row with no session is
-          // invisible to a session-scoped emit. Thread the validated session
-          // (effectiveSessionId, the same value dedup and the consumption log use)
-          // through as the row's session so a closing session can be reconstructed.
-          // Null stays null when the caller ran session-less, which the emitter
-          // correctly skips rather than guessing a session.
-          const shownSessionId = sessionId ?? null;
-          const feedbackEvents: FeedbackEvent[] = shownMemoryIds.map(memId => ({
-            type: 'search_shown',
-            memoryId: String(memId),
-            queryId,
-            confidence: 'weak',
-            timestamp: _searchStartTime,
-            sessionId: shownSessionId,
-          }));
-          logFeedbackEvents(db, feedbackEvents);
-        }
-      }
-    }
-  } catch (_error: unknown) { /* feedback logging must never break search */ }
-
-  // Query flow tracking + result_cited for includeContent searches
-  // Shadow-only: emits query_reformulated, same_topic_requery, and result_cited events.
-  try {
-    if (isImplicitFeedbackLogEnabled()) {
-      const db = (() => { try { return requireDb(); } catch (_error: unknown) { return null; } })();
-      if (db) {
-        // Extract shown memory IDs from response (reuse parsed data if available)
-        const shownIds = extractResponseResults(responseToReturn).flatMap((result) => {
-          const candidate = result.id;
-          if (typeof candidate !== 'number' && typeof candidate !== 'string') {
-            return [];
-          }
-          const normalizedId = String(candidate).trim();
-          if (!normalizedId || normalizedId === 'undefined' || normalizedId === 'null') {
-            return [];
-          }
-          return [normalizedId];
-        });
-
-        const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
-
-        // Track query flow — detects reformulations and same-topic re-queries
-        if (normalizedQuery) {
-          trackQueryAndDetect(db, sessionId ?? null, normalizedQuery, queryId, shownIds);
-        }
-
-        // Log result_cited for includeContent searches (content was embedded = cited)
-        if (includeContent && shownIds.length > 0) {
-          logResultCited(db, sessionId ?? null, queryId, shownIds);
-        }
-      }
-    }
-  } catch (_error: unknown) { /* query flow tracking must never break search */ }
-
   // Apply presentation profile when flag is enabled and profile is specified.
   // Phase C: effectiveProfile includes auto-routed profile from intent detection.
   if (effectiveProfile && typeof effectiveProfile === 'string' && isResponseProfileEnabled()) {
@@ -2093,6 +2261,43 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
   responseToReturn = finalizeResponseEnvelope(responseToReturn);
   markEmittedSessionResultsSent(responseToReturn, sessionId, enableDedup);
+
+  // Deferred writes are enqueued only after the response is fully constructed.
+  // They run on a later macrotask, so SQLite lock waits cannot delay this return.
+  enqueueDeferredDriftSuspects(driftSuspectIdsToQueue);
+  try {
+    if (isImplicitFeedbackLogEnabled()) {
+      const shownIds = extractResponseResults(responseToReturn).flatMap((result) => {
+        const candidate = result.id;
+        if (typeof candidate !== 'number' && typeof candidate !== 'string') {
+          return [];
+        }
+        const normalizedId = String(candidate).trim();
+        return normalizedId && normalizedId !== 'undefined' && normalizedId !== 'null'
+          ? [normalizedId]
+          : [];
+      });
+      const queryId = _evalQueryId ? String(_evalQueryId) : String(_searchStartTime);
+      const shownSessionId = sessionId ?? null;
+      const feedbackEvents: FeedbackEvent[] = shownIds.map((memoryId) => ({
+        type: 'search_shown',
+        memoryId,
+        queryId,
+        confidence: 'weak',
+        timestamp: _searchStartTime,
+        sessionId: shownSessionId,
+      }));
+      enqueueDeferredFeedbackWrite({
+        events: feedbackEvents,
+        sessionId: shownSessionId,
+        normalizedQuery,
+        queryId,
+        shownIds,
+        includeContent,
+      });
+    }
+  } catch (_error: unknown) { /* feedback scheduling must never break search */ }
+
   return responseToReturn;
 }
 
@@ -2121,9 +2326,15 @@ export const __testables = {
   computeAverageScore,
   filterCanonicalSourceRows,
   applyQueryTimeExistenceFilter,
+  enqueueDeferredDriftSuspects,
+  enqueueDeferredFeedbackWrite,
+  waitForDeferredSearchWritesForTests,
+  getDeferredSearchWriteDiagnostics,
+  resetDeferredSearchWriteDiagnosticsForTests,
   stampFinalRankScores,
   applyFolderBoostRanking,
   shouldRunCommunityFallback,
+  mergeChannelTelemetryIntoQueryPlan,
   reconcilePostFormatResultSet,
   parseResponseEnvelope,
   replaceResponseEnvelope,

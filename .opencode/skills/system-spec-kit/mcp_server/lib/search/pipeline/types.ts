@@ -4,7 +4,8 @@
 // Stage interfaces with the Stage 4 immutability invariant
 import type { RetrievalTrace } from '@spec-kit/shared/contracts/retrieval-trace';
 import type { QueryPlan } from '../../query/query-plan.js';
-import type { ChannelException } from '../channel-exceptions.js';
+import type { GraphContextResult } from '../causal-boost.js';
+import type { ChannelException, ChannelSkipDetail } from '../channel-exceptions.js';
 
 // Feature catalog: 4-stage pipeline architecture
 
@@ -192,6 +193,14 @@ export interface ConfidenceTruncationMetadata {
   featureFlagEnabled: boolean;
 }
 
+/** Serializable channel availability and fail-open diagnostics for one pipeline run. */
+export interface PipelineChannelTelemetry {
+  skippedChannels: string[];
+  skippedChannelDetails: ChannelSkipDetail[];
+  channelExceptions: ChannelException[];
+  graphContext?: GraphContextResult;
+}
+
 // -- Pipeline Configuration --
 
 /**
@@ -305,6 +314,8 @@ export interface Stage1Output {
     vectorSearchSkipped?: true;
     /** Machine-readable reason for a degraded Stage 1 candidate-generation path. */
     degradationReason?: string;
+    /** Runtime retrieval-channel skips and fail-open exceptions. */
+    channelTelemetry?: Omit<PipelineChannelTelemetry, 'graphContext'>;
     candidateCount: number;
     constitutionalInjected: number;
     durationMs: number;
@@ -352,6 +363,7 @@ export interface Stage2Output {
       rolloutState?: 'off' | 'trace_only' | 'bounded_runtime';
     };
     channelExceptions?: ChannelException[];
+    graphContext?: GraphContextResult;
     qualityFiltered: number;
     durationMs: number;
   };
@@ -460,6 +472,7 @@ export interface PipelineResult {
       targetCount: number;
     };
     confidenceTruncation?: ConfidenceTruncationMetadata;
+    channelTelemetry?: PipelineChannelTelemetry;
   };
   annotations: Stage4Output['annotations'];
   trace?: RetrievalTrace;

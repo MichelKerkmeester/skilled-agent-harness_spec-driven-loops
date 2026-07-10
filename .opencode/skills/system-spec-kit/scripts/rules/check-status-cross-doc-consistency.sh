@@ -4,13 +4,15 @@
 # ───────────────────────────────────────────────────────────────
 # Advisory-by-default: flags spec.md and implementation-summary.md
 # Status fields that classify to different buckets. Set
-# SPECKIT_STATUS_CROSS_DOC_ENFORCE=true to fail --strict.
+# SPECKIT_STATUS_CROSS_DOC_ENFORCE to a truthy value to fail --strict.
 
 set -euo pipefail
 
 _status_rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=../lib/status-classifier.sh
 source "${_status_rule_dir}/../lib/status-classifier.sh"
+# shellcheck source=../lib/parse-bool-flag.sh
+source "${_status_rule_dir}/../lib/parse-bool-flag.sh"
 
 run_check() {
     local folder="$1"
@@ -48,7 +50,7 @@ run_check() {
     fi
 
     RULE_DETAILS=("spec.md Status=$spec_status classified=$spec_bucket" "implementation-summary.md Status=$implementation_status classified=$implementation_bucket")
-    if [[ "${SPECKIT_STATUS_CROSS_DOC_ENFORCE:-false}" == "true" ]]; then
+    if speckit_flag_enabled "${SPECKIT_STATUS_CROSS_DOC_ENFORCE:-}"; then
         RULE_STATUS="warn"
         RULE_MESSAGE="spec.md and implementation-summary.md statuses disagree"
         RULE_REMEDIATION="Update the stale status field so both documents describe the same delivery state."

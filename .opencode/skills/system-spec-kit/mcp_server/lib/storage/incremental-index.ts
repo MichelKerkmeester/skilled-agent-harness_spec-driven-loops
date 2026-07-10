@@ -67,6 +67,8 @@ interface IndexedRecordRow extends IndexedPathRow {
 }
 
 type PathExistenceCache = Map<string, boolean>;
+type PathExistenceState = 'exists' | 'absent' | 'unknown';
+type DetailedPathExistenceCache = Map<string, PathExistenceState>;
 
 interface OrphanSweepOptions {
   limit?: number;
@@ -79,6 +81,7 @@ interface OrphanSweepResult {
   nextCursor: number | null;
   scannedRows: number;
   orphanRecordIds: number[];
+  unknownCount: number;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -191,7 +194,25 @@ function computeFileContentHash(filePath: string): string | null {
   }
 }
 
-function buildPathExistenceCache(filePaths: string[]): PathExistenceCache {
+function filesystemErrorConfirmsAbsence(error: unknown): boolean {
+  if (typeof error !== 'object' || error === null || !('code' in error)) {
+    return false;
+  }
+  const code = (error as { code?: unknown }).code;
+  return code === 'ENOENT' || code === 'ENOTDIR';
+}
+
+function statPathExistenceState(filePath: string): PathExistenceState {
+  try {
+    pathExistenceDiagnostics.statSyncCalls += 1;
+    fs.statSync(filePath);
+    return 'exists';
+  } catch (error: unknown) {
+    return filesystemErrorConfirmsAbsence(error) ? 'absent' : 'unknown';
+  }
+}
+
+function buildDetailedPathExistenceCache(filePaths: string[]): DetailedPathExistenceCache {
   const normalizedPaths = Array.from(new Set(
     filePaths
       .filter((filePath) => typeof filePath === 'string' && filePath.length > 0)
@@ -205,32 +226,49 @@ function buildPathExistenceCache(filePaths: string[]): PathExistenceCache {
     pathsByDirectory.set(directory, entries);
   }
 
-  const existingPaths = new Set<string>();
-  for (const directory of pathsByDirectory.keys()) {
+  const cache: DetailedPathExistenceCache = new Map();
+  for (const [directory, candidatePaths] of pathsByDirectory) {
     try {
       pathExistenceDiagnostics.readdirSyncCalls += 1;
+      const entries = new Set<string>();
       for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-        existingPaths.add(path.join(directory, entry.name));
+        entries.add(entry.name);
       }
-    } catch {
-      // Missing or unreadable directories mean every candidate in that directory is absent.
-    }
-  }
-
-  const cache: PathExistenceCache = new Map();
-  for (const filePath of normalizedPaths) {
-    let exists = existingPaths.has(filePath);
-    if (!exists) {
-      try {
-        pathExistenceDiagnostics.statSyncCalls += 1;
-        exists = fs.existsSync(filePath);
-      } catch {
-        exists = false;
+      for (const filePath of candidatePaths) {
+        const basename = path.basename(filePath);
+        const state = entries.has(basename) ? 'exists' : statPathExistenceState(filePath);
+        cache.set(filePath, state);
+      }
+    } catch (directoryError: unknown) {
+      if (filesystemErrorConfirmsAbsence(directoryError)) {
+        for (const filePath of candidatePaths) {
+          cache.set(filePath, 'absent');
+        }
+        continue;
+      }
+      for (const filePath of candidatePaths) {
+        cache.set(filePath, statPathExistenceState(filePath));
       }
     }
-    cache.set(filePath, exists);
   }
   return cache;
+}
+
+function cachedPathExistenceState(
+  cache: DetailedPathExistenceCache,
+  filePath: string | null | undefined,
+): PathExistenceState {
+  if (typeof filePath !== 'string' || filePath.length === 0) return 'unknown';
+  return cache.get(path.resolve(filePath)) ?? 'unknown';
+}
+
+function buildPathExistenceCache(filePaths: string[]): PathExistenceCache {
+  return new Map(
+    Array.from(buildDetailedPathExistenceCache(filePaths), ([filePath, state]) => [
+      filePath,
+      state === 'exists',
+    ]),
+  );
 }
 
 function cachedPathExists(cache: PathExistenceCache, filePath: string | null | undefined): boolean {
@@ -527,22 +565,38 @@ function legacyTrackPath(candidatePath: string | null | undefined): string | nul
   return null;
 }
 
-function indexedPathExists(candidatePath: string | null | undefined, basePath: string, existenceCache?: PathExistenceCache): boolean {
+function indexedPathExistenceState(
+  candidatePath: string | null | undefined,
+  basePath: string,
+  existenceCache: DetailedPathExistenceCache,
+): PathExistenceState {
   const candidates = [candidatePath, legacyTrackPath(candidatePath)];
-  return candidates.some((candidate) => {
+  let state: PathExistenceState = 'absent';
+  for (const candidate of candidates) {
     const resolved = resolveIndexedPath(candidate, basePath);
-    if (!resolved) return false;
-    return existenceCache ? cachedPathExists(existenceCache, resolved) : getFileMetadata(resolved).exists;
-  });
+    if (!resolved) continue;
+    const candidateState = cachedPathExistenceState(existenceCache, resolved);
+    if (candidateState === 'exists') return 'exists';
+    if (candidateState === 'unknown') state = 'unknown';
+  }
+  return state;
 }
 
-function indexedRecordIsAbsentWithinBase(row: IndexedRecordRow, basePath: string, existenceCache?: PathExistenceCache): boolean {
-  return !indexedPathExists(row.file_path, basePath, existenceCache) && !indexedPathExists(row.canonical_file_path, basePath, existenceCache);
+function indexedRecordExistenceState(
+  row: IndexedRecordRow,
+  basePath: string,
+  existenceCache: DetailedPathExistenceCache,
+): PathExistenceState {
+  const filePathState = indexedPathExistenceState(row.file_path, basePath, existenceCache);
+  const canonicalPathState = indexedPathExistenceState(row.canonical_file_path, basePath, existenceCache);
+  if (filePathState === 'exists' || canonicalPathState === 'exists') return 'exists';
+  if (filePathState === 'unknown' || canonicalPathState === 'unknown') return 'unknown';
+  return 'absent';
 }
 
 function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResult {
   if (!db) {
-    return { swept: 0, nextCursor: null, scannedRows: 0, orphanRecordIds: [] };
+    return { swept: 0, nextCursor: null, scannedRows: 0, orphanRecordIds: [], unknownCount: 0 };
   }
 
   const limit = normalizeOrphanSweepLimit(options.limit);
@@ -572,19 +626,23 @@ function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResu
           LIMIT ?
         `) as Database.Statement).all(cursor, limit) as IndexedRecordRow[];
 
-    const existenceCache = buildPathExistenceCache(rows.flatMap((row) => [
+    const existenceCache = buildDetailedPathExistenceCache(rows.flatMap((row) => [
       resolveIndexedPath(row.file_path, basePath) ?? '',
       resolveIndexedPath(row.canonical_file_path, basePath) ?? '',
       resolveIndexedPath(legacyTrackPath(row.file_path), basePath) ?? '',
       resolveIndexedPath(legacyTrackPath(row.canonical_file_path), basePath) ?? '',
     ]));
     const orphanRecordIds: number[] = [];
+    let unknownCount = 0;
     for (const row of rows) {
       if (!row || typeof row.id !== 'number') {
         continue;
       }
-      if (indexedRecordIsAbsentWithinBase(row, basePath, existenceCache)) {
+      const existenceState = indexedRecordExistenceState(row, basePath, existenceCache);
+      if (existenceState === 'absent') {
         orphanRecordIds.push(row.id);
+      } else if (existenceState === 'unknown') {
+        unknownCount += 1;
       }
     }
 
@@ -593,11 +651,12 @@ function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResu
       nextCursor: rows.length === limit ? rows[rows.length - 1]?.id ?? 0 : 0,
       scannedRows: rows.length,
       orphanRecordIds,
+      unknownCount,
     };
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[incremental-index] sweepOrphanIndexRows error: ${msg}`);
-    return { swept: 0, nextCursor: null, scannedRows: 0, orphanRecordIds: [] };
+    return { swept: 0, nextCursor: null, scannedRows: 0, orphanRecordIds: [], unknownCount: 0 };
   }
 }
 
@@ -1001,6 +1060,8 @@ export {
   listStaleIndexedPaths,
   listIndexedRecordIdsForDeletedPaths,
   sweepOrphanIndexRows,
+  buildDetailedPathExistenceCache,
+  cachedPathExistenceState,
   buildPathExistenceCache,
   cachedPathExists,
   pathExistenceDiagnostics,
@@ -1021,6 +1082,8 @@ export type {
   CategorizeFilesOptions,
   OrphanSweepOptions,
   OrphanSweepResult,
+  PathExistenceState,
+  DetailedPathExistenceCache,
   MoveReconcileCandidate,
   ReconcileMovesResult,
   IncrementalChunkFingerprint,

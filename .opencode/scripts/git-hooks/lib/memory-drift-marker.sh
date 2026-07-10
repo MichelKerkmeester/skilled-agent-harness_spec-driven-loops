@@ -27,6 +27,7 @@ mark_memory_drift_from_diff() {
   MEMORY_DRIFT_SOURCE="$(basename "$0")" \
   node <<'NODE'
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const os = require('node:os');
 const path = require('node:path');
 
@@ -47,68 +48,218 @@ for (const line of diff.split(/\r?\n/)) {
 }
 if (entries.length === 0) process.exit(0);
 
-// Mirrors core/config.ts's computeDatabasePaths() precedence so the marker always
-// lands in the same directory the consumer's resolveMemoryDriftMarkerPath() derives
-// for the live, currently-open DB: SPEC_KIT_DB_DIR/SPECKIT_DB_DIR wins if set, else
-// MEMORY_DB_PATH's parent directory if set, else the existing hardcoded default.
-// With no override set this resolves to the exact same directory the hook
-// always wrote to -- the precedence order only changes behavior when an
-// override is actually set, so the common case is unaffected.
+function realpathAllowMissing(targetPath) {
+  const resolvedPath = path.resolve(targetPath);
+  if (fs.existsSync(resolvedPath)) {
+    return fs.realpathSync(resolvedPath);
+  }
+
+  const parentPath = path.dirname(resolvedPath);
+  if (parentPath === resolvedPath) {
+    return resolvedPath;
+  }
+
+  return path.join(realpathAllowMissing(parentPath), path.basename(resolvedPath));
+}
+
+function isPathInside(candidate, prefix) {
+  const relative = path.relative(prefix, candidate);
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+// Keep database-path precedence, symlink canonicalization, and safety boundaries
+// identical to the consumer so both processes address the same marker namespace.
 const defaultMarkerDir = path.join(repoRoot, '.opencode/skills/system-spec-kit/mcp_server/database');
 const runtimeDbDir = (process.env.SPEC_KIT_DB_DIR || process.env.SPECKIT_DB_DIR || '').trim();
 const runtimeDbPath = (process.env.MEMORY_DB_PATH || '').trim();
-const markerDir = runtimeDbDir
-  ? path.resolve(runtimeDbDir)
-  : runtimeDbPath
-    ? path.dirname(path.resolve(runtimeDbPath))
+const resolvedRuntimeDbPath = runtimeDbPath
+  ? path.resolve(process.cwd(), runtimeDbPath)
+  : null;
+const databaseDir = runtimeDbDir
+  ? path.resolve(process.cwd(), runtimeDbDir)
+  : resolvedRuntimeDbPath
+    ? path.dirname(resolvedRuntimeDbPath)
     : defaultMarkerDir;
+const markerDir = realpathAllowMissing(databaseDir);
+const allowedPrefixes = [process.cwd(), os.homedir()].map(realpathAllowMissing);
+try {
+  const tmpDir = os.tmpdir();
+  allowedPrefixes.push(realpathAllowMissing(tmpDir));
+} catch { /* os.tmpdir may be unavailable in test environments */ }
+if (!allowedPrefixes.some((prefix) => isPathInside(markerDir, prefix))) {
+  throw new Error(
+    `Database directory "${markerDir}" is outside the allowed project, home, and temporary directories. ` +
+    `Set SPEC_KIT_DB_DIR to a path within one of those boundaries.`
+  );
+}
 fs.mkdirSync(markerDir, { recursive: true });
 const markerPath = path.join(markerDir, '.memory-drift-dirty-paths.json');
 
-// A killed hook process can leave this lock directory orphaned between a
-// successful mkdirSync and the finally-block release below. Without a
-// staleness check every later invocation just retries for 5s and exits 0,
-// so Layer 2 goes silently and permanently dead after one kill. Normal lock
-// hold time is sub-second (a single short git-hook subprocess), so this sits
-// comfortably above both that and the 5s wait budget while still recovering
-// within a small, bounded number of commits after a kill.
+// The startup recovery sweep uses these exact lock constants and owner shape.
+// A live PID remains authoritative even when a paused process cannot heartbeat;
+// stale timestamps only make missing or invalid ownership reclaimable.
 const LOCK_STALE_MS = 45_000;
+const LOCK_HEARTBEAT_MS = 15_000;
+const LOCK_WAIT_MS = 25;
+const LOCK_WAIT_TIMEOUT_MS = 5_000;
+const LOCK_OWNER_FILENAME = 'owner.json';
+
+function parseLockOwner(raw) {
+  try {
+    const owner = JSON.parse(raw);
+    return owner
+      && owner.version === 1
+      && Number.isSafeInteger(owner.pid)
+      && owner.pid > 0
+      && typeof owner.token === 'string'
+      && owner.token.length > 0
+      && typeof owner.heartbeatAt === 'string'
+      ? owner
+      : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function readLockSnapshot(dir) {
+  let stats;
+  try {
+    stats = fs.statSync(dir);
+  } catch (_) {
+    return null;
+  }
+
+  let rawOwner = null;
+  try {
+    rawOwner = fs.readFileSync(path.join(dir, LOCK_OWNER_FILENAME), 'utf8');
+  } catch (error) {
+    if (!error || error.code !== 'ENOENT') return null;
+  }
+  return { stats, rawOwner, owner: rawOwner === null ? null : parseLockOwner(rawOwner) };
+}
+
+function ownerLiveness(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    if (error && error.code === 'ESRCH') return false;
+    if (error && error.code === 'EPERM') return true;
+    return null;
+  }
+}
+
+function writeLockOwner(dir, owner) {
+  const nextOwner = { ...owner, heartbeatAt: new Date().toISOString() };
+  const ownerPath = path.join(dir, LOCK_OWNER_FILENAME);
+  const tempPath = path.join(dir, `.owner-${owner.pid}-${owner.token}.tmp`);
+  try {
+    fs.writeFileSync(tempPath, `${JSON.stringify(nextOwner)}\n`, 'utf8');
+    fs.renameSync(tempPath, ownerPath);
+    const now = new Date();
+    fs.utimesSync(dir, now, now);
+    return nextOwner;
+  } catch (error) {
+    try { fs.unlinkSync(tempPath); } catch (_) {}
+    throw error;
+  }
+}
+
+function restoreMovedLock(movedDir, dir) {
+  try {
+    fs.renameSync(movedDir, dir);
+  } catch (_) {
+    // A replacement lock wins; leave the mismatched directory untouched.
+  }
+}
 
 // Rename-then-remove so a lock a concurrent hook process is mid-acquiring is
-// never destructively deleted out from under it -- only a confirmed-successful
-// rename is treated as a reclaim.
-function reclaimStaleLock(dir) {
+// never removed by path after another owner acquires it. The snapshot check
+// also prevents a stale observation from deleting a successor's live lock.
+function reclaimEligibleLock(dir, snapshot) {
   const reclaimedDir = `${dir}.reclaiming-${process.pid}-${Date.now()}`;
   try {
     fs.renameSync(dir, reclaimedDir);
-  } catch (error) {
-    return Boolean(error && error.code === 'ENOENT');
+  } catch (_) {
+    return false;
   }
-  if (fs.existsSync(dir) || !fs.existsSync(reclaimedDir)) return false;
+
+  const movedSnapshot = readLockSnapshot(reclaimedDir);
+  if (!movedSnapshot || movedSnapshot.rawOwner !== snapshot.rawOwner) {
+    restoreMovedLock(reclaimedDir, dir);
+    return false;
+  }
   try { fs.rmSync(reclaimedDir, { recursive: true, force: true }); } catch (_) {}
   return true;
 }
 
+function releaseOwnedLock(dir, token) {
+  const snapshot = readLockSnapshot(dir);
+  if (!snapshot || !snapshot.owner || snapshot.owner.token !== token) return;
+
+  const releasingDir = `${dir}.releasing-${process.pid}-${token}`;
+  try {
+    fs.renameSync(dir, releasingDir);
+  } catch (_) {
+    return;
+  }
+  const movedSnapshot = readLockSnapshot(releasingDir);
+  if (!movedSnapshot || !movedSnapshot.owner || movedSnapshot.owner.token !== token) {
+    restoreMovedLock(releasingDir, dir);
+    return;
+  }
+  try { fs.rmSync(releasingDir, { recursive: true, force: true }); } catch (_) {}
+}
+
+function abandonUninitializedLock(dir) {
+  const abandonedDir = `${dir}.abandoned-${process.pid}-${Date.now()}`;
+  try {
+    fs.renameSync(dir, abandonedDir);
+    fs.rmSync(abandonedDir, { recursive: true, force: true });
+  } catch (_) {}
+}
+
 const lockDir = `${markerPath}.lock`;
+const lockOwner = {
+  version: 1,
+  pid: process.pid,
+  token: crypto.randomUUID(),
+  heartbeatAt: '',
+};
 const started = Date.now();
 while (true) {
   try {
     fs.mkdirSync(lockDir);
+    try {
+      Object.assign(lockOwner, writeLockOwner(lockDir, lockOwner));
+    } catch (_) {
+      abandonUninitializedLock(lockDir);
+      process.exit(0);
+    }
     break;
   } catch (error) {
     if (error && error.code === 'EEXIST') {
-      let stats = null;
-      try { stats = fs.statSync(lockDir); } catch (_) { stats = null; }
-      // A stat failure (dir vanished mid-check, permissions) can't confirm
-      // staleness -- fail closed into the existing wait-and-retry behavior.
-      if (stats && (Date.now() - stats.mtimeMs) > LOCK_STALE_MS) {
-        if (reclaimStaleLock(lockDir)) continue;
+      const snapshot = readLockSnapshot(lockDir);
+      if (snapshot) {
+        const liveness = snapshot.owner ? ownerLiveness(snapshot.owner.pid) : null;
+        const isMissingOwnerStale = !snapshot.owner
+          && (Date.now() - snapshot.stats.mtimeMs) > LOCK_STALE_MS;
+        if ((liveness === false || isMissingOwnerStale) && reclaimEligibleLock(lockDir, snapshot)) {
+          continue;
+        }
       }
     }
-    if (Date.now() - started > 5000) process.exit(0);
-    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 25);
+    if (Date.now() - started > LOCK_WAIT_TIMEOUT_MS) process.exit(0);
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, LOCK_WAIT_MS);
   }
 }
+
+const heartbeatTimer = setInterval(() => {
+  const snapshot = readLockSnapshot(lockDir);
+  if (!snapshot || !snapshot.owner || snapshot.owner.token !== lockOwner.token) return;
+  try { Object.assign(lockOwner, writeLockOwner(lockDir, lockOwner)); } catch (_) {}
+}, LOCK_HEARTBEAT_MS);
+heartbeatTimer.unref();
 
 try {
   let current = { version: 1, entries: [] };
@@ -138,7 +289,8 @@ try {
   fs.writeFileSync(tempPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
   fs.renameSync(tempPath, markerPath);
 } finally {
-  try { fs.rmSync(lockDir, { recursive: true, force: true }); } catch (_) {}
+  clearInterval(heartbeatTimer);
+  releaseOwnedLock(lockDir, lockOwner.token);
 }
 NODE
 }

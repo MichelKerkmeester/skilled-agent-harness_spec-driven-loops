@@ -6,7 +6,7 @@
 // Defaults reflect the shipped rollout unless explicitly opted out, except for
 // roadmap phases that remain intentionally dormant in production.
 import { isFeatureEnabled } from '../cognitive/rollout-policy.js';
-import { isOptInEnabled, parseFlagTristate } from '../search/search-flags.js';
+import { isStrictOptInEnabled, parseFlagTristate } from '../search/search-flags.js';
 
 // Derive phase type from the canonical array to keep them in sync.
 const SUPPORTED_PHASES_ARRAY = ['baseline', 'lineage', 'graph', 'adaptive', 'scope-governance'] as const;
@@ -237,13 +237,11 @@ const QUERY_TIME_EXISTENCE_FILTER_ENV = 'SPECKIT_QUERY_TIME_EXISTENCE_FILTER' as
  * queueing those ids for scan-time confirmation instead of deleting them
  * immediately.
  *
- * Delegates to the shared opt-in helper (`isOptInEnabled()`, `lib/search/search-flags.ts`),
- * which reads the environment on every call so a test can flip the behavior per-case, and
- * stays OFF (default, legacy query behavior) unless an explicit true/1/yes/on/enabled
- * value opts in.
+ * Reads the environment on every call so tests and request-local harnesses can change it,
+ * and stays OFF unless the original strict true/1 vocabulary explicitly opts in.
  */
 function isQueryTimeExistenceFilterEnabled(): boolean {
-  return isOptInEnabled(QUERY_TIME_EXISTENCE_FILTER_ENV);
+  return isStrictOptInEnabled(QUERY_TIME_EXISTENCE_FILTER_ENV);
 }
 
 // Keep roadmap controls distinct from existing runtime feature flags so

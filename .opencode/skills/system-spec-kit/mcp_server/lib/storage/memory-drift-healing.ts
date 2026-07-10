@@ -108,26 +108,29 @@ export function appendMemoryDriftSuspects(
   ids: readonly number[],
   observedAt: string = new Date().toISOString(),
 ): MemoryDriftSuspect[] {
-  const next = new Map<number, MemoryDriftSuspect>();
-  for (const suspect of readMemoryDriftSuspects(database)) {
-    next.set(suspect.id, suspect);
-  }
-
-  for (const id of ids) {
-    if (!Number.isInteger(id) || id <= 0) {
-      continue;
+  const transaction = database.transaction(() => {
+    const next = new Map<number, MemoryDriftSuspect>();
+    for (const suspect of readMemoryDriftSuspects(database)) {
+      next.set(suspect.id, suspect);
     }
-    const existing = next.get(id);
-    next.set(id, {
-      id,
-      firstSeenAt: existing?.firstSeenAt ?? observedAt,
-      lastSeenAt: observedAt,
-    });
-  }
 
-  const suspects = Array.from(next.values()).sort((a, b) => a.id - b.id);
-  writeSuspects(database, suspects);
-  return suspects;
+    for (const id of ids) {
+      if (!Number.isInteger(id) || id <= 0) {
+        continue;
+      }
+      const existing = next.get(id);
+      next.set(id, {
+        id,
+        firstSeenAt: existing?.firstSeenAt ?? observedAt,
+        lastSeenAt: observedAt,
+      });
+    }
+
+    const suspects = Array.from(next.values()).sort((a, b) => a.id - b.id);
+    writeSuspects(database, suspects);
+    return suspects;
+  });
+  return transaction.immediate();
 }
 
 /** Removes `ids` from the drift-suspect queue (confirmed tombstoned or cleared) and persists the remaining queue. */
@@ -137,9 +140,12 @@ export function removeMemoryDriftSuspects(database: Database.Database, ids: read
     return readMemoryDriftSuspects(database);
   }
 
-  const suspects = readMemoryDriftSuspects(database).filter((suspect) => !removeIds.has(suspect.id));
-  writeSuspects(database, suspects);
-  return suspects;
+  const transaction = database.transaction(() => {
+    const suspects = readMemoryDriftSuspects(database).filter((suspect) => !removeIds.has(suspect.id));
+    writeSuspects(database, suspects);
+    return suspects;
+  });
+  return transaction.immediate();
 }
 
 function normalizeMarkerPath(value: unknown): string | null {

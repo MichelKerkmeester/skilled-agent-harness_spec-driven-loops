@@ -183,6 +183,12 @@
         "source": "derived"
       },
       {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -193,17 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`classifyQueryComplexity` routes any query of `<=3` whitespace terms to the `simple` tier (`query-classifier.ts:228`), and `DEFAULTROUTINGCONFIG.simple` maps that tier to `['vector', 'fts']` only — graph and degree are excluded (`query-router.ts:114-118`)",
     "created_at": "2026-07-09T06:16:37.869Z",
-    "last_save_at": "2026-07-10T03:44:44.460Z",
+    "last_save_at": "2026-07-10T08:09:25.092Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f1c87b113857d2c6f42540d81ea0e8c60197fd079222a14591a8e477cc12c7f",
+    "source_fingerprint": "sha256:5a3fb5538c911ba29d400a10c3526e3f822a9e162beaab0bcecce812511d7044",
     "source_doc_hashes": {
-      "spec.md": "e027fc6cadab808baee6f628a9583cc4ba3e03be3795370d8e02da0b4e07e6de",
-      "plan.md": "6e38407e2e1d507c9475e1c04ed48c34fc7b0d13fba5aa812e3c229733e03486",
-      "tasks.md": "0d6a3eb244961093a97d16bc929a156861b5e929aa5c6405d2c2eff5302cafae",
-      "checklist.md": "e37300e643f7ffc469826209d64276d984b11793571e5b9edc862cbafa70d528",
-      "implementation-summary.md": "b784975041e4a6d6668e38cd3023cd8a7208dc17e3cc363cd4e89a161349d66d"
+      "spec.md": "5c2f3f4fc30a69958e5eff564bc23d3b22a95ef82221e50a7418a1d4884ac885",
+      "plan.md": "af4845546590660ab818300c019d4c441d39b46031c2b584e06d7e61cf922754",
+      "tasks.md": "6b2dea068973930b841e608a798a7bdb1c0fd53d118b8b9cc5003ef96cd2e8b8",
+      "checklist.md": "f7b3b472cd529f3667eb39084c1f6f9b33d2e97556c9fb45d2434530c4a2640c",
+      "implementation-summary.md": "45028644ed93bd427a288ec22c775842031dd4f02a132065c6951afb3bb71a6e"
     },
     "last_active_child_id": null,
     "last_active_at": null

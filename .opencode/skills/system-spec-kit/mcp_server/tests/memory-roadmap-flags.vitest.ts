@@ -166,31 +166,30 @@ describe('Memory roadmap flags', () => {
     expect(getMemoryRoadmapPhase()).toBe('scope-governance');
   });
 
-  it('keeps query-time existence filtering default-off with explicit opt-in only', () => {
-    expect(isQueryTimeExistenceFilterEnabled()).toBe(false);
+  it('preserves the strict query-time existence opt-in matrix', () => {
+    const cases: Array<[string | undefined, boolean]> = [
+      [undefined, false],
+      ['', false],
+      ['   ', false],
+      ['true', true],
+      [' TRUE ', true],
+      ['1', true],
+      [' 1 ', true],
+      ['yes', false],
+      ['on', false],
+      ['enabled', false],
+      ['false', false],
+      ['0', false],
+      ['invalid', false],
+    ];
 
-    process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = '1';
-    expect(isQueryTimeExistenceFilterEnabled()).toBe(true);
-
-    process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = 'true';
-    expect(isQueryTimeExistenceFilterEnabled()).toBe(true);
-
-    process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = 'off';
-    expect(isQueryTimeExistenceFilterEnabled()).toBe(false);
-  });
-
-  // F5b (016-cross-package-flag-governance): migrated off hand-rolled parsing
-  // onto the shared isOptInEnabled() helper (lib/search/search-flags.ts). The
-  // helper's truthy set (true/1/yes/on/enabled) is a strict superset of the
-  // old hand-rolled check's (true/1), so this confirms the migration is a
-  // behavior-preserving superset, not a regression.
-  it('accepts the shared opt-in helper\'s broader truthy set after the F5b migration', () => {
-    for (const value of ['yes', 'on', 'enabled', 'TRUE', '1']) {
-      process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = value;
-      expect(isQueryTimeExistenceFilterEnabled(), `value=${value}`).toBe(true);
+    for (const [value, expected] of cases) {
+      if (value === undefined) {
+        delete process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER;
+      } else {
+        process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = value;
+      }
+      expect(isQueryTimeExistenceFilterEnabled(), `value=${String(value)}`).toBe(expected);
     }
-
-    process.env.SPECKIT_QUERY_TIME_EXISTENCE_FILTER = 'false';
-    expect(isQueryTimeExistenceFilterEnabled()).toBe(false);
   });
 });

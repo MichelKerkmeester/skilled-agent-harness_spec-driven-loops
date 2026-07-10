@@ -377,7 +377,7 @@ function getContentRichShortQueryGraphPreservationCount(): number {
   return _contentRichShortQueryGraphPreservationCount;
 }
 
-/** Test-only reset for the F15 observability counter. */
+/** Prevent prior measurements from contaminating independent telemetry samples. */
 function resetContentRichShortQueryGraphPreservationCount(): void {
   _contentRichShortQueryGraphPreservationCount = 0;
 }

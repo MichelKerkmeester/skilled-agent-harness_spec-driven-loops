@@ -19,16 +19,22 @@ interface SweepResult {
   folder: string;
   // 'first-run': the folder currently fails but no baseline exists to compare
   // against, so nothing has actually regressed (see runValidate()).
-  status: 'pass' | 'regression' | 'first-run' | 'error';
+  status: 'pass' | 'regression' | 'new-failure' | 'first-run' | 'error';
   exitCode: number | null;
   errors: number;
   warnings: number;
   message: string;
 }
 
+interface Baseline {
+  isLoaded: boolean;
+  passes: Set<string>;
+}
+
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(scriptDir, '..', '..');
 const repoRoot = path.resolve(skillRoot, '..', '..', '..');
+const realRepoRoot = fs.realpathSync(repoRoot);
 const validateScript = process.env.SPECKIT_VALIDATE_SCRIPT
   ? path.resolve(process.env.SPECKIT_VALIDATE_SCRIPT)
   : path.join(skillRoot, 'scripts', 'spec', 'validate.sh');
@@ -85,7 +91,16 @@ function resolveInsideRepo(inputPath: string): string {
   if (relative.startsWith('..') || path.isAbsolute(relative)) {
     throw new Error(`Root escapes repository: ${inputPath}`);
   }
-  return resolved;
+  if (!fs.existsSync(resolved)) {
+    return resolved;
+  }
+
+  const realResolved = fs.realpathSync(resolved);
+  const realRelative = path.relative(realRepoRoot, realResolved);
+  if (realRelative.startsWith('..') || path.isAbsolute(realRelative)) {
+    throw new Error(`Root escapes repository: ${inputPath}`);
+  }
+  return realResolved;
 }
 
 function classifyStatus(rawValue: string): 'planned' | 'in-progress' | 'complete' | 'unknown' {
@@ -109,8 +124,8 @@ function classifyStatus(rawValue: string): 'planned' | 'in-progress' | 'complete
   ) {
     return 'complete';
   }
-  if (/(^|[^a-z0-9])(in progress|in-progress|active|started|working|partial|ongoing)([^a-z0-9]|$)/.test(normalized)) return 'in-progress';
   if (/(^|[^a-z0-9])(planned|planning|draft|pending|not started|not yet|not implemented|todo|queued)([^a-z0-9]|$)/.test(normalized)) return 'planned';
+  if (/(^|[^a-z0-9])(in progress|in-progress|active|started|working|partial|ongoing)([^a-z0-9]|$)/.test(normalized)) return 'in-progress';
   return 'unknown';
 }
 
@@ -161,15 +176,18 @@ function discoverSpecFolders(root: string): string[] {
   return results.sort();
 }
 
-function readBaseline(baselinePath: string | null): Set<string> {
-  if (!baselinePath) return new Set();
+function readBaseline(baselinePath: string | null): Baseline {
+  if (!baselinePath) return { isLoaded: false, passes: new Set() };
   const resolved = resolveInsideRepo(baselinePath);
-  if (!fs.existsSync(resolved)) return new Set();
+  if (!fs.existsSync(resolved)) return { isLoaded: false, passes: new Set() };
   const parsed = JSON.parse(fs.readFileSync(resolved, 'utf8')) as { results?: SweepResult[] };
-  return new Set((parsed.results ?? []).filter((result) => result.status === 'pass').map((result) => result.folder));
+  return {
+    isLoaded: true,
+    passes: new Set((parsed.results ?? []).filter((result) => result.status === 'pass').map((result) => result.folder)),
+  };
 }
 
-function runValidate(folder: string, baselinePasses: Set<string>): SweepResult {
+function runValidate(folder: string, baseline: Baseline): SweepResult {
   const relativeFolder = path.relative(repoRoot, folder) || '.';
   const result = spawnSync('bash', [validateScript, folder, '--strict', '--json', '--no-recursive'], {
     cwd: repoRoot,
@@ -183,18 +201,17 @@ function runValidate(folder: string, baselinePasses: Set<string>): SweepResult {
     const errors = Number(parsed.summary?.errors ?? 0);
     const warnings = Number(parsed.summary?.warnings ?? 0);
     const failed = exitCode !== 0 || parsed.passed === false;
-    // No baseline at all (no --baseline flag, missing file, or an empty
-    // results array) means there is nothing to regress from — a current
-    // failure there is a first-run/unknown result, not a regression.
-    const hasBaseline = baselinePasses.size > 0;
-    const wasBaselinePass = hasBaseline && baselinePasses.has(relativeFolder);
+    const wasBaselinePass = baseline.passes.has(relativeFolder);
     if (failed && wasBaselinePass) {
       return { folder: relativeFolder, status: 'regression', exitCode, errors, warnings, message: 'strict validation no longer passes' };
     }
-    if (failed && !hasBaseline) {
+    if (failed && !baseline.isLoaded) {
       return { folder: relativeFolder, status: 'first-run', exitCode, errors, warnings, message: 'strict validation fails but no baseline exists to compare against (first run, not a regression)' };
     }
-    return { folder: relativeFolder, status: 'pass', exitCode, errors, warnings, message: 'strict validation passes or was not a baseline pass' };
+    if (failed) {
+      return { folder: relativeFolder, status: 'new-failure', exitCode, errors, warnings, message: 'strict validation fails and the folder was absent from the loaded baseline passes' };
+    }
+    return { folder: relativeFolder, status: 'pass', exitCode, errors, warnings, message: 'strict validation passes' };
   } catch {
     return {
       folder: relativeFolder,
@@ -210,30 +227,32 @@ function runValidate(folder: string, baselinePasses: Set<string>): SweepResult {
 function main(): void {
   const options = parseArgs(process.argv.slice(2));
   const roots = options.roots.map(resolveInsideRepo).filter((root) => fs.existsSync(root));
-  const baselinePasses = readBaseline(options.baseline);
+  const baseline = readBaseline(options.baseline);
   const folders = roots.flatMap(discoverSpecFolders);
   const uniqueFolders = [...new Set(folders)];
-  const results = uniqueFolders.map((folder) => runValidate(folder, baselinePasses));
+  const results = uniqueFolders.map((folder) => runValidate(folder, baseline));
   const regressions = results.filter((result) => result.status === 'regression');
+  const newFailures = results.filter((result) => result.status === 'new-failure');
   const errors = results.filter((result) => result.status === 'error');
   const firstRun = results.filter((result) => result.status === 'first-run');
   const payload = {
     roots: roots.map((root) => path.relative(repoRoot, root) || '.'),
     inspected: results.length,
     regressions: regressions.length,
+    newFailures: newFailures.length,
     firstRun: firstRun.length,
     errors: errors.length,
     results,
   };
   if (options.format === 'text') {
-    console.log(`strict-pass-freshness: inspected=${payload.inspected} regressions=${payload.regressions} firstRun=${payload.firstRun} errors=${payload.errors}`);
+    console.log(`strict-pass-freshness: inspected=${payload.inspected} regressions=${payload.regressions} newFailures=${payload.newFailures} firstRun=${payload.firstRun} errors=${payload.errors}`);
     for (const result of results.filter((entry) => entry.status !== 'pass')) {
       console.log(`${result.status}\t${result.folder}\t${result.message}\terrors=${result.errors}\twarnings=${result.warnings}`);
     }
   } else {
     console.log(JSON.stringify(payload, null, 2));
   }
-  process.exit(regressions.length > 0 || errors.length > 0 ? 1 : 0);
+  process.exit(regressions.length > 0 || newFailures.length > 0 || errors.length > 0 ? 1 : 0);
 }
 
 try {

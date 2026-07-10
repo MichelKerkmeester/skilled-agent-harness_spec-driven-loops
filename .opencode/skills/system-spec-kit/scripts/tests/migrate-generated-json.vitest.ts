@@ -245,10 +245,13 @@ describe('migrate-generated-json real run', () => {
     migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false });
     const first = snapshotTree(tree.specsRoot);
 
-    migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false });
+    const rerun = migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false });
     const second = snapshotTree(tree.specsRoot);
 
     expect([...second.entries()].sort()).toEqual([...first.entries()].sort());
+    expect(rerun.migrated).toBe(0);
+    expect(rerun.skippedNoop).toBe(rerun.enumerated);
+    expect(rerun.outcomes.every((outcome) => outcome.status === 'skipped-noop')).toBe(true);
   });
 
   it('skips the description write on an unchanged second regeneration', () => {
@@ -271,12 +274,36 @@ describe('migrate-generated-json real run', () => {
     expect(summary.verify?.clean).toBe(true);
   });
 
-  it('reports prune candidates without writing and prunes missing children on explicit apply', () => {
+  it('refuses direct prune without a prior report and leaves graph metadata unchanged', () => {
     const tree = createSpecTree();
     migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false });
 
     fs.rmSync(tree.child, { recursive: true, force: true });
-    const report = migrateAllJson({ specsRoot: tree.specsRoot, dryRun: true, pruneReport: true });
+    const parentGraphPath = path.join(tree.parent, 'graph-metadata.json');
+    const before = hashFile(parentGraphPath);
+
+    expect(() => migrateAllJson({
+      specsRoot: tree.specsRoot,
+      dryRun: false,
+      prune: true,
+    })).toThrow('--prune requires --prune-confirm');
+    expect(hashFile(parentGraphPath)).toBe(before);
+    expect(fs.existsSync(path.join(
+      tree.specsRoot,
+      '.migrate-generated-json-prune-report.json',
+    ))).toBe(false);
+  });
+
+  it('writes a prune report and applies its reviewed candidate with a matching hash', () => {
+    const tree = createSpecTree();
+    migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false });
+
+    fs.rmSync(tree.child, { recursive: true, force: true });
+    const report = migrateAllJson({
+      specsRoot: tree.specsRoot,
+      dryRun: false,
+      pruneReport: true,
+    });
     expect(report.pruneCandidates).toEqual([
       expect.objectContaining({
         specFolder: 'system-spec-kit/911-parent',
@@ -284,11 +311,51 @@ describe('migrate-generated-json real run', () => {
         existsOnDisk: false,
       }),
     ]);
+    expect(report.dryRun).toBe(true);
+    const reportPath = path.join(
+      tree.specsRoot,
+      '.migrate-generated-json-prune-report.json',
+    );
+    expect(report.pruneReportArtifact?.path).toBe(reportPath);
+    const artifact = JSON.parse(fs.readFileSync(reportPath, 'utf-8')) as {
+      candidates: unknown[];
+      contentHash: string;
+    };
+    expect(artifact.candidates).toEqual(report.pruneCandidates);
+    expect(artifact.contentHash).toBe(report.pruneReportArtifact?.contentHash);
     expect(hashFile(path.join(tree.parent, 'graph-metadata.json'))).not.toBeNull();
 
-    const applied = migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false, prune: true });
+    const applied = migrateAllJson({
+      specsRoot: tree.specsRoot,
+      dryRun: false,
+      prune: true,
+      pruneConfirm: report.pruneReportArtifact?.contentHash,
+    });
     expect(applied.failed).toBe(0);
     const parentGraph = JSON.parse(fs.readFileSync(path.join(tree.parent, 'graph-metadata.json'), 'utf-8'));
     expect(parentGraph.children_ids).toEqual([]);
+  });
+
+  it('refuses a prune when candidates changed after the report', () => {
+    const tree = createSpecTree();
+    migrateAllJson({ specsRoot: tree.specsRoot, dryRun: false });
+
+    fs.rmSync(tree.child, { recursive: true, force: true });
+    const report = migrateAllJson({
+      specsRoot: tree.specsRoot,
+      dryRun: true,
+      pruneReport: true,
+    });
+    writePacket(tree.child, 'Restored Child Phase', 'Restored after the prune report was reviewed.');
+    const parentGraphPath = path.join(tree.parent, 'graph-metadata.json');
+    const before = hashFile(parentGraphPath);
+
+    expect(() => migrateAllJson({
+      specsRoot: tree.specsRoot,
+      dryRun: false,
+      prune: true,
+      pruneConfirm: report.pruneReportArtifact?.contentHash,
+    })).toThrow('prune report is stale because the candidates changed');
+    expect(hashFile(parentGraphPath)).toBe(before);
   });
 });

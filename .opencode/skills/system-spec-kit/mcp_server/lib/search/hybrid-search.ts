@@ -51,7 +51,12 @@ import {
 } from './progressive-disclosure.js';
 import { isComplexityRouterEnabled } from './query-classifier.js';
 import { routeQuery } from './query-router.js';
-import { appendChannelException, type ChannelException } from './channel-exceptions.js';
+import {
+  appendChannelException,
+  appendChannelSkipDetail as appendResolvedChannelSkipDetail,
+  type ChannelException,
+  type ChannelSkipDetail,
+} from './channel-exceptions.js';
 import {
   applyRetrievalProfileToRankedLists,
   getRetrievalProfileChannelWeight,
@@ -142,12 +147,6 @@ interface HybridSearchOptions {
   stopAfterFusion?: boolean;
   /** Internal request-local sink for fail-open channel errors. */
   channelExceptions?: ChannelException[];
-}
-
-interface ChannelSkipDetail {
-  channel: string;
-  reason: string;
-  type: 'planned' | 'runtime' | 'exception';
 }
 
 interface HybridSearchResult {
@@ -582,6 +581,13 @@ function bm25Search(
             }
           }
         } catch (error: unknown) {
+          const message = error instanceof Error ? error.message : String(error);
+          appendChannelException(
+            options.channelExceptions,
+            'bm25',
+            message,
+            'bm25-metadata-lookup',
+          );
           console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
           return [];
         }
@@ -1174,12 +1180,7 @@ function appendChannelSkipDetail(
     routing.skippedChannels.push(detail.channel);
   }
   const details = routing.skippedChannelDetails ?? [];
-  const duplicate = details.some((existing) => (
-    existing.channel === detail.channel
-    && existing.reason === detail.reason
-    && existing.type === detail.type
-  ));
-  if (!duplicate) details.push(detail);
+  appendResolvedChannelSkipDetail(details, detail);
   routing.skippedChannelDetails = details;
 }
 
@@ -1198,6 +1199,73 @@ function attachChannelExceptionsToRouting(
       type: 'exception',
     });
   }
+}
+
+function mergeSprint3PipelineMeta(
+  metas: Array<Sprint3PipelineMeta | undefined>,
+): Sprint3PipelineMeta {
+  const merged: Sprint3PipelineMeta = {};
+
+  for (const meta of metas) {
+    if (!meta) continue;
+    const { routing: incomingRouting, ...stageMetadata } = meta;
+    Object.assign(merged, stageMetadata);
+    if (!incomingRouting) continue;
+
+    const routing = merged.routing ?? {
+      ...incomingRouting,
+      channels: [],
+      skippedChannels: [],
+      skippedChannelDetails: [],
+      channelExceptions: [],
+    };
+    routing.channels = Array.from(new Set([
+      ...routing.channels,
+      ...incomingRouting.channels,
+    ]));
+    routing.skippedChannels = Array.from(new Set([
+      ...routing.skippedChannels,
+      ...incomingRouting.skippedChannels,
+    ]));
+
+    for (const detail of incomingRouting.skippedChannelDetails ?? []) {
+      const details = routing.skippedChannelDetails ?? [];
+      appendResolvedChannelSkipDetail(details, detail);
+      routing.skippedChannelDetails = details;
+    }
+
+    const exceptions = routing.channelExceptions ?? [];
+    for (const exception of incomingRouting.channelExceptions ?? []) {
+      appendChannelException(
+        exceptions,
+        exception.channel,
+        exception.reason,
+        exception.source,
+      );
+    }
+    routing.channelExceptions = exceptions;
+    merged.routing = routing;
+  }
+
+  return merged;
+}
+
+function attachSprint3PipelineMeta<T>(results: T[], meta: Sprint3PipelineMeta): T[] {
+  if (Object.keys(meta).length === 0) return results;
+  Object.defineProperty(results, '_s3meta', {
+    value: meta,
+    enumerable: false,
+    configurable: true,
+  });
+  return results;
+}
+
+function readSprint3PipelineMeta(results: unknown): Sprint3PipelineMeta | undefined {
+  if (!Array.isArray(results)) return undefined;
+  const meta = (results as unknown as { _s3meta?: unknown })._s3meta;
+  return meta && typeof meta === 'object' && !Array.isArray(meta)
+    ? meta as Sprint3PipelineMeta
+    : undefined;
 }
 
 async function executeFallbackPlan(
@@ -1462,17 +1530,41 @@ async function collectAndFuseHybridResults(
       if (!allowedChannels.has(channel)) activeChannels.delete(channel);
     }
 
-    const skippedChannels = allPossibleChannels.filter(ch => !activeChannels.has(ch));
+    for (const skipped of routeResult.queryPlan.skippedChannels) {
+      if (activeChannels.has(skipped.channel as ChannelName)) continue;
+      appendChannelSkipDetail(s3meta, routeResult, {
+        channel: skipped.channel,
+        reason: skipped.reason,
+        type: 'planned',
+      });
+    }
 
-    if (skippedChannels.length > 0) {
-      ensureRoutingMeta(s3meta, routeResult);
-      for (const skipped of routeResult.queryPlan.skippedChannels) {
-        appendChannelSkipDetail(s3meta, routeResult, {
-          channel: skipped.channel,
-          reason: skipped.reason,
-          type: 'planned',
-        });
-      }
+    const callerDisabledChannels: Array<[string, boolean]> = [
+      ['vector', options.useVector === false],
+      ['fts', options.useFts === false],
+      ['bm25', options.useBm25 === false],
+      ['graph', options.useGraph === false],
+      ['degree', options.useGraph === false],
+      ['trigger', options.useTrigger === false],
+    ];
+    for (const [channel, disabled] of callerDisabledChannels) {
+      if (!disabled) continue;
+      appendChannelSkipDetail(s3meta, routeResult, {
+        channel,
+        reason: 'Disabled by caller',
+        type: 'runtime',
+      });
+    }
+    if (
+      (options.forceAllChannels || routeResult.channels.includes('bm25'))
+      && options.useBm25 !== false
+      && !isBm25Enabled()
+    ) {
+      appendChannelSkipDetail(s3meta, routeResult, {
+        channel: 'bm25',
+        reason: 'BM25 disabled',
+        type: 'runtime',
+      });
     }
 
     // -- Stage E: Dynamic Token Budget (SPECKIT_DYNAMIC_TOKEN_BUDGET) --
@@ -1550,26 +1642,44 @@ async function collectAndFuseHybridResults(
     }
 
     // FTS channel (internal error handling in ftsSearch) — gated by query-complexity routing
-    if (activeChannels.has('fts')) {
+    if (activeChannels.has('fts') && db) {
       ftsChannelResults = ftsSearch(query, channelAwareOptions);
       if (ftsChannelResults.length > 0) {
         lists.push({ source: 'fts', results: ftsChannelResults });
       }
+    } else if (activeChannels.has('fts')) {
+      appendChannelSkipDetail(s3meta, routeResult, {
+        channel: 'fts',
+        reason: 'Runtime database unavailable',
+        type: 'runtime',
+      });
     }
 
     // BM25 channel (internal error handling in bm25Search) — gated by query-complexity routing
-    if (activeChannels.has('bm25')) {
+    if (activeChannels.has('bm25') && db) {
       bm25ChannelResults = bm25Search(query, channelAwareOptions);
       if (bm25ChannelResults.length > 0) {
         lists.push({ source: 'bm25', results: bm25ChannelResults });
       }
+    } else if (activeChannels.has('bm25')) {
+      appendChannelSkipDetail(s3meta, routeResult, {
+        channel: 'bm25',
+        reason: 'Runtime database unavailable',
+        type: 'runtime',
+      });
     }
 
-    if (options.useTrigger !== false) {
+    if (options.useTrigger !== false && db) {
       triggerChannelResults = exactTriggerSearch(query, channelAwareOptions);
       if (triggerChannelResults.length > 0) {
         lists.push({ source: 'trigger', results: triggerChannelResults, weight: 1.4 });
       }
+    } else if (options.useTrigger !== false) {
+      appendChannelSkipDetail(s3meta, routeResult, {
+        channel: 'trigger',
+        reason: 'Runtime database unavailable',
+        type: 'runtime',
+      });
     }
 
     // Graph channel — gated by query-complexity routing
@@ -1597,12 +1707,19 @@ async function collectAndFuseHybridResults(
         appendChannelException(channelExceptions, 'graph', message, 'graph-search');
         console.warn('[hybrid-search] Channel error:', message);
       }
+    } else if (useGraph) {
+      appendChannelSkipDetail(s3meta, routeResult, {
+        channel: 'graph',
+        reason: 'Runtime graph executor unavailable',
+        type: 'runtime',
+      });
     }
 
     // Degree channel re-ranks based on causal-edge connectivity.
     // Graduated: default-ON. Set SPECKIT_DEGREE_BOOST=false to disable.
     // Degree channel — also gated by query-complexity routing
-    if (activeChannels.has('degree') && db && isDegreeBoostEnabled()) {
+    const degreeBoostEnabled = isDegreeBoostEnabled();
+    if (activeChannels.has('degree') && db && degreeBoostEnabled) {
       try {
         graphMetrics.degreeQueries++;
         // Collect all numeric IDs from existing channels
@@ -1646,6 +1763,12 @@ async function collectAndFuseHybridResults(
         appendChannelException(channelExceptions, 'degree', message, 'degree-search');
         console.warn('[hybrid-search] Channel error:', message);
       }
+    } else if (activeChannels.has('degree')) {
+      appendChannelSkipDetail(s3meta, routeResult, {
+        channel: 'degree',
+        reason: db ? 'Degree boost disabled' : 'Runtime database unavailable',
+        type: 'runtime',
+      });
     }
 
     attachChannelExceptionsToRouting(s3meta, routeResult, channelExceptions);
@@ -1673,6 +1796,18 @@ async function collectAndFuseHybridResults(
     }
 
     if (lists.length === 0) {
+      if (options.stopAfterFusion) {
+        return {
+          evaluationMode,
+          intent: options.intent || classifyIntent(query).intent,
+          lists,
+          routeResult,
+          budgetResult,
+          s3meta,
+          vectorEmbeddingCache,
+          fusedResults: [],
+        };
+      }
       return null;
     }
 
@@ -2340,9 +2475,7 @@ async function enrichFusedResults(
   // Attach pipeline metadata to results for eval/debugging
   // Metadata is attached as non-enumerable _s3meta property to avoid
   // Polluting result serialization while remaining accessible for debugging.
-  if (Object.keys(s3meta).length > 0 && reranked.length > 0) {
-    Object.defineProperty(reranked, '_s3meta', { value: s3meta, enumerable: false, configurable: true });
-  }
+  attachSprint3PipelineMeta(reranked, s3meta);
 
   return reranked;
 }
@@ -2372,6 +2505,11 @@ async function collectRawCandidates(
 
   const primaryResults = stages[0]?.results ?? [];
   const retryResults = stages[1]?.results ?? [];
+  const s3meta = mergeSprint3PipelineMeta(
+    stages.map((stage) => stage.execution?.s3meta),
+  );
+  const withPipelineMeta = (results: HybridSearchResult[]): HybridSearchResult[] =>
+    attachSprint3PipelineMeta(results, s3meta);
 
   const baseLaneLists: LaneCandidateList[] | undefined = (stages[0]?.execution?.lists ?? [])
     .filter((list): list is LaneCandidateList => BASE_LANE_SOURCES.has(list.source))
@@ -2382,12 +2520,16 @@ async function collectRawCandidates(
       ? mergeRawCandidateSets(primaryResults, retryResults, options.limit)
       : primaryResults;
     if (mergedResults.length > 0) {
-      return attachLaneLists(applyResultLimit(mergedResults, options.limit), baseLaneLists);
+      return withPipelineMeta(
+        attachLaneLists(applyResultLimit(mergedResults, options.limit), baseLaneLists),
+      );
     }
   } else {
     const stagedResults = retryResults.length > 0 ? retryResults : primaryResults;
     if (stagedResults.length > 0) {
-      return attachLaneLists(applyResultLimit(stagedResults, options.limit), baseLaneLists);
+      return withPipelineMeta(
+        attachLaneLists(applyResultLimit(stagedResults, options.limit), baseLaneLists),
+      );
     }
   }
 
@@ -2396,7 +2538,7 @@ async function collectRawCandidates(
       [{ source: 'fts', results: ftsSearch(query, options) }],
       options.limit
     );
-    if (ftsFallback.length > 0) return ftsFallback;
+    if (ftsFallback.length > 0) return withPipelineMeta(ftsFallback);
   }
 
   if (allowedChannels.has('bm25')) {
@@ -2404,11 +2546,11 @@ async function collectRawCandidates(
       [{ source: 'bm25', results: bm25Search(query, options) }],
       options.limit
     );
-    if (bm25Fallback.length > 0) return bm25Fallback;
+    if (bm25Fallback.length > 0) return withPipelineMeta(bm25Fallback);
   }
 
   console.warn('[hybrid-search] Raw candidate collection returned empty results');
-  return [];
+  return withPipelineMeta([]);
 }
 
 /**
@@ -3314,6 +3456,7 @@ export {
   isBm25Available,
   combinedLexicalSearch,
   collectRawCandidates,
+  readSprint3PipelineMeta,
   isFtsAvailable,
   ftsSearch,
   hybridSearch,

@@ -8,7 +8,20 @@ interface ChannelException {
   source: string;
 }
 
+type ChannelSkipType = 'planned' | 'runtime' | 'exception';
+
+interface ChannelSkipDetail {
+  channel: string;
+  reason: string;
+  type: ChannelSkipType;
+}
+
 const MAX_CHANNEL_EXCEPTION_REASON_LENGTH = 160;
+const CHANNEL_SKIP_PRECEDENCE: Record<ChannelSkipType, number> = {
+  planned: 0,
+  runtime: 1,
+  exception: 2,
+};
 
 function clampChannelExceptionReason(reason: string): string {
   const normalized = reason.trim();
@@ -40,7 +53,26 @@ function appendChannelException(
   return entry;
 }
 
+function appendChannelSkipDetail(
+  target: ChannelSkipDetail[],
+  detail: ChannelSkipDetail,
+): void {
+  const existingIndex = target.findIndex((entry) => entry.channel === detail.channel);
+  if (existingIndex < 0) {
+    target.push({ ...detail });
+    return;
+  }
+
+  const existing = target[existingIndex];
+  if (existing && CHANNEL_SKIP_PRECEDENCE[detail.type] > CHANNEL_SKIP_PRECEDENCE[existing.type]) {
+    target[existingIndex] = { ...detail };
+  }
+}
+
 export {
   type ChannelException,
+  type ChannelSkipDetail,
+  type ChannelSkipType,
   appendChannelException,
+  appendChannelSkipDetail,
 };

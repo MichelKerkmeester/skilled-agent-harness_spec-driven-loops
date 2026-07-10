@@ -25,11 +25,12 @@ function normalizePacketId(rawValue) {
 }
 
 function readJson(filePath) {
-  if (!fs.existsSync(filePath)) return null;
+  if (!fs.existsSync(filePath)) return { value: null, parseError: null };
   try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch {
-    return null;
+    return { value: JSON.parse(fs.readFileSync(filePath, 'utf8')), parseError: null };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return { value: null, parseError: `${path.basename(filePath)}: ${message}` };
   }
 }
 
@@ -81,8 +82,11 @@ try {
     process.exit(0);
   }
   const expectedParent = actualPacketId.includes('/') ? actualPacketId.split('/').slice(0, -1).join('/') : null;
-  const description = readJson(path.join(folder, 'description.json'));
-  const graph = readJson(path.join(folder, 'graph-metadata.json'));
+  const descriptionResult = readJson(path.join(folder, 'description.json'));
+  const graphResult = readJson(path.join(folder, 'graph-metadata.json'));
+  const description = descriptionResult.value;
+  const graph = graphResult.value;
+  const parseErrors = [descriptionResult.parseError, graphResult.parseError].filter(Boolean);
   const mismatches = [];
 
   checkField(mismatches, 'description.specFolder', description?.specFolder, actualPacketId);
@@ -97,7 +101,7 @@ try {
     mismatches.push(`graph-metadata.parent_id=${graphParent} expected=<none>`);
   }
 
-  process.stdout.write(JSON.stringify({ actualPacketId, expectedParent, mismatches }));
+  process.stdout.write(JSON.stringify({ actualPacketId, expectedParent, mismatches, parseErrors }));
 } catch (error) {
   process.stdout.write(JSON.stringify({ error: error instanceof Error ? error.message : String(error) }));
   process.exit(1);

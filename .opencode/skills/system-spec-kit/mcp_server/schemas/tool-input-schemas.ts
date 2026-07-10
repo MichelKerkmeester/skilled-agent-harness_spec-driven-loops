@@ -160,21 +160,6 @@ const mergeModeHintEnum = z.enum([
 
 const plannerModeEnum = z.enum(['plan-only', 'hybrid', 'full-auto']);
 
-const skillGraphQueryTypeEnum = z.enum([
-  'depends_on',
-  'dependents',
-  'enhances',
-  'enhanced_by',
-  'family_members',
-  'conflicts',
-  'transitive_path',
-  'hub_skills',
-  'orphans',
-  'subgraph',
-]);
-
-const skillFamilyEnum = z.enum(['cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system']);
-
 /* ───────────────────────────────────────────────────────────────
    5. SCHEMA DEFINITIONS
 ──────────────────────────────────────────────────────────────── */
@@ -191,6 +176,7 @@ const memoryContextSchema = getSchema({
   sessionId: z.string().optional(),
   enableDedup: z.boolean().optional(),
   includeContent: z.boolean().optional(),
+  includeConstitutional: z.boolean().optional(),
   includeTrace: z.boolean().optional(), // Forward to internal memory_search
   tokenBudget: positiveIntMax(100000).optional(),
   tokenUsage: boundedNumber(0, 1).optional(),
@@ -572,28 +558,37 @@ const embedderStatusSchema = getSchema({
   jobId: z.string().min(1).optional(),
 });
 
-const skillGraphScanSchema = getSchema({
-  skillsRoot: optionalPathString(),
+const sessionBootstrapSchema = getSchema({
+  specFolder: optionalPathString(),
 });
 
-const skillGraphQuerySchema = getSchema({
-  queryType: skillGraphQueryTypeEnum,
-  skillId: z.string().optional(),
-  sourceSkillId: z.string().optional(),
-  targetSkillId: z.string().optional(),
-  family: skillFamilyEnum.optional(),
-  minInbound: intRange(0, 200).optional(),
-  depth: positiveIntMax(10).optional(),
-  limit: positiveIntMax(200).optional(),
+const sessionHealthSchema = getSchema({});
+
+const sessionResumeSchema = getSchema({
+  specFolder: optionalPathString(),
+  sessionId: z.string().optional().describe('Optional session ID for targeted recovery (advanced)'),
+  minimal: z.boolean().optional(),
 });
-
-const skillGraphStatusSchema = getSchema({});
-
-const skillGraphValidateSchema = getSchema({});
 
 /* ───────────────────────────────────────────────────────────────
    6. EXPORTS
 ──────────────────────────────────────────────────────────────── */
+
+export type ToolInputTypeMap = {
+  memory_context: z.infer<typeof memoryContextSchema>;
+  memory_search: z.infer<typeof memorySearchSchema>;
+  memory_health: z.infer<typeof memoryHealthSchema>;
+  memory_save: z.infer<typeof memorySaveSchema>;
+  session_resume: z.infer<typeof sessionResumeSchema>;
+  checkpoint_create: z.infer<typeof checkpointCreateSchema>;
+  memory_causal_stats: z.infer<typeof memoryCausalStatsSchema>;
+  memory_ingest_start: z.infer<typeof memoryIngestStartSchema>;
+  embedder_set: z.infer<typeof embedderSetSchema>;
+};
+
+export type ToolInputKeyMap = {
+  [TName in keyof ToolInputTypeMap]: keyof ToolInputTypeMap[TName];
+};
 
 export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   memory_context: memoryContextSchema as unknown as ToolInputSchema,
@@ -634,19 +629,9 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   embedder_list: embedderListSchema as unknown as ToolInputSchema,
   embedder_set: embedderSetSchema as unknown as ToolInputSchema,
   embedder_status: embedderStatusSchema as unknown as ToolInputSchema,
-  skill_graph_scan: skillGraphScanSchema as unknown as ToolInputSchema,
-  skill_graph_query: skillGraphQuerySchema as unknown as ToolInputSchema,
-  skill_graph_status: skillGraphStatusSchema as unknown as ToolInputSchema,
-  skill_graph_validate: skillGraphValidateSchema as unknown as ToolInputSchema,
-  session_bootstrap: getSchema({
-    specFolder: optionalPathString(),
-  }) as unknown as ToolInputSchema,
-  session_health: getSchema({}) as unknown as ToolInputSchema,
-  session_resume: getSchema({
-    specFolder: optionalPathString(),
-    sessionId: z.string().optional().describe('Optional session ID for targeted recovery (advanced)'),
-    minimal: z.boolean().optional(),
-  }) as unknown as ToolInputSchema,
+  session_bootstrap: sessionBootstrapSchema as unknown as ToolInputSchema,
+  session_health: sessionHealthSchema as unknown as ToolInputSchema,
+  session_resume: sessionResumeSchema as unknown as ToolInputSchema,
 };
 
 const ALLOWED_PARAMETERS: Record<string, string[]> = {
@@ -688,10 +673,6 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   embedder_list: [],
   embedder_set: ['name', 'dryRun'],
   embedder_status: ['jobId'],
-  skill_graph_scan: ['skillsRoot'],
-  skill_graph_query: ['queryType', 'skillId', 'sourceSkillId', 'targetSkillId', 'family', 'minInbound', 'depth', 'limit'],
-  skill_graph_status: [],
-  skill_graph_validate: [],
   session_bootstrap: ['specFolder'],
   session_health: [],
   session_resume: ['specFolder', 'sessionId', 'minimal'],

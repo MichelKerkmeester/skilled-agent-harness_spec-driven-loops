@@ -33,7 +33,13 @@
 //     - Generates query embeddings via the embeddings provider (external call)
 //     - Reads from the vector index and FTS5 / BM25 index (DB reads only)
 //
-import type { Stage1Input, Stage1Output, PipelineRow, PipelineConfig } from './types.js';
+import type {
+  PipelineChannelTelemetry,
+  PipelineConfig,
+  PipelineRow,
+  Stage1Input,
+  Stage1Output,
+} from './types.js';
 import { attachLaneLists, readLaneLists } from './types.js';
 import { resolveEffectiveScore } from './types.js';
 import * as vectorIndex from '../vector-index.js';
@@ -695,10 +701,26 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   // lanes in the expansion paths. Undefined on the flags-off path, so the downstream
   // tail-append backfill simply finds nothing.
   let capturedLaneLists = readLaneLists(candidates);
-  const captureLaneListsFrom = (rows: unknown): void => {
-    if (capturedLaneLists) return;
-    const lists = readLaneLists(rows);
-    if (lists) capturedLaneLists = lists;
+  let capturedChannelTelemetry: Omit<PipelineChannelTelemetry, 'graphContext'> | undefined;
+  const captureHybridMetadataFrom = (rows: unknown): void => {
+    if (!capturedLaneLists) {
+      const lists = readLaneLists(rows);
+      if (lists) capturedLaneLists = lists;
+    }
+    if (!capturedChannelTelemetry) {
+      try {
+        const routing = hybridSearch.readSprint3PipelineMeta(rows)?.routing;
+        if (routing) {
+          capturedChannelTelemetry = {
+            skippedChannels: [...routing.skippedChannels],
+            skippedChannelDetails: (routing.skippedChannelDetails ?? []).map((entry) => ({ ...entry })),
+            channelExceptions: (routing.channelExceptions ?? []).map((entry) => ({ ...entry })),
+          };
+        }
+      } catch {
+        // Optional telemetry must not discard candidates from a successful retrieval.
+      }
+    }
   };
   const hybridSearchOptions = {
     limit,
@@ -1009,6 +1031,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
               console.warn(`[stage1-candidate-gen] D2 facet branch ${idx} rejected: ${result.reason}`);
               return [] as PipelineRow[];
             });
+            captureHybridMetadataFrom(facetResultSets[0]);
 
             channelCount = allQueries.length;
             const pools = allQueries.map((q, i) => ({
@@ -1078,7 +1101,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
           // The baseline variant carries the per-lane shadow; capture it before the
           // merge below blends it away.
-          captureLaneListsFrom(variantResultSets[0]);
+          captureHybridMetadataFrom(variantResultSets[0]);
 
           // Merge variant results, deduplicate by id, preserve first-occurrence order
           candidates = mergeCandidateBatches(
@@ -1179,7 +1202,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
             r12ExpansionApplied = true;
 
             // The baseline carries the per-lane shadow; capture it before the merge.
-            captureLaneListsFrom(baselineResults);
+            captureHybridMetadataFrom(baselineResults);
 
             // Merge both result sets, deduplicate by id, baseline-first ordering
             // So baseline scores dominate when the same memory appears in both.
@@ -1301,7 +1324,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   // case a direct-assignment path left the shadow on the candidate array, before the
   // filters below replace the array and drop it. A no-op when already captured from a
   // pre-merge result or when no lists were attached, so the array is unchanged.
-  captureLaneListsFrom(candidates);
+  captureHybridMetadataFrom(candidates);
 
   // -- Tier and contextType filtering -----------------------------------------
   //
@@ -1861,6 +1884,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
         vectorSearchSkipped: true as const,
         degradationReason: 'embedder_unavailable',
       } : {}),
+      ...(capturedChannelTelemetry ? { channelTelemetry: capturedChannelTelemetry } : {}),
       candidateCount: candidates.length,
       constitutionalInjected: constitutionalInjectedCount,
       durationMs,

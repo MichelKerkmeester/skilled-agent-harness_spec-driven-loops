@@ -14,6 +14,13 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
+import Database from 'better-sqlite3';
+
+import {
+  appendMemoryDriftSuspects,
+  readMemoryDriftSuspects,
+} from '../lib/storage/memory-drift-healing';
+
 // ──────────────────────────────────────────────────────────────
 // 1. HOISTED MOCKS
 // ──────────────────────────────────────────────────────────────
@@ -37,12 +44,20 @@ const mocks = vi.hoisted(() => ({
   })),
   mockBatchUpdateMtimes: vi.fn(() => ({ updated: 0 })),
   mockListIndexedRecordIdsForDeletedPaths: vi.fn((): number[] => []),
+  mockSweepOrphanIndexRows: vi.fn(() => ({
+    swept: 1,
+    nextCursor: null,
+    scannedRows: 1,
+    orphanRecordIds: [999],
+  })),
   mockDeleteMemory: vi.fn((): boolean => true),
   mockGetDb: vi.fn(() => ({
-    prepare: vi.fn(() => ({ get: vi.fn(() => undefined) })),
+    exec: vi.fn(),
+    prepare: vi.fn(() => ({ get: vi.fn(() => undefined), run: vi.fn() })),
   })),
   mockRunPostMutationHooks: vi.fn(() => ({ latencyMs: 0 })),
   mockIndexMemoryFile: vi.fn(async () => ({ status: 'indexed', id: 1, specFolder: 'specs/test' })),
+  mockRepairNeedsRebuildSentinel: vi.fn(),
 }));
 
 // ──────────────────────────────────────────────────────────────
@@ -86,6 +101,7 @@ vi.mock('../lib/storage/incremental-index', () => ({
   categorizeFilesForIndexing: mocks.mockCategorizeFilesForIndexing,
   batchUpdateMtimes: mocks.mockBatchUpdateMtimes,
   listIndexedRecordIdsForDeletedPaths: mocks.mockListIndexedRecordIdsForDeletedPaths,
+  sweepOrphanIndexRows: mocks.mockSweepOrphanIndexRows,
 }));
 
 vi.mock('../lib/search/vector-index', () => ({
@@ -133,13 +149,7 @@ vi.mock('../handlers/memory-index-alias', () => ({
 
 vi.mock('../lib/storage/checkpoints', () => ({
   getRestoreBarrierStatus: vi.fn(() => null),
-  repairNeedsRebuildSentinel: vi.fn(() => ({
-    sentinelPresent: false,
-    attempted: false,
-    cleared: false,
-    summary: null,
-    error: null,
-  })),
+  repairNeedsRebuildSentinel: mocks.mockRepairNeedsRebuildSentinel,
 }));
 
 // ──────────────────────────────────────────────────────────────
@@ -189,15 +199,29 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
     }));
     mocks.mockBatchUpdateMtimes.mockReturnValue({ updated: 0 });
     mocks.mockListIndexedRecordIdsForDeletedPaths.mockReturnValue([]);
+    mocks.mockSweepOrphanIndexRows.mockReturnValue({
+      swept: 1,
+      nextCursor: null,
+      scannedRows: 1,
+      orphanRecordIds: [999],
+    });
     mocks.mockDeleteMemory.mockReturnValue(true);
     mocks.mockGetDb.mockReturnValue({
-      prepare: vi.fn(() => ({ get: vi.fn(() => undefined), all: vi.fn(() => []) })),
+      exec: vi.fn(),
+      prepare: vi.fn(() => ({ get: vi.fn(() => undefined), all: vi.fn(() => []), run: vi.fn() })),
     });
     mocks.mockRunPostMutationHooks.mockReturnValue({ latencyMs: 0 });
     mocks.mockRequireDb.mockReturnValue({
       prepare: vi.fn(() => ({ all: vi.fn(() => []), get: vi.fn(() => undefined) })),
     });
     mocks.mockIndexMemoryFile.mockResolvedValue({ status: 'indexed', id: 1, specFolder: 'specs/test' });
+    mocks.mockRepairNeedsRebuildSentinel.mockReturnValue({
+      sentinelPresent: false,
+      attempted: false,
+      cleared: false,
+      summary: null,
+      error: null,
+    });
     mocks.mockProcessBatches.mockImplementation(
       async (files: string[], worker: (file: string) => Promise<unknown>) => Promise.all(files.map(worker)),
     );
@@ -278,6 +302,110 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
     expect(data.status).toBe('complete');
     expect(data.scanned).toBe(0);
     expect(mocks.mockIndexMemoryFile).not.toHaveBeenCalled();
+  });
+
+  it('keeps global maintenance and unrelated backfills out of scoped repair mode', async () => {
+    const leafDir = path.join(tempRoot, '.opencode', 'specs', 'demo', '013-scoped-repair');
+    fs.mkdirSync(leafDir, { recursive: true });
+    const specDocPath = path.join(leafDir, 'spec.md');
+    fs.writeFileSync(specDocPath, '# scoped repair');
+    const onPhase = vi.fn();
+
+    const result = await scanHandler.runIndexScan({
+      scopedPaths: [specDocPath],
+      includeConstitutional: false,
+      includeSpecDocs: true,
+      incremental: false,
+      force: false,
+    }, { onPhase });
+
+    const { data } = parseEnvelope(result);
+    const phases = onPhase.mock.calls.map(([phase]) => phase);
+    expect(data).toMatchObject({
+      repairMode: 'scoped',
+      repairStatus: 'complete',
+      globalMaintenanceSkipped: true,
+      orphanSwept: 0,
+      suspectTombstoned: 0,
+      postInsertEnrichmentRepaired: 0,
+      nearDuplicateRepaired: 0,
+    });
+    expect(phases).not.toEqual(expect.arrayContaining([
+      'orphan-sweep',
+      'suspect-confirmation',
+      'enrichment-repair',
+      'trigger-backfill',
+      'near-dup-repair',
+    ]));
+    expect(mocks.mockSweepOrphanIndexRows).not.toHaveBeenCalled();
+    expect(mocks.mockRepairNeedsRebuildSentinel).not.toHaveBeenCalled();
+  });
+
+  it('limits real-database stale cleanup to scoped candidates and preserves unrelated suspects', async () => {
+    const database = new Database(path.join(tempRoot, 'scoped-repair.sqlite'));
+    const scopedStalePath = path.join(tempRoot, '.opencode', 'specs', 'demo', '014-scoped-stale', 'spec.md');
+    const unrelatedStalePath = path.join(tempRoot, '.opencode', 'specs', 'demo', '015-unrelated', 'spec.md');
+    try {
+      database.exec(`
+        CREATE TABLE memory_index (
+          id INTEGER PRIMARY KEY,
+          file_path TEXT NOT NULL,
+          canonical_file_path TEXT,
+          file_mtime_ms REAL,
+          content_hash TEXT,
+          embedding_status TEXT NOT NULL
+        );
+      `);
+      database.prepare(`
+        INSERT INTO memory_index (
+          id, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status
+        ) VALUES (?, ?, ?, NULL, NULL, 'success')
+      `).run(41, scopedStalePath, scopedStalePath);
+      database.prepare(`
+        INSERT INTO memory_index (
+          id, file_path, canonical_file_path, file_mtime_ms, content_hash, embedding_status
+        ) VALUES (?, ?, ?, NULL, NULL, 'success')
+      `).run(42, unrelatedStalePath, unrelatedStalePath);
+      appendMemoryDriftSuspects(database, [42], '2026-07-09T00:00:00.000Z');
+
+      const realIncrementalIndex = await vi.importActual<typeof import('../lib/storage/incremental-index')>(
+        '../lib/storage/incremental-index',
+      );
+      realIncrementalIndex.init(database);
+      mocks.mockCategorizeFilesForIndexing.mockImplementation(
+        (files: string[], options?: { staleCandidatePaths?: string[] }) => (
+          realIncrementalIndex.categorizeFilesForIndexing(files, options)
+        ),
+      );
+      mocks.mockListIndexedRecordIdsForDeletedPaths.mockImplementation(
+        (paths: string[]) => realIncrementalIndex.listIndexedRecordIdsForDeletedPaths(paths),
+      );
+      mocks.mockDeleteMemory.mockImplementation((id: number) => (
+        database.prepare('DELETE FROM memory_index WHERE id = ?').run(id).changes === 1
+      ));
+      mocks.mockGetDb.mockReturnValue(undefined);
+
+      const result = await scanHandler.runIndexScan({
+        scopedPaths: [scopedStalePath],
+        includeConstitutional: false,
+        includeSpecDocs: true,
+        incremental: true,
+        force: false,
+      });
+
+      const { data } = parseEnvelope(result);
+      const remainingRows = database.prepare('SELECT id FROM memory_index ORDER BY id').all() as Array<{ id: number }>;
+      expect(data).toMatchObject({
+        repairMode: 'scoped',
+        staleDeleted: 1,
+        suspectTombstoned: 0,
+      });
+      expect(remainingRows.map((row) => row.id)).toEqual([42]);
+      expect(readMemoryDriftSuspects(database).map((suspect) => suspect.id)).toEqual([42]);
+      expect(mocks.mockSweepOrphanIndexRows).not.toHaveBeenCalled();
+    } finally {
+      database.close();
+    }
   });
 
   it('excludes a graph-metadata.json-named path outside .opencode/specs instead of falsely including it', async () => {

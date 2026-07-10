@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/010-query-channel-calibration"
-    last_updated_at: "2026-07-09T14:20:00.000Z"
-    last_updated_by: "opencode"
-    recent_action: "Recorded implementation verification for query-channel calibration"
-    next_safe_action: "Review global lint/test limitations before treating the whole package as green"
+    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_by: "claude-code"
+    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
+    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers: []
     key_files: []
     session_dedup:
@@ -55,8 +55,8 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md. **Evidence**: requirements REQ-001 through REQ-006 are present.
-- [x] CHK-002 [P0] Technical approach defined in plan.md. **Evidence**: plan covers the router calibration, runtime skip visibility, channel-exception sink, rollback flag, and verification path.
+- [x] CHK-001 [P0] Requirements documented in `spec.md`. **Evidence**: requirements REQ-001 through REQ-006 are present.
+- [x] CHK-002 [P0] Technical approach defined in `plan.md`. **Evidence**: plan covers the router calibration, runtime skip visibility, channel-exception sink, rollback flag, and verification path.
 - [x] CHK-003 [P1] Dependencies identified and available (007-search-index-integrity-sweep shipped). **Evidence**: implementation proceeded from the user-provided dependency confirmation.
   Continued evidence line cites implementation-summary.md:97 command evidence and user-provided dependency confirmation.
 <!-- /ANCHOR:pre-impl -->
@@ -137,7 +137,7 @@ FAILURE MODES:
 
 - [x] CHK-050 [P1] Temp files in scratch/ only. **Evidence**: no packet-local scratch files were created; temporary DB probe paths were created under the OS temp directory only.
   Continued evidence line cites implementation-summary.md:108 limitation noting only OS temp DB probe paths and no retained packet scratch files.
-- [x] CHK-051 [P1] scratch/ cleaned before completion. **Evidence**: no retained scratch files for this packet.
+- [x] CHK-051 [P1] scratch/ cleaned before completion. **Evidence**: no retained scratch files for this packet. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
 <!-- /ANCHOR:file-org -->
 
 ---

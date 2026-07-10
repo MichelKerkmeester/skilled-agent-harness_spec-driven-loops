@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence/013-drift-marker-pipeline-resilience",
   "description": "F3 — Git-hook lock directory has no stale-lock recovery",
   "keywords": [
@@ -8,7 +9,7 @@
     "stale-lock",
     "recovery"
   ],
-  "lastUpdated": "2026-07-09T15:15:05.365Z",
+  "lastUpdated": "2026-07-10T08:09:04.850Z",
   "specId": "013",
   "folderSlug": "drift-marker-pipeline-resilience",
   "parentChain": [
@@ -16,6 +17,5 @@
     "028-memory-search-intelligence"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

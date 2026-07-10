@@ -6,12 +6,15 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   ACTIVE_VECTOR_SCHEMA,
+  __testables,
   checkpointAllWal,
   clearConstitutionalCache,
   close_db,
   get_constitutional_memories,
   initializeDb,
 } from '../lib/search/vector-index-store';
+
+const skillRoot = path.resolve(import.meta.dirname, '..', '..');
 
 function createTempDbPath(label: string): { dir: string; dbPath: string } {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), `${label}-`));
@@ -57,6 +60,22 @@ function insertConstitutionalMemory(
     VALUES (?, ?, ?, ?)
   `).run(`${specFolder}::${id}`, id, id, now);
 }
+
+describe('vector shard base directory diagnostics', () => {
+  it('warns when an invocation resolves the database base to the skill root', () => {
+    const warning = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+    __testables.warn_if_skill_root_vector_base_dir(skillRoot);
+
+    expect(warning).toHaveBeenCalledWith(expect.stringContaining('misconfigured'));
+    expect(warning).toHaveBeenCalledWith(expect.stringContaining(skillRoot));
+    warning.mockClear();
+
+    __testables.warn_if_skill_root_vector_base_dir(os.tmpdir());
+
+    expect(warning).not.toHaveBeenCalled();
+  });
+});
 
 describe('close_db WAL checkpoint (FTS-corruption prevention, bug 026/004/012)', () => {
   afterEach(() => {

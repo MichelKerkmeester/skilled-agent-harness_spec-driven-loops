@@ -50,15 +50,15 @@ classify_status() {
         return 0
     fi
 
-    # Cross-reference: strict-pass-freshness.ts's classifyStatus() keeps the equivalent list.
-    if [[ "$normalized" =~ (^|[^[:alnum:]])(in progress|in-progress|active|started|working|partial|ongoing)([^[:alnum:]]|$) ]]; then
-        printf '%s\n' "in-progress"
+    # Negative phrases take precedence over words such as "started".
+    if [[ "$normalized" =~ (^|[^[:alnum:]])(planned|planning|draft|pending|not started|not yet|not implemented|todo|queued)([^[:alnum:]]|$) ]]; then
+        printf '%s\n' "planned"
         return 0
     fi
 
     # Cross-reference: strict-pass-freshness.ts's classifyStatus() keeps the equivalent list.
-    if [[ "$normalized" =~ (^|[^[:alnum:]])(planned|planning|draft|pending|not started|not yet|not implemented|todo|queued)([^[:alnum:]]|$) ]]; then
-        printf '%s\n' "planned"
+    if [[ "$normalized" =~ (^|[^[:alnum:]])(in progress|in-progress|active|started|working|partial|ongoing)([^[:alnum:]]|$) ]]; then
+        printf '%s\n' "in-progress"
         return 0
     fi
 

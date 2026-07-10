@@ -3,8 +3,8 @@
 
 ## P0 - Critical
 
-- [x] Standard x checkmark (verified by checkmark-fixture.test.ts:6 with 1/1 assertions)
-- [x] Another checkmark item (confirmed in checklist.md:7 with exit code 0)
+- [x] Lowercase x checkmark [Evidence: checkmark-fixture.test.ts:6 passes 1/1 assertions]
+- [X] Uppercase X checkmark [Evidence: checklist.md:7 is accepted with exit code 0]
 
 ## P1 - Required
 

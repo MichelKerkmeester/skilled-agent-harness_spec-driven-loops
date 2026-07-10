@@ -12,7 +12,10 @@ import type Database from 'better-sqlite3';
 
 import { checkDatabaseUpdated } from '../core/index.js';
 import { INDEX_SCAN_COOLDOWN, DEFAULT_BASE_PATH, BATCH_SIZE } from '../core/config.js';
-import { beginMaintenance } from '../lib/storage/maintenance-marker.js';
+import {
+  beginMaintenance,
+  MAINTENANCE_MARKER_REFRESH_BEFORE_MS,
+} from '../lib/storage/maintenance-marker.js';
 import { acquireIndexScanLease, completeIndexScanLease, refreshScanLease } from '../core/db-state.js';
 import { processBatches, requireDb, toErrorMessage, type RetryErrorResult } from '../utils/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
@@ -201,9 +204,11 @@ interface ScanResults {
   orphanSweepFailed: number;
   orphanSweepScanned: number;
   orphanSweepNextCursor: number | null;
+  orphanSweepCursorPersistenceFailed: boolean;
   suspectTombstoned: number;
   suspectCleared: number;
   suspectFailed: number;
+  suspectRetainedUnknown: number;
   moveReconciled?: number;
   files: ScanFileEntry[];
   constitutional: {
@@ -257,7 +262,16 @@ interface ScanKeyOptions {
 interface RecordDeleteResult {
   deleted: number;
   failed: number;
+  deletedIds: number[];
+  interrupted: boolean;
+  nextUnprocessedId: number | null;
   actions: StatediffAction[];
+}
+
+interface RecordDeleteControl {
+  chunkSize: number;
+  deadlineAt: number;
+  onChunkBoundary?: (now: number) => void;
 }
 
 interface OrphanSweepDeleteResult {
@@ -265,6 +279,7 @@ interface OrphanSweepDeleteResult {
   failed: number;
   scannedRows: number;
   nextCursor: number | null;
+  cursorPersistenceFailed: boolean;
   actions: StatediffAction[];
 }
 
@@ -272,6 +287,7 @@ interface SuspectConfirmationResult {
   tombstoned: number;
   failed: number;
   cleared: number;
+  retainedUnknown: number;
   actions: StatediffAction[];
 }
 
@@ -284,6 +300,7 @@ interface OrphanSweepCandidates {
 
 const ORPHAN_SWEEP_LIMIT = 200;
 const ORPHAN_SWEEP_MAX_PAGES = 1000;
+const ORPHAN_SWEEP_DELETE_CHUNK_SIZE = 25;
 const ORPHAN_SWEEP_CURSOR_KEY = 'memory_index.orphan_sweep.cursor';
 // Bounds a single runGlobalOrphanSweep() invocation's wall-clock duration well under
 // the maintenance marker's 90s refresh-before window, leaving headroom for the
@@ -294,6 +311,12 @@ const ORPHAN_SWEEP_TIME_BUDGET_MS_DEFAULT = 45_000;
 // Reuses the same interval as the marker's own background refresh timer so the
 // mid-loop re-fire cadence has no surprising relationship to the passive one.
 const ORPHAN_SWEEP_REFRESH_CADENCE_MS_DEFAULT = 20_000;
+const ORPHAN_SWEEP_MIN_TIME_BUDGET_MS = 2;
+
+interface OrphanSweepRuntimeConfig {
+  timeBudgetMs: number;
+  refreshCadenceMs: number;
+}
 
 function parsePositiveIntEnv(name: string, fallback: number): number {
   const raw = process.env[name];
@@ -301,6 +324,35 @@ function parsePositiveIntEnv(name: string, fallback: number): number {
 
   const parsed = Number.parseInt(raw, 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function resolveOrphanSweepRuntimeConfig(): OrphanSweepRuntimeConfig {
+  const requestedBudgetMs = parsePositiveIntEnv(
+    'SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS',
+    ORPHAN_SWEEP_TIME_BUDGET_MS_DEFAULT,
+  );
+  const timeBudgetMs = Math.min(
+    Math.max(requestedBudgetMs, ORPHAN_SWEEP_MIN_TIME_BUDGET_MS),
+    MAINTENANCE_MARKER_REFRESH_BEFORE_MS,
+  );
+  if (timeBudgetMs !== requestedBudgetMs) {
+    console.warn(
+      `[memory-index-scan] Clamped SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS from ${requestedBudgetMs} to ${timeBudgetMs}`,
+    );
+  }
+
+  const requestedCadenceMs = parsePositiveIntEnv(
+    'SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS',
+    ORPHAN_SWEEP_REFRESH_CADENCE_MS_DEFAULT,
+  );
+  const refreshCadenceMs = Math.min(requestedCadenceMs, timeBudgetMs - 1);
+  if (refreshCadenceMs !== requestedCadenceMs) {
+    console.warn(
+      `[memory-index-scan] Clamped SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS from ${requestedCadenceMs} to ${refreshCadenceMs}`,
+    );
+  }
+
+  return { timeBudgetMs, refreshCadenceMs };
 }
 
 function ensureConfigTable(database: Database.Database): void {
@@ -318,7 +370,7 @@ function readOrphanSweepCursor(database: Database.Database): number {
   }
 }
 
-function writeOrphanSweepCursor(database: Database.Database, cursor: number | null): void {
+function writeOrphanSweepCursor(database: Database.Database, cursor: number | null): boolean {
   try {
     ensureConfigTable(database);
     const nextCursor = Number.isFinite(cursor) && (cursor ?? 0) > 0 ? Math.floor(cursor ?? 0) : 0;
@@ -327,8 +379,10 @@ function writeOrphanSweepCursor(database: Database.Database, cursor: number | nu
       VALUES (?, ?)
       ON CONFLICT(key) DO UPDATE SET value = excluded.value
     `).run(ORPHAN_SWEEP_CURSOR_KEY, String(nextCursor));
+    return true;
   } catch (error: unknown) {
     console.warn('[memory-index-scan] Failed to persist orphan sweep cursor:', toErrorMessage(error));
+    return false;
   }
 }
 
@@ -349,6 +403,38 @@ function emptyCheckpointRepairReport(): CheckpointRepairReport {
     skipped: 0,
     cleared: false,
     error: null,
+  };
+}
+
+function emptyOrphanSweepDeleteResult(): OrphanSweepDeleteResult {
+  return {
+    swept: 0,
+    failed: 0,
+    scannedRows: 0,
+    nextCursor: null,
+    cursorPersistenceFailed: false,
+    actions: [],
+  };
+}
+
+function emptySuspectConfirmationResult(): SuspectConfirmationResult {
+  return { tombstoned: 0, failed: 0, cleared: 0, retainedUnknown: 0, actions: [] };
+}
+
+function skippedTriggerEmbeddingBackfill(): TriggerEmbeddingBackfillResult {
+  return {
+    enabled: false,
+    status: 'skipped_default_off',
+    scannedMemories: 0,
+    phrasesSeen: 0,
+    pendingRows: 0,
+    readyRows: 0,
+    failedRows: 0,
+    cacheHits: 0,
+    generated: 0,
+    pendingRemaining: 0,
+    orphanRowsRemoved: 0,
+    warnings: [],
   };
 }
 
@@ -413,6 +499,20 @@ interface ScanArgs {
   retentionPolicy?: 'keep' | 'ephemeral';
   deleteAfter?: string;
   scopedPaths?: string[];
+}
+
+export type MemoryIndexRepairStatus =
+  | 'complete'
+  | 'partial'
+  | 'coalesced'
+  | 'contended'
+  | 'failed';
+
+/** Internal repair outcome used by startup drift-marker recovery. */
+export interface MemoryIndexRepairResult {
+  status: MemoryIndexRepairStatus;
+  scanStatus: string | null;
+  reason: string | null;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -485,7 +585,7 @@ function cancelledScanEnvelope(scanKey: string): MCPResponse {
   return createMCPSuccessResponse({
     tool: 'memory_index_scan',
     summary: 'Index scan cancelled before completion',
-    data: { status: 'cancelled', cancelled: true, scanKey },
+    data: { status: 'cancelled', repairStatus: 'partial', cancelled: true, scanKey },
     hints: ['The scan was cancelled via memory_index_scan_cancel'],
   });
 }
@@ -519,6 +619,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   const scopedScanPaths = Array.isArray(scopedPaths)
     ? Array.from(new Set(scopedPaths.filter((filePath) => typeof filePath === 'string' && filePath.length > 0).map((filePath) => path.resolve(filePath))))
     : [];
+  const isScopedRepair = scopedScanPaths.length > 0;
   const scanKey = createScanKey({
     spec_folder,
     force,
@@ -575,6 +676,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         success: true,
         coalesced: true,
         status: 'coalesced',
+        repairStatus: lease.reason === 'contention' ? 'contended' : 'coalesced',
         reason: lease.reason,
         scanKey,
         waitSeconds: lease.waitSeconds,
@@ -592,7 +694,9 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     await completeIndexScanLease(Date.now(), { setCooldown: options.setCooldown, scanKey });
   };
 
-  const checkpointRepair = runCheckpointNeedsRebuildRepairForScan();
+  const checkpointRepair = isScopedRepair
+    ? emptyCheckpointRepairReport()
+    : runCheckpointNeedsRebuildRepairForScan();
 
   // Keep the scan lease alive for the full duration of a long, multi-batch scan.
   // processBatches() runs all batches sequentially and may exceed the lease expiry
@@ -695,16 +799,29 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     console.error(`[memory-index-scan] Canonical dedup skipped ${dedupDuplicatesSkipped} alias path(s) (${mergedFiles.length} -> ${files.length})`);
   }
 
-  const deleteIndexedRecordIds = (recordIds: number[]): RecordDeleteResult => {
+  const deleteIndexedRecordIds = (
+    recordIds: number[],
+    control?: RecordDeleteControl,
+  ): RecordDeleteResult => {
     if (recordIds.length === 0) {
-      return { deleted: 0, failed: 0, actions: [] };
+      return {
+        deleted: 0,
+        failed: 0,
+        deletedIds: [],
+        interrupted: false,
+        nextUnprocessedId: null,
+        actions: [],
+      };
     }
 
     let deleted = 0;
     let failed = 0;
+    const deletedIds: number[] = [];
     const actions: StatediffAction[] = [];
+    const chunkSize = Math.max(1, Math.floor(control?.chunkSize ?? recordIds.length));
 
-    for (const staleRecordId of recordIds) {
+    for (let index = 0; index < recordIds.length; index += 1) {
+      const staleRecordId = recordIds[index];
       try {
         const database = vectorIndex.getDb();
         const staleSnapshot = database?.prepare(
@@ -739,6 +856,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
         if (rowDeleted) {
           deleted++;
+          deletedIds.push(staleRecordId);
           actions.push(createStatediffAction('delete', {
             target: 'memory_index',
             key: String(staleRecordId),
@@ -769,14 +887,44 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       } catch (_error: unknown) {
         failed++;
       }
+
+      const processed = index + 1;
+      if (processed < recordIds.length && processed % chunkSize === 0) {
+        const now = Date.now();
+        control?.onChunkBoundary?.(now);
+        if (control && now >= control.deadlineAt) {
+          return {
+            deleted,
+            failed,
+            deletedIds,
+            interrupted: true,
+            nextUnprocessedId: recordIds[processed] ?? null,
+            actions,
+          };
+        }
+      }
     }
 
-    return { deleted, failed, actions };
+    return {
+      deleted,
+      failed,
+      deletedIds,
+      interrupted: false,
+      nextUnprocessedId: null,
+      actions,
+    };
   };
 
   const deleteStaleIndexedRecords = (paths: string[]): RecordDeleteResult => {
     if (paths.length === 0) {
-      return { deleted: 0, failed: 0, actions: [] };
+      return {
+        deleted: 0,
+        failed: 0,
+        deletedIds: [],
+        interrupted: false,
+        nextUnprocessedId: null,
+        actions: [],
+      };
     }
 
     return deleteIndexedRecordIds(incrementalIndex.listIndexedRecordIdsForDeletedPaths(paths));
@@ -784,7 +932,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   const runGlobalOrphanSweep = (): OrphanSweepDeleteResult => {
     if (!('sweepOrphanIndexRows' in incrementalIndex)) {
-      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null, actions: [] };
+      return emptyOrphanSweepDeleteResult();
     }
 
     const sweepOrphanIndexRows = (incrementalIndex as {
@@ -792,11 +940,10 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }).sweepOrphanIndexRows;
 
     if (typeof sweepOrphanIndexRows !== 'function') {
-      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null, actions: [] };
+      return emptyOrphanSweepDeleteResult();
     }
 
-    const timeBudgetMs = parsePositiveIntEnv('SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS', ORPHAN_SWEEP_TIME_BUDGET_MS_DEFAULT);
-    const refreshCadenceMs = parsePositiveIntEnv('SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS', ORPHAN_SWEEP_REFRESH_CADENCE_MS_DEFAULT);
+    const { timeBudgetMs, refreshCadenceMs } = resolveOrphanSweepRuntimeConfig();
 
     const database = vectorIndex.getDb();
     let cursor = database ? readOrphanSweepCursor(database) : 0;
@@ -806,16 +953,34 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     let failed = 0;
     const actions: StatediffAction[] = [];
     const loopStartedAt = Date.now();
+    const deadlineAt = loopStartedAt + timeBudgetMs;
     let lastRefreshAt = loopStartedAt;
+    const refreshMarkerIfDue = (now: number): void => {
+      if (now - lastRefreshAt >= refreshCadenceMs) {
+        ctx.onPhase?.('orphan-sweep');
+        lastRefreshAt = now;
+      }
+    };
 
     for (let page = 0; page < ORPHAN_SWEEP_MAX_PAGES; page++) {
       const sweep = sweepOrphanIndexRows({ limit: ORPHAN_SWEEP_LIMIT, cursor, basePath: workspacePath });
       scannedRows += sweep.scannedRows;
       nextCursor = sweep.nextCursor;
-      const deleteResult = deleteIndexedRecordIds(sweep.orphanRecordIds ?? []);
+      const deleteResult = deleteIndexedRecordIds(sweep.orphanRecordIds ?? [], {
+        chunkSize: ORPHAN_SWEEP_DELETE_CHUNK_SIZE,
+        deadlineAt,
+        onChunkBoundary: refreshMarkerIfDue,
+      });
       swept += deleteResult.deleted;
       failed += deleteResult.failed;
       actions.push(...deleteResult.actions);
+
+      if (deleteResult.interrupted) {
+        nextCursor = deleteResult.nextUnprocessedId === null
+          ? cursor
+          : Math.max(cursor, deleteResult.nextUnprocessedId - 1);
+        break;
+      }
 
       if (!sweep.nextCursor || sweep.scannedRows === 0) {
         nextCursor = null;
@@ -827,27 +992,25 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       // Rate-gated repeat of the phase-entry marker refresh: a large backlog can run
       // long enough between phase boundaries to starve the marker otherwise, so this
       // re-fires the same callback at a bounded cadence instead of only once.
-      if (now - lastRefreshAt >= refreshCadenceMs) {
-        ctx.onPhase?.('orphan-sweep');
-        lastRefreshAt = now;
-      }
+      refreshMarkerIfDue(now);
 
       // A budget-exit is distinct from the completion-exit above: rows remain, so it
       // persists a resumable cursor rather than null, and the loop is picked back up
       // on a later invocation via the same cursor-resume mechanism.
-      if (now - loopStartedAt >= timeBudgetMs) {
+      if (now >= deadlineAt) {
         break;
       }
     }
 
-    if (database) {
-      writeOrphanSweepCursor(database, nextCursor);
-    }
+    const cursorPersistenceFailed = database
+      ? !writeOrphanSweepCursor(database, nextCursor)
+      : nextCursor !== null;
     return {
       swept,
       failed,
       scannedRows,
       nextCursor,
+      cursorPersistenceFailed,
       actions,
     };
   };
@@ -862,21 +1025,21 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   const runSuspectConfirmation = (): SuspectConfirmationResult => {
     const database = vectorIndex.getDb();
     if (!database) {
-      return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
+      return emptySuspectConfirmationResult();
     }
 
     try {
       const hasQueue = database.prepare('SELECT 1 FROM config WHERE key = ? LIMIT 1').get('memory_index.drift_suspect_rows');
       if (!hasQueue) {
-        return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
+        return emptySuspectConfirmationResult();
       }
     } catch {
-      return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
+      return emptySuspectConfirmationResult();
     }
 
     const suspects = readMemoryDriftSuspects(database);
     if (suspects.length === 0) {
-      return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
+      return emptySuspectConfirmationResult();
     }
 
     const rows = database.prepare(`
@@ -885,12 +1048,13 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       WHERE id IN (${suspects.map(() => '?').join(',')})
     `).all(...suspects.map((suspect) => suspect.id)) as Array<{ id: number; file_path?: string | null; canonical_file_path?: string | null }>;
     const rowsById = new Map(rows.map((row) => [row.id, row]));
-    const pathCache = incrementalIndex.buildPathExistenceCache(rows.flatMap((row) => [
+    const pathCache = incrementalIndex.buildDetailedPathExistenceCache(rows.flatMap((row) => [
       resolveIndexedPathForScan(row.file_path) ?? '',
       resolveIndexedPathForScan(row.canonical_file_path) ?? '',
     ]));
     const idsToTombstone: number[] = [];
     const idsToClear: number[] = [];
+    let retainedUnknown = 0;
 
     for (const suspect of suspects) {
       const row = rowsById.get(suspect.id);
@@ -901,21 +1065,25 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
       const filePath = resolveIndexedPathForScan(row.file_path);
       const canonicalPath = resolveIndexedPathForScan(row.canonical_file_path);
-      const exists = incrementalIndex.cachedPathExists(pathCache, filePath)
-        || incrementalIndex.cachedPathExists(pathCache, canonicalPath);
-      if (exists) {
+      const existenceStates = [filePath, canonicalPath]
+        .filter((candidate): candidate is string => candidate !== null)
+        .map((candidate) => incrementalIndex.cachedPathExistenceState(pathCache, candidate));
+      if (existenceStates.includes('exists')) {
         idsToClear.push(suspect.id);
-      } else {
+      } else if (existenceStates.length > 0 && existenceStates.every((state) => state === 'absent')) {
         idsToTombstone.push(suspect.id);
+      } else {
+        retainedUnknown++;
       }
     }
 
     const deleteResult = deleteIndexedRecordIds(idsToTombstone);
-    removeMemoryDriftSuspects(database, [...idsToClear, ...idsToTombstone]);
+    removeMemoryDriftSuspects(database, [...idsToClear, ...deleteResult.deletedIds]);
     return {
       tombstoned: deleteResult.deleted,
       failed: deleteResult.failed,
       cleared: idsToClear.length,
+      retainedUnknown,
       actions: deleteResult.actions,
     };
   };
@@ -1051,10 +1219,18 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   if (files.length === 0) {
     let staleDeleted = 0;
     let staleDeleteFailed = 0;
-    const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
-    const suspectConfirmation = await timedPhase('suspect-confirmation', () => runSuspectConfirmation());
-    const postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
-    const nearDuplicateRepaired = await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
+    const orphanSweepResult = isScopedRepair
+      ? emptyOrphanSweepDeleteResult()
+      : await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
+    const suspectConfirmation = isScopedRepair
+      ? emptySuspectConfirmationResult()
+      : await timedPhase('suspect-confirmation', () => runSuspectConfirmation());
+    const postInsertEnrichmentRepaired = isScopedRepair
+      ? 0
+      : await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
+    const nearDuplicateRepaired = isScopedRepair
+      ? 0
+      : await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
 
     if (incremental && !force) {
       const categorized: CategorizedFiles = scopedScanPaths.length > 0
@@ -1068,10 +1244,16 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       }
     }
 
-    const triggerEmbeddingBackfill = await timedPhase('trigger-backfill', () =>
-      runTriggerEmbeddingBackfill(requireDb(), {
-        isCancelled: () => ctx.isCancelled?.() ?? false,
-      }));
+    const triggerEmbeddingBackfill = isScopedRepair
+      ? skippedTriggerEmbeddingBackfill()
+      : await timedPhase('trigger-backfill', () =>
+          runTriggerEmbeddingBackfill(requireDb(), {
+            isCancelled: () => ctx.isCancelled?.() ?? false,
+          }));
+    const orphanSweepIncomplete = orphanSweepResult.nextCursor !== null
+      || orphanSweepResult.cursorPersistenceFailed;
+    const orphanSweepResumable = orphanSweepResult.nextCursor !== null
+      && !orphanSweepResult.cursorPersistenceFailed;
 
     if (orphanSweepResult.swept > 0) {
       runScanInvalidationHooks({
@@ -1122,9 +1304,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     await releaseScanLease();
     return createMCPSuccessResponse({
       tool: 'memory_index_scan',
-      summary: 'No memory files found',
+      summary: orphanSweepIncomplete
+        ? 'No memory files found; orphan sweep incomplete'
+        : 'No memory files found',
       data: {
-        status: 'complete',
+        status: orphanSweepIncomplete ? 'partial' : 'complete',
+        repairStatus: staleDeleteFailed > 0 || orphanSweepIncomplete ? 'partial' : 'complete',
+        repairMode: isScopedRepair ? 'scoped' : 'full',
+        globalMaintenanceSkipped: isScopedRepair,
         scanKey,
         scanned: 0,
         indexed: 0,
@@ -1140,9 +1327,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         orphanSweepFailed: orphanSweepResult.failed,
         orphanSweepScanned: orphanSweepResult.scannedRows,
         orphanSweepNextCursor: orphanSweepResult.nextCursor,
+        orphanSweepResumable,
+        orphanSweepCursorPersistenceFailed: orphanSweepResult.cursorPersistenceFailed,
         suspectTombstoned: suspectConfirmation.tombstoned,
         suspectCleared: suspectConfirmation.cleared,
         suspectFailed: suspectConfirmation.failed,
+        suspectRetainedUnknown: suspectConfirmation.retainedUnknown,
         checkpointRepair,
         warnings: walkerWarnings,
         capExceeded: walkerCapExceeded,
@@ -1155,8 +1345,11 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         ...(triggerEmbeddingBackfill.failedRows > 0 ? [`${triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`] : []),
         ...(orphanSweepResult.swept > 0 ? [`Swept ${orphanSweepResult.swept} orphan index record(s)`] : []),
         ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be removed`] : []),
+        ...(orphanSweepResumable ? [`Orphan sweep paused at cursor ${orphanSweepResult.nextCursor}; retry the scan to resume global cleanup`] : []),
+        ...(orphanSweepResult.cursorPersistenceFailed ? ['Orphan sweep cursor could not be persisted; retry the scan to complete global cleanup'] : []),
         ...(suspectConfirmation.tombstoned > 0 ? [`Confirmed and tombstoned ${suspectConfirmation.tombstoned} suspect index record(s)`] : []),
         ...(suspectConfirmation.cleared > 0 ? [`Cleared ${suspectConfirmation.cleared} reappeared suspect index record(s)`] : []),
+        ...(suspectConfirmation.retainedUnknown > 0 ? [`Retained ${suspectConfirmation.retainedUnknown} suspect index record(s) because filesystem state was unknown`] : []),
         ...(checkpointRepair.cleared ? [`Cleared checkpoint derived rebuild sentinel after repairing ${checkpointRepair.completed} step(s)`] : []),
         ...(checkpointRepair.attempted && !checkpointRepair.cleared ? ['Checkpoint derived rebuild repair did not complete; sentinel retained'] : []),
         ...(checkpointRepair.error ? [`Checkpoint derived rebuild repair error: ${checkpointRepair.error}`] : []),
@@ -1185,9 +1378,11 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     orphanSweepFailed: 0,
     orphanSweepScanned: 0,
     orphanSweepNextCursor: null,
+    orphanSweepCursorPersistenceFailed: false,
     suspectTombstoned: 0,
     suspectCleared: 0,
     suspectFailed: 0,
+    suspectRetainedUnknown: 0,
     files: [],
     constitutional: {
       found: constitutionalFiles.length,
@@ -1539,35 +1734,41 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }
   }
 
-  const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
-  results.orphanSwept = orphanSweepResult.swept;
-  results.orphanSweepFailed = orphanSweepResult.failed;
-  results.orphanSweepScanned = orphanSweepResult.scannedRows;
-  results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
-  scanAppliedActions.push(...orphanSweepResult.actions);
+  if (isScopedRepair) {
+    results.triggerEmbeddingBackfill = skippedTriggerEmbeddingBackfill();
+  } else {
+    const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
+    results.orphanSwept = orphanSweepResult.swept;
+    results.orphanSweepFailed = orphanSweepResult.failed;
+    results.orphanSweepScanned = orphanSweepResult.scannedRows;
+    results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
+    results.orphanSweepCursorPersistenceFailed = orphanSweepResult.cursorPersistenceFailed;
+    scanAppliedActions.push(...orphanSweepResult.actions);
 
-  const suspectConfirmation = await timedPhase('suspect-confirmation', () => runSuspectConfirmation());
-  results.suspectTombstoned = suspectConfirmation.tombstoned;
-  results.suspectCleared = suspectConfirmation.cleared;
-  results.suspectFailed = suspectConfirmation.failed;
-  scanAppliedActions.push(...suspectConfirmation.actions);
+    const suspectConfirmation = await timedPhase('suspect-confirmation', () => runSuspectConfirmation());
+    results.suspectTombstoned = suspectConfirmation.tombstoned;
+    results.suspectCleared = suspectConfirmation.cleared;
+    results.suspectFailed = suspectConfirmation.failed;
+    results.suspectRetainedUnknown = suspectConfirmation.retainedUnknown;
+    scanAppliedActions.push(...suspectConfirmation.actions);
 
-  results.postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
-  if (results.postInsertEnrichmentRepaired > 0) {
-    scanAppliedActions.push(createStatediffAction('upsert', {
-      target: 'graph_edge',
-      key: 'post-insert-enrichment-repair',
-      sourceOperation: 'scan',
-      metadata: { postInsertEnrichmentRepaired: results.postInsertEnrichmentRepaired },
-    }));
+    results.postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
+    if (results.postInsertEnrichmentRepaired > 0) {
+      scanAppliedActions.push(createStatediffAction('upsert', {
+        target: 'graph_edge',
+        key: 'post-insert-enrichment-repair',
+        sourceOperation: 'scan',
+        metadata: { postInsertEnrichmentRepaired: results.postInsertEnrichmentRepaired },
+      }));
+    }
+
+    results.triggerEmbeddingBackfill = await timedPhase('trigger-backfill', () =>
+      runTriggerEmbeddingBackfill(requireDb(), { isCancelled: () => ctx.isCancelled?.() ?? false }));
+    if (triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
+      scanAppliedActions.push(createTriggerBackfillAction(results.triggerEmbeddingBackfill));
+    }
+    results.nearDuplicateRepaired = await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
   }
-
-  results.triggerEmbeddingBackfill = await timedPhase('trigger-backfill', () =>
-    runTriggerEmbeddingBackfill(requireDb(), { isCancelled: () => ctx.isCancelled?.() ?? false }));
-  if (triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
-    scanAppliedActions.push(createTriggerBackfillAction(results.triggerEmbeddingBackfill));
-  }
-  results.nearDuplicateRepaired = await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
 
   // Create causal chains between spec folder documents.
   // Includes deferred indexing outcomes and incremental single-file updates.
@@ -1679,7 +1880,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   runScanHygieneSubscribers(scanAppliedActions);
 
-  const summary = `Scan complete: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.staleDeleted} deleted, ${results.orphanSwept} orphan swept, ${results.failed} failed`;
+  const orphanSweepIncomplete = results.orphanSweepNextCursor !== null
+    || results.orphanSweepCursorPersistenceFailed;
+  const orphanSweepResumable = results.orphanSweepNextCursor !== null
+    && !results.orphanSweepCursorPersistenceFailed;
+  const summaryPrefix = orphanSweepIncomplete ? 'Scan partial; orphan sweep incomplete' : 'Scan complete';
+  const summary = `${summaryPrefix}: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.staleDeleted} deleted, ${results.orphanSwept} orphan swept, ${results.failed} failed`;
 
   const hints: string[] = [];
   if (results.failed > 0) {
@@ -1712,11 +1918,20 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   if (results.orphanSweepFailed > 0) {
     hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be removed`);
   }
+  if (orphanSweepResumable) {
+    hints.push(`Orphan sweep paused at cursor ${results.orphanSweepNextCursor}; retry the scan to resume global cleanup`);
+  }
+  if (results.orphanSweepCursorPersistenceFailed) {
+    hints.push('Orphan sweep cursor could not be persisted; retry the scan to complete global cleanup');
+  }
   if (results.suspectTombstoned > 0) {
     hints.push(`Confirmed and tombstoned ${results.suspectTombstoned} suspect index record(s)`);
   }
   if (results.suspectCleared > 0) {
     hints.push(`Cleared ${results.suspectCleared} reappeared suspect index record(s)`);
+  }
+  if (results.suspectRetainedUnknown > 0) {
+    hints.push(`Retained ${results.suspectRetainedUnknown} suspect index record(s) because filesystem state was unknown`);
   }
   if (results.dedup.duplicatesSkipped > 0) {
     hints.push(`Canonical dedup skipped ${results.dedup.duplicatesSkipped} alias path(s)`);
@@ -1776,11 +1991,19 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     tool: 'memory_index_scan',
     summary,
     data: {
-      status: results.deferred > 0 ? 'complete_with_pending_vectors' : 'complete',
+      status: orphanSweepIncomplete
+        ? 'partial'
+        : results.deferred > 0 ? 'complete_with_pending_vectors' : 'complete',
+      repairStatus: results.failed > 0 || results.staleDeleteFailed > 0 || orphanSweepIncomplete
+        ? 'partial'
+        : 'complete',
+      repairMode: isScopedRepair ? 'scoped' : 'full',
+      globalMaintenanceSkipped: isScopedRepair,
       ...(results.deferred > 0 ? { pendingVectors: results.deferred } : {}),
       scanKey,
       batchSize: scanBatchSize,
       ...results,
+      orphanSweepResumable,
       files: returnedFiles,
       ...(process.env.SPECKIT_DEBUG_INDEX_SCAN === 'true'
         ? {

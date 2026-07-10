@@ -185,7 +185,27 @@ Use structured JSON input with `generate-context.js`. Do not pass free-form posi
 
 ---
 
-## 7. VALIDATION
+## 7. GENERATED METADATA PRUNING
+
+Graph child removal uses a mandatory report-then-apply sequence. Run both steps with the exact same scope controls so the confirmation hash remains bound to the reviewed candidate set.
+
+```bash
+# Single packet backfill
+node dist/graph/backfill-graph-metadata.js <spec-folder> --prune-report
+node dist/graph/backfill-graph-metadata.js <spec-folder> --prune --prune-confirm <contentHash>
+
+# Migration scope; repeat the same --root, --only and --limit values for apply
+node dist/graph/migrate-generated-json.js --root <specs-dir> --only <spec-folder> --prune-report
+node dist/graph/migrate-generated-json.js --root <specs-dir> --only <spec-folder> --prune --prune-confirm <contentHash>
+```
+
+`--prune-report` is a dry run for generated metadata and writes only its report artifact under the selected specs root. Review every candidate and its `existsOnDisk` state before using the artifact's `contentHash`. Backfill scope is controlled by a packet target or `--all` with `--root` and `--active-only`; migration scope is controlled by `--root`, repeatable `--only` and `--limit`. Apply refuses a missing, modified or stale report.
+
+Before apply, preserve the affected `graph-metadata.json` files in version control or an operator backup. If validation finds an unexpected removal, restore those exact files and rerun a normal non-pruning refresh. A later refresh preserves persisted lineage by default; it cannot reconstruct a removed stale relationship whose target is no longer derivable.
+
+---
+
+## 8. VALIDATION
 
 Use repository-root commands:
 
@@ -199,7 +219,7 @@ Run targeted shell or Vitest checks when editing one script zone. Use the parent
 
 ---
 
-## 8. RELATED
+## 9. RELATED
 
 - [`spec/README.md`](spec/README.md)
 - [`lib/README.md`](lib/README.md)

@@ -4,8 +4,8 @@
 # ───────────────────────────────────────────────────────────────
 # Extended suite for validator behavior against the registry-backed
 # validator and numbered fixture corpus. As of this revision, the registry
-# contains 38 rule entries and the fixture tree contains 66 numbered
-# directories (highest 067).
+# contains 45 rule entries and the fixture tree contains 76 numbered
+# directories (highest 077).
 #
 # COVERAGE FRAME:
 #   - Direct isolated coverage exercises 13 rule scripts listed below.
@@ -165,6 +165,53 @@ validator_actual_result() {
         printf '%s\n' "warn"
     else
         printf '%s\n' "pass"
+    fi
+}
+
+run_exact_exit_test() {
+    local name="$1"
+    local expected_exit="$2"
+    shift 2
+
+    local test_entry="[$CURRENT_CATEGORY] $name"
+    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
+${test_entry}"; else TEST_LIST="$test_entry"; fi
+
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+
+    local start_time
+    start_time=$(get_time_ms)
+
+    if [[ ! -f "$VALIDATOR" ]]; then
+        echo -e "${YELLOW}⊘${NC} $name ${DIM}(validator not found)${NC}" >&2
+        SKIPPED=$((SKIPPED + 1))
+        CURRENT_CAT_SKIPPED=$((CURRENT_CAT_SKIPPED + 1))
+        return
+    fi
+
+    local exit_code=0
+    local output
+    output=$("$VALIDATOR" "$@" 2>&1) || exit_code=$?
+
+    local end_time elapsed time_display
+    end_time=$(get_time_ms)
+    elapsed=$((end_time - start_time))
+    time_display=$(format_time "$elapsed")
+    CURRENT_CAT_TIME=$((CURRENT_CAT_TIME + elapsed))
+    TOTAL_TIME=$((TOTAL_TIME + elapsed))
+
+    if [[ "$exit_code" -eq "$expected_exit" ]]; then
+        echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
+        PASSED=$((PASSED + 1))
+        CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
+        echo -e "  ${RED}Expected exit:${NC} $expected_exit, ${RED}Got:${NC} $exit_code"
+        echo "$output" | sed 's/^/    /'
+        FAILED=$((FAILED + 1))
+        CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
     fi
 }
 
@@ -615,6 +662,227 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
     unset -f run_check 2>/dev/null || true
 }
 
+run_evidence_item_disposition_test() {
+    local name="$1"
+    local fixture="$2"
+    local selector="$3"
+    local expected_disposition="$4"
+
+    local test_entry="[$CURRENT_CATEGORY] $name"
+    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
+${test_entry}"; else TEST_LIST="$test_entry"; fi
+
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+
+    local start_time fixture_path checklist_path item_text line line_number missing_count actual
+    start_time=$(get_time_ms)
+    fixture_path="$FIXTURES/$fixture"
+    checklist_path="$fixture_path/checklist.md"
+    item_text=""
+    line_number=0
+    missing_count=0
+    actual="missing"
+
+    if [[ -f "$checklist_path" ]]; then
+        while IFS= read -r line || [[ -n "$line" ]]; do
+            ((line_number++)) || true
+            if [[ "$line" == *"$selector"* ]]; then
+                item_text="$line"
+                break
+            fi
+        done < "$checklist_path"
+    fi
+
+    if [[ -n "$item_text" && "$item_text" == *"$expected_disposition"* ]]; then
+        RULE_DETAILS=()
+        source "$RULES_DIR/check-evidence.sh"
+        check_completed_item_evidence "checklist.md" "$line_number" "P0" "$item_text"
+        if [[ "$missing_count" -eq 0 ]]; then
+            actual="pass"
+        else
+            actual="warn"
+        fi
+    fi
+
+    local end_time elapsed time_display
+    end_time=$(get_time_ms)
+    elapsed=$((end_time - start_time))
+    time_display=$(format_time "$elapsed")
+    CURRENT_CAT_TIME=$((CURRENT_CAT_TIME + elapsed))
+    TOTAL_TIME=$((TOTAL_TIME + elapsed))
+
+    if [[ "$actual" = "pass" ]]; then
+        echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
+        PASSED=$((PASSED + 1))
+        CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
+        echo -e "  ${RED}Expected:${NC} recognized item with $expected_disposition disposition, ${RED}Got:${NC} $actual"
+        FAILED=$((FAILED + 1))
+        CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
+    fi
+
+    unset -f run_check 2>/dev/null || true
+}
+
+run_status_classifier_test() {
+    local name="$1"
+    local value="$2"
+    local expect="$3"
+
+    local test_entry="[$CURRENT_CATEGORY] $name"
+    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
+${test_entry}"; else TEST_LIST="$test_entry"; fi
+
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+
+    local start_time actual end_time elapsed time_display
+    start_time=$(get_time_ms)
+    source "$SCRIPT_DIR/../lib/status-classifier.sh"
+    actual="$(classify_status "$value")"
+    end_time=$(get_time_ms)
+    elapsed=$((end_time - start_time))
+    time_display=$(format_time "$elapsed")
+    CURRENT_CAT_TIME=$((CURRENT_CAT_TIME + elapsed))
+    TOTAL_TIME=$((TOTAL_TIME + elapsed))
+
+    if [[ "$actual" = "$expect" ]]; then
+        echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
+        PASSED=$((PASSED + 1))
+        CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
+        echo -e "  ${RED}Expected:${NC} $expect, ${RED}Got:${NC} $actual"
+        FAILED=$((FAILED + 1))
+        CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
+    fi
+}
+
+run_enforce_flag_matrix_test() {
+    local name="$1"
+
+    local test_entry="[$CURRENT_CATEGORY] $name"
+    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
+${test_entry}"; else TEST_LIST="$test_entry"; fi
+
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+
+    local start_time status_actual metadata_actual tmp_root metadata_folder failed_cases
+    start_time=$(get_time_ms)
+    tmp_root=$(mktemp -d "${TMPDIR:-/tmp}/speckit-flag-matrix.XXXXXX")
+    metadata_folder="$tmp_root/specs/real-packet"
+    mkdir -p "$metadata_folder"
+    printf '%s\n' '{"specFolder":"stale-packet"}' > "$metadata_folder/description.json"
+    failed_cases=""
+
+    local label value is_set expect
+    while IFS='|' read -r label value is_set expect; do
+        if [[ "$is_set" = true ]]; then
+            export SPECKIT_STATUS_CROSS_DOC_ENFORCE="$value"
+            export SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE="$value"
+        else
+            unset SPECKIT_STATUS_CROSS_DOC_ENFORCE SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE 2>/dev/null || true
+        fi
+
+        RULE_NAME="" RULE_STATUS="pass" RULE_MESSAGE="" RULE_DETAILS=() RULE_REMEDIATION=""
+        source "$RULES_DIR/check-status-cross-doc-consistency.sh"
+        run_check "$FIXTURES/077-status-drift" 2
+        status_actual="$RULE_STATUS"
+        unset -f run_check 2>/dev/null || true
+
+        RULE_NAME="" RULE_STATUS="pass" RULE_MESSAGE="" RULE_DETAILS=() RULE_REMEDIATION=""
+        source "$RULES_DIR/check-metadata-disk-consistency.sh"
+        run_check "$metadata_folder" 2
+        metadata_actual="$RULE_STATUS"
+        unset -f run_check 2>/dev/null || true
+
+        if [[ "$status_actual" != "$expect" || "$metadata_actual" != "$expect" ]]; then
+            failed_cases+="${label}: expected=$expect status=$status_actual metadata=$metadata_actual; "
+        fi
+    done <<'EOF'
+true|true|true|warn
+1|1|true|warn
+TRUE|TRUE|true|warn
+yes|yes|true|warn
+on|on|true|warn
+false|false|true|pass
+0|0|true|pass
+unset||false|pass
+EOF
+
+    rm -rf "$tmp_root"
+
+    unset SPECKIT_STATUS_CROSS_DOC_ENFORCE SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE 2>/dev/null || true
+
+    local end_time elapsed time_display
+    end_time=$(get_time_ms)
+    elapsed=$((end_time - start_time))
+    time_display=$(format_time "$elapsed")
+    CURRENT_CAT_TIME=$((CURRENT_CAT_TIME + elapsed))
+    TOTAL_TIME=$((TOTAL_TIME + elapsed))
+
+    if [[ -z "$failed_cases" ]]; then
+        echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
+        PASSED=$((PASSED + 1))
+        CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
+        echo -e "  ${RED}Matrix failures:${NC} $failed_cases"
+        FAILED=$((FAILED + 1))
+        CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
+    fi
+}
+
+run_malformed_metadata_test() {
+    local name="$1"
+
+    local test_entry="[$CURRENT_CATEGORY] $name"
+    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
+${test_entry}"; else TEST_LIST="$test_entry"; fi
+
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+
+    local start_time tmp_root folder actual message end_time elapsed time_display
+    start_time=$(get_time_ms)
+    tmp_root=$(mktemp -d "${TMPDIR:-/tmp}/speckit-malformed-metadata.XXXXXX")
+    folder="$tmp_root/specs/malformed-packet"
+    mkdir -p "$folder"
+    printf '%s\n' '{not valid json' > "$folder/description.json"
+
+    RULE_NAME="" RULE_STATUS="pass" RULE_MESSAGE="" RULE_DETAILS=() RULE_REMEDIATION=""
+    source "$RULES_DIR/check-metadata-disk-consistency.sh"
+    run_check "$folder" 2
+    actual="$RULE_STATUS"
+    message="$RULE_MESSAGE"
+    unset -f run_check 2>/dev/null || true
+    rm -rf "$tmp_root"
+
+    end_time=$(get_time_ms)
+    elapsed=$((end_time - start_time))
+    time_display=$(format_time "$elapsed")
+    CURRENT_CAT_TIME=$((CURRENT_CAT_TIME + elapsed))
+    TOTAL_TIME=$((TOTAL_TIME + elapsed))
+
+    if [[ "$actual" = "warn" && "$message" == *"malformed"* ]]; then
+        echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
+        PASSED=$((PASSED + 1))
+        CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
+    else
+        echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
+        echo -e "  ${RED}Expected:${NC} warn with malformed message, ${RED}Got:${NC} $actual | $message"
+        FAILED=$((FAILED + 1))
+        CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
+    fi
+}
+
 # ───────────────────────────────────────────────────────────────
 # 5. PARSE ARGUMENTS
 # ───────────────────────────────────────────────────────────────
@@ -705,6 +973,18 @@ if begin_category "Individual Rule: SCAFFOLD_NEVER_TOUCHED (check-scaffold-never
     run_isolated_rule_test "Genuinely complete docs pass" "check-scaffold-never-touched.sh" "073-scaffold-never-touched-clean" "pass" 1
 fi
 
+if begin_category "Shared Status Classifier"; then
+    run_status_classifier_test "Not Started classifies as planned" "Not Started" "planned"
+fi
+
+if begin_category "Shared Enforcement Flag Parsing"; then
+    run_enforce_flag_matrix_test "Enforce flag matrix applies to both rules"
+fi
+
+if begin_category "Metadata Parse Errors"; then
+    run_malformed_metadata_test "Malformed generated metadata emits a warning"
+fi
+
 if begin_category "Individual Rule: ANCHORS_VALID (check-anchors.sh)"; then
     run_isolated_rule_test "Optional template anchors warn in shell fallback" "check-anchors.sh" "053-template-compliant-level2" "warn" 2
     run_isolated_rule_test "Unclosed anchors" "check-anchors.sh" "008-invalid-anchors" "fail" 1
@@ -727,9 +1007,14 @@ if begin_category "Individual Rule: EVIDENCE_CITED (check-evidence.sh)"; then
     run_isolated_rule_test "All 5 patterns recognized" "check-evidence.sh" "016-evidence-all-patterns" "pass" 2
     run_isolated_rule_test "Case-insensitive tags" "check-evidence.sh" "017-evidence-case-variations" "pass" 2
     run_isolated_rule_test "Checkmark formats" "check-evidence.sh" "018-evidence-checkmark-formats" "pass" 2
+    run_evidence_item_disposition_test "Lowercase x checkmark has evidence disposition" "018-evidence-checkmark-formats" "Lowercase x checkmark" "[Evidence:"
+    run_evidence_item_disposition_test "Uppercase X checkmark has evidence disposition" "018-evidence-checkmark-formats" "Uppercase X checkmark" "[Evidence:"
     run_isolated_rule_test "P2 items exempt" "check-evidence.sh" "019-evidence-p2-exempt" "pass" 2
     run_isolated_rule_test "Wrong suffix (warn)" "check-evidence.sh" "020-evidence-wrong-suffix" "warn" 2
     run_isolated_rule_test "Missing evidence (warn)" "check-evidence.sh" "031-missing-evidence" "warn" 2
+    run_isolated_rule_test "Unindented later prose is not item evidence" "check-evidence.sh" "074-evidence-unindented-prose" "warn" 2
+    run_isolated_rule_test "Indented continuation is item evidence" "check-evidence.sh" "075-evidence-indented-continuation" "pass" 2
+    run_isolated_rule_test "Short deferred reason is not substantive" "check-evidence.sh" "076-evidence-short-deferred" "warn" 2
 fi
 
 if begin_category "Individual Rule: PRIORITY_TAGS (check-priority-tags.sh)"; then
@@ -830,6 +1115,10 @@ if begin_category "Exit Code Verification"; then
     run_test "Exit 2: Errors return fail" "001-empty-folder" "fail"
     run_test "Exit 2: Missing files return fail" "006-missing-required-files" "fail"
     run_test "Exit 2: Missing required header returns fail" "055-template-missing-header" "fail"
+    run_exact_exit_test "Exact exit 0: compliant fixture" 0 "$FIXTURES/053-template-compliant-level2"
+    run_exact_exit_test "Exact exit 1: unknown option" 1 --not-a-validator-option
+    run_exact_exit_test "Exact exit 2: validation error" 2 "$FIXTURES/001-empty-folder"
+    run_exact_exit_test "Exact exit 3: missing folder" 3 "$FIXTURES/does-not-exist"
 fi
 
 # ─────────────────────────────────────────────────────────────────

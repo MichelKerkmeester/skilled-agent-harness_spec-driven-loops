@@ -43,6 +43,11 @@ const LOW_SIGNAL_STOPWORD_RATIO = 0.5;
  * deserve recall-preserving graph corroboration.
  */
 const CONTENT_RICH_SHORT_STOPWORD_RATIO = 1 / 3;
+const CJK_CHARACTERS_PER_TERM = 2;
+const CJK_DOMINANCE_RATIO = 0.5;
+const CJK_CHARACTER_PATTERN = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u;
+const LETTER_OR_NUMBER_PATTERN = /[\p{L}\p{N}]/u;
+const TOKEN_EDGE_PUNCTUATION_PATTERN = /^\p{P}+|\p{P}+$/gu;
 
 /** Common English stop words for semantic complexity heuristic */
 const STOP_WORDS: ReadonlySet<string> = new Set([
@@ -82,6 +87,26 @@ function extractTerms(query: string): string[] {
 }
 
 /**
+ * Resolve a term count that remains meaningful when whitespace is not a word
+ * boundary. CJK-dominant queries use one estimated term per two CJK characters
+ * so the existing tier thresholds represent comparable query sizes across
+ * writing systems; other queries retain their whitespace-delimited count.
+ */
+function resolveTermCount(query: string, terms: string[]): number {
+  const significantCharacters = Array.from(query.normalize('NFKC'))
+    .filter(char => LETTER_OR_NUMBER_PATTERN.test(char));
+  if (significantCharacters.length === 0) return terms.length;
+
+  const cjkCharacterCount = significantCharacters
+    .filter(char => CJK_CHARACTER_PATTERN.test(char))
+    .length;
+  const isCjkDominant = cjkCharacterCount / significantCharacters.length >= CJK_DOMINANCE_RATIO;
+  if (!isCjkDominant) return terms.length;
+
+  return Math.max(terms.length, Math.ceil(cjkCharacterCount / CJK_CHARACTERS_PER_TERM));
+}
+
+/**
  * Calculate the ratio of stop words in the query terms.
  * Returns 0 for empty term lists.
  *
@@ -90,7 +115,15 @@ function extractTerms(query: string): string[] {
  */
 function calculateStopWordRatio(terms: string[]): number {
   if (terms.length === 0) return 0;
-  const stopCount = terms.filter(t => STOP_WORDS.has(t.toLowerCase())).length;
+  const stopCount = terms.filter((term) => {
+    // Edge punctuation is lexical wrapping, while internal punctuation carries
+    // meaning in code identifiers such as memory-index.ts and must remain intact.
+    const normalized = term
+      .normalize('NFKC')
+      .replace(TOKEN_EDGE_PUNCTUATION_PATTERN, '')
+      .toLowerCase();
+    return STOP_WORDS.has(normalized);
+  }).length;
   return stopCount / terms.length;
 }
 
@@ -232,7 +265,7 @@ function classifyQueryComplexity(
     }
 
     const terms = extractTerms(query);
-    const termCount = terms.length;
+    const termCount = resolveTermCount(query, terms);
     const charCount = query.length;
     const triggers = triggerPhrases ?? [];
     const triggerMatch = hasTriggerMatch(query, triggers);

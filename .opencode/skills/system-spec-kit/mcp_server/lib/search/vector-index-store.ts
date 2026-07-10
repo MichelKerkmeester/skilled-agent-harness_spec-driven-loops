@@ -113,6 +113,8 @@ type InitializeDbOptions = {
 const RESTORE_JOURNAL_NAME = '.restore-journal.json';
 const NEEDS_REBUILD_SENTINEL_NAME = '.needs-rebuild';
 const VECTOR_SHARD_REPAIR_PENDING_SENTINEL_SUFFIX = '.repair-pending';
+const MCP_SERVER_ROOT = path.basename(SERVER_DIR) === 'dist' ? path.dirname(SERVER_DIR) : SERVER_DIR;
+const SKILL_ROOT = path.dirname(MCP_SERVER_ROOT);
 
 function loadSearchWeights(): SearchWeightsConfig {
   // SERVER_DIR points to dist/ at runtime; configs/ lives at the package root (dist/..)
@@ -421,7 +423,21 @@ function legacy_profile_database_path(profile: EmbeddingProfile, baseDir: string
   return path.join(baseDir, `context-index__${profile.slug}.sqlite`);
 }
 
+function warn_if_skill_root_vector_base_dir(baseDir: string): void {
+  const resolvedBaseDir = path.resolve(baseDir);
+  if (resolvedBaseDir !== path.resolve(SKILL_ROOT)) {
+    return;
+  }
+
+  console.warn(
+    `[vector-index] Database base directory resolved to the system-spec-kit skill root (${resolvedBaseDir}); ` +
+    'this invocation is misconfigured and will place vector shards under the skill-root vectors directory. ' +
+    'Set SPEC_KIT_DB_DIR or MEMORY_DB_PATH to a database directory.',
+  );
+}
+
 function get_vector_shard_path(profile: EmbeddingProfile, baseDir: string): string {
+  warn_if_skill_root_vector_base_dir(baseDir);
   const vectorDir = path.join(baseDir, 'vectors');
   if (!fs.existsSync(vectorDir)) {
     fs.mkdirSync(vectorDir, { recursive: true, mode: 0o700 });
@@ -2371,6 +2387,7 @@ export function is_vector_search_available(): boolean {
 export const __testables = {
   get_existing_embedding_dimension,
   run_vector_shard_integrity_probe_at_path,
+  warn_if_skill_root_vector_base_dir,
 };
 
 export { BetterSqliteVectorStore as SQLiteVectorStore } from '../storage/ports/vector-store.js';

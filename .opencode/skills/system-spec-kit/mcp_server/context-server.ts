@@ -73,7 +73,14 @@ import { generatePerFolderDescription, savePerFolderDescription } from './lib/se
 import { refreshGraphMetadata } from './lib/graph/graph-metadata-parser.js';
 
 // Startup checks (extracted from this file)
-import { detectNodeVersionMismatch, checkSqliteVersion, checkJournalMode, consumeMemoryDriftDirtyMarker, sweepStaleMemoryDriftProcessingMarkers } from './startup-checks.js';
+import {
+  checkJournalMode,
+  checkSqliteVersion,
+  consumeMemoryDriftDirtyMarker,
+  detectNodeVersionMismatch,
+  resolveMemoryIndexRepairResult,
+  sweepStaleMemoryDriftProcessingMarkers,
+} from './startup-checks.js';
 import {
   getStartupEmbeddingDimension,
   resolveStartupEmbeddingConfig,
@@ -653,14 +660,34 @@ export function enforceEnvelopeResultBudget(
     const trimmed = originalCount - innerResults.length;
     envelope.hints.push(
       trimmed > 0
-        ? `Token budget enforced: ${originalCount} → ${innerResults.length} results (${compactedCount} compact) to fit ${budget} token budget`
-        : `Token budget enforced: ${compactedCount} of ${innerResults.length} results rendered compact to fit ${budget} token budget`,
+        ? `Token budget enforcement targeted ${budget} tokens: ${originalCount} → ${innerResults.length} results (${compactedCount} compact)`
+        : `Token budget enforcement targeted ${budget} tokens: ${compactedCount} of ${innerResults.length} results rendered compact`,
     );
   }
   meta.tokenBudgetTruncated = true;
   meta.originalResultCount = originalCount;
   meta.returnedResultCount = innerResults.length;
+  meta.tokenBudgetFloorExceeded = false;
+  syncTokenCount(envelope);
+  meta.tokenBudgetFloorExceeded = typeof meta.tokenCount === 'number' && meta.tokenCount > budget;
+  syncTokenCount(envelope);
   return true;
+}
+
+/** Resolve the presentation-layer budget without overriding memory_context's handler-owned budget. */
+export function resolveEnvelopeTokenBudget(
+  name: string,
+  meta: Record<string, unknown>,
+): number {
+  const handlerBudget = name === 'memory_context' ? meta.tokenBudget : undefined;
+  if (
+    typeof handlerBudget === 'number' &&
+    Number.isFinite(handlerBudget) &&
+    handlerBudget > 0
+  ) {
+    return handlerBudget;
+  }
+  return getTokenBudget(name);
 }
 
 export function maybeStructuralNudge(
@@ -1472,7 +1499,7 @@ function registerContextServerHandlers(targetServer: Server): void {
           if (dispatchGraphContext && !result.isError) {
             meta.graphContext = dispatchGraphContext;
           }
-          const budget = getTokenBudget(name);
+          const budget = resolveEnvelopeTokenBudget(name, meta);
           meta.tokenBudget = budget;
           syncEnvelopeTokenCount(envelope);
 
@@ -2238,13 +2265,14 @@ async function main(): Promise<void> {
       databasePath: vectorIndex.getDbPath() || DATABASE_PATH,
       workspacePath: DEFAULT_BASE_PATH,
       runScopedScan: async (scopedPaths) => {
-        await handleMemoryIndexScan({
+        const response = await handleMemoryIndexScan({
           includeConstitutional: false,
           includeSpecDocs: true,
           incremental: true,
           force: false,
           scopedPaths,
         });
+        return resolveMemoryIndexRepairResult(response);
       },
       refreshMovedSpecFolder: (folderPath) => {
         const description = generatePerFolderDescription(folderPath, path.join(DEFAULT_BASE_PATH, '.opencode', 'specs'));

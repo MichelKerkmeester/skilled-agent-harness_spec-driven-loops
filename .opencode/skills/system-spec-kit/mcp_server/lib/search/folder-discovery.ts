@@ -101,6 +101,18 @@ const MAX_DESCRIPTION_LENGTH = 150;
 const MAX_SPEC_DISCOVERY_DEPTH = 8;
 const DESCRIPTION_REPAIR_MERGE_SAFE = parseFlagTristate('SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE', true);
 const DEFAULT_PER_TOKEN_SIMILARITY_THRESHOLD = 0.45;
+const DESCRIPTION_SOURCE_DOCS = [
+  'spec.md',
+  'plan.md',
+  'tasks.md',
+  'checklist.md',
+  'decision-record.md',
+  'implementation-summary.md',
+  path.join('research', 'research.md'),
+  'research.md',
+  'handover.md',
+  'resource-map.md',
+] as const;
 const SCAN_SKIP_DIRECTORIES = new Set([
   '.git',
   '.hg',
@@ -290,7 +302,8 @@ export function wouldWritePerFolderDescription(
     return true;
   }
   const payload = getDescriptionWritePayload(desc, loadExistingDescription(folderPath));
-  return descriptionContentFingerprint(prior) !== descriptionContentFingerprint(payload);
+  return descriptionContentFingerprint(prior) !== descriptionContentFingerprint(payload)
+    || isDescriptionSourceFreshnessStale(prior, payload, folderPath);
 }
 
 export function getRepairMergeSafe(): boolean {
@@ -322,12 +335,35 @@ function stableStringify(value: unknown): string {
 
 /**
  * Fingerprint a per-folder description payload over its content fields, excluding
- * the volatile lastUpdated stamp. Two derivations of identical content hash equal
- * even when their lastUpdated differs, so a no-op re-derive can be detected.
+ * lastUpdated. Source freshness is checked separately so manual timestamp changes
+ * remain non-semantic while a canonical document edit still triggers a write.
  */
 function descriptionContentFingerprint(payload: Record<string, unknown>): string {
   const { lastUpdated: _volatile, ...content } = payload;
   return crypto.createHash('sha256').update(stableStringify(content)).digest('hex');
+}
+
+function getDescriptionSourceFreshness(folderPath: string): string | null {
+  let latestMtimeMs = Number.NEGATIVE_INFINITY;
+  for (const relativePath of DESCRIPTION_SOURCE_DOCS) {
+    try {
+      latestMtimeMs = Math.max(latestMtimeMs, fs.statSync(path.join(folderPath, relativePath)).mtimeMs);
+    } catch (_error: unknown) {
+      // Missing optional canonical documents do not affect freshness.
+    }
+  }
+  return Number.isFinite(latestMtimeMs) ? new Date(latestMtimeMs).toISOString() : null;
+}
+
+function isDescriptionSourceFreshnessStale(
+  prior: Record<string, unknown>,
+  payload: Record<string, unknown>,
+  folderPath: string,
+): boolean {
+  const sourceFreshness = getDescriptionSourceFreshness(folderPath);
+  return sourceFreshness !== null
+    && payload.lastUpdated === sourceFreshness
+    && prior.lastUpdated !== sourceFreshness;
 }
 
 /**
@@ -957,10 +993,7 @@ function _processSpecFolder(
     return null;
   }
 
-  const rawDescription = extractDescription(content);
-  // Fall back to folder name when spec.md has no extractable title (F8 fix)
-  const description =
-    rawDescription || slugifyFolderName(path.basename(folderPath)).replace(/-/g, ' ') || path.basename(folderPath);
+  const description = extractDescriptionWithFolderFallback(content, folderPath);
 
   const keywords = extractKeywords(description);
   const legacyRelativeFolder = path.relative(basePath, folderPath).replace(/\\/g, '/');
@@ -973,7 +1006,7 @@ function _processSpecFolder(
     specFolder: normalizedRelativeFolder,
     description,
     keywords,
-    lastUpdated: timestamp,
+    lastUpdated: getDescriptionSourceFreshness(folderPath) ?? timestamp,
   };
 }
 
@@ -992,6 +1025,13 @@ export function slugifyFolderName(folderName: string): string {
     .toLowerCase()
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
+}
+
+function extractDescriptionWithFolderFallback(specContent: string, folderPath: string): string {
+  const folderName = path.basename(folderPath);
+  return extractDescription(specContent)
+    || slugifyFolderName(folderName).replace(/-/g, ' ')
+    || folderName;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -1027,10 +1067,9 @@ export function generatePerFolderDescription(
     return null;
   }
 
-  const description = extractDescription(content);
-
-  const keywords = extractKeywords(description);
   const folderName = path.basename(folderPath);
+  const description = extractDescriptionWithFolderFallback(content, folderPath);
+  const keywords = extractKeywords(description);
 
   // Extract numeric prefix (e.g. "010" from "009-spec-descriptions")
   const numMatch = folderName.match(/^(\d+)/);
@@ -1051,7 +1090,7 @@ export function generatePerFolderDescription(
     specFolder,
     description,
     keywords,
-    lastUpdated: new Date().toISOString(),
+    lastUpdated: getDescriptionSourceFreshness(folderPath) ?? new Date().toISOString(),
     specId,
     folderSlug,
     parentChain,
@@ -1141,6 +1180,7 @@ export function savePerFolderDescription(
     if (
       prior
       && descriptionContentFingerprint(prior) === descriptionContentFingerprint(payload)
+      && !isDescriptionSourceFreshnessStale(prior, payload, folderPath)
     ) {
       return;
     }

@@ -12,8 +12,9 @@
 # Default threshold: 100 files changed (post-commit). Tunable via
 #   SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD=<int>
 # Bypass code-graph invalidation: SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT=1
-# Disable just the rebuild (still print advisory): SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN=1
+# Disable marker creation (still print advisory): SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN=1
 # Bypass memory drift marker: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1
+# The hook has no destructive fallback; only the elected launcher owner may reset the DB.
 #
 # Install: bash .opencode/scripts/install-git-hooks.sh
 # Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
@@ -38,6 +39,11 @@ fi
 THRESHOLD="${SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD:-100}"
 DRY_RUN="${SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN:-0}"
 
+if ! [[ "$THRESHOLD" =~ ^[0-9]+$ ]]; then
+  echo "⚠️  code-graph: invalid post-commit threshold '$THRESHOLD'; continuing without invalidation." >&2
+  exit 0
+fi
+
 # Count files changed in the just-completed commit (HEAD).
 CHANGED="$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | wc -l | tr -d ' ' || true)"
 if [ -z "$CHANGED" ] || [ "$CHANGED" -lt 1 ]; then
@@ -49,39 +55,55 @@ if [ "$CHANGED" -lt "$THRESHOLD" ]; then
   exit 0
 fi
 
-DB_DIR="$REPO_ROOT/.opencode/.spec-kit/code-graph/database"
+CANONICAL_DB_DIR="$REPO_ROOT/.opencode/skills/system-code-graph/mcp_server/database"
+LEGACY_DB_DIR="$REPO_ROOT/.opencode/.spec-kit/code-graph/database"
+if [ -n "${SPECKIT_CODE_GRAPH_DB_DIR:-}" ]; then
+  DB_DIR="$SPECKIT_CODE_GRAPH_DB_DIR"
+elif [ -f "$CANONICAL_DB_DIR/code-graph.sqlite" ] \
+    || [ -f "$CANONICAL_DB_DIR/.code-graph-readiness.json" ] \
+    || [ -f "$CANONICAL_DB_DIR/.code-graph-invalidation.json" ]; then
+  DB_DIR="$CANONICAL_DB_DIR"
+else
+  DB_DIR="$LEGACY_DB_DIR"
+fi
 SQLITE="$DB_DIR/code-graph.sqlite"
-SHM="$DB_DIR/code-graph.sqlite-shm"
-WAL="$DB_DIR/code-graph.sqlite-wal"
 READINESS="$DB_DIR/.code-graph-readiness.json"
+INVALIDATION="$DB_DIR/.code-graph-invalidation.json"
 
-if [ ! -f "$SQLITE" ] && [ ! -f "$READINESS" ]; then
+if [ ! -f "$SQLITE" ] && [ ! -f "$READINESS" ] && [ ! -f "$INVALIDATION" ]; then
   # Nothing to invalidate — already absent or never built.
   exit 0
 fi
 
 if [ "$DRY_RUN" = "1" ]; then
   echo "" >&2
-  echo "⚠️  code-graph: $CHANGED files changed in HEAD (>= $THRESHOLD); DRY-RUN — would invalidate $DB_DIR" >&2
+  echo "⚠️  code-graph: $CHANGED files changed in HEAD (>= $THRESHOLD); DRY-RUN — would write atomic invalidation marker in $DB_DIR" >&2
   echo "" >&2
   exit 0
 fi
 
-# Invalidate the DB + lease files. Next launcher boot will detect empty DB
-# and run an inline full scan during MCP startup.
-if ! rm -f "$SQLITE" "$SHM" "$WAL" "$READINESS" \
-      "$DB_DIR/.mk-code-index-launcher.json" \
-      "$DB_DIR/.code-graph-owner.json"; then
+MARKER_TMP="$INVALIDATION.tmp.$$"
+CREATED_AT="$(date -u '+%Y-%m-%dT%H:%M:%SZ' 2>/dev/null || printf 'unknown')"
+COMMIT_SHA="$(git rev-parse HEAD 2>/dev/null || printf 'unknown')"
+
+# A same-directory rename publishes one complete marker without touching live SQLite inodes.
+if ! (
+  umask 077
+  printf '{"version":1,"reason":"post-commit-threshold","commit":"%s","changedFiles":%s,"threshold":%s,"createdAt":"%s"}\n' \
+    "$COMMIT_SHA" "$CHANGED" "$THRESHOLD" "$CREATED_AT" > "$MARKER_TMP"
+  mv -f "$MARKER_TMP" "$INVALIDATION"
+); then
+  rm -f "$MARKER_TMP" 2>/dev/null || true
   echo "" >&2
-  echo "⚠️  code-graph: failed to invalidate advisory state; continuing." >&2
+  echo "⚠️  code-graph: failed to write invalidation marker; continuing." >&2
   echo "" >&2
   exit 0
 fi
 
 echo "" >&2
 echo "⚠️  code-graph: $CHANGED files changed in HEAD (>= $THRESHOLD)" >&2
-echo "    Invalidated code-graph SQLite + lease files." >&2
-echo "    Next Claude Code session will run an inline full scan on boot (~3-5 min)." >&2
+echo "    Wrote atomic invalidation marker; live SQLite and lease files were preserved." >&2
+echo "    Next elected code-graph launcher will reset and run an inline full scan on boot (~3-5 min)." >&2
 echo "    Bypass next time: SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT=1 git commit ..." >&2
 echo "    Adjust threshold: SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD=<int>" >&2
 echo "" >&2

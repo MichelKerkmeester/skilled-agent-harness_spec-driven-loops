@@ -146,13 +146,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Review Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -176,12 +176,6 @@
         "source": "derived"
       },
       {
-        "name": "Resolved Questions",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -198,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "F3 — Git-hook lock directory has no stale-lock recovery",
     "created_at": "2026-07-09T15:11:33.252Z",
-    "last_save_at": "2026-07-10T03:44:44.865Z",
+    "last_save_at": "2026-07-10T08:09:25.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fc8b3064eac2c3bb72d16faf6209d3f47ce9f3ce7988401db1945ecf382d11a",
+    "source_fingerprint": "sha256:1977b4f1cf8b3c911256e1185fcbc9f641dd103345afbb9f19dcae6a5eaabfb2",
     "source_doc_hashes": {
-      "spec.md": "bbeffdc1678ff0150d0782f13528efeeee1be1eef012a26d157e62257ff65ddf",
-      "plan.md": "aaa1e98f359d4e4d9e392c1afa86278ba52150b57b98edbbdac50bb0e9047f7e",
-      "tasks.md": "db4cb079e5ea471644b527c199ca27623e7975b1dc7665eae1f05fecf21a8067",
-      "checklist.md": "3f976ede943dd1118f7c9fe54927e169eacc70498b0605e16e291c91dc3bc281",
-      "implementation-summary.md": "93f3beab9077ce6b70f9f890c8aa2444d97db47b32b337b923262281425fe0e5"
+      "spec.md": "b0c1bdede0f46a5c3331481174d5575105b78884357b0bc75944614fbbed56dc",
+      "plan.md": "fedcb49d2d73a37acbd5226ccf6c97955026bd6a0cdeabd9a4be0c54248769bf",
+      "tasks.md": "2157443bbfa9b050de3d94ab9989071df78bfa25b0a37cce430dea530d022633",
+      "checklist.md": "efc4b9d75379c09352bda9283b30b0b83fd522ad3fc658caab2266f139d66999",
+      "implementation-summary.md": "84dc159e7262ea8c0d8839ac3a50a7af6a723728299d9d8c0385f68a53fe56c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

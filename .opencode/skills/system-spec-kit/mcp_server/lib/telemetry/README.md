@@ -88,7 +88,6 @@ Does not own:
 | Variable | Default | Scope |
 | --- | --- | --- |
 | `SPECKIT_EXTENDED_TELEMETRY` | `false` | Enables detailed retrieval metrics. |
-| `SPECKIT_NOVELTY_BOOST` | unset | Gates novelty scoring observation fields. |
 | `SPECKIT_INTERFERENCE_SCORE` | unset | Gates interference scoring observation fields. |
 | `SPECKIT_CONSUMPTION_LOG` | `true` | Enables consumption event logging unless rollout policy or an explicit `false`/`0` disables it. |
 

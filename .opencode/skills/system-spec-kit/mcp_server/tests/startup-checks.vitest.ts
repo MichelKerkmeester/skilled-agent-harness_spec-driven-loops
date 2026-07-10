@@ -7,6 +7,7 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import {
   checkSqliteVersion,
   checkJournalMode,
+  consumeMemoryDriftDirtyMarker,
   detectNodeVersionMismatch,
   detectRuntimeMismatch,
   sweepStaleMemoryDriftProcessingMarkers,
@@ -361,12 +362,27 @@ describe('Startup Checks', () => {
 
       fs.writeFileSync(`${markerPath}.processing-333-3000`, '{not-valid-json');
 
-      expect(() => sweepStaleMemoryDriftProcessingMarkers({ databasePath: dbPath })).not.toThrow();
       const result = sweepStaleMemoryDriftProcessingMarkers({ databasePath: dbPath });
 
-      expect(result).toEqual({ recovered: 0, unrecoverable: 0, entries: 0 });
+      expect(result).toEqual({ recovered: 0, unrecoverable: 1, entries: 0 });
       expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('malformed or empty'));
       expect(fs.existsSync(markerPath)).toBe(false);
+      expect(fs.existsSync(`${markerPath}.processing-333-3000`)).toBe(false);
+    });
+
+    it('retains stale markers when a non-missing-file read error prevents recovery', () => {
+      const dbPath = tempDbPath();
+      fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+      const markerPath = resolveMemoryDriftMarkerPath(dbPath);
+      const unreadablePath = `${markerPath}.processing-99999999-4000`;
+      fs.mkdirSync(unreadablePath);
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      const result = sweepStaleMemoryDriftProcessingMarkers({ databasePath: dbPath });
+
+      expect(result).toEqual({ recovered: 0, unrecoverable: 1, entries: 0 });
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('unreadable'));
+      expect(fs.existsSync(unreadablePath)).toBe(true);
     });
 
     it('merges recovered entries into an existing live canonical marker instead of clobbering it', () => {
@@ -392,5 +408,88 @@ describe('Startup Checks', () => {
         '.opencode/specs/demo/stale/spec.md',
       ]);
     });
+  });
+});
+
+describe('Memory drift marker read retention', () => {
+  const tempRoots: string[] = [];
+
+  function createMarker(raw: string): {
+    databasePath: string;
+    markerPath: string;
+    workspacePath: string;
+  } {
+    const workspacePath = fs.mkdtempSync(path.join(os.tmpdir(), 'drift-consume-'));
+    tempRoots.push(workspacePath);
+    const databasePath = path.join(workspacePath, 'database', 'context-index.sqlite');
+    const markerPath = resolveMemoryDriftMarkerPath(databasePath);
+    fs.mkdirSync(path.dirname(databasePath), { recursive: true });
+    fs.writeFileSync(markerPath, raw, 'utf8');
+    return { databasePath, markerPath, workspacePath };
+  }
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    for (const root of tempRoots.splice(0)) {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('restores a claimed marker after a transient EACCES read failure', async () => {
+    const raw = JSON.stringify({
+      version: 1,
+      entries: [{ kind: 'delete', oldPath: '.opencode/specs/demo/spec.md' }],
+    });
+    const fixture = createMarker(raw);
+    const originalReadFileSync = fs.readFileSync.bind(fs);
+    vi.spyOn(fs, 'readFileSync').mockImplementation((...args: Parameters<typeof fs.readFileSync>) => {
+      const [filePath] = args;
+      if (typeof filePath === 'string' && filePath.startsWith(`${fixture.markerPath}.processing-`)) {
+        const error = new Error('permission denied') as NodeJS.ErrnoException;
+        error.code = 'EACCES';
+        throw error;
+      }
+      return originalReadFileSync(...args);
+    });
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    const result = await consumeMemoryDriftDirtyMarker({
+      databasePath: fixture.databasePath,
+      workspacePath: fixture.workspacePath,
+      runScopedScan: vi.fn(),
+    });
+
+    expect(result.consumed).toBe(false);
+    expect(result.error).toContain('permission denied');
+    expect(fs.readFileSync(fixture.markerPath, 'utf8')).toBe(raw);
+    expect(fs.readdirSync(path.dirname(fixture.markerPath)).some((entry) => entry.includes('.processing-'))).toBe(false);
+  });
+
+  it('deletes retained malformed bytes only after a retry proves they are invalid', async () => {
+    const fixture = createMarker('{not-valid-json');
+    const readSpy = vi.spyOn(fs, 'readFileSync').mockImplementationOnce(() => {
+      const error = new Error('permission denied') as NodeJS.ErrnoException;
+      error.code = 'EACCES';
+      throw error;
+    });
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    const options = {
+      databasePath: fixture.databasePath,
+      workspacePath: fixture.workspacePath,
+      runScopedScan: vi.fn(),
+    };
+    const deferred = await consumeMemoryDriftDirtyMarker(options);
+
+    expect(deferred.consumed).toBe(false);
+    expect(fs.existsSync(fixture.markerPath)).toBe(true);
+
+    readSpy.mockRestore();
+    const discarded = await consumeMemoryDriftDirtyMarker(options);
+
+    expect(discarded).toMatchObject({ consumed: true, entries: 0, error: null });
+    expect(fs.existsSync(fixture.markerPath)).toBe(false);
+    expect(fs.readdirSync(path.dirname(fixture.markerPath)).some((entry) => entry.includes('.processing-'))).toBe(false);
+    expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('malformed or empty'));
   });
 });

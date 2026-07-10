@@ -15,8 +15,13 @@ import {
   type MemoryDriftProcessingSweepResult,
   sweepStaleMemoryDriftProcessingMarkers,
 } from './lib/storage/memory-drift-processing-sweep.js';
+import type {
+  MemoryIndexRepairResult,
+  MemoryIndexRepairStatus,
+} from './handlers/memory-index.js';
 
 export type { MemoryDriftProcessingSweepResult };
+export type { MemoryIndexRepairResult, MemoryIndexRepairStatus };
 export { sweepStaleMemoryDriftProcessingMarkers };
 
 /* ───────────────────────────────────────────────────────────────
@@ -48,14 +53,55 @@ export interface MemoryDriftMarkerConsumeResult {
   entries: number;
   scopedPaths: string[];
   movedFolders: string[];
+  repairStatus: MemoryIndexRepairStatus | null;
   error: string | null;
 }
 
 export interface MemoryDriftMarkerConsumeOptions {
   databasePath: string;
   workspacePath: string;
-  runScopedScan: (scopedPaths: string[]) => Promise<void>;
+  runScopedScan: (scopedPaths: string[]) => Promise<MemoryIndexRepairResult | void>;
   refreshMovedSpecFolder?: (folderPath: string) => void;
+}
+
+const MEMORY_INDEX_REPAIR_STATUSES = new Set<MemoryIndexRepairStatus>([
+  'complete',
+  'partial',
+  'coalesced',
+  'contended',
+  'failed',
+]);
+
+/** Converts an MCP scan envelope into the startup repair contract. */
+export function resolveMemoryIndexRepairResult(response: unknown): MemoryIndexRepairResult {
+  const mcpResponse = response && typeof response === 'object'
+    ? response as { isError?: unknown; content?: Array<{ text?: unknown }> }
+    : null;
+  if (!mcpResponse || mcpResponse.isError === true) {
+    return { status: 'failed', scanStatus: null, reason: null };
+  }
+
+  try {
+    const text = mcpResponse.content?.[0]?.text;
+    if (typeof text !== 'string') {
+      return { status: 'failed', scanStatus: null, reason: 'missing scan envelope' };
+    }
+    const envelope = JSON.parse(text) as { data?: Record<string, unknown> };
+    const data = envelope.data;
+    const scanStatus = typeof data?.status === 'string' ? data.status : null;
+    const reason = typeof data?.reason === 'string' ? data.reason : null;
+    const repairStatus = data?.repairStatus;
+    if (typeof repairStatus === 'string' && MEMORY_INDEX_REPAIR_STATUSES.has(repairStatus as MemoryIndexRepairStatus)) {
+      return { status: repairStatus as MemoryIndexRepairStatus, scanStatus, reason };
+    }
+    return { status: 'failed', scanStatus, reason: reason ?? 'missing repair status' };
+  } catch (error: unknown) {
+    return {
+      status: 'failed',
+      scanStatus: null,
+      reason: error instanceof Error ? error.message : String(error),
+    };
+  }
 }
 
 function getCurrentRuntimeSnapshot(): RuntimeSnapshot {
@@ -256,7 +302,14 @@ export async function consumeMemoryDriftDirtyMarker(
 ): Promise<MemoryDriftMarkerConsumeResult> {
   const markerPath = resolveMemoryDriftMarkerPath(options.databasePath);
   if (!fs.existsSync(markerPath)) {
-    return { consumed: false, entries: 0, scopedPaths: [], movedFolders: [], error: null };
+    return {
+      consumed: false,
+      entries: 0,
+      scopedPaths: [],
+      movedFolders: [],
+      repairStatus: null,
+      error: null,
+    };
   }
 
   const processingPath = `${markerPath}.processing-${process.pid}-${Date.now()}`;
@@ -265,7 +318,14 @@ export async function consumeMemoryDriftDirtyMarker(
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[context-server] ${MEMORY_DRIFT_MARKER_FILENAME} consume skipped: ${message}`);
-    return { consumed: false, entries: 0, scopedPaths: [], movedFolders: [], error: message };
+    return {
+      consumed: false,
+      entries: 0,
+      scopedPaths: [],
+      movedFolders: [],
+      repairStatus: null,
+      error: message,
+    };
   }
 
   let raw = '';
@@ -273,16 +333,36 @@ export async function consumeMemoryDriftDirtyMarker(
     raw = fs.readFileSync(processingPath, 'utf8');
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
-    console.warn(`[context-server] ${MEMORY_DRIFT_MARKER_FILENAME} unreadable; ignoring: ${message}`);
-    try { fs.unlinkSync(processingPath); } catch (_unlinkError: unknown) { /* marker cleanup is best-effort */ }
-    return { consumed: true, entries: 0, scopedPaths: [], movedFolders: [], error: message };
+    try {
+      if (!fs.existsSync(markerPath)) {
+        fs.renameSync(processingPath, markerPath);
+      }
+    } catch (_restoreError: unknown) {
+      // Keep the processing copy for the startup sweep when direct restore fails.
+    }
+    console.warn(`[context-server] ${MEMORY_DRIFT_MARKER_FILENAME} unreadable; retained for retry: ${message}`);
+    return {
+      consumed: false,
+      entries: 0,
+      scopedPaths: [],
+      movedFolders: [],
+      repairStatus: null,
+      error: message,
+    };
   }
 
   const parsed = parseMemoryDriftMarker(raw);
   if (!parsed || parsed.entries.length === 0) {
     console.warn(`[context-server] ${MEMORY_DRIFT_MARKER_FILENAME} malformed or empty; ignoring`);
     try { fs.unlinkSync(processingPath); } catch (_unlinkError: unknown) { /* marker cleanup is best-effort */ }
-    return { consumed: true, entries: 0, scopedPaths: [], movedFolders: [], error: null };
+    return {
+      consumed: true,
+      entries: 0,
+      scopedPaths: [],
+      movedFolders: [],
+      repairStatus: null,
+      error: null,
+    };
   }
 
   const entriesByKey = new Map(parsed.entries.map((entry) => [memoryDriftMarkerEntryKey(entry), entry]));
@@ -299,17 +379,30 @@ export async function consumeMemoryDriftDirtyMarker(
     return folder ? [folder] : [];
   })));
 
+  let repairStatus: MemoryIndexRepairStatus | null = null;
   try {
     if (scopedPaths.length > 0) {
-      await options.runScopedScan(scopedPaths);
+      const repairResult = await options.runScopedScan(scopedPaths);
+      repairStatus = repairResult?.status ?? 'complete';
+      if (repairStatus !== 'complete') {
+        throw new Error(`Scoped memory-index repair did not complete (${repairStatus})`);
+      }
     }
     for (const folder of movedFolders) {
       options.refreshMovedSpecFolder?.(folder);
     }
     fs.unlinkSync(processingPath);
     console.error(`[context-server] Consumed ${MEMORY_DRIFT_MARKER_FILENAME}: ${entries.length} entr${entries.length === 1 ? 'y' : 'ies'}, ${scopedPaths.length} scoped path(s)`);
-    return { consumed: true, entries: entries.length, scopedPaths, movedFolders, error: null };
+    return {
+      consumed: true,
+      entries: entries.length,
+      scopedPaths,
+      movedFolders,
+      repairStatus,
+      error: null,
+    };
   } catch (error: unknown) {
+    repairStatus ??= 'failed';
     const message = error instanceof Error ? error.message : String(error);
     try {
       if (!fs.existsSync(markerPath)) {
@@ -319,6 +412,13 @@ export async function consumeMemoryDriftDirtyMarker(
       // The marker is advisory; a failed restore must not block startup.
     }
     console.warn(`[context-server] ${MEMORY_DRIFT_MARKER_FILENAME} consume failed: ${message}`);
-    return { consumed: false, entries: entries.length, scopedPaths, movedFolders, error: message };
+    return {
+      consumed: false,
+      entries: entries.length,
+      scopedPaths,
+      movedFolders,
+      repairStatus,
+      error: message,
+    };
   }
 }

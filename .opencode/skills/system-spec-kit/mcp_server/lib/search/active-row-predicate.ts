@@ -3,7 +3,6 @@
 // ───────────────────────────────────────────────────────────────
 
 import { getSearchableTiersFilter } from '../scoring/importance-tiers.js';
-import { isArchivedRetrievalIncludedByDefault } from './search-flags.js';
 
 export type ActiveRowLane = 'ranked' | 'constitutional';
 
@@ -36,7 +35,7 @@ function resolveLane(lane: ActiveRowPredicateOptions['lane']): ActiveRowLane {
 }
 
 function resolveIncludeCold(options: ActiveRowPredicateOptions): boolean {
-  return options.includeCold ?? isArchivedRetrievalIncludedByDefault();
+  return options.includeArchived === true || options.includeCold === true;
 }
 
 export function ACTIVE_ROW_SQL(alias: string, options: ActiveRowPredicateOptions = {}): string {
@@ -80,8 +79,8 @@ export function isActiveRow(row: ActiveRowLike, options: ActiveRowPredicateOptio
 
   const tier = String(tierValue).toLowerCase();
   if (tier === 'constitutional') return false;
-  if (resolveIncludeCold(options)) return true;
-  if (tier === 'deprecated') return false;
-  if (tier === 'archived' && !options.includeArchived) return false;
+  if (tier === 'deprecated' || tier === 'archived') {
+    return resolveIncludeCold(options);
+  }
   return true;
 }

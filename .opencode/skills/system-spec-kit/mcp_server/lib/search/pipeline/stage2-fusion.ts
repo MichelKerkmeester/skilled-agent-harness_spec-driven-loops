@@ -1142,7 +1142,10 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
   if (isHybrid && config.enableCausalBoost && isGraphUnifiedEnabled()) {
     try {
       const beforeScores = new Map(results.map((row) => [row.id, resolveBaseScore(row)]));
-      const { results: boosted, metadata: cbMeta } = causalBoost.applyCausalBoost(results);
+      const { results: boosted, metadata: cbMeta } = causalBoost.applyCausalBoost(results, {
+        query: config.query,
+        intent: config.detectedIntent ?? undefined,
+      });
       results = (boosted as PipelineRow[]).map((row) => {
         const previous = beforeScores.get(row.id) ?? 0;
         const next = resolveBaseScore(row);
@@ -1157,7 +1160,10 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
       syncScoreAliasesInPlace(results);
       metadata.causalBoostApplied = cbMeta.applied ? 'applied' : 'enabled';
       if (cbMeta.channelExceptions && cbMeta.channelExceptions.length > 0) {
-        metadata.channelExceptions = cbMeta.channelExceptions;
+        metadata.channelExceptions = cbMeta.channelExceptions.map((entry) => ({ ...entry }));
+      }
+      if (cbMeta.graphContext) {
+        metadata.graphContext = cbMeta.graphContext;
       }
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);

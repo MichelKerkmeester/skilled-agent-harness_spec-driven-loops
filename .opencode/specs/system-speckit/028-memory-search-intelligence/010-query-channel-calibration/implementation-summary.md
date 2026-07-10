@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/010-query-channel-calibration"
-    last_updated_at: "2026-07-09T14:20:00.000Z"
-    last_updated_by: "opencode"
-    recent_action: "Implemented router calibration, runtime skip metadata, and channel exception metadata"
-    next_safe_action: "Review verification limitations"
+    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_by: "claude-code"
+    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
+    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers: []
     key_files: []
     session_dedup:
@@ -54,7 +54,7 @@ Implemented the query-channel calibration and visibility fix.
 
 ### Query-Channel Calibration and Visibility
 
-The shipped change keeps content-rich 2-3 term queries in the `simple` tier but preserves graph and degree channels for them when the dedicated default-on flag is enabled. Single-token lookups and trigger-anchored controls remain on the narrow fast path.
+The shipped change keeps content-rich 2-3 term queries in the `simple` tier but preserves graph and degree channels for them when the dedicated flag is enabled. The flag is HELD at default-OFF (opt-in): the 2026-07-09 audit found the earlier default-on wording here contradicted both the code and ENV_REFERENCE, and graduation is deferred until the now-shipped response-path wiring has a production-path benchmark behind it. Single-token lookups and trigger-anchored controls remain on the narrow fast path.
 
 Runtime channel visibility is additive. The existing `s3meta.routing.skippedChannels: string[]` shape is preserved, while `skippedChannelDetails` and `channelExceptions` provide structured reasons for planned skips, runtime skips, and fail-open exceptions.
 

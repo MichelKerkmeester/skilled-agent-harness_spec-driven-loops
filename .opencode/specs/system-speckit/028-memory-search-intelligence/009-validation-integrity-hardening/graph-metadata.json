@@ -183,6 +183,12 @@
         "source": "derived"
       },
       {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement Four",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -193,17 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Close",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four independent gaps let bad spec-folder data pass `validate.sh` clean:",
     "created_at": "2026-07-09T06:21:25.841Z",
-    "last_save_at": "2026-07-10T03:44:44.318Z",
+    "last_save_at": "2026-07-10T08:09:24.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73590f6a4fa3fde4f9f6aea2eeefba0778c8aa92e1d377e8a575f0a715d29095",
+    "source_fingerprint": "sha256:f4df98e8f6cc78e053a611b6587ea909d6632049002fbcd4561798375a1dee1d",
     "source_doc_hashes": {
-      "spec.md": "956de49851cb9f17ce8333159520ac8e64b729c1096e4eedd88a13904c04cc81",
-      "plan.md": "97ecdfb52840779f95f381d3049fe15369031aeae90c5c5f4f16de6872e56f54",
-      "tasks.md": "354207bcec7c1ab0444c9dc2d514a1a83552191fec47aa450e798d68f6a49491",
-      "checklist.md": "a08172a68d9e2dd635d1bc2650b6f789f0cd699c45b1e19e745d27cabd825e9f",
-      "implementation-summary.md": "57a4738ee6e58d19c2629e9204fe68bedc2cb6b773d740a707988559e5793f4b"
+      "spec.md": "cef964c7fc9a2370643314f3493d21caae308fb0c2b9dac25f6234896db14a8f",
+      "plan.md": "b07195f9bc1ba91a0b18e3774a07ca967d59d98184380052ab2b94346a3108b8",
+      "tasks.md": "74611611d48bf88ff63f207be2870120a5d75731a0f1925e2a17ea07f67ce26a",
+      "checklist.md": "19be2f17d4cd6d4bfcd0c935fca043eecd5aea048409307b73f84e176ee2d127",
+      "implementation-summary.md": "33d992cef01af0881f05d66629b21419c5ab9d776bd06d117f72e2f1abb79b71"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,10 +1,13 @@
+// ───────────────────────────────────────────────────────────────
+// TEST: DEFERRED DRIFT-SUSPECT WRITES
+// ───────────────────────────────────────────────────────────────
 import Database from 'better-sqlite3';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { appendMemoryDriftSuspects, readMemoryDriftSuspects } from '../lib/storage/memory-drift-healing.js';
+import { readMemoryDriftSuspects } from '../lib/storage/memory-drift-healing.js';
 
 // Provides a mutable database connection to the mocked `requireDb()` below, so
 // each test can point the code under test at its own on-disk fixture without
@@ -38,7 +41,7 @@ function tempRoot(prefix: string): string {
   return root;
 }
 
-describe('F8: bounded drift-suspect write timeout under lock contention', () => {
+describe('deferred drift-suspect writes', () => {
   let dbDir: string;
   let dbPath: string;
   // connA mirrors a separate concurrent writer holding a write lock on the same
@@ -60,9 +63,12 @@ describe('F8: bounded drift-suspect write timeout under lock contention', () => 
     // Matches the production default set in vector-index-store.ts on every real connection.
     connB.pragma('busy_timeout = 10000');
     currentDb = connB;
+    searchTestables.resetDeferredSearchWriteDiagnosticsForTests();
   });
 
-  afterEach(() => {
+  afterEach(async () => {
+    await searchTestables.waitForDeferredSearchWritesForTests();
+    searchTestables.resetDeferredSearchWriteDiagnosticsForTests();
     vi.restoreAllMocks();
     try { connA.exec('ROLLBACK'); } catch { /* no open transaction to roll back */ }
     connA.close();
@@ -74,33 +80,11 @@ describe('F8: bounded drift-suspect write timeout under lock contention', () => 
     }
   });
 
-  it('BASELINE: without the fast-fail bound, a write blocked by a held lock waits out the full connection busy_timeout instead of failing fast', () => {
-    connA.exec('BEGIN IMMEDIATE');
-    // Shortened only for test speed; proves the pre-fix *mechanism* (the write
-    // blocks for ~busy_timeout under contention with no fast-fail bound applied),
-    // matching the ~10,293ms real-world measurement against the production
-    // 10,000ms busy_timeout at a scale a unit test can run in well under a second.
-    connB.pragma('busy_timeout = 300');
-    const start = Date.now();
-    let threw = false;
-    try {
-      appendMemoryDriftSuspects(connB, [4242]);
-    } catch (error: unknown) {
-      threw = true;
-      expect((error as { code?: string }).code).toBe('SQLITE_BUSY');
-    }
-    const elapsed = Date.now() - start;
-    expect(threw).toBe(true);
-    expect(elapsed).toBeGreaterThanOrEqual(280);
-    connB.pragma('busy_timeout = 10000');
-  });
-
-  it('REQ-001: under a held write lock, the fixed suspect-write path fails in under 100ms and the filtered result set is returned unaffected', () => {
+  it('returns the filtered result before the copied suspect batch is appended', async () => {
     const root = tempRoot('existence-filter-');
     const existingPath = path.join(root, 'spec.md');
     fs.writeFileSync(existingPath, '# spec');
     const missingPath = path.join(root, 'plan.md');
-    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
     connA.exec('BEGIN IMMEDIATE');
 
@@ -112,62 +96,69 @@ describe('F8: bounded drift-suspect write timeout under lock contention', () => 
     const elapsed = Date.now() - start;
 
     expect(elapsed).toBeLessThan(100);
-    // The search response itself (the filtered result set) is not delayed or
-    // altered by the contended best-effort write.
     expect(filtered.results.map((result) => result.id)).toEqual([1]);
     expect(filtered.stats).toMatchObject({ checked: 2, excluded: 1, suspectIds: [4242] });
-    // Existing best-effort contract preserved: no throw, degrade-and-log instead.
-    expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('[memory-search] Could not queue drift suspect rows'));
-  });
+    expect(searchTestables.getDeferredSearchWriteDiagnostics().queued).toBe(0);
 
-  it('the connection busy_timeout is restored to its pre-call value after the fast-fail path, verified via a subsequent unrelated query', () => {
-    const root = tempRoot('existence-filter-restore-');
-    const missingPath = path.join(root, 'plan.md');
-    vi.spyOn(console, 'warn').mockImplementation(() => {});
-
-    connA.exec('BEGIN IMMEDIATE');
-    searchTestables.applyQueryTimeExistenceFilter([
-      { id: 4243, file_path: missingPath, score: 0.9 },
-    ]);
-
-    expect(connB.pragma('busy_timeout', { simple: true })).toBe(10000);
-
+    expect(searchTestables.enqueueDeferredDriftSuspects(filtered.stats.suspectIds)).toBe(true);
+    expect(connB.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'config'").get()).toBeUndefined();
     connA.exec('COMMIT');
-    // A subsequent unrelated query on the same connection must observe the
-    // restored default, not the shortened fast-fail window.
-    const row = connB.prepare('SELECT 1 as one').get() as { one: number };
-    expect(row.one).toBe(1);
-    expect(connB.pragma('busy_timeout', { simple: true })).toBe(10000);
+    await searchTestables.waitForDeferredSearchWritesForTests();
+
+    expect(readMemoryDriftSuspects(connB).map((suspect) => suspect.id)).toEqual([4242]);
   });
 
-  it('a normal (non-contended) write still succeeds and the suspect queue reflects the new ids, unchanged from today', () => {
-    const root = tempRoot('existence-filter-normal-');
-    const missingPath = path.join(root, 'plan.md');
-    vi.spyOn(console, 'warn').mockImplementation(() => {});
-
-    const filtered = searchTestables.applyQueryTimeExistenceFilter([
-      { id: 4244, file_path: missingPath, score: 0.9 },
-    ]);
-
-    expect(filtered.stats.suspectIds).toEqual([4244]);
-    expect(readMemoryDriftSuspects(connB).map((suspect) => suspect.id)).toEqual([4244]);
-  });
-
-  it('a non-timeout failure from the suspect-write call is still caught by the existing outer try/catch, unchanged from today', () => {
-    const root = tempRoot('existence-filter-nontimeout-');
+  it('retries lock contention within a bounded window and reports the final loss counter', async () => {
+    const root = tempRoot('existence-filter-contention-');
     const missingPath = path.join(root, 'plan.md');
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
-    // Force a non-lock-related failure (closed connection) rather than SQLITE_BUSY.
-    connB.close();
+    connA.exec('BEGIN IMMEDIATE');
+    const filtered = searchTestables.applyQueryTimeExistenceFilter([
+      { id: 4244, file_path: missingPath, score: 0.9 },
+    ]);
+    const start = Date.now();
+    searchTestables.enqueueDeferredDriftSuspects(filtered.stats.suspectIds);
+    await searchTestables.waitForDeferredSearchWritesForTests();
+    const elapsed = Date.now() - start;
 
-    expect(() => searchTestables.applyQueryTimeExistenceFilter([
+    expect(elapsed).toBeLessThan(250);
+    expect(searchTestables.getDeferredSearchWriteDiagnostics()).toMatchObject({
+      queued: 0,
+      retryTotal: 2,
+      failureTotal: 1,
+    });
+    expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('failures=1'));
+    connA.exec('COMMIT');
+    expect(readMemoryDriftSuspects(connB)).toEqual([]);
+  });
+
+  it('guards a busy_timeout restoration failure and marks the connection unhealthy', async () => {
+    const root = tempRoot('existence-filter-restore-');
+    const missingPath = path.join(root, 'plan.md');
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const originalPragma = connB.pragma.bind(connB);
+    let shortened = false;
+    vi.spyOn(connB, 'pragma').mockImplementation(((source: string, options?: { simple?: boolean }) => {
+      if (source === 'busy_timeout = 25') {
+        shortened = true;
+      } else if (shortened && source === 'busy_timeout = 10000') {
+        throw new Error('forced restore failure');
+      }
+      return originalPragma(source, options as never);
+    }) as typeof connB.pragma);
+
+    const filtered = searchTestables.applyQueryTimeExistenceFilter([
       { id: 4245, file_path: missingPath, score: 0.9 },
-    ])).not.toThrow();
-    expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('[memory-search] Could not queue drift suspect rows'));
+    ]);
+    searchTestables.enqueueDeferredDriftSuspects(filtered.stats.suspectIds);
+    await searchTestables.waitForDeferredSearchWritesForTests();
 
-    // Prevent the afterEach hook from re-closing an already-closed connection.
-    connB = new Database(dbPath);
-    currentDb = connB;
+    expect(readMemoryDriftSuspects(connB).map((suspect) => suspect.id)).toEqual([4245]);
+    expect(searchTestables.getDeferredSearchWriteDiagnostics()).toMatchObject({
+      failureTotal: 0,
+      restoreFailureTotal: 1,
+    });
+    expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('connection marked unhealthy'));
   });
 });

@@ -19,6 +19,7 @@ import {
   generatePerFolderDescription,
   loadPerFolderDescription,
   savePerFolderDescription,
+  wouldWritePerFolderDescription,
   isPerFolderDescriptionStale,
   slugifyFolderName,
 } from '../lib/search/folder-discovery';
@@ -767,7 +768,7 @@ describe('T009 generatePerFolderDescription', () => {
     expect(result).toBeNull();
   });
 
-  it('returns blank description metadata for whitespace-only spec.md', () => {
+  it('derives folder description metadata for whitespace-only spec.md', () => {
     const blankDir = path.join(tmpDir2, '006-blank-spec');
     fs.mkdirSync(blankDir, { recursive: true });
     fs.writeFileSync(path.join(blankDir, 'spec.md'), '\n   \n', 'utf-8');
@@ -776,8 +777,42 @@ describe('T009 generatePerFolderDescription', () => {
     expect(result).not.toBeNull();
     expect(result!.specId).toBe('006');
     expect(result!.folderSlug).toBe('blank-spec');
-    expect(result!.description).toBe('');
-    expect(result!.keywords).toEqual([]);
+    expect(result!.description).toBe('blank spec');
+    expect(result!.keywords).toEqual(['blank', 'spec']);
+  });
+
+  it('uses canonical document freshness and writes when a source changes', () => {
+    const specDir = path.join(tmpDir2, '013-source-freshness');
+    const specPath = path.join(specDir, 'spec.md');
+    const planPath = path.join(specDir, 'plan.md');
+    const firstSpecTime = new Date('2026-01-01T00:00:00.000Z');
+    const firstPlanTime = new Date('2026-01-02T00:00:00.000Z');
+    const updatedPlanTime = new Date('2026-01-03T00:00:00.000Z');
+    fs.mkdirSync(specDir, { recursive: true });
+    fs.writeFileSync(specPath, '# Stable Synopsis\n\nContent.');
+    fs.writeFileSync(planPath, '# Initial Plan\n');
+    fs.utimesSync(specPath, firstSpecTime, firstSpecTime);
+    fs.utimesSync(planPath, firstPlanTime, firstPlanTime);
+
+    const first = generatePerFolderDescription(specDir, tmpDir2);
+    expect(first).not.toBeNull();
+    expect(first!.lastUpdated).toBe(firstPlanTime.toISOString());
+    savePerFolderDescription(first!, specDir);
+
+    fs.writeFileSync(planPath, '# Revised Plan\n');
+    fs.utimesSync(planPath, updatedPlanTime, updatedPlanTime);
+    const revised = generatePerFolderDescription(specDir, tmpDir2);
+    expect(revised).not.toBeNull();
+    expect(revised!.description).toBe(first!.description);
+    expect(revised!.lastUpdated).toBe(updatedPlanTime.toISOString());
+    expect(wouldWritePerFolderDescription(revised!, specDir)).toBe(true);
+    savePerFolderDescription(revised!, specDir);
+    expect(loadPerFolderDescription(specDir)?.lastUpdated).toBe(updatedPlanTime.toISOString());
+
+    const unchanged = generatePerFolderDescription(specDir, tmpDir2);
+    expect(unchanged).not.toBeNull();
+    expect(unchanged!.lastUpdated).toBe(updatedPlanTime.toISOString());
+    expect(wouldWritePerFolderDescription(unchanged!, specDir)).toBe(false);
   });
 
   it('preserves existing memorySequence on regeneration', () => {

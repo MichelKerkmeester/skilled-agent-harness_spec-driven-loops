@@ -35,6 +35,7 @@ import {
 } from '../search-flags.js';
 import { applyDeterministicMultihop } from '../deterministic-multihop.js';
 import { applyLaneChampionBackfill } from '../lane-champion-backfill.js';
+import { appendChannelSkipDetail } from '../channel-exceptions.js';
 import { executeStage1 } from './stage1-candidate-gen.js';
 import { executeStage2 } from './stage2-fusion.js';
 import { executeStage3 } from './stage3-rerank.js';
@@ -44,6 +45,7 @@ import { readLaneLists, resolveEffectiveScore } from './types.js';
 import type {
   ConfidenceTruncationMetadata,
   LaneCandidateList,
+  PipelineChannelTelemetry,
   PipelineConfig,
   PipelineResult,
   PipelineRow,
@@ -54,6 +56,7 @@ import type {
   Stage4Output,
   Stage4ReadonlyRow,
 } from './types.js';
+import type { ChannelSkipDetail } from '../channel-exceptions.js';
 
 // Feature catalog: 4-stage pipeline architecture
 // Feature catalog: 4-stage pipeline refactor
@@ -67,6 +70,51 @@ const SOFT_GATE_PENALTY = 0.7;
 interface TriggerPromotionResult {
   results: Stage4ReadonlyRow[];
   metadata?: NonNullable<PipelineResult['metadata']['triggerPromotion']>;
+}
+
+function buildPipelineChannelTelemetry(
+  stage1: Stage1Output['metadata'],
+  stage2: Stage2Output['metadata'],
+): PipelineChannelTelemetry | undefined {
+  const skippedChannels = new Set(stage1.channelTelemetry?.skippedChannels ?? []);
+  const skippedChannelDetails: ChannelSkipDetail[] = [];
+  for (const detail of stage1.channelTelemetry?.skippedChannelDetails ?? []) {
+    appendChannelSkipDetail(skippedChannelDetails, detail);
+  }
+  const channelExceptions = (stage1.channelTelemetry?.channelExceptions ?? [])
+    .map((entry) => ({ ...entry }));
+
+  for (const exception of stage2.channelExceptions ?? []) {
+    if (!channelExceptions.some((entry) => (
+      entry.channel === exception.channel
+      && entry.reason === exception.reason
+      && entry.source === exception.source
+    ))) {
+      channelExceptions.push({ ...exception });
+    }
+    skippedChannels.add(exception.channel);
+    appendChannelSkipDetail(skippedChannelDetails, {
+      channel: exception.channel,
+      reason: exception.reason,
+      type: 'exception',
+    });
+  }
+
+  if (
+    skippedChannels.size === 0
+    && skippedChannelDetails.length === 0
+    && channelExceptions.length === 0
+    && !stage2.graphContext
+  ) {
+    return undefined;
+  }
+
+  return {
+    skippedChannels: Array.from(skippedChannels),
+    skippedChannelDetails,
+    channelExceptions,
+    ...(stage2.graphContext ? { graphContext: stage2.graphContext } : {}),
+  };
 }
 
 function matchesSpecFolderScope(row: Stage4ReadonlyRow, specFolder: string): boolean {
@@ -485,6 +533,10 @@ async function executePipelineUnlocked(config: PipelineConfig): Promise<Pipeline
   finalResults = applyFinalSpecFolderGuard(finalResults, config.specFolder);
 
   timing.total = Date.now() - pipelineStart;
+  const channelTelemetry = buildPipelineChannelTelemetry(
+    stage1Result.metadata,
+    stage2Result.metadata,
+  );
 
   return {
     results: finalResults,
@@ -498,6 +550,7 @@ async function executePipelineUnlocked(config: PipelineConfig): Promise<Pipeline
       tailAppends: tailAppendsMeta,
       triggerPromotion: triggerPromotion.metadata,
       confidenceTruncation: confidenceTruncationMeta,
+      channelTelemetry,
     },
     annotations: stage4Result.annotations,
     trace: config.trace,

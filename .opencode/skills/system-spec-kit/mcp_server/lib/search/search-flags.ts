@@ -32,6 +32,7 @@ export type SavePlannerMode = 'plan-only' | 'full-auto' | 'hybrid';
 
 const TRUTHY_OPT_IN = new Set(['true', '1', 'yes', 'on', 'enabled']);
 const FALSY_OPT_OUT = new Set(['false', '0', 'no', 'off', 'disabled']);
+const STRICT_TRUTHY_OPT_IN = new Set(['true', '1']);
 
 /**
  * Returns true when envVarName is set to an opt-in value (true, 1, yes, on,
@@ -67,6 +68,12 @@ export function parseFlagTristate(envVarName: string, defaultValue: boolean): bo
  */
 export function isOptInEnabled(variableName: string): boolean {
   return parseFlagTristate(variableName, false);
+}
+
+/** Returns true only for the strict, case-insensitive opt-in values true and 1. */
+export function isStrictOptInEnabled(variableName: string): boolean {
+  const value = process.env[variableName]?.trim().toLowerCase();
+  return value !== undefined && STRICT_TRUTHY_OPT_IN.has(value);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -865,16 +872,11 @@ export function getConfidenceCalibrationModelPath(): string | undefined {
 }
 
 /**
- * Include archived/cold (deprecated-tier) memories in retrieval for everyone,
- * instead of hard-excluding them. The FSRS temperature system already ranks
- * memories by retrievability (deprecated decays at 0.25x → coldest), so a hard
- * exclusion is redundant and hides legitimately-cold-but-relevant history (e.g.
- * z_archive specs). Cold rows are included and naturally rank below hot ones.
- * Applies to the query-time channels (lexical FTS/BM25, trigger); the vector lane
- * filters via the active_memory_projection and is included separately when that
- * projection is rebuilt. Constitutional rows stay on their own injected path.
- * Default: TRUE (graduated). Set SPECKIT_INCLUDE_ARCHIVED_DEFAULT=false to restore
- * the hard exclusion.
+ * Legacy cold-state retrieval preference for non-tier ranking paths.
+ * Archived and deprecated importance tiers remain excluded by the active-row
+ * policy unless a request explicitly sets includeArchived. Default: TRUE
+ * (graduated). Set SPECKIT_INCLUDE_ARCHIVED_DEFAULT=false to disable the
+ * remaining cold-state preference.
  */
 export function isArchivedRetrievalIncludedByDefault(): boolean {
   return isFeatureEnabled('SPECKIT_INCLUDE_ARCHIVED_DEFAULT');

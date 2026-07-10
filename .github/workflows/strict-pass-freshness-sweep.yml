@@ -1,0 +1,79 @@
+name: Strict Pass Freshness Sweep
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 4 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  strict-pass-freshness:
+    runs-on: ubuntu-latest
+    outputs:
+      sweep-outcome: ${{ steps.sweep.outcome }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install spec-kit dependencies
+        working-directory: .opencode/skills/system-spec-kit/scripts
+        run: npm ci
+
+      - name: Restore previous strict-pass freshness report
+        uses: actions/cache@v4
+        with:
+          path: .strict-pass-freshness/report.json
+          key: ${{ runner.os }}-strict-pass-freshness-${{ github.ref_name }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-strict-pass-freshness-${{ github.ref_name }}-
+
+      - name: Run strict-pass freshness sweep
+        id: sweep
+        continue-on-error: true
+        shell: bash
+        run: |
+          report_dir=.strict-pass-freshness
+          report_path="$report_dir/report.json"
+          next_report_path="$report_dir/report.next.json"
+          mkdir -p "$report_dir"
+
+          baseline_args=()
+          if [[ -f "$report_path" ]]; then
+            baseline_args=(--baseline "$report_path")
+          fi
+
+          set +e
+          node --import .opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs \
+            .opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts \
+            --roots .opencode/specs \
+            --format json \
+            "${baseline_args[@]}" > "$next_report_path"
+          sweep_status=$?
+          set -e
+
+          mv "$next_report_path" "$report_path"
+          exit "$sweep_status"
+
+      - name: Publish strict-pass freshness report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: strict-pass-freshness-report-${{ github.run_id }}
+          path: .strict-pass-freshness/report.json
+          if-no-files-found: error
+
+  strict-pass-freshness-gate:
+    needs: strict-pass-freshness
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce strict-pass freshness result
+        env:
+          SWEEP_OUTCOME: ${{ needs.strict-pass-freshness.outputs.sweep-outcome }}
+        run: test "$SWEEP_OUTCOME" = "success"

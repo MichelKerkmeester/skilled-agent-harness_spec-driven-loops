@@ -11,6 +11,7 @@ vi.mock('../utils', () => ({
 }));
 
 import { TOOL_DEFINITIONS, getSchema, validateToolArgs } from '../tool-schemas';
+import { TOOL_SCHEMAS } from '../schemas/tool-input-schemas';
 import { validateToolInputSchema } from '../utils/tool-input-schema';
 
 const ORIGINAL_STRICT_SCHEMAS_ENV = process.env.SPECKIT_STRICT_SCHEMAS;
@@ -113,6 +114,20 @@ describe('Tool Schema Structural Integrity', () => {
       expect(tool.description.length).toBeGreaterThan(0);
     }
   });
+
+  it('advertises every runtime Zod property for every tool', () => {
+    for (const tool of TOOL_DEFINITIONS) {
+      const runtimeSchema = TOOL_SCHEMAS[tool.name] as unknown as {
+        shape?: Record<string, unknown>;
+      };
+      const publicProperties = (tool.inputSchema.properties ?? {}) as Record<string, unknown>;
+
+      expect(runtimeSchema?.shape, `${tool.name} must expose an object schema shape`).toBeDefined();
+      expect(Object.keys(publicProperties).sort(), tool.name).toEqual(
+        Object.keys(runtimeSchema.shape ?? {}).sort(),
+      );
+    }
+  });
 });
 
 /* ───────────────────────────────────────────────────────────────
@@ -175,6 +190,20 @@ describe('Tool Input Schema Validation', () => {
       input: 'content-heavy deep query',
       mode: 'deep',
       tokenBudget: 12000,
+    });
+  });
+
+  it('accepts memory_context includeConstitutional in public and runtime schemas', () => {
+    expectPublicAndRuntimeAccept('memory_context', {
+      input: 'context without constitutional rules',
+      includeConstitutional: false,
+    });
+  });
+
+  it('advertises embedder_set dryRun implemented by the runtime schema', () => {
+    expectPublicAndRuntimeAccept('embedder_set', {
+      name: 'test-embedder',
+      dryRun: true,
     });
   });
 

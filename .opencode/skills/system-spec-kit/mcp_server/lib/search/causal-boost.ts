@@ -31,6 +31,8 @@ const MAX_COMBINED_BOOST = 0.20;
 const SEED_FRACTION = 0.25;
 /** Absolute cap on seed nodes regardless of result set size. */
 const MAX_SEED_RESULTS = 5;
+/** Keep batched graph reads below SQLite's default binding limit. */
+const SQLITE_BINDING_CHUNK_SIZE = 900;
 
 // ───────────────────────────────────────────────────────────────
 // SPARSE-FIRST POLICY CONSTANTS
@@ -108,6 +110,15 @@ function causalEdgeProvenanceFilter(alias: string): string {
   return includeEntityLinkerCausalEdges() ? '' : `AND COALESCE(${alias}.created_by, '') != 'entity_linker'`;
 }
 
+function hasCausalEdgeCreatedByColumn(database: Database.Database): boolean {
+  try {
+    return (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name?: string }>)
+      .some((row) => row.name === 'created_by');
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
 interface RankedSearchResult extends Record<string, unknown> {
   id: number;
   score?: number;
@@ -134,6 +145,8 @@ interface CausalBoostMetadata {
   intentUsed?: string;
   /** Fail-open channel exceptions observed while applying causal boost. */
   channelExceptions?: ChannelException[];
+  /** Query-derived graph context exposed for upstream response wiring. */
+  graphContext?: GraphContextResult;
 }
 
 /** Options for applyCausalBoost — extended with sparse-first parameters. */
@@ -144,11 +157,39 @@ interface CausalBoostOptions {
   intent?: string;
   /** Freshness factor [0,1] applied to traversal scoring. Defaults to 1.0. */
   freshness?: number;
+  /** Search query used for graph-context enrichment. */
+  query?: string;
 }
 
 interface NeighborBoost {
   boost: number;
   hopCount: number;
+  relation?: string;
+  path?: number[];
+  pathRelations?: string[];
+}
+
+interface RelationAwareWalkState {
+  origin: number;
+  nodeId: number;
+  hop: number;
+  walkScore: number;
+  path: number[];
+  pathRelations: string[];
+}
+
+interface RelationAwareWalkResult {
+  minHop: number;
+  maxWalkScore: number;
+  path: number[];
+  pathRelations: string[];
+}
+
+interface CausalTraversalEdge {
+  from: number;
+  to: number;
+  relation: string;
+  weightedStrength: number;
 }
 
 let db: Database.Database | null = null;
@@ -421,6 +462,174 @@ function computeBoostByHop(hopDistance: number): number {
   return Math.min(MAX_BOOST_PER_HOP, rawBoost);
 }
 
+function chunkIds(ids: readonly number[]): number[][] {
+  const chunks: number[][] = [];
+  for (let index = 0; index < ids.length; index += SQLITE_BINDING_CHUNK_SIZE) {
+    chunks.push(ids.slice(index, index + SQLITE_BINDING_CHUNK_SIZE));
+  }
+  return chunks;
+}
+
+function readRelationAwareCausalEdges(nodeIds: readonly number[]): CausalTraversalEdge[] {
+  if (!db) return [];
+
+  const edges: CausalTraversalEdge[] = [];
+  const provenanceFilter = hasCausalEdgeCreatedByColumn(db)
+    ? causalEdgeProvenanceFilter('ce')
+    : '';
+  for (const nodeChunk of chunkIds(normalizeIds([...nodeIds]))) {
+    if (nodeChunk.length === 0) continue;
+    const placeholders = nodeChunk.map(() => '?').join(', ');
+    const params = nodeChunk.map(String);
+    const outgoingRows = (db.prepare(`
+      SELECT ce.source_id, ce.target_id, ce.relation, ce.strength
+      FROM causal_edges ce
+      WHERE ce.source_id IN (${placeholders})
+        ${provenanceFilter}
+    `) as Database.Statement).all(...params) as Array<{
+      source_id: string;
+      target_id: string;
+      relation: string;
+      strength: number | null;
+    }>;
+    const incomingRows = (db.prepare(`
+      SELECT ce.source_id, ce.target_id, ce.relation, ce.strength
+      FROM causal_edges ce
+      WHERE ce.target_id IN (${placeholders})
+        ${provenanceFilter}
+    `) as Database.Statement).all(...params) as Array<{
+      source_id: string;
+      target_id: string;
+      relation: string;
+      strength: number | null;
+    }>;
+
+    for (const row of outgoingRows) {
+      const sourceId = Number.parseInt(row.source_id, 10);
+      const targetId = Number.parseInt(row.target_id, 10);
+      if (!Number.isFinite(sourceId) || !Number.isFinite(targetId)) continue;
+      const relationWeight = RELATION_WEIGHT_MULTIPLIERS[row.relation] ?? 1.0;
+      const strength = typeof row.strength === 'number' && Number.isFinite(row.strength)
+        ? row.strength
+        : 1.0;
+      edges.push({
+        from: sourceId,
+        to: targetId,
+        relation: row.relation,
+        weightedStrength: relationWeight * strength,
+      });
+    }
+    for (const row of incomingRows) {
+      const sourceId = Number.parseInt(row.source_id, 10);
+      const targetId = Number.parseInt(row.target_id, 10);
+      if (!Number.isFinite(sourceId) || !Number.isFinite(targetId)) continue;
+      const relationWeight = RELATION_WEIGHT_MULTIPLIERS[row.relation] ?? 1.0;
+      const strength = typeof row.strength === 'number' && Number.isFinite(row.strength)
+        ? row.strength
+        : 1.0;
+      edges.push({
+        from: targetId,
+        to: sourceId,
+        relation: row.relation,
+        weightedStrength: relationWeight * strength,
+      });
+    }
+  }
+
+  return edges.sort((left, right) =>
+    left.from - right.from ||
+    left.to - right.to ||
+    right.weightedStrength - left.weightedStrength ||
+    left.relation.localeCompare(right.relation)
+  );
+}
+
+function isPreferredWalk(
+  candidate: RelationAwareWalkState,
+  current: RelationAwareWalkResult,
+): boolean {
+  if (candidate.walkScore !== current.maxWalkScore) {
+    return candidate.walkScore > current.maxWalkScore;
+  }
+  if (candidate.hop !== current.pathRelations.length) {
+    return candidate.hop < current.pathRelations.length;
+  }
+  const candidateKey = `${candidate.pathRelations.join('\u0000')}|${candidate.path.join('\u0000')}`;
+  const currentKey = `${current.pathRelations.join('\u0000')}|${current.path.join('\u0000')}`;
+  return candidateKey < currentKey;
+}
+
+function collectRelationAwareNeighbors(
+  memoryIds: readonly number[],
+  maxHops: number,
+): Map<number, RelationAwareWalkResult> {
+  const seeds = normalizeIds([...memoryIds]);
+  const seedSet = new Set(seeds);
+  const results = new Map<number, RelationAwareWalkResult>();
+  let frontier: RelationAwareWalkState[] = seeds.map((seed) => ({
+    origin: seed,
+    nodeId: seed,
+    hop: 0,
+    walkScore: 1.0,
+    path: [seed],
+    pathRelations: [],
+  }));
+  const seenStates = new Set<string>();
+
+  while (frontier.length > 0) {
+    const expandable = frontier.filter((state) => state.hop < maxHops);
+    if (expandable.length === 0) break;
+    const edgesByNode = new Map<number, CausalTraversalEdge[]>();
+    for (const edge of readRelationAwareCausalEdges(expandable.map((state) => state.nodeId))) {
+      const edges = edgesByNode.get(edge.from) ?? [];
+      edges.push(edge);
+      edgesByNode.set(edge.from, edges);
+    }
+    const nextFrontier: RelationAwareWalkState[] = [];
+
+    for (const state of expandable) {
+      for (const edge of edgesByNode.get(state.nodeId) ?? []) {
+        if (state.hop > 0 && edge.to === state.origin) continue;
+        const nextState: RelationAwareWalkState = {
+          origin: state.origin,
+          nodeId: edge.to,
+          hop: state.hop + 1,
+          walkScore: state.walkScore * edge.weightedStrength,
+          path: [...state.path, edge.to],
+          pathRelations: [...state.pathRelations, edge.relation],
+        };
+        const stateKey = [
+          nextState.origin,
+          nextState.nodeId,
+          nextState.hop,
+          nextState.walkScore,
+          ...nextState.pathRelations,
+        ].join('\u0000');
+        if (seenStates.has(stateKey)) continue;
+        seenStates.add(stateKey);
+        nextFrontier.push(nextState);
+
+        if (seedSet.has(nextState.nodeId)) continue;
+        const current = results.get(nextState.nodeId);
+        if (!current || isPreferredWalk(nextState, current)) {
+          results.set(nextState.nodeId, {
+            minHop: current ? Math.min(current.minHop, nextState.hop) : nextState.hop,
+            maxWalkScore: nextState.walkScore,
+            path: nextState.path,
+            pathRelations: nextState.pathRelations,
+          });
+        } else if (nextState.hop < current.minHop) {
+          results.set(nextState.nodeId, { ...current, minHop: nextState.hop });
+        }
+      }
+    }
+
+    frontier = nextFrontier;
+  }
+
+  return results;
+}
+
 /**
  * Walk causal edges up to maxHops from the given seed memory IDs,
  * returning a map of neighbor ID to boost score.
@@ -441,7 +650,31 @@ function getNeighborBoosts(
   if (ids.length === 0) return neighborBoosts;
 
   try {
-    const rows = graphTraversal.collectCausalWeightedNeighbors(ids, maxHops, RELATION_WEIGHT_MULTIPLIERS);
+    if (isTypedTraversalEnabled()) {
+      const rows = collectRelationAwareNeighbors(ids, maxHops);
+      for (const [neighborId, row] of rows) {
+        const hopBoost = computeBoostByHop(row.minHop);
+        const walkMultiplier = Number.isFinite(row.maxWalkScore)
+          ? Math.max(0.1, Math.min(2.0, row.maxWalkScore))
+          : 1.0;
+        const boost = hopBoost * walkMultiplier;
+        if (boost <= 0 || row.pathRelations.length === 0) continue;
+        neighborBoosts.set(neighborId, {
+          boost,
+          hopCount: row.minHop,
+          relation: row.pathRelations[row.pathRelations.length - 1],
+          path: [...row.path],
+          pathRelations: [...row.pathRelations],
+        });
+      }
+      return neighborBoosts;
+    }
+
+    const rows = graphTraversal.collectCausalWeightedNeighbors(
+      ids,
+      maxHops,
+      RELATION_WEIGHT_MULTIPLIERS,
+    );
 
     for (const [neighborId, row] of rows) {
       const hopBoost = computeBoostByHop(row.minHop);
@@ -499,7 +732,7 @@ function applyCausalBoost(
   results: RankedSearchResult[],
   options: CausalBoostOptions = {}
 ): { results: RankedSearchResult[]; metadata: CausalBoostMetadata } {
-  const { graphDensity, intent = 'understand', freshness = 1.0 } = options;
+  const { graphDensity, intent = 'understand', freshness = 1.0, query } = options;
 
   // Determine sparse mode and effective hop depth.
   const sparseMode = isSparseMode(graphDensity);
@@ -516,6 +749,18 @@ function applyCausalBoost(
     intentUsed: isTypedTraversalEnabled() ? intent : undefined,
   };
 
+  const channelExceptions: ChannelException[] = [];
+  if (metadata.enabled && db && typeof query === 'string' && query.trim().length > 0) {
+    const graphContext = injectGraphContext(query, db);
+    metadata.graphContext = graphContext;
+    if (graphContext.channelExceptions) {
+      channelExceptions.push(...graphContext.channelExceptions);
+    }
+  }
+  if (channelExceptions.length > 0) {
+    metadata.channelExceptions = channelExceptions.map((entry) => ({ ...entry }));
+  }
+
   if (!metadata.enabled || !Array.isArray(results) || results.length === 0 || !db) {
     return { results, metadata };
   }
@@ -524,7 +769,6 @@ function applyCausalBoost(
   const seedResults = results.slice(0, seedLimit);
   const seedIds = seedResults.map((item) => item.id);
   // Pass effectiveMaxHops to constrain traversal in sparse mode.
-  const channelExceptions: ChannelException[] = [];
   const neighborBoosts = getNeighborBoosts(seedIds, effectiveMaxHops, channelExceptions);
   if (channelExceptions.length > 0) {
     metadata.channelExceptions = channelExceptions.map((entry) => ({ ...entry }));
@@ -546,36 +790,11 @@ function applyCausalBoost(
     const clampedFreshness = Math.max(0, Math.min(1, Number.isFinite(freshness) ? freshness : 1.0));
 
     for (const [neighborId, neighborBoost] of neighborBoosts) {
-      // We don't have the per-edge relation type at this aggregation level,
-      // so we use the seed's dominant relation by querying the first-hop edge from the DB.
-      // Fall back to 'caused' (neutral default) if unavailable.
-      let dominantRelation = 'caused';
-      if (db) {
-        try {
-          const seedPlaceholders = seedIds.map(() => '?').join(',');
-          const seedIdParams = seedIds.map(String);
-          const edgeRow = (db.prepare(`
-            SELECT relation FROM causal_edges ce
-            WHERE ((ce.source_id IN (${seedPlaceholders}) AND ce.target_id = ?)
-               OR (ce.target_id IN (${seedPlaceholders}) AND ce.source_id = ?))
-              ${causalEdgeProvenanceFilter('ce')}
-            LIMIT 1
-          `) as Database.Statement).get(
-            ...seedIdParams,
-            String(neighborId),
-            ...seedIdParams,
-            String(neighborId),
-          ) as
-            { relation: string } | undefined;
-          if (edgeRow?.relation) dominantRelation = edgeRow.relation;
-        } catch (_err: unknown) {
-          // Fall back to default relation on query failure
-        }
-      }
+      if (!neighborBoost.relation) continue;
 
       const intentScore = computeIntentTraversalScore(
         avgSeedScore,
-        dominantRelation,
+        neighborBoost.relation,
         neighborBoost.hopCount,
         clampedFreshness,
         intent
@@ -815,6 +1034,7 @@ export type {
   RankedSearchResult,
   CausalBoostMetadata,
   CausalBoostOptions,
+  NeighborBoost,
   SparseFirstTraversalPolicy,
   GraphContextResult,
 };

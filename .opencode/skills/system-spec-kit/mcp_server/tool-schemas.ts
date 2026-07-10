@@ -217,6 +217,13 @@ const memoryContext: ToolDefinition = {
   inputSchema: { type: 'object', additionalProperties: ALLOW_UNKNOWN_PARAMETERS, properties: { input: { type: 'string', minLength: 1, description: 'The query, prompt, or context description (required)' }, mode: { type: 'string', enum: ['auto', 'quick', 'deep', 'focused', 'resume'], default: 'auto', description: 'Context retrieval mode: auto (detect intent), quick (fast triggers), deep (comprehensive search), focused (intent-optimized), resume (session recovery)' }, intent: { type: 'string', enum: ['add_feature', 'fix_bug', 'refactor', 'security_audit', 'understand', 'find_spec', 'find_decision'], description: 'Explicit task intent. If not provided and mode=auto, intent is auto-detected from input.' }, specFolder: { type: 'string', description: 'Limit context to specific spec folder' }, tenantId: { type: 'string', description: 'Tenant boundary for governed retrieval when memory_context routes to memory_search.' }, userId: { type: 'string', description: 'User boundary for governed retrieval when memory_context routes to memory_search.' }, agentId: { type: 'string', description: 'Agent boundary for governed retrieval when memory_context routes to memory_search.' }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum results (mode-specific defaults apply)' }, sessionId: { type: 'string', description: 'Optional server-issued session identifier for working-memory continuity. When provided, it must match an existing server-managed session or the call is rejected. Omit it to let the server generate a new session for this request.' }, enableDedup: { type: 'boolean', default: true, description: 'Enable session deduplication' }, includeContent: { type: 'boolean', default: false, description: 'Include full file content in results' }, includeTrace: { type: 'boolean', default: false, description: 'Include provenance-rich trace data (scores, source, trace) in results when underlying memory_search is called' }, tokenBudget: { type: 'number', minimum: 1, maximum: 100000, description: 'Override the mode token budget for this request' }, tokenUsage: { type: 'number', minimum: 0.0, maximum: 1.0, description: "Optional caller token usage ratio (0.0-1.0)" }, anchors: { type: 'array', items: { type: 'string' }, description: 'Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode)' }, profile: { type: 'string', enum: ['quick', 'research', 'resume', 'debug'], description: 'Optional response profile formatter. Returns a reduced or mode-aware response shape when profile formatting is enabled.' } }, required: ['input'] },
 };
 
+const memoryContextProperties = memoryContext.inputSchema.properties as Record<string, unknown>;
+memoryContextProperties.includeConstitutional = {
+  type: 'boolean',
+  default: true,
+  description: 'Include constitutional tier rules when memory_context delegates to memory_search.',
+};
+
 // L2: Core - Primary operations (Token Budget: 3500)
 const memorySearch: ToolDefinition = {
   name: 'memory_search',
@@ -253,7 +260,7 @@ const memorySearch: ToolDefinition = {
         default: true,
         description: 'Enable session deduplication (REQ-001). When true and sessionId provided, filters out already-sent spec-doc records.'
       },
-      tier: { type: 'string', description: 'Filter by importance tier (constitutional, critical, important, normal, temporary, deprecated)' },
+      tier: { type: 'string', description: 'Filter by importance tier (constitutional, critical, important, normal, temporary, archived, deprecated)' },
       contextType: { type: 'string', description: 'Filter by context type (decision, implementation, research, etc.)' },
       useDecay: { type: 'boolean', default: true, description: 'Apply temporal decay scoring to results' },
       includeContiguity: { type: 'boolean', default: false, description: 'Include adjacent/contiguous spec-doc records (from the same packet, neighboring sections) in results' },
@@ -336,13 +343,13 @@ const memorySearch: ToolDefinition = {
       // Expose previously hidden handler parameters
       trackAccess: {
         type: 'boolean',
-        default: false,
-        description: 'When true, writes FSRS strengthening updates to the memory_index for each returned spec-doc record. Off by default to avoid write-on-read side effects.'
+        default: true,
+        description: 'Write FSRS strengthening updates for returned spec-doc records. On by default; set false to disable access tracking for this search.'
       },
       includeArchived: {
         type: 'boolean',
         default: false,
-        description: 'Not supported: archived spec-doc records are always excluded by canonical-source policy. This flag is accepted for back-compat but has no effect.'
+        description: 'Include archived and deprecated importance tiers. Both are excluded from ranked reads by default.'
       },
       mode: {
         type: 'string',
@@ -863,6 +870,7 @@ const embedderSet: ToolDefinition = {
     additionalProperties: ALLOW_UNKNOWN_PARAMETERS,
     properties: {
       name: { type: 'string', minLength: 1, description: 'Registered embedder manifest name to activate after re-index.' },
+      dryRun: { type: 'boolean', default: false, description: 'Preview the target embedder and re-index plan without creating a job or changing the active pointer.' },
     },
     required: ['name'],
   },

@@ -411,7 +411,11 @@ describe('search hot path performance invariants', () => {
       const stale = listStaleIndexedPaths([existingPath]);
 
       expect(stale).toHaveLength(24);
-      expect(pathExistenceDiagnostics.statSyncCalls).toBe(0);
+      // Absence must be confirmed with a definitive per-file stat rather than
+      // inferred from a directory-listing miss (a listing miss can also mean a
+      // Unicode-normalization or case mismatch on a file that exists), so stat
+      // count scales with listing misses — bounded by candidates, not corpus.
+      expect(pathExistenceDiagnostics.statSyncCalls).toBe(stale.length);
       expect(pathExistenceDiagnostics.readdirSyncCalls).toBeLessThanOrEqual(1);
       expect(buildPathExistenceCache([existingPath]).get(path.resolve(existingPath))).toBe(true);
     } finally {

@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep"
-    last_updated_at: "2026-07-09T06:21:23.000Z"
+    last_updated_at: "2026-07-10T08:09:04.000Z"
     last_updated_by: "claude-code"
-    recent_action: "Recorded resumed-state after-counts and verification failures"
-    next_safe_action: "Fix full-suite verification failures before completion claim"
+    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
+    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers: []
     key_files: []
     session_dedup:
@@ -55,8 +55,8 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md (confirmed) — Evidence: spec.md carries P0/P1/P2 requirements and was updated to resumed status on 2026-07-09.
-- [x] CHK-002 [P0] Technical approach defined in plan.md (confirmed) — Evidence: plan.md defines checkpoint-gated repair, integrity verification, content-hash investigation, false-success remediation, and enrichment checks.
+- [x] CHK-001 [P0] Requirements documented in `spec.md` (confirmed) — Evidence: spec.md carries P0/P1/P2 requirements and was updated to resumed status on 2026-07-09.
+- [x] CHK-002 [P0] Technical approach defined in `plan.md` (confirmed) — Evidence: plan.md defines checkpoint-gated repair, integrity verification, content-hash investigation, false-success remediation, and enrichment checks.
 - [x] CHK-003 [P1] Dependencies identified and available (`memory_health`, checkpoint tools, `verify_integrity` confirmed reachable) (confirmed) — Evidence: `memory_health({ reportMode:'full', autoRepair:false })` returned `status: healthy`, `runtime_initialized: true`, `databaseConnected: true`; `verify_integrity` data surfaced through consistency report.
 <!-- /ANCHOR:pre-impl -->
 
@@ -92,7 +92,7 @@ FAILURE MODES:
 - [x] CHK-014 [P1] F11 content-drift investigation completed and recorded (variant-hash-explained count vs genuinely-stale count vs NULL-hash-fast-path-skip hypothesis confirmed/ruled out) (confirmed) — Evidence: full live scan found `contentHashNull=0`, `contentHashMismatch=0`, `contentHashNormalizedMatches=13529`, ruling out remaining null-hash and genuine hash-drift cases in the current corpus.
 - [ ] CHK-015 [P1] Manual testing complete (sample search queries over previously-stale terms; two-cycle enrichment-drain observation) — Live daemon query passed, but no preserved stale-term sample was available and two-cycle enrichment observation is not complete.
 - [x] CHK-016 [P1] Edge cases tested (NULL/empty file_path rows accounted for; in-flight-rename exemptions logged, not silently dropped) (confirmed) — Evidence: full live scan found `nullOrEmptyFilePath=0`, `missingFilePath=0`, `canonicalRescues=0`.
-- [x] CHK-017 [P1] Named test(s) authored for any new/modified function (F11 refresh mechanism, F13 status-flip, any F10 recurrence fix) (confirmed) — No new/modified function was introduced in this resumed session; no new test required.
+- [x] CHK-017 [P1] Named test(s) authored for any new/modified function (F11 refresh mechanism, F13 status-flip, any F10 recurrence fix) (confirmed) — No new/modified function was introduced in this resumed session; no new test required. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -100,11 +100,11 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P0] Each actionable finding (F10, F11, F12, F13) has a finding class recorded: F10 = class-of-bug (drift class, not one row), F11 = investigation-then-instance-or-class (root cause decides), F12 = operational, F13 = split (orphaned-vectors is class-of-bug via existing repair; missing-vectors is a small targeted fix). (confirmed) — Recorded in implementation-summary.md.
-- [x] CHK-FIX-002 [P0] F10 same-class producer inventory completed: is the re-nest the only source of this drift class, or does any other rename/move workflow in the codebase share the same gap? (Answered by the F10 recurrence investigation, T007.) (confirmed) — Current production scan path includes stale indexed path detection; no code gap confirmed from this resumed check.
+- [x] CHK-FIX-001 [P0] Each actionable finding (F10, F11, F12, F13) has a finding class recorded: F10 = class-of-bug (drift class, not one row), F11 = investigation-then-instance-or-class (root cause decides), F12 = operational, F13 = split (orphaned-vectors is class-of-bug via existing repair; missing-vectors is a small targeted fix). (confirmed) — Recorded in `implementation-summary.md`.
+- [x] CHK-FIX-002 [P0] F10 same-class producer inventory completed: is the re-nest the only source of this drift class, or does any other rename/move workflow in the codebase share the same gap? (Answered by the F10 recurrence investigation, T007.) (confirmed) — Current production scan path includes stale indexed path detection; no code gap confirmed from this resumed check. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for the mutated rows: `ACTIVE_ROW_SQL`-gated search, `memory_search`/`memory_context`, and vector search are the three confirmed consumers; no other consumer of `memory_index`/`vec_768` needs a separate check. (confirmed) — Confirmed from spec/plan and live `memory_context` query.
 - [x] CHK-FIX-004 [P0] The bulk-delete path (`delete_memory_from_database` via `cleanFiles: true`) is confirmed to only ever target rows whose `file_path` fails `fs.existsSync` — no broader deletion criteria was silently widened. (confirmed) — Evidence: `vector-index-queries.ts` checks `memory.file_path && !fs.existsSync(memory.file_path)` before deletion.
-- [x] CHK-FIX-005 [P1] Matrix axes and row count listed before completion is claimed: F10+F13-orphaned-vectors (one bulk pass) vs F11 (targeted) vs F13-missing-vectors (targeted) vs F12 (operational) — four action classes. (confirmed) — Listed in implementation-summary.md.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count listed before completion is claimed: F10+F13-orphaned-vectors (one bulk pass) vs F11 (targeted) vs F13-missing-vectors (targeted) vs F12 (operational) — four action classes. (confirmed) — Listed in `implementation-summary.md`.
 - [x] CHK-FIX-006 [P1] Hostile/concurrent-write variant considered: a quiet-window coordination note is recorded so before/after counts aren't confounded by a concurrent `memory_save`/`memory_index_scan` during the sweep. (confirmed) — Recorded as a confidence limit: this agent resumed after mutation and cannot prove the original quiet window.
 - [x] CHK-FIX-007 [P1] Evidence pinned to the actual checkpoint name and the exact `verify_integrity` snapshot timestamps used for before/after, not a moving/re-run-able range. (confirmed) — Pinned to backup file names and final 2026-07-09 health/SQL outputs; checkpoint_create name remains unconfirmed.
 <!-- /ANCHOR:fix-completeness -->
@@ -114,7 +114,7 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets (confirmed) — No code was modified in this resumed session.
+- [x] CHK-030 [P0] No hardcoded secrets (confirmed) — No code was modified in this resumed session. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
 - [x] CHK-031 [P0] No bypass of the existing `confirmed: true` gate on `autoRepair` — this phase invokes the gate, it does not add a way around it (confirmed) — No gate bypass was added; no repair was repeated.
 - [ ] CHK-032 [P1] The mutating repair call runs from an operator-invoked context, not an unattended/scheduled job, for this first sweep (a future scheduled sweep is explicitly out of scope per spec.md) — Not confirmable from this resumed session because mutation had already completed.
 <!-- /ANCHOR:security -->
@@ -124,8 +124,8 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized (confirmed) — Spec status, tasks, checklist, and implementation-summary now distinguish already-complete core mutation from blocked completion.
-- [x] CHK-041 [P1] Code comments adequate (any new/modified function carries durable WHY, no spec/packet/finding IDs embedded in the comment text itself) (confirmed) — No code comments were added or modified.
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (confirmed) — Spec status, tasks, checklist, and implementation-summary now distinguish already-complete core mutation from blocked completion. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
+- [x] CHK-041 [P1] Code comments adequate (any new/modified function carries durable WHY, no spec/packet/finding IDs embedded in the comment text itself) (confirmed) — No code comments were added or modified. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
 - [ ] CHK-042 [P2] Manual-testing playbook entry added if the sweep becomes a repeatable operator procedure (13--memory-quality-and-indexing/)
 <!-- /ANCHOR:docs -->
 
@@ -134,8 +134,8 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Temp files in scratch/ only (confirmed) — This resumed session did not create packet scratch files.
-- [x] CHK-051 [P1] scratch/ cleaned before completion (confirmed) — No packet scratch files were created.
+- [x] CHK-050 [P1] Temp files in scratch/ only (confirmed) — This resumed session did not create packet scratch files. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (confirmed) — No packet scratch files were created. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
 <!-- /ANCHOR:file-org -->
 
 ---

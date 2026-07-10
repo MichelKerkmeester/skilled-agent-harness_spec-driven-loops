@@ -319,4 +319,44 @@ describe('typed-traversal relation-prior differentiation', () => {
     expect(high).toBeCloseTo(0.18, 6);
     expect(low).toBeCloseTo(0.09, 6);
   });
+
+  it('uses the deterministic winning relation for a multi-edge neighbor', () => {
+    db?.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, strength)
+      VALUES ('1', '10', 'supersedes', 1.0)
+    `).run();
+
+    const walk = causalBoost.getNeighborBoosts([1]).get(10);
+    const { results: boosted } = causalBoost.applyCausalBoost(
+      [{ id: 1, score: 0.9 }, { id: 10, score: 0.5 }] as RankedSearchResult[],
+      { intent: 'fix_bug' },
+    );
+
+    expect(walk?.relation).toBe('supersedes');
+    expect(walk?.path).toEqual([1, 10]);
+    expect(walk?.pathRelations).toEqual(['supersedes']);
+    expect(boosted.find((row) => row.id === 10)?.causalBoost).toBeCloseTo(0.18, 6);
+  });
+
+  it('uses the terminal relation and provenance from a winning two-hop path', () => {
+    db?.prepare(`
+      INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier, trigger_phrases)
+      VALUES (12, 'spec', '/tmp/two-hop.md', 'two-hop neighbor', 'important', '[]')
+    `).run();
+    db?.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, strength)
+      VALUES ('10', '12', 'supports', 1.0)
+    `).run();
+
+    const walk = causalBoost.getNeighborBoosts([1]).get(12);
+    const { results: boosted } = causalBoost.applyCausalBoost(
+      [{ id: 1, score: 0.9 }] as RankedSearchResult[],
+      { intent: 'understand' },
+    );
+
+    expect(walk?.relation).toBe('supports');
+    expect(walk?.path).toEqual([1, 10, 12]);
+    expect(walk?.pathRelations).toEqual(['caused', 'supports']);
+    expect(boosted.find((row) => row.id === 12)?.causalBoost).toBeCloseTo(0.045, 6);
+  });
 });

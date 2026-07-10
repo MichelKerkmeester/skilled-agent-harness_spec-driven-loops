@@ -9,7 +9,7 @@
 // the scan-lease/checkpoint/embedding-profile scaffolding is mocked, matching this
 // handler's existing test suite; none of that scaffolding touches the orphan-sweep
 // path itself.
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -62,6 +62,8 @@ type VectorIndexModule = typeof import('../lib/search/vector-index');
 type IncrementalIndexModule = typeof import('../lib/storage/incremental-index');
 
 const tempRoots: string[] = [];
+const originalTimeBudgetMs = process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS;
+const originalRefreshCadenceMs = process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS;
 
 function makeTempWorkspace(prefix: string): string {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
@@ -117,6 +119,48 @@ function mockLeaseAndScaffolding(): void {
   mocks.mockGetEmbeddingProfile.mockReturnValue(null);
 }
 
+function parseScanEnvelope(response: { content: Array<{ text: string }> }): {
+  summary: string;
+  data: {
+    status: string;
+    repairStatus: string;
+    orphanSwept: number;
+    orphanSweepNextCursor: number | null;
+    orphanSweepResumable: boolean;
+    orphanSweepCursorPersistenceFailed: boolean;
+    orphanSweepScanned: number;
+  };
+  hints: string[];
+} {
+  return JSON.parse(response.content[0].text) as {
+    summary: string;
+    data: {
+      status: string;
+      repairStatus: string;
+      orphanSwept: number;
+      orphanSweepNextCursor: number | null;
+      orphanSweepResumable: boolean;
+      orphanSweepCursorPersistenceFailed: boolean;
+      orphanSweepScanned: number;
+    };
+    hints: string[];
+  };
+}
+
+afterEach(() => {
+  if (originalTimeBudgetMs === undefined) {
+    delete process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS;
+  } else {
+    process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = originalTimeBudgetMs;
+  }
+  if (originalRefreshCadenceMs === undefined) {
+    delete process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS;
+  } else {
+    process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = originalRefreshCadenceMs;
+  }
+  vi.restoreAllMocks();
+});
+
 afterAll(() => {
   for (const root of tempRoots.splice(0)) {
     try {
@@ -147,18 +191,22 @@ describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
     }
   });
 
-  it('re-fires ctx.onPhase more than once during a DELETE-heavy sweep, at a rate-gated cadence under the chosen interval', async () => {
+  it('re-fires ctx.onPhase during a DELETE-heavy sweep without firing sooner than the configured cadence', async () => {
     // A scan-only pass over this many rows is known-fast (this packet's own
     // empirical finding: ~4-5s for 200k rows), so what makes this loop cross even a
     // short cadence repeatedly is the per-row DELETE cascade running for real. The
     // cadence is overridden small so the assertion is fast and deterministic without
     // needing a production-scale (tens-of-seconds) budget in a unit test.
     process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '20000';
-    process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '15';
+    const refreshCadenceMs = 15;
+    process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = String(refreshCadenceMs);
 
     seedOrphanBacklog(vectorIndex, workspace, 2500, 'refresh-cadence');
 
-    const onPhase = vi.fn();
+    const refreshTimestamps: number[] = [];
+    const onPhase = vi.fn((phase: string) => {
+      if (phase === 'orphan-sweep') refreshTimestamps.push(Date.now());
+    });
     const response = await handler.runIndexScan(
       {
         includeConstitutional: false,
@@ -174,9 +222,11 @@ describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
     // >1 proves the mid-loop re-fire fired at least once beyond the single
     // phase-entry call timedPhase already makes before runGlobalOrphanSweep runs.
     expect(orphanPhaseCalls.length).toBeGreaterThan(1);
-
-    const callTimestamps = onPhase.mock.invocationCallOrder;
-    expect(callTimestamps.length).toBeGreaterThan(0);
+    const refreshGaps = refreshTimestamps.slice(1).map((timestamp, index) => (
+      timestamp - refreshTimestamps[index]
+    ));
+    expect(refreshGaps.length).toBeGreaterThan(0);
+    expect(refreshGaps.every((gap) => gap >= refreshCadenceMs)).toBe(true);
   }, 30000);
 
   it('rate-gates the refresh so call count stays far below the swept row/page count for a large backlog', async () => {
@@ -186,7 +236,7 @@ describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
     seedOrphanBacklog(vectorIndex, workspace, 1200, 'refresh-rate-gate');
 
     const onPhase = vi.fn();
-    await handler.runIndexScan(
+    const response = await handler.runIndexScan(
       {
         includeConstitutional: false,
         includeSpecDocs: false,
@@ -196,15 +246,132 @@ describe('orphan-sweep marker-refresh cadence (REQ-002)', () => {
       { onPhase },
     );
 
+    const envelope = parseScanEnvelope(response);
     const orphanPhaseCalls = onPhase.mock.calls.filter(([phase]) => phase === 'orphan-sweep').length;
-    // 1200 rows at the 200-row page size is at most 6 pages for this seed alone
-    // (more if earlier tests' rows are still being paged through); a rate-gated
-    // cadence must not turn that into a near-1:1 refresh-per-page ratio.
-    expect(orphanPhaseCalls).toBeLessThan(50);
+    const processedPages = Math.ceil(envelope.data.orphanSweepScanned / 200);
+    const maxCallbacksPerPage = Math.ceil(200 / 25);
+    expect(orphanPhaseCalls).toBeLessThanOrEqual(1 + processedPages * maxCallbacksPerPage);
   }, 30000);
 });
 
 describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
+  it('checks deadline and marker refresh between deletion chunks within one page', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('orphan-sweep-intra-page-budget-');
+    const { handler, vectorIndex } = await loadRealModules(workspace);
+
+    try {
+      process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '2';
+      process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '1';
+      seedOrphanBacklog(vectorIndex, workspace, 200, 'intra-page-budget');
+      const onPhase = vi.fn();
+
+      const response = await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        { onPhase },
+      );
+      const envelope = parseScanEnvelope(response);
+      const remaining = vectorIndex.getDb()?.prepare(
+        "SELECT COUNT(*) AS count FROM memory_index WHERE spec_folder LIKE 'intra-page-budget/%'",
+      ).get() as { count?: number } | undefined;
+      const orphanPhaseCalls = onPhase.mock.calls.filter(([phase]) => phase === 'orphan-sweep');
+
+      expect(envelope.data.orphanSwept).toBeGreaterThan(0);
+      expect(envelope.data.orphanSwept).toBeLessThan(200);
+      expect(envelope.data.orphanSweepNextCursor).toBeGreaterThan(0);
+      expect(envelope.data.status).toBe('partial');
+      expect(envelope.data.repairStatus).toBe('partial');
+      expect(envelope.data.orphanSweepResumable).toBe(true);
+      expect(envelope.data.orphanSweepCursorPersistenceFailed).toBe(false);
+      expect(remaining?.count ?? 0).toBeGreaterThan(0);
+      expect(orphanPhaseCalls.length).toBeGreaterThan(1);
+    } finally {
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  }, 30000);
+
+  it('surfaces cursor persistence failure as an incomplete retryable scan', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('orphan-sweep-cursor-persistence-');
+    const { handler, vectorIndex } = await loadRealModules(workspace);
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
+      const db = vectorIndex.getDb();
+      db?.exec(`
+        CREATE TABLE IF NOT EXISTS config (key TEXT PRIMARY KEY, value TEXT);
+        CREATE TRIGGER reject_orphan_cursor_write
+        BEFORE INSERT ON config
+        WHEN NEW.key = 'memory_index.orphan_sweep.cursor'
+        BEGIN
+          SELECT RAISE(ABORT, 'forced cursor persistence failure');
+        END;
+      `);
+
+      const response = await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        {},
+      );
+      const envelope = parseScanEnvelope(response);
+
+      expect(envelope.data.status).toBe('partial');
+      expect(envelope.data.repairStatus).toBe('partial');
+      expect(envelope.data.orphanSweepCursorPersistenceFailed).toBe(true);
+      expect(envelope.data.orphanSweepResumable).toBe(false);
+      expect(envelope.summary).toContain('orphan sweep incomplete');
+      expect(envelope.hints).toContain(
+        'Orphan sweep cursor could not be persisted; retry the scan to complete global cleanup',
+      );
+      expect(warnSpy).toHaveBeenCalledWith(
+        '[memory-index-scan] Failed to persist orphan sweep cursor:',
+        'forced cursor persistence failure',
+      );
+    } finally {
+      try {
+        vectorIndex.getDb()?.exec('DROP TRIGGER IF EXISTS reject_orphan_cursor_write');
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+
+  it('clamps unsafe budgets and keeps refresh cadence strictly below the effective budget', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('orphan-sweep-config-clamp-');
+    const { handler, vectorIndex } = await loadRealModules(workspace);
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
+      process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '999999999';
+      process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '999999999';
+      await handler.runIndexScan(
+        { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
+        {},
+      );
+
+      expect(warnSpy).toHaveBeenCalledWith(
+        '[memory-index-scan] Clamped SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS from 999999999 to 90000',
+      );
+      expect(warnSpy).toHaveBeenCalledWith(
+        '[memory-index-scan] Clamped SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS from 999999999 to 89999',
+      );
+    } finally {
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+
   it('exits before ORPHAN_SWEEP_MAX_PAGES with a resumable cursor once the time budget is exceeded, and a follow-up invocation resumes and completes', async () => {
     vi.resetModules();
     mockLeaseAndScaffolding();
@@ -240,8 +407,9 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       // follow-up invocations are needed; give it enough calls to converge.
       process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '20000';
       let cursorNow = cursorAfterFirst;
+      let finalResponse = first;
       for (let attempt = 0; attempt < 10 && cursorNow > 0; attempt += 1) {
-        await handler.runIndexScan(
+        finalResponse = await handler.runIndexScan(
           { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
           {},
         );
@@ -251,6 +419,13 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
         cursorNow = row ? Number.parseInt(row.value ?? '0', 10) : 0;
       }
       expect(cursorNow).toBe(0);
+
+      const finalEnvelope = parseScanEnvelope(finalResponse);
+      expect(finalEnvelope.data.orphanSweepNextCursor).toBeNull();
+      expect(finalEnvelope.data.status).toBe('complete');
+      expect(finalEnvelope.data.repairStatus).toBe('complete');
+      expect(finalEnvelope.data.orphanSweepResumable).toBe(false);
+      expect(finalEnvelope.data.orphanSweepCursorPersistenceFailed).toBe(false);
 
       const remaining = db?.prepare(
         "SELECT COUNT(*) AS count FROM memory_index WHERE spec_folder LIKE 'budget-exit/%'",
@@ -288,7 +463,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
             .map((row) => path.basename(row.file_path)),
         );
 
-        for (let attempt = 0; attempt < 10; attempt += 1) {
+        for (let attempt = 0; attempt < Math.ceil(ROWS / 25) + 2; attempt += 1) {
           await handler.runIndexScan(
             { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false },
             {},

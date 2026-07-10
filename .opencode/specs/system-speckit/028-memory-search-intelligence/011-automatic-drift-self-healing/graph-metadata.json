@@ -181,6 +181,12 @@
         "source": "derived"
       },
       {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Graduate Layer",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Close",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nobody wired any of this machinery to run without a human typing a command, so drift silently",
     "created_at": "2026-07-09T06:52:38.317Z",
-    "last_save_at": "2026-07-10T03:44:44.610Z",
+    "last_save_at": "2026-07-10T08:09:25.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e7c5f38b9db280d1de4446d50dfffb7f9ab9aa30d435ddbdf2403103c59230c",
+    "source_fingerprint": "sha256:ef961dd4f47b367a408eac0edc3dc750ffdd9fe5a7741bc4886cd8341bb1bb6f",
     "source_doc_hashes": {
-      "spec.md": "6c34676d079974c3350bd1915277425b3385b6a66111952c2130df38ef2ca27e",
-      "plan.md": "68f85a62b42488e797f200b03ca0cdd3a977c6c7f04f2ddb1e7b4a38402f9ea8",
-      "tasks.md": "a4704b3f2810539d53f81899f6e050283fae5be0fe5e35aa3e926061eabb51b9",
-      "checklist.md": "aa346fd7ea96b16287353704202cc2931f55e536e2d0eb0346307bba928eff56",
-      "implementation-summary.md": "06b3165e5f775c67bc4a09a7020b8ce7fa999517d423faaff93cac528a18615f"
+      "spec.md": "77b8ceedd703593fc5b1b477f12c0f2f75262dcba78fddb38924b5768863039a",
+      "plan.md": "1d645aa4cdfdaafdb169a24107482680e5926c7076f19322f36d0fe56df85f5a",
+      "tasks.md": "f59076b38d0c11ca22b37cee91da59e8b83d155363da7bca7613b397a8c41a21",
+      "checklist.md": "b599caed6b9d92d0420c2b36ff11bdd82fa9578761ba4c7437ceda71ebb37a1f",
+      "implementation-summary.md": "1a039d6441bd850ab25fd75f52cf3ab3a63fe13c4a7db2c367c5530e1a141266"
     },
     "last_active_child_id": null,
     "last_active_at": null

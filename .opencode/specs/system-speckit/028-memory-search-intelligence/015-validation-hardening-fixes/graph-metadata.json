@@ -154,7 +154,7 @@
         "source": "derived"
       },
       {
-        "name": "Corrected Finding",
+        "name": "Review Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -166,19 +166,7 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -192,7 +180,7 @@
     ],
     "causal_summary": "F6 — the evidence \"substance\" checker has two live defects, a false-negative loophole and a false-positive regression, both in `evidenceitemhassubstance()` (`check-evidence.sh:30-68`)",
     "created_at": "2026-07-09T15:10:28.777Z",
-    "last_save_at": "2026-07-10T03:44:45.136Z",
+    "last_save_at": "2026-07-10T08:09:25.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +189,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ebfae451c0f741a3b4fde9255296a1b06f0630361b03aff7674304ceabddb22",
+    "source_fingerprint": "sha256:d933e138bb0f75c584e7783ac0fcb3c967b8ea3ca8fa591da96ea16c58849d45",
     "source_doc_hashes": {
-      "spec.md": "b31ddc3d481d3f604b9e7a6b99fb9a8691198ac082f9934cbffc54517c6b95c3",
-      "plan.md": "45fc188daf07a4bdc0e67cee46a2a82386e9a29915df9af706e3f3fc760ef0e4",
-      "tasks.md": "ec01fb413c1779d2c63e757fa2935075e460c499e03941784cd4fc14a227bdaa",
-      "implementation-summary.md": "170621179c7fc0b7c5a1ae98649d861abf47576ce1540e8cfd2f8384c075604d"
+      "spec.md": "38513c6d6a185fd4c352053818ffd9cd4a862f2e76b421adf0e101599a08a15b",
+      "plan.md": "3f2cfd6805920e502b4b19a0655cd29a83ba71f42152769a5c922f0d89ead7d7",
+      "tasks.md": "45b804d84bdd1778d2c5b9e4f293fec233ad40168a8f51bd8cc63ae45342d9e6",
+      "implementation-summary.md": "20d4f57f0ba5295101866c77d863216e2cf42d01d1269d9e4a0204c3b3822c6b"
     },
     "last_active_child_id": null,
     "last_active_at": null

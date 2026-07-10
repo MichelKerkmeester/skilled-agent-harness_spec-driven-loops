@@ -99,6 +99,25 @@ const FLAG_CHECKERS: Array<{ flag: string; checker: () => boolean }> = [
 ];
 
 const ORIGINAL_ENV: Partial<Record<string, string | undefined>> = {};
+const FLAG_SOURCE_PATHS = [
+  '../lib/config/capability-flags.ts',
+  '../lib/search/search-flags.ts',
+  '../lib/search/graph-flags.ts',
+] as const;
+
+function collectRegisteredFlagTokens(): Set<string> {
+  const tokens = new Set<string>();
+  for (const sourcePath of FLAG_SOURCE_PATHS) {
+    const source = readFileSync(new URL(sourcePath, import.meta.url), 'utf8');
+    for (const match of source.matchAll(/['"](SPECKIT_[A-Z0-9_]+)['"]/g)) {
+      tokens.add(match[1]);
+    }
+    for (const match of source.matchAll(/process\.env\.(SPECKIT_[A-Z0-9_]+)/g)) {
+      tokens.add(match[1]);
+    }
+  }
+  return tokens;
+}
 
 function saveOriginalEnv(): void {
   for (const flag of ALL_SPECKIT_FLAGS) {
@@ -214,17 +233,21 @@ describe('Feature Flag Ceiling Test (A10-P2-2)', () => {
     }
   });
 
-  it('drift guard: every live SPECKIT_* token in search-flags.ts is known to this suite', () => {
-    const source = readFileSync(
-      new URL('../lib/search/search-flags.ts', import.meta.url),
-      'utf8',
-    );
-    const liveTokens = new Set(source.match(/SPECKIT_[A-Z0-9_]+/g) ?? []);
+  it('drift guard: every registered flag across the canonical flag modules is known', () => {
+    const liveTokens = collectRegisteredFlagTokens();
     const known = new Set<string>([...ALL_SPECKIT_FLAGS, ...ACKNOWLEDGED_UNCEILINGED_FLAGS]);
     const unknown = [...liveTokens].filter((token) => !known.has(token)).sort();
     // A new flag must either join the ceiling list or be explicitly
     // acknowledged below — never drift in silently.
     expect(unknown).toEqual([]);
+  });
+
+  it('keeps ceiling and acknowledged inventories mutually exclusive', () => {
+    const ceiling = new Set<string>(ALL_SPECKIT_FLAGS);
+    const duplicates = ACKNOWLEDGED_UNCEILINGED_FLAGS
+      .filter((token) => ceiling.has(token))
+      .sort();
+    expect(duplicates).toEqual([]);
   });
 });
 
@@ -246,7 +269,6 @@ const ACKNOWLEDGED_UNCEILINGED_FLAGS: string[] = [
   'SPECKIT_AUTO_RESUME',
   'SPECKIT_BATCH_LEARNED_FEEDBACK',
   'SPECKIT_CALIBRATED_OVERLAP_BONUS',
-  'SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION',
   'SPECKIT_CAUSAL_BOOST',
   'SPECKIT_CHANNEL_MIN_REP',
   'SPECKIT_COMMUNITY_SEARCH_FALLBACK',
@@ -315,6 +337,19 @@ const ACKNOWLEDGED_UNCEILINGED_FLAGS: string[] = [
   'SPECKIT_TEMPORAL_EDGES',
   'SPECKIT_TYPED_TRAVERSAL',
   'SPECKIT_USAGE_RANKING',
+  'SPECKIT_GENERATED_METADATA_DRIFT_GATE',
+  'SPECKIT_GENERATED_METADATA_GRANDFATHER',
+  'SPECKIT_GENERATOR_HARDENING',
+  'SPECKIT_GRAPH_UNIFIED',
+  'SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES',
+  'SPECKIT_IDENTITY_MERGE_SAFETY',
+  'SPECKIT_MEMORY_ADAPTIVE_RANKING',
+  'SPECKIT_MEMORY_GRAPH_UNIFIED',
+  'SPECKIT_MEMORY_LINEAGE_STATE',
+  'SPECKIT_MEMORY_ROADMAP_PHASE',
+  'SPECKIT_PARSER',
+  'SPECKIT_QUERY_TIME_EXISTENCE_FILTER',
+  'SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE',
 ];
 
 // SELF-GOVERNANCE FOOTER (TCB 9+)

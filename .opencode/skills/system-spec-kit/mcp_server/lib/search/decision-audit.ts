@@ -3,12 +3,20 @@
 // ───────────────────────────────────────────────────────────────
 
 import { mkdirSync, appendFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { basename, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { SearchDecisionEnvelope } from './search-decision-envelope.js';
 import { rotateIfNeeded as rotateAuditIfNeeded } from '../memory/audit-rotation.js';
 
 const DEFAULT_MAX_BYTES = 10 * 1024 * 1024;
 const DEFAULT_MAX_ROTATED_FILES = 5;
+
+function resolveMcpServerRoot(moduleUrl: string): string {
+  const moduleRoot = resolve(dirname(fileURLToPath(moduleUrl)), '..', '..');
+  return basename(moduleRoot) === 'dist' ? dirname(moduleRoot) : moduleRoot;
+}
+
+const MCP_SERVER_ROOT = resolveMcpServerRoot(import.meta.url);
 
 export interface RecordSearchDecisionOptions {
   auditPath?: string;
@@ -33,7 +41,7 @@ export interface SearchDecisionSlaMetrics {
 }
 
 function defaultAuditPath(): string {
-  return resolve(process.cwd(), '.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl');
+  return resolve(MCP_SERVER_ROOT, 'data', 'search-decisions.jsonl');
 }
 
 function resolveAuditPath(options: RecordSearchDecisionOptions = {}): string {
@@ -153,7 +161,13 @@ function isFiniteNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value);
 }
 
+const __testables = {
+  resolveMcpServerRoot,
+  resolveAuditPath,
+};
+
 export {
+  __testables,
   computeSearchDecisionSlaMetrics,
   recordSearchDecision,
 };

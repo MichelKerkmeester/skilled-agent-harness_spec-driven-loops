@@ -2,6 +2,11 @@
 // MODULE: Types
 // ───────────────────────────────────────────────────────────────
 // Shared types for tool dispatch modules.
+import type {
+  ToolInputKeyMap,
+  ToolInputTypeMap,
+} from '../schemas/tool-input-schemas.js';
+
 // Re-export canonical MCPResponse from shared
 export type { MCPResponse } from '@spec-kit/shared/types';
 
@@ -23,8 +28,8 @@ export function parseArgs<T>(args: Record<string, unknown>): T {
 /** Arguments for memory context requests. */
 export interface ContextArgs {
   input: string;
-  mode?: string;
-  intent?: string;
+  mode?: 'auto' | 'quick' | 'deep' | 'focused' | 'resume';
+  intent?: 'add_feature' | 'fix_bug' | 'refactor' | 'security_audit' | 'understand' | 'find_spec' | 'find_decision';
   specFolder?: string;
   tenantId?: string;
   userId?: string;
@@ -33,6 +38,7 @@ export interface ContextArgs {
   sessionId?: string;
   enableDedup?: boolean;
   includeContent?: boolean;
+  includeConstitutional?: boolean;
   includeTrace?: boolean;
   tokenBudget?: number;
   tokenUsage?: number;
@@ -50,7 +56,7 @@ export interface SearchArgs {
   userId?: string;
   agentId?: string;
   limit?: number;
-  tier?: string;
+  tier?: 'constitutional' | 'critical' | 'important' | 'normal' | 'temporary' | 'archived' | 'deprecated';
   contextType?: string;
   useDecay?: boolean;
   includeContiguity?: boolean;
@@ -60,7 +66,7 @@ export interface SearchArgs {
   bypassCache?: boolean;
   sessionId?: string;
   enableDedup?: boolean;
-  intent?: string;
+  intent?: 'add_feature' | 'fix_bug' | 'refactor' | 'security_audit' | 'understand' | 'find_spec' | 'find_decision';
   autoDetectIntent?: boolean;
   enableSessionBoost?: boolean;
   enableCausalBoost?: boolean;
@@ -73,7 +79,9 @@ export interface SearchArgs {
   trackAccess?: boolean;
   includeArchived?: boolean;
   mode?: 'auto' | 'deep';
+  retrievalLevel?: 'local' | 'global' | 'auto';
   includeTrace?: boolean;
+  profile?: 'quick' | 'research' | 'resume' | 'debug';
   debug?: { enabled?: boolean };
 }
 
@@ -131,6 +139,8 @@ export interface HealthArgs {
   specFolder?: string;
   autoRepair?: boolean;
   confirmed?: boolean;
+  includeFullReport?: boolean;
+  cleanFiles?: boolean;
 }
 
 /** Arguments for memory validation feedback requests. */
@@ -177,6 +187,7 @@ export interface ReconcileArgs {
 /** Arguments for selecting the active embedder target. */
 export interface EmbedderSetArgs {
   name: string;
+  dryRun?: boolean;
 }
 
 /** Arguments for embedder re-index status polling. */
@@ -215,6 +226,8 @@ export interface SaveArgs {
   governedAt?: string;
   retentionPolicy?: 'keep' | 'ephemeral';
   deleteAfter?: string;
+  plannerMode?: 'plan-only' | 'hybrid' | 'full-auto';
+  targetAnchorId?: string;
 }
 
 /** Arguments for memory index scan requests. */
@@ -243,6 +256,7 @@ export interface ScanArgs {
 /** Arguments for session resume requests. */
 export interface SessionResumeArgs {
   specFolder?: string;
+  sessionId?: string;
   minimal?: boolean;
 }
 
@@ -258,6 +272,7 @@ export interface CheckpointCreateArgs {
   tenantId?: string;
   userId?: string;
   agentId?: string;
+  includeEmbeddings?: boolean;
   metadata?: Record<string, unknown>;
 }
 
@@ -340,6 +355,7 @@ export interface CausalLinkArgs {
 
 /** Arguments for causal statistics requests. */
 export interface CausalStatsArgs {
+  scope?: string;
   // Optional bounded relation-inference backfill; dryRun-default so reads stay side-effect-free.
   // similarity/contradicts are OPT-IN collectors (default false); similarityThreshold gates similarity.
   backfill?: {
@@ -392,6 +408,15 @@ export interface EvalReportingDashboardArgs {
 export interface IngestStartArgs {
   paths: string[];
   specFolder?: string;
+  tenantId?: string;
+  userId?: string;
+  agentId?: string;
+  sessionId?: string;
+  provenanceSource?: string;
+  provenanceActor?: string;
+  governedAt?: string;
+  retentionPolicy?: 'keep' | 'ephemeral';
+  deleteAfter?: string;
 }
 
 /** Arguments for ingestion job status requests. */
@@ -413,3 +438,40 @@ export interface IndexScanStatusArgs {
 export interface IndexScanCancelArgs {
   jobId: string;
 }
+
+type Assert<T extends true> = T;
+type HasExactSchemaKeys<
+  TArgs,
+  TName extends keyof ToolInputKeyMap,
+> = Exclude<keyof TArgs, ToolInputKeyMap[TName]> extends never
+  ? Exclude<ToolInputKeyMap[TName], keyof TArgs> extends never
+    ? true
+    : false
+  : false;
+type IsMutuallyAssignable<TArgs, TName extends keyof ToolInputTypeMap> = TArgs extends ToolInputTypeMap[TName]
+  ? ToolInputTypeMap[TName] extends TArgs
+    ? true
+    : false
+  : false;
+
+/** Compile-time guard against dispatcher argument types drifting from runtime schemas. */
+export type ToolArgumentSchemaParity = {
+  contextKeys: Assert<HasExactSchemaKeys<ContextArgs, 'memory_context'>>;
+  searchKeys: Assert<HasExactSchemaKeys<SearchArgs, 'memory_search'>>;
+  healthKeys: Assert<HasExactSchemaKeys<HealthArgs, 'memory_health'>>;
+  saveKeys: Assert<HasExactSchemaKeys<SaveArgs, 'memory_save'>>;
+  sessionResumeKeys: Assert<HasExactSchemaKeys<SessionResumeArgs, 'session_resume'>>;
+  checkpointCreateKeys: Assert<HasExactSchemaKeys<CheckpointCreateArgs, 'checkpoint_create'>>;
+  causalStatsKeys: Assert<HasExactSchemaKeys<CausalStatsArgs, 'memory_causal_stats'>>;
+  ingestStartKeys: Assert<HasExactSchemaKeys<IngestStartArgs, 'memory_ingest_start'>>;
+  embedderSetKeys: Assert<HasExactSchemaKeys<EmbedderSetArgs, 'embedder_set'>>;
+  contextTypes: Assert<IsMutuallyAssignable<ContextArgs, 'memory_context'>>;
+  searchTypes: Assert<IsMutuallyAssignable<SearchArgs, 'memory_search'>>;
+  healthTypes: Assert<IsMutuallyAssignable<HealthArgs, 'memory_health'>>;
+  saveTypes: Assert<IsMutuallyAssignable<SaveArgs, 'memory_save'>>;
+  sessionResumeTypes: Assert<IsMutuallyAssignable<SessionResumeArgs, 'session_resume'>>;
+  checkpointCreateTypes: Assert<IsMutuallyAssignable<CheckpointCreateArgs, 'checkpoint_create'>>;
+  causalStatsTypes: Assert<IsMutuallyAssignable<CausalStatsArgs, 'memory_causal_stats'>>;
+  ingestStartTypes: Assert<IsMutuallyAssignable<IngestStartArgs, 'memory_ingest_start'>>;
+  embedderSetTypes: Assert<IsMutuallyAssignable<EmbedderSetArgs, 'embedder_set'>>;
+};

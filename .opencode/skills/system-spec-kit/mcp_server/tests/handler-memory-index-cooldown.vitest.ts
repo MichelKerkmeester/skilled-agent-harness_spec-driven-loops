@@ -219,6 +219,29 @@ describe('handler-memory-index cooldown behavior', () => {
     const envelope = JSON.parse(result.content[0].text);
     expect(envelope.data.coalesced).toBe(true);
     expect(envelope.data.status).toBe('coalesced');
+    expect(envelope.data.repairStatus).toBe('coalesced');
+  });
+
+  it('distinguishes writer contention from an ordinary coalesced scan', async () => {
+    mocks.mockAcquireIndexScanLease.mockResolvedValue({
+      acquired: false,
+      reason: 'contention',
+      waitSeconds: 1,
+      lastIndexScan: 0,
+      scanStartedAt: 0,
+      leaseExpiryMs: 120000,
+      cooldownMs: 60000,
+    });
+
+    const result = await handler.handleMemoryIndexScan({
+      includeConstitutional: false,
+      includeSpecDocs: true,
+    });
+
+    const envelope = JSON.parse(result.content[0].text);
+    expect(envelope.data.status).toBe('coalesced');
+    expect(envelope.data.reason).toBe('contention');
+    expect(envelope.data.repairStatus).toBe('contended');
   });
 
   it('sets cooldown timestamp after successful scan response', async () => {

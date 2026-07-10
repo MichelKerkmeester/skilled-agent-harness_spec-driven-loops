@@ -21,6 +21,7 @@ import {
   isTRMEnabled,
   isContentRichShortQueryGraphPreservationEnabled,
   isOptInEnabled,
+  isStrictOptInEnabled,
   parseFlagTristate,
 } from '../lib/search/search-flags';
 
@@ -396,5 +397,32 @@ describe('Search Flags: parseFlagTristate() vocabulary matrix', () => {
     process.env[FLAG] = 'maybe';
     expect(parseFlagTristate(FLAG, true)).toBe(true);
     expect(parseFlagTristate(FLAG, false)).toBe(false);
+  });
+
+  it('keeps strict opt-in parsing limited to true and 1', () => {
+    const cases: Array<[string | undefined, boolean]> = [
+      [undefined, false],
+      ['', false],
+      ['   ', false],
+      ['true', true],
+      [' TRUE ', true],
+      ['1', true],
+      [' 1 ', true],
+      ['yes', false],
+      ['on', false],
+      ['enabled', false],
+      ['false', false],
+      ['0', false],
+      ['invalid', false],
+    ];
+
+    for (const [value, expected] of cases) {
+      if (value === undefined) {
+        delete process.env[FLAG];
+      } else {
+        process.env[FLAG] = value;
+      }
+      expect(isStrictOptInEnabled(FLAG), `value=${String(value)}`).toBe(expected);
+    }
   });
 });

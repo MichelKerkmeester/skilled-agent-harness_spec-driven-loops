@@ -29,7 +29,7 @@ source "${_check_evidence_dir}/../lib/check-priority-helper.sh"
 
 evidence_item_has_substance() {
     local item_text="$1"
-    local normalized lower remainder marker_type
+    local normalized lower remainder marker_type deferred_substance
     normalized="$(printf '%s' "$item_text" | tr '\n' ' ' | sed -E 's/^[[:space:]]*-[[:space:]]\[[xX]\][[:space:]]*//; s/\[[Pp][0-2]\][[:space:]]*//g; s/[[:space:]]+/ /g; s/^[[:space:]]+|[[:space:]]+$//g')"
     lower="$(printf '%s' "$normalized" | tr '[:upper:]' '[:lower:]')"
     remainder="$lower"
@@ -46,12 +46,11 @@ evidence_item_has_substance() {
 
     [[ ${#normalized} -ge 32 ]] || return 1
 
-    # A non-trivial [DEFERRED: ...] reason is a documented disposition, not a
-    # proof of completed work — it does not need to look evidence-shaped
-    # (filename, backtick, fraction/percent, test-tool keyword) to count.
-    # Trivial deferrals (empty/placeholder) are already caught by the case
-    # statement above; anything that survives that is treated as sufficient.
+    # A documented disposition does not need to look evidence-shaped, but the
+    # extracted reason must contain enough substance to explain the deferral.
     if [[ "$marker_type" == "deferred" ]]; then
+        deferred_substance="$(printf '%s' "$remainder" | tr -cd '[:alnum:]')"
+        [[ ${#deferred_substance} -ge 10 ]] || return 1
         return 0
     fi
 
@@ -137,6 +136,7 @@ run_check() {
         local active_line=0
         local active_priority=""
         local active_completed=false
+        local active_indent=""
         local path="$folder/$file_name"
 
         while IFS= read -r line || [[ -n "$line" ]]; do
@@ -150,6 +150,27 @@ run_check() {
                 active_line=0
                 active_priority=""
                 active_completed=false
+                active_indent=""
+            fi
+
+            if [[ "$active_completed" == true ]]; then
+                local line_indent=""
+                line_indent="${line%%[![:space:]]*}"
+                if [[ -n "$line" ]] && \
+                   [[ ${#line_indent} -gt ${#active_indent} ]] && \
+                   [[ ! "$line" =~ ^[[:space:]]*#{1,6}[[:space:]] ]] && \
+                   [[ ! "$line" =~ ^[[:space:]]{0,3}([-*_][[:space:]]*){3,}$ ]]; then
+                    active_item+=$'\n'
+                    active_item+="$line"
+                    continue
+                fi
+
+                check_completed_item_evidence "$file_name" "$active_line" "$active_priority" "$active_item"
+                active_item=""
+                active_line=0
+                active_priority=""
+                active_completed=false
+                active_indent=""
             fi
 
             local _detected_priority=""
@@ -168,12 +189,8 @@ run_check() {
                 active_item="$line"
                 active_line=$line_num
                 active_completed=true
+                active_indent="${line%%[![:space:]]*}"
                 continue
-            fi
-
-            if [[ "$active_completed" == true ]]; then
-                active_item+=$'\n'
-                active_item+="$line"
             fi
         done < "$path"
 

@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/010-query-channel-calibration"
-    last_updated_at: "2026-07-09T14:20:00.000Z"
-    last_updated_by: "opencode"
-    recent_action: "Implemented query-channel calibration and visibility fix"
-    next_safe_action: "Resolve package-wide unrelated lint/test failures if full-package completion is required"
+    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_by: "claude-code"
+    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
+    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts"

@@ -23,7 +23,10 @@ if [ -z "$REPO_ROOT" ]; then
 fi
 
 HOOK_SOURCE_DIR="$REPO_ROOT/.opencode/scripts/git-hooks"
-HOOK_TARGET_DIR="$REPO_ROOT/.git/hooks"
+HOOK_TARGET_DIR="$(git -C "$REPO_ROOT" rev-parse --git-path hooks)"
+if [[ "$HOOK_TARGET_DIR" != /* ]]; then
+  HOOK_TARGET_DIR="$REPO_ROOT/$HOOK_TARGET_DIR"
+fi
 
 if [ "${1:-}" = "--uninstall" ]; then
   for hook in "$HOOK_SOURCE_DIR"/*; do
@@ -58,5 +61,4 @@ echo ""
 echo "Hooks installed. Test: 'git commit --allow-empty -m \"hook smoke\"' should run silently unless drift is detected."
 echo "Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..."
 echo "Bypass memory drift marker: SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK=1 git commit ..."
-echo "Note: these hooks are shared across every linked '.worktrees/*' checkout via git's"
-echo "git-common-dir sharing — no need to re-run this installer per worktree."
+echo "Note: the target is resolved by Git, so linked worktrees and core.hooksPath are honored."

@@ -4,11 +4,13 @@
 # ───────────────────────────────────────────────────────────────
 # Advisory-by-default: flags a description.json/graph-metadata.json
 # path mismatch against the folder's on-disk path. Set
-# SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE=true to fail --strict.
+# SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE to a truthy value to fail --strict.
 
 set -euo pipefail
 
 _metadata_rule_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=../lib/parse-bool-flag.sh
+source "${_metadata_rule_dir}/../lib/parse-bool-flag.sh"
 
 run_check() {
     local folder="$1"
@@ -40,9 +42,20 @@ run_check() {
         return 0
     fi
 
-    local mismatch_count actual_path details
+    local mismatch_count parse_error_count actual_path details
     mismatch_count=$(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); console.log((data.mismatches || []).length);' 2>/dev/null || printf '0')
+    parse_error_count=$(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); console.log((data.parseErrors || []).length);' 2>/dev/null || printf '0')
     actual_path=$(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); console.log(data.actualPacketId || "unknown");' 2>/dev/null || printf 'unknown')
+    if [[ "$parse_error_count" -gt 0 ]]; then
+        while IFS= read -r details; do
+            [[ -n "$details" ]] && RULE_DETAILS+=("$details")
+        done < <(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); for (const item of data.parseErrors || []) console.log(item);' 2>/dev/null || true)
+        RULE_STATUS="warn"
+        RULE_MESSAGE="malformed generated metadata prevents a reliable disk-path check"
+        RULE_REMEDIATION="Repair the malformed JSON and rerun validation."
+        return 0
+    fi
+
     if [[ "$mismatch_count" -eq 0 ]]; then
         RULE_MESSAGE="Generated metadata paths match on-disk folder: $actual_path"
         return 0
@@ -52,7 +65,7 @@ run_check() {
         [[ -n "$details" ]] && RULE_DETAILS+=("$details")
     done < <(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); for (const item of data.mismatches || []) console.log(item);' 2>/dev/null || true)
 
-    if [[ "${SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE:-false}" == "true" ]]; then
+    if speckit_flag_enabled "${SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE:-}"; then
         RULE_STATUS="warn"
         RULE_MESSAGE="Generated metadata path drift detected against on-disk folder: $actual_path"
         RULE_REMEDIATION="Refresh description.json and graph-metadata.json from the canonical save path so stored ids match the real folder."

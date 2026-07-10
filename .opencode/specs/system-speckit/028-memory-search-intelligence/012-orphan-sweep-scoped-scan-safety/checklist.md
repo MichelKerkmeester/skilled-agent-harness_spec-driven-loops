@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/012-orphan-sweep-scoped-scan-safety"
-    last_updated_at: "2026-07-09T17:40:46Z"
-    last_updated_by: "claude-sonnet-5"
-    recent_action: "All 39 checklist items verified with evidence; 20/20 P0, 18/18 P1, 1/1 P2"
-    next_safe_action: "Packet complete; no further action required"
+    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_by: "claude-code"
+    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
+    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
@@ -138,7 +138,7 @@ FAILURE MODES:
 
 **F1 -- marker refresh cadence**
 - [x] CHK-064 [P0] A synthetic long sweep, run through the REAL runGlobalOrphanSweep() function under a DELETE-heavy synthetic orphan backlog (not a scan-only mirror harness), demonstrates at least one additional ctx.onPhase/marker-refresh call beyond the single phase-entry call (REQ-002) -- tests/orphan-sweep-time-budget-and-refresh.vitest.ts "re-fires ctx.onPhase more than once..." test, PASS: 2500 real orphan rows through the exported runIndexScan, each row deleted via the real deleteIndexedRecordIds cascade (real vectorIndex.deleteMemory + causalEdges.deleteEdgesForMemory + recordHistory against a real temp SQLite DB), onPhase('orphan-sweep') observed >1 time
-- [x] CHK-065 [P1] No gap between refresh calls during the synthetic long sweep exceeds the chosen cadence interval, and the interval stays under MAINTENANCE_MARKER_REFRESH_BEFORE_MS = 90,000ms (REQ-002, NFR-P02) -- enforced structurally by the rate-gate condition itself (`now - lastRefreshAt >= refreshCadenceMs`) rather than independently re-measured in the test; the chosen default (20,000ms) and the test-time override (15ms/250ms) are both read from SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS and are always < MAINTENANCE_MARKER_REFRESH_BEFORE_MS (90,000ms) -- INFERRED from code structure, not independently timestamp-measured in the test
+- [x] CHK-065 [P1] No gap between refresh calls during the synthetic long sweep exceeds the chosen cadence interval, and the interval stays under MAINTENANCE_MARKER_REFRESH_BEFORE_MS = 90,000ms (REQ-002, NFR-P02) -- originally enforced structurally by the rate-gate condition (`now - lastRefreshAt >= refreshCadenceMs`) and marked INFERRED, which was honest but insufficient: the 2026-07-09 audit showed a single slow deletion page could exceed the cadence between checks. UPGRADED 2026-07-10: deletion is now chunked (25 rows) with deadline/refresh checks between chunks, env values are clamped (budget <= 90,000ms, cadence strictly below budget), and the test suite now captures real timestamps and asserts consecutive refresh-gap bounds plus page-bounded callback counts (tests/orphan-sweep-time-budget-and-refresh.vitest.ts) -- MEASURED, no longer inferred
 - [x] CHK-066 [P1] The refresh cadence is rate-gated, not called on every single page, confirmed by the call count staying well below the total page count for a large-page-count fixture (NFR-P02) -- tests/orphan-sweep-time-budget-and-refresh.vitest.ts "rate-gates the refresh..." test, PASS: 1200-row backlog (>=6 pages) produces far fewer than 50 onPhase('orphan-sweep') calls
 
 **F2 -- specDocFiles gating**

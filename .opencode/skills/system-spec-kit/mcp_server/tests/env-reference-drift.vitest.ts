@@ -17,7 +17,13 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const MCP_SERVER_ROOT = resolve(__dirname, '..');
+const SYSTEM_SPEC_KIT_ROOT = resolve(MCP_SERVER_ROOT, '..');
 const ENV_REFERENCE_PATH = resolve(MCP_SERVER_ROOT, 'ENV_REFERENCE.md');
+const FLAG_REGISTRY_PATHS = [
+  'lib/config/capability-flags.ts',
+  'lib/search/search-flags.ts',
+  'lib/search/graph-flags.ts',
+] as const;
 
 // Tokens read only inside runtime code that is gated behind a test-mode guard
 // (NODE_ENV='test' / SPECKIT_TEST='true') or that exist solely to let suites
@@ -55,6 +61,13 @@ function isExcludedPath(relPath: string): boolean {
 // carries the token name.
 const ENV_READ_RE =
   /(?:process\.env|[A-Za-z_]*[eE]nv)(?:\.(SPECKIT_[A-Z0-9_]+)|\[\s*['"](SPECKIT_[A-Z0-9_]+)['"]\s*\])/g;
+const FLAG_STRING_LITERAL_RE = /['"](SPECKIT_[A-Z0-9_]+)['"]/g;
+
+interface DocumentedFlagRow {
+  cells: string[];
+  defaultState: boolean | null;
+  tokens: string[];
+}
 
 function collectRuntimeTsFiles(): string[] {
   const entries = readdirSync(MCP_SERVER_ROOT, {
@@ -89,18 +102,121 @@ function collectRuntimeEnvTokens(): Map<string, string> {
       if (token && !tokens.has(token)) tokens.set(token, relPath);
     }
   }
+
+  for (const relPath of FLAG_REGISTRY_PATHS) {
+    const source = readFileSync(resolve(MCP_SERVER_ROOT, relPath), 'utf8');
+    FLAG_STRING_LITERAL_RE.lastIndex = 0;
+    let match: RegExpExecArray | null;
+    while ((match = FLAG_STRING_LITERAL_RE.exec(source)) !== null) {
+      const token = match[1];
+      if (token && !tokens.has(token)) tokens.set(token, relPath);
+    }
+  }
   return tokens;
 }
 
-function collectDocumentedTokens(): Set<string> {
-  const doc = readFileSync(ENV_REFERENCE_PATH, 'utf8');
-  const documented = new Set<string>();
-  const docRe = /SPECKIT_[A-Z0-9_]+/g;
-  let match: RegExpExecArray | null;
-  while ((match = docRe.exec(doc)) !== null) {
-    documented.add(match[0]);
+function collectFeatureRuntimeTokens(): Set<string> {
+  const tokens = new Set(collectRuntimeEnvTokens().keys());
+  for (const absPath of collectRuntimeTsFiles()) {
+    const source = readFileSync(absPath, 'utf8');
+    for (const match of source.matchAll(FLAG_STRING_LITERAL_RE)) {
+      if (match[1]) tokens.add(match[1]);
+    }
   }
-  return documented;
+  const scriptsRoot = resolve(SYSTEM_SPEC_KIT_ROOT, 'scripts');
+  const entries = readdirSync(scriptsRoot, { recursive: true, withFileTypes: true });
+
+  for (const entry of entries) {
+    if (!entry.isFile() || !/\.(?:ts|js|mjs|cjs|sh)$/.test(entry.name)) continue;
+    const dir = (entry as unknown as { parentPath?: string; path?: string }).parentPath
+      ?? (entry as unknown as { path?: string }).path
+      ?? scriptsRoot;
+    const absPath = resolve(dir, entry.name);
+    const relPath = absPath.slice(SYSTEM_SPEC_KIT_ROOT.length + 1);
+    if (relPath.includes('/tests/') || relPath.includes('/dist/') || relPath.includes('/node_modules/')) {
+      continue;
+    }
+    const source = readFileSync(absPath, 'utf8');
+    for (const match of source.matchAll(
+      /(?:process\.env\.(SPECKIT_[A-Z0-9_]+)|process\.env\[\s*['"](SPECKIT_[A-Z0-9_]+)['"]\s*\]|\$\{(SPECKIT_[A-Z0-9_]+)(?=[:}])|\$(SPECKIT_[A-Z0-9_]+)\b|['"](SPECKIT_[A-Z0-9_]+)['"])/g,
+    )) {
+      const token = match.slice(1).find((candidate): candidate is string => Boolean(candidate));
+      if (token) tokens.add(token);
+    }
+  }
+
+  return tokens;
+}
+
+function parseDefaultState(cell: string): boolean | null {
+  const normalized = cell.replace(/`/g, '').trim().toLowerCase();
+  if (/^(on|true)(?:\b|\s|\()/.test(normalized)) return true;
+  if (/^(off|false)(?:\b|\s|\()/.test(normalized)) return false;
+  return null;
+}
+
+function collectDocumentedFlagRows(): DocumentedFlagRow[] {
+  const rows: DocumentedFlagRow[] = [];
+  for (const line of readFileSync(ENV_REFERENCE_PATH, 'utf8').split('\n')) {
+    if (!line.trim().startsWith('|')) continue;
+    const cells = line.split('|').slice(1, -1).map((cell) => cell.trim());
+    if (cells.length < 2 || cells.every((cell) => /^:?-+:?$/.test(cell))) continue;
+    const tokens = cells.flatMap((cell) => cell.match(/`(SPECKIT_[A-Z0-9_]+)`/g) ?? [])
+      .map((token) => token.slice(1, -1));
+    if (tokens.length === 0) continue;
+    rows.push({ cells, defaultState: parseDefaultState(cells[1] ?? ''), tokens });
+  }
+  return rows;
+}
+
+function collectDocumentedTokens(): Set<string> {
+  return new Set(collectDocumentedFlagRows().flatMap((row) => row.tokens));
+}
+
+function collectFeatureTableTokens(): Set<string> {
+  const doc = readFileSync(ENV_REFERENCE_PATH, 'utf8');
+  const table = doc.match(
+    /### Feature Flags Reference Table[\s\S]*?\n(Total unique variables documented:)/,
+  )?.[0] ?? '';
+  const tokens = table.match(/`(SPECKIT_[A-Z0-9_]+)`/g) ?? [];
+  return new Set(tokens.map((token) => token.slice(1, -1)));
+}
+
+function collectRuntimeDefaultPolarities(): Map<string, boolean> {
+  const polarities = new Map<string, boolean>();
+  const constants = new Map<string, string>();
+
+  for (const relPath of FLAG_REGISTRY_PATHS) {
+    const source = readFileSync(resolve(MCP_SERVER_ROOT, relPath), 'utf8');
+    for (const match of source.matchAll(
+      /\bconst\s+([A-Z][A-Z0-9_]*)\s*=\s*['"](SPECKIT_[A-Z0-9_]+)['"]/g,
+    )) {
+      constants.set(match[1], match[2]);
+    }
+
+    for (const match of source.matchAll(
+      /\b(isFeatureEnabled|isOptInEnabled|isStrictOptInEnabled|parseFlagTristate)\(\s*(?:['"](SPECKIT_[A-Z0-9_]+)['"]|([A-Z][A-Z0-9_]*))(?:\s*,\s*(true|false))?/g,
+    )) {
+      const helper = match[1];
+      const token = match[2] ?? constants.get(match[3]);
+      if (!token) continue;
+      if (helper === 'isFeatureEnabled') polarities.set(token, true);
+      if (helper === 'isOptInEnabled' || helper === 'isStrictOptInEnabled') {
+        polarities.set(token, false);
+      }
+      if (helper === 'parseFlagTristate' && match[4]) {
+        polarities.set(token, match[4] === 'true');
+      }
+    }
+
+    for (const match of source.matchAll(
+      /process\.env\.(SPECKIT_[A-Z0-9_]+)[\s\S]{0,100}?!==\s*['"]true['"]/g,
+    )) {
+      polarities.set(match[1], false);
+    }
+  }
+
+  return polarities;
 }
 
 describe('ENV_REFERENCE.md drift guard', () => {
@@ -131,7 +247,61 @@ describe('ENV_REFERENCE.md drift guard', () => {
     ).toEqual([]);
   });
 
-  it('keeps the internal ignore-list honest (every ignored token is still a runtime read and still undocumented)', () => {
+  it('keeps the canonical feature table bidirectionally aligned with runtime registrations', () => {
+    const runtimeTokens = collectFeatureRuntimeTokens();
+    const featureTokens = collectFeatureTableTokens();
+    const stale = [...featureTokens]
+      .filter((token) => !runtimeTokens.has(token))
+      .sort();
+
+    expect(
+      stale,
+      `Feature-table flags without a runtime read or registration:\n  ${stale.join('\n  ')}`,
+    ).toEqual([]);
+  });
+
+  it('matches documented ON/OFF states to canonical parser polarity where statically declared', () => {
+    const runtimePolarities = collectRuntimeDefaultPolarities();
+    const rows = collectDocumentedFlagRows();
+    const mismatches: string[] = [];
+
+    for (const row of rows) {
+      if (row.defaultState === null) continue;
+      for (const token of row.tokens) {
+        const runtimeDefault = runtimePolarities.get(token);
+        if (runtimeDefault === undefined || runtimeDefault === row.defaultState) continue;
+        mismatches.push(
+          `${token}: runtime=${runtimeDefault ? 'ON' : 'OFF'}, documented=${row.defaultState ? 'ON' : 'OFF'}`,
+        );
+      }
+    }
+
+    expect(mismatches).toEqual([]);
+  });
+
+  it('keeps the relevance-aware gap row internally consistent with its default-on parser', () => {
+    const row = collectDocumentedFlagRows().find(
+      (candidate) => candidate.tokens.includes('SPECKIT_RELEVANCE_AWARE_GAP'),
+    );
+    expect(row?.defaultState).toBe(true);
+    expect(row?.cells.join(' ').toLowerCase()).not.toContain('default off');
+    expect(row?.cells.join(' ').toLowerCase()).not.toContain('set true to enable');
+  });
+
+  it('documents the packed BM25 auto fallback and omits the retired novelty flag', () => {
+    const envReference = readFileSync(ENV_REFERENCE_PATH, 'utf8');
+    const bm25Row = envReference.split('\n').find((line) => line.includes('`SPECKIT_BM25_ENGINE`'));
+    const telemetryReference = readFileSync(
+      resolve(MCP_SERVER_ROOT, 'lib/telemetry/README.md'),
+      'utf8',
+    );
+
+    expect(bm25Row).toContain('falls back to the packed in-memory index');
+    expect(bm25Row).not.toContain('otherwise falls back to legacy in-memory BM25');
+    expect(telemetryReference).not.toContain('SPECKIT_NOVELTY_BOOST');
+  });
+
+  it('keeps the internal ignore-list honest (every ignored token is still a runtime read and has no doc row)', () => {
     const runtimeTokens = collectRuntimeEnvTokens();
     const documented = collectDocumentedTokens();
 

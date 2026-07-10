@@ -32,7 +32,7 @@
       "tokenbudget"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/commands/memory/assets/search_presentation.txt",
       ".claude/commands/memory/assets/search_presentation.txt",
@@ -152,13 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Review Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -176,12 +176,6 @@
         "source": "derived"
       },
       {
-        "name": "Spec Kit Memory",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -194,15 +188,21 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "P1 — breadcrumb suppression is a deliberate rule, not a data gap",
     "created_at": "2026-07-09T06:20:00.567Z",
-    "last_save_at": "2026-07-10T03:44:43.906Z",
+    "last_save_at": "2026-07-10T08:09:24.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +211,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9dff05f8fb823f21be12ad1a9a1229daf39835de95be31fb610e1ff62fce24f",
+    "source_fingerprint": "sha256:3e35e1fe7b24b3858a08f3f6fae03a1471948c2f44b0eb8706e05bc7e8553828",
     "source_doc_hashes": {
-      "spec.md": "d0222cdf13a6c701eb41a6932138c2b35f7c07a26efad4c8e7f942b312e3885f",
-      "plan.md": "bcdd81a0b5f369641e560770ca05fa770cb8547088cd2b16b7b6f91a83f6c7cc",
-      "tasks.md": "0c5f564e8181d636d3b551453a554470fe21f615ae334c575282eb7a213775be",
-      "implementation-summary.md": "27c41dcfbd0108c5536f5197ba495d71246e396cf15c598d99fa57c2b3ca4289"
+      "spec.md": "78d5474b036440d635980fc012f107a8b9ee7184f4700eb97eec537defd95698",
+      "plan.md": "aecf0683d0e4b069c1c1a152ede939db33ee2e5a0e65c58d0975756b398b4ca4",
+      "tasks.md": "7650c3c646ce368520b6abe8477e1ba7fec628520b9cd6357e606819a0327d24",
+      "implementation-summary.md": "64300904d8491d9b3c4ee40dd89f5783099ad31966a26a52ded8da59e2662861"
     },
     "last_active_child_id": null,
     "last_active_at": null

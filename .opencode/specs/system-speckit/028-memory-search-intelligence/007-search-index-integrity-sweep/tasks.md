@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep"
-    last_updated_at: "2026-07-09T06:21:23.000Z"
+    last_updated_at: "2026-07-10T08:09:04.000Z"
     last_updated_by: "claude-code"
-    recent_action: "Recorded resumed-state evidence and marked only confirmed tasks complete"
-    next_safe_action: "Fix verification-suite failures before claiming packet completion"
+    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
+    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers: []
     key_files: []
     session_dedup:
@@ -75,7 +75,7 @@ _memory:
 ### Targeted Fixes (F11 refresh, F13 missing-vectors, F12 operational)
 
 - [x] T009 Re-hash and refresh `content_text`/`content_hash` for the F11 confirmed-drifted rows (depends on T008's investigation output deciding the mechanism) — No-op by current evidence: no live `content_hash` drift or null stored hashes remain.
-- [x] T010 If T007 found a real wiring/scope gap in the F10 recurrence path, apply the minimal fix in incremental-index.ts; otherwise document the operational cadence/scope conclusion (REQ-009 is P2, deferrable with reason) — No code fix applied; production scan path is wired. Recurrence prevention beyond current wiring is an operational cadence/scope follow-up, not a confirmed code gap from this resumed check.
+- [x] T010 If T007 found a real wiring/scope gap in the F10 recurrence path, apply the minimal fix in `incremental-index.ts`; otherwise document the operational cadence/scope conclusion (REQ-009 is P2, deferrable with reason) — No code fix applied; production scan path is wired. Recurrence prevention beyond current wiring is an operational cadence/scope follow-up, not a confirmed code gap from this resumed check.
 - [x] T011 Flip the 20 F13 false-success `embedding_status='success'`-with-no-vector rows to `'pending'` so they enter the existing enrichment queue — Found already resolved on resume. Evidence: all `13,529` rows are `embedding_status='success'`; active vector shard has `13,529` `vec_768` rows; cross-DB SQL found `false_success_missing_vector=0`.
 - [ ] T012 Verify F12's maintenance-tool scheduler state (`hasActiveEmbedderJob`/`hasActiveScanJob`, .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:614-641), confirm free slots, restart/trigger the enrichment run — Partially verified only: health reports `activeScanJob:false`, `activeEmbedderJob:false`, `backgroundEnrichment.pending=5903`, `failed=221`, total `6124`, down from the original `9317` but not drained.
 - [ ] T013 [B] Only if T012's restart with confirmed-free slots fails to move the backlog: write the minimal code fix and re-verify
@@ -90,8 +90,8 @@ _memory:
 - [x] T015 Final full `memory_health` report shows the file-existence, orphaned-vector, and false-success-embedding dimensions at the target state — Evidence: `status: healthy`, `mismatchedIds=[]`, `orphaned_vectors=0`, `false_success_missing_vector=0`, full filesystem scan `missingFilePath=0`.
 - [ ] T016 Sample search queries over previously-stale terms return zero hits referencing deleted files — Live daemon `memory_context` succeeded, but no preserved list of pre-sweep stale terms was available in the packet; direct file-path scan is stronger for stale-row absence but this specific sample-query item remains unproven.
 - [x] T017 Record before/after tables (row counts, orphan counts, `isConsistent` flags) in implementation-summary.md for every mutating step — Recorded in implementation-summary.md during this resumed session.
-- [x] T018 Update documentation (spec/plan/tasks/checklist) — Updated resumed-state docs; plan.md left unchanged except by reference because it remains the original plan.
-- [x] T019 Author or update the named test(s) for any new/modified function from Phase 2 (F11 refresh mechanism, F13 status-flip, and any F10 recurrence fix), colocated with the existing mcp_server/tests/ suite — No new/modified function was introduced in this resumed session; no new test required.
+- [x] T018 Update documentation (spec/plan/tasks/checklist) — Updated resumed-state docs; `plan.md` left unchanged except by reference because it remains the original plan.
+- [x] T019 Author or update the named test(s) for any new/modified function from Phase 2 (F11 refresh mechanism, F13 status-flip, and any F10 recurrence fix), colocated with the existing mcp_server/tests/ suite — No new/modified function was introduced in this resumed session; no new test required. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
 - [ ] T020 Pin the benchmark thresholds and reproduce commands from plan.md's Benchmark table (stale-file count, orphaned-vector count, false-success count, backlog trend, rollback rehearsal) — Data thresholds reproduced; backlog trend and rollback rehearsal remain incomplete.
 <!-- /ANCHOR:phase-3 -->
 
@@ -116,4 +116,4 @@ _memory:
 
 ## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
 
-- [ ] T021 [P1] The sweep verification proves file-path presence, vector ownership, and row totals but never that renamed identities are duplicate-free. Add post-sweep queries grouping by canonicalized `file_path` plus anchor/document identity, scan for old/new prefix pairs, and persist the duplicate/repoint metrics in the verification table (`implementation-summary.md:149-158`).
+- [x] T021 [P1] The sweep verification proves file-path presence, vector ownership, and row totals but never that renamed identities are duplicate-free. Add post-sweep queries grouping by canonicalized `file_path` plus anchor/document identity, scan for old/new prefix pairs, and persist the duplicate/repoint metrics in the verification table (`implementation-summary.md:149-158`). DONE 2026-07-10 — read-only verify-index-identity tool shipped (scripts/memory/): exact canonical-identity duplicate clustering + multi-signal historical-prefix detection (content_hash / title+anchor / >=3-segment path suffix with generic-basename guard; z_archive cold-tier suppression) with per-pair matched-signal audit + CLI-computed DB size/mtime read-only self-check. First attempt REJECTED: naive prefix heuristic reported 280 clusters/11,853 pairs — ~all false positives; corrected tool reports 0 genuine prefix pairs. REAL FINDING: 1,255 duplicate canonical-identity clusters / 2,573 rows / 1,318 excess rows in the live index — recorded in implementation-summary verification table; dedup remediation is a follow-up operator decision. Sonnet-max ACCEPT after redo.

@@ -4,6 +4,13 @@
 //   node .../graph/migrate-generated-json.js [--dry-run] [--verify]
 //   node .../graph/migrate-generated-json.js --only <spec-folder> [--only <spec-folder>]
 //   node .../graph/migrate-generated-json.js --root <specs-dir> [--limit <n>]
+//   node .../graph/migrate-generated-json.js <scope> --prune-report
+//   node .../graph/migrate-generated-json.js <scope> --prune --prune-confirm <report-hash>
+//
+// --prune-report writes .migrate-generated-json-prune-report.json under the
+// selected specs root and exits without changing generated metadata. Review
+// that artifact, then pass its contentHash to --prune-confirm. Apply refuses
+// when the artifact is absent or the current candidates differ from the report.
 //
 // Stage 3 migration: enumerate every spec folder in the repo, archives
 // included, and regenerate both description.json and graph-metadata.json for
@@ -36,18 +43,27 @@ import {
   wouldWritePerFolderDescription,
   type GeneratedMetadataViolation,
 } from '@spec-kit/mcp-server/api';
-import { runBackfill } from './backfill-graph-metadata.js';
+import {
+  createPruneReportArtifact,
+  pruneReportPath,
+  runBackfillCore,
+  validatePruneConfirmation,
+  writePruneReportArtifact,
+  type PruneCandidate,
+  type PruneReportReceipt,
+} from './backfill-graph-metadata.js';
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
-// Derive the scoped backfill's return shape from the function itself so the
-// driver consumes the summary without the source module having to export it.
-type BackfillSummary = ReturnType<typeof runBackfill>;
+// Derive the scoped backfill's return shape so changes cannot drift between the
+// low-level writer and the migration driver.
+type BackfillSummary = ReturnType<typeof runBackfillCore>;
 
 // Traversal noise that never holds a migratable spec folder. z_archive and
 // z_future are deliberately absent so the enumerator reaches the archive trees.
 const TRAVERSAL_SKIP_DIRS = new Set(['node_modules', '.git', 'external']);
+const MIGRATION_PRUNE_REPORT_FILE = '.migrate-generated-json-prune-report.json';
 
 // The safety and field-writing flags the migration runs the generators under.
 // Identity merge safety resolves specs-root-relative identity and preserves the
@@ -102,7 +118,8 @@ export interface MigrationSummary {
   failed: number;
   excluded: number;
   outcomes: FolderOutcome[];
-  pruneCandidates: Array<{ specFolder: string; childId: string; targetPath: string; existsOnDisk: boolean }>;
+  pruneCandidates: PruneCandidate[];
+  pruneReportArtifact?: PruneReportReceipt;
   verify?: VerifyReport;
 }
 
@@ -231,7 +248,7 @@ export function regenGraphScoped(
   dryRun: boolean,
   options: Pick<MigrateOptions, 'prune' | 'pruneReport'> = {},
 ): BackfillSummary {
-  return runBackfill({
+  return runBackfillCore({
     dryRun,
     root: specsRoot,
     specFolder: folderAbs,
@@ -298,9 +315,7 @@ function graphOutcomeFromSummary(summary: BackfillSummary, dryRun: boolean): Sid
   if (summary.created > 0) {
     return { action: 'created' };
   }
-  // The scoped writer skips its own write when only the volatile stamp moves, so
-  // a refreshed existing folder reports unchanged unless the bytes really moved.
-  return { action: 'rewritten' };
+  return summary.changed === 0 ? { action: 'unchanged' } : { action: 'rewritten' };
 }
 
 /** Roll the two file outcomes up into one folder status. */
@@ -409,7 +424,40 @@ export interface MigrateOptions {
   limit?: number;
   prune?: boolean;
   pruneReport?: boolean;
+  pruneConfirm?: string;
   deps?: Partial<MigrationDeps>;
+}
+
+function migrationPruneScope(specsRoot: string, folders: string[]): string {
+  return JSON.stringify({
+    entryPoint: 'migrate-generated-json',
+    root: path.resolve(specsRoot),
+    folders: folders.map((folder) => relativeSpecFolder(folder, specsRoot)),
+  });
+}
+
+function collectMigrationPruneCandidates(
+  folders: string[],
+  specsRoot: string,
+  regenGraph: MigrationDeps['regenGraph'],
+): PruneCandidate[] {
+  const candidates: PruneCandidate[] = [];
+  for (const folderAbs of folders) {
+    if (!canClassifyAsGraphMetadataPath(path.join(folderAbs, 'graph-metadata.json'))) {
+      continue;
+    }
+    const graphSummary = regenGraph(folderAbs, specsRoot, true, { prune: false, pruneReport: true });
+    if (graphSummary.failed.length > 0) {
+      const failure = graphSummary.failed[0];
+      const failedFolder = failure?.specFolder ?? folderAbs;
+      const failureMessage = failure?.error ?? 'unknown error';
+      throw new Error(
+        `cannot build a complete prune report for ${failedFolder}: ${failureMessage}`,
+      );
+    }
+    candidates.push(...graphSummary.pruneCandidates);
+  }
+  return candidates;
 }
 
 /**
@@ -425,7 +473,23 @@ export interface MigrateOptions {
  * @returns The aggregate run summary
  */
 export function migrateAllJson(options: MigrateOptions): MigrationSummary {
-  const { specsRoot, dryRun, verify = false, only, limit, prune = false, pruneReport = false } = options;
+  const {
+    specsRoot,
+    dryRun,
+    verify = false,
+    only,
+    limit,
+    prune = false,
+    pruneReport = false,
+    pruneConfirm,
+  } = options;
+  if (prune && pruneReport) {
+    throw new Error('cannot combine --prune with --prune-report');
+  }
+  if (prune && !pruneConfirm) {
+    throw new Error('--prune requires --prune-confirm <hash> from a prior --prune-report run');
+  }
+  const effectiveDryRun = dryRun || pruneReport;
   const deps: MigrationDeps = {
     enumerate: options.deps?.enumerate ?? enumerateSpecFolders,
     regenGraph: options.deps?.regenGraph ?? regenGraphScoped,
@@ -441,8 +505,26 @@ export function migrateAllJson(options: MigrateOptions): MigrationSummary {
       folders = folders.slice(0, limit);
     }
 
+    const pruneCandidates = prune || pruneReport
+      ? collectMigrationPruneCandidates(folders, specsRoot, deps.regenGraph)
+      : [];
+    const pruneScope = migrationPruneScope(specsRoot, folders);
+    const reportPath = pruneReportPath(specsRoot, MIGRATION_PRUNE_REPORT_FILE);
+
+    if (prune) {
+      const validated = validatePruneConfirmation(
+        reportPath,
+        pruneScope,
+        pruneCandidates,
+        pruneConfirm ?? '',
+      );
+      if (!validated.ok) {
+        throw new Error(validated.error);
+      }
+    }
+
     const summary: MigrationSummary = {
-      dryRun,
+      dryRun: effectiveDryRun,
       root: specsRoot,
       enumerated: folders.length,
       migrated: 0,
@@ -450,17 +532,16 @@ export function migrateAllJson(options: MigrateOptions): MigrationSummary {
       failed: 0,
       excluded: 0,
       outcomes: [],
-      pruneCandidates: [],
+      pruneCandidates,
     };
 
     for (const folderAbs of folders) {
       let outcome: FolderOutcome;
       try {
-        if (prune || pruneReport) {
-          const graphSummary = deps.regenGraph(folderAbs, specsRoot, true, { prune, pruneReport: true });
-          summary.pruneCandidates.push(...graphSummary.pruneCandidates);
-        }
-        outcome = migrateFolder(folderAbs, specsRoot, dryRun, deps, { prune, pruneReport });
+        outcome = migrateFolder(folderAbs, specsRoot, effectiveDryRun, deps, {
+          prune,
+          pruneReport: false,
+        });
       } catch (error) {
         // One corrupt folder reports failed, the run continues over the rest.
         outcome = {
@@ -491,6 +572,15 @@ export function migrateAllJson(options: MigrateOptions): MigrationSummary {
       summary.verify = runVerify(verifyFolders, specsRoot);
     }
 
+    if (pruneReport) {
+      const artifact = createPruneReportArtifact(pruneScope, pruneCandidates);
+      writePruneReportArtifact(reportPath, artifact);
+      summary.pruneReportArtifact = {
+        path: reportPath,
+        contentHash: artifact.contentHash,
+      };
+    }
+
     return summary;
   } finally {
     restoreFlags();
@@ -503,6 +593,7 @@ export function parseArgs(argv: string[]): { ok: true; options: MigrateOptions }
   let verify = false;
   let prune = false;
   let pruneReport = false;
+  let pruneConfirm: string | undefined;
   let root = path.join(resolveRepoRoot(), '.opencode', 'specs');
   let limit: number | undefined;
   const only: string[] = [];
@@ -524,6 +615,15 @@ export function parseArgs(argv: string[]): { ok: true; options: MigrateOptions }
     if (arg === '--prune-report') {
       pruneReport = true;
       dryRun = true;
+      continue;
+    }
+    if (arg === '--prune-confirm') {
+      const value = argv[index + 1];
+      if (value === undefined || value.startsWith('--')) {
+        return { ok: false, error: '--prune-confirm requires a report content hash' };
+      }
+      pruneConfirm = value;
+      index += 1;
       continue;
     }
     if (arg === '--root') {
@@ -556,7 +656,32 @@ export function parseArgs(argv: string[]): { ok: true; options: MigrateOptions }
     return { ok: false, error: `unknown argument: ${arg}` };
   }
 
-  return { ok: true, options: { specsRoot: root, dryRun, verify, only, limit, prune, pruneReport } };
+  if (prune && pruneReport) {
+    return { ok: false, error: 'cannot combine --prune with --prune-report' };
+  }
+  if (prune && !pruneConfirm) {
+    return {
+      ok: false,
+      error: '--prune requires --prune-confirm <hash> from a prior --prune-report run',
+    };
+  }
+  if (pruneConfirm && !prune) {
+    return { ok: false, error: '--prune-confirm requires --prune' };
+  }
+
+  return {
+    ok: true,
+    options: {
+      specsRoot: root,
+      dryRun,
+      verify,
+      only,
+      limit,
+      prune,
+      pruneReport,
+      pruneConfirm,
+    },
+  };
 }
 
 function run(): void {
@@ -566,9 +691,15 @@ function run(): void {
     process.exitCode = 1;
     return;
   }
-  const summary = migrateAllJson(parsed.options);
-  process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
-  if (summary.failed > 0 || (summary.verify && !summary.verify.clean)) {
+  try {
+    const summary = migrateAllJson(parsed.options);
+    process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+    if (summary.failed > 0 || (summary.verify && !summary.verify.clean)) {
+      process.exitCode = 1;
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    process.stderr.write(`migrate-generated-json: ${message}\n`);
     process.exitCode = 1;
   }
 }

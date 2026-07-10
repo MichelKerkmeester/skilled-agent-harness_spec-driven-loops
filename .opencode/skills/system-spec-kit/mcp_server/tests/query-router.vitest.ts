@@ -38,9 +38,8 @@ import { setEnv, restoreEnv, withFeatureFlag } from './__helpers__/test-env';
 const COMPLEXITY_FLAG = 'SPECKIT_COMPLEXITY_ROUTER';
 const GRAPH_PRESERVATION_FLAG = 'SPECKIT_GRAPH_CHANNEL_PRESERVATION';
 const RETRIEVAL_CLASS_ROUTING_FLAG = 'SPECKIT_RETRIEVAL_CLASS_ROUTING';
-// F5a (016-cross-package-flag-governance) flipped this to opt-in default-OFF;
-// tests exercising the content-rich-short-query preservation branch itself
-// must opt in explicitly.
+// The content-rich-query preservation branch is opt-in, so tests exercising it
+// enable the flag explicitly instead of depending on inherited process state.
 const CONTENT_RICH_SHORT_GRAPH_FLAG = 'SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION';
 
 const TRIGGER_PHRASES = [
@@ -502,8 +501,8 @@ describe('012-T2: routeQuery graph-preservation', () => {
   });
 
   it('012-T2.1: simple-tier content-rich find_decision query routes graph and degree channels', () => {
-    // Content-rich-short-query preservation is opt-in default-OFF since F5a;
-    // opt in explicitly since this test exercises that specific branch.
+    // Content-rich-short-query preservation is opt-in, so this branch enables
+    // the flag explicitly.
     withFeatureFlag(CONTENT_RICH_SHORT_GRAPH_FLAG, 'true', () => {
       const result = routeQuery('why chose this');
       expect(result.tier).toBe('simple');

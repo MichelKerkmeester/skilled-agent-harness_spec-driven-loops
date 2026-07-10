@@ -29,12 +29,21 @@ import type { LoadResult, PerFolderDescription } from '@spec-kit/mcp-server/api'
 export { getRepairMergeSafe, loadExistingDescription };
 export type { LoadResult };
 
+const IDENTITY_MERGE_SAFETY_OPT_OUT = new Set(['false', '0', 'no', 'off', 'disabled']);
+
+function isIdentityMergeSafetyEnabled(): boolean {
+  const value = process.env.SPECKIT_IDENTITY_MERGE_SAFETY?.trim().toLowerCase();
+  return value === undefined || !IDENTITY_MERGE_SAFETY_OPT_OUT.has(value);
+}
+
 function resolveSpecFolderForDescription(folderPath: string, legacyValue: string): string {
-  try {
-    return resolveSpecFolderIdentity(folderPath).specFolder;
-  } catch (error) {
-    if (!(error instanceof SpecFolderIdentityError)) {
-      throw error;
+  if (isIdentityMergeSafetyEnabled()) {
+    try {
+      return resolveSpecFolderIdentity(folderPath).specFolder;
+    } catch (error) {
+      if (!(error instanceof SpecFolderIdentityError)) {
+        throw error;
+      }
     }
   }
   return legacyValue;

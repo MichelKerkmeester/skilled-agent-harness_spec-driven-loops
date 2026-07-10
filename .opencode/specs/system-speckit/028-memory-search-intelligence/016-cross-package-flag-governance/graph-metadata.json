@@ -39,7 +39,7 @@
       "preservation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
@@ -170,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -188,19 +194,13 @@
         "source": "derived"
       },
       {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Implemented Phase",
+        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "F5 — RESOLVED: two different homes for new feature flags, with opposite default-polarity",
     "created_at": "2026-07-09T15:11:30.263Z",
-    "last_save_at": "2026-07-10T03:44:45.266Z",
+    "last_save_at": "2026-07-10T08:09:25.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5404a4bfed2b4b4a31ea57f4d82703d1d930458b14f2643f0b09689b9cd3f54",
+    "source_fingerprint": "sha256:5f6a4e9d881705175c8c1309dcd601bcb2a51f0ce070860817472d29fa3abfa5",
     "source_doc_hashes": {
-      "spec.md": "2052ecb06e8fa8310ef65b0788c4e587f7c66b03923c1e3148e7dd0c18ad9554",
-      "plan.md": "5b6c72fbc0a02886b11888f1fe41620b59b2888fb6131f06c17a01c3f2e7c96b",
-      "tasks.md": "5f70eddeb54d1b4afbaf771eaa9037bd89ccc169e318aa6045042a1ca4f93354",
-      "implementation-summary.md": "4aa8eb35b680f1fb4221036b27944da1d03212f348b6d70a0370e8a0fd7ec33e"
+      "spec.md": "717771c1f13de6f0a3f24c733b965da8544689f9ed7c145584c6a5a0587d5216",
+      "plan.md": "7ce6891915fab28e9eb55d4fbd26b421f23a9354b24903d12ae61d9ce8b81c49",
+      "tasks.md": "53353f278528a8602f9f7de00b042959417211ab974bec34a23dfadbf91bea9e",
+      "implementation-summary.md": "675757a3310162981ef6b9e6ea8ff379a79237faa01d6ad2839b199f7d485156"
     },
     "last_active_child_id": null,
     "last_active_at": null

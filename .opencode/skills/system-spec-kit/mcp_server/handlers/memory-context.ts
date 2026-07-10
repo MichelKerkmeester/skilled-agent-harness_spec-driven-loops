@@ -157,6 +157,7 @@ interface TokenBudgetEnforcement {
   originalResultCount?: number;
   returnedResultCount?: number;
   droppedAllResultsReason?: DroppedAllResultsReason;
+  floorExceededBudget?: boolean;
 }
 
 type PressureOverrideTargetMode = 'quick' | 'focused' | null;
@@ -643,6 +644,31 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
     };
   }
 
+  const minimumStructuredResult = {
+    strategy: result.strategy,
+    mode: result.mode,
+    content: [{
+      type: 'text',
+      text: JSON.stringify({ data: { count: 0, results: [] } }),
+    }],
+  } as ContextResult;
+  const minimumStructuredTokens = estimateTokens(JSON.stringify(minimumStructuredResult));
+  if (budgetTokens < minimumStructuredTokens) {
+    return {
+      result: minimumStructuredResult,
+      enforcement: {
+        budgetTokens,
+        preEnforcementTokens,
+        returnedTokens: minimumStructuredTokens,
+        actualTokens: minimumStructuredTokens,
+        enforced: true,
+        truncated: true,
+        returnedResultCount: 0,
+        droppedAllResultsReason: 'impossible_budget',
+      },
+    };
+  }
+
   // Over budget — attempt to truncate embedded results
   // Strategy results contain an embedded MCPResponse with content[0].text as JSON
   // That JSON has a .data.results array we can truncate
@@ -652,7 +678,12 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
   let returnedResultCount: number | undefined;
   let droppedAllResultsReason: DroppedAllResultsReason | undefined;
 
-  const compactDirectResult = (): { result: ContextResult; actualTokens: number; returnedResultCount?: number } | null => {
+  const compactDirectResult = (): {
+    result: ContextResult;
+    actualTokens: number;
+    returnedResultCount?: number;
+    floorExceededBudget?: boolean;
+  } | null => {
     const directResults = Array.isArray((truncatedResult as Record<string, unknown>).results)
       ? (truncatedResult as Record<string, unknown>).results as Array<Record<string, unknown>>
       : null;
@@ -723,7 +754,12 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
     }
 
     const candidateTokens = estimateTokens(JSON.stringify(candidate));
-    return { result: candidate, actualTokens: candidateTokens, returnedResultCount: compactRows.length };
+    return {
+      result: candidate,
+      actualTokens: candidateTokens,
+      returnedResultCount: compactRows.length,
+      floorExceededBudget: candidateTokens > budgetTokens,
+    };
   };
 
   const directCompacted = compactDirectResult();
@@ -742,6 +778,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
         truncated: true,
         originalResultCount: directOriginalCount,
         returnedResultCount: directCompacted.returnedResultCount,
+        ...(directCompacted.floorExceededBudget ? { floorExceededBudget: true } : {}),
       }
     };
   }
@@ -782,17 +819,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
       if (preservedSafe.length === 0) {
         return [];
       }
-      const minimalResults = preservedSafe.map((r) => ({
-        id: r.id,
-        title: r.title,
-        similarity: r.similarity,
-        specFolder: r.specFolder,
-        filePath: r.filePath ?? r.file_path,
-        confidence: r.confidence,
-        importanceTier: r.importanceTier,
-        isConstitutional: r.isConstitutional,
-        metadataOnly: true,
-      }));
+      const minimalResults = preservedSafe.map(toMetadataOnlyContextRow);
       return [
         {
           summary: 'Context truncated to fit token budget',
@@ -896,7 +923,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
 
       if (fallbackTokens <= budgetTokens) {
         if (candidateResultCount === 0) {
-          if (smallestPreservedFallback) {
+          if (smallestPreservedFallback && budgetTokens > 0) {
             return smallestPreservedFallback;
           }
           droppedAllResultsReason = 'impossible_budget';
@@ -905,7 +932,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
       }
     }
 
-    if (smallestPreservedFallback) {
+    if (smallestPreservedFallback && budgetTokens > 0) {
       return smallestPreservedFallback;
     }
 
@@ -1035,17 +1062,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
         // Two-tier response — append metadata-only entries for dropped results
         const droppedResults = innerResults.slice(currentResults.length);
         if (droppedResults.length > 0) {
-          const metadataOnly = droppedResults.map((r: Record<string, unknown>) => ({
-            id: r.id,
-            title: r.title,
-            similarity: r.similarity,
-            specFolder: r.specFolder,
-            filePath: r.filePath ?? r.file_path,
-            confidence: r.confidence,
-            importanceTier: r.importanceTier,
-            isConstitutional: r.isConstitutional,
-            metadataOnly: true,
-          }));
+          const metadataOnly = droppedResults.map(toMetadataOnlyContextRow);
           const metadataTokens = estimateTokens(JSON.stringify(metadataOnly));
           if (currentTokens + metadataTokens <= budgetTokens) {
             currentResults.push(...metadataOnly);
@@ -1141,7 +1158,22 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
       originalResultCount,
       returnedResultCount: fallbackReturnedCount,
       ...(droppedAllResultsReason ? { droppedAllResultsReason } : {}),
+      ...(fallbackReturnedCount && fallbackTokens > budgetTokens ? { floorExceededBudget: true } : {}),
     }
+  };
+}
+
+function toMetadataOnlyContextRow(r: Record<string, unknown>): Record<string, unknown> {
+  return {
+    id: r.id,
+    title: r.title,
+    similarity: r.similarity,
+    specFolder: r.specFolder ?? r.spec_folder,
+    filePath: r.filePath ?? r.file_path,
+    confidence: r.confidence,
+    importanceTier: r.importanceTier,
+    isConstitutional: r.isConstitutional,
+    metadataOnly: true,
   };
 }
 
@@ -1662,6 +1694,29 @@ function buildResponseMeta(params: BuildResponseMetaParams): Record<string, unkn
   };
 }
 
+function formatContextSummary(
+  effectiveMode: string,
+  strategy: string,
+  effectiveBudget: number,
+  enforcement: TokenBudgetEnforcement,
+): string {
+  const base = `Context retrieved via ${effectiveMode} mode (${strategy} strategy)`;
+  if (enforcement.floorExceededBudget) {
+    return `${base} [truncated; ${enforcement.returnedResultCount ?? 0}-result floor requires ` +
+      `${enforcement.actualTokens} tokens, above the ${effectiveBudget} token budget]`;
+  }
+  if (enforcement.truncated && enforcement.actualTokens <= effectiveBudget) {
+    const resultCounts = enforcement.originalResultCount !== undefined
+      ? `: ${enforcement.originalResultCount} → ${enforcement.returnedResultCount} results`
+      : '';
+    return `${base} [truncated${resultCounts} to fit ${effectiveBudget} token budget]`;
+  }
+  if (enforcement.truncated) {
+    return `${base} [truncated but unable to fit the ${effectiveBudget} token budget]`;
+  }
+  return base;
+}
+
 /* ───────────────────────────────────────────────────────────────
    7. MAIN HANDLER
 ──────────────────────────────────────────────────────────────── */
@@ -2134,9 +2189,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
     // Build response with layer metadata
     const _contextResponse = createMCPResponse({
       tool: 'memory_context',
-      summary: enforcement.truncated
-        ? `Context retrieved via ${effectiveMode} mode (${tracedResult.strategy} strategy) [truncated${enforcement.originalResultCount !== undefined ? `: ${enforcement.originalResultCount} → ${enforcement.returnedResultCount} results` : ''} to fit ${effectiveBudget} token budget]`
-        : `Context retrieved via ${effectiveMode} mode (${tracedResult.strategy} strategy)`,
+      summary: formatContextSummary(effectiveMode, tracedResult.strategy, effectiveBudget, enforcement),
       data: tracedResult,
       hints: [
         `Mode: ${CONTEXT_MODES[effectiveMode].description}`,
@@ -2274,6 +2327,8 @@ export {
   enforceTokenBudget,
   resolveEffectiveTokenBudget,
   prependWorldSummaryPreludeToResult,
+  toMetadataOnlyContextRow,
+  formatContextSummary,
   // Exported for scope-isolation tests of the no-session continuity anchor.
   resolveNoSessionAnchor,
   PROCESS_MEMORY_SESSION_ID,
