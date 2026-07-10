@@ -48,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator` |
-| **Status** | COMPLETE (~95%) |
+| **Status** | Superseded — partial historical implementation; canonical doctor routing moved to successor packets |
 | **Level** | 2 |
 | **Phases Complete** | Phases A-E delivered; active command surface uses one interactive YAML per command per ADR-010 |
 | **Phases Pending** | Verification gates G3/G4 deferred; mode-suffixed Track B1 YAML variants are obsolete per ADR-010 |

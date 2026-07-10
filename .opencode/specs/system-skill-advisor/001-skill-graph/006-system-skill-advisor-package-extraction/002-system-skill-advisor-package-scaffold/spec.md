@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-05-14 |
 | **Branch** | `002-system-skill-advisor-package-scaffold` |
 <!-- /ANCHOR:metadata -->

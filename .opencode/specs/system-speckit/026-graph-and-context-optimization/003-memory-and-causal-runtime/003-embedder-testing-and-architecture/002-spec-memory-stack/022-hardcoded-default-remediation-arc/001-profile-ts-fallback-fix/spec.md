@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | In Progress (scaffolded; dispatch pending) |
+| Status | Complete |
 | Type | Mechanical TS refactor + new invariant test |
 | Owner | cli-devin SWE-1.6 executor (RCAF + medium pre-planning) |
 | Parent | `../spec.md` (022-hardcoded-default-remediation-arc) |

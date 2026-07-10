@@ -56,7 +56,7 @@ ADR-001 already chose a standalone advisor MCP server with stable `advisor_*` to
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-05-14 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

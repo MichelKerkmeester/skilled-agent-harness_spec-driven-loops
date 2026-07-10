@@ -36,6 +36,8 @@ _memory:
 | **Pass Rate** | 10/10 PASS |
 <!-- /ANCHOR:metadata -->
 
+> Historical status note: the original ten-scenario execution is complete, while two subsequently added P1 follow-ups remain in progress.
+
 ---
 
 ### Verdict Table

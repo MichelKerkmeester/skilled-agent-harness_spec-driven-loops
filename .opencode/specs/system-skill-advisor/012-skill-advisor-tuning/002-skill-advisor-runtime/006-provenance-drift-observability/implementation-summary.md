@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-skill-advisor/012-skill-advisor-tuning/002-skill-advisor-runtime/006-provenance-drift-observability |
-| **Status** | complete |
+| **Status** | In Progress |
 | **Completed** | This sub-phase concluded: SA-author-self-boost-guard shipped default-off behind `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD`, SA-attested-baseline-drift-sweep and SA-skip-never-fabricate are deferred PENDING behind the durable calibration substrate gate (see What Was Built and Known Limitations for the breakdown) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

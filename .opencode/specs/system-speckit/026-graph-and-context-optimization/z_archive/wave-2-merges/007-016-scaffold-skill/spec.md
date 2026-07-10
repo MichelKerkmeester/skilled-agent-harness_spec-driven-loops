@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-05-14 |
 | **Branch** | `002-scaffold-skill` |
 <!-- /ANCHOR:metadata -->

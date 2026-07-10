@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft (scaffold; deep-research loop pending) |
+| **Status** | Complete |
 | **Created** | 2026-04-27 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
