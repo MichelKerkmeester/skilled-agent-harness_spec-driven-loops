@@ -1,6 +1,6 @@
 ---
-title: "Verification Checklist: Search-Index Integrity Sweep [template:level_2/checklist.md]"
-description: "Verification Date: 2026-07-09. Resumed interrupted execution: core DB sweep was already applied before this agent resumed; full completion remains blocked by test-suite failures and enrichment backlog."
+title: "Verification Checklist: Search-Index Integrity Sweep"
+description: "Verification Date: 2026-07-09, updated 2026-07-10. Resumed interrupted execution: core DB sweep was already applied before this agent resumed; the 2026-07-10 dedup cleanup and re-embed drain closed the enrichment-backlog item. Full completion remains blocked by test-suite failures and the original sweep's unconfirmed checkpoint_restore rehearsal."
 trigger_phrases:
   - "search index integrity sweep"
   - "stale memory index rows"
@@ -14,15 +14,17 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep"
     last_updated_at: "2026-07-10T08:09:04.000Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
-    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
-    blockers: []
+    recent_action: "T021 dedup + re-embed drain closed CHK-011's enrichment-backlog gap 2026-07-10"
+    next_safe_action: "Confirm original-sweep checkpoint evidence (CHK-004/CHK-005) and get broad tests green"
+    blockers:
+      - "Full relevant test suites are not green"
+      - "checkpoint_create/checkpoint_restore evidence for the original bulk sweep was not confirmable from this resumed session"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -86,7 +88,7 @@ FAILURE MODES:
 ## Testing
 
 - [ ] CHK-010 [P0] All P0 acceptance criteria met (REQ-002 stale-file rows = 0, REQ-003 no stale-file rows served by search, REQ-004 orphaned vectors = 0, REQ-005 false-success embeddings resolved) — Data criteria are met, but REQ-001 checkpoint creation/rehearsal remains unconfirmed; leave unchecked.
-- [ ] CHK-011 [P1] All P1 acceptance criteria met (REQ-006 content refreshed, REQ-007 enrichment backlog draining, REQ-008 before/after snapshots recorded) — REQ-007 remains incomplete: background enrichment pending+failed is `6124`.
+- [x] CHK-011 [P1] All P1 acceptance criteria met (REQ-006 content refreshed, REQ-007 enrichment backlog draining, REQ-008 before/after snapshots recorded) (confirmed 2026-07-10) — REQ-006: no live `content_hash` drift or null stored hashes remained to refresh (T009 no-op, confirmed by full-corpus scan). REQ-007: background enrichment pending+failed was `6124` on 2026-07-09; the 2026-07-10 dedup step's `memory_embedding_reconcile --apply` pass plus monitored drain brought it to `0` pending / `0` failed with 100% active-shard vector coverage (`implementation-summary.md`, "Duplicate Cleanup Executed" table). REQ-008: before/after tables recorded in `implementation-summary.md` (T017).
 - [x] CHK-012 [P0] Post-repair `verify_integrity({ autoClean: false })` snapshot taken and reviewed, not just the repair call's own self-reported success (`memory-crud-health.ts:1386-1399` already emits a "still degraded" warning if a mismatch persists — this must be checked, not assumed clean) (confirmed) — Evidence: final `memory_health` consistency `status=healthy`, `rowsTotal=13529`, `ftsRowsTotal=13529`, `vecRowsTotal=13529`, `mismatchedIds=[]`; direct active-shard SQL `orphaned_vectors=0`, `false_success_missing_vector=0`.
 - [x] CHK-013 [P1] F10 recurrence investigation completed and recorded (wiring gap vs scope gap vs already-adequate) (confirmed) — Evidence: `memory-index.ts` calls `categorizeFilesForIndexing([])` for zero-file scans and `categorizeFilesForIndexing(files)` for incremental scans; `incremental-index.ts` adds `listStaleIndexedPaths` into `toDelete`.
 - [x] CHK-014 [P1] F11 content-drift investigation completed and recorded (variant-hash-explained count vs genuinely-stale count vs NULL-hash-fast-path-skip hypothesis confirmed/ruled out) (confirmed) — Evidence: full live scan found `contentHashNull=0`, `contentHashMismatch=0`, `contentHashNormalizedMatches=13529`, ruling out remaining null-hash and genuine hash-drift cases in the current corpus.
@@ -145,11 +147,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 15 | 10/15 |
-| P1 Items | 16 | 11/16 |
+| P0 Items | 15 | 9/15 |
+| P1 Items | 16 | 12/16 |
 | P2 Items | 1 | 0/1 |
 
-**Verification Date**: 2026-07-09
+**Verification Date**: 2026-07-09, updated 2026-07-10 (CHK-011 resolved by the dedup/re-embed drain)
 
 ### Resumed Execution Evidence
 
@@ -162,6 +164,7 @@ FAILURE MODES:
 | Full file/hash scan | `total=13529`, `existingFilePath=13529`, `missingFilePath=0`, `nullOrEmptyFilePath=0`, `contentHashNull=0`, `contentHashMismatch=0`, `contentHashNormalizedMatches=13529` |
 | Health snapshot | `memory_health` summary `Memory system healthy: 13529 memories indexed`; consistency `rowsTotal=13529`, `ftsRowsTotal=13529`, `vecRowsTotal=13529`, `mismatchedIds=[]` |
 | Live daemon query | `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"post-sweep verification","mode":"resume"}' --format json --timeout-ms 20000` returned `summary: "Found 4 memories"`, `isError:false` |
-| Remaining enrichment backlog | `backgroundEnrichment.pending=5903`, `failed=221`, total `6124`; original spec reported `9317`, so it has decreased but is not drained |
+| Enrichment backlog (2026-07-09) | `backgroundEnrichment.pending=5903`, `failed=221`, total `6124`; original spec reported `9317`, decreased but not yet drained |
+| Enrichment backlog (2026-07-10, RESOLVED) | Dedup step's `memory_embedding_reconcile --apply` + monitored drain: queue reached depth 0 with zero failures in ~25 minutes; final state `12,224 vectors / 12,224 rows` — 100% active-shard vector coverage |
 | Full verification | `mcp_server`: `npm run build && npm run typecheck && npm test` reached tests but tool timed out at 600000ms with many failures already present. `scripts`: build/typecheck passed, `npm test` failed with `No test files found, exiting with code 1`. `system-code-graph`: build/typecheck passed, `npm test` failed with 6 failed, 774 passed, 1 skipped |
 <!-- /ANCHOR:summary -->

@@ -17,7 +17,8 @@
       "memory-drift-marker.sh untestable heredoc",
       "drift marker native consolidation plan",
       "git hook embedded heredoc duplication plan",
-      "drift marker lock staleness constant mismatch plan"
+      "drift marker lock staleness constant mismatch plan",
+      "drift marker native consolidation decision"
     ],
     "key_topics": [
       "drift",
@@ -34,7 +35,7 @@
       "constant"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
       ".opencode/skills/system-spec-kit/mcp_server/core/config.ts",
@@ -42,20 +43,20 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts",
       ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
+      "scripts/git-hooks/drift-marker-write.ts",
       "mcp_server/api/index.ts",
+      "scripts/tests/drift-marker-write.vitest.ts",
       "implementation-summary.md",
       "scripts/evals/check-no-mcp-lib-imports.ts",
       "scripts/check-api-boundary.sh",
+      ".opencode/skills/system-spec-kit/scripts/git-hooks/drift-marker-write.ts",
+      "decision-record.md",
       "scripts/spec-folder/generate-description.ts",
       "scripts/graph/backfill-graph-metadata.ts",
       "api/index.ts",
+      "scripts/dist/git-hooks/drift-marker-write.js",
       ".opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-mutex-liveness.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts",
-      ".opencode/skills/system-spec-kit/scripts/check-api-boundary.sh",
-      "spec.md",
-      "plan.md",
-      ".opencode/scripts/git-hooks/README.md",
-      "tasks.md"
+      ".opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts"
     ],
     "entities": [
       {
@@ -95,6 +96,18 @@
         "source": "derived"
       },
       {
+        "name": "drift-marker-write.ts",
+        "kind": "code",
+        "path": "scripts/git-hooks/drift-marker-write.ts",
+        "source": "derived"
+      },
+      {
+        "name": "drift-marker-write.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/drift-marker-write.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -113,6 +126,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "generate-description.ts",
         "kind": "code",
         "path": "scripts/spec-folder/generate-description.ts",
@@ -125,33 +144,15 @@
         "source": "derived"
       },
       {
+        "name": "drift-marker-write.js",
+        "kind": "code",
+        "path": "scripts/dist/git-hooks/drift-marker-write.js",
+        "source": "derived"
+      },
+      {
         "name": "spec-folder-mutex-liveness.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-mutex-liveness.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/scripts/git-hooks/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -205,7 +206,7 @@
     ],
     "causal_summary": "`.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` (143 lines) detects `.opencode/specs`",
     "created_at": "2026-07-09T20:28:44.767Z",
-    "last_save_at": "2026-07-09T20:31:32.173Z",
+    "last_save_at": "2026-07-10T18:43:12.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,15 +214,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53299c84ef0f386539e3dafca13dce6c445d036f4c8aecc98cc2d5cb9368d338",
+    "source_fingerprint": "sha256:5b490b3276e9e6fb179d4433a28b9987e3af2a062c7707ddf16543f846a4c58e",
     "source_doc_hashes": {
-      "spec.md": "dcc5d89d42e476c5c7915079d4c9ecb24ece713a993b4412dbb3847a85d0f995",
-      "plan.md": "da4401643e83b7fea25901ec0cc9d7ad638b2002b5b2548d7dac7dd173628a39",
-      "tasks.md": "e387477bc8a46fb8d775a62165595cb71904a4f7f6065573f6d01ab19848ecde",
-      "checklist.md": "1e1ab68d78382a4e16aee7e495747e4dbacb29563818f86a7e5181e557f9ad8e",
-      "implementation-summary.md": "df3c8017e9858ef11603d08ae637ad3c3c433d846638a415f6047c53578cfbf0"
+      "spec.md": "fdf1be914c5ba4b01836d715dbadce18577f5cfe200e52f7fc3fee7baed7b000",
+      "plan.md": "fc3f0ff8fb5ae638b4c758ba59769da23688558d9b415144817d197b6919f68e",
+      "tasks.md": "b93153007883a1570637ef69be670625c8ba6fba25b8b288a69e666e21734d0f",
+      "checklist.md": "c66a3953e5b0a055988a30b3ba7b6a7983478f4c280dc2ec053f7eb04f4462c5",
+      "decision-record.md": "2a85363cde575c9d2efed7b0dd5ac849d6a9ba40ee56b80b41fcae9094d05330",
+      "implementation-summary.md": "2b535685d5f23b353adc5d32b495200321c6a3c818f3782da44e50bfb632e6d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers:
       - "007/008 dependency shipped; no longer blocking (tasks.md T001/T002)"
-      - "REQ-008 numeric latency benchmark not executed (CHK-064)"
+      - "REQ-008 numeric latency benchmark satisfied via sibling packet 020-query-time-filter-benchmark; no longer blocking (CHK-064)"
       - "lint/test:core not fully green; failures confirmed pre-existing/unrelated"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"

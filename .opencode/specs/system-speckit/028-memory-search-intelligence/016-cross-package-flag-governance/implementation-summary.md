@@ -10,9 +10,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/016-cross-package-flag-governance"
-    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_at: "2026-07-10T19:11:35.000Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
+    recent_action: "Doc fixes: F5b bullet rewritten to reflect T020's strict-vocabulary delegate"
     next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers: []
     key_files:
@@ -67,9 +67,12 @@ All four findings are now shipped:
 - **F5a**: `isContentRichShortQueryGraphPreservationEnabled()` (`search-flags.ts`) now calls
   `isOptInEnabled()` instead of `isFeatureEnabled()`; default flipped from graduated-ON to
   opt-in-OFF. Doc comment states the governance justification.
-- **F5b**: `isOptInEnabled()` is now exported from `search-flags.ts`.
-  `isQueryTimeExistenceFilterEnabled()` (`capability-flags.ts`) delegates to it instead of
-  hand-rolled `process.env[...]` parsing.
+- **F5b**: `isOptInEnabled()` is now exported from `search-flags.ts`, replacing
+  `isQueryTimeExistenceFilterEnabled()`'s (`capability-flags.ts`) hand-rolled `process.env[...]`
+  parsing — but T020 (see Key Decisions) reverted the resulting vocabulary widening: `search-flags.ts`
+  gained a dedicated `isStrictOptInEnabled()` (strict `{true,1}` only), and
+  `isQueryTimeExistenceFilterEnabled()` now delegates to that strict helper instead of the broader
+  `isOptInEnabled()`.
 - **F14**: `capability-flags.ts:209-243`'s const/getter block reordered so package 009's
   `STATUS_COMPLETION_CONSISTENCY_GATE_ENV` const and `isStatusCompletionConsistencyGateEnabled()`
   getter sit adjacent again, with package 011's `QUERY_TIME_EXISTENCE_FILTER_ENV` const and getter
@@ -87,12 +90,12 @@ All four findings are now shipped:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Modify | F5a flip + doc comment; F5b export `isOptInEnabled` |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts` | Modify | F5b helper migration + import; F14 reorder + doc-comment expansion |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Modify | F5a flip + doc comment; F5b export `isOptInEnabled`; T020 added strict-vocabulary sibling `isStrictOptInEnabled` |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts` | Modify | F5b helper migration + import; F14 reorder + doc-comment expansion; T020 re-pointed the query-time existence flag to `isStrictOptInEnabled` |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts` | Modify | F15 additive counter + getter/reset, exported |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modify | Updated both flags' default-state/behavior rows (lines ~128, ~166, ~330, ~522) |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/search-flags.vitest.ts` | Modify | New describe block: F5a polarity coverage (unset/off/on values) + `isOptInEnabled` export coverage |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts` | Modify | New test: F5b's broader truthy set (`yes`/`on`/`enabled`) confirmed behavior-preserving superset |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/memory-roadmap-flags.vitest.ts` | Modify | New test, later corrected by T020: initially asserted F5b's broader truthy set (`yes`/`on`/`enabled`) as a behavior-preserving superset for `SPECKIT_QUERY_TIME_EXISTENCE_FILTER`, then re-scoped to the strict `{true,1}` vocabulary once T020 reverted that accidental expansion — see Key Decisions |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/query-channel-calibration.vitest.ts` | Modify | Updated 2 pre-existing tests for the new default-off polarity (same measured 2/0 → 6/6 counts, opt-in explicit instead of unset); added F15 counter test |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts` | Modify | Wrapped `012-T2.1` in explicit opt-in — it exercises the content-rich-short-query branch directly and depended on the old default-ON polarity |
 <!-- /ANCHOR:what-built -->
@@ -138,6 +141,7 @@ touched" description exactly.
 | Export `isOptInEnabled` directly from `search-flags.ts` rather than a new neutral module (answers `spec.md`'s open question) | `capability-flags.ts` already imports across directories for `isFeatureEnabled` from `../cognitive/rollout-policy.js`; a same-shape import from `../search/search-flags.js` is consistent with the existing pattern and is less churn than introducing a new module for one caller, matching `plan.md` Phase 1's stated default |
 | Implement F15's counter as a module-private variable in `query-router.ts` with an exported getter/reset, not a new export from `routing-telemetry.ts` | `spec.md`'s Files-to-Change table scopes F15 to `query-router.ts` only; `routing-telemetry.ts`'s `recordInvocation()` already tracks general channel selection but has no reason-tagged counter, and extending it would touch a second file outside F15's stated scope. The counter variable is structurally outside `RouteResult`, so it cannot influence routing output, satisfying REQ-006 by construction rather than by convention |
 | Update the 3 existing tests that hard-coded the pre-flip default-ON polarity (`query-channel-calibration.vitest.ts` x2, `query-router.vitest.ts` x1) rather than leave them broken | These tests exercise `isContentRichShortQueryGraphPreservationEnabled()`'s default (unset) state directly; REQ-001's flip is a real, intended behavior change to that default, so tests asserting the old default necessarily need updating — this is required fallout of the approved flip, not scope creep, and each update preserves the exact channel counts originally measured |
+| T020 (DONE 2026-07-10): revert the shared-parser migration's accidental broadening of `SPECKIT_QUERY_TIME_EXISTENCE_FILTER`'s accepted truthy set to `yes`/`on`/`enabled`; preserve strict `{true,1}` for that flag | The F5b migration moved `capability-flags.ts:252`'s query-time existence flag onto the shared `isOptInEnabled()` helper, which accepts the broader truthy set — an unintended widening for a hot-path flag that was never asked to change vocabulary. `search-flags.ts` gained a dedicated `isStrictOptInEnabled()` (strict `{true,1}` only), and the query-time existence flag now reads through it instead of `isOptInEnabled()`; a parser matrix test (unset/whitespace/case/true/1/yes/on/enabled/false/0/invalid) locks both vocabulary classes in place. See `tasks.md:130`. |
 <!-- /ANCHOR:decisions -->
 
 ---

@@ -74,7 +74,7 @@ Layer 1 first (independent, primary safety net), Layer 2 second, Layer 3 last (s
 - [x] T008 Wire filtered-out row ids from T006 into the suspect queue from T007. [evidence: `memory-search.ts`]
 - [x] T009 [P] Unit tests: filter correctness with the flag on/off, no residual delete on first miss (REQ-001). Evidence: `memory-drift-healing.vitest.ts`, `memory-roadmap-flags.vitest.ts`.
 - [x] T010 [P] Unit tests: suspect-queue append/read-back/clear round-trip (REQ-002). Evidence: `memory-drift-healing.vitest.ts`.
-- [ ] T011 [P] Latency benchmark: search with the flag on vs. off over a representative query set, numbers captured for implementation-summary.md (REQ-008). Status: not yet executed as a numeric benchmark.
+- [x] T011 [P] Latency benchmark: search with the flag on vs. off over a representative query set, numbers captured for implementation-summary.md (REQ-008). Status: satisfied via sibling packet `020-query-time-filter-benchmark` — OFF mean 274.034ms, ON mean 288.022ms, 5.1045% mean overhead, 64 samples/state (see `020-query-time-filter-benchmark/implementation-summary.md` REQ-001 row and CHK-064).
 - [x] T012 Rollback test: flag off after having run with it on produces results identical to a build that never had Layer 1 (REQ-009). Evidence: feature flag default-off and rollback tests in targeted suite.
 
 ### Layer 2 -- Git Hook + Boot Consumption (event-triggered cleanup)
@@ -108,7 +108,7 @@ Layer 1 first (independent, primary safety net), Layer 2 second, Layer 3 last (s
 
 - [x] T030 Code-review pass confirming zero new watcher/timer/daemon-process primitives were introduced (REQ-007). Evidence: implementation uses git hooks, startup consumption, and explicit scan only. [evidence: diff review]
 - [x] T031 Run bash validate.sh --strict, capture the output (REQ requirements evidence). Evidence: re-run 2026-07-09 in this reconciliation pass, `validate.sh --strict` reports Errors: 0.
-- [x] T032 [P] Confirm SC-001/SC-002/SC-003/SC-004 from spec.md each have concrete evidence, not just an unverified checkbox. Evidence recorded in checklist.md and implementation-summary.md, except numeric latency benchmark remains pending. [evidence: checklist.md:132-168, Layer-Specific Verification Evidence]
+- [x] T032 [P] Confirm SC-001/SC-002/SC-003/SC-004 from spec.md each have concrete evidence, not just an unverified checkbox. Evidence recorded in checklist.md and implementation-summary.md, including the numeric latency benchmark, satisfied via sibling packet `020-query-time-filter-benchmark` (CHK-064). [evidence: checklist.md:132-168, Layer-Specific Verification Evidence]
 - [x] T033 Update spec/plan/tasks/checklist/implementation-summary with final evidence. [evidence: `implementation-summary.md`]
 <!-- /ANCHOR:phase-3 -->
 
@@ -117,7 +117,7 @@ Layer 1 first (independent, primary safety net), Layer 2 second, Layer 3 last (s
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` -- T011 remains open
+- [x] All tasks marked `[x]` -- T011 satisfied via sibling packet `020-query-time-filter-benchmark` (CHK-064)
 - [x] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed -- targeted verification passed; lint/core-suite gates still not clean
 <!-- /ANCHOR:completion -->

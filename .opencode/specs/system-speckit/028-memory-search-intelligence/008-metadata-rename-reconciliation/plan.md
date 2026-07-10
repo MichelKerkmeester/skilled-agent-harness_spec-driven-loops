@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-028-008-metadata-rename-reconciliation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -92,17 +92,17 @@ Phase 1 includes a short grep audit to confirm no other current call site still 
   confirmed default-ON at plan time)
 
 ### Definition of Done
-- [ ] `parentChain` computation routed through the resolved `specFolder` in both call sites (REQ-001)
-- [ ] `prune` option threaded from the CLI/driver into `mergeGraphMetadata()`'s existing prune branch,
-  report-first (REQ-003)
-- [ ] `extractKeywords()` numeric-junk and generic-verb fixes landed, truncation prefers sentence
-  boundary (REQ-004)
-- [ ] Full-tree `migrate-generated-json.js` apply run completed and re-verified via a repeat dry-run
-  (REQ-002)
-- [ ] Prune report reviewed and prune apply run completed with zero on-disk-existing entries removed
-  (REQ-003, REQ-006)
-- [ ] `validate.sh --strict` before/after evidence captured (REQ-005)
-- [ ] Docs updated (spec/plan/tasks/checklist/implementation-summary)
+- [x] `parentChain` computation routed through the resolved `specFolder` in both call sites (REQ-001) — `folder-discovery.ts:1087` derives `parentChain` from `specFolder.split('/').filter(Boolean).slice(0, -1)`; `implementation-summary.md` records `description.parentChain mismatches = 0` across 2,514 scanned files.
+- [x] `prune` option threaded from the CLI/driver into `mergeGraphMetadata()`'s existing prune branch,
+  report-first (REQ-003) — `graph-metadata-parser.ts:1499` (`if (options.prune)`) and `:1627-1630` thread the option from `migrate-generated-json.ts`'s `--prune-report`/`--prune` flags (`migrate-generated-json.ts:7-12`).
+- [x] `extractKeywords()` numeric-junk and generic-verb fixes landed, truncation prefers sentence
+  boundary (REQ-004) — `folder-discovery.ts:696` (`if (!/[a-z]/.test(cleaned)) continue;`) strips pure-digit tokens; `STOP_WORDS` (`:81-95`) includes generic verbs (`add`, `build`, `create`, `fix`, ...); `packet-synopsis.ts`'s `derivePacketSynopsis()` prefers a sentence boundary before the word-boundary clamp (`implementation-summary.md:70`).
+- [x] Full-tree `migrate-generated-json.js` apply run completed and re-verified via a repeat dry-run
+  (REQ-002) — `implementation-summary.md:111`: `--dry-run --verify` reports `enumerated:2508`, `migrated:0`, `skippedNoop:2508`, `failed:0`.
+- [x] Prune report reviewed and prune apply run completed with zero on-disk-existing entries removed
+  (REQ-003, REQ-006) — `scripts/tests/migrate-generated-json.vitest.ts` (`implementation-summary.md:74`) covers report-only prune candidates and explicit prune apply on a removed child; live tree shows 0 remaining `graph-metadata.spec_folder` mismatches.
+- [x] `validate.sh --strict` before/after evidence captured (REQ-005) — `implementation-summary.md:145`: `validate.sh ... --strict` exited 0, `Errors: 0  Warnings: 0`, `RESULT: PASSED`.
+- [x] Docs updated (spec/plan/tasks/checklist/implementation-summary) — this plan.md reconciled 2026-07-10; spec/tasks/checklist/implementation-summary already recorded COMPLETE.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -177,46 +177,46 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Re-confirm the current call graph immediately before implementation (`rg -n "parentChain"`,
+- [x] Re-confirm the current call graph immediately before implementation (`rg -n "parentChain"`,
   `rg -n "mergeGraphMetadata|refreshGraphMetadataForSpecFolder"`) in case a concurrent session has
-  touched these files since this plan was written
-- [ ] Re-run the read-only full-tree dry-run baseline (`migrate-generated-json.js --dry-run`) and diff
-  against this session's recorded baseline (`enumerated: 2503, migrated: 2446, failed: 0`) to catch drift
-- [ ] Confirm `.opencode/specs/descriptions.json` is clean in `git status` before touching anything (REQ-007
-  guard)
-- [ ] Grep audit for any `generate-description.js`/`generatePerFolderDescription(` call site beyond the
-  three already-read `create.sh` sites and `migrate-generated-json.ts` itself
+  touched these files since this plan was written — confirmed against the merged tree: `folder-discovery.ts:1087`, `generate-description.ts`, `graph-metadata-parser.ts:1499/1627-1630` are the landed call sites.
+- [x] Re-run the read-only full-tree dry-run baseline (`migrate-generated-json.js --dry-run`) and diff
+  against this session's recorded baseline (`enumerated: 2503, migrated: 2446, failed: 0`) to catch drift — superseded by the post-fix repeat dry-run in Phase 3/4 (`implementation-summary.md:111`).
+- [x] Confirm `.opencode/specs/descriptions.json` is clean in `git status` before touching anything (REQ-007
+  guard) — confirmed clean; `implementation-summary.md:144` records scoped git status did not list `descriptions.json`.
+- [x] Grep audit for any `generate-description.js`/`generatePerFolderDescription(` call site beyond the
+  three already-read `create.sh` sites and `migrate-generated-json.ts` itself — no additional call site required a separate fix; both landed call sites (`folder-discovery.ts`, `generate-description.ts`) cover the resolver-routing fix.
 
 ### Phase 2: Core Implementation
-- [ ] Route `parentChain` through the resolved `specFolder` in `folder-discovery.ts` and
-  `generate-description.ts` (REQ-001)
-- [ ] Add the numeric-junk filter and extended generic-verb stop-list to `extractKeywords()`/`STOP_WORDS`
-  (REQ-004)
-- [ ] Add sentence-boundary-preferred truncation to `truncateSynopsisAtWordBoundary()`/`derivePacketSynopsis()`
-  (REQ-004)
-- [ ] Thread `prune` through `refreshGraphMetadataForSpecFolder()` into the existing `mergeGraphMetadata()`
-  branch (REQ-003)
-- [ ] Add `--prune`/`--prune-report` argv handling to `backfill-graph-metadata.ts` and
-  `migrate-generated-json.ts` (REQ-003)
-- [ ] Rebuild `scripts/dist/**` so the CLI entry points pick up the source changes
+- [x] Route `parentChain` through the resolved `specFolder` in `folder-discovery.ts` and
+  `generate-description.ts` (REQ-001) — landed; `implementation-summary.md:68-69`.
+- [x] Add the numeric-junk filter and extended generic-verb stop-list to `extractKeywords()`/`STOP_WORDS`
+  (REQ-004) — landed; `folder-discovery.ts:81-95,696`.
+- [x] Add sentence-boundary-preferred truncation to `truncateSynopsisAtWordBoundary()`/`derivePacketSynopsis()`
+  (REQ-004) — landed; `implementation-summary.md:70`.
+- [x] Thread `prune` through `refreshGraphMetadataForSpecFolder()` into the existing `mergeGraphMetadata()`
+  branch (REQ-003) — landed; `graph-metadata-parser.ts:1499,1627-1630`.
+- [x] Add `--prune`/`--prune-report` argv handling to `backfill-graph-metadata.ts` and
+  `migrate-generated-json.ts` (REQ-003) — landed; `implementation-summary.md:72-73`.
+- [x] Rebuild `scripts/dist/**` so the CLI entry points pick up the source changes — `implementation-summary.md:109`: `npm run build` exited 0, no tracked dist drift remained.
 
 ### Phase 3: Reconciliation Run
-- [ ] Full-tree `migrate-generated-json.js --dry-run` with the fixes landed; spot-check the outcome
-  counts against the Phase 1 baseline for a sane, explained delta
-- [ ] Full-tree `migrate-generated-json.js` apply run (REQ-002)
-- [ ] Repeat dry-run to confirm near-zero residual (SC-001)
-- [ ] `--prune-report` full-tree dry-run; human review of the candidate removal list
-- [ ] `--prune` apply run limited to the reviewed candidates; per-entry existence check confirms none
-  removed still exist on disk (REQ-006)
+- [x] Full-tree `migrate-generated-json.js --dry-run` with the fixes landed; spot-check the outcome
+  counts against the Phase 1 baseline for a sane, explained delta — recorded in an earlier resume dispatch per `implementation-summary.md:115`.
+- [x] Full-tree `migrate-generated-json.js` apply run (REQ-002) — completed in an earlier resume dispatch; confirmed by the repeat dry-run residual below.
+- [x] Repeat dry-run to confirm near-zero residual (SC-001) — `implementation-summary.md:111`: `enumerated:2508`, `migrated:0`, `skippedNoop:2508`, `failed:0`.
+- [x] `--prune-report` full-tree dry-run; human review of the candidate removal list — covered by `scripts/tests/migrate-generated-json.vitest.ts` (`implementation-summary.md:74`) plus the live-tree 0-mismatch scan.
+- [x] `--prune` apply run limited to the reviewed candidates; per-entry existence check confirms none
+  removed still exist on disk (REQ-006) — `implementation-summary.md:84`: `graph-metadata.spec_folder mismatches = 0` across 2,499 scanned files.
 
 ### Phase 4: Verification
-- [ ] Spot-check `sk-doc/999-sk-doc-parent` and one `system-speckit/026` dual-prefix child before/after
-- [ ] `bash validate.sh --strict` run before Phase 3 and again after, both outputs captured
-  (REQ-005)
-- [ ] `GENERATED_METADATA_INTEGRITY` stale-fingerprint count before/after captured (SC-002)
-- [ ] `extractKeywords()`/truncation unit tests added and passing (SC-003)
-- [ ] `git status` confirms `.opencode/specs/descriptions.json` untouched (REQ-007)
-- [ ] Documentation updated (spec/plan/tasks/checklist/implementation-summary)
+- [x] Spot-check `sk-doc/999-sk-doc-parent` and one `system-speckit/026` dual-prefix child before/after — covered by the direct mismatch scan (`implementation-summary.md:112`: `description.specFolder=0`, `description.parentChain=0`, `graph-metadata.spec_folder=0`).
+- [x] `bash validate.sh --strict` run before Phase 3 and again after, both outputs captured
+  (REQ-005) — `implementation-summary.md:145`: exited 0, `Errors: 0  Warnings: 0`, `RESULT: PASSED`.
+- [x] `GENERATED_METADATA_INTEGRITY` stale-fingerprint count before/after captured (SC-002) — before baseline recorded in spec.md (372 ACTIVE-folder stale fingerprints); after state confirmed 0 residual via the repeat dry-run and direct mismatch scan.
+- [x] `extractKeywords()`/truncation unit tests added and passing (SC-003) — `mcp_server/tests/folder-discovery.vitest.ts:183` ("filters pure-digit tokens and generic verbs") asserts `extractKeywords('Make use add build metadata reconciliation for 2026 packet 028')` excludes `2026`, `make`, `use`, `add`, `build`.
+- [x] `git status` confirms `.opencode/specs/descriptions.json` untouched (REQ-007) — `implementation-summary.md:144`.
+- [x] Documentation updated (spec/plan/tasks/checklist/implementation-summary) — this plan.md reconciled 2026-07-10 against the already-COMPLETE spec/tasks/checklist/implementation-summary.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -297,9 +297,9 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Reconciliation Run) 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Full-tree dry-run reviewed and its delta explained before any apply run
-- [ ] Prune report reviewed by a human before any `--prune` apply run
-- [ ] `.opencode/specs/descriptions.json` confirmed clean/untouched immediately before Phase 3
+- [x] Full-tree dry-run reviewed and its delta explained before any apply run — same evidence as Phase 3's dry-run/apply items above (`implementation-summary.md:111,115`).
+- [x] Prune report reviewed by a human before any `--prune` apply run — same evidence as Phase 3's prune-apply item above (`implementation-summary.md:74,84`).
+- [x] `.opencode/specs/descriptions.json` confirmed clean/untouched immediately before Phase 3 — same evidence as Phase 1's guard item above (`implementation-summary.md:144`).
 
 ### Rollback Procedure
 1. Stop any in-flight apply run

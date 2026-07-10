@@ -39,20 +39,21 @@
       ".opencode/commands/memory/search.md",
       ".claude/commands/memory/search.md",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context-token-budget.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts",
       ".opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes/spec.md",
       ".opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes/plan.md",
       ".opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes/tasks.md",
       ".opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes/implementation-summary.md",
-      "plan.md",
       "tasks.md",
-      "spec.md",
-      "tools/types.ts",
-      "implementation-summary.md"
+      "schemas/tool-input-schemas.ts",
+      "tests/mcp-tool-dispatch.vitest.ts",
+      "tools/types.ts"
     ],
     "entities": [
       {
@@ -71,6 +72,12 @@
         "name": "memory-context.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
         "source": "derived"
       },
       {
@@ -101,6 +108,12 @@
         "name": "tool-input-schema.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-tool-dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts",
         "source": "derived"
       },
       {
@@ -186,23 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "P1 — breadcrumb suppression is a deliberate rule, not a data gap",
     "created_at": "2026-07-09T06:20:00.567Z",
-    "last_save_at": "2026-07-10T08:09:24.597Z",
+    "last_save_at": "2026-07-10T18:58:19.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +212,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e35e1fe7b24b3858a08f3f6fae03a1471948c2f44b0eb8706e05bc7e8553828",
+    "source_fingerprint": "sha256:e947bf47478cef431e96f53b99b4ca150543fbd72c49b5f5bf798a1d445f199d",
     "source_doc_hashes": {
-      "spec.md": "78d5474b036440d635980fc012f107a8b9ee7184f4700eb97eec537defd95698",
+      "spec.md": "7d1a21facf3ab64253a8f4c856262af2d57dc4afcb0536b0559752912b872bfd",
       "plan.md": "aecf0683d0e4b069c1c1a152ede939db33ee2e5a0e65c58d0975756b398b4ca4",
-      "tasks.md": "7650c3c646ce368520b6abe8477e1ba7fec628520b9cd6357e606819a0327d24",
-      "implementation-summary.md": "64300904d8491d9b3c4ee40dd89f5783099ad31966a26a52ded8da59e2662861"
+      "tasks.md": "b6310f491c0fb63061aeead65d5f9e87a9192adbfc4e24e86df009b36d5256e6",
+      "implementation-summary.md": "494a6e604a29179c9d7ba500b9ab7c268f7a3e108cc38af5ea0c4a56bc56bea1"
     },
     "last_active_child_id": null,
     "last_active_at": null

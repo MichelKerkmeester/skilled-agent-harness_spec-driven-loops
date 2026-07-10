@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
-description: "Status PARTIAL/VERIFICATION BLOCKED. Resumed after an interrupted prior execution and found the core DB sweep already applied: final pre-repair backup 23,322 rows, live DB 13,529 rows, exact 9,793-row drop. Full completion is blocked by failing test suites and remaining enrichment backlog."
+title: "Implementation Summary"
+description: "Status PARTIAL. Resumed after an interrupted prior execution and found the core DB sweep already applied: final pre-repair backup 23,322 rows, live DB 13,529 rows, exact 9,793-row drop. The 2026-07-10 operator-authorized dedup cleanup removed the 1,318 excess duplicate rows and its re-embed drain closed the enrichment backlog (100% active-shard vector coverage). Full packet completion remains blocked by the broad test suites and the original sweep's unconfirmed checkpoint_restore rehearsal."
 trigger_phrases:
   - "search index integrity sweep"
   - "stale memory index rows"
@@ -12,14 +12,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep"
-    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_at: "2026-07-10T19:01:00.000Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
-    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
+    recent_action: "T021 dedup removed 1,318 dup rows; re-embed drain hit 100% vector coverage 2026-07-10"
+    next_safe_action: "Confirm original-sweep checkpoint evidence and get broad test suites green"
     blockers:
-      - "Full relevant test suites are not green"
-      - "F12 enrichment backlog still has 6124 pending+failed rows"
-      - "checkpoint_create/checkpoint_restore evidence was not confirmable from this resumed session"
+      - "Full relevant test suites are not green (last recorded run 2026-07-09; no fresher green re-run on file)"
+      - "checkpoint_create/checkpoint_restore evidence for the ORIGINAL bulk sweep was not confirmable from this resumed session (the 2026-07-10 dedup step has its own confirmed checkpoint, pre-dedup-canonical-duplicates-20260710, but that covers only that later mutation)"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
       - ".opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite"
@@ -30,12 +29,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "resumed-20260709-opencode"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 90
     open_questions:
-      - "Should the remaining enrichment backlog be completed in this packet or tracked as a follow-up operational backlog?"
       - "Should checkpoint_create/checkpoint_restore be replayed against a scratch copy for evidence, despite the core mutation already being complete?"
     answered_questions:
       - "The core stale-row/vector/false-success mutation should not be repeated; current counts show it is already complete."
+      - "The enrichment backlog (originally 9,317, then 6,124 pending+failed) is resolved: the 2026-07-10 dedup step's reconcile --apply pass and re-embed drain brought active-shard vector coverage to 100% with zero pending/failed rows."
 ---
 # Implementation Summary
 
@@ -51,7 +50,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-search-index-integrity-sweep |
-| **Status** | PARTIAL / VERIFICATION BLOCKED |
+| **Status** | PARTIAL — data-integrity sweep, dedup cleanup, and re-embed drain verified complete; blocked on broad-test-suite green state and the original sweep's checkpoint_restore rehearsal |
 | **Completed** | No |
 | **Level** | 2 |
 | **Resumed Execution** | Yes; prior dispatch was externally interrupted before this agent took over |
@@ -77,7 +76,7 @@ Confirmed now:
 | Missing file paths | Original spec reported `9,793` stale rows | `0` in full filesystem scan | Resolved |
 | Content-hash drift | Original sample reported 25 mismatches in 292 docs | `0` mismatches across all `13,529` rows | Resolved in current corpus |
 | Embedding queue | Health initially showed 136 pending/retry during this resumed session | Final health `pending=0`, `failed=0`, `queueDepth=0` | Resolved for embedding_status/vector coverage |
-| Background enrichment | Original spec reported `9,317` pending+failed | `5,903` pending + `221` failed = `6,124` | Improved, not drained |
+| Background enrichment | Original spec reported `9,317` pending+failed; `6,124` remained on 2026-07-09 | `0` pending + `0` failed (2026-07-10 dedup step's `memory_embedding_reconcile --apply` + monitored drain) | Resolved 2026-07-10 — see "Duplicate Cleanup Executed" below |
 
 Files changed by this resumed agent:
 
@@ -120,7 +119,7 @@ The core DB mutation was not repeated because the final pre-repair backup had `2
 | Treat backup files as evidence, not as confirmed checkpoint tool records | The files exist and pass `quick_check`, but this resumed session did not find a `checkpoint_create` name or a scratch `checkpoint_restore` rehearsal |
 | Treat F11 refresh as currently no-op | A full current-corpus hash scan found `contentHashNull=0` and `contentHashMismatch=0`; there are no confirmed-drift rows to refresh now |
 | Treat F13 false-success remediation as already complete | Every `embedding_status='success'` row has a backing active vector; direct SQL found `false_success_missing_vector=0` |
-| Do not claim packet completion | Full relevant test suites failed/timed out, checkpoint restore evidence is unconfirmed, stale-term sample query evidence is incomplete, and enrichment backlog remains `6,124` |
+| Do not claim packet completion | Full relevant test suites failed/timed out, checkpoint restore evidence for the original bulk sweep is unconfirmed, and stale-term sample query evidence is incomplete (the enrichment backlog itself was resolved 2026-07-10 by the dedup step's reconcile pass and re-embed drain, so it is no longer a blocking reason) |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -199,8 +198,8 @@ Because the full verification gates are red, this packet is not complete.
 ## Known Limitations
 
 1. **The original mutation cannot be attributed from this resumed session.** The row-count delta and health state confirm it happened, but this agent did not observe the mutating call and did not repeat it.
-2. **The checkpoint tool evidence is incomplete.** Three backup files exist and pass integrity checks, but a `checkpoint_create` record and scratch `checkpoint_restore` rehearsal were not confirmed.
-3. **Full tests are not green.** This blocks any completion claim under the repo's verification rules.
-4. **F12 is not fully closed.** Background enrichment pending+failed is down from `9,317` to `6,124`, but not drained and not observed across two cycles.
+2. **The checkpoint tool evidence for the ORIGINAL bulk sweep is still incomplete.** Three backup files exist and pass integrity checks, but a `checkpoint_create` record and scratch `checkpoint_restore` rehearsal for that original mutation were not confirmed. (The later 2026-07-10 dedup mutation does have a confirmed `checkpoint_create` name, `pre-dedup-canonical-duplicates-20260710`, but that checkpoint covers only the dedup step, not the original sweep.)
+3. **Full tests are not green.** This blocks any completion claim under the repo's verification rules; no fresher broad-suite green re-run is on file for this packet as of the last recorded run (2026-07-09).
+4. **RESOLVED 2026-07-10: F12's enrichment backlog is drained.** Background enrichment pending+failed went `9,317 -> 6,124` (recorded 2026-07-09), then to `0` after the dedup step's `memory_embedding_reconcile --apply` pass and re-embed drain (recorded in the Verification section's "Duplicate Cleanup Executed" table): final state `12,224 vectors / 12,224 rows`, 100% active-shard vector coverage, zero pending/failed rows.
 5. **Stale-term search sampling is incomplete.** The live daemon query succeeded, and the full DB file-path scan proves no live row references a missing file, but no preserved list of pre-sweep stale query terms was available to replay exactly.
 <!-- /ANCHOR:limitations -->

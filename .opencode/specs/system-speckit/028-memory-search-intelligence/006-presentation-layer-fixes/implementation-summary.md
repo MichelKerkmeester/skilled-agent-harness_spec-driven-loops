@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes"
-    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_at: "2026-07-10T19:01:00.000Z"
     last_updated_by: "claude-code"
     recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
     next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
@@ -77,16 +77,33 @@ Implemented the planned presentation-layer fixes without changing ranking, retri
 - `.opencode/commands/memory/search.md`
 - `.claude/commands/memory/search.md`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/memory-context-token-budget.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts`
+- `.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes/spec.md`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes/plan.md`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes/tasks.md`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes/implementation-summary.md`
 - Generated `mcp_server/dist/**` output was refreshed by `npm run rebuild`.
+
+### Phase R: Cross-Cutting MCP Public-Contract Parity (Audit Remediation, T021-T028)
+
+Beyond the P1/P2/P3 presentation fixes above, this packet also owns the eight Phase R audit-remediation tasks recorded in `tasks.md` (2026-07-09 GPT-5.6 review wave, no dedicated surface child carries a `tasks.md` for this work):
+
+- T021: `enforceTokenBudget` no longer claims budget fit when the 10-row compaction floor exceeds the caller budget — explicit `droppedAllResultsReason`/`floorExceededBudget` states computed live from the serialized response at every return path (`memory-context.ts`).
+- T022: `resolveEnvelopeTokenBudget()` (`context-server.ts:678`) makes the outer MCP envelope honor a validated `memory_context` `tokenBudget` override instead of re-trimming it to the fixed per-tool budget, guarded by a strict `name === 'memory_context'` check so other tools are unaffected.
+- T023: `toMetadataOnlyContextRow` (`memory-context.ts:1166`) is now the single shared mapper for both metadata-only call sites, carrying the `?? r.spec_folder` snake-case fallback.
+- T024: `embedder_set.dryRun` is now advertised in `tool-schemas.ts`, matching the pre-existing Zod/handler support.
+- T025: the four dead `skill_graph_*` Zod registrations were removed from `schemas/tool-input-schemas.ts`.
+- T026: `tests/mcp-tool-dispatch.vitest.ts` now iterates all 41 `TOOL_DEFINITIONS` entries and drives the real `dispatchTool`, asserting exactly one dispatcher owner per tool (previously covered 24 of 41 and never called `dispatchTool`).
+- T027: `tools/types.ts` completes the eight previously-lagging dispatch-arg interfaces and adds compile-time `Assert<HasExactSchemaKeys<...>>` parity checks.
+- T028: `includeConstitutional` is now consistent across the Zod schema, public schema, and `ContextArgs`.
+
+Landed in commit `f9afa7a76c` ("fix(spec-kit): 028 Phase R audit remediation — 72 tasks swarm-implemented, adversarially verified"), which touches `context-server.ts`, `handlers/memory-context.ts`, `schemas/tool-input-schemas.ts`, `tests/mcp-tool-dispatch.vitest.ts`, `tests/memory-context-token-budget.vitest.ts`, `tool-schemas.ts`, and `tools/types.ts`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -131,6 +148,7 @@ Confirmed in this session:
 - Comment hygiene: `python3 .opencode/skills/sk-code/code-quality/scripts/check-comment-hygiene.sh <file>` returned exit 0 for every changed command/schema/test/source file checked.
 - Live MCP spot check: `memory_context` deep query for this packet returned 4 result rows, `meta.tokenBudgetEnforcement.originalResultCount=4`, `returnedResultCount=4`, and result data carried full `specFolder` breadcrumbs such as `system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes`.
 - Strict packet validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes --strict` passed with Errors 0 and Warnings 0.
+- Phase R (T021-T028): `tests/mcp-tool-dispatch.vitest.ts` asserts `TOOL_DEFINITIONS` has length `41` and drives `dispatchTool(definition.name, ...)` for every entry with exactly-one-dispatcher-owner assertions; `tests/memory-context-token-budget.vitest.ts` covers the `floorExceededBudget`/`droppedAllResultsReason` matrix (impossible/floor-overflow/true-fit); a dispatch-level test asserts a 12000-token `memory_context` envelope override survives `resolveEnvelopeTokenBudget` instead of being re-trimmed to 3500; the pre-existing constitutional-sync suite (24/24) was re-run untouched to confirm the envelope guard is scoped to `memory_context` only.
 
 Broad-suite status:
 

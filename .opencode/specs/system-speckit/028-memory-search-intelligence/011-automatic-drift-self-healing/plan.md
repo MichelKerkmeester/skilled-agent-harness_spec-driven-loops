@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers:
       - "007/008 dependency shipped; no longer blocking (tasks.md T001/T002)"
-      - "REQ-008 numeric latency benchmark not executed"
+      - "REQ-008 numeric latency benchmark satisfied via sibling packet 020-query-time-filter-benchmark; no longer blocking (CHK-064)"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts"
@@ -93,8 +93,9 @@ NFR-R01/R02 already set, rather than over-specified here.
 - [x] Layer 1 query-time existence filter implemented, flag-gated default-off (REQ-001, REQ-002). Evidence:
   `capability-flags.ts:238` (`SPECKIT_QUERY_TIME_EXISTENCE_FILTER`), `memory-search.ts:372-433`
   (`applyQueryTimeExistenceFilter`), wired at `memory-search.ts:1597-1598`.
-- [ ] Layer 1 latency budget measured and documented (REQ-008). Status: not yet executed as a numeric
-  benchmark (CHK-064, T011 open).
+- [x] Layer 1 latency budget measured and documented (REQ-008). Status: satisfied via sibling packet
+  `020-query-time-filter-benchmark` — OFF mean 274.034ms, ON mean 288.022ms, 5.1045% mean overhead
+  (CHK-064, T011 satisfied).
 - [x] Layer 2 git hook (post-commit/post-merge/post-rewrite) detects renames/deletes and writes an atomic
   marker, no-op on unrelated commits (REQ-003, REQ-004). Evidence: `.opencode/scripts/git-hooks/lib/
   memory-drift-marker.sh` (temp-file-plus-rename write, `mkdirSync` lock with stale-lock reclaim), sourced
@@ -241,7 +242,7 @@ Required inventories:
 - [x] Unit tests: filter correctness with the flag on/off, suspect-queue append, latency benchmark
   (REQ-008). Status: filter-correctness and suspect-queue-append tests exist and pass
   (`memory-drift-healing.vitest.ts`, `memory-roadmap-flags.vitest.ts`); the numeric latency benchmark
-  itself was not executed (CHK-064 remains open).
+  was subsequently completed via sibling packet `020-query-time-filter-benchmark` (CHK-064).
 
 ### Phase 3: Layer 2 — Git Hook + Boot Consumption
 - [x] Extend `post-commit` with the scoped `.opencode/specs` rename/delete detection and atomic marker

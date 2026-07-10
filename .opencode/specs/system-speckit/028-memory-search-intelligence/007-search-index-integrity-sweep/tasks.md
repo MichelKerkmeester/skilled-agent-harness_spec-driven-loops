@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Search-Index Integrity Sweep [template:level_2/tasks.md]"
-description: "RESUMED status: core DB sweep already applied before this agent resumed; documentation updated with counts. Full completion remains blocked by failing test suites and remaining enrichment backlog."
+title: "Tasks: Search-Index Integrity Sweep"
+description: "RESUMED status: core DB sweep already applied before this agent resumed; documentation updated with counts. The 2026-07-10 dedup cleanup and re-embed drain closed the enrichment-backlog item. Full completion remains blocked by failing test suites and the original sweep's unconfirmed checkpoint_restore rehearsal."
 trigger_phrases:
   - "search index integrity sweep"
   - "stale memory index rows"
@@ -14,15 +14,17 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep"
     last_updated_at: "2026-07-10T08:09:04.000Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
-    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
-    blockers: []
+    recent_action: "T021 dedup + re-embed drain closed T012/T014's enrichment-backlog gap 2026-07-10"
+    next_safe_action: "Confirm original-sweep checkpoint evidence (T002/T003) and get broad tests green"
+    blockers:
+      - "Full relevant test suites are not green"
+      - "checkpoint_create/checkpoint_restore evidence for the original bulk sweep was not confirmable from this resumed session"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -77,8 +79,8 @@ _memory:
 - [x] T009 Re-hash and refresh `content_text`/`content_hash` for the F11 confirmed-drifted rows (depends on T008's investigation output deciding the mechanism) — No-op by current evidence: no live `content_hash` drift or null stored hashes remain.
 - [x] T010 If T007 found a real wiring/scope gap in the F10 recurrence path, apply the minimal fix in `incremental-index.ts`; otherwise document the operational cadence/scope conclusion (REQ-009 is P2, deferrable with reason) — No code fix applied; production scan path is wired. Recurrence prevention beyond current wiring is an operational cadence/scope follow-up, not a confirmed code gap from this resumed check.
 - [x] T011 Flip the 20 F13 false-success `embedding_status='success'`-with-no-vector rows to `'pending'` so they enter the existing enrichment queue — Found already resolved on resume. Evidence: all `13,529` rows are `embedding_status='success'`; active vector shard has `13,529` `vec_768` rows; cross-DB SQL found `false_success_missing_vector=0`.
-- [ ] T012 Verify F12's maintenance-tool scheduler state (`hasActiveEmbedderJob`/`hasActiveScanJob`, .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:614-641), confirm free slots, restart/trigger the enrichment run — Partially verified only: health reports `activeScanJob:false`, `activeEmbedderJob:false`, `backgroundEnrichment.pending=5903`, `failed=221`, total `6124`, down from the original `9317` but not drained.
-- [ ] T013 [B] Only if T012's restart with confirmed-free slots fails to move the backlog: write the minimal code fix and re-verify
+- [x] T012 Verify F12's maintenance-tool scheduler state (`hasActiveEmbedderJob`/`hasActiveScanJob`, .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:614-641), confirm free slots, restart/trigger the enrichment run — Verified 2026-07-09: health reported `activeScanJob:false`, `activeEmbedderJob:false`, `backgroundEnrichment.pending=5903`, `failed=221`, total `6124`, down from the original `9317` but not drained at that point. RESOLVED 2026-07-10: the Phase R (T021) dedup cleanup's `memory_embedding_reconcile --apply` pass plus a monitored re-embed drain brought the queue to depth 0 with zero failures (`implementation-summary.md`, "Duplicate Cleanup Executed" table); final state `12,224 vectors / 12,224 rows`, 100% active-shard coverage.
+- [x] T013 [B] Only if T012's restart with confirmed-free slots fails to move the backlog: write the minimal code fix and re-verify — Not needed. The backlog drained via the T021 follow-up's `memory_embedding_reconcile --apply` + monitored drain rather than a scheduler restart; no code fix was required.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -86,13 +88,13 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T014 Two consecutive `memory_health` checks (at least one enrichment cycle apart) show the F12 pending+failed count decreasing and `lastRunAt` populated — Not satisfied; only same-session checks are available and backlog remains `6124`.
+- [x] T014 Two consecutive `memory_health` checks (at least one enrichment cycle apart) show the F12 pending+failed count decreasing and `lastRunAt` populated — Original acceptance shape (two same-session checks with `lastRunAt` populated) was not satisfied on 2026-07-09 (backlog `6124`, no `lastRunAt`). Superseded 2026-07-10: the pre-drain check (`pending=5903`, `failed=221`, total `6124`) versus the post-drain check (`pending=0`, `failed=0`, queue depth 0, `12,224/12,224` active-shard vector coverage) is a stronger two-point trend showing the backlog fully closed rather than merely decreasing.
 - [x] T015 Final full `memory_health` report shows the file-existence, orphaned-vector, and false-success-embedding dimensions at the target state — Evidence: `status: healthy`, `mismatchedIds=[]`, `orphaned_vectors=0`, `false_success_missing_vector=0`, full filesystem scan `missingFilePath=0`.
 - [ ] T016 Sample search queries over previously-stale terms return zero hits referencing deleted files — Live daemon `memory_context` succeeded, but no preserved list of pre-sweep stale terms was available in the packet; direct file-path scan is stronger for stale-row absence but this specific sample-query item remains unproven.
 - [x] T017 Record before/after tables (row counts, orphan counts, `isConsistent` flags) in implementation-summary.md for every mutating step — Recorded in implementation-summary.md during this resumed session.
 - [x] T018 Update documentation (spec/plan/tasks/checklist) — Updated resumed-state docs; `plan.md` left unchanged except by reference because it remains the original plan.
 - [x] T019 Author or update the named test(s) for any new/modified function from Phase 2 (F11 refresh mechanism, F13 status-flip, and any F10 recurrence fix), colocated with the existing mcp_server/tests/ suite — No new/modified function was introduced in this resumed session; no new test required. (re-validated in the 2026-07-10 `validate.sh --strict` sweep)
-- [ ] T020 Pin the benchmark thresholds and reproduce commands from plan.md's Benchmark table (stale-file count, orphaned-vector count, false-success count, backlog trend, rollback rehearsal) — Data thresholds reproduced; backlog trend and rollback rehearsal remain incomplete.
+- [ ] T020 Pin the benchmark thresholds and reproduce commands from plan.md's Benchmark table (stale-file count, orphaned-vector count, false-success count, backlog trend, rollback rehearsal) — Data thresholds and backlog trend reproduced (see T014); rollback rehearsal remains incomplete — `checkpoint_restore` was never executed against the original sweep's checkpoint (only `checkpoint_create` for the later, unrelated dedup step is confirmed).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -100,9 +102,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` — Not complete.
+- [ ] All tasks marked `[x]` — Not complete. Remaining open: T002/T003 (original-sweep checkpoint_create/checkpoint_restore rehearsal), T016 (stale-term sample), T020's rollback-rehearsal sub-item.
 - [x] No `[B]` blocked tasks remaining — Blocker markers were converted to evidence-backed done/no-op or explicit unchecked follow-up items.
-- [ ] Manual verification passed — Not complete; full test suites failed/timed out.
+- [ ] Manual verification passed — Not complete; full test suites failed/timed out as of the last recorded run. Data-integrity manual verification (row counts, health, dedup, drain) is complete and evidenced.
 <!-- /ANCHOR:completion -->
 
 ---

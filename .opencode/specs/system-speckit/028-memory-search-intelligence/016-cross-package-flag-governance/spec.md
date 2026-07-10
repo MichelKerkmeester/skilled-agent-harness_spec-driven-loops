@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Cross-Package Flag Governance Reconciliation and Formatting [template:level_1/spec.md]"
+title: "Feature Specification: Cross-Package Flag Governance Reconciliation and Formatting"
 description: "Package 010's SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION ships default-ON labeled graduated while its own spec says Implemented, verification-limited; package 011's SPECKIT_QUERY_TIME_EXISTENCE_FILTER hand-rolls env parsing instead of the shared opt-in helper; and a formatting split in capability-flags.ts breaks an adjacent const/getter pair."
 trigger_phrases:
   - "cross-package flag governance"

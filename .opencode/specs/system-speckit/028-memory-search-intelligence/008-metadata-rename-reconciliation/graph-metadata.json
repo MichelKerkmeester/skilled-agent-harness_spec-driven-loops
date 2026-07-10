@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Two narrow generator bugs sit on top of the already-shipped identity resolver, unreconciled",
     "created_at": "2026-07-09T06:26:17.088Z",
-    "last_save_at": "2026-07-10T08:09:24.845Z",
+    "last_save_at": "2026-07-10T19:00:27.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,10 +217,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3abe3b55db371c06988b6d5417332dc5fbc65a6bc3f70b7fb14f2e0ba653f3f",
+    "source_fingerprint": "sha256:801cfc37dc8b7bf0c866f9e6dd62a2da1ebf64384ee4820db84ba008d67d86f9",
     "source_doc_hashes": {
       "spec.md": "bdb1482e1947786e7a16275ebcf654285bcb54aa4dad093082f28e63127d8292",
-      "plan.md": "94ca8c62a7923766563eee74ff027ab262d390b2c72adfc1cd030248de731b38",
+      "plan.md": "1751b46f3428dc3fef9c36f6d23795e9e5ac5b52fdc3239d68f93c72ebbf2d4e",
       "tasks.md": "68e203a9d000a3e103f446718f92287297b9a244ffd7047f55ce69067ce1d864",
       "checklist.md": "c7ea2b9a43adfed22886cf2c4a4f64e58e0358177d555ffab2c4272a776e3079",
       "implementation-summary.md": "e59122c75584ef96c2272bfe5873b20a2cbdd7adc9258b23e95731129b746fc9"

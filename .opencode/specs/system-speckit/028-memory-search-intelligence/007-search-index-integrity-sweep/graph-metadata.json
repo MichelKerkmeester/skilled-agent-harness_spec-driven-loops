@@ -170,12 +170,6 @@
         "source": "derived"
       },
       {
-        "name": "Review Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,6 +188,12 @@
         "source": "derived"
       },
       {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The mk-spec-memory search backend (`memoryindex` + `vec768`) has drifted from the current on-disk spec corpus, primarily as a side effect of the July 2026 `system-spec-kit` → `system-speckit` re-nest, which moved and renamed thousands of spec folders without reconciling their old index rows",
     "created_at": "2026-07-09T06:17:43.016Z",
-    "last_save_at": "2026-07-10T08:09:24.722Z",
+    "last_save_at": "2026-07-10T19:00:27.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:468066659bcb86fe7ef900f92eec4ab6a1cd2f3042b6a00939869d4b08bbf19c",
+    "source_fingerprint": "sha256:20ee9d8f628b0d5b5a097b75e077da0355010004165566d810847e583e1eb4af",
     "source_doc_hashes": {
-      "spec.md": "6bae646b8f01fdcb078a790f03435bbda319c8baf2cd3de8041657c3ec9f8083",
-      "plan.md": "4811f067a91ece3fb83db88a686ef3dee1d85b6cf3c28af29193415c4eaf400a",
-      "tasks.md": "b503f21b2688c7cc83a2f9744e1616175dd439de415d21c3cadade79f1474bf4",
-      "checklist.md": "310a19483fbd5ab5905e2e55c6d5f44859915f6aa99e8b98a66c910f8a5601c4",
-      "implementation-summary.md": "fc0b2ab2f59467598e4cbff89b2d30fa6e035d5d0dc78d0db79b448f083b80aa"
+      "spec.md": "cd3ae87f66ed697013ef09655086edcc95365dba949a0ebe12e79049e954d767",
+      "plan.md": "e149d13995efabaf4b81ce8665d2438f2b4d311e64641cf789adc6e056fb7667",
+      "tasks.md": "bde64ecf103cdac2af27bdef6b63d73d1c2c9658ea834cb07aaa071ffd427b4e",
+      "checklist.md": "8ea27365fa98f68ce6ab5ef376f56bcfce5daf3504b6fa696318a47087e4aeb4",
+      "implementation-summary.md": "73c478feb19a4e8866dc2e05bcb802ba6f96e3d5eb5578118990f30389cfd83b"
     },
     "last_active_child_id": null,
     "last_active_at": null

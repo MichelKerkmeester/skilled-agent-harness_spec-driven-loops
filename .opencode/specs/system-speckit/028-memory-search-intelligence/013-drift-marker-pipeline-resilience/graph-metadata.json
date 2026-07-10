@@ -202,7 +202,7 @@
     ],
     "causal_summary": "F3 — Git-hook lock directory has no stale-lock recovery",
     "created_at": "2026-07-09T15:11:33.252Z",
-    "last_save_at": "2026-07-10T08:09:25.531Z",
+    "last_save_at": "2026-07-10T19:13:04.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1977b4f1cf8b3c911256e1185fcbc9f641dd103345afbb9f19dcae6a5eaabfb2",
+    "source_fingerprint": "sha256:83174b395210e50b4e4249ae83ed85aa52541e4b1e443f2b9384984057f3d13c",
     "source_doc_hashes": {
-      "spec.md": "b0c1bdede0f46a5c3331481174d5575105b78884357b0bc75944614fbbed56dc",
+      "spec.md": "8c01e0afb916503c48ef407f2affb5ca602484cabcc8b9daab9d782bfe1d2e4a",
       "plan.md": "fedcb49d2d73a37acbd5226ccf6c97955026bd6a0cdeabd9a4be0c54248769bf",
       "tasks.md": "2157443bbfa9b050de3d94ab9989071df78bfa25b0a37cce430dea530d022633",
       "checklist.md": "efc4b9d75379c09352bda9283b30b0b83fd522ad3fc658caab2266f139d66999",
-      "implementation-summary.md": "84dc159e7262ea8c0d8839ac3a50a7af6a723728299d9d8c0385f68a53fe56c8"
+      "implementation-summary.md": "6611231f965c87effd06ed9951e2234aae68605b7d89196f1eac5a9047962720"
     },
     "last_active_child_id": null,
     "last_active_at": null
