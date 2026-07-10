@@ -119,3 +119,17 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+> Includes the cross-cutting flag/read-policy contract items surfaced by the audit (this child owns cross-package flag governance).
+
+- [ ] T017 [P1] The ENV-reference drift guard recognizes only literal `env.SPECKIT_*` reads — flags passed as strings to `isFeatureEnabled()`/`isOptInEnabled()` or held in constants are invisible, prose tokens count as documentation, and documented-but-removed flags pass (`mcp_server/tests/env-reference-drift.vitest.ts:53`). Extract tokens from helper call sites and constants, parse structured ENV rows, assert bidirectional parity including default polarity.
+- [ ] T018 [P1] `db-state.ts` re-parses `SPECKIT_GRAPH_UNIFIED` raw (`!== 'false'`), diverging from the canonical parser on `0`/case/padding during rebind (`mcp_server/core/db-state.ts:234` vs `lib/search/graph-flags.ts:18`). Call `isGraphUnifiedEnabled()` or receive the resolved state.
+- [ ] T019 [P2] The flag-ceiling guard inventories only `search-flags.ts`, missing `capability-flags.ts` and `graph-flags.ts` — the exact alternate homes involved in F5 (`mcp_server/tests/flag-ceiling.vitest.ts:217`). Inventory all registration modules or derive from one canonical flag manifest.
+- [ ] T020 [P2] The shared-parser migration expanded the accepted truthy set for the query-time existence flag (`yes`/`on`/`enabled` now activate it) while claiming behavior preservation (`lib/search/search-flags.ts:33`, `lib/config/capability-flags.ts:252`). Preserve the strict set via a shared strict helper or amend the spec/migration notes; add a parser matrix test (unset/whitespace/case/true/1/yes/on/enabled/false/0/invalid).
+- [ ] T021 [P2] `ENV_REFERENCE.md:275` documents the relevance-gap flag as default `true` yet instructs "Set `true` to enable" with default-OFF prose; code is default-ON with explicit opt-out (`search-flags.ts:1051-1059`). Rewrite the row.
+- [ ] T022 [P2] `spec.md:139` of this packet describes the retired default-ON preservation state as current, contradicting its own F5 resolution (`:77-79`). Rewrite in past tense as the pre-fix baseline.
+- [ ] T023 [P1] Archived/deprecated read policy has drifted in three places: `resolveIncludeCold()` short-circuits before the `deprecated`/`archived` exclusions (`mcp_server/lib/search/active-row-predicate.ts:83`), while `tool-schemas.ts:342/:345` still claims archived rows are always excluded and the handler honors `includeArchived` (`handlers/memory-search.ts:1113`). Pick one canonical policy; fix code or schema+tier docs; add default-policy tests with the cold-tier flag unset/true/false.
+- [ ] T024 [P1] `trackAccess` schema/doc contract is inverted: advertised default `false`/"off by default" vs deliberate handler default `true` (`mcp_server/tool-schemas.ts:337` vs `handlers/memory-search.ts:1095`). Update schema and stale interface comments to default-ON; add an omitted-parameter test proving tracking occurs and explicit `false` disables it.
+- [ ] T025 [P2] Stale engine-flag docs: `ENV_REFERENCE.md:262` describes the retired legacy-BM25 auto-fallback (code routes to `packed-inmemory`, `lib/search/bm25-index.ts:393-411`), and `lib/telemetry/README.md:91` advertises the removed `SPECKIT_NOVELTY_BOOST`. Correct both.

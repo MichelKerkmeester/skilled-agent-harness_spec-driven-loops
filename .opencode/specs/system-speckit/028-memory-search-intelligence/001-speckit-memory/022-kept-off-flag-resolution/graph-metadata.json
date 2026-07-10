@@ -27,7 +27,6 @@
       "028 kept off flag resolution summary"
     ],
     "key_topics": [
-      "028",
       "kept",
       "flag",
       "resolution",
@@ -38,7 +37,8 @@
       "flags",
       "final",
       "disposition",
-      "plan"
+      "plan",
+      "method"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 028 build epoch shipped most of its new search and memory behavior behind default-off flags and closed with no flag flipped",
     "created_at": "2026-06-20T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:33.980Z",
+    "last_save_at": "2026-07-09T10:02:56.192Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "plan.md": "aed26cf2ba6454fb57f16f05ba1454cebda3cffb3682bfe7faea8335f49e09f7",
       "tasks.md": "c326bc906dc59a57db52f29443065c683628af2f670cc45a74c1b6df8e0782ae",
       "checklist.md": "2af45e2572e567a3200b5218a6d7c7a881d1c05ae0b19c7e4e2c1549e5893a9f",
-      "implementation-summary.md": "ebff82a7e89302c19873bb522ea823c1285e44edbcbf45496c32c570357c3902"
+      "implementation-summary.md": "a53a1c2a8c4da870b14645ffa1a7285ad2a6708d38107f57f0877fd2e08e6367"
     },
     "last_active_child_id": null,
     "last_active_at": null

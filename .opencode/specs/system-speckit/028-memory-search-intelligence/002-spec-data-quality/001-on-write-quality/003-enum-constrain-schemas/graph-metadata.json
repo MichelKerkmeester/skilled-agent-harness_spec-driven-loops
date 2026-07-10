@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The two zod metadata schemas type their controlled-vocabulary fields as free strings",
     "created_at": "2026-06-27T17:15:33.334Z",
-    "last_save_at": "2026-07-06T18:49:49.882Z",
+    "last_save_at": "2026-07-09T10:02:56.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c8536546d9d72c17eee08f8adc00bbfbd7c244f852b3f2bb2cc016c9747310f",
+    "source_fingerprint": "sha256:c2243275d8dd7f4c70198e12b24bb31c7ccf5b2b792327d64fe1d9ac93a21953",
     "source_doc_hashes": {
-      "spec.md": "8c2036d16a8dcbf3dfb8267f5e74f9cc28915ca747c6f6994efd593aaf135380",
-      "plan.md": "c884671ee5b88dacd0efbe5285ac6ceb33ab670b2424711e0b26ef8826019e44",
-      "tasks.md": "d87f5c6d07229fced3b4c4fa9b19c096f4cd531358b1fa982c8d8d17b1bd0806",
-      "checklist.md": "f7b8f29200bfa600982cc9b0027c2a76f31d94744c3b4c4f959bddb86e9f4520",
-      "implementation-summary.md": "9a358c21e0f1b68e4febe5e5fc54946047ae1e27d7c5afadf5aac791b5c4fa59"
+      "spec.md": "fc0ec5b20675a90bde8149d2956a8f34e5052d21b67a7d304c9ab2adc47b60ca",
+      "plan.md": "3a7858618a32423fbc6f0ef18f62f58c5fead3d94f4dd4dca97c6f7c5030a22f",
+      "tasks.md": "4282efc4d19a3f28b268313fb4221cbd0d615ff7f5d37908ca9a550ab132568e",
+      "checklist.md": "f10b322482d937ab3106e836e9266a6e626e6ef646e62de153c0ce61afaf8a22",
+      "implementation-summary.md": "a20349550809d8fe617342eaef34b3fc24ff048b2de594983c2cecf7f8f472a7"
     },
     "last_active_child_id": null,
     "last_active_at": null

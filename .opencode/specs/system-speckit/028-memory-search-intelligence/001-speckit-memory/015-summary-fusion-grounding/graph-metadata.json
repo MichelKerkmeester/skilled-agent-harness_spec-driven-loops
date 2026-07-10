@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Memory MCP already computes community and per-chunk summaries, but that evidence never participates in the main ranked blend, and there is no coarse-to-fine grounding prelude:",
     "created_at": "2026-06-19T05:40:37.449Z",
-    "last_save_at": "2026-07-06T19:16:31.809Z",
+    "last_save_at": "2026-07-09T10:02:56.153Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,7 +226,7 @@
       "plan.md": "129a89da8a072845bdfdf6e5892ad8cf77b3890d4df8e35b22a2645308cebd12",
       "tasks.md": "6e055b1fb4e2d0094b4328383fbafeb293001d274b3e693594cd716c51f7bcf3",
       "checklist.md": "4f443842180460db42d5b51b80f6f1d8cb719dd68757d4085afa2675381bc963",
-      "implementation-summary.md": "db89088b11bf28174f1877152fb3fe03ba787ca02b32a5a11c0c43846910526e"
+      "implementation-summary.md": "433ab51384582691344200875aa5dfbd7770083060bf9370bdc75aec0cb96010"
     },
     "last_active_child_id": null,
     "last_active_at": null

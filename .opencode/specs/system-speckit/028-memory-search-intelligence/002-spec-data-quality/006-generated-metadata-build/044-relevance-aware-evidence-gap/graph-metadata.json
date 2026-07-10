@@ -27,14 +27,14 @@
       "aware",
       "evidence",
       "gap",
-      "fix",
       "detector",
       "over-capping",
       "flag",
       "aligns",
       "verdict",
       "noise",
-      "floor"
+      "floor",
+      "subtracted"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 043 benchmark proved the Z-score evidence-gap detector measures peakedness, not relevance",
     "created_at": "2026-06-27T17:15:44.445Z",
-    "last_save_at": "2026-07-06T18:49:39.461Z",
+    "last_save_at": "2026-07-09T10:02:56.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dab1cf092ca809ca35222e4c9677644685c223a49d92e2266af34e17b5ab0131",
+    "source_fingerprint": "sha256:0f3b007aec998a0bc56a78d92f0ddee8de55a447bc10798468d7d4ab9615da39",
     "source_doc_hashes": {
-      "spec.md": "69996819e4bfb298e0118da077bcc480eda5f0e6dfebeb55be998aa107e94ccd",
-      "plan.md": "4ef909bc9292cd6a52585e63a857804cc40dadff096b3e546a84baa0b941bec7",
-      "tasks.md": "b83b6534e44a96e14d031c304505f55b43ebd9df21734171856c634e51184e3d",
-      "checklist.md": "bd61ad4c829bd7ecc3fb7174c190d66a1fbb668ca7b3e5462422b2f2e359cd99",
-      "implementation-summary.md": "bac9dce80f130acfcef6bc156a8ca936740ec537b543dd567370978889d5579d"
+      "spec.md": "700c6216bcfee2345682d4348c64fca1da23055eafe258b6391b7254390bd2e4",
+      "plan.md": "beff1a987e66cc858406a15b01a16b8741c7a6b037936ae183295a3fbaa6df7d",
+      "tasks.md": "301630c1eb23876c05733fcfe855a5bcea7c5a6f94a5d5b7f3561bd9ba100d12",
+      "checklist.md": "0c8c0b9960e6302b6262e1bd2521fd85d05cf1e8ec282f3402b2c6649257c443",
+      "implementation-summary.md": "890ca81a6c1f86ee4bc8395e62f3524f8dfe80136b000d72a18b626e03f0762f"
     },
     "last_active_child_id": null,
     "last_active_at": null

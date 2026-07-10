@@ -26,18 +26,18 @@
       "028 review remediation eval benchmark fidelity"
     ],
     "key_topics": [
-      "028",
       "eval",
       "benchmark",
       "fidelity",
       "remediation",
       "forceallchannels",
       "flag",
-      "fix",
       "trigger",
       "ablation",
       "no-op",
-      "plan"
+      "plan",
+      "driver",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -49,6 +49,7 @@
       "mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
       "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
       "tests/retrieval-flag-eval-driver.vitest.ts",
+      "database/context-index.sqlite",
       "scripts/evals/run-retrieval-flag-eval.mjs",
       "mcp_server/lib/search/hybrid-search.ts",
       "implementation-summary.md"
@@ -88,6 +89,12 @@
         "name": "retrieval-flag-eval-driver.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": "database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path, and its trigger-channel ablation is a complete no-op",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:38.570Z",
+    "last_save_at": "2026-07-09T10:02:56.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +218,7 @@
       "plan.md": "133705c8e76c552fecdab2fa42c9aa1fd65a2bc40aedd23ed035509e47e31e71",
       "tasks.md": "dbf9ff510fe93179aff4ac6e0a27e0c4cb4b0bcf18ede0703dd0c7b6864dbd87",
       "checklist.md": "5c39e7ddc0bab75fec619df2d68c2e37d7b0f676eef3c46885cb683b45d1aee4",
-      "implementation-summary.md": "3ddf26b2755fc8b2488058dcf0d3c549e7186468242da0c0006aa07b7ff88ca8"
+      "implementation-summary.md": "80b28dbd65efecc46b4cae5d3f9659c006285178bb351971413aa3def837fcce"
     },
     "last_active_child_id": null,
     "last_active_at": null

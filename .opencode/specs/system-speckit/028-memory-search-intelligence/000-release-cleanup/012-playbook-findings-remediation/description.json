@@ -7,7 +7,6 @@
     "playbook",
     "validation",
     "packet",
-    "011",
     "plus",
     "core",
     "memory-search-intelligence",
@@ -19,7 +18,7 @@
     "product",
     "findings"
   ],
-  "lastUpdated": "2026-07-04T17:31:28.011Z",
+  "lastUpdated": "2026-07-09T10:02:55.995Z",
   "specId": "012",
   "folderSlug": "playbook-findings-remediation",
   "parentChain": [

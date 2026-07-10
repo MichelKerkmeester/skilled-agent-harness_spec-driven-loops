@@ -25,7 +25,6 @@
       "028 release cleanup 007-agents"
     ],
     "key_topics": [
-      "028",
       "release",
       "cleanup",
       "agents",
@@ -36,7 +35,8 @@
       "plan",
       "tasks",
       "checklist",
-      "007-agents"
+      "007-agents",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The every agent definition in .opencode plus .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:25.348Z",
+    "last_save_at": "2026-07-09T10:02:55.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "plan.md": "daaf54b6a5837aad9e5071ab9752eac78aed261e610744d3b50cfeab372b1a3a",
       "tasks.md": "1c4dbd0428ccca44ff6c3fab0b34d94173612fc993d439a8369e9fe529e6ba37",
       "checklist.md": "31070ce32502b636b68e45443ee67a9f531ffbd6ce871d6acdad67424c85b44a",
-      "implementation-summary.md": "fb6fbca038ab738054cd2831aa9b4a32e3bca91f458fa8d37aa4ab463629738a"
+      "implementation-summary.md": "dce2611cd18d497f99dbbca0d53e4058a6345042b1af8e1d1e0f3e973dc0ceee"
     },
     "last_active_child_id": null,
     "last_active_at": null

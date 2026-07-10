@@ -274,7 +274,7 @@ enhancement_mode (from Setup Phase)
 
 ---
 
-## 4. INSTRUCTIONS
+## 4. WORKFLOW STEPS
 
 ### Step 1: Load sk-prompt Skill
 

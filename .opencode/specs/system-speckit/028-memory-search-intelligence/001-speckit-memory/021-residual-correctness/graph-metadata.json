@@ -25,7 +25,6 @@
       "resolveSearchScore rrf scale tasks"
     ],
     "key_topics": [
-      "015",
       "residual",
       "correctness",
       "rrf",
@@ -36,7 +35,8 @@
       "grace",
       "marker",
       "ttl",
-      "lease"
+      "lease",
+      "window"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This sub-phase closes two always-on correctness residuals surfaced by the 008 retrieval-evaluation campaign",
     "created_at": "2026-06-19T05:52:29.577Z",
-    "last_save_at": "2026-07-06T19:16:33.681Z",
+    "last_save_at": "2026-07-09T10:02:56.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "plan.md": "69e3a126676bfa8c7d39a44c13cd6aec93093e9a628ac191e4984e7b2694acb2",
       "tasks.md": "017c50037ead4dd852605a9ea5d5265d17583850d875138c15d31d4ead29f8cb",
       "checklist.md": "e4e23057a42a01c9eda87f67a58f73c2ce8160704389a2fe78f185c9c2a99683",
-      "implementation-summary.md": "8594c8155935307205a3679cbb8285e8df07071f2aa691cc0ee36090865fc19d"
+      "implementation-summary.md": "d118cc884a45974bf8e176e3a87e02a2c51553ed97e03d946f18b1a7353644f4"
     },
     "last_active_child_id": null,
     "last_active_at": null

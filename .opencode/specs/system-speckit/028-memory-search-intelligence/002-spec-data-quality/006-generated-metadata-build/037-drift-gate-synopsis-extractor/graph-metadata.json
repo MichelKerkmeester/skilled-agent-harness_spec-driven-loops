@@ -18,7 +18,6 @@
       "source doc hashes"
     ],
     "key_topics": [
-      "generated",
       "metadata",
       "drift",
       "gate",
@@ -29,7 +28,8 @@
       "packet",
       "check",
       "source",
-      "doc"
+      "doc",
+      "hashes"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The spec-kit generated metadata can silently fall out of sync with the docs it summarizes, and nothing proves otherwise",
     "created_at": "2026-06-27T17:15:42.529Z",
-    "last_save_at": "2026-07-06T18:49:38.386Z",
+    "last_save_at": "2026-07-09T10:02:56.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e44e3e2a68175493646885ef6cd42437584dc49a3ff6207884939055b670d84b",
+    "source_fingerprint": "sha256:c08ed540597d380b725ea322e3648122bc97f9f84fbc451848ca248e053efdbc",
     "source_doc_hashes": {
-      "spec.md": "eb11d71c5497ff6c233a1e5fe5193e408b800cba78aedf77150e1216d3f8683a",
-      "plan.md": "e1356636b98e6fac420455561ef04c6484c9aadf9e46c737cf82ed1ab6a4f913",
-      "tasks.md": "6057cf5444850e9133f1e2e51aa69222301d952ad0d3c17c783fa1f34b3b00c3",
-      "checklist.md": "e5d99662781f9eb5673ab4cd01d55a28f592b933a91e5a5125929438e5a4fdb2",
-      "implementation-summary.md": "f7d2f78e70fc62272e60058b3d0916f897365ad480e018989c341679d25627da"
+      "spec.md": "09c593dc9acb47d79a484be0f1b50c00a3c5da78215a82a1c56e553d8735a981",
+      "plan.md": "2e3f9fcbc219c50238fbf9eb2f51e1f728b0aef2b1ae29e9e48cb3cd903f6eae",
+      "tasks.md": "75c7b2eb1d3181ae80bf0c8945521f4610390ca03e6d23692884ca5fa77ef9f7",
+      "checklist.md": "a8275698eeba044fb25bd6ba43e63b1d26ab02d2bc9257eac74e26af89f0dbc5",
+      "implementation-summary.md": "3180270797d7027b6528bf18f9a30a15707609a1251b26d3cad63e37f4b88ec3"
     },
     "last_active_child_id": null,
     "last_active_at": null

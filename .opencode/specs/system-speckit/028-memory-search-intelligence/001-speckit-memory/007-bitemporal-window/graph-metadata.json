@@ -25,7 +25,6 @@
       "bitemporal window memory checklist"
     ],
     "key_topics": [
-      "028",
       "bitemporal",
       "window",
       "memory",
@@ -36,7 +35,8 @@
       "timestamp",
       "causal",
       "lineage",
-      "skip"
+      "skip",
+      "closed"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The Memory MCP's causal-edge currentness machinery records the wrong time and the wrong number of times",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-07-06T19:16:29.355Z",
+    "last_save_at": "2026-07-09T10:02:56.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,7 +222,7 @@
       "tasks.md": "3c956e67f0f716ea31e41a2e579e6387097d6c2b33bd15abacbcc5b27ee9ed1f",
       "checklist.md": "e5af60d15522393465481faf9bb5d140e26c894919581808ee9772a91f048560",
       "decision-record.md": "97fdcf0e47d615bfd1090afe74356a4844c0375d21d42e1e2e05f78622a60624",
-      "implementation-summary.md": "5f12afe01256ad62a656c9af6ad74c7cd49b96beade0875f7b129bac3748c92c"
+      "implementation-summary.md": "a4bb53c52597cc82d42fb66de7290c0ba04864828b48ba2118dd59512c08c4db"
     },
     "last_active_child_id": null,
     "last_active_at": null

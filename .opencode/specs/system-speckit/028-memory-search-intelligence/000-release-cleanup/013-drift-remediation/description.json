@@ -3,15 +3,13 @@
   "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation",
   "description": "The 028 drift audit produced 175 converged findings (6 P0 / 91 P1 / 78 P2)",
   "keywords": [
-    "028",
     "drift",
     "audit",
     "produced",
-    "175",
     "converged",
     "findings"
   ],
-  "lastUpdated": "2026-07-04T17:31:29.496Z",
+  "lastUpdated": "2026-07-09T10:02:56.001Z",
   "specId": "013",
   "folderSlug": "drift-remediation",
   "parentChain": [

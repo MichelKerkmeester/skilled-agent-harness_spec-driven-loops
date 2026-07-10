@@ -38,10 +38,10 @@
       "tasks",
       "verification",
       "checklist",
-      "2026-06-27"
+      "drift"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 2026-06-27 drift audit converged 5 findings in this phase covering the six P0 findings: read-only doctor routes carrying mutation flags, the causal-graph DB-path inversion, and the codex model pins",
     "created_at": "2026-06-27T17:00:00Z",
-    "last_save_at": "2026-07-04T17:31:36.936Z",
+    "last_save_at": "2026-07-09T10:02:56.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-06-27T17:00:00Z",
     "source_docs": [
@@ -209,11 +209,11 @@
     ],
     "source_fingerprint": "sha256:50a37ce776291a870509bde5e0830400d1e63d4374640373d7de82cb114787cf",
     "source_doc_hashes": {
-      "spec.md": "6cbf9e6fb9551cb6243da7b8c7de97aca8f72712129cbd1a649f6952f906e69e",
-      "plan.md": "ccf1f3f15b575f9f685b3e140749d38beb14111715e238fcc77729a38c1345a8",
-      "tasks.md": "21b3b3f3039e5861c155139311bd6dab4ae47ad74c1fdfe32e6a270bebb3f55c",
-      "checklist.md": "f26bc659f9ed357eb50883fd7ab6040e6db0efa2528dd6a16f8424f2c1235e18",
-      "implementation-summary.md": "837e7bbed31a0d27b00d2913b18dbefc5d8962c035950fa453a7baf826f839b2"
+      "spec.md": "5cbca4442d43390fa9db315b66ea9c69a1fb31cdced5948a648294872ca61a3b",
+      "plan.md": "810d38737b333b2da8874c4104faa113feee83c6577002be582b45ccdbb9ec8b",
+      "tasks.md": "fd73f4db1abf74d23fb51db971d39b1d8be09d814b1c78bac39f9d6f7cd62f7b",
+      "checklist.md": "e6dabf132ee6640487f65af89c54b99d3f7c227d0346bd631ceaa6616343a8d3",
+      "implementation-summary.md": "7be4dde3581fc4fa49c27173c181c1a9b1d96e82ce12240f32c626207c437304"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -122,11 +122,11 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "LOOP_SETUP": ["references/protocol/loop_protocol.md", "references/state/state_format.md", "references/state/state_jsonl.md", "references/protocol/spec_check_protocol.md", "references/protocol/context_snapshot.md"],
+    "LOOP_SETUP": ["references/protocol/loop_protocol.md", "references/state/state_format.md", "references/state/state_jsonl.md", "references/protocol/spec_check_protocol.md"],
     "ITERATION": ["references/protocol/loop_protocol.md", "references/state/state_outputs.md", "references/convergence/convergence_signals.md"],
     "CONVERGENCE": ["references/convergence/convergence.md", "references/convergence/convergence_signals.md", "references/convergence/convergence_graph.md"],
     "RECOVERY": ["references/convergence/convergence_recovery.md", "references/state/state_reducer_registry.md"],
-    "STATE": ["references/state/state_format.md", "references/state/state_jsonl.md", "references/state/state_outputs.md", "references/state/state_reducer_registry.md", "assets/deep_research_strategy.md"],
+    "STATE": ["references/state/state_format.md", "references/state/state_jsonl.md", "references/state/state_outputs.md", "references/state/state_reducer_registry.md"],
     "SPEC_ANCHORING": ["references/protocol/spec_check_protocol.md", "references/state/state_outputs.md"],
     "RUNTIME_PARITY": ["references/guides/capability_matrix.md"],
     "RESOURCE_MAP": ["references/protocol/loop_protocol.md", "references/state/state_outputs.md"],

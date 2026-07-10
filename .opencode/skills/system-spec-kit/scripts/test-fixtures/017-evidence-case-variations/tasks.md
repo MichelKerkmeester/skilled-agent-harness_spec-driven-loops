@@ -3,7 +3,7 @@
 
 ## Active
 
-- [x] Create fixture
+- [x] Create fixture [Evidence: checklist.md:6 records case-variant evidence examples]
 
 ## Completed
 

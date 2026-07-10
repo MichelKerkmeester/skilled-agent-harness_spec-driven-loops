@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Generated (DERIVED) causal edges have no content-addressed identity",
     "created_at": "2026-06-19T05:40:37.445Z",
-    "last_save_at": "2026-07-06T19:16:29.962Z",
+    "last_save_at": "2026-07-09T10:02:56.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,7 +227,7 @@
       "tasks.md": "4797c6232644cec59fec7773f7a3408c646753774e6e75328b91a84c65b60ec5",
       "checklist.md": "33bc752cc36992ee9e90ae1ceeacf861d8e7d52eddc8126a50cdaff491948950",
       "decision-record.md": "dd8923e365c526a815d1e690799398996a3fc604220f35be0574ce4c8c1a8d68",
-      "implementation-summary.md": "9a4f7ec92c8dee76f516ff25c7acf45b83e62a8db5f787c60c0eca90c95bbd9c"
+      "implementation-summary.md": "c2037d8e4cd77b52955fdf5dea8ba11ce73318f599744c199ea7d4cb511be0df"
     },
     "last_active_child_id": null,
     "last_active_at": null

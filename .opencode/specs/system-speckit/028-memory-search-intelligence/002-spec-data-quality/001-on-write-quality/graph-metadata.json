@@ -92,15 +92,15 @@
     ],
     "causal_summary": "On-Write Quality subgroup of the spec-data-quality track: on-write authored-spec quality gates.",
     "created_at": "2026-06-27T17:25:23.276Z",
-    "last_save_at": "2026-07-06T18:50:02.684Z",
+    "last_save_at": "2026-07-09T10:02:56.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8a39f19adf7119a61f088b82b9d7e2377b3da9a810ef764540f156993dcd4601",
+    "source_fingerprint": "sha256:f69bb8dce9b95691beb8475c3a67039551ad3506f0fabac8a18c673f28b2f276",
     "source_doc_hashes": {
-      "spec.md": "1f7ffcf154d17291f44635f10de39a2391978a1c4f4c8dfb626c33d890a1fe59"
+      "spec.md": "34a6b9c9cba827c53495d5957274ebb6f3b440453d2dcbb12033367e3bdd8715"
     },
     "last_active_child_id": null,
     "last_active_at": null

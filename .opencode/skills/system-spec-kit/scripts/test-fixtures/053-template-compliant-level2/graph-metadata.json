@@ -39,12 +39,12 @@
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/checklist.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ef3d8999b4b8e3f21f5ef0e1ba6f7943786302d130128df73168ea4bb1dd451",
+    "source_fingerprint": "sha256:70dc110afc441ae5d3d1fa96711435b33ec5f784dc5e2d071f15ed9ee5c41df0",
     "source_doc_hashes": {
       "spec.md": "6f724ae380d0913b8d5d78b2dd6c586e6dec3deb76fe8b436439e4e6fcd00e7a",
       "plan.md": "cc5e594d868e1fd8d78da31598b76773754ed16de7466fe53c7870043c7c3979",
-      "tasks.md": "6c68a5913b10d73292db842be8597e9ce987181027ebb99a59c2524646655055",
-      "checklist.md": "d346bd0b24ec82dccce9ac827b174ceb979ea8791b4824a11128e3edb6950882",
+      "tasks.md": "9efef5f2f8e80267bb1cf5ccd7bcac96a5e24ba78aac43a15392471d6ecaede0",
+      "checklist.md": "224a95619255d7249bc188fd9066b667bc85473df21bc37fd1bbeb7db4ecfae0",
       "implementation-summary.md": "72f25cad52a6206b1a86dfed0b24aca1a2be02b81c4533b9cf567d1559824ab0"
     }
   }

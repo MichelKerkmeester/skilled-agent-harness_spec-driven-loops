@@ -13,9 +13,7 @@ metadata:
 
 # opencode Surface — System-Code Evidence
 
-**Domain evidence** and shared workflow doctrine for OpenCode system code (the `.opencode/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
-
-Detection is two-step. First, the surface trigger is work under `.opencode/` (including `SKILL.md`, descriptors, commands, agents, plugins, MCP servers, assets, scripts, and changelogs). Second, once the OpenCode surface is selected, file extensions and local markers select the language trio: `.cjs`/`.mjs`/`.js` -> JavaScript, `.ts`/`.tsx`/`.mts`/`.d.ts` -> TypeScript, `.py` plus `argparse` -> Python, `.sh`/`.bash` -> shell, `.json`/`.jsonc`/`.yaml`/`.yml` plus `graph-metadata` or `spec-folder` -> config.
+**Domain evidence** and shared workflow doctrine for OpenCode system code (the `.opencode/` tree: skills, agents, commands, plugins, MCP servers, config). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides. Detection markers: `.opencode/`, `SKILL.md`, `.cjs`/`.mjs`/`.ts`/`.py`/`.sh`, `graph-metadata`, `spec-folder`, `argparse`.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
@@ -25,97 +23,19 @@ Detection is two-step. First, the surface trigger is work under `.opencode/` (in
 
 ## 2. REFERENCE MAP
 
-Language standards — after `.opencode/` selects this surface, load ONLY the detected language's trio (`style_guide.md`, `quality_standards.md`, `quick_reference.md`):
+Language standards — load ONLY the detected language's trio (`style_guide.md`, `quality_standards.md`, `quick_reference.md`):
 - TypeScript — `references/typescript/`
 - Python — `references/python/`
 - Shell — `references/shell/`
-- Config (JSON/JSONC/YAML descriptors and route assets) — `references/config/`
+- Config (JSON/JSONC descriptors) — `references/config/`
 - JavaScript (CommonJS/ESM plugins) — `references/javascript/`
 
 Language-agnostic shared tier (`references/shared/`, always kept within OpenCode regardless of language):
 - `universal_patterns.md`, `code_organization.md`
-- `hooks.md` — runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability; defer to that file for current hook infrastructure instead of duplicating it here
+- `hooks.md` — session-prime / user-prompt-submit / pre-tool-use / post-tool-use contracts
 - `alignment_verification_automation.md` — the alignment-drift verifier
 
 Workflow (`references/`): `workflow_implement.md`, `workflow_debug.md`, `workflow_verify.md` — this surface owns the implement -> debug -> verify phases; these are the shared phase doctrine.
-
-## 2b. SMART ROUTING (machine-readable)
-
-This block is the deterministic projection of code-opencode's own reference/asset routing, consumed by the skill-benchmark router-replay; keep it in sync with the parent hub union.
-
-```python
-# code-opencode owns its intent -> reference/asset routing. Paths are relative to
-# this skill root. The parent sk-code hub RESOURCE_MAP is the union of this map
-# (re-prefixed with code-opencode/) and the sibling code-webflow map plus the
-# parent-owned universal/shared tier; a drift guard enforces that equality.
-DEFAULT_RESOURCE = [
-    "references/shared/universal_patterns.md",
-    "references/shared/code_organization.md",
-]
-
-INTENT_SIGNALS = {
-    "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring"]},
-    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell"]},
-    "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
-    "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
-    "CONFIG":             {"weight": 1, "keywords": ["jsonc", ".json", ".jsonc", "descriptor", "config schema"]},
-    "JAVASCRIPT":         {"weight": 1, "keywords": ["javascript", ".js", "commonjs", ".cjs", ".mjs"]},
-    "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
-    "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
-    "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
-}
-
-RESOURCE_MAP = {
-    "IMPLEMENTATION": [
-        "references/shared/universal_patterns.md",
-        "references/shared/code_organization.md",
-        "assets/checklists/agent_authoring.md",
-        "assets/checklists/command_authoring.md",
-        "assets/checklists/skill_authoring.md",
-        "assets/checklists/mcp_server_authoring.md",
-    ],
-    "CODE_QUALITY": [
-        "assets/checklists/universal_checklist.md",
-        "assets/checklists/javascript_checklist.md",
-        "assets/checklists/typescript_checklist.md",
-        "assets/checklists/python_checklist.md",
-        "assets/checklists/shell_checklist.md",
-    ],
-    "VERIFICATION": [
-        "references/shared/alignment_verification_automation.md",
-        "assets/scripts/README.md",
-    ],
-    "HOOKS": [
-        "references/shared/hooks.md",
-    ],
-    "CONFIG": [
-        "references/config/style_guide.md",
-        "references/config/quality_standards.md",
-        "references/config/quick_reference.md",
-        "assets/checklists/config_checklist.md",
-    ],
-    "JAVASCRIPT": [
-        "references/javascript/style_guide.md",
-        "references/javascript/quality_standards.md",
-        "references/javascript/quick_reference.md",
-    ],
-    "TYPESCRIPT": [
-        "references/typescript/style_guide.md",
-        "references/typescript/quality_standards.md",
-        "references/typescript/quick_reference.md",
-    ],
-    "PYTHON": [
-        "references/python/style_guide.md",
-        "references/python/quality_standards.md",
-        "references/python/quick_reference.md",
-    ],
-    "SHELL": [
-        "references/shell/style_guide.md",
-        "references/shell/quality_standards.md",
-        "references/shell/quick_reference.md",
-    ],
-}
-```
 
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
@@ -124,16 +44,10 @@ RESOURCE_MAP = {
 - **Alignment drift is a verification gate.** System-code changes re-run the alignment verifier (`references/shared/alignment_verification_automation.md`) before any completion claim.
 - **One language per task.** A `.opencode/` task is a single language; keep the slice tight and lean on the shared tier for cross-language rules.
 
-## 4. ASSETS AND OTHER SURFACE AREAS — on-demand
+## 4. ASSETS — authoring checklists (on-demand)
 
 Component authoring (`assets/checklists/`): `skill_authoring.md`, `agent_authoring.md`, `command_authoring.md`, `mcp_server_authoring.md`
 
 Language quality gates (`assets/checklists/`): `universal_checklist.md`, `typescript_checklist.md`, `python_checklist.md`, `shell_checklist.md`, `javascript_checklist.md`, `config_checklist.md`
-
-Verifier assets (`assets/scripts/`): alignment-drift and stack-folder verifier scripts used by this surface.
-
-Changelog directories (`changelog/`): real skill and packet changelog files are part of the OpenCode surface inventory, not out-of-scope documentation noise.
-
-Daemon IPC/socket wiring: daemon-backed CLIs and plugin bridges resolve runtime Unix socket paths such as `daemon-ipc.sock`; sockets are runtime artifacts, so checked-in evidence lives in launcher, bridge, and config files rather than in committed `.sock` files.
 
 Spec-folder authoring lives in system-spec-kit (`references/workflows/spec_folder_write_recipe.md` + `spec_folder_authoring_checklist.md`), not in this surface. Checklists are pulled on demand by the active workflow phase.

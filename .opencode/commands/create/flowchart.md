@@ -12,7 +12,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 Route /create:flowchart to its presentation contract and workflow YAML for creating an ASCII flowchart markdown file with pattern selection and validation.
 
-## 2. Owned Assets
+## 2. Routing Assets
 
 | Asset | Path | Purpose |
 | --- | --- | --- |

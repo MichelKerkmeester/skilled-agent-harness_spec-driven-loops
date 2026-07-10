@@ -27,18 +27,18 @@
       "028 new feature research build summary"
     ],
     "key_topics": [
-      "028",
       "new",
       "feature",
       "research",
-      "build",
       "track",
       "outcome",
       "eval-v2",
       "measurability",
       "gate",
       "append",
-      "displace"
+      "displace",
+      "truncation",
+      "finding"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The flag-resolution reckoning deleted ten default-off switches, and each deletion taught something specific about why a lever fails to move live recall",
     "created_at": "2026-06-20T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:34.283Z",
+    "last_save_at": "2026-07-09T10:02:56.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "plan.md": "82d5212e29e1a007721c24cbc60d44b71164df24a3e176a3e14fc50dd7392622",
       "tasks.md": "9244fd2893dd772e261191f1f9bc014e7f53931b4b28ea7ad21138f5d0800e7e",
       "checklist.md": "e36f429df6d9581548ed470ffc617c3eafd14064a9aa5b99026476344e29b011",
-      "implementation-summary.md": "e27950ec8c309a7dee569707c0fcd98fa735973d10f8f10727302e44f9709ecc"
+      "implementation-summary.md": "ed27a8f3579d0dae6d10147d654b0396e087c4c9da7452be4c14d85623a29251"
     },
     "last_active_child_id": null,
     "last_active_at": null

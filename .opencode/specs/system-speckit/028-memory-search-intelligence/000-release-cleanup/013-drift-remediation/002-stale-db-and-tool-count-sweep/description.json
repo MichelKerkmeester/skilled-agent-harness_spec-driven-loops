@@ -3,7 +3,6 @@
   "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/002-stale-db-and-tool-count-sweep",
   "description": "The 2026-06-27 drift audit converged 22 findings in this phase covering the retired per-profile context-index.sqlite names (canonicalized to",
   "keywords": [
-    "2026-06-27",
     "drift",
     "audit",
     "converged",
@@ -17,7 +16,7 @@
     "names",
     "canonicalized"
   ],
-  "lastUpdated": "2026-07-04T17:31:36.274Z",
+  "lastUpdated": "2026-07-09T10:02:56.014Z",
   "specId": "002",
   "folderSlug": "stale-db-and-tool-count-sweep",
   "parentChain": [

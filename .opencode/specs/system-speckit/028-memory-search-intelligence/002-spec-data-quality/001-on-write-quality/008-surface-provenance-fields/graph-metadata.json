@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The memory side already computes provenance and `sourcekind` for every saved row, but the two metadata JSONs never expose them as first-class fields",
     "created_at": "2026-06-27T17:15:34.677Z",
-    "last_save_at": "2026-07-06T18:49:47.818Z",
+    "last_save_at": "2026-07-09T10:02:56.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c618a56f68a8b7a6b2eb883b379e1f75b8e338dbc47bfebcf81b263fc450fba",
+    "source_fingerprint": "sha256:790ee68a26e0f51e3cc9be27a0bcfd7c81a29929dce7c9dd5def04211c3f73ce",
     "source_doc_hashes": {
-      "spec.md": "abd32e359dffe6b18dfe1f79b9f2f21ecc51c920f6ac1de2d3d15e0295ed4466",
-      "plan.md": "d82665d1eab7ed327ec9607e98da660f1c6b282c789479dc3b09621847427be4",
-      "tasks.md": "079654d3291910ecd4b2771dfabf7333fbe3f3e350f0c66c71ee07d1efaa00e1",
-      "checklist.md": "d45bf98eb00dc6c70e2d7dc5fab1a1e94cf645e9fa232717d2a727012e77309a",
-      "implementation-summary.md": "01c717eb76a8807bbb3c629e15f231aed1be2cf8b0aa9719a63a6afba77d6d0a"
+      "spec.md": "24da92dfab099cddc489ed9b05a843942e9b5c4e2033a8d1d6732cac5258e180",
+      "plan.md": "348f75bdd666d676d151ccdb8c5e2fb417753bb76d512d18fb3965998af9f239",
+      "tasks.md": "a77850a1603ad131194cac58ba420eac95f6e705ca581905040683daf72010b6",
+      "checklist.md": "9c2d7bc3471b6cc760bf2d3d0d680ec305b0de6950ae5d562ad3aec5d911b969",
+      "implementation-summary.md": "06c6509ce03289a313141f9026d26f4c3235f8ebdb677892c67133434a9580db"
     },
     "last_active_child_id": null,
     "last_active_at": null

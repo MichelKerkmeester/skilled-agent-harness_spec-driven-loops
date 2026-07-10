@@ -49,6 +49,7 @@
       "lib/eval/data/ground-truth.json",
       ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
+      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
       "implementation-summary.md"
     ],
     "entities": [
@@ -86,6 +87,12 @@
         "name": "ground-truth.json",
         "kind": "config",
         "path": "lib/eval/data/ground-truth.json",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-07-06T19:16:27.798Z",
+    "last_save_at": "2026-07-09T10:02:56.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +216,7 @@
       "plan.md": "5d985188efa124bb0eac3edcfe351638a43cfaf7b20a0d3b92a633f93db051d7",
       "tasks.md": "fcc7eaf5bd965699cbcfdb48b6010389fdfaf270cdd3680824c58ee1a2ddf063",
       "checklist.md": "028d8c24721a69de04ff029049f7abc027715c016e9658cf0953b9b3889527d8",
-      "implementation-summary.md": "db1899b5fca817fa53a98194a4ad069883ed248d7c77b40029f6179e4db674ea"
+      "implementation-summary.md": "afe4d4e34878a013076da2b4ed8752456dade80ccf7ef763f2f1ca2400aa9d74"
     },
     "last_active_child_id": null,
     "last_active_at": null

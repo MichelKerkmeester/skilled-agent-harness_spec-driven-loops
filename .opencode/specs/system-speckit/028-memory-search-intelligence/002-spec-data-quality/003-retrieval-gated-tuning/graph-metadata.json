@@ -87,15 +87,15 @@
     ],
     "causal_summary": "Retrieval-Gated Tuning subgroup of the spec-data-quality track: retrieval-tuning items gated behind benchmarks.",
     "created_at": "2026-06-27T17:25:40.245Z",
-    "last_save_at": "2026-07-06T18:50:01.735Z",
+    "last_save_at": "2026-07-09T10:02:56.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f1df0178de07e213e1d1b89a5df50139406063a4e5ad51ecc2514feb47451b3a",
+    "source_fingerprint": "sha256:4165694aad2015cb24c7f9039484ea4b75c38718040616f27e73c8b0161e35a3",
     "source_doc_hashes": {
-      "spec.md": "5c626b01ee83d0c6e92b61332ca5046784b994f772a290faed7e859760baa7dd"
+      "spec.md": "b8ba3bba469ba8e9ba5a6ecd0ba681993210439d1b6c31c79d0bafc6dfad1670"
     },
     "last_active_child_id": null,
     "last_active_at": null

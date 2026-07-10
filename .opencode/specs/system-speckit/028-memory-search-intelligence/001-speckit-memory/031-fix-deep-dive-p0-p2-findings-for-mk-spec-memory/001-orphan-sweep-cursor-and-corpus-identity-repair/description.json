@@ -5,18 +5,16 @@
   "keywords": [
     "handlers",
     "memory-index",
-    "684",
     "calls",
     "sweeporphanindexrows",
     "limit",
-    "200",
     "cursor",
     "function",
     "defaults",
     "returns",
     "nextcursor"
   ],
-  "lastUpdated": "2026-07-04T17:46:14.691Z",
+  "lastUpdated": "2026-07-09T10:02:56.245Z",
   "specId": "001",
   "folderSlug": "orphan-sweep-cursor-and-corpus-identity-repair",
   "parentChain": [

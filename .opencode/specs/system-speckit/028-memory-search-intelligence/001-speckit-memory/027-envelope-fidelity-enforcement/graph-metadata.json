@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 029 model benchmark exposed soft spot B, envelope fidelity",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-07-04T17:51:01.493Z",
+    "last_save_at": "2026-07-09T10:02:56.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,11 +212,11 @@
     ],
     "source_fingerprint": "sha256:a6062cd3a4e23fd52aa2cddf1aeae9b49eaf48f6fb63a567d7d8b341c004a2bb",
     "source_doc_hashes": {
-      "spec.md": "4c7267fb0854b61ec956976f6693ba21166504dfb9630cc03bdb71b0c893e703",
-      "plan.md": "330b78c5e27b1c1d6eb692c691756aa15047dcb7b0c5bb7893811332388e51a2",
-      "tasks.md": "7607f48e37e396feef16c250af13ef4ec28fa1444c9bdacafaeb7b092ed3d222",
-      "checklist.md": "9995c08ccfc95ae62d5b54144f4d968961766db34865d65cb44ccd892f5da2c4",
-      "implementation-summary.md": "4e3eaf3f63ba4569ae355250418e88a0db05cba39260bdc451f4c3c6d9193a3b"
+      "spec.md": "f852700dfe42956dc5aa7c38a8b752ee04ca658a6f9859e9be98efbe7d38da41",
+      "plan.md": "b77b6b51166e4a736587159f2cfd165c3169df971ffa893bd9384407fb402dc9",
+      "tasks.md": "69934872d3b0e34e5427fda59f092ffa3210c2e0e238b155eee9e3024705dad0",
+      "checklist.md": "535819ac8f78ca2dc99624b06037f25c5b826b86f8c463977262a917e8f704bb",
+      "implementation-summary.md": "6229eaa1b22f0fbf9b647ad053764e92afb8f151caa07632ab1b9e43f1dd5c0d"
     },
     "last_active_child_id": null,
     "last_active_at": null

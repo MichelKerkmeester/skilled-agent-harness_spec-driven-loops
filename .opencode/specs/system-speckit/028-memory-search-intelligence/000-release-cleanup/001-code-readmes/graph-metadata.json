@@ -25,7 +25,6 @@
       "028 release cleanup 001-code-readmes"
     ],
     "key_topics": [
-      "028",
       "release",
       "cleanup",
       "code",
@@ -36,7 +35,8 @@
       "code-readmes",
       "tasks",
       "checklist",
-      "001-code-readmes"
+      "001-code-readmes",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The every per-directory code README across code-heavy skill folders needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-06T19:15:07.418Z",
+    "last_save_at": "2026-07-09T10:02:55.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "plan.md": "e300cfa44ffd9a89a5f1dd9f20456b408bc65e8ac409a5704b0d170dafa097d2",
       "tasks.md": "138e221bf175501d3e3ecb24a049cb6ab7982ef82b51890cbd8345ede485ccc9",
       "checklist.md": "6eddc018c5a4dac709bac39d5d8c4c750ae8b8ab92574ef163cd09a0875fd2bf",
-      "implementation-summary.md": "c261df4682c73ffcd41426483659f811ba164ec3a4d41e1884b40114527d1b05"
+      "implementation-summary.md": "2f9296e2e1e515a85406cee2cb89e29617ee9651dd57f7e157fbcea4d756d990"
     },
     "last_active_child_id": null,
     "last_active_at": null

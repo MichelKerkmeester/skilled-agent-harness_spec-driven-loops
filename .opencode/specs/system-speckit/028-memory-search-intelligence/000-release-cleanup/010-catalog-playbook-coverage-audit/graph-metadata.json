@@ -29,14 +29,14 @@
       "playbook",
       "coverage",
       "audit",
-      "028",
       "feature",
       "gap",
       "code-graph",
       "skill-advisor",
       "plan",
       "approach",
-      "read-only"
+      "read-only",
+      "iterations"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the release-cleanup that aligned feature catalogs and testing playbooks only ever touched system-spec-kit, and even there it ran edits-only",
     "created_at": "2026-06-22T04:40:16.647Z",
-    "last_save_at": "2026-07-06T19:16:26.254Z",
+    "last_save_at": "2026-07-09T10:02:55.979Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "plan.md": "048c24286c770c4d171be1d231bc8f250f41df78af5012d998ddf55fcb8d9a31",
       "tasks.md": "b15aa7935efaa857377d32f593593d33d25ebb647b5c7fafea8b217d647d42be",
       "checklist.md": "ae2af43b6a932456be4761e675e7b95044a7cb4de38c29ed9419c91daa18f67e",
-      "implementation-summary.md": "2d7107c06052fecec1ccd07066b3b4e4f2af1089d92f97273363787ee128ad72",
+      "implementation-summary.md": "d02d2f84b439ab4ddc4f3481fb2b2bd565f139e789f98d6ab616f12d2b0a9ca0",
       "research/research.md": "2249f7c5c9848ab8da97793eee1ff22c80029947b53221b658beecea657f04e4"
     },
     "last_active_child_id": null,

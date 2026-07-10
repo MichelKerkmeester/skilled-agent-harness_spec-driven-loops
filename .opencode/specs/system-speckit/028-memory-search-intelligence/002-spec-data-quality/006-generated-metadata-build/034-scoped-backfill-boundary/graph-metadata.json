@@ -37,6 +37,7 @@
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
       ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/scoped-backfill-boundary.vitest.ts",
       "api/index.ts",
@@ -63,6 +64,12 @@
         "name": "index-scope.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "broad",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit generators that produce `graph-metadata.json` and `description.json` over-reach and churn, and the 031 research traced three residual defects in the backfill and exclusion paths",
     "created_at": "2026-06-27T17:15:41.714Z",
-    "last_save_at": "2026-07-06T18:49:41.266Z",
+    "last_save_at": "2026-07-09T10:02:56.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04fd13ac6bfd9c58919905ef561ead3d7278b7675bf9b5efd040285e92cd0de0",
+    "source_fingerprint": "sha256:150e90a5139954371b483ad6c519a811d7bfee21d580c1ab17107816d0c34c4f",
     "source_doc_hashes": {
-      "spec.md": "14959c8bc780a887e4ff63b710c66324ccfa1592783119f9346b5325244b289d",
-      "plan.md": "17968438c98ddb1082ed9f74096b574599b5996d1c36d2be8f0d827e563e3a6c",
-      "tasks.md": "74c2fce28640f19f2b525299015dc60706565226b97cafff46456096ca16eedc",
-      "checklist.md": "5d96c11aaefe3cec9d06d0fe31cb900d510877191361c40db3ff99d3bc643cfd",
-      "implementation-summary.md": "d9a791b6b6eefa38095e50fe3173c635bfc2b0974fc40737bb1fba12267ed0ff"
+      "spec.md": "5fc7c70eaf31fa596a1ba6c8801a362d81daa8355b022ba7b71a5ad0434205e1",
+      "plan.md": "c94b48ee3915063dcb7b9ead207264f0e577955b17063e37ff96b51733d49fd8",
+      "tasks.md": "dd22e7351b7b9304890a35ff6a5c9dee2b2c6428b0f0254e287f891ff2cfc7dc",
+      "checklist.md": "8f67f0538fbf22e47b04e30a23f0aefaab6221046fbe21cb5d5cbd472365e5de",
+      "implementation-summary.md": "9d9166f81f1a864c306330b9a460c79b3f804900552ea7cb1248ebd5c209324f"
     },
     "last_active_child_id": null,
     "last_active_at": null

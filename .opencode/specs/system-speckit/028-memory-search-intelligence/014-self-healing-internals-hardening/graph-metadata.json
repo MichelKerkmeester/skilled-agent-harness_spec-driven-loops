@@ -204,7 +204,7 @@
     ],
     "causal_summary": "F8 — synchronous drift-suspect write can block the search hot path up to 10s ([MEDIUM], flag-gated OFF today)",
     "created_at": "2026-07-09T15:13:35.568Z",
-    "last_save_at": "2026-07-09T17:36:23.313Z",
+    "last_save_at": "2026-07-10T03:44:45.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,11 +214,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcc1416a196bc9160c57bfbc04fe8b8b3709bd9253688c29a7cdf0e7af02cc12",
+    "source_fingerprint": "sha256:f65838f25bb99dddb8e2ac1aebbf0683bf1327921b2d48686be3e1b119dee006",
     "source_doc_hashes": {
       "spec.md": "1b85e84ae36a45f24757c3fdd683237d96d5d5ad184015872cc6f6527260f1fe",
       "plan.md": "2d3bfe25e36de4a09ff7da6cb2a4423cc5886da9ed2bdabff938c5f3ca307fe3",
-      "tasks.md": "603645cdb76a0cfd9b7fbcac64889c9ce8c37c3cff7221fa4a8cb422c15ffde3",
+      "tasks.md": "ec1b9aa4f5c84b32891d7188f053d194ff0fe84de561683a568d59b18d057299",
       "checklist.md": "3b72f75c5975e41104966c5693f498fa7449c1c967b4b4dc6674783882698207",
       "implementation-summary.md": "7171b5f829b2611b45b62ae1470872420db8796ed30c555e9e59bb477678969c"
     },

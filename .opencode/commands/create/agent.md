@@ -12,7 +12,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 Route /create:agent to its presentation contract and workflow YAML for creating an OpenCode agent with frontmatter, tool permissions, and behavioral rules.
 
-## 2. Owned Assets
+## 2. Routing Assets
 
 | Asset | Path | Purpose |
 | --- | --- | --- |

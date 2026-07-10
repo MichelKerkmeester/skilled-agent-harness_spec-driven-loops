@@ -25,7 +25,6 @@
       "028 release cleanup 002-skill-and-repo-readmes"
     ],
     "key_topics": [
-      "028",
       "release",
       "cleanup",
       "skill",
@@ -36,7 +35,8 @@
       "plan",
       "skill-and-repo-readmes",
       "tasks",
-      "checklist"
+      "checklist",
+      "002-skill-and-repo-readmes"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The every skill-level README plus repository and runtime top-level README surfaces needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:23.821Z",
+    "last_save_at": "2026-07-09T10:02:55.961Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "plan.md": "79716a2b96dd67d8c81c5cb12725deecbabc35dab0b14423c030574773cae15c",
       "tasks.md": "a5ff20797fe0156ef93b3e455d36c1a6a85f721b5d4b1531be59f1e25c1a2595",
       "checklist.md": "05d29cff144c1f2f4f117ba7229019fc36ad1fbf1de43a2930ab9e427f2cb772",
-      "implementation-summary.md": "06dfe1aeb962d21d126ffa5b66cd87899cf58f34a67fc9b1c7950923aecc7677"
+      "implementation-summary.md": "d7c96b5153c564fe44f655dbb965703b93f77e8606503d66cea068b2cd04a726"
     },
     "last_active_child_id": null,
     "last_active_at": null

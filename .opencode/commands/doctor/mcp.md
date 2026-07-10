@@ -9,13 +9,13 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 
 This command is a thin router. It resolves the MCP sub-action and setup values, then loads the matching workflow YAML and the presentation contract.
 
-## 1. ROUTER CONTRACT
+## Router Contract
 
 Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
 
 Load the presentation contract before showing startup questions, setup dashboards, approval prompts, MCP health dashboards, result summaries, or next-step text.
 
-## 2. OWNED ASSETS
+## Owned Assets
 
 | Purpose | Asset |
 |---------|-------|
@@ -25,7 +25,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 
 No workflow-asset gap exists for this command.
 
-## 3. EXECUTION TARGETS
+## Execution Order
 
 1. Read `.opencode/commands/doctor/assets/doctor_mcp_presentation.txt`.
 2. Parse the first positional token from `$ARGUMENTS` as `sub_action`.
@@ -41,7 +41,7 @@ No workflow-asset gap exists for this command.
 8. Load the selected workflow YAML and execute it step by step.
 9. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
 
-## 4. ROUTING RULES
+## Routing Rules
 
 - The sub-action is positional and must be parsed before flags.
 - No mode suffix is supported.
@@ -51,7 +51,7 @@ No workflow-asset gap exists for this command.
 - This command's `install` workflow covers the registered MCP servers (the `servers:` block in `doctor_mcp_install.yaml`). The CLI-primary design skills (`mcp-figma`, `mcp-open-design`, `mcp-chrome-devtools`, `mcp-click-up`) are not registered servers; each self-diagnoses via its own `scripts/install.sh` and read-only `scripts/doctor.sh`, enumerated under `cli_skill_diagnostics:` in the same YAML. Run those per-skill for CLI readiness.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
-## 5. PRESENTATION BOUNDARY
+## Presentation Boundary
 
 The following content lives only in `.opencode/commands/doctor/assets/doctor_mcp_presentation.txt`:
 

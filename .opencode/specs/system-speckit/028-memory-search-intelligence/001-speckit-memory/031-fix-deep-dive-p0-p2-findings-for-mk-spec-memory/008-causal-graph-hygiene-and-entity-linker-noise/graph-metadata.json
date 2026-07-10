@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The causal graph is 94% entity-linker noise and every save ratchets edge strengths toward 1.0, so graph signals cannot rank real causality",
     "created_at": "2026-07-03T09:44:23Z",
-    "last_save_at": "2026-07-06T19:16:35.754Z",
+    "last_save_at": "2026-07-09T10:02:56.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,7 +228,7 @@
       "tasks.md": "4bb7a5eddc0aac50487991061b651e63c3cc58502b960349fd95b7a224bd3cc4",
       "checklist.md": "b1a59537e78e06f6095f5ea98f45be4b2af68b025dbfc5fa19ac1122869393cd",
       "decision-record.md": "127d4b45cae02cc8890815152383f77dc1a2064d07f7a072701811ab1da80555",
-      "implementation-summary.md": "956af380a8e51538a7102891ae7a4ed0835e22ebd44bc9fc008613ee0dcb6eb2"
+      "implementation-summary.md": "b01b77ae49956e9b97f596434cff9e8f7bc5160550a4bb96c94004cf7e548997"
     },
     "last_active_child_id": null,
     "last_active_at": null

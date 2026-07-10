@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The two structural JSON-shape rules ship at warn severity and never block, so a malformed `description.json` or `graph-metadata.json` reaches the corpus unchecked",
     "created_at": "2026-06-27T17:15:33.598Z",
-    "last_save_at": "2026-07-06T18:49:51.640Z",
+    "last_save_at": "2026-07-09T10:02:56.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bd90333757e0d905edfe6fa6e863fbab2343cae47c5c3581c6936ae8d0fa500",
+    "source_fingerprint": "sha256:9fe469ea60d96ce13074414484516a23c3c018a37e257e41d25a721c423bee65",
     "source_doc_hashes": {
-      "spec.md": "7d7870a659a0396d062cbb61e405acc6dc698e6ac5b553c31db7a06065562dd1",
-      "plan.md": "35842a041b0ed51ab9ca44af68071fd1525c2c56ed0b7b077f47f9bb63529aa4",
-      "tasks.md": "d20b6a552ec788fd03ff90f8d10e942f72b69208f2cdb5622f3bcc0118233e40",
-      "checklist.md": "c8626a40a63c89e24f69250c953a0a9ba6eb6ab075f50d6baf827222bab1a6b5",
-      "implementation-summary.md": "49773d74d635fc701e9ad6d2f51a5a9ef34b5431c4fe398b2304357aaeb8b7a3"
+      "spec.md": "3f241f1435b1b9e245600040904aad0b8f145c3aa92510653e16a68296cc4837",
+      "plan.md": "cba2524256d1f56b8c4c9fe59376e64f51f867e68a264dbf4887c247c42b161c",
+      "tasks.md": "58e3b51da686173c03c3f915255742ddddcc02f647bf7a7148e242bcd40242da",
+      "checklist.md": "60ae9a9d0ec3cfa0e11a4fe2eb230e84f4a5d413038b5eccb23655551e285107",
+      "implementation-summary.md": "172d92aa3e992b3bd220f64fb80f7a7901efbed557904669465d1d75d41c51fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -332,10 +332,6 @@ INTENT_SIGNALS = {
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
     "CONFIG":             {"weight": 1, "keywords": ["jsonc", ".json", ".jsonc", "descriptor", "config schema"]},
     "LANGUAGE_STANDARDS": {"weight": 1, "keywords": ["typescript", ".ts", ".tsx", "python", ".py", "shell script", "bash", ".sh", "commonjs", ".cjs", ".mjs", "docstring"]},
-    "JAVASCRIPT":         {"weight": 1, "keywords": ["javascript", ".js", "commonjs", ".cjs", ".mjs"]},
-    "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
-    "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
-    "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
 }
 
 RESOURCE_MAP = {
@@ -451,24 +447,16 @@ RESOURCE_MAP = {
         "code-webflow/references/html/quality_standards.md",
         "code-webflow/references/javascript/style_guide.md",
         "code-webflow/references/javascript/quality_standards.md",
-        "code-webflow/references/javascript/quick_reference.md"
-    ],
-    "JAVASCRIPT": [
+        "code-webflow/references/javascript/quick_reference.md",
         "code-opencode/references/javascript/style_guide.md",
         "code-opencode/references/javascript/quality_standards.md",
-        "code-opencode/references/javascript/quick_reference.md"
-    ],
-    "TYPESCRIPT": [
+        "code-opencode/references/javascript/quick_reference.md",
         "code-opencode/references/typescript/style_guide.md",
         "code-opencode/references/typescript/quality_standards.md",
-        "code-opencode/references/typescript/quick_reference.md"
-    ],
-    "PYTHON": [
+        "code-opencode/references/typescript/quick_reference.md",
         "code-opencode/references/python/style_guide.md",
         "code-opencode/references/python/quality_standards.md",
-        "code-opencode/references/python/quick_reference.md"
-    ],
-    "SHELL": [
+        "code-opencode/references/python/quick_reference.md",
         "code-opencode/references/shell/style_guide.md",
         "code-opencode/references/shell/quality_standards.md",
         "code-opencode/references/shell/quick_reference.md"

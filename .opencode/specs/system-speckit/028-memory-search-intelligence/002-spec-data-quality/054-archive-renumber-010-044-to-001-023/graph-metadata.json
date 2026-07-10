@@ -25,26 +25,27 @@
       "system-deep-loop",
       "archive",
       "renumber",
-      "001-023",
       "deep-loop",
       "collision",
-      "fix",
       "historic",
       "context",
       "optimize",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       ".opencode/specs/system-deep-loop/z_archive/graph-metadata.json",
       "spec.md",
+      "review/review-report.md",
+      "checklist.md",
       ".opencode/specs/descriptions.json",
       "implementation-summary.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -57,6 +58,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -81,12 +94,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the T006",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/specs/system-deep-loop/zarchive/` numbers its 23 top-level archived packets `010, 012-014, 020-035, 042-044` — not the `001-023` a fresh archive would use",
     "created_at": "2026-07-08T13:24:24.937Z",
-    "last_save_at": "2026-07-08T13:24:24.937Z",
+    "last_save_at": "2026-07-09T10:02:56.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,8 +210,8 @@
       "spec.md": "2b78f669049b254935df5e30cd2161d85a432b2d3b8a50d22ecdea8efcc4d458",
       "plan.md": "880200ae317b1d8cfb956b07764f00cd42cc8bc74863e57151d464ca3291b65e",
       "tasks.md": "2f755fff1db1d443031a5da3ae0d40ac9655a6eac6a147b1c04e8487170e9416",
-      "checklist.md": "4b61449c02e512fe915b47a306a859cbb5520fb3783a67294e3190e6c1138d3e",
-      "implementation-summary.md": "fa96028ce58e249f601266bb5ba7474b9447c8a701afc2100b31af8e7603cd0b"
+      "checklist.md": "d722e26325b792148aacae743366c59272d63ba5b3bd96e13ed0e2068cf0371b",
+      "implementation-summary.md": "9cfe33ac116406404f3cb7a1390329258a6da05398f9b2e655687679b781427c"
     },
     "last_active_child_id": null,
     "last_active_at": null

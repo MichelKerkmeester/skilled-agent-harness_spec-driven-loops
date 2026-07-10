@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Live-measured (deep-dive report §5, ledger L7 🟢): a 5-result `memorysearch` returns a 17.6KB envelope because every telemetry block is double-emitted in camelCase AND snakecase (`artifactRouting`/`artifactrouting`, `graphContribution`/`graphcontribution`, `searchDecisionEnvelope`/`searchdecisionenvelope`, `appliedBoosts`/`appliedboosts`), while the token budget is enforced BEFORE graphContext/routing/envelope attach — so results get compacted to empty snippets while metadata survives, and `meta.tokenCount` reports 6,455 against an \"enforced\" budget of 3,500",
     "created_at": "2026-07-03T09:44:26Z",
-    "last_save_at": "2026-07-06T19:16:36.369Z",
+    "last_save_at": "2026-07-09T10:02:56.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,7 +225,7 @@
       "plan.md": "10ea814e164763735fb4e211e89f61255471d212adf0b8aff9c3dd1630fa3d0b",
       "tasks.md": "b2f88662effdaa6bbf155ad676d72bd4950e195367dc1b790ffe4e53851d3bd7",
       "checklist.md": "2336005794d54a6726bed73f5ef80a5f24417454523114d3cd47dbf95a13e95c",
-      "implementation-summary.md": "564c81a51a8bfd47864be2adca9990c004da47b07b8494ca0baaee7aba4e542b"
+      "implementation-summary.md": "850ea96f433ec4ac42f6df681f1520f8782e969c430fd7b84b628f5c611d71bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

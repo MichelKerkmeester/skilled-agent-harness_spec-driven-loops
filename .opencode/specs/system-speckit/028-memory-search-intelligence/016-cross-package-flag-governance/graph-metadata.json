@@ -39,7 +39,7 @@
       "preservation"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "F5 — RESOLVED: two different homes for new feature flags, with opposite default-polarity",
     "created_at": "2026-07-09T15:11:30.263Z",
-    "last_save_at": "2026-07-09T19:10:16.462Z",
+    "last_save_at": "2026-07-10T03:44:45.266Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,11 +217,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3badca5c8d0ba1ca39116ec68011f2bf537880bd6c054641f40e69c5053a00a2",
+    "source_fingerprint": "sha256:b5404a4bfed2b4b4a31ea57f4d82703d1d930458b14f2643f0b09689b9cd3f54",
     "source_doc_hashes": {
       "spec.md": "2052ecb06e8fa8310ef65b0788c4e587f7c66b03923c1e3148e7dd0c18ad9554",
       "plan.md": "5b6c72fbc0a02886b11888f1fe41620b59b2888fb6131f06c17a01c3f2e7c96b",
-      "tasks.md": "a007c2a15c96fc0b3e78f9ec119d19bb3ab9f059d82e867a26a4fe7d755ab8ca",
+      "tasks.md": "5f70eddeb54d1b4afbaf771eaa9037bd89ccc169e318aa6045042a1ca4f93354",
       "implementation-summary.md": "4aa8eb35b680f1fb4221036b27944da1d03212f348b6d70a0370e8a0fd7ec33e"
     },
     "last_active_child_id": null,

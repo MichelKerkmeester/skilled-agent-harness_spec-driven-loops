@@ -35,6 +35,9 @@
     "status": "draft",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+      "dist/lib/eval/eval-metrics.js",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js",
+      "dist/lib/eval/ground-truth-data.js",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -46,6 +49,18 @@
         "name": "run-eval-v2.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.js",
+        "kind": "code",
+        "path": "dist/lib/eval/eval-metrics.js",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth-data.js",
+        "kind": "code",
+        "path": "dist/lib/eval/ground-truth-data.js",
         "source": "derived"
       },
       {
@@ -173,23 +188,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
     "created_at": "2026-06-27T17:15:36.570Z",
-    "last_save_at": "2026-07-06T18:49:47.122Z",
+    "last_save_at": "2026-07-09T10:02:56.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1355b6ac53e9de2a07d67dd7368e0601e223c3fb2db0bc7942aaeb9e8efa1552",
+    "source_fingerprint": "sha256:db528cf24092b6cec224fa91daa707e9e1b23d80ac808426ba4aac9b3bc76345",
     "source_doc_hashes": {
-      "spec.md": "3a497913a5d24dee46b48227494d5ebba7309a797d4b802d7fc74d7079293dbb",
-      "plan.md": "514cdf0c19a59404e8c9804ed1dbf796663e06edbbe2fb6ca65c3244c3af732a",
-      "tasks.md": "450189e207bb93bcd60a0d6633b5e639097fd2a96da8ebe966e1c67768335ea7",
-      "checklist.md": "0e69fb53e8eb9dc1ace83b317061098a9b986fc8ec632f902279a7f7a0afba8c",
-      "implementation-summary.md": "f361cc14c98071f6959c0256ed88af16cbed913c0681b69eb23768f031954a07"
+      "spec.md": "c4b65909376fa19934050677023c7bf9df7d2f680ceef9209b6200fc1e3f3142",
+      "plan.md": "99d44bbaf675c6339068dd5b894a3b981075da605364d4cc8b15cfbbb3c4d1ba",
+      "tasks.md": "a0ec77a49f8182e840dffbf7cad8386d312f83dfcdfb20cbfac3306c2fae34e1",
+      "checklist.md": "9e103d4a93e29edf92cdd748f022f489ba8478d4e6f5045146e9d8420a1e22fc",
+      "implementation-summary.md": "a268e8b3b79c38310630df5a9f5f80974f0c1691c8dd44800e33bf74f9fae689"
     },
     "last_active_child_id": null,
     "last_active_at": null

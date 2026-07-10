@@ -26,7 +26,6 @@
       "028 review remediation doc accuracy"
     ],
     "key_topics": [
-      "028",
       "doc",
       "accuracy",
       "remediation",
@@ -34,10 +33,11 @@
       "shipped",
       "planned",
       "mislabel",
-      "fix",
       "staleness",
       "cluster",
-      "plan"
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The doc-accuracy iteration (iteration 9) was the largest confirmed-P1 spike in the review, landing in the second-to-last deep-dive iteration",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-06T19:32:21.971Z",
+    "last_save_at": "2026-07-09T10:02:56.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "plan.md": "b2a62277c35536b90a18c1801c49040e5c1bdbbce01f2515bd595ffb209da1bd",
       "tasks.md": "6ff40b1cab44988fde59ed6e2a82ddaf7fcbf7f6e8c907d9b0a3dc51ab116392",
       "checklist.md": "888e8ad813b7be4bf029eab1148769494307402785f99058ca06dfa07d6cd42c",
-      "implementation-summary.md": "83dcc128289c65c14d29fa941c07d30a1174c5371474b2c2028d1510d678a13a"
+      "implementation-summary.md": "ef40123115898529fd54ec069f1353d7d4f0c42274afd0f299bbac7776ebaa12"
     },
     "last_active_child_id": null,
     "last_active_at": null

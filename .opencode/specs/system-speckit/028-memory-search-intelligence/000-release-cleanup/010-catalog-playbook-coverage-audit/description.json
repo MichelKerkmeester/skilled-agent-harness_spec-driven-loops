@@ -4,7 +4,6 @@
   "description": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the",
   "keywords": [
     "packet",
-    "028",
     "shipped",
     "many",
     "features",
@@ -16,7 +15,7 @@
     "system-code-graph",
     "system-skill-advisor"
   ],
-  "lastUpdated": "2026-07-04T17:31:32.086Z",
+  "lastUpdated": "2026-07-09T10:02:55.980Z",
   "specId": "010",
   "folderSlug": "catalog-playbook-coverage-audit",
   "parentChain": [

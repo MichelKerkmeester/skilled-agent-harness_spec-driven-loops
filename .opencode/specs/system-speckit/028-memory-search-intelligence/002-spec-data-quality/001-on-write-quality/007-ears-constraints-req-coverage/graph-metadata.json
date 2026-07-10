@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Spec requirement prose has no shared grammar, so requirements are authored in inconsistent free-form sentences that resist linting and machine extraction",
     "created_at": "2026-06-27T17:15:34.402Z",
-    "last_save_at": "2026-07-06T18:49:43.052Z",
+    "last_save_at": "2026-07-09T10:02:56.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c11f9c38a65a0ed143b545d710dbe6b34069b5cb84e4bb7f6b27f92ccb7418b",
+    "source_fingerprint": "sha256:67a311745a7c5a4182fdbf468e12896082a259948682933e6b87b76f1ffedd7f",
     "source_doc_hashes": {
-      "spec.md": "a92f4a870f6b0fad4596920bcef912b3b7ac252fbfdc33349dbeaf1c8dbbc518",
-      "plan.md": "b9a1ba97d6c8747c8deba3e3b9f34ea837b37a5f50e5a9572043716a6b6e5472",
-      "tasks.md": "c6e8d350b780e79ffc4b0978b7a1d285d20db80092ab0dd0c8475ba9142cac14",
-      "checklist.md": "c103ef3cb0f248a39e5bccbc5eccaac87243f7430f5bd3f220133e7228d2e57e",
-      "implementation-summary.md": "8f3baaf79b66b19ddf8506f9d176dfd3f3a94166ca386329db9be06748b1e2d4"
+      "spec.md": "a61a531735015b510da977770ce5161e7fdd6816497a19cfadb20938b5d6a3f5",
+      "plan.md": "3558df4e597a6aa045d22e1ce30c4d1a34b6333cc12c17424b306422a5700293",
+      "tasks.md": "beba38ed71466aa338f46deed927685a60759be20da2cdac78ed7848dc8e3822",
+      "checklist.md": "0bc0ec2c11e978cfad233d4953fa8841f13afbeb95044b9ecad21e0b5b10b6ee",
+      "implementation-summary.md": "55f00ff37527570cc2e7781145061bd09a03f47ea52fcc9ad5e6ac85a57bdc3a"
     },
     "last_active_child_id": null,
     "last_active_at": null

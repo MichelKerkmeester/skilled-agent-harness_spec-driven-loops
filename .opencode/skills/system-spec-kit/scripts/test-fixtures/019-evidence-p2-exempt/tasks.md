@@ -3,7 +3,7 @@
 
 ## Active
 
-- [x] Create fixture
+- [x] Create fixture [Evidence: checklist.md:14 keeps P2 exemption cases]
 
 ## Completed
 

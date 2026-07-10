@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Stage-4 evidence-gap detector flags a query as a gap when its Z-score `(topScore - mean) / stdDev` falls below a default threshold of 1.3",
     "created_at": "2026-06-27T17:15:44.170Z",
-    "last_save_at": "2026-07-06T18:49:36.036Z",
+    "last_save_at": "2026-07-09T10:02:56.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25c5377f0136ce3ee30d0143fde504067bdcc12e405fecb8a95744dd0a97c9fa",
+    "source_fingerprint": "sha256:a4dcaaf5dd778ba9a75bae06e424dad9f88b3df08824244a5bbfdfce85816e05",
     "source_doc_hashes": {
-      "spec.md": "22bc9c0947df23e9d28f73b6d1e399db12f0625abe885ef725eee6ad7e81953b",
-      "plan.md": "5046f702dbb8612306894c350c78dc43a3c03013252f90949a399d71f156848f",
-      "tasks.md": "93f188a3aea9cf7131806dd8b188ce58a390dc988d8d7e9f2fa9331e4e46d916",
-      "checklist.md": "644ab59665f4ddf13c1df954e7ee0150281c2e8d1cfcc665544e39616c03ef17",
-      "implementation-summary.md": "a91f1f7f399afb27356d4a060140a28a5ee8eaad20652d7353dd634e4856e777"
+      "spec.md": "758f85a79f5b852c6b16ee07668fdb80b7e43660fcffb9ce61e6fca94152f195",
+      "plan.md": "18177f41d7229d5df819762f4a4b9ce704d25095382fa71dc250c417d5f48ad0",
+      "tasks.md": "cbe3f17e043ec373d06b5f64494a92a2d6376a28538adeb61da68a171e13357f",
+      "checklist.md": "d4bf9b787a9a1032872eb6bf316ea9c2cd17a4b0a22a264e0474d4e3afed2ed4",
+      "implementation-summary.md": "89e3df84be92b81514a059fe6f18b405b071c6e8ac5777a3fe899c9cce124be5"
     },
     "last_active_child_id": null,
     "last_active_at": null

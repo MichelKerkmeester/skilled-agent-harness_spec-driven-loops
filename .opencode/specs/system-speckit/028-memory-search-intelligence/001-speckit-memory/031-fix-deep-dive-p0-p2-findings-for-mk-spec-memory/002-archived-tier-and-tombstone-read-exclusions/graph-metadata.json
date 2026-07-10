@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Non-active rows dominate search results because read exclusion is channel-inconsistent",
     "created_at": "2026-07-03T09:44:18Z",
-    "last_save_at": "2026-07-04T17:51:11.002Z",
+    "last_save_at": "2026-07-09T10:02:56.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,12 +223,12 @@
     ],
     "source_fingerprint": "sha256:c8ab8e957ffbb7ee984a348c071a0261aa87a872b69297de060858a0210e86a5",
     "source_doc_hashes": {
-      "spec.md": "b1a3c1d95904794b03d30f01e3a1fb9312c5bb8460b374460025b0dcc8ee8b83",
-      "plan.md": "aa7cd5fab31146235a8819d4aaaff99878a39bde06fb86ca687fe47276b872ef",
-      "tasks.md": "8b315498532cc740bc4dbadd2d7e43f5b1a79797b436b8c203ccdd1f84fa04db",
-      "checklist.md": "99dae428f5f470dce073eb82eb89cf8e9907190e7677bce60307fdba793c9b01",
-      "decision-record.md": "70694d55736a52af72882e1b4b16e9212cd3c1677513c703a67288e93657adb1",
-      "implementation-summary.md": "f2b816ac1cbd543dd0548c7874e7d55e67cf2eac995811188a9472620636ea85"
+      "spec.md": "0e5a15ee939f22ff5cc8c1403d4344da0beaa186ffe99567461b5d971d67f59b",
+      "plan.md": "fbfe1d4f2023e7f5c0e101324f9335750c6073d550e2b290a897e080125725ca",
+      "tasks.md": "abf27cdb5a61d04c6e9cf9c2b0b9b64687613544d8e6223ade166217db48763d",
+      "checklist.md": "f675ec61cf265c58f4cc7a7c902125351fd0314015bb8ae56afd93a634469085",
+      "decision-record.md": "ae468b802af0506386ec72c20aef0d3d7a1851aa3f60ffe3f419a033fbb9e121",
+      "implementation-summary.md": "215d83fbd38d7df0388392e111d1fe6542da54631e5e0d437ee4872881ee2020"
     },
     "last_active_child_id": null,
     "last_active_at": null

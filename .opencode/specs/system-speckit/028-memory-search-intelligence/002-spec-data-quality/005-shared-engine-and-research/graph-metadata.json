@@ -35,7 +35,7 @@
       "subgroup",
       "spec-data-quality",
       "track",
-      "fix"
+      "floor"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -89,15 +89,15 @@
     ],
     "causal_summary": "Shared Engine and Research subgroup of the spec-data-quality track: the shared fix engine, the floor experiment, governance rollout, and the vague-query/generated-metadata research bridge.",
     "created_at": "2026-06-27T17:25:56.206Z",
-    "last_save_at": "2026-07-06T18:49:57.344Z",
+    "last_save_at": "2026-07-09T10:02:56.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:703e7a4633b865d1e5ea70057b83b4ff5d3a2fd8cdb51f3c33d0aee207c66ad5",
+    "source_fingerprint": "sha256:5fbcdedcc11a847f2ed328ee414c3adc170a43d1629bff13fbefc40c633cd8d8",
     "source_doc_hashes": {
-      "spec.md": "0956819671b9e0fd95770d6380646a6117a9b5b3ff285ffcb2bec895b9b99069"
+      "spec.md": "5db74cae885497836e74d35d183b32119839318e128da6677d6fc33c53383a16"
     },
     "last_active_child_id": null,
     "last_active_at": null

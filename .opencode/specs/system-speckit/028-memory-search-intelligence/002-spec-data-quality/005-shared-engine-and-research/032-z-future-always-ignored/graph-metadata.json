@@ -40,6 +40,7 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
       ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts",
       "spec.md",
       "plan.md",
@@ -52,6 +53,12 @@
         "name": "backfill-graph-metadata.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The graph-metadata backfill generator refreshed `zfuture/` by default",
     "created_at": "2026-06-27T17:15:41.172Z",
-    "last_save_at": "2026-07-06T18:49:40.532Z",
+    "last_save_at": "2026-07-09T10:02:56.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3567c6353f71875aa40b1739fcd3300c26dee6f9d72af03cde2f813646083c25",
+    "source_fingerprint": "sha256:9ae68da71cdbfe46f821008fbf3300efa7c02c6a7c6fb3deff96c2479976af57",
     "source_doc_hashes": {
-      "spec.md": "41c0d63fef7e095d16d96a20cf1cd103b083547a1ac945e649e545c9a97b5b0f",
-      "plan.md": "cd706039ebf4a2f83d016639c440c71678472e266f438813b222f4fcfbffc9d3",
-      "tasks.md": "25e09d94231d1f22d428d7cedaaf6464afe9c0a0e488881a58fb3129a4bb012b",
-      "checklist.md": "7afe0649d94b9a735d738ee9b95423f062a53caba3e43ee89c0e9b383f9ad7a4",
-      "implementation-summary.md": "13e5f397e1ea3e54b756394858614ca47294864ddc49870dc349bac93d86595d"
+      "spec.md": "3b3c9ffdfd90dee2ca0770e3adcda06e26ddd6b6cb3ab093f36c29315c886774",
+      "plan.md": "8db1c0c6b90654174633d4c45672bd3c14175b1cbccff0ea02a1ff88468342a9",
+      "tasks.md": "eea9d9f49de632a27ba22dba6af7a80ae7426fe4fb7d261a566c8b5b315d34cb",
+      "checklist.md": "7b7738ec74dc163e8ed1268e83eec1750b4f3508fbd825b43ca0a16b7e5ba4ad",
+      "implementation-summary.md": "b503b8e2ba1b1964bbc837be8865d8402594f1949c1fe4324fa8857767dd7097"
     },
     "last_active_child_id": null,
     "last_active_at": null

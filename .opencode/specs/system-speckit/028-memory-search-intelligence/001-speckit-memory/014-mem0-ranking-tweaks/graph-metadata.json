@@ -28,7 +28,6 @@
       "mem0",
       "ranking",
       "tweaks",
-      "028",
       "bm25",
       "sigmoid",
       "calibration",
@@ -36,7 +35,8 @@
       "entity",
       "cardinality",
       "penalty",
-      "spacy"
+      "spacy",
+      "lemmatization"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 028 campaign's external-memory-systems child (`007-memory-systems`, 22 iterations across Mem0 / Graphiti / Letta / Cognee) surfaced a bundle of cheap ranking and extraction improvements for the Spec-Kit Memory MCP, mostly mined from Mem0 scoring/extraction plus two Cognee extraction-config wins",
     "created_at": "2026-06-19T05:40:37.448Z",
-    "last_save_at": "2026-07-06T19:16:31.501Z",
+    "last_save_at": "2026-07-09T10:02:56.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,7 +226,7 @@
       "plan.md": "91ab452276eb581cdfc6b5158f799fdccdece55b9f3b48ca16821392e60ac6ad",
       "tasks.md": "2ef8be7350cd6e98c0fc8b22808a1adbd9e863b87ced46678971bc9aa580dd2f",
       "checklist.md": "ee3df582535346bcdc8ec3078f35d501cf8a534a2fa972c98001e46c3c0e1f03",
-      "implementation-summary.md": "bda523c02254b359139e9f91311cc81c211ce8702a55225048a30836b8661771"
+      "implementation-summary.md": "a36b62743e06ab7bd731b76da241820de0025c5f6f7eaa6123e94ae95af2d4f8"
     },
     "last_active_child_id": null,
     "last_active_at": null

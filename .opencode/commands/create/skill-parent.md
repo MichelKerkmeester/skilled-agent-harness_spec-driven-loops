@@ -12,7 +12,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 Route /create:skill-parent to its presentation contract and workflow YAML for scaffolding or updating a parent skill with nested mode packets.
 
-## 2. Owned Assets
+## 2. Routing Assets
 
 | Asset | Path | Purpose |
 | --- | --- | --- |

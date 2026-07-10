@@ -8,17 +8,15 @@
     "surface",
     "session",
     "start",
-    "2026-07-03",
     "loss",
     "silent",
     "dist-freshness",
     "bootstrap",
     "deadlock",
     "npm",
-    "run",
-    "build"
+    "run"
   ],
-  "lastUpdated": "2026-07-04T17:46:15.119Z",
+  "lastUpdated": "2026-07-09T10:02:56.329Z",
   "specId": "011",
   "folderSlug": "daemon-freshness-and-health-truthfulness",
   "parentChain": [

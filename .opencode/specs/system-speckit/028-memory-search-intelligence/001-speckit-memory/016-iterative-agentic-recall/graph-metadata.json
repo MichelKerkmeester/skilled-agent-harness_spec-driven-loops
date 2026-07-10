@@ -25,7 +25,6 @@
       "CG-agentic-tool-loop tasks"
     ],
     "key_topics": [
-      "028",
       "agentic",
       "tool",
       "loop",
@@ -36,7 +35,8 @@
       "governor",
       "cg-agentic-tool-loop",
       "memory",
-      "context"
+      "context",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The Memory MCP's `memorycontext` is a static mode router with zero tool-calling: its `executeStrategy` switch dispatches `quick|deep|focused|resume`, and each branch is one straight-line retrieval call (quick→triggers, deep/focused→single `handleMemorySearch`, resume→ladder) [CONFIRMED: `handlers/memory-context.ts:1292-1311` (`executeStrategy` switch), deltas/iter-017.jsonl]",
     "created_at": "2026-06-19T05:40:37.449Z",
-    "last_save_at": "2026-07-06T19:16:32.115Z",
+    "last_save_at": "2026-07-09T10:02:56.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,7 +224,7 @@
       "tasks.md": "bfb68a526835b520279ec7a35ce694500b03c55565da8ce6e3b464ccd4215f29",
       "checklist.md": "d38c0592ac27f514c42905ff734d4c7b7b481fef903bc786d04f8cfb6411b158",
       "decision-record.md": "0f8a6618eb886924f5dd8907e2309979081ed388e8980824d742ebbbd6f35dec",
-      "implementation-summary.md": "1f15f17b0dc462dac8687fa107369da55fe0ae9ea8439bdfd027de5e0949f922"
+      "implementation-summary.md": "1eb428547fd2d74a532c8d8a623b7db455c4484410692cd0990f6fa8b8dd4ca2"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -5,7 +5,6 @@
   "keywords": [
     "derivestatus",
     "graph-metadata-parser",
-    "1185-1195",
     "reads",
     "doc",
     "own",
@@ -17,7 +16,7 @@
     "metadata",
     "table"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.694Z",
+  "lastUpdated": "2026-07-09T10:02:56.567Z",
   "specId": "049",
   "folderSlug": "derive-status-explicit-bypass-fix",
   "parentChain": [

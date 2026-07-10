@@ -27,7 +27,6 @@
       "028 reranker research summary"
     ],
     "key_topics": [
-      "028",
       "reranker",
       "research",
       "citation",
@@ -38,7 +37,8 @@
       "posterior",
       "penalty",
       "conditional",
-      "data"
+      "data",
+      "blocked"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -48,8 +48,7 @@
       "tasks.md",
       "checklist.md",
       "research.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/references/global/hvr_rules.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -86,12 +85,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr_rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The new-feature arc closed with a hard architectural finding",
     "created_at": "2026-06-21T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:34.585Z",
+    "last_save_at": "2026-07-09T10:02:56.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +215,7 @@
       "plan.md": "e0b6014852383dc2412ee9d271396679864f70662a57bf153a1e2368103a7c3a",
       "tasks.md": "8d18be1c820414419ac39a60aed0c18fecf540e6717738d74f0210e6b9e81463",
       "checklist.md": "c589815003110ac5bb103126285f85935453171d18ca42d71bde4d367bb2da29",
-      "implementation-summary.md": "d2aaba9f314d987a525e1c717f9fb169232026f1a9fb6b26bbf20860dd90c117",
+      "implementation-summary.md": "3819605283dc554e29d2fc9b137e950844a81d25a5a9743fa285c156768417a4",
       "research.md": "b1485cdbb5219338f323841a9484216d4e5c9710ca5b6e9c3a68fab767535c23"
     },
     "last_active_child_id": null,

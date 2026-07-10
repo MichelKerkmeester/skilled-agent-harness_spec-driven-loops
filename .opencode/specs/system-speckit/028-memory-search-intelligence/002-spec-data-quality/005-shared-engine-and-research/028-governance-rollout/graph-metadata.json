@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The data-quality program is a fleet of eighteen build phases that share one engine and one registry, yet the ordering that makes them safe lives only in research prose at `../research/research.md:104-118` and nowhere executable",
     "created_at": "2026-06-27T17:15:40.091Z",
-    "last_save_at": "2026-07-06T18:49:43.853Z",
+    "last_save_at": "2026-07-09T10:02:56.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd8b0b92857cc1d56efe79a48db50f663fa8a3a5e3fdfca4e00093dc81bb92f6",
+    "source_fingerprint": "sha256:a82fb06f6ca915a73103145e1a81b61322717c7ed8fc89bad3de5a90c5e14315",
     "source_doc_hashes": {
-      "spec.md": "a2bda38be9a45d891e3928f6449bf37d8559a866c6147e0267b36040437c6f68",
-      "plan.md": "c7293ba894cbfb45356433830cdbfbb362cdef47d1f4797f3c7e1f85200cd47f",
-      "tasks.md": "4fd854ab34029a32eeac09468d8c1f3e78aa4562da29e3ae20ae3e5b6124a9a1",
-      "checklist.md": "0b777c788a180cd2f95baaa254e5f0a4f2fd20b52c0322c19c04ae3aadfb92a8",
-      "implementation-summary.md": "4b67c64994a20b57d0ec9ddbbfcdb514d5255616e5a51dd90cdb3a52cfeb058f"
+      "spec.md": "63cb31c592207b515bddc3358571b01d04683e507e91b04610da38eed9273fa3",
+      "plan.md": "6a74d89c04d82eb82f1634c5c54410b4a37bc6ff59faafaad7760d79aedf0047",
+      "tasks.md": "0fc8c9ede7ec3de81278a3b64f1b1e5dc6e4d440698c2c5b9ae69614064942f4",
+      "checklist.md": "79f056f38657382f06d3d9428613130991065e0343eb68b334091e2f06547401",
+      "implementation-summary.md": "02d9228e71f514590af01d197cc8aa9d29cb85221b563e0e518b2c3e3d4be4be"
     },
     "last_active_child_id": null,
     "last_active_at": null

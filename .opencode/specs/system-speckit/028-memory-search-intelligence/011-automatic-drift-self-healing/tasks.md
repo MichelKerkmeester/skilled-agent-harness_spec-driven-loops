@@ -130,3 +130,13 @@ Layer 1 first (independent, primary safety net), Layer 2 second, Layer 3 last (s
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+- [ ] T012 [P1] Scoped (drift-marker) scans run global destructive maintenance: `runGlobalOrphanSweep()` and `runSuspectConfirmation()` execute unconditionally on both handler branches (`mcp_server/handlers/memory-index.ts:1054,1542`), violating this packet's scoped-trigger contract (`spec.md:248`, `plan.md:198-200`). Add a dedicated scoped-repair mode that skips global sweep, suspect confirmation, and unrelated backfills; reserve those phases for explicit full scans. Evidence: test asserting global phases are not invoked on a scoped scan.
+- [ ] T013 [P1] Startup discards the scan response and consumes the drift marker even for coalesced/cooldown/contended scans that performed no repair (`mcp_server/context-server.ts:2241`). Return a typed internal repair result; preserve/restore the marker unless the scoped scan actually completed.
+- [ ] T014 [P1] Failed tombstone deletions are dequeued anyway — `removeMemoryDriftSuspects(db, [...idsToClear, ...idsToTombstone])` ignores `deleteResult.failed` (`handlers/memory-index.ts:913`). Dequeue only cleared and successfully deleted IDs; partial-failure test must assert the failed ID remains queued.
+- [ ] T015 [P1] Transient filesystem errors (permissions, I/O) collapse to `exists=false` and can tombstone valid rows (`mcp_server/lib/storage/incremental-index.ts:215`). Use a tri-state existence result; delete only on confirmed absence (ENOENT/ENOTDIR); report unknown-status rows.
+- [ ] T016 [P1] Cache hits bypass the query-time existence filter — a deleted file keeps serving from cache until expiry (`mcp_server/handlers/memory-search.ts:1455`). Apply the filter at the common response boundary or bypass result caching while the filter is enabled.
+- [ ] T017 [P1] A time-budget-expired sweep breaks with a non-null resumable cursor but the envelope still reports `status: 'complete'` (`handlers/memory-index.ts:838` vs `:1682,:1779`). Return an explicit partial/resumable status whenever the cursor is non-null.
+- [ ] T018 [P2] Suspect-queue append/remove is an unlocked JSON read-modify-write; concurrent writers lose updates (`mcp_server/lib/storage/memory-drift-healing.ts:111`). Wrap in `BEGIN IMMEDIATE` or store suspects as upsertable rows keyed by ID; add a two-connection concurrency test.

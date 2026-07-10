@@ -30,13 +30,13 @@
       "bypass",
       "score",
       "scale",
-      "fixes",
       "flag",
       "read",
       "root",
       "cause",
       "group-a",
-      "plumbing"
+      "plumbing",
+      "minstate"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The deep-dive report (../research/deep-dive-report.md, Chain D) shows a large fraction of the ranking stack is computed, recorded in telemetry as applied, and then discarded or bypassed before it can influence final order",
     "created_at": "2026-07-03T09:44:22Z",
-    "last_save_at": "2026-07-04T17:51:13.944Z",
+    "last_save_at": "2026-07-09T10:02:56.295Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,12 +223,12 @@
     ],
     "source_fingerprint": "sha256:1ae753f5383a0d4545e7deef13914c47344ecfdfdbb40ca210ccb36160ffe2eb",
     "source_doc_hashes": {
-      "spec.md": "0332a35d18e56214266fca0605de9fb1d5e884fe38fea03ac7001e2fa70d79af",
-      "plan.md": "62f04f1ec7e30e38dee84376b1ad82ea0068d7761b097ea60d57d89878171639",
-      "tasks.md": "b348012908b04d38e83281965377822bdc6be3223db3a197e8a7a1b50d8d9f2b",
-      "checklist.md": "b927bade243ccc666c85ede17a0d3832c453958183dd47a73351893995443c3b",
-      "decision-record.md": "f7d0d753d89a0e6a6d988b5237334122c7e1e9acc949a47665cb5b35af014588",
-      "implementation-summary.md": "13602386dc2aa5e13d85ea0b9d075f22e1582db644558600c2534bc8e553f466"
+      "spec.md": "705a67acad1ec2f1cec79afae080ab5b6933549ce54d1f318529846c415c4375",
+      "plan.md": "75ef0afa270b3a12e52ba529abcc8d1625e7f96e70b91fe286f0ced1f6712ad1",
+      "tasks.md": "cb8b92a652df8fa1d28e6315126120541668018d10417c2dc663b67885b15844",
+      "checklist.md": "9e14954fc6dca83a3cca567073c59ccfafa6c95b1258b34fbaa3141376ada937",
+      "decision-record.md": "3fb13e3caf7952c80ef460ccb5d0e58f007436601eeae1b2f6d8cacb425a40c1",
+      "implementation-summary.md": "3314fbda28b1ae8569639cc8824850a78b6021a1493f377d133200f2392f2e40"
     },
     "last_active_child_id": null,
     "last_active_at": null

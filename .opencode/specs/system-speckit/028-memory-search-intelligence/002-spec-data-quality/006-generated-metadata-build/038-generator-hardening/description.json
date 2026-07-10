@@ -12,13 +12,11 @@
     "residual",
     "hardening",
     "gaps",
-    "031",
     "research",
     "ranked",
-    "because",
-    "fix"
+    "because"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.646Z",
+  "lastUpdated": "2026-07-09T10:02:56.507Z",
   "specId": "038",
   "folderSlug": "generator-hardening",
   "parentChain": [

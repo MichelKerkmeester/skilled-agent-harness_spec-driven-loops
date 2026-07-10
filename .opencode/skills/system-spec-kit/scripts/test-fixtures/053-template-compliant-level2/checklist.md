@@ -57,7 +57,7 @@ _memory:
 - [x] CHK-012 [P1] Error handling implemented [EVIDENCE: negative fixtures]
   - **Evidence**: Negative and warning cases remain outside this clean fixture, including `054-template-extra-header`.
 - [x] CHK-013 [P1] Code follows project patterns [EVIDENCE: template anchors]
-  - **Evidence**: File names and anchors match the current Level 2 template examples.
+  - **Evidence**: `checklist.md:25` and `tasks.md:25` carry current Level 2 template anchors.
 
 <!-- /ANCHOR:code-quality -->
 ---
@@ -72,7 +72,7 @@ _memory:
 - [x] CHK-022 [P1] Edge cases tested [EVIDENCE: spec.md edge cases]
   - **Evidence**: Edge cases are documented in `spec.md` and warning behavior remains isolated in fixture 054.
 - [x] CHK-023 [P1] Error scenarios validated [EVIDENCE: negative fixtures]
-  - **Evidence**: Header drift and missing evidence are documented as strict-validation failure scenarios.
+  - **Evidence**: `054-template-extra-header/spec.md:1` remains the strict-validation warning fixture.
 
 <!-- /ANCHOR:testing -->
 ---
@@ -92,11 +92,11 @@ _memory:
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets [EVIDENCE: markdown-only fixture]
-  - **Evidence**: Fixture content contains only markdown paths and commands.
+  - **Evidence**: `checklist.md:94` cites only markdown paths and commands; no credential-shaped values are present.
 - [x] CHK-031 [P0] Input validation implemented [EVIDENCE: fixture folder path]
-  - **Evidence**: Not applicable to static fixture content; validator input is the fixture folder path.
+  - **Evidence**: `validate.sh` receives the fixture folder path in `test-validation-extended.sh:250`.
 - [x] CHK-032 [P1] Auth/authz working correctly [EVIDENCE: not applicable]
-  - **Evidence**: Not applicable to static validator fixture content.
+  - **Evidence**: `checklist.md:98` records this as not applicable to static validator fixture content.
 
 <!-- /ANCHOR:security -->
 ---
@@ -107,7 +107,7 @@ _memory:
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized [EVIDENCE: spec-plan-task sync]
   - **Evidence**: `spec.md`, `plan.md`, and `tasks.md` all describe fixture 053 regeneration and strict validation.
 - [x] CHK-041 [P1] Code comments adequate [EVIDENCE: no code comments]
-  - **Evidence**: No code files changed; markdown template comments are limited to required SPECKIT markers.
+  - **Evidence**: `spec.md:20`, `plan.md:20`, `tasks.md:20`, and `checklist.md:20` contain only required template markers.
 - [x] CHK-042 [P2] README updated (if applicable)
   - **Evidence**: Not applicable for a test fixture refresh.
 
@@ -118,9 +118,9 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files in scratch/ only [EVIDENCE: no temp files]
-  - **Evidence**: No temporary files are part of fixture 053.
+  - **Evidence**: `find` equivalent fixture inventory in `test-validation-system.cjs` reports only committed fixture files.
 - [x] CHK-051 [P1] scratch/ cleaned before completion [EVIDENCE: no scratch dir]
-  - **Evidence**: Fixture 053 does not include a scratch directory.
+  - **Evidence**: `053-template-compliant-level2/` contains no `scratch/` directory in the fixture inventory.
 
 <!-- /ANCHOR:file-org -->
 ---

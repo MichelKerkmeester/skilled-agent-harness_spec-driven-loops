@@ -4,7 +4,6 @@
   "description": "Packet 028's release-cleanup track has executed across its documentation surfaces and follow-on validation phases",
   "keywords": [
     "packet",
-    "028",
     "release-cleanup",
     "track",
     "executed",
@@ -15,7 +14,7 @@
     "validation",
     "phases"
   ],
-  "lastUpdated": "2026-07-01T10:41:59.065Z",
+  "lastUpdated": "2026-07-09T10:02:55.954Z",
   "specId": "000",
   "folderSlug": "release-cleanup",
   "parentChain": [

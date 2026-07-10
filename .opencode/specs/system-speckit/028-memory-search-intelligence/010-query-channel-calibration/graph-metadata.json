@@ -154,8 +154,8 @@
       },
       {
         "name": "routing-telemetry.ts",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`classifyQueryComplexity` routes any query of `<=3` whitespace terms to the `simple` tier (`query-classifier.ts:228`), and `DEFAULTROUTINGCONFIG.simple` maps that tier to `['vector', 'fts']` only — graph and degree are excluded (`query-router.ts:114-118`)",
     "created_at": "2026-07-09T06:16:37.869Z",
-    "last_save_at": "2026-07-09T12:38:01.375Z",
+    "last_save_at": "2026-07-10T03:44:44.460Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,11 +213,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9816e2836ee32004993c7a0f032d8566455dce0187e164616f9b486172a587a",
+    "source_fingerprint": "sha256:2f1c87b113857d2c6f42540d81ea0e8c60197fd079222a14591a8e477cc12c7f",
     "source_doc_hashes": {
       "spec.md": "e027fc6cadab808baee6f628a9583cc4ba3e03be3795370d8e02da0b4e07e6de",
       "plan.md": "6e38407e2e1d507c9475e1c04ed48c34fc7b0d13fba5aa812e3c229733e03486",
-      "tasks.md": "bd8df6e0e77b9e0f51740d9f34850c026067716b291bcbd932744e8830dc88c1",
+      "tasks.md": "0d6a3eb244961093a97d16bc929a156861b5e929aa5c6405d2c2eff5302cafae",
       "checklist.md": "e37300e643f7ffc469826209d64276d984b11793571e5b9edc862cbafa70d528",
       "implementation-summary.md": "b784975041e4a6d6668e38cd3023cd8a7208dc17e3cc363cd4e89a161349d66d"
     },

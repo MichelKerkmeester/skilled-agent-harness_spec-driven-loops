@@ -4,7 +4,6 @@
   "description": "The spec-kit generated metadata can silently fall out of sync with the docs it summarizes, and nothing proves otherwise",
   "keywords": [
     "spec-kit",
-    "generated",
     "metadata",
     "silently",
     "fall",
@@ -15,7 +14,7 @@
     "proves",
     "otherwise"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.642Z",
+  "lastUpdated": "2026-07-09T10:02:56.496Z",
   "specId": "037",
   "folderSlug": "drift-gate-synopsis-extractor",
   "parentChain": [

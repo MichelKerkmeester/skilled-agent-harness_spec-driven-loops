@@ -111,3 +111,13 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+- [ ] T027 [P1] A single `--prune` invocation generates its dry-run report and applies removals in the same run, bypassing the report-review gate (`scripts/graph/migrate-generated-json.ts:459-463`; `scripts/graph/backfill-graph-metadata.ts:165-167`). Require a report artifact/hash or explicit confirmation token from a prior `--prune-report` run.
+- [ ] T028 [P2] Share one description-fallback helper between `_processSpecFolder()` and `generatePerFolderDescription()` so the per-folder generator cannot write blank descriptions (`mcp_server/lib/search/folder-discovery.ts:963-968` vs `:1033`); update the blank-spec test that currently locks in the empty behavior (`folder-discovery.vitest.ts:770-780`).
+- [ ] T029 [P2] `wouldWritePerFolderDescription()` strips `lastUpdated`, so canonical-doc changes with unchanged synopsis keep a stale timestamp despite the F6 claim (`folder-discovery.ts:325-332`). Define `lastUpdated` semantics and add stale-source detection independent of synopsis equality.
+- [ ] T030 [P2] The explicit `--description` CLI path ignores `SPECKIT_IDENTITY_MERGE_SAFETY` (`scripts/spec-folder/generate-description.ts:32-40` vs `ENV_REFERENCE.md:466`). Apply the capability-flag check or amend the ENV contract.
+- [ ] T031 [P2] Dry-run prune prediction uses `mergeGraphMetadata` while apply preserves on-disk children via `refreshGraphMetadataForSpecFolder`, so dry-run over-reports changes (`backfill-graph-metadata.ts:370-389`). Route prediction through the same preservation calculation.
+- [ ] T032 [P2] Live migration returns unconditional `rewritten` even when the writer skipped an unchanged graph (`migrate-generated-json.ts:284-304`). Return `unchanged` when `summary.changed === 0`; test second-run outcome counts, not only file bytes.
+- [ ] T033 [P2] Document `--prune-report`/`--prune`, report-first sequencing, scope controls, and rollback in the script usage header and the maintenance README (`migrate-generated-json.ts:3-6`).

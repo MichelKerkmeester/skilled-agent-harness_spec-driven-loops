@@ -4,7 +4,6 @@
   "description": "Packet 028 shipped a large body of work into three daemon-backed system skills (system-spec-kit, system-skill-advisor and system-code-graph)",
   "keywords": [
     "packet",
-    "028",
     "shipped",
     "large",
     "body",
@@ -17,7 +16,7 @@
     "system-skill-advisor",
     "system-code-graph"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.666Z",
+  "lastUpdated": "2026-07-09T10:02:55.988Z",
   "specId": "011",
   "folderSlug": "daemon-skills-playbook-validation",
   "parentChain": [

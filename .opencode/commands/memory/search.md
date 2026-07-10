@@ -21,7 +21,7 @@ Bind your control flow to the two values above — never re-derive arg-presence 
 - **When `ARGS_PRESENT=true`: you MUST execute retrieval (or the analysis route) on `QUERY` now.** Do NOT ask the startup question, and do NOT treat a populated `QUERY` as empty. Go to §3 RETRIEVAL MODE, or §4 ANALYSIS MODE when the first token of `QUERY` is a known analysis subcommand.
 - **ONLY IF `ARGS_PRESENT=false`:** go to §5 STARTUP ROUTING and ask the one open-ended question.
 
-## 1. OWNED ASSETS
+## 1. ROUTING ASSETS
 
 | Asset | Path | Status | Purpose |
 | --- | --- | --- | --- |

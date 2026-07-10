@@ -205,7 +205,7 @@
     ],
     "causal_summary": "F2 (headline finding, confirmed by reproduction) -- scoped scan (drift-marker consumption) bypasses every",
     "created_at": "2026-07-09T15:13:29.637Z",
-    "last_save_at": "2026-07-09T17:41:00.168Z",
+    "last_save_at": "2026-07-10T03:44:44.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,11 +215,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7f1f001f8e8b39141ec6f7436a8a6eb90b6af74a0336de18ffad31ff9a42f7f",
+    "source_fingerprint": "sha256:745bd06c0c21590190292a9dfd924b519a22263fd52356eed3a8e25565f62f67",
     "source_doc_hashes": {
       "spec.md": "9b9e5c29345e706bb78db7a7bcdc4671b89b47dac1eee19ebc2647cb1753fc6f",
       "plan.md": "589d5184b1f77a6d6d4612dd0244f3368c51b7e1f219cbd3da84293b4d4ed3ec",
-      "tasks.md": "500859fce6ca3641bcbcb692462804eb1559be90014906dea5a8990c714f0e2d",
+      "tasks.md": "f7e881d1c2aa593b8e8e5a49c4f7f48fbbc5629ba769fb93aa6a599e1f552f48",
       "checklist.md": "ff2cc030a597db64df0566ecbba0a20dbad4ea53e344942081458342457b0873",
       "implementation-summary.md": "fd7e189cad3cb71ea703db8c3f19db6cb332aeb8360e650eb260d969c9d4140a"
     },

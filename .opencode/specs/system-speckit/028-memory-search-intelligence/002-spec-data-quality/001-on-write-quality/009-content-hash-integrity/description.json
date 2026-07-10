@@ -9,14 +9,13 @@
     "written",
     "save",
     "time",
-    "used",
     "only",
     "embedding-cache",
     "key",
     "idempotency",
     "receipt"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.506Z",
+  "lastUpdated": "2026-07-09T10:02:56.376Z",
   "specId": "009",
   "folderSlug": "content-hash-integrity",
   "parentChain": [

@@ -3,7 +3,6 @@
   "specFolder": "system-speckit/028-memory-search-intelligence/000-release-cleanup/013-drift-remediation/001-p0-fixes",
   "description": "The 2026-06-27 drift audit converged 5 findings in this phase covering the six P0 findings: read-only doctor routes carrying mutation flags, the",
   "keywords": [
-    "2026-06-27",
     "drift",
     "audit",
     "converged",
@@ -18,7 +17,7 @@
     "mutation",
     "flags"
   ],
-  "lastUpdated": "2026-07-04T17:31:36.731Z",
+  "lastUpdated": "2026-07-09T10:02:56.008Z",
   "specId": "001",
   "folderSlug": "p0-fixes",
   "parentChain": [

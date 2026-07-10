@@ -18,7 +18,6 @@
       "status enum schema close"
     ],
     "key_topics": [
-      "generated",
       "metadata",
       "validator",
       "derived",
@@ -29,7 +28,8 @@
       "integrity",
       "rule",
       "stop",
-      "preserving"
+      "preserving",
+      "bad"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The generated-JSON contract is weak, so bad statuses leak in and no real gate catches them",
     "created_at": "2026-06-27T17:15:42.257Z",
-    "last_save_at": "2026-07-06T18:49:37.297Z",
+    "last_save_at": "2026-07-09T10:02:56.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24c3efb460b5333f819d085db1bb780d3e4212a305e21a1fd9dc31c8734c0d0f",
+    "source_fingerprint": "sha256:4c6da627c2dedfefdbacecddba231a187ac101243392c631f1d5a96d4fb0401e",
     "source_doc_hashes": {
-      "spec.md": "25d9eae1646af51c7d3c2e0377ff2eed13c3cfb3b2b564a63641b3aaff605046",
-      "plan.md": "52045146839652ca030516fc037df6467f91e7511557990a6b4da85bbd645e20",
-      "tasks.md": "e963c7912123ac0759dbd4c6e45eeec4d16230115045606328d272a1f228dd30",
-      "checklist.md": "67c28942dd46728fc7c5b1cd2c167305141cf28b97961c56e73bc4be92dd43a4",
-      "implementation-summary.md": "8277dd5767e115ed69e9660c1c94391409454cbe79b4655943f293f6affd289c"
+      "spec.md": "c0043e28a307bfcf42f6728439efcfe3fa3b3e555c4c0616d34b6fc14d781ad5",
+      "plan.md": "cdbac7251059ba182ac3eb625d4289fe57b21cbaecb25bdd988d071b3718181b",
+      "tasks.md": "78d853e711fa916d7400e6bf421d895a0784b9dd9faac8158c9627464669c572",
+      "checklist.md": "46f3e05c4d507e0c66e1f857bf4f2515e91842b9d37d97eb976c3ba31186ae7e",
+      "implementation-summary.md": "219d7f997459b1199e8f96f02d564cb9f85092b020bf96abc476d8c5da8dc0fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

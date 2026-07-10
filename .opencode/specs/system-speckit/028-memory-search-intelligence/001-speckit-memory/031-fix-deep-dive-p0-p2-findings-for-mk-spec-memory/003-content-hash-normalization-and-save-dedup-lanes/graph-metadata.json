@@ -35,8 +35,8 @@
       "churn",
       "supersede",
       "pe-gate",
-      "update",
-      "reinforce"
+      "reinforce",
+      "full-auto"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "`contenthash` is a raw sha256 with no normalization (`memory-parser.ts:914`; deep-dive-report Chain A step 1 cites :913), so any CRLF/trailing-whitespace or `memory.continuity.lastupdatedat` churn registers as new content; each same-path re-save then retires the predecessor to `tier='deprecated'` and inserts a new row, accumulating snapshots unboundedly (Chain A steps 2-3)",
     "created_at": "2026-07-03T09:44:19Z",
-    "last_save_at": "2026-07-04T17:51:09.403Z",
+    "last_save_at": "2026-07-09T10:02:56.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,12 +222,12 @@
     ],
     "source_fingerprint": "sha256:5f1660cf761d62c22195eb86a42c9a9874a41f11a46b94bf24427d03972427f9",
     "source_doc_hashes": {
-      "spec.md": "b480f18b23ece9b1a1bb7f104d33cf9e391af0edd115116af885466df9eb81a9",
-      "plan.md": "ddb5230ce6cb8b5e29656cb5e9d99118c8857eece7787009e6d880f66ae569e6",
-      "tasks.md": "e26fa5e5db127bb41584a64348e6abe96af428ec2b26193e9e58892deefbc473",
-      "checklist.md": "8048a157e4ffbf71030093718f813d55d790e6675301fb043cddbd476b9272ff",
-      "decision-record.md": "ff4da61a9ccd2f6a776c044e04d07e4287249f30dc9abb12d9dda7ea6d1da358",
-      "implementation-summary.md": "d08b3e92e907cba83561d3ea0840111a0ac2520bf5d059a5d7e057d536e85617"
+      "spec.md": "4bab9c5d13b4c8ad0309bbcc9872823c7efc3b4ecbba7cc31aa0e99171579e5c",
+      "plan.md": "22814bd2a8cfe117040a129d9860d2d04aa8f9b2be3c5cd0c6aac8e019b01d28",
+      "tasks.md": "172074dc3ec464784fdd6a2a6bdbf53d14860fe1df216abcd2abf1675bd8bd64",
+      "checklist.md": "9a6826e3edd52a5fafde72de14078862f3bc2a83d9e3bb0daedc58bd9ebd3591",
+      "decision-record.md": "6e2baa5dce7605a0106f0493a9dd5cde9e53d5e2b6512b759317fab4698fc6b9",
+      "implementation-summary.md": "04dd17a5af2dc617f3680db6e40764b5b55644eb13fec0d48d8000f6082408dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

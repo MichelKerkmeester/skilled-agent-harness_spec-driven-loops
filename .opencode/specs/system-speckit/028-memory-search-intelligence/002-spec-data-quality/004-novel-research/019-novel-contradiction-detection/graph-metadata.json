@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The corpus has detectors for shape, frontmatter and cross-surface coherence within a single packet, but nothing checks whether two distinct docs that describe the same entity actually agree on the facts",
     "created_at": "2026-06-27T17:15:37.645Z",
-    "last_save_at": "2026-07-06T18:49:46.032Z",
+    "last_save_at": "2026-07-09T10:02:56.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "plan.md": "50e21375c542445c357f6caf525f3a5d5f29a541347ae6f025a2ea1b079e9cea",
       "tasks.md": "77559fdfd7930b3e17736a843f8b57e53b8f72071536c41dd7ac001df7a553e5",
       "checklist.md": "ea653230dd7af604fa20c3356d42d71130f252f881a776817cd393e2f17ee67f",
-      "implementation-summary.md": "e4d13bddce4b21976676c4ace2f9814e3ae64342de11cf168ca9d0d9bf10489c"
+      "implementation-summary.md": "a36f33a3b26c0c801e90245eeb250eb4911c8b84a227205748758b1d06d1e34b"
     },
     "last_active_child_id": null,
     "last_active_at": null

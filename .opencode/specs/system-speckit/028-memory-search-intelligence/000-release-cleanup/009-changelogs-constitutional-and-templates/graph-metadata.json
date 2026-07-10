@@ -25,7 +25,6 @@
       "028 release cleanup 009-changelogs-constitutional-and-templates"
     ],
     "key_topics": [
-      "028",
       "release",
       "cleanup",
       "changelogs",
@@ -36,7 +35,8 @@
       "changelogs-constitutional-and-templates",
       "tasks",
       "checklist",
-      "009-changelogs-constitutional-and-templates"
+      "009-changelogs-constitutional-and-templates",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The changelog directories, constitutional docs and the system-spec-kit templates package needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:25.948Z",
+    "last_save_at": "2026-07-09T10:02:55.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "plan.md": "1c1b7cac3756d0f5ace5d5d0b20d15fe1563bc9fe7b6037acd91c89503cbd7f1",
       "tasks.md": "365eea0e5377b32c4f577a6cbdeede0cb1f7dfeff7fd81ec3fe41e2fd8405037",
       "checklist.md": "605fbea599766dce205a1ca680b7dd59b0b13dbc9a192d1475c8ffc059aec63a",
-      "implementation-summary.md": "1fdd8dbe1bdb39f797ed9371824db04a834b07a269110f6684dfecfbefc1d2e2"
+      "implementation-summary.md": "fcf93fad44e1b4bcb9e037522abf91dac8ecb877fc506b68392ab12d7c90af4f"
     },
     "last_active_child_id": null,
     "last_active_at": null

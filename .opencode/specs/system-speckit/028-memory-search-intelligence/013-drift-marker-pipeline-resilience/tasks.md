@@ -154,3 +154,12 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+- [ ] T019 [P1] Lock staleness is mtime-only and release is unconditional, so an owner paused past the stale threshold deletes its successor's lock on resume (`.opencode/scripts/git-hooks/lib/memory-drift-marker.sh:103,:140`). Store an ownership token + PID, heartbeat long-held locks, reclaim only dead/unknown owners, release only when the on-disk token matches. Reconcile `spec.md:252-256` recovery claims with the actual threshold behavior.
+- [ ] T020 [P1] `post-commit` deletes the code-graph SQLite/WAL/SHM with no live-owner check, creating a split-brain/corruption window against a running daemon (`.opencode/scripts/git-hooks/post-commit:72`). Write an atomic invalidation marker instead; let the launcher reset the DB only under exclusive ownership with connections closed.
+- [ ] T021 [P2] The hook producer resolves the marker dir without the consumer's symlink canonicalization and project/home/temp boundary checks (`memory-drift-marker.sh:59` vs `mcp_server/core/config.ts:79-91`). Share one resolver or duplicate the checks exactly.
+- [ ] T022 [P2] Any marker read error — including transient I/O — deletes the claimed processing file instead of restoring it (`mcp_server/startup-checks.ts:274`). Retain/restore on read errors; reserve deletion for proven-malformed content.
+- [ ] T023 [P2] The hook installer breaks in linked worktrees (`.git` is a file) and ignores `core.hooksPath` (`.opencode/scripts/install-git-hooks.sh:26`). Resolve via `git rev-parse --git-path hooks`.
+- [ ] T024 [P2] No committed automated test covers this packet's F3/F4 producer fixes (completion evidence is scratch/harness-only). Add durable producer tests: paused live owner past the stale threshold, future/old mtimes, three concurrent writers, failed writes, token-checked release.

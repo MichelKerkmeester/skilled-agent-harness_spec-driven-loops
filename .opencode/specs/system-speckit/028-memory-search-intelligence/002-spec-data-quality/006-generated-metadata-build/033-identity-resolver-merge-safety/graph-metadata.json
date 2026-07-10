@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The two generators that emit `description.json` and `graph-metadata.json` disagree on spec-folder identity and the graph merge path loses lineage",
     "created_at": "2026-06-27T17:15:41.439Z",
-    "last_save_at": "2026-07-06T18:49:38.029Z",
+    "last_save_at": "2026-07-09T10:02:56.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7abf13e05b1be28c85c6de5ccf781c89f8e50e666024dcdd418eafe632832213",
+    "source_fingerprint": "sha256:91e165dac57013b36eef95b488d5ea1d2022681ffb55903732b058bfb780a259",
     "source_doc_hashes": {
-      "spec.md": "186b195d3c8eca51de267793b34e5c567d02b8b9ec974ae2eb2ce53c8530c408",
-      "plan.md": "8882d91bef4d93e6422a5cdf56d6650b8ac3c2f4b6e3278f824f955739defb3d",
-      "tasks.md": "4004aa4b40dcc14fff60fb84e67ac36b720242db020ee55460ecac81fe0e13c5",
-      "checklist.md": "73a8bdd0d49eae624f755a99b8abcbb4bc7106821799e7e63cb6715690a9f605",
-      "implementation-summary.md": "ae4c1391eeb2cd7873d0207464ab4b40d087690db19dee605420f0b8cd5b52b1"
+      "spec.md": "2d465035595161a518cf647f223638785ee5a3465cd377553d215fd4681e21d1",
+      "plan.md": "c942eafc6ac8a6f40f7c6bac2ba95e0ad19652617ab4bf91f9d824981bdc75d8",
+      "tasks.md": "3bcce3d3c10da08f8f93e9e8833321d00398e053d7f557c3c77808f05804db13",
+      "checklist.md": "3e1085c75f3ed4abbb6a5b99a56eaae458e19f4bfa8c11493cf3cc587fe62c1c",
+      "implementation-summary.md": "ecb83eba1ae0ce740c585f4ce76f29023cfa43a124277df9958775bc33c2a25a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The FSRS retrievability number is SHIPPED and computed live on every read",
     "created_at": "2026-06-27T17:15:39.015Z",
-    "last_save_at": "2026-07-06T18:49:47.475Z",
+    "last_save_at": "2026-07-09T10:02:56.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "plan.md": "2b64615d95cb7173b765bffdacebacb911a743b671fd054552b867b34b0496d4",
       "tasks.md": "1d86b0f9f091dfe1c91a0d6ab277b148cf07986744578d05c68d5a0fecbe043b",
       "checklist.md": "9a44353ac3f4e4988cbba8eb01816943169250fdc8d2e6a3a68c83388181fdbb",
-      "implementation-summary.md": "8e5218d29a2d0655661c8e2d3ff51296e7569eb0b12bba7ac650ac13ea1bee18"
+      "implementation-summary.md": "5523d8c862247a5f7d4bb1676815f44eb4e37b72a2b688821a291b35fa7215f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

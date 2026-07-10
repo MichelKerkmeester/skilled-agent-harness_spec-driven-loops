@@ -3,7 +3,6 @@
   "specFolder": "system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/003-stress-and-skillmd-audit",
   "description": "The 008 parent identified a second audit gap around the system-spec-kit stress-test lane, `SKILL.md`, and changelog coverage",
   "keywords": [
-    "008",
     "parent",
     "identified",
     "second",
@@ -17,7 +16,7 @@
     "changelog",
     "coverage"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.813Z",
+  "lastUpdated": "2026-07-09T10:02:56.699Z",
   "specId": "003",
   "folderSlug": "stress-and-skillmd-audit",
   "parentChain": [

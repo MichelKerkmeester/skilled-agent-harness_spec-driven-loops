@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 007 Dark Flag Graduation Suite returned GRADUATE verdicts for 4 clusters (9 flags) across multihop tail-appends, code-graph staleness repair and bitemporal reads, advisor RRF fusion and conflict-rerank, and deep-loop finding dedup and gauges",
     "created_at": "2026-06-24T15:37:46.751Z",
-    "last_save_at": "2026-07-06T18:50:00.306Z",
+    "last_save_at": "2026-07-09T10:02:56.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "spec.md": "cf726766ba0a332374f2aa592aa2841a71be56d96cb798c77644353678de6a71",
       "plan.md": "75ace7f6d5551187cc5c643cd8f3677c4962d2daaf36b3f4258b12c1b67145d6",
       "tasks.md": "0ab78802f4addeb2b99ff18701c436535cbfe284379dcc5f827486cb9cb556ef",
-      "implementation-summary.md": "e7d64eaf2d35d418af8e9a7ac4737ab0d51f9c5eedde236fc5f17063f5a26e36",
+      "implementation-summary.md": "828a627cc06d58e368a09ff0a32e10e76f1b4f303e64f0cdf0994005df8fd442",
       "research/research.md": "b404b92f232860ed5a81165d1d4ceaad79e5e7895cfaa894dc9570f7010b7eaf"
     },
     "last_active_child_id": null,

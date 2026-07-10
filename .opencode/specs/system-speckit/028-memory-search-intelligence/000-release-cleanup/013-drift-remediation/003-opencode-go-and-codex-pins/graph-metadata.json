@@ -38,10 +38,10 @@
       "tasks",
       "verification",
       "checklist",
-      "2026-06-27"
+      "drift"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 2026-06-27 drift audit converged 21 findings in this phase covering the removed opencode-go gateway (purged to its last straggler, the matrix-adapter default model) and the codex agents (all brought to gpt-5.5)",
     "created_at": "2026-06-27T17:00:00Z",
-    "last_save_at": "2026-07-04T17:31:35.647Z",
+    "last_save_at": "2026-07-09T10:02:56.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-06-27T17:00:00Z",
     "source_docs": [
@@ -209,11 +209,11 @@
     ],
     "source_fingerprint": "sha256:46f87dbcd4e4e3a7ae6dc84f92cfb934c0769928214973b02750b6886d9da9f8",
     "source_doc_hashes": {
-      "spec.md": "b8b32dfdc6a06ca6d2597f93dab2e5b21d481e2394eb57a394f9cb2e7a1c1217",
-      "plan.md": "4d757554e880f2f2f94ebd306ac95e88cd48d523ef269579cccccc0ff2ebab11",
-      "tasks.md": "2c01597c0ae3d817cff0fde62d51ec0f7a2e0f97be4952134f1c51f8bdebb85f",
-      "checklist.md": "1f61eac2ea1877d06f96cfe715eea1dfb0a20a0dbbc66de7bf5932175cb581b6",
-      "implementation-summary.md": "8c78d24a37db076986d7cf901b7b9992bca41258f14237d8c221dd0d8f8ec5d4"
+      "spec.md": "b6b08c370d38521f83ccb91602ba1a4d843db098a43776b2858d396721937bd1",
+      "plan.md": "bea57d0e5635a888b0ba44d7798e06ce5071a85d05d1e8f0bb9022797242d1d2",
+      "tasks.md": "a7f19bf0287a50b75cecee525b842a66fcb68267682dd731eb55aa1e30dee7cf",
+      "checklist.md": "b91ae850844c8f2bcec7bcd4a8a5acba78a3f2bdf810d0f787a02b8af54cc57c",
+      "implementation-summary.md": "035a0c30e235bd8ff4094acb5cfaee98435965053ad6bac625b2da99e15772a3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -34,7 +34,6 @@
       "release cleanup phase parent"
     ],
     "key_topics": [
-      "028",
       "release",
       "cleanup",
       "memory",
@@ -45,7 +44,8 @@
       "parent",
       "packet",
       "release-cleanup",
-      "track"
+      "track",
+      "executed"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -113,7 +113,7 @@
     ],
     "causal_summary": "Packet 028's release-cleanup track has executed across its documentation surfaces and follow-on validation phases",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-07T12:14:08.271Z",
+    "last_save_at": "2026-07-09T10:02:55.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

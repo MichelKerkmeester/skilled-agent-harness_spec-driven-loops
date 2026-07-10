@@ -42,9 +42,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "specs/design/description.json",
-      "specs/design/graph-metadata.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -81,12 +79,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": "specs/design/description.json",
         "source": "derived"
       },
       {
@@ -190,11 +182,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The selected spec tracks were manually moved and regrouped, leaving gaps, duplicate numeric prefixes, and stale path references in spec metadata and markdown",
     "created_at": "2026-06-30T12:13:28.471Z",
-    "last_save_at": "2026-07-06T19:16:27.165Z",
+    "last_save_at": "2026-07-09T10:02:56.047Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +208,7 @@
       "plan.md": "5e150d9e82075854b9fbd7842aa553a125789a5251d8e7902232af0ac1e821f8",
       "tasks.md": "aaab9b6effff2befa7f46a4b1b7c43f3700f6d571e1db9e6f666a3b7c995ac54",
       "checklist.md": "4defc43199ee9bfa8e86c8770e7cc0589207bccf193e7d76f5b248f76ff4b93f",
-      "implementation-summary.md": "f8981973fa84fce6bdd00a61c2c13b48b353edb113957824fa028bfd4c6a89b0"
+      "implementation-summary.md": "f123bd2457e50649c3e487932ce105bdd052e0a7e7a401ce5267f2e73b1c5575"
     },
     "last_active_child_id": null,
     "last_active_at": null

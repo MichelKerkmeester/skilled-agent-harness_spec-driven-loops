@@ -8,9 +8,7 @@
     "packet",
     "030-agent-loops-improved",
     "phase",
-    "011",
     "child",
-    "006",
     "validate",
     "registry",
     "bridge",
@@ -18,7 +16,7 @@
     "system-spec-kit",
     "mcpserver"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.698Z",
+  "lastUpdated": "2026-07-09T10:02:56.573Z",
   "specId": "050",
   "folderSlug": "validate-sh-dist-freshness-and-repo-remediation",
   "parentChain": [

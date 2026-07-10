@@ -3,7 +3,6 @@
   "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate",
   "description": "The 029 model benchmark found that `/memory:search` confidently cited an off-corpus term",
   "keywords": [
-    "029",
     "model",
     "benchmark",
     "found",
@@ -14,7 +13,7 @@
     "off-corpus",
     "term"
   ],
-  "lastUpdated": "2026-06-30T12:42:37.738Z",
+  "lastUpdated": "2026-07-09T10:02:56.207Z",
   "specId": "025",
   "folderSlug": "off-corpus-eval-fixture-gate",
   "parentChain": [

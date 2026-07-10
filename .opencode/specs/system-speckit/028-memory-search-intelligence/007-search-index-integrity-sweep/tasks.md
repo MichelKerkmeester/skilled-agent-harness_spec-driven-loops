@@ -113,3 +113,7 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+- [ ] T021 [P1] The sweep verification proves file-path presence, vector ownership, and row totals but never that renamed identities are duplicate-free. Add post-sweep queries grouping by canonicalized `file_path` plus anchor/document identity, scan for old/new prefix pairs, and persist the duplicate/repoint metrics in the verification table (`implementation-summary.md:149-158`).

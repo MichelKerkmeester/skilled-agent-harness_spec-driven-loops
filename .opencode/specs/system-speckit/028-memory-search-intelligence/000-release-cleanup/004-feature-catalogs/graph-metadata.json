@@ -25,7 +25,6 @@
       "028 release cleanup 004-feature-catalogs"
     ],
     "key_topics": [
-      "028",
       "release",
       "cleanup",
       "feature",
@@ -36,7 +35,8 @@
       "feature-catalogs",
       "tasks",
       "checklist",
-      "004-feature-catalogs"
+      "004-feature-catalogs",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The every feature catalog document, including the system-spec-kit catalog and any sibling catalogs needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:24.431Z",
+    "last_save_at": "2026-07-09T10:02:55.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "plan.md": "126a63a6f5c58efe77d67b9c3813f65672363a82c48b600881580e3aeb6b9656",
       "tasks.md": "0ed4ebad66541bff89a38f1d0b035583a33a05dc55cc1c48d84dfb4ae0a52256",
       "checklist.md": "097fcf9eef4c43b22792d0faa9626a6ac2c1ce986eb36b5fd9dfe548aafe40cf",
-      "implementation-summary.md": "9f8f68d87faefe118d3d6603807a3c76f5159c57224e9017051d794315233dd8"
+      "implementation-summary.md": "6d8990b94e98cbc59a6926892f2f64ced5d4de678ad678c4c63cde8797a791f0"
     },
     "last_active_child_id": null,
     "last_active_at": null

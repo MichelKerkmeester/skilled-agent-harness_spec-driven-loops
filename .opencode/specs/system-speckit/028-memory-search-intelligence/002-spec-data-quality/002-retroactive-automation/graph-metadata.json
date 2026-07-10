@@ -85,15 +85,15 @@
     ],
     "causal_summary": "Retroactive Automation subgroup of the spec-data-quality track: scheduled/doctor/feedback automation over stored metadata.",
     "created_at": "2026-06-27T17:25:35.599Z",
-    "last_save_at": "2026-07-06T18:50:02.025Z",
+    "last_save_at": "2026-07-09T10:02:56.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:35f6eced5bb9fd50c24a333ff8f93a554d88d42b291fcd60743c38384919c81f",
+    "source_fingerprint": "sha256:25e57112d0187bc4bcb7fc5f50c11978a940b5c5ec23324955b3aee21fc8be4b",
     "source_doc_hashes": {
-      "spec.md": "1cb0ed5e797bf9fb74a160f8ddab9e7013fa31181977a5697348236ce1803c97"
+      "spec.md": "e66ca68ba186be869e8e3b08135eb163698325da7160926bb965bf2a90f1e306"
     },
     "last_active_child_id": null,
     "last_active_at": null

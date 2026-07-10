@@ -25,14 +25,14 @@
       "sweep",
       "findings",
       "remediation",
-      "031",
-      "fixes",
       "plan",
       "tasks",
       "checklist",
       "summary",
       "implementation",
-      "t-0381"
+      "t-0381",
+      "convergence",
+      "graph"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -41,8 +41,6 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl",
       "implementation-summary.md",
       "formatters/search-results.ts",
       "lib/search/hybrid-search.ts",
@@ -51,12 +49,14 @@
       "lib/eval/reporting-dashboard.ts",
       "mcp_server/formatters/search-results.ts",
       "mcp_server/lib/search/hybrid-search.ts",
+      "mcp_server/database/speckit-eval.db",
       "mcp_server/tests/generated-metadata-integrity.vitest.ts",
       "mcp_server/tests/graph-metadata-schema.vitest.ts",
       "lib/validation/preflight.ts",
       "mcp_server/hooks/memory-surface.ts",
       "feature_catalog/22--context-preservation/passive-context-enrichment.md",
-      "manual_testing_playbook/22--context-preservation/passive-context-enrichment.md"
+      "manual_testing_playbook/22--context-preservation/passive-context-enrichment.md",
+      "lib/code-graph-boundary.ts"
     ],
     "entities": [
       {
@@ -81,12 +81,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
         "source": "derived"
       },
       {
@@ -126,6 +120,12 @@
         "source": "derived"
       },
       {
+        "name": "speckit-eval.db",
+        "kind": "file",
+        "path": "mcp_server/database/speckit-eval.db",
+        "source": "derived"
+      },
+      {
         "name": "generated-metadata-integrity.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/generated-metadata-integrity.vitest.ts",
@@ -153,6 +153,12 @@
         "name": "passive-context-enrichment.md",
         "kind": "doc",
         "path": "feature_catalog/22--context-preservation/passive-context-enrichment.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph-boundary.ts",
+        "kind": "code",
+        "path": "lib/code-graph-boundary.ts",
         "source": "derived"
       },
       {
@@ -196,17 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Approach For",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 485-scenario manual testing playbook sweep (packet `031-manual-playbook-execution-sweep`) is confirming real, reproducible bugs across the spec-kit/code-graph/skill-advisor stack — feature-flag kill-switches that don't disable their feature, a \"read-only\" indexing path that mutates data, scoring-pipeline synchronization gaps, and more",
     "created_at": "2026-07-02T11:57:47.283Z",
-    "last_save_at": "2026-07-06T19:16:27.470Z",
+    "last_save_at": "2026-07-09T10:02:56.075Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,7 +222,7 @@
       "plan.md": "2078fc820e78cf30d596630bc261254145af00c4c777ad9bdc12dc752fd60ac5",
       "tasks.md": "69b9452ad969ca84aec2419ffbe8ea3eac6095649b12e0265bfee9246179db7b",
       "checklist.md": "7718efd51b08af488ea5165bd18afc615342544f76d514f802d6ea23bccbf1d2",
-      "implementation-summary.md": "a246c4a5a686ed0afbccfbd662240b4f26c1ccf7127ffc2d5a28ec53253691da"
+      "implementation-summary.md": "9f8afa434f2bb40c0bb444677d1897da49e65a209b7f3657816d3200fbb652cc"
     },
     "last_active_child_id": null,
     "last_active_at": null

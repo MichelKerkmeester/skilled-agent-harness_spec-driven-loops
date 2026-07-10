@@ -23,18 +23,18 @@
       "drift fix verification"
     ],
     "key_topics": [
-      "028",
       "drift",
       "remediation",
       "feature",
       "specification",
-      "fix",
       "verification",
       "audit",
       "produced",
-      "175",
       "converged",
-      "findings"
+      "findings",
+      "phase-parent",
+      "track",
+      "remediating"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -87,7 +87,7 @@
     ],
     "causal_summary": "The 028 drift audit produced 175 converged findings (6 P0 / 91 P1 / 78 P2)",
     "created_at": "2026-06-27T08:02:59.187Z",
-    "last_save_at": "2026-07-04T17:31:29.681Z",
+    "last_save_at": "2026-07-09T10:02:56.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -95,7 +95,7 @@
     ],
     "source_fingerprint": "sha256:d593c1b461dd1efeafec6f4c9327c0a54fe12fff93831196ec9255b2627579fe",
     "source_doc_hashes": {
-      "spec.md": "a3eac736700acdf60cfcef9102df5bf96d6eeb5a4de736f68b85a2a2d21e6670"
+      "spec.md": "76345e276e946c3f4aaf03725a37395d049ec267f7d99736632e08445ceedf6f"
     },
     "last_active_child_id": null,
     "last_active_at": null

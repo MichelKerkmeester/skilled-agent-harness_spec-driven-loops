@@ -68,7 +68,7 @@ _memory:
 ## Phase 3: Verification
 
 ### Unit Tests
-- [x] T009 Confirm template source comments are present [2m]
+- [x] T009 Confirm template source comments are present [2m] [Evidence: `spec.md:20`, `plan.md:20`, `tasks.md:20`, and `checklist.md:20` include template markers]
 
 ### Integration Tests
 - [x] T010 Run strict validation (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2 --strict`) [5m]
@@ -85,10 +85,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`.
-- [x] No `[B]` blocked tasks remaining.
-- [x] Strict validation passed.
-- [x] Checklist.md fully verified.
+- [x] All tasks marked `[x]`. [Evidence: `tasks.md:43-91` contains the completed task set]
+- [x] No `[B]` blocked tasks remaining. [Evidence: `tasks.md:43-91` contains 0 blocked task markers]
+- [x] Strict validation passed. [Evidence: `validate.sh` strict command is cited at `tasks.md:74`]
+- [x] Checklist.md fully verified. [Evidence: `checklist.md:131-138` records 7/7 P0, 8/8 P1, and 2/2 P2 verified]
 
 <!-- /ANCHOR:completion -->
 ---

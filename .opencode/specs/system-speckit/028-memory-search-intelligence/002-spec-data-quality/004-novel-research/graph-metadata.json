@@ -89,15 +89,15 @@
     ],
     "causal_summary": "Novel Research subgroup of the spec-data-quality track: novel data-quality research ideas.",
     "created_at": "2026-06-27T17:25:47.076Z",
-    "last_save_at": "2026-07-06T18:50:02.982Z",
+    "last_save_at": "2026-07-09T10:02:56.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:80ab2a96b5655b18bcddd99d5326f626f7f3c57fa48039b34df19bd930b59f0f",
+    "source_fingerprint": "sha256:7ef3eb6dc74965b2875ce4e767a2125c95ed040ac8bf8d777f516185e52f6408",
     "source_doc_hashes": {
-      "spec.md": "49b44ba43788a7701ae463897a465ddc965a94192407934b53e576626f2c2f65"
+      "spec.md": "6944af52aac10ec807c92d3932400324cc411190d62d38c994710c8fc1964802"
     },
     "last_active_child_id": null,
     "last_active_at": null

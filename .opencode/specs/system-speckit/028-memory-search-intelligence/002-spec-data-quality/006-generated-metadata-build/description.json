@@ -4,7 +4,6 @@
   "description": "Generated-Metadata Build subgroup of the spec-data-quality track: the generated-metadata build, full-repo migration, flag-graduation benchmark and",
   "keywords": [
     "generated-metadata",
-    "build",
     "subgroup",
     "spec-data-quality",
     "track",
@@ -13,7 +12,7 @@
     "flag-graduation",
     "benchmark"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.621Z",
+  "lastUpdated": "2026-07-09T10:02:56.467Z",
   "specId": "006",
   "folderSlug": "generated-metadata-build",
   "parentChain": [

@@ -43,16 +43,19 @@
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/mcp_server/tests/scoring-hardening.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.js",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
       "spec.md",
       "plan.md",
       "scripts/evals/run-false-confirm-eval.mjs",
       "lib/search/noise-floor.ts",
       "lib/search/search-flags.ts",
+      "dist/lib/search/search-flags.js",
+      "dist/lib/search/confidence-scoring.js",
+      "dist/formatters/search-results.js",
       "tests/scoring-hardening.vitest.ts",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -98,6 +101,18 @@
         "source": "derived"
       },
       {
+        "name": "confidence-scoring.d.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.js",
+        "source": "derived"
+      },
+      {
         "name": "run-false-confirm-eval.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs",
@@ -116,21 +131,21 @@
         "source": "derived"
       },
       {
+        "name": "search-flags.js",
+        "kind": "code",
+        "path": "dist/lib/search/search-flags.js",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.js",
+        "kind": "code",
+        "path": "dist/formatters/search-results.js",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -186,23 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Flag",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `/memory:search` verdict and citation path scores an off-corpus term as good on a lone spurious high-cosine hit",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-07-04T17:51:07.092Z",
+    "last_save_at": "2026-07-09T10:02:56.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,11 +217,11 @@
     ],
     "source_fingerprint": "sha256:acf3e9fb6ca014bfbc7f444507507ad4a3395cdca42a40b1aeb9eb7671f6440f",
     "source_doc_hashes": {
-      "spec.md": "c4eddfd46582ac88f298903ff7bed1bde8f94d178e4f7542a13dd1580a807bc2",
-      "plan.md": "3962147cd6632c412c4f6eeaf508690b8b1a42f87ab4c0042444fe9282c1b5f0",
-      "tasks.md": "04a26f204de7f194e09ed9d68549d1672e9d70feabefb0276989b38f0052c0bb",
-      "checklist.md": "10baa3f2c2b657f8aa1370ff0661295f495e339ece68d2180333f6acdbbaa91b",
-      "implementation-summary.md": "bd29fa6d234cc07012cb4638eb09e0fd55e2a563d98034a9bcd57a8e64bf6a78"
+      "spec.md": "73255e38fc3961eb556ae9777f54d5d7bad727474e5ec80ec92b44ff0e7adc8e",
+      "plan.md": "d1c69f27542bc38af23d1bc5ed0a107b5d506a317bf1e14549a04ecb131fe705",
+      "tasks.md": "ef286a513faab20734fe6af93f4946a9e590264ed75e93d048b83f973f22d281",
+      "checklist.md": "ea5aecc1da074df8249a16b1b0547591648a051e313b7b7a4f7f2ace8e3d3728",
+      "implementation-summary.md": "b981afe06014192a52de61542c79f948e0f0dbbfca05fc90e03063fda9c80041"
     },
     "last_active_child_id": null,
     "last_active_at": null

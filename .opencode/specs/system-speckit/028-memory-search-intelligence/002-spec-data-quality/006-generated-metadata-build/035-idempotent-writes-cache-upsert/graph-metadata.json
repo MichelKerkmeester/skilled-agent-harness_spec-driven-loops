@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The spec-kit description generators write `description.json` and the aggregate `descriptions.json` cache non-idempotently, so a rerun on unchanged content dirties files and buries real diffs under wall-clock churn",
     "created_at": "2026-06-27T17:15:41.988Z",
-    "last_save_at": "2026-07-06T18:49:37.666Z",
+    "last_save_at": "2026-07-09T10:02:56.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04b5a854cb7a58cda1a278b5d5b4c97b9d263997f613932f0f1b97c8ec090a80",
+    "source_fingerprint": "sha256:e6f8930e633c166839852f65af5014cbc7ad10dd60ccc366ac6dcb82d530653e",
     "source_doc_hashes": {
-      "spec.md": "d5b9a459a7627945a51963c40e43f73f1688c396093d705c6540fdb875741d07",
-      "plan.md": "569e8412eb516c94b499656d5e34b763cbbb54122cf61f0e282ce34da4c107b5",
-      "tasks.md": "3c6895a20b9dd071d5020a167a9edd0d36a4302e9ac379b93757d1cb60e666d8",
-      "checklist.md": "f884b94fc2249fdba1de39b0b0ba781d71bd28f9c7b7865e25eabaa4f4b1ca8f",
-      "implementation-summary.md": "a99b4ab721f7ada8d539efb4a8e16ad4d0b5acac62439352755752df1776f6fe"
+      "spec.md": "af2cafbff60f9faa02567e771b430c13df0dae038dc6026a073d9784eff94a54",
+      "plan.md": "d75b96438034200f1f2684419aefc0b71bc689a06d200d3329a542e6018894b1",
+      "tasks.md": "ae914e6d29d5cf67e30c6750512c62855867ebbcc4784d6a675fdaba20acd627",
+      "checklist.md": "378023aa1c34031a16f35f4d1f8c2b3b6f683c759393885fd8065e7ac0c6afbd",
+      "implementation-summary.md": "e7ed2e4de425899b555076d06a57d935e1a4435ab3d5c20b8c7d2fd5a48f02e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

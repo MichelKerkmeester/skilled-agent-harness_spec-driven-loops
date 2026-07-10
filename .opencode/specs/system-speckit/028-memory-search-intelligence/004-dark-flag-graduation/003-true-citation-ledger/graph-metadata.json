@@ -31,12 +31,12 @@
       "benchmark",
       "density",
       "feasibility",
-      "used",
       "unused",
       "signal",
       "separation",
       "emitter",
-      "firing"
+      "firing",
+      "trigger"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The 028 packet ships the true-citation emitter dark behind a default-off flag",
     "created_at": "2026-06-24T04:52:32.182Z",
-    "last_save_at": "2026-07-06T18:50:01.047Z",
+    "last_save_at": "2026-07-09T10:02:56.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "plan.md": "ff5e9b4c466032b3de453f9e65f474e0d64072c2891018855d108d94c895a4c6",
       "tasks.md": "0b988ae9570e0dc0205c36c323c1c34589f77dfe7eea51c3f5aae6cfc875aa12",
       "checklist.md": "19f20767a7c8de9f69aac7d40efa94e8dfc0d1520dae66da37fc86157bc9862a",
-      "implementation-summary.md": "cd57c7c6e6df180c2b60436514354f489abadd458b48fc470c650c05a77ce8b4"
+      "implementation-summary.md": "e6dd9fb3df7bd62aa5e38a367b42780d4a791ebeaa49d9fbfec09f6bb21554a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

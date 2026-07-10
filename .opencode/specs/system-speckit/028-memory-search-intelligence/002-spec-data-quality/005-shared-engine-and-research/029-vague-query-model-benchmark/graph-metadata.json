@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A pilot run showed that four different LLMs drive the `/memory:search` command very differently on the same vague query",
     "created_at": "2026-06-27T17:15:40.361Z",
-    "last_save_at": "2026-07-07T03:41:11.837Z",
+    "last_save_at": "2026-07-09T10:02:56.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3a0035141d9e13a165775cd0fb64124e44e9c496c18ce169b5d564bb6a9591c7",
+    "source_fingerprint": "sha256:891231ca5a063ebc3dfc9065b0e2e4279af77a949dd55fab7a28156909aed2f0",
     "source_doc_hashes": {
-      "spec.md": "057c1f5b011d0a63aec3070f441568af25477ab408445fb9972d4c8a4b4210f9",
-      "plan.md": "6052a0dba0b31cdcebf31e175a092048886e0bd1b68d9120468aa9a721b5db91",
-      "tasks.md": "f2c61507bd149e692ee04f34dcbacac93f0311a653727c8e10a2766530c4c904",
+      "spec.md": "a37996c17e57ab301f471ae442e507576b9a633f726f26b3af707a5df439182d",
+      "plan.md": "aae71b56305b035248bdc2aa1a6a40e712ca383062d78269b5dd31c29630cbca",
+      "tasks.md": "18f88f77eccae43fe66283c14bd4ef33f5de482f08b10fcd21b792b020c846a8",
       "checklist.md": "cbcfe5d5cd6cd0356f0dea6460668a27758e2b898eeab6e9158784ddaf7aa856",
-      "implementation-summary.md": "1af218c11b56c27bed73e87112a67da57fec934c48add526e8ca67b75f7236e0",
-      "research/research.md": "cbec4f8e9d10334a6fe936e937dd5ef43315460ee81877e20eeeea0df164ffde"
+      "implementation-summary.md": "15acc77ddadf318152af6c7a825ba14f58e3e85bd68178c0cf0d758a5c9892ac",
+      "research/research.md": "a020953f8f533c6326202d43cdf4c48a679f42e9b904ba13d15ba82ba07ee2b7"
     },
     "last_active_child_id": null,
     "last_active_at": null

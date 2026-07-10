@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intended behavior and no test stub that pins it",
     "created_at": "2026-06-27T17:15:38.197Z",
-    "last_save_at": "2026-07-06T18:49:45.274Z",
+    "last_save_at": "2026-07-09T10:02:56.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87428fec75029ce1cc99c99ef4b4baf42e74240face8f92ca312d7921b501acd",
+    "source_fingerprint": "sha256:caaf58620eff2e2454c5f5f30b38b9c4e9dde2f9340e7bb72c95a27f0513f141",
     "source_doc_hashes": {
-      "spec.md": "4fd2553cb56ba25416a8432e5381f9ffd36e9e2098c0f2cf67dcd12047eaa582",
-      "plan.md": "4b358f8c664eef83bd410740b601b59cd6484f4af9ead90bb2617aa287826ad2",
-      "tasks.md": "344d3b5ddf5b6eb6d49cb54e2fa6b19003b1eebb8f84a64fc69c65bc4841eabf",
-      "checklist.md": "2a57442b054cd322446a04c5e54608e7cbd86cafdcc2ecd2387705a5815dfabe",
-      "implementation-summary.md": "e522a75c4023ef964958faccdf1123d2b866502b563b4127f002f10986cc5e7e"
+      "spec.md": "1c15915e11a4ad68f891bddca046f2a1349933b608cb5577aaa63f93f0adade1",
+      "plan.md": "e90fe472906f5d8fe18ac4568c9d07c05656e4765446e32e7fd10e1b3aee8d46",
+      "tasks.md": "d17a76cd8137ead24c653a1e969f01de4a96f5c30f969e5f2bc61daced331a47",
+      "checklist.md": "c1633b0aafcfb716fc1547435d467affbc9c4615dce2df3979e82c1020ee23c6",
+      "implementation-summary.md": "4fba8a993811740186dafab6caec7d7fbf95d5dcbf202efa7d7aa7cdf3ceb19a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -108,3 +108,11 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+- [ ] T024 [P1] A failing folder absent from a non-empty baseline falls through to `status: 'pass'` (`scripts/sweep/strict-pass-freshness.ts:189`). Every current failure must resolve to `regression`, `first-run`, or another explicit failing state — never `pass`. Evidence: partial-baseline test (one folder recorded passing, a different failing folder absent).
+- [ ] T025 [P1] The scheduled workflow never supplies `--baseline`, so every failure is a non-failing first-run and the gate can stay green indefinitely (`.github/workflows/strict-pass-freshness-sweep.yml:28`). Persist the previous JSON report as artifact/cache, pass it via `--baseline`, publish the new report for the next run.
+- [ ] T026 [P1] Both enforce flags accept only literal lowercase `true` while ENV_REFERENCE documents `true`/`1` (`scripts/rules/check-metadata-disk-consistency.sh:55`, `check-status-cross-doc-consistency.sh:51`). Adopt one shared boolean parser; test `true`, `1`, uppercase, false, unset.
+- [ ] T027 [P2] The metadata helper swallows malformed JSON as absent, producing false passes (`scripts/rules/check-metadata-disk-consistency-helper.cjs:27`). Return structured parse errors so the rule emits at least a warning.
+- [ ] T028 [P2] `resolveInsideRepo()` is lexical; a symlink inside the repo can point outside and pass containment (`strict-pass-freshness.ts:82`). Compare `fs.realpathSync()` of root and requested roots.

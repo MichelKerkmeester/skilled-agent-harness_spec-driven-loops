@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Fix 5 flag `SPECKITDETERMINISTICRANKING` ships default-off",
     "created_at": "2026-06-27T17:15:43.899Z",
-    "last_save_at": "2026-07-06T18:49:36.886Z",
+    "last_save_at": "2026-07-09T10:02:56.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b09287aaa4d50000fbcdcce393c6f78efe033e2500bfc3da013f1b2a68064ca2",
+    "source_fingerprint": "sha256:2a09cad5f6c22dfb536b709ed032aec7f8209965a77d153d09d907d8f54a3e4a",
     "source_doc_hashes": {
-      "spec.md": "b469a1696edf6f45fe71124f7c4f13fb544d59c5a4fa023e00ec7a0afc3d19d2",
-      "plan.md": "e6a1c48dc1555f5c2bca6901c61a5e49f95ef060f9eb29b788996048d367547f",
-      "tasks.md": "e20fe151ca0038a174d7a1f1507d3b4f7299af3e62d89b841d7a754e156e3a6a",
-      "checklist.md": "d0cec32a8663cbc2e57040883bd2d117e866105d5cda4794c8d4d740e18fefdc",
-      "implementation-summary.md": "4df797b4730f1d6de5275e28995b7b658e3e460197cc0cd7759ed2c721275f7a"
+      "spec.md": "f27caa54fbea75de87cd5a65f0d1f44473d8fef68849f8c06eea025840a63173",
+      "plan.md": "64f8cf7f727cddea60fbfd20db5f1e812e35c78830476e3b6e167af473500e29",
+      "tasks.md": "8ca3721844d308d731507d751d697831a4adf1fca0da5bcdc2c3f72bd83da194",
+      "checklist.md": "ab16b823fbc768b1a575a012ead84c41fd8e6db1e13b7709bb06405a9544f80b",
+      "implementation-summary.md": "6735ebf30632aa5b8de99648bd5366cf2850062d519c3d6ad41566cf6940d5c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

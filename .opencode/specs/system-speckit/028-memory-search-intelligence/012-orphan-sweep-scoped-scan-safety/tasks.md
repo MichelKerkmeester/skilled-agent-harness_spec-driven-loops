@@ -115,3 +115,13 @@ each other -- either may be implemented first.
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+- [ ] T018 [P1] The wall-clock budget and marker-refresh cadence are only checked between pages, so one slow 200-row deletion page can exceed both (`mcp_server/handlers/memory-index.ts:811-838`). Pass a deadline/refresh callback into page deletion and check between bounded row chunks.
+- [ ] T019 [P1] `SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS`/`SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS` accept arbitrarily large values (`handlers/memory-index.ts:298`). Clamp/reject values against `MAINTENANCE_MARKER_REFRESH_BEFORE_MS` and require cadence below the effective budget.
+- [ ] T020 [P1] The scoped-scan gating test mocks out `sweepOrphanIndexRows`, so the global-deletion path is never exercised (`mcp_server/tests/memory-index-scoped-scan-gating.vitest.ts:85`). Add a real-DB scoped test with an unrelated absent row and unrelated suspect; assert both survive while only scoped stale candidates are cleaned.
+- [ ] T021 [P2] Refresh-cadence tests assert invocation order, not elapsed time, and leak `SPECKIT_ORPHAN_SWEEP_*` env overrides (`mcp_server/tests/orphan-sweep-time-budget-and-refresh.vitest.ts:178,:156`). Inject a clock, assert consecutive gap bounds, restore env in teardown.
+- [ ] T022 [P2] Orphan-sweep cursor persistence failures are swallowed as success (`handlers/memory-index.ts:321`). Surface the sweep as incomplete/failed with a retryable diagnostic.
+- [ ] T023 [P2] Document both sweep env vars (defaults, units, bounds, cautions) in `ENV_REFERENCE.md`; correct `checklist.md:141` ("structurally impossible" is false — page processing occurs between checks) and the `tasks.md:77/:86` test claims.
+- [ ] T024 [P2] The claimed byte-identical full-tree regression test mocks discovery to `[]` (`memory-index-scoped-scan-gating.vitest.ts:302`). Exercise real `findSpecDocuments` against a fixture tree and assert the exact discovered path set.

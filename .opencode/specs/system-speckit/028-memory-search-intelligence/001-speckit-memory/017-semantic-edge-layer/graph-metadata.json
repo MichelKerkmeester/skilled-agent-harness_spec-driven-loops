@@ -27,7 +27,6 @@
       "GR-fact-embedding-on-edge tasks"
     ],
     "key_topics": [
-      "028",
       "semantic",
       "edge",
       "layer",
@@ -38,7 +37,8 @@
       "gr-fact-embedding-on-edge",
       "retrieval",
       "substrate",
-      "vector"
+      "vector",
+      "index"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The causal graph is substrate-blind at the edge",
     "created_at": "2026-06-19T05:47:05.578Z",
-    "last_save_at": "2026-07-06T19:16:32.424Z",
+    "last_save_at": "2026-07-09T10:02:56.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -230,7 +230,7 @@
       "tasks.md": "6360a6cac1968e997f5da672177253e65264a15e8a5c07a26e51c3b43b1c4c51",
       "checklist.md": "c62755c3b60cca387bfd736b949a1c27339a7f9385ec09fcea849a31cc09d9bc",
       "decision-record.md": "2a8aa532ac065a3880ec11177787b63f62091da31987f1a7a6192833ab95ee14",
-      "implementation-summary.md": "71dabd0b4d6d88b75c9733a854fa567466b280677db3b97be4f69e2f9065f841"
+      "implementation-summary.md": "c5c8dbe1e30100971eb95001747a84ef8c041e29d07be13913bb4cc4c67b5a8d"
     },
     "last_active_child_id": null,
     "last_active_at": null

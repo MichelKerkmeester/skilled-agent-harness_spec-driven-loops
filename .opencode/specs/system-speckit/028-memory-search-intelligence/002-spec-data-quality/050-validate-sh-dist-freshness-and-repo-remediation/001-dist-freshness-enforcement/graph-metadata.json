@@ -45,6 +45,7 @@
       ".opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh",
       ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
       ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+      "mcp_server/dist/lib/validation/orchestrator.js",
       "scripts/spec/validate.sh",
       "spec.md",
       "plan.md",
@@ -104,6 +105,12 @@
         "name": "test-validation-extended.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.js",
+        "kind": "code",
+        "path": "mcp_server/dist/lib/validation/orchestrator.js",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`validate.sh`'s default path (`runnodeorchestrator()`, `scripts/spec/validate.sh:975-989`) only checks `[[ -f \"$orchestratorjs\" ]]` -- file existence -- before trusting the compiled `mcpserver/dist/lib/validation/orchestrator.js`",
     "created_at": "2026-07-02T03:37:12.940Z",
-    "last_save_at": "2026-07-06T18:49:35.195Z",
+    "last_save_at": "2026-07-09T10:02:56.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd487cf48ef78c99308e508490a1367a6ed5ce5ae48592fd2a57ac6c0f0297b6",
+    "source_fingerprint": "sha256:9f5973cbd8aee529562b95bb910d3605a56d1e99ca8fc38a71600673b7467277",
     "source_doc_hashes": {
-      "spec.md": "a98841b935562ce87fbffb1615b1f17bc60b5b783f19514d0df2783ee2f20766",
-      "plan.md": "c151f885b0bf755441b2eed12fed2cb724c148159bea79a301d0b63a2da60d48",
-      "tasks.md": "9c29906ec3eb0fcef97af7f73f4f33b11344adc50ef6f928897f6250e1a1b934",
-      "implementation-summary.md": "20e561a864ee086234d98a42edf71368dcc311c8d0310a487bfa54e128c79768"
+      "spec.md": "6d698780e9af77a98a43a75988b52f2f814ee7541e8e71ee001d5b81da804743",
+      "plan.md": "897ec20252fec1a011756456f812fb03861817d8b7544ae0726b7d19d317349e",
+      "tasks.md": "6d2f0af9df14a91e5a3b1e3c46cd6efe017bc68b2eab9366d795e40a9534196b",
+      "implementation-summary.md": "64a2122ac3aac9b6ec32f1e3de553ab2989af7a31f3cc2c3a05c602d340eabda"
     },
     "last_active_child_id": null,
     "last_active_at": null

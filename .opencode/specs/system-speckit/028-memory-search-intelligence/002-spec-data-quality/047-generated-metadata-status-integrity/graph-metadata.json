@@ -20,7 +20,6 @@
       "deriveStatus false complete fix"
     ],
     "key_topics": [
-      "generated",
       "metadata",
       "status",
       "integrity",
@@ -30,8 +29,9 @@
       "graph",
       "defect",
       "plan",
-      "fix",
-      "tasks"
+      "tasks",
+      "graph-metadata-parser",
+      "returns"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1215-1218`) returns `status: 'complete'` whenever `implementation-summary.md` exists and `checklist.md` does not, regardless of whether the doc is a real completed summary or an unfilled Level-1 scaffold",
     "created_at": "2026-07-02T03:22:45Z",
-    "last_save_at": "2026-07-06T18:49:53.375Z",
+    "last_save_at": "2026-07-09T10:02:56.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2aa38ad881d33c6ceee09af5aaaef0e873811f497e2c6f236772dffb5930df44",
+    "source_fingerprint": "sha256:f1d8023249e5886a86a234d8fbfac4a2cd9d3bc0f99be4898982c41553ba3948",
     "source_doc_hashes": {
-      "spec.md": "41a865340bbba10b3c3aecf6ff83d28f6449733c68f03b15525e8ab18f992dc5",
-      "plan.md": "98fafb3f0014e4275fc84586e4474864c66c086b367a02b2bbd59e065e724d61",
-      "tasks.md": "4bd27ac35ed81cb1e2902d150adfec06757895f40dc6b9db301f9f2e59b58571",
-      "implementation-summary.md": "0b8abbdb6da3ea41b4d7ba13f10413ad9c2dde30a94b634abf4d15c51aee2687"
+      "spec.md": "a854b622edddf5c6984703380eb41a81e6e8e3c9c55356a4f7cd8345fabc6ba1",
+      "plan.md": "59e056ea6143ca666c256c388745f1c8189b48e272061bff44d8ffc01b269017",
+      "tasks.md": "a4dd6ba8d88f3bd3c5f1fa4ee52b9b6216d7aaf6f8adfaa40f5b998f02bf6b24",
+      "implementation-summary.md": "df39580cf325a4d6bcba21364cd3cd2a041ebde2937f5e8a673429e10865fc6e"
     },
     "last_active_child_id": null,
     "last_active_at": null

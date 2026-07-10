@@ -53,8 +53,8 @@ $ node .opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs
 check-markdown-links: 3515 files, 7862 links checked, 48 broken
 
 Broken markdown links (target resolves under neither the file dir nor repo root):
-  .opencode/skills/cli-opencode/assets/prompt_quality_card.md  ](../../sk-prompt-models/references/models/kimi-k2.6.md)
-  .opencode/skills/cli-opencode/assets/prompt_quality_card.md  ](../../sk-prompt-models/references/models/qwen3.6.md)
+  .opencode/skills/cli-opencode/assets/prompt_quality_card.md  ](../../sk-prompt/prompt-models/references/models/kimi-k2.6.md)
+  .opencode/skills/cli-opencode/assets/prompt_quality_card.md  ](../../sk-prompt/prompt-models/references/models/qwen3.6.md)
   .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md  ](02--external-dispatch/from-opencode-handback.md)
   .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md  ](06--integration-patterns/cross-ai-handback-opencode.md)
   .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md  ](02--external-dispatch/from-opencode-handback.md)

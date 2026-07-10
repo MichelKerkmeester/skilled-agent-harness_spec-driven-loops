@@ -12,7 +12,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 Route /create:benchmark to its presentation contract and workflow YAML for creating or updating MCP benchmark folders and reports.
 
-## 2. Owned Assets
+## 2. Routing Assets
 
 | Asset | Path | Purpose |
 | --- | --- | --- |

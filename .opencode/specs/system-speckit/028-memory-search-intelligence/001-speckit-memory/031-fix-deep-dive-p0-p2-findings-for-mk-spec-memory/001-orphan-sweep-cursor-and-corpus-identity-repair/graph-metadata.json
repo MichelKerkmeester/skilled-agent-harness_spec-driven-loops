@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`, which is echoed in scan results but never persisted or fed back, so every scan re-checks the same ~200 lowest-id rows forever (report §2 Chain B; ledger L2, live-verified 🟢)",
     "created_at": "2026-07-03T09:44:17Z",
-    "last_save_at": "2026-07-04T17:51:11.784Z",
+    "last_save_at": "2026-07-09T10:02:56.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,12 +223,12 @@
     ],
     "source_fingerprint": "sha256:7c07216251e2cf7c487ab0681e19cc794e4d77e23b9a4382ae076f9355dbee04",
     "source_doc_hashes": {
-      "spec.md": "ae04153913c61d53c8d33cb76007e97ce25ca108c2531d920e969e43e470246f",
-      "plan.md": "a9309cc902667e70e8f4b0359fd05f7ce7f8f9033d7975912b887069995d36ba",
-      "tasks.md": "5e19f08808c414d5f041cdf26cd94371cb79c427f3dc5df3a032c79cfb2e77ea",
-      "checklist.md": "ecff3a5d1e2b950139851b3d5f0cb897f12650de4d9a7da73dd1102dbd1091c7",
-      "decision-record.md": "6798297d1f37225b8579ff350fd620b7cd6ec517e83ab193cb9f9e5489d61446",
-      "implementation-summary.md": "d464c0a022c8cd78e7a9b3894a9826ad8d0872cfa4b05adadca331a7e29ea2c1"
+      "spec.md": "de7090e9aaf2f286b2688a94dca45ed9cf4ecaf428354816f1a26db744e83719",
+      "plan.md": "b8a32d10ce5dc939145d47da3adf544a1d7b4d3fcddfbbe01c66cecac3f8421d",
+      "tasks.md": "64a440693501e357e2a4d94a0141ace94b5ec8c2e0a44807f7c7a989e365c0f0",
+      "checklist.md": "06744174c8cd5cc20eeba47ca6fc5fa6c68e9fac927a4fce814410fadbc4db39",
+      "decision-record.md": "79570294b383195e215a6d7849d58edb1910c17c7e7c402010391c2c5e02adaf",
+      "implementation-summary.md": "7c924b091f0f65e111e9d39d2254c0647f805a0f1cdc3597f2e1ac232727c4e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,13 +9,13 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__mk_code_index__code_graph_status, mc
 
 This command is a thin router. It resolves update flags and setup values, then loads the update workflow YAML and the presentation contract.
 
-## 1. ROUTER CONTRACT
+## Router Contract
 
 Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
 
 Load the presentation contract before showing startup questions, mid-run prompts, dashboards, validation displays, result summaries, or restart-required text.
 
-## 2. OWNED ASSETS
+## Owned Assets
 
 | Purpose | Asset |
 |---------|-------|
@@ -24,7 +24,7 @@ Load the presentation contract before showing startup questions, mid-run prompts
 
 No workflow-asset gap exists for this command.
 
-## 3. EXECUTION TARGETS
+## Execution Order
 
 1. Read `.opencode/commands/doctor/assets/doctor_update_presentation.txt`.
 2. Parse `$ARGUMENTS` for supported flags: `--force`, `--no-snapshot`, `--cleanup-legacy`, `--migrate`, `--keep-snapshots`, and `--resume-bootstrap`.
@@ -35,7 +35,7 @@ No workflow-asset gap exists for this command.
 7. Execute the YAML phase by phase.
 8. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, restart-required display, and next-step text.
 
-## 4. ROUTING RULES
+## Routing Rules
 
 - This command is always interactive; deleted mode suffixes are invalid.
 - Snapshot every SQLite database before mutation unless `--no-snapshot` was explicitly passed.
@@ -47,7 +47,7 @@ No workflow-asset gap exists for this command.
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
-## 5. PRESENTATION BOUNDARY
+## Presentation Boundary
 
 The following content lives only in `.opencode/commands/doctor/assets/doctor_update_presentation.txt`:
 

@@ -52,7 +52,7 @@
       ".opencode/specs/sk-design/z_archive/description.json",
       ".opencode/specs/system-skill-advisor/z_archive/description.json",
       ".opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/description.json",
-      ".opencode/specs/system-deep-loop/z_archive/021-deep-skill-evolution/z_archive/description.json",
+      ".opencode/specs/sk-design/008-sk-design-parent/external/z_archive/description.json",
       ".opencode/specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/description.json",
       "implementation-summary.md",
       "plan.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "There are nine `zarchive` root directories across `.opencode/specs` (`system-speckit/zarchive`, `system-deep-loop/zarchive`, `skilled-agent-orchestration/zarchive`, `sk-design/zarchive`, `system-skill-advisor/zarchive`, `system-speckit/026-graph-and-context-optimization/zarchive`, `sk-design/008-sk-design-parent/external/zarchive`, plus two nested roots inside already-archived folders)",
     "created_at": "2026-07-06T06:03:39Z",
-    "last_save_at": "2026-07-06T18:49:56.292Z",
+    "last_save_at": "2026-07-09T10:02:56.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e28dc1a5e84bc6f3421fa6487d263662e53214ef3feb6736555fcf1febdf822",
+    "source_fingerprint": "sha256:3eb2889bd8b083af699c72652498668c2d9a9ba62650a38ff233c51ff447b213",
     "source_doc_hashes": {
-      "spec.md": "efa80001593b456c4c9c112782f0c98ff2eec135290f5f43c4e42a9dd7d9ae1f",
-      "plan.md": "a9c9dd78f9f4550ccc5b9c1cdfb827adfe13c1b8b28e24e1a351b37cce63e2bf",
-      "tasks.md": "9c24636deed116115851b8822284bce945bbad67ec7b60982b4e37d91a1bff8c",
-      "checklist.md": "901b1971b5e15852bb73d21291b9df5c2761e93fc309e6c60544ec3c81712ee4",
-      "implementation-summary.md": "f755192a4dce404737b4ab86f5447100dc4b28f82c644908bbaa6530be2d26ee"
+      "spec.md": "f2a6c819501d888e032248c73541cafcba52bf0a3d1c07e639a03426103359b5",
+      "plan.md": "11fc729833c87654753a5c2a3af053b75bf7ddb2b23b16c4435a5334ff6e4bf4",
+      "tasks.md": "b9b420d8316a44aa0facd84d4d7d93fe1754556dbbab34168e2e305c63b96e7e",
+      "checklist.md": "e64421d60ac9ac9cd1da33d16ecdc54050fc16a1c557745e2d3b7ad3ef955598",
+      "implementation-summary.md": "87a11d89b6ef0094d08a5f27c380370e98fb4b1ccc97c3b7ce7ddd07d01df6c1"
     },
     "last_active_child_id": null,
     "last_active_at": null

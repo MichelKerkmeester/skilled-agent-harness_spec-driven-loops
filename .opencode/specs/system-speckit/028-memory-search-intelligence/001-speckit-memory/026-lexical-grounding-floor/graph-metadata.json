@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `/memory:search` verdict cites an off-corpus term with confidence",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-07-06T19:16:35.192Z",
+    "last_save_at": "2026-07-09T10:02:56.213Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "plan.md": "89fadb3b2977a8cec9c0e13a12de8982de0188472264567a94af706d39d4b57f",
       "tasks.md": "cb8e460dcf4acd03eb5884a933bf21e8792f274c7f59ebe7226ad50db96f3880",
       "checklist.md": "7e35d7945ee296437e167895c643b01aa6220d7dd1ecd8858045734d4ff7bebc",
-      "implementation-summary.md": "4ea316b3e245f6d5071f29ad183cfc908ac5bcd775fd4cfdbb0a3754d28eed0f"
+      "implementation-summary.md": "d074cccff173d89fb0f353d1d79b5aed00ce95ba6c5aea414085d261771d49c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

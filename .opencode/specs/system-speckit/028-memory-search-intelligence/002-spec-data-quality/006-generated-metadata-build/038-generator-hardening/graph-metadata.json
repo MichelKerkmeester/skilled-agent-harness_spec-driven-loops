@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a live crash, both are protections against silent drift and churn",
     "created_at": "2026-06-27T17:15:42.806Z",
-    "last_save_at": "2026-07-06T18:49:44.931Z",
+    "last_save_at": "2026-07-09T10:02:56.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b858dbdedb1d2f4b27774dd53d587e5e19713c3cc180fe27749895981df3f5bd",
+    "source_fingerprint": "sha256:c9f456b22ff0fed45f567844afdb6e47b85e8497eb6692e523a0b5880633c5c4",
     "source_doc_hashes": {
-      "spec.md": "e593821d96d7dec5fc80ed11ecaa0c0369c645792e6879cadf9f0b67fc12e18e",
-      "plan.md": "783546f968eeefff6af16ac1614d0225f14b0ef0dbe51495eef79a074c5fc215",
-      "tasks.md": "18f209fa986737900fba318c379e0763199ab1177f610b54db13f73becee2ec4",
-      "checklist.md": "550212f0cdabfb2a7c3e6b0609c55678e0c7950ae8c8520a6cb16ef2afa4f5b2",
-      "implementation-summary.md": "93a368b15057dd3d37a1b3d9f82b76a5f9f4c24bf92c8f32f9c3193e2565f6fd"
+      "spec.md": "0fe439d159ceda2a31adfe9daa97f45967d0106eb7fd8d76ba41d0f5555399ed",
+      "plan.md": "5ed1af1cacc37b8f6c605918a25482c93f56999cdbb2894037f02bfcc5a8f794",
+      "tasks.md": "70837f70bbe4129b49b7a69f581ed391ed38320c17a64736b6b261ee36d72935",
+      "checklist.md": "f9c2704b3098954d33cf4a97842faa7df9f275b84152ed01bc0736dfb3eb7a19",
+      "implementation-summary.md": "f11b310cbae6d5f594960379fc10d4907a6db2e705f19172c0b66c197d586c70"
     },
     "last_active_child_id": null,
     "last_active_at": null

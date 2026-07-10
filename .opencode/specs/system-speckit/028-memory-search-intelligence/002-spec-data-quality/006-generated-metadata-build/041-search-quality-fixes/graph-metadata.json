@@ -27,16 +27,16 @@
     "key_topics": [
       "search",
       "quality",
-      "fixes",
       "evidence",
       "gap",
       "cap",
-      "fix",
       "deterministic",
       "ranking",
       "flag",
-      "029",
-      "findings"
+      "findings",
+      "remediation",
+      "plan",
+      "bridge"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The 029 deep-research traced the vague-query benchmark findings to six fixable causes in the live memory-search pipeline",
     "created_at": "2026-06-27T17:15:43.628Z",
-    "last_save_at": "2026-07-06T18:49:43.436Z",
+    "last_save_at": "2026-07-09T10:02:56.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b42d72fa53ad9b3f06284cc73e4eb1d690c23ab622fd1ee0ad578671d7fa4ce6",
+    "source_fingerprint": "sha256:77d2b78c544097cd4ce7ebfcc4339407a60920e09099b8426e678193cf80dca6",
     "source_doc_hashes": {
-      "spec.md": "337a7b30f1f75ed6e05ab46a573e52ec507edde500643bdb4d16f5e335fa0045",
-      "plan.md": "daa9f69e0c469e2c6f4b3aaf9be1cbba77b2f282acf43126f057fd90e90f8fbb",
-      "tasks.md": "fc43369d558fad8cdb4fc3cfcec7f842946fefd1943d51e86c3f8da057c60d3f",
-      "checklist.md": "3f9ebb5b6f53b03906f4b39d456c24b2d140c251a3220c77ed7fe4c3b344cda4",
-      "implementation-summary.md": "15c5e4ca94c9f53e9b517e8c0357b680b91ca590c4b6f4f595520e4de9cbce9b"
+      "spec.md": "27ba606b2a18ceb597bbf6f9b90dfbde276667c7273c0a2173bdc02c707642d2",
+      "plan.md": "f2d38c85163a20a755cd440494a90c3911d4b5587a21776e17647441cdc9c782",
+      "tasks.md": "865b1c4fb1d61e90007b5686009c90587e97c0e86c9485c3ac4c6497f87b1d5d",
+      "checklist.md": "26f9bd5b4db10f042a3d9cbdb663aeb490918d1a17effde341637409ce8115a2",
+      "implementation-summary.md": "a26f9f214dd72f362fdbe4a6c97c3fc9db209746005bcb5a109d5fd3f60c491d"
     },
     "last_active_child_id": null,
     "last_active_at": null

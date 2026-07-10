@@ -119,3 +119,16 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+> Source: 10-slice parallel audit of the 028 wave; findings verified against the working tree. This child owns its own presentation fixes plus the cross-cutting MCP public-contract parity items (no dedicated surface child carries a tasks.md).
+
+- [ ] T021 [P1] Stop claiming budget fit when the 10-row compaction floor exceeds the caller budget: enforce a minimum accepted `tokenBudget`, compact floored rows further, or return an explicit `floorExceededBudget` state (`mcp_server/handlers/memory-context.ts:718-726`). Evidence: matrix test with budgets below/at/above the minimum 10-row payload.
+- [ ] T022 [P1] Upward `tokenBudget` overrides are undone by the outer envelope re-trim to the fixed per-tool budget (`mcp_server/context-server.ts:1475`). Give one layer ownership of enforcement or make the envelope honor the validated override. Evidence: MCP-dispatch-level test with an override above 3500 asserting the serialized response size.
+- [ ] T023 [P2] Metadata-only compaction drops snake-case `spec_folder`: add the `?? r.spec_folder` fallback used by direct compaction to both metadata-only mappers (`mcp_server/handlers/memory-context.ts:785-795`). Evidence: snake-case and mixed-shape fixture coverage.
+- [ ] T024 [P1] `embedder_set.dryRun` is implemented (Zod + handler) but absent from the advertised MCP schema (`mcp_server/tool-schemas.ts:858` vs `schemas/tool-input-schemas.ts:566-569`). Add it and a parity test asserting every Zod property is publicly advertised.
+- [ ] T025 [P2] Remove the four dead `skill_graph_*` registrations from `schemas/tool-input-schemas.ts:637` (migrated tools, no dispatcher); assert exact name-set equality across TOOL_DEFINITIONS, TOOL_SCHEMAS, and dispatcher TOOL_NAMES.
+- [ ] T026 [P2] The dispatch test covers 24 of 41 advertised tools and never calls `dispatchTool` (`mcp_server/tests/mcp-tool-dispatch.vitest.ts:72`). Iterate TOOL_DEFINITIONS, dispatch each, assert one-and-only-one dispatcher per name.
+- [ ] T027 [P2] `tools/types.ts` dispatch interfaces lag the schemas (EmbedderSetArgs, SearchArgs, HealthArgs, SaveArgs, SessionResumeArgs, CheckpointCreateArgs, CausalStatsArgs, IngestStartArgs). Generate/infer from Zod or add compile-time parity assertions (`mcp_server/tools/types.ts:178`).
+- [ ] T028 [P2] `memory_context.includeConstitutional` is consumed by the handler and allow-listed but missing from the Zod/public schema, so strict validation rejects it (`schemas/tool-input-schemas.ts:182` vs `:653`, `handlers/memory-context.ts:1860`). Add it consistently or remove the dead option.

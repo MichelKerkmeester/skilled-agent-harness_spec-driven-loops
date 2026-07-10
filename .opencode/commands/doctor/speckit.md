@@ -9,20 +9,20 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__mk_code_index__code_gra
 
 This command is a thin router. It resolves the target and setup values, then loads the target workflow YAML and the presentation contract.
 
-## 1. ROUTER CONTRACT
+## Router Contract
 
 Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
 
 Load the presentation contract before showing startup questions, setup dashboards, approval prompts, diagnostic dashboards, result summaries, or next-step text.
 
-## 2. OWNED ASSETS
+## Owned Assets
 
 | Purpose | Asset |
 |---------|-------|
 | Route manifest | `.opencode/commands/doctor/_routes.yaml` |
 | Presentation source of truth | `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt` |
 
-## 3. WORKFLOW ASSETS
+## Workflow Assets
 
 These existing YAML assets are referenced only. The router must not modify them.
 
@@ -40,7 +40,7 @@ These existing YAML assets are referenced only. The router must not modify them.
 
 No workflow-asset gap exists for this command.
 
-## 4. EXECUTION TARGETS
+## Execution Order
 
 1. Read `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`.
 2. Read `.opencode/commands/doctor/_routes.yaml`.
@@ -53,7 +53,7 @@ No workflow-asset gap exists for this command.
 9. Load the resolved workflow YAML from `.opencode/commands/doctor/assets/<yaml>` and execute it step by step.
 10. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
 
-## 5. ROUTING RULES
+## Routing Rules
 
 - `_routes.yaml` is the canonical routing and mutation-class manifest.
 - `execution_mode` is always `INTERACTIVE`.
@@ -64,7 +64,7 @@ No workflow-asset gap exists for this command.
 - Companion commands are not routed through this file: `/doctor:update` and `/doctor:mcp install|debug` have their own routers.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
-## 6. PRESENTATION BOUNDARY
+## Presentation Boundary
 
 The following content lives only in `.opencode/commands/doctor/assets/doctor_speckit_presentation.txt`:
 

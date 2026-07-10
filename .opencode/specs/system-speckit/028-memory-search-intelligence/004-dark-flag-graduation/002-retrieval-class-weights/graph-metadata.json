@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`SPECKITRETRIEVALCLASSROUTING` is built, default-off, and never measured against the real corpus on the production path",
     "created_at": "2026-06-24T04:58:22.472Z",
-    "last_save_at": "2026-07-06T18:49:56.653Z",
+    "last_save_at": "2026-07-09T10:02:56.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "plan.md": "7edcc04a122eb8d62f27f0bee3ea4cd34b9d087e8e167a4b8e91312098c2ecfc",
       "tasks.md": "6b084858b2eda7660ff9eecbefd1289696eff46316062f2341db80ffd3927192",
       "checklist.md": "bd7c4216f9f5141ab6ade593b533fea106a9fc68196265461a0eb1ff8debdd9d",
-      "implementation-summary.md": "e5673719cb0423508b241d0beaf1b15e1152ba391bf93a8566a748c4558e10a5"
+      "implementation-summary.md": "e50f3f195501e6aadf8d1c85840005f1cb421b5c8e7254cb5a5f96ac2f286aee"
     },
     "last_active_child_id": null,
     "last_active_at": null

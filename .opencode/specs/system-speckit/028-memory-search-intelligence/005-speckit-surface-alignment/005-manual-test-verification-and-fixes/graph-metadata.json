@@ -28,15 +28,15 @@
       "manual",
       "test",
       "verification",
-      "fixes",
       "fable-5",
       "refined",
       "gold",
       "battery",
       "path",
-      "fix",
       "bm25",
-      "scoped"
+      "scoped",
+      "fill",
+      "limit"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The Fable-5-refined surface-alignment features needed a manual verification pass after documentation remediation and automated stress coverage",
     "created_at": "2026-07-05T16:13:22.892Z",
-    "last_save_at": "2026-07-06T18:49:50.231Z",
+    "last_save_at": "2026-07-09T10:02:56.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d3c6b34fcbd5910e5299401c92e45e86b56f13612f9038776580beadcacd543",
+    "source_fingerprint": "sha256:0d9669a87cb0dbb4549d32463300d7a9851f3674772b6260d4ed38a54890e934",
     "source_doc_hashes": {
-      "spec.md": "7d3e9f751ae94ff0cd331c5ff2e7e59705c6c72e39e0fb1bac0f95ee9b4d529f",
-      "plan.md": "adb0d3a740d2fae942c5b176acd3672c352cd83019f544d553a21e6c305df448",
-      "tasks.md": "700ec491a93e772f24006617f56c556e1e67a8d575cfdcf6fab0df1289744dbb",
-      "checklist.md": "313d570e84e66d7802ac8a5a95799525536ed5f32c327edc01ed9cb7b1fbbb0d",
-      "decision-record.md": "dabab9143bbfa63916ee07b921f33f0537eb443b7a763fe4f151150180c3c2dd",
-      "implementation-summary.md": "e68718ecfee3c09ce998834a138cd0030db92c9472d81c93b6aa9e224a5191b7"
+      "spec.md": "be9e1b31cfb83fb18ac1a94e9d462c31b37afe36048157bc757da2e3c7f1968e",
+      "plan.md": "2fc307bde95eb022d9d144e4d62edc1136639a3b12ebd813bd15f4de53299b71",
+      "tasks.md": "c7db3c89171b36062734432262b6bee8c288a5c2068a6698151f3d1e6a7dba87",
+      "checklist.md": "a263f49006ab4e6483cf86888ae280549d980cb801b7d759f757fa608b8f6b69",
+      "decision-record.md": "717fafedb1677defc9f4f51033400dbbfc65a52d24753a332d0751dc91031bd6",
+      "implementation-summary.md": "dd27b2dd479ea226ba2ee0f44d956baa531c579fe2daf22af17f975feced682e"
     },
     "last_active_child_id": null,
     "last_active_at": null

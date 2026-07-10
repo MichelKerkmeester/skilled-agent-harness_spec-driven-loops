@@ -193,7 +193,7 @@
     ],
     "causal_summary": "A spec folder carries the same `triggerphrases` concept in three separate surfaces that are never asserted to agree",
     "created_at": "2026-06-27T17:15:33.865Z",
-    "last_save_at": "2026-07-06T18:49:46.405Z",
+    "last_save_at": "2026-07-09T10:02:56.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97a16f2b17eb2f1d3987b818bcfb6fe03d1ef1cb675f5dcf0607226133596f73",
+    "source_fingerprint": "sha256:34026c2cf8005d9cd478e02a68447da16e2ce13715953906337cf8a199f3d8ec",
     "source_doc_hashes": {
-      "spec.md": "5d4cace407ae716686f61668f131c5459bd082090ebbde3ba1c008922bbe8ccb",
-      "plan.md": "e9c54248629c833c263f3db98d36c8689b9e0c01925c8dc0b3fe19cfae1493bb",
-      "tasks.md": "f86a7268f6f9abfb95b7ef48c9dbb25bf645667fc9b8722a5b251ae5ae44622e",
-      "checklist.md": "668bcf2175ae9bf69390315a3667b4b49fc02955f9007003de97ce9cc67a5806",
-      "implementation-summary.md": "42f9bf0612d1c9d6ac82a569d900d9d0e53620cfea7f43f7de7e1d48b7506b4f"
+      "spec.md": "479b755c0d2050522270ed3f0882283c1d3be838b4cb4ed063460630831d085c",
+      "plan.md": "4ac1d95fcfad9819261b21ad1c0c6e4bbfd6d68b34ec5a020f33773254b8e94a",
+      "tasks.md": "177ae7e54169a07ae86395b7dc8b22f5da14020220fe938b3718b7cbd1005fd1",
+      "checklist.md": "59a59fc0c7203791fcf0ea8ced3b78a88607cd879531942bc6ea2e8d2c7ce752",
+      "implementation-summary.md": "9034ed5e6298a8be1611883ac6427f687aa1304845e598cbee54d7c0f3547f65"
     },
     "last_active_child_id": null,
     "last_active_at": null

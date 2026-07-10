@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A verify-fix-verify quality loop already runs LIVE and default-ON on the memory-save path",
     "created_at": "2026-06-27T17:15:32.763Z",
-    "last_save_at": "2026-07-06T18:49:44.585Z",
+    "last_save_at": "2026-07-09T10:02:56.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c02550a85e352af92b25e1102836b857e5118d14d6affe2a557a95d26cc4f32d",
+    "source_fingerprint": "sha256:88664afa7b92166c31120d042ad7e2588902fd3b6487be2ddd94d217421fd9fd",
     "source_doc_hashes": {
-      "spec.md": "5c14f093b3ec2ea134ee42a550743579db7e501d3ae517665842e2c364d5b9f6",
-      "plan.md": "7bc02f569ef2e90f487e289cede02d5d61e96abf5f0f85101b789ae3eb4f90fe",
-      "tasks.md": "91cfd4aff4fa2768c09c79946e239c65907ff6b0aaf39e70a016d4ca2a727a33",
-      "checklist.md": "f968869578791413ff886737903bf9c6f14ce28dcf411ac05232f0fc2d039390",
-      "implementation-summary.md": "28f098dc4de0ae29f2e0ab66cd7329c343b1e8b83fef07c8aa90c0b7af200a20"
+      "spec.md": "da85e290514289d98edcf5e811297f00c8bc0872f2182f908bb8c7fa706ec195",
+      "plan.md": "f7e231e6b83cb19ae1ea79702043ece409c90a50c11ca9126bdd7efbc5536e91",
+      "tasks.md": "3862d14ab0d4cef9af1925a1d153cad6e546481557f971db0a6605e28825a71d",
+      "checklist.md": "5a2ec44cf079ae0d69771d860a4419d661afc6e8249efc5a18898422213efcef",
+      "implementation-summary.md": "7da717808a94dd5ea73dc623683b547bf1fa619fc152a0cc76eb23791787b27f"
     },
     "last_active_child_id": null,
     "last_active_at": null

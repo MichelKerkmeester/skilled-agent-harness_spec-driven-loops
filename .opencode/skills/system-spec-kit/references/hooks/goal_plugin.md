@@ -9,6 +9,7 @@ trigger_phrases:
   - "session goal"
 importance_tier: "important"
 contextType: "implementation"
+version: 3.7.0.8
 ---
 
 # OpenCode Goal Plugin Contract

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time",
     "created_at": "2026-06-27T17:15:35.223Z",
-    "last_save_at": "2026-07-06T19:16:36.985Z",
+    "last_save_at": "2026-07-09T10:02:56.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c94eaa78ac3ecd3977ded889ba88ea9b4844ed6b6ad88e70c4341481ad8f4900",
+    "source_fingerprint": "sha256:e0fd585da6321e054d3f93fe53d8179cf3ec5636b49f0cbd5a2931102fed07cf",
     "source_doc_hashes": {
-      "spec.md": "aef14476e6dbb175754958afc9eff85d4f8121e1797e0dcf0485c1911fe363e8",
-      "plan.md": "e771c76493c33a702bfb4cf3d8252d88e7673f5a0dc75892b5066dc5aeb225af",
-      "tasks.md": "ad03458b16ff8e06bb693a74e8983a6865783b415c6516a439d6d68a9c4242c1",
-      "checklist.md": "076231f06d6942971dd526266a46a299eb6b9419b6c3d7d15c7e8dada984ccbc",
-      "implementation-summary.md": "9937cbf0c1292bee044b5fef9edbe84b877c2090d1432e122408c44767bad5ad"
+      "spec.md": "b3b7a99663cb82207874ed6ada51765ac02e4264df55809412fcd79c7788e27e",
+      "plan.md": "bd26e1b4eb8c43843ed899d8240d42220bd6790bb63aa7b6dd0ca00d3eed1789",
+      "tasks.md": "0f397ac241009b3693fb1765be2756ad1d8e92c825d7489767460b0136b9271f",
+      "checklist.md": "452f37e17c9abb8d796385bd5dcb88d4fe33aa27e3edb6341caea7dc7dbfefbe",
+      "implementation-summary.md": "10ea3b6a9559d1e9cfa13682745bd9384690b771cc0fd5f5f0bd22e87ad02591"
     },
     "last_active_child_id": null,
     "last_active_at": null

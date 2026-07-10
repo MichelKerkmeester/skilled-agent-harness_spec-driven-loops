@@ -3,7 +3,7 @@
 
 ## Active
 
-- [x] Test evidence validation
+- [x] Test evidence validation [Evidence: check-evidence.sh:31 validates checklist and tasks evidence]
 
 ## Notes
 

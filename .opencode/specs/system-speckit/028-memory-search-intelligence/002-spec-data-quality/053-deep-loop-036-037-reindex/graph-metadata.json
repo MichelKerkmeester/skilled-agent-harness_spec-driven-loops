@@ -26,8 +26,6 @@
     ],
     "key_topics": [
       "deep-loop",
-      "036",
-      "037",
       "reindex",
       "stale",
       "specfolder",
@@ -36,15 +34,15 @@
       "slug",
       "rename",
       "harness",
-      "dependencies"
+      "dependencies",
+      "repoint",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       ".opencode/specs/system-deep-loop/036-router-replay-surface-slice-sync/description.json",
       ".opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync/description.json",
-      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/124-sk-code-parent/022-collapse-to-four-subskills/spec.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -201,7 +199,7 @@
     ],
     "causal_summary": "The operator renamed `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync` to `036-router-replay-surface-slice-sync` and added a new `037-scenario-loader-code-surface-sync`",
     "created_at": "2026-07-06T06:03:40Z",
-    "last_save_at": "2026-07-06T18:49:57.646Z",
+    "last_save_at": "2026-07-09T10:02:56.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51a21c3dd4a4267e0e1b437bd5984d107b1dbb2ca2fd219480f0726e4bab82d8",
+    "source_fingerprint": "sha256:01b21a30248cc9335e7b5e177f89e7a387db70c11a4a559bdf3acc53e4997288",
     "source_doc_hashes": {
-      "spec.md": "81d513e67a0fbfd185b6a9aa20487b32e9fe8879f51faccfb797dedb4e95b884",
-      "plan.md": "d8793f34c2f19548edafa66a19a12796fc82fbaba609329f8c814c5f723c1417",
-      "tasks.md": "93c5f844361ffbc5437df4d5da4bf45e2786bd7eb43cce70cacc396119b3599c",
-      "implementation-summary.md": "c528475c9c77deede5e38bfd013e0d170b860572d12ebd9b6c865f49b6c75ba1"
+      "spec.md": "dad6586342726c60f30a2b1f1ad31ab4c090fc8a66f1ee849553db3b9ab67a51",
+      "plan.md": "f0e13c6b1005d0fc0e9d5c08b43c8693e184fd06ab3bab5ff0e511b60f210987",
+      "tasks.md": "b56773a31f508f645933fed76184625a204486d3788f50f88e71619e7d16f2da",
+      "implementation-summary.md": "568de14e35c2314ebe98348e545e8f705795c63c6fc4476c4291eac81d09962f"
     },
     "last_active_child_id": null,
     "last_active_at": null

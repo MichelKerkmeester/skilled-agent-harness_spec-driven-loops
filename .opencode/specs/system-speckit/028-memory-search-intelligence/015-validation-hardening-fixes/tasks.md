@@ -130,3 +130,12 @@ CORE TEMPLATE (~60 lines)
 - 3 phases: Setup, Implementation, Verification
 - Add L2/L3 addendums for complexity
 -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+- [ ] T019 [P1] The evidence checker appends every non-checkbox line to the active item until the next checkbox, so unrelated later prose satisfies the evidence gate (`scripts/rules/check-evidence.sh:174`). Append only indented continuation lines belonging to the item; flush on headings, unindented blocks, and new list items. Evidence: adversarial fixture where a bare completed item is followed by unrelated text mentioning `vitest`/file:line.
+- [ ] T020 [P2] The deferred-marker bypass validates the length of the whole item, not the reason — `[DEFERRED: x]` passes (`check-evidence.sh:41`). Apply a substance floor to the extracted deferred remainder.
+- [ ] T021 [P2] `Not Started` classifies as in-progress because `started` matches before the planned bucket's `not started` (`scripts/lib/status-classifier.sh:54`; same ordering in the TypeScript copy). Handle negative phrases first in both classifiers.
+- [ ] T022 [P2] Exit-code tests map both `1` and `>=2` to generic failure, so tier regressions pass (`scripts/tests/test-validation.sh:126`; `test-validation-extended.sh:156-168`). Add exact-exit assertions for 0/1/2/3.
+- [ ] T023 [P2] The checkmark-format fixture uses only `- [x]` despite claiming both formats (`test-fixtures/018-evidence-checkmark-formats/`; `test-validation-extended.sh:729`); header counts are stale (`:7-8` says fixtures through 067 while referencing 072/073). Put actual variants in separate fixture items and fix the counts.
+- [ ] T024 [P2] This packet's limitation note says strict warnings exit `1`; `validate.sh:1232` returns `2`. Correct the doc.

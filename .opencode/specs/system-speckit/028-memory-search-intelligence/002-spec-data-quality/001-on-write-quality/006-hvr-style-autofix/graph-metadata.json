@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts every time a spec-doc is hand-edited",
     "created_at": "2026-06-27T17:15:34.135Z",
-    "last_save_at": "2026-07-06T18:49:52.667Z",
+    "last_save_at": "2026-07-09T10:02:56.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1cf1330113748fcfbdda3a280b9e2d4f3ba04eb07416c9382f0c408b73f7dca9",
+    "source_fingerprint": "sha256:1ee5c2c4123a85d811d3e48972eeeb7927ca5a1bb7986ef15ea9e6676ce0eac7",
     "source_doc_hashes": {
-      "spec.md": "da588d566e9c3dab15d259960db430d5f539c35f55b31bb56bd460674968ade0",
-      "plan.md": "baba7212bd50a2281fc99a8852b22b10f5934b39c6ea3ba8d89f1791766a7d75",
-      "tasks.md": "1ad6169284e859e7ed4f6f1841bc38d80d260615f962f827e1ed7aa790614fd6",
-      "checklist.md": "821255ce5af14de3643861174da2e927105158edbacf24841d3e31558325cc40",
-      "implementation-summary.md": "9fc9808e18fef36fc06e31af942f5cf5d72ce94dedd0a8d414870e5ae8deecec"
+      "spec.md": "1e6d7e05eec5d10b3d09287274863e05843c9dfa2463998b79951e15f976f2bb",
+      "plan.md": "80a346b9640a31971c042107ea63f7f05bde79d3b21925f9748027bc1045bb40",
+      "tasks.md": "5b9ee9e12d9653903c7314a9ed23eb0e43f9d42c02131e3d15209bef4ba636fa",
+      "checklist.md": "2955a46e5d1c9d9d09d098a053ba0370ccf6e108912a431fca4aa1c54fb8d224",
+      "implementation-summary.md": "abd58cb4af9db954f2ec3c9e78cee1c90d429988a4342882fd58a11a5565d6c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

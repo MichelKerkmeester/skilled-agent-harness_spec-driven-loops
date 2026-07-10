@@ -25,7 +25,6 @@
       "generated json quality research checklist"
     ],
     "key_topics": [
-      "generated",
       "json",
       "quality",
       "research",
@@ -35,8 +34,9 @@
       "regeneration",
       "description",
       "scoping",
-      "fix",
-      "spec"
+      "spec",
+      "folder",
+      "identity"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn",
     "created_at": "2026-06-27T17:15:40.899Z",
-    "last_save_at": "2026-07-06T19:16:38.256Z",
+    "last_save_at": "2026-07-09T10:02:56.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c073780ea37b7782c74730559a6fe05f9061213f6b106a28c8a450d67027c761",
+    "source_fingerprint": "sha256:dbcf0699634afe95bdf9a67220bd6bd6ffb08b41c0ea21eaa2d4d3ac4eb61ec0",
     "source_doc_hashes": {
-      "spec.md": "091419825a75a832628f3d268aee2e449b1b20adc7fb87b85b0f02182f9544ad",
-      "plan.md": "30bda991330d3804d323b2ccbc84965ef361d1bb3b67707ad5e6f9ac5b2eacfc",
-      "tasks.md": "f35f0b0ed0df829775c9dfffbe0edeaf3d2c6944ccdf37fa6be17fb888038544",
-      "checklist.md": "0c37e021f075028c5d00910a0ba345f2f60405e3afd89357d6931bae078525f7",
-      "implementation-summary.md": "1a3ed5b4eee394431e00e022daa7af7ce148cc98062fb3e86627a66052793743",
-      "research/research.md": "fc1dfb99c7edc3564177d396285a75af6ce12cbf0e2720ec0c1f2c1eb4033834"
+      "spec.md": "ef877c20dc4ca4f644f19b962db0d6d7d9bcd6ddcecc3b74fc6b84c77588c179",
+      "plan.md": "65552ba585c0db89f42fa7c6904a625153882ea49bad399088985bf9662bc056",
+      "tasks.md": "06c4bee26ab532b6700b1c22f53231d000a22ce68b0bb8e962e26184aa2eb5a4",
+      "checklist.md": "5274697c631d3550f29a8410aacead689f543a90f4e180df0565a71dcc0b098f",
+      "implementation-summary.md": "71396d74ab6c0c98420d042ef9721c78410529a51ceffb70b36b9cf8bf32f6f1",
+      "research/research.md": "34e132def6c37257c6e97fe615a6a5ce80369bf4014a555eb44b2feb07ae7785"
     },
     "last_active_child_id": null,
     "last_active_at": null

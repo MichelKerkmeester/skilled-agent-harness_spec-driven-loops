@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
     "created_at": "2026-06-19T05:40:37.447Z",
-    "last_save_at": "2026-07-06T19:16:30.880Z",
+    "last_save_at": "2026-07-09T10:02:56.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,7 +226,7 @@
       "tasks.md": "66ed33cc0b563c65bf4607f607eed895d70c79fd24ca4d751c6f04940cd388c3",
       "checklist.md": "0d32d3c6129ed96db12f9fd275e7f5f920edc8831e6aa26ee1c87c559c0e6cd2",
       "decision-record.md": "883c5101928e66834cc11a3902269ecabd64261f18211cd6a7b02eb2c1765159",
-      "implementation-summary.md": "af9f45ae1f083b566973717b9796d9075c8cbd420406059e9037ae34346f6f1d"
+      "implementation-summary.md": "6916b9e583a6b05c7ace0fada58671fca4aae6236c24cd4674b100657abd61c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

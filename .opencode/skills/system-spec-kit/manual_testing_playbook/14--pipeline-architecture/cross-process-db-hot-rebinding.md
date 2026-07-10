@@ -84,7 +84,7 @@ data.message: Memory file does not match the required template contract.
 summary: Memory saved with deferred indexing - searchable via BM25/FTS5 (with 1 anchor issue(s)) (deferred indexing - searchable via BM25/FTS5)
 data.status: deferred
 data.id: 38649
-data.specFolder: skilled-agent-orchestration/121-sk-prompt-models-rename/009-filename-residual-cleanup
+data.specFolder: skilled-agent-orchestration/121-sk-prompt/prompt-models-rename/009-filename-residual-cleanup
 data.title: Implementation Summary: Phase 9: filename-residual-cleanup
 data.importanceTier: normal
 data.embeddingStatus: pending

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The retrieval-learning loop records only the positive selection edge",
     "created_at": "2026-06-27T17:15:36.032Z",
-    "last_save_at": "2026-07-06T18:49:42.694Z",
+    "last_save_at": "2026-07-09T10:02:56.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21ff3c428e825970a4006dbf9bc1758ce7c36b62925bfe29aa51d659f5d28862",
+    "source_fingerprint": "sha256:bdb4ef0fb29cf0da58694fdd39be9c22e4658051e6740cf1e1239a845ed9b1ff",
     "source_doc_hashes": {
       "spec.md": "5ccf234acf4e8e07c3bc73b6b36a565a9d3ef54b940de61d2d3a91be56bd4eda",
-      "plan.md": "7b9dd3c745c9fbbf7e493cb72f465f7f2290ff8fa9ad12fc30021dfb834bb8db",
-      "tasks.md": "d6e2eb582473d38aa95df2e77502ad0111affe3247ac9f09651da5a53bf9d544",
-      "checklist.md": "772aa3b5a32f179271e36a186bd07c2a9e0456916741126aebdd9ca1169a6b53",
-      "implementation-summary.md": "e8cc736bfbde985e05059ff8abf236dd93e43295b624afda7ac99a4dca4966f4"
+      "plan.md": "18236b3cc8dfb256d5ec82a5a4e5d6a9b88bacbcc1f45108a3666d14c79fa2ad",
+      "tasks.md": "568e1dc50a5e2e4722af9f0248f4d6c820836a4ec61af7f148e7ba55f7a61387",
+      "checklist.md": "015491c8d0bc16cf18260168ff5e524db3e93141dc686e0a2233666d51ddf43b",
+      "implementation-summary.md": "c173e2917343b40224c19cc59e359ebb87740ca7ba65a44c21a77a46ba135fe1"
     },
     "last_active_child_id": null,
     "last_active_at": null

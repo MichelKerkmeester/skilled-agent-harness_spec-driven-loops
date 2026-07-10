@@ -100,3 +100,15 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 <!-- /ANCHOR:cross-refs -->
+
+## Phase R: Audit Remediation (2026-07-09 GPT-5.6 review wave)
+
+- [ ] T005 [P1] Channel skip/exception metadata never reaches the MCP response: `_s3meta` is non-enumerable with no production consumer (`mcp_server/lib/search/hybrid-search.ts:2343`). Thread typed skip/exception metadata through Stage 1 and PipelineResult into response/query-plan metadata; add an integration test asserting the serialized `memory_search` response.
+- [ ] T006 [P1] BM25 metadata-lookup failure is console-only and never calls `appendChannelException` (`hybrid-search.ts:584`). Append a `bm25` exception in the inner catch; test with a throwing metadata `.all()`.
+- [ ] T007 [P1] Actual channel removals and unavailable executors (caller-disabled, missing graphSearchFn, null DB, disabled degree boost) are computed but not recorded (`hybrid-search.ts:1465`). Reconcile final activeChannels + executor preconditions into skip details with tests per condition.
+- [ ] T008 [P1] `injectGraphContext()` has no production caller — only the calibration test invokes it (`mcp_server/lib/search/causal-boost.ts:699`). Integrate it into the pipeline or remove the implementation and amend the completion claim.
+- [ ] T009 [P1] The calibration flag defaults OFF while packet docs claim shipped default-ON behavior (`mcp_server/lib/search/search-flags.ts:451`; `implementation-summary.md:57`, `tasks.md:64`). Either run the production-path benchmark and graduate, or mark the packet held/opt-in and reconcile completion claims.
+- [ ] T010 [P1] The `<5ms` latency assertions time only classification/routing, not the widened channel execution (`mcp_server/tests/query-channel-calibration.vitest.ts:76`). Benchmark the full pipeline p50/p95 against a representative index with the flag on and off.
+- [ ] T011 [P2] Tokens are not punctuation-normalized before stopword matching, and CJK/no-whitespace text always classifies as one term (`mcp_server/lib/search/query-classifier.ts:93`). Normalize Unicode punctuation, define the CJK tokenization policy, add 0/1/3/4-term, punctuation, and no-whitespace tests.
+- [ ] T012 [P2] Strip `F15`/`F5a`/`F5b` finding IDs from production/test code comments (e.g. `mcp_server/lib/search/query-router.ts:106`) and replace with durable behavioral explanations — comment-hygiene hard rule; reconcile the checklist claim that none were embedded.
+- [ ] T013 [P1] Typed causal traversal discards the winning relation and re-queries `SELECT relation ... LIMIT 1` with a `'caused'` fallback, so multi-edge neighbors get nondeterministic relations and two-hop neighbors get the neutral fallback (`causal-boost.ts:549`). Return the winning relation/path from `collectCausalWeightedNeighbors()`; add two-hop and multi-edge provenance tests.

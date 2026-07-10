@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Memory MCP ships two classes of unvalidated retrieval intelligence, dormant calibration machinery that cannot be promoted and default-on levers that were never measured:",
     "created_at": "2026-06-19T05:52:29.576Z",
-    "last_save_at": "2026-07-06T19:16:33.377Z",
+    "last_save_at": "2026-07-09T10:02:56.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,7 +226,7 @@
       "plan.md": "9fe11a1988d3604a6f21674e42b4f02f9de6b2baab2596efea014f4355b553e1",
       "tasks.md": "7251ef26a79295a39ca062283c206b6e3e5928e879afae7b35264c5fd4c05876",
       "checklist.md": "1060a9069346fae06c383d0d18812ddd9a7f239237b4b355b11a6d6bea03c0ba",
-      "implementation-summary.md": "ddd7e8aa3331dca6d647dc203870d5a3a77e2e8f5c93671d254d79a7791144d2"
+      "implementation-summary.md": "cdd18f3f35f8a4e372123b89bc89987bb864ed1bc488b40ba028520889b13925"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,7 +28,6 @@
       "stress",
       "test",
       "docs",
-      "fix",
       "automated",
       "harness",
       "documentation",
@@ -36,7 +35,8 @@
       "cleanup",
       "readme",
       "durability",
-      "search"
+      "search",
+      "quality"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The stress-test documentation had five confirmed drifts from the shipped `mcpserver/stresstest/` harness",
     "created_at": "2026-07-05T09:43:38Z",
-    "last_save_at": "2026-07-06T18:49:59.617Z",
+    "last_save_at": "2026-07-09T10:02:56.696Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60b1085ca9e0dc5f7912a5eae65d0e8cfd08d92554a5cce406953c9a6f05091a",
+    "source_fingerprint": "sha256:18de6a1b2f3d9bbfbc5491c27a9087d84b3c3399d465247222786d390048ffdf",
     "source_doc_hashes": {
-      "spec.md": "3fbbead913b9a1192b89fa9d8720024578e86d403d1a0f4aa1b878985c037348",
-      "plan.md": "3df5061d4374bc01ff0236d0a5eda0468f724ae6fceeefd7ab9bcb848063bbd3",
-      "tasks.md": "df2dc6d349a5d752dad1c7162b5203e1f40b923e0c50d26ca3e652dd7a949834",
-      "implementation-summary.md": "f698462f32bf3e2fbde2f9c58f51354ec37f1da5937569501aa23285b1a84026"
+      "spec.md": "b29996123f0fe5b1a7fcaf7fc18afaebe38f1336e11f6167a942c5e0aa08bb38",
+      "plan.md": "b1e62d417ede800560be5d62fa391cb940010f4e74398655603023d1ee9e5fd9",
+      "tasks.md": "cff664afea0da143542d883abf841532ae003eb0cf69a9879470621ac9f68f24",
+      "implementation-summary.md": "d8beeb3edf89769c38932d579d629a512398fa0ae96fed70d799bb8f43fdfd5c"
     },
     "last_active_child_id": null,
     "last_active_at": null

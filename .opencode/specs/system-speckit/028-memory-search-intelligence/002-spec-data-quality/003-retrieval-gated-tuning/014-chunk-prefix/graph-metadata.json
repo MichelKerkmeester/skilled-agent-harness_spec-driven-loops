@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector",
     "created_at": "2026-06-27T17:15:36.300Z",
-    "last_save_at": "2026-07-06T19:16:37.295Z",
+    "last_save_at": "2026-07-09T10:02:56.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5621a210d726f0a6fb15b2a5fb68bf3b8538cd7e3812dac8868b31a328aefe9",
+    "source_fingerprint": "sha256:f6060e50ab17d99a0067421a4e94208862995c7620125cfbbc311894bb67747b",
     "source_doc_hashes": {
-      "spec.md": "ff14d6947e89bde25aa260d7c7b1e1b6bb99d6959ce9f41f09d8b917ec5002ec",
-      "plan.md": "eb290407c034daf98bb1f58c5b45334d381217acfb50f38f4645f6b71315bcb8",
-      "tasks.md": "a3574136195e64b9b4f0b330c3064c5545188602ce489f43ddf86b501c6ac70c",
-      "checklist.md": "91c601689515eacd73984519a803fd76f869b4dfe39c7c250d775a1685a7d3b0",
-      "implementation-summary.md": "2d98958658ed4137282fcb970ac7dfba04894037538e521ace312d1fd7e079e5"
+      "spec.md": "48d4af31568e9ba4757fcbf4673270dfa63839657f19f97a7222039b2931043e",
+      "plan.md": "22e6adc285d16443158b059b8eed1cdd58185e1c01062782f0dbb0dd9c9536a2",
+      "tasks.md": "5a7c2153a27c8ee930b92497d31bf4a5885daaf47092417c12cc870d9ca76a2b",
+      "checklist.md": "2bee77c2107f60a770e0551d4aacfa53d0da860b90966d4f87bc3461bcdf6c4e",
+      "implementation-summary.md": "a310604b739f6b91bf45934ce728b49890eaa53b52789bfd48a8610f380e3217"
     },
     "last_active_child_id": null,
     "last_active_at": null

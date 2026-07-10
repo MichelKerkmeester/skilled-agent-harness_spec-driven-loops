@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The per-folder `description.json` generator never propagates the curated frontmatter `triggerphrases` and its `description` is a verbatim copy of the spec title",
     "created_at": "2026-06-27T17:15:33.066Z",
-    "last_save_at": "2026-07-06T18:49:42.334Z",
+    "last_save_at": "2026-07-09T10:02:56.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6bd96748488995a4eaa87ae95e00cff057d8323732ddce4b0b8e6eb5b22394e5",
+    "source_fingerprint": "sha256:70d05846008e619c423bffd5cb8dec46d192d02c7411139fdc5637c0ea9953cf",
     "source_doc_hashes": {
-      "spec.md": "ee0ab4c5754e5442a949b198f5b0abc36b675aadbef894e315f336feb8f2f067",
-      "plan.md": "159b33bcb52ec43bf239b089a9a74657201914013e8e287a11f57a8341430dd2",
-      "tasks.md": "113f717b08affe1f92f680b236bf597100262885c6440ea7c1e8258ce4e50f7f",
-      "checklist.md": "ab8decd6328f1c4b9f5a51f8f5b21ea29e4f56599c0e5d4c90f746f3b4a68869",
-      "implementation-summary.md": "0d4200f2470649d2c8c886dce4477d5160f6cf2fb21eaac13e77701969186827"
+      "spec.md": "7a562b6ca67b3e1cc233d02a45d0f3a714037cb31229f63126fd293f29e6a78e",
+      "plan.md": "d859bd58696d48c9ab6421f312e0e83b6e9e0b9bc4cf1c58800de3c98557bd1f",
+      "tasks.md": "828de808e7394871f5c1e1f36a2ff9c82b28c79f3c895066bfdd4590a0092216",
+      "checklist.md": "5f4b3230c31d07cb33c1d1ffe69ed025c6542b8fa60afe24f2d335d0a44d0411",
+      "implementation-summary.md": "db99883672dd918005a112f85a25d9ae0f275a30b65deaec471b0501ddc016bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

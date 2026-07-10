@@ -39,7 +39,7 @@
       "mcp"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "implementation-summary.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "OpenCode sessions that spawn parallel detached workers or MCP helpers leave orphan processes when the parent exits ungracefully",
     "created_at": "2026-06-30T07:44:28Z",
-    "last_save_at": "2026-07-04T17:51:05.616Z",
+    "last_save_at": "2026-07-09T10:02:56.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
     ],
     "source_fingerprint": "sha256:cc2e0edb890bb316e8ca743d3fe8ab54b45a3cf595a7ec03c533f9401b213006",
     "source_doc_hashes": {
-      "spec.md": "369edc5fee617f27681c41d1b8e764352d873630130e101224cd941e3737abe2",
-      "plan.md": "90eec89c212803d3131cbc04b282ef4380e0dab6acd7d5bbc539c0cf161ff06a",
-      "tasks.md": "0f5341f62ed1158d3f25614b3bcae00dd87e7ff28510f06f299557facb93d5a4",
-      "implementation-summary.md": "ebc05bbac9b6b16edab0393debac55152cafa4fd80cc4813e844b50e3f57b845"
+      "spec.md": "698a0995edca5451a85dc0b8a1c746ded0f3b1916253b2187eff753ffcb8c795",
+      "plan.md": "6f3fa2eeb60025e7c808b1060f1583d4f7b45e8cb80e4733042348ed2e8f7b26",
+      "tasks.md": "8d829df922346c71804f7a9d71584ca09573283b863d3e226919d1f0c688e259",
+      "implementation-summary.md": "f435225262ab558d8ff489c048f510358510aa22a21f45305d78348e060c3691"
     },
     "last_active_child_id": null,
     "last_active_at": null
