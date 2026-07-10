@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | complete |
+| **Status** | Pending - built default-off; fan-in benchmark gates default-on acceptance |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Phase** | `system-code-graph/001-code-graph-core` (research) |

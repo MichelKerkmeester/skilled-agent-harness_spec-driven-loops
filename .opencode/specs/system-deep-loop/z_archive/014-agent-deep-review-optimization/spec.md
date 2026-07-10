@@ -42,6 +42,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | 061-agent-optimization |
 | **Target** | `@deep-review` (579 LOC) |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

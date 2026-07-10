@@ -70,6 +70,7 @@ This packet adds the validation layer for sibling `001-doctor-commands`: 23 manu
 | **Predecessor** | 001-doctor-commands |
 | **Successor** | None |
 | **Handoff Criteria** | 23 playbook scenarios authored + valid; root playbook updated; sandbox Dockerfile + harness + fetch script authored; bash -n + JSON/YAML syntax pass; strict spec-folder validate exits 0 (acknowledge known cross-packet template-manifest issue). |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

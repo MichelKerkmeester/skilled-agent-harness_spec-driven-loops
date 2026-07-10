@@ -34,7 +34,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft (blocked on 012/001) |
+| **Status** | Complete & partially verified (010/007/T-B, 2026-04-25) |
 | **Created** | 2026-04-25 |
 | **Branch** | `012/005-memory-causal-trust-display` |
 

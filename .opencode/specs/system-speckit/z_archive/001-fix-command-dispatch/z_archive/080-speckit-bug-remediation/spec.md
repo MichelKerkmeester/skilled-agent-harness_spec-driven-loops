@@ -30,6 +30,7 @@ contextType: "planning"
 | **Complexity** | 85/100 |
 | **Estimated LOC** | ~500 |
 | **Level** | 3+ (Multi-agent, comprehensive) |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 
 ### Problem Statement
 

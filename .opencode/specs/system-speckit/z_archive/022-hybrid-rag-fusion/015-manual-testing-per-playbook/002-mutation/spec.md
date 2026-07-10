@@ -38,6 +38,7 @@ _memory:
 | **Phase** | 002-mutation |
 | **Predecessor** | [001-retrieval](../001-retrieval/spec.md) |
 | **Successor** | [003-discovery](../003-discovery/spec.md) |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

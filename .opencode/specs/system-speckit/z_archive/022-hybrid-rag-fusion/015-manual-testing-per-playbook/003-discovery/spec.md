@@ -43,6 +43,7 @@ _memory:
 | **Parent Spec** | [../spec.md](../spec.md) |
 | **Predecessor** | [002-mutation](../002-mutation/spec.md) |
 | **Successor** | [004-maintenance](../004-maintenance/spec.md) |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

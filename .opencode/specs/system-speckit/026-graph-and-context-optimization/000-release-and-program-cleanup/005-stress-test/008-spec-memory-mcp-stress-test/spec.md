@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | Target Level | 1 |
 | Priority | P1 |
-| Status | Not Started |
+| Status | Complete - 345/345 coverage; 51/51 failures closed |
 | Created | 2026-05-16 |
 | Branch | `main` |
 | Predecessor | `113-z-archive-memory-indexing` |

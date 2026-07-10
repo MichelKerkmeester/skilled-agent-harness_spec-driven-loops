@@ -39,7 +39,7 @@ Phase 006 of arc 008-rerank-sidecar-arc — re-opens the arc to finish what was 
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Shipped - PROMOTE |
 | **Created** | 2026-05-20 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` (re-opened from complete → in_progress) |

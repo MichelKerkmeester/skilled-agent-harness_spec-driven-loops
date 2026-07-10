@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-deep-agent-router-and-orchestration |
-| **Status** | Draft |
+| **Status** | Complete (research; implementation is tracked in sibling phases 002-007) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 

@@ -48,6 +48,7 @@ _memory:
 | **Branch** | `main` |
 | **Phase Parent** | `110-auto-review-stretch-config-dedup-gates` |
 | **Source teachings** | H-7 + H-9 from `106/research/review-report.md` §5 |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

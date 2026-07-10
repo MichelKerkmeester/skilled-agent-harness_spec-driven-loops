@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete - findings-only no-go; production code reverted |
 | **Created** | 2026-05-14 |
 | **Branch** | `010-advisor-routing-calibration` |
 <!-- /ANCHOR:metadata -->

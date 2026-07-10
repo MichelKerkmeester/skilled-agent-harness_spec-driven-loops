@@ -39,6 +39,7 @@ _memory:
 | Created | 2026-05-03 |
 | Branch | `main` |
 | Parent | `065-skill-advisor-reindex-and-stress-test` |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

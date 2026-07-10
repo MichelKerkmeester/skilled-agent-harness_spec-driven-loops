@@ -42,6 +42,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent** | 061-agent-optimization |
 | **Target** | `@ultra-think` (526 LOC) → @multi-ai-council |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-19) |
+| Status | Complete (2026-05-19) |
 | Type | Code hardening + fixture audit |
 | Owner | cli-codex gpt-5.5 high fast (dispatched by main agent) |
 | Parent | `../spec.md` (004-code-index-stack) |

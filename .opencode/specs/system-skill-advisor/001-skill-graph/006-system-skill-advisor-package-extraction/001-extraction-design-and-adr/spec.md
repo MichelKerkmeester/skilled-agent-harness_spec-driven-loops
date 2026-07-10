@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-05-14 |
 | **Branch** | `001-extraction-design-and-adr` |
 <!-- /ANCHOR:metadata -->

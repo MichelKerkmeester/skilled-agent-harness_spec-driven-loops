@@ -43,6 +43,7 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Phase** | 002 of 009 (parent: `147-deep-loop-workflows`) |
 | **Depends on** | 001 |
+> **Status note:** The implementation evidence is in the separate `dlw-build` worktree and remains pending review and merge; this spec retains its planned status until that integration lands.
 <!-- /ANCHOR:metadata -->
 
 ---

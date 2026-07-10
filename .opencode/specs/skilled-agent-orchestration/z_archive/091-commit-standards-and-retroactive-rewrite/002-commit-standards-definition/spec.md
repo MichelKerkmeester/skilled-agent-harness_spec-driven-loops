@@ -61,6 +61,7 @@ _memory:
 | **Predecessor** | 001-prerequisites-and-baseline |
 | **Successor** | 003-sk-git-skill-update |
 | **Handoff Criteria** | `commit-standards.md`, `derivation-heuristics.md`, `hand-sample-validation.md` exist; 20/20 random commits show deterministic rewrite; `decision-record.md` ADRs cover the 7 lock-in decisions; `validate.sh --strict` exits 0 |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

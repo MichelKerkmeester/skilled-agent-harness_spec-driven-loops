@@ -39,7 +39,7 @@ Phase 001 of the 008 rerank-sidecar arc. Surgical fix to the Stage 3 reranker di
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented + verified |
 | **Created** | 2026-05-20 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` |

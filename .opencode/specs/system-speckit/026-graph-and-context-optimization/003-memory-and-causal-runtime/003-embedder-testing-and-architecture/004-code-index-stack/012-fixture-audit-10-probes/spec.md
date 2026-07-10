@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-18 evening) |
+| Status | Complete - research audit delivered; proposed fixture update not applied |
 | Type | Research-only (no code changes); may produce a fixture update if any expected paths are wrong |
 | Owner | Main agent |
 | Parent | `../spec.md` (004-code-index-stack) |
