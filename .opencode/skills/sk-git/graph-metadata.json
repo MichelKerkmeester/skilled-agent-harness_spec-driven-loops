@@ -32,7 +32,8 @@
     "pull-request",
     "merge",
     "rebase",
-    "integrate"
+    "integrate",
+    "gitkraken"
   ],
   "intent_signals": [
     "git workflow",
@@ -47,7 +48,11 @@
     "pull request",
     "merge",
     "rebase",
-    "finish work"
+    "finish work",
+    "gitkraken",
+    "gitlens",
+    "cross-platform pr",
+    "multi-provider issue"
   ],
   "derived": {
     "trigger_phrases": [
@@ -77,7 +82,16 @@
       "finish work with pull request",
       "sk-git",
       "sk git",
-      "git-workflow"
+      "git-workflow",
+      "gitkraken",
+      "gitkraken mcp",
+      "gitlens",
+      "gitlens launchpad",
+      "gitlens commit composer",
+      "gitlens start review",
+      "gitlens start work",
+      "cross-platform pull request",
+      "multi-provider issue"
     ],
     "key_topics": [
       "git",
@@ -94,7 +108,9 @@
       "worktrees",
       "conventional commits",
       "pull requests",
-      "workspace isolation"
+      "workspace isolation",
+      "gitkraken",
+      "gitlens"
     ],
     "intent_signals": [
       "setup worktree",
@@ -106,7 +122,9 @@
       "manage branch",
       "merge branch",
       "rebase branch",
-      "split changes"
+      "split changes",
+      "gitlens launchpad triage",
+      "gitkraken cross-platform pr"
     ],
     "key_files": [
       ".opencode/skills/sk-git/SKILL.md",
@@ -114,6 +132,8 @@
       ".opencode/skills/sk-git/references/worktree_workflows.md",
       ".opencode/skills/sk-git/references/commit_workflows.md",
       ".opencode/skills/sk-git/references/finish_workflows.md",
+      ".opencode/skills/sk-git/references/github_mcp_integration.md",
+      ".opencode/skills/sk-git/references/gitkraken_mcp_integration.md",
       ".opencode/skills/sk-git/assets/commit_message_template.md",
       ".opencode/skills/sk-git/assets/pr_template.md"
     ],
@@ -159,17 +179,31 @@
         "kind": "reference",
         "path": ".opencode/skills/sk-git/assets/pr_template.md",
         "source": "derived"
+      },
+      {
+        "name": "gitkraken_mcp_integration",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-git/references/gitkraken_mcp_integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "github_mcp_integration",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-git/references/github_mcp_integration.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Git workflow orchestrator owning all git/version-control intent: numbered feature worktrees (wt/{NNNN}-{name} branches under .worktrees/), branch creation, conventional commits, pull requests, merge, rebase, finish/integrate, and worktree restructure. It matters because it standardizes how changes move from isolated workspace setup through clean commits to integration and PR completion, and it does not own spec folders / memory (system-spec-kit) or code implementation / tests (sk-code).",
+    "causal_summary": "Git workflow orchestrator owning all git/version-control intent: numbered feature worktrees (wt/{NNNN}-{name} branches under .worktrees/), branch creation, conventional commits, pull requests, merge, rebase, finish/integrate, worktree restructure, and cross-platform GitLens/GitKraken MCP workflows (GitHub/GitLab/Azure DevOps/Bitbucket/Jira). It matters because it standardizes how changes move from isolated workspace setup through clean commits to integration and PR completion, and it does not own spec folders / memory (system-spec-kit) or code implementation / tests (sk-code).",
     "source_docs": [
       "SKILL.md",
       "README.md",
       "references/worktree_workflows.md",
       "references/commit_workflows.md",
-      "references/finish_workflows.md"
+      "references/finish_workflows.md",
+      "references/github_mcp_integration.md",
+      "references/gitkraken_mcp_integration.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
-    "last_updated_at": "2026-06-02T00:00:00Z"
+    "last_updated_at": "2026-07-10T00:00:00Z"
   }
 }

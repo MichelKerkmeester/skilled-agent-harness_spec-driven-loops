@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/128-gitkraken-mcp-integration/004-advisor-routing-update",
+  "spec_folder": "skilled-agent-orchestration/128-gitkraken-mcp-integration/004-advisor-routing-update",
+  "parent_id": "skilled-agent-orchestration/128-gitkraken-mcp-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gitkraken advisor routing",
+      "sk-git graph metadata gitkraken",
+      "explicit lane gitkraken boost",
+      "phase 004 advisor-routing-update",
+      "gitkraken advisor routing plan",
+      "phase 004 plan",
+      "gitkraken advisor routing tasks",
+      "phase 004 tasks",
+      "gitkraken advisor routing checklist",
+      "phase 004 checklist",
+      "gitkraken advisor routing summary",
+      "phase 004 summary"
+    ],
+    "key_topics": [
+      "gitkraken",
+      "advisor",
+      "routing",
+      "sk-git",
+      "graph",
+      "metadata",
+      "explicit",
+      "lane",
+      "boost",
+      "phase",
+      "advisor-routing-update",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-git/graph-metadata.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Even",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Extend",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a GitKraken-shaped",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Even with phase 003's doc and router in place, the skill advisor — the system that decides WHETHER to invoke sk-git at all before its own in-skill router ever runs — has no GitKraken vocabulary",
+    "created_at": "2026-07-10T06:17:40.879Z",
+    "last_save_at": "2026-07-10T06:21:38.424Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2137c9b17b0021697a00968a64b3043d26ee76e7644f8b7c691b4dbe2f4253b8",
+    "source_doc_hashes": {
+      "spec.md": "6ea6e629302baa46e8abc45435b0e72fda14fe6a97407fdbeb596efa0a43c4db",
+      "plan.md": "b958d04776f1703a276904dbe63e49417ef2a8c81a7011137b075ee1a7f92d1b",
+      "tasks.md": "e2236cb2e0c575532881166130c9f4ba93c7530d98e004a8dc7bcd3330ee4866",
+      "checklist.md": "18da3d2ed608ca388975e0781a8ed178c840c23a0b9d7bc4cf746b0f94d5408c",
+      "implementation-summary.md": "3dabc92b7056d55c7e50e235bfd42546b43ce6c28a87755f419fe5a040f719f8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -3,11 +3,11 @@ name: sk-git
 description: "Git workflow orchestrator OWNING all git/version-control intent: git worktree create/restructure (numbered wt/{NNNN}-{name} branches under .worktrees/), branch, conventional commits, pull request (PR), merge, rebase, finish work, integrate changes. Routes git-worktrees, git-commit, git-finish. NOT for spec folders / memory / save context (system-spec-kit) or code implementation / tests (sk-code)."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.1.2.1
+version: 1.1.3.0
 ---
 
-<!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review -->
-<!-- Owns: git worktree / create worktree / numbered worktree / restructure worktrees / worktree prefix / wt/ branch / branch / commit / conventional commits / pull request / PR / merge / rebase / finish work / integrate changes / git workflow. Does NOT own: spec folders, memory, continuity, save context (system-spec-kit); code implementation, tests (sk-code). -->
+<!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
+<!-- Owns: git worktree / create worktree / numbered worktree / restructure worktrees / worktree prefix / wt/ branch / branch / commit / conventional commits / pull request / PR / merge / rebase / finish work / integrate changes / git workflow / gitkraken / gitlens / gitlens launchpad / gitlens commit composer / cross-platform pr / multi-provider issue. Does NOT own: spec folders, memory, continuity, save context (system-spec-kit); code implementation, tests (sk-code). -->
 
 # Git Workflows - Git Development Orchestrator
 
@@ -30,7 +30,7 @@ Use this orchestrator when:
 
 ### Keyword Triggers
 
-**Owned (route here):** `git worktree`, `worktree`, `create worktree`, `numbered worktree`, `restructure worktrees`, `worktree prefix`, `wt/ branch`, `branch`, `commit`, `conventional commits`, `pull request`, `pr`, `pr review`, `merge`, `rebase`, `finish work`, `integrate changes`, `git workflow`, `github`, `issue`
+**Owned (route here):** `git worktree`, `worktree`, `create worktree`, `numbered worktree`, `restructure worktrees`, `worktree prefix`, `wt/ branch`, `branch`, `commit`, `conventional commits`, `pull request`, `pr`, `pr review`, `merge`, `rebase`, `finish work`, `integrate changes`, `git workflow`, `github`, `issue`, `gitkraken`, `gitlens`, `gitlens launchpad`, `commit composer`
 
 **Not owned (do NOT claim):** spec folders / memory / continuity / save context → `system-spec-kit`; code implementation / writing tests → `sk-code`. This skill commits and integrates that work; it does not author it.
 
@@ -63,6 +63,7 @@ INTENT_SIGNALS = {
     "WORKSPACE_SETUP": {"weight": 4, "keywords": ["worktree", "create worktree", "numbered worktree", "restructure worktrees", "workspace", "parallel work"]},
     "COMMIT": {"weight": 4, "keywords": ["commit", "staged", "message", "conventional commit"]},
     "FINISH": {"weight": 4, "keywords": ["finish", "merge", "pr", "pull request", "integrate"]},
+    "GITKRAKEN_MCP": {"weight": 4, "keywords": ["gitkraken", "gitlens", "launchpad", "commit composer", "cross-platform pr", "multi-provider issue", "gitlens start review", "gitlens start work"]},
     "SHARED_PATTERNS": {"weight": 3, "keywords": ["convention", "pattern", "reference", "branch naming"]},
 }
 
@@ -83,6 +84,7 @@ RESOURCE_MAP = {
     "WORKSPACE_SETUP": ["references/worktree_workflows.md", "assets/worktree_checklist.md"],
     "COMMIT": ["references/commit_workflows.md", "assets/commit_message_template.md"],
     "FINISH": ["references/finish_workflows.md", "assets/pr_template.md", "references/github_mcp_integration.md"],
+    "GITKRAKEN_MCP": ["references/gitkraken_mcp_integration.md"],
     "SHARED_PATTERNS": ["references/shared_patterns.md"],
 }
 
@@ -301,7 +303,8 @@ git-finish (feature A) → git-finish (feature B)
 9. **Scan for gitignored leftovers after a rename wave** - After `git mv` + merge, detect dirs with disk files but 0 tracked files (`git ls-files <dir>` empty and `git status --porcelain --untracked-files=all` clean) and `rm -rf` them — they are stale ignored cruft (`.DS_Store`, `*.log`, `*.pyc`) left behind by `git mv`.
 10. **Verify rename history is preserved** - After a rename wave confirm `R`-status (not delete+add) before commit, and after merge confirm the tree has no old+new duplicate folders.
 11. **GitHub release bodies never start with an H1** - The release title field already renders `vX.X.X.X — Title`; a body-leading `# vX.X.X.X` duplicates it on the Releases page. The H1 belongs ONLY to the changelog md file in the repo. When publishing from a changelog file, strip the leading H1 (and following blank lines) into a temp notes file before `gh release create/edit --notes-file`. Full mechanics: [finish_workflows.md](references/finish_workflows.md) Step 6.
-12. **Honor an authorized operator's explicit direct-push directive on a protected branch** - Protected-branch rules (PR-required, verified signatures, code scanning) primarily gate EXTERNAL contributors. When the operator holds bypass rights and explicitly asks to commit/push directly to a protected branch, do a direct `git push` — do NOT default to a PR detour, re-ask whether to use a PR, or frame the bypass / resulting unsigned commit as a problem. Still apply full commit hygiene: scope the commit to the intended files only (a shared or dirty tree may hold concurrent work — never blind `git add -A`), use Conventional Commits, and report plainly that the push bypassed protection. Whether a given operator/repo grants that bypass authority is recorded in operator memory, not in this codebase-agnostic skill.
+12. **Route GitKraken MCP's local-mutation tools back to Bash** - GitKraken MCP (`gitkraken.gitkraken_*`) exposes `git_add_or_commit`, `git_push`, `git_pull`, `git_fetch`, `git_checkout`, `git_branch`, `git_worktree`, and `git_stash`, which duplicate local git mutations already gated by this skill's no-direct-branch-creation rule (❌ NEVER #2), numbered worktree naming (✅ ALWAYS #4), and the commit-message logic below. Never call these GitKraken MCP tools as a substitute for the existing Bash-based workflow; reserve GitKraken MCP for GitLens AI workflows and cross-platform issue/PR/repository operations with no local equivalent. Full detail: [gitkraken_mcp_integration.md](references/gitkraken_mcp_integration.md) §2.
+13. **Honor an authorized operator's explicit direct-push directive on a protected branch** - Protected-branch rules (PR-required, verified signatures, code scanning) primarily gate EXTERNAL contributors. When the operator holds bypass rights and explicitly asks to commit/push directly to a protected branch, do a direct `git push` — do NOT default to a PR detour, re-ask whether to use a PR, or frame the bypass / resulting unsigned commit as a problem. Still apply full commit hygiene: scope the commit to the intended files only (a shared or dirty tree may hold concurrent work — never blind `git add -A`), use Conventional Commits, and report plainly that the push bypassed protection. Whether a given operator/repo grants that bypass authority is recorded in operator memory, not in this codebase-agnostic skill.
 
 ### Commit Message Logic (AI-Scannable)
 
@@ -344,7 +347,7 @@ Use this logic whenever the AI writes or rewrites commit messages.
 
 1. **Force push to main/master** - Protected branches must never receive force pushes
 2. **Never create branches directly** - Use `git worktree add -b ...`; never use `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`
-3. **Commit directly to protected branches WITHOUT operator authorization** - Default to feature branches + PRs. EXCEPTION: when the operator has bypass authority on that branch and explicitly directs a direct commit/push, honor it (see ALWAYS #11) — do not force a PR detour.
+3. **Commit directly to protected branches WITHOUT operator authorization** - Default to feature branches + PRs. EXCEPTION: when the operator has bypass authority on that branch and explicitly directs a direct commit/push, honor it (see ALWAYS #13) — do not force a PR detour.
 4. **Leave worktrees uncleaned** - Remove worktree directories after merge
 5. **Commit secrets or credentials** - Use environment variables or secret management
 6. **Create PRs without description** - Always include context, changes, and testing notes
@@ -376,6 +379,7 @@ Use this logic whenever the AI writes or rewrites commit messages.
 | [shared_patterns.md](references/shared_patterns.md) | Reusable git patterns | Error recovery, conflict resolution, rename-heavy / large-reorg merge verification (§10) |
 | [quick_reference.md](references/quick_reference.md) | Command cheat sheet | Common operations |
 | [github_mcp_integration.md](references/github_mcp_integration.md) | GitHub MCP remote ops | PRs, issues, CI/CD via Code Mode |
+| [gitkraken_mcp_integration.md](references/gitkraken_mcp_integration.md) | GitKraken MCP cross-platform ops | GitLens AI workflows, PRs/issues across GitHub/GitLab/Azure DevOps/Bitbucket/Jira via Code Mode |
 
 ### Assets
 | Asset | Purpose | Usage |

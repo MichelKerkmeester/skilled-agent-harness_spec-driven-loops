@@ -106,6 +106,24 @@
       }
     },
     {
+      "name": "gitkraken",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "gitkraken": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "-y",
+              "@gitkraken/gk",
+              "mcp"
+            ],
+            "env": {}
+          }
+        }
+      }
+    },
+    {
       "name": "open_design",
       "call_template_type": "mcp",
       "config": {

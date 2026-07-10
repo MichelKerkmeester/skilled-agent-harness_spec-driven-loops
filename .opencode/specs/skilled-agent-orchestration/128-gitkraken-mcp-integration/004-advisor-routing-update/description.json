@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "skilled-agent-orchestration/128-gitkraken-mcp-integration/004-advisor-routing-update",
+  "description": "Even with phase 003's doc and router in place, the skill advisor — the system that decides WHETHER to invoke sk-git at all before its own in-skill",
+  "keywords": [
+    "even",
+    "phase",
+    "doc",
+    "router",
+    "place",
+    "skill",
+    "advisor",
+    "system",
+    "decides",
+    "whether",
+    "invoke",
+    "sk-git",
+    "own",
+    "in-skill"
+  ],
+  "lastUpdated": "2026-07-10T06:21:31.270Z",
+  "specId": "004",
+  "folderSlug": "advisor-routing-update",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "128-gitkraken-mcp-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
