@@ -292,7 +292,7 @@ git-finish (feature A) → git-finish (feature B)
 
 ### ✅ ALWAYS
 
-1. **Use deterministic conventional commit format** - All commits must follow `type(scope): description` using the commit-message logic defined below
+1. **Use deterministic conventional commit format** - All authored commits follow `type(scope): summary`; preserve the explicitly exempt Git-generated subjects defined below
 2. **Create worktree for parallel work** - Never work on multiple features in the same worktree
 3. **Verify branch is up-to-date** - Pull latest changes before creating PR
 4. **Name worktree-created branches with the unified numbered namespace** - Format: `wt/{NNNN}-{name}` where `{NNNN}` is a 4-digit zero-padded global counter (`max(existing NNNN under .worktrees/) + 1`, first is `0001`) and `{name}` is a short kebab description (e.g., `wt/0001-add-oauth`, `wt/0002-login-bug`). The matching directory is `.worktrees/{NNNN}-{name}`. The `wt/` prefix groups every feature-worktree branch under one folder in Git UIs. This is distinct from the launch wrapper's ephemeral per-session worktrees (`work/{runtime}/{slug}` + `.worktrees/{runtime}-{slug}`), which are auto-managed, auto-reaped, and intentionally not numbered.
@@ -306,42 +306,155 @@ git-finish (feature A) → git-finish (feature B)
 12. **Route GitKraken MCP's local-mutation tools back to Bash** - GitKraken MCP (`gitkraken.gitkraken_*`) exposes `git_add_or_commit`, `git_push`, `git_pull`, `git_fetch`, `git_checkout`, `git_branch`, `git_worktree`, and `git_stash`, which duplicate local git mutations already gated by this skill's no-direct-branch-creation rule (❌ NEVER #2), numbered worktree naming (✅ ALWAYS #4), and the commit-message logic below. Never call these GitKraken MCP tools as a substitute for the existing Bash-based workflow; reserve GitKraken MCP for GitLens AI workflows and cross-platform issue/PR/repository operations with no local equivalent. Full detail: [gitkraken_mcp_integration.md](references/gitkraken_mcp_integration.md) §2.
 13. **Honor an authorized operator's explicit direct-push directive on a protected branch** - Protected-branch rules (PR-required, verified signatures, code scanning) primarily gate EXTERNAL contributors. When the operator holds bypass rights and explicitly asks to commit/push directly to a protected branch, do a direct `git push` — do NOT default to a PR detour, re-ask whether to use a PR, or frame the bypass / resulting unsigned commit as a problem. Still apply full commit hygiene: scope the commit to the intended files only (a shared or dirty tree may hold concurrent work — never blind `git add -A`), use Conventional Commits, and report plainly that the push bypassed protection. Whether a given operator/repo grants that bypass authority is recorded in operator memory, not in this codebase-agnostic skill.
 
-### Commit Message Logic (AI-Scannable)
+### Commit Message Logic (Human-Clear and AI-Deterministic)
 
-Use this logic whenever the AI writes or rewrites commit messages.
+Use this logic whenever an AI writes or rewrites a commit message. The goal is
+a subject that explains the outcome in `git log --oneline` and a body that
+explains the reason without requiring packet knowledge or internal jargon.
+Enforced structurally (not clarity semantics) by the `commit-msg` hook — see
+[git-hooks/commit-msg](../../scripts/git-hooks/commit-msg); bypass with
+`SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...` only when the hook is
+genuinely wrong about a specific message, not to skip writing a real one.
 
-1. **Subject format (required)**: `type(scope): summary`
-2. **Type selection order (first match wins)**:
-   - `merge`: merge commits (`Merge ...`)
-   - `release`: version or release subjects (`vX.Y.Z`, `release`)
-   - `docs`: docs-only changes or README/CHANGELOG-focused updates
-   - `fix`: bug/security/hotfix/error correction
-   - `feat`: new behavior, support, or capability
-   - `refactor`: internal restructuring without behavior change
-   - `test`: test-only updates
-   - `chore`: fallback for operational or mixed maintenance work
-3. **Scope selection order (first match wins)**:
-   - `.opencode/skills/<name>/...` -> `<name>`
-   - `AGENTS.md` changes -> `agents`
-   - `README.md`-only changes -> `readme`
-   - `opencode.json` or `.utcp_config.json` -> `config`
-   - `.opencode/agents/...` -> `agents`
-   - `.opencode/commands/...` -> `commands`
-   - docs-only set -> `docs`
-   - fallback -> dominant top-level path or `repo`
-4. **Summary normalization**:
-   - Keep concise and specific
-   - Remove duplicate prefixes like `feat(scope):` from legacy subjects
-   - Avoid trailing period
-   - Preserve key context tokens (version, skill name, issue id) when relevant
-5. **Body format (optional)**:
-   - Add only when context is non-obvious
-   - Prefer:
-     - `Context: <why>`
-     - `Changes:` with 1-3 bullets
-     - `Refs: <spec-folder|issue|PR>` when available
-6. **Determinism rule**:
-   - The same diff + metadata should produce the same commit subject every time.
+#### 1. Classify Special Git Messages
+
+Preserve Git-generated subjects unchanged when they begin with `Merge `,
+`Revert "`, `fixup! `, `squash! `, or `amend! `.
+
+Intentional checkpoints are not exempt. Write them as
+`chore(wip): checkpoint <specific state>` or use the documented bypass when
+a deliberately non-conventional message is required.
+
+#### 2. Authored Subject Contract
+
+Format:
+
+```text
+type(scope)[!]: imperative summary
+```
+
+Allowed types:
+
+`build`, `chore`, `ci`, `docs`, `feat`, `fix`, `merge`, `perf`, `refactor`,
+`release`, `revert`, `style`, `test`.
+
+Hard requirements:
+
+- Type and scope are required for every authored subject.
+- Scope is lowercase kebab-case, a stable subsystem name, and not a packet,
+  phase, task, or other numeric-only identifier.
+- Summary starts with a lowercase imperative verb.
+- Summary names the changed behavior or artifact, not the work process.
+- Summary does not end with punctuation or contain repeated spaces.
+- Summary is specific enough to distinguish this commit from adjacent work.
+- Subject should be at most 80 characters and must not exceed 100 characters.
+- A `!` requires a `BREAKING CHANGE:` footer.
+
+Do not use vague summaries such as `update`, `changes`, `fix bug`, `cleanup`,
+`misc changes`, `work in progress`, or `update stuff`.
+
+Move process metadata such as packet numbers, phases, waves, lanes, task
+counts, model names, review rounds, remediation labels, and verification
+claims to the body or `Refs:` line unless the term is part of the behavior
+being changed.
+
+#### 3. Type Selection Order
+
+Use first match:
+
+1. `release` for publishing a version or release.
+2. `docs` when every substantive changed path is documentation.
+3. `fix` when existing behavior was incorrect, unsafe, or failing.
+4. `feat` when the commit adds new usable behavior or support.
+5. `perf` when measured performance improves without changing behavior.
+6. `refactor` when implementation structure changes without behavior changes.
+7. `test` when only tests or test fixtures change.
+8. `ci` when only CI workflow behavior changes.
+9. `build` when only build or dependency mechanics change.
+10. `style` when only formatting changes.
+11. `revert` or `merge` for authored revert or merge messages.
+12. `chore` only when no more specific type applies.
+
+Tests and documentation shipped with a feature or fix inherit that feature or
+fix type. Do not choose `chore` merely because the commit touches many files.
+
+#### 4. Scope Selection Order
+
+Use first match after identifying the one logical owner:
+
+1. One owning `.opencode/skills/<name>/...` subsystem -> `<name>`.
+2. `.opencode/scripts/git-hooks/...` or its installer -> `git-hooks`.
+3. `AGENTS.md` or runtime agent definitions -> `agents`.
+4. `.opencode/commands/...` -> `commands`.
+5. `opencode.json`, `.utcp_config.json`, or equivalent root config -> `config`.
+6. Root `README.md` only -> `readme`.
+7. Spec-document or generated packet-metadata maintenance only -> `specs`.
+8. Documentation spanning multiple owners -> `docs`.
+9. One dominant top-level component -> that component's lowercase name.
+10. Inseparable cross-repository change -> `repo`.
+
+If two independent owners remain, split the commit instead of inventing a
+combined scope. Never use a numeric packet identifier as the scope.
+
+#### 5. Summary Construction
+
+Apply this sequence:
+
+1. State the primary outcome of the staged diff.
+2. Start with the action: `add`, `prevent`, `preserve`, `route`, `remove`,
+   `restore`, `clarify`, `split`, or another precise imperative verb.
+3. Name the affected behavior or artifact.
+4. Add the user-visible or system-visible effect when the object alone is
+   ambiguous.
+5. Remove implementation chronology, review claims, packet labels, and
+   duplicate Conventional Commit prefixes.
+6. Read only the subject and ask: "Would a maintainer understand what changed
+   without opening the packet?" If not, rewrite it.
+
+#### 6. Body Contract
+
+A body is required when any condition applies:
+
+- Four or more paths are staged.
+- The change fixes a regression, failure, race, security issue, or data risk.
+- The reason or tradeoff is not obvious from the subject.
+- The change is breaking or has migration requirements.
+- The commit spans code plus generated metadata or multiple repository areas.
+
+A body may be omitted only for a small, self-explanatory change affecting at
+most three paths.
+
+Preferred structure:
+
+```text
+Context: <plain-language problem or reason>
+
+Changes:
+- <observable change>
+- <observable change>
+
+Verification:
+- `<command>` -> <observed result>
+
+Refs: <issue, PR, or spec path>
+```
+
+Use only sections that carry useful information. Explain internal terms on
+first use. Verification claims must state what actually ran and its result.
+
+#### 7. Deterministic Self-Check
+
+Before committing, verify in order:
+
+1. Special Git-generated message, or valid authored format.
+2. Type selected by the first matching type rule.
+3. Scope selected by the first matching scope rule and not numeric-only.
+4. Summary contains an imperative action and a concrete object.
+5. Subject is understandable without packet or workflow context.
+6. Subject is at most 100 characters; rewrite when over 80 if possible.
+7. Required body explains why and records meaningful verification.
+8. Breaking behavior has `!` and a `BREAKING CHANGE:` footer.
+9. The same staged diff and metadata would produce the same subject again.
 
 ### ❌ NEVER
 
@@ -374,7 +487,7 @@ Use this logic whenever the AI writes or rewrites commit messages.
 |----------|---------|-------------|
 | [worktree_workflows.md](references/worktree_workflows.md) | 7-step workspace creation | Directory selection, branch strategies, large-reorg caveats (§8b) |
 | [large_reorg_playbook.md](references/large_reorg_playbook.md) | Step-ordered large rename/reorg runbook | Worktree-only renames; toolchain + DB run on main post-merge |
-| [commit_workflows.md](references/commit_workflows.md) | 6-step commit workflow | Artifact filtering, Conventional Commits, scoped-staging discipline for a dirty tree / unrelated WIP (§3 Step 7) |
+| [commit_workflows.md](references/commit_workflows.md) | 7-step commit workflow | Artifact filtering, Conventional Commits, scoped-staging discipline for a dirty tree / unrelated WIP (§3 Step 7) |
 | [finish_workflows.md](references/finish_workflows.md) | 5-step completion flow | PR creation, cleanup, merge |
 | [shared_patterns.md](references/shared_patterns.md) | Reusable git patterns | Error recovery, conflict resolution, rename-heavy / large-reorg merge verification (§10) |
 | [quick_reference.md](references/quick_reference.md) | Command cheat sheet | Common operations |
@@ -415,7 +528,8 @@ Use this logic whenever the AI writes or rewrites commit messages.
 
 | Gate | Criteria | Blocking |
 |------|----------|----------|
-| **Pre-commit** | Artifacts excluded, message formatted | Yes |
+| **Pre-commit** | Artifacts excluded and staged-content gates pass | Yes |
+| **Commit-msg** | Message structure passes; clarity warnings reviewed | Structure only |
 | **Pre-merge** | Tests pass, branch up-to-date | Yes |
 | **Pre-PR** | Description complete, CI passing | Yes |
 | **Post-merge** | Worktree removed, branches cleaned | No |

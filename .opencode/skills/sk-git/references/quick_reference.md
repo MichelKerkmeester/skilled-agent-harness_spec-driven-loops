@@ -105,7 +105,7 @@ git commit -m "type(scope): description"
 git commit -m "Subject" -m "Body explaining why"
 ```
 
-### 6-Step Workflow
+### 7-Step Workflow
 
 1. **Analyze files** - Categorize changes
 2. **Filter artifacts** - Exclude internal files (don't add to .gitignore)
@@ -113,6 +113,7 @@ git commit -m "Subject" -m "Body explaining why"
 4. **Determine strategy** - Atomic commits
 5. **Write message** - Conventional Commits format
 6. **Verify readiness** - Final checklist
+7. **Scoped-staging discipline** - Guard against sweeping unrelated WIP into your commit on a dirty tree
 
 ### Conventional Commits Format
 
@@ -124,11 +125,12 @@ git commit -m "Subject" -m "Body explaining why"
 [optional footer]
 ```
 
-**Types**: `feat`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`, `perf`, `ci`
+**Types**: `feat`, `fix`, `refactor`, `docs`, `style`, `test`, `chore`, `perf`, `ci`, `build`, `merge`, `release`, `revert`
 
-**Rules**:
+**Rules** (canonical: [`../SKILL.md`](../SKILL.md) "Commit Message Logic"):
 - Imperative mood ("add" not "added")
-- Under 50 characters
+- Target 80 characters, hard maximum 100
+- Type and scope both required; scope is a stable subsystem name, never numeric
 - Lowercase after colon
 - No period at end
 
@@ -200,7 +202,7 @@ cd .worktrees/0001-fix
 
 # 3. Commit
 git add <files>
-git commit -m "fix: description"
+git commit -m "fix(scope): description"
 
 # 4. Test
 npm test
@@ -225,14 +227,14 @@ cd .worktrees/0002-name
 
 # 3. Commit
 git add <files>
-git commit -m "feat: description"
+git commit -m "feat(scope): description"
 
 # 4. Test
 npm test
 
 # 5. Create PR
 git push -u origin wt/0002-name
-gh pr create --title "feat: ..." --body "..."
+gh pr create --title "feat(scope): ..." --body "..."
 
 # 6. Cleanup worktree (keep branch)
 cd ../.. && git worktree remove .worktrees/0002-name
@@ -251,7 +253,7 @@ cd .worktrees/0003-exp
 # 3a. Keep: Create a new named worktree and branch (0004 = next counter)
 git worktree add -b wt/0004-name .worktrees/0004-name HEAD
 cd ../0004-name
-git add . && git commit -m "feat: experimental approach"
+git add . && git commit -m "feat(scope): experimental approach"
 
 # 3b. Discard: Remove worktree
 cd ../.. && git worktree remove .worktrees/0003-exp
@@ -338,7 +340,7 @@ gh pr create                           # Create PR
 | Worktree creation fails | Check `git worktree list`, remove stale, `git worktree prune` |
 | Tests fail in new worktree | Ask user: investigate, proceed, or abort |
 | Can't stage files | Use `git add <files>`, not `git add .` |
-| Commit message too long | Move details to body, keep subject <50 chars |
+| Commit message too long | Move details to body, keep subject ≤80 chars (100 hard max) |
 | Merge conflicts | `git status`, resolve manually, `git add`, `git commit` |
 | PR creation fails | Check `gh auth status`, `gh auth login` |
 | Worktree won't remove | Check for uncommitted changes, `git worktree unlock` |
@@ -392,7 +394,7 @@ gh pr create                           # Create PR
 feat(auth): add OAuth2 login support
 fix(api): handle null response in error handler
 refactor(utils): extract validation to middleware
-docs: update API reference with new endpoints
+docs(api): update API reference with new endpoints
 chore(deps): update axios to v1.6.0
 ```
 
@@ -410,7 +412,7 @@ Update                             # No description
 ```
 feat(auth): add OAuth2 authentication system
 fix(api): resolve memory leak in data processing
-refactor: restructure validation layer
+refactor(validation): restructure validation layer
 ```
 
 ---

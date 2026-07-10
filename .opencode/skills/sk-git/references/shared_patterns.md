@@ -265,17 +265,21 @@ git remote show origin             # Show remote details
 |------|---------|---------|
 | `feat` | New feature | `feat(auth): add OAuth2 login` |
 | `fix` | Bug fix | `fix(api): handle null response` |
-| `refactor` | Code restructuring | `refactor: extract validation logic` |
-| `docs` | Documentation | `docs: update API reference` |
-| `style` | Formatting changes | `style: fix indentation` |
-| `test` | Add/update tests | `test: add user service tests` |
-| `chore` | Build, deps, tooling | `chore: update dependencies` |
-| `perf` | Performance improvement | `perf: optimize query caching` |
-| `ci` | CI/CD changes | `ci: add deployment workflow` |
+| `refactor` | Code restructuring | `refactor(validation): extract validation logic` |
+| `docs` | Documentation | `docs(api): update API reference` |
+| `style` | Formatting changes | `style(lint): fix indentation` |
+| `test` | Add/update tests | `test(user-service): add user service tests` |
+| `chore` | Build, deps, tooling | `chore(deps): update dependencies` |
+| `perf` | Performance improvement | `perf(query): optimize query caching` |
+| `ci` | CI/CD changes | `ci(deploy): add deployment workflow` |
+| `build` | Build system or external dependencies | `build(deps): bump webpack to v5` |
+| `merge` | Merge commits (usually Git-generated) | `merge(main): integrate feature branch` |
+| `release` | Version bump / release cut | `release(core): tag v1.2.0` |
+| `revert` | Revert a previous commit | `revert(api): revert null-response fix` |
 
-### Scope (Optional)
+### Scope (Required)
 
-Component or area affected:
+Type and scope are both required — see [`../SKILL.md`](../SKILL.md) "Commit Message Logic" for the canonical contract. Scope names a stable, lowercase kebab-case subsystem, never a packet, phase, or numeric identifier. Common areas in this repo:
 - `auth` - Authentication
 - `api` - API layer
 - `ui` - User interface
@@ -287,7 +291,7 @@ Component or area affected:
 - Use imperative mood: "add" not "added"
 - Lowercase after colon
 - No period at end
-- Under 50 characters
+- Target 80 characters, hard maximum 100 (canonical: [`../SKILL.md`](../SKILL.md) "Commit Message Logic")
 - Specific and descriptive
 
 ### Body (Optional)
@@ -355,7 +359,7 @@ cd .worktrees/0001-quick-fix
 
 # 3. Commit
 git add <files>
-git commit -m "fix: description"
+git commit -m "fix(scope): description"
 
 # 4. Run tests
 npm test  # or appropriate test command
@@ -382,14 +386,14 @@ cd .worktrees/0002-new-feature
 
 # 3. Commit changes
 git add <files>
-git commit -m "feat: description"
+git commit -m "feat(scope): description"
 
 # 4. Run tests
 npm test
 
 # 5. Push and create PR
 git push -u origin wt/0002-new-feature
-gh pr create --title "feat: description" --body "..."
+gh pr create --title "feat(scope): description" --body "..."
 
 # 6. Cleanup worktree (keep branch for PR)
 cd ../..
@@ -410,7 +414,7 @@ cd .worktrees/0003-experiment
 git worktree add -b wt/0004-new-approach .worktrees/0004-new-approach HEAD
 cd ../0004-new-approach
 git add .
-git commit -m "feat: experimental approach"
+git commit -m "feat(scope): experimental approach"
 
 # 3b. If discarding: Just remove
 cd ../..
@@ -435,7 +439,7 @@ npm test
 
 # 3. Commit fixes
 git add <files>
-git commit -m "fix: address test failures"
+git commit -m "fix(scope): address test failures"
 
 # 4. Re-run tests
 npm test

@@ -162,119 +162,22 @@ IF changes include both code and tests:
 
 ### Step 5: Write Commit Message
 
-**Purpose**: Craft professional message following Conventional Commits
+**Purpose**: Craft a commit message that is human-clear and AI-deterministic.
 
-**Format**:
-```
-<type>(<optional scope>): <description>
+The full contract (subject format, type/scope selection order, summary
+construction, body contract, and the deterministic self-check) is canonical
+in [`../SKILL.md`](../SKILL.md) under "Commit Message Logic (Human-Clear and
+AI-Deterministic)." Worked, repository-specific examples live in
+[`../assets/commit_message_template.md`](../assets/commit_message_template.md).
+Structure is enforced by
+[`../../../scripts/git-hooks/commit-msg`](../../../scripts/git-hooks/commit-msg)
+(bypass: `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...`).
 
-[optional body]
-
-[optional footer]
-```
-
-**Commit Types**:
-- `feat` - New feature
-- `fix` - Bug fix
-- `refactor` - Code restructuring without changing functionality
-- `docs` - Documentation changes
-- `style` - Formatting, missing semicolons, etc.
-- `test` - Adding or updating tests
-- `chore` - Build process, auxiliary tools, etc.
-- `perf` - Performance improvements
-- `ci` - CI/CD changes
-
-**Deterministic AI Commit Logic**:
-
-1. **Type selection order** (first match wins):
-   - `merge` for merge commits (`Merge ...`)
-   - `release` for version/release subjects (`vX.Y.Z`, `release`)
-   - `docs` for docs-only changes (README/CHANGELOG/docs paths)
-   - `fix` for bug/security/hotfix/error correction
-   - `feat` for new behavior or capabilities
-   - `refactor` for non-behavioral restructuring
-   - `test` for test-only changes
-   - `chore` as fallback
-2. **Scope selection order** (first match wins):
-   - `.opencode/skills/<name>/...` -> `<name>`
-   - `AGENTS.md` updates -> `agents`
-   - `README.md`-only changes -> `readme`
-   - `opencode.json` or `.utcp_config.json` -> `config`
-   - `.opencode/agents/...` -> `agents`
-   - `.opencode/commands/...` -> `commands`
-   - docs-only set -> `docs`
-   - fallback -> dominant top-level area or `repo`
-3. **Summary normalization**:
-   - Remove legacy prefixes already in the subject (`feat(scope): ...`)
-   - Keep concise and specific
-   - Avoid trailing period
-   - Preserve high-signal context tokens (version, issue id, skill name)
-
-**Rules**:
-
-1. **Subject line** (<type>(<scope>): <description>):
-   - Use imperative mood ("add" not "added" or "adds")
-   - Keep under 50 characters
-   - No period at the end
-   - Lowercase after colon
-   - Be specific and descriptive
-
-2. **Body** (optional but recommended):
-   - Explain "what" and "why", not "how"
-   - Wrap at 72 characters
-   - Separate from subject with blank line
-   - Can have multiple paragraphs
-
-3. **Footer** (optional):
-   - Breaking changes: `BREAKING CHANGE: description`
-   - Issue references: `Fixes #123`, `Closes #456`
-
-**Anti-Patterns to Avoid**:
-- Internal task numbers in subject (e.g., "TASK-123: fix bug")
-- Vague descriptions (e.g., "fix stuff", "update files")
-- Technical implementation details in subject
-- Project-specific jargon without context
-- Multiple unrelated changes in one commit
-
-**Examples**:
-
-**Good - Feature**:
-```
-feat(auth): add OAuth2 login support
-
-Implements OAuth2 authentication flow to replace basic auth.
-Improves security and enables SSO integration.
-```
-
-**Good - Bug Fix**:
-```
-fix: resolve memory leak in data processing
-
-Large datasets were not being properly garbage collected
-after processing, causing memory usage to grow over time.
-```
-
-**Good - Refactor**:
-```
-refactor(api): extract validation logic to middleware
-
-Moves input validation from route handlers to reusable
-middleware. Reduces code duplication and improves testability.
-```
-
-**Bad - Vague**:
-```
-fix: update stuff
-
-Changed some files.
-```
-
-**Bad - Internal Reference**:
-```
-feat: TASK-456 new feature
-
-Implemented the thing from the task.
-```
+Quick summary: `type(scope)[!]: imperative summary`, both type and scope
+required, scope is a stable subsystem name (never a numeric packet id),
+subject target 80 / hard max 100 characters, a body is required whenever
+four or more paths are staged or the reason isn't obvious from the subject
+alone.
 
 **Validation**: `message_written`
 
@@ -313,7 +216,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 **Purpose**: Prevent sweeping someone else's in-flight WIP into YOUR commit when the working tree is dirty (unrelated uncommitted or already-staged changes belonging to another packet/agent).
 
-**Why this matters (real incident)**: During the 026 wave-4 reorg, an orchestrator ran a broad `git add` while the tree held unrelated WIP. 24 unrelated files (another packet plus install guides) were swept into the reorg commit and had to be backed out with `git reset --mixed HEAD~1` and re-staged precisely. See `shared_patterns.md` §11 for the rename-heavy merge half of the same incident.
+**Why this matters (real incident)**: During the 026 wave-4 reorg, an orchestrator ran a broad `git add` while the tree held unrelated WIP. 24 unrelated files (another packet plus install guides) were swept into the reorg commit and had to be backed out with `git reset --mixed HEAD~1` and re-staged precisely. See `shared_patterns.md` §10 for the rename-heavy merge half of the same incident.
 
 **Hard rules**:
 
@@ -418,150 +321,7 @@ git commit -m "type(scope): description"
 
 ---
 
-## 6. EXAMPLE WORKFLOWS
-
-### Example 1: Single Feature Commit
-
-```text
-User: "I've added user authentication, ready to commit"
-
-Agent: "I'll analyze the changes using the git-commit skill."
-
-[Step 1: Analyze changed files]
-> git status --short
- M src/auth/login.js
- M src/auth/middleware.js
- A tests/auth.test.js
- M package.json
- A TASK_NOTES.md
-
-[Step 2: Filter artifacts]
-Excluding: TASK_NOTES.md (internal planning document)
-
-[Step 3: Identify patterns]
-All changes related to authentication feature
-
-[Step 4: Determine strategy]
-Strategy: Single commit (cohesive feature)
-
-[Step 5: Write message]
-Suggested commit message:
-
-feat(auth): add user authentication system
-
-Implements JWT-based authentication with login and middleware.
-Adds token validation and user session management.
-
-[Step 6: Verify readiness]
-✓ Only public value files staged
-✓ Artifacts excluded
-✓ Message follows conventions
-✓ Changes are atomic
-
-Ready to commit:
-> git add src/auth/ tests/auth.test.js package.json
-> git commit -m "feat(auth): add user authentication system" \
-    -m "Implements JWT-based authentication with login and middleware.
-Adds token validation and user session management."
-```
-
-### Example 2: Multiple Commits (Mixed Changes)
-
-```text
-User: "Made several changes - fixed a bug, refactored some code, and updated docs"
-
-Agent: "I'll analyze and recommend splitting into separate commits."
-
-[Step 1: Analyze changed files]
-> git status --short
- M src/api/handler.js          # Bug fix
- M src/utils/validator.js      # Refactor
- M docs/API.md                  # Documentation
- A debug_output.txt             # Artifact
-
-[Step 2: Filter artifacts]
-Excluding: debug_output.txt (temporary debugging file)
-
-[Step 3: Identify patterns]
-Three unrelated changes detected:
-- Bug fix in handler
-- Refactoring in validator
-- Documentation update
-
-[Step 4: Determine strategy]
-Strategy: Three separate commits
-
-[Step 5: Write messages]
-
-Commit 1 - Bug Fix:
-fix(api): handle null response in error handler
-
-Prevents crash when error response body is null.
-Adds null check before accessing response properties.
-
-Commit 2 - Refactor:
-refactor(utils): extract validation rules to constants
-
-Moves hard-coded validation patterns to shared constants.
-Improves maintainability and reduces duplication.
-
-Commit 3 - Documentation:
-docs: update API error response format
-
-Documents the null handling behavior in error responses.
-Adds examples for common error scenarios.
-
-[Step 6: Execute commits]
-> git add src/api/handler.js
-> git commit -m "fix(api): handle null response in error handler" ...
-
-> git add src/utils/validator.js
-> git commit -m "refactor(utils): extract validation rules to constants" ...
-
-> git add docs/API.md
-> git commit -m "docs: update API error response format" ...
-```
-
-### Example 3: Excluding Non-Conventional Files
-
-```text
-User: "Ready to commit my new test suite"
-
-Agent: "I'll check the file structure before committing."
-
-[Step 1: Analyze changed files]
-> git status --short
- A tests/user.test.js          # Correct location
- A tests/api.test.js           # Correct location
- A test_helper.py              # Root level (wrong!)
- A src/coverage_report.html    # Artifact
-
-[Step 2: Filter artifacts and non-conventional files]
-Excluding: src/coverage_report.html (generated artifact)
-Excluding: test_helper.py (test file in root - should be in tests/)
-
-Notice: test_helper.py violates project structure conventions.
-Please move to tests/ directory before committing.
-
-[Step 3: Proceed with conventional files only]
-Staging: tests/user.test.js, tests/api.test.js
-
-[Step 5: Write message]
-test: add user and API test suites
-
-Implements comprehensive test coverage for user management
-and API endpoints. Includes happy path and error scenarios.
-
-[Step 6: Commit]
-> git add tests/user.test.js tests/api.test.js
-> git commit -m "test: add user and API test suites" ...
-
-Action Required: Please move test_helper.py to tests/ before next commit.
-```
-
----
-
-## 7. TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 ### Cannot Determine Commit Scope
 
@@ -571,7 +331,7 @@ Action Required: Please move test_helper.py to tests/ before next commit.
 1. List all changed files by category
 2. Ask user: "These changes affect multiple areas. Should I split into separate commits?"
 3. If split: Create one commit per logical area
-4. If single: Use general scope or omit scope
+4. If single: Use the most representative single scope (scope is required, never omitted)
 
 ### Internal Artifacts Keep Getting Staged
 
@@ -606,7 +366,7 @@ Prevent recurrence with Step 7 (Scoped-Staging Discipline): enumerate your paths
 
 ### Commit Message Too Long
 
-**Symptom**: Subject line exceeds 50 characters
+**Symptom**: Subject line exceeds the 80-character target (100 is the hard maximum)
 
 **Fix**:
 - Move details to body
@@ -642,7 +402,7 @@ Clients must update to handle JSON responses.
 
 ---
 
-## 8. SUCCESS CRITERIA
+## 7. SUCCESS CRITERIA
 
 **Commit is successful when**:
 - ✅ All changed files analyzed and categorized
@@ -650,12 +410,13 @@ Clients must update to handle JSON responses.
 - ✅ Non-conventional files excluded
 - ✅ Commit strategy determined (single/multiple)
 - ✅ Message follows Conventional Commits format
-- ✅ Subject under 50 characters, imperative mood
+- ✅ Subject targets 80 characters and never exceeds 100, imperative mood
 - ✅ Body explains "what" and "why" (when applicable)
 - ✅ No sensitive information included
 - ✅ Changes are atomic and logically grouped
 - ✅ Tests pass (or failures acknowledged)
 - ✅ On a dirty tree, staged set asserted against a deny-pattern — no unrelated WIP captured (Step 7)
+- ✅ `commit-msg` hook passed (or a documented bypass reason)
 
 **Quality gates**:
 - Only files with public value are committed
@@ -665,9 +426,12 @@ Clients must update to handle JSON responses.
 
 ---
 
-## 9. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Reference Files
+- [../SKILL.md](../SKILL.md) - Canonical Commit Message Logic
+- [../assets/commit_message_template.md](../assets/commit_message_template.md) - Repository-specific worked examples
+- [../../../scripts/git-hooks/commit-msg](../../../scripts/git-hooks/commit-msg) - Structural enforcement hook
 - [worktree_workflows.md](./worktree_workflows.md) - Create isolated git workspaces with minimal branching
 - [finish_workflows.md](./finish_workflows.md) - Complete development work with structured integration options
 - [quick_reference.md](./quick_reference.md) - One-page cheat sheet for all git workflows
