@@ -233,7 +233,7 @@
     ],
     "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into shipped retrieval intelligence, release cleanup, review remediation, data-quality generation, dark-flag graduation and surface-alignment work",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-07-09T20:30:11.472Z",
+    "last_save_at": "2026-07-10T13:18:31.225Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -247,7 +247,7 @@
       "research/research.md": "534a044ff852cf46516be419c0aab3b6afe9c380ef6c288ddbdc25661bbdc120",
       "handover.md": "0aa19a3de52fdf7a8a977f07a95e469786ed0e55cd2ed977195b799de441c6fb"
     },
-    "last_active_child_id": "system-speckit/028-memory-search-intelligence/010-query-channel-calibration",
-    "last_active_at": "2026-07-09T12:38:03.300Z"
+    "last_active_child_id": "system-speckit/028-memory-search-intelligence/021-graph-preservation-quality-benchmark",
+    "last_active_at": "2026-07-10T13:18:31.225Z"
   }
 }

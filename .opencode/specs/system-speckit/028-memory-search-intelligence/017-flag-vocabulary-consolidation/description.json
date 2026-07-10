@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence/017-flag-vocabulary-consolidation",
   "description": "`.opencode/skills/system-spec-kit/mcpserver/lib/config/capability-flags.ts` and a set of consuming modules each hand-roll their own",
   "keywords": [
@@ -15,7 +16,7 @@
     "hand-roll",
     "own"
   ],
-  "lastUpdated": "2026-07-09T20:28:56.909Z",
+  "lastUpdated": "2026-07-09T21:22:36.600Z",
   "specId": "017",
   "folderSlug": "flag-vocabulary-consolidation",
   "parentChain": [
@@ -23,6 +24,5 @@
     "028-memory-search-intelligence"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

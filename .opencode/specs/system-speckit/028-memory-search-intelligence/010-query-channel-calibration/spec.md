@@ -12,9 +12,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/010-query-channel-calibration"
-    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_at: "2026-07-10T11:20:21.000Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
+    recent_action: "Scaffold template titles removed from four doc frontmatters; packet now strict-clean"
     next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers: []
     key_files:

@@ -169,6 +169,19 @@ The original sweep verified file-path presence, vector ownership, and row totals
 
 The 1,318 excess duplicate rows are a real, open data-quality item — deduplication is deliberately NOT part of this remediation (destructive; needs operator decision + its own packet). Reproduce: run the tool read-only against the live DB.
 
+### Duplicate Cleanup Executed (2026-07-10, operator-authorized)
+
+The operator authorized the cleanup the same day. Procedure and results:
+
+| Step | Result |
+|------|--------|
+| Safety checkpoint | `checkpoint_create` name `pre-dedup-canonical-duplicates-20260710` (773 MB snapshot, 13,542 memories; restore via `checkpoint_restore`) |
+| Victim selection | Tool's own JSON report clusters; keeper per cluster ranked by `embedding_status='success'` then newest id; zero keeper/victim overlap; 1 constitutional victim (stale twin of the same live file) |
+| Deletion path | 1,318 single deletes through the live daemon (`spec-memory.cjs memory_delete`), so FTS/vector/causal-edge/cache invalidation hooks all fired per row; **0 failures** |
+| Post-cleanup verification | Tool re-run: **0 duplicate clusters / 0 excess rows**; rows 13,542 → 12,224 (exact −1,318); FTS row count matches exactly |
+| Side effect surfaced | `memory_embedding_reconcile --apply` with success-coverage repair flipped **9,756 success-labeled rows without active-shard vectors to retry** — this is the packet's known re-embed drain backlog (retention-swept during the July daemon outage), queued for re-embedding with the daemon and Ollama embedder healthy. Those rows had no vectors before either (FTS/BM25-only recall), so search was not degraded meanwhile. |
+| Re-embed drain result | **DRAINED, 2026-07-10**: queue reached depth 0 with zero failures in ~25 minutes; final state **12,224 vectors / 12,224 rows — 100% active-shard vector coverage**. The packet's open daemon-side re-embed item (originally 15,392 vectorless rows) is closed. |
+
 ### Verification Commands
 
 | Command | Result |

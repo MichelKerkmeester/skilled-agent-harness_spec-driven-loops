@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`classifyQueryComplexity` routes any query of `<=3` whitespace terms to the `simple` tier (`query-classifier.ts:228`), and `DEFAULTROUTINGCONFIG.simple` maps that tier to `['vector', 'fts']` only — graph and degree are excluded (`query-router.ts:114-118`)",
     "created_at": "2026-07-09T06:16:37.869Z",
-    "last_save_at": "2026-07-10T08:09:25.092Z",
+    "last_save_at": "2026-07-10T11:20:21.738Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a3fb5538c911ba29d400a10c3526e3f822a9e162beaab0bcecce812511d7044",
+    "source_fingerprint": "sha256:00c63112785bee109d00de07e00b90044fd34e67e2bcf31f5fa9d58d3fbb8aa4",
     "source_doc_hashes": {
-      "spec.md": "5c2f3f4fc30a69958e5eff564bc23d3b22a95ef82221e50a7418a1d4884ac885",
-      "plan.md": "af4845546590660ab818300c019d4c441d39b46031c2b584e06d7e61cf922754",
-      "tasks.md": "6b2dea068973930b841e608a798a7bdb1c0fd53d118b8b9cc5003ef96cd2e8b8",
-      "checklist.md": "f7b3b472cd529f3667eb39084c1f6f9b33d2e97556c9fb45d2434530c4a2640c",
-      "implementation-summary.md": "45028644ed93bd427a288ec22c775842031dd4f02a132065c6951afb3bb71a6e"
+      "spec.md": "b3dc76e2ffbffd0b3dd1fb1da512075a31f18fe6f10c23a738643e29ed7473ae",
+      "plan.md": "ec30f1221a83dc2b631d4832f7b6652c7d8c03cd61b08b3a36c66f99a885d340",
+      "tasks.md": "e7a8246bb8b8118fbbe6fec74996eb65790d9a8219f2b90f48831221e975e93a",
+      "checklist.md": "78d5f0b93ea18e83e1bc3b3dbc3812ce36b6a29c6d64a37e7c58b3cbf49ab5f4",
+      "implementation-summary.md": "b3468d7a17419393c3d20d77960e62ca7b33f262950ccfaa311638b64c1defc0"
     },
     "last_active_child_id": null,
     "last_active_at": null

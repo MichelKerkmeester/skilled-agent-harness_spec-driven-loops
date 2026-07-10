@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/028-memory-search-intelligence/022-drift-marker-native-consolidation",
   "description": "`.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` (143 lines) detects `.opencode/specs`",
   "keywords": [
@@ -11,7 +12,7 @@
     "detects",
     "specs"
   ],
-  "lastUpdated": "2026-07-09T20:28:41.395Z",
+  "lastUpdated": "2026-07-09T20:31:26.434Z",
   "specId": "022",
   "folderSlug": "drift-marker-native-consolidation",
   "parentChain": [
@@ -19,6 +20,5 @@
     "028-memory-search-intelligence"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }
