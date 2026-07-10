@@ -43,6 +43,9 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Phase** | 005 of 009 (parent: `147-deep-loop-workflows`) |
 | **Depends on** | 004 |
+
+> **Status reconciliation:** This phase shipped in the deep-loop merge, but its standalone checklist was not independently gate-run; the differing summary status records that scoped delivery evidence.
+
 <!-- /ANCHOR:metadata -->
 
 ---

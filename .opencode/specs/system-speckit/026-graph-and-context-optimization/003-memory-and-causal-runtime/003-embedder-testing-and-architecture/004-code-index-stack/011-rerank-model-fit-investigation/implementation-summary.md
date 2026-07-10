@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | PHASE 1 RESEARCH COMPLETE; PHASE 2 GATED |
+| Status | In Progress — Phase 2 targeted bench gated |
 | Branch | main |
 <!-- /ANCHOR:metadata -->
 

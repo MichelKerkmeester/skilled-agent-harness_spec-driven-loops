@@ -45,6 +45,9 @@ Phase 013 plans the refactor of all five `/design:*` commands (`interface`, `fou
 | **Created** | 2026-07-06 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Estimated LOC** | Documentation packet only; implementation LOC not estimated in this phase packet |
+
+> **Status reconciliation:** This planning packet deliberately preserves its pre-implementation status. The delivery work is tracked in Phase 015, which owns implementation.
+
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -48,6 +48,9 @@ _memory:
 | **Branch** | `main` |
 | **Phase Parent** | `108-auto-review-quick-wins-verdict-markers-logging` |
 | **Source teaching** | H-1 from `106/research/review-report.md` §5.4 |
+
+> **Historical record:** This archived specification retains its original council-gated status; the implementation summary records the completed phase and its deferred live-pipeline validation.
+
 <!-- /ANCHOR:metadata -->
 
 ---

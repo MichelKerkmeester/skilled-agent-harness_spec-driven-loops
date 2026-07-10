@@ -35,6 +35,9 @@ _memory:
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` (re-opened from complete) |
 | **Position in arc** | Phase 009 of (now 9+) — second follow-on attempt |
+
+> **Status reconciliation:** This superseded packet retains its planned status as a historical record; the summary documents the terminal HOLD verdict and directs follow-up work to 011/005.
+
 <!-- /ANCHOR:metadata -->
 
 ---

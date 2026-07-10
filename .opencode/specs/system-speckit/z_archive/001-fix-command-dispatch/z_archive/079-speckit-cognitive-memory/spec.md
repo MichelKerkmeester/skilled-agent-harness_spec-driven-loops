@@ -42,6 +42,8 @@ Upgrade the Spec Kit Memory MCP server with cognitive science-inspired memory pa
 | **Created** | 2026-01-27 |
 | **Research** | `001-analysis-cognitive-memory-systems.md`, `002-recommendations-cognitive-memory-upgrade.md` |
 
+> **Historical record:** This archived specification retains its original Draft status; the corresponding implementation summary records the completed 2026-01-27 work.
+
 <!-- /ANCHOR:metadata -->
 ---
 
