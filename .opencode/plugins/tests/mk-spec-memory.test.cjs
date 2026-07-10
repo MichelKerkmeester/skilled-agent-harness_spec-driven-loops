@@ -130,6 +130,7 @@ function runUserPromptFixture(targetSource, input, timeout = 5000) {
     encoding: 'utf8',
     timeout,
     maxBuffer: 2 * 1024 * 1024,
+    env: { ...process.env, SPECKIT_USER_PROMPT_TARGET: target },
   });
   const durationMs = Date.now() - startedAt;
   fs.rmSync(root, { recursive: true, force: true });

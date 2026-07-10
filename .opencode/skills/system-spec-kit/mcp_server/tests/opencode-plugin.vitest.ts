@@ -10,7 +10,8 @@ vi.mock('node:child_process', () => ({
   execFile: mockedBridge.execFile,
 }));
 
-import mkCodeGraphPlugin, { parseTransportPlan } from '../../../../plugins/mk-code-graph.js';
+import mkCodeGraphPlugin from '../../../../plugins/mk-code-graph.js';
+import { parseTransportPlan } from '../../../system-code-graph/mcp_server/plugin_bridges/mk-code-graph-transport.mjs';
 
 function buildBridgeResponse() {
   return JSON.stringify({
@@ -139,12 +140,11 @@ describe('mk-code-graph plugin', () => {
     expect(secondOutput.system[0]).toContain('OpenCode Startup Digest');
   });
 
-  it('exports the plugin function and parser contract helper', async () => {
+  it('exports only the default plugin factory so the loader treats nothing else as a plugin', async () => {
     const pluginModule = await import('../../../../plugins/mk-code-graph.js');
 
-    expect(Object.keys(pluginModule).sort()).toEqual(['default', 'parseTransportPlan']);
+    expect(Object.keys(pluginModule).sort()).toEqual(['default']);
     expect(pluginModule.default).toBeTypeOf('function');
-    expect(pluginModule.parseTransportPlan).toBeTypeOf('function');
   });
 
   // SKIP: requires live opencode bridge executable behavior — defer to integration env
@@ -167,8 +167,8 @@ describe('mk-code-graph plugin', () => {
     expect(plan?.messagesTransform.length).toBeGreaterThan(0);
   });
 
-  it('does not return a null hook if the legacy plugin loader invokes the parser export', () => {
-    expect(parseTransportPlan({ directory: process.cwd() } as never)).toEqual({});
+  it('returns null for non-string parser input', () => {
+    expect(parseTransportPlan({ directory: process.cwd() } as never)).toBeNull();
   });
 
   it('adds schema-aligned synthetic text parts and avoids duplicates', async () => {

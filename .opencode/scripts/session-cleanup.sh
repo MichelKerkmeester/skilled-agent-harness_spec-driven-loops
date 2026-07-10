@@ -8,6 +8,11 @@
 # ancestor common to MANY live sessions, turning "this session's descendants"
 # into "every session's MCP helpers" and killing sibling sessions' transports
 # mid-flight. Missing session identity means we do nothing.
+#
+# Runs at session teardown (Claude SessionEnd, OpenCode dispose), never per
+# response. Session identity comes only from the environment, never from a
+# hook's stdin payload, so the same script is correct from any teardown
+# invocation point regardless of what event delivered it.
 
 set -euo pipefail
 

@@ -14,7 +14,11 @@
       "mk-goal remediation",
       "mk-goal fixes",
       "mk-goal bug fixes",
-      "opencode plugin remediation"
+      "opencode plugin remediation",
+      "mk-goal remediation summary",
+      "mk-goal fixes shipped",
+      "opencode plugin remediation summary",
+      "mk-goal implementation summary"
     ],
     "key_topics": [
       "mk-goal",
@@ -22,23 +26,25 @@
       "bug",
       "opencode",
       "plugin",
+      "summary",
+      "shipped",
+      "implementation",
       "audit",
       "packet",
       "surfaced",
-      "confirmed",
-      "findings",
-      "claude",
-      "hook"
+      "confirmed"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
       ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
       "fix-design/fix-design.md",
+      "constitutional/goal-prompting-runtime-specific.md",
+      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -48,15 +54,21 @@
         "source": "derived"
       },
       {
-        "name": "mk-goal-lifecycle.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "fix-design.md",
         "kind": "doc",
         "path": "fix-design/fix-design.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-prompting-runtime-specific.md",
+        "kind": "doc",
+        "path": "constitutional/goal-prompting-runtime-specific.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
         "source": "derived"
       },
       {
@@ -75,6 +87,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -162,45 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "query",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "tools",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Promise.race",
-        "kind": "key_phrase",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 17 confirmed findings in `mk-goal` and its Claude hook version (10 P1 / 5 P2 / 2 refinement)",
     "created_at": "2026-07-10T11:42:17.586Z",
-    "last_save_at": "2026-07-10T11:42:17.586Z",
+    "last_save_at": "2026-07-10T20:24:55.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a98fde31ff938e1851e46b6aba4f1b2094eedbd0bb6a87342928bf6192f0441",
+    "source_fingerprint": "sha256:58b5e4fabc165f46d6dad6932043538830f1bfed6604cb59b990d24da6ef55f0",
     "source_doc_hashes": {
       "spec.md": "28366c5e4f0a1f85d85e3cc4e54be00427fe99b93d80cd7c1fbaaa80c2dcf220",
       "plan.md": "4d8ce54de2707e495472df0a9093217df03b4429c6074bae0189ff68e71936f4",
-      "tasks.md": "a2dfdb8de18768fcbe04294c0d65a601a42b3313840c3b50499db62332fbe78a"
+      "tasks.md": "c309a0511db9cf56bad0a1ab8160c1528850b30b518430551a05a2901fdf34da",
+      "implementation-summary.md": "5c5ad1755b6edd0ea39a9e94212b205dbc2760776682f9a1274d9565c14424de"
     },
     "last_active_child_id": null,
     "last_active_at": null

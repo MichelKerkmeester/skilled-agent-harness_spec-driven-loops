@@ -17,7 +17,8 @@
   },
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
-    "build": "tsc --build && node scripts/finalize-dist.mjs",
+    "prepare-build": "node ../scripts/lib/dist-freshness.cjs prepare-build --package system-spec-kit/mcp_server --entry default && node ../scripts/lib/dist-freshness.cjs prepare-build --package system-spec-kit/mcp_server --entry spec-memory-cli && node ../scripts/lib/dist-freshness.cjs prepare-build --package system-spec-kit/mcp_server --entry validation-orchestrator",
+  "build": "npm run prepare-build && tsc --build && node scripts/finalize-dist.mjs",
     "rebuild": "npm run clean && npm run build",
     "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
     "start": "node dist/context-server.js",

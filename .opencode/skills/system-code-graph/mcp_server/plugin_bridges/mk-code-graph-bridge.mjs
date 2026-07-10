@@ -241,7 +241,6 @@ function readOptionValue(tokens, index, flagName) {
 function parseArgs(argv) {
   const options = {
     minimal: false,
-    specFolder: undefined,
     toolName: 'code-graph-status',
     args: {},
     timeoutMs: DEFAULT_TIMEOUT_MS,
@@ -254,12 +253,6 @@ function parseArgs(argv) {
     if (value === '--minimal') {
       options.minimal = true;
       index += 1;
-      continue;
-    }
-    if (value === '--spec-folder') {
-      const read = readOptionValue(argv, index, value);
-      options.specFolder = read.value;
-      index = read.nextIndex;
       continue;
     }
     if (value === '--tool' || value === '--tool-name') {
@@ -399,9 +392,6 @@ async function runCli(input) {
             warm: true,
             durationMs,
             exitCode,
-            specFolder: typeof input.specFolder === 'string' && input.specFolder.trim()
-              ? input.specFolder.trim()
-              : null,
             socketPath: '[code-index-socket]',
           },
         }));

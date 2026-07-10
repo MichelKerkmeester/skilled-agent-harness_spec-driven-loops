@@ -31,6 +31,10 @@ import {
   hasSyntheticTextPartMarker,
   isMessageAnchorLike,
 } from '../skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs';
+import {
+  parseTransportPlan,
+  diagnoseTransportPlanFailure,
+} from '../skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-transport.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CONSTANTS AND TYPES
@@ -171,87 +175,6 @@ function cacheKeyForSession(sessionID, specFolder) {
   return `${specFolder ?? '__workspace__'}::${normalizeSessionID(sessionID)}`;
 }
 
-function isValidTransportBlock(block) {
-  return Boolean(block)
-    && typeof block === 'object'
-    && typeof block.title === 'string'
-    && typeof block.content === 'string'
-    && typeof block.dedupeKey === 'string';
-}
-
-/**
- * Parse a bridge response into an OpenCode transport plan.
- *
- * @param {unknown} responseText - Raw JSON response text from the bridge process.
- * @returns {TransportPlan|null|Record<string, never>} Parsed transport plan, null
- *   when no valid transport payload exists, or an empty hook object for legacy
- *   plugin-loader calls with non-string input.
- */
-export function parseTransportPlan(responseText) {
-  if (typeof responseText !== 'string') {
-    // OpenCode 1.3.17's legacy loader invokes named function exports as plugins.
-    // Return an empty hook object rather than a null hook if it calls this parser.
-    return {};
-  }
-  if (!responseText) {
-    return null;
-  }
-
-  try {
-    const parsed = JSON.parse(responseText);
-    const data = parsed?.data ?? parsed;
-    const plan = data?.opencodeTransport;
-    if (!plan || typeof plan !== 'object') {
-      return null;
-    }
-    if (plan.transportOnly !== true
-      || !Array.isArray(plan.messagesTransform)
-      || !plan.messagesTransform.every(isValidTransportBlock)
-      || (plan.systemTransform !== undefined && !isValidTransportBlock(plan.systemTransform))
-      || (plan.compaction !== undefined && !isValidTransportBlock(plan.compaction))) {
-      return null;
-    }
-    return /** @type {TransportPlan} */ (plan);
-  } catch {
-    return null;
-  }
-}
-
-function diagnoseTransportPlanFailure(responseText) {
-  if (!responseText) {
-    return 'Bridge returned empty stdout; plugin injection will no-op';
-  }
-
-  try {
-    const parsed = JSON.parse(responseText);
-    if (parsed?.status === 'skipped' || parsed?.status === 'fail_open') {
-      const exitCode = parsed?.metadata?.exitCode ?? null;
-      const reason = parsed?.error || parsed?.metadata?.reason || parsed?.metadata?.route || 'no transport payload';
-      return `Bridge ${parsed.status}: ${reason}${exitCode === null || exitCode === undefined ? '' : ` (exit=${exitCode})`}; plugin injection will no-op`;
-    }
-    const data = parsed?.data ?? parsed;
-    const plan = data?.opencodeTransport;
-    if (!plan || typeof plan !== 'object') {
-      return 'Bridge response missing data.opencodeTransport; plugin injection will no-op';
-    }
-    if (plan.transportOnly !== true) {
-      return 'Bridge opencodeTransport.transportOnly was not true; plugin injection will no-op';
-    }
-    if (!Array.isArray(plan.messagesTransform)) {
-      return 'Bridge opencodeTransport.messagesTransform was not an array; plugin injection will no-op';
-    }
-    if (!plan.messagesTransform.every(isValidTransportBlock)
-      || (plan.systemTransform !== undefined && !isValidTransportBlock(plan.systemTransform))
-      || (plan.compaction !== undefined && !isValidTransportBlock(plan.compaction))) {
-      return 'Bridge opencodeTransport contained a malformed block; plugin injection will no-op';
-    }
-    return 'Bridge returned invalid OpenCode transport payload; plugin injection will no-op';
-  } catch (error) {
-    const reason = error instanceof Error ? error.message : String(error);
-    return `Bridge returned unparsable JSON (${reason}); plugin injection will no-op`;
-  }
-}
-
 // Raw stderr writes while the opencode TUI is active render into the user's
 // input field, so a bridge-skip diagnostic must stay silent by default. The
 // failure is non-fatal (injection no-ops) and remains inspectable as
@@ -288,11 +211,8 @@ function execFilePromise(file, args, options) {
   });
 }
 
-async function runTransportBridge({ projectDir, specFolder, nodeBinary, bridgeTimeoutMs }) {
+async function runTransportBridge({ projectDir, nodeBinary, bridgeTimeoutMs }) {
   const args = [BRIDGE_PATH, '--minimal', '--timeout-ms', String(bridgeTimeoutMs)];
-  if (specFolder) {
-    args.push('--spec-folder', specFolder);
-  }
 
   const result = await execFilePromise(nodeBinary, args, {
     cwd: projectDir,

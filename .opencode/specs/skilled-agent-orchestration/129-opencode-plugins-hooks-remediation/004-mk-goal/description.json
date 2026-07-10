@@ -1,16 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/004-mk-goal",
-  "description": "Fix plan for the mk-goal audit findings; two-model designs, review-hardened; actionable fixes + reclassified non-issues.",
+  "description": "The audit (packet 127) surfaced 17 confirmed findings in `mk-goal` and its Claude hook version (10 P1 / 5 P2 / 2 refinement)",
   "keywords": [
+    "audit",
+    "packet",
+    "surfaced",
+    "confirmed",
+    "findings",
     "mk-goal",
-    "remediation",
-    "fixes",
-    "plugin",
-    "review",
-    "plan"
+    "claude",
+    "hook",
+    "version",
+    "refinement"
   ],
-  "lastUpdated": "2026-07-10T11:42:16.945Z",
+  "lastUpdated": "2026-07-10T20:23:38.174Z",
   "specId": "004",
   "folderSlug": "mk-goal",
   "parentChain": [

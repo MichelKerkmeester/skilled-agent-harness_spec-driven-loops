@@ -14,7 +14,11 @@
       "session-cleanup remediation",
       "session-cleanup fixes",
       "session-cleanup bug fixes",
-      "opencode plugin remediation"
+      "opencode plugin remediation",
+      "session-cleanup remediation summary",
+      "session-cleanup implementation",
+      "opencode plugin cleanup shipped",
+      "session-cleanup done"
     ],
     "key_topics": [
       "session-cleanup",
@@ -22,28 +26,31 @@
       "bug",
       "opencode",
       "plugin",
+      "summary",
+      "implementation",
+      "cleanup",
+      "shipped",
+      "done",
       "audit",
-      "packet",
-      "surfaced",
-      "confirmed",
-      "findings",
-      "claude",
-      "hook"
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
       ".opencode/plugins/session-cleanup.js",
-      ".claude/settings.json",
+      ".opencode/plugins/tests/session-cleanup.test.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts",
       ".opencode/scripts/session-cleanup.sh",
       ".opencode/bin/check-git-hooks.sh",
+      ".opencode/bin/worktree-guard.sh",
+      ".claude/settings.json",
       ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-stop-hook-orphan-sweep.vitest.ts",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/worktree-guard.sh",
       "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -53,9 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".claude/settings.json",
+        "name": "session-cleanup.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-cleanup.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-cleanup.vitest.ts",
         "source": "derived"
       },
       {
@@ -71,6 +84,18 @@
         "source": "derived"
       },
       {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
         "name": "launcher-stop-hook-orphan-sweep.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-stop-hook-orphan-sweep.vitest.ts",
@@ -80,12 +105,6 @@
         "name": "mk-spec-memory-launcher.cjs",
         "kind": "file",
         "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "worktree-guard.sh",
-        "kind": "script",
-        "path": ".opencode/bin/worktree-guard.sh",
         "source": "derived"
       },
       {
@@ -110,6 +129,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -171,41 +196,25 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Unchanged",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 17 confirmed findings in `session-cleanup` and its Claude hook version (3 P1 / 7 P2 / 7 refinement)",
     "created_at": "2026-07-10T11:42:18.110Z",
-    "last_save_at": "2026-07-10T11:42:18.110Z",
+    "last_save_at": "2026-07-10T20:21:21.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cb470662ed78ff1cb16e200e602a810598509c802b513bb53fbd4fc5e957ed2c",
+    "source_fingerprint": "sha256:06e1465b5441c183d0f53fd255bad9b1cbbb940fea8bd53550cfe4d36b9226cd",
     "source_doc_hashes": {
       "spec.md": "15ed16a52dba7d6145ba0d55161081348b8b92f7f27fc86a87fd1991d4a9ad9e",
       "plan.md": "9b1a067b8fdc829a6f35cc55fb7e730e44cab7dc8f7e08b4c47a23a191dd4862",
-      "tasks.md": "b3917675563b708158cb5734318e539b33782618b2319deb2afeea0ffeabb4ec"
+      "tasks.md": "e75dabbe7669fcff9d3e663d670121073dee4fe7c7d081b9d0948bebce282cec",
+      "implementation-summary.md": "d4eb22ab3911bd4c2c7148144c7be1ae3780bfc16afa891f19e5b59186592ebe"
     },
     "last_active_child_id": null,
     "last_active_at": null

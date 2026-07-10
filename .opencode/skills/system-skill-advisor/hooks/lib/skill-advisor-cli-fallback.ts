@@ -143,6 +143,12 @@ function positiveIntFromEnv(value: string | undefined, fallback: number): number
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
+function clampUnitThreshold(value: number | undefined, fallback: number): number {
+  return typeof value === 'number' && Number.isFinite(value)
+    ? Math.min(1, Math.max(0, value))
+    : fallback;
+}
+
 export function resolveSkillAdvisorCliFallbackTimeoutMs(
   hookBudgetMs?: number,
   env: NodeJS.ProcessEnv = process.env,
@@ -266,6 +272,11 @@ function runCliRecommend(args: {
       topK: 3,
       includeAttribution: false,
       includeAbstainReasons: true,
+      // Forward caller thresholds so the CLI scorer applies them; without this
+      // the scorer uses its own defaults and thresholdsFrom trusts the echoed
+      // defaults, silently discarding a caller's stricter thresholds.
+      confidenceThreshold: clampUnitThreshold(args.options.thresholdConfig?.confidenceThreshold, 0.8),
+      uncertaintyThreshold: clampUnitThreshold(args.options.thresholdConfig?.uncertaintyThreshold, 0.35),
     },
   };
   return new Promise((resolvePromise) => {

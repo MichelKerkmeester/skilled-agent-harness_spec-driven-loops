@@ -1,16 +1,20 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/001-mk-spec-memory",
-  "description": "Fix plan for the mk-spec-memory audit findings; two-model designs, review-hardened; actionable fixes + reclassified non-issues.",
+  "description": "The audit (packet 127) surfaced 19 confirmed findings in `mk-spec-memory` and its Claude hook version (9 P1 / 6 P2 / 4 refinement)",
   "keywords": [
+    "audit",
+    "packet",
+    "surfaced",
+    "confirmed",
+    "findings",
     "mk-spec-memory",
-    "remediation",
-    "fixes",
-    "plugin",
-    "review",
-    "plan"
+    "claude",
+    "hook",
+    "version",
+    "refinement"
   ],
-  "lastUpdated": "2026-07-10T11:42:16.945Z",
+  "lastUpdated": "2026-07-10T20:18:08.321Z",
   "specId": "001",
   "folderSlug": "mk-spec-memory",
   "parentChain": [
