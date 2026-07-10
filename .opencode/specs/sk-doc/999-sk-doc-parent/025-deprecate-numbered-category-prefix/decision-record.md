@@ -78,3 +78,11 @@ de-numbered form self-enforcing. It lives with the classifier (Phase 002) so a s
 Ordering is documented as owned by the root index table, not the folder name.
 
 **Why.** Removes the renumber-on-insert churn that motivated the deprecation; aligns the docs with the guard.
+
+## ADR-007 — Adapt the proven engine from the archived snippet-denumbering packet
+
+**Decision.** The Phase 003 migration script is adapted from `skilled-agent-orchestration/z_archive/108-catalog-playbook-snippet-denumbering`'s `denumber-snippets.cjs` — a complete, merged-to-main engine (rename map, collision check, word-boundary reference sweep, manifests, dry-run) — retargeted from snippet *files* to category *folders*.
+
+**Why.** Packet 108 already de-numbered the per-feature snippet *files* (`001-foo.md` → `foo.md`) repo-wide and **deliberately kept the numbered category folders** — this packet is its exact complementary follow-on (folders, not files). Reusing that proven engine beats authoring a new one blind. Two facts inherited from 108: (1) its D2 decision "**include** the historical spec-folder links" confirms this packet's deny-list is *path-based* (`z_archive/`, `CHANGELOG*`, this packet's evidence) rather than "all history" — active spec-folder cross-links ARE rewritten so nothing 404s; (2) the exact live count is **391** category folders (the `03--5d-scorer` slug begins with a digit, which a `[a-z]`-anchored scan misses); the script computes the map from the live tree, so it is self-correcting.
+
+**Guard activation note (ADR-005 addendum).** The no-new-numbers guard ships as a standalone opt-in check in Phase 002 (it necessarily reports the 391 pre-migration folders as violations while they still exist); Phase 005 wires it as a blocking gate only after Phase 004 leaves the tree clean.

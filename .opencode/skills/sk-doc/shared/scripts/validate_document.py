@@ -123,16 +123,20 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
     # Per-feature playbook files: under manual_testing_playbook/NN--category/feature.md
     # The root playbook file itself stays as the standard playbook type via its path.
     if '/manual_testing_playbook/' in path_lower or '\\manual_testing_playbook\\' in path_lower:
-        stem = Path(path_lower).stem
-        parent = Path(path_lower).parent.name
-        # Per-feature files: parent dir matches NN--category-name pattern
-        if re.match(r'^\d{2}--', parent):
+        # A per-feature playbook leaf sits one level below the category root
+        # (manual_testing_playbook/<category>/<feature>.md). Classify by that structural
+        # position rather than an ordinal folder-name prefix, so category folders can be
+        # named by meaning alone. The root index file (whose parent IS the
+        # manual_testing_playbook dir) is intentionally excluded.
+        if Path(path_lower).parent.parent.name == 'manual_testing_playbook':
             return 'playbook_feature'
-    # Per-feature catalog leaves: under */feature_catalog/NN--category/feature.md. These carry the
-    # Validation And Tests table whose Type taxonomy and placeholder rows the generic readme path misses.
+    # Per-feature catalog leaves sit one level below the catalog root
+    # (feature_catalog/<category>/<feature>.md). These carry the Validation And Tests
+    # table whose Type taxonomy and placeholder rows the generic readme path misses.
+    # Classify by structural position rather than an ordinal folder-name prefix; the
+    # root index file (whose parent IS the feature_catalog dir) stays excluded.
     if '/feature_catalog/' in path_lower or '\\feature_catalog\\' in path_lower:
-        parent = Path(path_lower).parent.name
-        if re.match(r'^\d{2}--', parent):
+        if Path(path_lower).parent.parent.name == 'feature_catalog':
             return 'feature_catalog'
     if '/command/' in path_lower or '\\command\\' in path_lower or '/commands/' in path_lower or '\\commands\\' in path_lower:
         return 'command'
