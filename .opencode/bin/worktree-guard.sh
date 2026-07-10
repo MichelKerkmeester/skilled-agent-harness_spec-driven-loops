@@ -4,14 +4,14 @@
 #
 # Companion to worktree-session.sh. A SessionStart hook cannot relocate an
 # already-started process into a worktree, but it CAN warn the operator when a
-# top-level session is running directly on the shared main checkout instead of an
+# top-level session is running directly on a shared checkout instead of an
 # isolated worktree — the situation worktree-session.sh exists to prevent.
 #
 # Wire it into any runtime's SessionStart chain, e.g. as an extra hook command:
 #   bash /abs/path/.opencode/bin/worktree-guard.sh
 #
 # It is intentionally non-fatal: it prints a one-line warning to stderr and always
-# exits 0, so it never blocks a session that the operator chose to run on main.
+# exits 0, so it never blocks a session that the operator chose to run there.
 #
 # Silence with SPECKIT_WORKTREE_GUARD=off.
 
@@ -34,8 +34,6 @@ if [ -n "$git_dir" ] && [ -n "$common_dir" ] && [ "$git_dir" != "$common_dir" ];
 fi
 
 branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '?')"
-if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then
-  printf '%s\n' "[worktree-guard] This top-level session is running on the shared '$branch' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .opencode/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)" >&2
-fi
+printf '%s\n' "[worktree-guard] This top-level session is running on the shared '$branch' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .opencode/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)" >&2
 
 exit 0

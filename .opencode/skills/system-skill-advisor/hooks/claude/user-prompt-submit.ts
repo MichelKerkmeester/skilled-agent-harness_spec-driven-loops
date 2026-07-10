@@ -14,7 +14,10 @@ import {
   type AdvisorHookStatus,
   type AdvisorHookFreshness,
 } from '../../mcp_server/lib/skill-advisor-brief.js';
-import { renderAdvisorBrief } from '../../mcp_server/lib/render.js';
+import {
+  renderAdvisorBrief,
+  renderAdvisorFallbackDirective,
+} from '../../mcp_server/lib/render.js';
 import {
   createAdvisorHookDiagnosticRecord,
   persistAdvisorHookDiagnosticRecord,
@@ -67,7 +70,8 @@ interface HookDiagnosticInput {
   readonly generation?: number;
 }
 
-export const DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 3000;
+export const DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500;
+const MAX_PROMPT_BYTES = 64 * 1024;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -77,7 +81,21 @@ function normalizePrompt(value: unknown): string | null {
   if (typeof value !== 'string') {
     return null;
   }
-  return value;
+  if (Buffer.byteLength(value, 'utf8') <= MAX_PROMPT_BYTES) {
+    return value;
+  }
+
+  let low = 0;
+  let high = value.length;
+  while (low < high) {
+    const midpoint = Math.ceil((low + high) / 2);
+    if (Buffer.byteLength(value.slice(0, midpoint), 'utf8') <= MAX_PROMPT_BYTES) {
+      low = midpoint;
+    } else {
+      high = midpoint - 1;
+    }
+  }
+  return value.slice(0, low);
 }
 
 function workspaceRootFor(input: ClaudeUserPromptSubmitInput): string {
@@ -219,14 +237,10 @@ export async function handleClaudeUserPromptSubmit(
       skillLabel: skillLabelFor(result),
     }, writeDiagnostic);
 
-    if (!brief) {
-      return {};
-    }
-
     return {
       hookSpecificOutput: {
         hookEventName: 'UserPromptSubmit',
-        additionalContext: brief,
+        additionalContext: brief ?? renderAdvisorFallbackDirective(),
       },
     };
   } catch {
@@ -269,7 +283,7 @@ async function main(): Promise<void> {
 }
 
 if (IS_CLI_ENTRY) {
-  main().catch(() => {
+  main().catch(async () => {
     emitDiagnostic({
       workspaceRoot: process.cwd(),
       status: 'fail_open',
@@ -279,7 +293,7 @@ if (IS_CLI_ENTRY) {
       errorCode: 'UNKNOWN',
       errorDetails: 'Unhandled UserPromptSubmit CLI exception',
     });
-    process.stdout.write('{}\n');
+    await writeHookOutput({});
   }).finally(() => {
     process.exit(0);
   });

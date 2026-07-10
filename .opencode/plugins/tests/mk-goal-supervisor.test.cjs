@@ -347,7 +347,7 @@ test('default heuristic verifier rejects adversarial weak and mixed evidence', a
   }
 }));
 
-test('llm verifier mode blocks when promptAsync is unavailable', async () => withVerifierEnv('llm', async () => {
+test('llm verifier mode blocks when isolated session APIs are unavailable', async () => withVerifierEnv('llm', async () => {
   const pluginModule = await loadPluginModule();
   const helpers = pluginModule.default.__test;
   const stateDir = await mkdtemp(join(tmpdir(), 'mk-goal-llm-missing-'));
@@ -366,31 +366,41 @@ test('llm verifier mode blocks when promptAsync is unavailable', async () => wit
     assert.equal(result.verifierSource, 'default-llm');
     assert.equal(goal.status, 'blocked');
     assert.equal(goal.lastVerifierSource, 'default-llm');
-    assert.match(goal.lastVerifierReason, /promptAsync unavailable/);
+    assert.match(goal.lastVerifierReason, /isolated session APIs unavailable/);
   } finally {
     await rm(stateDir, { recursive: true, force: true });
   }
 }));
 
-test('llm verifier mode uses promptAsync response when client is threaded', async () => withVerifierEnv('llm', async () => {
+test('llm verifier uses a response-returning isolated session and deletes it', async () => withVerifierEnv('llm', async () => {
   const pluginModule = await loadPluginModule();
   const helpers = pluginModule.default.__test;
   const stateDir = await mkdtemp(join(tmpdir(), 'mk-goal-llm-success-'));
-  let promptCalls = 0;
+  const calls = [];
   const client = {
     session: {
-      async promptAsync(request) {
-        promptCalls += 1;
-        assert.equal(request.path.id, 'session-llm-met');
+      async create(request) {
+        calls.push(['create', request]);
+        return { id: 'session-llm-verifier-temp' };
+      },
+      async prompt(request) {
+        calls.push(['prompt', request]);
+        assert.equal(request.path.id, 'session-llm-verifier-temp');
+        assert.notEqual(request.path.id, 'session-llm-met');
         assert.match(request.body.parts[0].text, /Implement payment webhook validation/);
         return {
-          message: {
-            parts: [{
-              type: 'text',
-              text: '{"verdict":"met","confidence":0.91,"reason":"LLM judged completion","evidence":"payment webhook validation tests passed"}',
-            }],
-          },
+          info: { id: 'verifier-response', role: 'assistant' },
+          parts: [{
+            type: 'text',
+            text: '{"verdict":"met","confidence":0.91,"reason":"LLM judged completion","evidence":"payment webhook validation tests passed"}',
+          }],
         };
+      },
+      async delete(request) {
+        calls.push(['delete', request]);
+      },
+      async promptAsync() {
+        throw new Error('promptAsync must not be used by the verifier');
       },
     },
   };
@@ -406,7 +416,8 @@ test('llm verifier mode uses promptAsync response when client is threaded', asyn
     const result = await helpers.maybeVerifyGoal('session-llm-met', { stateDir, nowMs: 2000, client });
     const goal = await helpers.readGoal('session-llm-met', { stateDir });
 
-    assert.equal(promptCalls, 1);
+    assert.deepEqual(calls.map(([name]) => name), ['create', 'prompt', 'delete']);
+    assert.equal(calls[2][1].path.id, 'session-llm-verifier-temp');
     assert.equal(result.verdict, 'met');
     assert.equal(result.verifierSource, 'default-llm');
     assert.equal(goal.status, 'complete');
@@ -415,6 +426,79 @@ test('llm verifier mode uses promptAsync response when client is threaded', asyn
   } finally {
     await rm(stateDir, { recursive: true, force: true });
   }
+}));
+
+test('same-millisecond goal mutation makes a pending verifier result stale', async () => withSupervisor(async ({ helpers, stateDir }) => {
+  await writeGoalWithEvidence(helpers, 'session-same-ms-stale', stateDir, 'Evidence before verification');
+  let resolveVerifier;
+  let markVerifierStarted;
+  const verifierStarted = new Promise((resolve) => {
+    markVerifierStarted = resolve;
+  });
+  const verifierGate = new Promise((resolve) => {
+    resolveVerifier = resolve;
+  });
+  const verification = helpers.maybeVerifyGoal('session-same-ms-stale', {
+    stateDir,
+    nowMs: 2000,
+    supervisorVerifier: async () => {
+      markVerifierStarted();
+      await verifierGate;
+      return {
+        verdict: 'met',
+        confidence: 0.95,
+        reason: 'Old evidence appeared complete',
+        evidence: 'Old evidence appeared complete',
+      };
+    },
+  });
+  await verifierStarted;
+  const beforeMutation = await helpers.readGoal('session-same-ms-stale', { stateDir });
+  await helpers.accountUsage('session-same-ms-stale', beforeMutation.goalId, {
+    messageID: 'same-ms-message',
+    tokenDelta: 5,
+    usageSource: 'test',
+  }, { stateDir, nowMs: 2000 });
+  resolveVerifier();
+
+  const result = await verification;
+  const goal = await helpers.readGoal('session-same-ms-stale', { stateDir });
+  assert.equal(result.stale, true);
+  assert.equal(goal.status, 'active');
+  assert.equal(goal.tokensUsed, 5);
+  assert.equal(goal.lastVerifierVerdict, 'not_evaluated');
+  assert.equal(goal.verifierRunID, null);
+}));
+
+test('verifier timeout returns promptly, keeps the goal active, and ignores late settlement', async () => withSupervisor(async ({ helpers, stateDir }) => {
+  await writeGoalWithEvidence(helpers, 'session-verifier-timeout', stateDir, 'Evidence for a verifier that hangs');
+  let resolveLateVerifier;
+  const lateVerifier = new Promise((resolve) => {
+    resolveLateVerifier = resolve;
+  });
+  const startedAt = Date.now();
+  const result = await helpers.maybeVerifyGoal('session-verifier-timeout', {
+    stateDir,
+    verifierTimeoutMs: 20,
+    supervisorVerifier: async () => lateVerifier,
+  });
+  assert.ok(Date.now() - startedAt < 500);
+  assert.equal(result.timedOut, true);
+  assert.equal(result.reason, 'verifier_timeout');
+  let goal = await helpers.readGoal('session-verifier-timeout', { stateDir });
+  assert.equal(goal.status, 'active');
+  assert.equal(goal.lastVerifierReason, 'verifier_timeout');
+
+  resolveLateVerifier({
+    verdict: 'met',
+    confidence: 1,
+    reason: 'Late completion must be ignored',
+    evidence: 'Late completion must be ignored',
+  });
+  await new Promise((resolve) => setImmediate(resolve));
+  goal = await helpers.readGoal('session-verifier-timeout', { stateDir });
+  assert.equal(goal.status, 'active');
+  assert.equal(goal.lastVerifierReason, 'verifier_timeout');
 }));
 
 test('verifier is called exactly for the three evidence-backed sessions', async () => withSupervisor(async ({ getVerifierCalls, helpers, plugin, stateDir }) => {
@@ -461,6 +545,7 @@ test('verifier result envelopes use one key set for early and applied paths', as
     'goalId',
     'reason',
     'stale',
+    'timedOut',
     'verdict',
     'verifierRunID',
     'verifierSource',

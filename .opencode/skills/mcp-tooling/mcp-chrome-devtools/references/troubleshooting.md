@@ -15,7 +15,7 @@ version: 1.0.0.8
 
 # Troubleshooting Guide
 
-Systematic diagnostics and solutions for bdg CLI issues.
+Systematic diagnostics and solutions for common bdg CLI installation, session, and browser issues.
 
 ---
 
@@ -557,7 +557,7 @@ bdg cdp Page.captureScreenshot 2>&1
 
 ---
 
-## Output Parsing Issues
+## 8. OUTPUT PARSING ISSUES
 
 ### Issue: jq parse error
 
@@ -624,7 +624,7 @@ bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' | base64 -d > output.
 
 ---
 
-## 8. PERFORMANCE ISSUES
+## 9. PERFORMANCE ISSUES
 
 ### Issue: Slow CDP command execution
 
@@ -711,7 +711,7 @@ $ ps aux | grep chrome
 
 ---
 
-## 9. PLATFORM-SPECIFIC ISSUES
+## 10. PLATFORM-SPECIFIC ISSUES
 
 ### macOS: Gatekeeper blocking Chrome
 
@@ -765,7 +765,7 @@ export DISPLAY=:0
 
 ---
 
-## 10. ERROR CODE REFERENCE
+## 11. ERROR CODE REFERENCE
 
 | Exit Code | Meaning | Solution |
 |-----------|---------|----------|
@@ -780,7 +780,7 @@ export DISPLAY=:0
 
 ---
 
-## 11. DEBUG MODE
+## 12. DEBUG MODE
 
 **Enable verbose logging**:
 ```bash
@@ -797,7 +797,7 @@ bdg status 2>&1
 
 ---
 
-## 12. GETTING HELP
+## 13. GETTING HELP
 
 1. **Check documentation**: https://github.com/szymdzum/browser-debugger-cli
 2. **Search issues**: https://github.com/szymdzum/browser-debugger-cli/issues
@@ -810,7 +810,7 @@ bdg status 2>&1
 
 ---
 
-## 13. COMMON SOLUTIONS CHECKLIST
+## 14. COMMON SOLUTIONS CHECKLIST
 
 Before reporting issues, try these:
 
@@ -827,7 +827,7 @@ Before reporting issues, try these:
 
 ---
 
-## 14. RELATED RESOURCES
+## 15. RELATED RESOURCES
 
 ### Reference Files
 - [session_management.md](./session_management.md) - Session lifecycle patterns for robust automation

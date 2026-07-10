@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/005-mk-deep-loop-guard"
-    last_updated_at: "2026-07-10T09:27:08.451Z"
+    last_updated_at: "2026-07-10T11:42:16.907Z"
     last_updated_by: "gpt-5.6-sol-fast-audit"
     recent_action: "Enumerated 13 fix tasks"
     next_safe_action: "Implement P1 tasks first"
@@ -62,50 +62,62 @@ _memory:
 ### P1 - correctness / silent-breakage
 
 - [ ] T003 [P1] Duplicate agent entries overwrite valid workflow modes (`.opencode/plugins/mk-deep-loop-guard.js:80`)
-    - Source: iteration-1 F1, Opus verdict: confirmed
-    - Fix: Map each agent to a Set or array of permitted workflowMode values and reject only when the declared mode is absent from that set.
+    - Source: iteration-1 F1, Opus verdict: confirmed · fix-design: both models agree
+    - Fix: Map each agent to the SET of its permitted workflowModes instead of a single mode object. Mismatch only when a declared mode is absent from that agent's permitted set.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (F1)
 - [ ] T004 [P1 (GPT P1 / Opus P2)] Loop counting does not establish that orchestrate originated the dispatch (`.opencode/plugins/mk-deep-loop-guard.js:399`)
-    - Source: iteration-1 F2, Opus verdict: adjusted
-    - Fix: Require a durable dispatch-origin field before applying orchestrate repeat counting. At minimum, remove prompt-improver from this deep-loop set unless its owning command emits an independently verifiable exemption marker.
+    - Source: iteration-1 F2, Opus verdict: adjusted · fix-design: both models agree
+    - Fix: Do not fabricate an origin check the runtime can't support. Instead: (a) remove prompt-improver from the executor set; (b) reword the detail message so it states the observed fact (N non-command-driven hand-offs to a command-owned executor in this session) rather than asserting an unverified orchestrate origin.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (F2)
 - [ ] T005 [P1 (GPT P1 / Opus refinement)] Reject modes silently fail open when guard dependencies fail (`.opencode/plugins/mk-deep-loop-guard.js:75`)
-    - Source: iteration-1 F3, Opus verdict: adjusted
-    - Fix: Keep default warning mode fail-open, but fail closed when the applicable reject variable is enabled. Make state persistence return success/failure so reject-loop mode can throw a clearly identified guard-unavailable error.
+    - Source: iteration-1 F3, Opus verdict: adjusted · fix-design: DISPUTED (Opus calls non-issue)
+    - Fix: Keep fail-open (it is correct and test-pinned). Make it observable, not silent: when a reject env var is active AND a guard dependency failed (registry unreadable, or state write failed), emit one warning-log line recording that reject enforcement was skipped due to the degraded dependency.
+    - REVIEW (operator-decision): Do NOT fail-closed (regresses 2 pinned tests and needs an F2/F5 envelope that does not exist). Consensus: keep fail-open + a 'reject-mode degraded' audit line only. Final semantics is an operator decision.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (F3)
 - [ ] T006 [P1 (GPT P1 / Opus P2)] Warning log can grow without bound and is not rotated by the startup sweep (`.opencode/plugins/mk-deep-loop-guard.js:218`)
-    - Source: iteration-1 F4, Opus verdict: confirmed
-    - Fix: Invoke warning-log maintenance from the session.created sweep and add size-based rotation or bounded line retention independent of mtime.
+    - Source: iteration-1 F4, Opus verdict: confirmed · fix-design: both models agree
+    - Fix: Add size-based rotation independent of mtime, and run log maintenance from the session.created sweep. Rotate a single generation when the file exceeds a byte cap.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (F4)
 - [ ] T007 [P1 (GPT P1 / Opus P2)] Loose iteration markers allow repeat-guard bypass (`.opencode/plugins/mk-deep-loop-guard.js:66`)
-    - Source: iteration-1 F5, Opus verdict: confirmed
-    - Fix: Parse the exact generated state-summary envelope and require its mode to agree with the resolved target. Prefer a dedicated machine marker over natural-language substring detection.
+    - Source: iteration-1 F5, Opus verdict: confirmed · fix-design: both models agree
+    - Fix: Prefer a dedicated, hard-to-forge machine marker over natural-language substring detection; at minimum line-anchor both alternatives and validate iteration bounds. Because command-driven status depends on what the deep command actually renders, verify the real emitted marker before tightening.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (F5)
 - [ ] T008 [P1 (GPT P1 / Opus P2)] Claude Code has no Task-dispatch guard counterpart (`.claude/settings.json:14`)
-    - Source: iteration-1 F7, Opus verdict: confirmed
-    - Fix: Add a Claude PreToolUse Task hook backed by shared parsing and policy logic. Adapt only the hook input/output transport; keep registry resolution, thresholds, exemptions, and reject behavior shared.
+    - Source: iteration-1 F7, Opus verdict: confirmed · fix-design: both models agree
+    - Fix: Extract the guard's parsing + policy core into a runtime-agnostic shared module, then add a thin Claude PreToolUse Task hook that adapts only Claude's stdin/stdout transport. Keep registry resolution, thresholds, exemptions, warning log, and reject behavior identical.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (F7)
 
 ### P2 - minor bugs
 
 - [ ] T009 [P2] Sweep synchronization assumes a single process (`.opencode/plugins/mk-deep-loop-guard.js:294`)
-    - Source: iteration-1 F6, Opus verdict: confirmed
-    - Fix: Use a project-scoped sweep lock and per-session mutation lock, or rework archival around an atomic claim/CAS protocol that cannot move a file changed after eligibility was measured.
+    - Source: iteration-1 F6, Opus verdict: confirmed · fix-design: both models agree
+    - Fix: Prevent concurrent sweeps with an atomic cross-process lock (mkdir is atomic on POSIX), and shrink the live-session archival window by re-stat'ing immediately before rename. Accept the residual micro-race given the advisory nature.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (F6)
 - [ ] T010 [P2] Case-insensitive mode extraction is followed by case-sensitive comparison (`.opencode/plugins/mk-deep-loop-guard.js:89`)
-    - Source: iteration-1 F8, Opus verdict: confirmed
-    - Fix: Normalize the captured mode to lowercase before comparison, or compare canonicalized values on both sides.
+    - Source: iteration-1 F8, Opus verdict: confirmed · fix-design: both models agree
+    - Fix: Normalize the captured mode to lowercase at the boundary so comparison is canonical on both sides.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (F8)
 - [ ] T011 [P2 · Opus-new] Uppercase target-agent name silently bypasses BOTH guards (`.opencode/plugins/mk-deep-loop-guard.js:122`)
-    - Source: Opus iteration-2 (new)
-    - Fix: Lowercase the resolved identity (and the declared mode) at the boundary, e.g. return match[1].toLowerCase() in resolveTargetIdentity and declaredModeFromPrompt.
+    - Source: Opus iteration-2 (new) · fix-design: both models agree
+    - Fix: Lowercase the resolved identity at the boundary in resolveTargetIdentity so all downstream case-sensitive lookups match.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (O1)
 - [ ] T012 [P2 · Opus-new] declaredModeFromPrompt matches the FIRST 'mode=' token anywhere, not the target-intended mode (`.opencode/plugins/mk-deep-loop-guard.js:90`)
-    - Source: Opus iteration-2 (new)
-    - Fix: Anchor extraction to the Deep Route header envelope (parse the 'Deep Route:' line specifically) or require a dedicated machine marker, rather than a free-floating substring.
-- [ ] T013 [P2 · Opus-new] Runtime input-shape assumptions unverified; a field/value drift silently disables the whole guard (`.opencode/plugins/mk-deep-loop-guard.js:377`)
-    - Source: Opus iteration-2 (new)
-    - Fix: Normalize tool name case-insensitively and probe multiple session-id field paths (input.sessionID ?? input.session?.id), and add a fixture mirroring a captured real OpenCode tool.execute.before payload.
+    - Source: Opus iteration-2 (new) · fix-design: both models agree
+    - Fix: Anchor mode extraction to the Deep Route header envelope rather than a free-floating substring, so it reads the mode paired with the resolved target.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (O2)
+- [ ] T013 [RECLASSIFIED: non-issue] Runtime input-shape assumptions unverified; a field/value drift silently disables the whole guard (`.opencode/plugins/mk-deep-loop-guard.js:377`)
+    - RESOLVED by 4-model review (GPT + Opus designed; Fable 5 + Sol xhigh reviewed) - NO code change. SDK types tool.execute.before as exactly {tool,sessionID,callID}; the guard demonstrably fires in production. Optional harmless extras: lowercase tool-normalize + one SDK-shape contract fixture. No speculative id fallbacks.
 
 ### Refinements
 
 - [ ] T014 [refinement] Fixture registry omits the production registry's multiplexed-agent shape (`.opencode/plugins/tests/mk-deep-loop-guard.test.cjs:24`)
-    - Source: iteration-1 F9, Opus verdict: confirmed
-    - Fix: Add duplicate-agent fixture entries and table-driven assertions for every valid deep-improvement mode, near-miss iteration text, bounded warning-log rotation, and cross-process or lock-simulation sweep behavior.
+    - Source: iteration-1 F9, Opus verdict: confirmed · fix-design: both models agree
+    - Fix: Extend the fixture to include a multiplexed agent and add table-driven assertions covering every fix landed here.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (F9)
 - [ ] T015 [refinement · Opus-new] Orphaned atomic-write temp files are never pruned by the sweep (`.opencode/plugins/mk-deep-loop-guard.js:163`)
-    - Source: Opus iteration-2 (new)
-    - Fix: Have the sweep also unlink stale `*.tmp` files older than the active-retention window.
+    - Source: Opus iteration-2 (new) · fix-design: both models agree
+    - Fix: Have the sweep also unlink stale `*.tmp` files older than the active-retention window, in the same pass that archives stale state.
+    - Verified fix design (both models): see `fix-design/fix-design.md` (O4)
 
 <!-- /ANCHOR:phase-2 -->
 

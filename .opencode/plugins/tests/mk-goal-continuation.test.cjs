@@ -7,7 +7,7 @@
 
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const { chmod, mkdir, mkdtemp, readFile, rm, utimes, writeFile } = require('node:fs/promises');
+const { chmod, mkdir, mkdtemp, readFile, readdir, rm, stat, utimes, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -233,6 +233,127 @@ test('active autonomy dispatches promptAsync with the requested directory', asyn
   assert.match(promptRequests[0].body.parts[0].text, /Submit the continuation prompt/);
   const goal = await helpers.readGoal('session-active', { stateDir });
   assert.equal(goal.autoTurnsUsed, 1);
+}));
+
+test('definite prompt rejection restores the prior continuation reservation', async () => withState(async ({ helpers, stateDir }) => {
+  process.env.MK_GOAL_AUTONOMY = 'active';
+  const goal = await helpers.setGoal('session-prompt-rejected', 'Restore rejected prompt reservation', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'prompt-rejected-goal',
+  });
+  await helpers.writeGoalAtomic({
+    ...goal,
+    autoTurnsUsed: 2,
+    lastContinuationAtMs: 100,
+    lastContinuationMessageId: 'prior-continuation',
+  }, { stateDir });
+
+  const result = await helpers.maybeContinueGoal('session-prompt-rejected', {
+    stateDir,
+    nowMs: 3000,
+    client: { session: { async promptAsync() { throw new Error('definite rejection'); } } },
+    runtimeState: {
+      inFlightContinuations: new Set(),
+      blockedByPromptSessions: new Set(),
+      sessionStatuses: new Map([['session-prompt-rejected', 'idle']]),
+    },
+  });
+  const after = await helpers.readGoal('session-prompt-rejected', { stateDir });
+  assert.equal(result.reason, 'prompt_async_failed');
+  assert.equal(result.autoTurnsUsed, 2);
+  assert.equal(after.autoTurnsUsed, 2);
+  assert.equal(after.lastContinuationAtMs, 100);
+  assert.equal(after.lastContinuationMessageId, 'prior-continuation');
+  assert.match(after.lastContinuationError, /definite rejection/);
+}));
+
+test('prompt timeout retains the reserved turn because delivery is indeterminate', async () => withState(async ({ helpers, stateDir }) => {
+  process.env.MK_GOAL_AUTONOMY = 'active';
+  let promptCalls = 0;
+  const runtimeState = {
+    inFlightContinuations: new Set(),
+    blockedByPromptSessions: new Set(),
+    sessionStatuses: new Map([['session-prompt-timeout', 'idle']]),
+  };
+  await helpers.setGoal('session-prompt-timeout', 'Retain an indeterminate prompt reservation', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'prompt-timeout-goal',
+  });
+  const result = await helpers.maybeContinueGoal('session-prompt-timeout', {
+    stateDir,
+    nowMs: 3000,
+    continuationTimeoutMs: 20,
+    client: {
+      session: {
+        async promptAsync() {
+          promptCalls += 1;
+          return new Promise(() => {});
+        },
+      },
+    },
+    runtimeState,
+  });
+  const after = await helpers.readGoal('session-prompt-timeout', { stateDir });
+  assert.equal(result.reason, 'prompt_async_timeout');
+  assert.equal(result.autoTurnsUsed, 1);
+  assert.equal(after.autoTurnsUsed, 1);
+  assert.match(after.lastContinuationMessageId, /^goal-continuation-/);
+  assert.equal(after.continuationSuppressedReason, 'prompt_async_timeout');
+  assert.equal(runtimeState.inFlightContinuations.has('session-prompt-timeout'), false);
+
+  const second = await helpers.maybeContinueGoal('session-prompt-timeout', {
+    stateDir,
+    nowMs: 5000,
+    continuationTimeoutMs: 20,
+    client: { session: { async promptAsync() { promptCalls += 1; } } },
+    runtimeState,
+  });
+  assert.equal(second.reason, 'prompt_async_timeout');
+  assert.equal(promptCalls, 1);
+}));
+
+test('verifier timeout suppresses the idle continuation cycle without prompting', async () => withState(async ({ helpers, stateDir }) => {
+  process.env.MK_GOAL_AUTONOMY = 'active';
+  let promptCalls = 0;
+  await helpers.setGoal('session-verifier-timeout-cycle', 'Do not continue after verifier timeout', {
+    stateDir,
+    nowMs: 1000,
+    goalIdFactory: () => 'verifier-timeout-cycle-goal',
+  });
+  const result = await helpers.maybeContinueGoal('session-verifier-timeout-cycle', {
+    stateDir,
+    nowMs: 3000,
+    verifierResult: { timedOut: true },
+    client: { session: { async promptAsync() { promptCalls += 1; } } },
+  });
+  assert.equal(result.reason, 'verifier_timeout');
+  assert.equal(promptCalls, 0);
+}));
+
+test('continuously active continuation logs rotate at the configured byte bound', async () => withState(async ({ helpers, stateDir }) => {
+  process.env.MK_GOAL_AUTONOMY = 'smoke';
+  for (let index = 0; index < 12; index += 1) {
+    const sessionID = `session-log-bound-${index}`;
+    await helpers.setGoal(sessionID, `Bound continuation log ${index}`, {
+      stateDir,
+      nowMs: 1000 + index,
+      goalIdFactory: () => `log-bound-goal-${index}`,
+    });
+    await helpers.maybeContinueGoal(sessionID, {
+      stateDir,
+      nowMs: 3000 + index,
+      jsonlMaxBytes: 450,
+    });
+  }
+
+  const entries = await readdir(stateDir);
+  assert.ok(entries.some((entry) => entry.startsWith('.continuation.log.')));
+  assert.ok((await stat(join(stateDir, '.continuation.log'))).size <= 450);
+  const activeEntries = await readContinuationEntries(stateDir);
+  assert.ok(activeEntries.length > 0);
+  assert.ok(activeEntries.every((entry) => entry.reason === 'smoke_mode'));
 }));
 
 test('path-like continuation directory is preserved unchanged', async () => withState(async ({ helpers, stateDir }) => {

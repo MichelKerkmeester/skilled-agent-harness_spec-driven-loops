@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/007-session-cleanup"
-    last_updated_at: "2026-07-10T09:27:08.451Z"
+    last_updated_at: "2026-07-10T11:42:16.907Z"
     last_updated_by: "gpt-5.6-sol-fast-audit"
     recent_action: "Planned 17 fixes for session-cleanup"
     next_safe_action: "Implement P1 fixes first after baseline tests"
@@ -66,12 +66,14 @@ A scoped fix plan: one task per finding, ordered by severity, so remediation can
 ## 3. SCOPE
 
 ### In Scope
-- Fixing the 17 audit findings in `.opencode/plugins/session-cleanup.js` and its Claude hook version
+- Fixing the 16 actionable audit findings in `.opencode/plugins/session-cleanup.js` and its Claude hook version (1 reclassified out of scope by review; 3 need a design correction before coding - see tasks.md REVIEW-FLAG lines)
 - The affected files: `.claude/settings.json`, `.opencode/plugins/session-cleanup.js`, `.opencode/scripts/session-cleanup.sh`, `.opencode/bin/check-git-hooks.sh`, `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-stop-hook-orphan-sweep.vitest.ts`, `.opencode/bin/mk-spec-memory-launcher.cjs`, `.opencode/bin/worktree-guard.sh`
 - A baseline test + parity check before and after
 
 ### Out of Scope
 - Findings refuted by the iteration-2 cross-check (no fix needed): none
+- Findings RECLASSIFIED by the Fable 5 + Sol xhigh review as non-issue / by-design (no code change):
+  - O3 [by-design]: Detached daemon MCP children are structurally unreachable by the descendant walk
 - Behavior changes beyond fixing the listed findings
 
 ### Files to Change

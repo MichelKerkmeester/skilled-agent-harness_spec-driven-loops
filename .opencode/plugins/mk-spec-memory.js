@@ -31,6 +31,10 @@ const DEFAULT_CLI_TIMEOUT_MS = 2500;
 const DEFAULT_NODE_BINARY = 'node';
 const DEFAULT_MAX_BRIEF_CHARS = 2400;
 const DEFAULT_MAX_CACHE_ENTRIES = 200;
+const MAX_BRIDGE_STDOUT_BYTES = 1024 * 1024;
+const BRIEF_MARKER_PREFIX = '[mk-spec-memory:continuity:';
+const BRIEF_MARKER_DIGEST_CHARS = 16;
+const MIN_MAX_BRIEF_CHARS = BRIEF_MARKER_PREFIX.length + BRIEF_MARKER_DIGEST_CHARS + 1;
 const DISABLED_ENV = 'MK_SPEC_MEMORY_PLUGIN_DISABLED';
 const LEGACY_DISABLED_ENV = 'SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED';
 const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs', import.meta.url));
@@ -41,11 +45,26 @@ const SOURCE_PATHS = [
 
 async function loadConfig() {
   const path = join(homedir(), '.config', 'opencode', 'plugin', 'mk-spec-memory.json');
+  let raw;
   try {
-    const raw = await readFile(path, 'utf-8');
-    return JSON.parse(raw);
+    raw = await readFile(path, 'utf-8');
+  } catch (error) {
+    const errorCode = typeof error?.code === 'string' ? error.code : 'UNKNOWN';
+    return {
+      config: {},
+      status: errorCode === 'ENOENT' ? 'missing' : 'read_error',
+      errorCode: errorCode === 'ENOENT' ? null : errorCode,
+    };
+  }
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return { config: {}, status: 'parse_error', errorCode: 'INVALID_SHAPE' };
+    }
+    return { config: parsed, status: 'loaded', errorCode: null };
   } catch {
-    return {};
+    return { config: {}, status: 'parse_error', errorCode: 'INVALID_JSON' };
   }
 }
 
@@ -88,7 +107,10 @@ function normalizeOptions(rawOptions) {
     specFolder: typeof options.specFolder === 'string' && options.specFolder.trim()
       ? options.specFolder.trim()
       : (process.env.MK_SPEC_MEMORY_SPEC_FOLDER || undefined),
-    maxBriefChars: normalizePositiveInt(options.maxBriefChars, normalizePositiveInt(envMaxBriefChars, DEFAULT_MAX_BRIEF_CHARS)),
+    maxBriefChars: Math.max(
+      MIN_MAX_BRIEF_CHARS,
+      normalizePositiveInt(options.maxBriefChars, normalizePositiveInt(envMaxBriefChars, DEFAULT_MAX_BRIEF_CHARS)),
+    ),
     maxCacheEntries: normalizePositiveInt(options.maxCacheEntries, normalizePositiveInt(envMaxCacheEntries, DEFAULT_MAX_CACHE_ENTRIES)),
     sourceSignatureOverride: typeof options.sourceSignatureOverride === 'string' ? options.sourceSignatureOverride : null,
   };
@@ -214,7 +236,22 @@ function insertWithEviction(cache, key, value, maxEntries) {
 
 function clampBrief(brief, maxChars) {
   if (typeof brief !== 'string' || brief.length <= maxChars) return brief;
-  return `${brief.slice(0, Math.max(1, maxChars - 3)).trimEnd()}...`;
+  if (maxChars <= 3) return '.'.repeat(Math.max(0, maxChars));
+  return `${brief.slice(0, maxChars - 3).trimEnd()}...`;
+}
+
+function markedBrief(brief, maxChars) {
+  const digest = createHash('sha256')
+    .update(brief)
+    .digest('hex')
+    .slice(0, BRIEF_MARKER_DIGEST_CHARS);
+  const marker = `${BRIEF_MARKER_PREFIX}${digest}]`;
+  const contentBudget = Math.max(0, maxChars - marker.length - 1);
+  const content = contentBudget > 0 ? clampBrief(brief, contentBudget) : '';
+  return {
+    marker,
+    text: content ? `${content}\n${marker}` : marker,
+  };
 }
 
 function bridgePayload({ request, projectDir, sessionID, options }) {
@@ -251,14 +288,15 @@ function bridgePayload({ request, projectDir, sessionID, options }) {
  * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`
  */
 export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
-  const fileConfig = await configPromise;
-  const merged = { ...fileConfig, ...rawOptions };
+  const configResult = await configPromise;
+  const merged = { ...configResult.config, ...rawOptions };
   const options = normalizeOptions(merged);
   const projectDir = normalizeWorkspaceRoot(ctx?.directory);
 
   const state = {
     continuityCache: new Map(),
     inFlight: new Map(),
+    sessionGenerations: new Map(),
     runtimeReady: false,
     lastBridgeStatus: 'uninitialized',
     lastErrorCode: null,
@@ -279,59 +317,77 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
         env: process.env,
         stdio: ['pipe', 'pipe', 'pipe'],
       });
-      let stdout = '';
+      const stdoutChunks = [];
+      let stdoutBytes = 0;
       let settled = false;
-      let timedOut = false;
-      let sigkillTimer = null;
-      const timeout = setTimeout(() => {
-        if (settled) return;
-        timedOut = true;
-        child.kill('SIGTERM');
-        sigkillTimer = setTimeout(() => {
-          if (!settled) child.kill('SIGKILL');
-        }, 1000);
-      }, options.bridgeTimeoutMs);
-
-      child.stdout?.setEncoding?.('utf8');
-      child.stdout?.on('data', (chunk) => {
-        stdout += String(chunk);
-      });
-      child.stderr?.on('data', () => {});
-      child.on('error', () => {
+      let timeout;
+      const finish = (response) => {
         if (settled) return;
         settled = true;
-        clearTimeout(timeout);
-        if (sigkillTimer) clearTimeout(sigkillTimer);
-        state.lastBridgeStatus = 'fail_open';
-        state.lastErrorCode = timedOut ? 'TIMEOUT' : 'SPAWN_ERROR';
-        state.lastDurationMs = Date.now() - startedAt;
-        resolve({ status: 'fail_open', brief: null, data: null, metadata: {}, error: state.lastErrorCode });
-      });
-      child.on('close', (code) => {
-        if (settled) return;
-        settled = true;
-        clearTimeout(timeout);
-        if (sigkillTimer) clearTimeout(sigkillTimer);
-        const response = timedOut
-          ? { status: 'fail_open', brief: null, data: null, metadata: {}, error: 'TIMEOUT' }
-          : parseBridgeResponse(stdout);
-        if (!timedOut && code !== 0 && response.status !== 'fail_open') {
-          response.status = 'fail_open';
-          response.brief = null;
-          response.error = 'NONZERO_EXIT';
-        }
+        if (timeout) clearTimeout(timeout);
         state.lastBridgeStatus = response.status;
         state.lastErrorCode = response.error ?? null;
         state.lastDurationMs = Date.now() - startedAt;
         state.runtimeReady = response.status === 'ok';
         resolve(response);
+      };
+      timeout = setTimeout(() => {
+        if (settled) return;
+        child.kill('SIGTERM');
+        const forceKill = setTimeout(() => child.kill('SIGKILL'), 1000);
+        forceKill.unref?.();
+        finish({ status: 'fail_open', brief: null, data: null, metadata: {}, error: 'TIMEOUT' });
+      }, options.bridgeTimeoutMs);
+
+      child.stdout?.on('data', (chunk) => {
+        if (settled) return;
+        const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(String(chunk));
+        if (stdoutBytes + buffer.length > MAX_BRIDGE_STDOUT_BYTES) {
+          child.kill('SIGKILL');
+          finish({ status: 'fail_open', brief: null, data: null, metadata: {}, error: 'STDOUT_OVERFLOW' });
+          return;
+        }
+        stdoutChunks.push(buffer);
+        stdoutBytes += buffer.length;
       });
-      child.stdin?.end(bridgePayload({ request, projectDir, sessionID, options }));
+      child.stderr?.on('data', () => {});
+      child.on('error', () => {
+        finish({ status: 'fail_open', brief: null, data: null, metadata: {}, error: 'SPAWN_ERROR' });
+      });
+      child.on('close', (code) => {
+        if (settled) return;
+        const response = parseBridgeResponse(Buffer.concat(stdoutChunks, stdoutBytes).toString('utf8'));
+        if (code !== 0 && response.status !== 'fail_open') {
+          response.status = 'fail_open';
+          response.brief = null;
+          response.error = 'NONZERO_EXIT';
+        }
+        finish(response);
+      });
+      child.stdin?.on('error', (error) => {
+        child.kill('SIGKILL');
+        finish({
+          status: 'fail_open',
+          brief: null,
+          data: null,
+          metadata: {},
+          error: error?.code === 'EPIPE' ? 'EPIPE' : 'STDIN_ERROR',
+        });
+      });
+      try {
+        child.stdin?.end(bridgePayload({ request, projectDir, sessionID, options }));
+      } catch {
+        child.kill('SIGKILL');
+        finish({ status: 'fail_open', brief: null, data: null, metadata: {}, error: 'STDIN_ERROR' });
+      }
     });
   }
 
   async function getContinuity({ sessionID }) {
     state.continuityLookups += 1;
+    const sessionKey = normalizeSessionID(sessionID);
+    const generation = state.sessionGenerations.get(sessionKey) ?? 0;
+    state.sessionGenerations.set(sessionKey, generation);
     const signature = options.sourceSignatureOverride ?? sourceSignature();
     const key = cacheKeyFor({
       sessionID,
@@ -348,24 +404,29 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
       return cached.response;
     }
     const inFlight = state.inFlight.get(key);
-    if (inFlight) {
+    if (inFlight && inFlight.generation === generation) {
       state.cacheHits += 1;
-      return inFlight;
+      return inFlight.promise;
     }
     state.cacheMisses += 1;
-    const promise = runBridge({ request: 'brief', sessionID }).finally(() => {
-      state.inFlight.delete(key);
+    let promise;
+    promise = runBridge({ request: 'brief', sessionID }).finally(() => {
+      if (state.inFlight.get(key)?.promise === promise) {
+        state.inFlight.delete(key);
+      }
     });
-    state.inFlight.set(key, promise);
+    state.inFlight.set(key, { generation, promise });
     const response = await promise;
-    if (response.status === 'ok' && response.brief) {
-      insertWithEviction(state.continuityCache, key, {
-        response,
-        expiresAt: now + options.cacheTtlMs,
-        updatedAt: new Date(now).toISOString(),
-      }, options.maxCacheEntries);
-    } else {
-      state.continuityCache.delete(key);
+    if (state.sessionGenerations.get(sessionKey) === generation) {
+      if (response.status === 'ok' && response.brief) {
+        insertWithEviction(state.continuityCache, key, {
+          response,
+          expiresAt: now + options.cacheTtlMs,
+          updatedAt: new Date(now).toISOString(),
+        }, options.maxCacheEntries);
+      } else {
+        state.continuityCache.delete(key);
+      }
     }
     return response;
   }
@@ -373,6 +434,7 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
   function resetRuntimeState() {
     state.continuityCache.clear();
     state.inFlight.clear();
+    state.sessionGenerations.clear();
     state.runtimeReady = false;
     state.lastBridgeStatus = 'uninitialized';
     state.lastErrorCode = null;
@@ -390,13 +452,24 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
   }
 
   function invalidateSession(sessionID) {
-    if (!sessionID || sessionID === '__global__') {
+    const sessionKey = normalizeSessionID(sessionID);
+    if (sessionKey === '__global__') {
+      for (const [key, generation] of state.sessionGenerations) {
+        state.sessionGenerations.set(key, generation + 1);
+      }
       state.continuityCache.clear();
+      state.inFlight.clear();
       return;
     }
+    state.sessionGenerations.set(sessionKey, (state.sessionGenerations.get(sessionKey) ?? 0) + 1);
     for (const key of [...state.continuityCache.keys()]) {
-      if (key.startsWith(`${normalizeSessionID(sessionID)}::`)) {
+      if (key.startsWith(`${sessionKey}::`)) {
         state.continuityCache.delete(key);
+      }
+    }
+    for (const key of [...state.inFlight.keys()]) {
+      if (key.startsWith(`${sessionKey}::`)) {
+        state.inFlight.delete(key);
       }
     }
   }
@@ -408,9 +481,9 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
     const sessionID = sessionIdFrom(input);
     const result = await getContinuity({ sessionID });
     if (!result.brief) return;
-    const brief = clampBrief(result.brief, options.maxBriefChars);
-    if (output.system.some((entry) => typeof entry === 'string' && entry.includes(brief))) return;
-    output.system.push(brief);
+    const brief = markedBrief(result.brief, options.maxBriefChars);
+    if (output.system.some((entry) => typeof entry === 'string' && entry.includes(brief.marker))) return;
+    output.system.push(brief.text);
   }
 
   return {
@@ -421,10 +494,6 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
         return;
       }
       if (eventType === 'session.deleted') {
-        invalidateSession(extractEventSessionID(event));
-        return;
-      }
-      if (typeof eventType === 'string' && (eventType.startsWith('message.') || eventType.startsWith('session.'))) {
         invalidateSession(extractEventSessionID(event));
         return;
       }
@@ -447,6 +516,8 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
             `plugin_id=${PLUGIN_ID}`,
             `enabled=${options.enabled}`,
             `disabled_reason=${state.disabledReason ?? 'none'}`,
+            `config_status=${configResult.status}`,
+            `config_error_code=${configResult.errorCode ?? 'none'}`,
             `cache_ttl_ms=${options.cacheTtlMs}`,
             `max_brief_chars=${options.maxBriefChars}`,
             `max_cache_entries=${options.maxCacheEntries}`,
@@ -464,6 +535,9 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
             `cache_hits=${state.cacheHits}`,
             `cache_misses=${state.cacheMisses}`,
             `cache_hit_rate=${cacheHitRate()}`,
+            `continuity_recovery=per_transform_warm`,
+            `continuity_compaction=unsupported_runtime_event`,
+            `continuity_autosave=unsupported_runtime_event`,
             `warm_status=${bridgeStatus.status}`,
             `warm_error=${bridgeStatus.error ?? 'none'}`,
             `warm_route=${bridgeStatus.metadata?.route ?? 'unknown'}`,

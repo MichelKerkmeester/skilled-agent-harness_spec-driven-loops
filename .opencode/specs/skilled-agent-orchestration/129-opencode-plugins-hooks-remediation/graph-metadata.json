@@ -136,16 +136,16 @@
       }
     ],
     "causal_summary": "The audit (packet 127) found 108 confirmed issues across the 7 OpenCode plugins and their Claude hook versions",
-    "created_at": "2026-07-10T09:27:10.059Z",
-    "last_save_at": "2026-07-10T09:27:10.059Z",
+    "created_at": "2026-07-10T11:42:18.282Z",
+    "last_save_at": "2026-07-10T11:42:18.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:21b817fb6c130c0beb305fb945eb429385b20b4ec13ef3d72ecb8f8ce04fcf74",
+    "source_fingerprint": "sha256:ece4329ce70ff2b1b4b1540faa365b1f800c0ab27d92fc62030671633d88f211",
     "source_doc_hashes": {
-      "spec.md": "e5cd289d5e4a084d97b545dcc7a4e295f7e9b46bcc1732455d3b32f0e84a40c9"
+      "spec.md": "2c4abb0d6dbb6343e0bbf8e9a2aa3a1096031c2088da98ade7aee4c7206bfe75"
     },
     "last_active_child_id": null,
     "last_active_at": null

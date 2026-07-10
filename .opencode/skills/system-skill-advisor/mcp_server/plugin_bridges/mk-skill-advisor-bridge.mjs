@@ -306,6 +306,8 @@ function withTimeout(operation, timeoutMs, label) {
 }
 
 const HYGIENE_DIRECTIVE = '\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+const GOVERNOR_DIRECTIVE = '\nFable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
+let canonicalRendererPromise;
 
 function hasPrecomputedAmbiguity(result, recommendations) {
   if (result?.ambiguous === true) return true;
@@ -351,12 +353,19 @@ function renderAdvisorBrief(result, options = {}) {
     const text = `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`;
     const charCap = Math.min(tokenCap, 120) * 4;
     const brief = text.length <= charCap ? text : `${text.slice(0, Math.max(1, charCap - 3)).trimEnd()}...`;
-    return brief + HYGIENE_DIRECTIVE;
+    return brief + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
   }
   const text = `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`;
   const charCap = Math.min(tokenCap, 80) * 4;
   const brief = text.length <= charCap ? text : `${text.slice(0, Math.max(1, charCap - 3)).trimEnd()}...`;
-  return brief + HYGIENE_DIRECTIVE;
+  return brief + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE;
+}
+
+async function loadCanonicalRenderer() {
+  canonicalRendererPromise ??= import(new URL('../dist/mcp_server/compat/index.js', import.meta.url))
+    .then((compat) => (typeof compat.renderAdvisorBrief === 'function' ? compat.renderAdvisorBrief : renderAdvisorBrief))
+    .catch(() => renderAdvisorBrief);
+  return canonicalRendererPromise;
 }
 
 async function callAdvisorTool(name, args, workspaceRoot) {
@@ -427,7 +436,9 @@ async function loadNativeAdvisorModules() {
         buildSkillAdvisorBrief: typeof compat.buildSkillAdvisorBrief === 'function'
           ? compat.buildSkillAdvisorBrief
           : null,
-        renderAdvisorBrief,
+        renderAdvisorBrief: typeof compat.renderAdvisorBrief === 'function'
+          ? compat.renderAdvisorBrief
+          : renderAdvisorBrief,
       };
     }
   } catch {
@@ -783,7 +794,8 @@ async function buildCliBrief(input, dependencies = {}) {
   if (freshness === 'unavailable') {
     return cliFallbackResponse(input, 'CLI_RETRYABLE_UNAVAILABLE:freshness', true);
   }
-  const rendered = renderAdvisorBrief({
+  const renderBrief = await loadCanonicalRenderer();
+  const rendered = renderBrief({
     status: recommendations.length > 0 ? 'ok' : 'skipped',
     freshness,
     recommendations,

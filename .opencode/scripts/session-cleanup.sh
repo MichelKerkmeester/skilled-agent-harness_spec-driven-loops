@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Clean up MCP helper descendants owned by the current Claude Code session.
+# Clean up MCP helper descendants owned by the current runtime session.
 #
 # This script is intentionally session-scoped: it only ever kills processes it
-# can prove are descendants of CLAUDE_SESSION_PID, and it re-proves that
+# can prove are descendants of an explicit session PID, and it re-proves that
 # ancestry immediately before each kill. There is deliberately NO fallback to
 # the hook's PPID — under a shared terminal that PPID can resolve to an
 # ancestor common to MANY live sessions, turning "this session's descendants"
@@ -11,8 +11,9 @@
 
 set -euo pipefail
 
-SESSION_PID="${CLAUDE_SESSION_PID:-}"
-LOG_PATH="${CLAUDE_SESSION_CLEANUP_LOG_PATH:-${HOME:-/tmp}/.local/share/claude-stop-hook.log}"
+SESSION_PID="${SESSION_CLEANUP_PID:-${CLAUDE_SESSION_PID:-}}"
+LOG_PATH="${SESSION_CLEANUP_LOG_PATH:-${CLAUDE_SESSION_CLEANUP_LOG_PATH:-${HOME:-/tmp}/.local/share/session-cleanup.log}}"
+LOG_MAX_BYTES="${SESSION_CLEANUP_LOG_MAX_BYTES:-${CLAUDE_SESSION_CLEANUP_LOG_MAX_BYTES:-10485760}}"
 EXIT_CODE=0
 descendants=()
 
@@ -24,12 +25,39 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ORPHAN_SWEEP_MODE="${SPECKIT_STOP_HOOK_ORPHAN_SWEEP:-off}"
 ORPHAN_SWEEPER_BIN="${SPECKIT_ORPHAN_SWEEPER_BIN:-$SCRIPT_DIR/orphan-mcp-sweeper.sh}"
 
+is_positive_int() {
+  case "$1" in
+    ''|*[!0-9]*) return 1 ;;
+    *) [ "$1" -gt 0 ] ;;
+  esac
+}
+
+if ! is_positive_int "$LOG_MAX_BYTES"; then
+  LOG_MAX_BYTES=10485760
+fi
+
+rotate_log_if_needed() {
+  [ -n "$LOG_PATH" ] || return 0
+  [ -f "$LOG_PATH" ] || return 0
+
+  local size
+  size="$(wc -c < "$LOG_PATH" 2>/dev/null || echo 0)"
+  is_positive_int "$size" || size=0
+  [ "$size" -le "$LOG_MAX_BYTES" ] && return 0
+
+  [ ! -f "$LOG_PATH.2" ] || cp -f "$LOG_PATH.2" "$LOG_PATH.3" 2>/dev/null || true
+  [ ! -f "$LOG_PATH.1" ] || cp -f "$LOG_PATH.1" "$LOG_PATH.2" 2>/dev/null || true
+  cp -f "$LOG_PATH" "$LOG_PATH.1" 2>/dev/null || return 0
+  : > "$LOG_PATH" 2>/dev/null || true
+}
+
 emit() {
   local line
   line="$(date '+%Y-%m-%dT%H:%M:%S%z') $*"
   printf '%s\n' "$line"
   if [ -n "$LOG_PATH" ]; then
     mkdir -p "$(dirname "$LOG_PATH")" 2>/dev/null || true
+    rotate_log_if_needed
     printf '%s\n' "$line" >> "$LOG_PATH" 2>/dev/null || true
   fi
 }
@@ -131,7 +159,8 @@ append_descendants "$SESSION_PID"
 emit "action=start session_pid=$SESSION_PID descendants=${#descendants[@]}"
 
 if [ "${#descendants[@]}" -gt 0 ]; then
-  for pid in "${descendants[@]}"; do
+  for ((i=${#descendants[@]} - 1; i >= 0; i--)); do
+    pid="${descendants[i]}"
     cmd="$(ps -p "$pid" -o command= 2>/dev/null || true)"
     [ -n "$cmd" ] || continue
     if is_target_command "$cmd"; then

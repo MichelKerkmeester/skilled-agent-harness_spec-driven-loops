@@ -304,7 +304,7 @@ The calling AI must NOT request a write or sub-dispatch from a LEAF agent. If th
 
 ## 8. WORKED EXAMPLES
 
-Three end-to-end examples covering the most common dispatch patterns.
+Two end-to-end examples covering the most common dispatch patterns.
 
 ### Example 1: Code review via `@review`
 
@@ -327,7 +327,7 @@ opencode run \
 ---
 
 
-### Example 3: Root cause debugging via `@debug`
+### Example 2: Root cause debugging via `@debug`
 
 The calling AI's first 3 debug attempts failed. Escalate to a fresh-context dispatch.
 

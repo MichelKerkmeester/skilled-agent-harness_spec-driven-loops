@@ -40,6 +40,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
       ".claude/settings.json",
       ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs",
+      "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -85,6 +86,12 @@
         "name": "spec-kit-opencode-message-schema.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -182,17 +189,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 19 confirmed findings in `mk-spec-memory` and its Claude hook version (9 P1 / 6 P2 / 4 refinement)",
-    "created_at": "2026-07-10T09:27:08.688Z",
-    "last_save_at": "2026-07-10T09:27:08.688Z",
+    "created_at": "2026-07-10T11:42:17.113Z",
+    "last_save_at": "2026-07-10T11:42:17.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +201,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:bd3680c74eb1689db9f8c9de721df6b8d622c593d55f82d5647ba85623896d82",
+    "source_fingerprint": "sha256:158c30ca7f6be1c0bddd99c625858929f67a5f920a3845c40d742b0c9e7d559f",
     "source_doc_hashes": {
-      "spec.md": "45f48ccf04764f5b00c5eba55601c8e20da5a3f8f4e344dda14902dd7dbe067a",
-      "plan.md": "02c4c5b5ffe51fe3a32725f363bdfb3e54fe22ee70d9d43cb17218cbd49dca26",
-      "tasks.md": "aa12abe48e1d0f2cfda81854c9c3fd80dd7d65436318c9c9346298d0daf58d75"
+      "spec.md": "44f2497c1d69557894300e1cd78f800faaba2554e5e4b398c8ec1b150a73465e",
+      "plan.md": "872d4073c89ff64707546783e78531e557cb38e40387ba5820eca0cfdf6d9524",
+      "tasks.md": "5969365f77c1375c8b232f7e09f6fe6ae3ef22c62055a3351b4c95605b5d7146"
     },
     "last_active_child_id": null,
     "last_active_at": null

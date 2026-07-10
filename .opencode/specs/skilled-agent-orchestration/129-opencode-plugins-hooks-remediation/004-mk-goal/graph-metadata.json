@@ -35,6 +35,7 @@
     "key_files": [
       ".opencode/plugins/mk-goal.js",
       ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+      "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -50,6 +51,12 @@
         "name": "mk-goal-lifecycle.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -161,27 +168,27 @@
         "source": "derived"
       },
       {
-        "name": "properties.info.id",
+        "name": "query",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "tools",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "native",
+        "name": "Promise.race",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 17 confirmed findings in `mk-goal` and its Claude hook version (10 P1 / 5 P2 / 2 refinement)",
-    "created_at": "2026-07-10T09:27:09.282Z",
-    "last_save_at": "2026-07-10T09:27:09.282Z",
+    "created_at": "2026-07-10T11:42:17.586Z",
+    "last_save_at": "2026-07-10T11:42:17.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,11 +196,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:e29d75098a56315544658bb2cdbb2a798ef256f763ab45e76592cc65d3d00e20",
+    "source_fingerprint": "sha256:8a98fde31ff938e1851e46b6aba4f1b2094eedbd0bb6a87342928bf6192f0441",
     "source_doc_hashes": {
-      "spec.md": "10730612ccd12b8ff9b07136e9e70f66f8d48bac0b02910ffad8b4fcd0a7b0cd",
-      "plan.md": "33cfb730019e5f0832bb5ededfac320fb5bd8f1ed559cb4f4888ffe37c69104e",
-      "tasks.md": "6a913d98acc7926d3a9dcf5938d8ce7647ac144984eed19c6ded814ff62401ce"
+      "spec.md": "28366c5e4f0a1f85d85e3cc4e54be00427fe99b93d80cd7c1fbaaa80c2dcf220",
+      "plan.md": "4d8ce54de2707e495472df0a9093217df03b4429c6074bae0189ff68e71936f4",
+      "tasks.md": "a2dfdb8de18768fcbe04294c0d65a601a42b3313840c3b50499db62332fbe78a"
     },
     "last_active_child_id": null,
     "last_active_at": null

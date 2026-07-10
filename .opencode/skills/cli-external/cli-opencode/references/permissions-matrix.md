@@ -231,7 +231,7 @@ replay harness therefore uses the two recorded RM-8 classes:
 
 That yields a 44-entry replay set matching the recorded damage count and classes.
 
-### 7.1 Spec doc deletion class
+### 8.1 Spec doc deletion class
 
 For each phase child, the canonical spec docs are:
 
@@ -248,7 +248,7 @@ For each phase child, the canonical spec docs are:
 
 Across two phases, that accounts for 16 blocked deletions.
 
-### 7.2 Review subtree deletion class
+### 8.2 Review subtree deletion class
 
 The recorded review subtree deletion class is blocked twice.
 
@@ -267,7 +267,7 @@ The recorded review subtree deletion class is blocked twice.
 Across the current reconstructed review artifacts, the replay set uses 28 review
 entries plus the 16 spec docs above: 44/44 blocked.
 
-### 7.3 Why the matrix is stronger than prose
+### 8.3 Why the matrix is stronger than prose
 
 The old Layer 1 prompt hardening asked the model not to mutate scope. The matrix
 gate checks the tool call before the tool runs. That matters because the RM-8

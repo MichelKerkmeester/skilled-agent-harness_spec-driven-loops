@@ -37,6 +37,7 @@
       ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       ".opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh",
       ".opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh",
+      "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -64,6 +65,12 @@
         "name": "check-dist-staleness.sh",
         "kind": "script",
         "path": ".opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -175,21 +182,15 @@
         "source": "derived"
       },
       {
-        "name": "Claude",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "startup",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 12 confirmed findings in `mk-dist-freshness-guard` and its Claude hook version (5 P1 / 2 P2 / 5 refinement)",
-    "created_at": "2026-07-10T09:27:09.660Z",
-    "last_save_at": "2026-07-10T09:27:09.660Z",
+    "created_at": "2026-07-10T11:42:17.907Z",
+    "last_save_at": "2026-07-10T11:42:17.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,11 +198,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:15b80400ae3858bb22707b255d8c1ca36f4680b9b5200717a9f9149d3ced0682",
+    "source_fingerprint": "sha256:daff008b9f2cec95ee414c0175270ea5253f3caa66b54b5fe6dcde3f9a602d23",
     "source_doc_hashes": {
-      "spec.md": "094edde65a8aee808a60ec71e9fa39950d239ed406e5f9979abd1a376bd9c664",
-      "plan.md": "73c52442e3f905ece75cf5968666fb213a4b462c6c186d29b9b98b64bb54942d",
-      "tasks.md": "0f0a39bb1f39170745844a47bbc70ad5d81efbd4eb38b9ecbf204d15bdc0d501"
+      "spec.md": "22de3667dc7d9e03c69f3e8a315bc766c8ef0447d93fd66beb927281d20c14d2",
+      "plan.md": "293be20b55a1c900e4cb1a5e5802296bd05d359afc822eb0a3004c3d22a5eb4d",
+      "tasks.md": "58b15d534c204542e8291e5252e078989a7c913e8429705428f052d3230cf492"
     },
     "last_active_child_id": null,
     "last_active_at": null

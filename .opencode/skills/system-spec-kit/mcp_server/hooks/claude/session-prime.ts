@@ -288,7 +288,7 @@ function handleResume(sessionId: string): OutputSection[] {
 
   if (state?.lastSpecFolder) {
     sections.push({
-      title: 'Session Continuity',
+      title: 'Session Resume',
       content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
     });
   } else {
@@ -324,7 +324,7 @@ function writeHookOutput(output: string): Promise<void> {
   });
 }
 
-function hasContinuitySection(sections: OutputSection[]): boolean {
+function hasRecoveredContinuitySection(sections: OutputSection[]): boolean {
   return sections.some((section) => section.title === 'Session Continuity');
 }
 
@@ -337,7 +337,7 @@ async function maybeAppendCliWarmFallback(
   source: string,
   input: HookInput,
 ): Promise<OutputSection[]> {
-  if ((source !== 'startup' && source !== 'resume') || hasContinuitySection(sections)) {
+  if ((source !== 'startup' && source !== 'resume') || hasRecoveredContinuitySection(sections)) {
     return sections;
   }
   const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
