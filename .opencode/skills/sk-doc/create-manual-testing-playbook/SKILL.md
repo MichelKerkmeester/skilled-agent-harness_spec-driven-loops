@@ -71,21 +71,21 @@ Author this layout:
 ```text
 manual_testing_playbook/
 |-- manual_testing_playbook.md
-|-- 01--category-name/
+|-- category-name/
 |   |-- feature-name.md
 |   `-- another-feature-name.md
-`-- 02--another-category/
+`-- another-category/
     `-- feature-name.md
 ```
 
 Package invariants:
 
 - The root file is always `manual_testing_playbook.md`.
-- Per-feature files live in numbered root-level category folders.
-- Category directories use `NN--category-name`.
+- Per-feature files live in root-level category folders.
+- Category directories use the bare descriptive slug `category-name` (no numeric prefix).
 - Per-feature files use stable slugs such as `feature-name.md`; no numeric file prefix.
 - Per-feature snippet order is defined by the root playbook listing order.
-- Category folders keep `NN--` numbering for section order.
+- Display order is owned by the root playbook index (`manual_testing_playbook.md`), not the folder name.
 - Every feature ID maps to exactly one per-feature file.
 
 Do not create:
@@ -152,7 +152,7 @@ Follow this sequence:
 
 1. Confirm the target skill or system, package owner, feature set, and whether a feature catalog already exists.
 2. Decide whether a manual testing playbook is appropriate using the decision rule in this skill.
-3. Define category directories with `NN--category-name` names.
+3. Define category directories using the bare descriptive slug `category-name`.
 4. Define stable feature IDs using a consistent `{PREFIX}-{NNN}` pattern.
 5. Create the root `manual_testing_playbook/` directory.
 6. Create `manual_testing_playbook/manual_testing_playbook.md` from `assets/testing_playbook/manual_testing_playbook_template.md`.
@@ -292,7 +292,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 ### ALWAYS
 
 1. Use `manual_testing_playbook.md` as the root file name.
-2. Put per-feature files in numbered root-level category folders.
+2. Put per-feature files in root-level category folders named with the bare descriptive slug.
 3. Keep one canonical per-feature file for each feature ID.
 4. Use exact prompts, exact command sequences, observable expected signals, captured evidence, and binary pass/fail criteria.
 5. Keep shared review, orchestration, and release-readiness rules in the root playbook.
@@ -310,6 +310,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 5. Use packet-history or spec-phase references as scenario identity.
 6. Ship unsynchronized prompt fields.
 7. Add packet-local `graph-metadata.json`.
+8. Add numeric prefixes to category folder names; the root playbook index owns display order.
 
 ### ESCALATE IF
 

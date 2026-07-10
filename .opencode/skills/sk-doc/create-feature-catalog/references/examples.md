@@ -45,7 +45,7 @@ feature_catalog/
 └── ...                           # twenty-plus numbered category folders
 ```
 
-The catalog groups a large MCP surface into numbered category folders (`NN--category-name`), each holding one file per feature. The root `feature_catalog.md` is the only navigation surface; category numbering fixes the section order.
+The catalog groups a large MCP surface into category folders, each holding one file per feature. The root `feature_catalog.md` is the only navigation surface and owns the section order; the folder names do not encode ordering. (The paths shown above still carry the historical numeric prefixes on disk; the convention no longer adds them.)
 
 ---
 

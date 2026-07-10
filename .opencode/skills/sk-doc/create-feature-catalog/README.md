@@ -4,7 +4,7 @@ Create canonical feature-inventory packages for shipped systems, with a root cat
 
 ## 1. OVERVIEW
 
-`create-feature-catalog` is a nested workflow packet of the `sk-doc` parent hub. It authors canonical current-state feature inventories rooted at `feature_catalog/feature_catalog.md`, with numbered category folders and one source-anchored per-feature file per root catalog entry. The root catalog stays inventory-first and navigation-focused; per-feature files carry the implementation truth, source anchors, and validation references. `SKILL.md` is the authoritative contract.
+`create-feature-catalog` is a nested workflow packet of the `sk-doc` parent hub. It authors canonical current-state feature inventories rooted at `feature_catalog/feature_catalog.md`, with category folders and one source-anchored per-feature file per root catalog entry. The root catalog stays inventory-first and navigation-focused; per-feature files carry the implementation truth, source anchors, and validation references. `SKILL.md` is the authoritative contract.
 
 ## 2. WHEN TO USE
 
@@ -13,7 +13,7 @@ Use this packet when you need to document a real feature surface as an inventory
 Good fits:
 
 - Creating or updating `feature_catalog/feature_catalog.md`
-- Splitting a large feature surface into numbered category folders
+- Splitting a large feature surface into category folders
 - Creating one stable per-feature file for each root catalog entry
 - Capturing current shipped behavior with source-file and validation anchors
 - Linking READMEs, operator docs, or manual testing playbooks to stable feature references
@@ -38,14 +38,14 @@ A catalog package uses this structure:
 ```text
 feature_catalog/
 ├── feature_catalog.md
-├── 01--category-name/
+├── category-name/
 │   ├── feature-name.md
 │   └── another-feature-name.md
-└── 02--another-category/
+└── another-category/
     └── feature-name.md
 ```
 
-Category folders use `NN--category-name`.
+Category folders use the bare descriptive slug `category-name`; the root catalog `feature_catalog.md` owns display order, not the folder name.
 
 Per-feature files use stable `feature-name.md` slugs without numeric prefixes.
 
@@ -63,7 +63,7 @@ Then follow the packet flow:
 2. Load `references/README.md`, which routes to the worked example and pitfalls references.
 3. Decide whether the feature surface is large enough to warrant a catalog.
 4. Create the root catalog from `assets/feature_catalog/feature_catalog_template.md`.
-5. Create one numbered category folder per root section.
+5. Create one category folder per root section using the bare descriptive slug.
 6. Create one per-feature file per root entry from `assets/feature_catalog/feature_catalog_snippet_template.md`.
 7. Verify root-entry to feature-file parity, links, source anchors, and shipped-behavior claims.
 8. Run shared validation from `../shared/scripts/` before delivery.

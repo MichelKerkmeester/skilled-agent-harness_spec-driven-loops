@@ -333,13 +333,13 @@ python scripts/package_skill.py skill-path        # Package skill
 | File | Content |
 |------|---------|
 | `manual_testing_playbook.md` | Root directory playbook, integrated review/orchestration guidance, summary blocks, and cross-references |
-| `NN--category-name/*.md` | Required per-feature scenario files referenced from the root playbook |
+| `category-name/*.md` | Required per-feature scenario files referenced from the root playbook (bare descriptive slug; the root playbook owns display order) |
 
 ### Quick Steps
 1. **Plan categories** → Define ID prefixes (e.g., CCC, MCP, CFG)
 2. **Create directory** → `{SKILL_PATH}/manual_testing_playbook/`
 3. **Copy scaffolds** → Fill the main playbook and per-feature file scaffolds from the template
-4. **Create per-feature files** → Use the snippet template for one file per feature ID in numbered root-level category folders
+4. **Create per-feature files** → Use the snippet template for one file per feature ID in root-level category folders
 5. **Fill root summaries** → Add Description, Scenario Contract and Test Execution blocks per feature
 6. **Build cross-reference** → Feature Catalog Index with per-feature file links at end of main playbook
 7. **Plan waves** → Add integrated orchestration guidance and group non-destructive vs destructive scenarios

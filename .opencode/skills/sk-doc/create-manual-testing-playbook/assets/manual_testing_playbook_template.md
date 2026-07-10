@@ -25,7 +25,7 @@ Templates for creating manual testing playbooks with deterministic scenarios, st
 - **Deterministic**: Every scenario has an exact prompt and exact command sequence.
 - **9-column contract**: Standardized table covering Feature ID through Failure Triage.
 - **Feature-catalog rooted**: The root playbook acts as the directory, review surface, and cross-reference index.
-- **Per-feature files**: Each scenario gets its own file in a numbered category folder at the playbook root.
+- **Per-feature files**: Each scenario gets its own file in a category folder at the playbook root.
 - **Orchestrator-led**: Scenarios should mimic real user testing, including coordinator prompts, delegation decisions, and user-visible outcomes.
 - **Integrated root guidance**: Review protocol and orchestration rules live inside the root playbook, not in separate canonical sidecar docs.
 - **Feature-catalog shaped files**: Per-feature playbook files should mirror feature-catalog snippet structure by leading with prose, then current reality, then structured source references.
@@ -40,12 +40,14 @@ Canonical layout:
 ```text
 manual_testing_playbook/
 ├── manual_testing_playbook.md          # Root directory page, review rules, and orchestration guidance
-├── 01--category-name/                  # Required per-feature files for category 1
+├── category-name/                      # Required per-feature files for category 1
 │   ├── feature-name.md
 │   └── another-feature-name.md
-└── 02--another-category/               # Required per-feature files for category 2
+└── another-category/                   # Required per-feature files for category 2
     └── feature-name.md
 ```
+
+Category folders use the bare descriptive slug; the root `manual_testing_playbook.md` index owns display order, not the folder name.
 
 **Existing Examples**:
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/` (integrated root playbook + 195 per-feature files)
@@ -159,7 +161,7 @@ This document combines the full manual-validation contract for the `{SKILL_SLUG}
 
 ---
 
-This playbook package adopts the Feature Catalog split-document pattern for the `{SKILL_SLUG}` skill. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail lives in the numbered category folders at the playbook root.
+This playbook package adopts the Feature Catalog split-document pattern for the `{SKILL_SLUG}` skill. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail lives in the category folders at the playbook root.
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
@@ -226,7 +228,7 @@ Coverage note ({PLAYBOOK_DATE}): {COVERAGE_NOTE}.
 ### Inputs Required
 
 1. `manual_testing_playbook.md`
-2. Referenced per-feature files under `manual_testing_playbook/NN--category-name/`
+2. Referenced per-feature files under `manual_testing_playbook/<category>/`
 3. Scenario execution evidence
 4. Feature-to-scenario coverage map
 5. Triage notes for all non-pass outcomes
@@ -441,7 +443,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 - Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
 ```
 
-Validator note: the current validator does not recurse into the numbered category folders, so per-feature file completeness must be checked manually. Cross-file link resolution is now guarded in CI by `check-markdown-links.cjs` (broken markdown links fail the PR); per-feature completeness and source-anchor quality remain manual.
+Validator note: the current validator does not recurse into the category folders, so per-feature file completeness must be checked manually. Cross-file link resolution is now guarded in CI by `check-markdown-links.cjs` (broken markdown links fail the PR); per-feature completeness and source-anchor quality remain manual.
 
 ---
 

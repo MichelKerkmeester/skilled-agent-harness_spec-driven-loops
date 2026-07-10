@@ -26,7 +26,7 @@ Templates for creating feature catalogs that combine top-level capability invent
 **Key Characteristics**:
 - **Inventory-first**: The root catalog acts as the system-level directory and summary surface.
 - **Feature-catalog shaped**: The root file uses frontmatter, an H1 intro paragraph, and numbered all-caps H2 section headers.
-- **Per-feature files**: Each catalog entry maps to exactly one per-feature file in a numbered category directory.
+- **Per-feature files**: Each catalog entry maps to exactly one per-feature file in a category directory.
 - **Current-reality focused**: The root and per-feature files describe shipped behavior, not speculative roadmaps unless clearly marked.
 - **Reference-rich**: Per-feature files carry source-file tables, implementation anchors, and metadata.
 - **Stable naming**: Category directory names and feature file slugs should remain stable after publication.
@@ -39,10 +39,10 @@ Canonical layout:
 ```text
 feature_catalog/
 ├── feature_catalog.md                 # Root inventory and summary catalog
-├── 01--category-name/                 # Required per-feature files for category 1
+├── category-name/                     # Required per-feature files for category 1
 │   ├── feature-name.md
 │   └── another-feature-name.md
-└── 02--another-category/              # Required per-feature files for category 2
+└── another-category/                  # Required per-feature files for category 2
     └── feature-name.md
 ```
 
@@ -64,18 +64,18 @@ feature_catalog/
 
 ## 3. CATEGORY AND FILE DESIGN
 
-Each category groups related features under a numbered directory.
+Each category groups related features under its own directory.
 
 | Category Purpose | Example Directory | Example File |
 |---|---|---|
-| Retrieval | `01--retrieval` | `unified-context-retrieval-memorycontext.md` |
-| Mutation | `02--mutation` | `memory-indexing-memorysave.md` |
-| Tooling and scripts | `17--tooling-and-scripts` | `admin-cli-bootstrap.md` |
+| Retrieval | `retrieval` | `unified-context-retrieval-memorycontext.md` |
+| Mutation | `mutation` | `memory-indexing-memorysave.md` |
+| Tooling and scripts | `tooling-and-scripts` | `admin-cli-bootstrap.md` |
 
 Directory and file rules:
-- Category directories use `NN--category-name`.
+- Category directories use the bare descriptive slug `category-name` (no numeric prefix).
 - Per-feature files use `feature-name.md` (no numeric prefix).
-- Per-feature snippet order is defined by the root catalog listing order; filenames no longer encode order. Category folders keep `NN--` numbering for section order.
+- Per-feature snippet order is defined by the root catalog listing order; filenames do not encode order. Display order is owned by the root catalog index (`feature_catalog.md`), not the folder name.
 - Published slugs should remain stable unless the feature is intentionally renamed.
 
 Per-feature file shape:
@@ -267,7 +267,7 @@ Before publishing a feature catalog, verify:
 Structure:
 - [ ] `feature_catalog.md` exists with frontmatter and H1 intro paragraph
 - [ ] Root catalog uses numbered all-caps H2 section headers (no Table of Contents)
-- [ ] Category directories use `NN--category-name`
+- [ ] Category directories use the bare descriptive slug `category-name` (no numeric prefix)
 - [ ] Per-feature snippet order matches root catalog listing order (filenames do not encode order)
 - [ ] Every root catalog entry links to exactly one per-feature file
 - [ ] Every per-feature file includes frontmatter with `title` and `description`
