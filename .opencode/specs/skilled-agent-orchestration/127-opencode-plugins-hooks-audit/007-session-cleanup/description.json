@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/127-opencode-plugins-hooks-audit/007-session-cleanup",
+  "description": "GPT-5.6-Sol-Fast read-only audit of the session-cleanup OpenCode plugin and its Claude hook version, documented as review findings.",
+  "keywords": [
+    "session-cleanup",
+    "plugin",
+    "audit",
+    "review",
+    "claude-hook",
+    "parity"
+  ],
+  "lastUpdated": "2026-07-10T06:47:40.107Z",
+  "specId": "007",
+  "folderSlug": "session-cleanup",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "127-opencode-plugins-hooks-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

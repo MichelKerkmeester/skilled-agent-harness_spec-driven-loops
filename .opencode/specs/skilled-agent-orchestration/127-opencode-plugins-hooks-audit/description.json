@@ -1,0 +1,26 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/127-opencode-plugins-hooks-audit",
+  "description": "The 7 OpenCode plugins under `.opencode/plugins/` and their related Claude hook versions had never been audited as a set for bugs, silent-breakage,",
+  "keywords": [
+    "opencode",
+    "plugins",
+    "related",
+    "claude",
+    "hook",
+    "versions",
+    "never",
+    "audited",
+    "set",
+    "bugs",
+    "silent-breakage"
+  ],
+  "lastUpdated": "2026-07-10T07:21:58.820Z",
+  "specId": "127",
+  "folderSlug": "opencode-plugins-hooks-audit",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
