@@ -557,27 +557,27 @@ The current sk-doc validator checks this root document's markdown structure. It 
 
 `sk-git` does not currently ship a dedicated `feature_catalog/` package. These scenarios anchor directly to `SKILL.md`, `README.md`, `references/`, and `assets/` until a catalog exists.
 
-| Feature ID | Category | Feature File | Objective |
+| Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
-| GIT-001 | Worktree Setup | [Fresh feature isolated worktree](01--worktree-setup/fresh-feature-isolated-worktree.md) | prove a new feature starts in an isolated worktree created with a branch through `git worktree add -b`. |
-| GIT-002 | Worktree Setup | [Current branch no worktree](01--worktree-setup/current-branch-no-worktree.md) | verify explicit user choice to work on the current branch is honored without creating a worktree. |
-| GIT-003 | Worktree Setup | [Stay on main no feature branches](01--worktree-setup/stay-on-main-no-feature-branches.md) | verify a main-only user preference is restored after a helper creates or suggests an automatic branch. |
-| GIT-004 | Commit Formation | [Conventional commit from diff](02--commit-formation/conventional-commit-from-diff.md) | verify sk-git derives a Conventional Commit subject from the staged diff. |
-| GIT-005 | Commit Formation | [Scope inference skill folder](02--commit-formation/scope-inference-skill-folder.md) | verify a change inside `.opencode/skills/sk-git/` yields a deterministic `sk-git` scope. |
-| GIT-006 | Commit Formation | [Mixed concerns split or warn](02--commit-formation/mixed-concerns-split-or-warn.md) | verify unrelated changes are split into separate commits or clearly warned before committing. |
-| GIT-007 | Commit Formation | [Co-Authored-By footer](02--commit-formation/co-authored-by-footer.md) | verify the canonical Claude Opus co-author footer is preserved exactly when required. |
-| GIT-008 | Safety Refusals | [No-verify bypass refused](03--safety-refusals/no-verify-bypass-refused.md) | verify requests to bypass hooks with `--no-verify` or `--no-gpg-sign` are refused. |
-| GIT-009 | Safety Refusals | [Secrets in diff refused](03--safety-refusals/secrets-in-diff-refused.md) | verify commits containing secret-like placeholders are refused and remediated safely. |
-| GIT-010 | Safety Refusals | [Force-push to main refused](03--safety-refusals/force-push-to-main-refused.md) | verify force-push requests against protected branches are refused without execution. |
-| GIT-011 | Safety Refusals | [Amend published commit refused](03--safety-refusals/amend-published-commit-refused.md) | verify amending a pushed/shared commit is refused and redirected to a follow-up commit. |
-| GIT-012 | Integration And PR | [Finish merge to main](04--integration-and-pr/finish-merge-to-main.md) | verify finished work can be merged locally only after tests pass and base branch is current. |
-| GIT-013 | Integration And PR | [Finish create PR with template](04--integration-and-pr/finish-create-pr-with-template.md) | verify PR creation uses the documented title/body template and remote-operation path. |
-| GIT-014 | Integration And PR | [Failing tests block merge](04--integration-and-pr/failing-tests-block-merge.md) | verify failing tests stop merge or PR completion. |
-| GIT-015 | Integration And PR | [Branch cleanup after merge](04--integration-and-pr/branch-cleanup-after-merge.md) | verify worktree and branch cleanup happens after successful merge. |
-| GIT-016 | Recovery And Edge Cases | [Merge conflict resolution](05--recovery-and-edge-cases/merge-conflict-resolution.md) | verify merge conflicts stop for human resolution instead of silent auto-resolution. |
-| GIT-017 | Recovery And Edge Cases | [Accidental commit wrong branch](05--recovery-and-edge-cases/accidental-commit-wrong-branch.md) | verify a commit made on the wrong branch is recovered without destructive history rewrite. |
-| GIT-018 | Recovery And Edge Cases | [Empty commit or no changes](05--recovery-and-edge-cases/empty-commit-or-no-changes.md) | verify commit flow refuses no-op commits unless the user explicitly asks for an empty commit with rationale. |
-| GIT-019 | Recovery And Edge Cases | [Rebase vs merge decision](05--recovery-and-edge-cases/rebase-vs-merge-decision.md) | verify divergence recovery chooses rebase only for safe local/unpushed work and merge for shared history. |
-| GIT-020 | Cross CLI Orchestration | [Native Claude Code invocation](06--cross-cli-orchestration/native-claude-code-invocation.md) | verify sk-git guidance can be executed by a native Claude Code conductor without losing safety gates. |
-| GIT-021 | Cross CLI Orchestration | [cli-opencode delegation](06--cross-cli-orchestration/cli-opencode-delegation.md) | verify cli-opencode can receive a bounded sk-git delegation and hand back evidence instead of acting outside scope. |
-| GIT-022 | Cross CLI Orchestration | [cli-opencode and cli-copilot handback](06--cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md) | verify OpenCode or Copilot delegation returns a safe handback rather than executing risky git commands directly. |
+| Worktree Setup | GIT-001 | `01--worktree-setup/fresh-feature-isolated-worktree.md` | Yes |
+| Worktree Setup | GIT-002 | `01--worktree-setup/current-branch-no-worktree.md` | Yes |
+| Worktree Setup | GIT-003 | `01--worktree-setup/stay-on-main-no-feature-branches.md` | Yes |
+| Commit Formation | GIT-004 | `02--commit-formation/conventional-commit-from-diff.md` | Yes |
+| Commit Formation | GIT-005 | `02--commit-formation/scope-inference-skill-folder.md` | Yes |
+| Commit Formation | GIT-006 | `02--commit-formation/mixed-concerns-split-or-warn.md` | Yes |
+| Commit Formation | GIT-007 | `02--commit-formation/co-authored-by-footer.md` | Yes |
+| Safety Refusals | GIT-008 | `03--safety-refusals/no-verify-bypass-refused.md` | Yes |
+| Safety Refusals | GIT-009 | `03--safety-refusals/secrets-in-diff-refused.md` | Yes |
+| Safety Refusals | GIT-010 | `03--safety-refusals/force-push-to-main-refused.md` | Yes |
+| Safety Refusals | GIT-011 | `03--safety-refusals/amend-published-commit-refused.md` | Yes |
+| Integration And PR | GIT-012 | `04--integration-and-pr/finish-merge-to-main.md` | No |
+| Integration And PR | GIT-013 | `04--integration-and-pr/finish-create-pr-with-template.md` | No |
+| Integration And PR | GIT-014 | `04--integration-and-pr/failing-tests-block-merge.md` | No |
+| Integration And PR | GIT-015 | `04--integration-and-pr/branch-cleanup-after-merge.md` | No |
+| Recovery And Edge Cases | GIT-016 | `05--recovery-and-edge-cases/merge-conflict-resolution.md` | No |
+| Recovery And Edge Cases | GIT-017 | `05--recovery-and-edge-cases/accidental-commit-wrong-branch.md` | No |
+| Recovery And Edge Cases | GIT-018 | `05--recovery-and-edge-cases/empty-commit-or-no-changes.md` | No |
+| Recovery And Edge Cases | GIT-019 | `05--recovery-and-edge-cases/rebase-vs-merge-decision.md` | No |
+| Cross CLI Orchestration | GIT-020 | `06--cross-cli-orchestration/native-claude-code-invocation.md` | No |
+| Cross CLI Orchestration | GIT-021 | `06--cross-cli-orchestration/cli-opencode-delegation.md` | No |
+| Cross CLI Orchestration | GIT-022 | `06--cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md` | No |

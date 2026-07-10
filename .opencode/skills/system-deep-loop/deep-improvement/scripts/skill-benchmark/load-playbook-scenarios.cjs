@@ -36,7 +36,7 @@ const path = require('path');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const ID_RE = /\b([A-Z]{2})-(\d{3})\b/;
+const ID_RE = /\b([A-Z]{2,4})-(\d{3})\b/;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -174,9 +174,15 @@ function parsePromptBlock(text) {
   // SD/LS/RD use "**Exact prompt**", CS use "**Realistic user prompt**".
   const m = /\*\*(?:Exact prompt|Realistic user prompt)\*\*:?\s*\n+```[a-z]*\n([\s\S]*?)\n```/i.exec(text);
   if (m) return m[1].trim();
-  // sk-doc / inline shape: "Prompt: ..." line.
-  const inline = /(?:^|\n)\s*(?:\*\*)?Prompt(?:\*\*)?:\s*(.+)/i.exec(text);
-  return inline ? inline[1].trim() : null;
+  // sk-doc / inline shape: "Prompt: ..." line, optionally bulleted and/or
+  // framework-prefixed (e.g. sk-git's "- RCAF Prompt: `...`"), optionally
+  // wrapped in a single backtick span.
+  const inline = /(?:^|\n)\s*(?:[-*]\s+)?(?:\*\*)?(?:RCAF\s+)?Prompt(?:\*\*)?:\s*(.+)/i.exec(text);
+  if (!inline) return null;
+  let value = inline[1].trim();
+  const wrapped = /^`([^`]*)`$/.exec(value);
+  if (wrapped) value = wrapped[1].trim();
+  return value || null;
 }
 
 // The root §7-13 tables carry the "Exact Prompt" column for every scenario in a
@@ -189,7 +195,7 @@ function parseRootScenarioTables(rootText) {
     const cells = line.split('|').map((c) => c.trim());
     // Leading/trailing empties from the bounding pipes -> cells[1] is Feature ID.
     const idCell = (cells[1] || '').replace(/`/g, '');
-    if (!/^[A-Z]{2}-\d{3}$/.test(idCell)) continue;
+    if (!/^[A-Z]{2,4}-\d{3}$/.test(idCell)) continue;
     if (cells.length < 9) continue; // not a §7-13 scenario row
     const prompt = (cells[4] || '').replace(/^`|`$/g, '').trim();
     map[idCell] = {
@@ -205,7 +211,7 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
   const text = readFileSafe(absPath);
   if (!text) return null;
 
-  const fmId = (/title:\s*["']?([A-Z]{2}-\d{3})/.exec(text) || [])[1];
+  const fmId = (/title:\s*["']?([A-Z]{2,4}-\d{3})/.exec(text) || [])[1];
   const id = scenarioId || fmId;
   if (!id) return null;
 
@@ -269,7 +275,7 @@ function parseRootIndex(rootText) {
   const scope = secStart === -1 ? rootText : rootText.slice(secStart);
   for (const line of scope.split('\n')) {
     // Row shape parsed below: | <category> | <AA-000> | `<feature-file>.md` | <Yes|No> |
-    const m = /^\|\s*([^|]+?)\s*\|\s*([A-Z]{2}-\d{3})\s*\|\s*`?([^|`]+?\.md)`?\s*\|\s*(Yes|No)\s*\|/.exec(line);
+    const m = /^\|\s*([^|]+?)\s*\|\s*([A-Z]{2,4}-\d{3})\s*\|\s*`?([^|`]+?\.md)`?\s*\|\s*(Yes|No)\s*\|/.exec(line);
     if (m) {
       idx.push({
         categoryLabel: m[1].trim(),
@@ -300,7 +306,7 @@ function loadYamlFrontmatterScenarios(playbookDir) {
       if (!fm) continue;
       const block = fm[1];
       const idM = /(?:^|\n)id:\s*["']?([A-Za-z0-9-]+)/.exec(block);
-      const intentM = /expected_intent:\s*["']?([A-Za-z_]+)/.exec(block);
+      const intentM = /expected_intent:\s*["']?([A-Za-z0-9_-]+)/.exec(block);
       const resM = /expected_resources:\s*\n((?:\s*-\s*.+\n?)+)/.exec(block);
       const resources = resM ? extractPaths(resM[1]) : [];
       const expectedRankBelowSkillIds = parseFrontmatterList(block, [
