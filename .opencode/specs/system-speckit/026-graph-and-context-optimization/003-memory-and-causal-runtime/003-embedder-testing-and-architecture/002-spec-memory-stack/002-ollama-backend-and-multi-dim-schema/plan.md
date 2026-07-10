@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/002-ollama-backend-and-multi-dim-schema"
     last_updated_at: "2026-05-17T06:50:50Z"
     last_updated_by: "codex"
     recent_action: "Delivered two-layer swap mechanism and registry adapter factory"

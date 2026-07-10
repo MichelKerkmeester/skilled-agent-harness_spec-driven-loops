@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation"
     last_updated_at: "2026-06-14T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Moved 30 phases into six themed tracks"

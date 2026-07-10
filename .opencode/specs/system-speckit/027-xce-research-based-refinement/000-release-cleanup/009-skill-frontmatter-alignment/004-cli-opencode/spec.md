@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/004-cli-opencode"
     last_updated_at: "2026-06-11T09:38:23Z"
     last_updated_by: "claude-fable"
     recent_action: "Phase complete: 9 docs authored and verified"

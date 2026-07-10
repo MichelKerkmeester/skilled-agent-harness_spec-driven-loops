@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/003-memory-context-truncation-telemetry-contract"
     last_updated_at: "2026-04-27T09:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Decomposed into Phase 1-3 work units"

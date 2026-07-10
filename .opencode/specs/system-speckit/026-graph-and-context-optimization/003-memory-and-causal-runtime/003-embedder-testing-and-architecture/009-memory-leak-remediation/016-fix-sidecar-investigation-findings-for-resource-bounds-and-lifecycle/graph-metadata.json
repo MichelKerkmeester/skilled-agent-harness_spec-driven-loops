@@ -26,9 +26,7 @@
     ],
     "key_topics": [
       "arc",
-      "010",
       "phase",
-      "002",
       "remediation",
       "sidecar",
       "investigation",
@@ -36,7 +34,9 @@
       "resource",
       "bounds",
       "lifecycle",
-      "fix"
+      "lean",
+      "parent",
+      "remediating"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -89,7 +89,7 @@
     ],
     "causal_summary": "Lean phase parent for remediating arc 010/001 sidecar investigation findings across resource bounds, sidecar lifecycle, and TS/CJS rerank parity.",
     "created_at": "2026-05-23T03:50:22.745Z",
-    "last_save_at": "2026-07-02T05:31:12.242Z",
+    "last_save_at": "2026-07-10T06:22:19.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

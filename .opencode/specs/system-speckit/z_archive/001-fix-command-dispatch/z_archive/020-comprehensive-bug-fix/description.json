@@ -1,26 +1,18 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/020-comprehensive-bug-fix",
-  "description": "Comprehensive analysis and fix of the system-spec-kit skill and all spec_kit commands. This work identified and resolved 36+ issues across P0-P3 prior",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/020-comprehensive-bug-fix",
+  "description": "Comprehensive analysis and fix of the system-spec-kit skill and all spec_kit commands.",
   "keywords": [
     "comprehensive",
     "analysis",
-    "fix",
     "system-spec-kit",
     "skill",
-    "commands",
-    "work",
-    "identified",
-    "resolved",
-    "issues",
-    "across",
-    "p0-p3",
-    "prior"
+    "commands"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.935Z",
+  "lastUpdated": "2026-07-10T06:21:57.394Z",
   "specId": "020",
   "folderSlug": "comprehensive-bug-fix",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

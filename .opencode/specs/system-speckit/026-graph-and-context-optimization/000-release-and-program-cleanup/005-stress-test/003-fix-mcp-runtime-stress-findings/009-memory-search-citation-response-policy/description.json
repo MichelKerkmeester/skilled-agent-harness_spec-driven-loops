@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy",
-  "description": "006/I2 cli-opencode received `requestQuality:\"weak\"` plus `recovery.recommendedAction:\"askuser\"` with `suggestedQueries:[]`, yet still synthesized can",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/009-memory-search-citation-response-policy",
+  "description": "006/I2 cli-opencode received `requestQuality:\"weak\"` plus `recovery.recommendedAction:\"askuser\"` with `suggestedQueries:[]`, yet still synthesized",
   "keywords": [
-    "006",
     "cli-opencode",
     "received",
     "requestquality",
@@ -15,11 +14,11 @@
     "still",
     "synthesized"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.595Z",
+  "lastUpdated": "2026-07-10T06:22:18.171Z",
   "specId": "009",
   "folderSlug": "memory-search-citation-response-policy",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

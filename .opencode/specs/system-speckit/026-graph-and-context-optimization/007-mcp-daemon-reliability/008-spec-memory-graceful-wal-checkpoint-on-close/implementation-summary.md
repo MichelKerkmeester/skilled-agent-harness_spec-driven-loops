@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close"
     last_updated_at: "2026-05-29T14:05:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Checkpoint-on-close shipped + verified"

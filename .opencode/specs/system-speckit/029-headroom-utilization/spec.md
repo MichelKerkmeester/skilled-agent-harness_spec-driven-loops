@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-headroom-utilization"
+    packet_pointer: "system-speckit/029-headroom-utilization"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Opened implementation phases 002-006, one per research-recommended quick win"

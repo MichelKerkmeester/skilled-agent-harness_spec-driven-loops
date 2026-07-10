@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/002-causal-edge-tombstones",
   "description": "The `causaledges` table is a flat active-edge table with no lifecycle record",
   "keywords": [
     "causaledges",
@@ -10,11 +10,11 @@
     "lifecycle",
     "record"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.157Z",
+  "lastUpdated": "2026-07-10T06:24:09.367Z",
   "specId": "002",
   "folderSlug": "causal-edge-tombstones",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "002-memory-index-causal-lifecycle"

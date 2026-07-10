@@ -98,20 +98,20 @@ transport.
   phase preserves its resolved values rather than depending on unfinished work)
 
 ### Definition of Done
-- [ ] REQ-001 implemented: new entrypoint imports all three of
+- [x] REQ-001 implemented: new entrypoint imports all three of
   `resolveDatabasePaths`/`memoryDriftMarkerEntryKey`/`atomicWriteFile` from
   `@spec-kit/mcp-server/api`; zero re-implementation remains in `memory-drift-marker.sh`
-- [ ] REQ-002 implemented: boundary-violation override throws/exits the same way
+- [x] REQ-002 implemented: boundary-violation override throws/exits the same way
   `computeDatabasePaths()` does, no marker written, hook still exits 0 overall
-- [ ] REQ-003 verified: byte-identical output with no override set (before/after comparison)
-- [ ] REQ-004 implemented: lock reclaim gains dead-owner-immediate-reclaim, keeps the 45s
+- [x] REQ-003 verified: byte-identical output with no override set (before/after comparison)
+- [x] REQ-004 implemented: lock reclaim gains dead-owner-immediate-reclaim, keeps the 45s
   fallback threshold, `spec-folder-mutex.ts`'s own tests unaffected
-- [ ] REQ-005 verified: `check-no-mcp-lib-imports` and `check-api-boundary.sh` pass for the new
-  file
-- [ ] REQ-006 implemented: new vitest coverage for all four reused behaviors
-- [ ] REQ-007 verified: the three hook call sites need no edits, `\|\| true` contract preserved
-- [ ] `validate.sh --strict` clean
-- [ ] Docs updated (spec/plan/tasks/checklist/implementation-summary)
+- [x] REQ-005 verified: the new file has no prohibited imports and `check-api-boundary.sh` passes;
+  the full import-policy scanner retains 17 unrelated baseline violations
+- [x] REQ-006 implemented: new vitest coverage for all four reused behaviors
+- [x] REQ-007 verified: the three hook call sites need no edits, `\|\| true` contract preserved
+- [x] `validate.sh --strict` clean
+- [x] Docs updated (spec/plan/tasks/checklist/implementation-summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---

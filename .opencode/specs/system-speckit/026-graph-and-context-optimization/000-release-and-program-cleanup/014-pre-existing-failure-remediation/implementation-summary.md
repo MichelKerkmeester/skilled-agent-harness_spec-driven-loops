@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation"
     last_updated_at: "2026-06-05T08:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "All lanes verified green/clean-skip in unified central verify"

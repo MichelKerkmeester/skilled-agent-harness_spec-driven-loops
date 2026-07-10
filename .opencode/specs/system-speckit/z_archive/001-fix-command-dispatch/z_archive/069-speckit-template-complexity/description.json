@@ -1,21 +1,20 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/069-speckit-template-complexity",
   "description": "Current templates use a single set of files for all documentation levels:",
   "keywords": [
     "current",
     "templates",
-    "use",
     "single",
     "set",
     "files",
     "documentation",
     "levels"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.260Z",
+  "lastUpdated": "2026-07-10T06:24:13.761Z",
   "specId": "069",
   "folderSlug": "speckit-template-complexity",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

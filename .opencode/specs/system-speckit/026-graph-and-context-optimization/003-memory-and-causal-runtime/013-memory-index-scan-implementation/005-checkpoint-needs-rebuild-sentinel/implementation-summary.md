@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel"
     last_updated_at: "2026-06-02T10:03:31Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Needs-rebuild sentinel shipped, deployed to main; focused tests green"

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research"
     last_updated_at: "2026-05-28T18:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Research tasks complete; follow-on fix tasks F1-F6 enumerated as pending"

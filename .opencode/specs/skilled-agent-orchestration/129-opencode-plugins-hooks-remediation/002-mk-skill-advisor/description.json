@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/002-mk-skill-advisor",
+  "description": "Fix plan for the mk-skill-advisor audit findings; one task per finding, planned not implemented.",
+  "keywords": [
+    "mk-skill-advisor",
+    "remediation",
+    "fixes",
+    "plugin",
+    "bugs",
+    "plan"
+  ],
+  "lastUpdated": "2026-07-10T09:27:08.489Z",
+  "specId": "002",
+  "folderSlug": "mk-skill-advisor",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "129-opencode-plugins-hooks-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

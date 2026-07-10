@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/005-mk-deep-loop-guard",
+  "description": "Fix plan for the mk-deep-loop-guard audit findings; one task per finding, planned not implemented.",
+  "keywords": [
+    "mk-deep-loop-guard",
+    "remediation",
+    "fixes",
+    "plugin",
+    "bugs",
+    "plan"
+  ],
+  "lastUpdated": "2026-07-10T09:27:08.489Z",
+  "specId": "005",
+  "folderSlug": "mk-deep-loop-guard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "129-opencode-plugins-hooks-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train"
     last_updated_at: "2026-06-03T00:00:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Batches 1-5 shipped via verify-first scout-confirm-fix pipeline"

@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/003-memory-plugin-debugging",
-  "description": "The semantic memory plugin fails to load memories into the AI context dashboard, showing \"Loaded 0 memories for dashboard\" despite 66+ memories existi",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/027-memory-plugin-and-refinement/003-memory-plugin-debugging",
+  "description": "The semantic memory plugin fails to load memories into the AI context dashboard, showing \"Loaded 0 memories for dashboard\" despite 66+ memories",
   "keywords": [
     "semantic",
     "memory",
@@ -12,14 +12,13 @@
     "dashboard",
     "showing",
     "loaded",
-    "despite",
-    "existi"
+    "despite"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.038Z",
+  "lastUpdated": "2026-07-10T06:23:19.019Z",
   "specId": "003",
   "folderSlug": "memory-plugin-debugging",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive",

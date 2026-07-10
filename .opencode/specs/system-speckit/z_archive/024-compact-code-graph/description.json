@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph",
+  "specFolder": "system-speckit/z_archive/024-compact-code-graph",
   "description": "The `024-compact-code-graph` packet spans a large phased workstream, but the parent folder originally had metadata without a canonical root `spec.md`",
   "keywords": [
     "024-compact-code-graph",
@@ -17,11 +17,11 @@
     "root",
     "spec"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.570Z",
+  "lastUpdated": "2026-07-10T06:23:37.102Z",
   "specId": "024",
   "folderSlug": "compact-code-graph",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 12,

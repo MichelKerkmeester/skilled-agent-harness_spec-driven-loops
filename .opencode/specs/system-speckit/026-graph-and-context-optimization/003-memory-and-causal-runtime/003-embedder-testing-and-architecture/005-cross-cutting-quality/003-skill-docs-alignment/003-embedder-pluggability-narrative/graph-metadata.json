@@ -19,8 +19,6 @@
       "021/003 summary"
     ],
     "key_topics": [
-      "021",
-      "003",
       "embedder",
       "pluggability",
       "out-of-box",
@@ -30,7 +28,9 @@
       "tasks",
       "summary",
       "author",
-      "canonical"
+      "canonical",
+      "doc",
+      "covering"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Author canonical doc covering mk-spec-memory + CocoIndex embedder architecture, out-of-box for any embedder + first-install + swap mechanism",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-07-02T05:31:12.042Z",
+    "last_save_at": "2026-07-10T06:24:24.401Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

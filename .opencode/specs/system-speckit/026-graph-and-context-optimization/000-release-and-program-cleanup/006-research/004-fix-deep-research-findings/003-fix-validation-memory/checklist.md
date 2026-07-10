@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-fix-deep-research-findings/004-fix-validation-memory"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/003-fix-validation-memory"
     last_updated_at: "2026-05-01T08:10:00Z"
     last_updated_by: "remediation-orchestrator"
     recent_action: "Checklist authored"

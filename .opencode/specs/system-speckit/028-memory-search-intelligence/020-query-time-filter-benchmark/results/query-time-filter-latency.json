@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-07-10T04:43:21.905Z",
+  "subject": "memory_search latency with SPECKIT_QUERY_TIME_EXISTENCE_FILTER OFF versus ON",
+  "safety": {
+    "sourceDbOpenedReadOnly": true,
+    "sourceShardOpenedReadOnly": true,
+    "evaluationCopy": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/query-time-filter-benchmark-mfNwyu/context-index.sqlite",
+    "sourceDbPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+    "sourceShardPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite"
+  },
+  "queryCount": 8,
+  "warmupRepeats": 2,
+  "measuredRepeats": 8,
+  "activeEmbedder": {
+    "name": "nomic-embed-text-v1.5",
+    "provider": "ollama",
+    "dim": 768
+  },
+  "off": {
+    "samples": 64,
+    "p50Ms": 283.487,
+    "p95Ms": 359.55,
+    "meanMs": 274.034,
+    "returnedRows": 320,
+    "checkedRows": 0,
+    "excludedRows": 0
+  },
+  "on": {
+    "samples": 64,
+    "p50Ms": 291.999,
+    "p95Ms": 370.749,
+    "meanMs": 288.022,
+    "returnedRows": 320,
+    "checkedRows": 320,
+    "excludedRows": 0
+  },
+  "delta": {
+    "p50Ms": 8.512,
+    "p95Ms": 11.199,
+    "meanMs": 13.988,
+    "meanFractionOfOff": 0.051045
+  }
+}

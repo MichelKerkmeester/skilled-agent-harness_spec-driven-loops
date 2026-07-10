@@ -17,7 +17,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-fix-deep-research-findings/006-fix-architecture-cleanup-followups"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/005-fix-architecture-cleanup-followups"
     last_updated_at: "2026-05-01T10:00:00Z"
     last_updated_by: "remediation-orchestrator"
     recent_action: "Spec authored from worked-pilot 004 template"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored decision-record.md"

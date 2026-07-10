@@ -24,9 +24,7 @@
       "deferred fix followup results"
     ],
     "key_topics": [
-      "019",
       "deferred",
-      "fix",
       "followup",
       "architecture",
       "reconstruction",
@@ -35,7 +33,9 @@
       "apply",
       "scenarios",
       "plan",
-      "tasks"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Closes the 5 deferred findings from 018 (F001, F006/F011, F012, F017, F018) — architecture.md reconstruction, launcher kitDir-derived path, source-map verification, 3 new playbook scenarios.",
     "created_at": "2026-05-14T21:35:00Z",
-    "last_save_at": "2026-07-02T05:31:13.040Z",
+    "last_save_at": "2026-07-10T06:24:47.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

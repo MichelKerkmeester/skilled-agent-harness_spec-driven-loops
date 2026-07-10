@@ -22,7 +22,6 @@
       "055 resource map"
     ],
     "key_topics": [
-      "055",
       "spec",
       "root",
       "readme",
@@ -33,7 +32,8 @@
       "tasks",
       "implementation",
       "summary",
-      "resource"
+      "resource",
+      "map"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Audit the README's factual claims (tool counts, file paths, server names, integration patterns) against current reality",
     "created_at": "2026-05-15T12:55:00Z",
-    "last_save_at": "2026-07-02T05:31:12.995Z",
+    "last_save_at": "2026-07-10T06:23:06.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

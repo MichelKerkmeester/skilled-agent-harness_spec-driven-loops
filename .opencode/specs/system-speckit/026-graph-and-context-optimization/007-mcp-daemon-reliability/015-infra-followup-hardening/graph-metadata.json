@@ -28,15 +28,15 @@
       "infra",
       "follow-up",
       "hardening",
-      "032",
-      "035",
       "deferred",
       "items",
       "live",
       "two-launcher",
       "substrate",
       "child-marker",
-      "control"
+      "control",
+      "file",
+      "coordinating"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -89,7 +89,7 @@
     ],
     "causal_summary": "Control file coordinating the three deferred follow-ups from the 032/035 daemon-lifecycle + worktree session: live two-launcher integration test, substrate Code-Graph scenario correctness, and worktree child-marker dispatch documentation.",
     "created_at": "2026-05-30T19:40:11.242Z",
-    "last_save_at": "2026-07-02T05:31:12.890Z",
+    "last_save_at": "2026-07-10T06:23:46.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

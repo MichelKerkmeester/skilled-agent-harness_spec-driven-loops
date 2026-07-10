@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/008-docs-impact-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation"
     last_updated_at: "2026-04-23T21:35:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "13/13 flagged files updated, applied reports written, cross-consistency gates verified"

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/028-memory-alignment-fix",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/028-memory-alignment-fix",
   "description": "Memory saves were being directed to wrong spec folders due to:",
   "keywords": [
     "memory",
@@ -10,11 +10,11 @@
     "folders",
     "due"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.044Z",
+  "lastUpdated": "2026-07-10T06:24:47.647Z",
   "specId": "028",
   "folderSlug": "memory-alignment-fix",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

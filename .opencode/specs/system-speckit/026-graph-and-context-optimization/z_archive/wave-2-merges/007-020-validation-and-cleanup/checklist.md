@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "verification"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/020-validation-and-cleanup"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-020-validation-and-cleanup"
     last_updated_at: "2026-05-14T08:43:25Z"
     last_updated_by: "codex"
     recent_action: "Checklist completed with evidence"

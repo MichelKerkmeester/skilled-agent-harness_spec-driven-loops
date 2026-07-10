@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/015-install-scripts-doctor-realignment"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"

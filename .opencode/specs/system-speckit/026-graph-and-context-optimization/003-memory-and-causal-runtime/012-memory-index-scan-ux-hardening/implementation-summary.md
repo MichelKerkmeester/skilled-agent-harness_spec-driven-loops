@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening"
     last_updated_at: "2026-05-31T14:06:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Synthesized research.md + resource-map.md from 5 iterations"

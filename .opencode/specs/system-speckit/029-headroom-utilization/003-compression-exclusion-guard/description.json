@@ -1,9 +1,9 @@
 {
-  "specFolder": "system-spec-kit/029-headroom-utilization/003-compression-exclusion-guard",
+  "level": "1",
+  "specFolder": "system-speckit/029-headroom-utilization/003-compression-exclusion-guard",
   "description": "Any future use of compression near our content risks corrupting control-plane data whose exact bytes are load-bearing: generated `description.json` /",
   "keywords": [
     "future",
-    "use",
     "compression",
     "near",
     "content",
@@ -15,18 +15,16 @@
     "exact",
     "bytes",
     "load-bearing",
-    "generated",
     "description",
     "json"
   ],
-  "lastUpdated": "2026-06-28T09:17:58.758Z",
+  "lastUpdated": "2026-07-10T06:24:28.577Z",
   "specId": "003",
   "folderSlug": "compression-exclusion-guard",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "029-headroom-utilization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

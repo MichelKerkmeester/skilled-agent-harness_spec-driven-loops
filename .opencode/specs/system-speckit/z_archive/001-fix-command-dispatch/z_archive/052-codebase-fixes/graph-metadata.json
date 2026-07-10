@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/052-codebase-fixes",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/052-codebase-fixes",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/052-codebase-fixes",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/052-codebase-fixes",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -27,16 +27,16 @@
     "key_topics": [
       "spec",
       "codebase",
-      "fixes",
       "embedding",
       "dimension",
-      "052",
       "implementation",
       "plan",
       "tasks",
       "verification",
       "checklist",
-      "summary"
+      "summary",
+      "system-spec-kit",
+      "001-fix-command-dispatch"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "1",
     "created_at": "2026-04-12T09:02:53.533Z",
-    "last_save_at": "2026-06-23T03:49:59.182Z",
+    "last_save_at": "2026-07-10T06:23:21.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/009-daemon-supervisor-probe-before-adopt"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/009-daemon-supervisor-probe-before-adopt"
     last_updated_at: "2026-06-14T19:50:00Z"
     last_updated_by: "main-agent"
     recent_action: "Verified fix against baseline + 4/4 vitest"

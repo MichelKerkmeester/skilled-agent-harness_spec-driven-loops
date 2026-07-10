@@ -1,10 +1,9 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/015-runtime-contract-and-indexability",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/015-runtime-contract-and-indexability",
   "description": "The session-capturing runtime used one broad `qualityValidation.valid` boolean as the last indexing gate",
   "keywords": [
     "session-capturing",
     "runtime",
-    "used",
     "one",
     "broad",
     "qualityvalidation",
@@ -14,11 +13,11 @@
     "indexing",
     "gate"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.087Z",
+  "lastUpdated": "2026-07-10T06:21:46.097Z",
   "specId": "015",
   "folderSlug": "runtime-contract-and-indexability",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

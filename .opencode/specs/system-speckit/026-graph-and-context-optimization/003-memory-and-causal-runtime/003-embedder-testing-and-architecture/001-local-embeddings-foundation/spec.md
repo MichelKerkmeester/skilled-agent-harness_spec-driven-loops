@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/014-local-embeddings-setup-a"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"

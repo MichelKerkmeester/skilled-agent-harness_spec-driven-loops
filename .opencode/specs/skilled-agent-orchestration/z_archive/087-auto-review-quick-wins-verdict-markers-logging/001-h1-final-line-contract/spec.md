@@ -43,11 +43,14 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned — gated on council approval |
+| **Status** | Complete — council approved, implemented (see implementation-summary.md) |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
 | **Phase Parent** | `108-auto-review-quick-wins-verdict-markers-logging` |
 | **Source teaching** | H-1 from `106/research/review-report.md` §5.4 |
+
+> **Historical record:** This archived specification retains its original council-gated status; the implementation summary records the completed phase and its deferred live-pipeline validation.
+
 <!-- /ANCHOR:metadata -->
 
 ---

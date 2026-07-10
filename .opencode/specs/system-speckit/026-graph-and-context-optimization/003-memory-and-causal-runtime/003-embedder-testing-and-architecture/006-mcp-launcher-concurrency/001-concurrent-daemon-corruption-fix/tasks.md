@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-concurrent-daemon-corruption-fix"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/001-concurrent-daemon-corruption-fix"
     last_updated_at: "2026-05-18T04:46:08Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

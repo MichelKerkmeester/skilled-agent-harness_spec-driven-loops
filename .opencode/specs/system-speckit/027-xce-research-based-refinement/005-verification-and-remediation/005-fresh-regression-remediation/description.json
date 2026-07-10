@@ -9,29 +9,26 @@
     "006-doc-truth-completion-and-mirrors",
     "007-consolidation-hardening"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
-  "description": "Phase parent coordinating remediation of ALL 113 findings from the 027 fresh+regression deep-review, decomposed into 6 subsystem sub-phases (memory-st",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "description": "Phase parent coordinating remediation of ALL 113 findings from the 027 fresh+regression deep-review, decomposed into 6 subsystem sub-phases",
   "keywords": [
     "phase",
     "parent",
     "coordinating",
     "remediation",
-    "113",
     "findings",
-    "027",
     "fresh",
     "regression",
     "deep-review",
     "decomposed",
     "subsystem",
-    "sub-phases",
-    "memory-st"
+    "sub-phases"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.952Z",
+  "lastUpdated": "2026-07-10T06:22:47.791Z",
   "specId": "005",
   "folderSlug": "fresh-regression-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "005-verification-and-remediation"
   ],

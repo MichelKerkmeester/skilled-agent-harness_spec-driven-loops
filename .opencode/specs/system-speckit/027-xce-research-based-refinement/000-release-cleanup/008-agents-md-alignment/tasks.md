@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment"
     last_updated_at: "2026-06-10T15:25:28Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed AGENTS.md alignment and phase documentation reconciliation"

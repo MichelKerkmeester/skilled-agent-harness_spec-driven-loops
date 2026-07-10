@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability"
     last_updated_at: "2026-05-29T15:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Bounded WAL: autocheckpoint 256 + periodic + dual-schema TRUNCATE; NORMAL shipped; tests green"

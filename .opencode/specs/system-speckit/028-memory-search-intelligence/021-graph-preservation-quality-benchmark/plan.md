@@ -27,10 +27,10 @@ _memory:
       session_id: "spec-028-021-graph-preservation-quality-benchmark"
       parent_session_id: null
     completion_pct: 0
-    open_questions:
-      - "Fixture location: extend ground-truth.json in place vs. a scoped sibling JSON file."
-      - "Reindex mechanism: does prepareEvalDatabase() need a variant that forces embeddings/causal_edges regeneration before the copy, or is the source DB assumed already fresh."
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "Fixture location: scoped sibling file (graph-preservation-ground-truth.json), not an in-place ground-truth.json extension -- the shared fixture feeds unrelated calibration/ablation/BM25/false-confirm/eval-v2 scripts and map-ground-truth-ids.ts's --write path is hardcoded to it and mishandles special classes (hard_negative, off_corpus). Decided 2026-07-10 per feasibility investigation."
+      - "Reindex mechanism: scripted, fail-closed, into the driver, not a manual pre-flight command -- no shipped tool performs full causal_edges regeneration (spec.md REQ-003 AMENDED to quiescence-verification instead), and a manual source-DB reindex would contradict the packet's own confined-to-temp-snapshot claim. Decided 2026-07-10 per feasibility investigation."
 ---
 # Implementation Plan: Graph Preservation Quality Benchmark
 
@@ -148,14 +148,25 @@ variant, and `computeMeanMetrics()` scores each variant against the new fixture'
 sliced by the three labels above via the same `groupQueriesByClass()` mechanism the harness already
 uses for its existing `category` dimension.
 
-**Reindex step.** Before the driver runs, the source database that `prepareEvalDatabase()` copies from
-must reflect current embeddings and causal_edges state. `prepareEvalDatabase()` itself
-(`run-retrieval-flag-eval.mjs:200-224`) only backs up whatever state the source DB is already in — it
-does not trigger a reindex. This packet adds an explicit pre-flight step (a documented manual command
-using the existing `reindex-embeddings.js` / `memory_index_scan` tooling this repo already ships,
-per the project's own `CLAUDE.md` "Daemon full scans" and "reindex" precedent) run immediately before
-the benchmark, with the findings record documenting the exact command and a before/after confirmation
-that graph state changed (REQ-003). This is a documented operational step, not new code.
+**Reindex step (AMENDED 2026-07-10 — scripted, not manual; quiescence-verified, not regenerated).**
+Before the driver runs, the source database that `prepareEvalDatabase()` copies from must be in a
+known-quiescent state. `prepareEvalDatabase()` itself (`run-retrieval-flag-eval.mjs:200-224`) only
+backs up whatever state the source DB is already in — it does not trigger a reindex, and no shipped
+tool (`reindex-embeddings.ts:73-76` only forces `memory_index_scan({force:true})`, which creates
+`causal_edges` for changed folders only and can still classify unchanged rows as unchanged) performs a
+full `causal_edges` regeneration. This packet instead scripts a fail-closed pre-flight into the driver
+itself:
+1. Copy the metadata DB and active vector shard read-only via `prepareEvalDatabase()`.
+2. Assert every writable DB/shard path the driver will touch resolves under the eval temp root (guards
+   against `shared/paths.ts`'s workspace-boundary fallback silently redirecting a mutation back at the
+   canonical checkout).
+3. Read `memory_health` from the source before copying; refuse to proceed if there are pending/failed
+   vectors or an active scan job (non-quiescent source).
+4. Record the source health snapshot (pending/failed counts, scan-job state, timestamp) in the findings.
+
+REQ-003 was amended accordingly: the requirement is quiescence-verification of the copied snapshot, not
+regeneration-from-scratch (which no existing tool performs). A follow-up packet may add a true
+clone-only causal-edge rebuild if a future benchmark needs it.
 
 **F15 counter export + memory_health wiring.** `getContentRichShortQueryGraphPreservationCount()`
 already exists and is already exported from `query-router.ts` (`query-router.ts:376-378,550-551`).

@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/implementation-summary.md"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search"
     last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "fresh-regression-impl-agent"
     recent_action: "28 fixes, 2 refuted, 2 deferred, 2 partial; 288 tests pass"

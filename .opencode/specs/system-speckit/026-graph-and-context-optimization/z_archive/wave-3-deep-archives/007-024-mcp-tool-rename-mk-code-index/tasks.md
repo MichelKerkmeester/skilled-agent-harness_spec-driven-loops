@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/024-mcp-tool-rename-mk-code-index"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-024-mcp-tool-rename-mk-code-index"
     last_updated_at: "2026-05-14T17:29:04Z"
     last_updated_by: "cli-codex-gpt5.5-xhigh-fast-010"
     recent_action: "Completed rename and verification tasks"

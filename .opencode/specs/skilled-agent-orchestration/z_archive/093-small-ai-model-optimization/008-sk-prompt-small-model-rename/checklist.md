@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/008-sk-prompt-models-rename"
+    packet_pointer: "skilled-agent-orchestration/z_archive/093-small-ai-model-optimization/008-sk-prompt-small-model-rename"
     last_updated_at: "2026-05-23T15:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Marked all P0+P1 with evidence"

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/024-codex-memory-mcp-fix",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/024-codex-memory-mcp-fix",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/024-codex-memory-mcp-fix",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/024-codex-memory-mcp-fix",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -28,7 +28,6 @@
       "codex",
       "memory",
       "mcp",
-      "fix",
       "startup",
       "writable",
       "path",
@@ -36,21 +35,21 @@
       "transport",
       "broader",
       "remediation",
-      "backlog"
+      "backlog",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts",
       "tasks.md",
       ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
-      ".codex/config.toml",
       ".claude/mcp.json",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
-      "spec.md",
       "plan.md",
       "implementation-summary.md",
       "decision-record.md",
@@ -60,9 +59,16 @@
       "mcp_server/lib/config/spec-doc-paths.ts",
       "mcp_server/lib/config/memory-types.ts",
       "mcp_server/tests/modularization.vitest.ts",
-      "checklist.md"
+      "checklist.md",
+      "tests/db-dimension-integrity.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "vector-index-store.ts",
         "kind": "code",
@@ -85,12 +91,6 @@
         "name": "logger.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -118,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -145,6 +139,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "db-dimension-integrity.vitest.ts",
+        "kind": "test",
+        "path": "tests/db-dimension-integrity.vitest.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Codex could fail to initialize `speckitmemory` because the MCP server assumed it could create a SQLite database under the workspace and because startup-time structured logs could leak onto stdout during background memory scans",
     "created_at": "2026-04-12T09:02:50.313Z",
-    "last_save_at": "2026-06-23T03:50:00.399Z",
+    "last_save_at": "2026-07-10T06:23:44.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

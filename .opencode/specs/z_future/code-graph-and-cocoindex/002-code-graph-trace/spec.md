@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace"
+    packet_pointer: "z_future/code-graph-and-cocoindex/002-code-graph-trace"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Converted populated packet into lean phase parent with four child packets"

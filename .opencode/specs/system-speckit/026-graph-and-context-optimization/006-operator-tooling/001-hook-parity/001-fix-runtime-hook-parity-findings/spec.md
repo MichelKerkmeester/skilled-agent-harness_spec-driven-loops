@@ -10,7 +10,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/001-fix-runtime-hook-parity-findings"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/001-fix-runtime-hook-parity-findings"
     last_updated_at: "2026-04-21T15:33:58Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Deferred Vitest baseline failures closed"

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`SPECKITRETRIEVALCLASSROUTING` is built, default-off, and never measured against the real corpus on the production path",
     "created_at": "2026-06-24T04:58:22.472Z",
-    "last_save_at": "2026-07-09T10:02:56.639Z",
+    "last_save_at": "2026-07-10T06:22:55.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

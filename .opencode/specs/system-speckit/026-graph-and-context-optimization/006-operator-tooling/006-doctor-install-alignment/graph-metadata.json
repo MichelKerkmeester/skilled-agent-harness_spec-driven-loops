@@ -41,7 +41,7 @@
       "tool"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/commands/doctor/_routes.yaml",
       ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
@@ -52,7 +52,6 @@
       "manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/system-spec-kit/scripts/setup/install.sh",
       ".opencode/install_guides/README.md",
-      ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
       "dist/context-server.js",
       "scripts/setup/install.sh",
       "plan.md",
@@ -98,12 +97,6 @@
         "name": "install.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/setup/install.sh",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
         "source": "derived"
       },
       {
@@ -207,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A 10-lineage parallel audit (round-2 re-verified: 73 confirmed, 0 false positives, +75 new) found the `/doctor` command router, its per-target assets, the three subsystem install guides, and the subsystem READMEs are not aligned with current reality",
     "created_at": "2026-06-02T18:35:05Z",
-    "last_save_at": "2026-07-02T05:31:12.823Z",
+    "last_save_at": "2026-07-10T06:23:18.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

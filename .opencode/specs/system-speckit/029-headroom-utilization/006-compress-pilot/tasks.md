@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-headroom-utilization/006-compress-pilot"
+    packet_pointer: "system-speckit/029-headroom-utilization/006-compress-pilot"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded the compress-pilot phase"

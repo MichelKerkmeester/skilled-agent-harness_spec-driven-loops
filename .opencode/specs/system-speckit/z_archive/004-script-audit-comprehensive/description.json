@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/004-script-audit-comprehensive",
+  "specFolder": "system-speckit/z_archive/004-script-audit-comprehensive",
   "description": "This archived folder captures work that audited system-spec-kit scripts for defects, broken behavior, and standards misalignment",
   "keywords": [
     "archived",
@@ -15,11 +15,11 @@
     "standards",
     "misalignment"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.431Z",
+  "lastUpdated": "2026-07-10T06:22:52.750Z",
   "specId": "004",
   "folderSlug": "script-audit-comprehensive",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

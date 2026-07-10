@@ -41,7 +41,7 @@
       "hf-local"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       "shared/embeddings/factory.ts",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The shared embeddings factory has three provider-order definitions",
     "created_at": "2026-06-02T21:06:00Z",
-    "last_save_at": "2026-07-02T05:31:12.464Z",
+    "last_save_at": "2026-07-10T06:24:39.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -6,7 +6,7 @@
     "MCP runtime search optimization",
     "query intelligence RAG fusion"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/019-search-query-rag-optimization-research",
   "description": "The v1.0.2 stress rerun showed strong remediation progress, but the next optimization frontier is cross-system search quality rather than single-cell",
   "keywords": [
     "stress",
@@ -24,11 +24,11 @@
     "rather",
     "single-cell"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.679Z",
+  "lastUpdated": "2026-07-10T06:21:11.911Z",
   "specId": "019",
   "folderSlug": "search-query-rag-optimization-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

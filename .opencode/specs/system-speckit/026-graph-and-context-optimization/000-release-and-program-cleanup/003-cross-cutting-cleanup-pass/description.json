@@ -1,7 +1,7 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
-  "description": "Phase parent for general cleanup and technical debt remediation across documentation, templates, test infrastructure, code graph, and resource managem",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass",
+  "description": "Phase parent for general cleanup and technical debt remediation across documentation, templates, test infrastructure, code graph, and resource",
   "keywords": [
     "phase",
     "parent",
@@ -17,14 +17,13 @@
     "infrastructure",
     "code",
     "graph",
-    "resource",
-    "managem"
+    "resource"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.206Z",
+  "lastUpdated": "2026-07-10T06:21:46.825Z",
   "specId": "003",
   "folderSlug": "cross-cutting-cleanup-pass",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup"
   ],

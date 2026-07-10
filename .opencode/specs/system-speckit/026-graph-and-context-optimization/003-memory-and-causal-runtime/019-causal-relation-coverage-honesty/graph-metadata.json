@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`memorycausalstats` reports a `relationCoverage` block whose `backfillJob.command` is `memoryhealth({ autoRepair: true, confirmed: true })` and whose `remediationHint` says \"Run … to backfill relation coverage; prioritize caused.\" A code review of the 2026-06-04 \"optimize causal graph\" request found this is a no-op: `lib/causal/relation-coverage.ts` is a pure reporter (no edge writes), and the autoRepair handler (`memory-crud-health.ts`) only does FTS rebuild + orphaned-edge/vector cleanup — it never balances relations",
     "created_at": "2026-06-04T09:45:00Z",
-    "last_save_at": "2026-07-02T05:31:12.473Z",
+    "last_save_at": "2026-07-10T06:23:54.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:476f563daa57986dfa5cf18d9a546b62e3fc22394cd2f71893f62cd01fb4f841",
+    "source_fingerprint": "sha256:fe370749b05e05d191dc19020dd30f0f09ca5c9a1dd46cb62fc5c363eb8bbb98",
     "source_doc_hashes": {
       "spec.md": "7fa0bb7a9161dd8c6ca879ecf05ddca0d2e34354b8026f58a2f25afc184e36c6",
       "plan.md": "1854771f0f5d9ddeff73d70532a797a59e1afa92ee24580feb5f75ed8704e504",
       "tasks.md": "94487a859506675e5e5b25c6c4e6871e93be6ed05b255f87794e5eaaf1d71c1b",
-      "implementation-summary.md": "1a4807d9123509f341a545de899d8e0501321ae92b93b53cda76ffec2248816c"
+      "implementation-summary.md": "ab5b4d04cff2e19707114b744735c6311407bcb5b721df91582df97f9144e4fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

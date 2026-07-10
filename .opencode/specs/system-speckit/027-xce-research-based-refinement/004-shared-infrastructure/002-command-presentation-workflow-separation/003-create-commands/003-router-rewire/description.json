@@ -1,9 +1,8 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/003-router-rewire",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/003-router-rewire",
   "description": "Create Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract",
   "keywords": [
-    "create",
     "commands",
     "needs",
     "scoped",
@@ -19,11 +18,11 @@
     "routing",
     "display-contract"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.729Z",
+  "lastUpdated": "2026-07-10T06:22:50.770Z",
   "specId": "003",
   "folderSlug": "router-rewire",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation",

@@ -8,8 +8,8 @@
     ],
     "related_to": []
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/002-implement-layer-b-sidecar-self-check-and-in-flight-gate",
-  "description": "The rerank FastAPI sidecar can remain alive after owners disappear because the current app has no background owner-liveness self-check, no app-level i",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/002-implement-layer-b-sidecar-self-check-and-in-flight-gate",
+  "description": "The rerank FastAPI sidecar can remain alive after owners disappear because the current app has no background owner-liveness self-check, no app-level",
   "keywords": [
     "rerank",
     "fastapi",
@@ -26,11 +26,11 @@
     "self-check",
     "app-level"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.294Z",
+  "lastUpdated": "2026-07-10T06:22:08.454Z",
   "specId": "002",
   "folderSlug": "implement-layer-b-sidecar-self-check-and-in-flight-gate",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

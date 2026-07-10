@@ -22,7 +22,6 @@
       "MRR delta decision"
     ],
     "key_topics": [
-      "006",
       "bge-m3",
       "hybrid",
       "eval",
@@ -33,7 +32,8 @@
       "mrr",
       "code",
       "search",
-      "plan"
+      "plan",
+      "ndcg"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "We chose EmbeddingGemma-300m for cocoindex in 002 on theoretical grounds (strong code-retrieval scores in published benchmarks)",
     "created_at": "2026-05-12T16:27:50Z",
-    "last_save_at": "2026-07-02T05:31:11.549Z",
+    "last_save_at": "2026-07-10T06:22:46.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

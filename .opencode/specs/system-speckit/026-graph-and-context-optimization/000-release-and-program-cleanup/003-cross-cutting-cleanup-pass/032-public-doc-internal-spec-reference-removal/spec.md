@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-cross-cutting-cleanup-pass/032-public-doc-internal-spec-reference-removal"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/032-public-doc-internal-spec-reference-removal"
     last_updated_at: "2026-05-18T09:12:49Z"
     last_updated_by: "codex"
     recent_action: "Scrubbed public-facing internal spec packet references and verified scoped searches"

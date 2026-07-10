@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-search-intelligence"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research/001-search-intelligence"
     last_updated_at: "2026-06-17T05:10:31Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

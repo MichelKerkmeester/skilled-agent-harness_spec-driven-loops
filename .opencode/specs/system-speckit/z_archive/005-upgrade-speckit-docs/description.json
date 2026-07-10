@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/005-upgrade-speckit-docs",
+  "specFolder": "system-speckit/z_archive/005-upgrade-speckit-docs",
   "description": "This archived folder captures work that improved documentation quality for OpenCode and system-spec-kit",
   "keywords": [
     "archived",
@@ -12,11 +12,11 @@
     "opencode",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.436Z",
+  "lastUpdated": "2026-07-10T06:22:27.836Z",
   "specId": "005",
   "folderSlug": "upgrade-speckit-docs",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive"
   ],
   "memorySequence": 0,

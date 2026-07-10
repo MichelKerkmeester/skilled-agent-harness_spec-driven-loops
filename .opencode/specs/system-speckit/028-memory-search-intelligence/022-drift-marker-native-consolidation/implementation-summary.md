@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_2/implementation-summary.md]"
-description: "Status PLANNED. The drift-marker native-consolidation fix is scaffolded with spec, plan, tasks and checklist. No code is built yet."
+description: "Status COMPLETE. The drift-marker writer is a compiled TypeScript entrypoint with shared API helpers, focused Vitest coverage, and a validated hook smoke test."
 trigger_phrases:
   - "drift marker native consolidation"
   - "git hook embedded heredoc duplication"
@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/022-drift-marker-native-consolidation"
     last_updated_at: "2026-07-09T20:31:22.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Scaffolded plan, tasks and checklist, status PLANNED"
-    next_safe_action: "Build the compiled entrypoint and shrink the git hook per plan.md, then verify"
+    recent_action: "Implemented and verified the compiled drift-marker writer; commit pending"
+    next_safe_action: "Review the committed change if further work is requested"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,8 +38,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 022-drift-marker-native-consolidation |
-| **Status** | PLANNED, not yet implemented |
-| **Completed** | Not completed |
+| **Status** | COMPLETE |
+| **Completed** | 2026-07-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,36 +48,36 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This phase is scaffolded only. The spec, plan, tasks and checklist are
-authored and the work is PLANNED.
+The embedded git-hook writer was replaced with a compiled TypeScript entrypoint at
+`scripts/git-hooks/drift-marker-write.ts`. It parses the unchanged environment payload,
+delegates DB path resolution, deduplication, atomic writes, and lock reclaim through the public
+MCP API, and catches operational errors so the hook remains non-fatal.
 
-### Planned: Drift-Marker Native Consolidation
+### Delivered: Drift-Marker Native Consolidation
 
-The planned fix replaces `.opencode/scripts/git-hooks/lib/memory-drift-marker.sh`'s embedded
-`node <<'NODE' ... NODE` heredoc (today's entire write-side implementation, untestable by
-vitest) with one delegated call to a new compiled TypeScript entrypoint,
+The fix replaces `.opencode/scripts/git-hooks/lib/memory-drift-marker.sh`'s embedded
+`node <<'NODE' ... NODE` heredoc with one delegated call to the compiled TypeScript entrypoint,
 `scripts/git-hooks/drift-marker-write.ts`, that imports and reuses four already-tested TS
-helpers instead of re-implementing them: `resolveDatabasePaths`/`computeDatabasePaths`
+helpers instead of re-implementing them: `resolveDatabasePaths`
 (DB-directory-override precedence, including the boundary-enforcement check the shell copy
 currently lacks), `memoryDriftMarkerEntryKey` (the suspect/marker dedup-key format),
 `atomicWriteFile` (the temp-file-plus-rename write pattern), and a staleness-parameterized
 version of `spec-folder-mutex.ts`'s `isReclaimableLock`/`reclaimInterprocessLock` (the
 lock-acquire/stale-reclaim logic, gaining an owner-liveness check while preserving the git
-hook's own `013`-tested 45-second staleness window rather than silently inheriting the mutex's
-5-minute default). None of this exists in code yet.
+hook's own 45-second staleness window rather than silently inheriting the mutex's 5-minute
+default).
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Records the four duplications with file:line evidence, scope, requirements and acceptance criteria |
-| plan.md | Created | Records the implementation approach, the two resolved design decisions, and the phase plan |
-| tasks.md | Created | Records the task breakdown |
-| checklist.md | Created | Records the QA checklist, all items unchecked |
+| `scripts/git-hooks/drift-marker-write.ts` | Created | Compiled entrypoint over the public MCP API |
+| `memory-drift-marker.sh` | Modified | Delegates to the compiled entrypoint while retaining git plumbing and env payload |
+| `mcp_server/api/index.ts` | Modified | Exposes the reused helpers to the scripts tree |
+| `spec-folder-mutex.ts` | Modified | Adds optional `staleMs` with the existing five-minute default |
+| `scripts/tests/drift-marker-write.vitest.ts` | Created | Covers deduplication, atomic recovery, both reclaim paths, and boundary rejection |
 
-No source code has been written. `scripts/git-hooks/drift-marker-write.ts` (new),
-`memory-drift-marker.sh` (shrink), `mcp_server/api/index.ts` (new barrel exports), and
-`spec-folder-mutex.ts` (additive `staleMs` parameter) are all planned, not created or modified.
+The three lifecycle hook call sites remain unchanged and retain their `|| true` wrappers.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -85,11 +85,9 @@ No source code has been written. `scripts/git-hooks/drift-marker-write.ts` (new)
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. This is a planning scaffold. No tests were run and no code was written. Delivery
-starts at plan.md Phase 1 (Setup), since this phase's target file
-(`memory-drift-marker.sh`) already carries `013-drift-marker-pipeline-resilience`'s shipped F3/F4
-fixes and this phase's acceptance criteria are written to preserve those values while
-consolidating their implementation, not to redo them.
+The source and distributions were force-built because the worktree links `dist/` to the parent
+checkout. A scratch repository committed a spec-file rename and called the shared hook with no
+DB override; the expected marker entry was written and then removed as test cleanup.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -113,14 +111,16 @@ consolidating their implementation, not to redo them.
 | Check | Result |
 |-------|--------|
 | spec, plan, tasks, checklist authored | PASS, `validate.sh --strict` run against the scaffold (see report below) |
-| New entrypoint built | NOT STARTED |
-| Barrel exports added | NOT STARTED |
-| `spec-folder-mutex.ts` staleness parameter added | NOT STARTED |
-| Git hook shrunk | NOT STARTED |
-| New vitest coverage (dedup, atomic write, lock reclaim, boundary check) | NOT STARTED |
-| `spec-folder-mutex-liveness.vitest.ts` regression re-run | NOT STARTED |
-| `check-no-mcp-lib-imports`/`check-api-boundary.sh`/`check-source-dist-alignment.ts` | NOT STARTED |
-| Manual post-commit smoke test | NOT STARTED |
+| Typecheck and build | PASS: forced MCP and scripts builds; scripts no-emit typecheck passed |
+| New entrypoint built | PASS |
+| Barrel exports added | PASS |
+| `spec-folder-mutex.ts` staleness parameter added | PASS |
+| Git hook shrunk | PASS |
+| New vitest coverage and unchanged mutex regression suite | PASS: 8 tests |
+| `check-api-boundary.sh` | PASS |
+| `check-source-dist-alignment.ts` | PASS: 524 aligned files, zero violations |
+| `check-no-mcp-lib-imports.ts` | BASELINE FAILURE: 17 unrelated existing violations; the new entrypoint imports only `@spec-kit/mcp-server/api` |
+| Manual hook smoke test | PASS: no-override scratch-repo rename wrote the expected marker |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -128,17 +128,7 @@ consolidating their implementation, not to redo them.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No code exists.** This phase is a planning scaffold only. The compiled entrypoint, the
-   barrel exports, the `spec-folder-mutex.ts` parameter, and the shrunk git hook are all planned,
-   not built.
-2. **Two design decisions were resolved during planning, not left open in shipped code** (see
-   Key Decisions above and plan.md §3), but neither has been implementation-verified yet —
-   plan.md's documented fallback for the owner-liveness mechanism (staying mtime-only if the
-   `owner.json` write is found to conflict with the lock directory's existing reclaim path)
-   remains a live possibility until Phase 2 is actually built.
-3. **Depends on `013-drift-marker-pipeline-resilience`'s shipped values remaining accurate.**
-   This phase's REQ-003/REQ-004 baselines are written against `013`'s documented 45-second
-   staleness window and live-DB-path precedence order; Phase 1's first task re-confirms both
-   against the live tree before implementation proceeds, in case either has drifted since `013`
-   shipped.
+The full import-policy scanner has 17 pre-existing violations outside this packet. The new file
+has no prohibited internal MCP imports; the separate API-boundary check and source/dist alignment
+checks both pass.
 <!-- /ANCHOR:limitations -->

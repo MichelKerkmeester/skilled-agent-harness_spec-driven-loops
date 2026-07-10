@@ -17,8 +17,8 @@
   "completed_at": "2026-06-07T16:45:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening",
-  "description": "`maybeBridgeLeaseHolder` ran the deep liveness probe once; a single failure returned an immediate `respawn` verdict, so the calling launcher reaped th",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening",
+  "description": "`maybeBridgeLeaseHolder` ran the deep liveness probe once; a single failure returned an immediate `respawn` verdict, so the calling launcher reaped",
   "keywords": [
     "maybebridgeleaseholder",
     "ran",
@@ -35,11 +35,11 @@
     "launcher",
     "reaped"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.542Z",
+  "lastUpdated": "2026-07-10T06:24:17.135Z",
   "specId": "019",
   "folderSlug": "dead-socket-reap-hardening",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

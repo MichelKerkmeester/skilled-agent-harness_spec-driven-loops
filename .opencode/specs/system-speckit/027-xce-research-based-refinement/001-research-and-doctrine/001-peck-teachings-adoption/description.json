@@ -14,7 +14,7 @@
     "006-peck-verification-discipline",
     "007-acceptance-coverage-gate"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
   "description": "Two peck research passes inform this packet",
   "keywords": [
     "two",
@@ -24,11 +24,11 @@
     "inform",
     "packet"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.055Z",
+  "lastUpdated": "2026-07-10T06:24:39.540Z",
   "specId": "001",
   "folderSlug": "peck-teachings-adoption",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "001-research-and-doctrine"
   ],

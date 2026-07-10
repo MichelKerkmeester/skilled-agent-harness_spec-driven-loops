@@ -13,7 +13,7 @@
       "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/006-research-memory-redundancy"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/006-research-memory-redundancy",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/006-research-memory-redundancy",
   "description": "The redundancy research finished with a clear contract, but the packet family still needed one coordination layer to apply it",
   "keywords": [
     "redundancy",
@@ -30,11 +30,11 @@
     "layer",
     "apply"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.142Z",
+  "lastUpdated": "2026-07-10T06:22:07.897Z",
   "specId": "006",
   "folderSlug": "research-memory-redundancy",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "001-research-and-baseline"
   ],

@@ -22,7 +22,6 @@
       "code graph extraction 004-rewire-consumers-and-tool-registration summary"
     ],
     "key_topics": [
-      "004",
       "rewire",
       "code",
       "graph",
@@ -33,7 +32,8 @@
       "tool",
       "registration",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "After Phase 003 moves the code-graph source tree, system-spec-kit handlers, hooks, tests, and registration code still reference the old local `codegraph/` paths",
     "created_at": "2026-05-14T08:06:12Z",
-    "last_save_at": "2026-07-02T05:31:12.963Z",
+    "last_save_at": "2026-07-10T06:22:36.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:06:12Z",
     "source_docs": [

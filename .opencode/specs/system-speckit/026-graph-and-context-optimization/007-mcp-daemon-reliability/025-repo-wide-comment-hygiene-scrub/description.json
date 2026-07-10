@@ -1,10 +1,9 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/025-repo-wide-comment-hygiene-scrub",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/025-repo-wide-comment-hygiene-scrub",
   "description": "Packet 024 extended the comment-hygiene checker to catch `RC-N`, single-number `DR-N`, hyphen `phase-NNN`, and `P#-Seat#` labels, and it scrubbed only",
   "keywords": [
     "packet",
-    "024",
     "extended",
     "comment-hygiene",
     "checker",
@@ -19,11 +18,11 @@
     "scrubbed",
     "only"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.576Z",
+  "lastUpdated": "2026-07-10T06:24:21.658Z",
   "specId": "025",
   "folderSlug": "repo-wide-comment-hygiene-scrub",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

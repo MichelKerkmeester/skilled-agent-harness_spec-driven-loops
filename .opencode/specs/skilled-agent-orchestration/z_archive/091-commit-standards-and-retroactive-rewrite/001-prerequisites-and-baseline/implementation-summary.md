@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-prerequisites-and-baseline"
+    packet_pointer: "skilled-agent-orchestration/z_archive/091-commit-standards-and-retroactive-rewrite/001-prerequisites-and-baseline"
     last_updated_at: "2026-05-16T09:42:33Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

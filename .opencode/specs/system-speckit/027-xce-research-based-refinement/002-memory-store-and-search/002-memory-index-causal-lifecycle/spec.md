@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Grouped former 003-006 leaves into this phased parent"

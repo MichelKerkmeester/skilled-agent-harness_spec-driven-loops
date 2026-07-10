@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation"
     last_updated_at: "2026-05-12T21:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "12 packets shipped (001-012); 012 complete in 42aa114e3"

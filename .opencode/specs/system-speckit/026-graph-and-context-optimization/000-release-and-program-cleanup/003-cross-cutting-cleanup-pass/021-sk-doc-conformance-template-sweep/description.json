@@ -13,7 +13,7 @@
   ],
   "contextType": "implementation",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep",
   "description": "The user spotted format drift in two cited manualtestingplaybook examples (`system-spec-kit/mcpserver/skilladvisor/` and `.../codegraph/`)",
   "keywords": [
     "user",
@@ -29,11 +29,11 @@
     "skilladvisor",
     "codegraph"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.364Z",
+  "lastUpdated": "2026-07-10T06:24:15.445Z",
   "specId": "021",
   "folderSlug": "sk-doc-conformance-template-sweep",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

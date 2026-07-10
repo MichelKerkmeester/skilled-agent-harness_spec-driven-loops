@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/005-memory-causal-trust-display"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/003-memory-causal-trust-display"
     last_updated_at: "2026-04-25T13:55:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented formatter trust badges, added tests, and wrote packet-local docs"

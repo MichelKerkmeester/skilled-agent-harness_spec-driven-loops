@@ -1,9 +1,8 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/004-verify-and-ux",
   "description": "Create Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract",
   "keywords": [
-    "create",
     "commands",
     "needs",
     "scoped",
@@ -18,11 +17,11 @@
     "routing",
     "display-contract"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.734Z",
+  "lastUpdated": "2026-07-10T06:23:18.954Z",
   "specId": "004",
   "folderSlug": "verify-and-ux",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation",

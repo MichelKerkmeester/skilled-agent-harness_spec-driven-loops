@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/006-command-markdown-yaml-workflow-alignment"
     last_updated_at: "2026-05-02T06:53:47Z"
     last_updated_by: "codex"
     recent_action: "completed"

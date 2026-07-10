@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine"
     last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Both child phase-parents shipped (peck teachings + gem-team); grandchildren complete"

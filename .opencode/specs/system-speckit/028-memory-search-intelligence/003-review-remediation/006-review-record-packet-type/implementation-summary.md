@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-review-remediation/006-review-record-packet-type"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-review-remediation/006-review-record-packet-type"
     last_updated_at: "2026-07-06T19:16:40.092Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Closed the packet, review path shipped and proven strictly additive"

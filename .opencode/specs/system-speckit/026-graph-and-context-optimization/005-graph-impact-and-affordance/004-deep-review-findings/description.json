@@ -3,14 +3,12 @@
   "description": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
   "keywords": [
     "phase",
-    "010",
     "sub-phases",
-    "001-006",
     "shipped",
     "sandbox-blocked",
     "verification"
   ],
-  "lastUpdated": "2026-07-07T12:56:32.325Z",
+  "lastUpdated": "2026-07-10T06:24:05.476Z",
   "specId": "004",
   "folderSlug": "deep-review-findings",
   "parentChain": [

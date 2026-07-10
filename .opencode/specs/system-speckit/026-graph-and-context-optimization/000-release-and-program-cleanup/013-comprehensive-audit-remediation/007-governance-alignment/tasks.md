@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment"
     last_updated_at: "2026-06-04T22:00:00Z"
     last_updated_by: "claude-sonnet-4-6"
     recent_action: "All 10 G-cluster findings implemented and verified"

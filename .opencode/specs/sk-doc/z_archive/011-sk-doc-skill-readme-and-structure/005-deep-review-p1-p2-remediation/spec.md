@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Active |
+| **Status** | Complete |
 | **Created** | 2026-05-11 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

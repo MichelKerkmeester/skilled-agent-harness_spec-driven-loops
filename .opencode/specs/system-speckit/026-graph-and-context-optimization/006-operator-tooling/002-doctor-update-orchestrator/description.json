@@ -6,7 +6,7 @@
     "003-skill-advisor-routing-engine-consolidation",
     "004-cutover-doctor-router-from-legacy-files"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
   "description": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit",
   "keywords": [
     "user",
@@ -23,11 +23,11 @@
     "index",
     "graph"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.260Z",
+  "lastUpdated": "2026-07-10T06:22:48.723Z",
   "specId": "002",
   "folderSlug": "doctor-update-orchestrator",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "006-operator-tooling"
   ],

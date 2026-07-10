@@ -27,18 +27,18 @@
       "npm audit remediation evidence"
     ],
     "key_topics": [
-      "028",
       "autonomous",
       "dependency",
       "patching",
       "npm",
       "audit",
-      "fix",
       "security",
       "patch",
       "lockfile",
       "vulnerability",
-      "remediation"
+      "remediation",
+      "hono",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "GitHub and npm security advisories can flag stale transitive dependencies in skill package lockfiles even when package ranges permit patched versions",
     "created_at": "2026-06-11T06:30:00Z",
-    "last_save_at": "2026-07-02T05:31:13.983Z",
+    "last_save_at": "2026-07-10T06:24:19.480Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

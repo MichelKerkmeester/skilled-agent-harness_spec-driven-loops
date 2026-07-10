@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/003-field-integrity-and-schema",
-  "description": "The `generate-context.js` pipeline has a split code path in `input-normalizer.ts` (lines 414-530): a fast path triggered by `userPrompts`, `observatio",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment/003-field-integrity-and-schema",
+  "description": "The `generate-context.js` pipeline has a split code path in `input-normalizer.ts` (lines 414-530): a fast path triggered by `userPrompts`,",
   "keywords": [
     "generate-context",
     "pipeline",
@@ -9,17 +9,15 @@
     "path",
     "input-normalizer",
     "lines",
-    "414-530",
     "fast",
     "triggered",
-    "userprompts",
-    "observatio"
+    "userprompts"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.115Z",
+  "lastUpdated": "2026-07-10T06:23:46.587Z",
   "specId": "003",
   "folderSlug": "field-integrity-and-schema",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing",

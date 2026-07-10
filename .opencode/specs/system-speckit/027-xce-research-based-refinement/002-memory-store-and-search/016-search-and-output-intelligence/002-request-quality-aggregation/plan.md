@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "017-search-and-output-intelligence-implementation/002-request-quality-aggregation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/002-request-quality-aggregation"
     last_updated_at: "2026-06-17T08:30:00Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Shipped top-dominant + margin-aware request-quality verdict; plan superseded"

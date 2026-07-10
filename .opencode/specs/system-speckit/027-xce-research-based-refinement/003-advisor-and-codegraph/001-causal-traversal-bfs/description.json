@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
   "description": "The only two WITH RECURSIVE consumers in the memory backend are read paths with measurable inefficiencies",
   "keywords": [
     "only",
@@ -14,11 +14,11 @@
     "measurable",
     "inefficiencies"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.435Z",
+  "lastUpdated": "2026-07-10T06:21:54.650Z",
   "specId": "001",
   "folderSlug": "causal-traversal-bfs",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "003-advisor-and-codegraph"
   ],

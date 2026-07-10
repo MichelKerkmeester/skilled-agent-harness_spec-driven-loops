@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
-  "description": "The Stop hook already captures token snapshots and now persists transcript identity plus cache-token carry-forward data, but that state remains strand",
+  "specFolder": "system-speckit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
+  "description": "The Stop hook already captures token snapshots and now persists transcript identity plus cache-token carry-forward data, but that state remains",
   "keywords": [
     "stop",
     "hook",
@@ -17,14 +17,13 @@
     "carry-forward",
     "data",
     "state",
-    "remains",
-    "strand"
+    "remains"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.823Z",
+  "lastUpdated": "2026-07-10T06:22:16.629Z",
   "specId": "031",
   "folderSlug": "normalized-analytics-reader",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "024-compact-code-graph"
   ],

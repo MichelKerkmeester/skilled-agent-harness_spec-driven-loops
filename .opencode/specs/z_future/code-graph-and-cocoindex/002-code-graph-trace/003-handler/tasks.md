@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/003-handler"
+    packet_pointer: "z_future/code-graph-and-cocoindex/002-code-graph-trace/003-handler"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Scaffolded trace handler tasks"

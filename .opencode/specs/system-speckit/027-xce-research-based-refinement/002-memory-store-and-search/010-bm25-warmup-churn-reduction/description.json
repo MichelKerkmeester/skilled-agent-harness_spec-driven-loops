@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
-  "description": "On a realistic corpus the packed BM25 warmup spikes process RSS to ~687MB (4.6x over the 150MB budget) even though retained heap after GC is only ~105",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
+  "description": "On a realistic corpus the packed BM25 warmup spikes process RSS to ~687MB (4.6x over the 150MB budget) even though retained heap after GC is only",
   "keywords": [
     "realistic",
     "corpus",
@@ -18,14 +18,13 @@
     "though",
     "retained",
     "heap",
-    "only",
-    "105"
+    "only"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.297Z",
+  "lastUpdated": "2026-07-10T06:23:48.568Z",
   "specId": "010",
   "folderSlug": "bm25-warmup-churn-reduction",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

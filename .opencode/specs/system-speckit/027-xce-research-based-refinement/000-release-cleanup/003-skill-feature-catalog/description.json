@@ -13,16 +13,14 @@
   "status": "complete",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
   "description": "Add one featurecatalog entry per new 027 feature, bump hand-maintained count self-checks, and keep SOURCE-FILES paths grep-traceable",
   "keywords": [
-    "add",
     "one",
     "featurecatalog",
     "entry",
     "per",
     "new",
-    "027",
     "feature",
     "bump",
     "hand-maintained",
@@ -33,11 +31,11 @@
     "paths",
     "grep-traceable"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.877Z",
+  "lastUpdated": "2026-07-10T06:21:52.154Z",
   "specId": "003",
   "folderSlug": "skill-feature-catalog",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup"
   ],

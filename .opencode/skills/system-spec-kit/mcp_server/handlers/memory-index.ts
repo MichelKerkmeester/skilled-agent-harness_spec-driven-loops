@@ -14,7 +14,6 @@ import { checkDatabaseUpdated } from '../core/index.js';
 import { INDEX_SCAN_COOLDOWN, DEFAULT_BASE_PATH, BATCH_SIZE } from '../core/config.js';
 import {
   beginMaintenance,
-  MAINTENANCE_MARKER_REFRESH_BEFORE_MS,
 } from '../lib/storage/maintenance-marker.js';
 import { acquireIndexScanLease, completeIndexScanLease, refreshScanLease } from '../core/db-state.js';
 import { processBatches, requireDb, toErrorMessage, type RetryErrorResult } from '../utils/index.js';
@@ -25,8 +24,10 @@ import {
   type TriggerEmbeddingBackfillResult,
 } from '../lib/search/trigger-embedding-backfill.js';
 import {
+  appendMemoryDriftSuspects,
   readMemoryDriftSuspects,
   removeMemoryDriftSuspects,
+  MEMORY_DRIFT_SUSPECT_QUEUE_KEY,
 } from '../lib/storage/memory-drift-healing.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -205,6 +206,7 @@ interface ScanResults {
   orphanSweepScanned: number;
   orphanSweepNextCursor: number | null;
   orphanSweepCursorPersistenceFailed: boolean;
+  suspectQueueSize: number;
   suspectTombstoned: number;
   suspectCleared: number;
   suspectFailed: number;
@@ -263,23 +265,16 @@ interface RecordDeleteResult {
   deleted: number;
   failed: number;
   deletedIds: number[];
-  interrupted: boolean;
-  nextUnprocessedId: number | null;
   actions: StatediffAction[];
 }
 
-interface RecordDeleteControl {
-  chunkSize: number;
-  deadlineAt: number;
-  onChunkBoundary?: (now: number) => void;
-}
-
 interface OrphanSweepDeleteResult {
-  swept: number;
+  enqueued: number;
   failed: number;
   scannedRows: number;
   nextCursor: number | null;
   cursorPersistenceFailed: boolean;
+  queueSize: number;
   actions: StatediffAction[];
 }
 
@@ -298,42 +293,56 @@ interface OrphanSweepCandidates {
   orphanRecordIds?: number[];
 }
 
+// A suspect that has been queued for less than this long has not had enough real
+// wall-clock separation from the scan that first flagged it -- a second confirmation
+// pass could fire milliseconds later (e.g. two scans triggered back to back) and would
+// otherwise tombstone a file whose absence was never actually confirmed to persist.
+// Reappearance (the file exists again) is always safe to clear immediately regardless
+// of age; only the destructive tombstone path needs this minimum quarantine.
+const SUSPECT_MIN_QUARANTINE_MS_DEFAULT = 60_000;
 const ORPHAN_SWEEP_LIMIT = 200;
 const ORPHAN_SWEEP_MAX_PAGES = 1000;
-const ORPHAN_SWEEP_DELETE_CHUNK_SIZE = 25;
 const ORPHAN_SWEEP_CURSOR_KEY = 'memory_index.orphan_sweep.cursor';
 // Bounds a single runGlobalOrphanSweep() invocation's wall-clock duration well under
 // the maintenance marker's 90s refresh-before window, leaving headroom for the
-// per-row DELETE-cascade cost (vector-index + causal-edge + history-log) on top of
-// the pure scan. The loop is already cursor-resumable, so a budget-exit only costs
-// an extra invocation, not a correctness change.
+// candidate scan and queue write. The loop is cursor-resumable, so a budget exit
+// only costs an extra invocation, not a correctness change.
 const ORPHAN_SWEEP_TIME_BUDGET_MS_DEFAULT = 45_000;
 // Reuses the same interval as the marker's own background refresh timer so the
 // mid-loop re-fire cadence has no surprising relationship to the passive one.
 const ORPHAN_SWEEP_REFRESH_CADENCE_MS_DEFAULT = 20_000;
 const ORPHAN_SWEEP_MIN_TIME_BUDGET_MS = 2;
+const ORPHAN_SWEEP_MAX_TIME_BUDGET_MS = 90_000;
 
 interface OrphanSweepRuntimeConfig {
   timeBudgetMs: number;
   refreshCadenceMs: number;
 }
 
-function parsePositiveIntEnv(name: string, fallback: number): number {
+function parseIntegerEnv(name: string, fallback: number): number {
   const raw = process.env[name];
   if (!raw) return fallback;
 
   const parsed = Number.parseInt(raw, 10);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function parseNonNegativeIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (!raw) return fallback;
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
 }
 
 function resolveOrphanSweepRuntimeConfig(): OrphanSweepRuntimeConfig {
-  const requestedBudgetMs = parsePositiveIntEnv(
+  const requestedBudgetMs = parseIntegerEnv(
     'SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS',
     ORPHAN_SWEEP_TIME_BUDGET_MS_DEFAULT,
   );
   const timeBudgetMs = Math.min(
     Math.max(requestedBudgetMs, ORPHAN_SWEEP_MIN_TIME_BUDGET_MS),
-    MAINTENANCE_MARKER_REFRESH_BEFORE_MS,
+    ORPHAN_SWEEP_MAX_TIME_BUDGET_MS,
   );
   if (timeBudgetMs !== requestedBudgetMs) {
     console.warn(
@@ -341,11 +350,11 @@ function resolveOrphanSweepRuntimeConfig(): OrphanSweepRuntimeConfig {
     );
   }
 
-  const requestedCadenceMs = parsePositiveIntEnv(
+  const requestedCadenceMs = parseIntegerEnv(
     'SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS',
     ORPHAN_SWEEP_REFRESH_CADENCE_MS_DEFAULT,
   );
-  const refreshCadenceMs = Math.min(requestedCadenceMs, timeBudgetMs - 1);
+  const refreshCadenceMs = Math.min(Math.max(requestedCadenceMs, 1), timeBudgetMs - 1);
   if (refreshCadenceMs !== requestedCadenceMs) {
     console.warn(
       `[memory-index-scan] Clamped SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS from ${requestedCadenceMs} to ${refreshCadenceMs}`,
@@ -408,11 +417,12 @@ function emptyCheckpointRepairReport(): CheckpointRepairReport {
 
 function emptyOrphanSweepDeleteResult(): OrphanSweepDeleteResult {
   return {
-    swept: 0,
+    enqueued: 0,
     failed: 0,
     scannedRows: 0,
     nextCursor: null,
     cursorPersistenceFailed: false,
+    queueSize: 0,
     actions: [],
   };
 }
@@ -799,29 +809,16 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     console.error(`[memory-index-scan] Canonical dedup skipped ${dedupDuplicatesSkipped} alias path(s) (${mergedFiles.length} -> ${files.length})`);
   }
 
-  const deleteIndexedRecordIds = (
-    recordIds: number[],
-    control?: RecordDeleteControl,
-  ): RecordDeleteResult => {
+  const deleteIndexedRecordIds = (recordIds: number[]): RecordDeleteResult => {
     if (recordIds.length === 0) {
-      return {
-        deleted: 0,
-        failed: 0,
-        deletedIds: [],
-        interrupted: false,
-        nextUnprocessedId: null,
-        actions: [],
-      };
+      return { deleted: 0, failed: 0, deletedIds: [], actions: [] };
     }
 
     let deleted = 0;
     let failed = 0;
     const deletedIds: number[] = [];
     const actions: StatediffAction[] = [];
-    const chunkSize = Math.max(1, Math.floor(control?.chunkSize ?? recordIds.length));
-
-    for (let index = 0; index < recordIds.length; index += 1) {
-      const staleRecordId = recordIds[index];
+    for (const staleRecordId of recordIds) {
       try {
         const database = vectorIndex.getDb();
         const staleSnapshot = database?.prepare(
@@ -888,43 +885,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         failed++;
       }
 
-      const processed = index + 1;
-      if (processed < recordIds.length && processed % chunkSize === 0) {
-        const now = Date.now();
-        control?.onChunkBoundary?.(now);
-        if (control && now >= control.deadlineAt) {
-          return {
-            deleted,
-            failed,
-            deletedIds,
-            interrupted: true,
-            nextUnprocessedId: recordIds[processed] ?? null,
-            actions,
-          };
-        }
-      }
     }
 
-    return {
-      deleted,
-      failed,
-      deletedIds,
-      interrupted: false,
-      nextUnprocessedId: null,
-      actions,
-    };
+    return { deleted, failed, deletedIds, actions };
   };
 
   const deleteStaleIndexedRecords = (paths: string[]): RecordDeleteResult => {
     if (paths.length === 0) {
-      return {
-        deleted: 0,
-        failed: 0,
-        deletedIds: [],
-        interrupted: false,
-        nextUnprocessedId: null,
-        actions: [],
-      };
+      return { deleted: 0, failed: 0, deletedIds: [], actions: [] };
     }
 
     return deleteIndexedRecordIds(incrementalIndex.listIndexedRecordIdsForDeletedPaths(paths));
@@ -946,11 +914,13 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     const { timeBudgetMs, refreshCadenceMs } = resolveOrphanSweepRuntimeConfig();
 
     const database = vectorIndex.getDb();
+    const suspectDatabase = database ?? requireDb();
     let cursor = database ? readOrphanSweepCursor(database) : 0;
     let scannedRows = 0;
     let nextCursor: number | null = cursor;
-    let swept = 0;
+    let enqueued = 0;
     let failed = 0;
+    let queueSize = readMemoryDriftSuspects(suspectDatabase).length;
     const actions: StatediffAction[] = [];
     const loopStartedAt = Date.now();
     const deadlineAt = loopStartedAt + timeBudgetMs;
@@ -966,20 +936,17 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       const sweep = sweepOrphanIndexRows({ limit: ORPHAN_SWEEP_LIMIT, cursor, basePath: workspacePath });
       scannedRows += sweep.scannedRows;
       nextCursor = sweep.nextCursor;
-      const deleteResult = deleteIndexedRecordIds(sweep.orphanRecordIds ?? [], {
-        chunkSize: ORPHAN_SWEEP_DELETE_CHUNK_SIZE,
-        deadlineAt,
-        onChunkBoundary: refreshMarkerIfDue,
-      });
-      swept += deleteResult.deleted;
-      failed += deleteResult.failed;
-      actions.push(...deleteResult.actions);
-
-      if (deleteResult.interrupted) {
-        nextCursor = deleteResult.nextUnprocessedId === null
-          ? cursor
-          : Math.max(cursor, deleteResult.nextUnprocessedId - 1);
-        break;
+      const orphanRecordIds = sweep.orphanRecordIds ?? [];
+      if (orphanRecordIds.length > 0) {
+        try {
+          const appendResult = appendMemoryDriftSuspects(suspectDatabase, orphanRecordIds);
+          enqueued += appendResult.accepted;
+          failed += appendResult.rejected;
+          queueSize = appendResult.queueSize;
+        } catch (error: unknown) {
+          failed += orphanRecordIds.length;
+          console.warn(`[memory-index-scan] Could not queue orphan drift suspects: ${toErrorMessage(error)}`);
+        }
       }
 
       if (!sweep.nextCursor || sweep.scannedRows === 0) {
@@ -1006,11 +973,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       ? !writeOrphanSweepCursor(database, nextCursor)
       : nextCursor !== null;
     return {
-      swept,
+      enqueued,
       failed,
       scannedRows,
       nextCursor,
       cursorPersistenceFailed,
+      queueSize,
       actions,
     };
   };
@@ -1029,7 +997,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }
 
     try {
-      const hasQueue = database.prepare('SELECT 1 FROM config WHERE key = ? LIMIT 1').get('memory_index.drift_suspect_rows');
+      const hasQueue = database.prepare('SELECT 1 FROM config WHERE key = ? LIMIT 1').get(MEMORY_DRIFT_SUSPECT_QUEUE_KEY);
       if (!hasQueue) {
         return emptySuspectConfirmationResult();
       }
@@ -1041,6 +1009,8 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     if (suspects.length === 0) {
       return emptySuspectConfirmationResult();
     }
+
+    const minQuarantineMs = parseNonNegativeIntEnv('SPECKIT_SUSPECT_MIN_QUARANTINE_MS', SUSPECT_MIN_QUARANTINE_MS_DEFAULT);
 
     const rows = database.prepare(`
       SELECT id, file_path, canonical_file_path
@@ -1070,14 +1040,36 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         .map((candidate) => incrementalIndex.cachedPathExistenceState(pathCache, candidate));
       if (existenceStates.includes('exists')) {
         idsToClear.push(suspect.id);
-      } else if (existenceStates.length > 0 && existenceStates.every((state) => state === 'absent')) {
-        idsToTombstone.push(suspect.id);
-      } else {
-        retainedUnknown++;
+        // Reappearance is always safe to clear immediately -- there is no
+        // destructive action here, so the age gate below does not apply.
+        continue;
       }
+      if (existenceStates.length === 0 || existenceStates.some((state) => state === 'unknown')) {
+        retainedUnknown++;
+        continue;
+      }
+
+      const firstSeenAtMs = Date.parse(suspect.firstSeenAt);
+      // An unparseable firstSeenAt must fail toward the safe outcome (treated as
+      // too fresh to trust) rather than the destructive one. Falling through to an
+      // immediate tombstone on malformed timestamp data would defeat the entire
+      // purpose of this gate, which exists to protect against acting on a single,
+      // possibly-transient absence signal.
+      const ageMs = Number.isNaN(firstSeenAtMs) ? -1 : Date.now() - firstSeenAtMs;
+      if (ageMs < minQuarantineMs) {
+        // Too fresh to trust: a second confirmation pass could run milliseconds
+        // after the suspect was first queued, and a same-instant absence is not
+        // meaningfully different evidence from the original sweep that flagged it.
+        // Leave it in the queue untouched; a later pass re-evaluates it once real
+        // wall-clock time has actually separated the two observations.
+        continue;
+      }
+      idsToTombstone.push(suspect.id);
     }
 
     const deleteResult = deleteIndexedRecordIds(idsToTombstone);
+    // A failed delete must stay queued for retry -- only ids that actually
+    // cleared (row reappeared) or were actually deleted leave the queue.
     removeMemoryDriftSuspects(database, [...idsToClear, ...deleteResult.deletedIds]);
     return {
       tombstoned: deleteResult.deleted,
@@ -1219,12 +1211,15 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   if (files.length === 0) {
     let staleDeleted = 0;
     let staleDeleteFailed = 0;
-    const orphanSweepResult = isScopedRepair
-      ? emptyOrphanSweepDeleteResult()
-      : await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
     const suspectConfirmation = isScopedRepair
       ? emptySuspectConfirmationResult()
       : await timedPhase('suspect-confirmation', () => runSuspectConfirmation());
+    const orphanSweepResult = isScopedRepair
+      ? emptyOrphanSweepDeleteResult()
+      : await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
+    let suspectQueueSize = isScopedRepair
+      ? readMemoryDriftSuspects(vectorIndex.getDb() ?? requireDb()).length
+      : orphanSweepResult.queueSize;
     const postInsertEnrichmentRepaired = isScopedRepair
       ? 0
       : await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
@@ -1236,11 +1231,23 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       const categorized: CategorizedFiles = scopedScanPaths.length > 0
         ? incrementalIndex.categorizeFilesForIndexing([], { staleCandidatePaths: scopedScanPaths })
         : incrementalIndex.categorizeFilesForIndexing([]);
-      const staleDeleteResult = deleteStaleIndexedRecords(categorized.toDelete);
-      staleDeleted = staleDeleteResult.deleted;
-      staleDeleteFailed = staleDeleteResult.failed;
-      if (staleDeleted > 0) {
-        runScanInvalidationHooks({ staleDeleted, staleDeleteFailed, operation: 'stale-delete' }, staleDeleteResult.actions);
+      if (scopedScanPaths.length > 0) {
+        const recordIds = incrementalIndex.listIndexedRecordIdsForDeletedPaths(categorized.toDelete);
+        try {
+          const appendResult = appendMemoryDriftSuspects(vectorIndex.getDb() ?? requireDb(), recordIds);
+          suspectQueueSize = appendResult.queueSize;
+          staleDeleteFailed += appendResult.rejected;
+        } catch (error: unknown) {
+          staleDeleteFailed = recordIds.length;
+          console.warn(`[memory-index-scan] Could not queue scoped drift suspects: ${toErrorMessage(error)}`);
+        }
+      } else {
+        const staleDeleteResult = deleteStaleIndexedRecords(categorized.toDelete);
+        staleDeleted = staleDeleteResult.deleted;
+        staleDeleteFailed = staleDeleteResult.failed;
+        if (staleDeleted > 0) {
+          runScanInvalidationHooks({ staleDeleted, staleDeleteFailed, operation: 'stale-delete' }, staleDeleteResult.actions);
+        }
       }
     }
 
@@ -1254,10 +1261,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       || orphanSweepResult.cursorPersistenceFailed;
     const orphanSweepResumable = orphanSweepResult.nextCursor !== null
       && !orphanSweepResult.cursorPersistenceFailed;
+    const repairIncomplete = staleDeleteFailed > 0
+      || orphanSweepResult.failed > 0
+      || suspectConfirmation.failed > 0
+      || orphanSweepIncomplete;
 
-    if (orphanSweepResult.swept > 0) {
+    if (orphanSweepResult.enqueued > 0) {
       runScanInvalidationHooks({
-        orphanSwept: orphanSweepResult.swept,
+        orphanSwept: orphanSweepResult.enqueued,
         orphanSweepFailed: orphanSweepResult.failed,
         operation: 'orphan-sweep',
       }, orphanSweepResult.actions);
@@ -1297,7 +1308,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         failed: 0,
         staleDeleted,
         staleDeleteFailed,
-        orphanSwept: orphanSweepResult.swept,
+        orphanSwept: orphanSweepResult.enqueued,
       },
       staleCandidates: staleDeleted + staleDeleteFailed,
     });
@@ -1308,8 +1319,8 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         ? 'No memory files found; orphan sweep incomplete'
         : 'No memory files found',
       data: {
-        status: orphanSweepIncomplete ? 'partial' : 'complete',
-        repairStatus: staleDeleteFailed > 0 || orphanSweepIncomplete ? 'partial' : 'complete',
+        status: repairIncomplete ? 'partial' : 'complete',
+        repairStatus: repairIncomplete ? 'partial' : 'complete',
         repairMode: isScopedRepair ? 'scoped' : 'full',
         globalMaintenanceSkipped: isScopedRepair,
         scanKey,
@@ -1323,12 +1334,13 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         postInsertEnrichmentRepaired,
         nearDuplicateRepaired,
         triggerEmbeddingBackfill,
-        orphanSwept: orphanSweepResult.swept,
+        orphanSwept: orphanSweepResult.enqueued,
         orphanSweepFailed: orphanSweepResult.failed,
         orphanSweepScanned: orphanSweepResult.scannedRows,
         orphanSweepNextCursor: orphanSweepResult.nextCursor,
         orphanSweepResumable,
         orphanSweepCursorPersistenceFailed: orphanSweepResult.cursorPersistenceFailed,
+        suspectQueueSize,
         suspectTombstoned: suspectConfirmation.tombstoned,
         suspectCleared: suspectConfirmation.cleared,
         suspectFailed: suspectConfirmation.failed,
@@ -1343,8 +1355,8 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         ...(nearDuplicateRepaired > 0 ? [`Repaired ${nearDuplicateRepaired} near-duplicate marker(s)`] : []),
         ...(triggerEmbeddingBackfill.readyRows > 0 ? [`Backfilled ${triggerEmbeddingBackfill.readyRows} trigger embedding row(s)`] : []),
         ...(triggerEmbeddingBackfill.failedRows > 0 ? [`${triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`] : []),
-        ...(orphanSweepResult.swept > 0 ? [`Swept ${orphanSweepResult.swept} orphan index record(s)`] : []),
-        ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be removed`] : []),
+        ...(orphanSweepResult.enqueued > 0 ? [`Queued ${orphanSweepResult.enqueued} orphan index record(s) for confirmation`] : []),
+        ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be queued for confirmation`] : []),
         ...(orphanSweepResumable ? [`Orphan sweep paused at cursor ${orphanSweepResult.nextCursor}; retry the scan to resume global cleanup`] : []),
         ...(orphanSweepResult.cursorPersistenceFailed ? ['Orphan sweep cursor could not be persisted; retry the scan to complete global cleanup'] : []),
         ...(suspectConfirmation.tombstoned > 0 ? [`Confirmed and tombstoned ${suspectConfirmation.tombstoned} suspect index record(s)`] : []),
@@ -1379,6 +1391,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     orphanSweepScanned: 0,
     orphanSweepNextCursor: null,
     orphanSweepCursorPersistenceFailed: false,
+    suspectQueueSize: 0,
     suspectTombstoned: 0,
     suspectCleared: 0,
     suspectFailed: 0,
@@ -1474,12 +1487,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       sourceOperation: 'scan',
       metadata: { filePath },
     })),
-    ...filesToDelete.map((filePath) => createStatediffAction('delete', {
-      target: 'memory_index',
-      key: getCachedKey(filePath),
-      sourceOperation: 'scan',
-      metadata: { filePath },
-    })),
+    ...(isScopedRepair
+      ? []
+      : filesToDelete.map((filePath) => createStatediffAction('delete', {
+          target: 'memory_index',
+          key: getCachedKey(filePath),
+          sourceOperation: 'scan',
+          metadata: { filePath },
+        }))),
   ];
   if (plannedScanActions.length > 0) {
     console.error(`[memory-index-scan] Statediff plan: ${plannedScanActions.length} action(s) before scan writes`);
@@ -1723,7 +1738,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   }
   ctx.onPhase?.('post-processing');
 
-  if (filesToDelete.length > 0) {
+  // A scoped (marker-triggered) scan's toDelete set is a heuristic candidate list,
+  // not a ground-truth corpus diff, so it goes through the same suspect-queue
+  // confirmation funnel as every other candidate discoverer -- only a full,
+  // unscoped scan's toDelete set is a real corpus comparison and stays a direct
+  // delete. Deferred until after this cycle's own confirmation pass runs below,
+  // so a candidate discovered this scan is never confirmable in the same call
+  // that discovered it.
+  if (filesToDelete.length > 0 && scopedScanPaths.length === 0) {
     if (results.failed === 0) {
       const staleDeleteResult = deleteStaleIndexedRecords(filesToDelete);
       results.staleDeleted = staleDeleteResult.deleted;
@@ -1736,21 +1758,35 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   if (isScopedRepair) {
     results.triggerEmbeddingBackfill = skippedTriggerEmbeddingBackfill();
+    if (filesToDelete.length > 0 && results.failed === 0) {
+      const recordIds = incrementalIndex.listIndexedRecordIdsForDeletedPaths(filesToDelete);
+      try {
+        const appendResult = appendMemoryDriftSuspects(vectorIndex.getDb() ?? requireDb(), recordIds);
+        results.suspectQueueSize = appendResult.queueSize;
+        results.staleDeleteFailed += appendResult.rejected;
+      } catch (error: unknown) {
+        results.staleDeleteFailed += recordIds.length;
+        console.warn(`[memory-index-scan] Could not queue scoped drift suspects: ${toErrorMessage(error)}`);
+      }
+    } else {
+      results.suspectQueueSize = readMemoryDriftSuspects(vectorIndex.getDb() ?? requireDb()).length;
+    }
   } else {
-    const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
-    results.orphanSwept = orphanSweepResult.swept;
-    results.orphanSweepFailed = orphanSweepResult.failed;
-    results.orphanSweepScanned = orphanSweepResult.scannedRows;
-    results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
-    results.orphanSweepCursorPersistenceFailed = orphanSweepResult.cursorPersistenceFailed;
-    scanAppliedActions.push(...orphanSweepResult.actions);
-
     const suspectConfirmation = await timedPhase('suspect-confirmation', () => runSuspectConfirmation());
     results.suspectTombstoned = suspectConfirmation.tombstoned;
     results.suspectCleared = suspectConfirmation.cleared;
     results.suspectFailed = suspectConfirmation.failed;
     results.suspectRetainedUnknown = suspectConfirmation.retainedUnknown;
     scanAppliedActions.push(...suspectConfirmation.actions);
+
+    const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
+    results.orphanSwept = orphanSweepResult.enqueued;
+    results.orphanSweepFailed = orphanSweepResult.failed;
+    results.orphanSweepScanned = orphanSweepResult.scannedRows;
+    results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
+    results.orphanSweepCursorPersistenceFailed = orphanSweepResult.cursorPersistenceFailed;
+    results.suspectQueueSize = orphanSweepResult.queueSize;
+    scanAppliedActions.push(...orphanSweepResult.actions);
 
     results.postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
     if (results.postInsertEnrichmentRepaired > 0) {
@@ -1867,6 +1903,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         ? {
             orphanSwept: results.orphanSwept,
             orphanSweepFailed: results.orphanSweepFailed,
+            suspectQueueSize: results.suspectQueueSize,
           }
         : {}),
       ...(results.suspectTombstoned > 0 || results.suspectFailed > 0
@@ -1884,8 +1921,13 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     || results.orphanSweepCursorPersistenceFailed;
   const orphanSweepResumable = results.orphanSweepNextCursor !== null
     && !results.orphanSweepCursorPersistenceFailed;
-  const summaryPrefix = orphanSweepIncomplete ? 'Scan partial; orphan sweep incomplete' : 'Scan complete';
-  const summary = `${summaryPrefix}: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.staleDeleted} deleted, ${results.orphanSwept} orphan swept, ${results.failed} failed`;
+  const repairIncomplete = results.failed > 0
+    || results.staleDeleteFailed > 0
+    || results.orphanSweepFailed > 0
+    || results.suspectFailed > 0
+    || orphanSweepIncomplete;
+  const summaryPrefix = repairIncomplete ? 'Scan partial' : 'Scan complete';
+  const summary = `${summaryPrefix}: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.staleDeleted} deleted, ${results.orphanSwept} orphan queued, ${results.failed} failed`;
 
   const hints: string[] = [];
   if (results.failed > 0) {
@@ -1901,7 +1943,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     hints.push(`${results.staleDeleteFailed} stale index record(s) could not be removed`);
   }
   if (results.orphanSwept > 0) {
-    hints.push(`Swept ${results.orphanSwept} orphan index record(s)`);
+    hints.push(`Queued ${results.orphanSwept} orphan index record(s) for confirmation`);
   }
   if (results.postInsertEnrichmentRepaired > 0) {
     hints.push(`Repaired ${results.postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`);
@@ -1916,7 +1958,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     hints.push(`${results.triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`);
   }
   if (results.orphanSweepFailed > 0) {
-    hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be removed`);
+    hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be queued for confirmation`);
   }
   if (orphanSweepResumable) {
     hints.push(`Orphan sweep paused at cursor ${results.orphanSweepNextCursor}; retry the scan to resume global cleanup`);
@@ -1983,6 +2025,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       staleDeleted: results.staleDeleted,
       staleDeleteFailed: results.staleDeleteFailed,
       orphanSwept: results.orphanSwept,
+      suspectQueueSize: results.suspectQueueSize,
     },
     staleCandidates: filesToDelete.length,
   });
@@ -1991,10 +2034,10 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     tool: 'memory_index_scan',
     summary,
     data: {
-      status: orphanSweepIncomplete
+      status: repairIncomplete
         ? 'partial'
         : results.deferred > 0 ? 'complete_with_pending_vectors' : 'complete',
-      repairStatus: results.failed > 0 || results.staleDeleteFailed > 0 || orphanSweepIncomplete
+      repairStatus: repairIncomplete
         ? 'partial'
         : 'complete',
       repairMode: isScopedRepair ? 'scoped' : 'full',

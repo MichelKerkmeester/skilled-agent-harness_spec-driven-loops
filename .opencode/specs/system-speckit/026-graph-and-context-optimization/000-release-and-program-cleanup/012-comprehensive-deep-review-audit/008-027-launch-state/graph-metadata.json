@@ -16,7 +16,6 @@
       "spec folder naming"
     ],
     "key_topics": [
-      "027",
       "launch",
       "audit",
       "phase",
@@ -27,7 +26,8 @@
       "naming",
       "xce-research-based-refinement",
       "just",
-      "launched"
+      "launched",
+      "child"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -80,7 +80,7 @@
     ],
     "causal_summary": "027 (`xce-research-based-refinement`) just launched as a phase parent with 9 child phases",
     "created_at": "2026-06-04T18:53:35.322Z",
-    "last_save_at": "2026-07-02T05:31:10.974Z",
+    "last_save_at": "2026-07-10T06:23:09.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

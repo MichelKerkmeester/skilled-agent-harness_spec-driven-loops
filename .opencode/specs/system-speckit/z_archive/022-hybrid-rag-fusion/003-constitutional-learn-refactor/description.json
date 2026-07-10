@@ -1,12 +1,11 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/003-constitutional-learn-refactor",
-  "description": "The current `/memory:learn` command (620 lines) is a generic learning capture tool that classifies inputs into 5 types (pattern, mistake, insight, opt",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/003-constitutional-learn-refactor",
+  "description": "The current `/memory:learn` command (620 lines) is a generic learning capture tool that classifies inputs into 5 types (pattern, mistake, insight,",
   "keywords": [
     "current",
     "memory",
     "learn",
     "command",
-    "620",
     "lines",
     "generic",
     "learning",
@@ -17,14 +16,13 @@
     "types",
     "pattern",
     "mistake",
-    "insight",
-    "opt"
+    "insight"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.752Z",
+  "lastUpdated": "2026-07-10T06:24:09.355Z",
   "specId": "003",
   "folderSlug": "constitutional-learn-refactor",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

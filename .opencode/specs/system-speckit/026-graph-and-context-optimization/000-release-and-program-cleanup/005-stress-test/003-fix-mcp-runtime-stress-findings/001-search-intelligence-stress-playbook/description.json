@@ -10,7 +10,7 @@
     "9 scenario test corpus",
     "5 dimension scoring rubric"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook",
   "description": "The search-intelligence retrieval paths (hybrid search, trigger matching, ranking) need a repeatable stress playbook so regressions surface under load",
   "keywords": [
     "search-intelligence",
@@ -29,11 +29,11 @@
     "surface",
     "load"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.528Z",
+  "lastUpdated": "2026-07-10T06:22:56.285Z",
   "specId": "001",
   "folderSlug": "search-intelligence-stress-playbook",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

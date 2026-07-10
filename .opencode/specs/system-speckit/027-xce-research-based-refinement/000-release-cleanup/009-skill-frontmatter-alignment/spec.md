@@ -11,7 +11,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment"
     last_updated_at: "2026-06-11T12:25:00Z"
     last_updated_by: "claude-fable"
     recent_action: "All 22 phases complete; full corpus 355/355 contract-valid"

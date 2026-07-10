@@ -8,7 +8,7 @@
   ],
   "contextType": "implementation",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment",
   "description": "Per-feature feature-catalog snippets had drifted away from the canonical sk-doc shape",
   "keywords": [
     "per-feature",
@@ -20,11 +20,11 @@
     "sk-doc",
     "shape"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.351Z",
+  "lastUpdated": "2026-07-10T06:22:12.948Z",
   "specId": "019",
   "folderSlug": "feature-catalog-shape-realignment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

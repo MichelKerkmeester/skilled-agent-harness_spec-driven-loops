@@ -35,8 +35,8 @@
       "template",
       "levels",
       "packet",
-      "006",
-      "plan"
+      "plan",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The slash-command entry docs and their YAML workflow assets may still mention deleted artifacts such as `compose.sh`, `wrap-all-templates`, legacy template folders, or the old architecture label",
     "created_at": "2026-05-02T06:53:47Z",
-    "last_save_at": "2026-07-02T05:31:11.422Z",
+    "last_save_at": "2026-07-10T06:23:52.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

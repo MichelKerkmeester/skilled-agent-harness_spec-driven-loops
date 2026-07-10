@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle",
   "description": "Lean phase parent for remediating arc 010/001 sidecar investigation findings across resource bounds, sidecar lifecycle, and TS/CJS rerank parity.",
   "keywords": [
     "lean",
@@ -8,8 +8,6 @@
     "parent",
     "remediating",
     "arc",
-    "010",
-    "001",
     "sidecar",
     "investigation",
     "findings",
@@ -21,11 +19,11 @@
     "rerank",
     "parity"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.199Z",
+  "lastUpdated": "2026-07-10T06:22:20.444Z",
   "specId": "016",
   "folderSlug": "fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

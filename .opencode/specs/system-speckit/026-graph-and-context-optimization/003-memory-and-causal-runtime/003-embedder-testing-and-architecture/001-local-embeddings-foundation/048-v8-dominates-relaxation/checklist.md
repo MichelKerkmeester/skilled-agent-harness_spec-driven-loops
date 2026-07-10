@@ -9,7 +9,7 @@ contextType: "spec"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/048-v8-dominates-relaxation"
     last_updated_at: "2026-05-14T17:15:00Z"
     last_updated_by: "codex"
     recent_action: "Recorded final build, live validator, and strict validation evidence"

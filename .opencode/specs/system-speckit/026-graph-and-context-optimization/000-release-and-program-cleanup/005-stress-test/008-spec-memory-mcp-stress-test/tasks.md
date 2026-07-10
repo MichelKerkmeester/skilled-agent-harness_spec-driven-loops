@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-stress-test/008-spec-memory-mcp-stress-test"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/008-spec-memory-mcp-stress-test"
     last_updated_at: "2026-05-16T20:10:00Z"
     last_updated_by: "main_agent"
     recent_action: "Phase 2 263/345 + 3 codex fix commits (checkpoint_create, vitest, trace+priming)"

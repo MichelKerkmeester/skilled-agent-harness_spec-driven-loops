@@ -1,10 +1,9 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
   "description": "Spec 026 shipped hundreds of phases across 8 tracks over months of work, but the packet-local changelog history is roughly 16 percent complete (103 of",
   "keywords": [
     "spec",
-    "026",
     "shipped",
     "hundreds",
     "phases",
@@ -17,14 +16,13 @@
     "history",
     "roughly",
     "percent",
-    "complete",
-    "103"
+    "complete"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.911Z",
+  "lastUpdated": "2026-07-10T06:23:12.047Z",
   "specId": "002",
   "folderSlug": "changelog-backfill-and-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "008-docs-and-catalogs-rollup"

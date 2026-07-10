@@ -1,15 +1,12 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/003-speckit-skill-refinement",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/003-speckit-skill-refinement",
   "description": "created: 2025-12-13",
-  "keywords": [
-    "created",
-    "2025-12-13"
-  ],
-  "lastUpdated": "2026-06-23T03:49:58.855Z",
+  "keywords": [],
+  "lastUpdated": "2026-07-10T06:22:00.833Z",
   "specId": "003",
   "folderSlug": "speckit-skill-refinement",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

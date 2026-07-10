@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-fix-deep-research-findings/010-fix-cli-orchestrator-doc-drift"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/009-fix-cli-orchestrator-doc-drift"
     last_updated_at: "2026-05-01T07:25:00Z"
     last_updated_by: "remediation-orchestrator"
     recent_action: "Spec authored; ready for implementation"

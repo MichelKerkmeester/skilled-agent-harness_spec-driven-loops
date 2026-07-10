@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/127-opencode-plugins-hooks-audit/007-session-cleanup",
+  "spec_folder": "skilled-agent-orchestration/127-opencode-plugins-hooks-audit/007-session-cleanup",
+  "parent_id": "skilled-agent-orchestration/127-opencode-plugins-hooks-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "session-cleanup audit",
+      "session-cleanup review",
+      "session-cleanup plugin findings",
+      "opencode plugin audit"
+    ],
+    "key_topics": [
+      "session-cleanup",
+      "audit",
+      "review",
+      "plugin",
+      "findings",
+      "opencode",
+      "session-end",
+      "mcp",
+      "cleanup",
+      "related",
+      "claude",
+      "hook"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/plugins/session-cleanup.js",
+      "review/review-report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Related Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Plugin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `session-cleanup` OpenCode plugin (Session-end MCP cleanup plugin) and its related Claude hook version were audited for bugs, silent-breakage, correctness errors, cross-runtime parity drift, and refinements",
+    "created_at": "2026-07-10T06:47:46.012Z",
+    "last_save_at": "2026-07-10T06:47:46.012Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:934042f0a4ebaf380cfe056c36e928c1f7fc07a8345464c16c006ea0e56f85f7",
+    "source_doc_hashes": {
+      "spec.md": "e7883a8301dd8b47cf026c258d7ac8e56974869cb91ca089509abef0621113e6",
+      "plan.md": "403a3e238cafd1fdff7873eb30b93527a79949b2bcfe5bbbdc4e117669ac78fa",
+      "tasks.md": "2c44967427ba2eb11be0e8e1f4131ed5661e970973d410a187f2bbdf01b38ada",
+      "implementation-summary.md": "826d1a07f3528b1cc64daa53e2fdfa207499119f70606a103c30076a1723d2c3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

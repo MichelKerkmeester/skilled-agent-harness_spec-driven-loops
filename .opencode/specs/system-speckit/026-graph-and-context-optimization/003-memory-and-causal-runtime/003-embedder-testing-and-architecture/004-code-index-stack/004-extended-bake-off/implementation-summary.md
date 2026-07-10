@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off"
     last_updated_at: "2026-05-18T17:10:00Z"
     last_updated_by: "main_agent"
     recent_action: "Wrote benchmark-results.md (11 sections, full per-probe + per-embedder analysis)"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | COMPLETED (2026-05-18) |
+| Status | In Progress |
 | Primary artifact | `benchmark-results.md` (detailed 11-section results doc) |
 | Evidence | `evidence/cocoindex-embedder-comparison-with-hybrid-rerank.{csv,jsonl}` + `evidence/runlog-with-hybrid-rerank.txt` |
 | Owner | Main agent |

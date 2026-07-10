@@ -14,8 +14,8 @@
       "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify"
     ]
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify",
-  "description": "Public already has Code Graph MCP for structural code queries (442.9K nodes, 225.4K edges), CocoIndex for semantic retrieval, Spec Kit Memory for pers",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify",
+  "description": "Public already has Code Graph MCP for structural code queries (442.9K nodes, 225.4K edges), CocoIndex for semantic retrieval, Spec Kit Memory for",
   "keywords": [
     "public",
     "already",
@@ -24,23 +24,20 @@
     "mcp",
     "structural",
     "queries",
-    "442",
     "nodes",
-    "225",
     "edges",
     "cocoindex",
     "semantic",
     "retrieval",
     "spec",
     "kit",
-    "memory",
-    "pers"
+    "memory"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.129Z",
+  "lastUpdated": "2026-07-10T06:24:22.617Z",
   "specId": "004",
   "folderSlug": "graphify",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "001-research-and-baseline"
   ],

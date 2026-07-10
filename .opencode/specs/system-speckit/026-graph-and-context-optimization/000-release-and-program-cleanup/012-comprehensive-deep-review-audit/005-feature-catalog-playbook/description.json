@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
   "description": "The system-spec-kit feature catalog (~412KB, 24 themes) and manual testing playbook (~293KB) claim a large set of features and verification procedures",
   "keywords": [
     "system-spec-kit",
@@ -18,11 +18,11 @@
     "verification",
     "procedures"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.997Z",
+  "lastUpdated": "2026-07-10T06:22:07.257Z",
   "specId": "005",
   "folderSlug": "feature-catalog-playbook",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "012-comprehensive-deep-review-audit"

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first",
   "description": "The shared embeddings factory has three provider-order definitions",
   "keywords": [
     "shared",
@@ -10,11 +10,11 @@
     "provider-order",
     "definitions"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.642Z",
+  "lastUpdated": "2026-07-10T06:24:40.430Z",
   "specId": "016",
   "folderSlug": "embedding-provider-local-first",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime"
   ],

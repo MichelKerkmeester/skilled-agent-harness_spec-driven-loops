@@ -1,29 +1,26 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate",
-  "description": "The CocoIndex `ccc run-daemon` (PID 74669, 2d 15h uptime) was holding 2.1 GB RSS, spiking CPU to 124%, and indirectly contributing to a memory-saturat",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate",
+  "description": "The CocoIndex `ccc run-daemon` (PID 74669, 2d 15h uptime) was holding 2.1 GB RSS, spiking CPU to 124%, and indirectly contributing to a",
   "keywords": [
     "cocoindex",
     "ccc",
     "run-daemon",
     "pid",
-    "74669",
     "15h",
     "uptime",
     "holding",
     "rss",
     "spiking",
     "cpu",
-    "124",
     "indirectly",
-    "contributing",
-    "memory-saturat"
+    "contributing"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.427Z",
+  "lastUpdated": "2026-07-10T06:24:24.656Z",
   "specId": "031",
   "folderSlug": "cocoindex-local-voyage-embeddings-gate",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

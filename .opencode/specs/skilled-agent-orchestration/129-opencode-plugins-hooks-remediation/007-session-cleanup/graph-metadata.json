@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/007-session-cleanup",
+  "spec_folder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/007-session-cleanup",
+  "parent_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "session-cleanup remediation",
+      "session-cleanup fixes",
+      "session-cleanup bug fixes",
+      "opencode plugin remediation"
+    ],
+    "key_topics": [
+      "session-cleanup",
+      "remediation",
+      "bug",
+      "opencode",
+      "plugin",
+      "audit",
+      "packet",
+      "surfaced",
+      "confirmed",
+      "findings",
+      "claude",
+      "hook"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/plugins/session-cleanup.js",
+      ".claude/settings.json",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/bin/check-git-hooks.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-stop-hook-orphan-sweep.vitest.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/worktree-guard.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/bin/check-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-stop-hook-orphan-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-stop-hook-orphan-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Severity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The audit (packet 127) surfaced 17 confirmed findings in `session-cleanup` and its Claude hook version (3 P1 / 7 P2 / 7 refinement)",
+    "created_at": "2026-07-10T09:27:09.849Z",
+    "last_save_at": "2026-07-10T09:27:09.849Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:1044b5a5dbf4827f4bb25288fe49e4d33b50454b299ecd7508a66d9ef757f491",
+    "source_doc_hashes": {
+      "spec.md": "5ee6e5cc68f19e41b5bf224142d5c3bd93ef57b10beaa6df1a2c14eca5ab31b7",
+      "plan.md": "ba8d1ffb1fa073f8d085bb5ff2f3aadbcfa751df859e110a23308cc47b744145",
+      "tasks.md": "688dc06429bf45c649ee329a78fc421def04909bfa9aece8ad19a09675b53b03"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -26,10 +26,10 @@
       "across",
       "subsystems",
       "follow-on",
-      "020",
       "embedder",
       "default",
-      "fix"
+      "10-iter",
+      "cli-opencode"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -82,7 +82,7 @@
     ],
     "causal_summary": "10-iter deep-research dispatch via cli-opencode + deepseek-v4-pro auditing all subsystems for the same hardcoded-default anti-pattern that 020 just closed in the spec-memory embedder. Scope: code (TS + Python + Rust), config (JSON/YAML/TOML), READMEs, INSTALL_GUIDE.md, doctor commands, skill docs, ENV_REFERENCE.md, agent definitions, manifests. Goal: enumerate every inline default that should be registry-derived (or env-var-driven) and identify ADR-implementation drift like the BAAI / jina-embeddings-v3 leftovers that triggered the 2026-05-23 incident.",
     "created_at": "2026-05-23T11:55:15.467Z",
-    "last_save_at": "2026-07-02T05:31:11.809Z",
+    "last_save_at": "2026-07-10T06:23:57.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

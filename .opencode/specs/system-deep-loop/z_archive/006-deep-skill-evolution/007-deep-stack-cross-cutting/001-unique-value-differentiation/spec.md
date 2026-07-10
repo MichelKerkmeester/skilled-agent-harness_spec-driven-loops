@@ -58,7 +58,7 @@ Three "deep" skills now exist or are proposed: `/deep:start-review-loop`, `/deep
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

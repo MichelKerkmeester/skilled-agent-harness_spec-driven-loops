@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs",
   "description": "The daemon CLI documentation is accurate but scattered",
   "keywords": [
     "daemon",
@@ -9,11 +9,11 @@
     "accurate",
     "scattered"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.818Z",
+  "lastUpdated": "2026-07-10T06:24:05.654Z",
   "specId": "003",
   "folderSlug": "cli-reference-and-skill-docs",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "004-cli-tooling-ux"

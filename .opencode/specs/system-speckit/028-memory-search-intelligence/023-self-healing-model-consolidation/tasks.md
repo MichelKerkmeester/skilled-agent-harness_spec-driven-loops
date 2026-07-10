@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Self-Healing Model Consolidation [template:level_2/tasks.md]"
+title: "Tasks: Self-Healing Model Consolidation"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "self-healing model consolidation"
@@ -11,18 +11,18 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/023-self-healing-model-consolidation"
-    last_updated_at: "2026-07-09T20:30:10.000Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored task breakdown, status PLANNED"
-    next_safe_action: "Start T001 once 017/018/019 land"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation"
+    last_updated_at: "2026-07-10T09:45:40.000Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed implementation and verification"
+    next_safe_action: "No further implementation work"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -51,10 +51,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [B] T001 Re-verify every file:line citation in spec.md and plan.md against the live tree; blocked on 017/018/019 landing (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts, .opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts, .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts, .opencode/skills/system-spec-kit/mcp_server/startup-checks.ts)
-- [ ] T002 Confirm listIndexedRecordIdsForDeletedPaths is safely callable standalone from the scoped-delete branch, matching deleteStaleIndexedRecords's own internal call (.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts)
-- [ ] T003 [P] Stand up a synthetic orphan backlog fixture reusing the existing pattern (.opencode/skills/system-spec-kit/mcp_server/tests/orphan-sweep-time-budget-and-refresh.vitest.ts)
-- [ ] T004 [P] Stand up a synthetic git-hook-marker-driven scoped-delete fixture reusing the existing pattern (.opencode/skills/system-spec-kit/mcp_server/tests/memory-drift-healing.vitest.ts)
+- [x] T001 Re-verified live seams with `rg -n` (`memory-index.ts:788-861,1064-1081,1565-1576`; `memory-drift-healing.ts:10,114-151`)
+- [x] T002 Confirmed standalone path-to-id resolution (`incremental-index.ts:439-494`; used at `memory-index.ts:1075`)
+- [x] T003 [P] Added synthetic orphan fixture (`orphan-sweep-time-budget-and-refresh.vitest.ts:131-172`)
+- [x] T004 [P] Added scoped-delete fixture (`suspect-confirmation.vitest.ts:224-250`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,11 +62,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Convert runGlobalOrphanSweep's deleteIndexedRecordIds call to an appendMemoryDriftSuspects enqueue call; update OrphanSweepDeleteResult field semantics or add a distinct enqueue-count field (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts)
-- [ ] T006 Convert the marker-triggered scoped-delete branch (files.length === 0, scopedScanPaths.length > 0) to resolve categorized.toDelete paths to ids via listIndexedRecordIdsForDeletedPaths and enqueue via appendMemoryDriftSuspects instead of calling deleteStaleIndexedRecords (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts)
-- [ ] T007 Swap the orphan-sweep / suspect-confirmation phase-call order (or implement and document the accepted same-cycle alternative) so orphan-discovered suspects get real time separation before confirmation, per plan.md Decision 3 (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts)
-- [ ] T008 Add a size cap and/or metric to appendMemoryDriftSuspects; thread the resulting queue-size signal into the scan-result envelope alongside orphanSwept/suspectTombstoned/suspectCleared/suspectFailed (.opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts, .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts)
-- [ ] T009 Decide and implement the busy-timeout policy for the two new callers per plan.md Decision 5 (.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts, .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts if the constant is relocated or parameterized)
+- [x] T005 Converted orphan discovery to enqueue and added `enqueued`/`queueSize` (`memory-index.ts:265-271,819-861`)
+- [x] T006 Converted scoped candidates to resolved-id enqueue (`memory-index.ts:1074-1081`)
+- [x] T007 Swapped to next-cycle confirmation (`memory-index.ts:1064-1065,1565-1576`)
+- [x] T008 Added a 1,000-entry cap and scan queue-size signal (`memory-drift-healing.ts:10,114-151`; `memory-index.ts:1164,1576`)
+- [x] T009 Retained caller-local 25ms search timeout; scan calls use default timeout (`memory-search.ts:224,421-437`; `suspect-confirmation.vitest.ts:252-289`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,14 +74,14 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Update orphan-sweep-time-budget-and-refresh.vitest.ts to assert enqueue-then-later-confirm instead of immediate deletion (.opencode/skills/system-spec-kit/mcp_server/tests/orphan-sweep-time-budget-and-refresh.vitest.ts)
-- [ ] T011 Extend suspect-confirmation.vitest.ts with fixtures seeded via the new orphan-sweep and scoped-delete discoverer paths, not only via appendMemoryDriftSuspects called directly (.opencode/skills/system-spec-kit/mcp_server/tests/suspect-confirmation.vitest.ts)
-- [ ] T012 Add a phase-order test proving the chosen Decision 3 behavior (same-cycle vs. next-cycle confirmation) for an orphan-discovered id (.opencode/skills/system-spec-kit/mcp_server/tests/)
-- [ ] T013 Add a size-cap boundary test (at-cap and one-over-cap) for appendMemoryDriftSuspects (.opencode/skills/system-spec-kit/mcp_server/tests/memory-drift-healing.vitest.ts)
-- [ ] T014 Add a lock-contention test for at least one new caller's busy-timeout behavior (.opencode/skills/system-spec-kit/mcp_server/tests/)
-- [ ] T015 Run rg -n "deleteIndexedRecordIds\(" against memory-index.ts and confirm exactly two call sites remain (runSuspectConfirmation and the out-of-scope full-corpus filesToDelete path)
-- [ ] T016 Run the full existing regression suite (memory-drift-healing.vitest.ts, memory-search-drift-suspect-write-timeout.vitest.ts, startup-checks-processing-marker-sigkill.vitest.ts) and confirm no unintended behavior change
-- [ ] T017 Update documentation (spec/plan/tasks/checklist/implementation-summary)
+- [x] T010 Asserted enqueue-then-later-confirm (`orphan-sweep-time-budget-and-refresh.vitest.ts:131-172`)
+- [x] T011 Added orphan and scoped discoverer fixtures (`suspect-confirmation.vitest.ts:195-250`)
+- [x] T012 Proved next-cycle ordering (`orphan-sweep-time-budget-and-refresh.vitest.ts:131-172`)
+- [x] T013 Tested at-cap and one-over-cap (`memory-drift-healing.vitest.ts:67-91`)
+- [x] T014 Tested default-timeout lock contention (`suspect-confirmation.vitest.ts:252-289`)
+- [x] T015 Confirmed exactly two call sites with `rg -n "deleteIndexedRecordIds\("` (785 and 923)
+- [x] T016 Ran `npx vitest run ...`: 26/26 tests, 5/5 files, 0 skipped
+- [x] T017 Updated all five packet documents (`implementation-summary.md:50-118`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -89,9 +89,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` (`tasks.md:54-84`)
+- [x] No `[B]` blocked tasks remaining (`tasks.md:54-84`)
+- [x] Real-SQLite integration verification passed (`npx vitest run ...`: 26/26)
 <!-- /ANCHOR:completion -->
 
 ---

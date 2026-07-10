@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
-  "description": "The spec-memory shim's mtime-based freshness gate (`.opencode/bin/spec-memory.cjs:24-42`, guard observed at `:29-40`) exits `69` (\"spec-memory dist en",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
+  "description": "The spec-memory shim's mtime-based freshness gate (`.opencode/bin/spec-memory.cjs:24-42`, guard observed at `:29-40`) exits `69` (\"spec-memory dist",
   "keywords": [
     "spec-memory",
     "shim",
@@ -11,18 +11,16 @@
     "opencode",
     "bin",
     "cjs",
-    "24-42",
     "guard",
     "observed",
-    "29-40",
     "exits",
     "dist"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.806Z",
+  "lastUpdated": "2026-07-10T06:21:57.829Z",
   "specId": "001",
   "folderSlug": "cli-freshness-and-smoke",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "004-cli-tooling-ux"

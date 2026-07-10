@@ -1,20 +1,19 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance",
   "description": "Phase 004 maintenance scenarios must be executed from scratch",
   "keywords": [
     "phase",
-    "004",
     "maintenance",
     "scenarios",
     "must",
     "executed",
     "scratch"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.238Z",
+  "lastUpdated": "2026-07-10T06:22:40.794Z",
   "specId": "004",
   "folderSlug": "maintenance",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

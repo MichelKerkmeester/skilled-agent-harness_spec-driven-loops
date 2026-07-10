@@ -77,7 +77,9 @@ run_rule() {
     if [[ "$mode" == "enforce" ]]; then
         export SPECKIT_CHILD_DRIFT_ENFORCE=true
     else
-        unset SPECKIT_CHILD_DRIFT_ENFORCE 2>/dev/null || true
+        # Explicit "false", not unset: the rule now defaults to enforcing, so
+        # an unset var would exercise enforce mode here instead of advisory.
+        export SPECKIT_CHILD_DRIFT_ENFORCE=false
     fi
     source "$RULE_SCRIPT"
     run_check "$folder" "1"
@@ -97,7 +99,8 @@ orchestrator_rule_status() {
     if [[ "$mode" == "enforce" ]]; then
         json=$(SPECKIT_CHILD_DRIFT_ENFORCE=true bash "$VALIDATE_SCRIPT" "$folder" --strict --no-recursive --json 2>/dev/null || true)
     else
-        json=$(env -u SPECKIT_CHILD_DRIFT_ENFORCE bash "$VALIDATE_SCRIPT" "$folder" --strict --no-recursive --json 2>/dev/null || true)
+        # Explicit "false", not unset: the rule now defaults to enforcing.
+        json=$(SPECKIT_CHILD_DRIFT_ENFORCE=false bash "$VALIDATE_SCRIPT" "$folder" --strict --no-recursive --json 2>/dev/null || true)
     fi
     printf '%s' "$json" | node -e '
 let s = "";
@@ -185,6 +188,35 @@ echo "Running: child-drift — foreign same-basename entry does not mask drift"
         pass "foreign other-parent/001-foo does not satisfy local 001-foo"
     else
         fail "foreign same-basename expected warn+001-foo, got status=$RULE_STATUS details='$(details_str)'"
+    fi
+}
+
+# ───────────────────────────────────────────────────────────────
+# TEST 3c (cross-track collision): a foreign parent under a DIFFERENT track,
+# sharing this parent basename, must not satisfy a local child either. Needs
+# a real .opencode/specs/ path so the rule can compare full specs-relative
+# paths rather than falling back to a bare basename compare.
+# ───────────────────────────────────────────────────────────────
+echo ""
+echo "Running: child-drift — cross-track same-basename entry does not mask drift"
+{
+    root=$(make_temp_root)
+    parent="$root/.opencode/specs/track-a/900-shared-name"
+    mkdir -p "$parent/001-foo"
+    write_graph_metadata "$parent" '["track-b/900-shared-name/001-foo"]'
+    run_rule "$parent" enforce
+    if [[ "$RULE_STATUS" == "warn" && "$(details_str)" == *001-foo* ]]; then
+        pass "cross-track track-b/900-shared-name/001-foo does not satisfy local track-a/900-shared-name/001-foo"
+    else
+        fail "cross-track same-basename expected warn+001-foo, got status=$RULE_STATUS details='$(details_str)'"
+    fi
+
+    write_graph_metadata "$parent" '["track-a/900-shared-name/001-foo"]'
+    run_rule "$parent" enforce
+    if [[ "$RULE_STATUS" == "pass" ]]; then
+        pass "own-track track-a/900-shared-name/001-foo correctly satisfies local child"
+    else
+        fail "own-track entry expected pass, got status=$RULE_STATUS details='$(details_str)'"
     fi
 }
 

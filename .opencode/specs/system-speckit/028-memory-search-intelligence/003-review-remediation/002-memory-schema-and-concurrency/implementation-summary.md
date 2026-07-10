@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-review-remediation/002-memory-schema-and-concurrency"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-review-remediation/002-memory-schema-and-concurrency"
     last_updated_at: "2026-07-06T19:16:38.875Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded impl"

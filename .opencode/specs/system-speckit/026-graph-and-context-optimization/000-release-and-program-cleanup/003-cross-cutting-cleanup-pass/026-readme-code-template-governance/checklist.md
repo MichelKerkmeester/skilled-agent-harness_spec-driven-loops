@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template-governance"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/026-readme-code-template-governance"
     last_updated_at: "2026-05-02T13:05:00Z"
     last_updated_by: "general"
     recent_action: "Recorded Task #31 final P1 cleanup verification evidence"

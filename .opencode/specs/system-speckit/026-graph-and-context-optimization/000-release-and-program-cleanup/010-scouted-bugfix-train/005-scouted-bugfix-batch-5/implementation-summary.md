@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5"
     last_updated_at: "2026-06-03T11:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Fixed 3 confirmed defects; tests green; typecheck clean; 1 deduped via 130/014"

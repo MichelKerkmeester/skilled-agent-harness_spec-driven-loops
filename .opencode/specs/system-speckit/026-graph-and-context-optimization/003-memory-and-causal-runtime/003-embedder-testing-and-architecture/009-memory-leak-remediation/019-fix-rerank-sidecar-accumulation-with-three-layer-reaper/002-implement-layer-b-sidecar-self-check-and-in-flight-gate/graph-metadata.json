@@ -28,9 +28,6 @@
     ],
     "key_topics": [
       "arc",
-      "010",
-      "005",
-      "002",
       "rerank",
       "sidecar",
       "self",
@@ -38,7 +35,10 @@
       "layer",
       "telemetry",
       "flight",
-      "gate"
+      "gate",
+      "plan",
+      "reaper",
+      "tasks"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The rerank FastAPI sidecar can remain alive after owners disappear because the current app has no background owner-liveness self-check, no app-level in-flight request gate, no idle timeout backstop, and no process-lifecycle telemetry",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-02T05:31:12.287Z",
+    "last_save_at": "2026-07-10T06:22:07.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

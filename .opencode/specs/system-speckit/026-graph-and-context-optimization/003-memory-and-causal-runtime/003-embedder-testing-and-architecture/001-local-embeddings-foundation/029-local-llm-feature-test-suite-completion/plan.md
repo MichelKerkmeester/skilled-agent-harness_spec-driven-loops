@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "testing"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion"
     last_updated_at: "2026-05-21T10:16:26Z"
     last_updated_by: "codex"
     recent_action: "Authored implementation plan stub"

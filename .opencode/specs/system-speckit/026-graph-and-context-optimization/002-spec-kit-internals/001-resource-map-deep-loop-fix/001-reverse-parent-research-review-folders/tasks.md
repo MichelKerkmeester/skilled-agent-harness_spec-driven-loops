@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders"
     last_updated_at: "2026-04-24T14:30:20+02:00"
     last_updated_by: "codex"
     recent_action: "Completed rollback, migration, and packet closure tasks"

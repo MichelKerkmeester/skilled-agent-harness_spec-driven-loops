@@ -29,11 +29,10 @@
     "completion_pct": 100,
     "last_active_child_id": null
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
-  "description": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the caus",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability",
+  "description": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the",
   "keywords": [
     "phase",
-    "005",
     "audited",
     "memory",
     "search",
@@ -45,14 +44,13 @@
     "spanning",
     "retrieval",
     "output",
-    "rendering",
-    "caus"
+    "rendering"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.860Z",
+  "lastUpdated": "2026-07-10T06:22:25.819Z",
   "specId": "006",
   "folderSlug": "fix-memory-search-health-fallback-stability",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "001-continuity-memory-runtime"

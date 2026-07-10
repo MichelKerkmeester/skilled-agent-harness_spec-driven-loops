@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/133-readme-and-references-accuracy"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy"
     last_updated_at: "2026-06-03T07:32:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All audit + verify + remediate tasks complete; 142 fixes / 61 files / 0 skipped"

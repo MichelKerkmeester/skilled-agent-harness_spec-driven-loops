@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-review-remediation/002-memory-schema-and-concurrency"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-review-remediation/002-memory-schema-and-concurrency"
     last_updated_at: "2026-07-04T14:10:00.993Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Created PENDING memory-schema-and-concurrency checklist"

@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "completed"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands"
     last_updated_at: "2026-06-11T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Completed 6-command split + sk-doc alignment; Fable parity PASS, P2s remediated"

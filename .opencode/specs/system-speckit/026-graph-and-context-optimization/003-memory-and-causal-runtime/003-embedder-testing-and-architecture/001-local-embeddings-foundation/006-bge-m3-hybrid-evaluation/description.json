@@ -1,12 +1,11 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/006-bge-m3-hybrid-evaluation",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/006-bge-m3-hybrid-evaluation",
   "description": "We chose EmbeddingGemma-300m for cocoindex in 002 on theoretical grounds (strong code-retrieval scores in published benchmarks)",
   "keywords": [
     "chose",
     "embeddinggemma-300m",
     "cocoindex",
-    "002",
     "theoretical",
     "grounds",
     "strong",
@@ -15,11 +14,11 @@
     "published",
     "benchmarks"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.963Z",
+  "lastUpdated": "2026-07-10T06:22:47.731Z",
   "specId": "006",
   "folderSlug": "bge-m3-hybrid-evaluation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

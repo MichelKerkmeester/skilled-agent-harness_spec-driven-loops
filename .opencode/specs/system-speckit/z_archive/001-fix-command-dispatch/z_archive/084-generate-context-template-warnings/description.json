@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/084-generate-context-template-warnings",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/084-generate-context-template-warnings",
   "description": "When running `generate-context.js`, two issues occur:",
   "keywords": [
     "running",
@@ -8,11 +8,11 @@
     "issues",
     "occur"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.372Z",
+  "lastUpdated": "2026-07-10T06:21:11.910Z",
   "specId": "084",
   "folderSlug": "generate-context-template-warnings",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

@@ -14,14 +14,14 @@
     "mcp-rename",
     "assessment"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-031-deep-review-campaign-010-016",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-031-deep-review-campaign-010-016",
   "description": "|",
   "keywords": [],
-  "lastUpdated": "2026-06-23T03:49:56.795Z",
+  "lastUpdated": "2026-07-10T06:23:41.970Z",
   "specId": "007",
   "folderSlug": "031-deep-review-campaign-010-016",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-3-deep-archives"

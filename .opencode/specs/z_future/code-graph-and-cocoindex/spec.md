@@ -17,7 +17,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex"
+    packet_pointer: "z_future/code-graph-and-cocoindex"
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Created 028 root for split Code Graph+CocoIndex phases."

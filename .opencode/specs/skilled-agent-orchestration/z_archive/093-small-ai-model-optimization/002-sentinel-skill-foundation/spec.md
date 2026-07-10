@@ -59,7 +59,7 @@ Phase A of the 114 follow-on roadmap. Create a thin sentinel `sk-small-model` sk
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Implemented with documented skips |
 | **Created** | 2026-05-18 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (114 phase parent) |

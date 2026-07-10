@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "027/002/017/003-generic-query-deep-routing"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing"
     last_updated_at: "2026-06-17T08:48:00Z"
     last_updated_by: "implementation-engineer"
     recent_action: "Shipped generic-query deep routing; spec superseded by impl-summary"

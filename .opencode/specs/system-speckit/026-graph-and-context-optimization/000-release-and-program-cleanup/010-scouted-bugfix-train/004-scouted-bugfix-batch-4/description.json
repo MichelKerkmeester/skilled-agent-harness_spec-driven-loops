@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4",
   "description": "The fourth scout surfaced a new candidate pool and applied the pipeline (scout → gpt-5.5-fast confirm → implement-and-test)",
   "keywords": [
     "fourth",
@@ -15,11 +15,11 @@
     "confirm",
     "implement-and-test"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.953Z",
+  "lastUpdated": "2026-07-10T06:23:45.678Z",
   "specId": "004",
   "folderSlug": "scouted-bugfix-batch-4",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "010-scouted-bugfix-train"

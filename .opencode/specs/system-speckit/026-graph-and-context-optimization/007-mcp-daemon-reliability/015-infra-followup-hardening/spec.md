@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening"
     last_updated_at: "2026-05-30T22:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Created phase parent for the three deferred 032/035 follow-ups"

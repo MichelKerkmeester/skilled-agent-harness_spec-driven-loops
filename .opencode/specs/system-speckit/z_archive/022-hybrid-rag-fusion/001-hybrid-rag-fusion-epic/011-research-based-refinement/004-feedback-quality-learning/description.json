@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/004-feedback-quality-learning",
-  "description": "Add implicit feedback event ledger, FSRS hybrid decay policy, quality gate exceptions, weekly batch learning, assistive reconsolidation, and shadow sc",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/004-feedback-quality-learning",
+  "description": "Add implicit feedback event ledger, FSRS hybrid decay policy, quality gate exceptions, weekly batch learning, assistive reconsolidation, and shadow",
   "keywords": [
-    "add",
     "implicit",
     "feedback",
     "event",
@@ -21,11 +20,11 @@
     "reconsolidation",
     "shadow"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.729Z",
+  "lastUpdated": "2026-07-10T06:22:18.385Z",
   "specId": "004",
   "folderSlug": "feedback-quality-learning",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "001-hybrid-rag-fusion-epic",

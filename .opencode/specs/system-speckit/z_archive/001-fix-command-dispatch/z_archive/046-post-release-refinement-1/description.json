@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/046-post-release-refinement-1",
-  "description": "Systematically address all bugs, misalignments, and technical debt identified during the comprehensive 20-agent deep dive analysis of the OpenCode inf",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/046-post-release-refinement-1",
+  "description": "Systematically address all bugs, misalignments, and technical debt identified during the comprehensive 20-agent deep dive analysis of the OpenCode",
   "keywords": [
     "systematically",
     "address",
@@ -14,14 +14,13 @@
     "deep",
     "dive",
     "analysis",
-    "opencode",
-    "inf"
+    "opencode"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.148Z",
+  "lastUpdated": "2026-07-10T06:24:30.677Z",
   "specId": "046",
   "folderSlug": "post-release-refinement-1",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

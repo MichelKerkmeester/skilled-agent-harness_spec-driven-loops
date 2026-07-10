@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/016-last-50-commits-deep-review"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/016-last-50-commits-deep-review"
     last_updated_at: "2026-06-05T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Wrote review-report.md (CONDITIONAL; 0 P0 / 3 P1 / ~17 P2) over the 20-iteration state"

@@ -35,7 +35,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned (findings carried as tasks; no fixes applied) |
+| **Status** | Complete — all 8 findings fixed; verification green |
 | **Created** | 2026-06-16 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/003-discovery",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/003-discovery",
   "description": "The feature catalog for Discovery has evolved significantly",
   "keywords": [
     "feature",
@@ -8,11 +8,11 @@
     "evolved",
     "significantly"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.797Z",
+  "lastUpdated": "2026-07-10T06:24:11.173Z",
   "specId": "003",
   "folderSlug": "discovery",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "007-code-audit-per-feature-catalog"

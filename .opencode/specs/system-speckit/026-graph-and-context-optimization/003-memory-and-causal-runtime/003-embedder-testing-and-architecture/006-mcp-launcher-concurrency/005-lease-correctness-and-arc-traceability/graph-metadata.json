@@ -25,8 +25,6 @@
       "lease correctness summary"
     ],
     "key_topics": [
-      "012",
-      "005",
       "lease",
       "correctness",
       "deep-review",
@@ -36,7 +34,9 @@
       "traceability",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "verification",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 4-phase MCP launcher concurrency arc shipped with a CONDITIONAL deep-review verdict: no P0s, but 13 P1s remained across documentation drift, missing test evidence, and real correctness gaps",
     "created_at": "2026-05-18T12:28:18.618Z",
-    "last_save_at": "2026-07-02T05:31:12.081Z",
+    "last_save_at": "2026-07-10T06:21:41.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

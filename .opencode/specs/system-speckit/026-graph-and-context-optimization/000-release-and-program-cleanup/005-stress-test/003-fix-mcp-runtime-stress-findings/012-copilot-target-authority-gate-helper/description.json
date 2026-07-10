@@ -7,8 +7,8 @@
     "target authority preamble",
     "P0 cli-copilot remediation"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper",
-  "description": "The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated `009-phase-parent-lean-trio-documentation/004-legacy-phase-p",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper",
+  "description": "The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated",
   "keywords": [
     "stress-test",
     "rerun",
@@ -17,15 +17,13 @@
     "cli-copilot-1",
     "scored",
     "cli-copilot",
-    "mutated",
-    "009-phase-parent-lean-trio-documentation",
-    "004-legacy-phase-p"
+    "mutated"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.622Z",
+  "lastUpdated": "2026-07-10T06:24:07.389Z",
   "specId": "012",
   "folderSlug": "copilot-target-authority-gate-helper",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

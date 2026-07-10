@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder"
     last_updated_at: "2026-05-20T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Spec authored from arc plan + codex critique"
@@ -39,7 +39,7 @@ Phase 001 of the 008 rerank-sidecar arc. Surgical fix to the Stage 3 reranker di
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Implemented + verified |
 | **Created** | 2026-05-20 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` |

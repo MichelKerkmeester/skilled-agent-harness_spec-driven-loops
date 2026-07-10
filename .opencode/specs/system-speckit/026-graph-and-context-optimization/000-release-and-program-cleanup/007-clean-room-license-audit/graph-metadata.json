@@ -22,29 +22,28 @@
       "clean-room approved"
     ],
     "key_topics": [
-      "012",
       "license",
       "audit",
       "clean",
       "room",
       "external-project",
-      "001",
       "decision",
       "record",
       "clean-room",
       "adr",
-      "polyform"
+      "polyform",
+      "noncommercial",
+      "implementation"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "decision-record.md",
-      ".claude/settings.local.json"
+      "decision-record.md"
     ],
     "entities": [
       {
@@ -81,12 +80,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Closed Rule",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "pt-02 §12 ranks license contamination from direct External Project reuse as a P0 risk",
     "created_at": "2026-04-25T10:48:06.447Z",
-    "last_save_at": "2026-07-02T05:31:10.916Z",
+    "last_save_at": "2026-07-10T06:24:22.628Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +204,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6825517da053ca1f4d8649c7f17870a0163cf6378858153badf04bdb66d4517",
+    "source_fingerprint": "sha256:eb85bd83bbf6c2e9e4f75b6e40a3d0c3fadc1b1f9742fdf952682b16b908d1a2",
     "source_doc_hashes": {
-      "spec.md": "4141063764e4d1019db0e62cc6a38f0004fa8519e06c141aad19f25f53cc0e9a",
+      "spec.md": "f4c71309cae86a631a4884adb97ae22f7a50fc999668ccca801681f88cc5cfd0",
       "plan.md": "97d50ee8f45d620ef3efa19bd2e6f23cf49c3722543bf697d19f53861734eb6d",
       "tasks.md": "bcbcaf2e83686ce2908efb1382081ca4bb6ce09b8ebb4f376e36dce057cb755c",
       "checklist.md": "7f12f9eed6e7528c4dd3d720907d316c1f0fcfca47bf64a77268902d90287e5b",

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-034-mcp-namespace-operational-sweep",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-034-mcp-namespace-operational-sweep",
   "description": "Closes three missed rename spots from packet 010 where MCP namespace references remained as the legacy mcp__system_code_graph__* in operational files",
   "keywords": [
     "closes",
@@ -9,7 +9,6 @@
     "rename",
     "spots",
     "packet",
-    "010",
     "mcp",
     "namespace",
     "references",
@@ -18,11 +17,11 @@
     "operational",
     "files"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.813Z",
+  "lastUpdated": "2026-07-10T06:22:14.058Z",
   "specId": "007",
   "folderSlug": "034-mcp-namespace-operational-sweep",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-3-deep-archives"

@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index"
     last_updated_at: "2026-06-01T14:55:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phases 1-3 + Phase-4 follow-up shipped (942ad78d9c, v28, rebuild 9614/9614)"

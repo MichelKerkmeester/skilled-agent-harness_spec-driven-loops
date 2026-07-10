@@ -49,7 +49,6 @@
       "mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
       "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
       "tests/retrieval-flag-eval-driver.vitest.ts",
-      "database/context-index.sqlite",
       "scripts/evals/run-retrieval-flag-eval.mjs",
       "mcp_server/lib/search/hybrid-search.ts",
       "implementation-summary.md"
@@ -89,12 +88,6 @@
         "name": "retrieval-flag-eval-driver.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-index.sqlite",
-        "kind": "file",
-        "path": "database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path, and its trigger-channel ablation is a complete no-op",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:56.615Z",
+    "last_save_at": "2026-07-10T06:24:02.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

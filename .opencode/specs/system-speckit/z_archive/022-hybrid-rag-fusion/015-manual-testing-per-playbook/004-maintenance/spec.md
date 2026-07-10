@@ -13,7 +13,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance"
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -34,7 +34,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-03-22 |
 | **Branch** | `main` |
 | **Parent Spec** | [../spec.md](../spec.md) |

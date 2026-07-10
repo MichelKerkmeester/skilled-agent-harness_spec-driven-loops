@@ -1,13 +1,11 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-hook-parity-008-docs-impact-remediation",
   "description": "Update 13 external documentation files flagged by the 009 impact analysis (10 HIGH + 3 MED) to reflect the hook, advisor, plugin-loader, renderer, and",
   "keywords": [
-    "update",
     "external",
     "documentation",
     "files",
     "flagged",
-    "009",
     "impact",
     "analysis",
     "high",
@@ -18,11 +16,11 @@
     "plugin-loader",
     "renderer"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.700Z",
+  "lastUpdated": "2026-07-10T06:24:15.459Z",
   "specId": "009",
   "folderSlug": "hook-parity-008-docs-impact-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"

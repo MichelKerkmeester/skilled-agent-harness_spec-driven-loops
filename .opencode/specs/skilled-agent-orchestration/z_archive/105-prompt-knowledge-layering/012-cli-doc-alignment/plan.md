@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "130-prompt-knowledge-layering/012-cli-doc-alignment"
+    packet_pointer: "skilled-agent-orchestration/z_archive/105-prompt-knowledge-layering/012-cli-doc-alignment"
     last_updated_at: "2026-06-03T10:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored phase 012 plan"

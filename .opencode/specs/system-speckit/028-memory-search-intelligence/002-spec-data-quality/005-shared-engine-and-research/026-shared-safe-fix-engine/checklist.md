@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/026-shared-safe-fix-engine"
     last_updated_at: "2026-06-27T17:15:39.553Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored verification checklist scaffold"

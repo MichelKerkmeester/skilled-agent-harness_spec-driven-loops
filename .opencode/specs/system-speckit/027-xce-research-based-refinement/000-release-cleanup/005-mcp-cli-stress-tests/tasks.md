@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests"
     last_updated_at: "2026-06-10T16:06:30Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed release-cleanup stress tests with final 31-file/113-test pass."

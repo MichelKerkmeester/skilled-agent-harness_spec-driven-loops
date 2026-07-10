@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration",
   "description": "`@spec-kit/mcp-server` has no `\"type\": \"module\"` in its `package.json`, inherits the root CommonJS compiler baseline, uses 839 relative import/export",
   "keywords": [
     "spec-kit",
@@ -13,17 +13,15 @@
     "commonjs",
     "compiler",
     "baseline",
-    "uses",
-    "839",
     "relative",
     "import",
     "export"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.430Z",
+  "lastUpdated": "2026-07-10T06:22:58.726Z",
   "specId": "002",
   "folderSlug": "mcp-server-esm-migration",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],

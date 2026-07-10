@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/009-evaluation-and-measurement",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/009-evaluation-and-measurement",
   "description": "The evaluation-and-measurement category covers 16 scenarios that verify the correctness of the retrieval evaluation framework — including the eval DB",
   "keywords": [
     "evaluation-and-measurement",
@@ -14,11 +14,11 @@
     "including",
     "eval"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.268Z",
+  "lastUpdated": "2026-07-10T06:24:47.229Z",
   "specId": "009",
   "folderSlug": "evaluation-and-measurement",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

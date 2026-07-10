@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/003-memory-quality-qp-0-4",
-  "spec_folder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/003-memory-quality-qp-0-4",
-  "parent_id": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag",
+  "packet_id": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/003-memory-quality-qp-0-4",
+  "spec_folder": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/003-memory-quality-qp-0-4",
+  "parent_id": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -37,7 +37,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Memory Quality QP 0 4",
     "created_at": "2026-04-12T09:02:53.572Z",
-    "last_save_at": "2026-06-23T03:49:59.588Z",
+    "last_save_at": "2026-07-10T06:21:57.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

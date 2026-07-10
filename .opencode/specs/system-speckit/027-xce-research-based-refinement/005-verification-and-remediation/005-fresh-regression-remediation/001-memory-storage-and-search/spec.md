@@ -5,7 +5,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/spec.md"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search"
     last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "deep-review-orchestrator"
     recent_action: "Scaffolded sub-phase spec from fresh-regression-75 registry"
@@ -35,7 +35,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned (findings carried as tasks; no fixes applied) |
+| **Status** | Complete |
 | **Created** | 2026-06-16 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |

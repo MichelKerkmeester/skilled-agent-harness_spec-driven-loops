@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/029-autoclean-orphan-file-removal"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/029-autoclean-orphan-file-removal"
     last_updated_at: "2026-05-08T10:21:45Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/020-cocoindex-feature-catalog"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog"
     last_updated_at: "2026-04-30T09:30:00+02:00"
     last_updated_by: "cli-codex"
     recent_action: "Validation passed"

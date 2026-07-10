@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation",
   "description": "Manual test scenarios for graph-signal-activation need structured per-phase documentation instead of relying on scattered playbook rows",
   "keywords": [
     "manual",
@@ -16,11 +16,11 @@
     "playbook",
     "rows"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.274Z",
+  "lastUpdated": "2026-07-10T06:21:55.751Z",
   "specId": "010",
   "folderSlug": "graph-signal-activation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

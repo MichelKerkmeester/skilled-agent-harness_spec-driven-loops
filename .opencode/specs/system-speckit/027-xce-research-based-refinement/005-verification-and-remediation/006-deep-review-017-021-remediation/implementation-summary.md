@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation"
     last_updated_at: "2026-06-17T00:00:00Z"
     last_updated_by: "deep-review-remediation-author"
     recent_action: "Authored remediation packet from 017-021 deep-review syntheses; no fixes applied"
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation |
-| **Status** | not-started (authoring step complete; no fixes applied) |
+| **Status** | In Progress — implementation work pending |
 | **Level** | 3 |
 | **Created** | 2026-06-17 |
 | **Source reviews** | 017 (CONDITIONAL) · 018 / 019 / 020 / 021 (PASS) |

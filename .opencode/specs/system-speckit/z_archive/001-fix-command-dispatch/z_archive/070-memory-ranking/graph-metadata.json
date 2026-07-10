@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -30,22 +30,18 @@
       "folder",
       "ranking",
       "improvements",
-      "070",
       "plan",
       "implementation",
       "tasks",
       "checklist",
       "decision",
-      "record"
+      "record",
+      "dashboard"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       ".opencode/commands/memory/search.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/spec.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/plan.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/decision-record.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/test/test-folder-scoring.js",
       "research/research.md",
       "spec.md",
       "plan.md",
@@ -62,33 +58,21 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "test-folder-scoring.js",
-        "kind": "code",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/070-memory-ranking/test/test-folder-scoring.js",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -101,6 +85,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -198,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Archive Detection Patterns",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The memory dashboard displays \\\"top folders\\\" ranked purely by memory file count. This creates several issues",
     "created_at": "2026-04-12T09:02:53.543Z",
-    "last_save_at": "2026-06-23T03:49:59.264Z",
+    "last_save_at": "2026-07-10T06:24:49.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

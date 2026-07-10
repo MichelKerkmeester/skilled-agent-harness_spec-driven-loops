@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion"
     last_updated_at: "2026-05-17T18:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "B-RETRY (b855znbsv) validated 18 scenarios — 10/18 PASS, 8 FAIL classified"

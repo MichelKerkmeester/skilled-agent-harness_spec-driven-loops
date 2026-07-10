@@ -28,9 +28,6 @@
     ],
     "key_topics": [
       "arc",
-      "010",
-      "003",
-      "004",
       "launcher",
       "reindex",
       "f15",
@@ -38,7 +35,10 @@
       "f105",
       "remediation",
       "implementation",
-      "plan"
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The rerank sidecar launcher still had two P1 process-boundary risks: F15 owner-token publication could leave a partially written or race-observed token, and F49 spawned the sidecar with blanket parent environment inheritance",
     "created_at": "2026-05-23T06:45:25Z",
-    "last_save_at": "2026-07-02T05:31:12.267Z",
+    "last_save_at": "2026-07-10T06:23:43.862Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

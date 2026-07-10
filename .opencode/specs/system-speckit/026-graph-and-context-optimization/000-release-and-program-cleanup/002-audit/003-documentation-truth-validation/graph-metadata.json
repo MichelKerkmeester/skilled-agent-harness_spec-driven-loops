@@ -32,13 +32,13 @@
       "truth",
       "pass",
       "automation",
-      "fixes",
-      "031",
       "plan",
-      "fix",
       "tasks",
       "checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "resource",
+      "map"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -53,7 +53,6 @@
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".claude/settings.local.json",
       ".opencode/commands/memory/README.txt",
       "resource-map.md"
     ],
@@ -116,12 +115,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 013 supplemental research found that several operator-facing docs describe automation more broadly than the implementation supports",
     "created_at": "2026-04-29T13:42:25Z",
-    "last_save_at": "2026-07-02T05:31:10.514Z",
+    "last_save_at": "2026-07-10T06:23:33.818Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/032-system-health-audit",
   "description": "A comprehensive audit combining 20-agent deep analysis and System Health Dashboard findings revealed critical bugs, alignment issues, and UX problems",
   "keywords": [
     "comprehensive",
@@ -19,11 +19,11 @@
     "issues",
     "problems"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.070Z",
+  "lastUpdated": "2026-07-10T06:21:45.028Z",
   "specId": "032",
   "folderSlug": "system-health-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

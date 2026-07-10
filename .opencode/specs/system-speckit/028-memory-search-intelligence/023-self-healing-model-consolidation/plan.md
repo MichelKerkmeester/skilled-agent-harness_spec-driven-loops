@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Self-Healing Model Consolidation [template:level_2/plan.md]"
+title: "Implementation Plan: Self-Healing Model Consolidation"
 description: "Convert runGlobalOrphanSweep and the marker-triggered scoped-delete branch from direct deleters into suspect-queue enqueuers, leaving runSuspectConfirmation as the sole confirm-and-tombstone site. Add a suspect-queue size cap/metric and resolve the busy-timeout and phase-order questions the new callers raise."
 trigger_phrases:
   - "self-healing model consolidation"
@@ -11,18 +11,18 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/023-self-healing-model-consolidation"
-    last_updated_at: "2026-07-09T20:30:10.000Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored plan scaffold, status PLANNED"
-    next_safe_action: "Resolve the phase-order and size-cap open questions once 017/018/019 land, then build"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation"
+    last_updated_at: "2026-07-10T09:45:40.000Z"
+    last_updated_by: "opencode"
+    recent_action: "Implemented all five architectural decisions and completed verification"
+    next_safe_action: "No further implementation work"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -69,16 +69,16 @@ subsystems.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented (spec.md, this packet)
-- [ ] Success criteria measurable (spec.md SC-001 through SC-003)
-- [ ] Dependencies identified (017/018/019 sequencing; both watch-list items already surfaced by prior
-      performance analysis per the parent packet's own framing)
+- [x] Problem statement clear and scope documented (`spec.md:59-223`)
+- [x] Success criteria measurable (`spec.md:213-223`)
+- [x] Dependencies identified (`spec.md:229-236`; 017/018 were complete and 019 had no overlapping source changes)
 
 ### Definition of Done
-- [ ] All acceptance criteria in spec.md REQ-001 through REQ-007 met
-- [ ] Existing orphan-sweep and suspect-confirmation vitest suites updated to assert the new
-      discover-then-confirm flow, not direct deletion, and passing
-- [ ] Docs updated (spec/plan/tasks/checklist/implementation-summary)
+- [x] All acceptance criteria in spec.md REQ-001 through REQ-007 met (`implementation-summary.md:68-94`)
+- [x] Existing orphan-sweep and suspect-confirmation vitest suites updated to assert the new
+       discover-then-confirm flow, not direct deletion, and passing
+       (`npx vitest run ...`: 26/26 tests)
+- [x] Docs updated (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -163,6 +163,22 @@ and leave `memory-search.ts`'s 25ms override exactly as-is for its one existing 
 caller-local decision (no shared constant needs to move), so it does not force Decision 4's cap logic to
 also live in a new shared module — `memory-drift-healing.ts` remains the single function both callers use,
 each free to wrap it in its own timeout policy or none.
+
+### Implemented Outcomes
+
+- **Decision 1:** `OrphanSweepDeleteResult` now reports `enqueued` and `queueSize` rather than deleted rows;
+  `memory-index.ts:265-271,819-861` catches enqueue failures without aborting the scan.
+- **Decision 2:** `memory-index.ts:1074-1081` resolves scoped candidate paths with the existing index helper and
+  enqueues their ids.
+- **Decision 3:** confirmation is first in both paths at `memory-index.ts:1064-1065,1565-1576`; this is the
+  recommended next-cycle default, proven by vitest at
+  `orphan-sweep-time-budget-and-refresh.vitest.ts:131-172`.
+- **Decision 4:** `MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE = 1_000` at
+  `memory-drift-healing.ts:10`; excess new ids are deferred while current entries remain, and
+  `suspectQueueSize` is surfaced at `memory-index.ts:1164,1576`.
+- **Decision 5:** `memory-search.ts:224,421-437` remains unchanged for its sole 25ms hot-path caller. The
+  new scan callers do not override `busy_timeout`; `suspect-confirmation.vitest.ts:252-289` verifies the
+  scoped path waits at least 280ms.
 
 ### Key Components (unchanged / reused verbatim)
 
@@ -265,7 +281,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 017/018/019 (declared sequencing dependency; not yet built spec folders) | Internal | Yellow | This packet's line-number citations may drift; re-grep before implementation. If any of the three touches the same orphan-sweep/suspect-confirmation code, resolve the conflict before starting Phase 2. |
+| 017/018/019 sequencing | Internal | Complete/no overlap | Fresh `rg -n` checks re-verified current seams before implementation; no overlapping orphan-sweep or confirmation change was found. |
 | `deleteIndexedRecordIds`, `appendMemoryDriftSuspects`, `buildPathExistenceCache`, `listIndexedRecordIdsForDeletedPaths` (all already shipped) | Internal | Green | Nothing to build if blocked — these are reused verbatim, not extended in shape |
 | `config` table (already exists) | Internal | Green | No schema dependency risk |
 <!-- /ANCHOR:dependencies -->

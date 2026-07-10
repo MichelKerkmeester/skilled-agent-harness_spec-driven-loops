@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness"
     last_updated_at: "2026-06-11T12:35:00Z"
     last_updated_by: "opencode"
     recent_action: "Completed idempotency receipt fixes and regression tests"

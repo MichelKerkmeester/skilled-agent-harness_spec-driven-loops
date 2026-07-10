@@ -27,7 +27,6 @@
       "027 doc currency review"
     ],
     "key_topics": [
-      "027",
       "release",
       "alignment",
       "review",
@@ -38,7 +37,8 @@
       "doc",
       "currency",
       "phase-parent",
-      "release-alignment"
+      "release-alignment",
+      "program"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -101,7 +101,7 @@
     ],
     "causal_summary": "Phase-parent for the 027 release-alignment program: a 36-seat gpt-5.5-fast review of every README vs current reality and all OpenCode-surface code vs sk-code standards, followed by a fixer-fleet remediation of the confirmed findings.",
     "created_at": "2026-06-18T12:37:50.443Z",
-    "last_save_at": "2026-07-02T05:31:14.061Z",
+    "last_save_at": "2026-07-10T06:23:22.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

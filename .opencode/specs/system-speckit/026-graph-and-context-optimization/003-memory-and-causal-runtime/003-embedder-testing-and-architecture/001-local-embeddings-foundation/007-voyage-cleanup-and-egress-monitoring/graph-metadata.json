@@ -27,7 +27,6 @@
       "factory voyage drift warn"
     ],
     "key_topics": [
-      "007",
       "voyage",
       "cleanup",
       "delete",
@@ -38,7 +37,8 @@
       "guard",
       "plan",
       "factory",
-      "deletion"
+      "deletion",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -47,10 +47,8 @@
       "plan.md",
       "tasks.md",
       "scratch/tcpdump-verify.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       "shared/embeddings/factory.ts",
-      "mcp_server/database/context-index.sqlite",
       "implementation-summary.md"
     ],
     "entities": [
@@ -76,12 +74,6 @@
         "name": "tcpdump-verify.sh",
         "kind": "script",
         "path": "scratch/tcpdump-verify.sh",
-        "source": "derived"
-      },
-      {
-        "name": "context-index.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -197,11 +189,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Cleanup Four",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After 003 purged `VOYAGEAPIKEY` from every shell-propagating source and 004 rebuilt the memory vec store under hf-local, three sqlite files at `.opencode/skills/system-spec-kit/mcpserver/database/` were stale: `context-indexvoyagevoyage-41024.sqlite` (318MB main + 32K shm + 4MB wal) and the older generic-name `context-index.sqlite` (141MB) from before filename-keying",
     "created_at": "2026-05-12T16:27:51Z",
-    "last_save_at": "2026-07-02T05:31:11.552Z",
+    "last_save_at": "2026-07-10T06:21:43.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T22:00:00Z",
     "source_docs": [

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability",
   "description": "Memory retrieval is hard to inspect",
   "keywords": [
     "memory",
@@ -8,11 +8,11 @@
     "hard",
     "inspect"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.273Z",
+  "lastUpdated": "2026-07-10T06:21:48.115Z",
   "specId": "006",
   "folderSlug": "openltm-retrieval-observability",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search"
   ],

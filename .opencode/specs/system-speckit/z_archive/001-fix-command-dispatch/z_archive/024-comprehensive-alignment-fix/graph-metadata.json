@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/024-comprehensive-alignment-fix",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/024-comprehensive-alignment-fix",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/024-comprehensive-alignment-fix",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/024-comprehensive-alignment-fix",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -29,14 +29,14 @@
       "kit",
       "comprehensive",
       "alignment",
-      "fix",
-      "024",
       "implementation",
       "plan",
       "task",
       "breakdown",
       "tasks",
-      "checklist"
+      "checklist",
+      "audit",
+      "identified"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "A comprehensive audit identified 49 issues across the Spec-Kit command/skill ecosystem",
     "created_at": "2026-04-12T09:02:53.517Z",
-    "last_save_at": "2026-06-23T03:49:58.998Z",
+    "last_save_at": "2026-07-10T06:22:46.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -42,7 +42,6 @@
     "status": "in_progress",
     "key_files": [
       ".opencode/skills/cli-claude-code/SKILL.md",
-      ".opencode/skills/cli-codex/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       "manual_testing_playbook/manual_testing_playbook.md",
       "decision-record.md",
@@ -121,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,13 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Provider Auth Pre",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Provider Auth Pre",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Skill Do",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 5 cli- skills under `.opencode/skills/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an external CLI from another AI runtime — and were authored from the same 8-section template",
     "created_at": "2026-04-29T12:04:01Z",
-    "last_save_at": "2026-06-23T03:49:49.342Z",
+    "last_save_at": "2026-07-10T06:23:07.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,9 +211,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b209c3bfeb1d986666993a7b5eaf69d1199885381869f6420fce1483ea25c53",
+    "source_fingerprint": "sha256:3c0e1c7f254c0b4452635ca22a55d4bcdaf449052e48c3fef5193fe4f6a3c4f1",
     "source_doc_hashes": {
-      "spec.md": "150c22b5d2bdc9b9f70ab1ff17e7a5fcd61d14757b7745764fa17ec6d7d9ad96",
+      "spec.md": "689a656c92f15aa85b88b957ab9bc5c07d85f47da17868598df8746f129725cb",
       "plan.md": "d748c10e97f266f0195df3df2fe59b36a090000da63adf16fd39d2c92e773ac0",
       "tasks.md": "6a5d163f79679c4dab47a0ffa989f4dbbfe80ccbe1ca42cd4d69e80add6ead2e",
       "checklist.md": "fcbb6f0617c0626bd2f39f9a7b97f16e2f3f46fd3b20dadd2c8121b8f9f1e7cd",

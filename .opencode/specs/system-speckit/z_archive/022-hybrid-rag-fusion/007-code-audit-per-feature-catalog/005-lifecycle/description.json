@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/005-lifecycle",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/005-lifecycle",
   "description": "The feature catalog for Lifecycle has evolved significantly",
   "keywords": [
     "feature",
@@ -8,11 +8,11 @@
     "evolved",
     "significantly"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.808Z",
+  "lastUpdated": "2026-07-10T06:24:12.069Z",
   "specId": "005",
   "folderSlug": "lifecycle",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "007-code-audit-per-feature-catalog"

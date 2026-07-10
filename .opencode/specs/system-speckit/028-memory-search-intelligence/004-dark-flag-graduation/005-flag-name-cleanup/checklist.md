@@ -5,7 +5,7 @@ importance_tier: "supporting"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/005-flag-name-cleanup"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Verified the live rename, typechecks and vitest all pass"

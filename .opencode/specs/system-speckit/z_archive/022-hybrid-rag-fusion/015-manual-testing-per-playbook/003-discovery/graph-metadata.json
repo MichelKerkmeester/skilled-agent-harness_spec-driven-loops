@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -29,26 +29,32 @@
       "manual",
       "testing",
       "phase",
-      "003",
       "ex-011",
       "ex-012",
       "ex-013",
       "ex-036",
       "ex-037",
       "ex-038",
-      "ex-039"
+      "ex-039",
+      "ex-040"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
       "plan.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "tasks.md",
         "kind": "doc",
@@ -65,12 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -98,12 +98,6 @@
         "source": "derived"
       },
       {
-        "name": "Not Started",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -117,6 +111,12 @@
       },
       {
         "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 003 discovery scenarios must be executed from scratch",
     "created_at": "2026-04-12T09:02:50.290Z",
-    "last_save_at": "2026-06-23T03:50:00.230Z",
+    "last_save_at": "2026-07-10T06:24:45.549Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,9 +206,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70b56e6b6344279ecf65da539231fbfaf176740bce9ffa5ade2e4a078a154aa5",
+    "source_fingerprint": "sha256:d09dc854f99be88f013580f379a15533d5f98740ed904a61e4f8998e62b347a8",
     "source_doc_hashes": {
-      "spec.md": "2e1a711c702acfd73ade682a405a149ca15c26ae3a4cc57313e015a8013f7b0f",
+      "spec.md": "c279642fc83090cae0da224dc9616e1a1e322d34469797b4d46be1073966a5ff",
       "plan.md": "d0e50a767b4faf737eca7fedb5af8441c36677428b9c947f8d65b792d480d436",
       "tasks.md": "8093989d3f98fdac985925382625597fbaa6c1a86be49a6d04cc3b973f8f9713",
       "checklist.md": "f13d6c3240882fde02d096e654d390b77f06d513014f0e71162d52b1d73c718d",

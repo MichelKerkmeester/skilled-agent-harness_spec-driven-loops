@@ -13,8 +13,8 @@
     "lopsided causal edge growth",
     "quality gap fallback missing"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/005-memory-search-runtime-bugs",
-  "description": "A live `/memory:search` session against the indexed-continuity runtime exposed contract violations and degraded UX across the retrieval, output render",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/005-memory-search-runtime-bugs",
+  "description": "A live `/memory:search` session against the indexed-continuity runtime exposed contract violations and degraded UX across the retrieval, output",
   "keywords": [
     "live",
     "memory",
@@ -29,14 +29,13 @@
     "degraded",
     "across",
     "retrieval",
-    "output",
-    "render"
+    "output"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.853Z",
+  "lastUpdated": "2026-07-10T06:21:47.236Z",
   "specId": "005",
   "folderSlug": "memory-search-runtime-bugs",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "001-continuity-memory-runtime"

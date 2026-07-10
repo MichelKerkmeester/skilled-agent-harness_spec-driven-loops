@@ -13,7 +13,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite"
     last_updated_at: "2026-04-15T10:00:01Z"
     last_updated_by: "cli-copilot"
     recent_action: "Rewrote task ledger as cohesive planner-first delivery sequence"

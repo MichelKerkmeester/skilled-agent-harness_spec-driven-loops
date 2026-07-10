@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md"
     last_updated_at: "2026-06-10T20:07:37Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Created dedicated doctor presentation Markdown assets."

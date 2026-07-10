@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool"
     last_updated_at: "2026-05-27T08:53:23Z"
     last_updated_by: "main_agent"
     recent_action: "verified-checklist-all-p0-p1-items-complete-build-clean-12-tests-green"

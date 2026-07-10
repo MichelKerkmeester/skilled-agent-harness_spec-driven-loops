@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units"
     last_updated_at: "2026-06-13T17:40:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Shipped units A/B + tail; Unit C documented; tri-163/129/135 disposed"

@@ -1,10 +1,9 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/001-session-source-validation",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/000-dynamic-capture-deprecation/001-session-source-validation",
   "description": "Transcript selection uses filesystem `mtime` as a proxy for \"current session.\" Any touch on an older transcript makes it outrank the active session",
   "keywords": [
     "transcript",
     "selection",
-    "uses",
     "filesystem",
     "mtime",
     "proxy",
@@ -12,15 +11,14 @@
     "session",
     "touch",
     "older",
-    "makes",
     "outrank",
     "active"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.972Z",
+  "lastUpdated": "2026-07-10T06:24:46.376Z",
   "specId": "001",
   "folderSlug": "session-source-validation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing",

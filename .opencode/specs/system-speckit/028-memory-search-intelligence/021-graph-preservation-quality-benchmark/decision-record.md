@@ -1,27 +1,28 @@
 ---
 title: "Decision Record: Graph Preservation Quality Benchmark"
-description: "Three implementation-approach ADRs made during planning: reuse the existing per-flag eval harness rather than building a parallel one, author a classifier-verified labeled fixture rather than reusing the unlabeled existing corpus, and treat F15's memory_health wiring as an independent in-packet sub-task."
+description: "Four implementation-approach ADRs: reuse the existing per-flag eval harness rather than building a parallel one, author a classifier-verified labeled fixture rather than reusing the unlabeled existing corpus, treat F15's memory_health wiring as an independent in-packet sub-task, and amend REQ-003 from causal-edge regeneration (unsatisfiable with any shipped tool) to quiescence-verification."
 trigger_phrases:
   - "graph preservation quality benchmark decisions"
   - "reuse retrieval flag eval harness"
   - "classifier verified fixture"
   - "F15 counter wiring decision"
+  - "quiescence verification reindex decision"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/021-graph-preservation-quality-benchmark"
-    last_updated_at: "2026-07-09T20:40:00Z"
+    last_updated_at: "2026-07-10T14:30:00Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Authored decision-record.md scaffold, status PLANNED"
-    next_safe_action: "Hold for implementation, no code has landed"
+    recent_action: "Added ADR-004 (REQ-003 amendment) and confirmed all four ADRs implemented and verified."
+    next_safe_action: "None -- packet complete."
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-028-021-graph-preservation-quality-benchmark"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -334,6 +335,101 @@ reviewed, and (if needed) rolled back separately.
 **Rollback**: Revert the `memory-crud-health.ts` diff; `query-router.ts` is untouched by this packet.
 
 <!-- /ANCHOR:adr-003 -->
+
+---
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: REQ-003 Amended to Quiescence-Verification, Not Causal-Edge Regeneration
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-07-10 |
+| **Deciders** | Implementation session (this packet), grounded in a dedicated pre-implementation feasibility investigation |
+
+---
+
+### Context
+
+Before implementation began, a read-only feasibility investigation was run to check whether this
+packet's original plan was actually buildable. It found that the original REQ-003 wording ("a freshly
+reindexed snapshot -- embeddings and causal_edges regenerated") is unsatisfiable with any tool this
+repo currently ships: the existing reindex tooling forces an embedding rescan but only creates causal
+edges for changed folders, and can still classify unchanged rows as unchanged. No shipped tool performs
+a full causal-edge regeneration from scratch. Requiring it as written would make Phase 3 permanently
+blocked.
+
+### Constraints
+- The benchmark still needs the entity-density signal `shouldPreserveGraph()` reads to reflect a
+  coherent, non-mid-scan graph state, or the measurement is meaningless.
+- Building a true clone-only causal-edge rebuild (preserving intentional/manual edges) is a
+  substantial undertaking on its own, out of proportion to this packet's scope.
+- A manual source-database reindex would contradict this packet's own claim that mutation stays
+  confined to the temp snapshot.
+
+---
+
+### Decision
+
+**Summary**: Amend REQ-003 from "regenerate embeddings and causal edges" to "verify the source is
+quiescent (no pending/failed embeddings, no active scan/embedder job) before copying it read-only into
+the eval temp root."
+
+**Details**: The benchmark driver's pre-flight (`assertSourceQuiescent`) reads the source database
+directly and refuses to proceed if it finds pending, retry-queued, or failed embeddings, or an active
+scan/embedder job. This does not guarantee a *freshly regenerated* graph, but it does guarantee a
+*coherent* one -- no mid-write state gets copied into the snapshot the benchmark measures against.
+
+---
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Quiescence-verification (chosen)** | Buildable today with existing schema/table reads; keeps the driver fail-closed; matches what the source database can actually promise | Does not force a *fresher* graph state than whatever the source already has | 8/10 |
+| Build a new clone-only causal-edge rebuild | Would satisfy the original wording literally | A substantial new subsystem, disproportionate to this packet's scope; risks silently diverging from the production edge-derivation logic it would have to duplicate | 3/10 |
+| Keep the original wording, block on it | No implementation deviation | Makes Phase 3 permanently unbuildable with today's tooling -- the packet would never ship | 0/10 |
+
+**Why Chosen**: Quiescence-verification is the only option that is both buildable now and honest about
+what it actually guarantees. The alternative of building full causal-edge regeneration was explicitly
+weighed and rejected as disproportionate; a future packet can revisit it if a benchmark specifically
+needs freshly-regenerated (not just quiescent) edges.
+
+---
+
+### Consequences
+
+**Positive**:
+- Phase 3 is buildable and was actually run end to end against the live corpus.
+- The pre-flight is a real, testable safety property (6 test cases in
+  `graph-preservation-flag-eval-driver.vitest.ts`), not an unverifiable claim.
+
+**Negative**:
+- The benchmark measures whatever graph state the source database happens to be in at run time, not a
+  guaranteed-fresh one. Mitigation: the pre-flight records and reports the exact quiescence state
+  checked (embedding counts, scan/embedder job state) in `benchmark-results.md`, so this limitation is
+  visible, not hidden.
+
+**Risks**:
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A future reader assumes "quiescent" means "fully up to date" | M | `benchmark-results.md` and this ADR both state the distinction explicitly |
+
+---
+
+### Implementation
+
+**Affected Systems**:
+- `spec.md` REQ-003 (amended wording, acceptance criteria)
+- `plan.md` (Reindex step architecture section rewritten, both open decisions resolved)
+- `scripts/evals/run-graph-preservation-flag-eval.mjs` (`assertSourceQuiescent`, `assertWithinEvalRoot`)
+
+**Rollback**: Revert the driver's pre-flight functions; the spec/plan wording changes are documentation
+only and carry no code dependency to unwind.
+
+<!-- /ANCHOR:adr-004 -->
 
 ---
 

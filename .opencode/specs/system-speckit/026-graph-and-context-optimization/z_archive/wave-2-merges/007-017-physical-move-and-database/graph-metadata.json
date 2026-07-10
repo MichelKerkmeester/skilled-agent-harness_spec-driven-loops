@@ -22,7 +22,6 @@
       "code graph extraction 003-physical-move-and-database summary"
     ],
     "key_topics": [
-      "003",
       "physical",
       "move",
       "code",
@@ -33,7 +32,8 @@
       "source",
       "plan",
       "tasks",
-      "checklist"
+      "checklist",
+      "extraction"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "ADR-001 accepted `.opencode/skills/system-code-graph/` as the new owner of the code-graph source tree and database",
     "created_at": "2026-05-14T08:06:12Z",
-    "last_save_at": "2026-07-02T05:31:12.960Z",
+    "last_save_at": "2026-07-10T06:24:34.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:06:12Z",
     "source_docs": [

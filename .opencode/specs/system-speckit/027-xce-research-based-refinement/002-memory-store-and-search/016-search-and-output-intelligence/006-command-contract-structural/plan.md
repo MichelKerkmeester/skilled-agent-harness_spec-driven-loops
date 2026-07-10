@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "017-search-and-output-intelligence-implementation/006-command-contract-structural"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/006-command-contract-structural"
     last_updated_at: "2026-06-17T08:30:00Z"
     last_updated_by: "implementer"
     recent_action: "Shipped /memory:search arg header + salience inversion; plan superseded"

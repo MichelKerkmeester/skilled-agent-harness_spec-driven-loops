@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence",
   "description": "Manual query-intelligence scenarios for the Spec Kit Memory system live inside the central playbook and need a phase-specific document that preserves",
   "keywords": [
     "manual",
@@ -18,11 +18,11 @@
     "document",
     "preserves"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.286Z",
+  "lastUpdated": "2026-07-10T06:23:34.056Z",
   "specId": "012",
   "folderSlug": "query-intelligence",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

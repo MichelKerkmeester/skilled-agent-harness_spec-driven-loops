@@ -37,8 +37,8 @@
       "graph",
       "system-spec-kit",
       "memory",
-      "012",
-      "plan"
+      "plan",
+      "self-management"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -59,7 +59,6 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts",
-      ".claude/settings.local.json",
       "research/deep-research-strategy.md",
       "resource-map.md"
     ],
@@ -161,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
         "name": "deep-research-strategy.md",
         "kind": "doc",
         "path": "research/deep-research-strategy.md",
@@ -207,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit + skill advisor + code-graph + memory subsystems are documented as \"auto-managing\" in many places (hook injection, auto-reindexing, auto-routing, auto-prioritizing, etc.)",
     "created_at": "2026-04-29T13:15:00.000Z",
-    "last_save_at": "2026-07-02T05:31:10.856Z",
+    "last_save_at": "2026-07-10T06:23:26.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

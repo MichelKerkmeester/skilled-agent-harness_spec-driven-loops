@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/022-hybrid-rag-fusion/015-manual-testing-per-playbook"
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook"
     last_updated_at: "2026-04-29T11:10:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Backfill _memory.continuity per Tier 4 sk-doc template alignment"
@@ -49,6 +49,9 @@ _memory:
 | **Predecessor** | ../014-agents-md-alignment/spec.md |
 | **Successor** | ../016-rewrite-memory-mcp-readme/spec.md |
 | **Handoff Criteria** | Validator + phase-parent trio stay current while child packets remain the detailed execution surface |
+
+> **Historical record:** This archived phase parent remains In Progress for wrapper truth-sync and traceability remediation; the implementation summary preserves the completed historical execution coverage.
+
 <!-- /ANCHOR:metadata -->
 
 ---

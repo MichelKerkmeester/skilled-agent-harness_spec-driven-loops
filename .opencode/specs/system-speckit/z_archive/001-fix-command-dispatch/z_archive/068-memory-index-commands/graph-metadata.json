@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands",
-  "spec_folder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands",
+  "packet_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands",
+  "spec_folder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -31,18 +31,17 @@
       "command",
       "separation",
       "spec",
-      "068",
       "implementation",
       "plan",
       "tasks",
       "validation",
-      "checklist"
+      "checklist",
+      "current"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       ".opencode/commands/memory/search.md",
-      ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands/spec.md",
       "spec.md",
       "tasks.md",
       "decision-record.md",
@@ -59,7 +58,7 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/068-memory-index-commands/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "The current `/memory:search` command (667 lines) combines two fundamentally different concerns:",
     "created_at": "2026-04-12T09:02:53.541Z",
-    "last_save_at": "2026-06-23T03:49:59.251Z",
+    "last_save_at": "2026-07-10T06:22:57.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

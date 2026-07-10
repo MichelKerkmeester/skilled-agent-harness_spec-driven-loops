@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "phase-parent"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-release-readiness-deep-review-audits"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits"
     last_updated_at: "2026-04-29T22:00:00+02:00"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase parent + 10 children authored"

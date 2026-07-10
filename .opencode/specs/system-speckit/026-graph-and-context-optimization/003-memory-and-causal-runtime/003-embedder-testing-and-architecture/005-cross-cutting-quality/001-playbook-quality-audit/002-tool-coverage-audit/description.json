@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/002-tool-coverage-audit",
   "description": "Cross-reference the 42 mk-spec-memory MCP tools against pre-expansion playbook scenarios and classify coverage gaps.",
   "keywords": [
     "cross-reference",
@@ -15,11 +15,11 @@
     "coverage",
     "gaps"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.761Z",
+  "lastUpdated": "2026-07-10T06:22:26.410Z",
   "specId": "002",
   "folderSlug": "tool-coverage-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

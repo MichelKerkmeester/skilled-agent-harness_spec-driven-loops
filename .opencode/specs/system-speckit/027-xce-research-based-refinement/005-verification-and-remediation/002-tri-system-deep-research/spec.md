@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research"
     last_updated_at: "2026-06-12T00:55:00Z"
     last_updated_by: "orchestrator-session"
     recent_action: "50/50 iterations + 12-seat verification complete; registry synthesized"

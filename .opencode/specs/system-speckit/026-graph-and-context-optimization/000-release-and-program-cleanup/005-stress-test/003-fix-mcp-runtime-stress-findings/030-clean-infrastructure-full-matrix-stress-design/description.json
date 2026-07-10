@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design",
   "description": "The prior v1.0.4 run was scoped honestly but narrowly",
   "keywords": [
     "prior",
@@ -8,11 +8,11 @@
     "honestly",
     "narrowly"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.748Z",
+  "lastUpdated": "2026-07-10T06:24:26.476Z",
   "specId": "030",
   "folderSlug": "clean-infrastructure-full-matrix-stress-design",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

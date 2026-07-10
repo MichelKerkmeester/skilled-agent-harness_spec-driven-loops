@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening"
     last_updated_at: "2026-06-12T14:15:00Z"
     last_updated_by: "orchestrator-session"
     recent_action: "Committed 0c6c2bf897; render re-test 4/4 PASS under --command"

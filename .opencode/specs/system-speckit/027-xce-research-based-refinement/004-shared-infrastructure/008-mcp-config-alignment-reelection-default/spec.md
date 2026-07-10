@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "completed"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/008-mcp-config-alignment-reelection-default"
     last_updated_at: "2026-06-14T09:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped reelection default-on + MCP config 1:1 alignment"

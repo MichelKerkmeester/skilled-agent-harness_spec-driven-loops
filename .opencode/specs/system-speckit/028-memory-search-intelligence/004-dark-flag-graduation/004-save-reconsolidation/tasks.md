@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/004-save-reconsolidation"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/004-save-reconsolidation"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored and ran both harnesses, matrix complete"

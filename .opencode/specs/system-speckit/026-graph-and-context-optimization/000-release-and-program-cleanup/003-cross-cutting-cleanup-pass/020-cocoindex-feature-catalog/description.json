@@ -8,7 +8,7 @@
   ],
   "contextType": "implementation",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/020-cocoindex-feature-catalog",
   "description": "The `mcp-coco-index` skill had a broad runtime and documentation surface but no `featurecatalog/` inventory",
   "keywords": [
     "mcp-coco-index",
@@ -20,11 +20,11 @@
     "featurecatalog",
     "inventory"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.357Z",
+  "lastUpdated": "2026-07-10T06:22:29.040Z",
   "specId": "020",
   "folderSlug": "cocoindex-feature-catalog",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "003-cross-cutting-cleanup-pass"

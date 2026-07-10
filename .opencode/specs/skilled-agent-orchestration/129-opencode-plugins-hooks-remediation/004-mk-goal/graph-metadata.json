@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/004-mk-goal",
+  "spec_folder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/004-mk-goal",
+  "parent_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mk-goal remediation",
+      "mk-goal fixes",
+      "mk-goal bug fixes",
+      "opencode plugin remediation"
+    ],
+    "key_topics": [
+      "mk-goal",
+      "remediation",
+      "bug",
+      "opencode",
+      "plugin",
+      "audit",
+      "packet",
+      "surfaced",
+      "confirmed",
+      "findings",
+      "claude",
+      "hook"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/plugins/mk-goal.js",
+      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Severity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "properties.info.id",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "native",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The audit (packet 127) surfaced 17 confirmed findings in `mk-goal` and its Claude hook version (10 P1 / 5 P2 / 2 refinement)",
+    "created_at": "2026-07-10T09:27:09.282Z",
+    "last_save_at": "2026-07-10T09:27:09.282Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:e29d75098a56315544658bb2cdbb2a798ef256f763ab45e76592cc65d3d00e20",
+    "source_doc_hashes": {
+      "spec.md": "10730612ccd12b8ff9b07136e9e70f66f8d48bac0b02910ffad8b4fcd0a7b0cd",
+      "plan.md": "33cfb730019e5f0832bb5ededfac320fb5bd8f1ed559cb4f4888ffe37c69104e",
+      "tasks.md": "6a913d98acc7926d3a9dcf5938d8ce7647ac144984eed19c6ded814ff62401ce"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

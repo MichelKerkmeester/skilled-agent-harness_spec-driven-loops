@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core"
     last_updated_at: "2026-06-09T20:10:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Code-index CLI core shipped and docs reconciled"

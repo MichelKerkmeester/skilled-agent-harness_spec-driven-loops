@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/005-architecture-audit",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/005-architecture-audit",
   "description": "The codebase had blurred ownership between build-time and CLI tooling in root `scripts/` and runtime concerns in `mcpserver/`",
   "keywords": [
     "codebase",
@@ -15,11 +15,11 @@
     "concerns",
     "mcpserver"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.767Z",
+  "lastUpdated": "2026-07-10T06:23:58.553Z",
   "specId": "005",
   "folderSlug": "architecture-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

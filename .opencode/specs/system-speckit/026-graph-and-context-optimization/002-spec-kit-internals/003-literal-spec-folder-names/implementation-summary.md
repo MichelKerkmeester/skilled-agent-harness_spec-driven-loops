@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-literal-spec-folder-names"
     last_updated_at: "2026-05-19T12:49:41Z"
     last_updated_by: "claude-code"
     recent_action: "Rule 20 tightened; SWE-1.6 still conflates source/target; lint follow-on candidate"

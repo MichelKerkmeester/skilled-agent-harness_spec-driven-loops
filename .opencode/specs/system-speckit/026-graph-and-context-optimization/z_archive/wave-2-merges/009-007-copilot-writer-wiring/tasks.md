@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/007-copilot-writer-wiring"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/009-007-copilot-writer-wiring"
     last_updated_at: "2026-04-23T15:20:00Z"
     last_updated_by: "codex-gpt-5.4"
     recent_action: "Wiring was applied then reverted along with 010 in 6cd00aa51b"

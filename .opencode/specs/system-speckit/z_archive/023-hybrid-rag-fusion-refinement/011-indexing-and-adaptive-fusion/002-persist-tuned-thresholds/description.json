@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds",
-  "description": "`tuneAdaptiveThresholdsAfterEvaluation()` in `adaptive-ranking.ts` stores adjusted thresholds (`maxAdaptiveDelta`, `signalWeights`, `minSignalsForProm",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds",
+  "description": "`tuneAdaptiveThresholdsAfterEvaluation()` in `adaptive-ranking.ts` stores adjusted thresholds (`maxAdaptiveDelta`, `signalWeights`,",
   "keywords": [
     "tuneadaptivethresholdsafterevaluation",
     "adaptive-ranking",
@@ -8,14 +8,13 @@
     "adjusted",
     "thresholds",
     "maxadaptivedelta",
-    "signalweights",
-    "minsignalsforprom"
+    "signalweights"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.501Z",
+  "lastUpdated": "2026-07-10T06:22:50.756Z",
   "specId": "002",
   "folderSlug": "persist-tuned-thresholds",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement",
     "011-indexing-and-adaptive-fusion"

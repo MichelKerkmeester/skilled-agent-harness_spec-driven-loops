@@ -1,10 +1,9 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/008-naming-guard-classifier-and-validate-rule",
-  "description": "Spec folders can be created at the wrong location with a slug that embeds an existing sibling packet number (the `028-026-program-research` shape, whe",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/008-naming-guard-classifier-and-validate-rule",
+  "description": "Spec folders can be created at the wrong location with a slug that embeds an existing sibling packet number (the `028-026-program-research` shape,",
   "keywords": [
     "spec",
     "folders",
-    "created",
     "wrong",
     "location",
     "slug",
@@ -14,14 +13,13 @@
     "packet",
     "number",
     "028-026-program-research",
-    "shape",
-    "whe"
+    "shape"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.350Z",
+  "lastUpdated": "2026-07-10T06:23:09.816Z",
   "specId": "008",
   "folderSlug": "naming-guard-classifier-and-validate-rule",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "006-operator-tooling"
   ],

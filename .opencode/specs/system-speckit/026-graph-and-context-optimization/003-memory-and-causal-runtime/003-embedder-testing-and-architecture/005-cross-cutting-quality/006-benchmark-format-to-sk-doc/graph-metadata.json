@@ -32,18 +32,15 @@
       "consolidation",
       "sk-doc",
       "plan",
-      "006",
       "implementation",
       "tasks",
       "checklist",
-      "mechanics"
+      "mechanics",
+      "mcp"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/references/benchmark_creation.md",
-      ".opencode/skills/sk-doc/assets/benchmark/source_template.md",
-      ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
       ".opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       "implementation-summary.md",
@@ -53,24 +50,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "benchmark_creation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/references/benchmark_creation.md",
-        "source": "derived"
-      },
-      {
-        "name": "source_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/benchmark/source_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark_report_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/benchmark/benchmark_report_template.md",
-        "source": "derived"
-      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -196,11 +175,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The benchmark format mechanics for MCP skill-local benchmark folders were split across two separate files in sk-doc (`references/benchmarks/FORMAT.md` and `references/benchmarksformat.md`) and mirrored to sibling MCP skills via relative symlinks",
     "created_at": "2026-05-19T07:48:10Z",
-    "last_save_at": "2026-07-02T05:31:12.052Z",
+    "last_save_at": "2026-07-10T06:23:07.692Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

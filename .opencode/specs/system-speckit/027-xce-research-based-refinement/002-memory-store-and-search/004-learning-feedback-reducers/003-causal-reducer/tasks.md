@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/003-causal-reducer"
     last_updated_at: "2026-06-10T09:20:57Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Implemented deferred session-trace causal reducer and tests."

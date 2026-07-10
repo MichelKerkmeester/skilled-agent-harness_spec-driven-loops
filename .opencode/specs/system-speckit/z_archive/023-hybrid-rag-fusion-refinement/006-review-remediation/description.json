@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/006-review-remediation",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/006-review-remediation",
   "description": "The 10-iteration deep review found 14 P1 (required) and 4 P2 (advisory) findings across 5 workstreams",
   "keywords": [
     "10-iteration",
@@ -12,11 +12,11 @@
     "across",
     "workstreams"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.462Z",
+  "lastUpdated": "2026-07-10T06:22:40.048Z",
   "specId": "006",
   "folderSlug": "review-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],

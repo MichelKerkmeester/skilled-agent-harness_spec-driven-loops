@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/001-mk-spec-memory",
+  "spec_folder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/001-mk-spec-memory",
+  "parent_id": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mk-spec-memory remediation",
+      "mk-spec-memory fixes",
+      "mk-spec-memory bug fixes",
+      "opencode plugin remediation"
+    ],
+    "key_topics": [
+      "mk-spec-memory",
+      "remediation",
+      "bug",
+      "opencode",
+      "plugin",
+      "audit",
+      "packet",
+      "surfaced",
+      "confirmed",
+      "findings",
+      "claude",
+      "hook"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/plugins/mk-spec-memory.js",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+      ".claude/settings.json",
+      ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-spec-memory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-spec-memory.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-opencode-message-schema.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/spec-kit-opencode-message-schema.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Severity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The audit (packet 127) surfaced 19 confirmed findings in `mk-spec-memory` and its Claude hook version (9 P1 / 6 P2 / 4 refinement)",
+    "created_at": "2026-07-10T09:27:08.688Z",
+    "last_save_at": "2026-07-10T09:27:08.688Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:bd3680c74eb1689db9f8c9de721df6b8d622c593d55f82d5647ba85623896d82",
+    "source_doc_hashes": {
+      "spec.md": "45f48ccf04764f5b00c5eba55601c8e20da5a3f8f4e344dda14902dd7dbe067a",
+      "plan.md": "02c4c5b5ffe51fe3a32725f363bdfb3e54fe22ee70d9d43cb17218cbd49dca26",
+      "tasks.md": "aa12abe48e1d0f2cfda81854c9c3fd80dd7d65436318c9c9346298d0daf58d75"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -11,7 +11,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence"
     last_updated_at: "2026-05-14T16:49:00Z"
     last_updated_by: "codex"
     recent_action: "All 044 implementation and verification tasks completed"

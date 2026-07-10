@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffold 007 phase-parent plus 5 children (plan only, no code)"

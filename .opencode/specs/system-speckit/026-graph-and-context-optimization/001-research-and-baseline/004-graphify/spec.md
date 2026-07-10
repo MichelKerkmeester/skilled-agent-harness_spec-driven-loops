@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/004-graphify"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/001-research-and-baseline/004-graphify"
     last_updated_at: "2026-04-12T16:16:10Z"
     last_updated_by: "copilot-gpt-5-4"
     recent_action: "Reviewed packet docs"

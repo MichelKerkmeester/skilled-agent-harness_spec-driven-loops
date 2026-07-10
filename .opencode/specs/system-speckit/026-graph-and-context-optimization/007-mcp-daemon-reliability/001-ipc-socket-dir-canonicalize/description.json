@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize",
   "description": "The `mkcodeindex` (system-code-graph) MCP server failed to connect with `MCP error -32000: Connection closed`",
   "keywords": [
     "mkcodeindex",
@@ -10,15 +10,14 @@
     "failed",
     "connect",
     "error",
-    "32000",
     "connection",
     "closed"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.388Z",
+  "lastUpdated": "2026-07-10T06:22:29.991Z",
   "specId": "001",
   "folderSlug": "ipc-socket-dir-canonicalize",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

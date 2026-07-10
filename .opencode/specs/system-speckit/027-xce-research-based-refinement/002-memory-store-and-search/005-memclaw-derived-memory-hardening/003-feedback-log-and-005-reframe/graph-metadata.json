@@ -30,13 +30,13 @@
       "ledger",
       "shadow",
       "only",
-      "008",
       "reducer",
       "reframe",
       "diagnostics",
       "first",
       "reserve",
-      "system"
+      "system",
+      "artifact"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "caura-memclaw's self-improving feedback loop applies direct, immediate, asymmetric weight mutation (success `+0.10` / failure `-0.15`) to canonical memory weight with no shadow state, persists LLM-synthesized rules active at confidence ≥ 0.5, and lets low weight feed stale-archival",
     "created_at": "2026-06-06T10:10:47Z",
-    "last_save_at": "2026-07-02T05:31:13.668Z",
+    "last_save_at": "2026-07-10T06:21:52.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

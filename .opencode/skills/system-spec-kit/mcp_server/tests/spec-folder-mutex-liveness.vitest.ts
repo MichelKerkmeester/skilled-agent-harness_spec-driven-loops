@@ -15,6 +15,7 @@ import {
   getLockDir,
   getLockOwnerState,
   isReclaimableLock,
+  reclaimInterprocessLock,
   releaseInterprocessLock,
 } from '../handlers/save/spec-folder-mutex';
 
@@ -25,7 +26,14 @@ function makeAgedLock(specFolder: string, ownerPid: number | string | null): str
   tempLockDirs.push(lockDir);
   fs.mkdirSync(lockDir, { recursive: true });
   if (ownerPid !== null) {
-    fs.writeFileSync(path.join(lockDir, 'owner.json'), JSON.stringify({ pid: ownerPid, specFolder }));
+    fs.writeFileSync(path.join(lockDir, 'owner.json'), JSON.stringify({
+      version: 1,
+      pid: ownerPid,
+      token: 'fixture-owner-token',
+      heartbeatAt: new Date().toISOString(),
+      specFolder,
+      acquiredAt: new Date().toISOString(),
+    }));
   }
   const oldTime = new Date(Date.now() - LOCK_STALE_MS - 1_000);
   fs.utimesSync(lockDir, oldTime, oldTime);
@@ -78,6 +86,8 @@ describe('spec-folder save mutex liveness', () => {
     const lockDir = makeAgedLock('specs/mutex-live-owner', process.pid);
     expect(getLockOwnerState(lockDir)).toBe('alive');
     expect(isReclaimableLock(lockDir)).toBe(false);
+    expect(reclaimInterprocessLock(lockDir)).toBe(false);
+    expect(fs.existsSync(lockDir)).toBe(true);
   });
 
   it('reclaims an aged lock owned by a dead pid', async () => {
@@ -98,6 +108,35 @@ describe('spec-folder save mutex liveness', () => {
     fs.mkdirSync(freshDir, { recursive: true });
     expect(getLockOwnerState(freshDir)).toBe('unknown');
     expect(isReclaimableLock(freshDir)).toBe(false);
+  });
+
+  it('does not age-reclaim a valid owner when liveness is unknown', () => {
+    const lockDir = makeAgedLock('specs/mutex-unknown-liveness', 42);
+    vi.spyOn(process, 'kill').mockImplementation(() => {
+      throw Object.assign(new Error('probe unavailable'), { code: 'EIO' });
+    });
+
+    expect(getLockOwnerState(lockDir)).toBe('unknown');
+    expect(isReclaimableLock(lockDir)).toBe(false);
+    expect(reclaimInterprocessLock(lockDir)).toBe(false);
+  });
+
+  it('does not release a lock after its ownership token changes', () => {
+    const lockDir = getLockDir('specs/mutex-successor-owner');
+    tempLockDirs.push(lockDir);
+    fs.mkdirSync(path.dirname(lockDir), { recursive: true });
+    const handle = createInterprocessLock('specs/mutex-successor-owner', lockDir);
+    const successorOwner = {
+      ...JSON.parse(fs.readFileSync(path.join(lockDir, 'owner.json'), 'utf8')),
+      token: 'successor-owner-token',
+    };
+    fs.writeFileSync(path.join(lockDir, 'owner.json'), JSON.stringify(successorOwner));
+
+    releaseInterprocessLock(handle);
+
+    expect(fs.existsSync(lockDir)).toBe(true);
+    expect(JSON.parse(fs.readFileSync(path.join(lockDir, 'owner.json'), 'utf8')).token)
+      .toBe('successor-owner-token');
   });
 
   it('refreshes the lock directory mtime while the lock is held', async () => {

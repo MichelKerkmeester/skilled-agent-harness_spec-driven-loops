@@ -1,7 +1,7 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs",
-  "description": "The rerank sidecar reaper implementation exists in the app and launchers, but the shell launcher still needs to forward the approved reaper controls t",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs",
+  "description": "The rerank sidecar reaper implementation exists in the app and launchers, but the shell launcher still needs to forward the approved reaper controls",
   "keywords": [
     "rerank",
     "sidecar",
@@ -18,11 +18,11 @@
     "approved",
     "controls"
   ],
-  "lastUpdated": "2026-06-23T03:49:55.306Z",
+  "lastUpdated": "2026-07-10T06:23:28.225Z",
   "specId": "004",
   "folderSlug": "implement-env-knobs-and-skill-docs",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

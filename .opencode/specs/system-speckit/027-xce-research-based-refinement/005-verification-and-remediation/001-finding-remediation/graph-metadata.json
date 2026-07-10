@@ -33,7 +33,6 @@
       "p1 p2 backlog lanes"
     ],
     "key_topics": [
-      "027",
       "finding",
       "remediation",
       "epic",
@@ -44,7 +43,8 @@
       "120-seat",
       "deep-review",
       "adjudicated",
-      "only"
+      "only",
+      "strongest"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -111,7 +111,7 @@
     ],
     "causal_summary": "The 120-seat epic deep-review sweep adjudicated only its 41 strongest finding clusters (23 confirmed and fixed)",
     "created_at": "2026-06-11T19:10:00Z",
-    "last_save_at": "2026-07-02T05:31:14.000Z",
+    "last_save_at": "2026-07-10T06:24:47.354Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

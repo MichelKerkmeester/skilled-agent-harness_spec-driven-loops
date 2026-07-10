@@ -25,9 +25,6 @@
       "016 retrieval surface summary"
     ],
     "key_topics": [
-      "016",
-      "013",
-      "001",
       "indexer",
       "investigation",
       "council",
@@ -36,7 +33,10 @@
       "loop",
       "surface",
       "system",
-      "embedder"
+      "embedder",
+      "mapping",
+      "plan",
+      "retrieval"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Map each retrieval/dispatch system (CocoIndex, mk-spec-memory, code-graph, AI council, deep-research, deep-review, sk-doc, skill-advisor) to its indexer + content type (code / text / both / none). Read-only research packet producing a single research.md table + per-system evidence.",
     "created_at": "2026-05-18T16:52:17.344Z",
-    "last_save_at": "2026-07-02T05:31:12.118Z",
+    "last_save_at": "2026-07-10T06:21:50.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

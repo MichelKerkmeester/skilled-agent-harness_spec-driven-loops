@@ -13,13 +13,11 @@
   "status": "complete",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook",
   "description": "Add manualtestingplaybook scenarios for each 027 feature, flag, and CLI surface, then bump the drift-prone count self-check",
   "keywords": [
-    "add",
     "manualtestingplaybook",
     "scenarios",
-    "027",
     "feature",
     "flag",
     "cli",
@@ -29,11 +27,11 @@
     "count",
     "self-check"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.883Z",
+  "lastUpdated": "2026-07-10T06:22:37.748Z",
   "specId": "004",
   "folderSlug": "skill-manual-playbook",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup"
   ],

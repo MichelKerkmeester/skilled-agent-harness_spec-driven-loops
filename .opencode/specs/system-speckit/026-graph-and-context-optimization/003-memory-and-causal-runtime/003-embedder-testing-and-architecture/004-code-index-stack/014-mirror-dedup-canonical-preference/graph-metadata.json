@@ -27,9 +27,6 @@
       "016/004/014 checklist"
     ],
     "key_topics": [
-      "016",
-      "004",
-      "014",
       "mirror",
       "dedup",
       "canonical",
@@ -38,7 +35,10 @@
       "collapse",
       "rerank",
       "window",
-      "pollution"
+      "pollution",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Hardens CocoIndex's _dedup_and_rank_hybrid_rows() so the 4 runtime mirrors (.opencode/.codex/.gemini/.claude) collapse to ONE canonical representative before the rerank window is selected. Operator-configurable canonical mirror via COCOINDEX_CANONICAL_MIRROR (default .opencode). Eliminates redundant rerank slots, gives every embedder + reranker a cleaner candidate set, addresses the mirror-pollution failure mode documented in 011/research iter 2 + iter 5. Embedder-agnostic, reranker-agnostic, future-proof for any new mirror that gets added.",
     "created_at": "2026-05-19T13:10:00.000Z",
-    "last_save_at": "2026-07-02T05:31:11.932Z",
+    "last_save_at": "2026-07-10T06:23:05.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

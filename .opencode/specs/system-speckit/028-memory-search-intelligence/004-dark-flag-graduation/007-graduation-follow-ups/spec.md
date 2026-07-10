@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-dark-flag-graduation/007-graduation-follow-ups"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups"
     last_updated_at: "2026-06-24T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase parent scaffolded with four graduation follow-up child phases"

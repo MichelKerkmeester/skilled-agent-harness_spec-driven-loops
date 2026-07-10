@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -37,15 +37,21 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "mcp_server/api/eval.ts",
       "scripts/evals/run-ablation.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "eval.ts",
         "kind": "code",
@@ -74,12 +80,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The feature catalog for Evaluation and Measurement has evolved significantly",
     "created_at": "2026-04-12T09:02:50.249Z",
-    "last_save_at": "2026-06-23T03:49:59.829Z",
+    "last_save_at": "2026-07-10T06:23:24.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

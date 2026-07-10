@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard"
     last_updated_at: "2026-06-06T05:50:56Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored research plan and recommended design layers"

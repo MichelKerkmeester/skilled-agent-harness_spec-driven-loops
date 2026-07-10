@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/010-cocoindex-code-only-patterns"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/010-cocoindex-code-only-patterns"
     last_updated_at: "2026-05-13T06:55:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Patterns removed; rebuild in flight"

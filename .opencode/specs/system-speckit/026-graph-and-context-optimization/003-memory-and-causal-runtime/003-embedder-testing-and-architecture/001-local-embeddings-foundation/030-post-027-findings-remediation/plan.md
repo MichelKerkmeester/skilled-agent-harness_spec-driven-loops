@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/030-post-027-findings-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/030-post-027-findings-remediation"
     last_updated_at: "2026-05-13T19:18:30Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

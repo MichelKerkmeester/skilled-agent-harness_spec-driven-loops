@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/056-spec-kit-references-reorganization",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/056-spec-kit-references-reorganization",
   "description": "The `system-spec-kit` skill's `references/` folder currently has a flat structure with all reference files at the root level",
   "keywords": [
     "system-spec-kit",
@@ -14,11 +14,11 @@
     "root",
     "level"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.207Z",
+  "lastUpdated": "2026-07-10T06:24:49.178Z",
   "specId": "056",
   "folderSlug": "spec-kit-references-reorganization",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

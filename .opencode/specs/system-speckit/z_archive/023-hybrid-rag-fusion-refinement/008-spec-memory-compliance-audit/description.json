@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit",
   "description": "After completing 7 phases of ESM migration, the spec and memory ecosystem has accumulated document drift, template non-compliance, and memory quality",
   "keywords": [
     "completing",
@@ -16,11 +16,11 @@
     "non-compliance",
     "quality"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.475Z",
+  "lastUpdated": "2026-07-10T06:22:59.044Z",
   "specId": "008",
   "folderSlug": "spec-memory-compliance-audit",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],

@@ -25,18 +25,18 @@
       "deep review remediation adr"
     ],
     "key_topics": [
-      "017-021",
       "remediation",
       "deep",
       "review",
-      "017",
-      "021",
       "search",
       "output",
       "intelligence",
       "plan",
       "tasks",
-      "reindex"
+      "reindex",
+      "maintenance",
+      "checklist",
+      "decisions"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 027/002 phases 017-021 shipped working, tested code, but the 50-pass review surfaced a set of confirmed residual issues: one bounded shell-exposure P1 in the `/memory:search` command contract, several maintainability/observability/test-debt P2s in the search and reindex/maintenance code, and pervasive spec-folder doc drift where canonical docs still describe scaffold/planned state while the implementation-summaries record completed work",
     "created_at": "2026-06-17T20:05:00.777Z",
-    "last_save_at": "2026-07-02T05:31:14.054Z",
+    "last_save_at": "2026-07-10T06:23:42.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1f6f8f0f0d07fd8d2778259800aa711b2f590c61b9fb20ee066e31aea89d60d6",
+    "source_fingerprint": "sha256:28dcf282aabacc1862942c6a3a343cfff5f408a5e60bb41662646089081025de",
     "source_doc_hashes": {
       "spec.md": "cb293377dd6e862d79852df7bd39a781414629350cf0080c0fe76386d26e5266",
       "plan.md": "c9140329dcae46f635064c997f6be7ce8e30e456da20496f18c295a5c2dbd1f2",
       "tasks.md": "621879a63ca0787377c79f96792eeb3d880b5698a0bb11a1407e27a0ace246c4",
       "checklist.md": "fbfb471858ae6382999249951d931bd9e6eac63aec62ddecb23e41cf69dab6cc",
       "decision-record.md": "2f33f297fdce5df08060b3169d2ac206189878432107cfe4cf11ef59c2ac390e",
-      "implementation-summary.md": "e51633088c18cbfcdf7f8874b7f9ade30e52eb55ea0eaf0da7c7be0647184e43",
+      "implementation-summary.md": "9d95e23a365f0e4be975ee85c0d5dde9b12c34c9cbc5b74100325dd0025bfee6",
       "handover.md": "852e762d630144c3bfeb6d472735806604e1b4a7df881318a34acfb66cde29e1"
     },
     "last_active_child_id": null,

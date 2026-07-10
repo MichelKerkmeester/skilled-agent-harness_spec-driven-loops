@@ -16,13 +16,13 @@
     "thresholds",
     "tested"
   ],
-  "lastUpdated": "2026-06-23T03:49:51.663Z",
+  "lastUpdated": "2026-07-10T06:24:20.747Z",
   "specId": "016",
   "folderSlug": "sk-prompt-playbook-forkability-decouple",
   "parentChain": [
     "skilled-agent-orchestration",
     "z_archive",
-    "130-prompt-knowledge-layering"
+    "105-prompt-knowledge-layering"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

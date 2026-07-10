@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation"
     last_updated_at: "2026-05-28T12:20:00Z"
     last_updated_by: "claude-opus"
     recent_action: "verified-live-drain-T021-retry-zero-28843-success-22-genuine-failed"

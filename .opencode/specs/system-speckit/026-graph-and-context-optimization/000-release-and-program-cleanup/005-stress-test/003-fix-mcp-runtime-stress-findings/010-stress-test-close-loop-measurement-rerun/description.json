@@ -8,8 +8,8 @@
     "per-packet verdict",
     "stress-test v1.0.2"
   ],
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun",
-  "description": "The v1.0.1 stress-test sweep (`../001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md`) baselined the four MCP-runtime s",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun",
+  "description": "The v1.0.1 stress-test sweep (`../001-search-intelligence-stress-playbook/002-search-scenario-execution/findings.md`) baselined the four MCP-runtime",
   "keywords": [
     "stress-test",
     "sweep",
@@ -20,11 +20,11 @@
     "four",
     "mcp-runtime"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.602Z",
+  "lastUpdated": "2026-07-10T06:21:44.987Z",
   "specId": "010",
   "folderSlug": "stress-test-close-loop-measurement-rerun",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",
     "005-stress-test",

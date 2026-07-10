@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-fix-template-deferred-followups"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups"
     last_updated_at: "2026-05-01T20:32:55Z"
     last_updated_by: "codex"
     recent_action: "Scoped deferred followups"
@@ -46,7 +46,7 @@ This packet implements the ten P1/P2 items deferred from 003 Gate 7 because they
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1/P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-01 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

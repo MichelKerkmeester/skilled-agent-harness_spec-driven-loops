@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard"
     last_updated_at: "2026-06-07T13:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Marked verification items with evidence"

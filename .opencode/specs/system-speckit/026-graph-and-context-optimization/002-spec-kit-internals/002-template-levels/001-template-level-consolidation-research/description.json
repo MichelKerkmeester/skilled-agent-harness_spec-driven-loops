@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
-  "description": "The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated 83 .md template files (~13K LOC) across `core/`, `addendu",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
+  "description": "The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated 83 .md template files (~13K LOC) across `core/`,",
   "keywords": [
     "current",
     "template",
@@ -14,14 +14,13 @@
     "13k",
     "loc",
     "across",
-    "core",
-    "addendu"
+    "core"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.734Z",
+  "lastUpdated": "2026-07-10T06:22:49.913Z",
   "specId": "001",
   "folderSlug": "template-level-consolidation-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "002-spec-kit-internals",
     "002-template-levels"

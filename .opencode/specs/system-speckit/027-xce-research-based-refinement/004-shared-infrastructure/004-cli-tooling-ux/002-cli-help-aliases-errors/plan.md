@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors"
     last_updated_at: "2026-06-11T01:10:42Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Completed planned CLI help, alias, and error-hint work"

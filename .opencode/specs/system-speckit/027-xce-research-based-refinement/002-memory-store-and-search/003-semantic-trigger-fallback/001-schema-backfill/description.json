@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill",
-  "description": "The semantic trigger stage needs cached trigger-phrase embeddings to run, but the trigger hot path has a tight latency budget (`trigger-matcher.ts:132",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill",
+  "description": "The semantic trigger stage needs cached trigger-phrase embeddings to run, but the trigger hot path has a tight latency budget",
   "keywords": [
     "semantic",
     "trigger",
@@ -15,15 +15,13 @@
     "path",
     "tight",
     "latency",
-    "budget",
-    "trigger-matcher",
-    "132"
+    "budget"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.183Z",
+  "lastUpdated": "2026-07-10T06:22:39.449Z",
   "specId": "001",
   "folderSlug": "schema-backfill",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "003-semantic-trigger-fallback"

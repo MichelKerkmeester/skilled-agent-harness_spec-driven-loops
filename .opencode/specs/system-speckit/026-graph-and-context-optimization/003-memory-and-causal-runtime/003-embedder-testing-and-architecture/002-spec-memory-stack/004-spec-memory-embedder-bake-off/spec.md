@@ -15,7 +15,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/004-spec-memory-embedder-bake-off"
     last_updated_at: "2026-05-17T11:54:33Z"
     last_updated_by: "main_agent"
     recent_action: "Flipped retrieval-rescue layer default-on; cat-24/409 closure path remains 8/10 top-3"

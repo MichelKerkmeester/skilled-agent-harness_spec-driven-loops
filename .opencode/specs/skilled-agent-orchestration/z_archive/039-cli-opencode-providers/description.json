@@ -1,6 +1,6 @@
 {
   "specFolder": "skilled-agent-orchestration/z_archive/039-cli-opencode-providers",
-  "description": "The cli-opencode skill currently treats `github-copilot` as the default provider with `gpt-5.4` and `claude-sonnet-4.6` surfaced by name across SKILL.",
+  "description": "The cli-opencode skill currently treats `github-copilot` as the default provider with `gpt-5.4` and `claude-sonnet-4.6` surfaced by name across",
   "keywords": [
     "cli-opencode",
     "skill",
@@ -15,7 +15,7 @@
     "name",
     "across"
   ],
-  "lastUpdated": "2026-06-23T03:49:49.338Z",
+  "lastUpdated": "2026-07-10T06:22:32.405Z",
   "specId": "039",
   "folderSlug": "cli-opencode-providers",
   "parentChain": [

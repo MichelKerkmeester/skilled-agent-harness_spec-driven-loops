@@ -55,7 +55,7 @@
       "shared",
       "cross-encoder",
       "daemon",
-      "008"
+      "qwen3-reranker-0"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -116,7 +116,7 @@
     ],
     "causal_summary": "Umbrella for the 5-phase arc that brings a shared Python cross-encoder reranker (Qwen3-Reranker-0.6B) to both mk-spec-memory and mk-coco-index via a new `system-rerank-sidecar` skill. Closes the gap where cross-encoder.ts has a pre-wired `local` HTTP provider slot but no sidecar runs at localhost:8765, leaving every memory_search at HIGH_THRESHOLD=0.7 with positional fallback scores capped at ~0.5 (quality=weak).",
     "created_at": "2026-05-23T11:55:15.599Z",
-    "last_save_at": "2026-07-02T05:31:12.131Z",
+    "last_save_at": "2026-07-10T06:24:13.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

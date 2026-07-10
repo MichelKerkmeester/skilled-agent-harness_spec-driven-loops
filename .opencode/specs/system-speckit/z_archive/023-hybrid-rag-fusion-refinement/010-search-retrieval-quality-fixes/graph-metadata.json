@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
-  "spec_folder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
-  "parent_id": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement",
+  "packet_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
+  "spec_folder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
+  "parent_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,16 +41,22 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "mcp_server/handlers/memory-context.ts",
       "mcp_server/handlers/memory-search.ts",
       "mcp_server/lib/search/folder-discovery.ts",
-      "spec.md",
       "plan.md",
       "checklist.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "memory-context.ts",
         "kind": "code",
@@ -67,12 +73,6 @@
         "name": "folder-discovery.ts",
         "kind": "code",
         "path": "mcp_server/lib/search/folder-discovery.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`memorycontext({ input: \"semantic search\", mode: \"deep\", intent: \"understand\" })` returns 0 results despite the database containing 1202 memories with 20+ relevant matches",
     "created_at": "2026-04-12T09:02:50.323Z",
-    "last_save_at": "2026-06-23T03:50:00.485Z",
+    "last_save_at": "2026-07-10T06:24:02.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

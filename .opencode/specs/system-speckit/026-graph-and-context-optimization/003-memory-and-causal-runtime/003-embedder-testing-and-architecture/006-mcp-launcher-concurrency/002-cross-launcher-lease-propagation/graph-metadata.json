@@ -32,11 +32,11 @@
       "single",
       "writer",
       "mk-spec-memory",
-      "008",
-      "007",
       "launcher",
       "implementation",
-      "plan"
+      "plan",
+      "name",
+      "template"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`mkcodeindex` was running 3 concurrent launcher processes at the time of audit (PIDs 60648 1d 15h, 52517 1d 17h, 12919 8h elapsed)",
     "created_at": "2026-05-18T05:41:20Z",
-    "last_save_at": "2026-07-07T12:30:10.173Z",
+    "last_save_at": "2026-07-10T06:24:04.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

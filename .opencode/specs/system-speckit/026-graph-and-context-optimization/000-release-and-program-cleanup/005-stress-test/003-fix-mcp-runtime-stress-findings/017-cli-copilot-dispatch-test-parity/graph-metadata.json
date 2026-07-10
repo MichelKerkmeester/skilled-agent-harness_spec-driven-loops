@@ -34,11 +34,11 @@
       "parity",
       "f-004",
       "cli-matrix",
-      "fix",
       "vitest",
       "buildcopilotpromptarg",
       "packet",
-      "hardening"
+      "hardening",
+      "promptfilebody"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The 011 deep-review report (`../011-research-post-stress-finding-followups/review/review-report.md`) §4 surfaced F-004 [P2]:",
     "created_at": "2026-04-27T18:30:00Z",
-    "last_save_at": "2026-07-02T05:31:10.787Z",
+    "last_save_at": "2026-07-10T06:23:38.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

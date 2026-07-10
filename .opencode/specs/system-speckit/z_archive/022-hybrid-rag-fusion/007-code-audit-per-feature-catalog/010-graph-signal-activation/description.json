@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/010-graph-signal-activation",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/010-graph-signal-activation",
   "description": "The feature catalog for Graph Signal Activation has evolved significantly",
   "keywords": [
     "feature",
@@ -10,11 +10,11 @@
     "evolved",
     "significantly"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.838Z",
+  "lastUpdated": "2026-07-10T06:23:26.083Z",
   "specId": "010",
   "folderSlug": "graph-signal-activation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "007-code-audit-per-feature-catalog"

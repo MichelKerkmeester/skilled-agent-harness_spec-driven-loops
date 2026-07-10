@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux",
-  "description": "Speckit Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contrac",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/002-speckit-commands/004-verify-and-ux",
+  "description": "Speckit Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and",
   "keywords": [
     "speckit",
     "commands",
@@ -15,14 +15,13 @@
     "without",
     "mixing",
     "implementation",
-    "routing",
-    "display-contrac"
+    "routing"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.704Z",
+  "lastUpdated": "2026-07-10T06:24:31.725Z",
   "specId": "004",
   "folderSlug": "verify-and-ux",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "004-shared-infrastructure",
     "002-command-presentation-workflow-separation",

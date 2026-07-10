@@ -16,8 +16,8 @@
     "last_active_child_id": null,
     "status": "complete"
   },
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
-  "description": "Manual testing verification packet for the mk-code-index rename and post-014 work. Layer-1 execution of every scenario in the manual_testing_playbook",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-030-manual-testing-verification",
+  "description": "Manual testing verification packet for the mk-code-index rename and post-014 work.",
   "keywords": [
     "manual",
     "testing",
@@ -26,17 +26,13 @@
     "mk-code-index",
     "rename",
     "post-014",
-    "work",
-    "layer-1",
-    "execution",
-    "every",
-    "scenario"
+    "work"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.790Z",
+  "lastUpdated": "2026-07-10T06:22:26.201Z",
   "specId": "007",
   "folderSlug": "030-manual-testing-verification",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "z_archive",
     "wave-3-deep-archives"

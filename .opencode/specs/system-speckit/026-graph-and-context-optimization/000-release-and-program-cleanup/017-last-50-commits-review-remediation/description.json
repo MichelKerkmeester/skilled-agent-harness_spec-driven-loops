@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/017-last-50-commits-review-remediation",
   "description": "The sibling deep-review packet `016-last-50-commits-deep-review` returned a CONDITIONAL verdict over the last 50 commits: 0 active P0, 3 actionable P1",
   "keywords": [
     "sibling",
@@ -15,11 +15,11 @@
     "active",
     "actionable"
   ],
-  "lastUpdated": "2026-06-23T03:49:53.089Z",
+  "lastUpdated": "2026-07-10T06:22:16.434Z",
   "specId": "017",
   "folderSlug": "last-50-commits-review-remediation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup"
   ],

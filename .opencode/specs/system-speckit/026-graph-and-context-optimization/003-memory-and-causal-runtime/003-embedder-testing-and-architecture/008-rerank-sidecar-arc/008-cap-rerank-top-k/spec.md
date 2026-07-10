@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k"
     last_updated_at: "2026-05-21T15:30:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Superseded by 011/005 opt-in closure"
@@ -30,7 +30,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | Planned |
+| **Status** | Shipped — HOLD |
 | **Created** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` (re-opened from complete after packet 007 HOLD) |

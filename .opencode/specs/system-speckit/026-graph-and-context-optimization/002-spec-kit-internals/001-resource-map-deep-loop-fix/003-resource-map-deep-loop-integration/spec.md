@@ -12,7 +12,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration"
     last_updated_at: "2026-04-24T14:30:00+02:00"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Shipped resource-map integration + sk-doc DQI alignment + tree sync"

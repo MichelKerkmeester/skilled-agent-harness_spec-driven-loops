@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/004-write-path-reconciliation",
   "description": "`memoryindexscan` and `memorysave` currently reconcile state through scattered handler branches and post-mutation hooks",
   "keywords": [
     "memoryindexscan",
@@ -14,11 +14,11 @@
     "post-mutation",
     "hooks"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.170Z",
+  "lastUpdated": "2026-07-10T06:21:54.224Z",
   "specId": "004",
   "folderSlug": "write-path-reconciliation",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "002-memory-index-causal-lifecycle"

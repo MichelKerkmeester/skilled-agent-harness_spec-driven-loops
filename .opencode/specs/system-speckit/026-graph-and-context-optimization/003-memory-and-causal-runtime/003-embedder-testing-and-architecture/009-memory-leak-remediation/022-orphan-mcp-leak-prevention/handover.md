@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "handover"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention"
     last_updated_at: "2026-05-24T22:00:00Z"
     last_updated_by: "codex"
     recent_action: "authored system-spec-kit handover after implementation, documentation, commit, and push"

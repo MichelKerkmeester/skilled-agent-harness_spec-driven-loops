@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/016-json-mode-hybrid-enrichment",
   "description": "This packet had drifted into a historical phase container that no longer matched active system-spec-kit template rules",
   "keywords": [
     "packet",
@@ -14,11 +14,11 @@
     "template",
     "rules"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.094Z",
+  "lastUpdated": "2026-07-10T06:23:52.639Z",
   "specId": "016",
   "folderSlug": "json-mode-hybrid-enrichment",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "009-perfect-session-capturing"

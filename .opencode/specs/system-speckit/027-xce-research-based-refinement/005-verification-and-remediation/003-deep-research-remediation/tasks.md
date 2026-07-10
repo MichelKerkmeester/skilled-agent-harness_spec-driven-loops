@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation"
     last_updated_at: "2026-06-12T12:10:00Z"
     last_updated_by: "claude-fable-orchestrator"
     recent_action: "L1 + L8 lanes closed with Fable verdicts and scoped commits"

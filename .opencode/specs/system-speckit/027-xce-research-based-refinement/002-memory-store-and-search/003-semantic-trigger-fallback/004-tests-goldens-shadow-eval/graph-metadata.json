@@ -24,9 +24,7 @@
       "impl summary core"
     ],
     "key_topics": [
-      "027",
       "phase",
-      "004",
       "goldens",
       "shadow",
       "eval",
@@ -35,7 +33,9 @@
       "union",
       "promotion",
       "semantic",
-      "flags"
+      "flags",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Without a goldens fixture, latency gate, and shadow telemetry, the semantic stage cannot be safely tuned or promoted from shadow to union",
     "created_at": "2026-06-06T13:35:46Z",
-    "last_save_at": "2026-07-02T05:31:13.638Z",
+    "last_save_at": "2026-07-10T06:23:05.562Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

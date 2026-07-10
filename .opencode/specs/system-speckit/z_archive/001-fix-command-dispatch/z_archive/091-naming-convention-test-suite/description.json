@@ -1,16 +1,14 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/091-naming-convention-test-suite",
   "description": "The naming convention migration (spec 090) renames identifiers across ~206 JS files, 9 skill docs, and touches shell/Python scripts",
   "keywords": [
     "naming",
     "convention",
     "migration",
     "spec",
-    "090",
     "renames",
     "identifiers",
     "across",
-    "206",
     "files",
     "skill",
     "docs",
@@ -19,11 +17,11 @@
     "python",
     "scripts"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.415Z",
+  "lastUpdated": "2026-07-10T06:22:16.176Z",
   "specId": "091",
   "folderSlug": "naming-convention-test-suite",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

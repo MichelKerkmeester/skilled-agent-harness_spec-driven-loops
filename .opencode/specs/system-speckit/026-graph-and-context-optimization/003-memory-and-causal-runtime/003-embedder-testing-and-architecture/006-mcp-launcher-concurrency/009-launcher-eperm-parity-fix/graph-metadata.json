@@ -25,13 +25,13 @@
       "lease",
       "mcp",
       "reconnect",
-      "32000",
       "parity",
-      "009",
       "plan",
       "tasks",
       "implementation",
-      "summary"
+      "summary",
+      "propagate",
+      "skill-advisor"
     ],
     "importance_tier": "useful",
     "status": "complete",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Propagate skill-advisor's EPERM handling in leaseHeldFromFile to mk-spec-memory and mk-code-index launchers. Closes the -32000 MCP reconnect failure where process.kill(pid, 0) returns EPERM in the Claude/Codex sandbox and the two launchers crash because they only handle ESRCH.",
     "created_at": "2026-05-18T20:00:10.250Z",
-    "last_save_at": "2026-07-02T05:31:12.094Z",
+    "last_save_at": "2026-07-10T06:22:12.789Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights"
     last_updated_at: "2026-06-11T07:05:00Z"
     last_updated_by: "claude-fable-5"
     recent_action: "Deep-review remediation; realistic fixture breached 150MB RSS-spike budget"

@@ -25,18 +25,18 @@
       "003 implementation summary"
     ],
     "key_topics": [
-      "013",
       "remediation",
       "rm8",
       "doctor",
       "commands",
-      "fixes",
       "deep-review",
       "conditional",
       "pass",
-      "003",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 013 deep-review identified that 013 + 001 + 002 spec docs lie about completion state (checklists 100% unchecked while implementation-summaries claim 95% complete; `lastactivechildid` null despite handover claiming it is set; resource-maps say \"PLANNED\" while files are on disk)",
     "created_at": "2026-05-11T08:32:25Z",
-    "last_save_at": "2026-07-02T05:31:12.785Z",
+    "last_save_at": "2026-07-10T06:24:18.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,10 +1,9 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
-  "description": "Spec 026 needed two related documentation deliverables: the umbrella docs and catalogs had to be rolled up to reflect shipped capabilities, and the pr",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
+  "description": "Spec 026 needed two related documentation deliverables: the umbrella docs and catalogs had to be rolled up to reflect shipped capabilities, and the",
   "keywords": [
     "spec",
-    "026",
     "needed",
     "two",
     "related",
@@ -18,11 +17,11 @@
     "shipped",
     "capabilities"
   ],
-  "lastUpdated": "2026-06-23T03:49:52.898Z",
+  "lastUpdated": "2026-07-10T06:22:23.504Z",
   "specId": "008",
   "folderSlug": "docs-and-catalogs-rollup",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup"
   ],

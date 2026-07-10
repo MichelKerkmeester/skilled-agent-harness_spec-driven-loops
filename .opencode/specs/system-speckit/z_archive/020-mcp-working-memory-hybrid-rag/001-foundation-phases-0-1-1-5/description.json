@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/001-foundation-phases-0-1-1-5",
+  "specFolder": "system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/001-foundation-phases-0-1-1-5",
   "description": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Foundation Phases 0 1 1 5",
   "keywords": [
     "archived",
@@ -13,11 +13,11 @@
     "foundation",
     "phases"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.578Z",
+  "lastUpdated": "2026-07-10T06:24:34.540Z",
   "specId": "001",
   "folderSlug": "foundation-phases-0-1-1-5",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "020-mcp-working-memory-hybrid-rag"
   ],

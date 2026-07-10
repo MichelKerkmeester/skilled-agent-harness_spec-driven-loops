@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-review-remediation/003-doc-accuracy"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-review-remediation/003-doc-accuracy"
     last_updated_at: "2026-07-06T19:32:21.971Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed the parent-dispatched doc fixes for P1-6 plus the staleness cluster"

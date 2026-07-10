@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/004-tests-goldens-shadow-eval"
     last_updated_at: "2026-06-10T10:50:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Marked completed with verification evidence"

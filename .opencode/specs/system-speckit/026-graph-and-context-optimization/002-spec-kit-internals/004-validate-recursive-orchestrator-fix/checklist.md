@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-validate-recursive-orchestrator-fix"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/004-validate-recursive-orchestrator-fix"
     last_updated_at: "2026-05-29T11:47:40Z"
     last_updated_by: "claude-opus"
     recent_action: "Verified all P0 and P1 checklist items with evidence"

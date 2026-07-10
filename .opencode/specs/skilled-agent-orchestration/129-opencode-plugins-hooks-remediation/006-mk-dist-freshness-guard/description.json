@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/006-mk-dist-freshness-guard",
+  "description": "Fix plan for the mk-dist-freshness-guard audit findings; one task per finding, planned not implemented.",
+  "keywords": [
+    "mk-dist-freshness-guard",
+    "remediation",
+    "fixes",
+    "plugin",
+    "bugs",
+    "plan"
+  ],
+  "lastUpdated": "2026-07-10T09:27:08.489Z",
+  "specId": "006",
+  "folderSlug": "mk-dist-freshness-guard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "129-opencode-plugins-hooks-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

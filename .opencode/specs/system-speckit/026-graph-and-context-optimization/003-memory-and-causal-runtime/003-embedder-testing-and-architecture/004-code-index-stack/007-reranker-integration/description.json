@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/007-reranker-integration",
   "description": "Opt-in GTE cross-encoder reranker integration for CocoIndex hybrid retrieval.",
   "keywords": [
     "opt-in",
@@ -11,11 +11,11 @@
     "hybrid",
     "retrieval"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.586Z",
+  "lastUpdated": "2026-07-10T06:21:51.231Z",
   "specId": "007",
   "folderSlug": "reranker-integration",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

@@ -36,7 +36,7 @@
       "ollama",
       "tier",
       "voyage",
-      "016"
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Reorder auto-select provider cascade to Ollama → hf-local → OpenAI → Voyage (local-first). Change HF_LOCAL_MODEL fallback from BAAI/bge-base-en-v1.5 to nomic-ai/nomic-embed-text-v1.5 so new users with sentence-transformers get the same embedder as Ollama users. Update test, INSTALL_GUIDE, opencode.json/mcp.json env notes, all related READMEs, doctor commands, and write ADR-014.",
     "created_at": "2026-05-19T19:25:52.541Z",
-    "last_save_at": "2026-07-02T05:31:11.781Z",
+    "last_save_at": "2026-07-10T06:21:42.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

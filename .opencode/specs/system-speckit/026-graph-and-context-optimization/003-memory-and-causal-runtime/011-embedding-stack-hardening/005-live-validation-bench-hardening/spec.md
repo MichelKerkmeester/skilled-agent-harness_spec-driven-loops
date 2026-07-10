@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening"
     last_updated_at: "2026-05-29T18:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Shipped perimeter + idle + live-test + cleanup; flag-flip + dtype + live numbers gated"

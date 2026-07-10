@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/005-code-graph/019-doc-and-runtime-migration"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-019-doc-and-runtime-migration"
     last_updated_at: "2026-05-14T08:21:27Z"
     last_updated_by: "codex"
     recent_action: "Completed Phase 005 doc migration and strict validation"

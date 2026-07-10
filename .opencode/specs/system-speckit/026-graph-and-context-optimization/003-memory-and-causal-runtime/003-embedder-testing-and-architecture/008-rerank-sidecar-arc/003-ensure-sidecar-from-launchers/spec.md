@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers"
     last_updated_at: "2026-05-20T00:00:00Z"
     last_updated_by: "main_agent"
     recent_action: "Spec authored"
@@ -39,13 +39,15 @@ Phase 003 of the 008 rerank-sidecar arc. Plumb the running sidecar into both MCP
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete — historical implementation later removed |
 | **Created** | 2026-05-20 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` |
 | **Predecessor** | `002-system-rerank-sidecar-skill` |
 | **Successor** | `004-spec-memory-rerank-benchmark` |
 <!-- /ANCHOR:metadata -->
+
+> Historical status note: the local rerank sidecar and launcher integration were intentionally removed by a later deprecation; this packet remains implementation evidence, not a current runtime contract.
 
 ---
 

@@ -49,7 +49,6 @@
       "research/risk-closure/lineages/gpt-closure/research.md",
       "research/orchestration-summary.json",
       "research/gap-audit/lineages/gpt-gap/research.md",
-      "research/orchestration-status.log",
       "plan.md",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       "tasks.md",
@@ -84,12 +83,6 @@
         "name": "orchestration-summary.json",
         "kind": "config",
         "path": "research/orchestration-summary.json",
-        "source": "derived"
-      },
-      {
-        "name": "orchestration-status.log",
-        "kind": "file",
-        "path": "research/orchestration-status.log",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "End Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session disconnect on 2026-06-06 permanently removed 45 tools from a live session because Claude Code never reconnects MCP transports, every session pays tool-schema token overhead, and each runtime needs separate MCP registration",
     "created_at": "2026-06-06T08:46:15.481Z",
-    "last_save_at": "2026-07-07T11:58:30.816Z",
+    "last_save_at": "2026-07-10T06:23:16.181Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

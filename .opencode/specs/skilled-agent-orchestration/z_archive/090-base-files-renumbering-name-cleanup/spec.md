@@ -46,6 +46,7 @@ _memory:
 | **Branch** | `main` |
 | **Source plan** | `~/.claude/plans/scaffold-both-and-fix-piped-bengio.md` |
 | **Baseline** | `dbd3fbe79` |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

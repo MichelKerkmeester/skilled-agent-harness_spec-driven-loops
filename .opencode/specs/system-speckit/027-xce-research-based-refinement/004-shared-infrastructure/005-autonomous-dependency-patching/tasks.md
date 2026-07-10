@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching"
     last_updated_at: "2026-06-11T09:30:00Z"
     last_updated_by: "opencode-gpt-5.5"
     recent_action: "Optimized task checklist after final phase renumbering"

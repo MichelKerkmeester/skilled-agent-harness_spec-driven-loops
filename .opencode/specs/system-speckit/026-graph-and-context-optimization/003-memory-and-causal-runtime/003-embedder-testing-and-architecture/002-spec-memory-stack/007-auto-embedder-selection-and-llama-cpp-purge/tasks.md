@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/auto-embedder-selection-and-llama-cpp-purge"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge"
     last_updated_at: "2026-05-18T22:16:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Implemented tasks; live smoke blocked by sandbox process permissions"

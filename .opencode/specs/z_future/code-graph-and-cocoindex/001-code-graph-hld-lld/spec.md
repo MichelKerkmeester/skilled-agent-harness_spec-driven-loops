@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld"
+    packet_pointer: "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Converted populated Level 2 packet into a lean phase parent with four child workstreams"

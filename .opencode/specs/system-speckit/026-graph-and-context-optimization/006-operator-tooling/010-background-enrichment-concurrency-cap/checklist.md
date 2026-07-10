@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/010-background-enrichment-concurrency-cap"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/010-background-enrichment-concurrency-cap"
     last_updated_at: "2026-06-14T20:50:00Z"
     last_updated_by: "main-agent"
     recent_action: "Verified fix: tsc 0, 14/14 regression, dist rebuilt"

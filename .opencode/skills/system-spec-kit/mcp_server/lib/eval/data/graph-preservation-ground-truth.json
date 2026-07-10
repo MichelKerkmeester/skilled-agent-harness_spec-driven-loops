@@ -1,0 +1,961 @@
+{
+  "queries": [
+    {
+      "id": 1,
+      "query": "cache stability audit",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 2,
+      "query": "advisor extraction bridge",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 3,
+      "query": "reducer anchor fix",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 4,
+      "query": "symlink attack fix",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 5,
+      "query": "onnx cross-platform backend",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 6,
+      "query": "resident memory benchmark",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 7,
+      "query": "embedding status integrity",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 8,
+      "query": "causal relation coverage",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 9,
+      "query": "daemon re-election adoption",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 10,
+      "query": "search ledger persistence",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 11,
+      "query": "skill readme standardization",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 12,
+      "query": "incremental index foundation",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 13,
+      "query": "true-citation density probe",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 14,
+      "query": "degraded readiness envelope",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 15,
+      "query": "markdown agent rename",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 16,
+      "query": "doctor router consolidation",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 17,
+      "query": "cli dispatch containment",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 18,
+      "query": "manual testing playbook",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 19,
+      "query": "drift healing suspects",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 20,
+      "query": "orphan sweep confirmation",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 21,
+      "query": "retention forgetting layer",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 22,
+      "query": "flag graduation benchmark",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 23,
+      "query": "quality gap fallback",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 24,
+      "query": "complexity router flag",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 25,
+      "query": "entity density signal",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 26,
+      "query": "trigger phrase backfill",
+      "slice": "content_rich_short"
+    },
+    {
+      "id": 27,
+      "query": "find the plan for cache stability audit",
+      "slice": "single_hop"
+    },
+    {
+      "id": 28,
+      "query": "find the spec for symlink attack fix",
+      "slice": "single_hop"
+    },
+    {
+      "id": 29,
+      "query": "where is the onnx backend decision",
+      "slice": "single_hop"
+    },
+    {
+      "id": 30,
+      "query": "where is the search ledger persistence code",
+      "slice": "single_hop"
+    },
+    {
+      "id": 31,
+      "query": "what is the entity density activation threshold",
+      "slice": "single_hop"
+    },
+    {
+      "id": 32,
+      "query": "what is the retention forgetting flag",
+      "slice": "single_hop"
+    },
+    {
+      "id": 33,
+      "query": "locate the drift healing suspect queue",
+      "slice": "single_hop"
+    },
+    {
+      "id": 34,
+      "query": "show the doctor router consolidation summary",
+      "slice": "single_hop"
+    },
+    {
+      "id": 35,
+      "query": "get the incremental index foundation plan",
+      "slice": "single_hop"
+    },
+    {
+      "id": 36,
+      "query": "find the record for degraded readiness envelope",
+      "slice": "single_hop"
+    },
+    {
+      "id": 37,
+      "query": "where is the true-citation density probe implemented",
+      "slice": "single_hop"
+    },
+    {
+      "id": 38,
+      "query": "what is the quality gap fallback deadline",
+      "slice": "single_hop"
+    },
+    {
+      "id": 39,
+      "query": "locate the markdown agent rename spec",
+      "slice": "single_hop"
+    },
+    {
+      "id": 40,
+      "query": "find the decision record for onnx cross-platform backend",
+      "slice": "single_hop"
+    },
+    {
+      "id": 41,
+      "query": "where is the causal relation coverage report",
+      "slice": "single_hop"
+    },
+    {
+      "id": 42,
+      "query": "what is the complexity router feature flag",
+      "slice": "single_hop"
+    },
+    {
+      "id": 43,
+      "query": "show the manual testing playbook update",
+      "slice": "single_hop"
+    },
+    {
+      "id": 44,
+      "query": "find the implementation summary for daemon re-election",
+      "slice": "single_hop"
+    },
+    {
+      "id": 45,
+      "query": "the cache stability audit for prompt prefixes",
+      "slice": "control"
+    },
+    {
+      "id": 46,
+      "query": "summarize the symlink attack fix approach",
+      "slice": "control"
+    },
+    {
+      "id": 47,
+      "query": "add tests for the incremental index foundation",
+      "slice": "control"
+    },
+    {
+      "id": 48,
+      "query": "a broad review of manual testing playbook updates",
+      "slice": "control"
+    },
+    {
+      "id": 49,
+      "query": "security audit of the retention forgetting mechanism",
+      "slice": "control"
+    },
+    {
+      "id": 50,
+      "query": "understand the doctor router consolidation architecture",
+      "slice": "control"
+    },
+    {
+      "id": 51,
+      "query": "the general shape of degraded readiness envelope work",
+      "slice": "control"
+    },
+    {
+      "id": 52,
+      "query": "security review touching entity density signal usage",
+      "slice": "control"
+    },
+    {
+      "id": 53,
+      "query": "general notes about complexity router flag behavior",
+      "slice": "control"
+    },
+    {
+      "id": 54,
+      "query": "a summary describing quality gap fallback handling overall",
+      "slice": "control"
+    },
+    {
+      "id": 55,
+      "query": "add caching support for causal relation coverage reporting",
+      "slice": "control"
+    },
+    {
+      "id": 56,
+      "query": "security posture review of cli dispatch containment guards",
+      "slice": "control"
+    },
+    {
+      "id": 57,
+      "query": "refactor the manual testing playbook update process broadly",
+      "slice": "control"
+    },
+    {
+      "id": 58,
+      "query": "understand how flag graduation benchmark scoring works overall",
+      "slice": "control"
+    },
+    {
+      "id": 59,
+      "query": "the markdown agent rename effort across runtime mirrors",
+      "slice": "control"
+    },
+    {
+      "id": 60,
+      "query": "a broad look at true-citation density probe reporting overall",
+      "slice": "control"
+    }
+  ],
+  "relevances": [
+    {
+      "queryId": 1,
+      "anchorFilePath": ".opencode/specs/system-speckit/029-headroom-utilization/002-cache-stability-audit/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 1,
+      "anchorFilePath": ".opencode/specs/system-speckit/029-headroom-utilization/002-cache-stability-audit/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 1,
+      "anchorFilePath": ".opencode/specs/system-speckit/029-headroom-utilization/002-cache-stability-audit/plan.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 1,
+      "anchorFilePath": ".opencode/specs/system-speckit/029-headroom-utilization/002-cache-stability-audit/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 2,
+      "anchorFilePath": ".opencode/specs/system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr/decision-record.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 2,
+      "anchorFilePath": ".opencode/specs/system-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/001-extraction-design-and-adr/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 3,
+      "anchorFilePath": ".opencode/specs/system-deep-loop/038-deep-loop-runtime/001-reducer-anchor-fix/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 3,
+      "anchorFilePath": ".opencode/specs/system-deep-loop/038-deep-loop-runtime/001-reducer-anchor-fix/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 3,
+      "anchorFilePath": ".opencode/specs/system-deep-loop/038-deep-loop-runtime/001-reducer-anchor-fix/spec.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 4,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 4,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/checklist.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 5,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 5,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 5,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 6,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 6,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 6,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/012-adapter-resident-memory-benchmark/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 7,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 7,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 8,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 8,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 9,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 9,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout/implementation-summary.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 9,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout/spec.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 10,
+      "anchorFilePath": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/005-complexity-search-ledger-persistence/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 11,
+      "anchorFilePath": ".opencode/specs/system-deep-loop/z_archive/021-skill-readme-standardization/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 11,
+      "anchorFilePath": ".opencode/specs/skilled-agent-orchestration/z_archive/109-skill-readme-standardization/018-sk-git-readme/description.json",
+      "relevance": 2
+    },
+    {
+      "queryId": 12,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 12,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation/checklist.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 12,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/description.json",
+      "relevance": 2
+    },
+    {
+      "queryId": 13,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups/001-search-append-citation-probe/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 13,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups/001-search-append-citation-probe/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 13,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups/001-search-append-citation-probe/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 14,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 14,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 15,
+      "anchorFilePath": ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 15,
+      "anchorFilePath": ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 15,
+      "anchorFilePath": ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/plan.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 16,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 16,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 16,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations/decision-record.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 17,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 17,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 18,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 18,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update/graph-metadata.json",
+      "relevance": 2
+    },
+    {
+      "queryId": 19,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 19,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 19,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 20,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 20,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 20,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/implementation-summary.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 21,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 21,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 21,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting/checklist.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 22,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/tasks.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 22,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/graph-metadata.json",
+      "relevance": 2
+    },
+    {
+      "queryId": 23,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 23,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability/resource-map.md",
+      "relevance": 1
+    },
+    {
+      "queryId": 24,
+      "anchorFilePath": ".opencode/specs/system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 24,
+      "anchorFilePath": ".opencode/specs/system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 24,
+      "anchorFilePath": ".opencode/specs/system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 25,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 25,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 26,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 26,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 26,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/003-semantic-trigger-fallback/001-schema-backfill/description.json",
+      "relevance": 2
+    },
+    {
+      "queryId": 27,
+      "anchorFilePath": ".opencode/specs/system-speckit/029-headroom-utilization/002-cache-stability-audit/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 27,
+      "anchorFilePath": ".opencode/specs/system-speckit/029-headroom-utilization/002-cache-stability-audit/spec.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 28,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 28,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/checklist.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 29,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 29,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/spec.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 30,
+      "anchorFilePath": ".opencode/specs/system-deep-loop/z_archive/006-deep-skill-evolution/003-deep-review/005-complexity-search-ledger-persistence/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 31,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 31,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 31,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/010-query-channel-calibration/spec.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 32,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 33,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 33,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/tasks.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 33,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/implementation-summary.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 34,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 34,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations/spec.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 34,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files/checklist.md",
+      "relevance": 1
+    },
+    {
+      "queryId": 35,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation/checklist.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 35,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/spec.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 36,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 36,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 37,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups/001-search-append-citation-probe/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 37,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups/001-search-append-citation-probe/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 38,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 39,
+      "anchorFilePath": ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 39,
+      "anchorFilePath": ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 40,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/decision-record.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 40,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/014-onnx-cross-platform-backend/implementation-summary.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 41,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 41,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 42,
+      "anchorFilePath": ".opencode/specs/system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 42,
+      "anchorFilePath": ".opencode/specs/system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 42,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp/spec.md",
+      "relevance": 1
+    },
+    {
+      "queryId": 43,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 44,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 44,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/spec.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 45,
+      "anchorFilePath": ".opencode/specs/system-speckit/029-headroom-utilization/002-cache-stability-audit/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 45,
+      "anchorFilePath": ".opencode/specs/system-speckit/029-headroom-utilization/002-cache-stability-audit/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 46,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 46,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/decision-record.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 46,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/checklist.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 47,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation/tasks.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 47,
+      "anchorFilePath": ".opencode/specs/system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/001-incremental-index-foundation/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 48,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 49,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 49,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 50,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 50,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations/decision-record.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 51,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 51,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/016-degraded-readiness-envelope-parity/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 52,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 52,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp/plan.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 53,
+      "anchorFilePath": ".opencode/specs/system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 53,
+      "anchorFilePath": ".opencode/specs/system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence/plan.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 54,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 55,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 55,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 56,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 56,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/003-cli-dispatch-containment-and-recursion-guards/tasks.md",
+      "relevance": 2
+    },
+    {
+      "queryId": 57,
+      "anchorFilePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 58,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/tasks.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 59,
+      "anchorFilePath": ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 59,
+      "anchorFilePath": ".opencode/specs/sk-doc/z_archive/011-sk-doc-skill-readme-and-structure/003-markdown-agent-rename/implementation-summary.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 60,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups/001-search-append-citation-probe/spec.md",
+      "relevance": 3
+    },
+    {
+      "queryId": 60,
+      "anchorFilePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-dark-flag-graduation/007-graduation-follow-ups/001-search-append-citation-probe/implementation-summary.md",
+      "relevance": 3
+    }
+  ]
+}

@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/006-benchmark-format-to-sk-doc"
     last_updated_at: "2026-05-19T12:49:55Z"
     last_updated_by: "claude-code"
     recent_action: "Trio consolidation shipped and committed as 99c0aa08e on main"

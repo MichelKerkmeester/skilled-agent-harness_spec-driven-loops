@@ -42,12 +42,26 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/cli-claude-code/references/cli_reference.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-claude-code/references/cli_reference.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -179,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc template requires a standalone `---` thematic break before every H2 section except the",
     "created_at": "2026-06-05T12:47:32.527Z",
-    "last_save_at": "2026-06-23T03:49:51.651Z",
+    "last_save_at": "2026-07-10T06:21:55.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,11 +206,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b677fcb09e1b1934e33869159f851598272a0eda8f44126819475b91e74c76ed",
+    "source_fingerprint": "sha256:e40ee268710f3c1f539d01f69b028dfa78bf24a3fc73db2c9b9b32e9b9352bc7",
     "source_doc_hashes": {
-      "spec.md": "5a6ad50f3b99b557b89c22f8ee492a86ebabf950803fb6e06234c506b8acd767",
+      "spec.md": "f0cafebd97dabcd43af84fbe21be91140e5e9d0107a8b775f02378bff36082a4",
       "plan.md": "f28470c785923b8ffec2fdb6812208c9f84db2cc5f5ded19226a5043086781b0",
-      "tasks.md": "54ffbe509578e1c8e133dc50ef6d7d7db3574607185771b3e297a86445ed6a93",
+      "tasks.md": "a7ed292b0b1cdd21abd1384f1c5e5d8e44410dcba6a0c499f353552874454288",
       "implementation-summary.md": "5641da70c803ccb51901295748bc2cf7a869e11ad67940bb6ddf85157599cb3e"
     },
     "last_active_child_id": null,

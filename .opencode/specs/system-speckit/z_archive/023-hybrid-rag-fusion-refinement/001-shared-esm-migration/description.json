@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/001-shared-esm-migration",
-  "description": "`@spec-kit/shared` has no `\"type\": \"module\"` in its `package.json`, its `tsconfig.json` inherits the root CommonJS baseline (`module: \"commonjs\"`, `mo",
+  "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/001-shared-esm-migration",
+  "description": "`@spec-kit/shared` has no `\"type\": \"module\"` in its `package.json`, its `tsconfig.json` inherits the root CommonJS baseline (`module: \"commonjs\"`,",
   "keywords": [
     "spec-kit",
     "shared",
@@ -14,11 +14,11 @@
     "commonjs",
     "baseline"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.424Z",
+  "lastUpdated": "2026-07-10T06:24:19.507Z",
   "specId": "001",
   "folderSlug": "shared-esm-migration",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "023-hybrid-rag-fusion-refinement"
   ],

@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/026-memory-database-refinement",
-  "description": "The Spec Kit Memory MCP server is a 70K+ LOC system with 31 MCP tools, a 57-column `memoryindex` table, 5-channel hybrid search, causal graph traversa",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/026-memory-database-refinement",
+  "description": "The Spec Kit Memory MCP server is a 70K+ LOC system with 31 MCP tools, a 57-column `memoryindex` table, 5-channel hybrid search, causal graph",
   "keywords": [
     "spec",
     "kit",
@@ -18,14 +18,13 @@
     "hybrid",
     "search",
     "causal",
-    "graph",
-    "traversa"
+    "graph"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.416Z",
+  "lastUpdated": "2026-07-10T06:24:16.366Z",
   "specId": "026",
   "folderSlug": "memory-database-refinement",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

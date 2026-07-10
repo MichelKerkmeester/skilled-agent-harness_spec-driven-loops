@@ -19,8 +19,6 @@
       "018/001 summary"
     ],
     "key_topics": [
-      "018",
-      "001",
       "cocoindex",
       "swap",
       "jina-code",
@@ -30,7 +28,9 @@
       "patch",
       "plan",
       "tasks",
-      "summary"
+      "summary",
+      "default",
+      "embedder"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Swap CocoIndex default embedder from gemma to nomic-ai/jina-code + MPS auto-detect patch",
     "created_at": "2026-05-18T08:18:02.783Z",
-    "last_save_at": "2026-07-02T05:31:11.889Z",
+    "last_save_at": "2026-07-10T06:24:37.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/077-speckit-upgrade-from-research",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/077-speckit-upgrade-from-research",
   "description": "This specification consolidates findings from four prior research specs (060-063) into a single implementation plan for upgrading the system-spec-kit",
   "keywords": [
     "specification",
@@ -9,18 +9,17 @@
     "prior",
     "research",
     "specs",
-    "060-063",
     "single",
     "implementation",
     "plan",
     "upgrading",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.312Z",
+  "lastUpdated": "2026-07-10T06:23:42.907Z",
   "specId": "077",
   "folderSlug": "speckit-upgrade-from-research",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

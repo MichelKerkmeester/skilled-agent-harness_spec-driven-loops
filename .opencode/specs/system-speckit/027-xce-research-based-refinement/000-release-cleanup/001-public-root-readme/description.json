@@ -13,7 +13,7 @@
   "status": "complete",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "importance_tier": "important",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme",
   "description": "Rewrite the repo-root README to current shipped reality: MCP and CLI dual-stack, memory capabilities, skill, command, and agent surfaces",
   "keywords": [
     "rewrite",
@@ -32,11 +32,11 @@
     "agent",
     "surfaces"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.865Z",
+  "lastUpdated": "2026-07-10T06:23:29.776Z",
   "specId": "001",
   "folderSlug": "public-root-readme",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "000-release-cleanup"
   ],

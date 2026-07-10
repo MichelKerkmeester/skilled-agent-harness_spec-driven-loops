@@ -11,20 +11,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation"
-    last_updated_at: "2026-07-09T23:00:00.000Z"
+    last_updated_at: "2026-07-10T07:22:00.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Recorded the three planning-stage ADRs referenced by plan.md's ADR list"
-    next_safe_action: "Write implementation-summary.md"
-    blockers:
-      - "017 (flag parsing trustworthiness) not yet landed — implementation cannot start until then"
+    recent_action: "Confirmed all 3 ADRs in practice"
+    next_safe_action: "Packet 019 closed — proceed to packet 023 (self-healing model consolidation)"
+    blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh"
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh"
       - ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "planning-019-validation-enforce-graduation"
+      session_id: "phase3-019-validation-enforce-graduation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-09 |
 | **Deciders** | Planning session (per task-scope instruction) |
 
@@ -130,6 +131,8 @@ Three validation rules need to move from advisory-only to enforcing-by-default. 
 - `ENV_REFERENCE.md`'s documentation for all three flags.
 
 **How to roll back**: Revert the single-flag default change; the census/backfill work (spec-doc corrections, regenerated JSON) is not undone since it is independently correct regardless of the flag's state.
+
+**Confirmed in practice**: Phase 1 (128→2 residual, commit 3dceda7760) and Phase 2 (1,130→74 residual, commit 7544197691) both shipped exactly this shape. One correction found during implementation: all three flags actually resolve through inline bash default-expansion in their own rule scripts, not `capability-flags.ts` (zero references found there) — the pattern itself held, only the specific file target named in this ADR's own "What changes" needed fixing.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -142,7 +145,7 @@ Three validation rules need to move from advisory-only to enforcing-by-default. 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-09 |
 | **Deciders** | Planning session (per task-scope instruction) |
 
@@ -226,6 +229,8 @@ The three flags differ meaningfully in blast radius and failure mode. `STATUS_CR
 - `plan.md`'s phase ordering, `tasks.md`'s milestone structure.
 
 **How to roll back**: N/A — this is a process decision, not a code change.
+
+**Confirmed in practice**: Phases 1-2 landed and were independently verified before Phase 3's own guard work began, exactly as designed — each phase's own commit is cleanly attributable and independently revertable.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -238,7 +243,7 @@ The three flags differ meaningfully in blast radius and failure mode. `STATUS_CR
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-09 |
 | **Deciders** | Planning session |
 
@@ -326,6 +331,8 @@ The three flags differ meaningfully in blast radius and failure mode. `STATUS_CR
 - `scripts/tests/check-graph-metadata-child-drift.sh`: new fixture-matrix coverage.
 
 **How to roll back**: Remove the guard call (revert to the pre-Phase-3 rc=20/21-only branch) and the new `distEntries` key; the underlying rule's drift-detection logic is untouched either way.
+
+**Confirmed in practice, with one refinement beyond the original design**: the new `is-phase-parent` entry's `entrySourceCandidates` was scoped to just `is-phase-parent.ts` (plus manifest files) rather than inheriting the `system-spec-kit/scripts` package's whole-tree `sourceCandidates: ['.']` default. `is-phase-parent.ts` imports only Node builtins (`fs`, `path`) with zero local project dependencies, so this scoping is safe and has a real, observed benefit this ADR's original context did not anticipate: this repo runs many concurrent AI sessions editing files across `scripts/` simultaneously, and a whole-tree hash comparison would report false staleness on every unrelated edit anywhere in the package — confirmed directly during this same implementation, when the *unscoped* `system-spec-kit/mcp_server` "default" entry kept reporting stale during Phase 1-2's work due to concurrent, unrelated edits elsewhere in that package. The scoped entry was fixture-tested (missing/stale/fresh dist × enforce on/off, 4 load-bearing cells) and confirmed immune to that exact failure mode.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
 
@@ -335,5 +342,4 @@ The three flags differ meaningfully in blast radius and failure mode. `STATUS_CR
 Level 3 Decision Record
 Document significant technical decisions
 One ADR per major decision
-All ADRs Proposed pending implementation (planning-only packet)
 -->

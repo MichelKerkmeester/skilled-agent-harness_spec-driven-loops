@@ -41,7 +41,6 @@
       "doctor command surface install scripts"
     ],
     "key_topics": [
-      "026",
       "operator",
       "tooling",
       "runtime",
@@ -52,7 +51,8 @@
       "surface",
       "install",
       "scripts",
-      "improve"
+      "improve",
+      "operator-facing"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -105,7 +105,7 @@
     ],
     "causal_summary": "Improve operator-facing tooling: runtime hook parity across runtimes, the doctor command surface, and install-script and doctor realignment for the post-CocoIndex world",
     "created_at": "2026-05-26T16:51:06.255Z",
-    "last_save_at": "2026-07-02T05:31:12.741Z",
+    "last_save_at": "2026-07-10T06:23:16.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

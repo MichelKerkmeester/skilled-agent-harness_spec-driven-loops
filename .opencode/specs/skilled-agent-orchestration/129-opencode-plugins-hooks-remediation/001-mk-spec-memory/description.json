@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/129-opencode-plugins-hooks-remediation/001-mk-spec-memory",
+  "description": "Fix plan for the mk-spec-memory audit findings; one task per finding, planned not implemented.",
+  "keywords": [
+    "mk-spec-memory",
+    "remediation",
+    "fixes",
+    "plugin",
+    "bugs",
+    "plan"
+  ],
+  "lastUpdated": "2026-07-10T09:27:08.489Z",
+  "specId": "001",
+  "folderSlug": "mk-spec-memory",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "129-opencode-plugins-hooks-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

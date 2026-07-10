@@ -25,8 +25,6 @@
       "checklist"
     ],
     "key_topics": [
-      "008",
-      "009",
       "cleanup",
       "review",
       "remediation",
@@ -36,7 +34,9 @@
       "implementation",
       "plan",
       "name",
-      "template"
+      "template",
+      "core",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The 3-reviewer audit of packets 006+007 surfaced 14 P2 findings — none blockers, each a hardening opportunity",
     "created_at": "2026-05-18T06:42:51Z",
-    "last_save_at": "2026-07-07T12:30:10.462Z",
+    "last_save_at": "2026-07-10T06:24:44.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

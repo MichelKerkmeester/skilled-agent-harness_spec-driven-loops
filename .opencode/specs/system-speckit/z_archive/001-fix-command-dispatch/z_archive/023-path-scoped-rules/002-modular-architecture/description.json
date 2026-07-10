@@ -1,24 +1,19 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture",
-  "description": "The current validate-spec.sh script is a monolithic ~600 line file. Adding all planned features (PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, .specki",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture",
+  "description": "The current validate-spec.sh script is a monolithic ~600 line file.",
   "keywords": [
     "current",
     "validate-spec",
     "script",
     "monolithic",
-    "600",
     "line",
-    "file",
-    "adding",
-    "planned",
-    "features",
-    "specki"
+    "file"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.954Z",
+  "lastUpdated": "2026-07-10T06:22:52.054Z",
   "specId": "002",
   "folderSlug": "modular-architecture",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive",

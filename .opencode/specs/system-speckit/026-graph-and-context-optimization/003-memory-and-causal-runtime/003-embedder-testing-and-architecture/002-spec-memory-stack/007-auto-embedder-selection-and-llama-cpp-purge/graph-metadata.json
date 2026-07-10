@@ -25,9 +25,6 @@
       "016/002/007 handover"
     ],
     "key_topics": [
-      "016",
-      "002",
-      "007",
       "auto",
       "embedder",
       "selection",
@@ -36,7 +33,10 @@
       "smart",
       "precedence",
       "chain",
-      "auto-select"
+      "auto-select",
+      "bootstrap",
+      "voyage",
+      "openai"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -141,6 +141,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Stop Ollama",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -154,12 +160,6 @@
       },
       {
         "name": "a",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "sentence-transformers",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Replace the hardcoded embeddinggemma-300m default with a smart precedence-chain auto-selection at bootstrap. Probe environment in order — Voyage API key → OpenAI API key → Ollama daemon+jina-v3 → hf-local — and persist the choice to vec_metadata. Purge all llama-cpp / embeddinggemma in-process loader code (Metal GGUF, node-llama-cpp deps, the 750 MB legacy DB), replacing the legacy fallback path. Ollama becomes the always-available local fallback when cloud APIs aren't configured.",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-07-02T05:31:11.754Z",
+    "last_save_at": "2026-07-10T06:22:01.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +213,12 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6042302be7a17091afae658ccdfcfef72a07d3c2f839d35ab1950c477066f014",
+    "source_fingerprint": "sha256:0f6c8f894ffdf26ce7ec96866e352c23fe8e35822f3def4e149f6931aec5d961",
     "source_doc_hashes": {
-      "spec.md": "33d2e56e2b1ba2a93d59964c7681e97dac5cca735f737e3a08461afa3fa8c507",
+      "spec.md": "1de08dc2e039b916f4d90f5da045d7464713f1bd9b3440060fe4e334849ab40a",
       "plan.md": "4e97deca3f4255fd173ebfa099a293085a7ba6a38ccf0c7579d21aec06267efa",
       "tasks.md": "364541cf4a44d5736081354a5357417f6d579f63885dc4681220fdf7562b40ee",
-      "implementation-summary.md": "cda6508a7bc5356c80ba13d7808a32deba38a83273c6951ee81e463f282dc468",
+      "implementation-summary.md": "fcccb4fccd8ca029172028d31af2c86300cf05a89e9a45ef3d4167c87a3ef134",
       "handover.md": "680246eedc02f1a93fc16c51bc6e2478cafce9a787e8d2814e40d7f73c675ae9"
     },
     "last_active_child_id": null,

@@ -222,6 +222,11 @@ interface QueryTimeExistenceFilterStats {
   suspectIds: number[];
 }
 
+interface QueryTimeExistenceFilterAggregateStats {
+  checked: number;
+  excluded: number;
+}
+
 interface DeferredFeedbackWrite {
   events: FeedbackEvent[];
   sessionId: string | null;
@@ -275,6 +280,10 @@ const NON_CANONICAL_DOCUMENT_TYPES = new Set([
 
 const ENVELOPE_STATE = Symbol('memorySearchEnvelopeState');
 let responseEnvelopeSerializationCount = 0;
+const queryTimeExistenceFilterAggregateStats: QueryTimeExistenceFilterAggregateStats = {
+  checked: 0,
+  excluded: 0,
+};
 
 type EnvelopeBackedResponse = MCPResponse & { [ENVELOPE_STATE]?: EnvelopeState };
 
@@ -303,6 +312,15 @@ function resetResponseEnvelopeSerializationDiagnostics(): void {
 
 function getResponseEnvelopeSerializationDiagnostics(): { serializations: number } {
   return { serializations: responseEnvelopeSerializationCount };
+}
+
+export function getQueryTimeExistenceFilterAggregateStats(): QueryTimeExistenceFilterAggregateStats {
+  return { ...queryTimeExistenceFilterAggregateStats };
+}
+
+function recordQueryTimeExistenceFilterStats(stats: QueryTimeExistenceFilterStats): void {
+  queryTimeExistenceFilterAggregateStats.checked += stats.checked;
+  queryTimeExistenceFilterAggregateStats.excluded += stats.excluded;
 }
 
 function normalizeDocumentType(value: unknown): string | null {
@@ -1828,6 +1846,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         results: resultsForFormatting,
         stats: { enabled: false, checked: 0, excluded: 0, suspectIds: [] },
       };
+    if (queryTimeExistenceFilter.stats.enabled) {
+      recordQueryTimeExistenceFilterStats(queryTimeExistenceFilter.stats);
+    }
     resultsForFormatting = queryTimeExistenceFilter.results;
     driftSuspectIdsToQueue = [...queryTimeExistenceFilter.stats.suspectIds];
     const avgScore = computeAverageScore(resultsForFormatting as Array<Record<string, unknown>>);
@@ -1960,6 +1981,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       checked: queryTimeExistenceFilter.stats.checked,
       excluded: queryTimeExistenceFilter.stats.excluded,
     };
+    extraData.queryTimeExistenceFilterAggregate = getQueryTimeExistenceFilterAggregateStats();
 
     if (includeTrace && pipelineResult.trace) {
       extraData.retrievalTrace = pipelineResult.trace;
@@ -2342,6 +2364,7 @@ export const __testables = {
   prependEvidenceGapWarningToResponse,
   resetResponseEnvelopeSerializationDiagnostics,
   getResponseEnvelopeSerializationDiagnostics,
+  getQueryTimeExistenceFilterAggregateStats,
 };
 
 // Backward-compatible aliases (snake_case)

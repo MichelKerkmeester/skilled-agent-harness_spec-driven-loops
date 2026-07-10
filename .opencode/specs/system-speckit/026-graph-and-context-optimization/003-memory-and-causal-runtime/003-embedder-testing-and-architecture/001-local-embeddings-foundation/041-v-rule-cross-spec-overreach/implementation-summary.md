@@ -9,7 +9,7 @@ contextType: "spec"
 status: "partial"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach"
     last_updated_at: "2026-05-14T15:37:00Z"
     last_updated_by: "main-agent"
     recent_action: "V8 source patch and tests pass; build is blocked by EPERM writes in mcp_server/dist"

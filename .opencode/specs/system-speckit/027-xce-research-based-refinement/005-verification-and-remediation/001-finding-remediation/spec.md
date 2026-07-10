@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "completed"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation"
     last_updated_at: "2026-06-11T19:10:00Z"
     last_updated_by: "claude-fable"
     recent_action: "All 8 lanes closed: every P1/P2 entry terminally dispositioned"

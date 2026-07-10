@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/003-continuity-refactor-gates"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/003-continuity-refactor-gates"
     last_updated_at: "2026-04-12T16:16:10Z"
     last_updated_by: "copilot-gpt-5-4"
     recent_action: "Reviewed packet docs"

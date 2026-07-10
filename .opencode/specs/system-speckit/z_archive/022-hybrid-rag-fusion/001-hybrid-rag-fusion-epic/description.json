@@ -1,8 +1,7 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic",
   "description": "The `001` parent packet had become a merged historical archive instead of a usable coordination document",
   "keywords": [
-    "001",
     "parent",
     "packet",
     "become",
@@ -14,11 +13,11 @@
     "coordination",
     "document"
   ],
-  "lastUpdated": "2026-06-23T03:49:59.638Z",
+  "lastUpdated": "2026-07-10T06:21:56.308Z",
   "specId": "001",
   "folderSlug": "hybrid-rag-fusion-epic",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion"
   ],

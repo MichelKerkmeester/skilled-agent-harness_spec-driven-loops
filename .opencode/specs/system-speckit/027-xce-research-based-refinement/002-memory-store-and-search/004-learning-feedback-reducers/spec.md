@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers"
     last_updated_at: "2026-06-05T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Applied 2026-06-05 audit rescope: amendment A/B + soft-dep"

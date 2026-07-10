@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival",
   "description": "When Claude Code's client-side MCP transport to a still-alive local stdio daemon drops",
   "keywords": [
     "claude",
@@ -14,11 +14,11 @@
     "daemon",
     "drops"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.606Z",
+  "lastUpdated": "2026-07-10T06:21:47.714Z",
   "specId": "030",
   "folderSlug": "client-side-reconnect-survival",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

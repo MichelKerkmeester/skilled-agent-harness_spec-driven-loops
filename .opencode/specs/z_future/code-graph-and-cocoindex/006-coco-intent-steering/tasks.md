@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
+    packet_pointer: "z_future/code-graph-and-cocoindex/006-coco-intent-steering"
     last_updated_at: "2026-05-09T11:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored T001-T015 task list"

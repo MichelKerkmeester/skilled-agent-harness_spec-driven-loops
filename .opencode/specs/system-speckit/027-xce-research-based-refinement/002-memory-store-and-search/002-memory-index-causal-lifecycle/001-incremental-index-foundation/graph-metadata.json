@@ -36,7 +36,7 @@
       "re-embedding",
       "unchanged",
       "chunks",
-      "027"
+      "phase"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`memoryindexscan` currently reconsiders all discovered files every run, then uses file-level categorization to decide index, update, skip, or delete",
     "created_at": "2026-05-13T09:00:45Z",
-    "last_save_at": "2026-07-02T05:31:13.604Z",
+    "last_save_at": "2026-07-10T06:22:12.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

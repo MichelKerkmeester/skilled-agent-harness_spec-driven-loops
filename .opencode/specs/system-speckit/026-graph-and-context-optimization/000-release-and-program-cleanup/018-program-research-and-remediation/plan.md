@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "plan"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation"
     last_updated_at: "2026-06-06T10:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Planned the research + remediation phase"

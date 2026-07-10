@@ -12,7 +12,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime"
     last_updated_at: "2026-04-17T18:00:00Z"
     last_updated_by: "claude-opus-4.7"
     recent_action: "Phase 017 implementation complete: 25 commits landed on main across 4 waves (A=5, B=10, C=4, D=3) + 3 support commits. All 27 tasks closed. Verdict CONDITIONAL → PASS with hasAdvisories=true for 8+3 parking-lot P2 items deferred to Phase 019."

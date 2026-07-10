@@ -41,6 +41,9 @@ _memory:
 | **Status** | Planned |
 | **Created** | 2026-05-03 |
 | **Branch** | `main` |
+
+> **Historical record:** This archived specification retains its planned status because the recorded 063b delivery did not establish completion of the remaining 063a scope.
+
 <!-- /ANCHOR:metadata -->
 
 ---

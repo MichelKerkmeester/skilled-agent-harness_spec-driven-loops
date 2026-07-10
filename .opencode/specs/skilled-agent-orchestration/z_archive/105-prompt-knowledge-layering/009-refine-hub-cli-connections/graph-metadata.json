@@ -31,16 +31,18 @@
       "connections",
       "precedence",
       "drift",
-      "fix",
       "star",
       "phantom",
       "sync",
       "guard",
-      "cluster"
+      "cluster",
+      "treatment"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      ".opencode/skills/sk-prompt-models/SKILL.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
       ".github/workflows/prompt-card-sync.yml",
       "spec.md",
       "plan.md",
@@ -48,6 +50,18 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-models/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
       {
         "name": "prompt-card-sync.yml",
         "kind": "config",
@@ -179,23 +193,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped 3-layer architecture drifted at its seams: the Tier-3 escalation rule was hand-copied",
     "created_at": "2026-06-03T06:13:44Z",
-    "last_save_at": "2026-06-23T03:49:51.621Z",
+    "last_save_at": "2026-07-10T06:22:16.914Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c49c071ae49605674d42e36a1640571c696637f898e81d0ddccb1dec55fff90",
+    "source_fingerprint": "sha256:bd7bd2e288c4383a02af4c443ad492110f59f91dd21e0bc9a84e537ca231210e",
     "source_doc_hashes": {
-      "spec.md": "77f7ea8d9695d3b773b6f069b974531de242cd65cc01c414158ae5c25a67e5c8",
-      "plan.md": "5c63b89159d9860d31cec328f06452f753e4246e040d4f75162a8987c7639414",
-      "tasks.md": "3ba41293b19bd740ca58aa1b72d1b4142769257f50324522667f14cd54430f8a",
-      "implementation-summary.md": "03c7f2bba27f6af024d24bcada611af7fd5045aa34dfb6808820cf11ba5c51de"
+      "spec.md": "7fcac1e2f36103cfa43b7c6f2a238355391f38daeca2d68f8d3df9e70b371ad4",
+      "plan.md": "115bc669c44bfdac061650b4ba8001f6389a40a55f4c965d99c80d1451a4b227",
+      "tasks.md": "3906670f59b4c0f954c9721bcc97a9e919188a66fe29647f38d2f1bbea0717ed",
+      "implementation-summary.md": "91b405b31bd9b15ff514ee874979b769fa8f850d34fb3898e07bafb420c5ffc5"
     },
     "last_active_child_id": null,
     "last_active_at": null

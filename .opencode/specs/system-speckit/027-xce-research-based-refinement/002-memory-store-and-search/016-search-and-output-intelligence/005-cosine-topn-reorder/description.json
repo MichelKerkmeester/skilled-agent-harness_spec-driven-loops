@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder",
-  "description": "Compressed RRF fusion magnitudes buried the most semantically-on-target memory below position 1, because ordering ignored the one absolute relevance s",
+  "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder",
+  "description": "Compressed RRF fusion magnitudes buried the most semantically-on-target memory below position 1, because ordering ignored the one absolute relevance",
   "keywords": [
     "compressed",
     "rrf",
@@ -18,11 +18,11 @@
     "absolute",
     "relevance"
   ],
-  "lastUpdated": "2026-06-23T03:49:57.365Z",
+  "lastUpdated": "2026-07-10T06:24:21.678Z",
   "specId": "005",
   "folderSlug": "cosine-topn-reorder",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "027-xce-research-based-refinement",
     "002-memory-store-and-search",
     "016-search-and-output-intelligence"

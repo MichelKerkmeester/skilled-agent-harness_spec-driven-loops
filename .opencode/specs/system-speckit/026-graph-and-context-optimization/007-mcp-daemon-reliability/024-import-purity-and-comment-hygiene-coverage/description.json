@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage",
   "description": "The post-merge gpt-5.5 cross-check of the daemon-reliability work surfaced two follow-ups",
   "keywords": [
     "post-merge",
@@ -12,11 +12,11 @@
     "two",
     "follow-ups"
   ],
-  "lastUpdated": "2026-06-23T03:49:56.571Z",
+  "lastUpdated": "2026-07-10T06:22:57.402Z",
   "specId": "024",
   "folderSlug": "import-purity-and-comment-hygiene-coverage",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],

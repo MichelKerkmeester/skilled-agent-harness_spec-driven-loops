@@ -11,7 +11,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Hygiene pass - validator structure"

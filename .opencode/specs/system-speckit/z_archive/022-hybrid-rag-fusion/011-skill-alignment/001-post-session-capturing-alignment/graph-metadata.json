@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/011-skill-alignment",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/001-post-session-capturing-alignment",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -28,17 +28,17 @@
       "session",
       "capturing",
       "alignment",
-      "011",
       "child",
-      "001",
       "json-first",
       "save",
       "docs",
       "plan",
-      "tasks"
+      "tasks",
+      "checklist",
+      "verification"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Several completed packets under `009-perfect-session-capturing` introduced documentation drift in `system-spec-kit` guidance that had not yet been folded into the skill, references, and tool-surface summaries",
     "created_at": "2026-04-12T09:02:50.285Z",
-    "last_save_at": "2026-06-23T03:50:00.164Z",
+    "last_save_at": "2026-07-10T06:21:58.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

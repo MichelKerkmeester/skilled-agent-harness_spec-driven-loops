@@ -22,8 +22,6 @@
       "deferred closeout complete"
     ],
     "key_topics": [
-      "022",
-      "014",
       "deferred",
       "closeout",
       "skill-advisor",
@@ -33,7 +31,9 @@
       "advisory",
       "pre-commit",
       "hook",
-      "plan"
+      "plan",
+      "tasks",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -42,8 +42,6 @@
       ".opencode/scripts/install-git-hooks.sh",
       ".opencode/install_guides/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/package.json",
-      ".opencode/.gitignore",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -72,18 +70,6 @@
         "name": "evidence-gap-detector.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": ".gitignore",
-        "kind": "file",
-        "path": ".opencode/.gitignore",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Closes 3 of 4 deferred follow-ons from the 022 arc: tracked dist/data JSON-copy script + install-guide note, advisory pre-commit hook + install script for validate-doc-model-refs.js, Z_SCORE_THRESHOLD comment update reflecting post-013 state. node-llama-cpp dep prune resolved-by-discovery (no live package.json dep).",
     "created_at": "2026-05-23T22:00:00.000000Z",
-    "last_save_at": "2026-07-02T05:31:11.865Z",
+    "last_save_at": "2026-07-10T06:23:58.543Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

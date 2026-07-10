@@ -200,10 +200,10 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
     mocks.mockBatchUpdateMtimes.mockReturnValue({ updated: 0 });
     mocks.mockListIndexedRecordIdsForDeletedPaths.mockReturnValue([]);
     mocks.mockSweepOrphanIndexRows.mockReturnValue({
-      swept: 1,
+      swept: 0,
       nextCursor: null,
-      scannedRows: 1,
-      orphanRecordIds: [999],
+      scannedRows: 0,
+      orphanRecordIds: [],
     });
     mocks.mockDeleteMemory.mockReturnValue(true);
     mocks.mockGetDb.mockReturnValue({
@@ -383,7 +383,8 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
       mocks.mockDeleteMemory.mockImplementation((id: number) => (
         database.prepare('DELETE FROM memory_index WHERE id = ?').run(id).changes === 1
       ));
-      mocks.mockGetDb.mockReturnValue(undefined);
+      mocks.mockGetDb.mockReturnValue(database);
+      mocks.mockRequireDb.mockReturnValue(database);
 
       const result = await scanHandler.runIndexScan({
         scopedPaths: [scopedStalePath],
@@ -397,11 +398,12 @@ describe('memory_index_scan scoped-scan discovery-gate parity', () => {
       const remainingRows = database.prepare('SELECT id FROM memory_index ORDER BY id').all() as Array<{ id: number }>;
       expect(data).toMatchObject({
         repairMode: 'scoped',
-        staleDeleted: 1,
+        repairStatus: 'complete',
+        staleDeleted: 0,
         suspectTombstoned: 0,
       });
-      expect(remainingRows.map((row) => row.id)).toEqual([42]);
-      expect(readMemoryDriftSuspects(database).map((suspect) => suspect.id)).toEqual([42]);
+      expect(remainingRows.map((row) => row.id)).toEqual([41, 42]);
+      expect(readMemoryDriftSuspects(database).map((suspect) => suspect.id)).toEqual([41, 42]);
       expect(mocks.mockSweepOrphanIndexRows).not.toHaveBeenCalled();
     } finally {
       database.close();

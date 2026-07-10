@@ -1,6 +1,6 @@
 {
-  "specFolder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference",
-  "description": "Manual feature-flag-reference scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that pre",
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference",
+  "description": "Manual feature-flag-reference scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that",
   "keywords": [
     "manual",
     "feature-flag-reference",
@@ -15,14 +15,13 @@
     "playbook",
     "require",
     "phase-specific",
-    "document",
-    "pre"
+    "document"
   ],
-  "lastUpdated": "2026-06-23T03:50:00.329Z",
+  "lastUpdated": "2026-07-10T06:21:42.450Z",
   "specId": "019",
   "folderSlug": "feature-flag-reference",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "022-hybrid-rag-fusion",
     "015-manual-testing-per-playbook"

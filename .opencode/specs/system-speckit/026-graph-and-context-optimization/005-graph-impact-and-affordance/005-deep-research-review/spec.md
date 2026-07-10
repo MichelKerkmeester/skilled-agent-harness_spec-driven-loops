@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-research-review"
     last_updated_at: "2026-04-28T19:30:00Z"
     last_updated_by: "codex-gpt-5-hygiene-pass"
     recent_action: "Strict-validator closure pass"

@@ -27,7 +27,6 @@
       "rerank sidecar gc implementation"
     ],
     "key_topics": [
-      "fix",
       "rerank",
       "sidecar",
       "reaper",
@@ -38,7 +37,8 @@
       "uvicorn",
       "workers",
       "accumulate",
-      "without"
+      "without",
+      "bound"
     ],
     "importance_tier": "critical",
     "status": "planned",
@@ -91,7 +91,7 @@
     ],
     "causal_summary": "Rerank-sidecar uvicorn workers accumulate without bound: 25 stale processes consuming ~16 GB RAM observed on 2026-05-23",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-07-02T05:31:12.281Z",
+    "last_save_at": "2026-07-10T06:21:49.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

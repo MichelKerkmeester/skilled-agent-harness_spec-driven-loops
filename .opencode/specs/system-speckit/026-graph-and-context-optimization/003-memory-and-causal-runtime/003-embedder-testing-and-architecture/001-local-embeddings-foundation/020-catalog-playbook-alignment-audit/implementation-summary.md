@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/014-local-embeddings-setup-a/020-catalog-playbook-alignment-audit"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit"
     last_updated_at: "2026-05-13T17:50:00Z"
     last_updated_by: "claude"
     recent_action: "Closed code-graph follow-ons and authored 026 inventory packet"

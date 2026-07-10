@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "task"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
+    packet_pointer: "z_future/code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
     last_updated_at: "2026-05-12T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Scaffolded library tasks"

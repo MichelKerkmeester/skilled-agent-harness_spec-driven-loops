@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh"
     last_updated_at: "2026-06-02T11:35:15Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Four child phases authored and validated strict-clean (0 errors / 0 warnings)"

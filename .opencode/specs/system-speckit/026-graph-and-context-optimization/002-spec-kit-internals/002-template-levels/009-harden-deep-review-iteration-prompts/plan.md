@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "main/009-harden-deep-review-iteration-prompts"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/009-harden-deep-review-iteration-prompts"
     last_updated_at: "2026-05-11T05:51:00Z"
     last_updated_by: "main-claude-opus-4.7"
     recent_action: "Authored plan from spec.md"

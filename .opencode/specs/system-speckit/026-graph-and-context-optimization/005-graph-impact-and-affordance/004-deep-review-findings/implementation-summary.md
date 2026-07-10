@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/007-fix-external-project-adoption-deep-review-findings"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings"
     last_updated_at: "2026-04-25T19:00:00Z"
     last_updated_by: "claude-opus-4-7-orchestrator-wave-1-integration"
     recent_action: "Wave 1 fully integrated. All 6 batches (T-A through T-F) cherry-picked onto main. T-F closes 11 cleanup findings (R-007-12/16/17/18/P2-2/4/5/6/7/9/12) via cache-key generation counter, INSTALL_GUIDE Python path fix, tool-count canonicalization (51), query.ts micro-fixes (true overflow detection via full-traversal-then-slice; semantically equivalent to `limit + 1`, multi-subject seed preservation, failureFallback.code, shared edge-mapper dedup), affordance debug counters, phase alias note."

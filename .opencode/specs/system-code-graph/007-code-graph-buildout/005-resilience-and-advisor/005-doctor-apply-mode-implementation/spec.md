@@ -58,7 +58,7 @@ Phase A (diagnostic-only `/doctor:code-graph`) shipped in `005-code-graph/005-do
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-08 |
 | **Branch** | `main` |
 | **Predecessor** | `005-doctor-diagnostic-command-phase-a/` (Phase A shipped); `006-code-graph-resilience-research/` (4 prerequisite artifacts) |

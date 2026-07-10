@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/001-phase-parent-validator-docs"
     last_updated_at: "2026-04-27T08:55:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored Level 2 checklist with P0/P1/P2 items"

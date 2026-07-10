@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph"
     last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Record that codegraph-specific nested content moved under the system-code-graph track"

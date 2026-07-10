@@ -32,18 +32,18 @@
       "sidecar api change p2"
     ],
     "key_topics": [
-      "020",
       "deferred",
       "remediation",
-      "fix",
       "sidecar",
       "behavior",
       "change",
       "api",
       "arc",
-      "017",
-      "005",
-      "sweep"
+      "sweep",
+      "correctly",
+      "findings",
+      "whose",
+      "closure"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -96,7 +96,7 @@
     ],
     "causal_summary": "arc 017/005's P2 sweep correctly DEFERRED 34 findings whose closure would change observable behavior, public API shape, or process lifecycle",
     "created_at": "2026-05-26T16:49:55.585Z",
-    "last_save_at": "2026-07-02T05:31:12.298Z",
+    "last_save_at": "2026-07-10T06:22:58.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

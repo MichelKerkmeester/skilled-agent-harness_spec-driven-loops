@@ -1,6 +1,6 @@
 {
   "level": "feature",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/004-newer-text-embedders-survey",
   "description": "Live HuggingFace crawl for text embedders released after May 2026 (when ADR-012 selected jina-embeddings-v3 as the mk-spec-memory production default).",
   "keywords": [
     "live",
@@ -9,7 +9,6 @@
     "text",
     "embedders",
     "released",
-    "2026",
     "adr-012",
     "selected",
     "jina-embeddings-v3",
@@ -17,11 +16,11 @@
     "production",
     "default"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.960Z",
+  "lastUpdated": "2026-07-10T06:24:20.743Z",
   "specId": "004",
   "folderSlug": "newer-text-embedders-survey",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

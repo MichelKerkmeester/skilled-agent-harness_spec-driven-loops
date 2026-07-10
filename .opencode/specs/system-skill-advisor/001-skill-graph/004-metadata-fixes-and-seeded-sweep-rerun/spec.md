@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-05-14 |
 | **Branch** | `006-apply-metadata-fixes-and-resweep` |
 <!-- /ANCHOR:metadata -->

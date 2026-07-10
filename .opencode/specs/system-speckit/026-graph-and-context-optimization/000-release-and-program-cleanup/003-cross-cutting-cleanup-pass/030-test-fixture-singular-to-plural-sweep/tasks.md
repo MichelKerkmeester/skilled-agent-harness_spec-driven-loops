@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/030-test-fixture-singular-to-plural-sweep"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/030-test-fixture-singular-to-plural-sweep"
     last_updated_at: "2026-05-08T10:55:00Z"
     last_updated_by: "spec-author"
     recent_action: "Author task list"

@@ -29,7 +29,7 @@
       "deep-review",
       "findings",
       "deferred",
-      "001"
+      "structural"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Remediate the two deep-review consolidation.ts findings deferred from 001 as a structural refactor: the read-only contradiction scan holds the BEGIN IMMEDIATE write lock (blocking other writers ~5s/cycle), and the DB handle is threaded inconsistently (latent atomicity risk). Both on the default-ON weekly consolidation cycle, so they need their own concurrency safety gate.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-07-02T05:31:14.051Z",
+    "last_save_at": "2026-07-10T06:23:40.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

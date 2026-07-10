@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair"
     last_updated_at: "2026-06-02T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Deployed: merged to main, dist v30 built, live DB migrated (9692 rows, default complete)"

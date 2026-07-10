@@ -1,13 +1,11 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite",
-  "description": "The 014-local-embeddings-setup-a phase parent + the 021/022 remediation packets shipped a major change to the local-LLM embedding stack: cascade resol",
+  "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite",
+  "description": "The 014-local-embeddings-setup-a phase parent + the 021/022 remediation packets shipped a major change to the local-LLM embedding stack: cascade",
   "keywords": [
     "014-local-embeddings-setup-a",
     "phase",
     "parent",
-    "021",
-    "022",
     "remediation",
     "packets",
     "shipped",
@@ -16,14 +14,13 @@
     "local-llm",
     "embedding",
     "stack",
-    "cascade",
-    "resol"
+    "cascade"
   ],
-  "lastUpdated": "2026-06-23T03:49:54.080Z",
+  "lastUpdated": "2026-07-10T06:21:43.917Z",
   "specId": "028",
   "folderSlug": "local-llm-feature-test-suite",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",
     "003-embedder-testing-and-architecture",

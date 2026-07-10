@@ -24,18 +24,18 @@
       "deep review remediation results"
     ],
     "key_topics": [
-      "018",
       "deep",
       "review",
       "remediation",
       "code",
       "graph",
-      "fix",
       "mk-code-index",
       "naming",
       "clarification",
       "plan",
-      "tasks"
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Addresses the 1 P1 + 13 actionable P2 findings from packet 017's deep-review of the 010-016 code-graph remediation campaign. 3 findings deferred per reviewer recommendation.",
     "created_at": "2026-05-14T21:10:00Z",
-    "last_save_at": "2026-07-02T05:31:13.037Z",
+    "last_save_at": "2026-07-10T06:22:50.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

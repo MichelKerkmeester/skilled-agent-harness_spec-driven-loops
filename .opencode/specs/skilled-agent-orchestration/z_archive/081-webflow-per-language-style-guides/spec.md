@@ -56,9 +56,10 @@ The sk-code skill currently bundles JavaScript, CSS, and HTML style rules into f
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-09 |
 | **Branch** | `main` (per memory `feedback_stay_on_main_no_feature_branches.md`) |
+> **Status note:** This archived packet retains its differing historical status fields as a record of the states captured at separate points in the original work.
 <!-- /ANCHOR:metadata -->
 
 ---

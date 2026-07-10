@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement",
+  "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement",
   "description": "\"Conversation context is volatile, but the filesystem is persistent",
   "keywords": [
     "conversation",
@@ -8,11 +8,11 @@
     "filesystem",
     "persistent"
   ],
-  "lastUpdated": "2026-06-23T03:49:58.919Z",
+  "lastUpdated": "2026-07-10T06:23:49.553Z",
   "specId": "019",
   "folderSlug": "speckit-refinement",
   "parentChain": [
-    "system-spec-kit",
+    "system-speckit",
     "z_archive",
     "001-fix-command-dispatch",
     "z_archive"

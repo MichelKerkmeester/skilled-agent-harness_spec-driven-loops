@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/002-agent-routing-doc-update",
-  "spec_folder": "system-spec-kit/z_archive/002-agent-routing-doc-update",
+  "packet_id": "system-speckit/z_archive/002-agent-routing-doc-update",
+  "spec_folder": "system-speckit/z_archive/002-agent-routing-doc-update",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -22,7 +22,6 @@
       "agent",
       "routing",
       "documentation",
-      "update",
       "archive",
       "implementation",
       "plan",
@@ -30,7 +29,8 @@
       "summary",
       "archived",
       "folder",
-      "captures"
+      "captures",
+      "work"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "This archived folder captures work that updated system-spec-kit documentation for agent routing behavior",
     "created_at": "2026-04-12T09:02:53.562Z",
-    "last_save_at": "2026-06-23T03:49:59.419Z",
+    "last_save_at": "2026-07-10T06:22:29.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

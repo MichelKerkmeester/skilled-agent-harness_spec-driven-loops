@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
-  "spec_folder": "system-spec-kit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
-  "parent_id": "system-spec-kit/z_archive/022-hybrid-rag-fusion",
+  "packet_id": "system-speckit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
+  "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/006-feature-catalog",
+  "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -31,23 +31,23 @@
       "audit",
       "remediation",
       "spec",
-      "006",
       "tasks",
       "verification",
       "checklist",
       "decision",
-      "packet"
+      "packet",
+      "still"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "research/deep-research-gap-report-2026-03-26.md",
       "research/deep-research-round2-2026-03-26.md",
-      "spec.md",
       "tasks.md",
       "plan.md",
       "checklist.md",
@@ -62,6 +62,12 @@
       "handover.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "FEATURE_CATALOG.md",
         "kind": "doc",
@@ -90,12 +96,6 @@
         "name": "deep-research-round2-2026-03-26.md",
         "kind": "doc",
         "path": "research/deep-research-round2-2026-03-26.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "This packet still preserves important historical audit evidence, but downstream wrapper packets were reading its milestone counts as if they were current release-control truth",
     "created_at": "2026-04-12T09:02:50.241Z",
-    "last_save_at": "2026-06-23T03:49:59.771Z",
+    "last_save_at": "2026-07-10T06:23:20.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

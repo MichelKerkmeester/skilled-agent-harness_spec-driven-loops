@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook"
     last_updated_at: "2026-06-10T16:12:00Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Added release-hardening manual testing scenarios and reconciled the playbook count guard"

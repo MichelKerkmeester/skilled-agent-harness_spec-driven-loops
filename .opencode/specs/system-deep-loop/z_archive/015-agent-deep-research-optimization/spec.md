@@ -37,11 +37,14 @@ _memory:
 |---|---|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-05-02 |
 | **Branch** | `main` |
 | **Parent** | 061-agent-optimization |
 | **Target** | `@deep-research` (476 LOC) |
+
+> **Historical record:** This archived specification retains its planned status; the implementation summary records a closed evaluation session with promotion left to an operator decision.
+
 <!-- /ANCHOR:metadata -->
 
 ---

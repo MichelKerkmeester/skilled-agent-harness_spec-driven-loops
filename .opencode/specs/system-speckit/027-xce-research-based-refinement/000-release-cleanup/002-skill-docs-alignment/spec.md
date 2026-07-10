@@ -10,7 +10,7 @@ contextType: "implementation"
 status: "complete"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment"
+    packet_pointer: "system-speckit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment"
     last_updated_at: "2026-06-10T15:29:12Z"
     last_updated_by: "gpt-5.5-fast"
     recent_action: "Aligned stale skill documentation and ENV_REFERENCE to shipped 027 reality"

@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/002-search-query-rag-optimization"
+    packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/002-search-query-rag-optimization"
     last_updated_at: "2026-04-28T21:02:24Z"
     last_updated_by: "codex"
     recent_action: "Completed three-phase Phase D implementation plan"
