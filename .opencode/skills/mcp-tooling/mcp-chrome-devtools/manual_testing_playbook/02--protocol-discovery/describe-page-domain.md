@@ -78,7 +78,7 @@ Capture full `--describe Page` output and the grep match output.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg cdp --describe usage |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg cdp --describe usage |
 
 ---
 

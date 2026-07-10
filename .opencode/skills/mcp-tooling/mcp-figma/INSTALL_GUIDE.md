@@ -392,12 +392,12 @@ See `references/troubleshooting.md` for the full symptom, cause and fix detail, 
 
 | Document | Location | Purpose |
 | -------- | -------- | ------- |
-| README | `.opencode/skills/mcp-figma/README.md` | Human orientation and quick start |
-| SKILL.md | `.opencode/skills/mcp-figma/SKILL.md` | Runtime instructions and routing |
-| CLI Reference | `.opencode/skills/mcp-figma/references/figma_cli_reference.md` | Binary identity, daemon, connect modes |
-| Tool Surface | `.opencode/skills/mcp-figma/references/tool_surface.md` | Read-only, mutating and destructive taxonomy |
-| MCP Wiring | `.opencode/skills/mcp-figma/references/mcp_wiring.md` | Optional Framelink MCP through Code Mode |
-| Troubleshooting | `.opencode/skills/mcp-figma/references/troubleshooting.md` | Full failure-mode table |
+| README | `.opencode/skills/mcp-tooling/mcp-figma/README.md` | Human orientation and quick start |
+| SKILL.md | `.opencode/skills/mcp-tooling/mcp-figma/SKILL.md` | Runtime instructions and routing |
+| CLI Reference | `.opencode/skills/mcp-tooling/mcp-figma/references/figma_cli_reference.md` | Binary identity, daemon, connect modes |
+| Tool Surface | `.opencode/skills/mcp-tooling/mcp-figma/references/tool_surface.md` | Read-only, mutating and destructive taxonomy |
+| MCP Wiring | `.opencode/skills/mcp-tooling/mcp-figma/references/mcp_wiring.md` | Optional Framelink MCP through Code Mode |
+| Troubleshooting | `.opencode/skills/mcp-tooling/mcp-figma/references/troubleshooting.md` | Full failure-mode table |
 
 ### Licensing and Upstream
 

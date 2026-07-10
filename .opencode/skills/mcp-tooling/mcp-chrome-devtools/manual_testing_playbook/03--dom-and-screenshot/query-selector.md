@@ -79,7 +79,7 @@ Capture session status, full query output, and the grep match output.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg dom query selector reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg dom query selector reference |
 
 ---
 

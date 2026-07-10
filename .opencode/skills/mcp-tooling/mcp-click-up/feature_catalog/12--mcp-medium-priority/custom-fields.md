@@ -34,7 +34,7 @@ Custom field definitions apply to all tasks in the list. To set values on indivi
 
 | File | Layer | Role |
 |------|-------|------|
-| `github.com/clickup/clickup-mcp-server` | MCP | Official ClickUp MCP via Code Mode |
+| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
 
 ### Validation And Tests
 

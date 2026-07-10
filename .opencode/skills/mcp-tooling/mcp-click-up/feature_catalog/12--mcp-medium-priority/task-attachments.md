@@ -34,7 +34,7 @@ Use when already in an MCP workflow context. For CLI-first workflows, `cupt atta
 
 | File | Layer | Role |
 |------|-------|------|
-| `github.com/clickup/clickup-mcp-server` | MCP | Official ClickUp MCP via Code Mode |
+| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
 
 ### Validation And Tests
 

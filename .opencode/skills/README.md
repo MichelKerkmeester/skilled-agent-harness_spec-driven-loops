@@ -61,11 +61,9 @@ Each skill name links to its own README. The one-line descriptions come from the
 
 | Skill | What it does |
 |---|---|
-| [`mcp-chrome-devtools`](mcp-chrome-devtools/README.md) | Drive a real browser from your agent or terminal, with a fast CLI and an MCP fallback |
-| [`mcp-click-up`](mcp-click-up/README.md) | Manage ClickUp tasks from your agent or terminal |
+| [`mcp-tooling`](mcp-tooling/README.md) | Parent hub for MCP tool bridges: browser debugging (`mcp-chrome-devtools`), ClickUp task management (`mcp-click-up`), and a read-only Figma Desktop transport (`mcp-figma`) |
 | [`mcp-code-mode`](mcp-code-mode/README.md) | Execute TypeScript with direct access to every external MCP tool registered in `.utcp_config.json` |
 | [`mcp-open-design`](mcp-open-design/README.md) | Drive the installed Open Design desktop app from the terminal: read and reuse local design systems and commission gated generation runs, via the `od` CLI and MCP |
-| [`mcp-figma`](mcp-figma/README.md) | Drive Figma Desktop from the terminal to read, author, modify, and export designs, tokens, and components, with an optional Figma MCP via Code Mode |
 
 ### sk-*: Code, Docs, Git and Prompts
 
@@ -76,7 +74,7 @@ Each skill name links to its own README. The one-line descriptions come from the
 | [`sk-git`](sk-git/README.md) | Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch discipline |
 | [`sk-design`](sk-design/README.md) | Set distinctive visual direction (palette, typography, layout, motion) that avoids templated AI defaults, grounding against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode), then hand the build to sk-code |
 | [`sk-prompt`](sk-prompt/README.md) | Turn a vague ask into a structured prompt, auto-selected from seven frameworks |
-| [`sk-prompt-models`](sk-prompt-models/README.md) | Before you dispatch any small model, read that model's prompt-craft profile here |
+| [`sk-prompt/prompt-models`](sk-prompt/prompt-models/README.md) | Before you dispatch any small model, read that model's prompt-craft profile here |
 
 ### system-*: The Runtime Foundation
 
@@ -203,4 +201,4 @@ The family is the prefix before the first hyphen: `cli-*`, `deep-*`, `mcp-*`, `s
 | [`sk-git/README.md`](sk-git/README.md) | Git workflow: worktrees, Conventional Commits and PR integration |
 | [`sk-doc/README.md`](sk-doc/README.md) | Documentation quality, validation scripts and the DQI score |
 | [`sk-prompt/README.md`](sk-prompt/README.md) | Structured prompt engineering across seven frameworks |
-| [`sk-prompt-models/README.md`](sk-prompt-models/README.md) | Per-model prompt-craft profiles for small-model dispatch |
+| [`sk-prompt/prompt-models/README.md`](sk-prompt/prompt-models/README.md) | Per-model prompt-craft profiles for small-model dispatch |

@@ -83,7 +83,7 @@ Capture all command outputs and process counts.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg stop semantics + cleanup |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg stop semantics + cleanup |
 
 ---
 

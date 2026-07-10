@@ -173,8 +173,8 @@ A: This skill is the transport that reads and writes Figma content. `sk-design` 
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-figma/README.md --type readme` reports zero issues |
-| SKILL.md frontmatter | `head -8 .opencode/skills/mcp-figma/SKILL.md` shows `name: mcp-figma`, a `description`, and `user-invocable: true` |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-tooling/mcp-figma/README.md --type readme` reports zero issues |
+| SKILL.md frontmatter | `head -8 .opencode/skills/mcp-tooling/mcp-figma/SKILL.md` shows `name: mcp-figma`, a `description`, and `user-invocable: true` |
 | Binary identity | `figma-ds-cli --version` returns the silships version (NOT the unrelated unic/figma-cli) |
 | CLI reachability | `figma-ds-cli --help` returns usage text with Figma Desktop open (Node.js 18 or newer required) |
 | Daemon health | `figma-ds-cli daemon status` reports healthy against `127.0.0.1:3456` with the token present |
@@ -191,4 +191,4 @@ A: This skill is the transport that reads and writes Figma content. `sk-design` 
 | [`references/tool_surface.md`](./references/tool_surface.md) | The read-only, mutating, and destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule |
 | [`references/mcp_wiring.md`](./references/mcp_wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Failure modes and fixes for the binary collision, Desktop not running, daemon Unauthorized, port conflicts, and the Code Mode env-var prefix |
-| [Skills Library](../README.md) | The skill catalog and routing front door |
+| [Skills Library](../../README.md) | The skill catalog and routing front door |

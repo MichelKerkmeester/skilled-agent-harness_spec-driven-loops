@@ -83,7 +83,7 @@ Capture session status, raw eval output, and the grep match output.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg dom eval reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg dom eval reference |
 
 ---
 

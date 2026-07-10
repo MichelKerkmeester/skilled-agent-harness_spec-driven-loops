@@ -34,7 +34,7 @@ Items are appended to the end of the checklist by default. Returns `checklist_it
 
 | File | Layer | Role |
 |------|-------|------|
-| `github.com/clickup/clickup-mcp-server` | MCP | Official ClickUp MCP via Code Mode |
+| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
 
 ### Validation And Tests
 

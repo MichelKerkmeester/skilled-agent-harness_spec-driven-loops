@@ -90,7 +90,7 @@ Capture the Code Mode script, both page IDs, and the surviving screenshot byte l
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | new_page / close_page / select_page reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | new_page / close_page / select_page reference |
 | `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode invocation contract |
 
 ---

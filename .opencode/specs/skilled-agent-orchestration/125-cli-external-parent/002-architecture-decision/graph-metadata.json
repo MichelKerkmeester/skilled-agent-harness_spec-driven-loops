@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-cli-external-parent/002-architecture-decision",
+  "spec_folder": "skilled-agent-orchestration/125-cli-external-parent/002-architecture-decision",
+  "parent_id": "skilled-agent-orchestration/125-cli-external-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-external parent architecture decision",
+      "cli-opencode cli-claude-code mode registry",
+      "architecture decision gate",
+      "executor-delegation scorer rewrite",
+      "phase 002 architecture-decision",
+      "cli-external architecture plan",
+      "cli parent decision gate",
+      "mode-registry target",
+      "hub-router target",
+      "executor-delegation scorer contract",
+      "cli-external decision tasks",
+      "architecture gate tasks"
+    ],
+    "key_topics": [
+      "cli-external",
+      "parent",
+      "architecture",
+      "decision",
+      "cli-opencode",
+      "cli-claude-code",
+      "mode",
+      "registry",
+      "gate",
+      "executor-delegation",
+      "scorer",
+      "rewrite"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      ".claude/settings.json",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Workflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "negative-preservation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "base",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The program has approved high-impact structural decisions for folding `.opencode/skills/cli-opencode/` and `.opencode/skills/cli-claude-code/` into a single `.opencode/skills/cli-external/` parent hub, but phase 003 cannot safely scaffold the hub until those decisions are frozen in one architecture record",
+    "created_at": "2026-07-09T18:58:25Z",
+    "last_save_at": "2026-07-09T21:45:17.047Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:7a264ea28870bd2327558af6382ffba0546b73e70e03cae62ea9f87d79d6ad0f",
+    "source_doc_hashes": {
+      "spec.md": "3b5f562e99799d32c440f929e979c249eba90a157cc64b8f720beeb1e111daf5",
+      "plan.md": "62de108a13316035816bfcf6455f38fa697987c449c28a7a1e64b2d08959201a",
+      "tasks.md": "04681ae5844af5d7fcae048c5710e6e2421d389674aca31e28e2420675a15a4d",
+      "checklist.md": "caf90d93b3b6f59b3ad2f7b4d44f8417ad0e69cdca165143bc4d04ad92c018b6",
+      "decision-record.md": "62f5345b1a727e7c957cdca7242336a03363546777fc4d8462262a8fcb02ab5f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

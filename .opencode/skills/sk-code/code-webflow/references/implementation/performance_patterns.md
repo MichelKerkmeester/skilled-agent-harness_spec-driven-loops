@@ -158,7 +158,7 @@ animate(
 
 **will-change Management:**
 
-From Spec 031: The codebase had **9 static `will-change` declarations in CSS** and **40+ premature declarations in JavaScript**, creating permanent compositor layers that waste GPU memory on every page load — even when no animation runs.
+The codebase had **9 static `will-change` declarations in CSS** and **40+ premature declarations in JavaScript**, creating permanent compositor layers that waste GPU memory on every page load — even when no animation runs.
 
 ```css
 /* ❌ BAD: Static will-change in CSS (creates permanent layer) */
@@ -532,7 +532,7 @@ echo "✅ PASS: Animation performance budgets met"
 
 **CI/CD Integration**: These performance checks could be automated with shell scripts in your CI pipeline. Use the patterns above as a starting point.
 
-**See:** `.opencode/skills/mcp-chrome-devtools/` for complete CLI automation patterns
+**See:** `.opencode/skills/mcp-tooling/mcp-chrome-devtools/` for complete CLI automation patterns
 
 ---
 

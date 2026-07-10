@@ -59,8 +59,8 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 | Rule | Requirement |
 |------|-------------|
-| **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. See `constitutional/cli-dispatch-skill-preload.md`. |
-| **Small-model dispatch** | Before dispatching to small models (MiniMax, Kimi, Qwen, etc.), MUST consult `sk-prompt-models`. |
+| **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external/cli-X/SKILL.md` first. See `constitutional/cli-dispatch-skill-preload.md`. |
+| **Small-model dispatch** | Before dispatching to small models (MiniMax, Kimi, Qwen, etc.), MUST consult `sk-prompt/prompt-models`. |
 | **Agent I/O pointer** | Optional dispatch headers documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`. |
 | **Open Design dispatch** | UI or design work through `design-mcp-open-design` (a nested transport packet of `sk-design`) MUST co-load `sk-design`'s own workflow modes first (the transport never decides taste). Pure transport is exempt. `mcp-figma` is the external sibling Figma transport. |
 

@@ -309,7 +309,7 @@ Quality targets are fast session startup, quick screenshot/console capture, and 
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../../AGENTS.md).
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`

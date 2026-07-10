@@ -197,36 +197,36 @@ servers:
 cli_skill_diagnostics:
   mcp-figma:
     label: "Figma (CLI)"
-    skill_dir: ".opencode/skills/mcp-figma"
+    skill_dir: ".opencode/skills/mcp-tooling/mcp-figma"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: npm/git install of figma-ds-cli
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no install/connect/patch
-    install_guide: ".opencode/skills/mcp-figma/INSTALL_GUIDE.md"
+    install_guide: ".opencode/skills/mcp-tooling/mcp-figma/INSTALL_GUIDE.md"
   mcp-open-design:
     label: "Open Design (CLI)"
-    skill_dir: ".opencode/skills/mcp-open-design"
+    skill_dir: ".opencode/skills/sk-design/design-mcp-open-design"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: verifies app, may write state
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no daemon/MCP wiring
-    install_guide: ".opencode/skills/mcp-open-design/INSTALL_GUIDE.md"
+    install_guide: ".opencode/skills/sk-design/design-mcp-open-design/INSTALL_GUIDE.md"
   mcp-chrome-devtools:
     label: "Chrome DevTools (CLI)"
-    skill_dir: ".opencode/skills/mcp-chrome-devtools"
+    skill_dir: ".opencode/skills/mcp-tooling/mcp-chrome-devtools"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: npm install + PATH/profile edits
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no install
-    install_guide: ".opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md"
+    install_guide: ".opencode/skills/mcp-tooling/mcp-chrome-devtools/INSTALL_GUIDE.md"
   mcp-click-up:
     label: "ClickUp (CLI)"
-    skill_dir: ".opencode/skills/mcp-click-up"
+    skill_dir: ".opencode/skills/mcp-tooling/mcp-click-up"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: pipx/pip install of cupt
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; token presence check
-    install_guide: ".opencode/skills/mcp-click-up/INSTALL_GUIDE.md"
+    install_guide: ".opencode/skills/mcp-tooling/mcp-click-up/INSTALL_GUIDE.md"
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: CONFIG TEMPLATES

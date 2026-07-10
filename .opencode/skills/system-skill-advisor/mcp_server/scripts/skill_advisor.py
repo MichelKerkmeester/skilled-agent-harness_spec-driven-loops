@@ -1949,7 +1949,7 @@ PHRASE_INTENT_BOOSTERS = {
     "use cli-opencode": [("cli-opencode", 3.4)],
     "cli-claude-code": [("cli-claude-code", 2.8)],
     "/cli-claude-code": [("cli-claude-code", 2.8)],
-    ".opencode/skills/cli-claude-code": [("cli-claude-code", 3.0)],
+    ".opencode/skills/cli-external/cli-claude-code": [("cli-claude-code", 3.0)],
     # --- Copilot CLI cross-AI orchestration ---
     # --- Prompt Improver: prompt engineering and enhancement ---
     "improve my prompt": [("sk-prompt", 2.5)],
@@ -3262,7 +3262,14 @@ def _executor_alias_shaped(alias: str) -> bool:
 
 
 def _executor_alias_variants(phrase: str) -> Set[str]:
-    return {variant for variant in _expand_signal_variants(phrase) if _executor_alias_shaped(variant)}
+    """Expand a phrase into shape-filtered alias variants: raw/spaced/underscored
+    (via _expand_signal_variants) PLUS $-prefixed and /-prefixed forms of the
+    normalized phrase, mirroring the TS skillNameVariants() variant set."""
+    normalized = _normalize_signal_phrase(phrase)
+    variants = _expand_signal_variants(phrase)
+    if normalized:
+        variants = variants | {f"${normalized}", f"/{normalized}"}
+    return {variant for variant in variants if _executor_alias_shaped(variant)}
 
 
 def _harvest_cli_graph_metadata(meta_path: str) -> Optional[Dict[str, Any]]:
@@ -3288,14 +3295,53 @@ def _cli_metadata_phrases(meta: Dict[str, Any]) -> List[str]:
     return phrases
 
 
+def _load_cli_hub_executors() -> List[Dict[str, Any]]:
+    """Read cli-external's mode-registry.json workflow-mode packets as the
+    executor-delegation source of truth (mirror of the TS loadCliHubExecutors).
+
+    A missing or malformed registry degrades to zero hub executors, never a
+    hard failure — mirrors the model_profiles.json degrade-on-error convention
+    below.
+    """
+    registry_path = os.path.join(SKILLS_DIR, "cli-external", "mode-registry.json")
+    executors: List[Dict[str, Any]] = []
+    if not os.path.exists(registry_path):
+        return executors
+    try:
+        with open(registry_path, "r", encoding="utf-8") as handle:
+            parsed = json.load(handle)
+    except (OSError, ValueError, json.JSONDecodeError):
+        return executors
+    modes = parsed.get("modes") if isinstance(parsed, dict) else None
+    for mode in modes or []:
+        if not isinstance(mode, dict) or mode.get("packetKind") != "workflow":
+            continue
+        packet_skill_name = mode.get("packetSkillName")
+        if not isinstance(packet_skill_name, str):
+            continue
+        aliases = [alias for alias in (mode.get("aliases") or []) if isinstance(alias, str)]
+        executors.append({"id": packet_skill_name, "aliases": aliases})
+    return executors
+
+
 @lru_cache(maxsize=1)
 def _build_executor_alias_table() -> Dict[str, Any]:
     """Build the executor alias tables from metadata (mirror of the TS builder).
 
-    Active aliases come from cli-family graph metadata (name variants + intent
-    signals + derived trigger phrases) plus the shared small-model profile
-    registry; suppressed aliases come from archived cli executors. Derived
-    KEYWORDS are intentionally excluded (they carry file paths / doc names that
+    Executors are enumerated from cli-external's mode-registry.json
+    workflow-mode packets (keyed by packetSkillName), NOT a top-level
+    family === "cli" graph-metadata scan: after the cli-opencode /
+    cli-claude-code fold-in, cli-external is the only top-level family="cli"
+    skill left, so scanning graph-metadata directly would select the HUB
+    instead of the two leaf executors — mapping every alias to the
+    non-executor id "cli-external" and deriving the orchestrator noun
+    "external" from the hub id. Sourcing from the registry's per-mode
+    aliases[] instead avoids both failure modes; no noun is ever derived from
+    the hub id itself, only from each mode's packetSkillName.
+
+    Model aliases come from the shared small-model profile registry;
+    suppressed aliases come from archived cli executors. Derived KEYWORDS
+    are intentionally excluded (they carry file paths / doc names that
     would over-match general prompts).
     """
     active: Dict[str, str] = {}
@@ -3303,20 +3349,11 @@ def _build_executor_alias_table() -> Dict[str, Any]:
     orchestrator: Dict[str, str] = {}
     active_executor_ids: Set[str] = set()
 
-    try:
-        entries = sorted(os.scandir(SKILLS_DIR), key=lambda entry: entry.name)
-    except OSError:
-        entries = []
-    for entry in entries:
-        if not entry.is_dir():
-            continue
-        meta = _harvest_cli_graph_metadata(os.path.join(entry.path, "graph-metadata.json"))
-        if meta is None:
-            continue
-        skill_id = str(meta.get("skill_id") or entry.name)
+    for executor in _load_cli_hub_executors():
+        skill_id = executor["id"]
         active_executor_ids.add(skill_id)
         phrases = [skill_id, skill_id.replace("-", " "), skill_id.replace("-", "_")]
-        phrases.extend(_cli_metadata_phrases(meta))
+        phrases.extend(executor["aliases"])
         for phrase in phrases:
             for variant in _executor_alias_variants(phrase):
                 active.setdefault(variant, skill_id)
@@ -3327,7 +3364,7 @@ def _build_executor_alias_table() -> Dict[str, Any]:
             if spaced != noun:
                 orchestrator.setdefault(spaced, skill_id)
 
-    model_profiles_path = os.path.join(SKILLS_DIR, "sk-prompt-models", "assets", "model_profiles.json")
+    model_profiles_path = os.path.join(SKILLS_DIR, "sk-prompt", "prompt-models", "assets", "model_profiles.json")
     try:
         with open(model_profiles_path, "r", encoding="utf-8") as handle:
             profiles = json.load(handle)
@@ -3464,6 +3501,9 @@ def _apply_executor_delegation_disambiguation(
         table = _build_executor_alias_table()
         suppressed_ids = set(table["active_executor_ids"])
         suppressed_ids.add("sk-code")
+        # The cli-external hub identity itself must never survive an abstain
+        # suppression pass, same invariant as the route path never routing to it.
+        suppressed_ids.add("cli-external")
         for rec in recommendations:
             if rec.get("skill") in suppressed_ids:
                 rec["confidence"] = min(float(rec.get("confidence", 0.0)), 0.5)

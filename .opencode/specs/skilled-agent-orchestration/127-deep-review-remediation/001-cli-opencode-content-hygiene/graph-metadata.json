@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/127-deep-review-remediation/001-cli-opencode-content-hygiene",
+  "spec_folder": "skilled-agent-orchestration/127-deep-review-remediation/001-cli-opencode-content-hygiene",
+  "parent_id": "skilled-agent-orchestration/127-deep-review-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-opencode content hygiene",
+      "pkill self-contradiction fix",
+      "cli-opencode stale codex row",
+      "cli-opencode broken playbook links",
+      "phase 001 cli-opencode",
+      "cli-opencode content hygiene plan",
+      "pkill scoping fix plan",
+      "cli-opencode readme fix plan",
+      "cli-opencode content hygiene tasks",
+      "pkill fix tasks",
+      "cli-opencode broken link tasks",
+      "cli-opencode content hygiene complete"
+    ],
+    "key_topics": [
+      "cli-opencode",
+      "content",
+      "hygiene",
+      "pkill",
+      "self-contradiction",
+      "stale",
+      "codex",
+      "row",
+      "broken",
+      "playbook",
+      "links",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-opencode/README.md",
+      ".opencode/skills/cli-opencode/changelog/v1.3.15.3.md",
+      ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md",
+      ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md",
+      ".opencode/specs/skilled-agent-orchestration/125-cli-external-parent/review/review-report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.3.15.3.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/changelog/v1.3.15.3.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "deepseek-v4-direct-with-sk-prompt-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "kimi-k2-7-direct-with-sk-prompt-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/125-cli-external-parent/review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "This Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Boundaries",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The live `cli-opencode` skill carried 5 real content bugs surfaced by a whole-program deep review: a safety-rule self-contradiction between SKILL.md ALWAYS Rule 5 and Rule 16 (Rule 16's cleanup command did exactly what Rule 5 forbids), a stale retired-`cli-codex` row mislabeled as `cli-opencode` in the README sibling-boundary table, a parallel-session quick start that omitted the skill's own share-confirmation hardrule, a default-dispatch recipe that itself violated the skill's documented no-top-level-`--agent` contract, and 6 corrupted filename links left by a concurrent session's blanket",
+    "created_at": "2026-07-10T04:53:46Z",
+    "last_save_at": "2026-07-10T05:34:52.257Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c0abcc34c9f8f2a06119bc1ea0552120a902bb51fcc2c730edd1fc8c9065f330",
+    "source_doc_hashes": {
+      "spec.md": "ae164e402e34cdb1266382307a2b4acb0e906b803a3fd030faf7904b73772ad2",
+      "plan.md": "be548308a7063d6ea3be2c5e7d6dea9935d9b70cf922b55095b2f34f5ec6e104",
+      "tasks.md": "b5179e98a6d9bd87a61d9aaccf587520c6546a0d2c3f30b7027a67989ac841c7",
+      "implementation-summary.md": "bebd90067d913e8e7c7108f14e6ed390407368f653991e9958a999bb3b826da4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

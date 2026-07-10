@@ -79,7 +79,7 @@ Capture full stderr, exit code, and the grep match.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg URL parsing + error path |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg URL parsing + error path |
 
 ---
 

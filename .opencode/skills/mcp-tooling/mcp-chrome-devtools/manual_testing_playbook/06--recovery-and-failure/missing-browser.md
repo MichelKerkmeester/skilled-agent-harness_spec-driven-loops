@@ -79,7 +79,7 @@ Capture the operator's normal browser path (step 1), the full stderr from step 2
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg browser discovery + error path |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg browser discovery + error path |
 
 ---
 

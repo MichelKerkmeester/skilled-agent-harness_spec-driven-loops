@@ -1,0 +1,87 @@
+{
+  "skill": "mcp-tooling",
+  "version": "1.0.0.0",
+  "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for mcp-tooling. The hub reads this file to resolve a mode; the advisor routes any MCP tool-bridge query to the single identity mcp-tooling and the hub picks the mode. All three modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime.",
+  "discriminator": {
+    "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
+    "packetKind": "The axis discriminator: 'workflow' for the two local-mutating tool bridges (mcp-chrome-devtools, mcp-click-up) that write to this repo's workspace; 'transport' for mcp-figma, which bridges to Figma Desktop rather than performing design judgment or mutating this workspace.",
+    "backendKind": "Which backend runs the mode: cli-plus-mcp for the workflow bridges (CLI-primary, Code Mode MCP fallback); figma-desktop-transport for the figma transport (drives the external Figma Desktop app over its local daemon)."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "How the advisor finds the mode. For mcp-tooling every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity mcp-tooling and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
+    "packetSkillName": "The packet's SKILL.md name. For mcp-tooling the packet folder IS its packetSkillName (folder mcp-chrome-devtools == packetSkillName mcp-chrome-devtools, and likewise for mcp-click-up and mcp-figma) — so no mode has a folder/name mismatch and grandfatheredFolderMismatch is false throughout.",
+    "grandfatheredFolderMismatch": "true only when a packet folder differs from its packetSkillName (a preserved legacy mismatch). All three mcp-tooling modes use folder == packetSkillName, so none has a mismatch — grandfatheredFolderMismatch is false for all three.",
+    "command": "The bound slash command for the mode. None of the three mcp-tooling modes has a dedicated command today (command:null on all three, per ADR-006); the /doctor:mcp router is a separate command that covers install/debug for every mcp-* skill, including mcp-tooling's three members."
+  },
+  "extensions": {
+    "transport-axis": {
+      "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (backendKind:'figma-desktop-transport', routingClass:'metadata', mutatesWorkspace:false since writes land in Figma Desktop, not this repo). mcp-figma never performs design judgment itself and carries a mandatory cross-hub pairing to sk-design (a DIFFERENT hub) for design decisions — licensed by ADR-002 as a legitimate cross-hub judgment partner, since neither of mcp-tooling's own workflow modes (browser inspection, task management) can supply design judgment.",
+      "transports": ["mcp-figma"],
+      "crossHubPairing": {
+        "mcp-figma": "sk-design"
+      }
+    }
+  },
+  "modes": [
+    {
+      "workflowMode": "mcp-chrome-devtools",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "mcp__code_mode__call_tool_chain"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-chrome-devtools",
+      "packetSkillName": "mcp-chrome-devtools",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": ["chrome devtools", "browser debug", "dom inspect", "lighthouse", "bdg", "cdp"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "mcp-chrome-devtools"
+      }
+    },
+    {
+      "workflowMode": "mcp-click-up",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "mcp__code_mode__call_tool_chain"],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-click-up",
+      "packetSkillName": "mcp-click-up",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "mcp-click-up"
+      }
+    },
+    {
+      "workflowMode": "mcp-figma",
+      "packetKind": "transport",
+      "backendKind": "figma-desktop-transport",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob", "mcp__code_mode__call_tool_chain"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-figma",
+      "packetSkillName": "mcp-figma",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": ["figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "mcp-figma"
+      }
+    }
+  ]
+}

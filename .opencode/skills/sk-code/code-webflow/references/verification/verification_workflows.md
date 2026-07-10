@@ -346,7 +346,7 @@ bdg cdp Emulation.clearDeviceMetricsOverride 2>&1
 bdg stop 2>&1
 ```
 
-**See**: .opencode/skills/mcp-chrome-devtools/SKILL.md for complete CLI automation workflows
+**See**: .opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md for complete CLI automation workflows
 
 **Decision: MCP vs CLI**:
 

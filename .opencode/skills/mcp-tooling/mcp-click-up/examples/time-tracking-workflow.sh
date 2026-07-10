@@ -41,7 +41,7 @@ EOF
 
 require_cupt() {
   if ! command -v cupt &>/dev/null; then
-    error "cupt not found. Install: bash .opencode/skills/mcp-click-up/scripts/install.sh"
+    error "cupt not found. Install: bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh"
     exit 1
   fi
   if ! cupt status &>/dev/null; then

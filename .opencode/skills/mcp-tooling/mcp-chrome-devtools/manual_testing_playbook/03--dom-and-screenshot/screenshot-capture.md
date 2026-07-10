@@ -86,7 +86,7 @@ Capture all command outputs, the resulting file size, and the xxd magic-byte lin
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg dom screenshot reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg dom screenshot reference |
 
 ---
 

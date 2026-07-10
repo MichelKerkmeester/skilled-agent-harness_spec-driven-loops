@@ -734,7 +734,7 @@ bdg screenshot animation-reduced-motion.png 2>&1
 bdg stop 2>&1
 ```
 
-**See:** `.opencode/skills/mcp-chrome-devtools/` for complete CLI automation patterns
+**See:** `.opencode/skills/mcp-tooling/mcp-chrome-devtools/` for complete CLI automation patterns
 
 ---
 

@@ -38,7 +38,7 @@ error()   { echo "[task-queue] ✗ $*" >&2; }
 require_cmd() {
   if ! command -v "$1" &>/dev/null; then
     error "Required command not found: $1"
-    error "Install cupt: bash .opencode/skills/mcp-click-up/scripts/install.sh"
+    error "Install cupt: bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh"
     exit 1
   fi
 }

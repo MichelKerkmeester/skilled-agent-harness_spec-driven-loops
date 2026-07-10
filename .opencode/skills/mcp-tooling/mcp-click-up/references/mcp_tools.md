@@ -15,16 +15,18 @@ version: 1.0.0.3
 
 # Official ClickUp MCP Tools Reference
 
-**MCP Server:** `github.com/clickup/clickup-mcp-server`
-**Package:** `@clickup/mcp-server` (npm)
+**MCP Server:** `https://mcp.clickup.com/mcp` (ClickUp's own hosted server, no package to install)
+**Bridge:** `npx mcp-remote https://mcp.clickup.com/mcp` (generic stdio-to-remote bridge, registered as the `clickup` manual in `.utcp_config.json`)
 **Invocation:** Code Mode `call_tool_chain()` via `mcp__code_mode__call_tool_chain`
-**Tool naming:** `clickup.clickup_{tool_name}` (all lowercase, underscores)
+**Tool naming:** `clickup.clickup_clickup_{tool_name}` — `list_tools()` returns dotted `clickup.clickup.clickup_{tool_name}`, and the callable form doubles the `clickup_` because the tool names on this server already start with it. Confirm the exact name with `tool_info()` before calling, do not guess it.
+
+> **Verification status:** the header above and Section 3 are corrected. Sections 5, 7-10 below (the priority table and code examples) still reflect an older, unverified tool catalog. A direct `list_tools()` check against the real server (2026-07) found 51 tools covering task CRUD, lists/folders/spaces, documents (create + pages only, no top-level get/update-document), time tracking, chat, reminders and custom fields, and found **no goals/OKR, bulk-create, webhook, checklist, user-group, guest or audit-log tools**. Treat every tool name and every claim below about goals, bulk creation, webhooks, checklists, guests and audit logs as unverified until checked with `tool_info()`.
 
 ---
 
 ## 1. OVERVIEW
 
-The official ClickUp MCP server exposes 46 tools across task CRUD, documents, goals, time tracking, webhooks, and enterprise features. It is the secondary surface in mcp-click-up, used for operations that cupt CLI cannot perform: creating documents, managing goals/OKRs, bulk task creation, webhooks, and enterprise audit logs.
+The official ClickUp MCP server is the secondary surface in mcp-click-up, used for operations that cupt CLI cannot perform. Verified so far: creating documents and document pages, time tracking, chat and reminders. Goals, bulk task creation, webhooks and enterprise features (audit logs, guests, user groups) do not currently appear in the real tool list, see the verification note above.
 
 Use this reference when:
 - Routing a request to MCP (not cupt) based on the operation table in SKILL.md §2
@@ -35,10 +37,10 @@ Use this reference when:
 
 ## 2. PREREQUISITES
 
-- Code Mode MCP configured with `clickup` server in your platform config (opencode.json, .mcp.json, or claude_desktop_config.json)
-- Environment variables set: `CLICKUP_API_KEY` (`pk_` token) and `CLICKUP_TEAM_ID` (numeric workspace ID)
-- OpenCode / AI client restarted after config change
-- Node.js 18+ and npx available (for `@clickup/mcp-server`)
+- Code Mode MCP configured, with the `clickup` manual in `.utcp_config.json` (not `opencode.json`, `.mcp.json` or `claude_desktop_config.json`, those are for native/non-Code-Mode MCP tools)
+- No environment variables to set. Auth is OAuth 2.1 + PKCE, a browser opens on first connection to authorize
+- AI client restarted after config change
+- Node.js 18+ and npx available (for the `mcp-remote` bridge)
 
 See `INSTALL_GUIDE.md §4` for platform-specific configuration blocks.
 
@@ -46,12 +48,7 @@ See `INSTALL_GUIDE.md §4` for platform-specific configuration blocks.
 
 ## 3. AUTHENTICATION
 
-| Environment Variable | Description | Example |
-|---------------------|-------------|---------|
-| `CLICKUP_API_KEY` | ClickUp Personal API Token | `pk_xxxxxxxxxxxxxxxx` |
-| `CLICKUP_TEAM_ID` | Workspace (team) ID | `1234567` |
-
-Get `CLICKUP_TEAM_ID`: run `cupt status` and copy the workspace ID, or run `cupt config --show`.
+OAuth 2.1 + PKCE only. ClickUp's docs are explicit that API keys and access tokens are not supported for this server. There is no environment variable to set and no workspace ID to configure, the workspace comes from whichever account authorizes in the browser on first connection.
 
 ---
 
@@ -273,11 +270,10 @@ Common error patterns and recovery:
 
 | Error | Code | Recovery |
 |-------|------|---------|
-| Invalid API key | 401 | Verify `CLICKUP_API_KEY` in opencode.json env |
+| Not authorized / connection fails | 401 | Reconnect and complete the OAuth authorization in the browser, no key to set |
 | Rate limited | 429 | Wait 60s, then retry with exponential backoff |
 | Resource not found | 404 | Check IDs — task/list/space ID may be wrong |
-| Insufficient permissions | 403 | Check token scope; may need admin access |
-| Team not found | 400 | Verify `CLICKUP_TEAM_ID` is numeric workspace ID |
+| Insufficient permissions | 403 | The authorizing account may need admin access in that workspace |
 
 ```typescript
 // Error handling pattern

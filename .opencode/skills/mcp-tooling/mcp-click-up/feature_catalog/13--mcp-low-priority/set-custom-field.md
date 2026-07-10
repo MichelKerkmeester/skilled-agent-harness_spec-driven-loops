@@ -34,7 +34,7 @@ Get `field_id` from `clickup_get_custom_fields`. Value format depends on field t
 
 | File | Layer | Role |
 |------|-------|------|
-| `github.com/clickup/clickup-mcp-server` | MCP | Official ClickUp MCP via Code Mode |
+| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
 
 ### Validation And Tests
 

@@ -78,7 +78,7 @@ Capture jq output verbatim.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg status JSON schema |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg status JSON schema |
 
 ---
 

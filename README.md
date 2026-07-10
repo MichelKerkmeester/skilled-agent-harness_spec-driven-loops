@@ -933,17 +933,11 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **Reach 200+ external tools without bloating context.** One TypeScript interface fronts every external MCP tool (Figma, GitHub, Chrome DevTools, ClickUp, Webflow)
 - **98.7% less context overhead:** tool schemas load on demand at first use, zero upfront cost, type-safe with autocomplete
 
-**mcp-chrome-devtools**
-- **Drive a real browser from the assistant.** Chrome DevTools with smart 2-mode routing
-- **Fast by default:** CLI mode (`bdg`) runs in the terminal, supports Unix pipes and composes in CI/CD, with MCP mode as the fallback for multi-tool flows
-
-**mcp-click-up**
-- **Manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing
-- **Agent-safe by design:** enforces per-list status resolution, dry-run before batch completion, `--json` output, and empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
-
-**mcp-figma**
-- **Drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context
-- **CLI-primary and gated:** a local daemon brokers every command, read-only inspection and exports are free, and authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Pairs with `sk-design` for the design judgment
+**mcp-tooling**
+- **Parent hub for MCP tool bridges.** One advisor identity routing to `mcp-chrome-devtools` (browser debugging), `mcp-click-up` (ClickUp tasks), and `mcp-figma` (Figma Desktop transport) through `mode-registry.json`
+- **`mcp-chrome-devtools` — drive a real browser from the assistant.** Chrome DevTools with smart 2-mode routing: CLI mode (`bdg`) runs in the terminal, supports Unix pipes and composes in CI/CD, with MCP mode as the fallback for multi-tool flows
+- **`mcp-click-up` — manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing. Agent-safe by design: per-list status resolution, dry-run before batch completion, `--json` output, empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
+- **`mcp-figma` _(transport)_ — drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context. CLI-primary and gated: a local daemon brokers every command, read-only inspection and exports are free, authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Never decides design taste on its own — mandatory cross-hub pairing with `sk-design` for the judgment
 
 &nbsp;
 #### OTHER
@@ -962,7 +956,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **Turn a rough ask into a strong prompt.** Auto-selects from 7 frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
 - **Refines, then scores:** DEPTH thinking across 3-10 rounds, then CLEAR scoring (Clarity, Logic, Expression, Reliability) against a 40+/50 pass threshold
 
-**sk-prompt-models**
+**sk-prompt/prompt-models**
 - **Find the right small-model pattern fast.** A discovery anchor that points to executor-owned pattern files rather than hosting the logic itself
 - **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro and GLM-5.2 via `cli-opencode`
 - **`references/pattern_index.md`** maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location
@@ -1300,9 +1294,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `runtime/` / `system-deep-loop` | ✅ Codebase-agnostic                        | Shared runtime plus the unified deep-loop skill (context, research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking). Work for any topic / target.     |
 | `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
 | `cli-*` (claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
-| `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
-| `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
-| `mcp-figma`                                         | ✅ Codebase-agnostic                        | Drives Figma Desktop from the terminal (read, author, export designs, tokens, components) via the silships `figma-ds-cli`, with an optional Figma MCP. Requires Figma Desktop open. Stack-independent.   |
+| `mcp-tooling`                                       | ✅ Codebase-agnostic                        | Parent hub for MCP tool bridges: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`), and `mcp-figma` (Figma Desktop transport via the silships `figma-ds-cli`, requires Figma Desktop open). Stack-independent.   |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 

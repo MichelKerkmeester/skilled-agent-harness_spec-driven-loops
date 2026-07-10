@@ -86,7 +86,7 @@ Capture the Code Mode script, the returned object (or summarized fields), and th
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | chrome_devtools_1 MCP reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | chrome_devtools_1 MCP reference |
 | `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode + manual-namespace contract |
 
 ---

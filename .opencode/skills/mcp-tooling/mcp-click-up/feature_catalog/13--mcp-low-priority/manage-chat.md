@@ -34,7 +34,7 @@ ClickUp Chat is a premium feature. Channel IDs are opaque strings not easily dis
 
 | File | Layer | Role |
 |------|-------|------|
-| `github.com/clickup/clickup-mcp-server` | MCP | Official ClickUp MCP via Code Mode |
+| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
 
 ### Validation And Tests
 

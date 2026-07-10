@@ -162,19 +162,31 @@ print_mcp_config() {
 The official ClickUp MCP server provides advanced operations:
   documents, goals/OKRs, bulk task creation, webhooks, and more.
 
-REPOSITORY: https://github.com/clickup/clickup-mcp-server
+SERVER: https://mcp.clickup.com/mcp (ClickUp's own hosted server)
+DOCS:   https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server
 
-Add the following to your opencode.json mcpServers section:
+Auth is OAuth 2.1 + PKCE only. ClickUp does not support API keys or access
+tokens for this server, the first connection opens a browser to authorize.
+There is no token to paste into config.
+
+Add the following manual to .utcp_config.json's manual_call_templates
+(NOT opencode.json, that file is for native/non-Code-Mode MCP tools):
 
 ─────────────────────────────────────────────────────────────────
-  "clickup": {
-    "command": "npx",
-    "args": ["-y", "@clickup/mcp-server"],
-    "env": {
-      "CLICKUP_API_KEY": "pk_YOUR_TOKEN_HERE",
-      "CLICKUP_TEAM_ID": "YOUR_WORKSPACE_ID_HERE"
+{
+  "name": "clickup",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "clickup": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["mcp-remote", "https://mcp.clickup.com/mcp"],
+        "env": {}
+      }
     }
   }
+}
 ─────────────────────────────────────────────────────────────────
 
 NOTE: The mcp-click-up skill invokes the MCP via Code Mode call_tool_chain().
@@ -182,7 +194,7 @@ NOTE: The mcp-click-up skill invokes the MCP via Code Mode call_tool_chain().
 
 MCPEOF
 
-  info "Get your CLICKUP_TEAM_ID: cupt config --show (after cupt auth)"
+  info "No env vars to set. Authorize in the browser on first connection."
 }
 
 # ── Phase 6: Success Summary ───────────────────────────────────────────────────
@@ -194,7 +206,7 @@ NEXT STEPS:
   1. Authenticate:      cupt auth   OR   cupt config --api-token pk_...
   2. Verify:            cupt status
   3. List tasks:        cupt list --today --json
-  4. For MCP support:   Add the config snippet above to opencode.json
+  4. For MCP support:   Add the config snippet above to .utcp_config.json
 
 QUICK REFERENCE:
   cupt list [--today|--week|--overdue] [--tag X] [--mine|--all] [--json]
@@ -207,8 +219,8 @@ QUICK REFERENCE:
   cupt context <id>
 
 SKILL REFERENCE:
-  .opencode/skills/mcp-click-up/SKILL.md
-  .opencode/skills/mcp-click-up/references/cupt_commands.md
+  .opencode/skills/mcp-tooling/mcp-click-up/SKILL.md
+  .opencode/skills/mcp-tooling/mcp-click-up/references/cupt_commands.md
 
 EOF
 }

@@ -1,78 +1,41 @@
 # clickup-mcp
 
-Official ClickUp MCP server embedded in the mcp-click-up skill.
+The official ClickUp MCP server is remote and hosted by ClickUp. There is no
+package to vendor into this folder, `npm install` here does nothing useful.
 
 ## Source
 
-- **GitHub:** https://github.com/clickup/clickup-mcp-server
-- **npm:** https://www.npmjs.com/package/@clickup/mcp-server
+- **Server:** `https://mcp.clickup.com/mcp`
+- **Docs:** https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server
 
-## Install
+## Auth
 
-```bash
-npm install
-```
+OAuth 2.1 + PKCE only. ClickUp does not support API keys or access tokens for
+this server. The first connection opens a browser to authorize, there is no
+token or workspace ID to configure.
 
-Vendors `@clickup/mcp-server` into `node_modules/` for local use.
+## Connect via Code Mode
 
-## Configuration
-
-Set these environment variables before starting:
-
-| Variable | Description |
-|----------|-------------|
-| `CLICKUP_API_KEY` | Personal API Token from https://app.clickup.com/settings/apps |
-| `CLICKUP_TEAM_ID` | Numeric workspace ID (run `cupt status` to find it) |
-
-## Run via npx (no install needed)
-
-```bash
-npx -y @clickup/mcp-server
-```
-
-## Run from local node_modules
-
-```bash
-npm install
-node node_modules/@clickup/mcp-server/dist/index.js
-```
-
-## Platform config (OpenCode / Code Mode)
+Register the manual in `.utcp_config.json` under `manual_call_templates`, this
+uses the generic `mcp-remote` bridge package (fetched on demand via `npx`, not
+ClickUp-specific) to reach the remote server over stdio:
 
 ```json
 {
-  "mcp": {
-    "code_mode": {
-      "type": "local",
-      "command": ["node", ".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"],
-      "environment": {
-        "UTCP_CONFIG_FILE": ".utcp_config.json"
-      }
-    }
-  }
-}
-```
-
-In `.utcp_config.json`, register ClickUp under `manual_call_templates`:
-
-```json
-{
-  "name": "clickup_official",
+  "name": "clickup",
   "call_template_type": "mcp",
   "config": {
     "mcpServers": {
-      "clickup_official": {
+      "clickup": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@clickup/mcp-server"],
-        "env": {
-          "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
-          "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}"
-        }
+        "args": ["mcp-remote", "https://mcp.clickup.com/mcp"],
+        "env": {}
       }
     }
   }
 }
 ```
 
-See `../../INSTALL_GUIDE.md §4` for full platform-specific config blocks.
+See `../../INSTALL_GUIDE.md §4` for other clients (native remote-MCP support,
+or the same `mcp-remote` bridge for other stdio-only clients).

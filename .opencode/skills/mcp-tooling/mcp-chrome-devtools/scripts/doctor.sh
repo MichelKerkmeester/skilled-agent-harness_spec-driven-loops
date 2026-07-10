@@ -79,7 +79,7 @@ fi
 
 # Optional MCP via Code Mode
 log "-- Optional Chrome DevTools MCP via Code Mode --"
-UTCP="$HERE/../../../../.utcp_config.json"
+UTCP="$HERE/../../../../../.utcp_config.json"
 if [ -f "$UTCP" ]; then
   if grep -q '"name"[[:space:]]*:[[:space:]]*"chrome_devtools' "$UTCP" 2>/dev/null; then
     ok "Code Mode chrome_devtools manual registered in .utcp_config.json"

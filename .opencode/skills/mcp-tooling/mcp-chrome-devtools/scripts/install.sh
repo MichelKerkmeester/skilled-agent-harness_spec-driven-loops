@@ -23,7 +23,7 @@ IFS=$'\n\t'
 # ───────────────────────────────────────────────────────────────
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _UTILS="${SCRIPT_DIR}/_utils.sh"
-[[ -f "$_UTILS" ]] || _UTILS="$(cd "${SCRIPT_DIR}/../../.." && pwd)/install_guides/install_scripts/_utils.sh"
+[[ -f "$_UTILS" ]] || _UTILS="$(cd "${SCRIPT_DIR}/../../../.." && pwd)/install_guides/install_scripts/_utils.sh"
 source "$_UTILS"
 
 readonly MCP_NAME="Chrome DevTools"

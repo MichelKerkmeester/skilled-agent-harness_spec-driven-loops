@@ -4,7 +4,7 @@
 #                                      prompt-knowledge architecture
 # ====================================================================
 # Enforces "one home per fact" across sk-prompt (framework engine),
-# sk-prompt-models (per-model hub), and the 4 cli-* executors.
+# sk-prompt (prompt-models packet), and the 4 cli-* executors.
 # Four structural checks (no semantic/NLP matching — pointer presence,
 # table absence, registry completeness, trigger membership):
 #
@@ -24,8 +24,8 @@
 #             (prevents the model-unreachable-by-name class, e.g. qwen3.6).
 #
 # Canonical locations (allowed to carry the tables / the Tier-3 list):
-#   .opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md
-#   .opencode/skills/sk-prompt/references/patterns_evaluation.md
+#   .opencode/skills/sk-prompt/prompt-models/assets/cli_prompt_quality_card.md
+#   .opencode/skills/sk-prompt/prompt-improve/references/patterns_evaluation.md
 #
 # Exit codes:
 #   0 — all checks pass
@@ -59,8 +59,8 @@ has_clear_matrix() {
 }
 
 cli_cards=(
-  "$ROOT/.opencode/skills/cli-opencode/assets/prompt_quality_card.md"
-  "$ROOT/.opencode/skills/cli-claude-code/assets/prompt_quality_card.md"
+  "$ROOT/.opencode/skills/cli-external/cli-opencode/assets/prompt_quality_card.md"
+  "$ROOT/.opencode/skills/cli-external/cli-claude-code/assets/prompt_quality_card.md"
 )
 
 echo "CHECK 1 — framework / CLEAR table inlining"
@@ -88,7 +88,7 @@ done
 # A cli-*/SKILL.md that re-enumerates it (signature: a line naming both
 # "stakeholder" and "ambiguous requirement") has drifted — must point.
 echo "CHECK 2 — Tier-3 pointer-only (no inlined escalation triggers)"
-cli_skills=(cli-opencode cli-claude-code)
+cli_skills=(cli-external/cli-opencode cli-external/cli-claude-code)
 for skill in "${cli_skills[@]}"; do
   f="$ROOT/.opencode/skills/$skill/SKILL.md"
   if [[ ! -f "$f" ]]; then echo "  MISSING: $skill/SKILL.md"; overall_exit=1; continue; fi
@@ -111,7 +111,7 @@ if python3 - <<'PY'
 import json, os, re, glob, sys
 
 ROOT = os.environ["ROOT"]
-H = f"{ROOT}/.opencode/skills/sk-prompt-models"
+H = f"{ROOT}/.opencode/skills/sk-prompt/prompt-models"
 reg = json.load(open(f"{H}/assets/model_profiles.json"))
 idx = open(f"{H}/references/models/_index.md").read()
 all_ids = {m["id"] for m in reg["models"]}
@@ -144,10 +144,20 @@ for p in sorted(glob.glob(f"{H}/references/models/*.md")):
         c3.append(f"profile {b} model_id '{mo.group(1).strip()}' not in the registry")
 
 # CHECK 4 — each adopted model reachable by family token in each dispatching executor
+# cli-opencode and cli-claude-code no longer carry their own graph-metadata.json
+# (the hub fold-in dissolved both into one hub identity); both
+# resolve to the shared cli-external/graph-metadata.json, which folds the union
+# of both former identities' trigger_phrases. Any other executor keeps the
+# flat per-skill path.
+CLI_EXECUTOR_HUB_METADATA = {
+    "cli-opencode": "cli-external/graph-metadata.json",
+    "cli-claude-code": "cli-external/graph-metadata.json",
+}
 gm_cache = {}
 def gm(executor):
     if executor not in gm_cache:
-        path = f"{ROOT}/.opencode/skills/{executor}/graph-metadata.json"
+        rel = CLI_EXECUTOR_HUB_METADATA.get(executor, f"{executor}/graph-metadata.json")
+        path = f"{ROOT}/.opencode/skills/{rel}"
         gm_cache[executor] = open(path).read().lower() if os.path.isfile(path) else None
     return gm_cache[executor]
 

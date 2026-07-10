@@ -87,7 +87,7 @@ Capture all command outputs and the parsed type / length values.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg network getCookies reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg network getCookies reference |
 
 ---
 

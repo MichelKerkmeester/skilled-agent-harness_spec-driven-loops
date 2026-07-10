@@ -240,7 +240,7 @@ fi
 exit $FAIL
 ```
 
-**See also:** `.opencode/skills/mcp-chrome-devtools/SKILL.md` for complete CLI debugging patterns
+**See also:** `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` for complete CLI debugging patterns
 
 ---
 

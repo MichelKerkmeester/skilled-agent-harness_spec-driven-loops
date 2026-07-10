@@ -57,10 +57,10 @@ Status: Implemented. Spec folder `015-outsourced-agent-handback` is complete and
 
 | File | Type | Role |
 |---|---|---|
-| .opencode/skills/cli-opencode/SKILL.md | Manual playbook | Caller-side handback flow, redact/scrub guidance, post-010 rejection codes, and minimum payload guidance |
-| .opencode/skills/cli-opencode/assets/prompt_templates.md | Manual playbook | Prompt template for MEMORY_HANDBACK extraction, richer `FILES` payloads, and `/tmp/save-context-data-<session-id>.json` save flow |
-| .opencode/skills/cli-claude-code/SKILL.md | Manual playbook | Caller-side handback flow, redact/scrub guidance, post-010 rejection codes, and minimum payload guidance |
-| .opencode/skills/cli-claude-code/assets/prompt_templates.md | Manual playbook | Prompt template for MEMORY_HANDBACK extraction, richer `FILES` payloads, and `/tmp/save-context-data-<session-id>.json` save flow |
+| .opencode/skills/cli-external/cli-opencode/SKILL.md | Manual playbook | Caller-side handback flow, redact/scrub guidance, post-010 rejection codes, and minimum payload guidance |
+| .opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md | Manual playbook | Prompt template for MEMORY_HANDBACK extraction, richer `FILES` payloads, and `/tmp/save-context-data-<session-id>.json` save flow |
+| .opencode/skills/cli-external/cli-claude-code/SKILL.md | Manual playbook | Caller-side handback flow, redact/scrub guidance, post-010 rejection codes, and minimum payload guidance |
+| .opencode/skills/cli-external/cli-claude-code/assets/prompt_templates.md | Manual playbook | Prompt template for MEMORY_HANDBACK extraction, richer `FILES` payloads, and `/tmp/save-context-data-<session-id>.json` save flow |
 
 ---
 

@@ -20,17 +20,17 @@
         "context": "Design-and-build peer in the sk-code family; sk-design owns taste, sk-code owns implementation"
       },
       {
-        "target": "mcp-figma",
+        "target": "mcp-tooling",
         "weight": 0.45,
-        "context": "Sibling Figma tool with design handoff overlap"
+        "context": "Sibling Figma tool (mcp-figma mode) with design handoff overlap. Repointed from the former flat mcp-figma identity to the mcp-tooling hub (ADR-004)."
       }
     ],
     "conflicts_with": [],
     "prerequisite_for": [
       {
-        "target": "mcp-figma",
+        "target": "mcp-tooling",
         "weight": 0.7,
-        "context": "Figma reads and exports depend on sk-design judgment when they feed design decisions"
+        "context": "Figma reads and exports (mcp-figma mode) depend on sk-design judgment when they feed design decisions. Repointed from the former flat mcp-figma identity to the mcp-tooling hub (ADR-004)."
       }
     ]
   },
@@ -38,7 +38,7 @@
     "depends_on": [],
     "related_to": [
       "sk-code",
-      "mcp-figma"
+      "mcp-tooling"
     ]
   },
   "domains": [
@@ -137,7 +137,11 @@
       "spacing rhythm",
       "hierarchy and spacing rhythm",
       "proof before calling the design ready",
-      "confirmed versus inferred design evidence"
+      "confirmed versus inferred design evidence",
+      "open design",
+      "od cli",
+      "wire open design",
+      "connect open design"
     ],
     "key_topics": [
       "sk-design",
@@ -150,6 +154,7 @@
       "motion-mode",
       "audit-mode",
       "md-generator-mode",
+      "design-mcp-open-design-mode",
       "shared-design-reference-base",
       "anti-slop",
       "design-token-vocabulary",

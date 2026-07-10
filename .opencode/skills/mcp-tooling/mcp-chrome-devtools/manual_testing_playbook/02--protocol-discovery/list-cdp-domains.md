@@ -78,7 +78,7 @@ Capture full `--list` output and the grep match output.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg cdp subcommand reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg cdp subcommand reference |
 
 ---
 

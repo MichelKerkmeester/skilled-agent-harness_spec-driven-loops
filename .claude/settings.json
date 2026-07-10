@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs'",
             "timeout": 5
           }
         ]

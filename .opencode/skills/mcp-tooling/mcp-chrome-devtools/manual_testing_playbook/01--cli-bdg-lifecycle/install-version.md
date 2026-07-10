@@ -78,7 +78,7 @@ Capture both command outputs and exit codes.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg CLI catalog + install reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg CLI catalog + install reference |
 
 ---
 

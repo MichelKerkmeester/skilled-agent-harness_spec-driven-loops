@@ -38,7 +38,7 @@ The CLI vs MCP routing line:
 
 - [figma_cli_reference.md](figma_cli_reference.md) - the primary CLI surface (binary identity, connect modes, daemon model) for authoring and exporting in Figma.
 - [tool_surface.md](tool_surface.md) - the CLI command gating taxonomy. The MCP path here is a separate, opt-in read surface, not part of that gating.
-- Code Mode mechanics (naming, prefixed env, discovery): [mcp-code-mode SKILL.md](../../mcp-code-mode/SKILL.md).
+- Code Mode mechanics (naming, prefixed env, discovery): [mcp-code-mode SKILL.md](../../../mcp-code-mode/SKILL.md).
 
 Claims are tagged **[CONFIRMED]** (read from this repo's `.utcp_config.json` this session, or from the cited research digests) or **[INFERRED]** (reasoned, needs a live `tool_info()` / `list_tools()` to fix the exact string). The Framelink tool **names and input schemas are [INFERRED]** until a live discovery call confirms them, because the community server's per-tool schema is not pinned in this repo.
 
@@ -167,4 +167,4 @@ Treat the official Dev Mode MCP as a **future option only**. Do not wire or reco
 - [troubleshooting.md](troubleshooting.md) - failures including the Code Mode env-var prefix (`figma_FIGMA_API_KEY`) and tools-not-discovered cases.
 - [utcp_figma_manual.md](../assets/utcp_figma_manual.md) - the runnable Code Mode manual companion (the `figma` manual entry and ready-to-run `call_tool_chain` snippets).
 - [SKILL.md](../SKILL.md) - the skill contract these references support. See §3 "Optional Figma MCP via Code Mode".
-- Code Mode mechanics (naming, prefixed env, discovery): [mcp-code-mode SKILL.md](../../mcp-code-mode/SKILL.md).
+- Code Mode mechanics (naming, prefixed env, discovery): [mcp-code-mode SKILL.md](../../../mcp-code-mode/SKILL.md).

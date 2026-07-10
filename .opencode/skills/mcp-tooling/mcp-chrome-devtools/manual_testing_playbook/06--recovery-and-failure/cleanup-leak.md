@@ -94,7 +94,7 @@ Capture all three counts (`B`, `S`, `P`), the process lists from steps 4 and 7, 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg stop semantics + cleanup |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg stop semantics + cleanup |
 
 ---
 

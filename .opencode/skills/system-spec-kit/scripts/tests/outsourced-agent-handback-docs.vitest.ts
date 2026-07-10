@@ -13,13 +13,13 @@ function readWorkspaceFile(relativePath: string): string {
 
 describe('outsourced agent handback docs', () => {
   const skillDocs = [
-    '.opencode/skills/cli-opencode/SKILL.md',
-    '.opencode/skills/cli-claude-code/SKILL.md',
+    '.opencode/skills/cli-external/cli-opencode/SKILL.md',
+    '.opencode/skills/cli-external/cli-claude-code/SKILL.md',
   ];
 
   const promptDocs = [
-    '.opencode/skills/cli-opencode/assets/prompt_templates.md',
-    '.opencode/skills/cli-claude-code/assets/prompt_templates.md',
+    '.opencode/skills/cli-external/cli-opencode/assets/prompt_templates.md',
+    '.opencode/skills/cli-external/cli-claude-code/assets/prompt_templates.md',
   ];
 
   // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule

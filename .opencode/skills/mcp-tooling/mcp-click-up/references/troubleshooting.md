@@ -19,7 +19,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Diagnostic reference for cupt CLI and official ClickUp MCP errors. Start with the Quick Diagnostics sequence (§3) before diving into specific issues. Most failures fall into four categories: installation (cupt not found), authentication (401/no credentials), status resolution (wrong status on completion), and MCP connection (missing env vars or wrong tool name).
+Diagnostic reference for cupt CLI and official ClickUp MCP errors. Start with the Quick Diagnostics sequence (§3) before diving into specific issues. Most failures fall into four categories: installation (cupt not found), authentication (401/no credentials), status resolution (wrong status on completion), and MCP connection (manual misconfigured, OAuth not completed, or wrong tool name).
 
 ---
 
@@ -27,7 +27,7 @@ Diagnostic reference for cupt CLI and official ClickUp MCP errors. Start with th
 
 - cupt installed: `cupt --version`
 - Network access to ClickUp API
-- For MCP issues: Code Mode MCP configured in platform config with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`
+- For MCP issues: the `clickup` manual registered in `.utcp_config.json`, pointed at `mcp-remote https://mcp.clickup.com/mcp`. No env vars, auth is OAuth in the browser
 
 ---
 
@@ -235,40 +235,37 @@ cupt statuses TASK_ID   # List available statuses
 
 ## 8. MCP CONNECTION ISSUES
 
-### `CLICKUP_API_KEY not set` or MCP tools not found
+### MCP connection fails or `clickup` tools not found
 
 **Diagnosis:**
 ```bash
-# Check if opencode.json has the clickup MCP config:
-cat ~/.config/opencode/opencode.json | grep -A5 clickup
-# OR (project-local):
-cat .opencode/opencode.json | grep -A5 clickup
+# Check .utcp_config.json (Code Mode's config, not opencode.json) has the clickup manual:
+cat .utcp_config.json | grep -A10 '"clickup"'
+# Should show: command "npx", args ["mcp-remote", "https://mcp.clickup.com/mcp"]
 ```
 
 **Fix:**
-1. Run `bash .opencode/skills/mcp-click-up/scripts/install.sh --mcp-only` to print the config snippet
-2. Add the snippet to `opencode.json` under `mcpServers`
-3. Set `CLICKUP_API_KEY` to your ClickUp token (`pk_xxx`)
-4. Set `CLICKUP_TEAM_ID` to your workspace's numeric ID (from `cupt status`)
-5. Restart OpenCode
+1. Run `bash .opencode/skills/mcp-tooling/mcp-click-up/scripts/install.sh --mcp-only` to print the manual snippet
+2. Add it to `.utcp_config.json` under `manual_call_templates`, no env vars needed
+3. Reconnect Code Mode and authorize in the browser when it opens (OAuth, no token to paste)
 
 ---
 
 ### MCP tool call returns 403 Forbidden
 
-**Cause:** Token has insufficient permissions for the operation (e.g., viewing audit logs requires admin)
+**Cause:** The account that authorized in the browser has insufficient permissions for the operation
 
-**Diagnosis:** Check the specific tool in references/mcp_tools.md for permission notes
+**Diagnosis:** Check the specific tool in references/mcp_tools.md, and confirm it actually exists on the real server with `tool_info()` before assuming it's a permissions issue
 
-**Fix:** Use a token with appropriate workspace permissions or use cupt for equivalent daily ops
+**Fix:** Re-authorize with an account that has appropriate workspace permissions, or use cupt for equivalent daily ops
 
 ---
 
 ### MCP `tool not found` error
 
-**Cause:** Wrong tool name format
+**Cause:** Wrong tool name, or the tool doesn't exist on the real official server (see the verification note at the top of `references/mcp_tools.md`)
 
-**Fix:** All tools must be in format `clickup.clickup_{tool_name}` (e.g., `clickup.clickup_create_task`, NOT `clickup_create_task`)
+**Fix:** Run `tool_info("clickup.clickup_clickup_{tool_name}")` first to confirm the exact name, the callable form doubles the `clickup_` prefix because the underlying tool names already start with it (e.g. `clickup.clickup_clickup_create_task`, NOT `clickup.clickup_create_task`)
 
 ---
 
@@ -324,5 +321,5 @@ cupt --version
 
 - cupt documentation: https://github.com/newz2000/cupt
 - ClickUp API docs: https://clickup.com/api/
-- Official MCP repo: https://github.com/clickup/clickup-mcp-server
+- Official MCP setup docs: https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server
 - Report cupt bugs: https://github.com/newz2000/cupt/issues

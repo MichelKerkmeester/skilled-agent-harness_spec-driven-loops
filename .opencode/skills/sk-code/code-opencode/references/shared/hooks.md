@@ -1,6 +1,6 @@
 ---
 title: Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
-description: OpenCode-surface reference for runtime hook entrypoints (Claude, OpenCode, Copilot) — the dynamic-load registration pattern, per-runtime wiring shapes, and maintenance rules for editing, adding, or removing hooks. Uses the repo's canonical hook suite (system-spec-kit's mcp_server/hooks/) as the worked example.
+description: OpenCode-surface reference for current runtime hook wiring, plugin-bridge delivery, dynamic entrypoint reachability, and maintenance rules for editing, adding, or removing hooks.
 trigger_phrases:
   - "runtime hook authoring"
   - "hook entrypoints registration"
@@ -8,12 +8,12 @@ trigger_phrases:
   - "claude opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 3.6.0.0
+version: 1.0.0.14
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
 
-Reference for the three runtime hook surfaces that wire hook entrypoints into Claude, OpenCode, and Copilot via runtime settings files. The pattern applies to any hook suite in this workspace; the repo's canonical suite (`system-spec-kit/mcp_server/hooks/`) is the worked example throughout.
+Reference for the current runtime-hook surfaces in this workspace: checked-in Claude Code hook wiring, OpenCode plugin-bridge delivery, and GitHub/Copilot-adjacent hook wrappers. Keep this file aligned with the authoritative hook contract in `system-spec-kit/references/config/hook_system.md` and the live runtime wiring in `.claude/settings.json`.
 
 ---
 
@@ -21,17 +21,17 @@ Reference for the three runtime hook surfaces that wire hook entrypoints into Cl
 
 ### Purpose
 
-This reference documents the runtime-hook entrypoint pattern for OpenCode-family system code: how hook sources are registered, wired, and maintained. Hook source files have no static `import` callers inside their server - they are reached by runtime command strings invoking the compiled `dist/hooks/<runtime>/*.js` artifacts. Static dead-code analyzers see them as unused; they are not.
+This reference documents the runtime-hook entrypoint pattern for OpenCode-family system code: how hook sources are registered, wired, and maintained. Some hook source files have no static `import` callers inside their server; runtime settings, plugin declarations, or wrapper files make them reachable. Static dead-code analyzers can see those entrypoints as unused; they are not.
 
 ### Core Principle
 
-> **Hook entrypoints are runtime-loaded, not statically imported.** Their reachability lives in `settings.json` files, not in `import` statements. Treat the settings file as part of the contract.
+> **Hook entrypoints are runtime-loaded, not necessarily statically imported.** Their reachability lives in runtime settings, plugin bridge registrations, or checked-in wrapper files. Treat those registration surfaces as part of the contract.
 
 ### When to Use
 
 - Editing an existing hook entrypoint and verifying its runtime wiring still resolves
 - Adding a new hook to one or more runtimes
-- Removing a hook (must update both source and settings.json)
+- Removing a hook (must update both source and runtime registration)
 - Triaging a static analysis report flagging hook code as dead
 - Reviewing parity across the three runtimes
 
@@ -39,9 +39,11 @@ This reference documents the runtime-hook entrypoint pattern for OpenCode-family
 
 | Source | Path | Purpose |
 |---|---|---|
-| Skill Advisor hook reference | `.opencode/skills/system-spec-kit/references/hooks/skill_advisor_hook.md` | Per-runtime advisor hook contract, smoke tests, control flags |
 | Hook system reference | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Runtime-specific hook system deep-dive |
-| Copilot hook README | `.opencode/skills/system-spec-kit/mcp_server/hooks/copilot/README.md` | Canonical contract for managed custom-instructions writer |
+| Hook helper inventory | `.opencode/skills/system-spec-kit/mcp_server/hooks/README.md` | Current hook helper tree; states OpenCode advice is delivered by plugin bridge |
+| Claude settings | `.claude/settings.json` | Live checked-in Claude hook wiring |
+| OpenCode skill-advisor plugin | `.opencode/plugins/mk-skill-advisor.js` | OpenCode prompt-time advisor plugin using `experimental.chat.system.transform` |
+| OpenCode skill-advisor bridge | `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | Subprocess bridge from plugin to the advisor server |
 
 ---
 
@@ -49,38 +51,39 @@ This reference documents the runtime-hook entrypoint pattern for OpenCode-family
 
 ### Why Hooks Look Dead
 
-Static `import` analysis (e.g. `tsc --noUnusedLocals`, `ts-prune`, `knip`) walks the import graph from `context-server.ts`. Hook entrypoints under `mcp_server/hooks/<runtime>/` are NOT imported by any other module - the runtime invokes them as standalone Node processes. The wiring lives in:
+Static `import` analysis (e.g. `tsc --noUnusedLocals`, `ts-prune`, `knip`) walks import graphs, not runtime configuration. Runtime hooks and plugin bridges may be invoked by command strings or plugin host contracts instead of static imports. The current wiring lives in:
 
-| Runtime | Settings file | Wiring shape |
+| Surface | Registration source | Wiring shape |
 |---|---|---|
-| Claude | `.claude/settings.local.json` | Nested `hooks.<Event>[].hooks[]` array; each entry has `type: "command"` + `command` string |
-| OpenCode | `.opencode/settings.json` | Nested `hooks.<Event>[].hooks[]` array; same shape as Claude |
-| Copilot | `mcp_server/hooks/copilot/README.md` | Custom-instructions writer (no native hook contract); invoked from a Copilot-supported command surface |
+| Claude Code | `.claude/settings.json` | Nested `hooks.<Event>[].hooks[]` array; each entry has `type: "command"` + `command` string |
+| OpenCode | `.opencode/plugins/*.js` and user/workspace OpenCode runtime config | Plugin objects exposing `experimental.chat.system.transform`, `event`, and/or tools |
+| GitHub/Copilot side | `.github/hooks/superset-notify.json` plus supporting scripts under `.github/hooks/scripts/` | Checked-in wrapper/scripts for GitHub-supported hook surfaces |
 
-A dead-code audit of the example suite reached the same conclusion: all 15 hook entrypoints classified `dynamic-only-reference` with keep-with-rationale. KEEP hook sources unless the wiring is verifiably gone from every runtime settings surface.
+KEEP hook sources unless the wiring is verifiably gone from every runtime registration surface.
 
 ### Reachability Rule
 
 A hook source file is alive iff:
-1. The compiled `dist/hooks/<runtime>/<name>.js` artifact exists after `npm run build`, AND
-2. Some `settings.json` (or runtime contract README, for Copilot) references that compiled path.
+1. A live registration source references it directly or via its compiled artifact, AND
+2. The referenced source, bridge, wrapper, or compiled artifact resolves in the current checkout.
 
-Removing the source without removing the settings entry produces a runtime error at session start. Removing the settings entry without removing the source produces an orphan that future audits will surface.
+Removing the source without removing the registration produces a runtime error. Removing the registration without removing the source produces an orphan that future audits will surface.
 
 ---
 
 ## 3. CLAUDE HOOKS
 
-> Sections 3-5 document the repo's canonical hook suite (system-spec-kit's `mcp_server/hooks/`) as the worked example. The wiring shapes and reachability rules generalize to any hook suite; treat the suite's own READMEs as the authoritative inventory of its entrypoints.
+Claude Code hook wiring is checked in at `.claude/settings.json`. Use that file as the live wiring source for matchers, command strings, and timeouts.
 
-`mcp_server/hooks/claude/` - 4 wired entrypoints + shared helpers.
-
-| Entrypoint | Runtime event | Settings line |
-|---|---|---|
-| `user-prompt-submit.ts` | `UserPromptSubmit` | `.claude/settings.local.json:31` |
-| `compact-inject.ts` | `PreCompact` | `.claude/settings.local.json:43` |
-| `session-prime.ts` | `SessionStart` | `.claude/settings.local.json:55` |
-| `session-stop.ts` | `Stop` | `.claude/settings.local.json:67` |
+| Event | Matcher | Command | Timeout | Purpose |
+|---|---|---|---:|---|
+| `PreToolUse` | `Bash` | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs'` | 5 | Evaluates CLI dispatch `hard_rules` before `opencode run` / `claude -p` commands proceed. |
+| `UserPromptSubmit` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'` | 3 | Prompt-time Spec Kit advisor/context injection. |
+| `PreCompact` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'` | 3 | Compaction payload preparation. |
+| `SessionStart` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'` | 3 | Startup context priming. |
+| `SessionStart` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && bash .opencode/bin/worktree-guard.sh'` | 3 | Workspace safety guard. |
+| `Stop` | empty string | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js ; stop_status=$? ; bash .opencode/scripts/session-cleanup.sh || true ; exit "$stop_status"'` | 10 | Session-stop accounting and cleanup; async. |
+| `PostToolUse` | `Write|Edit` | `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && python3 .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh'` | 10 | Warn-only comment-hygiene and dist-staleness checks after source edits. |
 
 Helper modules (statically imported by the entrypoints, NOT directly wired): `claude-transcript.ts`, `hook-state.ts`, `shared.ts`.
 
@@ -93,8 +96,8 @@ Helper modules (statically imported by the entrypoints, NOT directly wired): `cl
     "hooks": [
       {
         "type": "command",
-        "command": "bash -c 'cd \"<repo>\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
-        "timeout": 3
+                "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
+                "timeout": 3
       }
     ]
   }
@@ -107,63 +110,24 @@ The nested shape (`hooks.<Event>[].hooks[]`) is required. A flat shape with top-
 
 ## 4. OPENCODE HOOKS
 
-`mcp_server/hooks/opencode/` - 3 wired entrypoints + 1 fallback wrapper + setup helper.
+The removed `system-spec-kit/mcp_server/hooks/opencode/` suite is not present in this checkout. Current OpenCode prompt-time advice is delivered by plugin bridge:
 
-| Entrypoint | Runtime event | Settings line |
+| Component | Path | Runtime surface |
 |---|---|---|
-| `session-start.ts` | `SessionStart` | `.opencode/settings.json:8` |
-| `user-prompt-submit.ts` | `UserPromptSubmit` | `.opencode/settings.json:19` |
-| `pre-tool-use.ts` | `PreToolUse` | `.opencode/settings.json:30` |
-| `prompt-wrapper.ts` | (fallback) | Documented in `references/hooks/skill_advisor_hook.md:60`; runs only when OpenCode hook policy reports hooks unavailable |
+| Skill advisor plugin | `.opencode/plugins/mk-skill-advisor.js` | Exposes `experimental.chat.system.transform`, an `event` handler, and `spec_kit_skill_advisor_status`. |
+| Skill advisor bridge | `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | Subprocess bridge from the plugin to `mk_skill_advisor`; stdin JSON in, single stdout JSON response out. |
 
-`setup.ts` is a configuration helper for the OpenCode hook system (not a runtime entrypoint).
+`system-spec-kit/mcp_server/hooks/README.md` is explicit: OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not by a subfolder in that directory. `hook_system.md` also describes OpenCode plugin-based transport through `.opencode/plugins/mk-skill-advisor.js`, `.opencode/plugins/mk-spec-memory.js`, `.opencode/plugins/mk-code-graph.js`, and `.opencode/plugins/mk-goal.js`.
 
-### Wiring Shape
-
-```jsonc
-"SessionStart": [
-  {
-    "hooks": [
-      {
-        "type": "command",
-        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/opencode/session-start.js'",
-        "timeout": 3
-      }
-    ]
-  }
-]
-```
-
-OpenCode hook stdin JSON wins over argv JSON when both are present (per advisor hook reference §2).
+Deprecated/stale references to `system-spec-kit/mcp_server/hooks/opencode/*` should be treated as legacy documentation until the authoritative hook contract names a new migration path. The current advisor bridge path is `system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`.
 
 ---
 
-## 5. COPILOT HOOKS
+## 5. GITHUB / COPILOT SIDE
 
-`mcp_server/hooks/copilot/` - managed custom-instructions writer pattern, NOT a native hook contract.
+The removed `system-spec-kit/mcp_server/hooks/copilot/` suite is not present in this checkout. The current checked-in GitHub hook wrapper named by `hook_system.md` is `.github/hooks/superset-notify.json`; supporting shell scripts live under `.github/hooks/scripts/`.
 
-GitHub's Copilot CLI hook contract currently ignores `sessionStart` output and ignores `userPromptSubmitted` output for prompt modification. Copilot hooks therefore do not return model-visible `additionalContext`. They refresh Copilot's supported custom-instructions surface (`$HOME/.copilot/copilot-instructions.md`) inside a managed block bounded by `SPEC-KIT-COPILOT-CONTEXT` markers.
-
-| Helper | Role | Canonical doc |
-|---|---|---|
-| `custom-instructions.ts` | Owns the managed block in `$HOME/.copilot/copilot-instructions.md` | `mcp_server/hooks/copilot/README.md:18` |
-| `session-prime.ts` | Builds startup context, refreshes managed block during `sessionStart` | `mcp_server/hooks/copilot/README.md:18` |
-| `user-prompt-submit.ts` | Builds advisor brief during `userPromptSubmitted`, refreshes managed block, returns `{}` | `mcp_server/hooks/copilot/README.md:18` |
-| `compact-cache.ts` | Keeps compact recovery state available for wrapper surfaces | `mcp_server/hooks/copilot/README.md:18` |
-
-### Invocation
-
-Copilot does NOT use `.claude/settings.local.json` or its nested hook block. Wire Copilot through a Copilot-supported command surface that executes the compiled writers:
-
-```bash
-node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js
-printf '%s' '{"prompt":"<prompt>","cwd":"'"$PWD"'"}' | \
-  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js
-```
-
-Control flags: `SPECKIT_COPILOT_INSTRUCTIONS_DISABLED=1` skips the writer; `SPECKIT_COPILOT_INSTRUCTIONS_PATH` overrides the target file (useful for tests).
-
-See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate that content here.
+Do not copy the Claude nested hook block into GitHub/Copilot-facing files. `hook_system.md` describes Copilot freshness as NEXT-PROMPT: the current prompt sees the prior turn's refreshed instructions or wrapper output.
 
 ---
 
@@ -173,17 +137,18 @@ See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate
 
 ```
 □ Read the source file before editing
-□ Verify the dist/ path in settings.json still resolves after `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`
+□ Verify the registered command, plugin bridge, or wrapper path still resolves
 □ Run the per-runtime smoke test from `references/hooks/skill_advisor_hook.md §4`
 □ Confirm fail-open behavior: errors must return `{}` or empty `additionalContext`, never throw to the runtime
+□ If TypeScript sources feed compiled runtime entrypoints, rebuild the owning package so dist-freshness checks do not report stale output
 ```
 
 ### Adding a Hook
 
 ```
-□ Author the TypeScript source under `mcp_server/hooks/<runtime>/<name>.ts`
-□ Register the wiring entry in the matching settings.json (Claude/OpenCode) or document in the Copilot README
-□ Build to confirm the dist artifact emits: `npm --prefix .opencode/skills/system-spec-kit/mcp_server run build`
+□ Author the source under the owning hook, plugin, bridge, or wrapper directory
+□ Register the wiring entry in the matching runtime registration surface
+□ Build to confirm any required dist artifact emits
 □ Smoke-test with the runtime's documented invocation form (advisor hook ref §4 has examples)
 □ Consider parity: if the feature applies to other runtimes, register there too (see §7)
 ```
@@ -191,8 +156,8 @@ See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate
 ### Removing a Hook
 
 ```
-□ Delete the source file under `mcp_server/hooks/<runtime>/`
-□ Delete the wiring entry from the matching settings.json (or Copilot README reference)
+□ Delete the source file under the owning hook, plugin, bridge, or wrapper directory
+□ Delete the wiring entry from the matching runtime registration surface
 □ Rebuild to remove the stale dist artifact
 □ Verify no other hook helper imports the deleted module
 □ If skipping either step: future dead-code audits will surface the orphan
@@ -200,13 +165,13 @@ See `mcp_server/hooks/copilot/README.md` for the full contract; do NOT duplicate
 
 ### Cross-Runtime Parity
 
-Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add it to OpenCode/Copilot. Each runtime has different events (Claude uses `PreCompact`, OpenCode uses `PreToolUse`, Copilot has no native compact contract). Parity decisions are explicit:
+Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add it to OpenCode or GitHub/Copilot-facing wrappers. Each runtime has different events and transport rules. Parity decisions are explicit:
 
 | Question | Action |
 |---|---|
-| Does the feature need session-start priming? | Add to Claude (`session-prime`), OpenCode (`session-start`), Copilot (`session-prime`) |
-| Does the feature run per-prompt? | Add to Claude/OpenCode `user-prompt-submit` and Copilot's writer |
-| Does the feature run on compaction? | Map runtime-specific event names: Claude `PreCompact`, OpenCode no native event, Copilot via cache helper |
+| Does the feature need session-start priming? | Add to the runtime's startup/session surface; for Claude this is `SessionStart` in `.claude/settings.json`. |
+| Does the feature run per-prompt? | Add to the runtime's prompt surface; for OpenCode advisor context this is the plugin bridge. |
+| Does the feature run on compaction? | Map runtime-specific event names; for Claude this is `PreCompact` in `.claude/settings.json`. |
 
 ---
 
@@ -214,7 +179,10 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 
 ### Canonical Evidence
 
-- Per-runtime hook directories: `mcp_server/hooks/{claude,opencode,copilot}/README.md` (authoritative entrypoint inventory for the example suite)
+- Current helper inventory: `system-spec-kit/mcp_server/hooks/README.md`
+- Current hook contract: `system-spec-kit/references/config/hook_system.md`
+- Live Claude wiring: `.claude/settings.json`
+- OpenCode advisor plugin bridge: `.opencode/plugins/mk-skill-advisor.js` -> `system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`
 
 ### Runtime-Specific Deep-Dives (do not duplicate)
 
@@ -224,9 +192,9 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 
 ### Settings Files (wiring source-of-truth)
 
-- `.claude/settings.local.json`
-- `.opencode/settings.json`
-- `mcp_server/hooks/copilot/README.md` (Copilot has no settings.json contract)
+- `.claude/settings.json`
+- OpenCode plugin files under `.opencode/plugins/`
+- `.github/hooks/superset-notify.json`
 
 ### Framework Context
 

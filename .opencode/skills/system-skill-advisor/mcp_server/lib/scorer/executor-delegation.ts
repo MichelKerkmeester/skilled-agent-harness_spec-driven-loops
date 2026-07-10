@@ -35,6 +35,12 @@ import type {
 // is the one skill this resolver deliberately demotes so the executor wins.
 const CODE_HUB_SKILL_ID = 'sk-code';
 
+// The cli-external parent hub. After
+// the cli-opencode/cli-claude-code fold-in, this is the only top-level
+// family:'cli' projection entry — a non-executor hub identity that must never
+// win a delegation route or survive an abstain suppression pass.
+const CLI_HUB_SKILL_ID = 'cli-external';
+
 // A route lift must clear the strict dual threshold and sit clearly above the
 // capped code hub so the executor is the unambiguous top.
 const ROUTE_CONFIDENCE = 0.95;
@@ -88,6 +94,8 @@ export interface ExecutorAliasTable {
   readonly suppressedAliases: ReadonlySet<string>;
   /** orchestrator noun -> active executor skill id (used only with a delegation cue). */
   readonly orchestratorNouns: ReadonlyMap<string, string>;
+  /** Live executor-kind ids sourced from cli-external's mode-registry.json. */
+  readonly activeExecutorIds: ReadonlySet<string>;
   readonly delegationCues: RegExp;
   readonly negativeGuard: RegExp;
 }
@@ -118,10 +126,57 @@ interface ArchivedGraphMetadata {
   readonly derived?: { readonly trigger_phrases?: unknown } | unknown;
 }
 
-/** Filesystem-derived alias data (model registry + archived executors). */
+// The cli-external hub's mode-registry.json packets (keyed by
+// packetSkillName), NOT the top-level family==='cli' projection filter, are
+// the executor-delegation scorer's source of truth. After the fold-in,
+// cli-opencode/cli-claude-code are workflow modes nested under one hub
+// identity, not separate top-level projection skills, and the hub's folded
+// graph-metadata has no per-mode alias granularity — so per-executor alias
+// phrases must come from the registry's own per-mode `aliases[]`, not from
+// projection.skills[].intentSignals/derivedTriggers.
+interface CliHubModeEntry {
+  readonly packetKind?: unknown;
+  readonly packetSkillName?: unknown;
+  readonly aliases?: unknown;
+}
+
+interface CliHubRegistry {
+  readonly modes?: unknown;
+}
+
+/** One cli-external workflow-mode executor, sourced from mode-registry.json. */
+interface HubExecutorEntry {
+  readonly id: string;
+  readonly aliases: readonly string[];
+}
+
+/** Filesystem-derived alias data (model registry + archived executors + hub executors). */
 interface FilesystemAliasData {
   readonly modelAliases: ReadonlyMap<string, string>;
   readonly suppressedAliases: ReadonlySet<string>;
+  readonly hubExecutors: readonly HubExecutorEntry[];
+}
+
+// Reads cli-external's mode-registry.json workflow-mode packets as the
+// executor-delegation source of truth. A missing or malformed
+// registry degrades to zero hub executors, never a hard failure — mirrors the
+// model_profiles.json degrade-on-error convention below.
+function loadCliHubExecutors(skillsRoot: string): HubExecutorEntry[] {
+  const registryPath = join(skillsRoot, 'cli-external', 'mode-registry.json');
+  const executors: HubExecutorEntry[] = [];
+  try {
+    if (existsSync(registryPath)) {
+      const parsed = JSON.parse(readFileSync(registryPath, 'utf8')) as CliHubRegistry;
+      const modes = Array.isArray(parsed.modes) ? (parsed.modes as CliHubModeEntry[]) : [];
+      for (const mode of modes) {
+        if (mode.packetKind !== 'workflow' || typeof mode.packetSkillName !== 'string') continue;
+        executors.push({ id: mode.packetSkillName, aliases: stringArray(mode.aliases) });
+      }
+    }
+  } catch {
+    // A malformed hub registry degrades to zero hub executors, never a hard failure.
+  }
+  return executors;
 }
 
 // The filesystem read (model registry + archived metadata) is workspace-derived
@@ -159,7 +214,7 @@ function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemA
   // Model -> executor aliases from the shared small-model profile registry.
   // Only active executor paths lift; an optional/unverified path is recorded
   // nowhere so a bare model mention never auto-routes to it.
-  const modelProfilesPath = join(skillsRoot, 'sk-prompt-models', 'assets', 'model_profiles.json');
+  const modelProfilesPath = join(skillsRoot, 'sk-prompt', 'prompt-models', 'assets', 'model_profiles.json');
   try {
     if (existsSync(modelProfilesPath)) {
       const parsed = JSON.parse(readFileSync(modelProfilesPath, 'utf8')) as { models?: unknown };
@@ -222,12 +277,31 @@ function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemA
     // No archive (or unreadable) simply means an empty suppressed set.
   }
 
-  const data: FilesystemAliasData = { modelAliases, suppressedAliases };
+  const hubExecutors = loadCliHubExecutors(skillsRoot);
+
+  const data: FilesystemAliasData = { modelAliases, suppressedAliases, hubExecutors };
   filesystemAliasCache.set(cacheKey, data);
   return data;
 }
 
-/** Build (memoized filesystem part) the alias tables from metadata. */
+/**
+ * Build (memoized filesystem part) the alias tables from metadata.
+ *
+ * Executors are enumerated from
+ * cli-external's mode-registry.json workflow-mode packets (keyed by
+ * packetSkillName), NOT the top-level `family === 'cli'` projection filter.
+ * After the cli-opencode/cli-claude-code fold-in, that filter would select
+ * the HUB (cli-external) instead of the two leaf executors — the hub's
+ * folded graph-metadata carries the union of both modes' signals with no
+ * per-mode attribution, so a projection-filter read would (a) map every
+ * folded alias to the non-executor id 'cli-external', and (b) derive the
+ * orchestrator noun 'external' from the hub id. Sourcing from the registry's
+ * per-mode `aliases[]` instead avoids both failure modes, and no noun is
+ * ever derived from the hub id itself (only from each mode's
+ * packetSkillName), so 'external' never enters `orchestratorNouns`.
+ * `projection` is kept for API compatibility with existing callers; hub
+ * executor resolution no longer depends on it.
+ */
 export function buildExecutorAliasTable(
   projection: AdvisorProjection,
   workspaceRoot: string | undefined,
@@ -236,39 +310,39 @@ export function buildExecutorAliasTable(
   const activeAliases = new Map<string, string>();
   const orchestratorNouns = new Map<string, string>();
 
-  const activeCliSkills = projection.skills.filter(
-    (skill) => skill.family === 'cli' && skill.lifecycleStatus === 'active',
-  );
-  const activeExecutorIds = new Set(activeCliSkills.map((skill) => skill.id));
+  const activeExecutorIds = new Set(filesystem.hubExecutors.map((executor) => executor.id));
 
-  for (const skill of activeCliSkills) {
-    // Author-declared delegation vocabulary only: name variants + intent
-    // signals + derived trigger phrases. Derived KEYWORDS (key_topics/entities/
-    // key_files/source_docs) carry file paths and doc names that would
-    // over-match general prompts, so they are intentionally excluded.
+  for (const executor of filesystem.hubExecutors) {
+    // Author-declared delegation vocabulary only: name variants + the
+    // registry's own per-mode aliases[]. Unlike the pre-dissolution
+    // projection read, the hub's graph-metadata folds both modes' intent
+    // signals into one union, so per-mode phrases now come from
+    // mode-registry.json instead of projection.skills[].intentSignals /
+    // .derivedTriggers.
     const phrases = [
-      ...skillNameVariants(skill.id),
-      ...skill.intentSignals,
-      ...skill.derivedTriggers,
+      ...skillNameVariants(executor.id),
+      ...executor.aliases,
     ];
     for (const phrase of phrases) {
       for (const variant of aliasVariantsOf(phrase)) {
-        if (!activeAliases.has(variant)) activeAliases.set(variant, skill.id);
+        if (!activeAliases.has(variant)) activeAliases.set(variant, executor.id);
       }
     }
-    // Orchestrator noun derived from the executor id ("cli-opencode" ->
-    // "opencode", "cli-claude-code" -> "claude-code"/"claude code").
-    const noun = skill.id.replace(/^cli-/, '');
-    if (noun && noun !== skill.id) {
-      orchestratorNouns.set(noun, skill.id);
+    // Orchestrator noun derived ONLY from each mode's packetSkillName
+    // ("cli-opencode" -> "opencode", "cli-claude-code" -> "claude-code"/
+    // "claude code") — never from the hub id, so 'external' never enters
+    // this table.
+    const noun = executor.id.replace(/^cli-/, '');
+    if (noun && noun !== executor.id) {
+      orchestratorNouns.set(noun, executor.id);
       const spaced = noun.replace(/-/g, ' ');
-      if (spaced !== noun) orchestratorNouns.set(spaced, skill.id);
+      if (spaced !== noun) orchestratorNouns.set(spaced, executor.id);
     }
   }
 
-  // Model aliases back-stop the projection: any active model whose executor is
-  // a routable cli skill contributes its aliases even if the executor's derived
-  // block has not yet been re-synced with that model.
+  // Model aliases back-stop the registry: any active model whose executor is
+  // a routable cli-external mode contributes its aliases even if the
+  // executor's registry aliases[] has not yet been re-synced with that model.
   for (const [alias, executorId] of filesystem.modelAliases) {
     if (!activeExecutorIds.has(executorId)) continue;
     if (!activeAliases.has(alias)) activeAliases.set(alias, executorId);
@@ -278,6 +352,7 @@ export function buildExecutorAliasTable(
     activeAliases,
     suppressedAliases: filesystem.suppressedAliases,
     orchestratorNouns,
+    activeExecutorIds,
     delegationCues: DELEGATION_CUES,
     negativeGuard: NEGATIVE_GUARD,
   };
@@ -373,13 +448,14 @@ export function applyExecutorDelegationOverride(
 
   if (decision.action === 'abstain') {
     // A named retired executor cannot be honored and must not silently reroute:
-    // suppress both the code-hub fallback and every live cli executor so it never
-    // lands on a different orchestrator. Whatever non-executor skill legitimately
-    // passes becomes the top, else none.
-    const suppressed = new Set<string>([CODE_HUB_SKILL_ID]);
-    for (const skill of ctx.projection.skills) {
-      if (skill.family === 'cli') suppressed.add(skill.id);
-    }
+    // suppress the code-hub fallback, every live cli-external executor mode
+    // (sourced from table.activeExecutorIds, the hub's
+    // mode-registry.json, not a projection family scan — cli-opencode/
+    // cli-claude-code are no longer separate top-level projection skills),
+    // and the non-executor hub identity itself (cli-external must never win a
+    // fallback route, same invariant as the route path below). Whatever
+    // non-executor skill legitimately passes becomes the top, else none.
+    const suppressed = new Set<string>([CODE_HUB_SKILL_ID, CLI_HUB_SKILL_ID, ...table.activeExecutorIds]);
     return ranked.map((rec) => (
       suppressed.has(rec.skill) ? { ...rec, passes_threshold: false } : rec
     ));

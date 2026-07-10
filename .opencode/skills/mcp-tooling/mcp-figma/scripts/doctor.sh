@@ -45,7 +45,7 @@ esac
 
 # Optional MCP (Code Mode, Framelink figma manual)
 log "-- Optional Figma MCP via Code Mode (Framelink) --"
-UTCP="$HERE/../../../../.utcp_config.json"
+UTCP="$HERE/../../../../../.utcp_config.json"
 if [ -f "$UTCP" ]; then
   if grep -q '"figma"' "$UTCP" 2>/dev/null; then ok "Code Mode 'figma' manual registered in .utcp_config.json"; else info "No 'figma' manual in .utcp_config.json"; fi
 else info ".utcp_config.json not found at expected repo root (optional MCP is opt-in)"; fi

@@ -187,5 +187,5 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 | [`references/design-grounding/design_references_mcp.md`](./references/design-grounding/design_references_mcp.md) | Real-world critique-against references (Mobbin, Refero via Code Mode through `mcp-code-mode`): name the category's real-world default, then deviate. One reference, read live, never copied. Tool catalogs in `references/mcp-tooling/` |
 | [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |
-| [`mcp-figma`](../../mcp-figma/README.md) | Sibling transport (Figma Desktop). This skill judges the design decisions its reads and exports feed |
+| [`mcp-figma`](../../mcp-tooling/mcp-figma/README.md) | Sibling transport (Figma Desktop). This skill judges the design decisions its reads and exports feed |
 | [Skills Library](../../README.md) | The skill catalog and routing front door |

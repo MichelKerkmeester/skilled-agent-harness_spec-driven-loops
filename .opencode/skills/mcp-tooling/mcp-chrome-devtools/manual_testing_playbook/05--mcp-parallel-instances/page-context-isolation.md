@@ -91,7 +91,7 @@ Capture the Code Mode script, returned object, and explicit boolean values for b
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | get_cookies / evaluate_script reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | get_cookies / evaluate_script reference |
 | `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode invocation contract |
 
 ---

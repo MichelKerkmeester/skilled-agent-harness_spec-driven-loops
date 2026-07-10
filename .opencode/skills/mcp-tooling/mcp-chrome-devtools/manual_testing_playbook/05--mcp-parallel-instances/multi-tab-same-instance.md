@@ -91,7 +91,7 @@ Capture the Code Mode script, returned object, and the resolved page count.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | new_page / list_pages / select_page reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | new_page / list_pages / select_page reference |
 | `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode invocation contract |
 
 ---

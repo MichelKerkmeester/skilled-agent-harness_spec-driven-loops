@@ -341,8 +341,8 @@ bdg stop 2>&1
 ### Skill Documentation
 
 **CLI Chrome DevTools**:
-- `.opencode/skills/mcp-chrome-devtools/SKILL.md` - Main skill documentation
-- `.opencode/skills/mcp-chrome-devtools/references/` - Additional reference materials
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` - Main skill documentation
+- `.opencode/skills/mcp-tooling/mcp-chrome-devtools/references/` - Additional reference materials
 
 ### Workflow Integration
 

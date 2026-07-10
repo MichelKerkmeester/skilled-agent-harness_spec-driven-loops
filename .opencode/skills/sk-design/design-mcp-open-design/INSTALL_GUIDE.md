@@ -177,7 +177,7 @@ Commands are classified read-only, mutating, and destructive, and every mutating
 - [references/tool_surface.md](references/tool_surface.md) - the read-only / mutating / destructive taxonomy.
 - [`references/design_parity_transport.md`](references/design_parity_transport.md) - the Open Design transport for the real-UI loop (the loop itself lives in `sk-design`).
 
-Sibling terminal-driven design skills with the same install-and-doctor shape: [`mcp-figma`](../../mcp-figma/INSTALL_GUIDE.md) (Figma Desktop via the silships figma-ds-cli) and [`mcp-chrome-devtools`](../../mcp-chrome-devtools/INSTALL_GUIDE.md) (a real-browser surface for last-mile preview).
+Sibling terminal-driven design skills with the same install-and-doctor shape: [`mcp-figma`](../../mcp-tooling/mcp-figma/INSTALL_GUIDE.md) (Figma Desktop via the silships figma-ds-cli) and [`mcp-chrome-devtools`](../../mcp-tooling/mcp-chrome-devtools/INSTALL_GUIDE.md) (a real-browser surface for last-mile preview).
 
 ---
 

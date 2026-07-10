@@ -68,21 +68,23 @@ fi
 
 # Optional MCP via Code Mode
 log "-- Optional ClickUp MCP via Code Mode --"
-UTCP="$HERE/../../../../.utcp_config.json"
+UTCP="$HERE/../../../../../.utcp_config.json"
 if [ -f "$UTCP" ]; then
-  if grep -qi '"clickup' "$UTCP" 2>/dev/null; then ok "Code Mode ClickUp manual registered in .utcp_config.json (for example clickup_official)"; else info "No ClickUp manual in .utcp_config.json"; fi
+  if grep -qi 'mcp.clickup.com' "$UTCP" 2>/dev/null; then
+    ok "Code Mode ClickUp manual registered in .utcp_config.json (official server, mcp-remote bridge)"
+  elif grep -qi '"clickup' "$UTCP" 2>/dev/null; then
+    warn "A ClickUp manual is registered in .utcp_config.json but does not point at mcp.clickup.com, it may be a stale community server"
+  else
+    info "No ClickUp manual in .utcp_config.json"
+  fi
 else
   info ".utcp_config.json not found at expected repo root"
 fi
-info "MCP package: @clickup/mcp-server"
+info "MCP server: https://mcp.clickup.com/mcp (official, OAuth 2.1 + PKCE)"
 
-# Token presence only
-log "-- ClickUp auth --"
-if [ -n "${CLICKUP_API_KEY:-}" ]; then
-  ok "CLICKUP_API_KEY env var present (value not shown)"
-else
-  info "CLICKUP_API_KEY env var not set"
-fi
+# Auth is OAuth-based for the official server, no env var to check
+log "-- ClickUp MCP auth --"
+info "Auth is OAuth 2.1 + PKCE via the browser, no env var to check. First connection opens a browser to authorize."
 
 log ""
 log "Doctor is read-only. For setup and authentication, run install.sh or read INSTALL_GUIDE.md."

@@ -79,7 +79,7 @@ Capture both command outputs.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | bdg CLI session lifecycle |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | bdg CLI session lifecycle |
 
 ---
 

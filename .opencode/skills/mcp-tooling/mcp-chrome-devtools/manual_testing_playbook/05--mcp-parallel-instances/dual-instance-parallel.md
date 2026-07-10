@@ -100,7 +100,7 @@ Capture the Code Mode script, the returned object, single-instance baseline `T1`
 
 | File | Role |
 |---|---|
-| `.opencode/skills/mcp-chrome-devtools/SKILL.md` | chrome_devtools_1/chrome_devtools_2 MCP reference |
+| `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` | chrome_devtools_1/chrome_devtools_2 MCP reference |
 | `.opencode/skills/mcp-code-mode/SKILL.md` | Code Mode parallel patterns |
 
 ---

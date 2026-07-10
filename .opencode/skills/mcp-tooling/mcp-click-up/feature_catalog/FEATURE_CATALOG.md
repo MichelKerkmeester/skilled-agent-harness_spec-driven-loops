@@ -15,18 +15,20 @@ Complete feature inventory for both tools in the mcp-click-up skill. This catalo
 The mcp-click-up skill routes ClickUp work between two complementary tools:
 
 - **cupt CLI** (`pipx install cupt`) — 50 features across 10 command areas. Purpose-built for agent use: per-list status resolution, dry-run safety, offline cache, and `--json` output on every read command.
-- **Official ClickUp MCP** (`@clickup/mcp-server`) — 46 tools via Code Mode `call_tool_chain()`. Covers surfaces cupt cannot reach: documents, goals, bulk creation, webhooks, and enterprise administration.
+- **Official ClickUp MCP** (ClickUp's hosted server at `https://mcp.clickup.com/mcp`, OAuth, via Code Mode `call_tool_chain()`). Covers surfaces cupt cannot reach: documents, time tracking, chat and reminders.
+
+> **Open item:** this skill's routing previously assumed a 46-tool catalog including goals/OKRs, bulk task creation, webhooks and enterprise administration. Direct verification against the real official server (`list_tools()`, 2026-07) found 51 tools and no goals, bulk-create, webhook or audit-log tools. The per-feature entries below for those areas have not yet been reconciled against that finding, treat MCP-advanced entries outside task CRUD, documents, time tracking, chat and reminders as unverified until checked.
 
 Routing is **operation-based**: each feature belongs to exactly one tool. See `../SKILL.md §2` for the routing pseudocode.
 
 | Metric | Value |
 |--------|-------|
 | cupt features | 50 |
-| Official MCP tools | 46 |
+| Official MCP tools | 51 (verified via `list_tools()`), catalog below still documents the old assumed 46 |
 | Total catalog entries | 96 |
 | cupt install | `pipx install cupt` |
-| MCP package | `@clickup/mcp-server` (npm) |
-| MCP invocation | `clickup.clickup_{tool_name}` via Code Mode |
+| MCP server | `https://mcp.clickup.com/mcp` (official, OAuth, no package to install) |
+| MCP invocation | `clickup.clickup_clickup_{tool_name}` via Code Mode (tool names already start with `clickup_`, so the manual prefix doubles) |
 
 See `../feature_catalog/FEATURE_CATALOG.md` for the agent decision guide.
 

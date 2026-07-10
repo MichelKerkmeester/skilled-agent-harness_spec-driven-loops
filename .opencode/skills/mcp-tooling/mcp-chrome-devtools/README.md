@@ -189,7 +189,7 @@ The skill ships a manual testing playbook and three example scripts that double 
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-chrome-devtools/README.md --type readme` reports zero issues |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-tooling/mcp-chrome-devtools/README.md --type readme` reports zero issues |
 | CLI health | `command -v bdg && bdg --version 2>&1 && bdg https://example.com 2>&1 && bdg dom screenshot /tmp/verify.png 2>&1 && bdg stop 2>&1 && ls -la /tmp/verify.png` all pass with no errors |
 | MCP health | Confirm chrome_devtools tools appear in `list_tools()` output and a `navigate_page` call completes without connection errors |
 | Example scripts | Run `performance-baseline.sh`, `animation-testing.sh` and `multi-viewport-test.sh` in headless mode and confirm all exit zero |

@@ -427,7 +427,7 @@ Both can navigate, test, and screenshot without conflicts.
 - Performance: `bdg performance trace` (Core Web Vitals)
 - Network: `bdg har export network.har`
 
-**See**: .opencode/skills/mcp-chrome-devtools/SKILL.md for complete CLI automation workflows
+**See**: .opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md for complete CLI automation workflows
 
 ### When to Use Automated vs. Manual
 
@@ -778,7 +778,7 @@ bdg stop 2>&1
 npm install -g browser-debugger-cli@alpha
 ```
 
-**See:** [`.opencode/skills/mcp-chrome-devtools/SKILL.md`](../../../../mcp-chrome-devtools/SKILL.md) for complete CLI workflows.
+**See:** [`.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`](../../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for complete CLI workflows.
 
 ---
 

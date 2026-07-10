@@ -10,26 +10,16 @@
     "conflicts_with": [],
     "prerequisite_for": [
       {
-        "target": "mcp-chrome-devtools",
+        "target": "mcp-tooling",
         "weight": 0.7,
-        "context": "devtools MCP fallback via Code Mode"
-      },
-      {
-        "target": "mcp-click-up",
-        "weight": 0.7,
-        "context": "official ClickUp MCP invoked via Code Mode for advanced operations"
-      },
-      {
-        "target": "mcp-figma",
-        "weight": 0.7,
-        "context": "optional Figma MCP (Framelink) invoked via Code Mode when MCP context is needed"
+        "context": "MCP fallback via Code Mode for all three mcp-tooling modes: devtools MCP fallback (mcp-chrome-devtools), official ClickUp MCP for advanced operations (mcp-click-up), and the optional Figma MCP (Framelink) when MCP context is needed (mcp-figma). Repointed from the three former flat bridge identities to the mcp-tooling hub (ADR-004/ADR-005 carve-out) -- this is a metadata-only edit; the code_mode registration and server are unchanged."
       }
     ]
   },
   "manual": {
     "depends_on": [],
     "related_to": [
-      "mcp-chrome-devtools",
+      "mcp-tooling",
       "cli-opencode"
     ]
   },
