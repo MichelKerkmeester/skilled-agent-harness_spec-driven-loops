@@ -19,6 +19,7 @@ const BLOCKED_CHILD_ENV_RE = /^(NODE_|npm_|NPM_)/;
 const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|SPECKIT_LAUNCHER_(IDLE_TIMEOUT_MIN|WAL_TRUNCATE_BYTES)$|MK_CODE_INDEX_)/;
 const DEFAULT_WAL_TRUNCATE_BYTES = 8_388_608;
 const DAEMON_PID_REGISTRY_FILE_NAME = '.code-graph-daemon-pid.json';
+const INVALIDATION_MARKER_FILE_NAME = '.code-graph-invalidation.json';
 
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
@@ -1061,6 +1062,13 @@ async function respawnAfterDeadSocket(leaseResult, decision, options = {}) {
     ownerLeasePid = process.pid;
 
     buildIfNeeded([]);
+    const invalidationResult = consumeCodeGraphInvalidation(resolvedDbDir(), {
+      exclusiveOwnership: ownerLeasePid === process.pid,
+      connectionsClosed: true,
+    });
+    if (invalidationResult.consumed) {
+      log(`post-commit invalidation consumed: ${invalidationResult.reason}`);
+    }
     checkpointStaleWalIfNeeded(path.join(resolvedDbDir(), 'code-graph.sqlite'), { reapedOrphan: true });
     writeLeaseFile();
     launchServer();
@@ -1331,6 +1339,51 @@ function dbAppearsHeldByLiveProcess(dbPath) {
   }
 
   return findDbFileHolderPids(dbPath).some((pid) => processLiveness(pid) !== 'dead');
+}
+
+function consumeCodeGraphInvalidation(targetDbDir = resolvedDbDir(), options = {}) {
+  const canonicalDbDir = canonicalizePath(targetDbDir);
+  assertPathWithinRoot(canonicalDbDir, 'code graph invalidation DB directory', true);
+  const markerPath = path.join(canonicalDbDir, INVALIDATION_MARKER_FILE_NAME);
+  if (!fs.existsSync(markerPath)) return { consumed: false, reason: 'missing-marker' };
+
+  if (options.exclusiveOwnership !== true || options.connectionsClosed !== true) {
+    return { consumed: false, reason: 'ownership-not-exclusive' };
+  }
+
+  const dbPath = path.join(canonicalDbDir, 'code-graph.sqlite');
+  if (dbAppearsHeldByLiveProcess(dbPath)) {
+    return { consumed: false, reason: 'live-db-holder' };
+  }
+
+  const markerSnapshot = fs.readFileSync(markerPath, 'utf8');
+  for (const file of [
+    'code-graph.sqlite',
+    'code-graph.sqlite-wal',
+    'code-graph.sqlite-shm',
+    '.code-graph-readiness.json',
+  ]) {
+    fs.rmSync(path.join(canonicalDbDir, file), { force: true });
+  }
+
+  const claimedMarker = `${markerPath}.consuming.${process.pid}.${Date.now()}`;
+  try {
+    fs.renameSync(markerPath, claimedMarker);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    return { consumed: true, reason: 'reset-marker-already-consumed' };
+  }
+
+  const claimedSnapshot = fs.readFileSync(claimedMarker, 'utf8');
+  if (claimedSnapshot === markerSnapshot || fs.existsSync(markerPath)) {
+    fs.rmSync(claimedMarker, { force: true });
+  } else {
+    fs.renameSync(claimedMarker, markerPath);
+  }
+  return {
+    consumed: true,
+    reason: claimedSnapshot === markerSnapshot ? 'reset' : 'reset-newer-marker-preserved',
+  };
 }
 
 function checkpointWalWithBetterSqlite(dbPath) {
@@ -1673,6 +1726,7 @@ async function launcherMain() {
           'code-graph.sqlite-shm',
           'code-graph.sqlite-wal',
           '.code-graph-readiness.json',
+          INVALIDATION_MARKER_FILE_NAME,
           '.mk-code-index-launcher.json',
         ];
         // Re-check the sqlite target immediately before copying so a launcher that
@@ -1725,6 +1779,17 @@ async function launcherMain() {
       }
     }
 
+    const invalidationResult = consumeCodeGraphInvalidation(resolvedDbDir(), {
+      exclusiveOwnership: strictSingleWriter && ownerLeasePid === process.pid,
+      connectionsClosed: childProcess === null,
+    });
+    if (invalidationResult.consumed) {
+      actions.push('reset code graph from post-commit invalidation marker');
+      log(`post-commit invalidation consumed: ${invalidationResult.reason}`);
+    } else if (invalidationResult.reason !== 'missing-marker') {
+      log(`post-commit invalidation deferred: ${invalidationResult.reason}`);
+    }
+
     checkpointStaleWalIfNeeded(path.join(resolvedDbDir(), 'code-graph.sqlite'), {
       reapedOrphan: reapedRegisteredOrphan || (Number.isInteger(reclaimedOrphanPid) && reclaimedOrphanPid > 0),
     });
@@ -1775,6 +1840,7 @@ module.exports = {
   resolveWalTruncateBytes,
   reclaimDeadSocketEnabled,
   checkpointStaleWalIfNeeded,
+  consumeCodeGraphInvalidation,
   classifyOwnerReclaim,
   ownerUidMatches,
   verifyPidIdentity,
