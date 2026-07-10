@@ -36,7 +36,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft (blocked on 012/001) |
+| **Status** | Complete (012/001 unblocked; cosmetic doc-conformance cleanup deferred as P2) |
 | **Created** | 2026-04-25 |
 | **Branch** | `012/002-code-graph-phase-runner-and-detect-changes` |
 

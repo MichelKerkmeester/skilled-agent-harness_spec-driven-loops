@@ -30,7 +30,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Status** | Planned |
+| **Status** | Complete — HOLD |
 | **Created** | 2026-05-21 |
 | **Branch** | `main` |
 | **Parent Arc** | `008-rerank-sidecar-arc` (re-opened from complete) |

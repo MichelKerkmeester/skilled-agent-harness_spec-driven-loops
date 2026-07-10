@@ -73,10 +73,10 @@ _memory:
 
 Precondition gate and the shared census tooling every subsequent phase reuses. No flag flips yet.
 
-- [ ] T001 [B] Confirm 017 (flag-parsing trustworthiness) has landed and its own `validate.sh --strict` passes (blocked until 017 lands)
-- [ ] T002 [B] Confirm 015 (`validation-hardening-fixes`) has landed: `classify_status()`/`classifyStatus()` recognize `Implemented`/`Implementing`, and its own REQ-006 reconciliation on `006-presentation-layer-fixes`/`010-query-channel-calibration` is still clean {deps: T001}
-- [ ] T003 [P] Write the parameterized census driver: sets a target `SPECKIT_*_ENFORCE` env var `true` transiently, loops `validate.sh --strict --json --no-recursive` across `.opencode/specs`, parses each folder's `results[]` for the target rule's `status`, tallies `warn` counts (new script, read-only)
-- [ ] T004 [P] Unit-test the census driver against a small synthetic fixture tree with known mismatches, confirm its tally matches a hand-count
+- [x] T001 [B] Confirm 017 (flag-parsing trustworthiness) has landed and its own `validate.sh --strict` passes (blocked until 017 lands) — confirmed: `parseFlagTristate` is live, imported code in `capability-flags.ts`
+- [x] T002 [B] Confirm 015 (`validation-hardening-fixes`) has landed: `classify_status()`/`classifyStatus()` recognize `Implemented`/`Implementing`, and its own REQ-006 reconciliation on `006-presentation-layer-fixes`/`010-query-channel-calibration` is still clean {deps: T001} — confirmed: `status-classifier.sh` recognizes both buckets
+- [x] T003 [P] Write the parameterized census driver: sets a target `SPECKIT_*_ENFORCE` env var `true` transiently, loops `validate.sh --strict --json --no-recursive` across `.opencode/specs`, parses each folder's `results[]` for the target rule's `status`, tallies `warn` counts (new script, read-only) — `scripts/census-validation-rule.sh` + `scripts/census-worker.sh`. Parallelized (`xargs -P 12 -n 1`, standalone worker script — BSD xargs's `-I` replace-string mode has an internal buffer limit that breaks past ~1000 of this tree's ~2,420 input lines, and `export -f` is unreliable on macOS's stock bash 3.2): full tree-wide run in ~100s (was 12+ min / non-terminating serial)
+- [x] T004 [P] Unit-test the census driver against a small synthetic fixture tree with known mismatches, confirm its tally matches a hand-count — Evidence: `scripts/census-validation-rule.sh` against a 3-folder fixture, 2/3 warn known-answer matched exactly
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -88,12 +88,12 @@ The three sequential graduations, least-risky-first: status cross-doc, then meta
 
 ### Status Cross-Doc Enforce (`SPECKIT_STATUS_CROSS_DOC_ENFORCE`)
 
-- [ ] T005 Run the tree-wide advisory census for `STATUS_CROSS_DOC_CONSISTENCY` across `.opencode/specs` (census driver, `SPECKIT_STATUS_CROSS_DOC_ENFORCE=true` transient) {deps: T003, T004}
-- [ ] T006 Reconcile every real mismatch: correct the stale `Status` field, or record an explicit intentional-difference note when the difference is deliberate {deps: T005}
-- [ ] T007 Re-run the census, confirm zero (or record an individually-explained residual with evidence) {deps: T006}
-- [ ] T008 Flip the resolved default in `capability-flags.ts` for `SPECKIT_STATUS_CROSS_DOC_ENFORCE`; update its doc-comment to record the graduation (`mcp_server/lib/config/capability-flags.ts`) {deps: T007}
-- [ ] T009 Update `ENV_REFERENCE.md:168,470` to reflect the new enforcing default (`mcp_server/ENV_REFERENCE.md`) {deps: T008}
-- [ ] T010 Spot-check `validate.sh --strict` on 2-3 representative folders, confirm the check now runs as a real comparison (not "not applicable" or silent advisory-pass); commit Phase 1 independently {deps: T009}
+- [x] T005 Run the tree-wide advisory census for `STATUS_CROSS_DOC_CONSISTENCY` across `.opencode/specs` (census driver, `SPECKIT_STATUS_CROSS_DOC_ENFORCE=true` transient) {deps: T003, T004} — 2,520 folders inspected, 128 warnings found
+- [x] T006 Reconcile every real mismatch: correct the stale `Status` field, or record an explicit intentional-difference note when the difference is deliberate {deps: T005} — 128 folders reconciled across 4 parallel worktree-isolated batches (32 each) + a follow-up 38-folder residual-cleanup pass (2 background agents, 19 each) after discovering the first pass's "intentional-difference note" fallback doesn't satisfy this rule's bucket-comparison logic; 2 genuine mixed-state folders left as an honest, individually-explained residual (see implementation-summary.md) rather than forced
+- [x] T007 Re-run the census, confirm zero (or record an individually-explained residual with evidence) {deps: T006} — Evidence: `scripts/census-validation-rule.sh` final run, 2421/2423 pass, 2 documented residuals, 0 errors
+- [x] T008 Flip the resolved default for `SPECKIT_STATUS_CROSS_DOC_ENFORCE`; update its doc-comment to record the graduation {deps: T007} — CORRECTED FILE TARGET: `capability-flags.ts` has zero references to this flag (verified by grep); it's read directly via inline bash default-expansion in `check-status-cross-doc-consistency.sh:51`, flipped there instead, graduation comment added above the flip
+- [x] T009 Update `ENV_REFERENCE.md:168,470` to reflect the new enforcing default (`mcp_server/ENV_REFERENCE.md`) {deps: T008} — both rows updated
+- [x] T010 Spot-check `validate.sh --strict` on 2-3 representative folders, confirm the check now runs as a real comparison (not "not applicable" or silent advisory-pass); commit Phase 1 independently {deps: T009} — confirmed with zero env override (relying purely on the new default): the residual folder correctly warns, an unrelated "not applicable" folder still passes correctly
 
 ### Metadata Disk-Path Enforce (`SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE`)
 

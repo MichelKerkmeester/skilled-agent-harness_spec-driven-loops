@@ -64,7 +64,7 @@ Three `validate.sh` rules — `STATUS_CROSS_DOC_CONSISTENCY`, `METADATA_DISK_PAT
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress — Phase 1 of 3 landed (SPECKIT_STATUS_CROSS_DOC_ENFORCE graduated), Phases 2-3 pending |
 | **Created** | 2026-07-09 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Spec** | ../spec.md |

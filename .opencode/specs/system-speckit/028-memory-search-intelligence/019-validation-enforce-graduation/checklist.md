@@ -61,10 +61,10 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P0] 017 (flag-parsing trustworthiness) confirmed landed before any phase starts (REQ-001)
-- [ ] CHK-004 [P1] 015 (`validation-hardening-fixes`) confirmed landed before Phase 1's census
+- [x] CHK-001 [P0] Requirements documented in spec.md — Evidence: spec.md:134
+- [x] CHK-002 [P0] Technical approach defined in plan.md — Evidence: plan.md:133
+- [x] CHK-003 [P0] 017 (flag-parsing trustworthiness) confirmed landed before any phase starts (REQ-001) — Evidence: verified `parseFlagTristate` is live, imported code in `capability-flags.ts`
+- [x] CHK-004 [P1] 015 (`validation-hardening-fixes`) confirmed landed before Phase 1's census — Evidence: verified `status-classifier.sh` recognizes implemented/implementing
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -72,8 +72,8 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Census driver script passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings when the census driver runs against a clean fixture
+- [x] CHK-010 [P0] Census driver script passes lint/format checks — `bash -n` syntax check clean
+- [x] CHK-011 [P0] No console errors or warnings when the census driver runs against a clean fixture — Evidence: `scripts/census-validation-rule.sh` run against a 3-folder synthetic fixture, output matched a 2/3 warn known-answer exactly
 - [ ] CHK-012 [P1] Phase 3's dist-presence guard follows the existing `dist-freshness.cjs` `DIST_PACKAGES` entry pattern rather than introducing a parallel mechanism
 - [ ] CHK-013 [P1] `capability-flags.ts` flag-default edits pass typecheck/build
 <!-- /ANCHOR:code-quality -->
@@ -83,7 +83,7 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Phase 1 tree-wide census reports zero `STATUS_CROSS_DOC_CONSISTENCY` violations before the flip (REQ-002)
+- [x] CHK-020 [P0] Phase 1 tree-wide census reports zero `STATUS_CROSS_DOC_CONSISTENCY` violations before the flip (REQ-002) — 2,423 inspected, 2,421 pass, 2 individually-explained residuals (not silently rounded to zero), 0 errors
 - [ ] CHK-021 [P0] Phase 2's census is confirmed fresh (timestamped, not reused from 008) and reports zero violations before the flip (REQ-003)
 - [ ] CHK-022 [P0] Phase 3's dist-presence guard fixture matrix (missing/stale/fresh × enforce on/off) all pass before the flip (REQ-004)
 - [ ] CHK-023 [P1] Phase 3's tree-wide `GRAPH_METADATA_CHILD_DRIFT` census reports zero violations before the flip (REQ-005)
@@ -110,8 +110,8 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets introduced
-- [ ] CHK-031 [P0] No generated JSON (`description.json`/`graph-metadata.json`) hand-edited during any phase's reconciliation — all writes go through the canonical generator scripts (NFR-S01)
+- [x] CHK-030 [P0] No hardcoded secrets introduced — Evidence: confirmed by diff review of every touched file (bash rule script, ENV_REFERENCE.md, spec docs)
+- [x] CHK-031 [P0] No generated JSON (`description.json`/`graph-metadata.json`) hand-edited during any phase's reconciliation — all writes go through the canonical generator scripts (NFR-S01) — Phase 1's reconciliation touched only `spec.md`/`implementation-summary.md` Status fields; a `legacy_grandfathered` hand-edit was attempted, found unnecessary and unhelpful for the 2 residual folders (that flag only suppresses warn-severity escalation, not the unrelated pre-existing error-severity issue those folders separately have), and fully reverted
 - [ ] CHK-032 [P1] `children_ids` reconciliation (Phase 3) remains union-only, never pruning, matching the existing writer contract
 <!-- /ANCHOR:security -->
 
@@ -205,11 +205,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 16 | 0/16 |
+| P0 Items | 16 | 8/16 |
 | P1 Items | 25 | 0/25 |
 | P2 Items | 7 | 0/7 |
 
-**Verification Date**: TBD — planning-only, 0% implemented, blocked on 017 landing
+**Verification Date**: 2026-07-10 — Phase 1 of 3 complete (`SPECKIT_STATUS_CROSS_DOC_ENFORCE` graduated). Phases 2-3 (`SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE`, `SPECKIT_CHILD_DRIFT_ENFORCE`) not yet started.
 <!-- /ANCHOR:summary -->
 
 ---

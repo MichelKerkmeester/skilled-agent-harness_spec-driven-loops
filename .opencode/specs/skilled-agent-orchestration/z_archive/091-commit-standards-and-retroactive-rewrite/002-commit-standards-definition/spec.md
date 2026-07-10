@@ -53,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 (upgrade to 3 on activation — decision-record.md pre-staged) |
 | **Priority** | P0 |
-| **Status** | Draft (current user focus) |
+| **Status** | Complete |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

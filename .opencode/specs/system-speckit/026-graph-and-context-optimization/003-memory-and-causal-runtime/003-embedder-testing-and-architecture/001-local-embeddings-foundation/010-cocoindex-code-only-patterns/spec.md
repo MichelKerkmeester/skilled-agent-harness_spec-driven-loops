@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress (settings shipped; clean rebuild in flight) |
+| **Status** | In Progress (settings updated; clean rebuild in flight) |
 | **Created** | 2026-05-13 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

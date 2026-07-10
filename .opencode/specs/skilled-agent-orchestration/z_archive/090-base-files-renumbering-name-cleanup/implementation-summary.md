@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| Status | Post-execution, validation pending |
+| Status | In Progress (post-execution, validation pending) |
 | Branch | main |
 | Baseline | dbd3fbe79 |
 | Wave-3 base | fe0ce219e |

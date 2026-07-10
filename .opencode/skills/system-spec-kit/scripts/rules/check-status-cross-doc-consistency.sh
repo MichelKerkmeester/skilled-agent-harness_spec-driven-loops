@@ -2,9 +2,12 @@
 # ───────────────────────────────────────────────────────────────
 # RULE: CHECK-STATUS-CROSS-DOC-CONSISTENCY
 # ───────────────────────────────────────────────────────────────
-# Advisory-by-default: flags spec.md and implementation-summary.md
-# Status fields that classify to different buckets. Set
-# SPECKIT_STATUS_CROSS_DOC_ENFORCE=true to fail --strict.
+# Enforcing-by-default: flags spec.md and implementation-summary.md
+# Status fields that classify to different buckets. Graduated to enforcing
+# only after a real tree-wide census showed the tree was clean enough to
+# trust by default: 128 real mismatches found and reconciled, leaving 2
+# individually-explained residuals rather than a forced false zero. Set
+# SPECKIT_STATUS_CROSS_DOC_ENFORCE=false to fall back to advisory-only.
 
 set -euo pipefail
 
@@ -48,13 +51,13 @@ run_check() {
     fi
 
     RULE_DETAILS=("spec.md Status=$spec_status classified=$spec_bucket" "implementation-summary.md Status=$implementation_status classified=$implementation_bucket")
-    if [[ "${SPECKIT_STATUS_CROSS_DOC_ENFORCE:-false}" == "true" ]]; then
+    if [[ "${SPECKIT_STATUS_CROSS_DOC_ENFORCE:-true}" == "true" ]]; then
         RULE_STATUS="warn"
         RULE_MESSAGE="spec.md and implementation-summary.md statuses disagree"
         RULE_REMEDIATION="Update the stale status field so both documents describe the same delivery state."
     else
         RULE_STATUS="pass"
-        RULE_MESSAGE="status cross-doc ADVISORY — spec.md is $spec_bucket but implementation-summary.md is $implementation_bucket (set SPECKIT_STATUS_CROSS_DOC_ENFORCE=true to enforce)"
+        RULE_MESSAGE="status cross-doc ADVISORY — spec.md is $spec_bucket but implementation-summary.md is $implementation_bucket (set SPECKIT_STATUS_CROSS_DOC_ENFORCE=false to fall back to advisory)"
         RULE_REMEDIATION="Advisory only — does not fail validation until enforcement is enabled."
     fi
 }

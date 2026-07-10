@@ -39,7 +39,7 @@
       "advisory"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
       ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
@@ -49,18 +49,18 @@
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
+      "mcp_server/lib/config/capability-flags.ts",
+      "scripts/census-validation-rule.sh",
+      "scripts/census-worker.sh",
       "implementation-summary.md",
+      ".opencode/bin/worktree-session.sh",
+      "decision-record.md",
       "scripts/rules/check-status-cross-doc-consistency.sh",
       "scripts/rules/check-metadata-disk-consistency.sh",
       "scripts/rules/check-graph-metadata-child-drift.sh",
       "scripts/dist/spec/is-phase-parent.js",
       "scripts/spec/is-phase-parent.ts",
-      "dist/spec/is-phase-parent.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/check-graph-metadata-child-drift.sh"
+      "dist/spec/is-phase-parent.js"
     ],
     "entities": [
       {
@@ -112,27 +112,33 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "census-validation-rule.sh",
+        "kind": "script",
+        "path": "scripts/census-validation-rule.sh",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
+        "name": "census-worker.sh",
+        "kind": "script",
+        "path": "scripts/census-worker.sh",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -145,12 +151,6 @@
         "name": "is-phase-parent.ts",
         "kind": "code",
         "path": "scripts/spec/is-phase-parent.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validation-gate-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail validation today, because each is gated by its own default-`false` enforce flag:",
     "created_at": "2026-07-09T20:32:08.332Z",
-    "last_save_at": "2026-07-09T20:45:55.335Z",
+    "last_save_at": "2026-07-10T06:11:39.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:948a976c0b2577ae9559ef24b3210538276e69948522ad2b4ec7c575658e30fa",
+    "source_fingerprint": "sha256:9da9090df110c06e4a207838e017c823d044c05950a630b0e43cb76120efc76f",
     "source_doc_hashes": {
-      "spec.md": "6df1b900be01ca6292de4c0445300189afd034a46d7fe48f94d03cc6c7bb21ee",
+      "spec.md": "08db44a05e9ce7f55d45d080c495a4c0f67e7063d7b380eee8e4f1ade8100d7a",
       "plan.md": "da02a972e878da7d84e4e6400e55350cbab34757a58ca63302e213339a1e0f8e",
-      "tasks.md": "dc7f9806faf0fd89d23260f3909f0bb8eb47f3595cff963e1dec3d9e5c66f183",
-      "checklist.md": "667594bf76b8215bdae5ce1108dc5ba06477b1facf82bad7a2f4cbe0c55e84b8",
+      "tasks.md": "4b61cc726d12852e9e709f6c94d9d0194135d9ebdfb6b156295fe389378ef605",
+      "checklist.md": "4b27671447b8c312e1b0a583447839143fe5c3cf29e573b73586d9001044c0b4",
       "decision-record.md": "b33d33ac0b39eda3af10282c560ab6c99da16e178a226df5c3ea957be9922c46",
-      "implementation-summary.md": "c2ea4ab6b296c9aebc7ad3b104f35528e933dd42ea7048012e2bbbc05f8aea5b"
+      "implementation-summary.md": "f21a0d651acc98e08be91b45d8d90af44906fcbc0908f0f3b8f3b1055809e114"
     },
     "last_active_child_id": null,
     "last_active_at": null

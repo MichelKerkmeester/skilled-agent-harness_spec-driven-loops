@@ -25,7 +25,7 @@ contextType: "planning"
 |-------|-------|
 | **Spec ID** | 080 |
 | **Title** | Spec Kit Bug Remediation |
-| **Status** | DRAFT |
+| **Status** | COMPLETE |
 | **Priority** | P0 - Critical |
 | **Complexity** | 85/100 |
 | **Estimated LOC** | ~500 |

@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |---|---|
-| Status | Planned (2026-05-18 evening) |
+| Status | In Progress — Phase 2 targeted bench gated |
 | Type | Research-only HF survey + targeted bench (4 failure probes only, not full 18) |
 | Owner | Main agent |
 | Parent | `../spec.md` (004-code-index-stack) |

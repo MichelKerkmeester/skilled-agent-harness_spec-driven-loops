@@ -61,7 +61,7 @@ This packet adds the validation layer for sibling `001-doctor-commands`: 23 manu
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete (~95%, superseded by router/cutover phases) |
 | **Created** | 2026-05-09 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
