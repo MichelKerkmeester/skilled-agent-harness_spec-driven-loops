@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/125-cli-external-parent/004-onboard-cli-opencode",
+  "description": "Phase 003 created the parent-hub skeleton, but the `cli-opencode/` packet has no relocated implementation yet",
+  "keywords": [
+    "phase",
+    "parent-hub",
+    "skeleton",
+    "cli-opencode",
+    "packet",
+    "relocated",
+    "implementation"
+  ],
+  "lastUpdated": "2026-07-09T21:38:47.815Z",
+  "specId": "004",
+  "folderSlug": "onboard-cli-opencode",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-cli-external-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

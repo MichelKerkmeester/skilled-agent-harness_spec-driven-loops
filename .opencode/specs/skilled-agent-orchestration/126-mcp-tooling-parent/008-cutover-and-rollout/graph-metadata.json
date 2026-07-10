@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout",
+  "spec_folder": "skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout",
+  "parent_id": "skilled-agent-orchestration/126-mcp-tooling-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-tooling cutover rollout",
+      "parent-skill-check strict gate",
+      "final stale-reference sweep",
+      "mcp-tooling parent rollup",
+      "phase 008 cutover-and-rollout",
+      "cutover rollout plan",
+      "parent-skill-check strict plan",
+      "final sweep parent rollup",
+      "phase 008 plan",
+      "cutover rollout tasks",
+      "parent-skill-check strict tasks",
+      "final sweep tasks"
+    ],
+    "key_topics": [
+      "mcp-tooling",
+      "cutover",
+      "rollout",
+      "parent-skill-check",
+      "strict",
+      "gate",
+      "final",
+      "stale-reference",
+      "sweep",
+      "parent",
+      "rollup",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/tasks.md",
+      "implementation-summary.md",
+      ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/graph-metadata.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/008-cutover-and-rollout/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/126-mcp-tooling-parent/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Note",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Terminal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fold-in is functionally complete and benchmarked, but it is not canon-clean until the strict parent-hub check passes with zero warnings, the whole track validates recursively, and a final sweep confirms no stale reference survived",
+    "created_at": "2026-07-09T20:18:26Z",
+    "last_save_at": "2026-07-10T07:40:52.115Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9687f98541488e2bf99addd8bc2a7d6a7c896e04162609bab66f0f5db32ae2fe",
+    "source_doc_hashes": {
+      "spec.md": "2a46f1ff3c2bc3995b88cc747f5ea2ba9750fc6dba799f3dabf420b5bc4cc8f9",
+      "plan.md": "bcc0d3829178efc07aefdae0178bb3867790e0dd7a0440acb145643bdc17089e",
+      "tasks.md": "5aa420f5507bf405d909434c24a3d11e09193db87082427b9df526421177dd35",
+      "implementation-summary.md": "34980e3a27dda99b4264d64c4735205f1c2478f1f06b0fddbf62d3c403ac7071"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

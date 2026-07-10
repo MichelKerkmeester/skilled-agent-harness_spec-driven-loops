@@ -1,0 +1,25 @@
+{
+  "name": "mcp-tooling",
+  "description": "Parent hub for MCP tool bridges: routes to two workflow modes (mcp-chrome-devtools for browser inspection and debugging, mcp-click-up for ClickUp task management) plus one figma transport (mcp-figma, bridging to Figma Desktop) through mode-registry.json and hub-router.json. The advisor sees one hub identity; workflowMode selects the packet. mcp-code-mode is the shared MCP execution substrate all three modes reach through the unchanged code_mode registration key — it is external infrastructure, not a hub member, and stays a flat standalone skill.",
+  "version": "1.0.0.0",
+  "importance_tier": "high",
+  "keywords": [
+    "mcp-tooling",
+    "mode-registry",
+    "hub-router",
+    "workflowMode",
+    "packetKind",
+    "mcp-chrome-devtools",
+    "mcp-click-up",
+    "mcp-figma",
+    "mcp tool bridge",
+    "transport-axis"
+  ],
+  "trigger_examples": [
+    "Use Chrome DevTools to capture a HAR for the staging dashboard",
+    "Mark the ClickUp task done with a note",
+    "Render this component in Figma and export the tokens",
+    "Route this MCP tool bridge request"
+  ],
+  "lastUpdated": "2026-07-10T06:16:00Z"
+}

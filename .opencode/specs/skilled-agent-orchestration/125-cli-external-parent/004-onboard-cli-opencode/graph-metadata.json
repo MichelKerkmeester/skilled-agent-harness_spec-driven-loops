@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-cli-external-parent/004-onboard-cli-opencode",
+  "spec_folder": "skilled-agent-orchestration/125-cli-external-parent/004-onboard-cli-opencode",
+  "parent_id": "skilled-agent-orchestration/125-cli-external-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "onboard cli-opencode",
+      "cli-external parent",
+      "dispatch preflight hook repoint",
+      "PreToolUse hook hub-aware",
+      "phase 004",
+      "onboard cli-opencode plan",
+      "cli-opencode relocation",
+      "dispatch hook repoint plan",
+      "phase 004 plan",
+      "onboard cli-opencode tasks",
+      "cli-opencode relocation tasks",
+      "dispatch hook repoint tasks"
+    ],
+    "key_topics": [
+      "onboard",
+      "cli-opencode",
+      "cli-external",
+      "parent",
+      "dispatch",
+      "preflight",
+      "hook",
+      "repoint",
+      "pretooluse",
+      "hub-aware",
+      "phase",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".claude/settings.json",
+      ".opencode/skills/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs",
+      ".github/workflows/prompt-card-sync.yml",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Workflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Every Bash",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 created the parent-hub skeleton, but the `cli-opencode/` packet has no relocated implementation yet",
+    "created_at": "2026-07-09T18:58:27Z",
+    "last_save_at": "2026-07-09T21:45:17.286Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:cf7f5dd4789dc478d7edb9e87b2a2f52b6246437a451f6136077e7119a76f403",
+    "source_doc_hashes": {
+      "spec.md": "e99685ce751b56a3f31e0c8f465953e8b79386303cef4911e5c3e3331dc0575a",
+      "plan.md": "8531fb2eef1d69df325572490cc5db7a708b46237fbca16da9b881c6d0d77ee4",
+      "tasks.md": "0eadc7821fd255dcfba34e0a7fdfcf63f44bddb43c28e8a468ccd93758f0096a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

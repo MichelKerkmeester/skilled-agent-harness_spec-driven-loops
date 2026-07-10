@@ -1,0 +1,55 @@
+{
+  "skill": "mcp-tooling",
+  "version": "1.0.0.0",
+  "routerPolicy": {
+    "defaultMode": "mcp-chrome-devtools",
+    "ambiguityDelta": 1,
+    "tieBreak": ["mcp-chrome-devtools", "mcp-click-up", "mcp-figma"],
+    "outcomes": {
+      "single": "one dominant tool signal routes to one mode",
+      "orderedBundle": "multiple explicitly requested tools route in tie-break order",
+      "defer": "unclear or contradictory tool intent asks for disambiguation"
+    },
+    "defaultResource": ["mcp-chrome-devtools/SKILL.md"]
+  },
+  "routerSignals": {
+    "mcp-chrome-devtools": {
+      "weight": 4,
+      "classes": ["chrome-devtools-aliases", "browser-debug", "hub-identity"],
+      "resources": ["mcp-chrome-devtools/SKILL.md"]
+    },
+    "mcp-click-up": {
+      "weight": 4,
+      "classes": ["clickup-aliases", "task-management", "hub-identity"],
+      "resources": ["mcp-click-up/SKILL.md"]
+    },
+    "mcp-figma": {
+      "weight": 4,
+      "classes": ["figma-aliases", "design-transport", "hub-identity"],
+      "resources": ["mcp-figma/SKILL.md"]
+    }
+  },
+  "vocabularyClasses": {
+    "hub-identity": {
+      "keywords": ["mcp-tooling", "mcp tool bridge", "mode-registry", "hub-router"]
+    },
+    "chrome-devtools-aliases": {
+      "keywords": ["chrome devtools", "browser debug", "dom inspect", "lighthouse", "bdg", "cdp"]
+    },
+    "browser-debug": {
+      "keywords": ["screenshot capture", "console errors", "network requests", "har export", "performance trace", "cdp domain"]
+    },
+    "clickup-aliases": {
+      "keywords": ["clickup", "cupt", "task management", "work queue", "mark done", "time tracking"]
+    },
+    "task-management": {
+      "keywords": ["log time", "process queue", "clickup documents", "clickup goals", "bulk tasks", "clickup task"]
+    },
+    "figma-aliases": {
+      "keywords": ["figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp"]
+    },
+    "design-transport": {
+      "keywords": ["figma daemon", "connect to figma", "figma variables", "export from figma", "figma export"]
+    }
+  }
+}

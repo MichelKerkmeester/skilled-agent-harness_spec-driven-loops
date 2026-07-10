@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/126-mcp-tooling-parent/003-scaffold-hub",
+  "description": "Phases 004-005 need a hub skeleton to move content INTO, but that skeleton does not exist yet",
+  "keywords": [
+    "phases",
+    "need",
+    "hub",
+    "skeleton",
+    "move",
+    "content",
+    "exist"
+  ],
+  "lastUpdated": "2026-07-10T07:20:36.454Z",
+  "specId": "003",
+  "folderSlug": "scaffold-hub",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "126-mcp-tooling-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

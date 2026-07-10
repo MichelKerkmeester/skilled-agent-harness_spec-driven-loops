@@ -1,0 +1,29 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/127-deep-review-remediation",
+  "description": "Three deep-review passes this session (a 10-iter review of the sk-prompt 124 hub, a Fable-5 adversarial review of the 125/126 merge plans, and a",
+  "keywords": [
+    "three",
+    "deep-review",
+    "passes",
+    "session",
+    "10-iter",
+    "review",
+    "sk-prompt",
+    "hub",
+    "fable-5",
+    "adversarial",
+    "merge",
+    "plans"
+  ],
+  "lastUpdated": "2026-07-10T05:59:45.937Z",
+  "specId": "127",
+  "folderSlug": "deep-review-remediation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "10-07-26_06-57__last-remediation-item-dispatched-the-changelog-61.md"
+  ]
+}

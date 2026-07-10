@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/127-deep-review-remediation/002-sk-prompt-124-remediation",
+  "description": "The 124 sk-prompt parent-hub merge left 5 stale cross-references behind (a phase-006 referrer-sweep miss): both `prompt-improver.md` agent mirrors",
+  "keywords": [
+    "sk-prompt",
+    "parent-hub",
+    "merge",
+    "left",
+    "stale",
+    "cross-references",
+    "behind",
+    "phase-006",
+    "referrer-sweep",
+    "miss",
+    "prompt-improver",
+    "agent",
+    "mirrors"
+  ],
+  "lastUpdated": "2026-07-10T05:50:28.717Z",
+  "specId": "002",
+  "folderSlug": "sk-prompt-124-remediation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "127-deep-review-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
