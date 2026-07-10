@@ -177,6 +177,16 @@ function parseEnvelope(response: MCPResponseType): ScanEnvelope {
 
 const scanArgs = { includeConstitutional: false, includeSpecDocs: false, incremental: false, force: false } as const;
 
+// A suspect must clear the confirmation phase's minimum-quarantine window (real
+// wall-clock age, default 60s) before it is eligible for tombstoning. Tests that
+// seed a suspect directly via appendMemoryDriftSuspects and expect an immediate
+// same-test tombstone pass this as the explicit observedAt so the seeded
+// firstSeenAt is already well past the window -- genuine backdating, not a sleep
+// or a mocked clock.
+function staleObservedAt(): string {
+  return new Date(Date.now() - 120_000).toISOString();
+}
+
 afterAll(() => {
   for (const root of tempRoots.splice(0)) {
     try {
@@ -189,12 +199,18 @@ afterAll(() => {
 
 afterEach(() => {
   mocks.failingDeleteId.current = null;
+  delete process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS;
 });
 
 describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation phase)', () => {
   it('confirms an orphan-sweep-discovered candidate only after the scan that enqueued it', async () => {
     vi.resetModules();
     mockLeaseAndScaffolding();
+    // The suspect below is enqueued by the scan itself (real observedAt = now),
+    // so it cannot be backdated at seed time -- disable the minimum-quarantine
+    // window instead (0 = no gate) so the follow-up scan tombstones it
+    // deterministically, without an artificial sleep or a real-time race.
+    process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS = '0';
     const workspace = makeTempWorkspace('suspect-confirm-orphan-discoverer-');
     const { handler, vectorIndex, driftHealing } = await loadRealModules(workspace);
     try {
@@ -224,6 +240,10 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
   it('queues a scoped-delete candidate before the following confirmation pass', async () => {
     vi.resetModules();
     mockLeaseAndScaffolding();
+    // Same rationale as the orphan-sweep-discoverer test above: this suspect is
+    // enqueued by the scan itself, so the minimum-quarantine window is shrunk
+    // instead of backdating a seed call that does not exist here.
+    process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS = '0';
     const workspace = makeTempWorkspace('suspect-confirm-scoped-discoverer-');
     const { handler, vectorIndex, driftHealing } = await loadRealModules(workspace);
     try {
@@ -297,7 +317,7 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
       const db = vectorIndex.getDb()!;
       const { id } = seedSuspectCandidate(vectorIndex, workspace, 'suspect-missing/001-demo');
       // Never create the file on disk -- it stays genuinely missing at scan time.
-      driftHealing.appendMemoryDriftSuspects(db, [id]);
+      driftHealing.appendMemoryDriftSuspects(db, [id], staleObservedAt());
 
       const response = await handler.runIndexScan(scanArgs, {});
       expect(response.isError).not.toBe(true);
@@ -310,6 +330,97 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
       expect(vectorIndex.getMemory(id, db)).toBeNull();
       expect(driftHealing.readMemoryDriftSuspects(db)).toEqual([]);
     } finally {
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+
+  it('leaves a too-fresh missing suspect queued and untouched instead of tombstoning it immediately', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('suspect-confirm-too-fresh-');
+    const { handler, vectorIndex, driftHealing } = await loadRealModules(workspace);
+    let seededId: number | undefined;
+    try {
+      const db = vectorIndex.getDb()!;
+      const { id } = seedSuspectCandidate(vectorIndex, workspace, 'suspect-too-fresh/001-demo');
+      seededId = id;
+      // Real observedAt = now, under the live (non-zero) default quarantine window
+      // -- this is the actual skip path, not a neutralized/backdated stand-in.
+      driftHealing.appendMemoryDriftSuspects(db, [id]);
+
+      const response = await handler.runIndexScan(scanArgs, {});
+      expect(response.isError).not.toBe(true);
+      const envelope = parseEnvelope(response);
+
+      expect(envelope.data.suspectTombstoned).toBe(0);
+      expect(envelope.data.suspectCleared).toBe(0);
+      expect(envelope.data.suspectFailed).toBe(0);
+
+      // Neither deleted from memory_index nor removed from the queue -- it must
+      // survive completely untouched, ready for a later pass once it has aged.
+      expect(vectorIndex.getMemory(id, db)).not.toBeNull();
+      expect(driftHealing.readMemoryDriftSuspects(db).map((suspect) => suspect.id)).toEqual([id]);
+    } finally {
+      try {
+        // This test deliberately leaves a suspect queued -- the underlying
+        // drift-suspect queue database is shared across tests in this file (not
+        // per-workspace), so it must be cleared here or it leaks into whatever
+        // test runs next.
+        const db = vectorIndex.getDb();
+        if (db && seededId !== undefined) {
+          driftHealing.removeMemoryDriftSuspects(db, [seededId]);
+        }
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+      try {
+        vectorIndex.closeDb();
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
+    }
+  });
+
+  it('treats an unparseable firstSeenAt as too fresh to trust rather than tombstoning it', async () => {
+    vi.resetModules();
+    mockLeaseAndScaffolding();
+    const workspace = makeTempWorkspace('suspect-confirm-malformed-age-');
+    const { handler, vectorIndex, driftHealing } = await loadRealModules(workspace);
+    let seededId: number | undefined;
+    try {
+      const db = vectorIndex.getDb()!;
+      const { id } = seedSuspectCandidate(vectorIndex, workspace, 'suspect-malformed-age/001-demo');
+      seededId = id;
+      // A non-empty but unparseable observedAt survives the queue's own
+      // non-empty-string validation and is stored verbatim as firstSeenAt --
+      // simulating corrupted config-table data without touching sqlite directly.
+      driftHealing.appendMemoryDriftSuspects(db, [id], 'not-a-real-timestamp');
+
+      const response = await handler.runIndexScan(scanArgs, {});
+      expect(response.isError).not.toBe(true);
+      const envelope = parseEnvelope(response);
+
+      // Malformed age data must fail toward the safe outcome (left queued), never
+      // toward an immediate tombstone.
+      expect(envelope.data.suspectTombstoned).toBe(0);
+      expect(envelope.data.suspectCleared).toBe(0);
+      expect(envelope.data.suspectFailed).toBe(0);
+      expect(vectorIndex.getMemory(id, db)).not.toBeNull();
+      expect(driftHealing.readMemoryDriftSuspects(db).map((suspect) => suspect.id)).toEqual([id]);
+    } finally {
+      try {
+        // Same shared-database rationale as the too-fresh test above.
+        const db = vectorIndex.getDb();
+        if (db && seededId !== undefined) {
+          driftHealing.removeMemoryDriftSuspects(db, [seededId]);
+        }
+      } catch (_error: unknown) {
+        // Best-effort cleanup.
+      }
       try {
         vectorIndex.closeDb();
       } catch (_error: unknown) {
@@ -364,7 +475,7 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
       const succeeding = seedSuspectCandidate(vectorIndex, workspace, 'suspect-partial-error/002-succeeds');
       // Both files are genuinely missing, so both are tombstone candidates -- but
       // deleteMemory is rigged to throw for exactly the first one.
-      driftHealing.appendMemoryDriftSuspects(db, [failing.id, succeeding.id]);
+      driftHealing.appendMemoryDriftSuspects(db, [failing.id, succeeding.id], staleObservedAt());
       mocks.failingDeleteId.current = failing.id;
 
       const response = await handler.runIndexScan(scanArgs, {});
@@ -417,7 +528,10 @@ describe('runSuspectConfirmation via memory_index_scan (suspect-confirmation pha
       const reappeared = seedSuspectCandidate(vectorIndex, workspace, 'suspect-mixed/002-reappeared');
       const errored = seedSuspectCandidate(vectorIndex, workspace, 'suspect-mixed/003-errored');
       fs.writeFileSync(reappeared.filePath, '# reappeared\n');
-      driftHealing.appendMemoryDriftSuspects(db, [missing.id, reappeared.id, errored.id]);
+      // Only missing/errored need to clear the quarantine window to be tombstone
+      // candidates; reappeared is cleared unconditionally regardless of age, so
+      // backdating the whole batch's observedAt does not change its outcome.
+      driftHealing.appendMemoryDriftSuspects(db, [missing.id, reappeared.id, errored.id], staleObservedAt());
       mocks.failingDeleteId.current = errored.id;
 
       const response = await handler.runIndexScan(scanArgs, {});

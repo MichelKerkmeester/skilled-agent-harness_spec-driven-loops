@@ -51,6 +51,7 @@ default_shared_paths() {
 .opencode/skills/system-spec-kit/mcp_server/node_modules
 .opencode/skills/system-spec-kit/mcp_server/dist
 .opencode/skills/system-spec-kit/scripts/dist
+.opencode/skills/system-spec-kit/scripts/node_modules
 .opencode/skills/system-code-graph/mcp_server/node_modules
 .opencode/skills/system-code-graph/mcp_server/dist
 PATHS

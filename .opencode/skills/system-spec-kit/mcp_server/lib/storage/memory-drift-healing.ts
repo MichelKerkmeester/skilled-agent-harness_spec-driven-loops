@@ -116,38 +116,44 @@ export function appendMemoryDriftSuspects(
   ids: readonly number[],
   observedAt: string = new Date().toISOString(),
 ): MemoryDriftSuspectAppendResult {
-  const next = new Map<number, MemoryDriftSuspect>();
-  for (const suspect of readMemoryDriftSuspects(database)) {
-    next.set(suspect.id, suspect);
-  }
+  // The read-merge-write below is a single logical operation; wrapping it in a
+  // transaction closes the window where a concurrent writer (e.g. a search-path
+  // append racing a scan-path remove) could read between this function's read and
+  // write and lose an update.
+  return database.transaction((): MemoryDriftSuspectAppendResult => {
+    const next = new Map<number, MemoryDriftSuspect>();
+    for (const suspect of readMemoryDriftSuspects(database)) {
+      next.set(suspect.id, suspect);
+    }
 
-  let accepted = 0;
-  let rejected = 0;
-  for (const id of ids) {
-    if (!Number.isInteger(id) || id <= 0) {
-      continue;
+    let accepted = 0;
+    let rejected = 0;
+    for (const id of ids) {
+      if (!Number.isInteger(id) || id <= 0) {
+        continue;
+      }
+      const existing = next.get(id);
+      if (!existing && next.size >= MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE) {
+        rejected++;
+        continue;
+      }
+      next.set(id, {
+        id,
+        firstSeenAt: existing?.firstSeenAt ?? observedAt,
+        lastSeenAt: observedAt,
+      });
+      if (!existing) {
+        accepted++;
+      }
     }
-    const existing = next.get(id);
-    if (!existing && next.size >= MEMORY_DRIFT_SUSPECT_QUEUE_MAX_SIZE) {
-      rejected++;
-      continue;
-    }
-    next.set(id, {
-      id,
-      firstSeenAt: existing?.firstSeenAt ?? observedAt,
-      lastSeenAt: observedAt,
-    });
-    if (!existing) {
-      accepted++;
-    }
-  }
 
-  const suspects = Array.from(next.values()).sort((a, b) => a.id - b.id);
-  if (rejected > 0) {
-    console.warn(`[memory-drift-healing] Drift suspect queue is full; deferred ${rejected} candidate(s) for a later scan`);
-  }
-  writeSuspects(database, suspects);
-  return { suspects, accepted, rejected, queueSize: suspects.length };
+    const suspects = Array.from(next.values()).sort((a, b) => a.id - b.id);
+    if (rejected > 0) {
+      console.warn(`[memory-drift-healing] Drift suspect queue is full; deferred ${rejected} candidate(s) for a later scan`);
+    }
+    writeSuspects(database, suspects);
+    return { suspects, accepted, rejected, queueSize: suspects.length };
+  })();
 }
 
 /** Removes `ids` from the drift-suspect queue (confirmed tombstoned or cleared) and persists the remaining queue. */
@@ -157,9 +163,14 @@ export function removeMemoryDriftSuspects(database: Database.Database, ids: read
     return readMemoryDriftSuspects(database);
   }
 
-  const suspects = readMemoryDriftSuspects(database).filter((suspect) => !removeIds.has(suspect.id));
-  writeSuspects(database, suspects);
-  return suspects;
+  // Same rationale as appendMemoryDriftSuspects: the read-filter-write is a single
+  // logical operation and must not interleave with a concurrent writer's own
+  // read-modify-write of the same queue.
+  return database.transaction((): MemoryDriftSuspect[] => {
+    const suspects = readMemoryDriftSuspects(database).filter((suspect) => !removeIds.has(suspect.id));
+    writeSuspects(database, suspects);
+    return suspects;
+  })();
 }
 
 function normalizeMarkerPath(value: unknown): string | null {

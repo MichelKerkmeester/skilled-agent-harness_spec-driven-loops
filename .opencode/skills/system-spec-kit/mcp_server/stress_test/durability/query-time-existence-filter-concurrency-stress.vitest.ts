@@ -126,4 +126,39 @@ describe('durability: query-time existence filter under shared-connection conten
     expect(connB.pragma('busy_timeout', { simple: true })).toBe(10000);
     expect(readMemoryDriftSuspects(connB)).toEqual([]);
   });
+
+  it('lets a genuine concurrent burst of distinct suspects all succeed on the normal busy_timeout with none lost or duplicated', async () => {
+    const { handleMemorySearch } = await import('../../handlers/memory-search');
+    const { readMemoryDriftSuspects } = await import('../../lib/storage/memory-drift-healing');
+
+    // Unlike the fast-fail test above, connA never takes a write lock here: every one of the
+    // 64 handleMemorySearch calls below writes through connB on its untouched (10s) busy_timeout,
+    // so the writes are genuinely concurrent successes rather than guaranteed fast-fail timeouts.
+    // Each call resolves a distinct missing file_path/id pair (not one shared row), so a
+    // successful run can only end with ALL 64 ids present -- proving the read-modify-write in
+    // appendMemoryDriftSuspects does not drop or clobber concurrent writers.
+    const expectedIds = Array.from({ length: CONCURRENT_SEARCHES }, (_, index) => 9000 + index);
+    mocks.executePipeline.mockImplementation(async (config: { query?: string }) => {
+      const match = /#(\d+)$/.exec(config.query ?? '');
+      const index = match ? Number.parseInt(match[1], 10) : -1;
+      return pipelineResult({
+        id: expectedIds[index],
+        file_path: path.join(root, `missing-spec-${index}.md`),
+        document_type: 'spec_doc',
+        score: 1,
+        similarity: 1,
+      });
+    });
+
+    const responses = await Promise.all(Array.from({ length: CONCURRENT_SEARCHES }, (_, index) =>
+      handleMemorySearch({ query: `contended query-time filter #${index}`, bypassCache: true, trackAccess: false }),
+    ));
+
+    expect(responses).toHaveLength(CONCURRENT_SEARCHES);
+    expect(responses.every((response) => response.isError !== true)).toBe(true);
+
+    const finalIds = readMemoryDriftSuspects(connB).map((suspect) => suspect.id).sort((a, b) => a - b);
+    expect(finalIds).toEqual([...expectedIds].sort((a, b) => a - b));
+    expect(new Set(finalIds).size).toBe(expectedIds.length);
+  });
 });

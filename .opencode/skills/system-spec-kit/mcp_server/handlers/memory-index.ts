@@ -25,6 +25,7 @@ import {
   appendMemoryDriftSuspects,
   readMemoryDriftSuspects,
   removeMemoryDriftSuspects,
+  MEMORY_DRIFT_SUSPECT_QUEUE_KEY,
 } from '../lib/storage/memory-drift-healing.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -286,6 +287,13 @@ interface OrphanSweepCandidates {
   orphanRecordIds?: number[];
 }
 
+// A suspect that has been queued for less than this long has not had enough real
+// wall-clock separation from the scan that first flagged it -- a second confirmation
+// pass could fire milliseconds later (e.g. two scans triggered back to back) and would
+// otherwise tombstone a file whose absence was never actually confirmed to persist.
+// Reappearance (the file exists again) is always safe to clear immediately regardless
+// of age; only the destructive tombstone path needs this minimum quarantine.
+const SUSPECT_MIN_QUARANTINE_MS_DEFAULT = 60_000;
 const ORPHAN_SWEEP_LIMIT = 200;
 const ORPHAN_SWEEP_MAX_PAGES = 1000;
 const ORPHAN_SWEEP_CURSOR_KEY = 'memory_index.orphan_sweep.cursor';
@@ -299,12 +307,14 @@ const ORPHAN_SWEEP_TIME_BUDGET_MS_DEFAULT = 45_000;
 // mid-loop re-fire cadence has no surprising relationship to the passive one.
 const ORPHAN_SWEEP_REFRESH_CADENCE_MS_DEFAULT = 20_000;
 
+// Accepts 0 as a deliberate override value (e.g. a zero minimum-quarantine window
+// means "no gate"), distinct from an unset/blank env var falling back to fallback.
 function parsePositiveIntEnv(name: string, fallback: number): number {
   const raw = process.env[name];
   if (!raw) return fallback;
 
   const parsed = Number.parseInt(raw, 10);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
 }
 
 function ensureConfigTable(database: Database.Database): void {
@@ -879,7 +889,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }
 
     try {
-      const hasQueue = database.prepare('SELECT 1 FROM config WHERE key = ? LIMIT 1').get('memory_index.drift_suspect_rows');
+      const hasQueue = database.prepare('SELECT 1 FROM config WHERE key = ? LIMIT 1').get(MEMORY_DRIFT_SUSPECT_QUEUE_KEY);
       if (!hasQueue) {
         return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
       }
@@ -891,6 +901,8 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     if (suspects.length === 0) {
       return { tombstoned: 0, failed: 0, cleared: 0, actions: [] };
     }
+
+    const minQuarantineMs = parsePositiveIntEnv('SPECKIT_SUSPECT_MIN_QUARANTINE_MS', SUSPECT_MIN_QUARANTINE_MS_DEFAULT);
 
     const rows = database.prepare(`
       SELECT id, file_path, canonical_file_path
@@ -917,10 +929,28 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       const exists = incrementalIndex.cachedPathExists(pathCache, filePath)
         || incrementalIndex.cachedPathExists(pathCache, canonicalPath);
       if (exists) {
+        // Reappearance is always safe to clear immediately -- there is no
+        // destructive action here, so the age gate below does not apply.
         idsToClear.push(suspect.id);
-      } else {
-        idsToTombstone.push(suspect.id);
+        continue;
       }
+
+      const firstSeenAtMs = Date.parse(suspect.firstSeenAt);
+      // An unparseable firstSeenAt must fail toward the safe outcome (treated as
+      // too fresh to trust) rather than the destructive one. Falling through to an
+      // immediate tombstone on malformed timestamp data would defeat the entire
+      // purpose of this gate, which exists to protect against acting on a single,
+      // possibly-transient absence signal.
+      const ageMs = Number.isNaN(firstSeenAtMs) ? -1 : Date.now() - firstSeenAtMs;
+      if (ageMs < minQuarantineMs) {
+        // Too fresh to trust: a second confirmation pass could run milliseconds
+        // after the suspect was first queued, and a same-instant absence is not
+        // meaningfully different evidence from the original sweep that flagged it.
+        // Leave it in the queue untouched; a later pass re-evaluates it once real
+        // wall-clock time has actually separated the two observations.
+        continue;
+      }
+      idsToTombstone.push(suspect.id);
     }
 
     const deleteResult = deleteIndexedRecordIds(idsToTombstone);
@@ -1181,7 +1211,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         ...(triggerEmbeddingBackfill.readyRows > 0 ? [`Backfilled ${triggerEmbeddingBackfill.readyRows} trigger embedding row(s)`] : []),
         ...(triggerEmbeddingBackfill.failedRows > 0 ? [`${triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`] : []),
         ...(orphanSweepResult.enqueued > 0 ? [`Queued ${orphanSweepResult.enqueued} orphan index record(s) for confirmation`] : []),
-        ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be removed`] : []),
+        ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be queued for confirmation`] : []),
         ...(suspectConfirmation.tombstoned > 0 ? [`Confirmed and tombstoned ${suspectConfirmation.tombstoned} suspect index record(s)`] : []),
         ...(suspectConfirmation.cleared > 0 ? [`Cleared ${suspectConfirmation.cleared} reappeared suspect index record(s)`] : []),
         ...(checkpointRepair.cleared ? [`Cleared checkpoint derived rebuild sentinel after repairing ${checkpointRepair.completed} step(s)`] : []),
@@ -1757,7 +1787,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     hints.push(`${results.triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`);
   }
   if (results.orphanSweepFailed > 0) {
-    hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be removed`);
+    hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be queued for confirmation`);
   }
   if (results.suspectTombstoned > 0) {
     hints.push(`Confirmed and tombstoned ${results.suspectTombstoned} suspect index record(s)`);

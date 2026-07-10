@@ -131,6 +131,11 @@ describe('orphan-sweep confirmation timing', () => {
   it('queues a discovered orphan during one scan and tombstones it only on the next scan', async () => {
     vi.resetModules();
     mockLeaseAndScaffolding();
+    // The suspect is enqueued by the scan itself (real observedAt = now), so it
+    // cannot be backdated at seed time -- disable the minimum-quarantine window
+    // instead (0 = no gate) so the follow-up scan tombstones it deterministically,
+    // without an artificial sleep or a real-time race.
+    process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS = '0';
     const workspace = makeTempWorkspace('orphan-sweep-next-scan-');
     const { handler, vectorIndex } = await loadRealModules(workspace);
 
@@ -162,6 +167,7 @@ describe('orphan-sweep confirmation timing', () => {
       expect(vectorIndex.getMemory(id, vectorIndex.getDb()!)).toBeNull();
       expect(readMemoryDriftSuspects(vectorIndex.getDb()!)).toEqual([]);
     } finally {
+      delete process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS;
       try {
         vectorIndex.closeDb();
       } catch (_error: unknown) {
@@ -269,6 +275,11 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       // completion-exit branch) to be the one that fires.
       process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = '5';
       process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '20000';
+      // Rows discovered here are enqueued (not deleted directly), so a later
+      // confirmation pass must clear the minimum-quarantine window before it can
+      // tombstone them -- disable it (0 = no gate) so the follow-up invocations
+      // below converge to zero deterministically, without an artificial sleep.
+      process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS = '0';
 
       const TOTAL_ROWS = 900; // > ORPHAN_SWEEP_LIMIT (200), several pages
       seedOrphanBacklog(vectorIndex, workspace, TOTAL_ROWS, 'budget-exit');
@@ -313,6 +324,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       ).get() as { count?: number } | undefined;
       expect(remaining?.count ?? -1).toBe(0);
     } finally {
+      delete process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS;
       try {
         vectorIndex.closeDb();
       } catch (_error: unknown) {
@@ -336,6 +348,11 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
       try {
         process.env.SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS = budgetMs;
         process.env.SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS = '20000';
+        // Same rationale as the budget/cursor-resume test above: enqueued rows
+        // need the minimum-quarantine window disabled so the follow-up
+        // invocations below can actually tombstone them and converge to zero
+        // remaining, deterministically.
+        process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS = '0';
         seedOrphanBacklog(vectorIndex, workspace, ROWS, seedFolder);
 
         const db = vectorIndex.getDb();
@@ -369,6 +386,7 @@ describe('orphan-sweep time budget + cursor resume (REQ-001, REQ-005)', () => {
         const swept = new Set([...before].filter((filePath) => !remaining.has(filePath)));
         return swept;
       } finally {
+        delete process.env.SPECKIT_SUSPECT_MIN_QUARANTINE_MS;
         try {
           vectorIndex.closeDb();
         } catch (_error: unknown) {
