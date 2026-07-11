@@ -18,16 +18,16 @@ _memory:
     blockers:
       - "003-scaffold-mode-packet not yet executed"
     key_files:
-      - ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/spec.md"
+      - ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/spec.md"
       - ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-004-scoping-and-discovery"
       parent_session_id: null
     completion_pct: 0
-    open_questions:
-      - "Non-interactive lane-arg schema exact grammar (open ADR-011; owned and resolved by this phase)"
-    answered_questions: []
+    open_questions: []
+    answered_questions:
+      - "Non-interactive lane-arg schema: ADR-011 LOCKED to config-file-only (--lane-config <file.json>), this phase designs the JSON schema"
 status: "planned"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -104,7 +104,7 @@ Specify a structured, non-ambiguous scoping question and discovery contract so a
 ### In Scope
 - Plan the interactive scoping question as a structured decision tree over three axes: **ARTIFACT-CLASS** (docs / code / designs / git-history), **AUTHORITY** (sk-doc / sk-git / sk-design / sk-code, extensible), **SCOPE** (paths / globs / branch-range).
 - Plan lane resolution: one run yields N "alignment lanes," each lane a `(authority, artifact-class, scope)` tuple; multiple authorities per run must be selectable in one pass (the operator precedent is "sk-code and sk-git and/or sk-design").
-- Plan the non-interactive arg form for headless/cron runs: lanes passed as structured arguments instead of answered interactively, with the interactive question as the fallback when no lanes are supplied.
+- Plan the non-interactive arg form for headless/cron runs: ADR-011 LOCKS this to config-file-only — a single `--lane-config <file.json>` flag carrying the lane array (not repeated flags, not an inline JSON-array flag) — with the interactive question as the fallback when `--lane-config` is not supplied.
 - Plan the `discover(scope) -> artifacts` half of the pluggable adapter contract: input shape (a resolved lane's scope), output shape (a corpus of artifact references plus seed FILE nodes for the coverage graph), and the authority-agnostic guarantee that new authorities can implement `discover()` without engine changes.
 - Plan how lane output feeds DISCOVER-state corpus seeding, referencing the coverage-graph seeding pattern already proven in deep-review's `upsert.cjs` (`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs`).
 
@@ -121,7 +121,8 @@ Specify a structured, non-ambiguous scoping question and discovery contract so a
 |-----------|-------------|-------------|
 | `.opencode/skills/system-deep-loop/deep-alignment/references/scoping_protocol.md` | Create (future) | The structured decision-tree spec, deferred to the implementation pass |
 | `.opencode/skills/system-deep-loop/deep-alignment/references/discover_contract.md` | Create (future) | The `discover(scope)->artifacts` contract every adapter implements, deferred to the implementation pass |
-| `.opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs` (or equivalent) | Create (future) | Lane resolution + non-interactive arg parsing, deferred to the implementation pass and to the reuse-boundary resolution (open ADR-010, phase 008) that settles the `scripts/` directory question |
+| `.opencode/skills/system-deep-loop/deep-alignment/references/lane_config_schema.md` | Create (future) | The `--lane-config <file.json>` JSON schema (ADR-011 LOCKED: config-file-only), deferred to the implementation pass |
+| `.opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs` (or equivalent; final location follows ADR-010's shared-runtime convention) | Create (future) | Lane resolution + `--lane-config` parsing, deferred to the implementation pass and to phase 008's shared-runtime relocation convention (ADR-010, LOCKED) that settles the final `scripts/` directory |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -141,7 +142,7 @@ Specify a structured, non-ambiguous scoping question and discovery contract so a
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | The non-interactive arg form plan states its fallback relationship to the interactive question. | `plan.md` §3 states that when lane args are supplied, the interactive question is skipped, and when absent, the interactive question runs — never both, never neither. |
+| REQ-004 | The non-interactive `--lane-config` plan states its fallback relationship to the interactive question. | `plan.md` §3 states that when `--lane-config <file.json>` is supplied, the interactive question is skipped, and when absent, the interactive question runs — never both, never neither, per ADR-011's LOCKED config-file-only decision. |
 | REQ-005 | The DISCOVER-state corpus seeding plan references the real coverage-graph seeding pattern. | `plan.md` §3 cites `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs` as the seeding mechanism discovered artifacts feed into. |
 <!-- /ANCHOR:requirements -->
 
@@ -162,9 +163,9 @@ Specify a structured, non-ambiguous scoping question and discovery contract so a
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Adapter contract not yet frozen by 002-architecture-decision | This phase's `discover()` half could drift from the final contract | Restate the contract exactly as locked in the design brief; flag the non-interactive arg grammar as the one genuinely open item |
+| Dependency | Adapter contract not yet frozen by 002-architecture-decision | This phase's `discover()` half could drift from the final contract | Restate the contract exactly as locked in the design brief; ADR-011 is now LOCKED (config-file-only), so only the JSON schema's field-level detail remains this phase's own design work |
 | Risk | Lane explosion (too many authority x artifact-class x scope combinations per run) makes ITERATE-state partitioning unpredictable | Downstream phase 008 corpus partitioning becomes harder to plan | Plan a sane per-run lane cap and note it as a tunable, not a hard architectural limit |
-| Risk | Interactive question and non-interactive arg form diverge in semantics | Headless/cron runs could resolve different lanes than an equivalent interactive session | Plan both paths to converge on the same internal lane-tuple representation before DISCOVER starts |
+| Risk | Interactive question and `--lane-config` form diverge in semantics | Headless/cron runs could resolve different lanes than an equivalent interactive session | Plan both paths to converge on the same internal lane-tuple representation before DISCOVER starts, per ADR-011's zero-information-loss constraint |
 | Dependency | `upsert.cjs` coverage-graph seeding pattern | If its FILE-node shape changes, discovered-artifact seeding plan needs revision | Cite the real script and its current seeding contract, not an assumed shape |
 <!-- /ANCHOR:risks -->
 
@@ -221,7 +222,7 @@ Specify a structured, non-ambiguous scoping question and discovery contract so a
 
 ## 10. OPEN QUESTIONS
 
-- Exact non-interactive lane-arg grammar (flag syntax, delimiter, ordering) — recorded as open ADR-011 in 002-architecture-decision; owned and resolved by this phase's execution pass, designed alongside the interactive tree so both paths resolve to the same lane representation.
+None. ADR-011 in 002-architecture-decision is now LOCKED: config-file-only (`--lane-config <file.json>`, not repeated flags, not an inline JSON-array flag). This phase's own remaining design work is the concrete JSON schema's field-level detail (per-lane `{authority, artifactClass, scope}` keys and validation rules), designed alongside the interactive tree so both paths resolve to the same lane representation with zero information loss.
 <!-- /ANCHOR:questions -->
 
 ---

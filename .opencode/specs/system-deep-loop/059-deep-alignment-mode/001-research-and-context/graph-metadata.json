@@ -47,8 +47,8 @@
       "tasks.md",
       ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
       ".opencode/specs/system-deep-loop/052-deep-loop-unification/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/deep-review-strategy.md",
-      ".opencode/specs/skilled-agent-orchestration/131-hub-doc-conformance-fixes/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-strategy.md",
+      ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes/spec.md",
       ".opencode/specs/system-deep-loop/059-deep-alignment-mode/001-research-and-context/spec.md",
       ".opencode/specs/system-deep-loop/059-deep-alignment-mode/001-research-and-context/plan.md",
       ".opencode/specs/system-deep-loop/059-deep-alignment-mode/001-research-and-context/tasks.md",
@@ -89,7 +89,7 @@
       {
         "name": "deep-review-strategy.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/deep-review-strategy.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-strategy.md",
         "source": "derived"
       },
       {
@@ -202,8 +202,8 @@
       }
     ],
     "causal_summary": "Phase 002's architecture freeze (adapter contract, state machine, reuse boundary) depends on accurate, current facts about the `deep-review` engine's real shape, the standards surfaces of four parent skills, and the one manual precedent (`130`/`131`) the whole mode-packet productizes",
-    "created_at": "2026-07-11T06:11:13.465Z",
-    "last_save_at": "2026-07-11T06:11:13.465Z",
+    "created_at": "2026-07-11T10:39:13.368Z",
+    "last_save_at": "2026-07-11T10:39:13.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34e16e36dfbacea6983778755efcdf486f646203f2e57d6af6038a72fbd050ec",
+    "source_fingerprint": "sha256:410a145ff232bc3a843891f2f67ceac1f3436c1370a7b7e6d3be592f559012df",
     "source_doc_hashes": {
-      "spec.md": "22f74729ba84df3279fe99b74617c2067ff029f654bfd24818cb479b65cdad38",
-      "plan.md": "613425d619d2f5f668c9a18f1e9d9981659cd2dd8e5ac37401f1682cc0774504",
+      "spec.md": "f317866a5f4d55e25043556f4e6e775d11185ec535814558f4b2886d05694c91",
+      "plan.md": "80d70fd3f65cff00e018982f674a7900a2f3e09a59645bb30f3988c0028a8538",
       "tasks.md": "4ae2e8f8371012fe9e703152c1f787b1e1a1d85745dc6ce552e0c54f3284032f",
       "implementation-summary.md": "28c518162b68a8b1c4ee371dc2fe6194e982276c00c678828b8e70d4fc504682"
     },

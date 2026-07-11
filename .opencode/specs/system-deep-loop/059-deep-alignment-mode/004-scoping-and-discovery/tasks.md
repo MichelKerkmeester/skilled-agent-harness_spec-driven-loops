@@ -64,7 +64,7 @@ _memory:
 - [ ] T004 [B] Author `deep-alignment/references/scoping_protocol.md` with the three-axis decision tree and lane-resolution algorithm.
 - [ ] T005 [B] Author `deep-alignment/references/discover_contract.md` with the authority-agnostic `discover(scope)->artifacts` signature.
 - [ ] T006 [B] Implement the interactive lane-resolution script.
-- [ ] T007 [B] Design the lane-arg grammar (closing open ADR-011) and implement the non-interactive arg parser.
+- [ ] T007 [B] Design the `--lane-config <file.json>` JSON schema (per ADR-011's LOCKED config-file-only decision) and implement the non-interactive parser.
 <!-- /ANCHOR:phase-2 -->
 
 ---

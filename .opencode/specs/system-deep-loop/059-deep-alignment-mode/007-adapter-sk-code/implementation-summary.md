@@ -79,7 +79,7 @@ Not applicable yet. When this phase executes, delivery will follow `tasks.md` Ph
 |----------|-----|
 | Deterministic-first, reasoning-agent-second layering | Reuses proven, reproducible checks (`verify_alignment_drift.py`, Webflow scripts) before spending reasoning-agent budget on what those checks already cover, and keeps non-deterministic judgment clearly labeled rather than blended in. |
 | Reuse the shared surface router instead of forking detection | Prevents the adapter's surface classification from drifting from the sk-code hub's own live detection logic. |
-| Honest automatability-limits statement required before build | The design brief explicitly calls for candor about what is and is not deterministic here; a silent overclaim would undermine the alignment contract's VERIFY-FIRST invariant. |
+| Honest automatability-limits statement required before build | ADR-008 (LOCKED: HYBRID) requires candor about what is and is not deterministic here; a silent overclaim would undermine the alignment contract's VERIFY-FIRST invariant. |
 <!-- /ANCHOR:decisions -->
 
 ---

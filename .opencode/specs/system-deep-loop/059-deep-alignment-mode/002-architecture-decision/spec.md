@@ -111,7 +111,7 @@ The frozen design brief locks five architecture-level decision clusters for `dee
 Produce an operator-approvable architecture decision record for phase 002 so every later phase builds against one frozen deep-alignment target without re-litigating the brief's locked decisions, and so the five genuinely open questions stay visibly open and owned by the correct later phase.
 
 ### Evidence
-- The reference implementation this mode-packet generalizes ran by hand this session: `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/deep-review-strategy.md` and `.opencode/specs/skilled-agent-orchestration/131-hub-doc-conformance-fixes/spec.md`.
+- The reference implementation this mode-packet generalizes ran by hand this session: `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-strategy.md` and `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes/spec.md`.
 - The runtime engine being reused is `deep-review`'s: `.opencode/skills/system-deep-loop/deep-review/SKILL.md:22-80` (When To Use / Smart Routing) plus `.opencode/skills/system-deep-loop/runtime/scripts/{loop-lock,convergence,verify-iteration,upsert}.cjs`.
 - Hub structure checking already exists and is out of scope for this mode: `.opencode/commands/doctor/scripts/parent-skill-check.cjs`.
 - The declarative mode-registry that phase 003 will extend: `.opencode/skills/system-deep-loop/mode-registry.json`.

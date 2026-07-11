@@ -76,8 +76,8 @@ _memory:
 
 <!-- These tasks belong to a future execution pass, gated behind phases 001-008 landing as real code. -->
 
-- [ ] T009 [B] Run `node .opencode/commands/doctor/scripts/parent-skill-check.cjs` STRICT against the real `deep-alignment` skill
-- [ ] T010 [B] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/059-deep-alignment-mode --recursive --strict`
+- [ ] T009 [B] Run `node .opencode/commands/doctor/scripts/parent-skill-check.cjs` STRICT against the real `deep-alignment` skill, once phases 001-008 and 010 are real code
+- [ ] T010 [B] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/059-deep-alignment-mode --recursive --strict` across the full 10-phase packet
 - [ ] T011 [B] Run the behavior benchmark and confirm all three scenarios behave as expected
 - [ ] T012 [B] Update `checklist.md` with evidence for each verified item
 <!-- /ANCHOR:phase-3 -->

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Every prior phase in this packet plans internals (adapters, runtime wiring); none of it is reachable by a user or by the advisor until a command exists to invoke it, a leaf agent exists to execute one iteration, the advisor knows to route alignment requests here, a benchmark proves the mode behaves as intended, and the standard cutover gates confirm the packet is structurally sound before it ships",
     "created_at": "2026-07-11T06:23:43.199Z",
-    "last_save_at": "2026-07-11T06:57:04.967Z",
+    "last_save_at": "2026-07-11T09:55:38.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd6fcc10e0bff870620d9ada23211382a11da8a91113b71c8bb3a3b1c9b16ef0",
+    "source_fingerprint": "sha256:7332eb8f688b05289e2de5d20d2d59fcdc14c21368319e2abbe4450128c86110",
     "source_doc_hashes": {
-      "spec.md": "5a6b849bf7f40f5d091048d1da5a2284f356027e4b551be839183ba7f810723d",
-      "plan.md": "96b984a0c5bbb2c3d1c19c1d7d4694a910a102d5416f795f0e7ce6b3502ce588",
-      "tasks.md": "19010cb76f7518edb2cfa2d7cd64f89098338c2b0a75f86f8a59654deafffbd2",
+      "spec.md": "4fa17d1ef2d4e9d7caa408d4a85513cabacb4ac044c2035c1aea0f71b517da6e",
+      "plan.md": "a1e765136299998ca09265d19b453cd1748c72569b271f3366f66ec42822e5d0",
+      "tasks.md": "dcdbc4c75abcbf5901d406c9b3647b4faa155622e70dab7797d630836567e36c",
       "checklist.md": "99bdd4990d1481c54632a39b120dae07f0678bed3ad62806e9e40c3e26b6aa78",
-      "implementation-summary.md": "55f03ed88f97dedd80327a97201f85cc36ede90a5e3e597f7441b783d42e1531"
+      "implementation-summary.md": "736e2626b9bca4a22a3e18da78086d3c077422003c6c24a41f08f2f52e3a6a5d"
     },
     "last_active_child_id": null,
     "last_active_at": null

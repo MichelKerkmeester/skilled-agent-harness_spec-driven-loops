@@ -53,7 +53,7 @@ Nothing yet. This phase is planned, not implemented: `spec.md` and `plan.md` nam
 
 ### Planned Scope (not yet built)
 
-The command will be a thin router mirroring `/deep:review`. The agent will mirror `@deep-review`'s LEAF-only, write-safety-bounded contract, translated from per-dimension findings to per-lane findings. The advisor routing will add one `mode-registry.json` entry plus matching entries in both the Python and TypeScript projection maps, verified by the existing drift-guard test. A behavior benchmark will cover a clean corpus, a corpus with real violations, and a known-deviation-suppressed corpus. The final cutover gates (`parent-skill-check.cjs --strict`, `validate.sh --recursive --strict`) will run only once phases 001-008 are real code, not just specs.
+The command will be a thin router mirroring `/deep:review`. The agent will mirror `@deep-review`'s LEAF-only, write-safety-bounded contract, translated from per-dimension findings to per-lane findings. The advisor routing will add one `mode-registry.json` entry plus matching entries in both the Python and TypeScript projection maps, verified by the existing drift-guard test. A behavior benchmark will cover a clean corpus, a corpus with real violations, and a known-deviation-suppressed corpus. The final cutover gates (`parent-skill-check.cjs --strict`, `validate.sh --recursive --strict`) will run only once phases 001-008 and 010 are real code, not just specs.
 
 ### Files Changed
 
@@ -100,7 +100,7 @@ Not applicable yet. When this phase executes, delivery will follow `tasks.md` Ph
 ## Known Limitations
 
 1. **No command, agent, registry, or advisor-map code exists.** This phase is planning-only per the parent packet's scaffold constraint; `tasks.md` T004-T008 remain the actual build work.
-2. **The cutover-gate sequence cannot run meaningfully yet.** It requires phases 001-008 to be implemented as real code first; running it now would only prove the scaffold is incomplete, which is already known.
+2. **The cutover-gate sequence cannot run meaningfully yet.** It requires phases 001-008 and 010 to be implemented as real code first; running it now would only prove the scaffold is incomplete, which is already known.
 3. **The exact `workflowMode` key name for the new mode is assumed, not decided.** This plan uses `"alignment"` throughout, pending the 002/003 decisions.
 <!-- /ANCHOR:limitations -->
 

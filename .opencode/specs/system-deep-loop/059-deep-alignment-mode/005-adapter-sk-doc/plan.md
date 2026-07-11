@@ -65,7 +65,7 @@ This phase specifies the sk-doc adapter as a thin wrapper around tools that alre
 ### Definition of Ready
 - [ ] Phase 004's `discover(scope)->artifacts` and the full three-function adapter contract are locked and re-read before drafting this adapter's implementation of them.
 - [ ] `.opencode/skills/sk-doc/scripts/validate_document.py` and `.opencode/skills/sk-doc/scripts/extract_structure.py` have been read in full, not just their docstrings.
-- [ ] `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/iterations/iteration-001.md` and `iteration-002.md` have been read for the real known-deviation findings this phase seeds its suppression list from.
+- [ ] `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md` and `iteration-002.md` have been read for the real known-deviation findings this phase seeds its suppression list from.
 
 ### Definition of Done
 - [ ] `standardSource("sk-doc")`, `check()`, and `discover()` are each specified with cited real-file line references, and `check()`'s VERIFY-FIRST behavior is stated as a hard requirement.
@@ -91,11 +91,11 @@ Thin wrapper adapter: `discover()`/`check()` call the real sk-doc tools and temp
 
 **`check(artifact, rules)`** — two sub-checks, both VERIFY-FIRST:
 1. **Template-conformance**: run `validate_document.py <artifact> --type <detected-type> --json` and translate its blocking/non-blocking findings directly into P0/P1 alignment findings; run `extract_structure.py` and surface a DQI-below-threshold artifact as a P2 finding (quality, not conformance-blocking).
-2. **Reality-alignment**: for any claim the artifact makes about live system behavior (a command exists, a script accepts a flag, a path is correct), the adapter re-probes the live target before asserting a finding — never trusts the artifact's own prose. This exactly matches the proven pattern at `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/iterations/iteration-001.md:27`: "Counterevidence sought: Checked whether this was an established compact pointer-card exception; the prompt explicitly makes validator exit 0 mandatory for every document."
+2. **Reality-alignment**: for any claim the artifact makes about live system behavior (a command exists, a script accepts a flag, a path is correct), the adapter re-probes the live target before asserting a finding — never trusts the artifact's own prose. This exactly matches the proven pattern at `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md:27`: "Counterevidence sought: Checked whether this was an established compact pointer-card exception; the prompt explicitly makes validator exit 0 mandatory for every document."
 3. Both sub-checks consult the known-deviation suppression list (below) before emitting a finding; a match suppresses that specific finding category, not the whole artifact.
 
 **Known-deviation suppression list** (`sk_doc_known_deviations.md`, future) — seeded from real findings, not hypotheticals:
-- Repo-wide TOC ban (`.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/iterations/iteration-001.md:14`), despite `validate_document.py`'s own docstring describing "proper TOC" as part of its default checklist (`validate_document.py:10`) — this is exactly the kind of drift-vs-convention distinction the alignment contract exists to make.
+- Repo-wide TOC ban (`.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md:14`), despite `validate_document.py`'s own docstring describing "proper TOC" as part of its default checklist (`validate_document.py:10`) — this is exactly the kind of drift-vs-convention distinction the alignment contract exists to make.
 - Compact pointer-card asset shape (same citation).
 - Kebab-case legacy filename references, despite `core_standards.md`'s snake_case filename convention (`core_standards.md:32-38`) — an intentional legacy exception, not a defect.
 - cli-family `hard_rules` frontmatter shape (same citation).
@@ -124,7 +124,7 @@ Not applicable. This phase is not a bug fix and touches zero production surfaces
 - [ ] Read `.opencode/skills/sk-doc/scripts/validate_document.py` in full for its CLI contract and exit-code semantics.
 - [ ] Read `.opencode/skills/sk-doc/scripts/extract_structure.py` in full for its DQI scoring and document-type detection.
 - [ ] Read `.opencode/skills/sk-doc/shared/references/core_standards.md` for filename conventions and document-type detection priority order.
-- [ ] Read `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/iterations/iteration-001.md` and `iteration-002.md` for the real known-deviation findings and the verify-first counterevidence pattern.
+- [ ] Read `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md` and `iteration-002.md` for the real known-deviation findings and the verify-first counterevidence pattern.
 - [ ] Re-read phase 004's finalized `discover(scope)->artifacts` contract signature.
 
 ### Phase 2: Core Implementation (future execution pass — not run in this phase)
@@ -161,7 +161,7 @@ Not applicable. This phase is not a bug fix and touches zero production surfaces
 | 004-scoping-and-discovery | Internal | Pending | No finalized `discover()` contract to implement against |
 | `.opencode/skills/sk-doc/scripts/validate_document.py` | Internal | Green | Without it, template-conformance checking has no real tool to wrap |
 | `.opencode/skills/sk-doc/scripts/extract_structure.py` | Internal | Green | Without it, DQI scoring and document-type detection have no real tool to wrap |
-| `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/` | Internal | Green | Without it, the suppression list and VERIFY-FIRST behavior would be designed from theory instead of a proven real run |
+| `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/` | Internal | Green | Without it, the suppression list and VERIFY-FIRST behavior would be designed from theory instead of a proven real run |
 <!-- /ANCHOR:dependencies -->
 
 ---

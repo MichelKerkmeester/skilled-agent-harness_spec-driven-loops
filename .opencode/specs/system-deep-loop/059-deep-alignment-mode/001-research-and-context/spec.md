@@ -21,8 +21,8 @@ _memory:
     key_files:
       - ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
       - ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs"
-      - ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review"
-      - ".opencode/specs/skilled-agent-orchestration/131-hub-doc-conformance-fixes"
+      - ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review"
+      - ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-001-research-and-context"
@@ -58,7 +58,7 @@ FAILURE MODES:
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 9 |
-| **Predecessor** | None |
+| **Predecessor** | 000-deep-loop-runtime-refinement (phase-0 runtime prerequisite) |
 | **Successor** | 002-architecture-decision |
 | **Handoff Criteria** | A verified research/context map covering the deep-review packet, runtime scripts, three prior-art packets, the four parent skills' standards surfaces, and the 130/131 reference packets is ready for human review before phase 002 |
 <!-- /ANCHOR:metadata -->
@@ -73,13 +73,13 @@ This is **Phase 1** of the deep-alignment mode-packet specification.
 **Scope Boundary**: Read-only research and inventory planning for phase 001. This phase documents findings inside this phase folder only. It must not create, move, or edit `.opencode/skills/system-deep-loop/deep-alignment/`, any `mode-registry.json` entry, any command file, or any file outside this phase folder.
 
 **Dependencies**:
-- None. This is the first phase and has no predecessor beyond the approved parent packet context and the frozen design brief it was scaffolded from.
+- The phase-0 runtime remediation (`000-deep-loop-runtime-refinement`) precedes this phase as a prerequisite, since the mode reuses that runtime. This is the first mode-build phase and has no other predecessor beyond the approved parent packet context and the frozen design brief it was scaffolded from.
 
 **Deliverables**:
 - A confirmed inventory of the `deep-review` packet and the shared runtime scripts it reuses, with file:line grounding for what is shared (`runtime/scripts/`) versus mode-local (`deep-review/scripts/`).
 - A confirmed summary of the three prior-art packets: `052-deep-loop-unification`, `055-deep-loop-divergent-mode`, and `051-deep-loop-parent-skill-alignment` — including what `051` actually is, since its own title and scope must be read directly rather than assumed from its name.
 - A confirmed inventory of each of the four parent skills' standards surfaces: `sk-doc` (`validate_document.py`, `extract_structure.py`, `core_standards.md`), `sk-git` (`SKILL.md` conventional-commit + worktree/branch rules), `sk-design` (DESIGN.md/token structure, audit-mode dimensions), `sk-code` (`SKILL.md` Smart Routing surface-detection markers).
-- A confirmed read of the reference implementation packets `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review` and `131-hub-doc-conformance-fixes`, since the mode's alignment contract productizes exactly this manual pattern.
+- A confirmed read of the reference implementation packets `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review` and `130-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes`, since the mode's alignment contract productizes exactly this manual pattern.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -106,7 +106,7 @@ Produce a trustworthy, read-only factual foundation — a research/context map w
 - Read `.opencode/skills/system-deep-loop/deep-review/SKILL.md` and its `runtime/scripts/` + mode-local `scripts/` directories to confirm which loop primitives are shared runtime vs. mode-local, with file:line evidence.
 - Read `.opencode/specs/system-deep-loop/052-deep-loop-unification/spec.md`, `055-deep-loop-divergent-mode/spec.md`, and `051-deep-loop-parent-skill-alignment/spec.md` to confirm what each program actually did, not what its folder name implies.
 - Read the four parent skills' standards surfaces named in the design brief: `sk-doc`, `sk-git`, `sk-design`, `sk-code`.
-- Read `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/deep-review-strategy.md` and `.opencode/specs/skilled-agent-orchestration/131-hub-doc-conformance-fixes/spec.md` as the reference implementation this mode-packet generalizes.
+- Read `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-strategy.md` and `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes/spec.md` as the reference implementation this mode-packet generalizes.
 
 ### Out of Scope
 - Any decision about the final adapter contract shape, state machine, or artifact layout — those are frozen in phase 002, not decided here.

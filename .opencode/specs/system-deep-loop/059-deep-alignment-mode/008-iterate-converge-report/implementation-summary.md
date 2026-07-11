@@ -53,7 +53,7 @@ Nothing yet. This phase is planned, not implemented: `spec.md` and `plan.md` nam
 
 ### Planned Scope (not yet built)
 
-The loop will reuse `loop-lock.cjs` unchanged for locking, resolve a convergence approach against `convergence.cjs`'s hard-validated loopType enum (either extend it to add `"alignment"` or reuse `"review"` under a distinct namespace - recorded as open ADR-010 in 002's decision-record and owned by this phase's execution pass), reduce per-iteration findings into a per-lane `alignment-report.md` mirroring `deep-review/scripts/reduce-state.cjs`'s pattern, extend `verify-iteration.cjs`'s per-loop maps, and partition discovered artifacts lane-round-robin across iterations. All state will externalize to the bound spec folder's `alignment/` subdir, mirroring the real `review/` layout observed in the reference implementation packet.
+The loop will reuse `loop-lock.cjs` unchanged for locking, relocate `reduce-state.cjs` from `deep-review/scripts/` to shared `runtime/scripts/` per ADR-010 (LOCKED: promote to shared runtime, behavior-preserving — `deep-review`'s import path changes, its logic and output do not), resolve a convergence approach against `convergence.cjs`'s hard-validated loopType enum (either extend it to add `"alignment"` or reuse `"review"` under a distinct namespace — this phase's own build-time call, independent of ADR-010), reduce per-iteration findings into a per-lane `alignment-report.md` via a new `runtime/scripts/reduce-alignment-state.cjs` sibling of the relocated reducer, extend `verify-iteration.cjs`'s per-loop maps, and partition discovered artifacts lane-round-robin across iterations. All state will externalize to the bound spec folder's `alignment/` subdir, mirroring the real `review/` layout observed in the reference implementation packet.
 
 ### Files Changed
 
@@ -77,8 +77,9 @@ Not applicable yet. When this phase executes, delivery will follow `tasks.md` Ph
 
 | Decision | Why |
 |----------|-----|
-| Name the loopType reuse-vs-extend tradeoff instead of picking one in this scaffold | The design brief explicitly lists "exact reuse boundary with the deep-review engine" as an open question to record in the 002 decision-record (open ADR-010), not to resolve in a scaffold; this phase's execution pass closes it. |
-| Model the alignment-report reducer on `reduce-state.cjs`'s existing pattern rather than inventing a new shape | Keeps the reducer's severity-weighting and dimension-tracking discipline consistent with the proven deep-review reducer instead of reinventing scoring logic. |
+| Promote `reduce-state.cjs` to shared `runtime/scripts/` rather than forking a `deep-alignment`-local copy | ADR-010 (LOCKED, operator resolution 2026-07-11): this is a behavior-preserving relocation — only `deep-review`'s import path changes — that establishes "reducers are shared-runtime primitives" as the going-forward convention instead of drift-prone forked copies. |
+| Name the loopType reuse-vs-extend tradeoff instead of picking one in this scaffold | This is this phase's own build-time implementation call, independent of ADR-010; the scaffold names both options' tradeoffs so this phase's execution pass can decide without re-deriving the constraint. |
+| Model the alignment-report reducer on `reduce-state.cjs`'s existing pattern, located as a shared-runtime sibling rather than a mode-local script | Keeps the reducer's severity-weighting and dimension-tracking discipline consistent with the proven deep-review reducer instead of reinventing scoring logic, and follows ADR-010's shared-location convention. |
 | Lane-round-robin corpus partitioning instead of deep-review's fixed four-dimension rotation | Deep-alignment's lanes are a variable-count, scope-resolved list (from phase 004), not four fixed named categories, so the partitioning strategy has to be shape-agnostic. |
 <!-- /ANCHOR:decisions -->
 
@@ -99,8 +100,8 @@ Not applicable yet. When this phase executes, delivery will follow `tasks.md` Ph
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No runtime wiring exists.** This phase is planning-only per the parent packet's scaffold constraint; `tasks.md` T004-T008 remain the actual build work, and T004 (closing open ADR-010) is the execution pass's first decision, gating T005.
-2. **Convergence reuse path is undecided.** Both the enum-extension and the review-loopType-reuse options are viable; this phase states the tradeoff but does not choose.
+1. **No runtime wiring exists.** This phase is planning-only per the parent packet's scaffold constraint; `tasks.md` T004-T009 remain the actual build work. T004 (the ADR-010 `reduce-state.cjs` relocation) is now a LOCKED decision, but the mechanical move has not been performed; T005 (the loopType call, independent of ADR-010) is still an open execution-pass decision gating T006.
+2. **Convergence reuse path is undecided.** Both the enum-extension and the review-loopType-reuse options are viable; this phase states the tradeoff but does not choose — this is unrelated to ADR-010, which is separately resolved.
 3. **Corpus partitioning depends on phase 004's lane-resolution output**, which is out of this phase's scope and not yet built.
 <!-- /ANCHOR:limitations -->
 

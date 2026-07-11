@@ -41,6 +41,7 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/spec.md",
       ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
       "tasks.md",
       "spec.md",
@@ -197,7 +198,7 @@
     ],
     "causal_summary": "`deep-alignment` needs to resolve \"what to check, against which standard, and where\" before it can discover any artifact",
     "created_at": "2026-07-11T06:18:37.255Z",
-    "last_save_at": "2026-07-11T06:51:21.484Z",
+    "last_save_at": "2026-07-11T09:57:48.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8b7a8f996a5e3dbfd7b1a2f3ff87868933fac296bf3eb6208e041d284b376b6",
+    "source_fingerprint": "sha256:97c18141aba127099b7db0e720b216ee4baaee88e09d2082231bc47381b5f9b9",
     "source_doc_hashes": {
-      "spec.md": "55ec8653622b2b155aad1f5165b04975884025037d25b6550eee672f6e08840d",
-      "plan.md": "f097f51ea113a9f5916e1419086d27352d225b5feac677e3fe2533d941e69ee9",
-      "tasks.md": "f2aea00141e17ff962dfc2e662dd6d3c4aea39d7fa4a4e81cc0afd1a5ec942d3",
+      "spec.md": "20e3a2d5a58e14645ec861c72057ad0e082d50903d5864ee1e9d8678aecd8b23",
+      "plan.md": "0e9391af8ed9c510c5a336c1eee38a5416f76a56af235494ee0805a2eabdef83",
+      "tasks.md": "f18923ce0d24740ce7468bd4f9dde34c4ffc230c278ba29d79d154c20817b6a3",
       "checklist.md": "522322181e01b5f130e07272b7e9a48dd59e75cda78086abc1cc85d0a3656e7f",
-      "implementation-summary.md": "8aae7063019f6acfaaf4960b42e9b86c0495918d5ea4e01ee20d34f4f2e40fd0"
+      "implementation-summary.md": "c4271464adfc1edc6127f7c74d3bad1a131a538c70ac85a1db4151b91e83d110"
     },
     "last_active_child_id": null,
     "last_active_at": null
