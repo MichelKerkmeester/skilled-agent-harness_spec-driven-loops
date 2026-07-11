@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/research.md",
-      "sha256": "11d29cbfd11e8436d2a827fd1ee9b42352ba8404fb2c8b63e04dd6073db8f426",
+      "sha256": "4adc3a1b85adc3448cb0a507a13e86a9b4d1cc890baad554f08d41905fd8857f",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_presentation.txt",
-      "sha256": "972782300ff805a6a02b6880a0100f1db5acf9ba0e316abbbc625358091e91c8",
+      "sha256": "71cc378130891c45341900234c22bf6b21220756b26edaf3a5f386a1a99195f7",
       "section": "full"
     },
     {
@@ -22,27 +22,27 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      "sha256": "62b73cc74e3bb75d4b5fedc7034101b21f0ceedfebc36dc005a32169efa97088",
+      "sha256": "e62bbe262d83df83feaf49eb435fd81c3c4885731b7713c6e4d576b0ae0e44a7",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_confirm.yaml",
-      "sha256": "a053487dba03002d7f33b12097cd11bcc2774e9eb1258dbb6d280323fb24e87a",
+      "sha256": "67e1565fe6ed66ff008383b7aa4decca5ea96f681a80d3ef233642eca4da7dd1",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "6d41d1cfeff3b422ef5686c839c7e64118a3e0cfdf9eeced58166ef7486447a3",
+      "sha256": "39bc42a8881b45c5a16a432bb33f94f62565b2d935c31e5b9c373c5e144a019f",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "46d1f01bd81c2dcfa1dd37a146899cffce712e682ed4ef12d603e9d3be9729ba",
+      "sha256": "4d990838018f72d97d426e8aa7cbd26e3042ace7eb9844c793a0b15b2fb466e3",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "2d64431e04be501ceaae5f8a87b321e43f68dda9f0db2520f5d0995c718355e6",
+      "sha256": "da8206207d6689b466c03882f3446bdc4941b9306a452cbc8464b3ba97d2ee38",
       "section": "full"
     },
     {
@@ -67,17 +67,17 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep_research_config.json",
-      "sha256": "99c776a04665016b039d226a574e9ad6ddab754e70c17d7434fc25392d71d734",
+      "sha256": "ca1af4a91a3bb06332812eb43356523d3dab27bf5c1f1155d5040257acd45139",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/deep_research_strategy.md",
-      "sha256": "2157d9578df20661a94662026bdbe3e18a198ec84f336b6fd0eeb0da1ed7a66c",
+      "sha256": "ec5a50cd9f1dbb9e3577988119818574935e5a0acdc5967a54f2ec6c29b454fe",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      "sha256": "6db9559612581569c2e6f632f74e35f6fc60ff5002ddfc1dcc2df7359b71e413",
+      "sha256": "2831ba9a12799019fc5789551887fd57c319f0dd3202f35d537427a4b91bdee0",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "142793a8686b1a0a7014a2d3886f7727eb9d9eec9676c12259c1754f229e921a"
+  "compiledBodyDigest": "592998459f9245d802ec409f1679a77e905f23cb17d6f4c428f5968358720093"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -165,7 +165,7 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_research_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_research_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 
@@ -184,6 +184,7 @@ PRE-BOUND SETUP ANSWERS:
   execution_mode: AUTONOMOUS  # from :auto suffix
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
+  convergence_mode: default  # default | off | sliding-window | divergent
   executor: native  # native | cli-opencode | cli-claude-code | cli-opencode
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
@@ -204,6 +205,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 | `execution_mode`        | Y        | attached suffix `:auto` or marker `execution_mode`                                                                                                                                                     | `AUTONOMOUS` under `:auto`         | N                                                       |
 | `maxIterations`         | Y        | flag `--max-iterations`, marker `maxIterations`, or default                                                                                                                                            | `10`                               | N                                                       |
 | `convergenceThreshold`  | Y        | flag `--convergence`, marker `convergenceThreshold`, or default                                                                                                                                        | `0.05`                             | N                                                       |
+| `convergence_mode`      | Y        | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default                                                                                                  | `default`                          | N                                                       |
 | `executor`              | N        | flag `--executor`, marker `executor`, config file, or default                                                                                                                                          | `native`                           | N                                                       |
 | `executor_model`        | N        | flag `--model`, marker `executor_model`, or executor-specific validation                                                                                                                               | none                               | N                                                       |
 | `executor_config_dir`   | N        | flag `--config-dir`, marker `executor_config_dir`, or executor-specific default                                                                                                                        | none                               | N                                                       |
@@ -244,6 +246,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 3. PARSE optional flags from $ARGUMENTS:
    |-- --max-iterations=N -> maxIterations = N
    |-- --convergence=N -> convergenceThreshold = N
+   |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --executor=<type> -> config.executor.type (`native` | `cli-opencode` | `cli-claude-code` | `cli-opencode`)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
@@ -261,7 +264,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
    |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
    |
-   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=10, convergenceThreshold=0.05, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults
@@ -274,6 +277,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--reasoning-effort` -> `config.executor.reasoningEffort`
    - `--service-tier` -> `config.executor.serviceTier`
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
+   - `--convergence-mode` -> `antiConvergence.convergenceMode`
 
    Validation hook:
    - `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
@@ -326,6 +330,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - maxIterations = [from Q3 or flag or default 10]
    - convergenceThreshold = [from flag or default 0.05]
+   - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
     - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
 9. SET STATUS: PASSED
@@ -339,7 +344,7 @@ NEVER split questions into multiple prompts
 
 **Phase Output:**
 - `research_topic` | `spec_choice` | `spec_path`
-- `execution_mode` | `maxIterations` | `convergenceThreshold`
+- `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode`
 ~~~
 <!-- END renderBlocks.confirm -->
 
