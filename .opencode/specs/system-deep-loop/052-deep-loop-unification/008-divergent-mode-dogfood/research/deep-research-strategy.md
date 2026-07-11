@@ -125,6 +125,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 - Which cost and operator-friction defects dominate after route proof and unrestricted council seat startup are corrected? (iteration 4)
 - Which shared-runtime and command-contract tests are missing for the four cost/liveness defects found here? (iteration 5)
 - Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model? (iteration 5)
+- Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance? (iteration 6)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -132,7 +133,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model?
+Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance?
 
 <!-- /ANCHOR:next-focus -->
 

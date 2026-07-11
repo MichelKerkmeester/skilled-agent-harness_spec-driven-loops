@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Identify concrete improvements, refinements, and upgrade opportunities for the system-deep-loop skill: its shared runtime (.opencode/skills/system-deep-loop/runtime/**), all four subskills (deep-research, deep-review, deep-ai-council, deep-improvement), the deep/* commands (.opencode/commands/deep/**), and their agent definitions (.claude/agents/deep-research.md, .claude/agents/deep-review.md, and OpenCode equivalents). Look across correctness, ergonomics, cost/performance, documentation accuracy, and test coverage. Rotate focus across these areas iteration to iteration rather than fixating on one.
 - Started: 2026-07-11T06:21:34.834Z
 - Status: INITIALIZED
-- Iteration: 5 of 10
+- Iteration: 6 of 10
 - Session ID: dr-008-divergent-retry-1783750894834
 - Parent Session: none
 - Lifecycle Mode: new
@@ -36,8 +36,9 @@ Reducer-generated observability surface for the active research packet.
 | undefined | Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents? | - | 0.90 | 0 | insight |
 | undefined | Does any supported OpenCode CLI flag select ai-council while preserving the current isolated seat process, or should route proof identify a generic council-seat executor instead? | - | 0.78 | 0 | insight |
 | undefined | Which cost and operator-friction defects dominate after route proof and unrestricted council seat startup are corrected? | - | 0.88 | 0 | insight |
+| undefined | Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model? | - | 0.84 | 0 | insight |
 
-- iterationsCompleted: 5
+- iterationsCompleted: 6
 - keyFindings: 0
 - openQuestions: 5
 - resolvedQuestions: 0
@@ -65,12 +66,12 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: ▅▆▆▇████▇▇▆▅▄▃▁▂▃▄▅▆
-- score sparkline: ▅▆▆▇████▇▇▆▅▄▃▁▂▃▄▅▆
-- Last 3 ratios: 0.90 -> 0.78 -> 0.88
+- newInfoRatio sparkline: ▅▆▇▇██▇▇▆▅▃▂▂▃▄▆▆▅▅▄
+- score sparkline: ▅▆▇▇██▇▇▆▅▃▂▂▃▄▆▆▅▅▄
+- Last 3 ratios: 0.78 -> 0.88 -> 0.84
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.88
+- convergenceScore: 0.84
 - coverageBySources: {"other":10}
 - Advisory events: none
 
@@ -92,7 +93,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model?
+Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance?
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

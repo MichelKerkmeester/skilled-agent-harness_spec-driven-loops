@@ -210,6 +210,11 @@
       "text": "Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model?",
       "addedAtIteration": 5,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -269,17 +274,17 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 5,
+    "iterationsCompleted": 6,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 17,
+    "carriedForwardOpenQuestions": 18,
     "keyFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.88,
+    "convergenceScore": 0.84,
     "coverageBySources": {
       "other": 10
     },
