@@ -44,7 +44,7 @@ Unknown fields warn. Malformed lines are parse errors. Marker values override fl
 ```text
 SpecKit Resume setup
 
-Q0. Spec Folder, if not detected or provided: A) List and select  B) Start new with /speckit:complete  C) Cancel  D) Phase folder
+Q0. Spec Folder, if not detected or provided: A) List and select  B) Start new with /speckit:complete  C) Cancel
 Q1. Confirm Detected Session, if auto-detected: A) Yes, resume  B) Select different folder  C) Cancel
 Q2. Continuation Validation, if handoff and indexed continuity disagree: A) Use handoff  B) Use indexed continuity  C) Investigate first
 Q3. Missing Artifacts, if required artifacts are incomplete: A) Run /speckit:plan  B) Select different folder  C) Continue anyway

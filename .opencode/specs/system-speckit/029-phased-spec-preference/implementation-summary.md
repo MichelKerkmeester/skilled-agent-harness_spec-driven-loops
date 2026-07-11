@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/029-phased-spec-preference"
-    last_updated_at: "2026-07-11T14:17:29.840Z"
+    last_updated_at: "2026-07-11T14:37:26.367Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"
@@ -107,7 +107,11 @@ Deliberately left alone: `doctor_update_presentation.txt`'s `2) Skip` before `X)
 
 ### Round 5: speckit presentation-asset re-sweep (operator follow-up)
 
-Operator flagged not to forget speckit's own presentation assets. Re-audited every `.txt`/`.yaml` under `.opencode/commands/speckit/assets/` and `.opencode/commands/create/assets/` against both patterns — all 4 speckit presentation files (`complete`, `plan`, `implement`, `resume`) and the confirm/auto yaml pair now carry the fixed wording, and no `create:*` asset was missed. This pass also fixed the pre-existing letter-sequence bug flagged (but left alone) in Round 4: `speckit_resume_presentation.txt`'s Q0 line jumped straight from `C)` to `E)` with no `D)` — relettered to `D) Phase folder`. This line has no literal "Skip" option, so it's a distinct fix from the Skip-reorder, done here only because it was directly adjacent and now confirmed as the last remaining inconsistency in the speckit asset family.
+Operator flagged not to forget speckit's own presentation assets. Re-audited every `.txt`/`.yaml` under `.opencode/commands/speckit/assets/` and `.opencode/commands/create/assets/` against both patterns — all 4 speckit presentation files (`complete`, `plan`, `implement`, `resume`) and the confirm/auto yaml pair now carry the fixed wording, and no `create:*` asset was missed. This pass also relettered a pre-existing bug flagged (but left alone) in Round 4: `speckit_resume_presentation.txt`'s Q0 line jumped straight from `C)` to `E)` with no `D)`.
+
+### Round 6: Removed a non-functional Q0 option (operator follow-up)
+
+Operator questioned whether Round 5's `D) Phase folder` reletter was actually meaningful, or should sit before `C) Cancel`. Traced the real mechanics in `speckit_resume_confirm.yaml`: phase-folder handling in `/speckit:resume` is a fully automatic downstream step (`phase_folder_detection`, triggered after the spec folder is already resolved — reads `graph-metadata.json`'s `derived.last_active_child_id` pointer to auto-redirect, or falls back to listing children for the user to pick from). It is not a Q0 branch; no `on_D`-style handling exists anywhere for it. `D) Phase folder` was never a real selectable choice, so the right fix isn't reordering it relative to Cancel — it's removing it. Q0 is now `A) List and select  B) Start new with /speckit:complete  C) Cancel`, a clean 3-option list with Cancel already last.
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -209,7 +209,7 @@
     ],
     "causal_summary": "system-spec-kit already has a phase-decomposition system (`phasesystem.md`, `phasedefinitions.md`) gated on a complexity score (>=25/50) AND a level threshold (>=3), but nothing tells AI agents to prefer extending an existing phased packet with a new phase over spinning up a brand-new sibling spec folder",
     "created_at": "2026-07-11T11:09:23Z",
-    "last_save_at": "2026-07-11T14:17:30.178Z",
+    "last_save_at": "2026-07-11T14:37:26.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f923cc7c5db75658d8bf911852f1a52bda13ef8b6f1bd49cf54dbfbe8ff5c27f",
+    "source_fingerprint": "sha256:8565482ee96a39f998dffe99816b6b3bd84994210b21a7355dab127d058103a0",
     "source_doc_hashes": {
-      "spec.md": "8f017d7ba2520475d493c72f71aed15ec77db99b7e6cf202d81424b111327a63",
-      "plan.md": "e57ac5e418216d4d0ab3598c3adb1762feaaaaf18723338da5309afa09018f34",
-      "tasks.md": "69e5925a7907eb2f6b2c8ecf11546c343a30f3deda84eaa89c6f90fb3537f301",
-      "checklist.md": "efb1e3f756e1ec1cd2aac7474ed5435cfe4355c6fa75fdcb0af01cfd5ffe0b92",
-      "implementation-summary.md": "93de5361146de0fa3434b8cb8fe1b8bbc55dcf492d003fa5102bd34815e2ccc3"
+      "spec.md": "f5868bcbda18cc1e12cb4725fb0d1898bcbde818a0509d6c2fa6da8550b35825",
+      "plan.md": "9c711db34a0182374d9d7f53e4fec0058d4c20ef6bc5bde0668e64a866aa5827",
+      "tasks.md": "916a9360b2610c2da5b7e5801a73e3960debbeffc7647469e2b5e19ea02247ae",
+      "checklist.md": "bc13958998c1e1fc9bd596a15563fb68697311e4b2408bb9817d0f3ab81ba5fe",
+      "implementation-summary.md": "1a39cfcac2f546e30a5d39ed3f113ac1cf049a2a9614927f12c6c4b37ca48bb2"
     },
     "last_active_child_id": null,
     "last_active_at": null
