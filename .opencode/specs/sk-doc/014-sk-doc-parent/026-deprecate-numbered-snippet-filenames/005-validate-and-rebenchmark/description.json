@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames/005-validate-and-rebenchmark",
+  "description": "Phase 005, the gate.",
+  "keywords": [
+    "phase",
+    "gate"
+  ],
+  "lastUpdated": "2026-07-11T14:44:45.905Z",
+  "specId": "005",
+  "folderSlug": "validate-and-rebenchmark",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent",
+    "026-deprecate-numbered-snippet-filenames"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

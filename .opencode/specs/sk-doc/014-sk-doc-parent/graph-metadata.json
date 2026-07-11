@@ -60,7 +60,9 @@
     "sk-doc/014-sk-doc-parent/018-swimlane-revert",
     "sk-doc/014-sk-doc-parent/019-create-command-alignment",
     "sk-doc/014-sk-doc-parent/020-command-agent-template-conformance",
-    "sk-doc/014-sk-doc-parent/021-flatten-asset-subfolders"
+    "sk-doc/014-sk-doc-parent/021-flatten-asset-subfolders",
+    "sk-doc/014-sk-doc-parent/025-deprecate-numbered-category-prefix",
+    "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames"
   ],
   "manual": {
     "depends_on": [],
@@ -154,7 +156,7 @@
     ],
     "causal_summary": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management, skill/agent/command/readme/feature-catalog/testing-playbook/benchmark/changelog authoring, and flowchart creation, with `references/`, `scripts/`, and `assets/` flat at the skill root",
     "created_at": "2026-07-06T06:30:17.554Z",
-    "last_save_at": "2026-07-09T10:01:48.815Z",
+    "last_save_at": "2026-07-11T14:58:37.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
