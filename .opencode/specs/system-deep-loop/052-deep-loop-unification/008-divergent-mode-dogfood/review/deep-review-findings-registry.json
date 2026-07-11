@@ -66,6 +66,64 @@
       "mergedFindingIds": []
     },
     {
+      "findingId": "R10-P1-001",
+      "severity": "P1",
+      "title": "Live benchmark reports PASS while presenting Mode-A-only and P1 evidence as complete",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      "line": 1347,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P1-002",
+      "severity": "P1",
+      "title": "Reducer preserves resolved checklist search debt and drops the executed failure from current traceability",
+      "file": ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+      "line": 1187,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
       "findingId": "R2-P1-001",
       "severity": "P1",
       "title": "Dispatch receipts cannot authenticate across the workflow process boundary",
@@ -398,35 +456,37 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 13,
+    "P1": 15,
     "P2": 0
   },
-  "openFindingsCount": 13,
+  "openFindingsCount": 15,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0.923077,
-  "graphConvergenceScore": 0.654,
+  "convergenceScore": 0.866667,
+  "graphConvergenceScore": 0.635,
   "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [
     {
       "type": "uncovered_dimensions",
-      "description": "Dimension coverage (0%) is below threshold (80%). 17 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
-      "count": 17,
+      "description": "Dimension coverage (0%) is below threshold (80%). 18 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "count": 18,
       "severity": "blocking"
     }
   ],
   "graphSignals": {
     "dimensionCoverage": 0,
-    "findingStability": 0.8333333333333334,
+    "findingStability": 0.7692307692307693,
     "p0ResolutionRate": 1,
-    "evidenceDensity": 0.5833333333333334,
+    "evidenceDensity": 0.5384615384615384,
     "hotspotSaturation": 1,
-    "score": 0.654
+    "score": 0.635
   },
   "candidateCoverage": {
     "covered": [
       "artifact_consistency",
       "autonomous_promotion_boundary",
+      "benchmark_report_truthfulness",
       "checklist_evidence",
+      "checklist_evidence_state",
       "compiled_artifact_freshness",
       "cross_runtime_contract_drift",
       "gate_bypass",
@@ -441,6 +501,7 @@
       "workspace_containment"
     ],
     "ruledOut": [
+      "changelog_history_integrity",
       "command_injection",
       "cross_runtime_parity",
       "destructive_path_escape",
@@ -662,6 +723,33 @@
         "iterations": [
           9
         ]
+      },
+      "benchmark_report_truthfulness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "checklist_evidence_state": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "changelog_history_integrity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
       }
     }
   },
@@ -820,6 +908,25 @@
         ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:95-98"
       ],
       "reason": "Direct read established guards before both destructive calls."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-023",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/changelog/v1.0.0.0.md",
+        ".opencode/skills/system-deep-loop/changelog/v1.1.0.0.md",
+        ".opencode/skills/system-deep-loop/changelog/v2.0.0.0.md"
+      ],
+      "bugClass": "changelog_history_integrity",
+      "disposition": "ruled_out",
+      "rationale": "Historical naming is release-scoped and migration lineage is explicit.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/changelog/v1.0.0.0.md:7-34",
+        ".opencode/skills/system-deep-loop/changelog/v1.1.0.0.md:1-25",
+        ".opencode/skills/system-deep-loop/changelog/v2.0.0.0.md:1-42"
+      ],
+      "reason": "All three entries preserve chronological identity without asserting obsolete names as current behavior."
     }
   ],
   "cleanSearchProof": [
@@ -960,30 +1067,54 @@
         ".opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:95-98"
       ],
       "proof": "Direct read established guards before both destructive calls."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-023",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/changelog/v1.0.0.0.md",
+        ".opencode/skills/system-deep-loop/changelog/v1.1.0.0.md",
+        ".opencode/skills/system-deep-loop/changelog/v2.0.0.0.md"
+      ],
+      "bugClass": "changelog_history_integrity",
+      "disposition": "ruled_out",
+      "rationale": "Historical naming is release-scoped and migration lineage is explicit.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/changelog/v1.0.0.0.md:7-34",
+        ".opencode/skills/system-deep-loop/changelog/v1.1.0.0.md:1-25",
+        ".opencode/skills/system-deep-loop/changelog/v2.0.0.0.md:1-42"
+      ],
+      "proof": "All three entries preserve chronological identity without asserting obsolete names as current behavior."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "grader_cache_identity"
+      "benchmark_report_truthfulness",
+      "changelog_history_integrity",
+      "checklist_evidence_state"
     ],
     "covered": [
-      "grader_cache_identity"
+      "benchmark_report_truthfulness",
+      "checklist_evidence_state"
     ],
-    "ruledOut": [],
+    "ruledOut": [
+      "changelog_history_integrity"
+    ],
     "deferred": [],
     "blocked": [],
     "graphCoverageMode": "graphless_fallback"
   },
   "traceability": {
     "summary": {
-      "required": 1,
-      "executed": 1,
+      "required": 2,
+      "executed": 2,
       "pass": 0,
       "partial": 1,
-      "fail": 0,
+      "fail": 1,
       "blocked": 0,
       "notApplicable": 0,
-      "gatingFailures": 1
+      "gatingFailures": 2
     },
     "results": [
       {
@@ -998,13 +1129,34 @@
           "skipped": 0
         },
         "evidence": [
-          ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs:8-24",
-          ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs:388-398"
+          ".opencode/skills/system-deep-loop/benchmark/live-mode-b/skill-benchmark-report.md:3-50",
+          ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:1347-1399"
         ],
         "findingRefs": [
-          "R9-P1-001"
+          "R10-P1-001"
         ],
-        "summary": "Declared grader-build cache identity is not bound to the effective model or prompt contents."
+        "summary": "Live benchmark claims conflict with scorer and report evidence."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/iterations/iteration-005.md:51-68",
+          ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/deep-review-findings-registry.json:557-565,668-683,977-1010"
+        ],
+        "findingRefs": [
+          "R5-P1-001",
+          "R10-P1-002"
+        ],
+        "summary": "Protocol was executed and failed in iteration 5; reducer state still misclassifies it as deferred."
       }
     ]
   },

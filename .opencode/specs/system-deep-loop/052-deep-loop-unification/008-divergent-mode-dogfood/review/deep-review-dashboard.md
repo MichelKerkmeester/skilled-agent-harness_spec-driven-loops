@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active review packet.
 - Review Target: .opencode/skills/system-deep-loop (skill)
 - Started: 2026-07-11T06:22:25Z
 - Status: INITIALIZED
-- Iteration: 9 of 10
+- Iteration: 10 of 10
 - Provisional Verdict: CONDITIONAL
 - hasSearchDebt: true
 - hasAdvisories: false
@@ -45,7 +45,7 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 13 |
+| P1 (Required) | 15 |
 | P2 (Suggestions) | 0 |
 | Resolved | 0 |
 
@@ -64,6 +64,7 @@ Reducer-generated observability surface for the active review packet.
 | run-007 | correctness second pass: deep-ai-council and deep-improvement mode packets | correctness | 0.50 | 0/2/0 | complete |
 | run-008 | security second pass: deep-ai-council, deep-improvement, deep-research, and manual-testing-playbook surfaces | security | 1.00 | 0/1/0 | complete |
 | run-009 | maintainability second pass: deep-ai-council, deep-improvement, deep-research, and manual-testing-playbook modules | maintainability | 0.08 | 0/1/0 | complete |
+| run-010 | final sweep: benchmark and changelog submodules plus checklist_evidence closure | correctness/security/traceability/maintainability | 0.13 | 0/2/0 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -71,9 +72,9 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 11 |
+| correctness | covered | 12 |
 | security | covered | 2 |
-| traceability | covered | 0 |
+| traceability | covered | 1 |
 | maintainability | covered | 0 |
 
 <!-- /ANCHOR:dimension-coverage -->
@@ -84,16 +85,16 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->
 ## 7. GRAPH CONVERGENCE
-- graphConvergenceScore: 0.65
+- graphConvergenceScore: 0.64
 - graphDecision: STOP_BLOCKED
-- graphBlockers: {"type":"uncovered_dimensions","description":"Dimension coverage (0%) is below threshold (80%). 17 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.","count":17,"severity":"blocking"}
+- graphBlockers: {"type":"uncovered_dimensions","description":"Dimension coverage (0%) is below threshold (80%). 18 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.","count":18,"severity":"blocking"}
 
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 0.50 -> 1.00 -> 0.08
-- convergenceScore: 0.92
-- openFindings: 13
+- Last 3 ratios: 1.00 -> 0.08 -> 0.13
+- convergenceScore: 0.87
+- openFindings: 15
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -107,7 +108,7 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=15, ruledOut=8, deferred=1, blocked=0
+- candidateCoverage: covered=17, ruledOut=9, deferred=1, blocked=0
 
 ### Search Debt
 - iteration 3 checklist_evidence (deferred): Iteration budget prioritized the newly discovered cross-consumer contract split.; evidence=.opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/deep-review-config.json:9-12
@@ -121,6 +122,7 @@ No corrupt JSONL lines detected.
 - iteration 8 scoped_auxiliary_write (ruled_out): No untrusted production producer for the output path was identified.; evidence=.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs:1003-1007, .opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md:139-154
 - iteration 8 trusted_test_hook_execution (ruled_out): No production producer or untrusted environment assignment was found.; evidence=.opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:63-65, .opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts:278
 - iteration 8 destructive_path_escape (ruled_out): Direct read established guards before both destructive calls.; evidence=.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:45-68, .opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:95-98
+- iteration 10 changelog_history_integrity (ruled_out): All three entries preserve chronological identity without asserting obsolete names as current behavior.; evidence=.opencode/skills/system-deep-loop/changelog/v1.0.0.0.md:7-34, .opencode/skills/system-deep-loop/changelog/v1.1.0.0.md:1-25, .opencode/skills/system-deep-loop/changelog/v2.0.0.0.md:1-42
 
 ### Clean Search Proof
 - iteration 1 state_transition (ruled_out): Three-seat quorum and blocker veto are explicit.; evidence=.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:685-705, .opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:868-895, .opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:246-341
@@ -131,6 +133,7 @@ No corrupt JSONL lines detected.
 - iteration 8 scoped_auxiliary_write (ruled_out): No untrusted production producer for the output path was identified.; evidence=.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs:1003-1007, .opencode/skills/system-deep-loop/deep-ai-council/references/patterns/command_wiring.md:139-154
 - iteration 8 trusted_test_hook_execution (ruled_out): No production producer or untrusted environment assignment was found.; evidence=.opencode/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-artifacts.cjs:63-65, .opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/replay-graph-from-artifacts.vitest.ts:278
 - iteration 8 destructive_path_escape (ruled_out): Direct read established guards before both destructive calls.; evidence=.opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:45-68, .opencode/skills/system-deep-loop/deep-research/manual_testing_playbook/command-flow-stress-tests/setup-cp-sandbox.sh:95-98
+- iteration 10 changelog_history_integrity (ruled_out): All three entries preserve chronological identity without asserting obsolete names as current behavior.; evidence=.opencode/skills/system-deep-loop/changelog/v1.0.0.0.md:7-34, .opencode/skills/system-deep-loop/changelog/v1.1.0.0.md:1-25, .opencode/skills/system-deep-loop/changelog/v2.0.0.0.md:1-42
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
@@ -140,7 +143,7 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 13 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 15 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 - 1 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
 
 <!-- /ANCHOR:active-risks -->

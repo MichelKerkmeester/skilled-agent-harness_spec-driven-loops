@@ -71,9 +71,9 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 ## 7. RUNNING FINDINGS
 <!-- MACHINE-OWNED: START -->
 - **P0 (Critical):** 0 active
-- **P1 (Major):** 7 active
+- **P1 (Major):** 15 active
 - **P2 (Minor):** 0 active
-- **Delta this iteration:** +0 P0, +2 P1, +0 P2
+- **Delta this iteration:** +0 P0, +2 P1, +0 P2 (iteration 10)
 
 [Findings are tracked in `deep-review-findings-registry.json`. This section provides a running count summary updated after each iteration.]
 <!-- MACHINE-OWNED: END -->
@@ -88,6 +88,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 7: Producer-consumer tracing across the previously unreviewed Council and improvement packets exposed proposal-identity loss in Council convergence and an unbound autonomous Lane B promotion step.
 - Iteration 8: Security boundary tracing across Council, improvement, research, and playbook surfaces exposed unvalidated run-label interpolation in both model-benchmark shell workflows while ruling out three lower-confidence path/helper hypotheses.
 - Iteration 9: Grader-cache producer-consumer tracing exposed a missing effective-model and prompt-content identity boundary across the harness, cache, and all discovered scoring callers.
+- Iteration 10: Full benchmark/changelog artifact comparison exposed a live-report verdict contradiction; cross-iteration reducer tracing proved checklist evidence was executed-and-failed in iteration 5 but remains canonical search debt.
 
 ---
 
@@ -99,6 +100,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 7: Code graph remained unavailable; exact search, direct reads, and auto-vs-confirm workflow comparison supplied graphless fallback evidence.
 - Iteration 8: Code graph remained unavailable; exact search, direct reads, and producer-consumer tracing supplied graphless fallback evidence.
 - Iteration 9: Code graph remained unavailable; exact search and direct producer-consumer reads supplied graphless fallback evidence.
+- Iteration 10: Code graph remained empty; complete submodule inventory, direct reads, exact source search, and cross-artifact comparison supplied graphless fallback evidence.
 
 ---
 
@@ -122,7 +124,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 
 ## 12. NEXT FOCUS
 <!-- MACHINE-OWNED: START -->
-Iteration 5: stabilization traceability pass for deferred packet checklist evidence and iteration-3 typed adjudication recovery before legal STOP.
+Iteration ceiling reached: command-owned convergence evaluation and synthesis. Preserve `checklist_evidence=fail` from iteration 5; it is not pending or deferred.
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -145,7 +147,7 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
 | `spec_code` | core | partial | 1 | Owning verdict/artifact contracts checked against runtime validators. |
-| `checklist_evidence` | core | deferred | 3 | Packet checklist acceptance evidence retained for the stabilization traceability pass. |
+| `checklist_evidence` | core | fail | 10 | Executed in iteration 5 with active R5-P1-001; iteration 10 confirmed reducer state incorrectly preserves the old deferral (R10-P1-002). |
 | `skill_agent` | overlay | fail | 3 | Canonical agents omit the required delta write and contradict append-only state handling. |
 | `agent_cross_runtime` | overlay | fail | 3 | OpenCode and Claude copies duplicate the same stale LEAF contract. |
 | `feature_catalog_code` | overlay | pending | - | - |
@@ -175,6 +177,9 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 | `.opencode/commands/deep/assets/compiled/deep_review.contract.md` | maintainability | 4 | R4-P1-002 | reviewed |
 | `deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs` | maintainability | 9 | R9-P1-001 | reviewed |
 | `deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs` | maintainability | 9 | R9-P1-001 | reviewed |
+| `benchmark/` | correctness, security, traceability, maintainability | 10 | R10-P1-001 | reviewed |
+| `changelog/` | correctness, security, traceability, maintainability | 10 | 0 | bounded clean |
+| `deep-review/scripts/reduce-state.cjs` | traceability, maintainability | 10 | R10-P1-002 | reviewed |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -216,7 +221,7 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 13
+- P1 (Required): 15
 - P2 (Suggestions): 0
 - Resolved: 0
 
