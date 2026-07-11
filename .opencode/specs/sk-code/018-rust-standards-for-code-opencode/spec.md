@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode"
     last_updated_at: "2026-07-11T14:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "WS1 (001-006) complete. Opened WS2 reference-hygiene phases 007-012; executing 007 (code-opencode Rust references)"
-    next_safe_action: "Execute phase 007: split the 4 Rust reference/asset docs and rewire the router contract green"
+    recent_action: "WS1 (001-006) + WS2 (007-012) complete: all 33 oversized reference/asset docs split into ~120 parts; router contract rewired; 0 regressions"
+    next_safe_action: "Packet 018 complete. Follow-up: paid live Mode-B benchmark re-baseline"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,8 +24,8 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-11-sk-code-018-reference-hygiene"
       parent_session_id: null
-    completion_pct: 55
-    status: "In Progress"
+    completion_pct: 100
+    status: "Complete"
     open_questions: []
     answered_questions: []
 ---
@@ -51,7 +51,7 @@ This phase parent hosts **two workstreams** against the `sk-code` skill:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `sk-code` |
@@ -120,7 +120,7 @@ This phase parent hosts **two workstreams** against the `sk-code` skill:
 | 005 | `005-touchpoints-and-multilang/` | Six registration touchpoints + touched-language-set behavior | Complete |
 | 006 | `006-gate-verification-rollup/` | Run the WS1 gate plan and roll up the parent | Complete |
 
-### Workstream 2 — reference-file hygiene (in progress)
+### Workstream 2 — reference-file hygiene (complete)
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
@@ -129,7 +129,7 @@ This phase parent hosts **two workstreams** against the `sk-code` skill:
 | 009 | `009-code-webflow-implementation-references/` | Split 11 code-webflow implementation-cluster docs → 29 parts | Complete |
 | 010 | `010-code-webflow-other-references/` | Split 8 code-webflow docs (debugging 1940, css patterns/quality, javascript quality, shared dev_workflow, verification, minification) → 31 parts | Complete |
 | 011 | `011-code-quality-and-flagged/` | Split code-quality `code_quality_checklist.md` → 3 parts; document the 2 code-review exemptions | Complete |
-| 012 | `012-gate-verification-rollup/` | Full deterministic gate (both vitests + path-parse + `validate.sh --recursive --strict`), live-benchmark re-baseline follow-up, parent rollup | Planned |
+| 012 | `012-gate-verification-rollup/` | Full deterministic gate (3 vitests + census + losslessness), parent rollup; live-benchmark re-baseline as follow-up | Complete |
 
 ### Phase Transition Rules
 

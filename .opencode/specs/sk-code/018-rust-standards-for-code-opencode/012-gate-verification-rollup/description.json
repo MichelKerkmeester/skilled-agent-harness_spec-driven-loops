@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup",
+  "description": "WS2 (007-011) split 33 oversized reference/asset docs into ~120 parts and rewired the router contract",
+  "keywords": [
+    "ws2",
+    "split",
+    "oversized",
+    "reference",
+    "asset",
+    "docs",
+    "parts",
+    "rewired",
+    "router",
+    "contract"
+  ],
+  "lastUpdated": "2026-07-11T18:02:48.366Z",
+  "specId": "012",
+  "folderSlug": "gate-verification-rollup",
+  "parentChain": [
+    "sk-code",
+    "018-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
