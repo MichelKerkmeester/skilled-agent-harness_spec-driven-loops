@@ -35,8 +35,11 @@ loader claim. Every count was re-verified against the live tree. Findings below 
 - **131 files** match `^\d{1,3}-`; **111** are the in-scope 3-digit anti-pattern across the 9 named packets;
   **20** are the out-of-scope system-spec-kit single-digit legitimate files (reading-order or topic-name
   tokens, not ordinals).
-- **63 of the 111** encode routing/holdout/negative grouping in their number+token: **14 holdout** files and
-  **5 negative** files (the remainder are routing-stage files, either explicitly or by default).
+- **14 holdout** files and **5 negative** files encode their tier in a filename token; a further **69** sit in
+  the routing-recall / hub-routing categories as routing-stage scenarios. (An early estimate put the
+  tier-bearing set at 63; the live tree has **88** files across those two categories — see `decision-record.md`
+  ADR-004, which the operator amended to stamp all 88 explicitly: 14 holdout / 5 negative / 69 routing. The
+  remaining 23 in-scope files are feature-oriented and carry no tier.)
 - Zero same-folder collisions across all 111 once the prefix is stripped — no file where the number is the
   sole distinguishing token.
 

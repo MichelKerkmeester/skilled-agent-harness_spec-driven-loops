@@ -38,8 +38,9 @@ Dry-run mutates nothing (verified: `git status` clean after a dry-run); enumerat
 111-file scoped list across the 9 named packets (not a broad regex over the whole tree); collision check
 reports 0; deny-list excludes `z_archive/` / `CHANGELOG*` / history / this packet's own evidence and correctly
 references `sk-doc/014-sk-doc-parent` (not the stale `999-sk-doc-parent` path 108 carried); `stage:` injection is
-previewed for the 63 R/H/N files (14 holdout / 5 negative / 44 routing default); the 3 hub-routing root-index
-tables show correct rewritten rows in the diff; report counts land at 111 / 63 / 3 / 0; `validate.sh --strict`
+previewed for the 88 routing-recall/hub-routing files (14 holdout / 5 negative / 69 routing; operator-amended
+from 63, ADR-004); the 3 hub-routing root-index tables show correct rewritten rows in the diff; report counts
+land at 111 / 88 / 3 / 0; `validate.sh --strict`
 Errors 0 on this phase folder; comment hygiene respected in the script (durable WHY only, no spec/packet ids in
 comments).
 <!-- /ANCHOR:quality-gates -->
@@ -78,19 +79,19 @@ digit. Pipeline stages, each a pure function over the scoped file list:
 1. Enumerate the 111 in-scope files from the 9 named packet paths; assert the count against research.md.
 2. Implement the collision check and the corrected deny-list predicate (`014-sk-doc-parent`, not the stale
    `999-sk-doc-parent`); unit-cover both, including a regression case for the 108 bug.
-3. Implement stage derivation for the 63 R/H/N files (holdout/negative token detection, `routing` default) and
-   the frontmatter-injection edit plan.
+3. Implement stage derivation for the routing-recall/hub-routing files (holdout/negative token detection,
+   `routing` by category), stamping all 88 under `--stage-scope=all`, and the frontmatter-injection edit plan.
 4. Implement the reference sweep for the 3 hub-routing root-index tables, word-boundary safe.
 5. Implement the dry-run report (rename map + per-file diff + stage preview + collision + excluded-surface
    summary) and the `--apply` gate; assert idempotency.
-6. Run the dry-run; reconcile the reported counts (111 / 63 / 14 / 5 / 3 / 0) against research.md; validate
+6. Run the dry-run; reconcile the reported counts (111 / 88 / 14 / 5 / 3 / 0) against research.md; validate
    `--strict`.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
-Run the dry-run against the current tree and diff its counts against research.md (111 renames, 63 `stage:`
-injections [14 holdout / 5 negative / 44 routing], 3 root-index tables rewritten, 0 collisions). Assert
+Run the dry-run against the current tree and diff its counts against research.md (111 renames, 88 `stage:`
+injections [14 holdout / 5 negative / 69 routing], 3 root-index tables rewritten, 0 collisions). Assert
 `git status` is clean afterward (R1: zero mutation). Grep the per-file diff for any of the 20 out-of-scope
 system-spec-kit files or an excluded surface (`z_archive/`, `CHANGELOG`, history, this packet's evidence) → must
 be empty (R2). Feed a synthetic colliding pair through the collision check → must abort (R3). Feed a synthetic

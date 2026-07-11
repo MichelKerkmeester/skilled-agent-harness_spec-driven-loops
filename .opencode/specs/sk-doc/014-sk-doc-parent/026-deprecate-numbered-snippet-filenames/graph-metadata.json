@@ -150,7 +150,7 @@
     ],
     "causal_summary": "111 per-scenario snippet FILENAMES under feature_catalog/<category>/ and manual_testing_playbook/<category>/ across 9 skill packets carry a zero-padded 3-digit NNN- ordinal prefix. The prefix is load-bearing in exactly one place — the deep-improvement Lane C skill-benchmark loader ingests a sk-doc-shape scenario only when its basename is 3-digit-prefixed — so stripping it blind would silently drop all 111 scenarios from the benchmark corpus.",
     "created_at": "2026-07-11T14:47:54.002Z",
-    "last_save_at": "2026-07-11T14:57:16.413Z",
+    "last_save_at": "2026-07-11T16:49:52.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -158,11 +158,11 @@
       "decision-record.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:2e25740ff1981b26a42e8ea711f9978fe431f8ea271460d657dfbdf7f2a08f0a",
+    "source_fingerprint": "sha256:85e0978d9794b73d9193a0e9101bb5a0855a4a6e7c58c4b45f6330913e6a2109",
     "source_doc_hashes": {
       "spec.md": "81b3c04c31e8ba6a46d434d1625b7c4e4c4fa326af2dc143379521ab76525980",
-      "decision-record.md": "95a45d1ea70bb6e12ced23783f7de6b83715aa4e728677f6417acc4d2a44828c",
-      "research.md": "0034bd317856bed6f3a3ada16b65e1807aebded55b613ce607e40e8fb14987dd"
+      "decision-record.md": "81ba6044c3aa7812cd0bdafaae3e789cd818e148ef260ba214a6aa777b82f7cf",
+      "research.md": "74780dd85b9204ce80091f19bdf0b64b0288a9bd5c1e03a257658e15b029f5ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

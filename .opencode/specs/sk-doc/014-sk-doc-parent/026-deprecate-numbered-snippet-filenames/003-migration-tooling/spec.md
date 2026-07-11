@@ -109,9 +109,10 @@ recursive re-validation and Lane C re-benchmark (Phase 005).
   `999-sk-doc-parent` path the 108 script's self-exclusion carried.
 - **R3:** A **collision check** aborts the run if any two stripped names would collide within a parent category
   folder (expected zero per research.md, A); the check is reported explicitly, not assumed.
-- **R4:** For the **63 R/H/N-structured files**, the script derives and previews a `stage: holdout|negative|routing`
-  frontmatter injection from the filename's ordinal/token (14 holdout, 5 negative, the remainder default
-  `routing`); files outside those categories receive no `stage:` field.
+- **R4:** For the **88 routing-recall / hub-routing files** (operator-amended from an initial 63 estimate; see
+  `decision-record.md` ADR-004), the script derives and previews a `stage: holdout|negative|routing` frontmatter
+  injection from the filename token or category (14 holdout, 5 negative, 69 routing); the 23 feature-oriented
+  files outside those categories receive no `stage:` field.
 - **R5:** The **reference sweep** rewrites the **3 hub-routing root-index tables** (`cli-external`, `mcp-tooling`,
   `sk-prompt`) in the same pass, word-boundary safe, so it does not false-positive on substrings.
 - **R6:** The script is **re-runnable / idempotent** (a second dry-run after a partial run reflects only the
@@ -120,12 +121,12 @@ recursive re-validation and Lane C re-benchmark (Phase 005).
 
 ## 5. SUCCESS CRITERIA
 <!-- ANCHOR:success-criteria -->
-1. A dry-run against the current tree reports exactly **111 renames** across the 9 named packets, **63 `stage:`
-   injections** (14 holdout / 5 negative / 44 routing default), **3 hub-routing root-index tables** rewritten,
-   **0 collisions**, and **0 mutations to any excluded surface** (deny-list clean, including the corrected
-   `014-sk-doc-parent` path).
+1. A dry-run against the current tree reports exactly **111 renames** across the 9 named packets, **88 `stage:`
+   injections** (14 holdout / 5 negative / 69 routing) under `--stage-scope=all`, **3 hub-routing root-index
+   tables** rewritten, **0 collisions**, and **0 mutations to any excluded surface** (deny-list clean, including
+   the corrected `014-sk-doc-parent` path).
 2. `validate.sh --strict` on this phase folder is Errors 0.
-3. The script is reviewed (dry-run output inspected against research.md's 111 / 63 / 14 / 5 / 3 / 0 counts)
+3. The script is reviewed (dry-run output inspected against research.md's 111 / 88 / 14 / 5 / 3 / 0 counts)
    **before** Phase 004 runs it with mutation enabled.
 <!-- /ANCHOR:success-criteria -->
 

@@ -58,9 +58,15 @@ bug where 10+ live playbooks whose files are single-digit or generator-output cu
 
 ## ADR-004 — Preserve routing/holdout/negative grouping via explicit `stage:` frontmatter (operator decision A)
 
-**Decision.** Before renaming a file that today encodes routing/holdout/negative membership in its number and
-token (63 of the 111), inject an explicit `stage: routing|holdout|negative` YAML frontmatter field during
-migration. Untagged files default to `stage: routing`.
+**Decision.** Before renaming a file, inject an explicit `stage: routing|holdout|negative` YAML frontmatter
+field during migration for every scenario in the routing-recall and hub-routing benchmark categories.
+
+**Amended during execution (operator decision — "all 88").** The pre-implementation estimate scoped this to
+63 files; the live tree actually holds 88 files in those two categories. The operator chose to stamp all 88
+explicitly — 14 holdout + 5 negative + 69 routing — rather than only the 19 token-carrying files (which would
+have relied on the loader's absent-defaults-to-routing behavior for the rest). The 23 feature-oriented files
+(language-standards, implementation-quality, performance-animation, deployment-forms-video,
+authoring-verification, config-hooks, quality-gate) encode no benchmark tier and receive no `stage:` field.
 
 **Why.** The ordinal's only surviving meaning across the corpus is this grouping. Once the prefix is gone,
 nothing else preserves it. Encoding the grouping as frontmatter keeps it explicit and machine-readable rather
@@ -104,6 +110,14 @@ filenames from a prior scheme and fail with ENOENT) and sweep the 7 dead allowli
 **Why.** These are the same corpus the migration already touches, and they are broken for the same class of
 reason — stale assumptions about numbered filenames. Fixing them in the same migration avoids leaving the
 corpus half-consistent immediately after 026 ships.
+
+**Deferred during execution.** On inspection, these 2 suites and 7 allowlist entries hardcode
+**system-spec-kit's own** numbered feature_catalog/playbook docs (e.g. `273-1-search-pipeline-features-speckit.md`,
+`149-outsourced-agent-memory-capture.md`, `411-causal-graph-link-quality.md`) — files outside the 111-file
+scope, in a skill explicitly excluded from de-numbering per ADR-006, and under active concurrent-session churn
+during execution (11 dirty files). The 111-file de-numbering is complete and independently verified without
+them, so folding them in offered no dependency benefit and would have collided with in-flight work. Deferred to
+a dedicated system-spec-kit maintenance pass.
 
 ## ADR-008 — Reuse the proven packet-108 engine
 
