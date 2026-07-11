@@ -1,0 +1,159 @@
+{
+  "openQuestions": [
+  ],
+  "resolvedQuestions": [
+    "Which skill contracts are plausible automation candidates?",
+    "Which OpenCode plugin hooks fit those candidates?",
+    "Which Claude hooks fit those candidates?",
+    "How should candidates be prioritized?",
+    "Which ideas should be eliminated?"
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "iteration": 1,
+      "summary": "Existing plugin coverage leaves mutation intake, destructive command, post-edit quality, and stop-evidence boundaries as the strongest gaps.",
+      "sources": [".opencode/plugins/README.md:42-52"]
+    },
+    {
+      "id": "f-iter001-002",
+      "iteration": 1,
+      "summary": "New plugin bridges should remain owned by their source skills and keep entrypoints minimal.",
+      "sources": [".opencode/plugins/README.md:24-38", ".opencode/plugins/README.md:56-67"]
+    },
+    {
+      "id": "f-iter002-oc1",
+      "iteration": 2,
+      "summary": "Spec Mutation Gate on tool.execute.before.",
+      "surface": "tool.execute.before",
+      "skill": "system-spec-kit"
+    },
+    {
+      "id": "f-iter002-oc2",
+      "iteration": 2,
+      "summary": "Git Safety Guard on tool.execute.before.",
+      "surface": "tool.execute.before",
+      "skill": "sk-git"
+    },
+    {
+      "id": "f-iter002-oc3",
+      "iteration": 2,
+      "summary": "Post-Edit Quality Router on tool.execute.after with deferred context injection.",
+      "surface": "tool.execute.after + experimental.chat.system.transform",
+      "skill": "sk-code/code-quality"
+    },
+    {
+      "id": "f-iter002-oc4",
+      "iteration": 2,
+      "summary": "External MCP Route Guard on tool.execute.before with a native-family allowlist.",
+      "surface": "tool.execute.before",
+      "skill": "mcp-code-mode"
+    },
+    {
+      "id": "f-iter002-oc5",
+      "iteration": 2,
+      "summary": "Completion Evidence Sentinel on session.idle.",
+      "surface": "session.idle + experimental.chat.system.transform",
+      "skill": "system-spec-kit + sk-code/code-quality"
+    },
+    {
+      "id": "f-iter002-oc6",
+      "iteration": 2,
+      "summary": "Session Readiness Primer on session.created.",
+      "surface": "session.created + experimental.chat.system.transform",
+      "skill": "system-spec-kit + system-skill-advisor"
+    },
+    {
+      "id": "f-iter003-cl1",
+      "iteration": 3,
+      "summary": "Claude Spec Mutation Gate uses UserPromptSubmit classification plus PreToolUse enforcement.",
+      "surface": "UserPromptSubmit + PreToolUse",
+      "skill": "system-spec-kit"
+    },
+    {
+      "id": "f-iter003-cl2",
+      "iteration": 3,
+      "summary": "Claude Git Safety Guard composes into PreToolUse/Bash.",
+      "surface": "PreToolUse/Bash",
+      "skill": "sk-git"
+    },
+    {
+      "id": "f-iter003-cl3",
+      "iteration": 3,
+      "summary": "Expand the existing Claude PostToolUse quality hook rather than adding another entry.",
+      "surface": "PostToolUse/Write|Edit",
+      "skill": "sk-code/code-quality"
+    },
+    {
+      "id": "f-iter003-cl4",
+      "iteration": 3,
+      "summary": "Claude External MCP Route Guard requires generated external-family matchers.",
+      "surface": "PreToolUse/external MCP matchers",
+      "skill": "mcp-code-mode"
+    },
+    {
+      "id": "f-iter003-cl5",
+      "iteration": 3,
+      "summary": "Claude Completion Evidence Sentinel extends the existing Stop owner.",
+      "surface": "Stop",
+      "skill": "system-spec-kit + sk-code/code-quality"
+    },
+    {
+      "id": "f-iter003-cl6",
+      "iteration": 3,
+      "summary": "Incremental code-graph freshness maps to PostToolUse and tool.execute.after.",
+      "surface": "PostToolUse/Write|Edit + tool.execute.after",
+      "skill": "system-code-graph"
+    },
+    {
+      "id": "f-iter003-priority",
+      "iteration": 3,
+      "summary": "Priority order is git safety, spec mutation, post-edit quality, graph freshness, completion evidence, MCP routing, then readiness priming."
+    }
+  ],
+  "ruledOutDirections": [
+    "generic prompt-context plugin",
+    "hook-owned deep-loop convergence",
+    "full quality suite after every tool",
+    "design-audit auto-scoring after edits",
+    "blocking all mcp__ calls",
+    "second quality PostToolUse entry",
+    "second UserPromptSubmit advisor",
+    "SessionEnd completion verification",
+    "Stop-time test execution",
+    "shared cross-runtime transport implementation"
+  ],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 15,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "plugin-docs": 1,
+      "skill-contracts": 9,
+      "plugin-implementations": 3,
+      "claude-wiring": 5,
+      "runtime-hook-contracts": 2
+    }
+  },
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "divergence": {
+    "completed": [],
+    "failures": [],
+    "overrides": [],
+    "saturatedDirections": []
+  },
+  "status": "converged",
+  "stopReason": "converged",
+  "qualityGuards": {
+    "sourceDiversity": true,
+    "focusAlignment": true,
+    "noSingleWeakSource": true,
+    "questionCoverage": true
+  }
+}
