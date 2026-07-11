@@ -1,6 +1,7 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/063-post-sync-verification-fixes",
-  "description": "Fix 5 test failures surfaced by independent verification of a large operator-directed working-tree sync commit",
+  "description": "Fix 5 test failures surfaced by independent verification of a large operator-directed working-tree sync commit, plus 2 more found by wiring deep-ai-co",
   "keywords": [
     "test",
     "failures",
@@ -11,15 +12,21 @@
     "operator-directed",
     "working-tree",
     "sync",
-    "commit"
+    "commit",
+    "plus",
+    "found",
+    "wiring",
+    "deep-ai-council",
+    "tests",
+    "real",
+    "config"
   ],
-  "lastUpdated": "2026-07-11T23:38:48.602Z",
+  "lastUpdated": "2026-07-11T23:58:29.364Z",
   "specId": "063",
   "folderSlug": "post-sync-verification-fixes",
   "parentChain": [
     "system-deep-loop"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

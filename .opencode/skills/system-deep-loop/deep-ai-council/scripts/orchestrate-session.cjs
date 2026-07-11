@@ -360,6 +360,7 @@ async function dispatchSeat(seatInput, dispatchContext = {}, options = {}) {
     id: seatId,
     content: deliberation,
     deliberation,
+    execution_provenance: executionProvenance,
   };
   const persistSeat = options.persistSeatStepwise || persistSeatStepwise;
   const persisted = persistSeat(packetSpecFolder, persistedSeat, { round: context.round_number || 1 });
@@ -445,6 +446,17 @@ function withCouncilRouteConfig(executorConfig) {
     route_fields: {
       ...configuredFields,
       ...COUNCIL_ROUTE_FIELDS,
+      requested: {
+        mode: COUNCIL_ROUTE_FIELDS.mode,
+        target_agent: COUNCIL_ROUTE_FIELDS.target_agent,
+      },
+      // Route resolution happens before any seat dispatches, so the
+      // effective (actually observed) identity is unknown at this point -
+      // dispatchSeat's own execution_provenance fills this in per seat.
+      effective: {
+        primary_agent: null,
+        model: null,
+      },
     },
   };
 }

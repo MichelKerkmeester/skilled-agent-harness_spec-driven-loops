@@ -83,6 +83,21 @@ _memory:
 <!-- /ANCHOR:phase-3 -->
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Follow-up — wire deep-ai-council into a real vitest config
+
+- [x] T014 Add `.opencode/skills/system-deep-loop/deep-ai-council/vitest.config.mjs` (mirrors `deep-improvement/scripts/vitest.config.mjs`)
+- [x] T015 Run the full suite post-wiring — discover 2 new pre-existing failures - [evidence: `npx vitest run` output before the fix, `Test Files 2 failed | 8 passed (10)` across 94 total tests, up from the 2 files/12 tests originally checked]
+- [x] T016 Trace `persist-artifacts.vitest.ts` failure — `execution_provenance` computed in `dispatchSeat()` but dropped before reaching `persistSeatStepwise`
+- [x] T017 Trace `orchestrate-session.vitest.ts` failure — `route_fields` had no `requested`/`effective` split, unlike the seat-level equivalent
+- [x] T018 Fix: add `execution_provenance` to `persistedSeat` (`orchestrate-session.cjs`) and carry it through `buildProgressRecord`/`persistSeatStepwise` (`persist-artifacts.cjs`)
+- [x] T019 Fix: add `requested`/`effective` to `route_fields` in `withCouncilRouteConfig()` (`orchestrate-session.cjs`), additive alongside the existing flat fields
+- [x] T020 Re-run the full `deep-ai-council` suite — confirm 10/10 files, 94/94 tests pass - [evidence: `npx vitest run` output, `Test Files 10 passed (10) / Tests 94 passed (94)`]
+- [x] T021 Re-run the system-spec-kit combined batch again — confirm the deep-ai-council changes caused zero cross-suite regressions - [evidence: `35/35` tests still pass]
+
+<!-- /ANCHOR:phase-4 -->
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

@@ -740,6 +740,9 @@ function buildProgressRecord(seatId, roundId, status, options = {}) {
     const delta = Number(options.progressDelta);
     record.progress_delta = Number.isFinite(delta) ? delta : 1;
     record.artifact_path = options.artifactPath || null;
+    if (options.executionProvenance !== undefined) {
+      record.execution_provenance = options.executionProvenance;
+    }
   }
   return record;
 }
@@ -901,6 +904,7 @@ function persistSeatStepwise(packetSpecFolder, seat, options = {}) {
     step: 'seat',
     progressDelta: 1,
     artifactPath: relativeSeatPath,
+    executionProvenance: seat.execution_provenance,
   });
   const pairCheck = validateProgressRecordPair(started, completed);
   if (!pairCheck.valid) {

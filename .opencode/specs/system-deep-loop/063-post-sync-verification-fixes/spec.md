@@ -72,7 +72,6 @@ Root-cause and fix each of the 5 failures individually rather than papering over
 
 ### Out of Scope
 - The 3,801-file sync commit itself (already committed/pushed prior to this packet; not re-litigated here).
-- Wiring `deep-ai-council`'s 2 CLI test files into a permanent vitest config (a real gap noted during verification, but a separate, larger decision about test-discovery infrastructure — not silently bundled into this bug-fix packet).
 - Restoring Codex CLI as a third deep-review runtime (investigated and explicitly rejected — see Key Decisions in implementation-summary.md).
 
 ### Files to Change
@@ -81,7 +80,9 @@ Root-cause and fix each of the 5 failures individually rather than papering over
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts` | Modify | Drop the dead `.opencode/agents/deep-review.toml` mirror path; fix the hardcoded 3-entry (duplicate) runtime-ID expectation to the real 2-entry list |
 | `.opencode/skills/system-spec-kit/scripts/tests/reducer-backlog-remediation.vitest.ts` | Modify | Add `gateClass: 'hard'` (+ `applicable: true`) to the LG-0006 fixture's result objects |
-| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` | Modify | Add a `main()`-level guard rejecting `executor.model` values that collide with `EXECUTOR_KINDS` |
+| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` | Modify | Add a `main()`-level guard rejecting `executor.model` values that collide with `EXECUTOR_KINDS`; add `execution_provenance` to `persistedSeat`; add `requested`/`effective` to `route_fields` |
+| `.opencode/skills/system-deep-loop/deep-ai-council/vitest.config.mjs` | Create | Wire the skill's `.vitest.ts` suite into a real, checked-in config |
+| `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` | Modify | Carry `execution_provenance` through into persisted `completed` progress records |
 
 <!-- /ANCHOR:scope -->
 ---
@@ -129,7 +130,7 @@ Root-cause and fix each of the 5 failures individually rather than papering over
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should `deep-ai-council`'s 2 orphaned CLI test files be wired into a permanent vitest config? (Flagged, not resolved — out of scope for this packet.)
+None remaining. The `deep-ai-council` vitest-config question was resolved in a follow-up round: wired (`vitest.config.mjs` added), which surfaced and fixed 2 more pre-existing bugs — see implementation-summary.md.
 
 <!-- /ANCHOR:questions -->
 
