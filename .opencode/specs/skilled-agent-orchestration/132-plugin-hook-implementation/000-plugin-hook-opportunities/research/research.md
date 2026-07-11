@@ -62,3 +62,14 @@ These four are the safe, high-ROI core. **Recommended build order starts here.**
 - **Single-model items (§3):** 1/2 models; Spec Mutation Gate + Completion Sentinel are GPT's and well-grounded; the GLM tail is real but lower priority.
 - Both loops passed their own quality guards (source diversity, focus alignment, no weak single source) and converged (GLM 5 iters newInfoRatio 1.0→0.3; GPT 3 iters 1.0→0.72). Full per-iteration detail + citations in `lineages/glm52/` and `lineages/gptsol/`.
 - **Not done (out of research scope):** implementation, smoke tests, false-positive measurement — GPT's §13 validation plan is the next-phase checklist.
+
+---
+
+<!-- ANCHOR:sources -->
+## Sources
+
+Per-lineage convergent research records and iteration logs this synthesis merges and cross-checks:
+
+- GLM-5.2 lineage: `research/lineages/glm52/research.md` (iterations from `research/lineages/glm52/iterations/iteration-001.md`; driver log `research/lineages/glm52/logs/fanout-lineage.out`)
+- GPT-5.6-sol lineage: `research/lineages/gptsol/research.md` (iterations from `research/lineages/gptsol/iterations/iteration-001.md`; driver log `research/lineages/gptsol/logs/fanout-lineage.out`)
+<!-- /ANCHOR:sources -->
