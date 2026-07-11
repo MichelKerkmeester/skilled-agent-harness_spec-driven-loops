@@ -21,7 +21,7 @@ This file enforces rules that apply to all Webflow languages (JavaScript and CSS
 - [`../css/style_guide.md`](../css/style_guide.md) — CSS style conventions (BEM, custom properties, attribute selectors, animation CSS)
 - [`../javascript/quality_standards.md`](../javascript/quality_standards.md) — JS quality patterns + JS naming/init enforcement
 - [`../css/quality_standards.md`](../css/quality_standards.md) — CSS quality patterns + 4 CSS enforcement subsections
-- [`../../../assets/webflow/checklists/code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist.md) — validation checklist used at the pre-completion gate
+- [`../../../assets/webflow/checklists/code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist/overview-header-and-comments.md) — validation checklist used at the pre-completion gate
 
 ---
 
@@ -250,7 +250,7 @@ if (element) {
 Before claiming "done" or "complete" on **JavaScript or CSS** implementation:
 
 1. **Identify file type** - JavaScript or CSS
-2. **Load** [`code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist.md)
+2. **Load** [`code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist/overview-header-and-comments.md)
 3. **Apply cross-language rules** from this document (Sections 2-4: file headers, section organization, comment quality)
 4. **Apply per-language rules** from the matching `quality_standards.md` ([JS](../javascript/quality_standards.md) | [CSS](../css/quality_standards.md))
 5. **Check** each P0 item systematically for that file type
@@ -314,7 +314,7 @@ For language-specific enforcement, see:
 - [`./cross_language_rules.md`](./cross_language_rules.md) — cross-language file naming, comment principles, banner format
 
 ### Checklists
-- [`../../../assets/webflow/checklists/code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist.md) — validation checklist
+- [`../../../assets/webflow/checklists/code_quality_checklist.md`](../../../code-quality/assets/code_quality_checklist/overview-header-and-comments.md) — validation checklist
 
 ### Production Examples
 

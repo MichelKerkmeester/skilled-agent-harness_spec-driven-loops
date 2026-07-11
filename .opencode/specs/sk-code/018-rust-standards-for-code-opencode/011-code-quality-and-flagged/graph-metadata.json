@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged",
+  "spec_folder": "sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged",
+  "parent_id": "sk-code/018-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 011 code-quality checklist split",
+      "code-review flagged file exemptions",
+      "code_quality_checklist hygiene",
+      "018 phase 011 plan code-quality checklist split",
+      "018 phase 011 tasks code-quality checklist split",
+      "018 phase 011 summary code-quality checklist split"
+    ],
+    "key_topics": [
+      "phase",
+      "code-quality",
+      "checklist",
+      "split",
+      "code-review",
+      "flagged",
+      "file",
+      "exemptions",
+      "hygiene",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Exemptions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Split",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Last",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Split",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Boundaries",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Done Dangling",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Fixed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`code-quality/assets/codequalitychecklist.md` (542 lines) is the last oversized reference/asset in the hygiene scope",
+    "created_at": "2026-07-11T17:50:12.246Z",
+    "last_save_at": "2026-07-11T17:57:34.748Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:454744025bbcdfd7ba46eb0a25165b2c4824a30d6e765f0f86fd6a587b0d279a",
+    "source_doc_hashes": {
+      "spec.md": "0ac7d2af924f8a9130553e64f5b302a1d5576a1a6f027dbc85c4a82584c7a3c4",
+      "plan.md": "fb30afa430b291ce96d7993ffb563264de6d52fd22fab65c73191c46724abc81",
+      "tasks.md": "3f5df7dc58efa7e70378d76ce970e97260589c17d753378c67cae6d9cdccd5b2",
+      "implementation-summary.md": "5855b86277e2848609077cca04237c297a21eb55e2e09832f9de61c8a61a7dc9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

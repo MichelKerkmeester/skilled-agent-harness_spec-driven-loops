@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged",
+  "description": "`code-quality/assets/codequalitychecklist.md` (542 lines) is the last oversized reference/asset in the hygiene scope",
+  "keywords": [
+    "code-quality",
+    "assets",
+    "codequalitychecklist",
+    "lines",
+    "last",
+    "oversized",
+    "reference",
+    "asset",
+    "hygiene",
+    "scope"
+  ],
+  "lastUpdated": "2026-07-11T17:57:34.501Z",
+  "specId": "011",
+  "folderSlug": "code-quality-and-flagged",
+  "parentChain": [
+    "sk-code",
+    "018-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
