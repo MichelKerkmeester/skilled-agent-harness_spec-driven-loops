@@ -2,7 +2,7 @@
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-b-live` · trace mode: `live`.
 
-**Verdict: PASS** · aggregate 86/100
+**Verdict: CONDITIONAL** · aggregate 87/100
 
 ## Coverage
 
@@ -13,14 +13,16 @@
 
 | Dimension | Weight | Score |
 | --------- | ------ | ----- |
-| D1 inter (advisor) | 12pts | _unscored-mode-a_ |
+| D1 inter (advisor) | 12pts | _excluded-by-design_ |
 | D1 intra (router) | 13pts | 69/100 |
 | D2 discovery | 20pts | 69/100 |
-| D3 efficiency | 15pts | 56/100 |
+| D3 efficiency | 15pts | 60/100 |
 | D4 usefulness | 25pts | _unscored-mode-a_ |
 | D5 connectivity (hard gate) | 15pts | 100/100 |
 
-_Unscored in this run (need live mode): D1inter, D4._
+_Unscored in this run (need live mode): D4._
+
+_Excluded by design (structurally N/A, not a gap): D1inter — advisor-invisible surface bundled by advisor identity sk-code (measured via sk-code)._
 
 ### Advisory signals (NOT in the weighted aggregate)
 
@@ -29,8 +31,8 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 ## Funnel
 
-- passed: 9
 - browser: 4
+- passed: 9
 
 **Headline bottleneck: browser**
 
@@ -44,19 +46,19 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
-| WF-013 | routing | 100/100 | passed |
-| WF-010 | routing | 92/100 | passed |
-| WF-011 | routing | 76/100 | passed |
-| WF-012 | routing | 84/100 | passed |
-| WF-006 | browser | — | browser |
+| WF-009 | browser | — | browser |
 | WF-007 | browser | — | browser |
 | WF-008 | browser | — | browser |
-| WF-009 | browser | — | browser |
-| WF-001 | routing | 91/100 | passed |
-| WF-002 | routing | 79/100 | passed |
-| WF-003 | routing | 100/100 | passed |
-| WF-004 | routing | 84/100 | passed |
+| WF-006 | browser | — | browser |
+| WF-013 | routing | 95/100 | passed |
+| WF-002 | routing | 100/100 | passed |
+| WF-003 | routing | 84/100 | passed |
+| WF-001 | routing | 90/100 | passed |
 | WF-005 | routing | 69/100 | passed |
+| WF-004 | routing | 78/100 | passed |
+| WF-010 | routing | 86/100 | passed |
+| WF-011 | routing | 84/100 | passed |
+| WF-012 | routing | 100/100 | passed |
 
 ## Methodology / caveats
 
