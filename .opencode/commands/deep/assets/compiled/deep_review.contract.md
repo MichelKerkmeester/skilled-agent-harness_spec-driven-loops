@@ -32,7 +32,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "39bc42a8881b45c5a16a432bb33f94f62565b2d935c31e5b9c373c5e144a019f",
+      "sha256": "c3946dec6040fe5c13d07bcdeda8bd3410d8a18f959fac3fb339ae89b8a52c09",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl",
-      "sha256": "fc24ccb0525e8ef6a36b4df71d43584662c35fab4ba5943a79212f20d70ee639",
+      "sha256": "a60d8a13cbe6e5804caa3545ce2db90048384c9488ad536de99582e3c8a761b7",
       "section": "full"
     },
     {

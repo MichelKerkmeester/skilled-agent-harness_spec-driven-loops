@@ -36,6 +36,7 @@ const COUNCIL_ROUTE_FIELDS = Object.freeze({
 });
 const DEFAULT_HEARTBEAT_INTERVAL_MS = 45_000;
 const DEFAULT_SEAT_TIMEOUT_MS = 600_000;
+const DEFAULT_SEAT_KILL_GRACE_MS = 250;
 const DEFAULT_EXECUTOR_MODEL = 'openai/gpt-5.5-fast';
 const PROMPT_PACK_PATH = path.join(__dirname, '..', 'assets', 'prompt_pack_round.md');
 const COUNCIL_CONFIG_PATH = path.join(__dirname, '..', 'assets', 'deep_ai_council_config.json');
@@ -162,26 +163,49 @@ function renderSeatPrompt(seatInput, dispatchContext, options = {}) {
   return prompt;
 }
 
-function firstModelFromSet(modelSet) {
+function modelFromSet(modelSet, seatIndex = 0) {
   if (!Array.isArray(modelSet) || modelSet.length === 0) return null;
-  const first = modelSet[0];
-  if (typeof first === 'string' && first.trim() !== '') return first.trim();
-  if (isRecord(first)) return first.model || first.model_id || first.modelId || null;
+  const selected = modelSet[seatIndex % modelSet.length];
+  if (typeof selected === 'string' && selected.trim() !== '') return selected.trim();
+  if (isRecord(selected)) return selected.model || selected.model_id || selected.modelId || null;
   return null;
 }
 
-function resolveExecutorModel(executorConfig = {}, councilConfig = {}) {
+function resolveExecutorKind(executorConfig = {}, councilConfig = {}) {
+  const executor = executorConfig.executor ?? councilConfig.executor ?? {};
+  if (!isRecord(executor)) {
+    throw new TypeError('executor must be an object with separate kind and model fields');
+  }
+  const kind = executor.kind || executor.cli || 'native';
+  if (!['native', 'cli-opencode', 'opencode'].includes(kind)) {
+    throw new RangeError(`unsupported council executor kind: ${kind}`);
+  }
+  return kind === 'opencode' ? 'cli-opencode' : kind;
+}
+
+function resolveExecutorModel(executorConfig = {}, councilConfig = {}, seatInput = {}, seatIndex = 0) {
+  const seatModel = seatInput.model || seatInput.model_id || seatInput.modelId;
+  if (typeof seatModel === 'string' && seatModel.trim() !== '') return seatModel.trim();
+
   const executor = executorConfig.executor;
-  if (typeof executor === 'string' && executor.trim() !== '') return executor.trim();
+  if (executor !== undefined && executor !== null && !isRecord(executor)) {
+    throw new TypeError('executor must be an object with separate kind and model fields');
+  }
   if (isRecord(executor)) {
-    const model = executor.model || executor.model_id || executor.modelId || firstModelFromSet(executor.model_set || executor.modelSet);
+    const model = executor.model
+      || executor.model_id
+      || executor.modelId
+      || modelFromSet(executor.model_set || executor.modelSet, seatIndex);
     if (typeof model === 'string' && model.trim() !== '') return model.trim();
   }
   const directModel = executorConfig.model || executorConfig.model_id || executorConfig.modelId;
   if (typeof directModel === 'string' && directModel.trim() !== '') return directModel.trim();
   const configExecutor = councilConfig.executor || {};
   if (isRecord(configExecutor)) {
-    const configModel = configExecutor.model || configExecutor.model_id || configExecutor.modelId || firstModelFromSet(configExecutor.model_set || configExecutor.modelSet);
+    const configModel = configExecutor.model
+      || configExecutor.model_id
+      || configExecutor.modelId
+      || modelFromSet(configExecutor.model_set || configExecutor.modelSet, seatIndex);
     if (typeof configModel === 'string' && configModel.trim() !== '') return configModel.trim();
   }
   return DEFAULT_EXECUTOR_MODEL;
@@ -198,29 +222,57 @@ function opencodeSeatArgs(model, seatPrompt) {
   return ['run', '--agent', 'plan', '--model', model, seatPrompt];
 }
 
+function terminateSeatProcess(child, signal) {
+  if (!child) return;
+  if (process.platform !== 'win32' && child.pid) {
+    try {
+      process.kill(-child.pid, signal);
+      return;
+    } catch (error) {
+      if (error && error.code === 'ESRCH') return;
+    }
+  }
+  if (typeof child.kill === 'function') {
+    try {
+      child.kill(signal);
+    } catch {
+      // The process may have exited between the group and direct kill attempts.
+    }
+  }
+}
+
 function runSeatSubprocess(seatPrompt, options) {
   const spawnFn = options.spawn || spawn;
   const model = options.model;
   const timeoutMs = options.timeoutMs;
+  const killGraceMs = options.killGraceMs || DEFAULT_SEAT_KILL_GRACE_MS;
   return new Promise((resolve, reject) => {
     const child = spawnFn('opencode', opencodeSeatArgs(model, seatPrompt), {
       cwd: options.cwd || process.cwd(),
       env: options.env || process.env,
       stdio: ['ignore', 'pipe', 'pipe'],
+      detached: process.platform !== 'win32',
     });
     let stdout = '';
     let stderr = '';
     let settled = false;
+    let timedOut = false;
+    let killTimer;
     const done = (error, output) => {
       if (settled) return;
       settled = true;
-      clearTimeout(timer);
+      clearTimeout(timeoutTimer);
+      if (killTimer) clearTimeout(killTimer);
       if (error) reject(error);
       else resolve(output);
     };
-    const timer = setTimeout(() => {
-      if (child && typeof child.kill === 'function') child.kill('SIGTERM');
-      done(new Error(`[ai-council] Seat dispatch timed out after ${timeoutMs}ms`));
+    const timeoutTimer = setTimeout(() => {
+      timedOut = true;
+      terminateSeatProcess(child, 'SIGTERM');
+      killTimer = setTimeout(() => {
+        terminateSeatProcess(child, 'SIGKILL');
+        done(new Error(`[ai-council] Seat dispatch timed out after ${timeoutMs}ms`));
+      }, killGraceMs);
     }, timeoutMs);
     if (child.stdout && typeof child.stdout.on === 'function') {
       child.stdout.on('data', (chunk) => { stdout += chunk.toString(); });
@@ -228,8 +280,11 @@ function runSeatSubprocess(seatPrompt, options) {
     if (child.stderr && typeof child.stderr.on === 'function') {
       child.stderr.on('data', (chunk) => { stderr += chunk.toString(); });
     }
-    child.on('error', (error) => done(error));
+    child.on('error', (error) => {
+      if (!timedOut) done(error);
+    });
     child.on('close', (code, signal) => {
+      if (timedOut) return;
       if (code === 0) {
         done(null, stdout);
         return;
@@ -243,13 +298,16 @@ function runSeatSubprocess(seatPrompt, options) {
 }
 
 function seatVerdictFromOutput(output) {
-  const match = String(output || '').match(/Council seat verdict:\s*(SUPPORT_WITH_RISKS|SUPPORT|BLOCK)/i);
-  const recommended = match ? match[1].toUpperCase() : 'UNDECIDED';
+  const text = String(output || '');
+  const optionMatch = text.match(/Council seat option:\s*([a-z0-9][a-z0-9._-]*)/i);
+  const stanceMatch = text.match(/Council seat verdict:\s*(SUPPORT_WITH_RISKS|SUPPORT|BLOCK)/i);
+  const stance = stanceMatch ? stanceMatch[1].toUpperCase() : 'UNDECIDED';
   return {
-    recommended_option: recommended.toLowerCase(),
+    recommended_option: optionMatch ? optionMatch[1].toLowerCase() : 'undecided',
+    stance: stance.toLowerCase(),
     confidence: null,
-    blocking_disagreements: recommended === 'BLOCK' ? ['seat blocked the proposal'] : [],
-    material_risks: recommended === 'SUPPORT_WITH_RISKS' ? ['seat supported with risks'] : [],
+    blocking_disagreements: stance === 'BLOCK' ? ['seat blocked the proposal'] : [],
+    material_risks: stance === 'SUPPORT_WITH_RISKS' ? ['seat supported with risks'] : [],
     decision_axes: {},
   };
 }
@@ -261,20 +319,41 @@ async function dispatchSeat(seatInput, dispatchContext = {}, options = {}) {
   const packetSpecFolder = options.packetSpecFolder || resolvePacketSpecFolder(context.session_state, executorConfig);
   const seatIndex = Number.isInteger(dispatchContext.seatIndex) ? dispatchContext.seatIndex : 0;
   const seatId = resolveSeatId(seatInput, seatIndex);
-  const model = resolveExecutorModel(executorConfig, councilConfig);
+  const executorKind = resolveExecutorKind(executorConfig, councilConfig);
+  const model = resolveExecutorModel(executorConfig, councilConfig, seatInput, seatIndex);
+  const executionProvenance = {
+    requested: {
+      executor_family: executorKind,
+      primary_agent: 'plan',
+      model,
+    },
+    effective: {
+      command: 'opencode',
+      primary_agent: 'plan',
+      model: null,
+    },
+  };
   const seatPrompt = renderSeatPrompt(seatInput, dispatchContext, {
     ...options,
     packetSpecFolder,
     executorConfig,
     councilConfig,
   });
-  const deliberation = await runSeatSubprocess(seatPrompt, {
-    spawn: options.spawn,
-    cwd: options.cwd,
-    env: options.env,
-    model,
-    timeoutMs: seatTimeoutMs(executorConfig),
-  });
+  let deliberation;
+  try {
+    deliberation = await runSeatSubprocess(seatPrompt, {
+      spawn: options.spawn,
+      cwd: options.cwd,
+      env: options.env,
+      model,
+      timeoutMs: seatTimeoutMs(executorConfig),
+    });
+  } catch (error) {
+    if (error && typeof error === 'object') {
+      error.execution_provenance = executionProvenance;
+    }
+    throw error;
+  }
   const persistedSeat = {
     id: seatId,
     ...seatInput,
@@ -293,6 +372,7 @@ async function dispatchSeat(seatInput, dispatchContext = {}, options = {}) {
     deliberation,
     content: deliberation,
     persisted,
+    execution_provenance: executionProvenance,
     verdict: seatVerdictFromOutput(deliberation),
   };
 }
@@ -348,14 +428,23 @@ function normalizeOptions(input = {}) {
 
 function withCouncilRouteConfig(executorConfig) {
   const configuredFields = isRecord(executorConfig.route_fields) ? executorConfig.route_fields : {};
+  for (const [key, value] of Object.entries(COUNCIL_ROUTE_FIELDS)) {
+    if (key in configuredFields && configuredFields[key] !== value) {
+      throw new RangeError(`route_fields.${key} cannot override the canonical council route`);
+    }
+  }
+  if (
+    typeof executorConfig.resolved_route_header === 'string'
+    && executorConfig.resolved_route_header !== COUNCIL_RESOLVED_ROUTE_HEADER
+  ) {
+    throw new RangeError('resolved_route_header cannot override the canonical council route');
+  }
   return {
     ...executorConfig,
-    resolved_route_header: typeof executorConfig.resolved_route_header === 'string'
-      ? executorConfig.resolved_route_header
-      : COUNCIL_RESOLVED_ROUTE_HEADER,
+    resolved_route_header: COUNCIL_RESOLVED_ROUTE_HEADER,
     route_fields: {
-      ...COUNCIL_ROUTE_FIELDS,
       ...configuredFields,
+      ...COUNCIL_ROUTE_FIELDS,
     },
   };
 }
@@ -671,6 +760,7 @@ module.exports = {
   readJsonValue,
   dispatchSeat,
   renderSeatPrompt,
+  resolveExecutorKind,
   resolveExecutorModel,
   startSessionHeartbeat,
   writeSessionHeartbeat,

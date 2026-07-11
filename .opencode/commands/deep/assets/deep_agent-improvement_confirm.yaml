@@ -189,7 +189,27 @@ workflow:
           B) Stop loop
       step_generate_candidate:
         description: "Dispatch @deep-improvement to write one bounded candidate"
-        action: "Dispatch @deep-improvement to write a new candidate into candidates/"
+        bindings:
+          candidate_id: "iteration-{iteration}"
+          candidate_path: "{state_paths.candidates_root}/iteration-{iteration}.md"
+        dispatch_input:
+          runtime_root: "{state_paths.runtime_root}"
+          charter_path: "{state_paths.charter}"
+          control_file_path: "{state_paths.manifest}"
+          canonical_target_path: "{target_path}"
+          candidate_output_path: "{candidate_path}"
+          integration_report_path: "{state_paths.integration_report}"
+          dynamic_profile_path: "{spec_folder}/improvement/dynamic-profile.json"
+        action: "Dispatch @deep-improvement with every dispatch_input field explicitly named; do not infer or omit any of the mutator's five required inputs."
+        validate_return:
+          parse: "Require exactly one JSON object from the mutator."
+          status: "Require status=success; treat error, no-candidate, partial, malformed, or missing status according to its explicit branch, never as generated."
+          required_fields: [status, candidate_path, target, change_summary, notes, critic_pass]
+          target_identity: "Resolve target and require exact equality with the resolved {target_path}."
+          candidate_identity: "Resolve candidate_path and require exact equality with the pre-bound {candidate_path}."
+          artifact: "Require candidate_path to exist as a regular non-symlink file under the resolved {state_paths.candidates_root}; compute and retain its SHA-256 before emitting candidate_generated."
+          critic_pass: "Require all six mandatory challenge labels declared by the mutator contract."
+          on_fail: "Do not emit candidate_generated, lineage, score, benchmark, or promotion records; halt the iteration as a dispatch-contract failure."
       step_emit_journal_event_candidate_generated:
         description: "Emit candidate_generated journal event after the candidate is written"
         command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
@@ -214,9 +234,12 @@ workflow:
       step_emit_journal_event_benchmark_completed:
         description: "Emit benchmark_completed journal event after report.json exists"
         command: "test -f {spec_folder}/improvement/benchmark-outputs/report.json && node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"benchmarkOutputPath\":\"{spec_folder}/improvement/benchmark-outputs/report.json\",\"targetProfile\":\"{target_profile}\"}'"
+      step_score_candidate_replays:
+        description: "Run two uncached same-candidate scoring replays in addition to the primary score"
+        command: "node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target_manifest.jsonc --profile={target_profile} --target={target_path} --output={spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-2.json --no-cache && node .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target_manifest.jsonc --profile={target_profile} --target={target_path} --output={spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-3.json --no-cache"
       step_measure_benchmark_stability:
-        description: "Measure replay stability for the current scored candidate and emit a repeatability report"
-        command: "node -e \"const fs=require('node:fs'); const stability=require('./.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs'); const score=JSON.parse(fs.readFileSync('{score_output_path}','utf8')); const result=stability.measureStability([score],{minReplayCount:3,warningThreshold:0.95}); fs.mkdirSync('{spec_folder}/improvement/benchmark-outputs',{recursive:true}); fs.writeFileSync('{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-repeatability.json',JSON.stringify(result,null,2)+'\\n');\""
+        description: "Measure replay stability from three independently executed scores of the same candidate"
+        command: "node -e \"const fs=require('node:fs'); const stability=require('./.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/benchmark-stability.cjs'); const paths=['{score_output_path}','{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-2.json','{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-replay-3.json']; const scores=paths.map((file)=>JSON.parse(fs.readFileSync(file,'utf8'))); const result=stability.measureStability(scores,{minReplayCount:3,warningThreshold:0.95}); fs.writeFileSync('{spec_folder}/improvement/benchmark-outputs/iteration-{iteration}-repeatability.json',JSON.stringify(result,null,2)+'\\n');\""
       step_detect_trade_offs:
         description: "Analyze the scored trajectory for Pareto trade-offs before reduction"
         command: "node -e \"const fs=require('node:fs'); const detector=require('./.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/trade-off-detector.cjs'); const trajectory=detector.getTrajectory('{spec_folder}/improvement/improvement-journal.jsonl'); const tradeOffs=detector.detectTradeOffs(trajectory); fs.writeFileSync('{spec_folder}/improvement/trade-off-report.json',JSON.stringify({iteration:Number('{iteration}'),tradeOffs},null,2)+'\\n');\""

@@ -19,7 +19,7 @@
     "kind": "native",
     "cli": null,
     "model_set": [],
-    "one_cli_per_round": true
+    "one_cli_family_per_round": true
   },
   "seat_lenses": [
     "analytical",

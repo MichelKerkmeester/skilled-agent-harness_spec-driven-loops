@@ -98,10 +98,19 @@ describe('prompt-pack', () => {
   });
 
   it('both production templates load and render successfully with the expected bound variables', () => {
-    const researchTemplatePath =
-      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/assets/prompt_pack_iteration.md.tmpl';
-    const reviewTemplatePath =
-      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl';
+    const deepLoopRoot = join(import.meta.dirname, '..', '..', '..');
+    const researchTemplatePath = join(
+      deepLoopRoot,
+      'deep-research',
+      'assets',
+      'prompt_pack_iteration.md.tmpl',
+    );
+    const reviewTemplatePath = join(
+      deepLoopRoot,
+      'deep-review',
+      'assets',
+      'prompt_pack_iteration.md.tmpl',
+    );
 
     const researchRendered = renderPromptPack(researchTemplatePath, {
       state_summary: 'Summary block',

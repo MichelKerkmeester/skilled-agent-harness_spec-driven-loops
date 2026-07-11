@@ -150,36 +150,26 @@ workflow:
     instructions: |
       Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
       isolated sub-packet under {artifact_dir}/lineages/{label}/.
+      fanout-run.cjs owns native and CLI lineage execution; native is run through the
+      deep/research command surface with config.fanout_lineage_artifact_dir so the LEAF
+      deep-research agent is used only for individual iterations, never as a full-loop
+      sub-agent or pasted phase-running prompt.
       After all lineages complete, jump directly to phase_synthesis — skip phase_init and
       phase_main_loop entirely (those are the single-executor path). The merge step in
       phase_synthesis will consolidate results across all lineages.
     sub_steps:
       step_fanout_spawn_cli:
-        description: "Spawn all CLI lineages in capped worker pool"
-        skip_when: "no entries in config.fanout.executors with kind != 'native'"
+        description: "Spawn all native and CLI lineages in capped worker pool"
+        skip_when: "no entries in config.fanout.executors"
         command: |
           node .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs \
             --spec-folder {spec_folder} \
             --loop-type research \
             --research-topic "{research_topic}" \
             --fanout-config-json '{config.fanout_json}' \
-            --base-artifact-dir {artifact_dir}
+            --base-artifact-dir {artifact_dir} \
+            --convergence-threshold {convergence_threshold}
         working_directory: "{repo_root}"
-        wait_for_completion: true
-      step_fanout_spawn_native:
-        description: "Dispatch each native lineage as a sequential deep-research sub-agent"
-        skip_when: "no entries in config.fanout.executors with kind == 'native'"
-        for_each: "lineage in expanded native entries of config.fanout"
-        dispatch:
-          agent: deep-research
-          model: opus
-          context: |
-            Execute the deep-research loop with these parameters:
-              spec_folder: {spec_folder}
-              config.fanout_lineage_artifact_dir: {artifact_dir}/lineages/{lineage.label}
-              session_id: fanout-{lineage.label}-{fanout_run_id}
-              executor: native
-            Run to convergence. Write all outputs to the override directory.
         wait_for_completion: true
 
   # ═══════════════════════════════════════════════════════════════

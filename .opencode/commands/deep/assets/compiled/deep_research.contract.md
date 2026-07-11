@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_presentation.txt",
-      "sha256": "5d41b58b666bb9245f0c3a53c1bb4a4e03625b88f5827f021703f13201b4cbd6",
+      "sha256": "168f4ea884a6f5188a455c9ab5c1fea8efbe61f85ba31ced0956490db960784b",
       "section": "full"
     },
     {
@@ -22,17 +22,17 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      "sha256": "f176f62f83d21294509b69e9c9f633dbbbe1452dae12ef2fd22ca530f362a0e5",
+      "sha256": "035b34ecddbc813304d16710a1fab154e596876923564aa8eed182066db87e8d",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_confirm.yaml",
-      "sha256": "21bb1d9c246804a65b45d0d83a5b9a5054286b02f29eb0d40291c8526ebede40",
+      "sha256": "3ad79c309a4849ba5297658704779b08c6fbd4b893ffa6272baeb5a9346a7d0c",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "39bc42a8881b45c5a16a432bb33f94f62565b2d935c31e5b9c373c5e144a019f",
+      "sha256": "c3946dec6040fe5c13d07bcdeda8bd3410d8a18f959fac3fb339ae89b8a52c09",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      "sha256": "9936aa71f10f125790fd54d5cbc08200fce0e7610a74ff2727d5dcf0a568bf4c",
+      "sha256": "dc562c8cd645e1ab23f70f2700db7b21b67b9c6d5054e5b811c6680244981610",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "531a40fb665b75feaa8ed6b30f88c72f5b8d2753b1c7babc13fec88f9dba86a3"
+  "compiledBodyDigest": "742c75fe55c2cf6a5bccfb72e845625e6c74815f2005acffe7a7fb3e8238967c"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -291,7 +291,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - Store: prior_work_found = [yes/no]
 
 6. ASK with SINGLE prompt (include only applicable questions):
-   - Include Q-Exec only when `--executor` is NOT present and the topic text does NOT already mention executor hints such as `cli-opencode`, ``, or `gpt-5.4`
+   - Include Q-Exec only when `--executor` is NOT present and the topic text does NOT already mention executor hints such as `cli-opencode`, `cli-claude-code`, or `gpt-5.4`
    - If Q-Exec is omitted and no executor is otherwise resolved, default to `native`
 
    Q0. Research Topic (if not in command): What topic to research deeply?
@@ -312,7 +312,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-research agent with Opus.
      B) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax/Xiaomi token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
-      C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
+     C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
 
    Reply format examples:
    - `"A, A"`

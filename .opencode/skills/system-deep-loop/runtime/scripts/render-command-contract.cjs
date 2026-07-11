@@ -9,6 +9,7 @@ const {
   canonicalizeCommand,
   resolveInjectionMode,
 } = require('../../shared/rollout/resolve-injection-mode.cjs');
+const { checkCommand } = require('./check-contract-drift.cjs');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const MANIFEST_PATH = '.opencode/commands/deep/assets/compiled/manifest.jsonl';
@@ -63,12 +64,26 @@ function resolveMode(command) {
   return resolveInjectionMode(command);
 }
 
+function assertCompiledContractFresh(definition, check = checkCommand) {
+  const drift = check(definition.command);
+  if (drift.failures.length > 0) {
+    const classes = [...new Set(drift.failures.map((failure) => failure.class))].join(', ');
+    throw new Error(
+      `Refusing stale compiled contract for ${definition.command}: ${classes}. `
+        + 'Re-run compile-command-contracts.cjs --write.',
+    );
+  }
+}
+
 function renderPayload(definition, mode) {
   const legacyBody = readBuffer(definition.legacyBodyPath);
-  const compiledContract = readBuffer(definition.compiledContractPath);
 
   if (mode === 'fallback') return legacyBody;
-  if (mode === 'fix') return Buffer.concat([compiledContract, legacyBody]);
+  if (mode === 'fix') {
+    assertCompiledContractFresh(definition);
+    const compiledContract = readBuffer(definition.compiledContractPath);
+    return Buffer.concat([compiledContract, legacyBody]);
+  }
   throw new Error(`Unsupported injection mode ${mode} for ${definition.command}`);
 }
 

@@ -530,7 +530,24 @@ describe('fanout-run.cjs — per-lineage budget guard helpers', () => {
     })).toMatchObject({
       continue_allowed: false,
       stop_reasons: ['max_cost_units_per_lineage'],
-      upper_bound: { iterations: 2, estimated_cost_units: 4, max_cost_units_per_lineage: 3 },
+      upper_bound: { iterations: 2, total_attempts: 1, estimated_cost_units: 4, max_cost_units_per_lineage: 3 },
+    });
+  });
+
+  it('reserves cumulative cost for the initial attempt and every retry', () => {
+    expect(evaluateLineageBudgetCap({
+      lineage: { iterations: 5 },
+      maxRetries: 5,
+      guards: { maxCostUnitsPerLineage: 29, costUnitsPerIteration: 1 },
+    })).toMatchObject({
+      continue_allowed: false,
+      stop_reasons: ['max_cost_units_per_lineage'],
+      upper_bound: {
+        iterations: 5,
+        total_attempts: 6,
+        estimated_cost_units: 30,
+        max_cost_units_per_lineage: 29,
+      },
     });
   });
 });
@@ -1571,6 +1588,61 @@ describe('fanout-run.cjs — progress heartbeat', () => {
     }));
   });
 
+  it('detects a silent child even while host progress heartbeats continue', async () => {
+    const binDir = makeTempDir('fanout-run-heartbeat-watchdog-bin-');
+    writeDelayedNodeStubBinary(binDir, 'opencode', 180);
+    const baseDir = makeTempDir('fanout-run-heartbeat-watchdog-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [
+        {
+          label: 'quiet-with-heartbeats',
+          kind: 'cli-opencode',
+          model: 'opencode-go/glm-5.1',
+          count: 1,
+        },
+      ],
+      concurrency: 1,
+      progressHeartbeatSeconds: 0.01,
+      stallWatchdogMs: 40,
+    });
+
+    const hermetic = useHermeticEnv('heartbeat-watchdog-interaction');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-heartbeat-watchdog',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+
+    expect(ledgerEvents.some((event) => event.event === 'progress')).toBe(true);
+    expect(ledgerEvents.filter((event) => event.event === 'stall_detected')).toEqual([
+      expect.objectContaining({
+        label: 'quiet-with-heartbeats',
+        metric: 'time_since_last_lineage_event',
+        stall_watchdog_ms: 40,
+      }),
+    ]);
+  });
+
   it('emits progress events for a long lineage when cadence is configured', async () => {
     const binDir = makeTempDir('fanout-run-progress-bin-');
     writeSleepingStubBinary(binDir, 'opencode', 1);
@@ -1701,7 +1773,8 @@ describe('fanout-run.cjs — per-lineage budget cap', () => {
         stop_reasons: ['max_cost_units_per_lineage'],
         upper_bound: expect.objectContaining({
           iterations: 5,
-          estimated_cost_units: 5,
+          total_attempts: 6,
+          estimated_cost_units: 30,
           max_cost_units_per_lineage: 3,
         }),
       }),
