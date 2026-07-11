@@ -9,7 +9,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const { reduceReviewState } = require('../reduce-state.cjs');
+const { reduceReviewState } = require('../../../runtime/scripts/reduce-state.cjs');
 
 function makeSpecFolder(slug) {
   const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), `review-summary-fallback-${slug}-`)));

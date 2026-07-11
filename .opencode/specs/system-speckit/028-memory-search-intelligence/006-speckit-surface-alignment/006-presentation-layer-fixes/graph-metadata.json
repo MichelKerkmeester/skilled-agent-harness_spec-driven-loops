@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/006-presentation-layer-fixes",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment/006-presentation-layer-fixes",
+  "parent_id": "system-speckit/028-memory-search-intelligence/006-speckit-surface-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "presentation layer quick wins",
+      "breadcrumb suppression fix",
+      "memory context result floor",
+      "dead tokenbudget parameter",
+      "compactdirectresult minimalresults parity"
+    ],
+    "key_topics": [
+      "presentation",
+      "layer",
+      "quick",
+      "wins",
+      "breadcrumb",
+      "suppression",
+      "memory",
+      "context",
+      "result",
+      "floor",
+      "dead",
+      "tokenbudget"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/memory/assets/search_presentation.txt",
+      ".claude/commands/memory/assets/search_presentation.txt",
+      ".opencode/commands/memory/search.md",
+      ".claude/commands/memory/search.md",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context-token-budget.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts",
+      "tasks.md",
+      "schemas/tool-input-schemas.ts",
+      "tests/mcp-tool-dispatch.vitest.ts",
+      "tools/types.ts",
+      "handlers/memory-context.ts",
+      "tests/memory-context-token-budget.vitest.ts",
+      "plan.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "search_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/memory/assets/search_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context-token-budget.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context-token-budget.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-tool-dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Layer Quick Wins",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Result Floor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shape Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "P1 — breadcrumb suppression is a deliberate rule, not a data gap",
+    "created_at": "2026-07-09T06:20:00.567Z",
+    "last_save_at": "2026-07-11T18:40:36.387Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c7344ea0da756ebbbbe3e1ab4eaff6d7b7c3fec6fdc030570c0f50d51a77de88",
+    "source_doc_hashes": {
+      "spec.md": "c7201c3be1b7010df3d1efbcfd9d8a1ce0312242eaf506f840da713af452ba82",
+      "plan.md": "6b8e103ba43a8ba212bfad33f5580b9f05797099e2f7c039d9f773351c5dbe9f",
+      "tasks.md": "59a1527de75b9eec7630f4d484bb0e92a0c43cac6888fd65dfb589681d56dff3",
+      "implementation-summary.md": "c2cf823b13c26d131a8acf36705f810c03a7ca6beee39358a7358644ea6b89ff"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

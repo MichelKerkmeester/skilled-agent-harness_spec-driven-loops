@@ -28,7 +28,7 @@ This feature belongs to the state safety group and is catalogued as F009 in the 
 
 Tool operation mapping, path resolution, glob specificity, default-deny, and allow/deny reasons.
 
-The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.opencode/skills/system-deep-loop/runtime/tests/`. Treat the module itself as shipped: it is built and its test suite passes. It is not wired into any executor dispatch path — `evaluateToolCall` and `evaluatePreDispatchToolCalls` have zero production callers today, so no live dispatch is currently gated by this code. Prompt-level and sandbox-level controls remain the active protection until it is connected.
 
 ---
 

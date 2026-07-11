@@ -22,7 +22,7 @@ const {
 const { buildTerminalStopState, deriveDashboardStatus: deriveResearchStatus } =
   require('../../deep-research/scripts/reduce-state.cjs');
 const { deriveDashboardStatus: deriveReviewStatus, parseJsonlDetailed } =
-  require('../../deep-review/scripts/reduce-state.cjs');
+  require('../../runtime/scripts/reduce-state.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Fixtures

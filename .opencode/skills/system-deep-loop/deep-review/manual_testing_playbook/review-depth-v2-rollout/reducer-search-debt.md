@@ -54,7 +54,7 @@ The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `
 
 ## 4. SOURCE REFERENCES
 
-- Reducer: `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs` (registry return shape + dashboard verdict + active-risks rendering).
+- Reducer: `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry return shape + dashboard verdict + active-risks rendering).
 - Report compiler: `.opencode/commands/deep/assets/deep_review_auto.yaml` (Search Ledger section in report-output step).
 - Fixture: `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts`.
 - ADR: complexity-search-ledger-persistence decision record (see this skill's changelog for provenance).

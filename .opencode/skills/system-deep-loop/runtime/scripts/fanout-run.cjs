@@ -171,6 +171,7 @@ function rawConfigWithCliBudgetOverrides(rawConfig, args) {
   const mappings = [
     ['stallWatchdogMs', 'stallWatchdogMs'],
     ['maxCostUnitsPerLineage', 'maxCostUnitsPerLineage'],
+    ['maxAggregateCostUnits', 'maxAggregateCostUnits'],
     ['maxTokensPerLineage', 'maxTokensPerLineage'],
     ['maxTokenBudget', 'maxTokenBudget'],
     ['maxTokenBudgetPerLineage', 'maxTokenBudgetPerLineage'],
@@ -303,6 +304,7 @@ function statusForLedgerEvent(entry) {
   if (entry.event === 'lag_ceiling_abort') return 'failed';
   if (entry.event === 'stall_detected') return 'warning';
   if (entry.event === 'budget_cap_exceeded') return 'failed';
+  if (entry.event === 'aggregate_budget_cap_exceeded') return 'failed';
   return 'unknown';
 }
 
@@ -646,13 +648,18 @@ function isRecord(value) {
 function normalizeStallWatchdogMs(rawConfig) {
   // Defaults ON (mirrors the fan-out lagCeilingMs default): without a watchdog a stalled
   // lineage hangs silently until the hours-scale timeout. Read through the raw alias set
-  // because this knob is intentionally outside fanoutConfigSchema. Set 0 to opt out.
-  return readRawConfigNumber(rawConfig, [
+  // because this knob is intentionally outside fanoutConfigSchema. Non-disableable while
+  // running autonomously: an explicit 0 no longer opts out, it is rejected.
+  const value = readRawConfigNumber(rawConfig, [
     'stallWatchdogMs',
     'stall_watchdog_ms',
     'stallWatchdogMillis',
     'stall_watchdog_millis',
-  ], 'stallWatchdogMs') ?? 300000;
+  ], 'stallWatchdogMs');
+  if (value === 0) {
+    throw inputError('stallWatchdogMs must be greater than 0; stall detection cannot be disabled for autonomous fan-out runs');
+  }
+  return value ?? 300000;
 }
 
 const DEFAULT_MAX_COST_UNITS_PER_LINEAGE = 72;
@@ -707,6 +714,54 @@ function evaluateLineageBudgetCap(input = {}) {
   return {
     continue_allowed: !exceeded,
     stop_reasons: exceeded ? ['max_cost_units_per_lineage'] : [],
+    upper_bound: upperBound,
+  };
+}
+
+// Aggregate budget across every expanded lineage in a run. This is a SEPARATE ceiling
+// from DEFAULT_MAX_COST_UNITS_PER_LINEAGE above: the per-lineage cap bounds any single
+// lineage, this bounds the whole fan-out submission, and both are enforced independently
+// (a run may pass one and still fail the other).
+const DEFAULT_MAX_AGGREGATE_COST_UNITS = 288;
+
+function normalizeAggregateBudgetGuards(rawConfig = {}) {
+  return {
+    max_aggregate_cost_units: readRawConfigNumber(rawConfig, [
+      'maxAggregateCostUnits',
+      'max_aggregate_cost_units',
+      'maxTotalCostUnits',
+      'max_total_cost_units',
+    ], 'maxAggregateCostUnits') ?? DEFAULT_MAX_AGGREGATE_COST_UNITS,
+  };
+}
+
+function computeAggregateBudgetUpperBound(lineages, guardsInput = {}, maxRetries = 0) {
+  const aggregateGuards = normalizeAggregateBudgetGuards(guardsInput);
+  const lineageGuards = normalizeLineageBudgetGuards(guardsInput);
+  const perLineage = (lineages || []).map((lineage) => {
+    const upperBound = computeLineageBudgetUpperBound(lineage, lineageGuards, maxRetries);
+    return { label: lineage && lineage.label, estimated_cost_units: upperBound.estimated_cost_units };
+  });
+  const estimatedCostUnits = perLineage.reduce((sum, entry) => sum + entry.estimated_cost_units, 0);
+  return {
+    max_aggregate_cost_units: aggregateGuards.max_aggregate_cost_units,
+    estimated_cost_units: estimatedCostUnits,
+    lineage_count: perLineage.length,
+    per_lineage: perLineage,
+  };
+}
+
+function evaluateAggregateBudgetCap(input = {}) {
+  const upperBound = computeAggregateBudgetUpperBound(
+    input.lineages || [],
+    input.guards || input,
+    input.maxRetries,
+  );
+  const exceeded = upperBound.max_aggregate_cost_units > 0
+    && upperBound.estimated_cost_units > upperBound.max_aggregate_cost_units;
+  return {
+    continue_allowed: !exceeded,
+    stop_reasons: exceeded ? ['max_aggregate_cost_units'] : [],
     upper_bound: upperBound,
   };
 }
@@ -1067,17 +1122,32 @@ function buildNativeCommandInput(loopType, specFolder, lineageDir, lineage, opti
   ].join('\n');
 }
 
+// Full-lineage lifetime is non-disableable in autonomous mode: 4 hours is the hard
+// ceiling and a positive override may only narrow it, never widen past it.
+const LINEAGE_LIFETIME_HARD_MAX_HOURS = 4;
+
+function assertLineageTimeoutHoursOverrideWithinCeiling(ceilingHoursOverride) {
+  if (Number.isFinite(ceilingHoursOverride) && ceilingHoursOverride > LINEAGE_LIFETIME_HARD_MAX_HOURS) {
+    throw inputError(
+      `lineageTimeoutHours override (${ceilingHoursOverride}) exceeds the hard maximum of `
+        + `${LINEAGE_LIFETIME_HARD_MAX_HOURS} hours`,
+    );
+  }
+}
+
 /**
  * Compute a generous timeout for a full lineage loop run.
  * A single iteration is timeoutSeconds; a full loop is up to iterations * timeoutSeconds.
- * We double it for safety and cap at 4 hours.
+ * We double it for safety and cap at 4 hours. A caller-provided ceiling override may only
+ * narrow this hard ceiling, never widen it — full-lineage lifetime is non-disableable.
  */
 function computeLineageTimeoutMs(lineage, ceilingHoursOverride) {
+  assertLineageTimeoutHoursOverrideWithinCeiling(ceilingHoursOverride);
   const iters = lineage.iterations || 12;
   const perIterSecs = lineage.timeoutSeconds || 900;
   const ceilingMs = Number.isFinite(ceilingHoursOverride) && ceilingHoursOverride > 0
     ? ceilingHoursOverride * 60 * 60 * 1000
-    : 4 * 60 * 60 * 1000;
+    : LINEAGE_LIFETIME_HARD_MAX_HOURS * 60 * 60 * 1000;
   return Math.min(iters * perIterSecs * 2 * 1000, ceilingMs);
 }
 
@@ -1408,6 +1478,7 @@ async function main() {
   const baseArtifactDir = validateBaseArtifactDir(ensureString(args, 'baseArtifactDir'), specFolder, loopType);
   const convergenceThreshold = parseOptionalNumber(args, 'convergenceThreshold');
   const lineageTimeoutHoursOverride = parseOptionalNumber(args, 'lineageTimeoutHours');
+  assertLineageTimeoutHoursOverrideWithinCeiling(lineageTimeoutHoursOverride);
   const stopPolicy = normalizeStopPolicy(args.stopPolicy);
 
   const {
@@ -1442,6 +1513,34 @@ async function main() {
   const guardedAssignment = applyFlatPoolAssignmentGuard(parsedFanoutConfig);
   const fanoutConfig = guardedAssignment.config;
   const allLineages = expandLineages(fanoutConfig);
+
+  // Aggregate budget is a SEPARATE ceiling from the per-lineage cap enforced inside the
+  // worker below — both must pass, neither replaces the other. Checked upfront (before any
+  // lineage spawns) because it is fully computable from static config, so failing fast here
+  // avoids burning real subprocess time on a run that was already over budget at submission.
+  const aggregateBudgetDecision = evaluateAggregateBudgetCap({
+    lineages: allLineages,
+    guards: rawGuardConfig,
+    maxRetries: fanoutConfig.maxRetries,
+  });
+  if (!aggregateBudgetDecision.continue_allowed) {
+    appendFanoutStatusLedger(ledgerPath, {
+      event: 'aggregate_budget_cap_exceeded',
+      at: new Date().toISOString(),
+      run_id: runId,
+      loop_type: loopType,
+      spec_folder: specFolder,
+      severity: 'error',
+      stop_reasons: aggregateBudgetDecision.stop_reasons,
+      upper_bound: aggregateBudgetDecision.upper_bound,
+    });
+    throw inputError(
+      `fan-out aggregate budget exceeded: ${aggregateBudgetDecision.upper_bound.estimated_cost_units} > `
+        + `${aggregateBudgetDecision.upper_bound.max_aggregate_cost_units} cost units across `
+        + `${aggregateBudgetDecision.upper_bound.lineage_count} lineage(s)`,
+    );
+  }
+
   const progressHeartbeatMs = normalizeProgressHeartbeatMs(fanoutConfig.progressHeartbeatSeconds);
   const postExitGraceMs = normalizePostExitGraceMs(rawGuardConfig, progressHeartbeatMs);
   const slotIntervalMs = progressHeartbeatMs;
@@ -1871,8 +1970,12 @@ module.exports = {
   findMaxIterationsPolicyViolation,
   isMaxIterationsStopReason,
   computeLineageTimeoutMs,
+  assertLineageTimeoutHoursOverrideWithinCeiling,
   computeLineageBudgetUpperBound,
   evaluateLineageBudgetCap,
+  computeAggregateBudgetUpperBound,
+  evaluateAggregateBudgetCap,
+  normalizeAggregateBudgetGuards,
   normalizeProgressHeartbeatMs,
   normalizePostExitGraceMs,
   normalizeLineageBudgetGuards,

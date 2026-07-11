@@ -1,91 +1,115 @@
-# Context Index — Packet 028 Migration Bridge
+# Context Index — Packet 028 Migration and Alias Bridge
 
-> Migration record and consolidated work summary for `028-memory-search-intelligence`.
-> The parent `spec.md` holds root purpose only; this file holds the reorganization
-> narrative and a summary of the memory-search-engine and data-quality work.
+> Current navigation, historical migration record and exact alias guidance for
+> `028-memory-search-intelligence`. Root governance lives in `spec.md`; the
+> complete machine mapping lives in `scratch/topology-migration-manifest.json`.
 
-## 1. Subsystem extraction (2026-07-06)
+## 1. Current applied topology (2026-07-11)
 
-Three subsystems that had accreted under 028 were extracted to their own top-level
-sibling packets, keeping their internal phase numbering.
+The migration manifest is `applied`. Its post-apply gates confirm exactly six root parents (`001` through `006`), 173 governed phases, seven numbered support directories, 180 numbered directories overall, contiguous sibling groups, 18 moved former-root leaves, absent old machine-canonical paths and resolved canonical targets.
+
+| Canonical root | Historical root alias | Direct children | Governed descendants | Maximum nested depth | Theme |
+|----------------|-----------------------|----------------:|---------------------:|---------------------:|-------|
+| `001-release-cleanup/` | `000-release-cleanup/` | 15 | 22 | 2 | Release documentation and readiness cleanup |
+| `002-speckit-memory/` | `001-speckit-memory/` | 42 | 55 | 2 | Memory retrieval, indexing, reliability and evaluation |
+| `003-spec-data-quality/` | `002-spec-data-quality/` | 20 | 66 | 2 | Data quality, metadata generation, validation and migration |
+| `004-review-remediation/` | `003-review-remediation/` | 6 | 6 | 1 | Review-remediation scopes |
+| `005-dark-flag-graduation/` | `004-dark-flag-graduation/` | 11 | 12 | 2 | Dark-flag graduation and flag governance |
+| `006-speckit-surface-alignment/` | `005-speckit-surface-alignment/` | 6 | 6 | 1 | Surface alignment and presentation fixes |
+
+“Governed descendants” excludes the root itself. The six roots plus 167 descendants equal the manifest’s 173 governed phases. All canonical paths above resolve; all six historical root paths are absent.
+
+### Alias resolution rules
+
+1. Treat the manifest `aliases` object as the complete authority. It contains one exact old-to-new mapping for every governed phase.
+2. Use root aliases only as a first routing hint. Descendant ordinals changed in several groups, so prefix substitution alone is unsafe.
+3. Former root leaves listed below moved under thematic parents and received new sibling ordinals.
+4. Seven numbered support directories are classified separately in `support_directories`; do not count or route them as governed phases.
+5. Dated records may retain historical paths as evidence. Active links, commands and recovery pointers use canonical targets.
+
+### Former root leaves nested by theme
+
+| Historical path | Canonical path |
+|-----------------|----------------|
+| `007-search-index-integrity-sweep/` | `002-speckit-memory/008-search-index-integrity-sweep/` |
+| `010-query-channel-calibration/` | `002-speckit-memory/012-query-channel-calibration/` |
+| `011-automatic-drift-self-healing/` | `002-speckit-memory/014-automatic-drift-self-healing/` |
+| `012-orphan-sweep-scoped-scan-safety/` | `002-speckit-memory/016-orphan-sweep-scoped-scan-safety/` |
+| `013-drift-marker-pipeline-resilience/` | `002-speckit-memory/018-drift-marker-pipeline-resilience/` |
+| `014-self-healing-internals-hardening/` | `002-speckit-memory/020-self-healing-internals-hardening/` |
+| `018-git-hooks-reinstall-and-guard/` | `002-speckit-memory/025-git-hooks-reinstall-and-guard/` |
+| `020-query-time-filter-benchmark/` | `002-speckit-memory/028-query-time-filter-benchmark/` |
+| `022-drift-marker-native-consolidation/` | `002-speckit-memory/031-drift-marker-native-consolidation/` |
+| `023-self-healing-model-consolidation/` | `002-speckit-memory/033-self-healing-model-consolidation/` |
+| `008-metadata-rename-reconciliation/` | `003-spec-data-quality/007-metadata-rename-reconciliation/` |
+| `009-validation-integrity-hardening/` | `003-spec-data-quality/008-validation-integrity-hardening/` |
+| `015-validation-hardening-fixes/` | `003-spec-data-quality/009-validation-hardening-fixes/` |
+| `019-validation-enforce-graduation/` | `003-spec-data-quality/010-validation-enforce-graduation/` |
+| `016-cross-package-flag-governance/` | `005-dark-flag-graduation/009-cross-package-flag-governance/` |
+| `017-flag-vocabulary-consolidation/` | `005-dark-flag-graduation/010-flag-vocabulary-consolidation/` |
+| `021-graph-preservation-quality-benchmark/` | `005-dark-flag-graduation/011-graph-preservation-quality-benchmark/` |
+| `006-presentation-layer-fixes/` | `006-speckit-surface-alignment/006-presentation-layer-fixes/` |
+
+### Thematic nesting guide
+
+- `001-release-cleanup/` preserves 15 direct release-readiness children; its drift-remediation and manual-playbook branches account for seven deeper descendants.
+- `002-speckit-memory/` has 42 direct children. The 13-child deep-dive remediation program remains nested at `041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/`.
+- `003-spec-data-quality/` has 20 direct children. Six thematic groups (`001` through `006`) contain 44 deeper descendants, while direct children `007` through `020` hold later integrity, validation and archive-alignment work.
+- `004-review-remediation/` has six direct children and no deeper governed phase.
+- `005-dark-flag-graduation/` has 11 direct children; `007-graduation-follow-ups/` contains one deeper governed phase.
+- `006-speckit-surface-alignment/` has six direct children and no deeper governed phase; presentation-layer fixes are child `006`.
+
+## 2. Historical subsystem extraction (2026-07-06)
+
+This section is preserved history, not current navigation. Three subsystems that had accreted under 028 were extracted to their own sibling packets while keeping their internal phase numbering.
 
 ### Batch 1 — primary clusters
 
-| From (028) | To | Notes |
-|---|---|---|
-| `002-code-graph/` (parent + 11 children) | `system-code-graph/001-code-graph-core/` | seeded the empty packet root |
-| `004-deep-loop/` (parent + 6 children + `007` sub-parent + 4) | `system-deep-loop/038-deep-loop-runtime/` | reconciled the stale root children_ids (real 036/037 added) |
-| `002-skill-advisor/` phases 001-008 (parent) | `system-skill-advisor/002-skill-advisor-runtime/` | `001-hard-rule-and-dispatch-preflight-hardening` HELD in 028 (in-progress follow-up) |
+| From at the time | Destination | Notes |
+|------------------|-------------|-------|
+| `002-code-graph/` (parent + 11 children) | `system-code-graph/001-code-graph-core/` | Seeded the formerly empty subsystem packet |
+| `004-deep-loop/` (parent + 6 children + `007` sub-parent + 4) | `system-deep-loop/038-deep-loop-runtime/` | Reconciled stale root child identities |
+| `002-skill-advisor/` phases 001-008 | `system-skill-advisor/002-skill-advisor-runtime/` | The hard-rule follow-up was temporarily held in 028 |
 
-### Batch 2 — scattered subsystem children (from the cross-cutting 007/008 suites)
+### Batch 2 — scattered subsystem children
 
-| Subsystem | From | To |
-|---|---|---|
-| code-graph | `007-.../005-codegraph-seeded-ppr`, `.../006-codegraph-edge-lifecycle`, `.../007-graduation-follow-ups/001-codegraph-defaults-bitemporal`; `008-.../011-code-graph-doc-audit`, `.../011-fix-code-graph-docs` | `system-code-graph/002-006` |
-| deep-loop | `007-.../008-deeploop-finding-dedup`, `.../007-graduation-follow-ups/002-deeploop-gauges-dedup-scale`; `008-.../013-deep-research-loop-instrumentation` | `system-deep-loop/039-041` |
-| skill-advisor | `007-.../007-advisor-rrf-fusion`; `.../007-graduation-follow-ups/004-advisor-penalty-contract` | `system-skill-advisor/003-004` |
+| Subsystem | Historical sources | Destination range |
+|-----------|--------------------|-------------------|
+| code-graph | Children from the cross-cutting 007/008 suites | `system-code-graph/002-006` |
+| deep-loop | Finding-dedup, gauges and research-instrumentation children | `system-deep-loop/039-041` |
+| skill-advisor | RRF-fusion and penalty-contract children | `system-skill-advisor/003-004` |
 
-**Rollup docs migrated.** `changelog/{002,003,004}-*/` moved to the target packets' changelogs;
-`before-vs-after.md`, `timeline.md`, `changelog/README.md` and `changelog-028-root.md` repointed;
-the two relative parent-refs (`001-.../031-.../spec.md`, `005-.../046-.../spec.md`) and the 045/046
-audit ledgers repointed. Frozen benchmark result files (`005-.../029-vague-query-model-benchmark`,
-`system-deep-loop/033` transcripts, `027` fixers) left untouched by design.
+Rollup changelogs moved to the destination packets, current rollup docs were repointed and frozen benchmark evidence remained unchanged. The migration used subtree moves, self-reference rewrites and regenerated identity metadata. Remaining content debt was not represented as newly completed work.
 
-**Mechanic.** Per folder: `git mv` subtree, substring-rewrite of self-refs (three spellings), regenerate
-`description.json`/`graph-metadata.json` via the main-tree dist, inject the `level` field, pin continuity
-freshness, fix `parent_id`. Each moved folder is a net improvement over its pre-extraction baseline
-(DESCRIPTION_SHAPE and CONTINUITY_FRESHNESS fixed); remaining per-folder failures are pre-existing content debt.
+## 3. Historical root snapshots (superseded)
 
-## 2. Post-extraction 028 scope
+- **2026-07-06 snapshot:** roots included release cleanup, memory, a temporarily held skill-advisor follow-up, data quality, review remediation, dark-flag graduation and surface alignment.
+- **2026-07-07 snapshot:** the held skill-advisor follow-up moved to `system-skill-advisor/011-skill-advisor-phase-parent/`. Packet 028 then used roots `000` through `005`. That numbering is historical.
+- **2026-07-10 snapshot:** eighteen follow-up leaves occupied roots `006` through `023`. That flat placement is historical even though the work records remain valid at their canonical nested destinations.
+- **2026-07-11 current state:** six thematic parents occupy roots `001` through `006`; the 18 former root leaves are nested as listed in Section 1.
 
-As of the 2026-07-06 Batch 1/Batch 2 extraction, 028 top-level was: `000-release-cleanup`,
-`001-speckit-memory` (the memory-search engine), `002-skill-advisor` (held only the in-progress
-`001-hard-rule-and-dispatch-preflight-hardening` follow-up), `002-spec-data-quality`,
-`003-review-remediation`, `004-dark-flag-graduation`, `005-speckit-surface-alignment`.
+Do not use a historical snapshot for current-scope lookup. Resolve paths through the manifest.
 
-That held `002-skill-advisor` follow-up was itself extracted to
-`system-skill-advisor/011-skill-advisor-phase-parent/` on 2026-07-07, closing out 028's last
-skill-advisor remnant — `002-skill-advisor` is not a current 028 child. On 2026-07-10, eighteen
-further review-remediation children, `006-presentation-layer-fixes/` through
-`023-self-healing-model-consolidation/`, were added. `spec.md`'s PHASE DOCUMENTATION MAP is the
-current, authoritative top-level child list; do not use this section for current-scope lookups.
+## 4. Preserved implementation-history summary
 
-## 3. Memory-search engine + spec data-quality — work done and tested
+Implementation statements below summarize existing records and remain historical evidence, not a fresh completion claim.
 
-### 016 deep-dive remediation program — `001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory`
+### Memory deep-dive remediation
 
-13/13 phases shipped and pushed: daemon-freshness/health-truthfulness, orphan-sweep + corpus repair,
-archived-tier + tombstone read-exclusions, content-hash normalization + save-dedup lanes, embedding
-coverage + vector-shard consistency, trigger-phrase matcher guards, rescue-layer ranking authority,
-ranking-filter-bypass + score-scale fixes, causal-graph hygiene + entity-linker noise, learning-feedback
-loop repair, search-hot-path performance, envelope/command-doc alignment, and closeout. Recursive
-`validate.sh --strict` was 14 passed / 0 failed across the program parent and all 13 children.
+The former `001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory` path is now `002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory`. Its existing record reports 13 shipped child phases and a 14-folder strict-validation pass at that time.
 
-### Spec data-quality — `002-spec-data-quality`
+### Spec data-quality
 
-On-write quality loop, retroactive automation, retrieval-gated tuning, novel research, the shared
-safe-fix engine, generated-metadata build and full-repo JSON migration, plus the flat drift-audit /
-metadata-status-integrity / create.sh-corruption phases (045-053).
+The former `002-spec-data-quality/` root is now `003-spec-data-quality/`. Existing records cover on-write quality, retroactive automation, retrieval-gated tuning, novel research, shared-engine work, generated metadata, migration and later integrity phases. Its root `implementation-summary.md` contains explicit correction notes and historical contradictions, so phase-local summaries remain the authority for any present implementation claim.
 
-### This session (2026-07-06) — new work under `002-spec-data-quality`
+### Deferred daemon-side item from the earlier session
 
-- `051-graph-metadata-child-drift-audit-and-harden` — a repo-wide `children_ids`-vs-on-disk drift audit
-  (21 drifted parents found and classified) plus a permanent `GRAPH_METADATA_CHILD_DRIFT` validate rule
-  (advisory-by-default, enforce behind a flag) whose child enumeration is proven byte-identical to the
-  graph-metadata writer; RED/GREEN test suite 10/10.
-- `052-z-archive-metadata-backfill` — 9 z_archive container-root cold-tier nodes (`importance_tier: archived`),
-  hard-excluded from default recall.
-- `053-deep-loop-036-037-reindex` — reindex of the renamed system-deep-loop 036/037 folders + repointed
-  stale metadata identifiers.
-- Verified via a 10-iteration deep review (verdict CONDITIONAL) → GPT-5.5-fast remediation (commit
-  `c712cd7104`) → independent Opus verification returning ALL-CLEAR.
+The earlier record diagnosed missing vectors after retry-retention backpressure and described a restart-gated recovery sequence. This remains historical operational context. It is not evidence that the recovery was executed during the topology migration or this documentation alignment.
 
-### Re-embed drain diagnosis (the deferred 016/004 daemon-side item)
+## 5. Recovery pointers
 
-15,392 of 19,446 `memory_index` rows have no vector — all swept to `failed` by the retry-queue retention
-backpressure (24h max-age + 1,000 pending-cap) during the multi-day daemon ABI/SIGBUS outage, not an
-embedder fault (Ollama `nomic-embed-text:v1.5` at 768-dim is healthy). Census: ~78% are live-file
-re-embeddable, ~22% are "orphans" that are mostly moved-not-deleted (re-nest casualties, still valid).
-A naive reconcile re-triggers the retention trap. The full-fix remediation (checkpoint → re-path
-moved rows → retention-tuned restart → reconcile-apply → drain → prune only truly-gone rows) is
-prepared and restart-gated; this remains the packet's open daemon-side item.
+1. Start at root `spec.md` for the six-parent map.
+2. If a prompt or record names an old path, look it up in `scratch/topology-migration-manifest.json` under `aliases`.
+3. Open the canonical parent’s `spec.md`, then descend to its current child.
+4. Read phase-local `implementation-summary.md` before relying on implementation status.
+5. Use `handover.md` for current continuation and `scratch/topology-migration-log.md` for the applied transaction evidence.

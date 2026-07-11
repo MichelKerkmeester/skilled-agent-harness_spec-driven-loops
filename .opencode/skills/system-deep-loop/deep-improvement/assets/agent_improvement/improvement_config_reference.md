@@ -9,7 +9,7 @@ trigger_phrases:
   - "model-benchmark mode config"
 importance_tier: normal
 contextType: implementation
-version: 1.17.0.12
+version: 1.17.0.13
 ---
 
 # Improvement Config Reference
@@ -69,6 +69,16 @@ Use this reference when:
 | `stopOnDriftAmbiguity` | boolean | Stop if mirror drift report is ambiguous |
 | `stopOnDimensionPlateau` | boolean | Stop if all 5 dimensions plateau (identical scores over the plateau window) |
 | `plateauWindow` | number | Number of trailing scores to compare for plateau detection (default: 3) |
+
+### Dispatch Caps
+
+Cumulative, whole-session cost ceilings by operation type — independent of `maxIterations` and never reset per-iteration. Enforced by `scripts/shared/check-dispatch-cap.cjs`, which the loop YAML runs before every candidate dispatch, score execution, and benchmark run; it counts completed operations from `improvement-journal.jsonl` and halts with a clear error before starting one that would push the cumulative count past its cap. A missing or non-numeric field falls back to the same default shown below, so an out-of-date config still enforces a real ceiling.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `maxCandidateDispatches` | number | Cumulative cap on `@deep-improvement` candidate-generation dispatches for the whole session (default: 5, i.e. `maxIterations` at 1 dispatch/iteration) |
+| `maxScoreExecutions` | number | Cumulative cap on `score-candidate.cjs` executions for the whole session — counts the primary score plus both uncached stability replays (default: 15, i.e. `maxIterations` x 3 executions/iteration) |
+| `maxBenchmarkRuns` | number | Cumulative cap on `run-benchmark.cjs` executions for the whole session (default: 5, i.e. `maxIterations` at 1 run/iteration) |
 
 ### Model-Benchmark Mode
 

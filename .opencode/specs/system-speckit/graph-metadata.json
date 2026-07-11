@@ -15,7 +15,8 @@
     "system-speckit/028-memory-search-intelligence",
     "system-speckit/029-headroom-utilization",
     "system-speckit/030-validate-sh-dist-freshness-and-repo-remediation",
-    "system-speckit/031-manual-playbook-execution-sweep"
+    "system-speckit/031-manual-playbook-execution-sweep",
+    "system-speckit/029-phased-spec-preference"
   ],
   "manual": {
     "depends_on": [],
@@ -38,13 +39,13 @@
     "entities": [],
     "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-05-07T09:13:37.743Z",
-    "last_save_at": "2026-07-02T04:40:58.761Z",
+    "last_save_at": "2026-07-11T14:18:43.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "system-spec-kit/028-autonomous-dependency-patching",
-    "last_active_at": "2026-06-11T09:31:20.145Z"
+    "last_active_child_id": "system-speckit/029-phased-spec-preference",
+    "last_active_at": "2026-07-11T14:18:43.170Z"
   }
 }

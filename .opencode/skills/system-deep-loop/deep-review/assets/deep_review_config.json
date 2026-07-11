@@ -55,7 +55,7 @@
   },
   "qualityGateThreshold": true,
   "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
-  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
   "fileProtection": {
     "deep-review-config.json": "immutable",
     "deep-review-state.jsonl": "append-only",

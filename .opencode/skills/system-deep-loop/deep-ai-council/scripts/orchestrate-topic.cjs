@@ -128,7 +128,14 @@ function normalizeSeats(topic, sessionState, executorConfig, guards) {
   const seats = executorConfig.seats
     || topic.seats
     || sessionState.current.round.seats;
-  if (Array.isArray(seats) && seats.length > 0) return seats;
+  if (Array.isArray(seats) && seats.length > 0) {
+    if (seats.length > guards.seats_per_round) {
+      throw new RangeError(
+        `explicit seat count ${seats.length} exceeds seats_per_round ${guards.seats_per_round}`,
+      );
+    }
+    return seats;
+  }
   return Array.from({ length: guards.seats_per_round }, (_unused, index) => ({
     id: `seat-${pad3(index + 1)}`,
   }));

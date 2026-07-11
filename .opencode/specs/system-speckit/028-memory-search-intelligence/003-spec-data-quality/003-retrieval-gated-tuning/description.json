@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning",
+  "description": "Retrieval-Gated Tuning subgroup of the spec-data-quality track: retrieval-tuning items gated behind benchmarks.",
+  "keywords": [
+    "retrieval-gated",
+    "tuning",
+    "subgroup",
+    "spec-data-quality",
+    "track",
+    "retrieval-tuning",
+    "items",
+    "gated",
+    "behind",
+    "benchmarks"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.710Z",
+  "specId": "003",
+  "folderSlug": "retrieval-gated-tuning",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

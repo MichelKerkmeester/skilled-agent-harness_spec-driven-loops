@@ -83,7 +83,7 @@ describe('deep-review reducer and schema contract', () => {
         'deep-review-findings-registry.json',
       );
       expect(content, `${docPath} workflow should invoke the reducer script`).toContain(
-        'node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs',
+        'node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs',
       );
       expect(content, `${docPath} workflow should treat reducer reruns as idempotent`).toMatch(/[Ii]dempotent/);
       expect(content, `${docPath} workflow should carry release readiness through synthesis`).toContain(

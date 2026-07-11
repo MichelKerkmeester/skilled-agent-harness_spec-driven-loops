@@ -12,8 +12,8 @@
 // ║   acquire --lock-path P --packet-id X [--ttl-ms N] [--runtime-kind K]    ║
 // ║           [--owner-pid PID]                                              ║
 // ║   status  --lock-path P                                                  ║
-// ║   refresh --lock-path P --owner-pid PID                                  ║
-// ║   release --lock-path P --owner-pid PID                                  ║
+// ║   refresh --lock-path P --owner-pid PID [--nonce N]                      ║
+// ║   release --lock-path P --owner-pid PID [--nonce N]                      ║
 // ║ Output: one JSON object on stdout.                                       ║
 // ║ Exit:   0=ok, 1=script error, 3=input validation error.                 ║
 // ║                                                                          ║
@@ -107,6 +107,18 @@ function resolveOwnerPid(flags) {
   return pid;
 }
 
+// Nonce is optional on the CLI: nonce-less legacy locks still refresh/release
+// on pid match alone, so callers that never captured a nonce keep working.
+function resolveOptionalNonce(flags) {
+  if (flags.nonce === undefined) {
+    return undefined;
+  }
+  if (typeof flags.nonce !== 'string' || !flags.nonce) {
+    throw inputError('--nonce must be a non-empty string when provided');
+  }
+  return flags.nonce;
+}
+
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
@@ -187,7 +199,8 @@ async function main() {
   if (subcommand === 'refresh') {
     const lockPath = requireString(flags, 'lockPath');
     const ownerPid = resolveOwnerPid(flags);
-    const refreshed = lib.refreshLoopLock(lockPath, ownerPid);
+    const acquireNonce = resolveOptionalNonce(flags);
+    const refreshed = lib.refreshLoopLock(lockPath, ownerPid, new Date(), { acquireNonce });
     jsonOut({ command: 'refresh', refreshed });
     return;
   }
@@ -195,7 +208,8 @@ async function main() {
   if (subcommand === 'release') {
     const lockPath = requireString(flags, 'lockPath');
     const ownerPid = resolveOwnerPid(flags);
-    const released = lib.releaseLoopLock(lockPath, ownerPid);
+    const acquireNonce = resolveOptionalNonce(flags);
+    const released = lib.releaseLoopLock(lockPath, ownerPid, acquireNonce);
     jsonOut({ command: 'release', released });
     return;
   }

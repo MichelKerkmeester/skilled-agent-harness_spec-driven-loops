@@ -43,9 +43,12 @@ export type PostDispatchValidateInput = {
   deltaFilePath?: string;
   routeProof?: RouteProofExpectation;
   recipeConfig?: PostDispatchRecipeConfig;
-  // When set, the validator requires a valid engine-signed dispatch receipt
-  // (intent + completion) before accepting the state-log append. Dispatches
-  // that did not opt into receipts omit it and keep legacy behavior.
+  // When set, the validator requires a structurally intact, intent-bound
+  // dispatch receipt pair (intent + completion) before accepting the
+  // state-log append; a mac that fails to cryptographically correlate is
+  // reported as a warning, not a blocking failure (see
+  // validateDispatchReceipt). Dispatches that did not opt into receipts omit
+  // it and keep legacy behavior.
   dispatchReceipt?: DispatchReceiptExpectation;
 };
 
@@ -631,10 +634,15 @@ function requiredJsonlFieldSet(
   return requiredFields;
 }
 
-// The three model-written route-proof fields. When a valid engine-signed
-// dispatch receipt is present these become advisory: the receipt-derived route
-// facts are authoritative, so a dispatch that omits or disagrees on them is
-// accepted (warned, not blocked). `mode` is engine-determined, never demoted.
+// The three model-written route-proof fields. When a structurally valid
+// dispatch receipt pair is present (see validateDispatchReceipt) these become
+// advisory: the receipt facts were written by the engine's own dispatch
+// wrapper, not self-reported by the model, so they are treated as more
+// reliable than the model-written fields regardless of whether the mac
+// cryptographically correlates (it cannot, across a real process boundary —
+// see loadAndVerifyReceipt). A dispatch that omits or disagrees with the
+// model-written fields is accepted (warned, not blocked). `mode` is
+// engine-determined, never demoted.
 const ROUTE_PROOF_MODEL_FIELDS = ['target_agent', 'agent_definition_loaded', 'resolved_route'] as const;
 
 type RouteProofOutcome = {
@@ -750,14 +758,23 @@ function receiptFilePath(receiptDir: string, dispatchId: string, phase: 'intent'
 }
 
 type LoadedReceipt =
-  | { ok: true; record: Record<string, unknown> }
+  | { ok: true; record: Record<string, unknown>; warnings: PostDispatchAdvisory[] }
   | { ok: false; result: Extract<PostDispatchValidateResult, { ok: false }> };
 
-// Load one receipt file, assert it is a structurally well-formed dispatch
-// receipt for this dispatch/phase, and verify its MAC under the derived key. A
-// receipt that exists but is unparseable, structurally wrong, or carries a bad
-// MAC is rejected as invalid — distinct from a receipt that simply was never
+// Load one receipt file and assert it is a structurally well-formed dispatch
+// receipt for this dispatch/phase: valid JSON, the right type/version/phase,
+// the expected dispatchId, a facts object, and a non-empty mac field. A
+// receipt that exists but is unparseable, structurally wrong, or missing its
+// mac is rejected as invalid — distinct from a receipt that simply was never
 // written (missing).
+//
+// The mac is still recomputed and compared against the derived key, but a
+// mismatch is reported as a warning, not a structural failure: the signing
+// key is derived from an in-process run-master secret that is freshly random
+// per process and never persisted (executor-audit.ts), so a validator running
+// in a different process than the writer recomputes a different key by
+// construction and cannot reproduce the mac even for a completely legitimate
+// receipt. A mismatch means "different process," not "tampered."
 function loadAndVerifyReceipt(
   receiptPath: string,
   phase: 'intent' | 'completion',
@@ -853,18 +870,16 @@ function loadAndVerifyReceipt(
     };
   }
 
+  const warnings: PostDispatchAdvisory[] = [];
   if (!verifyReceipt(parsed, mac, key)) {
-    return {
-      ok: false,
-      result: {
-        ok: false,
-        reason: 'dispatch_receipt_invalid_mac',
-        details: `${phase} receipt MAC verification failed`,
-      },
-    };
+    warnings.push({
+      code: 'dispatch_receipt_mac_uncorrelated',
+      detail: `${phase} receipt mac did not correlate with this process's derived key (expected when the validator runs in a different process than the writer; not evidence of tampering)`,
+      fieldPath: 'mac',
+    });
   }
 
-  return { ok: true, record: parsed };
+  return { ok: true, record: parsed, warnings };
 }
 
 function canonicalBoundFacts(facts: Record<string, unknown>): string {
@@ -877,51 +892,81 @@ function canonicalBoundFacts(facts: Record<string, unknown>): string {
   return canonicalReceiptJson(bound);
 }
 
+/** Outcome of validating a dispatch receipt pair: a blocking failure (or
+ * null), plus any advisory warnings — e.g. a mac that could not be
+ * cryptographically correlated to this process's derived key. */
+type DispatchReceiptOutcome = {
+  failure: Extract<PostDispatchValidateResult, { ok: false }> | null;
+  warnings: PostDispatchAdvisory[];
+};
+
 /**
- * Validate an engine-signed dispatch receipt pair when the dispatch opted into
- * receipts. Returns null when the receipt pair is valid; a failure result
- * otherwise. The signing key is re-derived from the in-process run-master
- * secret — the validator runs in the same engine process that wrote the
- * receipt, so the secret never leaves the process, and the derivation
- * re-verifies identically on resume.
+ * Validate an engine-authored dispatch receipt pair when the dispatch opted
+ * into receipts. Returns a blocking failure when the receipt pair is missing,
+ * structurally invalid, or the completion does not bind to its intent.
+ * Returns warnings (never a failure) when a receipt's mac cannot be
+ * cryptographically correlated to this process's derived key.
+ *
+ * The signing key is derived from an in-memory run-master secret that is
+ * freshly random per process and never persisted to disk (see
+ * executor-audit.ts). That means the mac genuinely correlates a receipt only
+ * when the writer and this validator share one live process; it cannot
+ * authenticate a receipt across a real writer-process/validator-process
+ * boundary — a separate CLI invocation, a resumed run after a process
+ * restart — because that process derives a different key from a different
+ * secret. Structural well-formedness, dispatch-identity fields, and the
+ * intent/completion equality check below do not depend on the secret and stay
+ * fully enforced regardless of process boundaries.
  */
-function validateDispatchReceipt(expectation: DispatchReceiptExpectation): PostDispatchValidateResult | null {
+function validateDispatchReceipt(expectation: DispatchReceiptExpectation): DispatchReceiptOutcome {
   const key = deriveReceiptKeyForDispatch(expectation.dispatchId);
+  const warnings: PostDispatchAdvisory[] = [];
 
   const intentPath = receiptFilePath(expectation.receiptDir, expectation.dispatchId, 'intent');
   const intent = loadAndVerifyReceipt(intentPath, 'intent', expectation.dispatchId, key);
   if (!intent.ok) {
-    return intent.result;
+    return { failure: intent.result, warnings };
   }
+  warnings.push(...intent.warnings);
 
   const completionPath = receiptFilePath(expectation.receiptDir, expectation.dispatchId, 'completion');
   const completion = loadAndVerifyReceipt(completionPath, 'completion', expectation.dispatchId, key);
   if (!completion.ok) {
-    return completion.result;
+    return { failure: completion.result, warnings };
   }
+  warnings.push(...completion.warnings);
 
   const intentFacts = intent.record.facts;
   const completionFacts = completion.record.facts;
   if (!isObjectRecord(intentFacts) || !isObjectRecord(completionFacts)) {
     return {
-      ok: false,
-      reason: 'dispatch_receipt_invalid_mac',
-      details: 'receipt facts object missing',
+      failure: {
+        ok: false,
+        reason: 'dispatch_receipt_invalid_mac',
+        details: 'receipt facts object missing',
+      },
+      warnings,
     };
   }
 
   // Bind the INTENT to its COMPLETION: the completion must countersign the same
   // dispatch the engine intended. A completion whose base intent facts diverge
-  // is a countersign of a different dispatch and must be rejected.
+  // is a countersign of a different dispatch and must be rejected. This
+  // equality check is plain structural comparison over the facts objects — it
+  // does not depend on the mac, so it holds regardless of which process wrote
+  // which half of the pair.
   if (canonicalBoundFacts(intentFacts) !== canonicalBoundFacts(completionFacts)) {
     return {
-      ok: false,
-      reason: 'dispatch_receipt_intent_mismatch',
-      details: 'completion does not bind to intent: base facts (command/args/cwd/executor/iteration) diverge',
+      failure: {
+        ok: false,
+        reason: 'dispatch_receipt_intent_mismatch',
+        details: 'completion does not bind to intent: base facts (command/args/cwd/executor/iteration) diverge',
+      },
+      warnings,
     };
   }
 
-  return null;
+  return { failure: null, warnings };
 }
 
 function v2Failure(
@@ -1645,16 +1690,22 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       }
     }
 
-    // A valid engine-signed dispatch receipt makes the model-written route-proof
-    // fields advisory: the receipt-derived route facts are authoritative, so a
-    // dispatch that omits or disagrees on them is accepted (warned, not blocked).
-    // When no receipt is configured, route-proof keeps its legacy strict behavior.
+    // A structurally valid, intent-bound dispatch receipt pair makes the
+    // model-written route-proof fields advisory: the receipt facts were
+    // written by the engine's own dispatch wrapper, not self-reported by the
+    // model, so a dispatch that omits or disagrees with them is accepted
+    // (warned, not blocked) once the receipt pair itself checks out. This
+    // does not require the mac to cryptographically correlate — see
+    // validateDispatchReceipt for why it cannot, across a real process
+    // boundary. When no receipt is configured, route-proof keeps its legacy
+    // strict behavior.
     let modelFieldsAdvisory = false;
     if (input.dispatchReceipt) {
-      const receiptFailure = validateDispatchReceipt(input.dispatchReceipt);
-      if (receiptFailure) {
-        return receiptFailure;
+      const receiptOutcome = validateDispatchReceipt(input.dispatchReceipt);
+      if (receiptOutcome.failure) {
+        return receiptOutcome.failure;
       }
+      warnings.push(...receiptOutcome.warnings);
       modelFieldsAdvisory = true;
     }
 

@@ -38,7 +38,9 @@ export const executorConfigSchema = z.object({
   reasoningEffort: z.enum(REASONING_EFFORTS).nullable().default(null),
   serviceTier: z.enum(SERVICE_TIERS).nullable().default(null),
   sandboxMode: z.enum(SANDBOX_MODES).nullable().default(null),
-  timeoutSeconds: z.number().int().positive().default(900),
+  // Hard ceiling of 1 hour per iteration: bounds a single executor invocation so a
+  // runaway per-iteration call cannot by itself consume the whole autonomous lifetime budget.
+  timeoutSeconds: z.number().int().positive().max(3600).default(900),
   // Optional fable-5 governor capsule for this executor's prompts. Universal and
   // kind-agnostic on purpose: intentionally absent from EXECUTOR_KIND_FLAG_SUPPORT
   // and the unsupported-field scan, so any executor kind may carry it. null = none.
@@ -259,7 +261,7 @@ export const lineageExecutorSchema = executorConfigSchema.extend({
   label: z.string().min(1).regex(LINEAGE_LABEL_PATTERN, {
     message: "label must match /^[a-z0-9][a-z0-9-]*$/ (lowercase, digits, hyphens; dir-safe)",
   }),
-  count: z.number().int().positive().default(1),
+  count: z.number().int().positive().max(16).default(1),
   iterations: z.number().int().positive().nullable().default(null),
   promptFramework: z.string().min(1).nullable().default(null),
   assignment_model: z.enum(FANOUT_ASSIGNMENT_MODELS).default('flat_pool'),
@@ -270,14 +272,18 @@ export const lineageExecutorSchema = executorConfigSchema.extend({
 export type LineageExecutor = z.infer<typeof lineageExecutorSchema>;
 
 export const fanoutConfigSchema = z.object({
-  executors: z.array(lineageExecutorSchema).min(1),
+  // Ceiling of 16 lineages per fan-out block; combined with the per-lineage `count`
+  // ceiling (also 16) this bounds the maximum expanded lineage count a single
+  // autonomous run can reach.
+  executors: z.array(lineageExecutorSchema).min(1).max(16),
   assignment_model: z.enum(FANOUT_ASSIGNMENT_MODELS).default('flat_pool'),
-  concurrency: z.number().int().positive().default(2),
-  maxRetries: z.number().int().nonnegative().default(5),
-  // Stall detection defaults ON: a lineage that stops emitting progress is aborted and
-  // requeued within the ceiling and fails loud, instead of hanging silently at 0% CPU
-  // until the hours-scale subprocess timeout. Set 0 to opt out.
-  lagCeilingMs: z.number().int().nonnegative().default(300000),
+  concurrency: z.number().int().positive().max(8).default(2),
+  maxRetries: z.number().int().nonnegative().max(5).default(5),
+  // Stall detection defaults ON and is non-disableable while running autonomously: a
+  // lineage that stops emitting progress is aborted and requeued within the ceiling and
+  // fails loud, instead of hanging silently at 0% CPU until the hours-scale subprocess
+  // timeout. Capped at 5 minutes; zero (the old opt-out) is now rejected, not accepted.
+  lagCeilingMs: z.number().int().positive().max(300000).default(300000),
   progressHeartbeatSeconds: z.number().nonnegative().default(60),
 });
 

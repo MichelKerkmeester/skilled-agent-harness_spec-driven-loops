@@ -50,9 +50,9 @@ As a manual-testing orchestrator, validate the review resource-map emission cont
 ### Commands
 
 1. `bash: rg -n 'resource-map|no-resource-map|emit-resource-map' .opencode/commands/deep/review.md .opencode/skills/system-deep-loop/deep-review/SKILL.md .opencode/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs`
-3. `bash: node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs <spec-folder> --emit-resource-map`
-4. `bash: node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs <spec-folder> --emit-resource-map` with `deep-review-config.json` edited to `"resource_map": { "emit": false }`
+2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`
+3. `bash: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder> --emit-resource-map`
+4. `bash: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder> --emit-resource-map` with `deep-review-config.json` edited to `"resource_map": { "emit": false }`
 
 ### Expected
 
@@ -88,7 +88,7 @@ Privilege the YAML synthesis step and reducer behavior over secondary docs if th
 | `.opencode/commands/deep/review.md` | Command entrypoint, opt-out and emitted-artifact contract |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | Autonomous synthesis emission step |
 | `.opencode/commands/deep/assets/deep_review_confirm.yaml` | Confirm-mode synthesis emission step |
-| `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs` | Reducer flag handling and write path |
+| `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Reducer flag handling and write path |
 | `.opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs` | Shared template renderer and review-shape adapter |
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | Focused regression coverage for the emitted output shape |
 

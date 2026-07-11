@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/033-self-healing-model-consolidation",
+  "description": "The self-healing system ships in three layers (`011-automatic-drift-self-healing/spec.md` section 3), and its own",
+  "keywords": [
+    "self-healing",
+    "system",
+    "ships",
+    "three",
+    "layers",
+    "011-automatic-drift-self-healing",
+    "spec",
+    "section",
+    "own"
+  ],
+  "lastUpdated": "2026-07-11T17:56:10.996Z",
+  "specId": "033",
+  "folderSlug": "self-healing-model-consolidation",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

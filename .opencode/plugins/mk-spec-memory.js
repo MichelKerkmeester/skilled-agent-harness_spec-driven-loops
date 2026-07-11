@@ -1,7 +1,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Spec Memory OpenCode Plugin (mk-spec-memory)                 ║
+// ║ COMPONENT: Spec Memory OpenCode Plugin (mk-spec-memory)                  ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Inject Spec Kit continuity into OpenCode model context and     ║
+// ║ PURPOSE: Inject Spec Kit continuity into OpenCode model context and      ║
 // ║          expose warm bridge status without leaking local paths.          ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
@@ -350,7 +350,7 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
         stdoutChunks.push(buffer);
         stdoutBytes += buffer.length;
       });
-      child.stderr?.on('data', () => {});
+      child.stderr?.on('data', () => { });
       child.on('error', () => {
         finish({ status: 'fail_open', brief: null, data: null, metadata: {}, error: 'SPAWN_ERROR' });
       });

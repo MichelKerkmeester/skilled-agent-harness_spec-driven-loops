@@ -1,14 +1,14 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: mk-cli-dispatch-audit OpenCode Plugin (adapter)                ║
+// ║ COMPONENT: mk-cli-dispatch-audit OpenCode Plugin (adapter)               ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Post-execution telemetry for completed CLI dispatches. Observes ║
 // ║          `tool.execute.after` for Bash calls, recognizes an `opencode    ║
 // ║          run` / `claude -p` dispatch shape, and appends one redacted,    ║
 // ║          size-rotated JSONL audit line via the shared runtime-neutral    ║
-// ║          dispatch-audit core. Every field of every step -- matching,     ║
+// ║          dispatch-audit core. Every field of every step -- matching,      ║
 // ║          redaction, formatting, rotated append -- lives in that core so  ║
 // ║          the Claude PostToolUse(Bash) hook produces an identical line;   ║
-// ║          this file only maps OpenCode's transport shape onto it. Purely  ║
+// ║          this file only maps OpenCode's transport shape onto it. Purely   ║
 // ║          observational: it runs after the tool result already exists and ║
 // ║          never throws, never writes stdout/stderr, and never blocks or   ║
 // ║          alters the observed dispatch.                                   ║

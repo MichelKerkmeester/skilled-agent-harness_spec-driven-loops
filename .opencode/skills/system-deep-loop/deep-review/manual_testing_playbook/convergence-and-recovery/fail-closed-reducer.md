@@ -50,12 +50,12 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review reducer fail-closed behavior for malformed JSONL and missing machine-owned anchors.
 
 ### Commands
-1. `bash: node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs {corrupt_fixture}. Echo "exit: $?"`
+1. `bash: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {corrupt_fixture}. Echo "exit: $?"`
 2. `bash: cat {corrupt_fixture}/review/deep-review-findings-registry.json | jq '.corruptionWarnings'`
-3. `bash: node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs {anchor_fixture}. Echo "exit: $?"`
-4. `bash: node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs {corrupt_fixture} --lenient. Echo "exit: $?"`
+3. `bash: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {anchor_fixture}. Echo "exit: $?"`
+4. `bash: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {corrupt_fixture} --lenient. Echo "exit: $?"`
 5. `bash: cat {corrupt_fixture}/review/deep-review-findings-registry.json | jq '.corruptionWarnings'`
-6. `bash: node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs {anchor_fixture} --create-missing-anchors. Echo "exit: $?"`
+6. `bash: node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {anchor_fixture} --create-missing-anchors. Echo "exit: $?"`
 7. `bash: sed -n '/ANCHOR:next-focus/,/\/ANCHOR:next-focus/p' {anchor_fixture}/review/deep-review-strategy.md`
 
 ### Expected
@@ -84,7 +84,7 @@ Privilege `reduce-state.cjs` for exit semantics and `review-reducer-fail-closed.
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs` | Canonical reducer implementation, emits `corruptionWarnings`, exits non-zero on corruption, and enforces machine-owned anchor presence unless recovery flags are passed |
+| `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Canonical reducer implementation, emits `corruptionWarnings`, exits non-zero on corruption, and enforces machine-owned anchor presence unless recovery flags are passed |
 | `.opencode/skills/system-deep-loop/deep-review/references/state/state_format.md` | Review state contract, documents `corruptionWarnings`, fail-closed semantics, dashboard surfaces, and strategy anchor bootstrap behavior |
 | `.opencode/skills/system-spec-kit/scripts/tests/review-reducer-fail-closed.vitest.ts` | Concrete regression coverage for corruption, `--lenient`, missing anchors, and `--create-missing-anchors` behavior |
 

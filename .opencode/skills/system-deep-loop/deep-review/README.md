@@ -64,7 +64,7 @@ Expected output: a review report at `{spec_folder}/review/review-report.md` with
 **Step 3: Verify the reducer output after the loop finishes.**
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs <spec-folder>
+node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder>
 ```
 
 Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iterationsCompleted`, `findings` and convergence fields.

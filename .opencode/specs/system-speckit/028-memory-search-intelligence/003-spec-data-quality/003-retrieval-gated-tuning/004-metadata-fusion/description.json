@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/004-metadata-fusion",
+  "description": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite",
+  "keywords": [
+    "fusion",
+    "stage",
+    "scores",
+    "candidate",
+    "text",
+    "similarity",
+    "applies",
+    "bounded",
+    "validation",
+    "multiplier",
+    "composite"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.714Z",
+  "specId": "004",
+  "folderSlug": "metadata-fusion",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-spec-data-quality",
+    "003-retrieval-gated-tuning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

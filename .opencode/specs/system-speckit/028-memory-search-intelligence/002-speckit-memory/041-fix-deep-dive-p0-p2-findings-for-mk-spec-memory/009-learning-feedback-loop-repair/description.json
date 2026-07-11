@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair",
+  "description": "The memory learning loop is starved of usage signal: only 65 of 33,101 index rows have ever recorded an access, and `trackAccess` is default-off",
+  "keywords": [
+    "memory",
+    "learning",
+    "loop",
+    "starved",
+    "usage",
+    "signal",
+    "only",
+    "index",
+    "rows",
+    "ever",
+    "recorded",
+    "access",
+    "trackaccess",
+    "default-off"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.521Z",
+  "specId": "009",
+  "folderSlug": "learning-feedback-loop-repair",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-speckit-memory",
+    "041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

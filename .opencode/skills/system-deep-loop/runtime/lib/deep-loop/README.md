@@ -26,7 +26,7 @@ trigger_phrases:
 | `post-dispatch-validate.ts` | Iteration markdown, JSONL and delta validation after external dispatch. |
 | `evidence-contract.ts` | Machine-checkable dispatch-boundary evidence metadata validation. |
 | `prompt-pack.ts` | Prompt template rendering with required variable checks. |
-| `permissions-gate.ts` | Permission-scope checks for deep-loop dispatch. |
+| `permissions-gate.ts` | Permission-scope matching logic, built and unit-tested; zero production callers — not wired into deep-loop dispatch today. |
 | `bayesian-scorer.ts` | Convergence scoring. |
 | `fallback-router.ts` | Executor fallback routing. |
 | `runtime-capabilities.cjs` | Parameterized capability-matrix resolver shared by the graph-backed modes. The deep-research and deep-review scripts bind a label plus default matrix path and re-export it as byte-compatible shims. |

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/004-review-remediation/002-memory-schema-and-concurrency",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/004-review-remediation/002-memory-schema-and-concurrency",
+  "parent_id": "system-speckit/028-memory-search-intelligence/004-review-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 memory schema concurrency remediation",
+      "derived-id identity split fix",
+      "consolidation embedding lock fix",
+      "retention spare-only stale snapshot fix",
+      "028 memory schema concurrency plan",
+      "derived-id consolidation retention fix plan",
+      "028 memory schema concurrency tasks",
+      "derived-id consolidation retention tasks",
+      "028 memory schema concurrency checklist",
+      "derived-id consolidation retention checklist",
+      "002-memory-schema-and-concurrency implementation summary",
+      "028 review remediation schema concurrency"
+    ],
+    "key_topics": [
+      "memory",
+      "schema",
+      "concurrency",
+      "remediation",
+      "derived-id",
+      "identity",
+      "split",
+      "consolidation",
+      "embedding",
+      "lock",
+      "retention",
+      "spare-only"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "shared/algorithms/rrf-fusion.ts",
+      "mcp_server/lib/search/vector-index-schema.ts",
+      "mcp_server/lib/content-id.ts",
+      "mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/lib/storage/consolidation.ts",
+      "mcp_server/lib/governance/memory-retention-sweep.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "content-id.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/content-id.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/consolidation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Schema",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Concurrency Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three confirmed P1 defects sit in the memory schema and storage layer: a content-addressed identity that splits across the migration versus live-write boundary, a semantic-edge embedding pass that runs inside a write lock without refreshing its maintenance marker and a retention sweep that applies stale pre-transaction delete decisions on its new spare axes",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-07-11T18:40:36.296Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ab6731a6ff99406523f5128b490ba8c1bd1a316ea2bbefa5394c7a83704644b7",
+    "source_doc_hashes": {
+      "spec.md": "432068d6f83eea84ba264bb80e9c10f2d46332123256adf6d6d9a2fd6d3d7fba",
+      "plan.md": "96e6116ea05f96a9235125098f13d5364eff486e89c0d9fb3f0be7d44a7f3059",
+      "tasks.md": "98aefed8cb9f975b450dca11fe0515692b50677a9d70e7f224728b03f59bfa3a",
+      "checklist.md": "96ec6aa914c4b3e1df321f4837166e41a43632d7733e112340bbb0a7abc23b8d",
+      "implementation-summary.md": "8a6bc2e2d5322dc8b060f7aa56cb8565217fe3961585217ee112856600814d14"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

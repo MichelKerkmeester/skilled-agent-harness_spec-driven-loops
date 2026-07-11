@@ -3,6 +3,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
+import yaml from 'js-yaml';
 import { describe, expect, it } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -251,5 +252,55 @@ function readWorkspaceFile(relativePath: string): string {
 
   it('throws for unknown deep-review runtime IDs', () => {
     expect(() => reviewCapabilityModule!.resolveRuntimeCapability('nonexistent')).toThrow(/Unknown deep-review runtime/);
+  });
+
+  // Lightweight enum-parity tripwire for the review-mode contract's
+  // authoredArtifacts: these five docs are hand-maintained, not rendered, so
+  // this does not diff full content — it only confirms each doc still
+  // literally mentions the manifest's current ids for the enum families it
+  // declares in enumParityChecked. Driven entirely by the manifest itself
+  // (both the canonical id lists and which families apply to which file),
+  // so it stays meaningful if the taxonomy changes instead of duplicating
+  // it here.
+  it('keeps authoredArtifacts docs mentioning the manifest enum ids declared in their enumParityChecked', () => {
+    const contract = yaml.load(
+      readWorkspaceFile('.opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml'),
+    ) as {
+      contract: {
+        dimensions: Array<{ id: string }>;
+        severities: Array<{ id: string }>;
+        verdicts: Array<{ id: string }>;
+        crossReferenceProtocols: Array<{ id: string }>;
+      };
+      authoredArtifacts: Array<{ id: string; path: string; enumParityChecked: string[] }>;
+    };
+
+    const idsByFamily: Record<string, string[]> = {
+      dimensions: contract.contract.dimensions.map((item) => item.id),
+      severities: contract.contract.severities.map((item) => item.id),
+      verdicts: contract.contract.verdicts.map((item) => item.id),
+      'cross-reference-protocols': contract.contract.crossReferenceProtocols.map((item) => item.id),
+    };
+
+    expect(contract.authoredArtifacts, 'manifest should declare authoredArtifacts').toBeDefined();
+    expect(contract.authoredArtifacts.length, 'manifest should declare the five authored artifacts').toBe(5);
+
+    for (const artifact of contract.authoredArtifacts) {
+      const content = readWorkspaceFile(artifact.path);
+      expect(artifact.enumParityChecked, `authoredArtifacts["${artifact.id}"] should declare enumParityChecked`).toBeDefined();
+      for (const family of artifact.enumParityChecked) {
+        const ids = idsByFamily[family];
+        expect(ids, `unknown enumParityChecked family "${family}" on authoredArtifacts["${artifact.id}"]`).toBeDefined();
+        for (const id of ids) {
+          // Dimension ids are matched case-insensitively: some docs render
+          // them as title-case prose (e.g. "Maintainability") rather than
+          // the manifest's lower-case id.
+          const found = family === 'dimensions'
+            ? content.toLowerCase().includes(id.toLowerCase())
+            : content.includes(id);
+          expect(found, `${artifact.path} (family "${family}") should still mention "${id}" from the manifest`).toBe(true);
+        }
+      }
+    }
   });
 });

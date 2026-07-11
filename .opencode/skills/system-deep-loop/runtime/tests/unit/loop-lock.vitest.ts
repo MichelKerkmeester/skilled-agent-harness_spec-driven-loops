@@ -207,18 +207,21 @@ describe('loop-lock', () => {
 
   it('refreshes and releases only when the owner pid matches', () => {
     withTempLock((lockPath) => {
-      acquireLoopLock(lockPath, lockData());
+      const acquired = acquireLoopLock(lockPath, lockData());
+      expect(acquired).toMatchObject({ acquired: true });
+      if (!acquired.acquired) throw new Error('Expected lock acquisition');
+      const acquireNonce = acquired.lock.acquireNonce;
 
-      expect(refreshLoopLock(lockPath, process.pid + 100_000)).toBe(false);
-      expect(refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:03:00.000Z'))).toBe(true);
+      expect(refreshLoopLock(lockPath, process.pid + 100_000, new Date(), { acquireNonce })).toBe(false);
+      expect(refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:03:00.000Z'), { acquireNonce })).toBe(true);
       const refreshed = JSON.parse(readFileSync(lockPath, 'utf8'));
       expect(refreshed.last_heartbeat_iso).toBe('2026-05-22T12:03:00.000Z');
       expect(refreshed.last_activity_iso).toBe('2026-05-22T12:03:00.000Z');
       expect(refreshed.phase).toBe('running');
 
-      expect(releaseLoopLock(lockPath, process.pid + 100_000)).toBe(false);
+      expect(releaseLoopLock(lockPath, process.pid + 100_000, acquireNonce)).toBe(false);
       expect(existsSync(lockPath)).toBe(true);
-      expect(releaseLoopLock(lockPath, process.pid)).toBe(true);
+      expect(releaseLoopLock(lockPath, process.pid, acquireNonce)).toBe(true);
       expect(existsSync(lockPath)).toBe(false);
     });
   });
@@ -306,9 +309,11 @@ describe('loop-lock', () => {
       const first = lockData({ packetId: 'first' });
       const second = lockData({ packetId: 'second' });
 
-      expect(acquireLoopLock(lockPath, first)).toMatchObject({ acquired: true });
+      const firstAcquired = acquireLoopLock(lockPath, first);
+      expect(firstAcquired).toMatchObject({ acquired: true });
+      if (!firstAcquired.acquired) throw new Error('Expected lock acquisition');
       expect(acquireLoopLock(lockPath, second)).toMatchObject({ acquired: false });
-      expect(releaseLoopLock(lockPath, process.pid)).toBe(true);
+      expect(releaseLoopLock(lockPath, process.pid, firstAcquired.lock.acquireNonce)).toBe(true);
       expect(acquireLoopLock(lockPath, second)).toMatchObject({
         acquired: true,
         lock: {
@@ -383,6 +388,57 @@ describe('loop-lock', () => {
       });
       expect(refreshed).not.toHaveProperty('acquire_nonce');
       expect(releaseLoopLock(lockPath, process.pid)).toBe(true);
+      expect(existsSync(lockPath)).toBe(false);
+    });
+  });
+
+  it('rejects refresh and release of a nonce-bearing lock unless the caller nonce matches', () => {
+    withTempLock((lockPath) => {
+      const acquired = acquireLoopLock(lockPath, lockData({ packetId: 'nonce-packet' }));
+      expect(acquired).toMatchObject({ acquired: true });
+      if (!acquired.acquired) throw new Error('Expected lock acquisition');
+      const acquireNonce = acquired.lock.acquireNonce;
+      expect(typeof acquireNonce).toBe('string');
+
+      // Missing nonce is rejected; the on-disk lock is left untouched.
+      expect(refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:10:00.000Z'))).toBe(false);
+      // A wrong nonce is rejected too.
+      expect(
+        refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:10:00.000Z'), { acquireNonce: 'wrong-nonce' }),
+      ).toBe(false);
+      const untouched = JSON.parse(readFileSync(lockPath, 'utf8'));
+      expect(untouched.last_heartbeat_iso).toBe(acquired.lock.lastHeartbeatIso);
+      expect(untouched.acquire_nonce).toBe(acquireNonce);
+
+      // The correct nonce succeeds.
+      expect(refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:10:00.000Z'), { acquireNonce })).toBe(true);
+      const refreshed = JSON.parse(readFileSync(lockPath, 'utf8'));
+      expect(refreshed.last_heartbeat_iso).toBe('2026-05-22T12:10:00.000Z');
+      expect(refreshed.acquire_nonce).toBe(acquireNonce);
+
+      // Same rule applies to release: missing or wrong nonce is rejected.
+      expect(releaseLoopLock(lockPath, process.pid)).toBe(false);
+      expect(releaseLoopLock(lockPath, process.pid, 'wrong-nonce')).toBe(false);
+      expect(existsSync(lockPath)).toBe(true);
+
+      // The correct nonce releases the lock.
+      expect(releaseLoopLock(lockPath, process.pid, acquireNonce)).toBe(true);
+      expect(existsSync(lockPath)).toBe(false);
+    });
+  });
+
+  it('keeps legacy nonce-less locks permissive even when a caller nonce is supplied', () => {
+    withTempLock((lockPath) => {
+      writeSerializedLock(lockPath, lockData({ packetId: 'legacy-with-caller-nonce' }), false);
+
+      expect(
+        refreshLoopLock(lockPath, process.pid, new Date('2026-05-22T12:11:00.000Z'), { acquireNonce: 'caller-supplied-nonce' }),
+      ).toBe(true);
+      const refreshed = JSON.parse(readFileSync(lockPath, 'utf8'));
+      expect(refreshed.last_heartbeat_iso).toBe('2026-05-22T12:11:00.000Z');
+      expect(refreshed).not.toHaveProperty('acquire_nonce');
+
+      expect(releaseLoopLock(lockPath, process.pid, 'caller-supplied-nonce')).toBe(true);
       expect(existsSync(lockPath)).toBe(false);
     });
   });

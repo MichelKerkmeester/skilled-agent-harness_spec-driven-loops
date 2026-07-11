@@ -1,7 +1,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Goal OpenCode Plugin (mk-goal)                              ║
+// ║ COMPONENT: Goal OpenCode Plugin (mk-goal)                               ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Persist session goals and inject passive goal steering.        ║
+// ║ PURPOSE: Persist session goals and inject passive goal steering.         ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -291,7 +291,7 @@ async function withDeadline(operation, timeoutMs, code, message) {
   const controller = new AbortController();
   let timer = null;
   const operationPromise = Promise.resolve().then(() => operation(controller.signal));
-  operationPromise.catch(() => {});
+  operationPromise.catch(() => { });
   const timeoutPromise = new Promise((_, reject) => {
     timer = setTimeout(() => {
       controller.abort();
@@ -338,11 +338,11 @@ function sessionIdFromInput(input) {
   if (!input || typeof input !== 'object') return null;
   return normalizeSessionID(
     input.sessionID
-      || input.sessionId
-      || input.session?.id
-      || input.properties?.sessionID
-      || input.properties?.info?.sessionID
-      || null,
+    || input.sessionId
+    || input.session?.id
+    || input.properties?.sessionID
+    || input.properties?.info?.sessionID
+    || null,
   );
 }
 
@@ -663,19 +663,19 @@ function extractEventSessionID(event) {
   const eventType = eventTypeFrom(payload);
   return normalizeSessionID(
     payload?.sessionID
-      || payload?.sessionId
-      || payload?.session?.id
-      || properties.sessionID
-      || properties.sessionId
-      || properties.session?.id
-      || properties.info?.sessionID
-      || properties.info?.sessionId
-      || properties.message?.sessionID
-      || properties.message?.sessionId
-      || properties.part?.sessionID
-      || properties.part?.sessionId
-      || ((eventType === 'session.created' || eventType === 'session.deleted') ? properties.info?.id : null)
-      || null,
+    || payload?.sessionId
+    || payload?.session?.id
+    || properties.sessionID
+    || properties.sessionId
+    || properties.session?.id
+    || properties.info?.sessionID
+    || properties.info?.sessionId
+    || properties.message?.sessionID
+    || properties.message?.sessionId
+    || properties.part?.sessionID
+    || properties.part?.sessionId
+    || ((eventType === 'session.created' || eventType === 'session.deleted') ? properties.info?.id : null)
+    || null,
   );
 }
 
@@ -684,19 +684,19 @@ function extractEventMessageID(event) {
   const properties = eventPropertiesFrom(payload);
   return normalizeSessionID(
     payload?.messageID
-      || payload?.messageId
-      || payload?.id
-      || payload?.message?.id
-      || properties.messageID
-      || properties.messageId
-      || properties.id
-      || properties.info?.messageID
-      || properties.info?.messageId
-      || properties.info?.id
-      || properties.message?.id
-      || properties.part?.messageID
-      || properties.part?.messageId
-      || null,
+    || payload?.messageId
+    || payload?.id
+    || payload?.message?.id
+    || properties.messageID
+    || properties.messageId
+    || properties.id
+    || properties.info?.messageID
+    || properties.info?.messageId
+    || properties.info?.id
+    || properties.message?.id
+    || properties.part?.messageID
+    || properties.part?.messageId
+    || null,
   );
 }
 
@@ -705,12 +705,12 @@ function extractEventGoalID(event) {
   const properties = eventPropertiesFrom(payload);
   return normalizeGoalID(
     payload?.goalID
-      || payload?.goalId
-      || properties.goalID
-      || properties.goalId
-      || properties.info?.goalID
-      || properties.info?.goalId
-      || null,
+    || payload?.goalId
+    || properties.goalID
+    || properties.goalId
+    || properties.info?.goalID
+    || properties.info?.goalId
+    || null,
   );
 }
 
@@ -1276,7 +1276,7 @@ async function fsyncDirectory(directoryPath, rawOptions = {}) {
     }
     return;
   } finally {
-    if (handle) await handle.close().catch(() => {});
+    if (handle) await handle.close().catch(() => { });
   }
 }
 
@@ -1307,8 +1307,8 @@ async function writeGoalAtomic(goal, rawOptions = {}) {
     invalidateGoalBriefCache(normalized.sessionId, options);
     return normalized;
   } catch (error) {
-    if (handle) await handle.close().catch(() => {});
-    await unlink(tempPath).catch(() => {});
+    if (handle) await handle.close().catch(() => { });
+    await unlink(tempPath).catch(() => { });
     if (error instanceof GoalError) throw error;
     throw new GoalError('WRITE_GOAL_FAILED', `Failed to write goal state: ${error.message}`);
   }
@@ -2065,7 +2065,7 @@ async function defaultLlmSupervisorVerifier({ goal, evidence, signal }, rawOptio
       await Promise.resolve(sessionClient.delete.call(sessionClient, {
         path: { id: verifierSessionID },
         query,
-      })).catch(() => {});
+      })).catch(() => { });
     }
   }
 }

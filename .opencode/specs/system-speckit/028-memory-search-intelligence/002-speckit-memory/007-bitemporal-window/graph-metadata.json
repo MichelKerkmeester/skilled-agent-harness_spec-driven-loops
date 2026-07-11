@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/002-speckit-memory/007-bitemporal-window",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/007-bitemporal-window",
+  "parent_id": "system-speckit/028-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 bitemporal window memory",
+      "memory fact invalidation event-time",
+      "four timestamp causal lineage window",
+      "skip closed in sweep causal",
+      "temporal ordering invalidation memory",
+      "bitemporal window memory plan",
+      "event-time invalidation plan",
+      "four timestamp window sequencing",
+      "bitemporal window memory tasks",
+      "event-time invalidation tasks",
+      "four timestamp window tasks",
+      "bitemporal window memory checklist"
+    ],
+    "key_topics": [
+      "bitemporal",
+      "window",
+      "memory",
+      "fact",
+      "invalidation",
+      "event-time",
+      "four",
+      "timestamp",
+      "causal",
+      "lineage",
+      "skip",
+      "closed"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "lib/search/vector-index-schema.ts",
+      "lib/graph/temporal-edges.ts",
+      "lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "lib/causal/frontmatter-promoter.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "temporal-edges.ts",
+        "kind": "code",
+        "path": "lib/graph/temporal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "contradiction-detection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-promoter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory Causal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Ship",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Memory MCP's causal-edge currentness machinery records the wrong time and the wrong number of times",
+    "created_at": "2026-06-19T05:40:37.444Z",
+    "last_save_at": "2026-07-11T18:40:35.827Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:59966dd546fc59132c89c5bed2d5261159ff0e563696d0e0cbb540186289fd4c",
+    "source_doc_hashes": {
+      "spec.md": "6cfb2a8948582b9230a947b52c8c753c45a3161162b8d15e1e001e370da61d12",
+      "plan.md": "aeeb8f06828efbbf72fc50df223577a878454f2adf0efb02f523703c7fa16aec",
+      "tasks.md": "09dfd16137e37172a845cff3747015859a28373f47c78f1b44776ec8f9687a44",
+      "checklist.md": "311d9bb28e62202eb348995c9facd9af76becf5c6e7db49a4df25a37e9b762b9",
+      "decision-record.md": "a3d3b13d2a9dbe640fc45d02614708bf92cc23d622e8d301903d529b63052fef",
+      "implementation-summary.md": "8f8d1f78668cde04236b58ac1981ebc7181e7b08195640b7a5de5c7656133398"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -100,15 +100,41 @@ describe('loop-lock CLI adapter mirrors the library', () => {
 
   it('refresh and release honor owner-pid gating like the library', () => {
     const lockPath = tempLock();
+    const acquired = runCli(['acquire', '--lock-path', lockPath, '--packet-id', 'pkt-A', '--owner-pid', String(process.pid)]);
+    const acquireNonce = (acquired.json.lock as { acquireNonce?: string }).acquireNonce;
+    expect(typeof acquireNonce).toBe('string');
+
+    expect(
+      runCli(['refresh', '--lock-path', lockPath, '--owner-pid', String(process.pid + 100_000), '--nonce', String(acquireNonce)]).json,
+    ).toMatchObject({ refreshed: false });
+    expect(
+      runCli(['refresh', '--lock-path', lockPath, '--owner-pid', String(process.pid), '--nonce', String(acquireNonce)]).json,
+    ).toMatchObject({ refreshed: true });
+
+    expect(
+      runCli(['release', '--lock-path', lockPath, '--owner-pid', String(process.pid + 100_000), '--nonce', String(acquireNonce)]).json,
+    ).toMatchObject({ released: false });
+    expect(existsSync(lockPath)).toBe(true);
+    expect(
+      runCli(['release', '--lock-path', lockPath, '--owner-pid', String(process.pid), '--nonce', String(acquireNonce)]).json,
+    ).toMatchObject({ released: true });
+    expect(existsSync(lockPath)).toBe(false);
+  });
+
+  it('refresh and release reject a nonce-bearing lock when --nonce is missing or wrong', () => {
+    const lockPath = tempLock();
     runCli(['acquire', '--lock-path', lockPath, '--packet-id', 'pkt-A', '--owner-pid', String(process.pid)]);
 
-    expect(runCli(['refresh', '--lock-path', lockPath, '--owner-pid', String(process.pid + 100_000)]).json).toMatchObject({ refreshed: false });
-    expect(runCli(['refresh', '--lock-path', lockPath, '--owner-pid', String(process.pid)]).json).toMatchObject({ refreshed: true });
+    expect(runCli(['refresh', '--lock-path', lockPath, '--owner-pid', String(process.pid)]).json).toMatchObject({ refreshed: false });
+    expect(
+      runCli(['refresh', '--lock-path', lockPath, '--owner-pid', String(process.pid), '--nonce', 'wrong-nonce']).json,
+    ).toMatchObject({ refreshed: false });
 
-    expect(runCli(['release', '--lock-path', lockPath, '--owner-pid', String(process.pid + 100_000)]).json).toMatchObject({ released: false });
+    expect(runCli(['release', '--lock-path', lockPath, '--owner-pid', String(process.pid)]).json).toMatchObject({ released: false });
+    expect(
+      runCli(['release', '--lock-path', lockPath, '--owner-pid', String(process.pid), '--nonce', 'wrong-nonce']).json,
+    ).toMatchObject({ released: false });
     expect(existsSync(lockPath)).toBe(true);
-    expect(runCli(['release', '--lock-path', lockPath, '--owner-pid', String(process.pid)]).json).toMatchObject({ released: true });
-    expect(existsSync(lockPath)).toBe(false);
   });
 
   it('reclaims a stale (dead-owner) lock, matching library reclaim semantics', () => {
@@ -123,8 +149,9 @@ describe('loop-lock CLI adapter mirrors the library', () => {
     expect((reclaim.json.reclaimed as { packetId: string }).packetId).toBe('old');
     expect(JSON.parse(readFileSync(lockPath, 'utf8')).packet_id).toBe('new');
 
-    // Cross-check: release with the matching pid succeeds via the library.
-    expect(releaseLoopLock(lockPath, process.pid)).toBe(true);
+    // Cross-check: release with the matching pid and nonce succeeds via the library.
+    const reclaimNonce = (reclaim.json.lock as { acquireNonce?: string }).acquireNonce;
+    expect(releaseLoopLock(lockPath, process.pid, reclaimNonce)).toBe(true);
   });
 
   it('returns exit 3 + INPUT_VALIDATION on bad input', () => {

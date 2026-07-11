@@ -11,7 +11,7 @@ import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const reducer = require('../../../system-deep-loop/deep-review/scripts/reduce-state.cjs') as {
+const reducer = require('../../../system-deep-loop/runtime/scripts/reduce-state.cjs') as {
   reduceReviewState: (specFolder: string, options?: { write?: boolean; lenient?: boolean }) => {
     registry: Record<string, any>;
     dashboard: string;

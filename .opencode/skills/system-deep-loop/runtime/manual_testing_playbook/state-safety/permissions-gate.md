@@ -18,6 +18,8 @@ Evaluates pre-dispatch tool calls against packet-local, repo-wide, and external 
 
 Deep loops mutate long-lived packet state across iterations. The state-safety primitives prevent partial writes, corrupt logs, concurrent writers, and out-of-scope tool use.
 
+For permissions gate specifically: the out-of-scope tool use prevention above describes the matching logic's design intent, not current behavior. `evaluateToolCall` and `evaluatePreDispatchToolCalls` have zero production callers today, so this module does not prevent anything in a live dispatch yet — prompt-level and sandbox-level controls remain the active protection until it is wired in.
+
 ---
 
 ## 2. SCENARIO CONTRACT

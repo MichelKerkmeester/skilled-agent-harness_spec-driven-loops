@@ -247,6 +247,10 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
     category: category || null,
     prompt: prompt || null,
     classKind,
+    // Emit stage uniformly so the scorer's fitted/holdout split has a single
+    // source of truth across both loader shapes. sk-code playbooks have no
+    // holdout designation; a suppression scenario is stage:negative.
+    stage: negativeActivation ? 'negative' : 'routing',
     expectedSurface,
     expectedSubLanguage: subLangM ? subLangM[1].toUpperCase() : null,
     expectedIntent: null,
@@ -338,7 +342,10 @@ function loadYamlFrontmatterScenarios(playbookDir) {
         expected: expectedRankBelowSkillIds.length ? { rankBelowSkillIds: expectedRankBelowSkillIds } : undefined,
         passCriteria: null,
         critical: false,
-        negativeActivation: false,
+        // A stage:negative fixture is a suppression test — route it through the
+        // negative-activation/inversion lane instead of scoring it as a positive
+        // routing hit. holdout/routing fixtures stay positive-scored.
+        negativeActivation: stage === 'negative',
         source: { featureFile: path.relative(playbookDir, full), shape: 'sk-doc' },
         parseWarnings: prompt ? [] : ['missing-exact-prompt'],
       });

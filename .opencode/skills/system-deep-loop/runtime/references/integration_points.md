@@ -40,7 +40,7 @@ The removed MCP tool surface is not an integration point.
 | `deep_review_auto.yaml` | `node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'` | Persist reducer graph events. |
 | `deep_review_confirm.yaml` | Same script family with confirm-mode sequencing. | Checkpointed graph upsert and convergence. |
 | `deep-review/assets/prompt_pack_iteration.md.tmpl` | Optional `graphEvents` array in iteration JSONL. | Produces coverage graph source events. |
-| `deep-review/scripts/reduce-state.cjs` | Imports coverage-graph runtime. | Consumes moved runtime helpers. |
+| `runtime/scripts/reduce-state.cjs` | Relocated into `runtime/scripts/` itself (deep-review's own import repointed here); imports coverage-graph runtime. | Consumes sibling runtime helpers from its new home. |
 
 Review graph semantics: `loopType` is `review`; node kinds include `DIMENSION`, `FILE`, `FINDING`, `EVIDENCE`, `REMEDIATION`, `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST`.
 
@@ -171,7 +171,7 @@ The following consumers were surfaced by a deep-research audit and were absent f
 
 ### Note: cross-package test discovery
 
-`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../deep-review/scripts/reduce-state.cjs'` - the test file lives in `mcp_server` but exercises `deep-review` code, and is discovered via runtime/'s vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any runtime/ change is therefore tighter than the literal directory listing: changes to `deep-review/scripts/reduce-state.cjs` ALSO re-validate through runtime/'s test surface.
+`.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts:9` imports `'../../../../system-deep-loop/runtime/scripts/reduce-state.cjs'` - the test file lives in `mcp_server` but exercises the (now runtime-hosted) `deep-review` reducer, and is discovered via runtime/'s vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any runtime/ change is therefore tighter than the literal directory listing: changes to `runtime/scripts/reduce-state.cjs` ALSO re-validate through runtime/'s test surface.
 
 ---
 

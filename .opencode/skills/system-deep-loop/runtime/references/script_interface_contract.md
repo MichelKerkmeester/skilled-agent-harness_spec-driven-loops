@@ -129,7 +129,7 @@ Visible anchors:
 
 ## 5. PERMISSIONS-GATE RELATIONSHIP
 
-`permissions-gate` is not called directly by the scripts. It is part of the pre-dispatch runtime safety layer for loop orchestration. Script execution is an `execute` operation that should be allowed only for runtime-owned script paths in any active permission matrix.
+`permissions-gate` is not called directly by the scripts, and it has zero production callers anywhere today — `evaluateToolCall` and `evaluatePreDispatchToolCalls` are not wired into any executor dispatch path. The matching logic (tool/bash-command-to-operation-class mapping, glob specificity, default-deny) is built and unit-tested. Script execution is an `execute` operation that the gate's design would allow only for runtime-owned script paths, once it is connected and a permission matrix is active; today no permission matrix is consulted before scripts run.
 
 Relevant source:
 
@@ -160,7 +160,7 @@ Relevant source:
 | `scripts/query.cjs` | Read script and query-type dispatch. |
 | `scripts/status.cjs` | Health script and schema/count reporting. |
 | `lib/coverage-graph/coverage-graph-db.ts` | DB lifecycle owner. |
-| `lib/deep-loop/permissions-gate.ts` | Pre-dispatch execute/write boundary. |
+| `lib/deep-loop/permissions-gate.ts` | Pre-dispatch execute/write matching logic; built and tested, zero production callers — not wired into dispatch. |
 | `tests/integration/*-script.vitest.ts` | Script-level regression coverage. |
 | `tests/lifecycle/db-open-close.vitest.ts` | DB lifecycle regression coverage. |
 

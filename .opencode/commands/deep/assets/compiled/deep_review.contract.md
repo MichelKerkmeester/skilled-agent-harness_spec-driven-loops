@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
-      "sha256": "4ab2775914ea8b34f317b9df2c0e1914b47fb3cb4922565f6f8ad5205c286562",
+      "sha256": "c152110f635346dcaa01d15f18c57059eb14125d4487f9a33e8a83f7801cbba6",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_confirm.yaml",
-      "sha256": "9f56da77494a55b4feb95617402c61ed98e0efb35069b1d24da74d39baae506b",
+      "sha256": "d77535db7f3dd82720e9dc5012403c76e67a0b783b6000d89b96341ec33ba353",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml",
-      "sha256": "e7f1c54f14ee3508381eaeabda3f47dd0e560be06ecda4b791953135b104a551",
+      "sha256": "0995afb31138227def5d8c74e540fde2e9e0151d74c979d1fc28873387aafe16",
       "section": "full"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/assets/deep_review_config.json",
-      "sha256": "4f3dc6d35061aa3018f9332a9cd087ffdd91024642c80728375b7bb1e62ac4ed",
+      "sha256": "7a37399d29a2a050c6ac240887588b33f0bd4ff891a0faefad344b7913c83067",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".opencode/agents/deep-review.md",
-      "sha256": "5b50c132114c28ca88a7ec2f5a72327b144dc26766916a41d27efc9a8dabef8c",
+      "sha256": "c1213b7ebbec8474d428126d4037aa570b6cfbf80f634a8233e632a7e32d1919",
       "section": "full"
     },
     {

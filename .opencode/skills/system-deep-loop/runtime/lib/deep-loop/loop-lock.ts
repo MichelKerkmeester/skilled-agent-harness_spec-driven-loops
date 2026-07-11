@@ -472,18 +472,25 @@ async function acquireLoopLockWithHostLocalSingleFlight(lockPath: string, data: 
   return result;
 }
 
+/**
+ * Determine whether a caller's identity matches the current lock holder.
+ *
+ * Nonce-bearing locks require the caller's nonce to match exactly, so a
+ * guessed or stale owner pid alone can never refresh or release someone
+ * else's live lock. Locks written before nonces existed have nothing to
+ * compare against, so they fall back to pid-only matching.
+ */
 function lockIdentityMatches(holder: LoopLockData, ownerPid: number, expectedAcquireNonce?: string): boolean {
   if (holder.ownerPid !== ownerPid) {
     return false;
   }
 
-  if (
-    typeof holder.acquireNonce === 'string' &&
-    holder.acquireNonce.length > 0 &&
-    typeof expectedAcquireNonce === 'string' &&
-    expectedAcquireNonce.length > 0
-  ) {
-    return holder.acquireNonce === expectedAcquireNonce;
+  if (typeof holder.acquireNonce === 'string' && holder.acquireNonce.length > 0) {
+    return (
+      typeof expectedAcquireNonce === 'string' &&
+      expectedAcquireNonce.length > 0 &&
+      holder.acquireNonce === expectedAcquireNonce
+    );
   }
 
   return true;
@@ -576,7 +583,9 @@ export function acquireLoopLock(
  * @param lockPath - File path for the lock file.
  * @param ownerPid - PID of the owning process (must match current owner).
  * @param now - Reference timestamp (defaults to now).
- * @param options - Metadata to store alongside the heartbeat.
+ * @param options - Metadata to store alongside the heartbeat. When the
+ *   on-disk lock carries a nonce, options.acquireNonce must match it or the
+ *   refresh is rejected; nonce-less locks refresh on pid match alone.
  * @returns True if the heartbeat was successfully refreshed.
  */
 export function refreshLoopLock(
@@ -689,11 +698,13 @@ export function stopHeartbeat(): void {
  *
  * @param lockPath - File path for the lock file.
  * @param ownerPid - PID of the owning process (must match current owner).
+ * @param acquireNonce - Nonce from the acquiring lock. Required when the
+ *   on-disk lock carries a nonce, ignored for legacy nonce-less locks.
  * @returns True if the lock was successfully released.
  */
-export function releaseLoopLock(lockPath: string, ownerPid: number): boolean {
+export function releaseLoopLock(lockPath: string, ownerPid: number, acquireNonce?: string): boolean {
   const holder = existsSync(lockPath) ? readLoopLock(lockPath) : null;
-  if (!holder || holder.ownerPid !== ownerPid) {
+  if (!holder || !lockIdentityMatches(holder, ownerPid, acquireNonce)) {
     return false;
   }
 

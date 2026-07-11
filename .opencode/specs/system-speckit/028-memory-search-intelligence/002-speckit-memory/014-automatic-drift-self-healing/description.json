@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/014-automatic-drift-self-healing",
+  "description": "Nobody wired any of this machinery to run without a human typing a command, so drift silently",
+  "keywords": [
+    "nobody",
+    "wired",
+    "machinery",
+    "run",
+    "without",
+    "human",
+    "typing",
+    "command",
+    "drift",
+    "silently"
+  ],
+  "lastUpdated": "2026-07-11T17:54:42.425Z",
+  "specId": "014",
+  "folderSlug": "automatic-drift-self-healing",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "002-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

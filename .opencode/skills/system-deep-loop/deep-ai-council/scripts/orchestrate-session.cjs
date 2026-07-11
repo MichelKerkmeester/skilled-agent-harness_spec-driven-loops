@@ -219,7 +219,7 @@ function seatTimeoutMs(executorConfig) {
 }
 
 function opencodeSeatArgs(model, seatPrompt) {
-  return ['run', '--agent', 'plan', '--model', model, seatPrompt];
+  return ['run', '--agent', 'council-seat', '--model', model, seatPrompt];
 }
 
 function terminateSeatProcess(child, signal) {

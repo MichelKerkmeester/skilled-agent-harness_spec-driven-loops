@@ -2,17 +2,17 @@
 // ║ COMPONENT: mk-speckit-completion OpenCode Plugin (adapter)               ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: OpenCode transport adapter over the runtime-neutral             ║
-// ║          completion-state core. Registers one read-only tool,           ║
-// ║          `mk_speckit_completion`, that returns a spec folder's inferred ║
-// ║          level, checklist P0/P1/P2 completion with evidence gaps, and   ║
+// ║          completion-state core. Registers one read-only tool,            ║
+// ║          `mk_speckit_completion`, that returns a spec folder's inferred  ║
+// ║          level, checklist P0/P1/P2 completion with evidence gaps, and    ║
 // ║          placeholder completeness percentage merged into one payload --  ║
-// ║          replacing a hand-composed, hand-merged pair of Bash calls at   ║
-// ║          the COMPLETION VERIFICATION gate. All resolution, exec, and    ║
-// ║          fail-open logic lives in the shared core; this file only maps  ║
-// ║          the tool args/context in and stringifies the result out. No    ║
-// ║          event/before/after hooks, so it cannot touch the TUI, and it   ║
-// ║          never writes stdout/stderr -- the tool's string return value   ║
-// ║          is the only output channel.                                    ║
+// ║          replacing a hand-composed, hand-merged pair of Bash calls at    ║
+// ║          the COMPLETION VERIFICATION gate. All resolution, exec, and     ║
+// ║          fail-open logic lives in the shared core; this file only maps    ║
+// ║          the tool args/context in and stringifies the result out. No      ║
+// ║          event/before/after hooks, so it cannot touch the TUI, and it    ║
+// ║          never writes stdout/stderr -- the tool's string return value    ║
+// ║          is the only output channel.                                     ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

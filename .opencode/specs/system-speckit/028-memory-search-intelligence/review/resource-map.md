@@ -44,7 +44,7 @@ description: "Auto-generated review resource map from convergence evidence."
 | .opencode/specs/system-speckit/028-memory-search-intelligence/006-presentation-layer-fixes/tasks.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=2 |
 | .opencode/specs/system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep/spec.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=2 |
 | .opencode/specs/system-speckit/028-memory-search-intelligence/008-metadata-rename-reconciliation/plan.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
-| .opencode/specs/system-speckit/028-memory-search-intelligence/022-drift-marker-native-consolidation/implementation-summary.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=2 |
+| .opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/031-drift-marker-native-consolidation/implementation-summary.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=2; former top-level alias: `022-drift-marker-native-consolidation` |
 | .opencode/specs/system-speckit/028-memory-search-intelligence/context-index.md | Analyzed | OK | Findings P0=0 P1=2 P2=0; Iterations=2 |
 | .opencode/specs/system-speckit/028-memory-search-intelligence/spec.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=2 |
 

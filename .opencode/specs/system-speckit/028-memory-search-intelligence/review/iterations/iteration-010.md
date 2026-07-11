@@ -19,7 +19,7 @@ Traceability and maintainability, with final correctness and security coverage f
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/008-metadata-rename-reconciliation/spec.md:17-18,30,57`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/008-metadata-rename-reconciliation/plan.md:94-105`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/008-metadata-rename-reconciliation/tasks.md:117-123`
-- `.opencode/specs/system-speckit/028-memory-search-intelligence/022-drift-marker-native-consolidation/implementation-summary.md:2-3`
+- `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/031-drift-marker-native-consolidation/implementation-summary.md:2-3` (former top-level alias: `022-drift-marker-native-consolidation`)
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:749-762`
 - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:677-691`
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:214-225`
@@ -44,7 +44,7 @@ None.
 
 1. `R1-P2-001` remains active: child 005 still identifies itself as phase `008`. [SOURCE: `.opencode/specs/system-speckit/028-memory-search-intelligence/005-speckit-surface-alignment/spec.md:32`]
 2. `R2-P2-001` remains active: child 007 still exposes a template-path suffix in its public title. [SOURCE: `.opencode/specs/system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep/spec.md:2`]
-3. `R9-P2-001` remains active: child 022 still exposes a template-path suffix in its implementation-summary title. [SOURCE: `.opencode/specs/system-speckit/028-memory-search-intelligence/022-drift-marker-native-consolidation/implementation-summary.md:2`]
+3. `R9-P2-001` remains active: former top-level child 022, now canonical phase `002-speckit-memory/031-drift-marker-native-consolidation`, still exposes a template-path suffix in its implementation-summary title. [SOURCE: `.opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/031-drift-marker-native-consolidation/implementation-summary.md:2`]
 
 ## Traceability Checks
 

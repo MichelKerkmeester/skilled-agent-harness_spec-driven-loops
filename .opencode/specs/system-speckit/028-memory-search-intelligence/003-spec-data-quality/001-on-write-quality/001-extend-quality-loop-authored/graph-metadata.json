@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "a1 extend quality loop authored",
+      "computeMemoryQualityScore authored docs",
+      "content quality validate rule",
+      "reviewPostSaveQuality spec docs",
+      "authored write surface quality",
+      "a1 extend quality loop authored plan",
+      "computeMemoryQualityScore authored seam",
+      "content quality validate rule plan",
+      "reviewPostSaveQuality workflow seam",
+      "authored write surface quality plan",
+      "a1 extend quality loop authored tasks",
+      "computeMemoryQualityScore seam tasks"
+    ],
+    "key_topics": [
+      "extend",
+      "quality",
+      "loop",
+      "authored",
+      "computememoryqualityscore",
+      "docs",
+      "content",
+      "validate",
+      "rule",
+      "reviewpostsavequality",
+      "spec",
+      "write"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "scripts/core/workflow.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      "scripts/memory/generate-context.ts",
+      "scripts/lib/validator-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Quality Machinery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Specs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A verify-fix-verify quality loop already runs LIVE and default-ON on the memory-save path",
+    "created_at": "2026-06-27T17:15:32.763Z",
+    "last_save_at": "2026-07-11T18:40:36.082Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8fd35722a895541ff7d6a4f3986184c49947c86231eb109a5a348764916ca616",
+    "source_doc_hashes": {
+      "spec.md": "981f82a70d1387a19c565b9c4f8f5b8458570323099a29855a398284374149af",
+      "plan.md": "7bc02f569ef2e90f487e289cede02d5d61e96abf5f0f85101b789ae3eb4f90fe",
+      "tasks.md": "91cfd4aff4fa2768c09c79946e239c65907ff6b0aaf39e70a016d4ca2a727a33",
+      "checklist.md": "f968869578791413ff886737903bf9c6f14ce28dcf411ac05232f0fc2d039390",
+      "implementation-summary.md": "bd2405125887e0103a7b313ecdc1f8fbfea89f78e29b2a8dbc8f9055ef777471"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

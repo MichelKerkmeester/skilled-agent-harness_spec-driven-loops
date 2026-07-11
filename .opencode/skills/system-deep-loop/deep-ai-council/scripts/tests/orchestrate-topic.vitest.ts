@@ -151,6 +151,23 @@ describe('deep-ai-council topic orchestration', () => {
     });
   });
 
+  it('rejects an explicit seat array that exceeds seats_per_round', async () => {
+    await withTempPacket(async (packetSpecFolder) => {
+      const state = sessionState(packetSpecFolder, 1);
+
+      await expect(orchestrateTopic({
+        topic_id: 'topic-001-runtime-boundary',
+        session_state: state,
+        executor_config: {
+          seats: ['seat-001', 'seat-002', 'seat-003', 'seat-004'],
+          cost_guards: { seats_per_round: 3 },
+          dispatchSeat: async () => ({ verdict: baseVerdict }),
+          adjudicateRound: async () => ({ ...baseVerdict, stability_score: 0.05 }),
+        },
+      })).rejects.toThrow('explicit seat count 4 exceeds seats_per_round 3');
+    });
+  });
+
   it('passes the resolved route contract into seat dispatch context', async () => {
     await withTempPacket(async (packetSpecFolder) => {
       const state = sessionState(packetSpecFolder, 1);

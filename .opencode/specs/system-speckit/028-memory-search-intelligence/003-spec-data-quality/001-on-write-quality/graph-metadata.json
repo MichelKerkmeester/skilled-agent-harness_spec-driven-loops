@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality",
+  "children_ids": [
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/001-extend-quality-loop-authored",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/002-trigger-propagation-description",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/003-enum-constrain-schemas",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/004-schema-warn-to-error",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/005-trigger-coherence-assertion",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/006-hvr-style-autofix",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/008-surface-provenance-fields",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/009-content-hash-integrity",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/010-per-surface-gates"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "on write quality",
+      "spec data quality on-write quality",
+      "on-write quality phase parent"
+    ],
+    "key_topics": [
+      "write",
+      "quality",
+      "spec",
+      "data",
+      "on-write",
+      "phase",
+      "parent",
+      "subgroup",
+      "spec-data-quality",
+      "track",
+      "authored-spec",
+      "gates"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-extend-quality-loop-authored/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Quality Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Quality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "On Write Quality Groups",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extend Quality Loop Authored",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Propagation Description",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On-Write Quality subgroup of the spec-data-quality track: on-write authored-spec quality gates.",
+    "created_at": "2026-06-27T17:25:23.276Z",
+    "last_save_at": "2026-07-11T18:40:36.080Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8a39f19adf7119a61f088b82b9d7e2377b3da9a810ef764540f156993dcd4601",
+    "source_doc_hashes": {
+      "spec.md": "1f7ffcf154d17291f44635f10de39a2391978a1c4f4c8dfb626c33d890a1fe59"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

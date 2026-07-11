@@ -81,11 +81,12 @@ function claudeExecutor(model: string): ExecutorConfig {
 }
 
 // Pass the real environment through (so the spawned `node` resolves on PATH)
-// but clear the keys that would trip the recursion guard for cli-opencode.
+// but clear the keys that would trip the CLI executor recursion guards.
 function cleanGuardEnv(): Record<string, string | undefined> {
   const env = { ...process.env };
   delete env.SPECKIT_CLI_DISPATCH_STACK;
   delete env.OPENCODE_SESSION_ID;
+  delete env.CLAUDE_CODE_SESSION_ID;
   return env;
 }
 

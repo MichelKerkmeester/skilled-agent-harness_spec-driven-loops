@@ -7,9 +7,7 @@ meta:
   ownerSkill: deep-review
   reviewModeVersion: 2
   generatedNotice:
-    warning: "Generated from review_mode_contract.yaml. Do not manually edit generated sections."
-    beginMarker: "<!-- BEGIN GENERATED: review-mode-contract -->"
-    endMarker: "<!-- END GENERATED: review-mode-contract -->"
+    warning: "Exactly one artifact is machine-generated from this file: render.artifacts[0] (review-contract-snapshot). Its begin/end markers live on that artifact entry, not here. Every other contract-taxonomy consumer is hand-authored; see authoredArtifacts."
   sourceOfTruth: .opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml
 
 # Core contract definitions consumed by workflows, agents, docs, and validators.
@@ -371,79 +369,18 @@ contract:
           - stopReason
           - timestamp
 
-# Render targets define where generated or mixed-authored contract fragments land.
+# Render targets define machine-generated contract fragments. Exactly one
+# target is real: the human-readable snapshot rendered by
+# render-contract-snapshot.cjs. Everything else that mentions this contract's
+# taxonomy (target types, dimensions, severities, verdicts, quality gates,
+# convergence, cross-reference protocols) is hand-authored — see
+# authoredArtifacts below, not rendered from this file.
 render:
   artifacts:
-    - id: workflow-auto
-      path: .opencode/commands/deep/assets/deep_review_auto.yaml
-      ownership: mixed
-      format: yaml
-      markers:
-        begin: "<!-- BEGIN GENERATED: review-mode-contract/workflow-auto -->"
-        end: "<!-- END GENERATED: review-mode-contract/workflow-auto -->"
-      sections:
-        - target-types
-        - dimensions
-        - verdicts
-        - quality-gates
-        - convergence
-        - cross-reference-protocols
-    - id: workflow-confirm
-      path: .opencode/commands/deep/assets/deep_review_confirm.yaml
-      ownership: mixed
-      format: yaml
-      markers:
-        begin: "<!-- BEGIN GENERATED: review-mode-contract/workflow-confirm -->"
-        end: "<!-- END GENERATED: review-mode-contract/workflow-confirm -->"
-      sections:
-        - target-types
-        - dimensions
-        - verdicts
-        - quality-gates
-        - convergence
-        - cross-reference-protocols
-    - id: agent-opencode
-      path: .opencode/agents/deep-review.md
-      ownership: mixed
-      format: markdown
-      markers:
-        begin: "<!-- BEGIN GENERATED: review-mode-contract/agent-opencode -->"
-        end: "<!-- END GENERATED: review-mode-contract/agent-opencode -->"
-      sections:
-        - dimensions
-        - severities
-        - quality-gates
-        - cross-reference-protocols
-        - outputs
-    - id: agent-claude
-      path: .claude/agents/deep-review.md
-      ownership: mixed
-      format: markdown
-      markers:
-        begin: "<!-- BEGIN GENERATED: review-mode-contract/agent-claude -->"
-        end: "<!-- END GENERATED: review-mode-contract/agent-claude -->"
-      sections:
-        - dimensions
-        - severities
-        - quality-gates
-        - cross-reference-protocols
-        - outputs
-    - id: quick-reference-review-mode
-      path: .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md
-      ownership: mixed
-      format: markdown
-      markers:
-        begin: "<!-- BEGIN GENERATED: review-mode-contract/quick-reference-review-mode -->"
-        end: "<!-- END GENERATED: review-mode-contract/quick-reference-review-mode -->"
-      sections:
-        - target-types
-        - dimensions
-        - verdicts
-        - quality-gates
-        - outputs
     - id: review-contract-snapshot
       path: .opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract_snapshot.md
       ownership: generated
+      generator: .opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs
       format: markdown
       markers:
         begin: "<!-- BEGIN GENERATED: review-mode-contract/snapshot -->"
@@ -460,6 +397,62 @@ render:
         - outputs
         - validation
 
+# Authored artifacts reference this manifest's taxonomy in hand-written prose
+# or YAML. They are not machine-rendered and carry no generated markers;
+# operators keep them in sync by hand when this contract changes. Each
+# entry's enumParityChecked list is mechanically enforced (not aspirational):
+# deep-review-contract-parity.vitest.ts confirms every id in those families
+# still appears literally in the target file, as a lightweight drift
+# tripwire that does not require full rendering.
+authoredArtifacts:
+  - id: workflow-auto
+    path: .opencode/commands/deep/assets/deep_review_auto.yaml
+    ownership: authored
+    format: yaml
+    enumParityChecked:
+      - dimensions
+      - severities
+      - verdicts
+      - cross-reference-protocols
+    note: Hand-maintained workflow YAML for the :auto command path. References this contract's taxonomy in prose; not machine-rendered from this manifest.
+  - id: workflow-confirm
+    path: .opencode/commands/deep/assets/deep_review_confirm.yaml
+    ownership: authored
+    format: yaml
+    enumParityChecked:
+      - dimensions
+      - severities
+      - verdicts
+      - cross-reference-protocols
+    note: Hand-maintained workflow YAML for the :confirm command path. References this contract's taxonomy in prose; not machine-rendered from this manifest.
+  - id: agent-opencode
+    path: .opencode/agents/deep-review.md
+    ownership: authored
+    format: markdown
+    enumParityChecked:
+      - dimensions
+      - severities
+      - verdicts
+    note: Hand-maintained OpenCode agent definition. References this contract's taxonomy in prose; not machine-rendered from this manifest.
+  - id: agent-claude
+    path: .claude/agents/deep-review.md
+    ownership: authored
+    format: markdown
+    enumParityChecked:
+      - dimensions
+      - severities
+      - verdicts
+    note: Hand-maintained Claude Code agent definition. References this contract's taxonomy in prose; not machine-rendered from this manifest.
+  - id: quick-reference-review-mode
+    path: .opencode/skills/system-deep-loop/deep-review/references/protocol/quick_reference.md
+    ownership: authored
+    format: markdown
+    enumParityChecked:
+      - dimensions
+      - severities
+      - verdicts
+    note: Hand-maintained quick reference. References this contract's taxonomy in prose; not machine-rendered from this manifest.
+
 # Validator contract for CI, render verification, and drift detection.
 validation:
   schemaVersion: 1
@@ -467,11 +460,11 @@ validation:
     - id: schema
       description: Validate this manifest against the canonical review-mode contract schema.
     - id: render-verify
-      description: Re-render downstream artifacts in verify mode and fail on drift.
+      description: "Re-render the single review-contract-snapshot artifact (node render-contract-snapshot.cjs --check) and fail on drift. The five authoredArtifacts entries are hand-maintained and are not re-rendered by this check."
     - id: marker-integrity
-      description: Ensure every render target contains intact begin/end markers with no overlapping generated blocks.
+      description: Ensure the review-contract-snapshot artifact contains intact begin/end markers with no overlapping generated blocks.
     - id: enum-parity
-      description: Ensure target types, dimensions, severities, verdicts, and quality gates match across rendered artifacts.
+      description: "Confirm the dimension, severity, and verdict ids (plus cross-reference-protocol ids for the two workflow YAMLs) declared in each authoredArtifacts entry's enumParityChecked are still literally present in that file; see deep-review-contract-parity.vitest.ts."
     - id: jsonl-parity
       description: Ensure JSONL iteration and synthesis-event fields match the outputs contract.
     - id: lifecycle-parity
@@ -481,6 +474,6 @@ validation:
     - id: duplicate-literal-lint
       description: Detect duplicated hard-coded review taxonomy literals outside generated sections.
     - id: runtime-coverage
-      description: Ensure every supported runtime deep-review agent has a declared render artifact and parity coverage.
+      description: Ensure every supported runtime deep-review agent has a declared authoredArtifacts entry and parity coverage.
     - id: playbook-assertions
       description: Assert manual testing playbook scenarios reference the canonical simplified contract where applicable.

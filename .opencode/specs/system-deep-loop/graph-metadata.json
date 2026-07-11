@@ -26,7 +26,8 @@
     "system-deep-loop/z_archive",
     "system-deep-loop/052-deep-loop-unification",
     "system-deep-loop/054-smart-routing-benchmark-program",
-    "system-deep-loop/055-deep-loop-divergent-mode"
+    "system-deep-loop/055-deep-loop-divergent-mode",
+    "system-deep-loop/133-runtime-remediation-from-dogfood-findings"
   ],
   "manual": {
     "depends_on": [],
@@ -49,13 +50,13 @@
     "entities": [],
     "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-06-30T13:20:00.000Z",
-    "last_save_at": "2026-07-10T09:52:41.547Z",
+    "last_save_at": "2026-07-11T08:58:31.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "system-deep-loop/055-deep-loop-divergent-mode",
-    "last_active_at": "2026-07-10T09:52:41.547Z"
+    "last_active_child_id": "system-deep-loop/133-runtime-remediation-from-dogfood-findings",
+    "last_active_at": "2026-07-11T08:58:31.695Z"
   }
 }

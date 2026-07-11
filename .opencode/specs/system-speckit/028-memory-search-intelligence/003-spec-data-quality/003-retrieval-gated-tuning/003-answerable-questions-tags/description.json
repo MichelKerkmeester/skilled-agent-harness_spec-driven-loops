@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/003-answerable-questions-tags",
+  "description": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but",
+  "keywords": [
+    "document",
+    "carry",
+    "curated",
+    "answerablequestions",
+    "semanticintent",
+    "tags",
+    "name",
+    "queries",
+    "win",
+    "intent",
+    "class",
+    "serves"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.716Z",
+  "specId": "003",
+  "folderSlug": "answerable-questions-tags",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-spec-data-quality",
+    "003-retrieval-gated-tuning"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

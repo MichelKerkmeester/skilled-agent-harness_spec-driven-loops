@@ -1,8 +1,8 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Session Cleanup OpenCode Plugin                              ║
+// ║ COMPONENT: Session Cleanup OpenCode Plugin                               ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Run bounded startup guards and teardown cleanup without writing ║
-// ║          into the OpenCode TUI.                                           ║
+// ║          into the OpenCode TUI.                                          ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -103,7 +103,7 @@ export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
     || DEFAULT_LOG_PATH;
   const logMaxBytes = positiveInteger(
     process.env.SESSION_CLEANUP_LOG_MAX_BYTES
-      || process.env.CLAUDE_SESSION_CLEANUP_LOG_MAX_BYTES,
+    || process.env.CLAUDE_SESSION_CLEANUP_LOG_MAX_BYTES,
     DEFAULT_LOG_MAX_BYTES,
   );
   const writeDiagnostic = overrides.writeDiagnostic

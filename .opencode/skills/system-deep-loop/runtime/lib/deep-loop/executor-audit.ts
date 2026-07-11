@@ -406,6 +406,17 @@ function pickString(value: unknown): string | null {
 // memory from the secret + dispatchId and is likewise never passed to the
 // child; same-process verifiers obtain that derived key via
 // deriveReceiptKeyForDispatch(), which never returns the raw secret.
+//
+// WHAT THIS DOES NOT PROVIDE: cross-process authentication. runMasterSecret is
+// generated fresh (randomBytes) the first time this module is touched in a
+// process and is never persisted, so a validator running in a different
+// process than the one that wrote a receipt — a separate CLI invocation, a
+// resumed run after a restart — holds a different secret and derives a
+// different key by construction. It can never reproduce the mac on a receipt
+// this process wrote, even for a completely legitimate receipt, so mac
+// agreement only ever confirms "same process," not "unforged." See
+// post-dispatch-validate.ts for how the validator treats a mac mismatch as an
+// advisory signal rather than proof of tampering.
 
 let runMasterSecret: string | undefined;
 
@@ -467,8 +478,12 @@ function receiptPaths(receiptDir: string, dispatchId: string): { intentPath: str
 // Atomic, parent-owned write: create the dir owner-only (0o700), write the
 // record to a uniquely-named temp file (0o600, owner-only), then rename over
 // the target. POSIX rename is atomic, so a reader never observes a half-written
-// receipt. Restrictive perms make the path child-unwritable as defense in depth
-// (the stronger guarantee is that the child cannot forge a valid mac anyway).
+// receipt. The dispatched child is never given receiptDir or dispatchId (see
+// the containment note above), so path secrecy — not the mac — is what stops
+// it from locating this file to read or replace it; the owner-only perms are
+// the backstop against any other process on the same machine. The mac is a
+// same-process integrity signal (see post-dispatch-validate.ts), not a
+// cross-process authentication mechanism.
 function writeReceiptAtomic(receiptPath: string, record: object): void {
   const dir = dirname(receiptPath);
   mkdirSync(dir, { recursive: true, mode: 0o700 });

@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/001-multihop-tail-appends",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/002-retrieval-class-weights",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/003-true-citation-ledger",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/004-save-reconsolidation",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/005-flag-name-cleanup",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/006-dark-flag-validation",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/007-graduation-follow-ups",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/008-followup-deep-review",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/009-cross-package-flag-governance",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/010-flag-vocabulary-consolidation",
+    "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/011-graph-preservation-quality-benchmark"
+  ],
+  "migrated": true,
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dark flag graduation",
+      "benchmark the default-off features",
+      "graduate the dark flags",
+      "earn or cut the built-but-held flags",
+      "default-off capability benchmark suite"
+    ],
+    "key_topics": [
+      "dark",
+      "flag",
+      "graduation",
+      "benchmark",
+      "default-off",
+      "features",
+      "graduate",
+      "flags",
+      "earn",
+      "cut",
+      "built-but-held",
+      "capability"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "007-graduation-follow-ups/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dark Flag Graduation Suite",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This cycle added 41 feature flags",
+    "created_at": "2026-06-24T05:05:10.913Z",
+    "last_save_at": "2026-07-11T19:51:14.146Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:bf4ff0e45bfe611e6814e77b8083a222629e7f8938cecb8b41e0f7ec852e5bba",
+    "source_doc_hashes": {
+      "spec.md": "f24271a0d85cef17917cc4653ec3ed600f6885297e94b9467b305d84cadf8a18"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

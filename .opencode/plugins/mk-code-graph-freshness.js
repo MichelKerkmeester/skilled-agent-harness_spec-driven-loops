@@ -2,18 +2,18 @@
 // ║ COMPONENT: mk-code-graph-freshness OpenCode Plugin (adapter)             ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: OpenCode transport adapter over the runtime-neutral freshness   ║
-// ║          core. After a source-file write/edit lands, debounces the edit ║
-// ║          burst and -- only when the graph is already established and   ║
-// ║          the daemon is warm -- fire-and-forget dispatches a warm-only   ║
-// ║          incremental code_graph_scan so the graph self-heals from       ║
-// ║          soft-stale back to fresh. Never blocks the tool call, never    ║
-// ║          cold-starts the daemon, and never writes stdout/stderr. The    ║
-// ║          policy, the debounce state, and the two cheap file probes live ║
-// ║          in the shared core so the Claude PostToolUse hook applies the  ║
-// ║          identical decision; this file only maps OpenCode's             ║
-// ║          tool.execute.after / event transport onto it, owns the         ║
-// ║          detached spawn, and owns a real in-memory debounce timer that  ║
-// ║          a short-lived process cannot have.                             ║
+// ║          core. After a source-file write/edit lands, debounces the edit   ║
+// ║          burst and -- only when the graph is already established and     ║
+// ║          the daemon is warm -- fire-and-forget dispatches a warm-only     ║
+// ║          incremental code_graph_scan so the graph self-heals from        ║
+// ║          soft-stale back to fresh. Never blocks the tool call, never     ║
+// ║          cold-starts the daemon, and never writes stdout/stderr. The     ║
+// ║          policy, the debounce state, and the two cheap file probes live   ║
+// ║          in the shared core so the Claude PostToolUse hook applies the   ║
+// ║          identical decision; this file only maps OpenCode's               ║
+// ║          tool.execute.after / event transport onto it, owns the          ║
+// ║          detached spawn, and owns a real in-memory debounce timer that   ║
+// ║          a short-lived process cannot have.                              ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

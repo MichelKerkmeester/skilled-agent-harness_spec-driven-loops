@@ -1,9 +1,9 @@
 ---
 title: "Spec 028 Changelog Index"
-description: "Program-level index of all packet-local changelogs for spec 028 (memory-search-intelligence), organized under the five subsystem and release-readiness tracks, a data-quality track that shipped its later phases and a review-remediation track. Each track links to its top rollup."
+description: "Historical index for the final six-parent topology of spec 028, with former IDs preserved as explicit aliases."
 trigger_phrases:
   - "028 changelog index"
-  - "028 changelog history"
+  - "028 topology migration changelog"
   - "memory search intelligence changelogs"
 importance_tier: "normal"
 contextType: "implementation"
@@ -11,39 +11,60 @@ contextType: "implementation"
 
 # Spec 028 Changelog Index
 
-Spec 028 (memory-search-intelligence) turned a long external memory-system research campaign into shipped retrieval intelligence across four subsystems plus a release-readiness track. A sixth track, 003-spec-data-quality, began as a research scaffold and then shipped. It holds forty phase changelogs spanning the tiered go or no-go research, the generated-metadata build, the full-repo JSON migration and the flag-graduation benchmark that kept twelve flags and deleted one. A seventh track, 004-review-remediation, holds the six-child remediation of the epic deep review. An eighth track, 005-dark-flag-graduation, holds the twelve-child dark-flag graduation program that benchmarked eight default-off flag families on the production path and returned four graduates, three cuts and one refine, then cleaned up flag names, validated byte-identity and closed a follow-up deep review. A further program, 016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory (nested under `001-speckit-memory/031`), holds the deep-dive remediation work, thirteen phases that fixed the mk-spec-memory P0 through P2 findings and shipped end to end. The spec tree also grew sub-packets 008 through 015 between the dark-flag work and that program; on 2026-07-04 the data-quality ones (008 through 012) were re-nested under `003-spec-data-quality` as phases 045 through 049, and 013 through 015 were subsequently re-nested under their subject parents as well. Those carry their own spec-folder docs rather than changelog tracks here. The changelog mirrors the spec tree: one directory per track, flat per track, with phase changelogs named `changelog-<track>-<leaf>-<short-name>.md` and one per-track rollup named `changelog-<track>-root.md`. The packet root rollup is [changelog-028-root.md](./changelog-028-root.md) in this directory. The chronological view of the same work lives in [`../timeline.md`](../timeline.md) and the before-and-after narrative in [`../before-vs-after.md`](../before-vs-after.md). The flat Wave-0 done-evidence is recorded separately under the Wave-0 implementation record.
+This index mirrors the final six root-parent identities applied on 2026-07-11. Historical changelog file names and dated entries retain the IDs they had when written. Use the alias tables below to resolve an old identity to its final packet location.
 
-## Tracks
+## Final parent topology
 
-Current 028 top-level tracks with shipped changelog rollups (contiguous 000-006; track 002 skill-advisor is in-progress with no shipped rollup yet — see the note below):
+| Final parent | Direct phases | Governed descendants | Changelog support |
+|---|---:|---:|---|
+| `001-release-cleanup` | 15 | 22 | [`001-release-cleanup/changelog-001-root.md`](./001-release-cleanup/changelog-001-root.md) |
+| `002-speckit-memory` | 42 | 55 | [`002-speckit-memory/changelog-002-root.md`](./002-speckit-memory/changelog-002-root.md) |
+| `003-spec-data-quality` | 20 | 66 | [`003-spec-data-quality/changelog-003-root.md`](./003-spec-data-quality/changelog-003-root.md) |
+| `004-review-remediation` | 6 | 6 | [`004-review-remediation/changelog-004-root.md`](./004-review-remediation/changelog-004-root.md) |
+| `005-dark-flag-graduation` | 11 | 12 | [`005-dark-flag-graduation/changelog-005-root.md`](./005-dark-flag-graduation/changelog-005-root.md) |
+| `006-speckit-surface-alignment` | 6 | 6 | [`006-speckit-surface-alignment/changelog-006-root.md`](./006-speckit-surface-alignment/changelog-006-root.md) |
 
-| Track | Leaf changelogs | Top rollup |
-|-------|-----------------|------------|
-| 000 release cleanup | 12 | [changelog-000-root.md](./000-release-cleanup/changelog-000-root.md) |
-| 001 speckit memory | 28 | [changelog-001-root.md](./001-speckit-memory/changelog-001-root.md) |
-| 003 spec data quality | 40 | [changelog-003-root.md](./003-spec-data-quality/changelog-003-root.md) |
-| 004 review remediation | 6 | [changelog-004-root.md](./004-review-remediation/changelog-004-root.md) |
-| 005 dark flag graduation | 12 | [changelog-005-root.md](./005-dark-flag-graduation/changelog-005-root.md) |
-| 006 speckit surface alignment | 1 | [changelog-006-speckit-surface-alignment.md](./changelog-006-speckit-surface-alignment.md) |
+## Root-parent aliases
 
-Track 002 skill advisor holds only the in-progress `001-hard-rule-and-dispatch-preflight-hardening` and has no shipped changelog track yet. The 016 deep-dive remediation program (13 phases) shipped nested under `001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory`; its rollup is [changelog-016-root.md](./016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/changelog-016-root.md).
+| Former identity | Final identity | Guidance |
+|---|---|---|
+| `000-release-cleanup` | `001-release-cleanup` | Historical file names keep `000` where that was the ID at publication. The support directory now follows `001-release-cleanup`. |
+| `001-speckit-memory` | `002-speckit-memory` | Historical file names keep `001` where that was the ID at publication. The support directory now follows `002-speckit-memory`. |
+| `002-spec-data-quality` | `003-spec-data-quality` | Historical file names keep `002` where that was the ID at publication. The support directory now follows `003-spec-data-quality`. |
+| `003-review-remediation` | `004-review-remediation` | Historical file names keep `003` where that was the ID at publication. The support directory now follows `004-review-remediation`. |
+| `004-dark-flag-graduation` | `005-dark-flag-graduation` | Historical file names keep `004` where that was the ID at publication. The support directory now follows `005-dark-flag-graduation`. |
+| `005-speckit-surface-alignment` | `006-speckit-surface-alignment` | Historical file names keep `005` where that was the ID at publication. The support directory now follows `006-speckit-surface-alignment`. |
 
-Extracted to sibling packets on 2026-07-06 (their changelogs moved with them):
+The former top-level support directory `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory` is preserved under `002-speckit-memory/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory`. Its historical `016` file names remain unchanged, while the final spec phase identity is `002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory`.
 
-| Former 028 track | Leaf changelogs | Top rollup |
-|------------------|-----------------|------------|
-| code graph → system-code-graph | 8 | [changelog-002-root.md](../../../system-code-graph/changelog/001-code-graph-core/changelog-002-root.md) |
-| skill-advisor runtime → system-skill-advisor | 7 | [changelog-003-root.md](../../../system-skill-advisor/changelog/002-skill-advisor-runtime/changelog-003-root.md) |
-| deep loop → system-deep-loop | 6 | [changelog-004-root.md](../../../system-deep-loop/changelog/038-deep-loop-runtime/changelog-004-root.md) |
+## Moved shipped phases
 
-## How to read these
+Every moved phase below has a packet-local phase-template entry. The entry reports an evidence gap instead of upgrading status when the allowed task evidence is incomplete.
 
-Each track's top rollup is its phase parent's Included Phases table, listing every child phase with its status and a one-line summary. Each leaf changelog follows the canonical template: Summary, Added, Changed, Fixed, Verification, Files Changed and Follow-Ups. The data-quality track carries the most phases at forty and the memory track is next at twenty-eight, because the campaign weighted the Memory MCP heaviest and the data-quality lineage then grew a shipped build. The release-cleanup track carries nine executed documentation-surface cleanups plus three later validation phases, the coverage audit, the daemon-skills playbook validation and the playbook-findings remediation. The 003-spec-data-quality track began research only. Its first twenty-eight phases are the scaffolded go or no-go program an official multi-lineage deep-research produced, and its phases 029 through 040 are the shipped generated-JSON quality build, the full-repo migration and the flag-graduation benchmark that kept twelve flags and deleted one. A phase whose leaf Summary reads as planning-only may have been superseded by a later build commit, so the Added, Changed and Fixed evidence rows and the per-track rollup are the authoritative shipped state. The memory track's two closing leaves record cross-cutting milestones rather than single phase builds. `changelog-001-022-keep-off-flag-reinvestigation.md` is the keep-off flag-resolution reckoning that kept 5 default-on, deleted 10 along with their code and validated the disposition across three deep-review rounds after the build program closed, with the full per-flag method in `001-speckit-memory/022-kept-off-flag-resolution/`. `changelog-001-023-new-feature-research-build.md` is the TRACK B new-feature arc that followed it, where the deleted-10 teachings drove research that found 4 candidates, eval-v2 was built and kept as the measurability gate and 3 features were built default-off and fresh-Opus held, with the full method in `001-speckit-memory/023-new-feature-research-build/`.
+| Former identity | Final identity | Changelog entry | Evidence |
+|---|---|---|---|
+| `007-search-index-integrity-sweep` | `002-speckit-memory/008-search-index-integrity-sweep` | [`changelog-002-008-search-index-integrity-sweep.md`](./002-speckit-memory/changelog-002-008-search-index-integrity-sweep.md) | evidence gap: 17/24 tasks checked |
+| `010-query-channel-calibration` | `002-speckit-memory/012-query-channel-calibration` | [`changelog-002-012-query-channel-calibration.md`](./002-speckit-memory/changelog-002-012-query-channel-calibration.md) | allowed evidence present |
+| `011-automatic-drift-self-healing` | `002-speckit-memory/014-automatic-drift-self-healing` | [`changelog-002-014-automatic-drift-self-healing.md`](./002-speckit-memory/changelog-002-014-automatic-drift-self-healing.md) | evidence gap: 42/43 tasks checked |
+| `012-orphan-sweep-scoped-scan-safety` | `002-speckit-memory/016-orphan-sweep-scoped-scan-safety` | [`changelog-002-016-orphan-sweep-scoped-scan-safety.md`](./002-speckit-memory/changelog-002-016-orphan-sweep-scoped-scan-safety.md) | allowed evidence present |
+| `013-drift-marker-pipeline-resilience` | `002-speckit-memory/018-drift-marker-pipeline-resilience` | [`changelog-002-018-drift-marker-pipeline-resilience.md`](./002-speckit-memory/changelog-002-018-drift-marker-pipeline-resilience.md) | allowed evidence present |
+| `014-self-healing-internals-hardening` | `002-speckit-memory/020-self-healing-internals-hardening` | [`changelog-002-020-self-healing-internals-hardening.md`](./002-speckit-memory/changelog-002-020-self-healing-internals-hardening.md) | allowed evidence present |
+| `018-git-hooks-reinstall-and-guard` | `002-speckit-memory/025-git-hooks-reinstall-and-guard` | [`changelog-002-025-git-hooks-reinstall-and-guard.md`](./002-speckit-memory/changelog-002-025-git-hooks-reinstall-and-guard.md) | allowed evidence present |
+| `020-query-time-filter-benchmark` | `002-speckit-memory/028-query-time-filter-benchmark` | [`changelog-002-028-query-time-filter-benchmark.md`](./002-speckit-memory/changelog-002-028-query-time-filter-benchmark.md) | allowed evidence present |
+| `022-drift-marker-native-consolidation` | `002-speckit-memory/031-drift-marker-native-consolidation` | [`changelog-002-031-drift-marker-native-consolidation.md`](./002-speckit-memory/changelog-002-031-drift-marker-native-consolidation.md) | allowed evidence present |
+| `023-self-healing-model-consolidation` | `002-speckit-memory/033-self-healing-model-consolidation` | [`changelog-002-033-self-healing-model-consolidation.md`](./002-speckit-memory/changelog-002-033-self-healing-model-consolidation.md) | allowed evidence present |
+| `008-metadata-rename-reconciliation` | `003-spec-data-quality/007-metadata-rename-reconciliation` | [`changelog-003-007-metadata-rename-reconciliation.md`](./003-spec-data-quality/changelog-003-007-metadata-rename-reconciliation.md) | allowed evidence present |
+| `009-validation-integrity-hardening` | `003-spec-data-quality/008-validation-integrity-hardening` | [`changelog-003-008-validation-integrity-hardening.md`](./003-spec-data-quality/changelog-003-008-validation-integrity-hardening.md) | allowed evidence present |
+| `015-validation-hardening-fixes` | `003-spec-data-quality/009-validation-hardening-fixes` | [`changelog-003-009-validation-hardening-fixes.md`](./003-spec-data-quality/changelog-003-009-validation-hardening-fixes.md) | evidence gap: 31/32 tasks checked |
+| `019-validation-enforce-graduation` | `003-spec-data-quality/010-validation-enforce-graduation` | [`changelog-003-010-validation-enforce-graduation.md`](./003-spec-data-quality/changelog-003-010-validation-enforce-graduation.md) | allowed evidence present |
+| `016-cross-package-flag-governance` | `005-dark-flag-graduation/009-cross-package-flag-governance` | [`changelog-005-009-cross-package-flag-governance.md`](./005-dark-flag-graduation/changelog-005-009-cross-package-flag-governance.md) | allowed evidence present |
+| `017-flag-vocabulary-consolidation` | `005-dark-flag-graduation/010-flag-vocabulary-consolidation` | [`changelog-005-010-flag-vocabulary-consolidation.md`](./005-dark-flag-graduation/changelog-005-010-flag-vocabulary-consolidation.md) | allowed evidence present |
+| `021-graph-preservation-quality-benchmark` | `005-dark-flag-graduation/011-graph-preservation-quality-benchmark` | [`changelog-005-011-graph-preservation-quality-benchmark.md`](./005-dark-flag-graduation/changelog-005-011-graph-preservation-quality-benchmark.md) | allowed evidence present |
+| `006-presentation-layer-fixes` | `006-speckit-surface-alignment/006-presentation-layer-fixes` | [`changelog-006-006-presentation-layer-fixes.md`](./006-speckit-surface-alignment/changelog-006-006-presentation-layer-fixes.md) | allowed evidence present |
 
-## Conventions
+## Reading historical entries
 
-- File names use the pattern `changelog-<track>-<leaf>-<short-name>.md`. Per-track rollups use the `-root.md` suffix and the packet rollup is `changelog-028-root.md`. Numbers reflect each track's spec-tree position. The current top-level tracks are the contiguous 000 through 006, joined by the later 016 deep-dive remediation program nested under `001-speckit-memory/031`. The earlier 008 through 012 sub-packets were re-nested under `003-spec-data-quality` as phases 045 through 049 on 2026-07-04, and 013 through 015 were re-nested under their subject parents.
-- One changelog per shipped phase. Multi-candidate phases collapse their candidates into one entry.
-- Voice rules are non-negotiable: no em-dashes, no semicolons in narrative, no Oxford commas.
-- PENDING and gated phases are shown as planned with their gate named, never disguised as shipped.
-- The directory layout mirrors `027-xce-research-based-refinement/changelog/` (flat per track, one rollup per track).
+- Dates, shipment evidence and verification wording in existing files are preserved verbatim.
+- A historical numeric prefix is provenance, not a stale path to silently renumber.
+- Final navigation starts with one of the six parent support directories above.
+- The 2026-07-11 migration entry in [`changelog-028-root.md`](./changelog-028-root.md) is the authoritative old-to-new topology crosswalk.

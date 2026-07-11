@@ -2,16 +2,16 @@
 // ║ COMPONENT: mk-post-edit-quality OpenCode Plugin (adapter)                ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: OpenCode transport adapter over the runtime-neutral post-edit-  ║
-// ║          router core. tool.execute.after has no file path (only a       ║
-// ║          callID), so tool.execute.before stashes the edited path keyed  ║
-// ║          by callID; after retrieves + evicts it once the edit has       ║
-// ║          landed, runs the shared dispatch table under a self-imposed    ║
+// ║          router core. tool.execute.after has no file path (only a         ║
+// ║          callID), so tool.execute.before stashes the edited path keyed   ║
+// ║          by callID; after retrieves + evicts it once the edit has        ║
+// ║          landed, runs the shared dispatch table under a self-imposed     ║
 // ║          deadline (no host timeout wrapper exists for this hook), and    ║
-// ║          buffers bounded findings for the next turn's                   ║
-// ║          experimental.chat.system.transform. Findings are also recorded ║
-// ║          to a bounded, rotated, append-only log -- NEVER to stdout/     ║
-// ║          stderr, which OpenCode's TUI paints onto the prompt line.      ║
-// ║          Default-export-only and fail-open on every path.               ║
+// ║          buffers bounded findings for the next turn's                     ║
+// ║          experimental.chat.system.transform. Findings are also recorded  ║
+// ║          to a bounded, rotated, append-only log -- NEVER to stdout/      ║
+// ║          stderr, which OpenCode's TUI paints onto the prompt line.       ║
+// ║          Default-export-only and fail-open on every path.                ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

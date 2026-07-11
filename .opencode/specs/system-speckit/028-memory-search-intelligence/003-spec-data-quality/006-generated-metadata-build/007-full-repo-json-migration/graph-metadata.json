@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/007-full-repo-json-migration",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/007-full-repo-json-migration",
+  "parent_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "full repo json migration",
+      "stage 3 generated json migration",
+      "scoped per folder generator loop",
+      "byte stable second run gate",
+      "regenerate description and graph metadata repo wide"
+    ],
+    "key_topics": [
+      "full",
+      "repo",
+      "json",
+      "migration",
+      "stage",
+      "scoped",
+      "per",
+      "folder",
+      "generator",
+      "loop",
+      "byte",
+      "stable"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+      "scripts/graph/migrate-generated-json.ts",
+      "spec.md",
+      ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/migrate-generated-json.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-generated-json.ts",
+        "kind": "code",
+        "path": "scripts/graph/migrate-generated-json.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-generated-json.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/migrate-generated-json.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Generated",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "This Stage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Regenerate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The J1 to J4 generator phases harden how the spec-kit writes `description.json` and `graph-metadata.json`, but they ship their new behavior behind default-OFF flags so the on-disk repo is untouched",
+    "created_at": "2026-06-27T17:15:43.078Z",
+    "last_save_at": "2026-07-11T18:40:36.208Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4a2d10dc1ad6f091557d6aa6e7114ebf2539aa259db7ea8a33d9aa76be61b590",
+    "source_doc_hashes": {
+      "spec.md": "8d591512b31e263192b1c7384e4e5e65e6b6230a335d3cdb78d40f12238db908",
+      "plan.md": "d5e897c7bc5b2624c272007705198c35e2195b01289174945ae72153cef93b9f",
+      "tasks.md": "8c00b9f893b5f838f2ad16ddffab91b9543167061da0fedce9d1847a850ebb84",
+      "checklist.md": "2da84f272b8b91a7d80c81436ae3d99b39e10d86cbea207fdd5c78ff4b8bde08",
+      "implementation-summary.md": "01d9a6748b14f6b7e1ae3398ed31b19f93e3fa7370ee9a9797d154a9e7cd27cc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

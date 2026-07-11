@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/004-review-remediation/001-eval-benchmark-fidelity",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/004-review-remediation/001-eval-benchmark-fidelity",
+  "parent_id": "system-speckit/028-memory-search-intelligence/004-review-remediation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 eval benchmark fidelity remediation",
+      "forceAllChannels flag eval fix",
+      "trigger ablation no-op fix",
+      "028 eval benchmark fidelity plan",
+      "flag eval driver fix plan",
+      "028 eval benchmark fidelity tasks",
+      "flag eval driver fix tasks",
+      "028 eval benchmark fidelity checklist",
+      "flag eval driver fix checklist",
+      "001-eval-benchmark-fidelity implementation summary",
+      "028 review remediation eval benchmark fidelity"
+    ],
+    "key_topics": [
+      "eval",
+      "benchmark",
+      "fidelity",
+      "remediation",
+      "forceallchannels",
+      "flag",
+      "trigger",
+      "ablation",
+      "no-op",
+      "plan",
+      "driver",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
+      "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
+      "tests/retrieval-flag-eval-driver.vitest.ts",
+      "database/context-index.sqlite",
+      "scripts/evals/run-retrieval-flag-eval.mjs",
+      "mcp_server/lib/search/hybrid-search.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-retrieval-flag-eval.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-flag-eval-driver.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": "database/context-index.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eval Benchmark Fidelity Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Eval",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "default",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path, and its trigger-channel ablation is a complete no-op",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-07-11T18:40:36.291Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:61c85886989ed2bcc7e05615bca30874e6ba0d8187dc1dc2688d92e373039f9a",
+    "source_doc_hashes": {
+      "spec.md": "96355c402b7e124c997be1d3fde08797965a5b8efe3dfd499b568e216dc88b61",
+      "plan.md": "be4b761ed6047889f0dc3059fcdc7e9dce077a54e0fbbe1aefb7d6d0d4355269",
+      "tasks.md": "d78d5c28507e81a21b2092d954eb30b8dfd33307b7bbbd89defabe0232f44fe3",
+      "checklist.md": "1cdd0f2ba40801607b605e34c4507982201e19af23214503bd5070e8fd648551",
+      "implementation-summary.md": "48c884c07e4f33793c65c5085ff14c99db466db5f2c23b30e35eaade1a89dc59"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

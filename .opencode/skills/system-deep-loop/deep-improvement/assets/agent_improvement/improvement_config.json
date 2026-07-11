@@ -67,6 +67,11 @@
     "stopOnDimensionPlateau": true,
     "plateauWindow": 3
   },
+  "dispatchCaps": {
+    "maxCandidateDispatches": 5,
+    "maxScoreExecutions": 15,
+    "maxBenchmarkRuns": 5
+  },
   "journal": {
     "enabled": true,
     "path": "improvement/improvement-journal.jsonl",

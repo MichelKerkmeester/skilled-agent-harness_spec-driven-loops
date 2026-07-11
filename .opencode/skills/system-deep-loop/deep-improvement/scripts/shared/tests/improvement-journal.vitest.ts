@@ -67,6 +67,20 @@ describe('improvement-journal', () => {
       expect(journal.VALID_EVENT_TYPES).toContain('trade_off_detected');
     });
 
+    it('accepts score_execution_recorded as a valid dispatch-cost accounting event', () => {
+      // Backs check-dispatch-cap.cjs's scoreExecution counter: score-candidate.cjs
+      // runs 3x per iteration (primary + 2 replays) but only the primary emits the
+      // domain candidate_scored event, so this dedicated marker is the only way to
+      // count every individual execution from journal records.
+      expect(journal.VALID_EVENT_TYPES).toContain('score_execution_recorded');
+      const result = journal.validateEvent({
+        eventType: 'score_execution_recorded',
+        details: { sessionId: 'test-session', iteration: '1', candidateId: 'iteration-1', role: 'primary' },
+      });
+      expect(result.valid).toBe(true);
+      expect(result.errors).toHaveLength(0);
+    });
+
     it('exports the five legal-stop gate keys', () => {
       expect(journal.LEGAL_STOP_GATES).toEqual([
         'contractGate',

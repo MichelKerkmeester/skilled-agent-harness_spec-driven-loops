@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/003-governance-rollout",
+  "description": "The data-quality program is a fleet of eighteen build phases that share one engine and one registry, yet the ordering that makes them safe lives only",
+  "keywords": [
+    "data-quality",
+    "program",
+    "fleet",
+    "eighteen",
+    "phases",
+    "share",
+    "one",
+    "engine",
+    "registry",
+    "ordering",
+    "them",
+    "safe",
+    "lives",
+    "only"
+  ],
+  "lastUpdated": "2026-07-11T16:53:09.688Z",
+  "specId": "003",
+  "folderSlug": "governance-rollout",
+  "parentChain": [
+    "system-speckit",
+    "028-memory-search-intelligence",
+    "003-spec-data-quality",
+    "005-shared-engine-and-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

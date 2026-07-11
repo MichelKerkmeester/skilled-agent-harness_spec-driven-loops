@@ -3,18 +3,18 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: OpenCode transport adapter over the runtime-neutral deep-loop   ║
 // ║          dispatch-guard core. Detection-layer enforcement for Task-tool  ║
-// ║          dispatches targeting deep-loop sub-agents -- flags/blocks a     ║
-// ║          Deep Route header whose declared mode disagrees with           ║
-// ║          mode-registry.json for the resolved target agent, and          ║
-// ║          flags/blocks repeated/loop-like non-command-driven dispatches   ║
-// ║          to command-owned loop executors within a session while         ║
-// ║          allowing one bounded hand-off. The parsing + policy + state    ║
-// ║          maintenance live in the shared core so the Claude PreToolUse   ║
-// ║          Task hook enforces the identical policy; this file only maps    ║
+// ║          dispatches targeting deep-loop sub-agents -- flags/blocks a      ║
+// ║          Deep Route header whose declared mode disagrees with            ║
+// ║          mode-registry.json for the resolved target agent, and           ║
+// ║          flags/blocks repeated/loop-like non-command-driven dispatches    ║
+// ║          to command-owned loop executors within a session while          ║
+// ║          allowing one bounded hand-off. The parsing + policy + state     ║
+// ║          maintenance live in the shared core so the Claude PreToolUse    ║
+// ║          Task hook enforces the identical policy; this file only maps     ║
 // ║          OpenCode's tool.execute.before / session.created transport onto ║
 // ║          it. Stays default-export-only and never writes stdout/stderr:   ║
 // ║          a policy denial becomes a thrown error and a warning becomes a  ║
-// ║          bounded state-dir log line, never console output.              ║
+// ║          bounded state-dir log line, never console output.               ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

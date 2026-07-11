@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/002-speckit-memory/039-substrate-sandbox-cleanup",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/039-substrate-sandbox-cleanup",
+  "parent_id": "system-speckit/028-memory-search-intelligence/002-speckit-memory",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "substrate sandbox cleanup",
+      "substrate stress harness",
+      "hermetic code graph db cleanup",
+      "sandbox clean flag",
+      "vitest afterall sandbox reap"
+    ],
+    "key_topics": [
+      "substrate",
+      "sandbox",
+      "cleanup",
+      "stress",
+      "harness",
+      "hermetic",
+      "code",
+      "graph",
+      "clean",
+      "flag",
+      "vitest",
+      "afterall"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "run-substrate-stress-harness.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "substrate-runner-harness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Substrate Stress Harness Sandbox Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Best",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The substrate stress harness `run-substrate-stress-harness.mjs` writes its evidence and scratch into `sandbox/24--local-llm-query-intelligence/` at the REPOSITORY ROOT, and nothing cleans it, so every harness run leaves that folder at the repo root",
+    "created_at": "2026-06-23T00:00:00Z",
+    "last_save_at": "2026-07-11T18:40:35.993Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5caf745e06238b718151eab02b665856d086abe5af69f5ce339f81d495f14002",
+    "source_doc_hashes": {
+      "spec.md": "848c7571a094bfe601e6a5422bf8f334bb47aa1492acee98307bcd5230d425df",
+      "plan.md": "77ecb7d7031eeb22c4e2de9f87c8313fe3721ca11e0eb82cb8c852b147425f0f",
+      "tasks.md": "809e15fca885562ebd7f38f8bf426a7d93d524d505ad637c4caad7ccf346a800",
+      "checklist.md": "9a5664fae77fd00a6074c92cb30701fb2009f37a32804d3e30763e219edce2e2",
+      "implementation-summary.md": "180d999be8b346eb8ccf1ca3c8e62e7ce4441ee608f909f982b9237d3f8131a8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

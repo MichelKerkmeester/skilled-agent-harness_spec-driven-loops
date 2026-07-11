@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality",
+  "spec_folder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality",
+  "parent_id": "system-speckit/028-memory-search-intelligence",
+  "children_ids": [
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/007-metadata-rename-reconciliation",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/008-validation-integrity-hardening",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/009-validation-hardening-fixes",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/010-validation-enforce-graduation",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/011-drift-audit-remediation",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/012-drift-audit-deep-history-correction",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/013-generated-metadata-status-integrity",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/014-create-sh-parent-corruption-fix",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/015-derive-status-explicit-bypass-fix",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/016-validate-sh-dist-freshness-and-repo-remediation",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/017-graph-metadata-child-drift-audit-and-harden",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/018-z-archive-metadata-backfill",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/019-deep-loop-036-037-reindex",
+    "system-speckit/028-memory-search-intelligence/003-spec-data-quality/020-archive-renumber-010-044-to-001-023"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec data quality",
+      "retrieval adherence logic",
+      "metadata fusion",
+      "embedding context",
+      "spec corpus quality",
+      "spec data quality plan",
+      "research loop plan",
+      "by angle research",
+      "ranked candidates",
+      "data quality default",
+      "spec data quality tasks",
+      "research loop tasks"
+    ],
+    "key_topics": [
+      "spec",
+      "data",
+      "quality",
+      "retrieval",
+      "adherence",
+      "logic",
+      "metadata",
+      "fusion",
+      "embedding",
+      "context",
+      "corpus",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "research/stage-0-external-findings.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage-0-external-findings.md",
+        "kind": "doc",
+        "path": "research/stage-0-external-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Data Quality",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec-kit writes plain markdown chunks and two metadata JSONs per packet, but none of that is shaped for retrieval recall, for AI instruction adherence or for machine logic reading",
+    "created_at": "2026-06-27T17:15:46.346Z",
+    "last_save_at": "2026-07-11T20:01:52.750Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:b4e79719716b985fd0fe5eb16560bd70e2ad66ef1736ea088f1206f9631623ad",
+    "source_doc_hashes": {
+      "spec.md": "02bfcb07c249b033f9b460d8e9b54ff2b1eb82f4cd2341a0eadeecc75e8ed39d",
+      "plan.md": "48da63ffd00b751fa9d1f9e07603d2d48f4d0a92be20747e3b75e5d769a72d2a",
+      "tasks.md": "135451458f5e01f21677dca1711aff8dc84dc60c2017f13febbf3752777e638c",
+      "checklist.md": "b317898229f281873cb6204f663e5bbbdbe1d53f149e3ff8fc3cac8845337374",
+      "decision-record.md": "f264141bbe2739806e9cb5c82e6ab5489a24a3d37ab69cb21bcdf3c7bc8388c6",
+      "implementation-summary.md": "2f981d14ac8b48e048d0341878e1f736f4a5d3476fe61f099d64584433d8504f",
+      "research/research.md": "a068540b6b8cf204988f0813ce0741a6648dad9cf87c2fc014d15cf2706c54af",
+      "handover.md": "288344d0e6bd57ceef6762ad71bb4caa36b0f5aa62cde7dbb438d36d7aea2890"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

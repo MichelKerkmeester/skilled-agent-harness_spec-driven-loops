@@ -48,6 +48,11 @@ const VALID_EVENT_TYPES = Object.freeze([
   'mutation_outcome',
   'session_ended',
   'session_end',
+  // Dispatch-cost accounting marker (not a domain event): emitted once per
+  // score-candidate.cjs execution so check-dispatch-cap.cjs can count every
+  // individual execution (primary + replays), since the domain
+  // `candidate_scored` event only fires once per iteration for the primary.
+  'score_execution_recorded',
 ]);
 
 /**

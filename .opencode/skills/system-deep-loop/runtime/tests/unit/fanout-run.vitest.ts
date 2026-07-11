@@ -420,12 +420,22 @@ describe('fanout-run.cjs — computeLineageTimeoutMs lineage timeout override', 
     expect(computeLineageTimeoutMs({ iterations: 60, timeoutSeconds: 900 })).toBe(14_400_000);
   });
 
-  it('uses the lineage timeout hours override as the ceiling when provided (REQ-002)', () => {
-    expect(computeLineageTimeoutMs({ iterations: 60, timeoutSeconds: 900 }, 8)).toBe(28_800_000);
+  it('uses a lineage timeout hours override within the 4-hour ceiling as the ceiling (REQ-002)', () => {
+    expect(computeLineageTimeoutMs({ iterations: 60, timeoutSeconds: 900 }, 2)).toBe(7_200_000);
   });
 
   it('does not lengthen timeouts whose computed value is below the override ceiling', () => {
     expect(computeLineageTimeoutMs({ iterations: 2, timeoutSeconds: 60 }, 1)).toBe(240_000);
+  });
+
+  it('accepts a lineage timeout hours override exactly at the 4-hour hard ceiling', () => {
+    expect(computeLineageTimeoutMs({ iterations: 60, timeoutSeconds: 900 }, 4)).toBe(14_400_000);
+  });
+
+  it('rejects a lineage timeout hours override above the 4-hour hard ceiling (full-lineage lifetime is non-disableable)', () => {
+    expect(() => computeLineageTimeoutMs({ iterations: 60, timeoutSeconds: 900 }, 8)).toThrow(
+      /exceeds the hard maximum of 4 hours/,
+    );
   });
 });
 
@@ -549,6 +559,112 @@ describe('fanout-run.cjs — per-lineage budget guard helpers', () => {
         max_cost_units_per_lineage: 29,
       },
     });
+  });
+
+  // Regression guard: DEFAULT_MAX_COST_UNITS_PER_LINEAGE must stay 72 and keep working
+  // exactly as before, independent of the new aggregate cap added alongside it.
+  it('keeps the unconfigured default at exactly 72 cost units (12 iterations x 1 unit x 6 attempts)', () => {
+    expect(evaluateLineageBudgetCap({ lineage: {}, guards: {}, maxRetries: 5 })).toMatchObject({
+      continue_allowed: true,
+      stop_reasons: [],
+      upper_bound: { iterations: 12, total_attempts: 6, estimated_cost_units: 72, max_cost_units_per_lineage: 72 },
+    });
+  });
+
+  it('rejects the unconfigured default cap by exactly 1 unit over (13 iterations x 1 x 6 = 78 > 72)', () => {
+    expect(evaluateLineageBudgetCap({ lineage: { iterations: 13 }, guards: {}, maxRetries: 5 })).toMatchObject({
+      continue_allowed: false,
+      stop_reasons: ['max_cost_units_per_lineage'],
+      upper_bound: { iterations: 13, total_attempts: 6, estimated_cost_units: 78, max_cost_units_per_lineage: 72 },
+    });
+  });
+});
+
+describe('fanout-run.cjs — aggregate budget guard helpers', () => {
+  const { evaluateAggregateBudgetCap, computeAggregateBudgetUpperBound } = requireCjs(fanoutRunScript) as {
+    evaluateAggregateBudgetCap: (input: {
+      lineages?: Array<{ label?: string; iterations?: number | null }>;
+      guards?: Record<string, unknown>;
+      maxRetries?: number;
+    }) => { continue_allowed: boolean; stop_reasons: string[]; upper_bound: Record<string, unknown> };
+    computeAggregateBudgetUpperBound: (
+      lineages: Array<{ label?: string; iterations?: number | null }>,
+      guards?: Record<string, unknown>,
+      maxRetries?: number,
+    ) => Record<string, unknown>;
+  };
+
+  it('defaults the aggregate ceiling to 288 units and sums every lineage', () => {
+    const lineages = [
+      { label: 'a', iterations: 10 },
+      { label: 'b', iterations: 10 },
+    ];
+    // 10 iterations x 1 unit x 1 attempt (maxRetries 0) = 10 units per lineage -> 20 total.
+    expect(evaluateAggregateBudgetCap({ lineages, guards: {}, maxRetries: 0 })).toMatchObject({
+      continue_allowed: true,
+      stop_reasons: [],
+      upper_bound: { max_aggregate_cost_units: 288, estimated_cost_units: 20, lineage_count: 2 },
+    });
+  });
+
+  it('rejects when the sum across lineages exceeds 288 even though each lineage is within its own 72-unit cap', () => {
+    // 5 lineages x 60 iterations x 1 unit x 1 attempt = 60 units each (under the 72 default
+    // per-lineage cap) but 300 units in aggregate (over the new 288 aggregate cap) -- proves
+    // the two ceilings are independent, neither replaces the other.
+    const lineages = Array.from({ length: 5 }, (_, index) => ({ label: `seat-${index}`, iterations: 60 }));
+    const decision = evaluateAggregateBudgetCap({ lineages, guards: {}, maxRetries: 0 });
+    expect(decision).toMatchObject({
+      continue_allowed: false,
+      stop_reasons: ['max_aggregate_cost_units'],
+      upper_bound: { max_aggregate_cost_units: 288, estimated_cost_units: 300, lineage_count: 5 },
+    });
+    const perLineage = decision.upper_bound.per_lineage as Array<{ estimated_cost_units: number }>;
+    for (const entry of perLineage) {
+      expect(entry.estimated_cost_units).toBe(60);
+      expect(entry.estimated_cost_units).toBeLessThan(72);
+    }
+  });
+
+  it('honors a maxAggregateCostUnits override', () => {
+    expect(evaluateAggregateBudgetCap({
+      lineages: [{ label: 'a', iterations: 10 }],
+      guards: { maxAggregateCostUnits: 5 },
+      maxRetries: 0,
+    })).toMatchObject({
+      continue_allowed: false,
+      stop_reasons: ['max_aggregate_cost_units'],
+      upper_bound: { max_aggregate_cost_units: 5, estimated_cost_units: 10 },
+    });
+  });
+
+  it('treats an empty lineage list as trivially within budget', () => {
+    expect(computeAggregateBudgetUpperBound([], {}, 0)).toMatchObject({
+      max_aggregate_cost_units: 288,
+      estimated_cost_units: 0,
+      lineage_count: 0,
+    });
+  });
+});
+
+describe('fanout-run.cjs — stall watchdog is non-disableable', () => {
+  const { normalizeStallWatchdogMs } = requireCjs(fanoutRunScript) as {
+    normalizeStallWatchdogMs: (rawConfig: Record<string, unknown>) => number;
+  };
+
+  it('defaults to 300000ms (5 minutes) when unset', () => {
+    expect(normalizeStallWatchdogMs({})).toBe(300000);
+  });
+
+  it('honors a positive override', () => {
+    expect(normalizeStallWatchdogMs({ stallWatchdogMs: 40 })).toBe(40);
+  });
+
+  it('rejects an explicit 0 (the old opt-out) because autonomous runs cannot disable stall detection', () => {
+    expect(() => normalizeStallWatchdogMs({ stallWatchdogMs: 0 })).toThrow(/stallWatchdogMs must be greater than 0/);
+  });
+
+  it('still rejects a negative value', () => {
+    expect(() => normalizeStallWatchdogMs({ stallWatchdogMs: -1 })).toThrow(/non-negative/);
   });
 });
 
@@ -899,6 +1015,29 @@ describe('fanout-run.cjs — module basics', () => {
 
   it('exits 1 (SCRIPT_ERROR) when required args are missing', async () => {
     const { result } = await spawnFanout('module-missing-args', ['--loop-type', 'research']);
+
+    expect(result.exitCode).toBe(3);
+  });
+
+  it('exits 3 (INPUT_VALIDATION) when --lineage-timeout-hours exceeds the 4-hour hard ceiling', async () => {
+    const baseDir = makeTempDir('fanout-run-lineage-timeout-ceiling-');
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'opus', kind: 'native', count: 1 }],
+      concurrency: 1,
+    });
+
+    const { result } = await spawnFanout('module-lineage-timeout-ceiling', [
+      '--spec-folder',
+      'specs/test-fanout-run-lineage-timeout-ceiling',
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      fanoutConfig,
+      '--base-artifact-dir',
+      baseDir,
+      '--lineage-timeout-hours',
+      '8',
+    ]);
 
     expect(result.exitCode).toBe(3);
   });
@@ -1789,6 +1928,65 @@ describe('fanout-run.cjs — per-lineage budget cap', () => {
       status: 'rejected',
       error: { retryable: false, message: expect.stringContaining('exceeds configured budget cap') },
     });
+  });
+});
+
+describe('fanout-run.cjs — aggregate budget cap', () => {
+  it('halts the whole run before spawning any executor when the aggregate budget is exceeded', async () => {
+    const binDir = makeTempDir('fanout-run-aggregate-budget-bin-');
+    const baseDir = makeTempDir('fanout-run-aggregate-budget-base-');
+    const markerPath = join(baseDir, 'spawned.marker');
+    writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
+
+    const fanoutConfig = JSON.stringify({
+      // 5 replicas x 12 default iterations x 1 unit x 6 attempts (fan-out default
+      // maxRetries: 5) = 72 units each -- AT, not over, the per-lineage default cap --
+      // but 360 units in aggregate, over the new 288 aggregate cap. Proves the aggregate
+      // check is independent of (and fires ahead of) the unrelated per-lineage cap.
+      executors: [{ label: 'expensive', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 5 }],
+      concurrency: 1,
+    });
+
+    const hermetic = useHermeticEnv('aggregate-budget-cap');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-aggregate-budget-cap',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(3);
+    expect(existsSync(markerPath)).toBe(false);
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerEvents.filter((event) => event.event === 'aggregate_budget_cap_exceeded')).toEqual([
+      expect.objectContaining({
+        severity: 'error',
+        stop_reasons: ['max_aggregate_cost_units'],
+        upper_bound: expect.objectContaining({
+          max_aggregate_cost_units: 288,
+          estimated_cost_units: 360,
+          lineage_count: 5,
+        }),
+      }),
+    ]);
+    // No 'started' event for any replica: the aggregate check fired before the pool
+    // dispatched a single lineage.
+    expect(ledgerEvents.some((event) => event.event === 'started')).toBe(false);
   });
 });
 

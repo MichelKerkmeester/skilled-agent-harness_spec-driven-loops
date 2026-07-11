@@ -182,6 +182,18 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `scoring_mode = ________________`
 - `max_iterations = ________________`
 
+### Dispatch-Cost Disclosure
+
+Applies to both `:auto` and `:confirm`. Once `max_iterations` is resolved (the `:auto` three-tier flow, or the `:confirm` consolidated prompt above) and before `phase_init` begins, compute and present the worst-case cumulative dispatch cost for this run:
+
+```
+worst_case_total = max_iterations x (1 candidate dispatch + 3 score executions + 1 benchmark run)
+```
+
+Under the default `max_iterations = 5`: 5 iterations x (1 candidate + 3 scores + 1 benchmark) = 5 x 5 = **25 total dispatches**.
+
+This is a ceiling, not a spend guarantee — the loop can still stop earlier on `converged`/`blockedStop`/`manualStop`/`stuckRecovery`. It is enforced cumulatively for the whole session (never reset per-iteration) via `dispatchCaps` in `agent-improvement-config.json`: `maxCandidateDispatches: 5`, `maxScoreExecutions: 15`, `maxBenchmarkRuns: 5`. If `max_iterations` is raised above the default without also raising `dispatchCaps`, the loop halts early with a clear error once a cap is reached instead of silently overspending — surface that trade-off to the operator alongside the worst-case total.
+
 ## 2. Dashboard / Checkpoint Layout
 
 ### Improve Agent
@@ -431,6 +443,7 @@ Setup phase lists available agents and asks for selection.
 - **Promotion**: Promotion remains guarded by evidence, repeatability, and operator approval.
 - **Scoring**: All 5 dimensions are deterministic (regex, string matching, file existence). No LLM-as-judge.
 - **Stop rules**: Loop stops on `converged` (legal-stop bundle pass + stable trajectory), max iterations, or infra failure threshold.
+- **Dispatch caps**: `dispatchCaps` in `agent-improvement-config.json` bounds cumulative (whole-session, not per-iteration) dispatch cost by operation type: `maxCandidateDispatches` (default 5), `maxScoreExecutions` (default 15 — primary plus 2 replays per iteration), `maxBenchmarkRuns` (default 5). Enforced by `scripts/shared/check-dispatch-cap.cjs` before every candidate dispatch, score execution, and benchmark run; a cap reached before `max_iterations` halts the loop with a clear error instead of dispatching further.
 - **Runtime parity**: Agent exists across repo-managed runtimes (.opencode, .claude, .). Scanner checks all configured mirror paths.
 - **Benchmark assets** (post-060/005): static at `.opencode/skills/system-deep-loop/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json` + `assets/model_benchmark/benchmark-fixtures/*.json`. Materializer at `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
 - **Legal-stop emission** (post-060/005): YAML emits nested `legal_stop_evaluated.details.gateResults.{contractGate,behaviorGate,integrationGate,evidenceGate,improvementGate}` matching the reducer consumer shape. Flat `gateResult/gateName` is retired.

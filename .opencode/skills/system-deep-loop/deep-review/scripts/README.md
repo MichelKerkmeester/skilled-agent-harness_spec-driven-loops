@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 2 |
+| Code files | 1 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -66,8 +66,9 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Path | Purpose |
 |---|---|
-| `reduce-state.cjs` | CJS source file in this folder. |
 | `runtime-capabilities.cjs` | CJS source file in this folder. |
+
+`reduce-state.cjs` relocated to the shared `.opencode/skills/system-deep-loop/runtime/scripts/` directory (promoted to a shared-runtime primitive); `deep-review`'s own callers now require/invoke it from that path.
 
 ---
 

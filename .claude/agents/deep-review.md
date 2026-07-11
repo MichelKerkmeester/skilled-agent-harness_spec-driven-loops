@@ -336,7 +336,7 @@ Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMod
 Reducer boundary:
 
 - `review/deep-review-findings-registry.json` is reducer-owned canonical finding state.
-- `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
+- `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
 - This leaf agent may read registry for continuity and deduplication.
 - This leaf agent must not overwrite reducer-owned files.
 

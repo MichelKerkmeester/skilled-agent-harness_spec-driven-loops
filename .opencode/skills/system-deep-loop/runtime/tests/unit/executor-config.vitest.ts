@@ -329,6 +329,117 @@ describe('parseFanoutConfig', () => {
   });
 });
 
+describe('fan-out schema hard ceilings', () => {
+  function manyNativeExecutors(count: number) {
+    return Array.from({ length: count }, (_, index) => ({ kind: 'native' as const, label: `seat-${index}` }));
+  }
+
+  it('rejects concurrency above the hard max of 8', () => {
+    expect(() =>
+      parseFanoutConfig({ concurrency: 9, executors: [{ kind: 'native', label: 'opus' }] }),
+    ).toThrow(ExecutorConfigError);
+  });
+
+  it('accepts concurrency at the hard max of 8', () => {
+    expect(
+      parseFanoutConfig({ concurrency: 8, executors: [{ kind: 'native', label: 'opus' }] }).concurrency,
+    ).toBe(8);
+  });
+
+  it('rejects maxRetries above the hard max of 5', () => {
+    expect(() =>
+      parseFanoutConfig({ maxRetries: 6, executors: [{ kind: 'native', label: 'opus' }] }),
+    ).toThrow(ExecutorConfigError);
+  });
+
+  it('accepts maxRetries at the hard max of 5', () => {
+    expect(
+      parseFanoutConfig({ maxRetries: 5, executors: [{ kind: 'native', label: 'opus' }] }).maxRetries,
+    ).toBe(5);
+  });
+
+  it('rejects a per-lineage count above the hard max of 16', () => {
+    expect(() =>
+      parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus', count: 17 }] }),
+    ).toThrow(ExecutorConfigError);
+  });
+
+  it('accepts a per-lineage count at the hard max of 16', () => {
+    expect(
+      parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus', count: 16 }] }).executors[0].count,
+    ).toBe(16);
+  });
+
+  it('rejects more than 16 executors in a single fan-out block', () => {
+    expect(() => parseFanoutConfig({ executors: manyNativeExecutors(17) })).toThrow(ExecutorConfigError);
+  });
+
+  it('accepts exactly 16 executors in a single fan-out block', () => {
+    expect(parseFanoutConfig({ executors: manyNativeExecutors(16) }).executors).toHaveLength(16);
+  });
+
+  it('rejects a lag ceiling above the hard max of 5 minutes', () => {
+    expect(() =>
+      parseFanoutConfig({ lagCeilingMs: 300_001, executors: [{ kind: 'native', label: 'opus' }] }),
+    ).toThrow(ExecutorConfigError);
+  });
+
+  it('accepts a lag ceiling at the hard max of 5 minutes', () => {
+    expect(
+      parseFanoutConfig({ lagCeilingMs: 300_000, executors: [{ kind: 'native', label: 'opus' }] }).lagCeilingMs,
+    ).toBe(300_000);
+  });
+
+  it('rejects a zero lag ceiling because stall/lag detection is non-disableable in autonomous mode', () => {
+    expect(() =>
+      parseFanoutConfig({ lagCeilingMs: 0, executors: [{ kind: 'native', label: 'opus' }] }),
+    ).toThrow(ExecutorConfigError);
+  });
+
+  it('rejects timeoutSeconds above the hard max of 3600 on a single executor', () => {
+    expect(() =>
+      parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', timeoutSeconds: 3601 }),
+    ).toThrow(ExecutorConfigError);
+  });
+
+  it('accepts timeoutSeconds at the hard max of 3600 on a single executor', () => {
+    expect(
+      parseExecutorConfig({ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', timeoutSeconds: 3600 }).timeoutSeconds,
+    ).toBe(3600);
+  });
+
+  it('rejects timeoutSeconds above the hard max of 3600 on a fan-out lineage', () => {
+    expect(() =>
+      parseFanoutConfig({
+        executors: [{ kind: 'cli-opencode', model: 'opencode-go/glm-5.1', label: 'opus', timeoutSeconds: 3601 }],
+      }),
+    ).toThrow(ExecutorConfigError);
+  });
+
+  it('accepts a fan-out config that sits exactly at every new ceiling at once', () => {
+    const config = parseFanoutConfig({
+      concurrency: 8,
+      maxRetries: 5,
+      lagCeilingMs: 300_000,
+      executors: [
+        {
+          kind: 'cli-opencode',
+          model: 'opencode-go/glm-5.1',
+          label: 'opus',
+          count: 16,
+          timeoutSeconds: 3600,
+        },
+      ],
+    });
+    expect(config).toMatchObject({
+      concurrency: 8,
+      maxRetries: 5,
+      lagCeilingMs: 300_000,
+    });
+    expect(config.executors[0]).toMatchObject({ count: 16, timeoutSeconds: 3600 });
+  });
+});
+
 describe('expandLineages', () => {
   it('keeps the base label when count is 1', () => {
     const config = parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus', count: 1 }] });

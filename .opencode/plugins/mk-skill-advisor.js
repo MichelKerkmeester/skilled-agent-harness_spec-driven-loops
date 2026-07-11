@@ -1,9 +1,9 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: Skill Advisor OpenCode Plugin (mk-skill-advisor)              ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Inject skill advisor brief into OpenCode model context per     ║
-// ║          prompt; expose status tool; manage per-instance state,         ║
-// ║          in-flight dedup, and bounded prompt/brief/cache sizes.         ║
+// ║ PURPOSE: Inject skill advisor brief into OpenCode model context per      ║
+// ║          prompt; expose status tool; manage per-instance state,          ║
+// ║          in-flight dedup, and bounded prompt/brief/cache sizes.           ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

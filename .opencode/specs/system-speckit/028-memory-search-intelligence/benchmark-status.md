@@ -109,6 +109,8 @@ feature earns a prod-path keep only by changing the composition of the top-3, no
 cuts. The eval-mode-versus-prod-mode fidelity gap that 008 exposed is the same effect viewed from the
 metric side.
 
+---
+
 ## Track C - spec-kit data quality benchmark status: PROPOSED, not run
 
 Supersession note: the later "005 data-quality flag benchmarks" section records the landed thirteen-switch build and phase-040 measured verdicts that supersede this earlier proposed-only snapshot.
@@ -164,8 +166,8 @@ keep-off reinvestigation and the flag-resolution reckoning. The earlier transiti
 default-on flips with the rest held off pending a path to useful. The reckoning closed that experiment.
 Each default-off flag was simulated under a fair real-world load and given a final keep-or-delete decision
 per flag, fresh-Opus confirmed. Five switches earned default-ON and stayed. Ten did not earn their keep
-and their code was removed from the tree. The full per-flag method and the 4-layer verification live in
-[`001-speckit-memory/022-kept-off-flag-resolution/`](./001-speckit-memory/022-kept-off-flag-resolution/).
+and their code was removed from the tree. The full per-flag method and the 4-layer verification live at
+the current canonical path [`002-speckit-memory/030-kept-off-flag-resolution/`](./002-speckit-memory/030-kept-off-flag-resolution/).
 
 **Final tally: KEEP 5 default-ON, DELETE 10.**
 
@@ -189,7 +191,7 @@ force any flag off with `SPECKIT_<FLAG>=false`.
 Ten default-off switches and their code were removed after the fair real-world simulation showed each one
 was not worthwhile. The deciding evidence is one line per flag. The code removal is already committed, so
 the tree no longer carries these switches -- except SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING, recovered from
-git history in `002-code-graph/010-edge-confidence-and-ppr-revisit/` for a second, fairer benchmark pass
+git history at the current canonical path [`system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit/`](../../system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit/) (historical 028 alias: `002-code-graph/010-edge-confidence-and-ppr-revisit/`) for a second, fairer benchmark pass
 (see that row below); the CUT verdict stands and the flag remains default-off.
 
 | Flag | Deciding evidence | Verdict |
@@ -198,7 +200,7 @@ git history in `002-code-graph/010-edge-confidence-and-ppr-revisit/` for a secon
 | SPECKIT_SUMMARY_FUSION_LANE | displacement-only, Recall@20 -0.036, the lane only pushes a real channel hit out of the list, structural at K=20 | DELETE |
 | SPECKIT_CARDINALITY_PENALTY | Recall@20 movement 0.0000, the degree-lane cap is too small to be decisive at K=20, flat even with hub distractors present | DELETE |
 | SPECKIT_SLEEPTIME_CONSOLIDATION | net -1.67pp, the dedup pass hurts recall rather than helping it | DELETE |
-| SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING | negative on the real forward-CALLS graph, uniform edges make PPR equal to the prior ranking. Revisited in `002-code-graph/010-edge-confidence-and-ppr-revisit/` after edge confidence stopped being uniform: PPR now loses on every metric instead of tying, so the code was recovered from git history to run that test. Present in the tree again (default-off), not currently deleted | CUT (reconfirmed) |
+| SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING | negative on the real forward-CALLS graph, uniform edges make PPR equal to the prior ranking. Revisited at the current canonical path [`system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit/`](../../system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit/) (historical 028 alias: `002-code-graph/010-edge-confidence-and-ppr-revisit/`) after edge confidence stopped being uniform: PPR now loses on every metric instead of tying, so the code was recovered from git history to run that test. Present in the tree again (default-off), not currently deleted | CUT (reconfirmed) |
 | SPECKIT_SEMANTIC_EDGE_LAYER + edge family (SPECKIT_EDGE_VECTOR_INDEX, SPECKIT_EDGE_TRIPLET_SEARCH, SPECKIT_EDGE_SEMANTIC_DEDUP, SPECKIT_EDGE_SEMANTIC_INVALIDATION) | generic relation-template edges carry no pair identity, recall-inert at K=20 with a single-item +0.083 that does not generalize | DELETE |
 | SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK | MRR within noise on an empty ledger, every skill resolves to neutral so the order never moves | DELETE |
 | SPECKIT_BITEMPORAL_RECALL | zero callers, no point-in-time consumer reads the validity window | DELETE |
@@ -233,14 +235,14 @@ otherwise evict a higher-scored lexical hit from the truncated top-3.
 
 ## 005 data-quality flag benchmarks: phase 040 graduation verdicts
 
-The `002-spec-data-quality` build landed thirteen real switches, unlike the still-PROPOSED Track-C slate above.
+The `002-spec-data-quality` build (historical alias; current canonical root: `003-spec-data-quality/`) landed thirteen real switches, unlike the still-PROPOSED Track-C slate above.
 Phase 039 restamped the tree and phase 040 ran the graduation benchmark, so every switch now carries a measured
 verdict rather than a pending read. The benchmark harness toggled each flag in isolation against the phase 039
 migrated tree, reusing the phase 036 integrity validator through the migrate driver verify pass for the
 migration-gated flags and the phase 025 false-confirm driver plus the envelope-fidelity replay checker for the
 behavioral flags. The false-confirm baseline reproduced the documented 0.833 rate exactly, which confirms the
 driver is wired to the live verdict path. The full numbers live in
-[`002-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md`](./002-spec-data-quality/006-generated-metadata-build/040-flag-graduation-benchmark/benchmark-results.md).
+[`003-spec-data-quality/006-generated-metadata-build/008-flag-graduation-benchmark/benchmark-results.md`](./003-spec-data-quality/006-generated-metadata-build/008-flag-graduation-benchmark/benchmark-results.md).
 
 **Final verdict tally: twelve of thirteen kept, one deleted.** Eleven graduated on a measured before-and-after, one stays default-ON by construction, and grounding-signal was deleted as purely informational. A migration re-run then wrote the drift-gate and generator-hardening fields and a fixture re-benchmark measured the verdict and render flags, so the two pending-re-run rows and three of the four neutral rows below have since graduated, recorded in place.
 

@@ -16,21 +16,23 @@ version: 1.3.0.11
 
 Structured permissions-matrix schema, resolution semantics, example matrices, RM-8 replay reasoning, and migration checklist for cli-opencode deep-loop dispatches.
 
+> **Current wiring status:** `permissions-gate.ts` (`evaluateToolCall`, `evaluatePreDispatchToolCalls`) is built and covered by its own unit tests, but it has zero production callers. No `opencode run` dispatch invokes it today — a loaded `--permissions-matrix <path>` config or recipe field is not enforced by anything in the live dispatch path. Until the gate is wired in, the four-layer prose mitigation (`cli-opencode/SKILL.md` ALWAYS rule 15) is the active protection, not the schema described below.
+
 ---
 
 ## 1. OVERVIEW
 
 ### Purpose
 
-This reference documents the structured gate that replaces the RM-8 four-layer prose mitigation as the primary defense when a cli-opencode deep-loop dispatch has a permissions matrix configured. The design uses a flat `rules[]` array where the most-specific glob wins and first-in-array breaks exact ties.
+This reference documents the structured gate schema and matching design intended to replace the RM-8 four-layer prose mitigation as the primary defense once a cli-opencode deep-loop dispatch is wired to load and enforce a permissions matrix. The design uses a flat `rules[]` array where the most-specific glob wins and first-in-array breaks exact ties.
 
 ### When to Use
 
-Read this when configuring or auditing a permissions matrix for a cli-opencode `opencode run` deep-loop dispatch (deep-research or deep-review), when converting a prose-constrained recipe to a structured matrix, or when reasoning about how the gate blocks destructive scope violations.
+Read this when designing or reviewing the permissions-matrix schema, or when reasoning about how the gate is intended to block destructive scope violations once it is connected to dispatch. It does not currently gate any live `opencode run` invocation — see the status note above.
 
 ### Core Principle
 
-The structured gate checks each tool call against deterministic `rules[]` before the tool runs; no matching rule means deny, so the matrix is the primary control whenever it is configured.
+The structured gate is designed to check each tool call against deterministic `rules[]` before the tool runs, with no matching rule meaning deny. That matching logic is implemented and unit-tested, but nothing in the dispatch path calls it yet, so the matrix is not an active control for any dispatch today, configured or not.
 
 ---
 
@@ -111,9 +113,12 @@ Core intent:
 | `execute` on `Exec(rm*)`, `Exec(mv)`, `Exec(cp)`, package managers, `node`, `python*`, and `Exec(sed -i*)` | deny | These commands can mutate files or execute mutation scripts. |
 | `write`, `edit`, `delete` on `**` | deny | Read-only means no filesystem mutation. |
 
-The read-only matrix is the closest match for deep-review mode. It blocks the
-RM-8 class in two independent ways: direct write/edit/delete tool calls deny,
-and the Bash command targets used for deletion deny before shell execution.
+The read-only matrix is the closest match for deep-review mode. Once the gate
+is wired into dispatch, it is designed to block the RM-8 class in two
+independent ways: direct write/edit/delete tool calls deny, and the Bash
+command targets used for deletion deny before shell execution. Today, with
+zero production callers, neither denial path actually runs before a live tool
+call.
 
 ---
 
@@ -163,6 +168,10 @@ configuration operations blocked.
 ---
 
 ## 7. RUNTIME GATE BEHAVIOR
+
+This section documents the implemented, unit-tested matching contract. It is
+not currently invoked by any dispatch — see the status note at the top of
+this document.
 
 The implementation lives at:
 
@@ -267,12 +276,12 @@ The recorded review subtree deletion class is blocked twice.
 Across the current reconstructed review artifacts, the replay set uses 28 review
 entries plus the 16 spec docs above: 44/44 blocked.
 
-### 8.3 Why the matrix is stronger than prose
+### 8.3 Why the matrix, once wired in, would be stronger than prose
 
-The old Layer 1 prompt hardening asked the model not to mutate scope. The matrix
-gate checks the tool call before the tool runs. That matters because the RM-8
-root cause was not missing prose; it was instruction-only prose combined with
-unrestricted filesystem capability.
+The old Layer 1 prompt hardening asks the model not to mutate scope. The
+matrix gate is designed to check the tool call before the tool runs. That
+would matter because the RM-8 root cause was not missing prose; it was
+instruction-only prose combined with unrestricted filesystem capability.
 
 Layers 2-4 remain useful as defense in depth:
 
@@ -280,13 +289,17 @@ Layers 2-4 remain useful as defense in depth:
 - commit-before-dispatch gives a recovery baseline;
 - model selection lowers risk for multi-phase targets.
 
-But when a matrix is configured, the structured gate is the primary control.
+Today the gate has zero production callers. Layers 1-4 prose mitigation is
+the only active control, whether or not a matrix is configured.
 
 ---
 
 ## 9. MIGRATION CHECKLIST
 
-Use this checklist when converting a prose-constrained cli-opencode recipe.
+Use this checklist when authoring a matrix ahead of the gate being wired into
+dispatch. Authoring a matrix does not add protection today — see the status
+note at the top of this document — so keep applying the four-layer prose
+mitigation regardless of whether a matrix exists.
 
 - Identify the dispatch mode: read-only, packet-local, or repo-wide `.opencode`.
 - Choose the closest example matrix.
@@ -299,7 +312,8 @@ Use this checklist when converting a prose-constrained cli-opencode recipe.
   `sed -i*`, and any project-specific destructive command.
 - Validate with `npx ajv validate -s permissions-matrix.schema.json -d <matrix>`.
 - Run a dry replay with representative denied writes before dispatch.
-- If no matrix is loaded, keep using the legacy four-layer prose mitigation.
+- Keep applying the four-layer prose mitigation whether or not a matrix is
+  authored — the gate does not enforce it until wired into dispatch.
 
 ---
 
@@ -321,8 +335,10 @@ Risky shapes:
 - `delete` on `**` with `effect: "allow"`;
 - `execute` on `**` with `effect: "allow"`.
 
-The gate logs broad-glob warnings as a smoke check. A future CI lint can turn
-the smell into a blocking rule if the team wants enforcement.
+The gate's matching logic logs broad-glob warnings as a smoke check when
+invoked — today that means during its own unit tests, not during a live
+dispatch. A future CI lint can turn the smell into a blocking rule if the
+team wants enforcement.
 
 ---
 
