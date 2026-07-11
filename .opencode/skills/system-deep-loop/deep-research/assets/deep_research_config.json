@@ -53,6 +53,7 @@
       "what-failed",
       "exhausted-approaches",
       "ruled-out-directions",
+      "divergence-frontier",
       "next-focus"
     ]
   },

@@ -1730,6 +1730,126 @@ function buildGraphConvergenceRollup(eventRecords) {
   };
 }
 
+function loadPivotEventRecords(researchDir) {
+  const pivotsRoot = path.join(researchDir, 'divergent', 'pivots');
+  if (!fs.existsSync(pivotsRoot)) {
+    return [];
+  }
+
+  return fs.readdirSync(pivotsRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .sort((left, right) => {
+      const leftOrdinal = Number(left.name.match(/^pivot-(\d+)-/)?.[1] ?? 0);
+      const rightOrdinal = Number(right.name.match(/^pivot-(\d+)-/)?.[1] ?? 0);
+      return leftOrdinal - rightOrdinal || left.name.localeCompare(right.name);
+    })
+    .flatMap((entry) => {
+      const statePath = path.join(pivotsRoot, entry.name, 'council', 'state.jsonl');
+      if (!fs.existsSync(statePath)) {
+        return [];
+      }
+      return readUtf8(statePath)
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line, index) => {
+          let record;
+          try {
+            record = JSON.parse(line);
+          } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            throw new Error(`Invalid pivot state at ${statePath}:${index + 1}: ${message}`);
+          }
+          return {
+            ...record,
+            pivotArtifactRef: path.relative(researchDir, statePath),
+          };
+        });
+    });
+}
+
+function buildPivotState(eventRecords) {
+  const started = eventRecords.filter((record) => record.event === 'pivot_started');
+  const selected = eventRecords.filter((record) => record.event === 'pivot_selected');
+  const completed = eventRecords.filter((record) => record.event === 'pivot_completed');
+  const failed = eventRecords.filter((record) => record.event === 'pivot_failed');
+  const overrides = eventRecords.filter((record) => record.event === 'pivot_override_accepted');
+  const sourceIterationByPivot = new Map(started.map((record) => [
+    record.pivotId,
+    isFiniteNumber(record.source?.sourceIteration) ? record.source.sourceIteration : null,
+  ]));
+  const selectedCandidateByPivot = new Map(selected.map((record) => [record.pivotId, record.selectedCandidate]));
+  const latestCompleted = completed.at(-1);
+  const latestOverride = overrides.at(-1);
+  const completedOrdinal = Number(String(latestCompleted?.pivotId ?? '').match(/^pivot-(\d+)-/)?.[1] ?? 0);
+  const overrideOrdinal = Number(String(latestOverride?.pivotId ?? '').match(/^pivot-(\d+)-/)?.[1] ?? 0);
+  const activeOverride = overrideOrdinal >= completedOrdinal ? latestOverride : null;
+  const activeCompleted = activeOverride ? null : latestCompleted;
+  const activeCandidate = activeOverride?.selectedCandidate
+    ?? activeCompleted?.selectedCandidate
+    ?? (activeCompleted ? selectedCandidateByPivot.get(activeCompleted.pivotId) : null)
+    ?? null;
+  const selectedFrontier = Array.isArray(activeOverride?.selectedFrontier)
+    ? activeOverride.selectedFrontier
+    : Array.isArray(activeCompleted?.selectedFrontier)
+      ? activeCompleted.selectedFrontier
+      : [];
+  const selectedId = activeCandidate && typeof activeCandidate === 'object'
+    ? activeCandidate.id
+    : null;
+  const remainingFrontier = selectedFrontier.filter((candidate) =>
+    candidate && typeof candidate === 'object' && candidate.id !== selectedId);
+  const saturatedDirections = Array.from(new Set(completed.concat(overrides).flatMap((record) => [
+    ...(Array.isArray(record.saturatedDirections) ? record.saturatedDirections : []),
+    record.previousFocus,
+  ]).map(normalizeOptionalText).filter(Boolean)));
+  const currentFocus = normalizeOptionalText(activeCandidate?.focus)
+    || normalizeOptionalText(activeCompleted?.currentFocus);
+  const activePivotId = activeOverride?.pivotId ?? activeCompleted?.pivotId ?? null;
+
+  return {
+    started: started.map((record) => ({
+      pivotId: record.pivotId,
+      sourceIteration: sourceIterationByPivot.get(record.pivotId) ?? null,
+      previousFocus: normalizeOptionalText(record.previousFocus),
+      trigger: normalizeOptionalText(record.source?.normalizedTrigger),
+      artifactRef: normalizeOptionalText(record.pivotArtifactRef),
+    })),
+    completed: completed.map((record) => ({
+      pivotId: record.pivotId,
+      sourceIteration: sourceIterationByPivot.get(record.pivotId) ?? null,
+      previousFocus: normalizeOptionalText(record.previousFocus),
+      currentFocus: normalizeOptionalText(record.currentFocus),
+      selectedCandidate: record.selectedCandidate ?? selectedCandidateByPivot.get(record.pivotId) ?? null,
+      agreement: record.agreement ?? null,
+      artifactRefs: record.artifactRefs ?? {},
+      artifactRef: normalizeOptionalText(record.pivotArtifactRef),
+      occurredAtIso: normalizeOptionalText(record.occurredAtIso),
+    })),
+    failed: failed.map((record) => ({
+      pivotId: record.pivotId,
+      sourceIteration: sourceIterationByPivot.get(record.pivotId) ?? null,
+      reason: normalizeOptionalText(record.reason),
+      recoverableByOverride: record.recoverableByOverride === true,
+      agreement: record.agreement ?? null,
+      artifactRef: normalizeOptionalText(record.pivotArtifactRef),
+      occurredAtIso: normalizeOptionalText(record.occurredAtIso),
+    })),
+    overrides: overrides.map((record) => ({
+      pivotId: record.pivotId,
+      sourceIteration: isFiniteNumber(record.run) ? record.run : null,
+      selectedCandidate: record.selectedCandidate ?? null,
+      reason: normalizeOptionalText(record.reason),
+      timestamp: normalizeOptionalText(record.timestamp),
+    })),
+    saturatedDirections,
+    remainingFrontier,
+    currentFocus,
+    activePivotId,
+    activeSourceIteration: activePivotId ? sourceIterationByPivot.get(activePivotId) ?? null : null,
+  };
+}
+
 function buildLineageState(config, eventRecords) {
   const configLineage = config.lineage && typeof config.lineage === 'object'
     ? config.lineage
@@ -1917,6 +2037,12 @@ function resolveNextFocus(registry, iterationFiles, iterationRecords) {
     : null;
   const latestIteration = Array.isArray(iterationRecords) ? iterationRecords.at(-1) : null;
 
+  if (registry.divergence?.currentFocus
+    && isFiniteNumber(registry.divergence.activeSourceIteration)
+    && registry.divergence.activeSourceIteration > (latestIteration?.run ?? 0)) {
+    return registry.divergence.currentFocus;
+  }
+
   if (latestBlockedStop) {
     const latestBlockedTimestamp = getTimestampValue(latestBlockedStop.timestamp);
     const latestIterationTimestamp = getTimestampValue(latestIteration?.timestamp);
@@ -2055,6 +2181,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     rejectedIndex: rejectedPatternIndex,
   });
   const graphConvergence = buildGraphConvergenceRollup(eventRecords);
+  const divergence = buildPivotState(eventRecords);
   const lineage = reducerState.lineage && typeof reducerState.lineage === 'object'
     ? reducerState.lineage
     : {};
@@ -2118,6 +2245,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     graphConvergenceScore: graphConvergence.graphConvergenceScore,
     graphDecision: graphConvergence.graphDecision,
     graphBlockers: graphConvergence.graphBlockers,
+    divergence,
     ...(questionConflicts.length ? { questionConflicts } : {}),
     metrics: {
       iterationsCompleted: iterationRecords.filter((record) => record.type === 'iteration').length,
@@ -2133,6 +2261,9 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       ...(questionConflicts.length ? { questionConflicts: questionConflicts.length } : {}),
       convergenceScore,
       coverageBySources,
+      completedPivots: divergence.completed.length,
+      failedPivots: divergence.failed.length,
+      pivotOverrides: divergence.overrides.length,
     },
   };
 }
@@ -2239,6 +2370,32 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, iterat
     'ruled-out-directions',
     '10. RULED OUT DIRECTIONS',
     blockFromBulletList(registry.ruledOutDirections.map((entry) => `${entry.text} (iteration ${entry.addedAtIteration})`)),
+  );
+  const divergenceLines = [
+    `- Completed pivots: ${registry.divergence.completed.length}`,
+    `- Failed pivots: ${registry.divergence.failed.length}`,
+    `- Audited overrides: ${registry.divergence.overrides.length}`,
+    ...(registry.divergence.saturatedDirections.length
+      ? registry.divergence.saturatedDirections.map((direction) => `- Saturated: ${direction}`)
+      : ['- Saturated: none yet']),
+    ...(registry.divergence.completed.length
+      ? registry.divergence.completed.map((pivot) =>
+          `- Pivot ${pivot.pivotId}: ${pivot.previousFocus} -> ${pivot.currentFocus} (evidence: ${pivot.artifactRef})`)
+      : ['- Pivot lineage: none yet']),
+    ...(registry.divergence.failed.length
+      ? registry.divergence.failed.map((pivot) =>
+          `- Failed ${pivot.pivotId}: ${pivot.reason} (evidence: ${pivot.artifactRef})`)
+      : []),
+    ...(registry.divergence.remainingFrontier.length
+      ? registry.divergence.remainingFrontier.map((candidate) => `- Frontier: ${candidate.focus || candidate.title}`)
+      : ['- Remaining frontier: none recorded']),
+  ];
+  updated = upsertAnchorSectionBefore(
+    updated,
+    'divergence-frontier',
+    '10A. SATURATED DIRECTIONS AND DIVERGENCE FRONTIER',
+    divergenceLines.join('\n'),
+    'carried-forward-open-questions',
   );
   updated = upsertAnchorSectionBefore(
     updated,
@@ -2359,6 +2516,28 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
         '<!-- /ANCHOR:rejected-pattern-cache -->',
       ]
     : [];
+  const divergenceSection = [
+    '<!-- ANCHOR:divergent-pivots -->',
+    '## 6A. DIVERGENT PIVOTS',
+    `- Completed pivots: ${registry.divergence.completed.length}`,
+    `- Failed pivots: ${registry.divergence.failed.length}`,
+    `- Audited overrides: ${registry.divergence.overrides.length}`,
+    ...(registry.divergence.saturatedDirections.length
+      ? registry.divergence.saturatedDirections.map((direction) => `- Saturated: ${direction}`)
+      : ['- Saturated: none yet']),
+    ...(registry.divergence.completed.length
+      ? registry.divergence.completed.map((pivot) =>
+          `- ${pivot.pivotId}: ${pivot.previousFocus} -> ${pivot.currentFocus} (${pivot.artifactRef})`)
+      : ['- Pivot lineage: none yet']),
+    ...(registry.divergence.failed.length
+      ? registry.divergence.failed.map((pivot) => `- Failure ${pivot.pivotId}: ${pivot.reason} (${pivot.artifactRef})`)
+      : []),
+    ...(registry.divergence.remainingFrontier.length
+      ? registry.divergence.remainingFrontier.map((candidate) => `- Frontier: ${candidate.focus || candidate.title}`)
+      : ['- Remaining frontier: none recorded']),
+    '',
+    '<!-- /ANCHOR:divergent-pivots -->',
+  ];
   const progressRows = iterationRecords
     .map((record) => {
       const track = record.focusTrack || '-';
@@ -2459,6 +2638,7 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
       : ['- None yet'],
     '',
     '<!-- /ANCHOR:dead-ends -->',
+    ...divergenceSection,
     ...ideasBacklogSection,
     ...rejectedPatternSection,
     '<!-- ANCHOR:next-focus -->',
@@ -2532,7 +2712,9 @@ function reduceResearchState(specFolder, options = {}) {
   // no-progress watchdog but MUST NOT count as iterations or completion events.
   const completionBearingRecords = filterCompletionBearingRecords(parsedRecords);
   const records = completionBearingRecords.filter((record) => record.type === 'iteration');
-  const events = completionBearingRecords.filter((record) => record.type === 'event');
+  const mainEvents = completionBearingRecords.filter((record) => record.type === 'event');
+  const pivotEvents = loadPivotEventRecords(researchDir);
+  const events = mainEvents.concat(pivotEvents);
   const strategyContent = readUtf8(strategyPath);
   const strategyQuestions = parseStrategyQuestions(strategyContent);
   const inbox = readInboxQuestions(inboxPath);

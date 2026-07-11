@@ -80,6 +80,15 @@ Provides a compact, human-readable summary of the current research session. Serv
 
 ---
 
+## 6A. DIVERGENT PIVOTS
+- Completed pivots: [from findings registry]
+- Failed pivots: [from findings registry]
+- Audited overrides: [from findings registry]
+- Saturated directions: [from findings registry]
+- Remaining frontier: [from findings registry]
+
+---
+
 ## 7. NEXT FOCUS
 [from strategy.md "Next Focus" section]
 
