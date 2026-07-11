@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/133-spec-gate-enforce-readiness/005-answer-grammar-hardening",
+  "spec_folder": "skilled-agent-orchestration/133-spec-gate-enforce-readiness/005-answer-grammar-hardening",
+  "parent_id": "skilled-agent-orchestration/133-spec-gate-enforce-readiness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "answer grammar hardening",
+      "spec-gate skip regex",
+      "answerParse false skip",
+      "gate-3 deny detail",
+      "spec folder answer parser",
+      "spec-gate skip regex plan",
+      "answerParse grammar",
+      "gate-3 deny detail plan",
+      "spec-gate-core answer parser",
+      "answer grammar hardening tasks",
+      "spec-gate skip regex tasks",
+      "answerParse tasks"
+    ],
+    "key_topics": [
+      "answer",
+      "grammar",
+      "hardening",
+      "spec-gate",
+      "skip",
+      "regex",
+      "answerparse",
+      "false",
+      "gate-3",
+      "deny",
+      "detail",
+      "spec"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Harden",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "skip-false-close",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-gate core's answer parser (`answerParse` plus `SKIPWORDREGEX`, `spec-gate-core.mjs:329-380`) mis-reads three answer classes",
+    "created_at": "2026-07-11T10:44:14Z",
+    "last_save_at": "2026-07-11T11:06:00.078Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1659474a39f0d3e4f3be49e8a908c9ba260df3fe5f3e333b6f67026fbbbb91af",
+    "source_doc_hashes": {
+      "spec.md": "5b03f9f7fff1587239c580e5f72d227d59a58c49ff43e0e31d2c59246a7e3acd",
+      "plan.md": "26f7db1dc266d7a59338ae3dd3573b86c912fe98e38be1509272eef6c476d845",
+      "tasks.md": "ea217d04d4c7c9c124a162c45678fc572c735fa825a11408ee703a38bbed745f",
+      "checklist.md": "6eece1521dc29804f6a30deb1bb6e1e2cb2e7f99848fcb31587db23bb99d1776",
+      "implementation-summary.md": "6022f131790f49d5116d7a9342ff5523df5a5625eee98e86ddd0b65115e4f928"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
