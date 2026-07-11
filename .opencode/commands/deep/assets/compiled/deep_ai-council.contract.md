@@ -127,7 +127,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/assets/prompt_pack_round.md",
-      "sha256": "e7dc963f6ef7cde6f2c43bedb948e9503561fdf2e29067f634d79ac09914f7b5",
+      "sha256": "d2188bd9289b36eee0be3e7b8183e92b88fa792f7f7417bd52d2959163bbb7b6",
       "section": "full"
     },
     {

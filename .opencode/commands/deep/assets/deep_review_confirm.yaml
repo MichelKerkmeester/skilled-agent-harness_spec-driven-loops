@@ -1211,25 +1211,24 @@ workflow:
         note: "Reducer outputs findingsRegistry, dashboardMetrics, and strategyUpdates. Re-running the same inputs must be idempotent."
 
       step_graph_upsert:
-        action: "Transform the latest iteration graphEvents delta into review graph nodes and edges, then upsert it"
+        action: "Project canonical review coverage plus optional graphEvents into graph nodes and edges, then upsert it"
         read:
+          - "{state_paths.config}"
           - "{state_paths.state_log}"
           - "{state_paths.findings_registry}"
         transform: |
           1. Read the latest iteration JSONL record after reducer completion.
-          2. If graphEvents is absent or empty, set graph_nodes_json = [] and graph_edges_json = [] and skip the upsert.
-          3. For each graph event without relation/source/target, normalize type = uppercase(event.type || event.nodeKind || event.type) and keep only DIMENSION, FILE, FINDING, EVIDENCE, REMEDIATION, BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, TEST.
-          4. Emit nodes as { id, type, name, iteration, metadata } using the event label (or id fallback) and review metadata for run/current focus.
-          5. For each graph event with relation + source + target, normalize relation = uppercase(event.relation) and keep only COVERS, EVIDENCE_FOR, CONTRADICTS, RESOLVES, CONFIRMS, ESCALATES, IN_DIMENSION, IN_FILE.
-          6. Emit edges as { id, relation, sourceId, targetId, metadata } and deduplicate the batch by id.
-          7. Discard malformed or unknown graph events instead of failing the review iteration.
+          2. Seed one stable DIMENSION node for every configured review dimension, falling back to correctness, security, traceability, and maintainability.
+          3. Seed one stable FILE node for every latest-record filesReviewed entry and emit a COVERS edge from each latest-record dimension to each reviewed file.
+          4. Merge optional graphEvents nodes after normalizing type = uppercase(event.kind || event.nodeKind || event.type); keep only DIMENSION, FILE, FINDING, EVIDENCE, REMEDIATION, BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, TEST.
+          5. Merge optional graphEvents edges after normalizing relation = uppercase(event.relation); keep only COVERS, EVIDENCE_FOR, CONTRADICTS, RESOLVES, CONFIRMS, ESCALATES, IN_DIMENSION, IN_FILE.
+          6. Emit nodes as { id, type, name, iteration, metadata } and edges as { id, relation, sourceId, targetId, metadata }, deduplicated by id.
+          7. Discard malformed or unknown optional events without discarding canonical dimension and file coverage.
         bash: "node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{session_id}\" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'"
-        note: "Invoke the runtime script directly. Upsert only the latest iteration graph delta."
+        note: "Invoke the runtime script directly. Canonical iteration fields provide baseline coverage; graphEvents add richer evidence."
         outputs:
-          - graph_nodes_json: "JSON array of normalized review graph nodes for the latest iteration"
-          - graph_edges_json: "JSON array of normalized review graph edges for the latest iteration"
-        skip_conditions:
-          - "Latest iteration record has no graphEvents array"
+          - graph_nodes_json: "JSON array of canonical and optional review graph nodes"
+          - graph_edges_json: "JSON array of canonical and optional review graph edges"
 
       # ─── APPROVAL GATE: Post-Iteration ───
       gate_post_iteration:

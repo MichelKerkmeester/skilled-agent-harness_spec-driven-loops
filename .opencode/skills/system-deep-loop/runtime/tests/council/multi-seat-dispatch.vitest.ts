@@ -8,6 +8,7 @@ const { dispatchCouncilSeats } = require('../../lib/council/multi-seat-dispatch.
     roundId: string;
     seats: Array<{ id: string; lens?: string }>;
     dispatchSeat: (seat: { id: string }, context: { roundId: string; seatIndex: number }) => Promise<unknown>;
+    maxConcurrency?: number;
   }) => Promise<{
     round_id: string;
     results: Array<{ seat_id: string; status: string; output?: unknown; error?: { message: string } }>;
@@ -106,6 +107,32 @@ describe('council multi-seat dispatch', () => {
 
     expect(result.results.map((entry) => entry.seat_id)).toEqual(['slow-seat', 'fast-seat']);
     expect(result.results.every((entry) => entry.status === 'fulfilled')).toBe(true);
+  });
+
+  it('caps concurrent dispatches at maxConcurrency while preserving result order', async () => {
+    let active = 0;
+    let peakActive = 0;
+    const seats = Array.from({ length: 5 }, (_unused, index) => ({ id: `seat-${index + 1}` }));
+
+    const result = await dispatchCouncilSeats({
+      roundId: 'round-007',
+      seats,
+      maxConcurrency: 2,
+      async dispatchSeat(seat) {
+        active += 1;
+        peakActive = Math.max(peakActive, active);
+        await new Promise((resolve) => setTimeout(resolve, 10));
+        active -= 1;
+        return { seat_id: seat.id };
+      },
+    });
+
+    expect(peakActive).toBe(2);
+    expect(result.results.map((entry) => entry.seat_id)).toEqual([
+      'seat-1', 'seat-2', 'seat-3', 'seat-4', 'seat-5',
+    ]);
+    expect(result.results.every((entry) => entry.status === 'fulfilled')).toBe(true);
+    expect(result.summary).toMatchObject({ total: 5, succeeded: 5, failed: 0, all_failed: false });
   });
 
   it('passes seat lens through to dispatchSeat context', async () => {

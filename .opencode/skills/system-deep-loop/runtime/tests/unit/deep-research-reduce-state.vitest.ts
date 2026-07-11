@@ -10,6 +10,7 @@ const nodeRequire = createRequire(import.meta.url);
 const {
   deriveRejectedPatternIndex,
   filterRejectedIdeaCandidates,
+  parseIterationFile,
   reduceResearchState,
 } = nodeRequire('../../../deep-research/scripts/reduce-state.cjs') as {
   deriveRejectedPatternIndex: (eventRecords: Array<Record<string, unknown>>, options?: {
@@ -124,6 +125,10 @@ const {
     strategy: string;
     dashboard: string;
     hasCorruption: boolean;
+  };
+  parseIterationFile: (iterationPath: string) => {
+    findings: string[];
+    ruledOut: string[];
   };
 };
 
@@ -693,5 +698,51 @@ describe('deep-research reduce-state recovery gate', () => {
     ]);
     expect(rejected.strategy).toContain('## 11. NEXT FOCUS\n[All tracked questions are resolved]');
     expect(rejected.dashboard).toContain('- Suppressed ideas: 1');
+  });
+
+  it('captures H3 finding headings alongside bullet findings, and excludes Ruled-Out Direction headings', () => {
+    const specFolder = makeTempSpec();
+    mkdirSync(join(specFolder, 'research', 'iterations'), { recursive: true });
+    const iterationPath = join(specFolder, 'research', 'iterations', 'iteration-001.md');
+    writeFileSync(
+      iterationPath,
+      [
+        '# Iteration 001: H3 finding headings',
+        '',
+        '## Findings',
+        '',
+        '### F-ITER001-001 - Example structural finding (P1)',
+        '',
+        'Body text for the first finding.',
+        '',
+        '### P1: Example severity-prefixed finding',
+        '',
+        'Body text for the second finding.',
+        '',
+        '- A plain bullet finding still extracts',
+        '',
+        '### Ruled-Out Direction',
+        '',
+        'This heading must not be captured as a finding.',
+        '',
+        '## Ruled Out',
+        '',
+        '- Some ruled-out approach',
+        '',
+      ].join('\n'),
+      'utf8',
+    );
+
+    const parsed = parseIterationFile(iterationPath);
+
+    expect(parsed.findings).toEqual(
+      expect.arrayContaining([
+        'F-ITER001-001 - Example structural finding (P1)',
+        'P1: Example severity-prefixed finding',
+        'A plain bullet finding still extracts',
+      ]),
+    );
+    expect(parsed.findings).not.toContain('Ruled-Out Direction');
+    expect(parsed.ruledOut).toEqual(['Some ruled-out approach']);
   });
 });

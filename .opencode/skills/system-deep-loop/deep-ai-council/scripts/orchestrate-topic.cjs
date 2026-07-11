@@ -22,10 +22,11 @@ const { validateSessionStateHierarchy } = require('../../runtime/lib/council/ses
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_TOPIC_ID = 'topic-001-topic';
-const COUNCIL_RESOLVED_ROUTE_HEADER = 'Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true';
+const COUNCIL_RESOLVED_ROUTE_HEADER = 'Resolved route: mode=ai-council; target_agent=plan; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true';
 const COUNCIL_ROUTE_FIELDS = Object.freeze({
   mode: 'ai-council',
-  target_agent: '@ai-council',
+  target_agent: 'plan',
+  agent_definition_loaded: true,
   execution: 'multi_topic_session_round',
   state_source: 'ai-council/session-state.jsonl',
   depth_aware: true,
@@ -265,6 +266,7 @@ async function orchestrateTopic(options = {}) {
       roundId,
       seats,
       dispatchSeat,
+      maxConcurrency: guards.max_concurrent_seats,
       context: {
         topic_id: topicId,
         topic,
@@ -308,9 +310,9 @@ async function orchestrateTopic(options = {}) {
       round_id: roundId,
       round_number: roundNumber,
       mode: 'ai-council',
-      target_agent: 'ai-council',
+      target_agent: 'plan',
       agent_definition_loaded: true,
-      resolved_route: 'Resolved route: mode=ai-council target_agent=ai-council',
+      resolved_route: 'Resolved route: mode=ai-council target_agent=plan',
       seats: seats.map((seat) => (typeof seat === 'string' ? seat : seat.id)),
       dispatch_summary: dispatchResult.summary,
       adjudicator_verdict: adjudicatorVerdict,

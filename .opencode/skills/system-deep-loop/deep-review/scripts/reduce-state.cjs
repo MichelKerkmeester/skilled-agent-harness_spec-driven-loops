@@ -1180,33 +1180,39 @@ function buildPivotState(eventRecords) {
 }
 
 /**
- * Aggregate the latest `traceabilityChecks` payload into the registry. This is
- * latest-wins because each iteration carries cumulative counts for the current
- * pass; older passes remain available in JSONL for audit.
+ * Aggregate the latest result for each traceability protocol into the registry.
+ * Iterations may report only the protocols exercised in that pass.
  */
 function buildTraceabilityRollup(iterationRecords) {
-  const latest = (Array.isArray(iterationRecords) ? iterationRecords : [])
-    .filter((record) => record && typeof record === 'object'
-      && record.traceabilityChecks && typeof record.traceabilityChecks === 'object')
-    .at(-1);
-
-  if (!latest) {
-    return {
-      summary: {
-        required: 0, executed: 0, pass: 0, partial: 0,
-        fail: 0, blocked: 0, notApplicable: 0, gatingFailures: 0,
-      },
-      results: [],
-    };
+  const latestByProtocol = new Map();
+  for (const record of Array.isArray(iterationRecords) ? iterationRecords : []) {
+    const results = record?.traceabilityChecks?.results;
+    if (!Array.isArray(results)) continue;
+    for (const result of results) {
+      const protocolId = normalizeText(result?.protocolId);
+      if (protocolId) latestByProtocol.set(protocolId, result);
+    }
   }
 
-  const tc = latest.traceabilityChecks;
+  const results = [...latestByProtocol.values()];
+  const statuses = results.map((result) => normalizeText(result.status).toLowerCase());
+  const applicable = results.filter((result) => result.applicable !== false);
+
   return {
-    summary: (tc.summary && typeof tc.summary === 'object') ? tc.summary : {
-      required: 0, executed: 0, pass: 0, partial: 0,
-      fail: 0, blocked: 0, notApplicable: 0, gatingFailures: 0,
+    summary: {
+      required: applicable.length,
+      executed: applicable.filter((result) => !['', 'pending', 'deferred', 'skipped'].includes(
+        normalizeText(result.status).toLowerCase(),
+      )).length,
+      pass: statuses.filter((status) => status === 'pass').length,
+      partial: statuses.filter((status) => status === 'partial').length,
+      fail: statuses.filter((status) => status === 'fail').length,
+      blocked: statuses.filter((status) => status === 'blocked').length,
+      notApplicable: statuses.filter((status) => status === 'not_applicable').length,
+      gatingFailures: applicable.filter((result) => result.gateClass === 'hard'
+        && ['partial', 'fail', 'blocked'].includes(normalizeText(result.status).toLowerCase())).length,
     },
-    results: Array.isArray(tc.results) ? tc.results : [],
+    results,
   };
 }
 
@@ -1334,7 +1340,7 @@ function buildSearchLedgerState(iterationRecords) {
     blocked: [],
     byBugClass: {},
   };
-  const searchDebt = [];
+  const searchDebtByBugClass = new Map();
   const ruledOutCandidates = [];
   const cleanSearchProof = [];
   let searchCoverage = {
@@ -1388,10 +1394,12 @@ function buildSearchLedgerState(iterationRecords) {
       addCandidateClass(candidateCoverage, bugClass, disposition, iteration);
 
       if (disposition === 'deferred' || disposition === 'blocked') {
-        searchDebt.push({
+        searchDebtByBugClass.set(bugClass, {
           ...entry,
           reason: normalizeText(row.deferredReason || row.blockedReason) || entry.rationale,
         });
+      } else {
+        searchDebtByBugClass.delete(bugClass);
       }
       if (disposition === 'ruled_out') {
         ruledOutCandidates.push({
@@ -1412,11 +1420,21 @@ function buildSearchLedgerState(iterationRecords) {
     }
   }
 
+  const searchDebt = [...searchDebtByBugClass.values()]
+    .sort((left, right) => left.iteration - right.iteration || left.id.localeCompare(right.id));
+  for (const [bugClass, state] of Object.entries(candidateCoverage.byBugClass)) {
+    const debt = searchDebtByBugClass.get(bugClass);
+    state.deferred = debt?.disposition === 'deferred';
+    state.blocked = debt?.disposition === 'blocked';
+    state.iterations.sort((left, right) => Number(left) - Number(right));
+  }
+  candidateCoverage.deferred = candidateCoverage.deferred
+    .filter((bugClass) => candidateCoverage.byBugClass[bugClass]?.deferred);
+  candidateCoverage.blocked = candidateCoverage.blocked
+    .filter((bugClass) => candidateCoverage.byBugClass[bugClass]?.blocked);
+
   for (const key of ['covered', 'ruledOut', 'deferred', 'blocked']) {
     candidateCoverage[key].sort((left, right) => left.localeCompare(right));
-  }
-  for (const value of Object.values(candidateCoverage.byBugClass)) {
-    value.iterations.sort((left, right) => Number(left) - Number(right));
   }
 
   return {

@@ -270,6 +270,24 @@ describe('Lane C — scorer + report render', () => {
     expect(md).toContain('Skill Benchmark Report');
     expect(md).toContain('Verdict: PASS');
   });
+
+  it('downgrades a high-scoring report to CONDITIONAL when an active P1 bottleneck is present', () => {
+    const routerResult = { parseable: true, intents: ['REVIEW'], resources: ['references/a.md'], missingResources: [], scores: [] };
+    const row = scoreScenario({ scenarioId: 's1', tier: 'T2', routerResult, expected: { intentKeys: ['REVIEW'], resources: ['references/a.md'] } });
+    const report = aggregate({
+      skillId: 'x', skillRoot: '/x', scenarioRows: [row],
+      connectivity: {
+        score: 90,
+        gateFailed: false,
+        findings: [{ class: 'funnel_attrition', severity: 'P1', stage: 'wrong-mode', detail: '1 scenario(s) first fail at stage \'wrong-mode\'' }],
+      },
+      traceMode: 'router',
+    });
+    // Same high-scoring fixture as the PASS case above -- an unconditional PASS
+    // here would contradict the still-active P1 remediation the report lists.
+    expect(report.aggregateScore).toBeGreaterThanOrEqual(80);
+    expect(report.verdict).toBe('CONDITIONAL');
+  });
 });
 
 function designRecipe(command = '/design:interface'): any {
