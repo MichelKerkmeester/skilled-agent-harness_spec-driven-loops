@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/002-standard-docs"
-    last_updated_at: "2026-07-11T08:53:41Z"
+    last_updated_at: "2026-07-11T09:32:39Z"
     last_updated_by: "claude-code"
-    recent_action: "Scaffolded this phase plan from the 018 research manifest"
-    next_safe_action: "Author the Rust trio, then the checklist, then the playbook entry"
+    recent_action: "Authored and wrote the five Rust standard docs for code-opencode"
+    next_safe_action: "Wire Rust surface routing in code-opencode/SKILL.md (phase 003)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 2 — Author the Rust Standard Docs
@@ -69,13 +69,13 @@ Interop/build content lives in the Rust trio, not a new shared file; only langua
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Step 1: Trio
+### Phase 1: Trio
 Author `style_guide.md`, `quality_standards.md`, `quick_reference.md` from Deliverable 1.
 
-### Step 2: Checklist
+### Phase 2: Checklist
 Author `rust_checklist.md` (P0/P1/P2 + review-evidence template), mirroring `typescript_checklist.md`.
 
-### Step 3: Playbook
+### Phase 3: Playbook
 Author `004-rust-standards.md` with `expected_intent: RUST` and the Rust `expected_resources`.
 <!-- /ANCHOR:phases -->
 
