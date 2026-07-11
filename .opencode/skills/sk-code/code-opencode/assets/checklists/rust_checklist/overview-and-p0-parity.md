@@ -21,7 +21,7 @@ Quality validation checklist for Rust compute kernels and napi-rs, WASM/WASI, or
 
 ### Purpose
 
-Specific quality checks for Rust files in the OpenCode development environment. Use alongside the [universal_checklist.md](./universal_checklist.md) for complete validation.
+Specific quality checks for Rust files in the OpenCode development environment. Use alongside the [universal_checklist.md](../universal_checklist.md) for complete validation.
 
 This checklist treats the TypeScript implementation as the compatibility oracle. Semantic equivalence is insufficient where Rust output crosses an existing JavaScript boundary: serialized bytes, six-decimal numeric behavior, sort order, deterministic identifiers, DTO declarations, and error behavior must match the established TypeScript contract exactly.
 
@@ -293,3 +293,4 @@ Struct field declaration order and `serde` attributes are contract-relevant. A g
 **Evidence**: List every shipped boundary and platform target with its artifact-level replay command and clean byte comparison.
 
 Core-only parity is insufficient. Packaging, adapter conversion, serializer configuration, and runtime-specific error handling can alter observable output.
+

@@ -187,3 +187,4 @@ Any changed golden requires deliberate oracle regeneration and review. A Rust im
 Comments explain the parity, ownership, safety, or interop contract that makes a choice necessary. They do not narrate obvious mechanics or include temporary planning identifiers.
 
 ---
+

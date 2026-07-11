@@ -299,3 +299,4 @@ struct ModelDto {
 | Serialized fields | Existing contract | `includeMetadata` |
 
 ---
+

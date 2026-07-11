@@ -232,7 +232,7 @@ const score = calculateDecay(baseScore, age); // weighted decay
 
 ## 4. REFERENCE COMMENT PATTERNS
 
-> **Governed by the canonical rule.** Comments must never embed an ephemeral-artifact pointer — a spec folder/number, a packet/phase/task/checklist/requirement id, a feature-catalog entry, an ADR id, or a ticket id. See [`../../universal/code_style_guide.md`](../../../shared/references/universal/code_style_guide.md) §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract. Only a **durable** external standard may be cited in a comment.
+> **Governed by the canonical rule.** Comments must never embed an ephemeral-artifact pointer — a spec folder/number, a packet/phase/task/checklist/requirement id, a feature-catalog entry, an ADR id, or a ticket id. See [`../../universal/code_style_guide.md`](../../../../shared/references/universal/code_style_guide.md) §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract. Only a **durable** external standard may be cited in a comment.
 
 ### Hard-Block Comment-Hygiene Gate
 
@@ -281,3 +281,4 @@ Apply this gate before finalizing implementation:
 Carry-over from 139: keep rule constants centralized and test imports referencing those constants (avoid duplicate local literals).
 
 ---
+

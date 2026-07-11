@@ -337,3 +337,4 @@ element.classList.add('animate');
 - **MDN Web Docs**: Browser support tables
 
 ---
+

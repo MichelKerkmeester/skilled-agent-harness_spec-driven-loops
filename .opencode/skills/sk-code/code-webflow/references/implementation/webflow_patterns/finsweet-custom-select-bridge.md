@@ -326,11 +326,11 @@ document.querySelectorAll('.fs-sort-select--hidden').forEach(sel => {
 ## 9. RELATED RESOURCES
 
 ### Reference Files
-- [`../css/patterns.md`](../css/patterns.md) — CSS-specific Webflow patterns (token system, state machines, BEM hover/focus, form validation, accessibility, mobile)
-- [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns complement async rendering solutions
-- [code_quality_standards.md](../javascript/quality_standards.md) - CDN-safe initialization pattern for Webflow platform
-- [`../css/quality_standards.md`](../css/quality_standards.md) - CSS quality patterns for Webflow Designer styling layer + 4 CSS enforcement subsections
-- [performance_patterns.md](./performance_patterns.md) - Performance optimization for collection lists with many items
+- [`../../css/patterns/tokens-state-machine-and-triggers.md`](../../css/patterns/tokens-state-machine-and-triggers.md) — CSS-specific Webflow patterns (token system, state machines, BEM hover/focus, form validation, accessibility, mobile)
+- [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Condition-based waiting patterns complement async rendering solutions
+- [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) - CDN-safe initialization pattern for Webflow platform
+- [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md) - CSS quality patterns for Webflow Designer styling layer + 4 CSS enforcement subsections
+- [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - Performance optimization for collection lists with many items
 
 ### Source Files (Evidence)
 - `src/javascript/form/input_select.js` - Base CustomSelect implementation with ARIA support

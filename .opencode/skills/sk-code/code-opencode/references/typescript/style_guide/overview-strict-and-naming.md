@@ -378,3 +378,4 @@ function fromRow(row: MemoryRow): MemoryRecord {
 \* Exception: Only for properties that directly map to SQLite column names. See "snake_case Exception" above.
 
 ---
+

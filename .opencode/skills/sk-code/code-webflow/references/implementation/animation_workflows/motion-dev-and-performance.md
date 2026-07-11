@@ -12,13 +12,13 @@ version: 3.5.0.9
 
 > **Cross-stack motion.dev reference**: The full Motion.dev knowledge base lives at [`../animation/`](../animation/). Load by topic:
 >
-> - [`quick_start.md`](../animation/quick_start.md) — install modes, API availability, first-call patterns
-> - [`animation_principles.md`](../animation/animation_principles.md) — timing, easing, stagger direction, anticipation, arc, and depth vocabulary
-> - [`decision_matrix.md`](../animation/decision_matrix.md) — when to use Motion.dev vs CSS vs `requestAnimationFrame`
-> - [`integration_patterns.md`](../animation/integration_patterns.md) — non-Webflow integration patterns and module loading
-> - [`animate_and_timelines.md`](../animation/animate_and_timelines.md) — `animate()` API surface, keyframe shapes, easing
-> - [`scroll_and_gestures.md`](../animation/scroll_and_gestures.md) — `scroll()`, `inView()`, gesture-driven animation
-> - [`performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md) — `will-change` cleanup, GPU acceleration, frame-rate gotchas
+> - [`quick_start.md`](../../animation/quick_start.md) — install modes, API availability, first-call patterns
+> - [`animation_principles.md`](../../animation/animation_principles.md) — timing, easing, stagger direction, anticipation, arc, and depth vocabulary
+> - [`decision_matrix.md`](../../animation/decision_matrix.md) — when to use Motion.dev vs CSS vs `requestAnimationFrame`
+> - [`integration_patterns.md`](../../animation/integration_patterns.md) — non-Webflow integration patterns and module loading
+> - [`animate_and_timelines.md`](../../animation/animate_and_timelines.md) — `animate()` API surface, keyframe shapes, easing
+> - [`scroll_and_gestures.md`](../../animation/scroll_and_gestures.md) — `scroll()`, `inView()`, gesture-driven animation
+> - [`performance_and_pitfalls.md`](../../animation/performance_and_pitfalls.md) — `will-change` cleanup, GPU acceleration, frame-rate gotchas
 >
 > The Webflow guidance in this section remains authoritative for Webflow CDN loading, `window.Motion`, and Designer-specific initialization timing.
 
@@ -99,7 +99,7 @@ version: 3.5.0.9
 - Retry logic handles variable CDN loading times
 - `window.Motion || {}` safely destructures even if undefined
 
-**See:** [code_quality_standards.md](../javascript/quality_standards.md) Section 4 for complete CDN-safe pattern documentation.
+**See:** [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) Section 4 for complete CDN-safe pattern documentation.
 
 ### Standardized Animation Parameters
 
@@ -281,3 +281,4 @@ await animate(element, properties, {
 - Static elements (no animation planned)
 
 ---
+

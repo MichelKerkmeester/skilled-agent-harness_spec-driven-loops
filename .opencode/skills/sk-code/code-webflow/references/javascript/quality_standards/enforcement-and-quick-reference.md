@@ -217,10 +217,10 @@ Before deploying any component:
 
 ## RELATED RESOURCES
 
-- [`./style_guide.md`](./style_guide.md) — JS naming, file structure, formatting
-- [`./quick_reference.md`](./quick_reference.md) — JS workflows, snippets, one-liners
-- [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) — file naming, comment principles
-- [`../shared/enforcement.md`](../shared/enforcement.md) — cross-language pre-completion gate
-- [`../shared/dev_workflow.md`](../shared/dev_workflow.md) — DevTools, logging, testing patterns
-- [`../implementation/animation_workflows.md`](../implementation/animation_workflows.md) — full animation guide (CSS + Motion.dev)
-- [`../implementation/webflow_patterns.md`](../implementation/webflow_patterns.md) — Webflow-specific patterns
+- [`../style_guide/overview-naming-and-structure.md`](../style_guide/overview-naming-and-structure.md) — JS naming, file structure, formatting
+- [`../quick_reference.md`](../quick_reference.md) — JS workflows, snippets, one-liners
+- [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) — file naming, comment principles
+- [`../../shared/enforcement.md`](../../shared/enforcement.md) — cross-language pre-completion gate
+- [`../../shared/dev_workflow/overview-nav-and-logging.md`](../../shared/dev_workflow/overview-nav-and-logging.md) — DevTools, logging, testing patterns
+- [`../../implementation/animation_workflows/overview-decision-tree-and-css.md`](../../implementation/animation_workflows/overview-decision-tree-and-css.md) — full animation guide (CSS + Motion.dev)
+- [`../../implementation/webflow_patterns/overview-limits-and-collection-lists.md`](../../implementation/webflow_patterns/overview-limits-and-collection-lists.md) — Webflow-specific patterns

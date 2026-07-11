@@ -211,7 +211,7 @@ Scripts use the `?v=` query parameter pattern for cache busting (semver format: 
 | `form_submission.min.js` | `pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/form_submission.min.js?v={version}` |
 | `form_persistence.min.js` | `pub-53729c3289024c618f90a09ec4c63bf9.r2.dev/form_persistence.min.js?v={version}` |
 
-> **Note**: Check `werken_bij.html` and `vacature.html` for current version numbers. See [cdn_deployment.md](../deployment/cdn_deployment.md) for versioning rules.
+> **Note**: Check `werken_bij.html` and `vacature.html` for current version numbers. See [cdn_deployment.md](../../deployment/cdn_deployment.md) for versioning rules.
 
 ### CDN Workflow
 
@@ -249,10 +249,10 @@ window.cleanupFilepondInstances();
 
 ### Reference Files
 
-- [`../css/quality_standards.md`](../css/quality_standards.md) - CSS quality patterns relevant to form-field state styling (BEM enforcement, custom property prefixes, attribute selector i flag)
+- [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md) - CSS quality patterns relevant to form-field state styling (BEM enforcement, custom property prefixes, attribute selector i flag)
 
-- **[implementation_workflows.md](./implementation_workflows.md)** — Condition-based waiting, validation patterns used by the upload connector
-- **[security_patterns.md](./security_patterns.md)** — XSS prevention relevant to file upload handling
-- **[code_quality_standards.md](../javascript/quality_standards.md)** — Naming conventions and initialization patterns
-- **CDN Deployment**: See [cdn_deployment.md](../deployment/cdn_deployment.md) for R2 upload workflow
-- **Minification**: See [minification_guide.md](../deployment/minification_guide.md) for terser configuration
+- **[implementation_workflows.md](../implementation_workflows/condition-based-waiting.md)** — Condition-based waiting, validation patterns used by the upload connector
+- **[security_patterns.md](../security_patterns/overview-and-checklist.md)** — XSS prevention relevant to file upload handling
+- **[code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md)** — Naming conventions and initialization patterns
+- **CDN Deployment**: See [cdn_deployment.md](../../deployment/cdn_deployment.md) for R2 upload workflow
+- **Minification**: See [minification_guide.md](../../deployment/minification_guide/overview-terser-and-patterns.md) for terser configuration

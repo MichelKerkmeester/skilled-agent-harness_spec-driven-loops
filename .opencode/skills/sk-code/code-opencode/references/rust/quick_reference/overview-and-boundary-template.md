@@ -461,3 +461,4 @@ fn js_error(code: &str, message: &str) -> JsValue {
 Keep serializer configuration explicit. `Serializer::json_compatible()` produces JavaScript-compatible values, but exact field order, omission behavior, integer representation, and number spelling still require golden tests against the TypeScript oracle.
 
 ---
+

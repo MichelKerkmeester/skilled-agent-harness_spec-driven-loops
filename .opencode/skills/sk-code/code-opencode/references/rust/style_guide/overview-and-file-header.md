@@ -163,3 +163,4 @@ fn main() -> anyhow::Result<()> {
 `anyhow` is acceptable here because `main` is the outer application shell. It is not acceptable in the public API of `ranking_core`.
 
 ---
+

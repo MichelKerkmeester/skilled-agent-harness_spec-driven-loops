@@ -260,3 +260,4 @@ document.cookie = "session=abc123";  // Accessible to XSS
 - [ ] Clear storage on logout
 
 ---
+

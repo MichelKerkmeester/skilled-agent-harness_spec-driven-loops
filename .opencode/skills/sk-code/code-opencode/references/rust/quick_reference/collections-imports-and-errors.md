@@ -296,3 +296,4 @@ fn compare_equal_length(left: &[u8], right: &[u8]) -> bool {
 Keep suppressions local and explain the durable invariant. Do not suppress a lint crate-wide to avoid fixing boundary-controlled code.
 
 ---
+

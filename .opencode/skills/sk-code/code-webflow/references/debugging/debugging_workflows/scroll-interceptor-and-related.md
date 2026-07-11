@@ -335,13 +335,13 @@ bdg stop 2>&1
 ## 9. RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](../implementation/implementation_workflows.md) - Debug timing and validation issues
-- [verification_workflows.md](../verification/verification_workflows.md) - Verify fixes work correctly
-- [dev_workflow.md](../shared/dev_workflow.md) - Use common DevTools and logging patterns
+- [implementation_workflows.md](../../implementation/implementation_workflows/condition-based-waiting.md) - Debug timing and validation issues
+- [verification_workflows.md](../../verification/verification_workflows/gate-and-automated-options.md) - Verify fixes work correctly
+- [dev_workflow.md](../../shared/dev_workflow/overview-nav-and-logging.md) - Use common DevTools and logging patterns
 
 ### Asset Files
 - [lenis_patterns.js](../../assets/integrations/lenis_patterns.js) - Complete Lenis smooth scroll integration patterns
-- [debugging_checklist.md](../../assets/webflow-debugging_checklist.md) - Systematic debugging checklist
+- [debugging_checklist.md](../../../assets/webflow-debugging_checklist.md) - Systematic debugging checklist
 
 ### Related Skills
 - `mcp-chrome-devtools` - CLI-based browser automation via browser-debugger-cli (bdg)
@@ -362,5 +362,5 @@ bdg stop 2>&1
 ---
 
 **For complete checklists:**
-- [debugging_checklist.md](../../assets/webflow-debugging_checklist.md) - Systematic debugging checklist
+- [debugging_checklist.md](../../../assets/webflow-debugging_checklist.md) - Systematic debugging checklist
 - See `mcp-chrome-devtools` skill for comprehensive DevTools reference

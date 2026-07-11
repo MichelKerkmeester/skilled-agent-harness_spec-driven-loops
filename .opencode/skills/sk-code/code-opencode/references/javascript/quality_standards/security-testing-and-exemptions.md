@@ -314,5 +314,5 @@ export default async function ExamplePlugin(ctx, options = {}) {
 
 ## 11. RELATED RESOURCES
 
-- [style_guide.md](./style_guide.md) - Formatting and naming conventions
-- [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets
+- [style_guide.md](../style_guide.md) - Formatting and naming conventions
+- [quick_reference.md](../quick_reference.md) - Copy-paste templates and cheat sheets

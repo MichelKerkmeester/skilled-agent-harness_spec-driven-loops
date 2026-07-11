@@ -33,13 +33,13 @@ Need animation?
 - Standardized easing: `[0.22, 1, 0.36, 1]` (ease-out), `[0.16, 1, 0.3, 1]` (expo-out)
 - Performance: Remove `will-change` in `onComplete`
 
-> **Note:** CSS-side animation quality (will-change management, GPU-accelerated property rules, easing standards, fluid typography) is in [`../css/quality_standards.md`](../css/quality_standards.md).
+> **Note:** CSS-side animation quality (will-change management, GPU-accelerated property rules, easing standards, fluid typography) is in [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md).
 
 ### Complete Animation Guide
 
 **For implementation, debugging, and testing:**
-- **Decision tree and patterns:** [animation_workflows.md](../implementation/animation_workflows.md)
-- **Complete reference:** [animation_workflows.md](../implementation/animation_workflows.md) contains all animation policy, rationale, and implementation details
+- **Decision tree and patterns:** [animation_workflows.md](../../implementation/animation_workflows/overview-decision-tree-and-css.md)
+- **Complete reference:** [animation_workflows.md](../../implementation/animation_workflows/overview-decision-tree-and-css.md) contains all animation policy, rationale, and implementation details
 
 ---
 
@@ -205,3 +205,4 @@ if (window.Webflow) {
 ```
 
 ---
+

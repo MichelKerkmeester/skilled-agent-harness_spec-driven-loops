@@ -16,7 +16,7 @@ version: 3.5.0.7
 
 # Webflow JavaScript Quality Standards
 
-> See [`./style_guide.md`](./style_guide.md) for naming conventions, formatting, and file structure. See [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) for cross-language rules. This file covers JavaScript quality patterns and JS-specific enforcement.
+> See [`../style_guide/overview-naming-and-structure.md`](../style_guide/overview-naming-and-structure.md) for naming conventions, formatting, and file structure. See [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) for cross-language rules. This file covers JavaScript quality patterns and JS-specific enforcement.
 
 ---
 
@@ -32,8 +32,8 @@ Defensive code prevents runtime errors. Quality patterns ensure reliability.
 - Section 2 - CDN-safe initialization pattern (MANDATORY for all components)
 - Sections 3-8 - Safety and error handling patterns
 - Sections 10-13 - Cleanup, shared listeners, and WeakMap caching patterns
-- [animation_workflows.md](../implementation/animation_workflows.md) - Complete animation implementation guide
-- [./style_guide.md](./style_guide.md) - Naming conventions, file structure, commenting rules
+- [animation_workflows.md](../../implementation/animation_workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide
+- [./style_guide.md](../style_guide/overview-naming-and-structure.md) - Naming conventions, file structure, commenting rules
 
 ### When to Use
 - Writing new components (initialization pattern)
@@ -99,7 +99,7 @@ if (window.Webflow?.push) {
 | **Webflow.push Support** | `window.Webflow.push(start)`                | Integrates with Webflow's native queueing system               |
 | **Once-Only Listener**   | `{ once: true }`                            | Prevents memory leaks from duplicate listeners                 |
 
-> **Cross-stack motion.dev reference**: For Motion install modes, API availability, and non-Webflow integration patterns, see [`../animation/quick_start.md`](../animation/quick_start.md) and [`../animation/integration_patterns.md`](../animation/integration_patterns.md). The guard, delay, and `Webflow.push` rules above remain Webflow-specific.
+> **Cross-stack motion.dev reference**: For Motion install modes, API availability, and non-Webflow integration patterns, see [`../../animation/quick_start.md`](../../animation/quick_start.md) and [`../../animation/integration_patterns.md`](../../animation/integration_patterns.md). The guard, delay, and `Webflow.push` rules above remain Webflow-specific.
 
 ### When to Adjust INIT_DELAY_MS
 
@@ -284,3 +284,4 @@ const throttle = (fn, limit = 100) => {
 ```
 
 ---
+

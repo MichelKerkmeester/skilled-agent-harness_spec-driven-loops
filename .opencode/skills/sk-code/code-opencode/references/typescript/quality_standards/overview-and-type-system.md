@@ -335,3 +335,4 @@ function normalizeScore(raw: number, max: number) {
 **Why inferred on private helpers**: Reduces boilerplate for internal code where the return type is obvious from the implementation.
 
 ---
+

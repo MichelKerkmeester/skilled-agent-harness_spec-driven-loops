@@ -194,24 +194,24 @@ echo "✅ PASS: Animation performance budgets met"
 
 This file is the high-level checklist + budgets + anti-patterns index. For deep-dive topical guidance on each performance area, load the matching file under [`../performance/`](../performance/):
 
-- [`../performance/cwv_remediation.md`](../performance/cwv_remediation.md) — LCP / FCP / TBT / CLS deep remediation playbook with measurement tooling and per-metric implementation checklists
-- [`../performance/resource_loading.md`](../performance/resource_loading.md) — preconnect, dns-prefetch, preload, prefetch, async CSS loading, script loading patterns (referenced by §2 "Asset Optimization" + "Request Optimization" above)
-- [`../performance/third_party.md`](../performance/third_party.md) — GTM delay, analytics deferral, consent scripts, external font loading, third-party priority matrix
-- [`../performance/interaction_gated_loading.md`](../performance/interaction_gated_loading.md) — defer-until-interaction patterns, gate selection, non-deferrable exclusions, anti-patterns
-- [`../performance/webflow_constraints.md`](../performance/webflow_constraints.md) — Typekit / jQuery / Webflow.js / CSS generation / custom code injection constraints (what Webflow controls vs what you can change)
+- [`../../performance/cwv_remediation.md`](../../performance/cwv_remediation.md) — LCP / FCP / TBT / CLS deep remediation playbook with measurement tooling and per-metric implementation checklists
+- [`../../performance/resource_loading.md`](../../performance/resource_loading.md) — preconnect, dns-prefetch, preload, prefetch, async CSS loading, script loading patterns (referenced by §2 "Asset Optimization" + "Request Optimization" above)
+- [`../../performance/third_party.md`](../../performance/third_party.md) — GTM delay, analytics deferral, consent scripts, external font loading, third-party priority matrix
+- [`../../performance/interaction_gated_loading.md`](../../performance/interaction_gated_loading.md) — defer-until-interaction patterns, gate selection, non-deferrable exclusions, anti-patterns
+- [`../../performance/webflow_constraints.md`](../../performance/webflow_constraints.md) — Typekit / jQuery / Webflow.js / CSS generation / custom code injection constraints (what Webflow controls vs what you can change)
 
 ### Reference Files (sibling implementation patterns)
-- [debugging_workflows.md](../debugging/debugging_workflows.md) - Performance debugging workflows for identifying bottlenecks
-- [verification_workflows.md](../verification/verification_workflows.md) - Browser testing and verification workflows
-- [animation_workflows.md](./animation_workflows.md) - Animation performance patterns for GPU-accelerated properties
-- [webflow_patterns.md](./webflow_patterns.md) - Webflow-specific performance considerations for collection lists
+- [debugging_workflows.md](../../debugging/debugging_workflows/systematic-four-phases.md) - Performance debugging workflows for identifying bottlenecks
+- [verification_workflows.md](../../verification/verification_workflows/gate-and-automated-options.md) - Browser testing and verification workflows
+- [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Animation performance patterns for GPU-accelerated properties
+- [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Webflow-specific performance considerations for collection lists
 
 ### Per-language quality patterns
-- [`../javascript/quality_standards.md`](../javascript/quality_standards.md) — JS-side performance patterns (RequestAnimationFrame, GPU acceleration hints, debounced resize, event delegation)
-- [`../css/quality_standards.md`](../css/quality_standards.md) — CSS-side performance patterns (will-change management, GPU-accelerated properties, easing standards, fluid typography)
+- [`../../javascript/quality_standards/init-dom-error-and-async.md`](../../javascript/quality_standards/init-dom-error-and-async.md) — JS-side performance patterns (RequestAnimationFrame, GPU acceleration hints, debounced resize, event delegation)
+- [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md) — CSS-side performance patterns (will-change management, GPU-accelerated properties, easing standards, fluid typography)
 
 ### Cross-stack
-- [`../animation/performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md) — Motion.dev performance and pitfalls (will-change cleanup, GPU acceleration, frame-rate gotchas)
+- [`../../animation/performance_and_pitfalls.md`](../../animation/performance_and_pitfalls.md) — Motion.dev performance and pitfalls (will-change cleanup, GPU acceleration, frame-rate gotchas)
 
 ### Related Skills
 - `mcp-chrome-devtools` - Automated performance budget enforcement via CLI for regression detection

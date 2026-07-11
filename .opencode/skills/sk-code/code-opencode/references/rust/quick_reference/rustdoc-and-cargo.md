@@ -227,3 +227,4 @@ cargo vet --locked
 `cargo deny` and `cargo audit` are blocking when configured. Record `cargo vet` status while policy is advisory, then make it blocking after criteria, imports, and exceptions are committed.
 
 ---
+

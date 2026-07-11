@@ -270,8 +270,8 @@ problematic_function() {
 ## 11. RELATED RESOURCES
 
 ### Internal References
-- [style_guide.md](./style_guide.md) - Formatting and conventions
-- [quick_reference.md](./quick_reference.md) - Quick lookup
+- [style_guide.md](../style_guide/overview-structure-and-naming.md) - Formatting and conventions
+- [quick_reference.md](../quick_reference/template-variables-and-loops.md) - Quick lookup
 
 ### External Tools
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis

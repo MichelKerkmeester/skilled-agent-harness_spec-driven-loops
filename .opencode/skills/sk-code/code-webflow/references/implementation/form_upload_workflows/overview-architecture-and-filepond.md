@@ -37,8 +37,8 @@ Single source of truth for understanding, maintaining, and extending the file up
 
 ### Prerequisites
 
-- **[implementation_workflows.md](./implementation_workflows.md)**: Condition-based waiting, validation patterns
-- **[code_quality_standards.md](../javascript/quality_standards.md)**: Naming conventions, initialization patterns
+- **[implementation_workflows.md](../implementation_workflows/condition-based-waiting.md)**: Condition-based waiting, validation patterns
+- **[code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md)**: Naming conventions, initialization patterns
 - **FilePond CDN**: `unpkg.com/filepond` (CSS + JS + plugins — check HTML source for current version)
 - **Cloudflare Worker**: `worker--upload-form.lorenzo-89a.workers.dev`
 
@@ -280,3 +280,4 @@ FilePond.create(input_el, {
 ```
 
 ---
+

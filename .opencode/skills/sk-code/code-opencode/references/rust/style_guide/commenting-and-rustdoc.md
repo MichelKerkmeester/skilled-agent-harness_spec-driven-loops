@@ -247,3 +247,4 @@ fn age_as_score_input(age_seconds: u32) -> f64 {
 Do not add crate-wide `allow` attributes to silence ordinary quality findings.
 
 ---
+

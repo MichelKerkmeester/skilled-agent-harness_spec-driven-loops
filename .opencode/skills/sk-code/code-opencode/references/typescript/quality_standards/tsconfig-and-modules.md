@@ -245,5 +245,5 @@ export type { SearchResult, SearchOptions } from '../types.js';
 
 ## 12. RELATED RESOURCES
 
-- [style_guide.md](./style_guide.md) - Formatting and naming conventions
-- [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets
+- [style_guide.md](../style_guide/overview-strict-and-naming.md) - Formatting and naming conventions
+- [quick_reference.md](../quick_reference/template-naming-and-types.md) - Copy-paste templates and cheat sheets

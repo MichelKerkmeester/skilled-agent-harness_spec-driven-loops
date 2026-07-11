@@ -274,7 +274,7 @@ log_detail() {
 
 ### Inline Comments
 
-Follow the universal commenting principles (see `../shared/universal_patterns.md`):
+Follow the universal commenting principles (see `../../shared/universal_patterns/naming-and-commenting.md`):
 
 1. **Quantity limit:** Maximum 3 comments per 10 lines of code
 2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does
@@ -335,3 +335,4 @@ validate_json() {
 ```
 
 ---
+

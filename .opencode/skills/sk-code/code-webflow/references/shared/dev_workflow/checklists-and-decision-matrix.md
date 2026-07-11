@@ -144,12 +144,12 @@ window.addEventListener('offline', handleOffline);
 ## RELATED RESOURCES
 
 ### Per-Language Style Guides
-- [JavaScript Style Guide](../javascript/style_guide.md)
-- [CSS Style Guide](../css/style_guide.md)
+- [JavaScript Style Guide](../../javascript/style_guide/overview-naming-and-structure.md)
+- [CSS Style Guide](../../css/style_guide.md)
 
 ### Shared Rules
-- [Cross-Language Rules](./cross_language_rules.md)
-- [Enforcement Guide](./enforcement.md)
+- [Cross-Language Rules](../cross_language_rules.md)
+- [Enforcement Guide](../enforcement.md)
 
 ### Implementation Workflows
 - [implementation/](../implementation) — Implementation workflows directory

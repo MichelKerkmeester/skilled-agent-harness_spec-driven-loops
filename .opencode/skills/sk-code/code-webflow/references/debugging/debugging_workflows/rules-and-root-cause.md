@@ -29,7 +29,7 @@ version: 3.5.0.18
 - Proceed with 4th fix without questioning approach
 - Skip Network tab inspection
 
-**See also:** [debugging_checklist.md](../../assets/webflow-debugging_checklist.md) for systematic debugging checklist
+**See also:** [debugging_checklist.md](../../../assets/webflow-debugging_checklist.md) for systematic debugging checklist
 
 ---
 
@@ -269,6 +269,7 @@ observer.observe(document.body, {
 - Leave production console.log statements
 - Stop at first function in stack (keep tracing up)
 
-**See also:** [debugging_checklist.md](../../assets/webflow-debugging_checklist.md) for tracing checklist
+**See also:** [debugging_checklist.md](../../../assets/webflow-debugging_checklist.md) for tracing checklist
 
 ---
+

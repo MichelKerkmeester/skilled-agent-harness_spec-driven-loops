@@ -47,9 +47,9 @@ text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 ### Performance Patterns
 
-See: [performance_patterns.md](../implementation/performance_patterns.md)
+See: [performance_patterns.md](../../implementation/performance_patterns/overview-and-checklist.md)
 
-> **Cross-stack motion.dev reference**: For deeper Motion API, performance, and decision guidance beyond this Webflow quick reference, see [`../animation/quick_start.md`](../animation/quick_start.md), [`../animation/performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md), and [`../animation/decision_matrix.md`](../animation/decision_matrix.md).
+> **Cross-stack motion.dev reference**: For deeper Motion API, performance, and decision guidance beyond this Webflow quick reference, see [`../../animation/quick_start.md`](../../animation/quick_start.md), [`../../animation/performance_and_pitfalls.md`](../../animation/performance_and_pitfalls.md), and [`../../animation/decision_matrix.md`](../../animation/decision_matrix.md).
 
 ```javascript
 // ✅ Animate transform/opacity only (Motion.dev)
@@ -77,7 +77,7 @@ const debounce = (func, wait) => {
 
 ### Security Patterns
 
-See: [security_patterns.md](../implementation/security_patterns.md)
+See: [security_patterns.md](../../implementation/security_patterns/overview-and-checklist.md)
 
 ```javascript
 // ✅ Sanitize user input
@@ -97,7 +97,7 @@ if (!email_regex.test(email)) throw new Error('Invalid email');
 
 ### Performance Debugging
 
-See: [debugging_workflows.md](../debugging/debugging_workflows.md)
+See: [debugging_workflows.md](../../debugging/debugging_workflows/systematic-four-phases.md)
 
 ```markdown
 Chrome DevTools → Performance tab
@@ -180,6 +180,7 @@ bdg stop 2>&1
 npm install -g browser-debugger-cli@alpha
 ```
 
-**See:** [`.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`](../../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for complete CLI workflows.
+**See:** [`.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md`](../../../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for complete CLI workflows.
 
 ---
+

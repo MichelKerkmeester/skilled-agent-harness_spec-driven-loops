@@ -168,7 +168,7 @@ RESOURCE_MAP = {
 
 Component authoring (`assets/checklists/`): `skill_authoring.md`, `agent_authoring.md`, `command_authoring.md`, `mcp_server_authoring.md`
 
-Language quality gates (`assets/checklists/`): `universal_checklist.md`, `typescript_checklist.md`, `python_checklist.md`, `shell_checklist.md`, `javascript_checklist.md`, `rust_checklist.md`, `config_checklist.md`
+Language quality gates (`assets/checklists/`): `universal_checklist.md`, `typescript_checklist.md`, `python_checklist.md`, `shell_checklist.md`, `javascript_checklist.md`, `rust_checklist/` (split into topic parts), `config_checklist.md`
 
 Verifier assets (`assets/scripts/`): alignment-drift and stack-folder verifier scripts used by this surface.
 

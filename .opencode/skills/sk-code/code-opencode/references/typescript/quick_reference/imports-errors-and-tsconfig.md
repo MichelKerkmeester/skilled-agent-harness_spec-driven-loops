@@ -293,5 +293,5 @@ const element = map.get(key)!;
 
 ## 12. RELATED RESOURCES
 
-- [style_guide.md](./style_guide.md) - Detailed formatting rules
-- [quality_standards.md](./quality_standards.md) - Type system, TSDoc, error patterns
+- [style_guide.md](../style_guide/overview-strict-and-naming.md) - Detailed formatting rules
+- [quality_standards.md](../quality_standards/overview-and-type-system.md) - Type system, TSDoc, error patterns

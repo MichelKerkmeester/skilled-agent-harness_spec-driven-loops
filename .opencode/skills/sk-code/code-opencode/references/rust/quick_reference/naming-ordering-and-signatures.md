@@ -232,3 +232,4 @@ pub enum SearchMode {
 Use stable strings or explicit numeric codes. Never expose an enum's incidental Rust ordinal with an unchecked cast.
 
 ---
+

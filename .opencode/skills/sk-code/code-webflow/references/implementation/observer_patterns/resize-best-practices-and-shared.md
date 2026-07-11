@@ -310,8 +310,8 @@ function create_observer() {
 ## 8. RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns using observers
-- [webflow_patterns.md](./webflow_patterns.md) - Collection list patterns that use MutationObserver
-- [animation_workflows.md](./animation_workflows.md) - IntersectionObserver for scroll-triggered animations
-- [performance_patterns.md](./performance_patterns.md) - Lazy loading with IntersectionObserver
+- [implementation_workflows.md](../implementation_workflows/condition-based-waiting.md) - Condition-based waiting patterns using observers
+- [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Collection list patterns that use MutationObserver
+- [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - IntersectionObserver for scroll-triggered animations
+- [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - Lazy loading with IntersectionObserver
 - `shared_observers.js` (global) - SharedObservers registry implementation

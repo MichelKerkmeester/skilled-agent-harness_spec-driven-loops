@@ -316,3 +316,4 @@ enum MemoryTierDto {
 Do not use `variant as u8` as a wire contract unless every numeric code is explicit and versioned.
 
 Use `#[non_exhaustive]` only when wildcard evolution is intentional. Adapter error mappings SHOULD remain exhaustive so new variants cannot silently receive the wrong JavaScript code.
+

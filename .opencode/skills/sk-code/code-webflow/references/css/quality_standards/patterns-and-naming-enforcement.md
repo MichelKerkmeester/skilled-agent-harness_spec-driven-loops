@@ -16,7 +16,7 @@ version: 3.5.0.2
 
 # Webflow CSS Quality Standards
 
-> See [`./style_guide.md`](./style_guide.md) for CSS naming, custom property prefixes, attribute selectors, animation CSS, and file organization. See [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) for cross-language rules. This file covers CSS quality patterns AND CSS-specific enforcement.
+> See [`../style_guide.md`](../style_guide.md) for CSS naming, custom property prefixes, attribute selectors, animation CSS, and file organization. See [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) for cross-language rules. This file covers CSS quality patterns AND CSS-specific enforcement.
 
 ---
 
@@ -304,3 +304,4 @@ html {
 3. Reset AFTER animation: `element.style.willChange = 'auto'`
 
 ---
+

@@ -289,8 +289,8 @@ fi
 ## 12. RELATED RESOURCES
 
 ### Internal References
-- [quality_standards.md](./quality_standards.md) - Quality requirements
-- [quick_reference.md](./quick_reference.md) - Quick lookup
+- [quality_standards.md](../quality_standards/overview-and-priority-blockers.md) - Quality requirements
+- [quick_reference.md](../quick_reference/template-variables-and-loops.md) - Quick lookup
 
 ### External Standards
 - [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)

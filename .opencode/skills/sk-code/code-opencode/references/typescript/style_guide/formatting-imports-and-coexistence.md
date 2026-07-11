@@ -203,7 +203,7 @@ Use plain comments that explain reasoning:
 - `// State that must hold after execution`
 - `// SEC: security note tied to a stable standard (CWE-###)`
 - `// Reliability/performance/security risk control`
-- No spec-folder-internal ids (`T###`/`REQ-###`/`CHK-###`/ADR/ticket) in comments — see [`../shared/universal_patterns.md`](../shared/universal_patterns.md) §4.
+- No spec-folder-internal ids (`T###`/`REQ-###`/`CHK-###`/ADR/ticket) in comments — see [`../../shared/universal_patterns/naming-and-commenting.md`](../../shared/universal_patterns/naming-and-commenting.md) §4.
 
 ### Capitalization
 
@@ -339,5 +339,5 @@ Set `checkJs: true` only after the majority of JS files have been migrated or ty
 
 ## 10. RELATED RESOURCES
 
-- [quality_standards.md](./quality_standards.md) - Type system, TSDoc, error patterns, tsconfig
-- [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets
+- [quality_standards.md](../quality_standards/overview-and-type-system.md) - Type system, TSDoc, error patterns, tsconfig
+- [quick_reference.md](../quick_reference/template-naming-and-types.md) - Copy-paste templates and cheat sheets

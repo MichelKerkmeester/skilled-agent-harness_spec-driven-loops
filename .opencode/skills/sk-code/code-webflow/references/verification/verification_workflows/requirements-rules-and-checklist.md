@@ -88,7 +88,7 @@ version: 3.5.0.8
   - Check Motion.dev animations include retry logic and cleanup
   - Confirm easing curves match standards ([0.22, 1, 0.36, 1] or [0.16, 1, 0.3, 1])
 
-> **Cross-stack motion.dev reference**: For Motion API behavior, reduced-motion patterns, and animation regression checks that apply beyond Webflow, see [`../animation/performance_and_pitfalls.md`](../animation/performance_and_pitfalls.md) and [`../animation/integration_patterns.md`](../animation/integration_patterns.md). The Webflow verification rules here remain authoritative for browser evidence and Webflow-specific completion claims.
+> **Cross-stack motion.dev reference**: For Motion API behavior, reduced-motion patterns, and animation regression checks that apply beyond Webflow, see [`../../animation/performance_and_pitfalls.md`](../../animation/performance_and_pitfalls.md) and [`../../animation/integration_patterns.md`](../../animation/integration_patterns.md). The Webflow verification rules here remain authoritative for browser evidence and Webflow-specific completion claims.
 
 - Note what you tested in your claim
   - Include whether automated or manual verification used
@@ -298,16 +298,16 @@ EVIDENCE:
 ## 10. RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](../implementation/implementation_workflows.md) - Verify implementations work correctly
-- [debugging_workflows.md](../debugging/debugging_workflows.md) - Verify fixes work after debugging
-- [dev_workflow.md](../shared/dev_workflow.md) - Use standard DevTools verification patterns
+- [implementation_workflows.md](../../implementation/implementation_workflows/condition-based-waiting.md) - Verify implementations work correctly
+- [debugging_workflows.md](../../debugging/debugging_workflows/systematic-four-phases.md) - Verify fixes work after debugging
+- [dev_workflow.md](../../shared/dev_workflow/overview-nav-and-logging.md) - Use standard DevTools verification patterns
 
 ### Templates
-- [verification_checklist.md](../../assets/webflow-verification_checklist.md) - Printable verification checklist
+- [verification_checklist.md](../../../assets/webflow-verification_checklist.md) - Printable verification checklist
 
 ### Related Skills
 - `mcp-chrome-devtools` - CLI-based browser automation via browser-debugger-cli (bdg)
 
 ---
 
-**See also:** [verification_checklist.md](../../assets/webflow-verification_checklist.md) for printable checklist
+**See also:** [verification_checklist.md](../../../assets/webflow-verification_checklist.md) for printable checklist

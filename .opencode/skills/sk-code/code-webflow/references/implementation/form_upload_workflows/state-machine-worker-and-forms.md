@@ -226,3 +226,4 @@ When a form resets, the upload component cleans up:
 3. `form_persistence.js` clears stored data on form reset
 
 ---
+

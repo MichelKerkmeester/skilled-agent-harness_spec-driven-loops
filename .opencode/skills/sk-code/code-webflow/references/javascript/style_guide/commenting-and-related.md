@@ -10,7 +10,7 @@ version: 3.5.0.6
 
 ## 5. COMMENTING (JS-SPECIFIC)
 
-> Cross-language commenting rules (WHY-not-WHAT principle, no commented-out code, platform-specific `WEBFLOW:`/`MOTION:`/`LENIS:`/`HLS.JS:` prefixes) live in [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md). This section covers JavaScript-specific comment **layout, frequency, and content** patterns observed in production.
+> Cross-language commenting rules (WHY-not-WHAT principle, no commented-out code, platform-specific `WEBFLOW:`/`MOTION:`/`LENIS:`/`HLS.JS:` prefixes) live in [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md). This section covers JavaScript-specific comment **layout, frequency, and content** patterns observed in production.
 
 ### Comment Density (target, not cap)
 
@@ -238,10 +238,10 @@ log('Processing item:', item.id);
 
 ## RELATED RESOURCES
 
-- [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) — file naming, comment principles, file-header banner shape, platform-specific prefixes
-- [`./quality_standards.md`](./quality_standards.md) — initialization, DOM safety, error handling, async, observers, validation, performance, animation, state, cleanup, document listener, WeakMap caching
-- [`./quick_reference.md`](./quick_reference.md) — JS workflows, code snippets, one-liners
-- [`../shared/enforcement.md`](../shared/enforcement.md) — pre-completion gate workflow
+- [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) — file naming, comment principles, file-header banner shape, platform-specific prefixes
+- [`../quality_standards/init-dom-error-and-async.md`](../quality_standards/init-dom-error-and-async.md) — initialization, DOM safety, error handling, async, observers, validation, performance, animation, state, cleanup, document listener, WeakMap caching
+- [`../quick_reference.md`](../quick_reference.md) — JS workflows, code snippets, one-liners
+- [`../../shared/enforcement.md`](../../shared/enforcement.md) — pre-completion gate workflow
 
 ### Copy-paste template
 

@@ -205,11 +205,11 @@ clone.setAttribute("aria-hidden", "true");
 ## 10. RELATED RESOURCES
 
 ### Reference Files
-- [observer_patterns.md](./observer_patterns.md) - IntersectionObserver deep dive
-- [performance_patterns.md](./performance_patterns.md) - CPU optimization patterns
-- [webflow_patterns.md](./webflow_patterns.md) - Webflow class conventions
-- [animation_workflows.md](./animation_workflows.md) - Scroll-triggered animations
-- [`../css/quality_standards.md`](../css/quality_standards.md) - CSS quality patterns relevant to Swiper class styling (BEM, animation properties, custom properties)
+- [observer_patterns.md](../observer_patterns/mutation-and-intersection.md) - IntersectionObserver deep dive
+- [performance_patterns.md](../performance_patterns/overview-and-checklist.md) - CPU optimization patterns
+- [webflow_patterns.md](../webflow_patterns/overview-limits-and-collection-lists.md) - Webflow class conventions
+- [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Scroll-triggered animations
+- [`../../css/quality_standards/patterns-and-naming-enforcement.md`](../../css/quality_standards/patterns-and-naming-enforcement.md) - CSS quality patterns relevant to Swiper class styling (BEM, animation properties, custom properties)
 
 ### Source Files
 - `/src/javascript/swiper/timeline.js` - Carousel reference implementation

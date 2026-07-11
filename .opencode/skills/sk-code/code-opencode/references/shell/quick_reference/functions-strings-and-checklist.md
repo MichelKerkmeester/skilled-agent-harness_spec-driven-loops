@@ -217,6 +217,6 @@ P2 - Recommended:
 
 ## 12. RELATED RESOURCES
 
-- [style_guide.md](./style_guide.md) - Detailed style documentation
-- [quality_standards.md](./quality_standards.md) - Quality requirements
+- [style_guide.md](../style_guide/overview-structure-and-naming.md) - Detailed style documentation
+- [quality_standards.md](../quality_standards/overview-and-priority-blockers.md) - Quality requirements
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis

@@ -292,3 +292,4 @@ fn restore_sequence<T>(
 - **[P1]** Test forced WASI fallback behavior through the real loader.
 
 ---
+

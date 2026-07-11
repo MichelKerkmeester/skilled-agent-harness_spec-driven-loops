@@ -14,7 +14,7 @@ version: 3.5.0.6
 
 # Webflow JavaScript Style Guide
 
-> See [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) for rules that apply to all languages (file naming, comment WHY-not-WHAT, file-header banner shape, platform-specific comment prefixes). This file covers JavaScript-specific conventions only.
+> See [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) for rules that apply to all languages (file naming, comment WHY-not-WHAT, file-header banner shape, platform-specific comment prefixes). This file covers JavaScript-specific conventions only.
 
 ## 1. OVERVIEW
 
@@ -97,7 +97,7 @@ function load_botpoison_sdk() { }
 
 ## 3. FILE STRUCTURE
 
-> The file-header banner shape and section-header format are defined in [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md). Below is the JavaScript-specific rendering.
+> The file-header banner shape and section-header format are defined in [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md). Below is the JavaScript-specific rendering.
 
 ### File Header (JavaScript-specific delimiter)
 
@@ -236,3 +236,4 @@ Every JavaScript file should follow this structure:
 ```
 
 ---
+

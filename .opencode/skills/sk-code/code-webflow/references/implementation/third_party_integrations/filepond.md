@@ -346,7 +346,7 @@ window.cleanupFilepondInstances = function () { /* destroys all instances */ };
 
 - `src/2_javascript/form/input_upload.js` — Full FilePond connector (948 lines)
 - `src/2_javascript/z_minified/form/input_upload.min.js` — Minified CDN version
-- See **[form_upload_workflows.md](./form_upload_workflows.md)** for complete architecture reference, including:
+- See **[form_upload_workflows.md](../form_upload_workflows/overview-architecture-and-filepond.md)** for complete architecture reference, including:
   - Full pipeline: browser → FilePond → Worker → R2 → Formspark
   - Upload URL validation guards (connector-level and form-level)
   - Extension alias fallback mechanism
@@ -355,3 +355,4 @@ window.cleanupFilepondInstances = function () { /* destroys all instances */ };
   - MIME type detection and browser compatibility notes
 
 ---
+

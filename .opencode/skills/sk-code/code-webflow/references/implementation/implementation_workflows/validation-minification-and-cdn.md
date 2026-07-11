@@ -209,8 +209,8 @@ See [validation_patterns.js](../../assets/patterns/validation_patterns.js) for f
 
 For JavaScript minification and CDN deployment workflows, see dedicated references:
 
-- **[minification_guide.md](../deployment/minification_guide.md)** - Safe minification with terser, verification pipeline, debugging
-- **[cdn_deployment.md](../deployment/cdn_deployment.md)** - Cloudflare R2 upload, version management, HTML updates
+- **[minification_guide.md](../../deployment/minification_guide/overview-terser-and-patterns.md)** - Safe minification with terser, verification pipeline, debugging
+- **[cdn_deployment.md](../../deployment/cdn_deployment.md)** - Cloudflare R2 upload, version management, HTML updates
 
 ### Quick Workflow
 
@@ -287,11 +287,11 @@ function sanitizeText(text) {
 ## 6. RELATED RESOURCES
 
 ### Reference Files
-- [debugging_workflows.md](../debugging/debugging_workflows.md) - Debug timing and validation issues with systematic approach
-- [verification_workflows.md](../verification/verification_workflows.md) - Verify implementations work correctly across browsers and viewports
-- [dev_workflow.md](../shared/dev_workflow.md) - Common DevTools and logging patterns for all workflows
-- [animation_workflows.md](./animation_workflows.md) - Complete animation implementation guide including waitForTransitionEnd pattern
-- [code_quality_standards.md](../javascript/quality_standards.md) - CDN-safe initialization pattern and naming conventions
+- [debugging_workflows.md](../../debugging/debugging_workflows/systematic-four-phases.md) - Debug timing and validation issues with systematic approach
+- [verification_workflows.md](../../verification/verification_workflows/gate-and-automated-options.md) - Verify implementations work correctly across browsers and viewports
+- [dev_workflow.md](../../shared/dev_workflow/overview-nav-and-logging.md) - Common DevTools and logging patterns for all workflows
+- [animation_workflows.md](../animation_workflows/overview-decision-tree-and-css.md) - Complete animation implementation guide including waitForTransitionEnd pattern
+- [code_quality_standards.md](../../javascript/quality_standards/init-dom-error-and-async.md) - CDN-safe initialization pattern and naming conventions
 
 ### Templates
 - [wait_patterns.js](../../assets/patterns/wait_patterns.js) - Production-ready condition-based waiting templates with error handling

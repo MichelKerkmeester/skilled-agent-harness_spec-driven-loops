@@ -326,8 +326,8 @@ describe('functionToTest', () => {
 
 ### Language-Specific Organization
 
-- `../javascript/style_guide.md` - JS module patterns, exports
-- `../typescript/style_guide.md` - TS imports, types, ES module syntax
-- `../python/style_guide.md` - Python imports, `__all__`
-- `../shell/style_guide.md` - Shell sourcing, functions
-- `../config/style_guide.md` - JSON/JSONC structure
+- `../../javascript/style_guide.md` - JS module patterns, exports
+- `../../typescript/style_guide/overview-strict-and-naming.md` - TS imports, types, ES module syntax
+- `../../python/style_guide.md` - Python imports, `__all__`
+- `../../shell/style_guide/overview-structure-and-naming.md` - Shell sourcing, functions
+- `../../config/style_guide.md` - JSON/JSONC structure

@@ -213,9 +213,9 @@ Run repository-specific native platform, WASI target, sidecar, package clean-ins
 ## 7. RELATED RESOURCES
 
 ### Checklists
-- [universal_checklist.md](./universal_checklist.md) - Language-agnostic checks
+- [universal_checklist.md](../universal_checklist.md) - Language-agnostic checks
 
 ### Style Guide
-- [Rust Style Guide](../../references/rust/style_guide/overview-and-file-header.md)
-- [Rust Quality Standards](../../references/rust/quality_standards/overview-and-data-ownership.md)
-- [Rust Quick Reference](../../references/rust/quick_reference/overview-and-boundary-template.md)
+- [Rust Style Guide](../../../references/rust/style_guide/overview-and-file-header.md)
+- [Rust Quality Standards](../../../references/rust/quality_standards/overview-and-data-ownership.md)
+- [Rust Quick Reference](../../../references/rust/quick_reference/overview-and-boundary-template.md)

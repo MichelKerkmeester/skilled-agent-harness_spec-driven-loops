@@ -254,3 +254,4 @@ Use a data attribute to opt-in per element:
 > **Check:** Are below-fold sections (long pages, infinite scrolling, content lists) using `content-visibility: auto` with paired `contain-intrinsic-size`? Are above-the-fold sections explicitly excluded?
 
 ---
+

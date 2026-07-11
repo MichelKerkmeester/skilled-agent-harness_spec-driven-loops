@@ -212,9 +212,9 @@ Before deploying any component:
 
 ## RELATED RESOURCES
 
-- [`./patterns.md`](./patterns.md) — Webflow CSS patterns reference: token system, state machines, focus detection, form validation, mobile patterns
-- [`./style_guide.md`](./style_guide.md) — CSS naming (BEM), custom property prefixes, attribute selectors, animation CSS, file organization
-- [`./quick_reference.md`](./quick_reference.md) — Webflow tokens, form validation classes, reduced motion, focus detection
-- [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) — cross-language conventions
-- [`../shared/enforcement.md`](../shared/enforcement.md) — cross-language pre-completion gate (file headers, section organization, comment quality)
-- [`../implementation/animation_workflows.md`](../implementation/animation_workflows.md) — complete CSS + Motion.dev animation guide
+- [`../patterns/tokens-state-machine-and-triggers.md`](../patterns/tokens-state-machine-and-triggers.md) — Webflow CSS patterns reference: token system, state machines, focus detection, form validation, mobile patterns
+- [`../style_guide.md`](../style_guide.md) — CSS naming (BEM), custom property prefixes, attribute selectors, animation CSS, file organization
+- [`../quick_reference.md`](../quick_reference.md) — Webflow tokens, form validation classes, reduced motion, focus detection
+- [`../../shared/cross_language_rules.md`](../../shared/cross_language_rules.md) — cross-language conventions
+- [`../../shared/enforcement.md`](../../shared/enforcement.md) — cross-language pre-completion gate (file headers, section organization, comment quality)
+- [`../../implementation/animation_workflows/overview-decision-tree-and-css.md`](../../implementation/animation_workflows/overview-decision-tree-and-css.md) — complete CSS + Motion.dev animation guide

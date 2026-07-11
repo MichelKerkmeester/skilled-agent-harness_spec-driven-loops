@@ -325,3 +325,4 @@ Do not add `cxx` merely to bridge TypeScript and Rust. napi-rs, WASM/WASI, or a 
 Use wrapping only when modulo arithmetic is the named algorithm. Use saturation only when clamping is the TypeScript contract.
 
 ---
+

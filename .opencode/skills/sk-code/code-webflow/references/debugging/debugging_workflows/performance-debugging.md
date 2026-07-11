@@ -389,3 +389,4 @@ echo "✅ Baseline captured: $OUTPUT_DIR/"
 **See:** `.opencode/skills/mcp-tooling/mcp-chrome-devtools/` for complete CLI automation patterns
 
 ---
+

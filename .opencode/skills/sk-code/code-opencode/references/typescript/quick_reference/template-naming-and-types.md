@@ -22,8 +22,8 @@ Copy-paste templates, naming cheat sheet, and common patterns for TypeScript dev
 ### Purpose
 
 Quick-access reference card for TypeScript patterns. For detailed explanations, see:
-- [style_guide.md](./style_guide.md) - Full style documentation
-- [quality_standards.md](./quality_standards.md) - Quality requirements
+- [style_guide.md](../style_guide/overview-strict-and-naming.md) - Full style documentation
+- [quality_standards.md](../quality_standards/overview-and-type-system.md) - Quality requirements
 
 Current system-spec-kit TypeScript is package-aware: `shared/` and
 `mcp_server/` use NodeNext ESM, `scripts/` uses ES2022 ESM, and root CommonJS
@@ -272,3 +272,4 @@ type SearchReturn = ReturnType<typeof searchMemories>;
 ```
 
 ---
+
