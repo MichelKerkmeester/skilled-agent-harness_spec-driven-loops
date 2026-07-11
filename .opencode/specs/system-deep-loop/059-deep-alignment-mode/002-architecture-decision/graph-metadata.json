@@ -39,12 +39,11 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/spec.md",
       ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md",
       "decision-record.md",
-      "spec.md",
       ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-strategy.md",
       ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes/spec.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
@@ -54,8 +53,10 @@
       ".opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/checklist.md",
       "plan.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      "spec.md",
       "tasks.md",
       "checklist.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
       ".opencode/skills/sk-code/shared/references/smart_routing.md",
       ".opencode/skills/sk-design/shared/design_dispatch_boundary.md",
       ".opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs",
@@ -114,6 +115,12 @@
         "name": "convergence.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
         "source": "derived"
       },
       {
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Decision",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The frozen design brief locks five architecture-level decision clusters for `deep-alignment` and names five open questions it explicitly defers rather than resolves",
-    "created_at": "2026-07-11T06:20:55.583Z",
-    "last_save_at": "2026-07-11T09:57:47.942Z",
+    "created_at": "2026-07-11T13:21:32.188Z",
+    "last_save_at": "2026-07-11T13:21:32.188Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b67332dfd9a1b367004b75d2ef341f82e34554b3db02f0360ea12234d59c1a5d",
+    "source_fingerprint": "sha256:42369e47ed2018d6ff176ccc83813f17bc59ea8a4230412bed510fc2418731dc",
     "source_doc_hashes": {
-      "spec.md": "7653df35205154c2d139c2c7040c8ad90bf2e37d38370f754998c7a3581a198b",
-      "plan.md": "1ac92e7c69b5e71fb66dce7aabbf93df239be18c30cff9a9e5e21f9a4ca69677",
-      "tasks.md": "6cfc87127126c240f993ea2d3c9cc73afc1d72f5f2be189749b6bca9fbfcf336",
-      "checklist.md": "7aec785d2f652ad445a1c6a91481b2479ac77d99b3ca5107790409ec07df80c8",
-      "decision-record.md": "92d237dc47b2bc5f77b3e46ba0c9c74809a93c739a1be93a3e22650fb946634f",
-      "implementation-summary.md": "c2d260572ebf1e66d8b22cdd6a1298e04b09a16cd4c4c258b8c041f2112dfa7d"
+      "spec.md": "a0691525d3ccc13374d56e461577865705fac6c1b867ce4a6c81d779f1a3eb7f",
+      "plan.md": "cbfd5ac9b45566cad27be501503975ef7638f10acf9cee44b87306a5f2b56582",
+      "tasks.md": "40f46a8cbcc91bf1ef3928319a8ccefc38d5099cf1d7ec2a9e3c00b0cdd1a542",
+      "checklist.md": "6209a916faebcdc5ffa36daaaee456ae8e4d86f5fac0ee02144bee76cfc69a8a",
+      "decision-record.md": "3e2e5dd12b52026c8e4292af37b1aa51ffcf24dd938802205b74b92d823195e3",
+      "implementation-summary.md": "477a2c30103ee3d9fd0b2ded85e7e53e03506c701a48a69c65752ebf79577637"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,6 +41,7 @@ D1-inter (does the skill *advisor* select this skill for the scenario?) is built
 - Enable with `--advisor-mode=python`. Off by default and in CI.
 - Scored out-of-band via the deterministic SQLite advisor (`scoreAdvisorPrompt` / `skill_advisor.py`) with the advisor hook disabled so the answer cannot leak into the dispatched prompt.
 - When disabled it reports `status: unscored-mode-a` (never faked); when enabled it contributes its 12 points to the measured aggregate.
+- For an **advisor-invisible** skill — one whose directory carries no `graph-metadata.json`, so the advisor ranks its owning parent identity rather than the packet — D1-inter is **excluded-by-design**: reported `applicable: false, status: "excluded-by-design"` with the owning identity in `delegatedMeasure.targetSkill`, and listed under `excludedDimensions` (not `unscoredDimensions`). This is structural N/A, not a missing score; the weighted aggregate is unaffected either way.
 
 ## 5. LIVE MODE (MODE B) + ADVISORY SIGNALS
 

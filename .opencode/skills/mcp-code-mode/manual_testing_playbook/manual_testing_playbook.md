@@ -21,12 +21,13 @@ Canonical package artifacts:
 - `clickup-and-chrome-via-cm/`
 - `third-party-via-cm/`
 - `recovery-and-config/`
+- `plugins-and-hooks/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 26 deterministic scenarios across 7 categories validating the `mcp-code-mode` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
+This playbook provides 27 deterministic scenarios across 8 categories validating the `mcp-code-mode` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
 
 ### Realistic Test Model
 
@@ -471,19 +472,39 @@ Expected signals: Step 1: call returns error; Step 2: error message contains "ma
 
 ---
 
-## 14. AUTOMATED TEST CROSS-REFERENCE
+## 14. PLUGINS AND HOOKS
+
+This category covers 1 scenario summary while the linked feature file remains the canonical execution contract.
+
+### mcp-route-guard | MCP Route Guard warns on native external MCP calls, allows internal/unrouteable ones
+
+#### Description
+Verify the warn-only, fail-open `mk-mcp-route-guard` guard nudges an agent toward Code Mode's `call_tool_chain` whenever it is about to call an external MCP tool natively instead of through Code Mode, while never blocking (no `permissionDecision`) and failing open to `allow` on any error path.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, run the shared-core + Claude-hook unit-test suite, then live-invoke the core and the Claude PreToolUse hook against this repo's real `.utcp_config.json` manifest for a routable family (ClickUp) and an unrouteable one (Webflow), exercise the kill-switch (`MK_MCP_ROUTE_GUARD_DISABLED`) and broad-mode (`MK_MCP_ROUTE_GUARD_BROAD_MODE`) env flags, and confirm the OpenCode plugin adapter's log-write path is dormant in this repo. Return a concise user-facing pass/fail verdict with the main reason.
+
+Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with exit 0; Step 2: live core call returns `decision:"warn"` naming `clickup_official` for ClickUp and `decision:"allow"` with zero warnings for Webflow and all internal-exempt servers; Step 3: the live Claude hook emits `additionalContext` naming `clickup_official` for the ClickUp payload, stays silent for Webflow, and never emits `permissionDecision`; Step 4: the kill-switch flag forces empty stdout even for the routable case; Step 5: the broad-mode flag turns the unrouteable Webflow case into a warn.
+
+#### Test Execution
+> **Feature File:** [mcp-route-guard](plugins-and-hooks/mcp-route-guard.md)
+
+---
+
+## 15. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `.opencode/skills/mcp-code-mode/scripts/validate_config.py` | `.utcp_config.json` schema + env-var presence | CM-010 |
 | `.opencode/skills/mcp-code-mode/scripts/test/manual_namespace.test.js` (if present) | Manual-namespace contract | CM-005, CM-006, CM-007 |
+| `.opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.test.cjs` | Shared route-guard core + Claude-hook unit assertions | mcp-route-guard |
 | Integration smoke (manual): existing `system-code-graph` playbook (precedent) | MCP tool surface validation | Cross-skill reference for MCP testing patterns |
 
 > Note: most Code Mode behavior is exercised through the live MCP servers it wraps, not through dedicated unit tests in the skill itself. The playbook scenarios serve as the primary regression surface.
 
 ---
 
-## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 ### CORE TOOLS
 
@@ -531,3 +552,7 @@ Expected signals: Step 1: call returns error; Step 2: error message contains "ma
 - CM-024: [Deregister/re-register cycle **(DESTRUCTIVE)**](recovery-and-config/deregister-reregister-cycle.md)
 - CM-025: [Partial-chain rollback](recovery-and-config/partial-chain-rollback.md)
 - CM-026: [Missing manual entry](recovery-and-config/missing-manual-entry.md)
+
+### PLUGINS AND HOOKS
+
+- mcp-route-guard: [MCP Route Guard](plugins-and-hooks/mcp-route-guard.md)

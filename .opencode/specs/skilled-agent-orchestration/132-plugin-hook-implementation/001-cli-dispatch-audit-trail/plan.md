@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation/001-cli-dispatch-audit-trail"
-    last_updated_at: "2026-07-11T09:03:29.684Z"
+    last_updated_at: "2026-07-11T14:17:40Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Level 3 plan: architecture, affected surfaces, phases, ADRs"
     next_safe_action: "Implement dispatch-audit.mjs shared core, then the two runtime adapters"
@@ -329,3 +329,35 @@ LEVEL 3 PLAN (~200 lines)
 - Dependency graphs, milestones
 - Architecture decision records
 -->
+
+
+---
+
+<!-- ANCHOR:ai-protocol -->
+## AI EXECUTION PROTOCOL
+
+Execution discipline for this Level 3 phase. This plugin/hook pair ships a runtime-neutral core with thin per-runtime adapters (an OpenCode plugin and a Claude hook), so every rule below applies to both surfaces.
+
+### Pre-Task Checklist
+
+Before editing, confirm:
+- The shared core and both adapter entrypoints have been read in full (READ FIRST).
+- The change stays inside this plugin's own core, adapters, and tests; adjacent plugins are out of scope (SCOPE LOCK).
+- The kill-switch env var and the fail-open contract are understood before any advise or deny path is touched.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Land the runtime-neutral core first, then the adapters, then the tests. |
+| TASK-SCOPE | The OpenCode plugin never writes to stdout or stderr; no deny predicate is widened beyond its documented surface. |
+| TASK-VERIFY | Every behavior change is covered by a unit test that runs green before completion is claimed. |
+
+### Status Reporting Format
+
+Report per component (core, adapter(s), tests) with the real test counts (N pass / N fail) and the kill-switch plus fail-open verification result. Distinguish confirmed (cited test output) from inferred.
+
+### Blocked Task Protocol
+
+If the core contract conflicts with an adapter surface, or a test cannot run, HALT and escalate with the conflicting facts and a one-sentence root cause rather than shipping a silent workaround. Preserve state and name the next safe action.
+<!-- /ANCHOR:ai-protocol -->

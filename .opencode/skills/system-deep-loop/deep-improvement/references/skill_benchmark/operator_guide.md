@@ -51,7 +51,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
   --scenarios <routine-ids> --d4 [--d4-scenarios <ids>] [--grader-mode real|mock]
 ```
 
-`--d4` runs a separate task-outcome ablation (skill-on/off) graded by claude and writes an advisory `D4_task_outcome` to the report; it requires `--trace-mode live` (a no-op otherwise) and spends API per scenario. Skill-off keeps a contamination guard — a leaked skill read drops the pair `unscored` rather than faking a score.
+`--d4` runs a separate task-outcome ablation (skill-on/off) graded by claude and writes an advisory `D4_task_outcome` to the report; it requires `--trace-mode live` (a no-op otherwise) and spends API per scenario. Skill-off keeps a contamination guard — a leaked skill read drops the pair `unscored` rather than faking a score. D4-R runs only on explicit **target-owned** scenarios named via `--d4-scenarios` (or `--scenarios`); with none selected it writes `D4_task_outcome.status: not-run-no-target-scenarios` and scores nothing — there are no cross-target defaults that could borrow another skill's ids.
 
 Command surface: `/deep:skill-benchmark` (see `commands/deep/skill-benchmark.md`).
 
@@ -70,7 +70,7 @@ Command surface: `/deep:skill-benchmark` (see `commands/deep/skill-benchmark.md`
 | D2 | unprompted discovery (router-replay recall proxy) | scored |
 | D3 | efficiency (over-routing proxy) | scored |
 | D5 | structural connectivity | scored (hard gate) |
-| D1-inter | advisor selects the right skill | scored when `--advisor-mode=python` (else `unscored-mode-a`) |
+| D1-inter | advisor selects the right skill | scored when `--advisor-mode=python`; `unscored-mode-a` when no probe ran; `excluded-by-design` (in `excludedDimensions`) for advisor-invisible skills |
 | D4 (weighted) | hallucination-grader proxy (the 25-pt dimension) | `unscored-mode-a` in the aggregate **by design** — see note |
 
 **Advisory signals** (live `--d4`; surfaced under `advisorySignals`, **not** folded into the weighted aggregate):

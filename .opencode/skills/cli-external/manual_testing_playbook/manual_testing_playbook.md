@@ -16,7 +16,7 @@ Source of truth for routing behavior: `.opencode/skills/cli-external/SKILL.md` �
 
 ## 1. OVERVIEW
 
-The `cli-external` hub routes any external-CLI-dispatch request to exactly one advisor identity, then resolves `workflowMode` to `cli-opencode` or `cli-claude-code` via `hub-router.json`. This playbook validates that resolution, not either packet's internal dispatch pipeline.
+The `cli-external` hub routes any external-CLI-dispatch request to exactly one advisor identity, then resolves `workflowMode` to `cli-opencode` or `cli-claude-code` via `hub-router.json`. This playbook validates that resolution, not either packet's internal dispatch pipeline. It also carries a `plugins-and-hooks/` category of unscored, directly-run scenarios for infrastructure shared across the hub (e.g. the CLI dispatch audit trail plugin/hook pair) — see §2 Plugins And Hooks.
 
 ---
 
@@ -32,6 +32,14 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (th
 
 A separate, non-scored functional check: the executor-delegation scorer (`system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts`) must resolve a direct-alias or orchestrator-cue delegation prompt to the executor-kind string `cli-opencode` or `cli-claude-code`, never to the non-executor hub identity `cli-external` — verified by `tests/scorer/executor-delegation.vitest.ts` and `tests/parity/fixtures/executor-delegation-cases.json`, not part of this scored corpus.
 
+### Plugins And Hooks
+
+Unscored, directly-run manual scenarios validating shared `cli-external` plugin/hook infrastructure (not `workflowMode` routing, so not part of the scored hub-routing corpus above) live under `plugins-and-hooks/`:
+
+| ID | Scenario | File |
+| --- | --- | --- |
+| cli-dispatch-audit-trail | CLI Dispatch Audit Trail | [cli-dispatch-audit-trail.md](./plugins-and-hooks/cli-dispatch-audit-trail.md) |
+
 ---
 
 ## 3. SUCCESS CRITERIA
@@ -46,3 +54,4 @@ A separate, non-scored functional check: the executor-delegation scorer (`system
 
 - Packet-level playbooks: `cli-opencode/manual_testing_playbook/manual_testing_playbook.md`, `cli-claude-code/manual_testing_playbook/manual_testing_playbook.md` (unchanged by the fold-in).
 - Lane-C automated benchmark: `benchmark/` (populated by a future benchmark pass — out of scope for the fold-in itself).
+- Plugins-and-hooks scenarios (§2): each carries its own PASS/FAIL verdict independent of the hub-routing success criteria in §3, which scopes to `workflowMode` resolution only.

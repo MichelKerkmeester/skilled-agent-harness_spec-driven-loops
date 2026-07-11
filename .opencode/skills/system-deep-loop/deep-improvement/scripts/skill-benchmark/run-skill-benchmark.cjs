@@ -159,7 +159,7 @@ function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, pla
     }
     const advisorResult = (advisorMode === 'python' && sc.classKind === 'advisor' && sc.prompt)
       ? probeAdvisor({ prompt: sc.prompt }) : undefined;
-    scenarioRows.push(scoreScenario({ scenario: sc, observed, advisorResult, traceMode }));
+    scenarioRows.push(scoreScenario({ scenario: sc, skillId, observed, advisorResult, traceMode }));
   }
 }
 
@@ -221,9 +221,10 @@ function run(args) {
 // Opt-in D4-R pass (live + paid). Kept OUT of the synchronous run() so the
 // deterministic test suite (which calls run() and reads the report immediately)
 // stays sync. Re-reads the report run() wrote, runs the task-outcome ablation on
-// the routine scenarios, attaches each row's d4TaskOutcome, recomputes the
-// advisory D4_task_outcome aggregate, and re-writes report.{json,md}.
-const DEFAULT_D4R_SCENARIOS = ['LS-001', 'LS-002', 'LS-003', 'LS-004', 'SD-002'];
+// the explicitly selected scenarios, attaches each row's d4TaskOutcome, recomputes
+// the advisory D4_task_outcome aggregate, and re-writes report.{json,md}. D4-R runs
+// only on target-owned scenarios named via --d4-scenarios (or --scenarios); there
+// are no cross-target defaults, which would silently borrow another skill's ids.
 
 /**
  * Opt-in D4-R pass: re-read the written report, run the task-outcome ablation on
@@ -240,8 +241,22 @@ async function augmentWithD4R(args) {
   const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
   const report = JSON.parse(fs.readFileSync(reportJsonPath, 'utf8'));
   const { scenarios } = loadPlaybookScenarios({ skillRoot, playbookDir: args['playbook-dir'] });
-  const wanted = (args['d4-scenarios'] ? String(args['d4-scenarios']).split(',') : DEFAULT_D4R_SCENARIOS)
-    .map((s) => s.trim().toUpperCase());
+  const explicit = args['d4-scenarios'] || args.scenarios;
+  const wanted = explicit
+    ? String(explicit).split(',').map((s) => s.trim().toUpperCase()).filter(Boolean)
+    : [];
+  if (!wanted.length) {
+    report.advisorySignals = report.advisorySignals || {};
+    report.advisorySignals.D4_task_outcome = {
+      score: null,
+      status: 'not-run-no-target-scenarios',
+      note: 'D4-R needs explicit target-owned --d4-scenarios (or --scenarios); no cross-target defaults',
+    };
+    fs.writeFileSync(reportJsonPath, JSON.stringify(report, null, 2));
+    fs.writeFileSync(reportJsonPath.replace(/\.json$/, '.md'), renderReport(report));
+    process.stdout.write('  D4-R: not run — pass explicit --d4-scenarios (target-owned ids)\n');
+    return 0;
+  }
   const byId = new Map((report.scenarioRows || []).map((r) => [(r.scenarioId || '').toUpperCase(), r]));
   const graderMode = args['grader-mode'] || 'real';
   const model = process.env.SKILL_BENCH_OPENCODE_MODEL;

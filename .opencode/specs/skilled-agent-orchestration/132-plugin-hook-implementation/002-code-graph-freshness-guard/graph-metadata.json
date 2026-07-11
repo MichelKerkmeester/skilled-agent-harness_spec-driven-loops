@@ -203,7 +203,7 @@
     ],
     "causal_summary": "After a source edit, the structural code graph drifts soft-stale, and `detectchanges` / `blastradius` / `codegraphcontext` fall back to a false-safe `blocked` payload until an operator manually re-runs `codegraphscan`",
     "created_at": "2026-07-11T05:51:00Z",
-    "last_save_at": "2026-07-11T09:03:32.752Z",
+    "last_save_at": "2026-07-11T14:17:54.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3bb5cb3293e6907079ab1d05a2b0c40687c40499e8b4eeabc08ec766bb92a014",
+    "source_fingerprint": "sha256:7c31150128e866e19ffc5218268be9366cb69a387acaf348fa08fa929b514dc3",
     "source_doc_hashes": {
-      "spec.md": "026a4c640c026c85aed0042457df9851887bdb562f067fa8a917f122c234ad8d",
-      "plan.md": "4129a8373937ad83fd040a56a4a3995743547be9ac857e07ece84dfeb582b3f9",
-      "tasks.md": "3dd5cb9649435edab2e4a5205a318633f0108c9c0395d7de07c1e0a7b5b16d8f",
-      "checklist.md": "fe27f07bd74ed00a904a158e29594b7ef01bf05db9d5cfc67c8d22dfc25f4b47",
-      "decision-record.md": "497e54c6038e6dace0206a7848d65e766586fb4930c2c69802227a0e396d0bb7",
-      "implementation-summary.md": "d34993fc62453883567ad5501aa727b039100bfbc7ddf0ff74b3bf121b1bf3e0"
+      "spec.md": "2f81f3e5197ffe6cfd73459c3c07a50c80bc342e9fad95fcc2265d4c7d0b5fdf",
+      "plan.md": "6f193570b9df12ae48b7f8298268a3f9392c9cb337741c5417f0d9b689c60202",
+      "tasks.md": "82b10adf428b6cea68e51ca180fcbe1a86243a6b828251df7865b7f45ef5850e",
+      "checklist.md": "9705055c2508c9501bb992af11641e8260738a344b68e95c4dbd4bbcabba4703",
+      "decision-record.md": "cae4471edb4ebc6c09f2bef1ad2f970d2b1256606adf52cd2f7ae4c7d2c49f1f",
+      "implementation-summary.md": "010c7f66c09c98bb4b78c662c92344bcfce96e958a499d894b80ec36d7f6644c"
     },
     "last_active_child_id": null,
     "last_active_at": null

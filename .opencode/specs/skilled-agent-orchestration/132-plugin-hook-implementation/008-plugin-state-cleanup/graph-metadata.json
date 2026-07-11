@@ -205,7 +205,7 @@
     ],
     "causal_summary": "An audit of the seven plugin state dirs found five already bounded (freshness, spec-gate, loop-guard, and goal each ship sweep + archive/prune + log rotation; the skill-advisor `.advisor-state` is daemon-managed with SQLite stale-lease reclaim), but two have real retention gaps",
     "created_at": "2026-07-11T10:57:17Z",
-    "last_save_at": "2026-07-11T11:22:33.998Z",
+    "last_save_at": "2026-07-11T13:12:25.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e032d003dd4f291afb284bf7350b0e9742489bc684bd7d345a759e901755935a",
+    "source_fingerprint": "sha256:ba919ffb811e1a3c382277578b8be0cff731559cf3d9ffccee80f1cdf9d771c6",
     "source_doc_hashes": {
-      "spec.md": "632e27a196dd94ca959133fcb55f502bd59af29faa0dc17c709f170081306e2d",
-      "plan.md": "ed6d4e215eb237617346c9f4f08a2a95d18a079096b329aefc1c651e800a1980",
-      "tasks.md": "b23d0b97628843724256f02182e29ae3abace6b796fa5f588eaa6a17ffc348c3",
-      "checklist.md": "d4b4e24152018f93a0a2a5f7d1e786773781933dd9b8f00304aa5c33811d29e8",
-      "implementation-summary.md": "fd1d7c3f4f87e04c0ea1d1137d9dd46cd5e0aa3f1b5f96050d3c6d2cf5734f93"
+      "spec.md": "40eaea23fd3d60acec7fce8b5ce5572da987ce260127454b42b46e6450d978d1",
+      "plan.md": "fcca8667a36fe861b1cf1fe0cfb15d43c6e7a332bee7e76c085b4db10879ebb2",
+      "tasks.md": "fbe64835649489e6116780db80f69cc6d770d8d0989d49028a7cf404119ccc11",
+      "checklist.md": "6e61abfe8ce1a3f59c333a98f5560fa01ee3211291fb51d10383e1a18de906b9",
+      "implementation-summary.md": "5bec5315a963845580bd85a6f0b2e8af041da106df7f9641d7a98b2f0cfcf429"
     },
     "last_active_child_id": null,
     "last_active_at": null

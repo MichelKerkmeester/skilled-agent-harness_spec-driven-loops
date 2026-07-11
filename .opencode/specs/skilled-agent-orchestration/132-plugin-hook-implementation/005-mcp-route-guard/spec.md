@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation/005-mcp-route-guard"
-    last_updated_at: "2026-07-11T09:03:30.904Z"
+    last_updated_at: "2026-07-11T14:17:40Z"
     last_updated_by: "spec-author"
     recent_action: "Authored Level 3 spec for the external MCP route guard from the research brief"
     next_safe_action: "Review the manifest-strict vs broad-advisory fork, then plan the shared core in plan.md"

@@ -75,6 +75,15 @@ function renderReport(report) {
     lines.push('');
     lines.push(`_Unscored in this run (need live mode): ${r.unscoredDimensions.join(', ')}._`);
   }
+  if (r.excludedDimensions && r.excludedDimensions.length) {
+    lines.push('');
+    const reasons = r.excludedDimensions.map((k) => {
+      const dim = (r.dimensionScores || {})[k] || {};
+      const owner = dim.delegatedMeasure && dim.delegatedMeasure.targetSkill;
+      return `${k} — ${dim.reason || 'excluded by design'}${owner ? ` (measured via ${owner})` : ''}`;
+    });
+    lines.push(`_Excluded by design (structurally N/A, not a gap): ${reasons.join('; ')}._`);
+  }
   lines.push('');
 
   if (r.advisorySignals) {

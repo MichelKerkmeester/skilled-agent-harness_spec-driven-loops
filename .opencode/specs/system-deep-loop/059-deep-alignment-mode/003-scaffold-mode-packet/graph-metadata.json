@@ -21,7 +21,7 @@
       "deep-alignment scaffold tasks",
       "alignment mode packet tasks",
       "deep-alignment scaffold summary",
-      "phase 003 planning stub"
+      "phase 003 re-verification"
     ],
     "key_topics": [
       "deep-alignment",
@@ -38,19 +38,24 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/skills/system-deep-loop/hub-router.json",
-      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      "tasks.md",
-      "spec.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
       "plan.md",
+      ".opencode/skills/system-deep-loop/deep-alignment/assets/.gitkeep",
+      ".opencode/skills/system-deep-loop/deep-alignment/changelog/v1.0.0.0.md",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-review/changelog/v1.0.0.0.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
-      "implementation-summary.md"
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts"
     ],
     "entities": [
       {
@@ -68,13 +73,37 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "aliases.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/assets/.gitkeep",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-alignment/changelog/v1.0.0.0.md",
         "source": "derived"
       },
       {
@@ -84,9 +113,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -102,25 +137,19 @@
         "source": "derived"
       },
       {
-        "name": "v1.0.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-review/changelog/v1.0.0.0.md",
-        "source": "derived"
-      },
-      {
         "name": "routing-registry-drift-guard.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -150,12 +179,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement No",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -174,33 +197,15 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Thin",
+        "name": "Open Questions",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Not",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "No scaffold plan exists yet for the `deep-alignment` mode-packet skeleton",
-    "created_at": "2026-07-11T06:12:32.104Z",
-    "last_save_at": "2026-07-11T06:51:21.146Z",
+    "created_at": "2026-07-11T13:33:43.859Z",
+    "last_save_at": "2026-07-11T13:33:43.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +214,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebc645daababf1ade10e8b3c724b65a56f5269c27a9fbed4660cf41632372a16",
+    "source_fingerprint": "sha256:fb664a72919c1783e45cc9b51bc51a347f9d6bb2178dabd3a017f0736e4d8519",
     "source_doc_hashes": {
-      "spec.md": "fc3f54599bbba7316db201bd5b8ca3ca0e5b2fc362619e35fdf1caafe96ee49a",
-      "plan.md": "fe0ad539aaf2474d4ce01043471f99cb68d2dc45ce38f472b2159d0fef2eab78",
-      "tasks.md": "5d0835b357afb200e73c2e700cd9484bcd0d26908cd8e87de4260d91e4663d0b",
-      "implementation-summary.md": "d91e92e062b090505b9dac6052b773fc52f857d0da30ea91e1dd80d538b738eb"
+      "spec.md": "7897b516402c13c60e97ad54445dd2047fe2325a7b4071229a1f10197dd6891e",
+      "plan.md": "22043c5185d18f8ae9323a2c285d8c9fa788397c3ceadd61c229452f023a26fd",
+      "tasks.md": "d44c21fe9d9fa7e200d827f813a3b5b78fefccdbcec7cea64c68cc95be8f7e91",
+      "implementation-summary.md": "fb995e35e966780c06fcbcc727e9db9431747d899462a5e75d4c7fa7aa94bbb6"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Each quality checker is wired independently into the post-edit path, and the Claude hook (a Python script named `claude-posttooluse.sh`) and any OpenCode wiring duplicate the \"which checker runs for this path\" decision",
     "created_at": "2026-07-11T05:51:01Z",
-    "last_save_at": "2026-07-11T09:03:33.074Z",
+    "last_save_at": "2026-07-11T14:17:58.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3572ad3c37ccdcaf2492a8f93cede75396da8db153b4dea1b1c31008e54e4fb2",
+    "source_fingerprint": "sha256:8530d3bac493901a6b6f5610f450bf1ddaf9ac9474e7628ac51c649be25f01df",
     "source_doc_hashes": {
-      "spec.md": "237c163c81ad3fb9a4b7e968e35057ccbc508571a7f591c222faac55ebea0c08",
-      "plan.md": "ddef5911d24802a2215f0dae39b90475068251df4c14f3784b7ee5a67ef7e8d8",
-      "tasks.md": "6a68ef5ee021471a1dcd4b540e24df74e4fc9f8aaf6cdcea15d1e9fe5ac4b276",
-      "checklist.md": "1afe29c87653de6206ed3d6029ee092253b9ecfbb23b8695545bb9ecd36f2efe",
-      "decision-record.md": "28798cc2b17e469a9df73fc1eb0a13da7b282fe6315dd3a68d1ccc719642e5e2",
-      "implementation-summary.md": "295b5e4568a5a43586498980db94a16f62038b31e96b2ff1498199602c3aa4fd"
+      "spec.md": "1960ee1ae236ff03788813a484dbae3b3a1c542a5c7eb54f35ec6d966e649ea2",
+      "plan.md": "b6f453374642f436d1d2584bab853e13fac23bcafa0df21ca0f98369160e9f9d",
+      "tasks.md": "fb5dc052386c2e0aba3a3d3f7cdbb84714556bf69fecba66e9a853f0ef57e291",
+      "checklist.md": "800ed12bfa7810286e7b4296e93ba6f280d99a51e60ff68d0ca77f56cae6b802",
+      "decision-record.md": "33c07bd0cf8db24c19e56498f606b3d1e4635d6840cc74ccb5bec6b2dd36fefd",
+      "implementation-summary.md": "65dc0c5e03925d243d19a18355a46cb98c66b49b7c6406dd00d6ee5be7091848"
     },
     "last_active_child_id": null,
     "last_active_at": null

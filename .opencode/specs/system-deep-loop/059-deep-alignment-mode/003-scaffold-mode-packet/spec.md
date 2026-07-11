@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: scaffold-mode-packet"
-description: "Plan the deep-alignment mode-packet skeleton — thin-contract SKILL.md, mode-registry.json entry, hub-router touchpoints, prompt-pack reuse, directory skeleton, and changelog — so a later implementation pass has zero open design questions."
+description: "Deep-alignment mode-packet skeleton built and independently re-verified: thin-contract SKILL.md, mode-registry.json entry, hub-router.json touchpoints, and directory skeleton are all confirmed on disk and match the deep-review precedent; one confirmed gap remains — the advisor routing-projection drift guard fails because deep-alignment is not yet wired into aliases.ts / skill_advisor.py."
 trigger_phrases:
   - "deep-alignment scaffold"
   - "alignment mode packet skeleton"
@@ -11,26 +11,30 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/003-scaffold-mode-packet"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T12:57:42Z"
     last_updated_by: "claude"
-    recent_action: "Authored scaffold plan for deep-alignment packet skeleton"
-    next_safe_action: "Await 002 gate approval before any execution"
+    recent_action: "Re-verified scaffold build; drift-guard test fails 5/7 subtests"
+    next_safe_action: "T011 stays Blocked, deferred to phase 009"
     blockers:
-      - "002-architecture-decision not yet approved"
+      - "routing-registry-drift-guard.vitest.ts: 5 of 7 tests fail (empirically confirmed) -- deep-alignment is absent from aliases.ts SKILL_ALIAS_GROUPS/DEEP_MODE_BY_CANONICAL and skill_advisor.py DEEP_ROUTING_MODE_BY_KEY; `python3 skill_advisor.py --check-routing-projection` reports status:stale naming both files"
     key_files:
       - ".opencode/skills/system-deep-loop/mode-registry.json"
       - ".opencode/skills/system-deep-loop/hub-router.json"
-      - ".opencode/skills/system-deep-loop/deep-review/SKILL.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-003-scaffold-mode-packet"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions:
       - "Exact runtimeLoopType/backendKind values for the mode-registry entry (follow the reuse-boundary resolution, open ADR-010, owned by phase 008)"
       - "Whether deep-alignment gets its own scripts/ dir or fully reuses runtime/scripts/*.cjs (open ADR-010, resolved by phase 008)"
-    answered_questions: []
-status: "planned"
+    answered_questions:
+      - "SKILL.md / mode-registry.json / hub-router.json / directory skeleton / changelog all confirmed built and shape-correct by independent re-verification (2026-07-11)"
+      - "Operator decided 2026-07-11: wiring aliases.ts/skill_advisor.py is phase 009's advisor-cutover scope, not this phase's -- T011 stays Blocked here"
+status: "in_progress"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 3: scaffold-mode-packet
@@ -53,7 +57,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-11 |
 | **Branch** | `deep-alignment/003-scaffold-mode-packet` |
 | **Parent Spec** | ../spec.md |
@@ -70,7 +74,7 @@ FAILURE MODES:
 
 This is **Phase 3** of the `deep-alignment` deep-loop mode specification (`.opencode/specs/system-deep-loop/059-deep-alignment-mode/`).
 
-**Scope Boundary**: planning only. This phase produces the design for the mode-packet skeleton; it does not create `.opencode/skills/system-deep-loop/deep-alignment/`, does not edit the live `.opencode/skills/system-deep-loop/mode-registry.json` or `hub-router.json`, and does not write any SKILL.md, script, or command file.
+**Scope Boundary**: planning plus execution. This phase specifies the design for the mode-packet skeleton AND creates it: `.opencode/skills/system-deep-loop/deep-alignment/` (`SKILL.md`, `assets/`, `references/`, `changelog/`), the `mode-registry.json` `"alignment"` entry, and the `hub-router.json` touchpoints are in scope because 002-architecture-decision is Accepted and operator-approved (2026-07-11). **Independent re-verification (2026-07-11) confirms the creation/editing has now happened**: `deep-alignment/SKILL.md`, `assets/.gitkeep`, `references/.gitkeep`, `behavior_benchmark/.gitkeep`, `changelog/v1.0.0.0.md`, the `mode-registry.json` `"alignment"` entry, and the `hub-router.json` `routerSignals.alignment`/`tieBreak` touchpoints all exist on disk and match the shape `plan.md` §3 specified — see `tasks.md` Phase 2, now executed. One gap surfaced by re-verification: Phase 3's own `T011` (the advisor routing-registry drift guard) fails — see `implementation-summary.md` Verification for evidence.
 
 **Dependencies**:
 - Phase 002 must lock the new-mode-packet decision, the pluggable adapter contract, the alignment contract, and the state machine before this scaffold plan can be executed for real.
@@ -112,10 +116,10 @@ Produce a build-ready scaffold plan so a later implementation pass can create th
 - Plan reuse of the existing prompt-pack iteration template (`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts`) for alignment iterations, including where lane-specific (authority/artifact-class) prompt sections attach.
 - Plan the future directory skeleton for `deep-alignment/`, modeled on the real `.opencode/skills/system-deep-loop/deep-review/` tree (`assets/`, `references/`, `changelog/`, `behavior_benchmark/`).
 - Plan the future `deep-alignment/changelog/v1.0.0.0.md` entry, matching the plain-H2, no-TOC convention already used at `.opencode/skills/system-deep-loop/deep-review/changelog/v1.0.0.0.md:1-10`.
+- Create `.opencode/skills/system-deep-loop/deep-alignment/` and every file inside it (`SKILL.md`, `assets/`, `references/`, `changelog/`, `changelog/v1.0.0.0.md`) per the shapes specified in `plan.md` §3 — in scope now that 002-architecture-decision is Accepted and operator-approved (2026-07-11), clearing the gate this scope previously waited on.
+- Edit the live `.opencode/skills/system-deep-loop/mode-registry.json` (add the `"alignment"` mode entry) and `.opencode/skills/system-deep-loop/hub-router.json` (add `routerSignals.alignment` and extend `tieBreak`) — in scope for the same reason.
 
 ### Out of Scope
-- Actually creating `.opencode/skills/system-deep-loop/deep-alignment/` or any file inside it — a future implementation pass owns that.
-- Editing the live `.opencode/skills/system-deep-loop/mode-registry.json` or `.opencode/skills/system-deep-loop/hub-router.json` — those edits belong to the future implementation pass, gated behind 002 approval.
 - Resolving the exact reuse boundary between deep-alignment and the deep-review runtime (shared scripts vs forked) — carried as an open question into 002-architecture-decision; this phase only plans around whatever 002 decides.
 - Any per-authority adapter implementation (`discover`/`standardSource`/`check`) — phases 005 (sk-doc), 006 (sk-git/sk-design), and 007 (sk-code) own those.
 - The scoping question, lane resolution, or non-interactive arg form — phase 004 owns those.
@@ -125,11 +129,11 @@ Produce a build-ready scaffold plan so a later implementation pass can create th
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md` | Create (future) | Thin mode contract, deferred to the implementation pass this phase plans for |
-| `.opencode/skills/system-deep-loop/mode-registry.json` | Modify (future) | Add the `"alignment"` mode entry, deferred to the implementation pass |
-| `.opencode/skills/system-deep-loop/hub-router.json` | Modify (future) | Add `routerSignals.alignment` and extend `tieBreak`, deferred to the implementation pass |
-| `.opencode/skills/system-deep-loop/deep-alignment/assets/`, `references/`, `changelog/` | Create (future) | Directory skeleton, deferred to the implementation pass |
-| `.opencode/skills/system-deep-loop/deep-alignment/changelog/v1.0.0.0.md` | Create (future) | Initial changelog entry, deferred to the implementation pass |
+| `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md` | Create | Thin mode contract, per the shape specified in `plan.md` §3 — created: frontmatter, WHEN TO USE, boundary statement, state machine, alignment contract, RULES |
+| `.opencode/skills/system-deep-loop/mode-registry.json` | Modify | Added the `"alignment"` mode entry (appended to `modes[]`), per `plan.md` §3 |
+| `.opencode/skills/system-deep-loop/hub-router.json` | Modify | Added `routerSignals.alignment`, the `alignment-aliases` vocabulary class, and extended `tieBreak`, per `plan.md` §3 |
+| `.opencode/skills/system-deep-loop/deep-alignment/assets/`, `references/`, `changelog/`, `behavior_benchmark/` | Create | Directory skeleton created (`assets/`, `references/`, `behavior_benchmark/` carry `.gitkeep`; `changelog/` carries `v1.0.0.0.md`) |
+| `.opencode/skills/system-deep-loop/deep-alignment/changelog/v1.0.0.0.md` | Create | Initial changelog entry created, compact format, plain-H2 no-TOC |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -159,8 +163,8 @@ Produce a build-ready scaffold plan so a later implementation pass can create th
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `tasks.md`'s Phase 2 task list, if executed by a future implementation pass, is sufficient to create the mode-packet skeleton without further design decisions beyond 002's resolutions.
-- **SC-002**: No file under `.opencode/skills/system-deep-loop/deep-alignment/` exists, and `.opencode/skills/system-deep-loop/mode-registry.json` / `hub-router.json` remain unmodified, at the close of this phase.
-- **SC-003**: Every open design item (reuse boundary, exact registry field values, scripts/ directory question) is explicitly flagged as pending its owning decision (the 002 gate approval, or open ADR-010 owned by phase 008) rather than asserted as decided.
+- **SC-002**: `.opencode/skills/system-deep-loop/deep-alignment/` exists with the shape specified in `plan.md` §3 (`SKILL.md`, `assets/`, `references/`, `changelog/`, `changelog/v1.0.0.0.md`), and `.opencode/skills/system-deep-loop/mode-registry.json` / `hub-router.json` carry the new alignment entries. **Met, confirmed by independent re-verification (2026-07-11)**: all listed paths exist on disk; `mode-registry.json` is valid JSON with a complete `"alignment"` mode entry whose `packet` path resolves to the real directory; `hub-router.json` is valid JSON with `routerSignals.alignment` and an extended `tieBreak` that is bidirectionally equal to the registry's `workflowMode` set.
+- **SC-003**: Every open design item (reuse boundary, exact registry field values, scripts/ directory question) is explicitly flagged as pending its owning decision (the 002 gate approval, or open ADR-010 owned by phase 008) rather than asserted as decided. **Partially met**: `runtimeLoopType`/`backendKind`/`scripts/` remain correctly flagged. **Not met for one item re-verification surfaced**: the registry entry asserts `advisorRouting.routingClass: "lexical"` as if the advisor cutover were already wired, but `aliases.ts`/`skill_advisor.py` were never updated to match, and this tension with the phase's own Out-of-Scope note (advisor cutover owned by phase 009) was not flagged anywhere in `spec.md`/`plan.md`/`tasks.md` prior to this re-verification pass.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -170,10 +174,11 @@ Produce a build-ready scaffold plan so a later implementation pass can create th
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | 002-architecture-decision not yet approved | Mode-registry field values (`runtimeLoopType`, `backendKind`) cannot be finalized | Plan both as TBD defaulting to reuse; cite the reuse-boundary open question (ADR-010, phase 008) explicitly |
+| Dependency | ADR-010 (deep-review runtime reuse boundary) still Open, owned by phase 008 — 002-architecture-decision itself is Accepted (operator-approved 2026-07-11) | Mode-registry field values (`runtimeLoopType`, `backendKind`) cannot be finalized | Plan both as TBD defaulting to reuse; cite the reuse-boundary open question (ADR-010, phase 008) explicitly |
 | Dependency | `runtime/scripts/convergence.cjs` validates `runtimeLoopType` against exactly `research\|review\|council` (per `.opencode/skills/system-deep-loop/mode-registry.json:5`) | A brand-new `"alignment"` enum value would require a convergence.cjs change, which is out of scope for a thin-specialization mode | Default plan reuses `runtimeLoopType: "review"`, consistent with the "maximally reuse the review/runtime engine" design decision |
 | Risk | Scaffold drifts from deep-review's real shape, making later adapters harder to write | Adapter phases (005-007) inherit design debt | Model every planned artifact directly on deep-review's real files, cited by path |
-| Risk | Planning phase accidentally creates live files | Violates the scaffold-only mandate for this phase | Restrict this phase strictly to `.opencode/specs/system-deep-loop/059-deep-alignment-mode/003-scaffold-mode-packet/` |
+| Risk | This reclassification pass (2026-07-11) accidentally creates live files instead of only updating scope docs | Would pre-empt the dedicated implementation pass and blur the `completion_pct: 0` state | Restrict this specific editing pass strictly to `.opencode/specs/system-deep-loop/059-deep-alignment-mode/003-scaffold-mode-packet/`; live-file creation happens in a separate, subsequent implementation pass |
+| Confirmed (2026-07-11 re-verification) | `mode-registry.json`'s new entry declares `advisorRouting.routingClass: "lexical"`, which per the registry's own discriminator contract requires presence in both the TS (`aliases.ts`) and Python (`skill_advisor.py`) projection maps; neither was updated | `routing-registry-drift-guard.vitest.ts` fails 5 of 7 tests today; `skill_advisor.py --check-routing-projection` reports `status:stale` naming both files | Wire `deep-alignment` into both projection maps and re-run the drift guard, or get an explicit operator call to use a routingClass that does not require map presence (e.g. `metadata`) until phase 009's advisor cutover lands |
 <!-- /ANCHOR:risks -->
 
 ---
