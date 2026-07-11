@@ -109,6 +109,12 @@ function spawnLauncher(workspace: Workspace, env: NodeJS.ProcessEnv = {}): Launc
   // Pin the IPC socket dir per workspace so the recorded lease socketPath and every probe/bridge
   // stay inside the isolated temp root. A caller can override it to model a divergent worktree env.
   baseEnv.SPECKIT_IPC_SOCKET_DIR = workspace.socketDir;
+  // These lifecycle tests assert the launcher owns and cleans up its daemon child on exit — the
+  // deterministic single-owner contract. With daemon re-election (the process default) the launcher
+  // instead RELEASES the daemon for adoption and leaves the pid file, so those assertions can't hold
+  // and the released stub daemon leaks past the temp root. Default re-election off here; a caller can
+  // re-enable it via the env override to model adoption.
+  baseEnv.SPECKIT_DAEMON_REELECTION = '0';
 
   const run: LauncherRun = {
     child: spawn(process.execPath, [workspace.launcherPath], {
@@ -199,6 +205,25 @@ function readLease(pidFilePath: string): Record<string, unknown> | null {
   }
 }
 
+// The launcher spawns its daemon detached and, under daemon re-election (default on), RELEASES the
+// daemon on SIGTERM instead of killing it — so terminating a launcher never reaps its daemon child.
+// The test must hard-kill the lease-recorded daemon (and any model-server) pid itself, otherwise the
+// stub context-server survives the deleted temp workspace and accumulates as an orphan.
+function reapLeaseDaemonPids(pidFilePath: string): void {
+  const lease = readLease(pidFilePath);
+  if (!lease) return;
+  for (const key of ['childPid', 'modelServerPid'] as const) {
+    const pid = lease[key];
+    if (typeof pid === 'number' && pid > 0) {
+      try {
+        process.kill(pid, 'SIGKILL');
+      } catch {
+        // already exited, or the launcher's shutdown already reaped it — nothing to do
+      }
+    }
+  }
+}
+
 function readOwnerLeasePid(root: string): number | null {
   try {
     const parsed = JSON.parse(readFileSync(join(root, ownerLeaseRelativePath), 'utf8')) as { ownerPid?: unknown };
@@ -261,6 +286,12 @@ describe('mk-spec-memory launcher lease', () => {
     while (launcherRuns.length > 0) {
       const run = launcherRuns.pop();
       if (run) await terminate(run);
+    }
+    // Terminating the launchers above does not reap their detached, re-election-released daemon
+    // children; hard-kill each workspace's recorded daemon pid before the temp root (and its lease)
+    // is deleted, or the run leaks orphaned context-server processes.
+    for (const dir of tempDirs) {
+      reapLeaseDaemonPids(join(dir, pidFileRelativePath));
     }
     while (tempDirs.length > 0) {
       const dir = tempDirs.pop();
