@@ -217,6 +217,32 @@ function sanitizeLogField(value) {
   return collapsed.length > LOG_FIELD_MAX_LENGTH ? `${collapsed.slice(0, LOG_FIELD_MAX_LENGTH)}...` : collapsed;
 }
 
+const PATH_REDACTED_PLACEHOLDER = '[REDACTED]';
+
+// The target filePath itself can carry a secret-shaped segment (e.g. a file
+// or directory literally named "token=sk_live_...") even though command
+// contents are already excluded from this telemetry line entirely -- mirrors
+// the secret-scrub idiom cli-external/cli-opencode's dispatch-audit core uses
+// (see scripts/lib/dispatch-audit.mjs SECRET_PATTERNS), scoped down to the
+// two shapes that actually occur in a filesystem path: a key=value-style
+// segment naming a token/key/secret/password, and a bare known provider
+// secret-key prefix. Each pattern replaces only the secret-shaped span, never
+// the whole path, so the rest stays useful for a reader while the value never
+// lands on disk.
+const PATH_SECRET_PATTERNS = [
+  { regex: /\b([A-Za-z0-9_]*(?:token|key|secret|password)[A-Za-z0-9_]*=)([^/\\?#]+)/gi, replacement: `$1${PATH_REDACTED_PLACEHOLDER}` },
+  { regex: /\b(sk-[A-Za-z0-9_-]{10,}|sk_(?:live|test)_[A-Za-z0-9]{6,}|pk_(?:live|test)_[A-Za-z0-9]{6,}|ghp_[A-Za-z0-9]{10,}|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{12,})\b/g, replacement: PATH_REDACTED_PLACEHOLDER },
+];
+
+function redactPathSecrets(filePath) {
+  if (typeof filePath !== 'string' || filePath.length === 0) return filePath;
+  let redacted = filePath;
+  for (const { regex, replacement } of PATH_SECRET_PATTERNS) {
+    redacted = redacted.replace(regex, replacement);
+  }
+  return redacted;
+}
+
 /**
  * Compose the one canonical, single-line telemetry payload both runtime
  * adapters write on every advise / would-deny mutation event. Every field is
@@ -224,14 +250,16 @@ function sanitizeLogField(value) {
  * hostile filePath or sessionID can never inject a second log line or
  * misalign the parser -- the fields are joined AFTER sanitization, so a
  * stripped pipe inside one field can never be confused with a real
- * separator.
+ * separator. filePath is additionally secret-scrubbed (see
+ * redactPathSecrets) BEFORE sanitization, so a secret-shaped path segment
+ * never reaches the retained log even once.
  *
  * @param {{ runtime?: string, sessionID?: string, tool?: string, filePath?: string, decision?: string }} event
  * @returns {string}
  */
 export function formatSpecGateEvent(event = {}) {
   const { runtime, sessionID, tool, filePath, decision } = event;
-  return [runtime, sessionID, tool, filePath, decision].map(sanitizeLogField).join(' | ');
+  return [runtime, sessionID, tool, redactPathSecrets(filePath), decision].map(sanitizeLogField).join(' | ');
 }
 
 /**
@@ -386,18 +414,38 @@ export function sweepStaleGateStates(stateDir, runtimeState) {
 // a full sentence ("skip the lint errors ... fix the parser"), which is
 // prose ABOUT skipping something else, not an answer to Gate 3.
 const SKIP_WORD_REGEX = /^\s*skip\b(?:\s+it\b)?\s*(?:[-:,.]|$)/i;
-// A standalone "D"/"d" immediately followed by punctuation or end of string
-// -- never a bare letter running into ordinary prose ("D is the wrong
-// option, use A instead"), which is prose ABOUT option D, not a chosen skip.
-const STANDALONE_LETTER_D_REGEX = /^\s*[dD](?:[,.:)\-]|$)/;
+// A standalone "D"/"d" immediately followed by punctuation or end of string.
+// A bare hyphen is deliberately EXCLUDED from the immediate-adjacency class
+// (only comma/period/colon/close-paren qualify there): "D-danger" is a
+// compound word fused directly onto the letter with no separating
+// whitespace, not the dash-separator convention ("D - clarification"), so a
+// hyphen only counts as a separator when preceded by whitespace (`\s+-`).
+// Never a bare letter running into ordinary prose ("D is the wrong option,
+// use A instead"), which is prose ABOUT option D, not a chosen skip.
+const STANDALONE_LETTER_D_REGEX = /^\s*[dD](?:[,.:)]|\s+-|$)/;
 const ANSWER_LETTER_PREFIX_REGEX = /^\s*([a-eA-E])(?=[\s,.:)\-]|$)/;
 // A closed set of natural lead-ins ("option B", "go with C", ...) so the
 // letter still registers when the bare-token bind below needs it, without
 // opening the grammar to arbitrary prose that happens to contain a letter.
+// D is special-cased in answerParse() below: even through this lead-in
+// grammar it is always the SKIP option, never a folder-binding target.
 const NATURAL_LEAD_IN_LETTER_REGEX = /^\s*(?:option|choice|answer|go with|use option)\s+([a-eA-E])(?=[\s,.:)\-]|$)/i;
+// A skip answer must be a COMPLETE, unambiguous standalone reply. A trailing
+// clause that either negates the skip itself ("do not skip", "not a skip",
+// "isn't a skip") or names a DIFFERENT lettered option ("use A instead", "go
+// with C") is prose ABOUT the skip grammar, not a chosen skip -- when either
+// signals, answerParse() returns null (stays open, re-asks) rather than
+// guess which reading was meant. D is excluded from the alternative-option
+// half: naming D again is consistent with, not contradictory to, a skip.
+const SKIP_NEGATION_REGEX = /\b(?:not|n't|isn't|is not|never)\b[^.;]{0,30}\bskip\b|\bskip\b[^.;]{0,30}\b(?:not|n't|isn't|is not)\b/i;
+const SKIP_ALTERNATIVE_OPTION_REGEX = /\b(?:use|go with|choose|pick|option|choice|answer)\s+[a-ceA-CE]\b/;
 const SPEC_PATH_REGEX = /(?:\.opencode\/specs|specs)\/[a-zA-Z0-9][\w./-]*/;
 const BARE_FOLDER_TOKEN_REGEX = /\b\d{3}-[a-z0-9][a-z0-9-]*\b/i;
 const TRAILING_PUNCTUATION_REGEX = /[.,;:)]+$/;
+
+function hasSkipContradiction(text) {
+  return SKIP_NEGATION_REGEX.test(text) || SKIP_ALTERNATIVE_OPTION_REGEX.test(text);
+}
 
 /**
  * Parse a candidate Gate-3 answer out of a user turn. The isOpen guard is
@@ -423,8 +471,18 @@ export function answerParse(promptText, isOpen = true) {
   const text = typeof promptText === 'string' ? promptText.trim() : '';
   if (!text) return null;
 
-  if (SKIP_WORD_REGEX.test(text) || STANDALONE_LETTER_D_REGEX.test(text)) {
-    return { type: 'skip' };
+  // Computed once and reused below (natural-lead-in letters are never
+  // re-derived) -- D is special-cased HERE, not just in the bare-letter
+  // regex, so "option D" / "answer D" reads as the skip choice rather than
+  // falling into the folder-binding letter grammar below.
+  const naturalLeadInMatch = NATURAL_LEAD_IN_LETTER_REGEX.exec(text);
+  const naturalLeadInIsSkipLetter = naturalLeadInMatch !== null && /^[dD]$/.test(naturalLeadInMatch[1]);
+
+  if (SKIP_WORD_REGEX.test(text) || STANDALONE_LETTER_D_REGEX.test(text) || naturalLeadInIsSkipLetter) {
+    // A COMPLETE, unambiguous standalone answer only -- reject (return null,
+    // stay open) when the rest of the turn contradicts the skip itself. See
+    // hasSkipContradiction() / SKIP_NEGATION_REGEX / SKIP_ALTERNATIVE_OPTION_REGEX above.
+    return hasSkipContradiction(text) ? null : { type: 'skip' };
   }
 
   const pathMatch = SPEC_PATH_REGEX.exec(text);
@@ -432,7 +490,7 @@ export function answerParse(promptText, isOpen = true) {
     return { type: 'binding', path: pathMatch[0].replace(TRAILING_PUNCTUATION_REGEX, '') };
   }
 
-  const letterMatch = ANSWER_LETTER_PREFIX_REGEX.exec(text) || NATURAL_LEAD_IN_LETTER_REGEX.exec(text);
+  const letterMatch = ANSWER_LETTER_PREFIX_REGEX.exec(text) || naturalLeadInMatch;
   if (letterMatch) {
     const bareMatch = BARE_FOLDER_TOKEN_REGEX.exec(text);
     if (bareMatch) {
@@ -473,6 +531,119 @@ export function extractSpecFolderCandidate(promptText) {
   return null;
 }
 
+// ── Local mirrors of gate-3-classifier's post-trio checks (fix 3) ──────────
+//
+// validateSpecFolderCandidate() in the shared (frozen, out-of-scope) shared
+// classifier checks MANDATORY_SPEC_METADATA_FILES BEFORE it ever checks
+// deprecated/superseded status or resolves a phase-parent's active child --
+// so a scaffold missing the save-time trio comes back 'missing_metadata' even
+// when the folder is ALSO Deprecated/Superseded, or an unresolvable
+// phase-parent, and the classifier never reaches those checks to say so. The
+// dist build exports only validateSpecFolderBinding/classifyPrompt --
+// readSpecStatus/isDeprecatedOrSuperseded/isPhaseParent are internal to
+// gate-3-classifier.ts and are never exported -- so the scaffolded-folder
+// relaxation below re-runs those same two checks itself, matching the
+// classifier's own logic and file layout, before ever accepting a scaffold
+// on the trio's behalf.
+const PHASE_CHILD_FOLDER_PATTERN = /^\d{3}-[a-z0-9-]+$/;
+const SPEC_STATUS_TABLE_ROW_REGEX = /^\|\s*\*\*Status\*\*\s*\|\s*([^|]+?)\s*\|/im;
+const SPEC_STATUS_FRONTMATTER_REGEX = /^status:\s*["']?([^"'\n]+?)["']?\s*$/im;
+const DEPRECATED_OR_SUPERSEDED_STATUS_REGEX = /^(deprecated|superseded)$/i;
+// Bounds the phase-parent-chases-phase-parent recursion below; the real
+// classifier's own recursion has no adversarial-depth concern (it only ever
+// runs against a fully-formed tree), but this relaxation walks scaffolds that
+// may not be, so it stays defensive.
+const MAX_SCAFFOLD_PHASE_PARENT_DEPTH = 5;
+
+function scaffoldFileExists(absolutePath) {
+  try {
+    return statSync(absolutePath).isFile();
+  } catch (_) {
+    return false;
+  }
+}
+
+function readScaffoldSpecStatus(specMdAbsolutePath) {
+  let content;
+  try {
+    content = readFileSync(specMdAbsolutePath, 'utf8');
+  } catch (_) {
+    return null;
+  }
+  const tableMatch = SPEC_STATUS_TABLE_ROW_REGEX.exec(content);
+  if (tableMatch?.[1]) return tableMatch[1].trim();
+  const frontmatterMatch = SPEC_STATUS_FRONTMATTER_REGEX.exec(content);
+  return frontmatterMatch?.[1]?.trim() ?? null;
+}
+
+function isScaffoldDeprecatedOrSuperseded(folderAbsolutePath) {
+  const status = readScaffoldSpecStatus(join(folderAbsolutePath, 'spec.md'));
+  return status !== null && DEPRECATED_OR_SUPERSEDED_STATUS_REGEX.test(status);
+}
+
+function isScaffoldPhaseParent(folderAbsolutePath) {
+  let entries;
+  try {
+    entries = readdirSync(folderAbsolutePath, { withFileTypes: true });
+  } catch (_) {
+    return false;
+  }
+  return entries.some((entry) => {
+    if (!entry.isDirectory() || !PHASE_CHILD_FOLDER_PATTERN.test(entry.name)) return false;
+    const childPath = join(folderAbsolutePath, entry.name);
+    return scaffoldFileExists(join(childPath, 'spec.md')) || scaffoldFileExists(join(childPath, 'description.json'));
+  });
+}
+
+function readScaffoldLastActiveChildId(folderAbsolutePath) {
+  let raw;
+  try {
+    raw = readFileSync(join(folderAbsolutePath, 'graph-metadata.json'), 'utf8');
+  } catch (_) {
+    return null;
+  }
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (_) {
+    return null;
+  }
+  if (!parsed || typeof parsed !== 'object') return null;
+  const derived = parsed.derived && typeof parsed.derived === 'object' ? parsed.derived : null;
+  const candidate = (derived && derived.last_active_child_id) ?? parsed.last_active_child_id;
+  return typeof candidate === 'string' && candidate.trim().length > 0 ? candidate.trim() : null;
+}
+
+/**
+ * Re-run the classifier's deprecated/superseded + phase-parent checks (see
+ * the block comment above) against a scaffolded folder that only failed
+ * validateSpecFolderBinding on the missing save-time metadata trio. Returns
+ * the resolved absolute path a fully-run validation would accept (which, for
+ * a phase-parent, is its resolved active CHILD, not the parent itself,
+ * mirroring the classifier's own recursion), or null when the folder -- or,
+ * recursively, its resolved phase child -- fails a check the trio-only
+ * relaxation must never paper over.
+ *
+ * @param {string} folderAbsolutePath
+ * @param {number} [depth]
+ * @returns {string|null}
+ */
+function resolveScaffoldAcceptance(folderAbsolutePath, depth = 0) {
+  if (depth > MAX_SCAFFOLD_PHASE_PARENT_DEPTH) return null;
+  if (!scaffoldFileExists(join(folderAbsolutePath, 'spec.md'))) return null;
+  if (isScaffoldDeprecatedOrSuperseded(folderAbsolutePath)) return null;
+
+  if (isScaffoldPhaseParent(folderAbsolutePath)) {
+    const lastActiveChildId = readScaffoldLastActiveChildId(folderAbsolutePath);
+    if (!lastActiveChildId) return null; // mirrors 'phase_parent_without_active_child'
+    const childPath = resolve(folderAbsolutePath, lastActiveChildId);
+    if (!isPathWithin(folderAbsolutePath, childPath)) return null;
+    return resolveScaffoldAcceptance(childPath, depth + 1);
+  }
+
+  return folderAbsolutePath;
+}
+
 /**
  * Decide whether a prior_answer-sourced candidate path satisfies Gate 3,
  * shared by both binding call sites (an explicit answer to an already-open
@@ -482,12 +653,17 @@ export function extractSpecFolderCandidate(promptText) {
  * Accepts outright when the shared classifier validates the candidate.
  * Additionally accepts when the ONLY failing check was the save-time
  * metadata trio (description.json/graph-metadata.json do not exist yet --
- * they are produced at memory-save time, not at scaffold time) AND the
- * folder already carries a real spec.md: validateSpecFolderCandidate has, by
- * that point, already confirmed the folder is in-tree, exists, is not a
- * symlink escape, and is not a repeat/cycle -- the trio is the only gap.
- * This relaxation is local to the spec-gate's own binding path; the shared
- * classifier's MANDATORY_SPEC_METADATA_FILES contract is never touched, and
+ * they are produced at memory-save time, not at scaffold time) AND a
+ * fully-run validation would otherwise accept the folder -- re-checked via
+ * resolveScaffoldAcceptance() above (deprecated/superseded status, and the
+ * phase-parent case), not merely "a spec.md file exists": that early return
+ * skips the classifier's OWN downstream checks entirely, so this relaxation
+ * must independently re-preserve them. validateSpecFolderCandidate has, by
+ * the missing_metadata point, already confirmed the folder is in-tree,
+ * exists, is not a symlink escape, and is not a repeat/cycle -- the trio (and
+ * now these re-checked invariants) are the only gap. This relaxation is
+ * local to the spec-gate's own binding path; the shared classifier's
+ * MANDATORY_SPEC_METADATA_FILES contract is never touched, and
  * prebound/AUTONOMOUS bindings (which do not use source:'prior_answer')
  * still require the full trio via applyGate3Satisfaction.
  *
@@ -507,12 +683,13 @@ function acceptPriorAnswerBinding(candidatePath, workspaceRoot) {
   if (validation.reason === 'missing_metadata' && typeof validation.path === 'string' && validation.path.length > 0) {
     try {
       const scaffoldedAbsolutePath = join(workspaceRoot, validation.path);
-      if (statSync(join(scaffoldedAbsolutePath, 'spec.md')).isFile()) {
-        return { accepted: true, resolvedAbsolutePath: scaffoldedAbsolutePath };
+      const resolvedAbsolutePath = resolveScaffoldAcceptance(scaffoldedAbsolutePath);
+      if (resolvedAbsolutePath) {
+        return { accepted: true, resolvedAbsolutePath };
       }
     } catch (_) {
-      // No real spec.md (or an unreadable scaffold) -- fall through to reject,
-      // never let this optional check propagate to the outer classify catch.
+      // Any unexpected error re-running the local checks -- fall through to
+      // reject, never let this optional check propagate to the outer classify catch.
     }
   }
 
@@ -618,17 +795,25 @@ export function isExemptTargetPath(filePath, projectDir) {
  * @param {{ prompt?: string, sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv, classificationOptions?: { executionMode?: string, boundSpecFolder?: object|null, commandContract?: object|null } }} request
  * @returns {{ status: 'open'|'satisfied'|'skipped'|'closed', question: string|null }}
  */
-export function classifyIntent(request = {}) {
-  const environment = request.env || process.env;
-  if (environment[DISABLED_ENV] === '1') return { status: 'closed', question: null };
+export function classifyIntent(request) {
+  // Normalized BEFORE the try, but only a truthiness/type check -- it never
+  // dereferences a property of `request` itself, so a null/non-object
+  // request cannot throw here. The environment + kill-switch read moves
+  // INSIDE the try below (fix 2): request.env on a bare `null` throws before
+  // any try/catch could intervene, defeating the fail-open contract for the
+  // very first line of the function.
+  const safeRequest = request && typeof request === 'object' ? request : {};
 
   // Captured outside the try so the catch block can evict whatever state this
   // exact (stateDir, sessionID) pair resolved to -- see the fail-open note below.
   let stateDir;
   let sessionID;
   try {
-    const { prompt, projectDir, classificationOptions } = request;
-    sessionID = request.sessionID;
+    const environment = safeRequest.env || process.env;
+    if (environment[DISABLED_ENV] === '1') return { status: 'closed', question: null };
+
+    const { prompt, projectDir, classificationOptions } = safeRequest;
+    sessionID = safeRequest.sessionID;
     const dir = projectDir || process.cwd();
     ({ stateDir } = resolveGuardPaths(dir));
     const state = readGateState(stateDir, sessionID);
@@ -730,13 +915,18 @@ export function classifyIntent(request = {}) {
  * @param {{ tool?: string, filePath?: string, sessionID?: string, projectDir?: string, env?: NodeJS.ProcessEnv }} request
  * @returns {{ decision: 'allow'|'advise'|'deny', detail: string|null, wouldDeny: boolean }}
  */
-export function evaluateMutation(request = {}) {
-  const environment = request.env || process.env;
-  if (environment[DISABLED_ENV] === '1') return { decision: 'allow', detail: null, wouldDeny: false };
+export function evaluateMutation(request) {
+  // See classifyIntent()'s matching comment (fix 2): normalization here is a
+  // truthiness/type check only, never a property read of `request` itself,
+  // so a null/non-object request cannot throw before the try below.
+  const safeRequest = request && typeof request === 'object' ? request : {};
 
   try {
-    const { filePath, sessionID, projectDir } = request;
-    const tool = String(request.tool || '').toLowerCase();
+    const environment = safeRequest.env || process.env;
+    if (environment[DISABLED_ENV] === '1') return { decision: 'allow', detail: null, wouldDeny: false };
+
+    const { filePath, sessionID, projectDir } = safeRequest;
+    const tool = String(safeRequest.tool || '').toLowerCase();
     const dir = projectDir || process.cwd();
     const { stateDir } = resolveGuardPaths(dir);
 

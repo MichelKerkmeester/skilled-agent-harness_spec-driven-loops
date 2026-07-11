@@ -454,6 +454,48 @@ test('fail-open: unexpected argument shape never throws and always allows', () =
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+// fix 2/4: a null (not merely malformed-but-object) request must never throw
+// -- request.env / the kill-switch used to be read BEFORE the try/catch
+// boundary, so classifyIntent(null)/evaluateMutation(null) threw a raw
+// TypeError instead of failing open. Isolated to a fresh empty cwd (via
+// process.chdir) so the "no real gate state present" assumption holds
+// regardless of this repo's own ambient .spec-gate-state contents.
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('classifyIntent(null) fails open: never throws, returns the closed/no-question shape', () => {
+  const tempDir = mkdtempSync(join(tmpdir(), 'spec-gate-null-request-'));
+  const originalCwd = process.cwd();
+  try {
+    process.chdir(tempDir);
+    assert.doesNotThrow(() => {
+      const result = core.classifyIntent(null);
+      assert.equal(result.status, 'closed');
+      assert.equal(result.question, null);
+    });
+  } finally {
+    process.chdir(originalCwd);
+    cleanup(tempDir);
+  }
+});
+
+test('evaluateMutation(null) fails open: never throws, always allows', () => {
+  const tempDir = mkdtempSync(join(tmpdir(), 'spec-gate-null-request-'));
+  const originalCwd = process.cwd();
+  try {
+    process.chdir(tempDir);
+    assert.doesNotThrow(() => {
+      const result = core.evaluateMutation(null);
+      assert.equal(result.decision, 'allow');
+      assert.equal(result.detail, null);
+      assert.equal(result.wouldDeny, false);
+    });
+  } finally {
+    process.chdir(originalCwd);
+    cleanup(tempDir);
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Kill switch
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -524,6 +566,11 @@ const POSITIVE_ANSWER_CORPUS = [
   // WS5: closed-set natural lead-ins register the letter for a bare-token bind.
   { prompt: 'option B, 042-foo', expect: 'binding' },
   { prompt: 'go with C, 099-bar-baz', expect: 'binding' },
+  // fix 5: a natural-lead-in letter D is ALWAYS the skip choice, never a
+  // stalled/no-folder-named binding attempt -- even with a trailing
+  // folder-shaped token, D wins as skip.
+  { prompt: 'option D', expect: 'skip' },
+  { prompt: 'option D, 999-valid', expect: 'skip' },
 ];
 
 const NEGATIVE_PROMPT_CORPUS = [
@@ -544,6 +591,14 @@ const NEGATIVE_PROMPT_CORPUS = [
   'skip the lint errors for now, just fix the parser bug',
   // WS5: a bare "D" running into ordinary prose about option D, not a chosen skip.
   'D is the wrong option, use A instead',
+  // fix 5: "D-danger" is a compound word fused directly onto the letter (no
+  // separating whitespace before the hyphen) -- prose ABOUT danger, not a
+  // chosen skip. Must never false-close the gate.
+  'D-danger is not a skip answer',
+  // fix 5: contradictory prose -- explicitly negates the skip AND names a
+  // different lettered option in the same breath. Ambiguous: must return
+  // null (stay open, re-ask), never guess toward either reading.
+  'D: do not skip; use A instead',
 ];
 
 test('answerParse() corpus: recognized answers parse correctly (false-negative rate)', () => {
@@ -637,6 +692,32 @@ test('formatSpecGateEvent: missing/empty fields render as "-", never break the f
   assert.equal(fields[2], '-'); // tool missing
   assert.equal(fields[3], '-'); // filePath missing
   assert.equal(fields[4], 'advise');
+});
+
+test('fix 1: formatSpecGateEvent redacts a secret-looking path segment, never leaks it verbatim', () => {
+  const line = core.formatSpecGateEvent({
+    runtime: 'claude',
+    sessionID: 'sess-secret',
+    tool: 'write',
+    filePath: 'src/token=sk_live_SECRETVALUE123.ts',
+    decision: 'would-deny',
+  });
+  assert.equal(line.includes('SECRETVALUE123'), false, 'the secret value must never appear verbatim in the emitted line');
+  assert.ok(line.includes('[REDACTED]'), 'a redaction placeholder must replace the secret-shaped segment');
+  const fields = line.split(' | ');
+  assert.equal(fields.length, 5);
+  assert.equal(fields[4], 'would-deny');
+});
+
+test('fix 1: formatSpecGateEvent leaves an ordinary, non-secret-shaped filePath untouched', () => {
+  const line = core.formatSpecGateEvent({
+    runtime: 'claude',
+    sessionID: 'sess-plain',
+    tool: 'write',
+    filePath: 'src/login.ts',
+    decision: 'advise',
+  });
+  assert.ok(line.includes('src/login.ts'));
 });
 
 test('formatSpecGateEvent: a hostile filePath (pipe/newline) cannot inject a second field or line', () => {
@@ -1254,6 +1335,87 @@ test('WS3 scaffolded accept: an out-of-tree / traversal candidate still stays op
       projectDir: root,
     });
     assert.equal(answered.status, 'open');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3/fix-3 scaffolded accept: a Deprecated folder with ONLY spec.md (no save-time trio) still stays open', () => {
+  const { root } = makeWorkspace();
+  const folderRel = '.opencode/specs/046-deprecated-scaffold-only';
+  mkdirSync(join(root, folderRel), { recursive: true });
+  writeFileSync(join(root, folderRel, 'spec.md'), '# Deprecated Scaffold\n\n| **Status** | Deprecated |\n');
+  // Deliberately NO description.json / graph-metadata.json: the classifier
+  // returns 'missing_metadata' before it ever reaches its own deprecated
+  // check, so the scaffolded-accept relaxation must re-run that check
+  // itself (fix 3) rather than accept a scaffold's spec.md regardless of status.
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({ prompt: `B, ${folderRel}`, sessionID, projectDir: root });
+    assert.equal(answered.status, 'open', 'a Deprecated scaffold must stay open even though only the trio is missing');
+    assert.ok(answered.question);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('WS3/fix-3 scaffolded accept: an Active-status folder with ONLY spec.md still satisfies (unaffected by the deprecated re-check)', () => {
+  const { root } = makeWorkspace();
+  const folderRel = '.opencode/specs/046-active-scaffold-only';
+  mkdirSync(join(root, folderRel), { recursive: true });
+  writeFileSync(join(root, folderRel, 'spec.md'), '# Active Scaffold\n\n| **Status** | Active |\n');
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({ prompt: `B, ${folderRel}`, sessionID, projectDir: root });
+    assert.equal(answered.status, 'satisfied', 'an Active scaffold with only spec.md must still satisfy the gate');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('fix-3 scaffolded accept: a phase-parent scaffold with no resolvable last_active_child_id stays open', () => {
+  const { root } = makeWorkspace();
+  const folderRel = '.opencode/specs/047-phase-parent-scaffold';
+  const childRel = `${folderRel}/001-child-phase`;
+  mkdirSync(join(root, childRel), { recursive: true });
+  writeFileSync(join(root, folderRel, 'spec.md'), '# Phase Parent Scaffold\n\n| **Status** | Active |\n');
+  writeFileSync(join(root, childRel, 'spec.md'), '# Child Phase\n');
+  // A real phase-parent with a genuine child folder, but no graph-metadata.json
+  // on the parent -- derived.last_active_child_id lives in exactly the file
+  // this scaffold relaxation exists to tolerate the absence of, so with no
+  // way to resolve which child is active, it must stay open, never guess.
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({ prompt: `B, ${folderRel}`, sessionID, projectDir: root });
+    assert.equal(answered.status, 'open', 'a phase-parent scaffold with no resolvable active child must stay open');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('fix-3 scaffolded accept: a phase-parent scaffold WITH a resolvable last_active_child_id satisfies via the child', () => {
+  const { root } = makeWorkspace();
+  const folderRel = '.opencode/specs/048-phase-parent-resolvable';
+  const childRel = `${folderRel}/001-child-phase`;
+  mkdirSync(join(root, childRel), { recursive: true });
+  writeFileSync(join(root, folderRel, 'spec.md'), '# Phase Parent Scaffold\n\n| **Status** | Active |\n');
+  // graph-metadata.json IS present on the parent (with a resolvable active
+  // child) even though description.json is not -- the trio is still
+  // "missing" by the classifier's own all-three check.
+  writeFileSync(join(root, folderRel, 'graph-metadata.json'), JSON.stringify({ derived: { last_active_child_id: '001-child-phase' } }));
+  writeFileSync(join(root, childRel, 'spec.md'), '# Child Phase\n\n| **Status** | Active |\n');
+  try {
+    const sessionID = nextSessionID();
+    core.classifyIntent({ prompt: 'implement the export pipeline', sessionID, projectDir: root });
+
+    const answered = core.classifyIntent({ prompt: `B, ${folderRel}`, sessionID, projectDir: root });
+    assert.equal(answered.status, 'satisfied', 'a phase-parent scaffold with a resolvable active child must satisfy via that child');
   } finally {
     cleanup(root);
   }
