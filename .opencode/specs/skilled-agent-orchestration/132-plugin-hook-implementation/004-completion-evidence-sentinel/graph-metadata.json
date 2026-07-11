@@ -203,7 +203,7 @@
     ],
     "causal_summary": "CLAUDE.md's COMPLETION VERIFICATION RULE requires running `validate.sh --strict` and verifying `checklist.md` before any \"done/complete/works\" claim, but that rule is enforced only by prompt discipline",
     "created_at": "2026-07-11T05:51:01Z",
-    "last_save_at": "2026-07-11T09:03:33.393Z",
+    "last_save_at": "2026-07-11T14:18:02.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c58d39d5f622ac76cfee215787a53b4b5e2e72861af3d88922bbe007d27eba02",
+    "source_fingerprint": "sha256:12f915e25a9e2464a49ac689463e23e57f44247f993821a7023428d0c939751b",
     "source_doc_hashes": {
-      "spec.md": "51d1d32c6f8b7d4d505b7534934e451ef7c5e12a2ab3c025b2e27daf5b65f76e",
-      "plan.md": "efd046696edb7dba96d3de46f039bb4985d1ffa013712b53f3dd1b82a34a429b",
-      "tasks.md": "b929e2cb087d8a62c5eac497c55c886817e73e8cb16a365858d4aebe661c28ac",
-      "checklist.md": "523f192967c4d3c4277bf68aad987139fc206c3af0a869d3cc0d296fb3fce10b",
-      "decision-record.md": "45acfa506d28f370d7e39c5075bbe978e7f8c08d30ae329ca57cb1b45956c5a0",
-      "implementation-summary.md": "1317815b296d5116d28092426f8983795e1a3a37e2418ee2899184d64c5f1448"
+      "spec.md": "4af68f2dd967ccf28d89ac7f6892c033fd01250e912d4f91e19438fb5a996853",
+      "plan.md": "3bf8f8e847d9db4c33ad3cf005a3169ac0e0b36080386fc4fb3c542969f7742c",
+      "tasks.md": "455c29b717cf60a84f018ac9d405f812d3b97f33d8584ff9389cfe49bbb79a6e",
+      "checklist.md": "abac46a8a2bb6b86733bb0d945263384341047f58da7b3fcd959f4496ae44528",
+      "decision-record.md": "2fdfd9119a65d9e992db20121312ffcbd8be24bcfafe38f33d40a78c1081e98d",
+      "implementation-summary.md": "c181d205c4ca4f411baff3abae502a8d502e322db2045a88f2a2e91ee9edc60b"
     },
     "last_active_child_id": null,
     "last_active_at": null

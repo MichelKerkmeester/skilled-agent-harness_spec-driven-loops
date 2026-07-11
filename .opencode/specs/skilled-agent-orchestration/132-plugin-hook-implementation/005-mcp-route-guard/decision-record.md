@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation/005-mcp-route-guard"
-    last_updated_at: "2026-07-11T09:03:30.904Z"
+    last_updated_at: "2026-07-11T14:17:40Z"
     last_updated_by: "spec-author"
     recent_action: "Authored ADR-001 (core plus two adapters) and ADR-002 (advisory fail-open posture)"
     next_safe_action: "Get an operator ruling on ADR-002 Option A vs Option B before core step 6"

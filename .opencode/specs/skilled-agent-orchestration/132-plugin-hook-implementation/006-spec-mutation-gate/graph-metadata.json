@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Gate 3 (\"spec folder before any file mutation\") is enforced only as prose in `CLAUDE.md` and `AGENTS.md`, so nothing stops an agent from editing repo files without first asking the mandated A/B/C/D/E spec-folder question",
     "created_at": "2026-07-11T05:51:03Z",
-    "last_save_at": "2026-07-11T09:03:34.055Z",
+    "last_save_at": "2026-07-11T14:18:10.927Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9aab217479fe7b7bcb22a231b657326aa98fd93b97f5bdc8e9d3a4a6b2e00ea6",
+    "source_fingerprint": "sha256:528a0c0425c7af4d0d8f5d0974613e59fd574a211419cddeff88b7c9de46a447",
     "source_doc_hashes": {
-      "spec.md": "fb5b7c5c37f7f3bcaf71b9e04562bed404f6748a9b5461a279ff6f7925081333",
-      "plan.md": "481f6b8b9243085d86d77b2bc16765e40e9db0ac16961dd7223ea80ccfdebf08",
-      "tasks.md": "8eb0080321f3be40c606648a16e17d063633595993085ce41a7a2be2011f48c9",
-      "checklist.md": "feaa9a02db887bf8f061c57c969dc3a6a375b6b026a82ae99e65bffbbcaf8bbc",
-      "decision-record.md": "0127e9b9eb115e37374a58361c5487a9b12051bf4b1035673d880969b085ce5c",
-      "implementation-summary.md": "ba50989af3b81342151eb423613c0f9742fcb232d4438b932fca54265de7b0e9"
+      "spec.md": "4ead613a11193b13fe2c78fd9cc560f1868b21b505c9d5d80a5545c7c52728da",
+      "plan.md": "2d02ccd094c6a7f6e7eae18b8d87f6e04eba951b59ca87edc16f0a17c2b2c9cc",
+      "tasks.md": "75a489db0846e55035c71676cb0ba464ca11a499a13976023d81187fa75df93c",
+      "checklist.md": "73873b5bc7359fcec14985e9788fbf4dd29beefe42e245e5ace4a6177b55193d",
+      "decision-record.md": "9a116f43515fd7fe43319079459db1fd38aca6f55760cc99cebcefdaa027c734",
+      "implementation-summary.md": "af77c2995ad11c819c99d5307e30e7daa5ae4fffef9455b5d56bfd4a62742696"
     },
     "last_active_child_id": null,
     "last_active_at": null

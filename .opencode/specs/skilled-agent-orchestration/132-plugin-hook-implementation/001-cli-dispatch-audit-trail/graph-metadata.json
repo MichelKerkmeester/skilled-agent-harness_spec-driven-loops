@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The repo has zero post-execution telemetry",
     "created_at": "2026-07-11T05:50:59Z",
-    "last_save_at": "2026-07-11T09:03:32.445Z",
+    "last_save_at": "2026-07-11T14:17:50.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbe85d07ef1df075de34d61db526e1c39a30fe68d336575cb7affde1d4ce7e58",
+    "source_fingerprint": "sha256:a9462fa2d4757535febbfe4787f6c88cd1218a11de53986d3617ea6e08674c97",
     "source_doc_hashes": {
-      "spec.md": "9139fdc385e864deeb90d1deb27919060372e8864ac844a5ba3f9e29c284951d",
-      "plan.md": "fbe2e13b0e80396431e9ddffe6ce10d4555906d05f0a10d9ce3431da5acf8362",
-      "tasks.md": "b863e51051da6ae6c5d5a1aa1ba6a52dee028605a17b162bf79ea28dd8fd294d",
-      "checklist.md": "b34a7db6aa2ff94fab12123177292dcff48ca09abcc6f4d68754a4544597974a",
-      "decision-record.md": "12bbbbd3f036fe58fb0d18c8a53052bb568848cd52484d84dc34fdab587e100c",
-      "implementation-summary.md": "c17cd7c417407fb2135ac5518c531045b5ee1d7da048030c12063938a0107bbc"
+      "spec.md": "9bc225e478209c53e1910abb59066a015677a8ffcb52da8e1dd6911f0fb9e99a",
+      "plan.md": "3d512f219785982705883c1a631faf5ca2c13558109d550985850e8dec181529",
+      "tasks.md": "26b52968837f59be72df3d92f3bb38a0c12385a883cce2f0ba59974b37cbd152",
+      "checklist.md": "51cb8128ddbefeafcfb1a033436a51a825392158ca78073b123231bbce2da3da",
+      "decision-record.md": "d51d63f3b00f351b049368de76b8aa1ccc0efe61fa968d20a75f6f5e7405d0be",
+      "implementation-summary.md": "c01d8b6c0884aad4b085d3038680ef8763da5c750346de1f7a8c05e7db2ccb92"
     },
     "last_active_child_id": null,
     "last_active_at": null

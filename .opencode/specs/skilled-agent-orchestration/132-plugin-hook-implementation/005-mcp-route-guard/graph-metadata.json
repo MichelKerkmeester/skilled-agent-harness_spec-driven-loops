@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The `mcp-code-mode` SKILL declares Code Mode MANDATORY for all external MCP tool calls (`SKILL.md:18`) because routing through `calltoolchain` gives roughly a 98% context reduction versus loading a native MCP server's full tool surface",
     "created_at": "2026-07-11T05:51:02Z",
-    "last_save_at": "2026-07-11T09:03:33.752Z",
+    "last_save_at": "2026-07-11T14:18:07.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d695268cdef25236a0f5488665931c3cd29c215a92ac028291499b8af397c3af",
+    "source_fingerprint": "sha256:11d071d00862e2bcb915ed0a2c322b394d6f9335e9cce0219130b10762a85712",
     "source_doc_hashes": {
-      "spec.md": "01692cf5b706fbb1195888618907cd4594b4fda70ae7448b4a9800c0df2fe894",
-      "plan.md": "591b943adaf234d9b72e21b06db7ad328c250f96a78b1bca32cc5c50cebc4a98",
-      "tasks.md": "4f948ceb4c2eb191a4cba149bb57f1e95a853e5ef23bf907ba18cf71a7e2cf1e",
-      "checklist.md": "86d72e2b096761f635ee1fb723443c4f604bbd49c9d8d62a0a11dee012307807",
-      "decision-record.md": "13fe80520c52b2d8ebfce937c38895420de82848901848fbf063c32a10c240be",
-      "implementation-summary.md": "8b0872f1c1154e0fce49f474495be6d5068548101e5b21709a6d32bf077cf2dd"
+      "spec.md": "7297c27103beadf7fa23a9c2eab46644faea83aad356d3affdd0bf8fbf9560ea",
+      "plan.md": "56b136b4f0b8b511a28611a28f52ba336f9b777eb952402167d19c1b7e9d5314",
+      "tasks.md": "05d5d408668b2070574c0e717ffbae8983e381d13254e734034ebf0f6f559012",
+      "checklist.md": "21d1ef00d63ed55b2240a08c046d2b1dc0e0325ead69941b13c17090f5ac4e6d",
+      "decision-record.md": "d9d03513316828790988c7f2ffffd5a2e2655f1bbe11b5a6774e4ee14710e8cc",
+      "implementation-summary.md": "00abf9b0681d51321d70ee485873c0e297aed708b34b83c858e210008f36c358"
     },
     "last_active_child_id": null,
     "last_active_at": null

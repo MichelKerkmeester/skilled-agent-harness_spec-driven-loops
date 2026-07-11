@@ -202,7 +202,7 @@
     ],
     "causal_summary": "At the COMPLETION VERIFICATION gate an agent must run `check-completion.sh --json` and `calculate-completeness.sh --json` separately, then hand-merge their JSON to reason about whether a spec folder is done",
     "created_at": "2026-07-11T05:51:04Z",
-    "last_save_at": "2026-07-11T11:24:52.977Z",
+    "last_save_at": "2026-07-11T14:18:15.153Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3566a3dd8061febe667c81f9894d11ede2a49d46ec5b84425b3ca49052958494",
+    "source_fingerprint": "sha256:751686d8eea796c8a4de483612a118c260f6e1603288ccf3f6a92bd9e3f76ffa",
     "source_doc_hashes": {
-      "spec.md": "4069725fd1ed0110dbdb526dc68bbbde6b33c4733ecf6f7a4ab63811bc11c04f",
-      "plan.md": "626946626dec90d8e4a149bb28014bb232d367c54bbe11bc8f9bde2b36ea920e",
-      "tasks.md": "6e117f848cca5fb1afc6a1199dc74eb7ebb103ccc03970c1ed45314b1a9d3454",
-      "checklist.md": "e3ebf6b4c7b3b2302d4ba75b8283fa2db9d3bb15f81ac3108f849878931dd8aa",
-      "decision-record.md": "547e49caa60ed31c1d3956dcc2b8b6415d45b5d5375ab225cda591e4eb0161d6",
-      "implementation-summary.md": "7730799aff987db19ec84ba0efbee2b8f71a4ab9c360f0067e3fce3a81947d3a"
+      "spec.md": "921b0588513bea379bf7425fc990a99bd965c38688b4686efd1b571b611051d9",
+      "plan.md": "cf650a97fe7cda6fbdfcea5faaf887f5cc2d6b1d0572fd4ef147deed3f7d9898",
+      "tasks.md": "b06a3d9f3fabf14abc35a1c32a6b507c7a997709e27bdb2d17903af21457ca2b",
+      "checklist.md": "a9e54fd6fc83b15d865215711ad4feef7b7b843f98d2aa16c859338a00f04e25",
+      "decision-record.md": "00398b76cfa586a3c9e76d6ef0ca6997d17dcf039ae1f39b11321a8d2834483a",
+      "implementation-summary.md": "3fc7d0b5543e7bf2faa85661cf0519d81ccf3a627f8c9995cd03938a9509077d"
     },
     "last_active_child_id": null,
     "last_active_at": null

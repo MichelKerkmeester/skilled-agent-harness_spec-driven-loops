@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation/006-spec-mutation-gate"
-    last_updated_at: "2026-07-11T08:51:12.475Z"
+    last_updated_at: "2026-07-11T14:17:40Z"
     last_updated_by: "spec-author"
     recent_action: "Authored two ADRs for the core-plus-adapters boundary and the fail-open enforce posture"
     next_safe_action: "Confirm ADR-001 file-format choice (compiled TS vs standalone .mjs) before implementation"
