@@ -16,6 +16,14 @@ if [ -z "$REPO_ROOT" ]; then
   exit 0
 fi
 
+# Anchor + surface any --autostash entry so a conflicted (un-applied) autostash
+# can never be silently lost. Runs before the drift gate so it fires regardless.
+if [ -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh" ]; then
+  # shellcheck source=/dev/null
+  source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh"
+  autostash_orphan_guard || true
+fi
+
 if [ ! -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" ]; then
   exit 0
 fi

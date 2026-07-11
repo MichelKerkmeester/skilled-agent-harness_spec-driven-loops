@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 2: Remediate Slash Commands & Assets"
-description: "11 of 12 confirmed CMD/XS command-surface findings fixed and grep-verified across create/deep/design/speckit command assets and the root agent_router.md; XS-04 deferred with a design note."
+description: "All 12 confirmed CMD/XS command-surface findings fixed and verified across create/deep/design/speckit command assets and the root agent_router.md; XS-04 shipped as a new referential-integrity checker (validate-command-references.cjs) with a self-test."
 trigger_phrases:
   - "remediate slash commands implementation summary"
   - "cmd findings implementation summary"
@@ -10,12 +10,14 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit/002-remediation-slash-commands"
-    last_updated_at: "2026-07-11T04:44:00Z"
+    last_updated_at: "2026-07-11T06:54:18Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Fixed+verified 11/12 findings; XS-04 deferred w/ design note"
+    recent_action: "Fixed+verified all 12 findings; XS-04 checker built (self-test PASS)"
     next_safe_action: "006 closeout: recompile deep contracts, then skill-graph regen"
     blockers: []
     key_files:
+      - ".opencode/commands/scripts/validate-command-references.cjs"
+      - ".opencode/commands/scripts/fixtures/broken-command-refs.yaml"
       - ".opencode/commands/create/assets/create_agent_auto.yaml"
       - ".opencode/commands/create/assets/create_agent_confirm.yaml"
       - ".opencode/commands/deep/assets/deep_review_auto.yaml"
@@ -24,10 +26,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "conformance-audit-132"
       parent_session_id: null
-    completion_pct: 92
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "XS-04 checker: deferred, no clean extension point spans create/deep/design; see Known Limitations."
+      - "XS-04 checker: built as a standalone script (validate-command-references.cjs) with a --self-test; also caught + fixed 2 dead create-family template refs. See What Was Built."
       - "CMD-07: one-line rewrite + clarifier sentence judged sufficient, no extra cross-link added."
 ---
 # Implementation Summary: Phase 2: Remediate Slash Commands & Assets
@@ -52,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase applied the 12 confirmed command-surface conformance findings from `001-conformance-deep-research` directly to the live command assets under `.opencode/commands/{create,deep,design,speckit}/**` plus the root `agent_router.md`. 11 of 12 findings are fixed and grep-verified at zero residual hits; XS-04 (a new referential-integrity checker) is deferred with a design note because no clean, proportionate extension point exists. `deep/assets/compiled/*.contract.md` and `manifest.jsonl` are confirmed byte-identical to their pre-phase state — the CMD-05 recompile stays deferred to phase 006, as directed.
+This phase applied the 12 confirmed command-surface conformance findings from `001-conformance-deep-research` directly to the live command assets under `.opencode/commands/{create,deep,design,speckit}/**` plus the root `agent_router.md`. All 12 findings are fixed and verified: 11 as grep-verified asset edits at zero residual hits, and XS-04 as a new referential-integrity checker (`.opencode/commands/scripts/validate-command-references.cjs`) that resolves agent/skill/runtime-dir references across the create/deep/design `_auto`/`_confirm` pairs and passes its own `--self-test`. `deep/assets/compiled/*.contract.md` and `manifest.jsonl` are confirmed byte-identical to their pre-phase state — the CMD-05 recompile stays deferred to phase 006, as directed.
 
 ### CMD-01 — Speckit `[runtime_agent_path]` resolution block (P0)
 
@@ -98,9 +100,19 @@ Expanded `argument-hint` in `deep/research.md`, `deep/review.md`, and `deep/ai-c
 
 Removed the phantom `.agents/` runtime directory from the agent-target discovery lists in `deep_review_auto.yaml` and `deep_review_confirm.yaml`; only the two real directories (`.claude/agents/`, `.opencode/agents/`) remain.
 
-### XS-04 — Referential-integrity checker (P2, deferred)
+### XS-04 — Referential-integrity checker (P2)
 
-See Known Limitations below.
+Added `.opencode/commands/scripts/validate-command-references.cjs`, a standalone Node checker (chosen over extending `compile-command-contracts.cjs`, which only covers the `deep/*` family and is coupled to the CMD-05 recompile pipeline owned by phase 006). For every `_auto.yaml`/`_confirm.yaml` in the `create`/`deep`/`design` families it:
+
+- resolves runtime-agent references (`[runtime_agent_path]/<name>.md`) against `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`;
+- resolves literal, file-shaped skill-asset paths (`.opencode/skills/**`) against disk;
+- flags phantom or non-allowlisted runtime directories (a bare `.agents/`, or any `.<dir>/agents/` outside `{.opencode, .claude, .codex}`);
+- skips parameterized values it must not resolve — templated (`{...}`/glob/`$var`), code-anchored (`file.ts#symbol`), bare-directory, and the legitimate `.codex` runtime-mirror tokens (the §5 false-positive guard);
+- exits non-zero on the first unresolved reference, 0 otherwise.
+
+It ships with a committed broken fixture (`.opencode/commands/scripts/fixtures/broken-command-refs.yaml`) and a `--self-test` mode that asserts both exit paths: the fixture must produce ≥1 violation and the real create/deep/design tree must produce none. `--self-test` reports `PASS (3 found)` / `PASS (0 unresolved)`, exit 0.
+
+Designing the checker also surfaced two genuine dead references the original 30-finding research had missed — `create_agent_{auto,confirm}.yaml` pointed its default `templates:` at `system-spec-kit/templates/level_1/{spec,plan}.md`, a path the templates were reorganized away from into `templates/examples/level_1/`. Both were corrected (in-scope, create family) so the checker resolves clean.
 
 ### Files Changed
 
@@ -112,8 +124,8 @@ See Known Limitations below.
 | `speckit/assets/speckit_implement_confirm.yaml` | Modified | CMD-01 |
 | `speckit/assets/speckit_plan_auto.yaml` | Modified | CMD-01 |
 | `speckit/assets/speckit_plan_confirm.yaml` | Modified | CMD-01 |
-| `create/assets/create_agent_auto.yaml` | Modified | CMD-02, CMD-03, CMD-04 |
-| `create/assets/create_agent_confirm.yaml` | Modified | CMD-02, CMD-03, CMD-04 |
+| `create/assets/create_agent_auto.yaml` | Modified | CMD-02, CMD-03, CMD-04, XS-04 (dead `templates/level_1/` → `templates/examples/level_1/`) |
+| `create/assets/create_agent_confirm.yaml` | Modified | CMD-02, CMD-03, CMD-04, XS-04 (dead `templates/level_1/` → `templates/examples/level_1/`) |
 | `create/assets/create_skill_auto.yaml` | Modified | CMD-02 |
 | `create/assets/create_skill_confirm.yaml` | Modified | CMD-02 |
 | `create/assets/create_readme_auto.yaml` | Modified | CMD-02, CMD-04, CMD-09 |
@@ -142,6 +154,8 @@ See Known Limitations below.
 | `design/audit.md` | Modified | CMD-07 |
 | `design/md-generator.md` | Modified | CMD-07 |
 | `agent_router.md` | Modified | XS-02 |
+| `scripts/validate-command-references.cjs` | Created | XS-04: the referential-integrity checker (agent/skill/runtime-dir resolution + `--self-test`) |
+| `scripts/fixtures/broken-command-refs.yaml` | Created | XS-04: deliberately-broken fixture proving the non-zero exit path |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -149,7 +163,7 @@ See Known Limitations below.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Every target file was re-grepped for its exact current-disk location immediately before editing (research.md's line citations had drifted for CMD-06/CMD-08, and CMD-02's file count had grown from 10 to 12). Shared-file sequencing from plan.md was honored exactly: CMD-02 landed before CMD-03 before CMD-04 before CMD-09 on `create_agent_*`/`create_readme_*`; CMD-08 landed before CMD-11 on `deep_review_*`. Each finding was fixed, then immediately grep-verified at 0 residual hits before moving to the next. All 22 edited `.yaml` files were confirmed valid YAML via `python3 yaml.safe_load()` (22/22 pass). `deep/assets/compiled/` was confirmed byte-identical throughout (`git status --porcelain` empty at every checkpoint). A final combined residual-pattern sweep re-ran all 11 findings' acceptance greps in one pass with 0 unexpected hits, followed by `validate.sh --strict` on this child folder only.
+Every target file was re-grepped for its exact current-disk location immediately before editing (research.md's line citations had drifted for CMD-06/CMD-08, and CMD-02's file count had grown from 10 to 12). Shared-file sequencing from plan.md was honored exactly: CMD-02 landed before CMD-03 before CMD-04 before CMD-09 on `create_agent_*`/`create_readme_*`; CMD-08 landed before CMD-11 on `deep_review_*`. Each finding was fixed, then immediately grep-verified at 0 residual hits before moving to the next. All 22 edited `.yaml` files were confirmed valid YAML via `python3 yaml.safe_load()` (22/22 pass). `deep/assets/compiled/` was confirmed byte-identical throughout (`git status --porcelain` empty at every checkpoint). A final combined residual-pattern sweep re-ran all 11 grep-based findings' acceptance greps in one pass with 0 unexpected hits, plus the XS-04 checker's `--self-test` (fixture flags 3 violations, real create/deep/design tree resolves clean, exit 0), followed by `validate.sh --strict` on this child folder only.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -164,7 +178,7 @@ Every target file was re-grepped for its exact current-disk location immediately
 | CMD-06 Q-Exec fix: collapse duplicate letter D into repaired letter B, don't just patch B's malformed text in place | The malformed text traces to a retired `cli-codex` executor remnant duplicated onto the `cli-opencode` label; patching only the text would leave 2 letters (B, D) both claiming `cli-opencode` while a 3-value enum exists. Collapsing to 3 letters (A/B/C) matches the enum exactly and no reply-format example references the deleted letter. |
 | XS-02: also generalized illustrative "Barter" example strings beyond the cited 93-98 detection-logic lines | REQ-007's acceptance grep tolerates residual generic-fallback prose, but full de-coupling (0 hits) is the more defensible, unambiguous outcome and the finding's stated intent ("de-couple ... from the hardcoded Barter workspace"). |
 | XS-02: removed `WebSearch`/`AskUserQuestion` from `allowed-tools` rather than substituting equivalents | Neither name appears in any of the ~30 other command frontmatter blocks checked across this repo; there is no in-repo evidence either is a currently-grantable tool name, so removal (not substitution) is the only defensible fix. |
-| XS-04: deferred rather than force-fit into `compile-command-contracts.cjs` | That script's `COMMANDS` registry covers only the `deep/*` family and is tightly coupled to the CMD-05 recompile pipeline this phase is forbidden from touching. Building a checker spanning `create`/`deep`/`design` with a `.codex` false-positive guard and fixture tests is genuinely new tooling, which the dispatch directive explicitly said not to invent under scope pressure. |
+| XS-04: built as a standalone `validate-command-references.cjs` rather than extending `compile-command-contracts.cjs` | That script's `COMMANDS` registry covers only the `deep/*` family and is tightly coupled to the CMD-05 recompile pipeline this phase is forbidden from touching. A standalone checker over the `create`/`deep`/`design` `_auto`/`_confirm` pairs — with the `.codex` false-positive guard and a self-test fixture — is the clean, proportionate home the dispatch directive's "only extend if it fits cleanly, else a small purpose-built checker" clause pointed to. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -196,7 +210,7 @@ Every target file was re-grepped for its exact current-disk location immediately
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **XS-04 (referential-integrity checker) is deferred, not built.** No existing command-contract validator cleanly spans `create`/`deep`/`design`: `compile-command-contracts.cjs` only registers the `deep/*` family (its `COMMANDS` object has no `create/`/`design/` entries) and is coupled to the CMD-05 compiled-contract pipeline this phase is forbidden from touching; no validator exists at all for `create`/`design` assets. **Design note for the eventual implementer:** a proportionate checker would (a) walk each `_auto.yaml`/`_confirm.yaml` pair per family, (b) extract every `[runtime_agent_path]/<name>.md` literal and resolve it against both `.opencode/agents/` and `.claude/agents/`, (c) extract every literal skill-asset path (`.opencode/skills/**`) and resolve it against disk, (d) extract every declared runtime directory list (e.g. the `.claude/agents/`, `.opencode/agents/` enumeration CMD-11 touched) and flag any entry absent from a small allowlist of real runtime directories, (e) explicitly exclude the legitimate `.codex` runtime-mirror/benchmark-executor tokens documented in `001-conformance-deep-research/research/research.md` §5 (a naive scanner would false-positive on these live tokens), and (f) exit non-zero on any unresolved reference, 0 otherwise. It should run over both `_auto` and `_confirm` variants per command and ship with at least one deliberately-broken fixture (e.g. a reintroduced `speckit.md` reference) proving the non-zero exit path.
+1. **XS-04's checker is scoped to the create/deep/design families and to file-shaped references.** `validate-command-references.cjs` intentionally covers only the three command families the finding named; it does not scan the `doctor`/`memory`/`speckit` assets, and it resolves only file-shaped skill-asset paths (the last path segment carries an extension), skipping bare-directory references, templated values, and code anchors so correct parameterized tokens are never flagged. Running the same checker's logic over the `doctor` family surfaces one genuine **out-of-scope** dead reference: `doctor/assets/doctor_mcp_install.yaml` points `install_guide` at `.opencode/skills/mcp-tooling/mcp-click-up/INSTALL_GUIDE.md`, which does not exist (the dir has `README.md` but no `INSTALL_GUIDE.md`, unlike its `mcp-figma`/`mcp-chrome-devtools` siblings). Left untouched here per SCOPE LOCK — the doctor surface is phase 003's — and flagged as a new, unfixed defect for a future finding / phase-003 follow-up.
 2. **`deep_model-benchmark_presentation.txt` carries the same CMD-06 duplicate-enum pattern** (`cli-opencode | cli-claude-code | cli-opencode` at lines 40 and 133) but is not one of CMD-06's cited files (not `research`/`review`/`ai-council`). Left untouched per SCOPE LOCK; flagged here as a new, unfixed defect for a future finding.
 3. **Two additional CMD-02-class files surfaced by the live re-sweep** (`create_changelog_confirm.yaml`, `create_feature_catalog_auto.yaml`) were fixed alongside the cited 10 — see Key Decisions. Downstream trackers reconciling against research.md's original "10 files" count should expect 12.
 4. **CHK-042 (changelog entry) is deferred**, out of this LEAF agent's write scope — the parent packet's `../changelog/` refresh is a packet-level closeout action.
@@ -212,7 +226,7 @@ Every target file was re-grepped for its exact current-disk location immediately
 | CMD-02 fixes 10 files (research.md count) | Fixed 12 files | Live re-sweep found 2 additional same-class instances that drifted in after 001's research closed; fixing them keeps the directory-wide REQ-002 acceptance grep honest. |
 | CMD-08 fixes 4 self-invocation-guard sites | Fixed 4 guard sites + 4 mirrored shorthand notes (8 total edits) | The shorthand note ("cli-opencode SKILL.md §4 ALWAYS rule") is present symmetrically in all 4 files, not just the 1 site research.md's "iter-1 executor-note shorthand" citation named; fixing all 4 satisfies NFR-C02's mirror-symmetry requirement. |
 | CMD-09 fixes `create_readme_presentation.txt:19` | Fixed 4 `create_agent_verified` sites across 3 files | REQ-009's acceptance grep is directory-wide (`create_readme_*`), and 3 more live sites existed beyond the single cited line. |
-| XS-04 built as new/extended tooling | Deferred with a design note | No clean, proportionate extension point exists; building cross-family tooling under this phase's scope would violate the "do not invent a large new script" dispatch directive. |
+| XS-04 checker built | Built the checker AND fixed 2 dead create-family template refs it surfaced | The checker's whole purpose is catching dead references; the 2 `templates/level_1/{spec,plan}.md` refs it found in `create_agent_{auto,confirm}.yaml` are in-scope create-family defects, so fixing them (→ `templates/examples/level_1/`) completes XS-04 honestly rather than shipping a checker that reports red on its own tree. |
 <!-- /ANCHOR:deviations -->
 
 ---

@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit/002-remediation-slash-commands"
-    last_updated_at: "2026-07-11T04:44:00Z"
+    last_updated_at: "2026-07-11T06:54:18Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Marked CHK items [x] w/ evidence; CHK-032/042 deferred w/ reason"
+    recent_action: "All CHK items [x] w/ evidence; CHK-032 met, CHK-042 N/A (no changelog)"
     next_safe_action: "006 closeout: recompile deep contracts, then skill-graph regen"
     blockers: []
     key_files:
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "conformance-audit-132"
       parent_session_id: null
-    completion_pct: 92
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -76,7 +76,7 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] All 12 REQ acceptance criteria met (spec.md §4) — each finding's broken-pattern grep returns 0 residual hits — EVIDENCE: 11/11 fixed findings' acceptance grep passed (see tasks.md T004-T024 evidence); XS-04 (REQ-012) deferred with a design note in implementation-summary.md.
+- [x] CHK-020 [P0] All 12 REQ acceptance criteria met (spec.md §4) — each finding's broken-pattern grep returns 0 residual hits — EVIDENCE: all 12 findings' acceptance criteria met — 11 via 0-residual-hit greps (tasks.md T004-T024) and XS-04 (REQ-012) via the new `validate-command-references.cjs` checker exiting 0 on the post-fix tree and non-zero on its broken fixture (tasks.md T025-T026).
 - [x] CHK-021 [P0] Manual re-render of every touched command's `:auto`/`:confirm` complete (tasks.md T027) — EVIDENCE: see tasks.md T027.
 - [x] CHK-022 [P1] Shared-file edge cases verified: CMD-02/03/04/09 applied in sequence with no interleaved diff; CMD-08/11 applied in sequence — EVIDENCE: executed in exact order CMD-02 -> CMD-03 -> CMD-04 -> CMD-09 (create_agent_*/create_readme_* files) and CMD-08 -> CMD-11 (deep_review_* files), one finding fully verified before the next began; no interleaving.
 - [x] CHK-023 [P1] `deep/assets/compiled/*.contract.md` and `manifest.jsonl` confirmed byte-identical to pre-phase state (CMD-05 stayed deferred to 006) — EVIDENCE: `git status --porcelain .opencode/commands/deep/assets/compiled/` empty after all CMD-06/CMD-08/CMD-11 source edits.
@@ -103,7 +103,7 @@ FAILURE MODES:
 
 - [x] CHK-030 [P0] No hardcoded secrets introduced or touched (N/A — command-asset text edits only) — [deferred: not applicable, all 35 edited files are command-asset markdown/YAML/text with no credential or secret material]
 - [x] CHK-031 [P0] XS-02's `allowed-tools` replacement grants only current, supported OpenCode tool names (no over-grant reintroduced) — EVIDENCE: `allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch` — every name cross-checked against a 30+ file grep sweep of other commands' `allowed-tools` frontmatter; no new tool added, 2 unsupported ones (`WebSearch`, `AskUserQuestion`) removed.
-- [ ] CHK-032 [P1] XS-04's checker correctly excludes the legitimate `.codex` runtime-mirror/benchmark-executor references (research.md §5 false-positive guard) — no false-positive block on live tokens — DEFERRED (N/A): XS-04 itself deferred (see tasks.md T025); no checker was built to evaluate this guard against.
+- [x] CHK-032 [P1] XS-04's checker correctly excludes the legitimate `.codex` runtime-mirror/benchmark-executor references (research.md §5 false-positive guard) — no false-positive block on live tokens — EVIDENCE: the fixture's `ok_codex_mirror: ".codex/agents/markdown.md"` line is not flagged (`.codex` is in the checker's runtime-dir allowlist; `.codex/`-prefixed agent files resolve as legitimate mirrors), and `--self-test`'s real-tree scan reports 0 unresolved across all create/deep/design assets.
 <!-- /ANCHOR:security -->
 
 ---
@@ -113,7 +113,7 @@ FAILURE MODES:
 
 - [x] CHK-040 [P1] spec.md/plan.md/tasks.md/checklist.md synchronized on the same 12-finding scope and P0/P1/P2 grouping — EVIDENCE: `grep -c "CMD-\|XS-0"` cross-checked across spec.md, plan.md, tasks.md, checklist.md; all 4 reference the identical 12-finding id set (CMD-01..04,06-11,XS-02,XS-04) throughout.
 - [x] CHK-041 [P1] Every Scope-table row cites the exact file:line from `research/research.md`, with drift explicitly noted for CMD-06/CMD-08 — EVIDENCE: spec.md §3 rows verified against disk; CMD-02's file-count drift (10→12) additionally noted in tasks.md T001/T005/CHK-FIX-002 (a drift class research.md's own risk table did not anticipate, alongside the already-documented CMD-06/CMD-08 line-number drift).
-- [ ] CHK-042 [P2] `../changelog/` entry added for this phase when it closes (per spec.md Phase Context "Changelog") — DEFERRED: not actioned by this agent; the parent packet's changelog entry is out of this LEAF agent's write scope (spec.md Phase Context notes the changelog refresh happens "when this phase closes," which is a packet-level closeout action, not a per-finding fix).
+- [x] CHK-042 [P2] `../changelog/` entry added for this phase when it closes (per spec.md Phase Context "Changelog") — N/A: this packet uses no `../changelog/` convention — no `changelog/` directory exists under the parent and none of the sibling phases (001/003–006) created one — so the optional changelog refresh is intentionally not actioned, consistent with every sibling closeout. No changelog file was fabricated.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -133,10 +133,10 @@ FAILURE MODES:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 12/13 (CHK-042 deferred — packet-level changelog closeout, out of this agent's write scope) |
-| P2 Items | 1 | 0/1 (CHK-032 N/A — XS-04 deferred, see tasks.md T025) |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 2 | 2/2 (CHK-032 met — XS-04 checker built + self-test verified; CHK-042 N/A — no changelog convention in this packet) |
 
-**Verification Date**: 2026-07-11 — 11 of 12 findings fixed and grep-verified; XS-04 deferred with a design note in implementation-summary.md; CMD-05/XS-01/XS-03 correctly unactioned (owned by phase 006).
+**Verification Date**: 2026-07-11 — all 12 findings fixed and grep-verified; XS-04's referential-integrity checker built and self-test-verified (see implementation-summary.md); CMD-05/XS-01/XS-03 correctly unactioned (owned by phase 006).
 <!-- /ANCHOR:summary -->
 
 ---

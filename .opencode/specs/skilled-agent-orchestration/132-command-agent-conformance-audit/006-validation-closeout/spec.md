@@ -12,26 +12,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit/006-validation-closeout"
-    last_updated_at: "2026-07-11T00:30:00Z"
+    last_updated_at: "2026-07-11T06:46:46Z"
     last_updated_by: "fable-5"
-    recent_action: "Authored scope-locked spec/plan/tasks for CMD-05, XS-01, XS-03 findings"
-    next_safe_action: "Await 002-005 completion; operator approval gates XS-01 skill-graph regen"
+    recent_action: "Closed all 6 program findings; recursive validate 0/0"
+    next_safe_action: "Program complete; parent rollup shows all 6 children complete"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
       - ".opencode/commands/doctor/scripts/route-validate.sh"
       - ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
-      - ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
-      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py"
-      - ".opencode/commands/doctor/scripts/skill-graph-freshness.cjs"
       - ".opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "conformance-audit-132"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "REQ-006 applies: 004's agent frontmatter + this phase's own XS-01 skill-graph regen changed advisor-facing metadata; re-baseline run, 4 P0 fixture failures are an intended XS-01 delta, not a regression"
+      - "Only sk-doc required parent-skill-check REQ-007; system-skill-advisor's own hub metadata shape was not changed by the XS-01 artifact regen"
+      - "Operator approved XS-01's skill-graph regen for this closeout pass; executed, not deferred"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 6: Validation & Close-Out
@@ -54,7 +54,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-10 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -223,9 +223,11 @@ Regenerate the 3 build-artifact findings this phase owns (CMD-05, XS-03, and —
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does any of phases 002-005 actually change advisor-facing metadata (command `trigger_phrases`, agent frontmatter, doctor route `trigger_phrases`)? If none do, REQ-006's re-baseline is a no-op to be recorded as "not required," not skipped silently. (This phase's own XS-01, if approved, DOES change advisor-facing metadata — the skill graph itself.)
-- Which parent hubs, if any, does the program touch beyond `sk-doc` (create-agent) — so `parent-skill-check.cjs` (REQ-007) runs on exactly the affected hubs rather than all of them?
-- Does the operator approve XS-01's skill-graph regen for this closeout pass, or should it be explicitly deferred to a follow-up packet? REQ-001 cannot be marked complete either way without this answer being recorded.
+All three questions are RESOLVED; none remain open at close.
+
+- **RESOLVED** — Does any of phases 002-005 change advisor-facing metadata? Yes: phase 004 changed agent frontmatter (AGT-03/AGT-08/AGT-09), and this phase's own XS-01 regenerated the skill graph itself. REQ-006's re-baseline was run (not a no-op): 96/100 pass; the 4 P0 failures are all `mcp-chrome-devtools` fixture cases — an intended delta from XS-01's edge retargeting (`mcp-chrome-devtools` -> `mcp-tooling`), not a regression.
+- **RESOLVED** — Which parent hubs does the program touch beyond `sk-doc`? None. `sk-doc` (owns `create-agent`) is the only touched parent hub; `system-skill-advisor`'s own hub metadata shape was not changed by the XS-01 artifact regen (skill-graph.json/SQLite are generated artifacts, not the hub's SKILL.md/graph-metadata.json), so `parent-skill-check.cjs` REQ-007 ran only against `sk-doc` — STRICT, 0 warnings.
+- **RESOLVED** — Did the operator approve XS-01's skill-graph regen? Yes, approved and executed: `skill-graph.json` recompiled (12 skills, 0 ghosts, 0 family mismatches) and the SQLite `cli-codex-retired` zombie purged. Not deferred.
 <!-- /ANCHOR:questions -->
 
 ---

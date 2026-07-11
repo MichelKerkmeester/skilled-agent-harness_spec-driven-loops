@@ -39,21 +39,21 @@
       "regression"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/commands/doctor/scripts/route-validate.sh",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
-      ".opencode/commands/doctor/scripts/skill-graph-freshness.cjs",
       ".opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/spec.md",
-      "plan.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/derived/sync.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
       ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+      ".opencode/commands/doctor/scripts/skill-graph-freshness.cjs",
+      "implementation-summary.md",
+      "plan.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
       ".opencode/commands/deep/assets/compiled/deep_research.contract.md",
       ".opencode/commands/deep/assets/compiled/deep_review.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep_ai-council.contract.md",
       ".opencode/commands/deep/assets/compiled/manifest.jsonl",
       "spec.md",
       "tasks.md"
@@ -78,36 +78,6 @@
         "source": "derived"
       },
       {
-        "name": "compile-command-contracts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "skill_graph_compiler.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph-freshness.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/skill-graph-freshness.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/derived/sync.ts",
-        "source": "derived"
-      },
-      {
         "name": "skill-graph.json",
         "kind": "config",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
@@ -120,6 +90,30 @@
         "source": "derived"
       },
       {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
         "name": "deep_research.contract.md",
         "kind": "doc",
         "path": ".opencode/commands/deep/assets/compiled/deep_research.contract.md",
@@ -129,6 +123,12 @@
         "name": "deep_review.contract.md",
         "kind": "doc",
         "path": ".opencode/commands/deep/assets/compiled/deep_review.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ai-council.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_ai-council.contract.md",
         "source": "derived"
       },
       {
@@ -151,12 +151,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -186,6 +180,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -206,19 +206,21 @@
     ],
     "causal_summary": "Phases 002-005 remediate the command, doctor, agent, and README surfaces one at a time, but nothing yet proves the program landed cleanly as an integrated whole",
     "created_at": "2026-07-10T18:53:47Z",
-    "last_save_at": "2026-07-11T04:13:47.290Z",
+    "last_save_at": "2026-07-11T06:46:52.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a32526f2a6323544de2a5438103231365fc5f9c043ecb3a424930ad408158f33",
+    "source_fingerprint": "sha256:86b22a88ad69464b22c7e2d5d629ab1d57a20199f9b85e70bf695feddc062283",
     "source_doc_hashes": {
-      "spec.md": "920f1f5ac425165e47653b22336655c9d8f2c5d23bed36cd92d5bdeb7109b81d",
-      "plan.md": "98cd23b9c17bde96d9e6fbb7dab89f107c92aaffe5f43f75757af4702cfaa5b9",
-      "tasks.md": "fd384d876a029db93e985213399c17f92bf0ce1cd8d3d43ff31c6bcb2878e62f"
+      "spec.md": "5a5f260596e71a4c2c4de8b73c1d1fded104c541b530a1b901ddf7984b3acb25",
+      "plan.md": "768f3a47d8f20179869d8ecbc7a77064fd367b1832467f82686a931978079a26",
+      "tasks.md": "0897d460a5a7f6aa2a2ab5b62778a23eaea3b9494825c75c12720ada7df99d54",
+      "implementation-summary.md": "c48e17b9545c7584344ed5ed243d32676431cd07840eb9f388dbebd853c0cda6"
     },
     "last_active_child_id": null,
     "last_active_at": null

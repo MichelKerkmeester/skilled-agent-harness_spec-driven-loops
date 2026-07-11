@@ -8,9 +8,30 @@ trigger_phrases:
 importance_tier: high
 contextType: research
 version: 1.0.0.0
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research"
+    last_updated_at: "2026-07-11T06:39:10Z"
+    last_updated_by: "fable-5"
+    recent_action: "Finalized the 30-finding research synthesis"
+    next_safe_action: "Consume findings across phases 002-006"
+    blockers: []
+    key_files:
+      - ".opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research/research/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "conformance-audit-132"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 
 # Command / Doctor / Agent Conformance Audit — Research Synthesis
+
+<!-- ANCHOR:evidence-index -->
+**Evidence index:** primary sources for this synthesis, all under `research/` in this child folder — iteration narratives `iterations/iteration-001.md` through `iteration-015.md`, structured deltas `deltas/iter-001.jsonl` through `iter-015.jsonl`, the strategy seed `deep-research-strategy.md`, the iteration state log `deep-research-state.jsonl`, and per-iteration `dispatch-receipts/`.
+<!-- /ANCHOR:evidence-index -->
 
 **Surface audited:** every `.opencode/commands/**` command.md (42), workflow/route YAML (62), presentation `.txt` (35), and the deep compiled contracts; the whole `/doctor` subsystem (router `speckit.md`, `_routes.yaml`, per-target YAMLs, `mcp.md`, `update.md`, scripts); and all 12 agents mirrored across `.claude/agents/` + `.opencode/agents/`. READMEs are out of scope (phase 005).
 

@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit/002-remediation-slash-commands"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T06:54:18Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored ordered fix plan across 4 P0 + 3 P1 + 5 P2 findings"
     next_safe_action: "Execute CMD-02 before CMD-03 per shared-file sequencing, then validate"
@@ -93,7 +93,7 @@ N/A (declarative command surface, not application architecture). Each command fa
 - **deep family** (`deep/{research,review,ai-council}.md`, `deep/assets/*.yaml`, `deep/assets/*_presentation.txt`): CMD-06/08/10/11 target — executor-enum text, skill-identity wording, argument-hint coverage, phantom directory.
 - **design family** (`design/*.md`): CMD-07 target — dead slash-command referral.
 - **root command** (`agent_router.md`): XS-02 target — workspace-hardcoded router logic.
-- **validation tooling** (new/extended): XS-04 target — no existing owner file; design decision open (see spec.md §10).
+- **validation tooling** (new): XS-04 shipped as a standalone script `.opencode/commands/scripts/validate-command-references.cjs` (+ `fixtures/broken-command-refs.yaml`); the new-script-vs-extension decision is resolved in spec.md §10.
 
 ### Data Flow
 A user invokes `/create:agent`, `/deep:research`, `/design:interface`, etc. -> the command.md router dispatches to the matching `_auto` or `_confirm` YAML -> the YAML's `agent_availability`/`runtime_agent_path_resolution` blocks resolve which agent file to dispatch, using the same-file `[runtime_agent_path]` token -> the presentation `.txt` renders any interactive prompts (executor selection, flag parsing) the YAML references. This phase corrects the resolution/reference layer so every hop lands on a real target; it does not change the dispatch flow itself.
@@ -143,7 +143,7 @@ Required inventories (already run; results feed §3's Scope table in spec.md):
 - [ ] P2: CMD-09 (dead folder_readme.md reference) — after CMD-04 (shares create_readme files)
 - [ ] P2: CMD-10 (argument-hint coverage) — independent
 - [ ] P2: CMD-11 (remove .agents/ directory) — after CMD-08
-- [ ] P2: XS-04 (new referential-integrity checker) — independent; design-only, no existing line to edit
+- [x] P2: XS-04 (new referential-integrity checker) — independent; shipped as a standalone script + self-test fixture
 
 ### Phase 3: Verification
 - [ ] Re-render every touched command's `:auto` and `:confirm` (manual read-through of the affected YAML/presentation)

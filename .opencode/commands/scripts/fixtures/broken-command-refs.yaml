@@ -1,0 +1,26 @@
+# Deliberately-broken fixture for `validate-command-references.cjs --self-test`.
+#
+# Every reference below is intentionally dead. The checker MUST report one
+# violation per kind (agent, skill-asset, runtime-dir). Do NOT "fix" these —
+# they exist to prove the non-zero exit path. The lines directly beneath each
+# broken reference are correct/templated forms the checker MUST NOT flag, so the
+# fixture also guards against over-eager matching.
+
+broken_agent_ref:
+  # retired agent filename — resolves against no runtime agent dir
+  agent_file: "[runtime_agent_path]/speckit.md"
+  # correct form (real agent) — must NOT be flagged
+  ok_agent_file: "[runtime_agent_path]/markdown.md"
+
+broken_skill_asset_ref:
+  # reorganized-away template path — no longer exists on disk
+  template: ".opencode/skills/system-spec-kit/templates/level_1/spec.md"
+  # interpolated + code-anchored forms — must NOT be flagged
+  ok_interpolated: ".opencode/skills/{skill_name}/SKILL.md"
+  ok_codex_mirror: ".codex/agents/markdown.md"
+
+broken_runtime_dir_ref:
+  # phantom runtime directory — not a real agent dir
+  scan_dirs: ".agents/"
+  # allowlisted runtime dirs — must NOT be flagged
+  ok_dirs: ".claude/agents/, .opencode/agents/"

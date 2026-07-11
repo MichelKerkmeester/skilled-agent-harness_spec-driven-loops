@@ -332,8 +332,8 @@ workflow:
     - "Route spec.md and plan.md creation through distributed governance (AGENTS.md Rule 5)"
     templates:
     # Use Level 1 templates as default for agent creation
-    - .opencode/skills/system-spec-kit/templates/level_1/spec.md
-    - .opencode/skills/system-spec-kit/templates/level_1/plan.md
+    - .opencode/skills/system-spec-kit/templates/examples/level_1/spec.md
+    - .opencode/skills/system-spec-kit/templates/examples/level_1/plan.md
     outputs:
     - spec.md: created_or_updated
     - plan.md: created_or_updated

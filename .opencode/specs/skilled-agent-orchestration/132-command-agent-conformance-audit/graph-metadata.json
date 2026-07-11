@@ -39,7 +39,7 @@
       "layer"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -52,12 +52,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -85,19 +79,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill layer has moved substantially — parent hubs now own former standalone skills as modes, several command/agent/skill names changed, and one deep-loop command family was retired",
     "created_at": "2026-07-10T18:53:44Z",
-    "last_save_at": "2026-07-10T19:08:50.145Z",
+    "last_save_at": "2026-07-11T06:48:01.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b61708fe99bea2b7d68671cbd511525da5ef85dd148376727cff9b86bf96b096",
+    "source_fingerprint": "sha256:2135d5a3bc5c92bc7171142855353caa65844bfb8e870b252ce956702b9f64e2",
     "source_doc_hashes": {
-      "spec.md": "adfbb4beeb005aae6cbdb9816d6a883ed464e0a2ca8e09812a0625d6524b0142"
+      "spec.md": "42390a2e7e021f066495a3b904799a64e53d661e993adacdf2c9b60d1c5df870"
     },
     "last_active_child_id": null,
     "last_active_at": null

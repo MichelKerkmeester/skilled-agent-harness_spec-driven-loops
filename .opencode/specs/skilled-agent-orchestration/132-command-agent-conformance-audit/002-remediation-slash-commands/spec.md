@@ -12,9 +12,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit/002-remediation-slash-commands"
-    last_updated_at: "2026-07-11T04:44:00Z"
+    last_updated_at: "2026-07-11T06:54:18Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Fixed 11/12 findings (CMD-01..04,06-11,XS-02); XS-04 deferred w/ design note"
+    recent_action: "Fixed all 12 findings incl XS-04 checker (validate-command-references.cjs, self-test PASS)"
     next_safe_action: "006 closeout: recompile deep contracts (CMD-05), then skill-graph (XS-01/XS-03)"
     blockers:
       - "CMD-05 contract recompile is owned by phase 006 closeout (do not action here)"
@@ -34,10 +34,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "conformance-audit-132"
       parent_session_id: null
-    completion_pct: 92
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "XS-04 checker: neither — deferred. compile-command-contracts.cjs only covers the deep/* family and is coupled to the CMD-05 recompile pipeline (006's job); no clean extension point exists spanning create/deep/design. See implementation-summary.md design note."
+      - "XS-04 checker: built as a standalone script (validate-command-references.cjs) over create/deep/design; --self-test proves both exit paths; also fixed 2 dead template refs. See implementation-summary.md."
       - "CMD-07: the one-line rewrite (plus an explicit 'nested mode, not an independently dispatchable /design:* command' clarifier) was judged sufficient; no additional cross-link to the sk-design command entry point was added."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -263,7 +263,7 @@ Apply the exact, file:line-cited fixes from `research/research.md` §3.1/§3.4 s
 
 Both questions below are now resolved.
 
-- **XS-04 checker (new script vs. extension?):** Neither, at this time — DEFERRED. `compile-command-contracts.cjs` only covers the `deep/*` family and is coupled to the CMD-05 recompile pipeline owned by phase 006; no clean, proportionate extension point spans `create`/`deep`/`design`. See `implementation-summary.md` for the full design note.
+- **XS-04 checker (new script vs. extension?):** Resolved as a new standalone script — `.opencode/commands/scripts/validate-command-references.cjs`. Extending `compile-command-contracts.cjs` was rejected: it only covers the `deep/*` family and is coupled to the CMD-05 recompile pipeline owned by phase 006. The standalone checker walks the `create`/`deep`/`design` `_auto`/`_confirm` pairs, resolves agent/skill/runtime-dir references, ships a `--self-test` + broken fixture proving both exit paths, and exits 0 on the post-fix tree. See `implementation-summary.md` for the full note.
 - **CMD-07 rewrite sufficiency:** Resolved as sufficient. Each of the 5 design commands now reads "Prefer the `sk-design` skill's `design-mcp-open-design` transport mode when..." plus an explicit "nested mode, not an independently dispatchable `/design:*` command" clarifier; no additional cross-link to a `sk-design` command entry point was added (none exists as a distinct target beyond the skill itself).
 <!-- /ANCHOR:questions -->
 

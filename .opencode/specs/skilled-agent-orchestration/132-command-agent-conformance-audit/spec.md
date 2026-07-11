@@ -12,19 +12,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit"
-    last_updated_at: "2026-07-10T21:00:00Z"
+    last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "fable-5"
-    recent_action: "Scaffolded phase parent + six child phases for the conformance-audit program"
-    next_safe_action: "Run the 001 deep-research investigation, then remediate per findings"
+    recent_action: "All 6 phases complete; recursive strict validate 0/0"
+    next_safe_action: "Program complete; no further action needed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "template-session"
+      session_id: "conformance-audit-132"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Remediation landed as one packet per surface (002-005), small per-finding commits within — default followed"
+      - "README sweep: changed-surface set covered by phase 005, per the default; full-sweep not needed"
+      - "Deep-research --variant xhigh/max took effect on all 3 providers; smoke-tested before each batch (001)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -49,12 +52,12 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-10 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Packet Type** | Phase parent (lean trio) |
 | **Children** | 6 (001–006) |
-| **Active Child** | 001-conformance-deep-research |
+| **Active Child** | 006-validation-closeout |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -105,12 +108,12 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-conformance-deep-research/ | Deep-research audit (15 iterations, 3 executor batches) of every command, agent, and asset for logic alignment; produces ranked P0/P1/P2 findings | In Progress |
-| 2 | 002-remediation-slash-commands/ | Fix `command.md` logic + auto/confirm YAML + presentation `.txt` + compiled contracts across create / deep / design / memory / speckit / root commands | Planned |
-| 3 | 003-remediation-doctor/ | Fix the `/doctor` router, route manifest, per-target YAML and scripts; execute the read-only targets to prove they run clean | Planned |
-| 4 | 004-remediation-agents/ | Align the 12 agents across `.claude/agents` + `.opencode/agents` (cross-runtime body sync, tool grants, path/skill/model refs) | Planned |
-| 5 | 005-readme-alignment/ | Align authored repo READMEs with the corrected command / agent / skill reality | Planned |
-| 6 | 006-validation-closeout/ | Recursive strict validate, `/doctor` route-validate, advisor re-baseline, parent rollup | Planned |
+| 1 | 001-conformance-deep-research/ | Deep-research audit (15 iterations, 3 executor batches) of every command, agent, and asset for logic alignment; produces ranked P0/P1/P2 findings | Complete |
+| 2 | 002-remediation-slash-commands/ | Fix `command.md` logic + auto/confirm YAML + presentation `.txt` + compiled contracts across create / deep / design / memory / speckit / root commands | Complete |
+| 3 | 003-remediation-doctor/ | Fix the `/doctor` router, route manifest, per-target YAML and scripts; execute the read-only targets to prove they run clean | Complete |
+| 4 | 004-remediation-agents/ | Align the 12 agents across `.claude/agents` + `.opencode/agents` (cross-runtime body sync, tool grants, path/skill/model refs) | Complete |
+| 5 | 005-readme-alignment/ | Align authored repo READMEs with the corrected command / agent / skill reality | Complete |
+| 6 | 006-validation-closeout/ | Recursive strict validate, `/doctor` route-validate, advisor re-baseline, parent rollup | Complete |
 
 ### Phase Transition Rules
 
@@ -135,9 +138,11 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Should remediation land as one combined change-set per surface, or as small per-finding commits for reviewability? (default: per-surface packet, small commits)
-- Which READMEs are in-scope beyond the confirmed-stale set — is the ~370 authored-README universe fully swept, or only those touching changed surfaces? (default: changed-surface set first, full sweep if time permits)
-- Do the deep-research provider variants (`--variant xhigh` on openrouter-anthropic, `--variant max` on GLM) actually take effect, or silently no-op? (smoke-test one dispatch per model before the full batch)
+All three questions are RESOLVED; none remain open at close (see each child's own continuity for detail).
+
+- **RESOLVED** — Remediation landed per-surface (one packet per phase 002-005), the default.
+- **RESOLVED** — README sweep covered the changed-surface set via phase 005, the default; a full ~370-README sweep was not required.
+- **RESOLVED** — The deep-research `--variant xhigh`/`--variant max` providers took effect on all 3 executor batches; each was smoke-tested before its batch (phase 001, REQ-005).
 <!-- /ANCHOR:questions -->
 
 ---

@@ -10,9 +10,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit/002-remediation-slash-commands"
-    last_updated_at: "2026-07-11T04:44:00Z"
+    last_updated_at: "2026-07-11T06:54:18Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Fixed+verified 11/12 findings; XS-04 deferred; all T### marked w/ evidence"
+    recent_action: "Fixed+verified all 12 findings incl XS-04 checker (self-test PASS)"
     next_safe_action: "006 closeout: recompile deep contracts, then skill-graph regen"
     blockers: []
     key_files:
@@ -91,8 +91,8 @@ _memory:
 - [x] T022 [P] Verify T021: manual diff of each `argument-hint` against its presentation.txt PARSE block (no automated flag-extractor exists yet — this gap is exactly what T025/XS-04 addresses long-term) — EVIDENCE: manual diff done for all 3 commands (see T021); all REQ-010-listed flags present post-fix.
 - [x] T023 CMD-11: remove the nonexistent `.agents/` runtime directory from `deep_review_auto.yaml` (current disk line 325; research.md cited within 317-326) and `deep_review_confirm.yaml` (current disk line 302; research.md cited within 294-303) — after T017 (shares both files) — EVIDENCE: `.agents/` removed from both files' agent-target discovery lists; only `.claude/agents/`, `.opencode/agents/` remain.
 - [x] T024 [P] Verify T023: `grep -n "\.agents/" .opencode/commands/deep/assets/deep_review_auto.yaml .opencode/commands/deep/assets/deep_review_confirm.yaml` returns 0 hits — EVIDENCE: 0 hits (exit 1).
-- [~] T025 [P] XS-04: design + add a referential-integrity checker (new script, or an extension of `.opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs`) that resolves literal skill assets, runtime-agent filenames, and declared runtime directories across `_auto`/`_confirm` YAML pairs; research.md cites no precise existing fix location — this is new tooling, not an edit to an existing line — independent — DEFERRED (per dispatch directive: implement only if it fits cleanly in an existing validator, else defer with a design note — do not invent a large new script). Investigated `compile-command-contracts.cjs`: its `COMMANDS` registry covers only the `deep/*` family (confirmed via `grep -n "COMMANDS\s*="` + registry read) and is tightly coupled to the compiled-contract generation pipeline this phase is explicitly forbidden from touching (CMD-05 is 006's job). No validator exists at all for `create`/`design` command assets. A checker spanning all three families with a `.codex` false-positive guard and fixture tests is genuinely new cross-family tooling, not a clean extension — see implementation-summary.md for the one-paragraph design note.
-- [~] T026 [P] Verify T025: the new/extended checker exits non-zero on a deliberately re-broken fixture (e.g. a reintroduced `speckit.md` reference) and exits 0 against the post-fix `create`/`deep`/`design` command families, correctly excluding the legitimate `.codex` runtime-mirror/benchmark-executor references (research.md §5 false-positive guard) — N/A, T025 deferred (no checker built to test).
+- [x] T025 [P] XS-04: added a standalone referential-integrity checker `.opencode/commands/scripts/validate-command-references.cjs` that resolves runtime-agent filenames (`[runtime_agent_path]/<name>.md` against `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`), literal skill-asset paths (`.opencode/skills/**`), and declared runtime directories across the create/deep/design `_auto`/`_confirm` YAML pairs — skipping templated (`{...}`/glob/`$var`), code-anchored (`file.ts#symbol`), bare-directory, and legitimate `.codex` runtime-mirror tokens so correct parameterized values are never flagged — independent — EVIDENCE: `node .opencode/commands/scripts/validate-command-references.cjs` exits 0 across 40 create/deep/design assets. Designing the checker surfaced + fixed 2 genuine dead create-family refs (`create_agent_{auto,confirm}.yaml` `templates/level_1/{spec,plan}.md` → `templates/examples/level_1/`) that the original finding set had missed.
+- [x] T026 [P] Verify T025: the checker exits non-zero on a deliberately re-broken fixture (a reintroduced `speckit.md` agent ref) and exits 0 against the post-fix create/deep/design families, excluding the legitimate `.codex` runtime-mirror references — EVIDENCE: `--self-test` prints "broken fixture flags a violation: PASS (3 found)" and "real tree resolves clean: PASS (0 unresolved)", exit 0; `fixtures/broken-command-refs.yaml` fires exactly 3 violations (agent / skill-asset / runtime-dir) while the `ok_interpolated` and `ok_codex_mirror` decoy lines stay unflagged.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -111,7 +111,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]` with evidence (grep output or diff reference) — T025/T026 (XS-04) marked `[~]` DEFERRED with a documented reason, not falsely claimed complete.
+- [x] All tasks marked `[x]` with evidence (grep output or diff reference) — all 12 findings including XS-04 fixed and verified; the XS-04 checker ships with a `--self-test` proving both exit paths (fixture fails, real tree passes).
 - [x] No `[B]` blocked tasks remaining
 - [x] `validate.sh --strict` passes (T029) — see implementation-summary.md.
 - [x] `deep/assets/compiled/*.contract.md` and `manifest.jsonl` byte-identical to pre-phase state — `git status --porcelain .opencode/commands/deep/assets/compiled/` empty.

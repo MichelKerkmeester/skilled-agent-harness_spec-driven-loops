@@ -39,7 +39,7 @@
       "002-remediation-slash-commands"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
       ".opencode/commands/create/assets/create_agent_auto.yaml",
@@ -51,16 +51,16 @@
       ".opencode/commands/design/interface.md",
       ".opencode/commands/agent_router.md",
       ".opencode/commands/deep/research.md",
+      ".opencode/commands/scripts/validate-command-references.cjs",
       ".opencode/skills/cli-external/cli-opencode/SKILL.md",
       ".opencode/commands/create/readme.md",
+      ".opencode/commands/scripts/fixtures/broken-command-refs.yaml",
       ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
       "checklist.md",
-      ".opencode/agents/markdown.md",
-      ".claude/agents/markdown.md",
-      "tasks.md"
+      ".opencode/agents/markdown.md"
     ],
     "entities": [
       {
@@ -118,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external/cli-opencode/SKILL.md",
@@ -127,6 +133,12 @@
         "name": "readme.md",
         "kind": "doc",
         "path": ".opencode/commands/create/readme.md",
+        "source": "derived"
+      },
+      {
+        "name": "broken-command-refs.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/scripts/fixtures/broken-command-refs.yaml",
         "source": "derived"
       },
       {
@@ -166,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 001 deep-research packet (15 iterations, 3 model batches) confirmed 12 command-surface defects still present on disk as of 2026-07-10: a copy-pasted singular-path typo (`CMD-02`) breaks 10 create-family YAMLs' agent-path resolution; the speckit family interpolates a `[runtimeagentpath]` token with zero resolution definition anywhere in the repo (`CMD-01`); the create family still targets two agents retired in commit `dde19822df` (`speckit.md` in `CMD-03`, `write.md` in `CMD-04`); five `/design` commands advertise a nonexistent slash command (`CMD-07`); and the root `agentrouter.md`",
     "created_at": "2026-07-10T18:53:44Z",
-    "last_save_at": "2026-07-11T04:45:00.096Z",
+    "last_save_at": "2026-07-11T06:58:14.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e50ee4b9c770bc8efb41a5e8dcc71a5b0cf7d01b7dd8c25a8ee3c1d6ffb5415",
+    "source_fingerprint": "sha256:11112cb4ba2f0c979c83f07924c4f27c4fef068d482f6e06dd1c96d0ef3395b9",
     "source_doc_hashes": {
-      "spec.md": "a83b031c6bf4f17109847f9c540d016cbda0c1a85dd056789df6b671ecdfff40",
-      "plan.md": "994bc60a81cdc023d40d7b6debf5785be665afb92e8c0d1ae9eaf553ac2bf616",
-      "tasks.md": "dd488e74ed322a8790cf870a1e049df65eb7d53d67039d60c17659b752a20a0d",
-      "checklist.md": "17220028784a6821da659a726b0e6fe5f7554d46e6c1eb2d93c6bae41d6f184a",
-      "implementation-summary.md": "43e5a495c5e198daf460b81ab5a0147797a463b249ce8f7609c8f3a151a96c9b"
+      "spec.md": "3598c314a0129e435d078ae60e59fef522132df8c44b6a8f23797698e349a050",
+      "plan.md": "cc2814fef4f49506515f1ec700c298a0988791e46aab3f29ab81c48162461ca3",
+      "tasks.md": "142f6e1aa3d127d26bf6c98cf1332bdab338b8198778bd779b09be43f9b1b17e",
+      "checklist.md": "1064d8cff9227e0801332fdd81caf4106ad38e17f722f897c7bc6657a63ab6d9",
+      "implementation-summary.md": "be62d65083740c7d98f0e961697b9bb591332545f8b3b44cf89eb5796bd97d49"
     },
     "last_active_child_id": null,
     "last_active_at": null

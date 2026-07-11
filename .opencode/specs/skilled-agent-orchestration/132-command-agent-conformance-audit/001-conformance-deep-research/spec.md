@@ -12,24 +12,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research"
-    last_updated_at: "2026-07-10T21:00:00Z"
+    last_updated_at: "2026-07-11T06:39:10Z"
     last_updated_by: "fable-5"
-    recent_action: "Authored Phase 1 deep-research runbook spec"
-    next_safe_action: "Smoke-test each provider, then run Batch 1 (GPT 5.6 Sol)"
+    recent_action: "Delivered research.md: 30 ranked findings, 15 iterations, 3 models"
+    next_safe_action: "Consume research.md findings across phases 002-006"
     blockers: []
     key_files:
-      - ".opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research/research/deep-research-config.json"
-      - ".opencode/commands"
-      - ".claude/agents"
-      - ".opencode/agents"
+      - ".opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research/research/research.md"
+      - ".opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research/research/deep-research-state.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "conformance-audit-132"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Does opencode honor --variant xhigh/max for the openrouter-anthropic and GLM providers, or does it silently downgrade?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Does opencode honor --variant xhigh/max for the openrouter-anthropic and GLM providers? providers honored --variant xhigh/max; smoke-tested before each batch"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 1: Conformance Deep-Research
@@ -52,7 +50,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-07-10 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -181,8 +179,10 @@ Produce a single ranked, file:line-cited `research.md` synthesis of every confor
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does opencode honor `--variant xhigh`/`--variant max` for the `openrouter/anthropic/claude-sonnet-5` and `zai-coding-plan/glm-5.2` providers, or does it silently downgrade? (Resolve via the REQ-005 smoke-test — keep unresolved until then so the loop cannot short-circuit on "all questions answered".)
-- Do any of the 62 workflow/route YAML files reference other relocated skills beyond the confirmed `deep_research_auto.yaml:1012,1016` `cli-opencode` case, and how many command docs inherit the same stale slug?
+Both questions are RESOLVED; none remain open at close.
+
+- **RESOLVED** — Does opencode honor `--variant xhigh`/`--variant max` for the `openrouter/anthropic/claude-sonnet-5` and `zai-coding-plan/glm-5.2` providers? The REQ-005 smoke-test confirmed all three providers honored their assigned reasoning-effort variant (`high`/`xhigh`/`max`); no silent downgrade was observed, and each was verified before its batch was committed.
+- **RESOLVED** — Do any of the 62 workflow/route YAML files reference other relocated skills beyond the confirmed `deep_research_auto.yaml:1012,1016` `cli-opencode` case? `research.md` CMD-08 confirms this class spans exactly 5 sites (`deep_research_auto.yaml:1016`, `deep_research_confirm.yaml:765`, `deep_review_auto.yaml:1073`, `deep_review_confirm.yaml:840`, plus the `deep_research_auto.yaml:1010-1016` executor-note shorthand); no additional relocated-skill references were surfaced across the 62-file inventory.
 <!-- /ANCHOR:questions -->
 
 ---
