@@ -16,10 +16,10 @@
       "orphan worker reaping",
       "vitest runaway prevention",
       "mcp helper lifecycle",
+      "daemon reaper",
+      "orphan mcp sweeper",
       "implementation",
       "plan",
-      "name",
-      "template",
       "plan core",
       "tasks",
       "tasks core"
@@ -43,9 +43,16 @@
     "key_files": [
       "spec.md",
       "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
+      "checklist.md",
       ".opencode/scripts/session-cleanup.sh",
+      ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      ".opencode/bin/hf-model-server.cjs"
     ],
     "entities": [
       {
@@ -61,9 +68,45 @@
         "source": "derived"
       },
       {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "session-cleanup.sh",
         "kind": "script",
         "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "com.michelkerkmeester.orphan-sweep.plist",
+        "kind": "file",
+        "path": ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
         "source": "derived"
       },
       {
@@ -76,6 +119,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
         "source": "derived"
       },
       {
@@ -97,6 +146,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,12 +159,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,7 +176,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Defense",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,77 +194,31 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Test",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "OpenCode sessions that spawn parallel detached workers or MCP helpers leave orphan processes when the parent exits ungracefully",
+    "causal_summary": "Investigation found chronic accumulation of orphaned `context-server.js` (spec-memory daemon) processes - 51 live at investigation time, start times spanning Jul 8-9 - plus a wedged embedder subsystem that makes `memoryindexscan` hang while pure SQLite reads stay healthy",
     "created_at": "2026-06-30T07:44:28Z",
-    "last_save_at": "2026-07-09T10:02:56.231Z",
+    "last_save_at": "2026-07-11T08:37:44.496Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc2e0edb890bb316e8ca743d3fe8ab54b45a3cf595a7ec03c533f9401b213006",
+    "source_fingerprint": "sha256:7685ad9cc856db4eb10061f77a11a1da5cdd29432a3d0dfa3170ec22180be83b",
     "source_doc_hashes": {
-      "spec.md": "698a0995edca5451a85dc0b8a1c746ded0f3b1916253b2187eff753ffcb8c795",
-      "plan.md": "6f3fa2eeb60025e7c808b1060f1583d4f7b45e8cb80e4733042348ed2e8f7b26",
-      "tasks.md": "8d829df922346c71804f7a9d71584ca09573283b863d3e226919d1f0c688e259",
-      "implementation-summary.md": "f435225262ab558d8ff489c048f510358510aa22a21f45305d78348e060c3691"
+      "spec.md": "f6e282b3342f3d90b4e070546268a692d0aebdbfff24ae9ec78c0f983937a740",
+      "plan.md": "8d1bc1ad2b71927d87491c0656ff9b25c653308d2cd856c2c1782fb4861a7ebb",
+      "tasks.md": "38fa4fec554f0202dd8951f3094bef20e500975dafef631254743d655ff5f2ee",
+      "checklist.md": "2ce54d0773ce55f1ac865d814f6a251104090d5643d90b3bc75023ed6596f90d",
+      "implementation-summary.md": "6e92476495d59a916365c8f688f9d85940c354f93735a0ccd02a8a1dd31c810a"
     },
     "last_active_child_id": null,
     "last_active_at": null
