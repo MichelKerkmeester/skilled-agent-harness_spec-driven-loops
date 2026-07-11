@@ -1,12 +1,16 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: mk-dist-freshness-guard OpenCode Plugin                      ║
+// ║ COMPONENT: mk-dist-freshness-guard OpenCode Plugin                       ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Warn when Bash dispatches or new sessions are about to trust    ║
 // ║          stale local dist outputs. The signal reaches the agent through  ║
-// ║          bounded system-context injection and an auditable log file --   ║
+// ║          bounded system-context injection and an auditable log file --    ║
 // ║          never the terminal (see appendGuardLog for why).                ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
 import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 'node:fs';
@@ -21,6 +25,10 @@ const {
   packageForSourceFile,
 } = require('../skills/system-spec-kit/scripts/lib/dist-freshness.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const RISKY_BASH_COMMAND_REGEX = /opencode\s+run|\bvalidate\.sh\b/i;
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 const WARN_LOG_RELATIVE = join('.opencode', 'logs', 'dist-freshness-guard.log');
@@ -32,6 +40,10 @@ const MUTATING_TOOLS = new Set(['write', 'edit', 'patch', 'multiedit', 'apply_pa
 // chat turn, so the per-turn system-context injection reuses a short-lived cache
 // that the bounded bash/session triggers force-refresh.
 const STALE_CACHE_TTL_MS = 120_000;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function commandTextFromArgs(args) {
   if (!args || typeof args !== 'object') return '';
@@ -110,6 +122,10 @@ function buildBrief(diagnostics) {
   }
   return lines.slice(0, MAX_DIAGNOSTIC_LINES + 2).join('\n');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. PLUGIN FACTORY
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default async function MkDistFreshnessGuardPlugin(ctx) {
   const projectDir = ctx?.directory || join(PLUGIN_DIR, '..', '..');

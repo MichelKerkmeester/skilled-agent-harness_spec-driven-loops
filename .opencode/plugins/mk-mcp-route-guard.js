@@ -3,13 +3,17 @@
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: OpenCode transport adapter over the runtime-neutral             ║
 // ║          mcp-route-guard core. On tool.execute.before, evaluates whether ║
-// ║          a native external MCP call has a Code Mode manual registered   ║
-// ║          for its family and, if so, appends a routing advisory to a     ║
-// ║          bounded rotated log -- warn-only, log-only, never console      ║
-// ║          output, never throws. Dormant until a native external MCP      ║
-// ║          server is registered in opencode.json; harmless either way.    ║
+// ║          a native external MCP call has a Code Mode manual registered    ║
+// ║          for its family and, if so, appends a routing advisory to a      ║
+// ║          bounded rotated log -- warn-only, log-only, never console       ║
+// ║          output, never throws. Dormant until a native external MCP       ║
+// ║          server is registered in opencode.json; harmless either way.     ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
 import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 'node:fs';
@@ -21,8 +25,16 @@ const require = createRequire(import.meta.url);
 // the identical policy.
 const guardCore = require('../skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const WARN_LOG_RELATIVE = join('.opencode', 'logs', 'mcp-route-guard.log');
 const MAX_LOG_BYTES = 256 * 1024;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Plugin warnings must never reach stdout/stderr: OpenCode's TUI paints plugin
 // console output onto the prompt input line, where it sticks until a redraw
@@ -46,6 +58,10 @@ function appendGuardLog(projectDir, detail) {
     // Swallow: an audit-log failure must not disturb the call it observes.
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. PLUGIN FACTORY
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default async function MkMcpRouteGuardPlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
