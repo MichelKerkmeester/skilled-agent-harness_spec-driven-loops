@@ -95,8 +95,8 @@ A) Attach existing spec path for continuity tracking
 B) Skip spec linkage
 
 Q4. Prior Work Context (when the existing spec has prior continuity)
-A) Load most recent spec-doc record
-B) Load up to 3 most recent spec-doc records
+A) Load handover plus implementation-summary continuity
+B) Load canonical spec docs up to a recent cap
 C) Skip
 
 Q5. Execution Mode (if no :auto/:confirm suffix)

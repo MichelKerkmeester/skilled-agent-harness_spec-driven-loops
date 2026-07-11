@@ -114,10 +114,10 @@ user_inputs:
     Closest pattern shape: linear, decision, parallel, approval, swimlane, or journey.
     FROM UNIFIED SETUP PHASE (Q2 or derived from source_process).
 
-  memory_loaded: |
-    [MEMORY_LOADED]
-    Whether previous context was loaded.
-    FROM UNIFIED SETUP PHASE (Q3 if applicable).
+  memory_choice: |
+    [MEMORY_CHOICE]
+    Prior-session/source-material context choice (A/B/C). Resolved into memory_loaded by the context_loading block.
+    FROM UNIFIED SETUP PHASE (Q4 if applicable).
 
 # -----------------------------------------------------------------
 # FIELD HANDLING
@@ -144,7 +144,7 @@ input_contract:
     - source_process
     - workflow_shape
   optional:
-    - memory_loaded
+    - memory_choice
     - audience
     - terminal_outcomes
 
@@ -212,6 +212,24 @@ workflow_enforcement:
       verification: "Validator exits 0 or failure is fixed before delivery"
 
 # -----------------------------------------------------------------
+# CONTEXT LOADING
+# -----------------------------------------------------------------
+context_loading:
+  trigger: "During UNIFIED SETUP PHASE, non-interactive resolution before Step 1"
+  applies_when: "target_flowchart_path already exists on disk, OR nearby markdown/diagram files exist in the target directory, OR the request names specific source material to load"
+  auto_resolution:
+    default: "If target_flowchart_path already exists, load it and nearby documentation via step_1b_style_discovery automatically; sets memory_loaded: nearby_docs. Else if the request names specific source material, load only that material; sets memory_loaded: named_source_only. Otherwise skip; sets memory_loaded: skipped."
+    override: "Honor memory_choice if explicitly supplied as a command argument or pre-bound marker (per presentation.txt default resolution table)"
+  tool_integration:
+    primary: "Glob/Grep to locate the existing target_flowchart_path and nearby documentation/diagram style in the target directory (per request_analysis_framework.code_search_note); Read matches before reuse"
+    mcp_fallback:
+      tool: memory_search
+      note: "Call MCP tools directly - NEVER through Code Mode. Use only when target_flowchart_path sits inside an existing spec folder with saved memory - not the default case for a single flowchart file."
+      parameters: { query: "flowchart source context for {target_flowchart_path}", anchors: ['summary', 'decisions', 'state'] }
+      transport_fallback: "If MCP tools are missing or erroring while the daemon is otherwise warm, use: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability."
+  output: memory_loaded
+
+# -----------------------------------------------------------------
 # WORKFLOW (6 STEPS - AUTONOMOUS)
 # -----------------------------------------------------------------
 gate_logic:
@@ -256,7 +274,7 @@ workflow:
     - Confirm target_flowchart_path from UNIFIED SETUP PHASE (Q0 or argument)
     - Confirm source_process from UNIFIED SETUP PHASE (Q1 or argument)
     - Confirm workflow_shape from UNIFIED SETUP PHASE (Q2 or derived from source_process)
-    - Confirm memory_loaded from UNIFIED SETUP PHASE (Q3 if applicable)
+    - Resolve memory_choice via the context_loading block (Q4 if applicable); record result as memory_loaded
     - Verify target path ends in .md
     - Check if target flowchart already exists
     validation:

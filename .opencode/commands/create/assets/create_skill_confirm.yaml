@@ -103,6 +103,24 @@ checkpoint_options:
     label: "Abort"
     description: "Stop workflow immediately"
 
+# ─────────────────────────────────────────────────────────────────
+# CONTEXT LOADING
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "During UNIFIED SETUP PHASE, when memory_choice is answered (Q4 if applicable) and prior context exists"
+  applies_when: "spec_path resolves to an existing spec folder (Q3 choice A - Existing, C - Update related, or D - Extend phased packet) that contains handover.md or _memory.continuity in implementation-summary.md; not applicable to a freshly created spec folder (Q3 choice B - New) or when spec_choice is E (Skip)"
+  mcp_integration:
+    tool: memory_context
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters: { input: "resume previous work on {spec_path}", mode: "resume", profile: "resume", specFolder: "{spec_path}", includeContent: true }
+    transport_fallback: "If MCP tools are missing or erroring while the daemon is otherwise warm, use: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability."
+  behavior:
+    memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {spec_path}; sets memory_loaded: handover+continuity"
+    memory_choice_B: "Load canonical spec docs (tasks.md, plan.md, checklist.md, decision-record.md) in {spec_path} up to a recent cap (3 most recently modified); sets memory_loaded: spec-docs"
+    memory_choice_C: "Skip context loading; sets memory_loaded: skipped"
+  when_to_skip: ["New spec folder (spec_choice == B, Create new) with no prior context", "spec_choice == E (Skip documentation)", "User says 'skip context' or 'fresh start'"]
+  output: memory_loaded
+
 checkpoint_decision_matrix:
   proceed:
     action: "Advance to next step"
@@ -292,6 +310,7 @@ workflow:
       - Validate type for reference-only/asset-only
       - Validate execution_mode is :confirm
       - Validate chained handoff completeness if chained=true
+      - Resolve memory_choice via the context_loading block (Q4 if applicable); record result as memory_loaded
     outputs:
       - normalized_inputs
       - preflight_passed

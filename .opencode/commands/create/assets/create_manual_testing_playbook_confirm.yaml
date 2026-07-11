@@ -236,6 +236,24 @@ workflow_overview:
     - id: step_6_completion
       purpose: "Emit deterministic completion report"
 
+# ─────────────────────────────────────────────────────────────────
+# CONTEXT LOADING
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "During UNIFIED SETUP PHASE, when memory_choice is answered (Q4 if applicable) and prior context exists"
+  applies_when: "spec_choice resolved to an existing spec_path (Option A/C/D) that contains handover.md or an implementation-summary.md with _memory.continuity, or operation is update against an existing playbook_root with prior generation history"
+  mcp_integration:
+    tool: memory_context
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters: { input: "resume previous work on {spec_path}", mode: "resume", profile: "resume", specFolder: "{spec_path}", includeContent: true }
+    transport_fallback: "If MCP tools are missing or erroring while the daemon is otherwise warm, use: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability."
+  behavior:
+    memory_choice_A: "Load handover.md plus implementation-summary.md _memory.continuity for spec_path; sets memory_loaded: handover"
+    memory_choice_B: "Load canonical spec docs (spec.md, plan.md, tasks.md, checklist.md) for spec_path up to a recent cap; sets memory_loaded: spec_docs"
+    memory_choice_C: "Skip context loading; sets memory_loaded: skipped"
+  when_to_skip: ["New spec folder or target with no prior context", "User says 'skip context' or 'fresh start'"]
+  output: memory_loaded
+
 workflow:
   step_1_preflight:
     purpose: Normalize inputs and existence semantics
@@ -245,9 +263,11 @@ workflow:
       - Validate operation token to supported value
       - Validate execution_mode is :confirm
       - Check whether target root exists
+      - Resolve memory_choice via the context_loading block (Q4 if applicable); record result as memory_loaded
     outputs:
       - normalized_inputs
       - target_existence_state
+      - memory_loaded
     checkpoint:
       question: "Preflight complete for [skill_name] using [operation]. Continue?"
       options:

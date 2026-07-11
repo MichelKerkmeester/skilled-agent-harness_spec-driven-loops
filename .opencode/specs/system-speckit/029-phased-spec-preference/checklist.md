@@ -70,6 +70,9 @@ _No code in this packet — items below cover the dispatched proposal's quality 
 - [x] CHK-011 [P0] Proposal's claims about existing docs verified against the actual files (not trusted as stated) - [evidence: `grep`/`diff`/`ls` on 8/8 highest-stakes claims, see `implementation-summary.md` Verification table]
 - [x] CHK-012 [P1] "Small task" / "new & unrelated" exemption heuristic is concrete, not vague judgment - [evidence: ties to existing LOC-soft-guidance + exempt-tier + `quick_reference.md` §8 update-vs-create criteria, no new scoring axis invented]
 - [x] CHK-013 [P1] Proposal checked against `phase_system.md` §2 thresholds for internal consistency - [verified: review - proposal explicitly preserves the score>=25 AND level>=3 dual-threshold gate in every section, changes recommendation priority only]
+- [x] CHK-014 [P0] `memory_choice`/`memory_loaded` gap independently verified as a real defect (not intentional design) before implementation - [evidence: Fable-model agent verdict "real gap — implement it", grounded in 4 independent proofs cross-checked against actual files, see `implementation-summary.md` Round 9]
+- [x] CHK-015 [P0] `context_loading` fix applied across all 16 YAML files, verified by a separate read-only agent (not the implementing agents' self-report) - [evidence: 20/20 PASS in the independent verify-phase agent's PASS/FAIL table, `implementation-summary.md` Verification]
+- [x] CHK-016 [P1] `context_loading` fix scoped to only `.opencode/commands/create/assets/`, no unrelated files touched - [evidence: `git diff --stat` shows exactly 20 files changed in that directory, 335 insertions/42 deletions, additive-only]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -81,6 +84,7 @@ _No code in this packet — items below cover the dispatched proposal's quality 
 - [x] CHK-021 [P0] Manual testing complete - [evidence: dispatch ran end-to-end, exit code 0, output parsed and read]
 - [ ] CHK-022 [P1] Edge cases tested - N/A, no code in this packet
 - [ ] CHK-023 [P1] Error scenarios validated - N/A, no code in this packet
+- [x] CHK-024 [P0] All 16 `context_loading`-fix YAML files parse cleanly - [evidence: `python3 -c "import yaml..."` PASS on all 16, confirmed independently by both implementing and verify-phase agents]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -133,8 +137,8 @@ _No code in this packet — items below cover the dispatched proposal's quality 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 7/8 (1 N/A: input validation - no code) |
-| P1 Items | 10 | 7/10 (3 N/A: edge cases, error scenarios, code comments - no code) |
+| P0 Items | 11 | 10/11 (1 N/A: input validation - no code) |
+| P1 Items | 11 | 8/11 (3 N/A: edge cases, error scenarios, code comments - no code) |
 | P2 Items | 1 | 0/1 (N/A: no README affected) |
 
 **Verification Date**: 2026-07-11

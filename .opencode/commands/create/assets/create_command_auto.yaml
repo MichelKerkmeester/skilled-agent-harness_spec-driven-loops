@@ -116,10 +116,10 @@ user_inputs:
     Spec folder for tracking this work.
     FROM UNIFIED SETUP PHASE (Q1 choice A/B/C/D).
 
-  memory_loaded: |
-    [MEMORY_LOADED]
-    Whether previous context was loaded.
-    FROM UNIFIED SETUP PHASE (Q3 if applicable).
+  memory_choice: |
+    [MEMORY_CHOICE]
+    Prior-session context loading choice (A/B/C).
+    FROM UNIFIED SETUP PHASE (Q4 if applicable).
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -146,7 +146,7 @@ input_contract:
     - command_path
     - spec_path
   optional:
-    - memory_loaded
+    - memory_choice
     - command_package_shape
 
 # ─────────────────────────────────────────────────────────────────
@@ -177,6 +177,22 @@ command_references:
   router_presentation_split: .opencode/skills/sk-doc/create-command/references/router_presentation_split.md
   argument_hints_and_modes: .opencode/skills/sk-doc/create-command/references/argument_hints_and_modes.md
   common_pitfalls: .opencode/skills/sk-doc/create-command/references/common_pitfalls.md
+
+# ─────────────────────────────────────────────────────────────────
+# CONTEXT LOADING
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "During UNIFIED SETUP PHASE, non-interactive resolution before Step 1"
+  applies_when: "An existing spec_path with handover.md or _memory.continuity in implementation-summary.md present from a prior command-creation session"
+  auto_resolution:
+    default: "If prior context exists (handover.md <24h old or _memory.continuity present), load it automatically via memory_context; sets memory_loaded: handover. Otherwise skip; sets memory_loaded: skipped."
+    override: "Honor memory_choice if explicitly supplied as a command argument or marker (A = handover, B = canonical docs, C = skip)"
+  mcp_integration:
+    tool: memory_context
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters: { input: "resume previous work on {spec_path}", mode: "resume", profile: "resume", specFolder: "{spec_path}", includeContent: true }
+    transport_fallback: "If MCP tools are missing or erroring while the daemon is otherwise warm, use: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability."
+  output: memory_loaded
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT (CRITICAL)
@@ -254,7 +270,7 @@ workflow:
     - Confirm command_invocation from UNIFIED SETUP PHASE (Q0 or argument)
     - Derive command_path from command_invocation unless explicit path is provided
     - Confirm spec_path from UNIFIED SETUP PHASE (Q1 choice A/B/C/D)
-    - Confirm memory_loaded from UNIFIED SETUP PHASE (Q3 if applicable)
+    - Resolve memory_choice via the context_loading block (Q4 if applicable); record result as memory_loaded
     - Verify command invocation format and path mapping
     - Check if command router or owned assets already exist at target paths
     validation:

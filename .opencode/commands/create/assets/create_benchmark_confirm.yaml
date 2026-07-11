@@ -99,6 +99,24 @@ checkpoint_options:
     label: "Abort"
     description: "Stop the workflow"
 
+# ─────────────────────────────────────────────────────────────────
+# CONTEXT LOADING
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "During UNIFIED SETUP PHASE, when memory_choice is answered (Q5 if applicable) and prior context exists"
+  applies_when: "source_packet_path contains handover.md or _memory.continuity in implementation-summary.md, or operation is update and benchmark_folder already has a prior benchmark_report.md/SOURCE.md; not applicable to a fresh promote-benchmark with no prior continuity"
+  mcp_integration:
+    tool: memory_context
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters: { input: "resume previous work on {source_packet_path}", mode: "resume", profile: "resume", specFolder: "{source_packet_path}", includeContent: true }
+    transport_fallback: "If MCP tools are missing or erroring while the daemon is otherwise warm, use: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability."
+  behavior:
+    memory_choice_A: "Load handover.md (if <24h old) plus _memory.continuity from implementation-summary.md in {source_packet_path}; sets memory_loaded: handover+continuity"
+    memory_choice_B: "Load canonical spec docs (decision-record.md, implementation-summary.md, tasks.md) in {source_packet_path} up to a recent cap (3 most recently modified); sets memory_loaded: spec-docs"
+    memory_choice_C: "Skip context loading; sets memory_loaded: skipped"
+  when_to_skip: ["New spec packet with no prior context", "User says 'skip context' or 'fresh start'"]
+  output: memory_loaded
+
 input_contract:
   required:
     - create_benchmark_verified
@@ -257,6 +275,7 @@ workflow:
       - Validate operation token to supported value
       - Validate execution_mode is :confirm
       - Check whether target benchmark folder exists
+      - Resolve memory_choice via the context_loading block (Q5 if applicable); record result as memory_loaded
     outputs:
       - normalized_inputs
       - target_existence_state

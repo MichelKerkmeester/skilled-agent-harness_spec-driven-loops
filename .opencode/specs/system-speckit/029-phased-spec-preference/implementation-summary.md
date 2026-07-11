@@ -95,6 +95,9 @@ The operator approved applying all 5 of Opus's fixes. **Opus's corrected wording
 | `.opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md` | Modified | §1 bullet |
 | `.opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md` | Modified | §2 pre-checks insert |
 | `README.md` | Modified | Gate 3 ASCII diagram E-label sync (Opus Fix 5), box alignment preserved |
+| `.opencode/commands/create/assets/create_{agent,command,flowchart}_{confirm,auto}.yaml` (6 files) | Modified | `memory_loaded`→`memory_choice` input rename + new `context_loading` block + dead activity-line fix |
+| `.opencode/commands/create/assets/create_{benchmark,feature_catalog,manual_testing_playbook,skill,skill_parent}_{confirm,auto}.yaml` (10 files) | Modified | New `context_loading` block + dead activity-line fix (field was already named `memory_choice`) |
+| `.opencode/commands/create/assets/create_{benchmark,feature_catalog,skill,skill_parent}_presentation.txt` (4 files) | Modified | Standardized "spec-doc record" wording to canonical "handover / canonical spec docs / skip" wording |
 
 ### Round 4: Skip-Last Reorder (operator follow-up)
 
@@ -120,6 +123,12 @@ Operator asked to have GPT-5.6-luna-fast (xhigh) double-check every OTHER comman
 ### Round 8: Applied the confirmed-regression fixes only (operator follow-up)
 
 Operator approved applying just the 2 confirmed, zero-decision-needed fixes from Round 7, leaving the other 25 findings (all of which need an implement-vs-remove call) for a separate follow-on. Fixed: `speckit_plan_confirm.yaml:110`, `speckit_plan_auto.yaml:110`, `speckit_complete_confirm.yaml:137`, `speckit_complete_auto.yaml:164` — "Option E is selected" → "Option D is selected" (matches the current presentation text where D is now Extend-phased-packet). Also `speckit_implement_confirm.yaml:66` and `speckit_implement_auto.yaml:66` — dropped the "When Option E is selected or" clause entirely, since implement's own Q1 (`A) Yes, implement  B) Different folder  C) Cancel and plan first`) never had a D or E option; this was a fully vestigial copy-paste from the plan/complete template, pre-existing and unrelated to Round 4. All 6 files re-verified: YAML parses clean, zero remaining "Option E is selected" anywhere in `.opencode/commands/`.
+
+### Round 9: Fixed the memory_choice/memory_loaded gap across all 8 /create:* families (operator follow-up)
+
+The largest of Round 7's 25 open findings: every `/create:*` command family (`agent`, `command`, `flowchart`, `benchmark`, `feature_catalog`, `manual_testing_playbook`, `skill`, `skill_parent`) asks a "Prior Session/Work Context" question during setup, declares an input field for the raw A/B/C reply, and has a throwaway activity line referencing it — but nothing anywhere branches on the answer. Before implementing, dispatched a fresh Fable-model agent to independently verify this was a real gap rather than intentional free-text guidance for the executing AI; it confirmed via four proofs (the repo's own YAML-behavior/presentation-wording split rule, comparable fields like `spec_choice` that ARE properly branched in the same files, sibling `/speckit:complete` and `/speckit:resume` commands that already have a working `context_loading` block for the identical kind of question, and `:auto` mode never even displaying the option label yet still carrying the dead field) and additionally found the wording itself had silently drifted three ways and the field name (`memory_choice` vs `memory_loaded`) didn't align with the wording split — evidence of accretion, not design.
+
+Implemented via an 8-way parallel Sonnet-5 xhigh swarm (one agent per family, each owning its own confirm/auto YAML pair plus, where needed, its presentation.txt), followed by an independent Sonnet-5 xhigh verification agent. First launch failed cleanly before any edits (a stray `process.cwd` Node-API reference in the orchestrating script — unavailable in the workflow sandbox — crashed all 8 implement agents at the prompt-build step); fixed and re-run cleanly. Each family got a real `context_loading:` block modeled on the `speckit_complete_confirm.yaml`/`speckit_resume_confirm.yaml` precedent (`mcp_integration.tool: memory_context`, resume/resume mode+profile, daemon-CLI transport fallback), the raw input field unified to `memory_choice` everywhere (renamed from `memory_loaded` in `agent`/`command`/`flowchart`, already correct in the other 5), a new `memory_loaded` output produced by the block, and the dead activity line rewritten to actually reference block execution. The 4 families that still had stale "spec-doc record" wording (`benchmark`, `feature_catalog`, `skill`, `skill_parent`) had their presentation.txt option text standardized to the same "handover / canonical spec docs / skip" wording already used by `agent`/`command`/`manual_testing_playbook`; `flowchart` was deliberately left with its own distinct wording (diagram source material, not spec continuity) per Fable's explicit exception, with its `context_loading` block built around that family's own semantics instead of the generic handover ladder.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -150,6 +159,9 @@ GPT-5.6 self-corrected its own briefing during the read phase (it noticed the di
 | Escalated to `@prompt-improver` (CRAFT framework) instead of hand-writing the dispatch prompt | This edits the framework's own routing rules — a Tier-3 trigger (policy/governance sensitivity) per `cli_prompt_quality_card.md` §5 |
 | Kept this packet proposal-only; no framework doc edits applied | Spec's own scope (§3 Out of Scope) reserves the actual edits for a follow-on once the operator approves the wording |
 | Independently re-verified GPT's claims instead of forwarding them as-is | `finding-is-a-hypothesis` constitutional rule — a sub-agent's (or dispatched model's) claim is a hypothesis, not a fact, until checked against the real files |
+| Dispatched a Fable-model agent for the implement-vs-leave verdict on Round 7's `memory_choice` finding before touching any files | A behavior-changing addition across 16+ files needs a decisive, independently-grounded call, not a self-serving continuation of my own earlier audit |
+| Used an 8-way Sonnet-5 xhigh swarm (Workflow tool) for the fix, one agent per command family | Operator explicitly requested a swarm; families are file-disjoint so no coordination risk, and the fix is mechanical/templated enough that per-family agents needed no cross-talk |
+| Ran a 9th independent verification agent (read-only) after the swarm instead of trusting each family agent's self-report | `finding-is-a-hypothesis` — a subagent's own "PASS" is a claim, not a fact, until a separate pass checks it against the files |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -176,6 +188,11 @@ GPT-5.6 self-corrected its own briefing during the read phase (it noticed the di
 | Code-dependency sweep before applying | PASS - `grep` for the exact changed headings/sentences across `scripts/` and `mcp_server/` found zero matches; `gate-3-classifier.ts` diff is empty (untouched) |
 | `CLAUDE.md` symlink propagation | PASS - edited `AGENTS.md` once; `diff CLAUDE.md AGENTS.md` empty after the edit, confirming the symlink carried it through |
 | All 8 target files apply cleanly | PASS - every `old_string` matched on first attempt, no "string not found" errors |
+| `context_loading` fix: all 16 YAML files parse | PASS - `python3 -c "import yaml..."` clean on every file, confirmed by both the implementing agents and the independent verify agent |
+| `context_loading` fix: field naming unified | PASS - exactly one `memory_choice` in `user_inputs`/`input_contract.optional` per file, zero leftover `memory_loaded`-as-input-field across all 16 |
+| `context_loading` fix: dead activity line replaced | PASS - zero remaining inert "Confirm memory_loaded/memory_choice from UNIFIED SETUP PHASE (Q# if applicable)" lines with no `context_loading` reference nearby |
+| `context_loading` fix: presentation wording standardized | PASS - `benchmark`/`feature_catalog`/`skill`/`skill_parent` presentation.txt Q-blocks now read the canonical "handover / canonical spec docs / skip" wording, zero remaining "spec-doc record" occurrences; `flowchart` deliberately left with its own distinct wording |
+| `context_loading` fix: scope discipline | PASS - `git diff --stat` on `.opencode/commands/create/assets/` shows exactly 20 files changed (16 YAML + 4 presentation.txt), 335 insertions / 42 deletions, additive-only; no file outside that directory touched |
 <!-- /ANCHOR:verification -->
 
 ---
