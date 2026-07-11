@@ -99,7 +99,7 @@ Source-verified against repo `main` `src/commands/*.js`, `REFERENCE.md`, and `CL
 | Layout | `sizing hug\|fill\|fixed ...` | MUTATING | Sets auto-layout sizing. |
 | Layout | `padding\|pad` / `gap` / `align` | MUTATING | Sets padding / gap / alignment. |
 | Layout | `set autolayout\|al ...` / `set pin <edge> ...` | MUTATING | Applies auto-layout / constraints. |
-| Layout | `arrange [-g] [-c]` | MUTATING | Rearranges all top-level frames (repositions; not a delete). |
+| Layout | `arrange [-g] [-c]` | **DESTRUCTIVE** | Arranges ALL top-level frames on canvas, sorts alphabetically; the binary's own `--help` labels it destructive. For just-fixing overlaps use `unstack` instead. |
 | Layout | `unstack [-g] [--dry-run]` | MUTATING | Spreads overlapping nodes; `--dry-run` is READ-ONLY. |
 | Modification | `set fill\|stroke\|radius\|size\|scale\|pos\|opacity\|name\|text ...` | MUTATING | Changes matched node properties. |
 | Modification | `use <collection>` / `theme <collection> [--dry-run]` | MUTATING | Rebinds variable references; `--dry-run` is READ-ONLY. |
@@ -181,16 +181,16 @@ Call these without ceremony, with one constraint: any read that **writes a local
 Before any of these, state the effect and a one-line rollback, name the explicit target node/file/collection, and stop for confirmation:
 
 - **App-level:** `connect` (yolo patch, rollback `figma-ds-cli unpatch`), `unpatch`, `daemon start\|stop\|restart\|reconnect`, `config set`, `plugins install\|setup`, `api setup`, and **`init-agent`** (writes `AGENTS.md` / `.cursor/rules` into the working repo, never default-run).
-- **Doc-level authoring:** all `create*` / `render*` / primitive aliases, `tokens *` writes, `var create\|create-batch\|bind-batch\|set-batch\|rename-batch\|visualize`, `bind *`, `set *`, layout verbs (`sizing\|padding\|gap\|align\|set autolayout\|set pin\|arrange\|unstack`), `duplicate`, `use\|theme`, `node to-component`, `slot` writes, `sizes\|variants\|combos`, `shadcn add`, `blocks create`, `component prop add\|combine`, `dev link\|edit`, `section create\|add`, `grid set`, `annotate add`, `import`, `lint --fix`, `screenshot-url`, `recreate-url`, `remove-bg`, `gradient extract --apply-to`, `gradient mesh`, and `fj` write verbs.
+- **Doc-level authoring:** all `create*` / `render*` / primitive aliases, `tokens *` writes, `var create\|create-batch\|bind-batch\|set-batch\|rename-batch\|visualize`, `bind *`, `set *`, layout verbs (`sizing\|padding\|gap\|align\|set autolayout\|set pin\|unstack`), `duplicate`, `use\|theme`, `node to-component`, `slot` writes, `sizes\|variants\|combos`, `shadcn add`, `blocks create`, `component prop add\|combine`, `dev link\|edit`, `section create\|add`, `grid set`, `annotate add`, `import`, `lint --fix`, `screenshot-url`, `recreate-url`, `remove-bg`, `gradient extract --apply-to`, `gradient mesh`, and `fj` write verbs.
 
 ### OMIT from the default path (destructive + arbitrary, explicit request only)
 
 Keep these out of the normal flow. Reach for them only on an explicit, specific user request, with the Section 6 / Section 7 ceremony:
 
-- **Destructive:** `var delete-all`, `var delete-batch`, `delete\|remove`, `node delete`, `undo`, `unwrap`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear`, `annotate clear`.
+- **Destructive:** `var delete-all`, `var delete-batch`, `delete\|remove`, `node delete`, `undo`, `unwrap`, `arrange`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear`, `annotate clear`.
 - **Arbitrary mutation:** `eval`, `run`, `raw`, `fj eval`.
 
-Where two readings of a command disagreed (e.g. `arrange` reads as "destructive" in one source comment but only repositions), the **stricter gating wins** in the SURFACE/GATE choice and the **accurate class wins** in the table, so `arrange` is MUTATING (repositions), not DESTRUCTIVE (no delete).
+Where two readings of a command disagreed (e.g. `arrange` was earlier read as "only repositions, not a delete"), live `figma-ds-cli 1.2.0 --help` settles it: the binary's own usage text for `arrange` reads "Arrange ALL top-level frames on canvas — destructive, sorts alphabetically," so `arrange` is DESTRUCTIVE, not MUTATING. Rearranging every top-level frame on the canvas is treated as destructive because it is a broad, hard-to-reverse structural change (no per-frame target, no simple undo of the full layout), so it needs the same confirm + explicit-scope + rollback ceremony as a delete.
 
 ---
 
@@ -212,6 +212,7 @@ Never run any of these without an explicit target (id / name / collection) and a
 
 | Destructive command | What it deletes | One-line rollback |
 | ------------------- | --------------- | ----------------- |
+| `arrange [-g] [-c]` | Repositions ALL top-level frames on canvas, sorted alphabetically (no per-frame target) | Figma Undo (Cmd/Ctrl+Z) immediately; otherwise restore from version history. Prefer `unstack` for a bounded overlap fix instead. |
 | `var delete-all [-c collection]` | All local variables/collections (or one collection's) | Figma Undo immediately; otherwise restore from version history. Irreversible once the session closes, so **duplicate the file first**. |
 | `var delete-batch <nodeIds>` | The listed nodes | Figma Undo; else version history. Confirm the exact id list before running. |
 | `delete\|remove [nodeId]` | A node / current selection | Figma Undo (Cmd/Ctrl+Z); duplicate the node first for a safe copy. |

@@ -37,9 +37,9 @@ Verify `cupt list --today --json` returns valid JSON array of today's tasks is r
 2. `bash: echo $RESULT | jq length`  # → numeric count
 3. Verify each task's due_date is today (or task has no due_date)
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-010 | Filter Today — cupt list --today --json | Verify `cupt list --today --json` returns valid JSON ar | `List today's assigned tasks in JSON format.` | JSON array returned; `jq length` prints a number; exit 0; result may be [] | PASS if output is valid JSON parseable by `jq`; FAIL if non-JSON output OR exit non-zero | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-010 | Filter Today — cupt list --today --json | Verify `cupt list --today --json` returns valid JSON array of today's tasks | `List today's assigned tasks in JSON format.` | 1. `cupt list --today --json`  # returns JSON array 2. `bash: echo $RESULT \| jq length`  # → numeric count 3. Verify each task's due_date is today (or task has no due_date) | JSON array returned; `jq length` prints a number; exit 0; result may be [] | Terminal output of the command sequence above | PASS if output is valid JSON parseable by `jq`; FAIL if non-JSON output OR exit non-zero | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ Verify `cupt list --today --json` returns valid JSON array of today's tasks is r
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-task-listing/filter-today.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-task-listing/filter-today.md`](../../feature_catalog/cupt-task-listing/filter-today.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

@@ -8,9 +8,15 @@ trigger_phrases:
   - "event subscription endpoint"
   - "webhook event automation"
 version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # clickup_manage_webhooks
+
+Create, update, list, or delete workspace webhooks.
+
+> **Capability status: UNSUPPORTED.** A direct `list_tools()` inventory (`references/mcp_tools.md`) found no webhook tools on the registered server. Treat this card as an unsupported historical assumption until a fresh `tool_info()`/`list_tools()` capture confirms an exact callable name and schema.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -34,7 +40,7 @@ Webhooks fire to the specified endpoint URL when the subscribed events occur. Th
 
 | File | Layer | Role |
 |------|-------|------|
-| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

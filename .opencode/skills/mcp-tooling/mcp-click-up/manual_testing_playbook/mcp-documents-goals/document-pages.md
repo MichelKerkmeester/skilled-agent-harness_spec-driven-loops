@@ -33,13 +33,13 @@ Verify `clickup_create_document_page` adds a page and `clickup_get_document_page
 
 ### Recommended Orchestration Process
 
-1. Code Mode: `clickup.clickup_create_document_page({doc_id: 'DOC_ID', name: 'Section 1', content: '# Section 1'})`
-2. Code Mode: `clickup.clickup_get_document_pages({doc_id: 'DOC_ID'})`
+1. Code Mode: `clickup_official.clickup_official_clickup_create_document_page({doc_id: 'DOC_ID', name: 'Section 1', content: '# Section 1'})`
+2. Code Mode: `clickup_official.clickup_official_clickup_get_document_pages({doc_id: 'DOC_ID'})`
 3. Verify 'Section 1' appears in page list
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| MCP-L015 | Create and List Document Pages | Verify `clickup_create_document_page` adds a page and ` | `Add page 'Section 1' to document DOC_ID, then list all ` | Step 1: MCP returns page with `page_id`. Step 2: page list includes 'Section 1'; | PASS if page 'Section 1' appears in `clickup_get_document_pages; FAIL if page missing from list OR MCP error on either call | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| MCP-L015 | Create and List Document Pages | Verify `clickup_create_document_page` adds a page and `clickup_get_document_pages` lists it | `Add page 'Section 1' to document DOC_ID, then list all pages.` | 1. Code Mode: `clickup_official.clickup_official_clickup_create_document_page({doc_id: 'DOC_ID', name: 'Section 1', content: '# Section 1'})` 2. Code Mode: `clickup_official.clickup_official_clickup_get_document_pages({doc_id: 'DOC_ID'})` 3. Verify 'Section 1' appears in page list | Step 1: MCP returns page with `page_id`. Step 2: page list includes 'Section 1'; exit 0. | Code Mode response + terminal output of the verification step(s) above | PASS if page 'Section 1' appears in `clickup_get_document_pages` response; FAIL if page missing from list OR MCP error on either call | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ Verify `clickup_create_document_page` adds a page and `clickup_get_document_page
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/mcp-low-priority/get-doc-pages.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/mcp-low-priority/get-doc-pages.md`](../../feature_catalog/mcp-low-priority/get-doc-pages.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

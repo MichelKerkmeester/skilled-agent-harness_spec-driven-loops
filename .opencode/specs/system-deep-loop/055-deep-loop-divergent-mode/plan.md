@@ -390,4 +390,4 @@ Phase 0 Baselines
 - Evidence synthesis: `research/research.md`
 - Council decision: `ai-council/council-report.md`
 
-Implementation is explicitly deferred. Start it only through `/speckit:implement` after plan approval.
+Implementation is complete and independently verified; see `implementation-summary.md` for the shipped-state evidence and `research/phase-0-baseline.md` for the pre-implementation baseline it is diffed against.

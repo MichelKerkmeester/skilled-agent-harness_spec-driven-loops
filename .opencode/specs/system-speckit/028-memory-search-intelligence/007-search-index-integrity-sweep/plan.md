@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Search-Index Integrity Sweep [template:level_2/plan.md]"
+title: "Implementation Plan: Search-Index Integrity Sweep"
 description: "Checkpoint the database, then run the already-wired verify_integrity/memory_health repair path for F10's stale-file rows and F13's orphaned vectors; root-cause F11's content drift and F10's recurrence before scoping their fixes; verify and restart the F12 enrichment backlog operationally."
 trigger_phrases:
   - "search index integrity sweep"
@@ -14,15 +14,17 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep"
     last_updated_at: "2026-07-10T08:09:04.000Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
-    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
-    blockers: []
+    recent_action: "T021 dedup + re-embed drain closed REQ-007's enrichment-backlog gap 2026-07-10"
+    next_safe_action: "Confirm original-sweep checkpoint evidence and get broad test suites green"
+    blockers:
+      - "Full relevant test suites are not green"
+      - "checkpoint_create/checkpoint_restore evidence for the original bulk sweep was not confirmable from this resumed session"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -63,14 +65,14 @@ The majority of F10 (stale-file rows) and F13's orphaned-vector half is already-
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented — spec.md's Problem Statement (F10-F13) and Scope sections.
+- [x] Success criteria measurable — spec.md SC-001 through SC-003.
+- [x] Dependencies identified — `memory_health`/`verify_integrity`/checkpoint tools confirmed reachable (tasks.md T001).
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All acceptance criteria met — REQ-002 through REQ-005, REQ-007, REQ-008 have evidence (tasks.md T006-T011, T014-T017; the 2026-07-10 dedup/drain closed REQ-007). REQ-001 (checkpoint_create name recorded before the mutating call) and SC-003 (checkpoint_restore rehearsed against a scratch copy) remain unconfirmed for the original bulk sweep (tasks.md T002/T003).
+- [ ] Tests passing (if applicable) — targeted/packet-level checks pass; the broad `mcp_server`/`scripts`/`system-code-graph` test suites were red/timed-out as of the last recorded run (implementation-summary.md Verification Commands table).
+- [x] Docs updated (spec/plan/tasks) — spec/plan/tasks/checklist/implementation-summary reconciled to one lifecycle state 2026-07-10.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -126,29 +128,29 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup and Safety Net
-- [ ] Confirm `memory_health` and `checkpoint_create`/`checkpoint_restore` MCP tools are reachable (daemon warm or MCP transport live)
-- [ ] Take a named checkpoint of the production database (`checkpoint_create`) and record its name
-- [ ] Rehearse a `checkpoint_restore` against a scratch copy of the database (or cite the checkpoint mechanism's own existing test coverage as equivalent evidence, per spec.md's open question)
-- [ ] Run `memory_health({ reportMode: 'full', autoRepair: true, cleanFiles: true, confirmed: false })` as a dry-run and record the reported orphan/stale counts as the "before" baseline
+- [x] Confirm `memory_health` and `checkpoint_create`/`checkpoint_restore` MCP tools are reachable (daemon warm or MCP transport live) — tasks.md T001.
+- [ ] Take a named checkpoint of the production database (`checkpoint_create`) and record its name — tasks.md T002: not confirmed for the original bulk sweep; three filesystem backup files exist and pass integrity checks but are not a confirmed `checkpoint_create` record.
+- [ ] Rehearse a `checkpoint_restore` against a scratch copy of the database (or cite the checkpoint mechanism's own existing test coverage as equivalent evidence, per spec.md's open question) — tasks.md T003: not confirmed.
+- [ ] Run `memory_health({ reportMode: 'full', autoRepair: true, cleanFiles: true, confirmed: false })` as a dry-run and record the reported orphan/stale counts as the "before" baseline — tasks.md T004: not re-run because live counts show the core mutation already happened; "before" baseline inferred from backup files and spec.md's cited figures instead.
 
 ### Phase 2: Bulk Repair (F10 + F13-orphaned-vectors) and Root-Cause Investigations
-- [ ] Re-run `memory_health` with `confirmed: true` to execute the bulk repair; record the `cleaned` counts (vectors, chunks, files) it returns
-- [ ] Run a post-repair `verify_integrity({ autoClean: false })` and confirm `orphanedFiles.length === 0` and `orphanedVectors === 0` (REQ-002, REQ-004)
-- [ ] Investigate F10 recurrence: trace whether `listStaleIndexedPaths`/`categorizeFilesForIndexing`'s `toDelete` pass is reachable from the production scan entrypoint, and with what scope; record the finding
-- [ ] Investigate F11 content drift: re-run the sample against `hashesMatch`/`contentHashVariants`; for unexplained mismatches, check whether `stored.content_hash IS NULL` on those rows; record the finding and the confirmed-drifted row set
+- [x] Re-run `memory_health` with `confirmed: true` to execute the bulk repair; record the `cleaned` counts (vectors, chunks, files) it returns — tasks.md T005: found already complete on resume (final pre-repair backup 23,322 rows vs live 13,529, exact 9,793-row drop).
+- [x] Run a post-repair `verify_integrity({ autoClean: false })` and confirm `orphanedFiles.length === 0` and `orphanedVectors === 0` (REQ-002, REQ-004) — tasks.md T006.
+- [x] Investigate F10 recurrence: trace whether `listStaleIndexedPaths`/`categorizeFilesForIndexing`'s `toDelete` pass is reachable from the production scan entrypoint, and with what scope; record the finding — tasks.md T007.
+- [x] Investigate F11 content drift: re-run the sample against `hashesMatch`/`contentHashVariants`; for unexplained mismatches, check whether `stored.content_hash IS NULL` on those rows; record the finding and the confirmed-drifted row set — tasks.md T008.
 
 ### Phase 3: Targeted Fixes (F11 refresh, F13 missing-vectors, F12 operational)
-- [ ] Re-hash and refresh `content_text`/`content_hash` for the F11 confirmed-drifted rows (mechanism decided by Phase 2's investigation output — existing scan re-index call vs a small new scoped script)
-- [ ] If Phase 2 found a real wiring/scope gap in the F10 recurrence path, apply the minimal fix; otherwise document the operational cadence/scope conclusion (REQ-009 is P2, deferrable with reason)
-- [ ] Flip the 20 F13 false-success `embedding_status` rows to `'pending'` so they enter the existing enrichment queue
-- [ ] Verify F12's maintenance-tool scheduler state (`hasActiveEmbedderJob`/`hasActiveScanJob`), confirm free slots, and restart/trigger the enrichment run; only write a code fix if the restart with confirmed-free slots does not move the backlog
+- [x] Re-hash and refresh `content_text`/`content_hash` for the F11 confirmed-drifted rows (mechanism decided by Phase 2's investigation output — existing scan re-index call vs a small new scoped script) — tasks.md T009: no-op by current evidence, no live drift remained.
+- [x] If Phase 2 found a real wiring/scope gap in the F10 recurrence path, apply the minimal fix; otherwise document the operational cadence/scope conclusion (REQ-009 is P2, deferrable with reason) — tasks.md T010: no code gap confirmed, documented as an operational cadence/scope follow-up.
+- [x] Flip the 20 F13 false-success `embedding_status` rows to `'pending'` so they enter the existing enrichment queue — tasks.md T011: found already resolved on resume.
+- [x] Verify F12's maintenance-tool scheduler state (`hasActiveEmbedderJob`/`hasActiveScanJob`), confirm free slots, and restart/trigger the enrichment run; only write a code fix if the restart with confirmed-free slots does not move the backlog — tasks.md T012: RESOLVED 2026-07-10 via the Phase R (T021) dedup step's `memory_embedding_reconcile --apply` pass and monitored drain (queue depth 0, zero failures, 100% active-shard coverage), not a scheduler restart, so T013's conditional code-fix task was not needed.
 
 ### Phase 4: Verification
-- [ ] Two consecutive `memory_health` checks (at least one enrichment cycle apart) show the F12 pending+failed count decreasing and `lastRunAt` populated (REQ-007)
-- [ ] Final full `memory_health` report shows the file-existence, orphaned-vector, and false-success-embedding dimensions at the target state (SC-001, SC-002)
-- [ ] Sample search queries over previously-stale terms return zero hits referencing deleted files (REQ-003)
-- [ ] Before/after tables (row counts, orphan counts, `isConsistent` flags) recorded in implementation-summary.md for every mutating step
-- [ ] Documentation updated (spec/plan/tasks/checklist)
+- [x] Two consecutive `memory_health` checks (at least one enrichment cycle apart) show the F12 pending+failed count decreasing and `lastRunAt` populated (REQ-007) — tasks.md T014: superseded by the stronger 2026-07-09-vs-2026-07-10 pre/post-drain comparison (`6124` pending+failed -> `0`, 100% active-shard coverage).
+- [x] Final full `memory_health` report shows the file-existence, orphaned-vector, and false-success-embedding dimensions at the target state (SC-001, SC-002) — tasks.md T015.
+- [ ] Sample search queries over previously-stale terms return zero hits referencing deleted files (REQ-003) — tasks.md T016: live daemon query succeeded and the full file-path scan proves no live row references a missing file, but no preserved list of pre-sweep stale query terms was available to replay exactly.
+- [x] Before/after tables (row counts, orphan counts, `isConsistent` flags) recorded in implementation-summary.md for every mutating step — tasks.md T017.
+- [x] Documentation updated (spec/plan/tasks/checklist) — tasks.md T018; this plan.md reconciled 2026-07-10.
 
 ### Benchmark (SPECIFIED, not run)
 

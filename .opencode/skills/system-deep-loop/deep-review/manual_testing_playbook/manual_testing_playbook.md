@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, orchestration guidance, and per-scenario validation files for the deep-review skill."
-version: 1.11.0.21
+version: 1.11.0.22
 ---
 
 # deep-review: Manual Testing Playbook
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 50 deterministic scenarios across 9 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (34 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 51 deterministic scenarios across 9 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (35 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -340,7 +340,7 @@ Expected signals: `graphEvents` referenced as iteration-record input for graph-a
 
 ## 10. CONVERGENCE AND RECOVERY
 
-This category covers 9 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 10 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DRV-030 | Stop on max iterations
 
@@ -471,6 +471,22 @@ Expected signals: `deep_review_config.json` has `antiConvergence.minIterations =
 
 #### Test Execution
 > **Feature File:** [DRV-068](convergence-and-recovery/cross-mode-anti-convergence-contract.md)
+
+### RV-069 | Divergent convergence mode
+
+#### Description
+
+Verify an eligible clean-review STOP pivots into a new read-only direction without changing legal-stop gates, verdict derivation, or target authority.
+
+#### Scenario Contract
+
+Prompt: `Validate the shipped deep-review divergent pivot, synthesis-only verdict mapping, security-gate preservation, and read-only target boundary.`
+
+Expected signals: Only `all_dimensions_clean` is eligible; all nine gates precede the pivot; successful pivots restore `next_dimension` and continue; verdict derivation remains inside `phase_synthesis`; mutation-shaped candidates and fixes are rejected.
+
+#### Test Execution
+
+> **Feature File:** [RV-069](convergence-and-recovery/divergent-convergence-mode.md)
 
 ---
 
@@ -647,6 +663,7 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 - DRV-033: [Review reducer surfaces blocked-stop history across registry, dashboard, next-focus](convergence-and-recovery/blocked-stop-reducer-surfacing.md)
 - DRV-034: [Review reducer fails closed on corruption and missing anchors](convergence-and-recovery/fail-closed-reducer.md)
 - DRV-068: [Cross-mode anti-convergence contract](convergence-and-recovery/cross-mode-anti-convergence-contract.md)
+- RV-069: [Divergent convergence mode](convergence-and-recovery/divergent-convergence-mode.md)
 
 ### PAUSE, RESUME, AND FAULT TOLERANCE
 

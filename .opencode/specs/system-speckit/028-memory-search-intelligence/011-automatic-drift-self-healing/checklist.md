@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Automatic Drift Self-Healing [template:level_2/checklist.md]"
-description: "Verification Date: 2026-07-09. Targeted implementation verification passed; lint, broad core suite, and numeric latency benchmark remain open."
+description: "Verification Date: 2026-07-09. Targeted implementation verification passed; numeric latency benchmark completed via sibling packet 020; lint and broad core suite remain open."
 trigger_phrases:
   - "automatic drift self-healing"
   - "query-time existence filtering"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-028-011-automatic-drift-self-healing"
       parent_session_id: null
-    completion_pct: 86
+    completion_pct: 94
     open_questions: []
     answered_questions: []
 ---
@@ -78,7 +78,7 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Acceptance criteria REQ-001 through REQ-007 met by targeted tests and implementation review. REQ-008 numeric latency remains separately open under CHK-064. [evidence: `npx vitest run ...` re-run fresh 2026-07-09, 110 passed, 0 failed, 28 skipped]
+- [x] CHK-020 [P0] Acceptance criteria REQ-001 through REQ-007 met by targeted tests and implementation review. REQ-008 numeric latency is tracked separately under CHK-064, satisfied via sibling packet 020-query-time-filter-benchmark. [evidence: `npx vitest run ...` re-run fresh 2026-07-09, 110 passed, 0 failed, 28 skipped]
 - [x] CHK-021 [P0] Manual testing complete for hook smoke and synthetic marker boot consumption. Evidence: scratch repo smoke verified unrelated commit no marker, rename marker, delete marker, concurrent writes preserving two entries, and post-merge/post-rewrite smoke; `memory-drift-healing.vitest.ts` verifies boot consumption.
 - [x] CHK-022 [P1] Edge cases tested. Evidence: flag-off rollback, file reappeared suspect clearing, missing file tombstone confirmation, marker already-consistent no-op behavior. [evidence: `memory-drift-healing.vitest.ts`]
 - [x] CHK-023 [P1] Error scenarios validated. Evidence: malformed marker boot input is a non-fatal no-op; concurrent marker writes preserve entries; delete failures are counted without aborting scan. [evidence: `memory-drift-healing.vitest.ts`, `handler-memory-index-cooldown.vitest.ts`]
@@ -175,10 +175,10 @@ FAILURE MODES:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 27 | 25/27 |
-| P1 Items | 19 | 16/19 |
+| P1 Items | 19 | 18/19 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-07-09 (implementation); independently re-verified 2026-07-09 in a documentation-reconciliation pass (typecheck/build/targeted-vitest re-run fresh, lint re-checked line-by-line against the diff; no source code touched).
+**Verification Date**: 2026-07-09 (implementation); independently re-verified 2026-07-09 in a documentation-reconciliation pass (typecheck/build/targeted-vitest re-run fresh, lint re-checked line-by-line against the diff; no source code touched). CHK-064 numeric latency benchmark subsequently completed via sibling packet `020-query-time-filter-benchmark` (see CHK-064 evidence above) and is no longer an open gap.
 
-Open completion gaps: CHK-010 lint baseline, CHK-011 clean broad-console/broad-suite state, CHK-051 temp cleanup audit, and CHK-064 numeric latency benchmark. Additionally noted in this reconciliation pass: `post-merge`/`post-rewrite` are code-complete and tested but not yet installed into this repo's live `.git/hooks/` (CHK-068 note) -- an operational/deployment gap, not a code gap.
+Open completion gaps: CHK-010 lint baseline, CHK-011 clean broad-console/broad-suite state, and CHK-051 temp cleanup audit.
 <!-- /ANCHOR:summary -->

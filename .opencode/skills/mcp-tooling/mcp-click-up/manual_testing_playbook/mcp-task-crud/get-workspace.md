@@ -34,13 +34,13 @@ Verify `clickup_get_workspace` returns workspace object with ID matching CLICKUP
 ### Recommended Orchestration Process
 
 PRE: MCP configured with valid CLICKUP_TEAM_ID.
-1. Code Mode: `clickup.clickup_get_workspace({})`
+1. Code Mode: `clickup_official.clickup_official_clickup_get_workspace({})`
 2. `bash: jq '.id' <<< "$RESULT"`  # → CLICKUP_TEAM_ID
 3. Verify returned ID matches configured CLICKUP_TEAM_ID
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| MCP-H006 | Get Workspace via MCP — CRITICAL PATH | Verify `clickup_get_workspace` returns workspace object | `Get workspace details via MCP and confirm workspace ID.` | MCP returns JSON with workspace `id` matching CLICKUP_TEAM_ID; workspace name pr | PASS if returned workspace `id` matches configured CLICKUP_TEAM; FAIL if 401 auth error OR workspace `id` missing OR mismatch | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| MCP-H006 | Get Workspace via MCP — CRITICAL PATH | Verify `clickup_get_workspace` returns workspace object with ID matching CLICKUP_TEAM_ID | `Get workspace details via MCP and confirm workspace ID.` | 1. Code Mode: `clickup_official.clickup_official_clickup_get_workspace({})` 2. `bash: jq '.id' <<< "$RESULT"`  # → CLICKUP_TEAM_ID 3. Verify returned ID matches configured CLICKUP_TEAM_ID | MCP returns JSON with workspace `id` matching CLICKUP_TEAM_ID; workspace name present; exit 0. | Code Mode response + terminal output of the verification step(s) above | PASS if returned workspace `id` matches configured CLICKUP_TEAM_ID; FAIL if 401 auth error OR workspace `id` missing OR mismatch | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -50,15 +50,15 @@ PRE: MCP configured with valid CLICKUP_TEAM_ID.
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/mcp-high-priority/get-workspace.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/mcp-high-priority/get-workspace.md`](../../feature_catalog/mcp-high-priority/get-workspace.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

@@ -118,6 +118,8 @@ describe('prompt-pack', () => {
       state_paths_registry: '.opencode/skills/system-deep-loop/deep-research/runtime/registry.json',
       state_paths_iteration_pattern: '.opencode/skills/system-deep-loop/deep-research/runtime/iteration-002.md',
       state_paths_delta_pattern: '.opencode/skills/system-deep-loop/deep-research/runtime/deltas/iter-002.jsonl',
+      pivot_lineage: 'Pivot pivot-1-abc123def456 selected candidate-001 from source iteration 2.',
+      saturated_directions: '- Graph event capture',
     });
 
     const reviewRendered = renderPromptPack(reviewTemplatePath, {
@@ -136,6 +138,8 @@ describe('prompt-pack', () => {
       state_paths_strategy: '.opencode/skills/system-deep-loop/deep-review/assets/deep_review_strategy.md',
       state_paths_iteration_pattern: '.opencode/skills/system-deep-loop/deep-review/runtime/iteration-003.md',
       state_paths_delta_pattern: '.opencode/skills/system-deep-loop/deep-review/runtime/deltas/iter-003.jsonl',
+      pivot_lineage: 'Pivot pivot-1-fed654cba321 selected candidate-001 from source iteration 3.',
+      saturated_directions: '- traceability',
     });
 
     expect(researchRendered).toContain('Research Topic: Deep loop coverage');

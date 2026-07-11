@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Calls the ClickUp API to verify credentials. Returns: authenticated user email, workspace name, workspace ID. Use as the first command in any agent workflow to confirm connectivity.
+Calls the ClickUp API to verify credentials. Prints exactly two lines: the authenticated username and the workspace name — no email address and no workspace ID. Use as the first command in any agent workflow to confirm connectivity.
 
 ---
 

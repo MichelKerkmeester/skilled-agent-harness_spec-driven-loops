@@ -24,7 +24,7 @@ Downloads a task attachment to the current directory. The selector can be a nume
 
 ## 2. HOW IT WORKS
 
-Downloaded file is saved with its original name in the current working directory. If multiple files match a partial name, cupt selects the first match.
+Downloaded file is saved with its original name in the current working directory (or `--output` path, if given). If a partial name matches more than one attachment, cupt raises an error instead of guessing — use the 1-based index from `cupt attach list`, or a substring specific enough to match exactly one file.
 
 ---
 

@@ -10,7 +10,8 @@ vi.mock('node:child_process', () => ({
   execFile: mockedBridge.execFile,
 }));
 
-import mkCodeGraphPlugin, { parseTransportPlan } from '../../../../plugins/mk-code-graph.js';
+import mkCodeGraphPlugin from '../../../../plugins/mk-code-graph.js';
+import { parseTransportPlan } from '../../../system-code-graph/mcp_server/plugin_bridges/mk-code-graph-transport.mjs';
 
 function buildBridgeResponse() {
   return JSON.stringify({
@@ -139,12 +140,11 @@ describe('mk-code-graph plugin', () => {
     expect(secondOutput.system[0]).toContain('OpenCode Startup Digest');
   });
 
-  it('exports the plugin function and parser contract helper', async () => {
+  it('exports only the default plugin factory so the loader treats nothing else as a plugin', async () => {
     const pluginModule = await import('../../../../plugins/mk-code-graph.js');
 
-    expect(Object.keys(pluginModule).sort()).toEqual(['default', 'parseTransportPlan']);
+    expect(Object.keys(pluginModule).sort()).toEqual(['default']);
     expect(pluginModule.default).toBeTypeOf('function');
-    expect(pluginModule.parseTransportPlan).toBeTypeOf('function');
   });
 
   // SKIP: requires live opencode bridge executable behavior — defer to integration env
@@ -167,8 +167,8 @@ describe('mk-code-graph plugin', () => {
     expect(plan?.messagesTransform.length).toBeGreaterThan(0);
   });
 
-  it('does not return a null hook if the legacy plugin loader invokes the parser export', () => {
-    expect(parseTransportPlan({ directory: process.cwd() } as never)).toEqual({});
+  it('returns null for non-string parser input', () => {
+    expect(parseTransportPlan({ directory: process.cwd() } as never)).toBeNull();
   });
 
   it('adds schema-aligned synthetic text parts and avoids duplicates', async () => {
@@ -240,7 +240,7 @@ describe('mk-code-graph plugin', () => {
 
     await hooks.event?.({
       event: {
-        type: 'session.updated',
+        type: 'session.deleted',
         properties: {
           info: {
             id: 's3',
@@ -298,24 +298,36 @@ describe('mk-code-graph plugin', () => {
   it('emits a stderr diagnostic when bridge stdout cannot be parsed as a transport plan', async () => {
     const stderrWrite = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
     mockBridgeSuccess(JSON.stringify({ status: 'ok', data: {} }));
+    // The bridge-skip diagnostic stays silent unless debug output is opted in,
+    // so exercise the stderr path under the debug flag while still asserting the
+    // failure surfaces through the status tool regardless.
+    const prevDebug = process.env.MK_CODE_GRAPH_DEBUG;
+    process.env.MK_CODE_GRAPH_DEBUG = '1';
 
     const hooks = await mkCodeGraphPlugin({ directory: process.cwd() }, { cacheTtlMs: 5000 });
     const output = { system: [] as string[] };
 
-    await hooks['experimental.chat.system.transform']?.(
-      { sessionID: 's-missing-transport', model: { id: 'test-model' } as never },
-      output,
-    );
+    try {
+      await hooks['experimental.chat.system.transform']?.(
+        { sessionID: 's-missing-transport', model: { id: 'test-model' } as never },
+        output,
+      );
 
-    expect(output.system).toHaveLength(0);
-    expect(stderrWrite).toHaveBeenCalledWith(
-      expect.stringContaining('Bridge response missing data.opencodeTransport; plugin injection will no-op'),
-    );
+      expect(output.system).toHaveLength(0);
+      expect(stderrWrite).toHaveBeenCalledWith(
+        expect.stringContaining('Bridge response missing data.opencodeTransport; plugin injection will no-op'),
+      );
 
-    const status = await hooks.tool?.mk_code_graph_status.execute({});
-    expect(status).toContain('runtime_ready=false');
-    expect(status).toContain('last_runtime_error=Bridge response missing data.opencodeTransport; plugin injection will no-op');
-
-    stderrWrite.mockRestore();
+      const status = await hooks.tool?.mk_code_graph_status.execute({});
+      expect(status).toContain('runtime_ready=false');
+      expect(status).toContain('last_runtime_error=Bridge response missing data.opencodeTransport; plugin injection will no-op');
+    } finally {
+      if (prevDebug === undefined) {
+        delete process.env.MK_CODE_GRAPH_DEBUG;
+      } else {
+        process.env.MK_CODE_GRAPH_DEBUG = prevDebug;
+      }
+      stderrWrite.mockRestore();
+    }
   });
 });

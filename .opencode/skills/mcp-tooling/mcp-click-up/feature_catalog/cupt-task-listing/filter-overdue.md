@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Returns tasks whose due date is before today and status is not closed. Server-side filter.
+Returns tasks whose due date is before the current instant — not before the start of today — and status is not closed; a task due earlier today is included. Server-side filter.
 
 ---
 

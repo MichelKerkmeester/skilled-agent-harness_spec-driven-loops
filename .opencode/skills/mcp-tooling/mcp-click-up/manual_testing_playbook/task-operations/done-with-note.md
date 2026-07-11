@@ -39,9 +39,9 @@ PRE: Use a throwaway test task only.
 3. `cupt done TASK_ID --note 'Processed by agent test'`  # → mark complete
 4. `cupt notes TASK_ID`  # → verify note appears
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-025 | Complete Task with Note | Verify `cupt done TASK_ID --note text` marks task compl | `Complete task TASK_ID and add the note 'Processed by ag` | Step 3: confirmation message and exit 0. Step 4: note with 'Processed by agent t | PASS if task status is closed in ClickUp AND note appears in ta; FAIL if task not closed OR note missing from comments | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-025 | Complete Task with Note | Verify `cupt done TASK_ID --note text` marks task complete AND adds comment in one call | `Complete task TASK_ID and add the note 'Processed by agent test'.` | 1. `cupt statuses TASK_ID`  # → discover closed status 2. `cupt done TASK_ID --dry-run`  # → verify dry-run works 3. `cupt done TASK_ID --note 'Processed by agent test'`  # → mark complete 4. `cupt notes TASK_ID`  # → verify note appears | Step 3: confirmation message and exit 0. Step 4: note with 'Processed by agent test' appears in output. | Terminal output of the command sequence above | PASS if task status is closed in ClickUp AND note appears in task comments; FAIL if task not closed OR note missing from comments | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -51,15 +51,15 @@ PRE: Use a throwaway test task only.
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-task-completion/complete-with-note.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-task-completion/complete-with-note.md`](../../feature_catalog/cupt-task-completion/complete-with-note.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

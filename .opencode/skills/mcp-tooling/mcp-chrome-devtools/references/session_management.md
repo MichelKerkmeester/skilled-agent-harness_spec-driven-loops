@@ -235,59 +235,45 @@ check_session_health
 
 ## 6. MULTI-SESSION MANAGEMENT
 
-### Concurrent Sessions Pattern
+### Sequential Session Labeling (No True Concurrency)
+
+Live `bdg 0.6.10 --help` exposes one global `status` / `stop` lifecycle with no session-id, name, or selector option. A locally-tracked bash label does not select a specific bdg session: every `bdg status` / `bdg stop` call still targets the single active session, so two "tracked" sessions started back to back are not actually isolated from each other, and the second `bdg <url>` replaces the first. Label sessions for reporting only, and fully finish one (start, verify, use, stop) before starting the next. For true parallel browser control, use the `mcp-tooling/mcp-chrome-devtools` MCP surface's multiple registered instances (see `SKILL.md`) instead of the `bdg` CLI.
 
 ```bash
 #!/bin/bash
-# Manage multiple browser sessions concurrently
+# Label sessions for reporting, but process them one at a time.
+# bdg has exactly one active session; there is no selector to address a
+# specific labeled session once it is running.
 
-# Session tracking
+# Session tracking (label -> url, for reporting only)
 declare -A SESSIONS
 
-start_tracked_session() {
+run_labeled_session() {
   local name=$1
   local url=$2
 
   echo "Starting session: $name"
   bdg "$url" 2>&1
-
-  # Store session metadata
   SESSIONS[$name]="$url"
 
-  # Verify
   if bdg status 2>&1 | grep -q "active"; then
     echo "✓ Session $name active"
   else
     echo "✗ Session $name failed"
     unset SESSIONS[$name]
+    return 1
   fi
+
+  # ... do the work for this session here, before it is stopped ...
+
+  echo "Stopping session: $name"
+  bdg stop 2>&1
+  unset SESSIONS[$name]
 }
 
-stop_tracked_session() {
-  local name=$1
-
-  if [ -n "${SESSIONS[$name]}" ]; then
-    echo "Stopping session: $name"
-    bdg stop 2>&1
-    unset SESSIONS[$name]
-  else
-    echo "No session found: $name"
-  fi
-}
-
-list_sessions() {
-  echo "Active sessions:"
-  for name in "${!SESSIONS[@]}"; do
-    echo "  - $name: ${SESSIONS[$name]}"
-  done
-}
-
-# Usage
-start_tracked_session "production" "https://example.com"
-start_tracked_session "staging" "https://staging.example.com"
-list_sessions
-stop_tracked_session "production"
-stop_tracked_session "staging"
+# Usage: fully start, use, and stop one session before starting the next
+run_labeled_session "production" "https://example.com"
+run_labeled_session "staging" "https://staging.example.com"
 ```
 
 ### Sequential Session Processing

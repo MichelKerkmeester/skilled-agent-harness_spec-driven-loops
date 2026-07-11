@@ -14,7 +14,10 @@
       "mk-deep-loop-guard remediation",
       "mk-deep-loop-guard fixes",
       "mk-deep-loop-guard bug fixes",
-      "opencode plugin remediation"
+      "opencode plugin remediation",
+      "deep-loop dispatch guard",
+      "implementation summary",
+      "claude task dispatch guard hook"
     ],
     "key_topics": [
       "mk-deep-loop-guard",
@@ -22,24 +25,28 @@
       "bug",
       "opencode",
       "plugin",
-      "audit",
-      "packet",
-      "surfaced",
-      "confirmed",
-      "findings",
+      "deep-loop",
+      "dispatch",
+      "guard",
+      "implementation",
+      "summary",
       "claude",
-      "hook"
+      "task"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
       ".opencode/plugins/mk-deep-loop-guard.js",
       ".claude/settings.json",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+      ".opencode/skills/system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs",
       ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
+      ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
       "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -55,9 +62,27 @@
         "source": "derived"
       },
       {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "task-dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/hooks/claude/task-dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
         "name": "mk-deep-loop-guard.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-task-dispatch-guard.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/claude-task-dispatch-guard.test.cjs",
         "source": "derived"
       },
       {
@@ -82,6 +107,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -161,47 +192,25 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Deep Route",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 13 confirmed findings in `mk-deep-loop-guard` and its Claude hook version (6 P1 / 5 P2 / 2 refinement)",
     "created_at": "2026-07-10T11:42:17.733Z",
-    "last_save_at": "2026-07-10T11:42:17.733Z",
+    "last_save_at": "2026-07-10T20:20:12.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05738894c72f16d2ba6512ca9c4b47b682795306723f0f5f969c6efe826948f1",
+    "source_fingerprint": "sha256:ee007f011f90724c6c97a0205d3944baf524922d76bbebd2de4f15879501cdbc",
     "source_doc_hashes": {
       "spec.md": "bcf32ede09868bee67cc91bdc085ced1ef69281c16853464260808c3ffa30497",
       "plan.md": "0763c7386ed5852d7dd6a0d8bbac22aeb6cc970681c7e130fa782473807da834",
-      "tasks.md": "4bd9e43ea01d22511d582d1cb2c4a0c7dcc13b322564c9159d07f0f27a14359a"
+      "tasks.md": "5b52153893b1b9fd982658a44e4d2661f8c26a2a9a605eb62805f3335544fd68",
+      "implementation-summary.md": "e02313286bc64306020bd189aca7d7767998875998c7ccea515cc921011df47b"
     },
     "last_active_child_id": null,
     "last_active_at": null

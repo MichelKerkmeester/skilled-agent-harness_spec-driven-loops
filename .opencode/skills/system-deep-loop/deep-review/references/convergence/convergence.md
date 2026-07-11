@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.21
+version: 1.11.0.22
 ---
 
 # Deep Review Convergence
@@ -89,6 +89,27 @@ When implemented, STOP must not be legal until the review report contains a clos
 ### Shared Stop Contract
 
 Every terminal stop and every blocked-stop vote MUST emit the shared stop contract from REQ-001: a named `stopReason` enum plus, when STOP is vetoed, a `blocked_stop` event written to `deep-review-state.jsonl`. There is no nested `legalStop` wrapper on the persisted path. Earlier drafts of this document implied one, and that drift was the source of F009 in the 042 closing audit.
+
+### Convergence Modes
+
+The shared convergence runtime accepts four values. Review legality, security gates, target authority, and verdict derivation remain owned by the review workflow rather than the convergence mode.
+
+| Mode | Live Behavior |
+|------|---------------|
+| `default` | Uses normal full-history convergence signals and sends a legal STOP to synthesis and verdict derivation. This is the fallback when no mode is supplied. |
+| `off` | Is accepted and persisted, but the shipped review YAML has no `off` decision branch; review therefore follows the same legal-stop and synthesis path as `default`. Use `stopPolicy: "max-iterations"` when convergence must remain telemetry-only until the iteration ceiling. |
+| `sliding-window` | Is accepted and persisted, but windowed graph-novelty telemetry is research-only in the shared runtime; review therefore retains its ordinary full-history signals, legal-stop gates, and synthesis path. |
+| `divergent` | After all review gates pass, translates the eligible `all_dimensions_clean` STOP into a read-only three-seat direction-selection pivot and continues with the selected review direction. |
+
+#### Divergent Pivot Contract
+
+Review has one eligible reason: the exact internal reason `all_dimensions_clean` with decision `STOP`. The nine legal-stop gates run before the divergent branch and remain unchanged. `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `error`, `manualStop`, and `userPaused` are explicitly excluded. Max iterations, pause or cancellation, manual stop, unrecoverable error, and any blocked security or quality gate therefore never dispatch a pivot Council.
+
+Each eligible pivot runs one native, in-process Council round with exactly three distinct seats: analytical, critical, and pragmatic. It does not use an external CLI. The transaction requires all three seat returns to be parse-valid and at least two seats to materially endorse the same candidate without a high-severity blocker. Candidate sources are persisted unswept dimensions, search debt, producer-consumer gaps, negative-test gaps, and traceability gaps. Candidate generation rejects directions without in-scope evidence and directions that imply implementation, a fix, mutation, writing, or target expansion.
+
+The guarantees are absolute: divergent mode never changes the PASS/CONDITIONAL/FAIL mapping, never authorizes a fix, and never makes the review target writable. A successful pivot returns to the loop before `phase_synthesis`; verdict computation exists only inside `phase_synthesis`, where active P0 yields FAIL, active P1 yields CONDITIONAL, and no active P0/P1 yields PASS. A failed pivot fails closed to that existing synthesis path.
+
+Every pivot dispatches three seats, so a run that pivots has proportionally higher model cost and duration than the same run under `default`, `off`, or `sliding-window`. Pivot evidence is isolated under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, including config, append-only state, three seat artifacts, deliberation, and report. This path is distinct from ordinary planning Council artifacts under a spec packet's `ai-council/**` tree.
 
 #### stopReason Enum
 

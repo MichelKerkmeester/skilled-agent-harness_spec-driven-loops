@@ -24,13 +24,13 @@ Multi-page workflows are how operators run a "navigate / read / navigate again /
 
 Operators run the exact prompt and command sequence for `BDG-016` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify two pages can be opened in `chrome_devtools_1`; `close_page` succeeds for the first; `select_page` succeeds for the second; and `take_screenshot` on the surviving page returns base64 of length > 1000.
+- Objective: Verify two pages can be opened in `chrome_devtools_1`; `close_page` succeeds for the first; `select_page` succeeds for the second; and `take_screenshot` on the surviving page, given an explicit `filePath`, writes a valid PNG to disk.
 - Real user request: `"Open two tabs in chrome_devtools_1, close the first one, and screenshot the second."`
 - RCAF Prompt: `As a manual-testing orchestrator, open 2 pages in chrome_devtools_1, close the first, and confirm the second is still accessible through Code Mode against the chrome_devtools_1 MCP instance. Verify select_page can switch back to the surviving page. Return a concise user-facing pass/fail verdict with the main reason.`
-- Expected execution process: navigate first page; open second page via `new_page`; close first via `close_page`; select second via `select_page`; screenshot.
-- Expected signals: 2 page IDs allocated; close returns success for the first ID; select returns success for the second ID; screenshot returns base64 length > 1000.
-- Desired user-visible outcome: A short report listing both page IDs, the closed page, and the surviving screenshot byte length with a PASS verdict.
-- Pass/fail: PASS if all four signals hold; FAIL if any step throws or the surviving screenshot returns empty/short payload.
+- Expected execution process: navigate first page; open second page via `new_page`; close first via `close_page`; select second via `select_page`; screenshot with an explicit `filePath`; verify the written file in a separate shell step (Code Mode's V8 sandbox has no filesystem access).
+- Expected signals: 2 page IDs allocated; close returns success for the first ID; select returns success for the second ID; the screenshot file exists, is non-empty, and has PNG magic bytes.
+- Desired user-visible outcome: A short report listing both page IDs, the closed page, and the surviving screenshot file path and size with a PASS verdict.
+- Pass/fail: PASS if all four signals hold; FAIL if any step throws or the surviving screenshot file is missing or empty.
 
 ---
 
@@ -51,24 +51,24 @@ Operators run the exact prompt and command sequence for `BDG-016` and confirm th
    const id2 = (p2 as any)?.pageId ?? (p2 as any)?.id;
    await chrome_devtools_1.chrome_devtools_1_close_page({ pageId: id1 });
    await chrome_devtools_1.chrome_devtools_1_select_page({ pageId: id2 });
-   const shot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
-   return { id1, id2, shotLen: (shot?.data ?? shot)?.length ?? 0 };
+   const shot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({ filePath: '/tmp/bdg-016-screenshot.png' });
+   return { id1, id2, shot };
    ```
-3. Assert: both IDs distinct; `shotLen > 1000`
+3. `bash: ls -la /tmp/bdg-016-screenshot.png && xxd /tmp/bdg-016-screenshot.png | head -1` — confirm the file exists, is non-empty, and starts with the PNG magic bytes `89 50 4e 47`
 
 ### Expected
 
-- Step 2: both `id1` and `id2` are non-empty and distinct; close + select succeed without throwing
-- Step 3: `shotLen > 1000`
+- Step 2: both `id1` and `id2` are non-empty and distinct; close + select + screenshot succeed without throwing
+- Step 3: file exists, size > 0, first bytes are the PNG magic number `89 50 4e 47`
 
 ### Evidence
 
-Capture the Code Mode script, both page IDs, and the surviving screenshot byte length.
+Capture the Code Mode script, both page IDs, and the `ls -la` / `xxd` output for the surviving screenshot file.
 
 ### Pass / Fail
 
-- **Pass**: two distinct page IDs allocated AND close succeeds AND select succeeds AND `shotLen > 1000`.
-- **Fail**: `new_page` or `close_page` throws (cross-reference CM-014 Chrome via CM); select fails; surviving screenshot returns short payload (page may have been closed by mistake — verify ID handling).
+- **Pass**: two distinct page IDs allocated AND close succeeds AND select succeeds AND the surviving screenshot file exists, is non-empty, and has PNG magic bytes.
+- **Fail**: `new_page` or `close_page` throws (cross-reference CM-014 Chrome via CM); select fails; the surviving screenshot file is missing or empty (the page may have been closed by mistake — verify ID handling).
 
 ### Failure Triage
 

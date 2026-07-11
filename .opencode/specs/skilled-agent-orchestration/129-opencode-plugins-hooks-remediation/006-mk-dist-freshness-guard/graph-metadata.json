@@ -14,7 +14,10 @@
       "mk-dist-freshness-guard remediation",
       "mk-dist-freshness-guard fixes",
       "mk-dist-freshness-guard bug fixes",
-      "opencode plugin remediation"
+      "opencode plugin remediation",
+      "dist freshness guard implementation",
+      "build attestation freshness",
+      "implementation summary"
     ],
     "key_topics": [
       "mk-dist-freshness-guard",
@@ -22,31 +25,39 @@
       "bug",
       "opencode",
       "plugin",
-      "audit",
-      "packet",
-      "surfaced",
-      "confirmed",
-      "findings",
-      "claude",
-      "hook"
+      "dist",
+      "freshness",
+      "guard",
+      "implementation",
+      "attestation",
+      "summary",
+      "audit"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
       ".opencode/plugins/mk-dist-freshness-guard.js",
+      "fix-design/fix-design.md",
       ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       ".opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh",
       ".opencode/skills/sk-code/code-quality/scripts/check-dist-staleness.sh",
-      "fix-design/fix-design.md",
+      "scripts/finalize-dist.mjs",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "mk-dist-freshness-guard.js",
         "kind": "code",
         "path": ".opencode/plugins/mk-dist-freshness-guard.js",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -68,9 +79,9 @@
         "source": "derived"
       },
       {
-        "name": "fix-design.md",
-        "kind": "doc",
-        "path": "fix-design/fix-design.md",
+        "name": "finalize-dist.mjs",
+        "kind": "file",
+        "path": "scripts/finalize-dist.mjs",
         "source": "derived"
       },
       {
@@ -89,6 +100,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -174,35 +191,25 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 12 confirmed findings in `mk-dist-freshness-guard` and its Claude hook version (5 P1 / 2 P2 / 5 refinement)",
     "created_at": "2026-07-10T11:42:17.907Z",
-    "last_save_at": "2026-07-10T11:42:17.907Z",
+    "last_save_at": "2026-07-10T20:17:27.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:daff008b9f2cec95ee414c0175270ea5253f3caa66b54b5fe6dcde3f9a602d23",
+    "source_fingerprint": "sha256:9ef918570c685bd60a6a1e408ee983b557b8f4fbf4f91b0e104514da4f30335d",
     "source_doc_hashes": {
       "spec.md": "22de3667dc7d9e03c69f3e8a315bc766c8ef0447d93fd66beb927281d20c14d2",
       "plan.md": "293be20b55a1c900e4cb1a5e5802296bd05d359afc822eb0a3004c3d22a5eb4d",
-      "tasks.md": "58b15d534c204542e8291e5252e078989a7c913e8429705428f052d3230cf492"
+      "tasks.md": "f417a0d31c5ea3ff1aed0ec4355031496d01ce66dce81143affe122930bd8afa",
+      "implementation-summary.md": "4d32775cfbaf081fd11c741b36982feb037c38e3535f1a7a80ca329d408aef5f"
     },
     "last_active_child_id": null,
     "last_active_at": null

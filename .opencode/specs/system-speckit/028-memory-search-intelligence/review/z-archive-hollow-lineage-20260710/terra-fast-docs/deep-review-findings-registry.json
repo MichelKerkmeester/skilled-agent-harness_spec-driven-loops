@@ -1,0 +1,22 @@
+{
+  "sessionId": "fanout-terra-fast-docs-1783697737994-pvja60",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"Root phase map omits eighteen physical direct children","file":"spec.md","line":114,"firstSeen":1,"lastSeen":9},
+    {"findingId":"F002","severity":"P1","category":"traceability","status":"active","dimension":"traceability","title":"Data-quality index gives incompatible current states for phases 051-053","file":"002-spec-data-quality/SUMMARY.md","line":64,"firstSeen":3,"lastSeen":10},
+    {"findingId":"F003","severity":"P1","category":"maintainability","status":"active","dimension":"maintainability","title":"Migration bridge retains an obsolete top-level roster","file":"context-index.md","line":41,"firstSeen":4,"lastSeen":10},
+    {"findingId":"F004","severity":"P2","category":"maintainability","status":"active","dimension":"correctness","title":"Surface-alignment child uses a stale phase number in its heading","file":"005-speckit-surface-alignment/spec.md","line":32,"firstSeen":5,"lastSeen":5}
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {"correctness":true,"security":true,"traceability":true,"maintainability":true},
+  "findingsBySeverity": {"P0":0,"P1":3,"P2":1},
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.7,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

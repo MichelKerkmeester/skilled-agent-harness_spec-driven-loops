@@ -84,41 +84,53 @@ claude -p "Debug this error in @src/auth/handler.ts: [paste error]" \
 claude -p "Map the dependency graph for src/" \
   --agent context --permission-mode plan --output-format text 2>&1 > /tmp/context-map.txt
 
-# Agent with cost control
+# Agent with cost control (no dedicated speckit agent -- markdown handles spec-doc authoring)
 claude -p "Generate spec documentation for the new feature" \
-  --agent speckit --max-budget-usd 0.50 --output-format text 2>&1
+  --agent markdown --max-budget-usd 0.50 --output-format text 2>&1
 ```
 
 ### Agent Definition Structure
 
-Each agent is defined in a `.md` file in `.opencode/agents/`:
+Each agent is defined in a `.md` file in `.claude/agents/` (the Claude Code runtime directory — NOT `.opencode/agents/`, which is the OpenCode runtime's own directory; both are kept in sync by the repo's agent-mirror-sync CI check, but Claude Code itself resolves from `.claude/agents/`):
 
 ```
-.opencode/agents/
-├── context.md        # Read-only codebase exploration
-├── debug.md          # Systematic debugging
-├── orchestrate.md    # Multi-agent coordination
-├── research.md       # Evidence gathering
-├── review.md         # Code review, security audits
-├── ai-council.md    # Multi-strategy planning
-└── write.md          # Documentation generation
+.claude/agents/
+├── ai-council.md       # Multi-strategy planning (scoped-write: ai-council/** only)
+├── code.md             # Application-code implementation via sk-code
+├── context.md          # Read-only codebase exploration
+├── debug.md            # Systematic debugging
+├── deep-improvement.md # Proposal-only agent-improvement candidates (command-owned)
+├── deep-research.md    # Single-iteration deep research (command-owned)
+├── deep-review.md      # Single-iteration deep review (command-owned)
+├── design.md           # UI/design work via sk-design
+├── markdown.md         # Template-first markdown/documentation execution
+├── orchestrate.md      # Multi-agent coordination
+├── prompt-improver.md  # Dispatch-ready prompt packages (command-owned)
+└── review.md           # Code review, security audits
 ```
+
+There is no `handover.md`, `research.md`, `speckit.md`, or `write.md` in the current roster.
 
 ---
 
 ## 3. CLAUDE CODE AGENT CATALOG
 
-### Agent Roster (10 Agents)
+### Agent Roster (12 Agents)
 
 | Agent | Permission Mode | Purpose | Use When |
 |-------|-----------------|---------|----------|
 | `context` | `plan` (read-only) | Read-only codebase exploration, file discovery, pattern analysis | You need to understand code structure, dependencies, or patterns before implementing |
 | `debug` | default | Systematic debugging, root cause analysis, fresh perspective | Calling AI's debugging attempts failed; need independent root cause analysis |
 | `orchestrate` | `plan` (read-only) | Multi-agent coordination, complex workflow decomposition | Running multiple Claude Code agents for interconnected tasks |
-| `research` | default | Evidence gathering, feasibility analysis, technical investigation | Need current best practices, technical comparisons, or feasibility assessment |
+| `deep-research` | default | Evidence gathering, feasibility analysis, comparative technical investigation | Need current best practices, technical comparisons, or feasibility assessment. Command-owned by `/deep:research` for iterative loops; a single ad-hoc dispatch is fine for a one-shot comparison |
 | `review` | `plan` (read-only) | Code review, security audits, quality scoring, architecture review | Second opinion on generated code, architecture, or security posture |
-| `ai-council` | `plan` (read-only) | Multi-strategy planning, diverse reasoning strategies, scored rubric | Complex planning requiring multiple perspectives scored by quality dimensions |
-| `write` | default | Documentation generation, README creation, guide writing | Creating or updating technical documentation, guides, READMEs |
+| `ai-council` | `plan` (planning) + scoped-write to `ai-council/**` | Multi-strategy planning, diverse reasoning strategies, scored rubric | Complex planning requiring multiple perspectives scored by quality dimensions |
+| `markdown` | default | Template-first documentation generation, README creation, guide writing, spec-folder scaffolding | Creating or updating technical documentation, guides, READMEs, or spec docs |
+| `code` | default | Application-code implementation via `sk-code` | Implementing an approved plan; orchestrator-only dispatch |
+| `design` | default | UI/design work via `sk-design` | Interface, foundations, motion, or design-audit work |
+| `deep-review` | default | Single-iteration severity-tagged code review | Command-owned by `/deep:review` — never dispatch directly for the iterative loop |
+| `deep-improvement` | default | Proposal-only agent-improvement candidate generation | Command-owned by `/deep:agent-improvement` — never dispatch directly |
+| `prompt-improver` | default | Dispatch-ready prompt package generation | Command-owned by `/prompt`'s deep-path escalation — never dispatch directly |
 
 ---
 

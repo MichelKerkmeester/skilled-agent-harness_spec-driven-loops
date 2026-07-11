@@ -1,7 +1,7 @@
 ---
 title: "deep-research: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the deep-research skill."
-version: 1.14.0.21
+version: 1.14.0.22
 ---
 
 # deep-research: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 53 deterministic scenarios across 8 categories validating the current `deep-research` skill surface (44 DR-* feature scenarios + 6 CP-* command-flow stress tests + 3 fan-out scenarios). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 54 deterministic scenarios across 8 categories validating the current `deep-research` skill surface (45 DR-* feature scenarios + 6 CP-* command-flow stress tests + 3 fan-out scenarios). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -374,7 +374,7 @@ Expected signals: `renderSparkline()` exists, dashboard output includes `## 5. T
 
 ## 10. CONVERGENCE AND RECOVERY
 
-This category covers 14 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 15 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### DR-011 | Stop on max iterations
 
@@ -427,6 +427,22 @@ Expected signals: `minIterations` defaults to 3, `convergenceMode` defaults to `
 
 #### Test Execution
 > **Feature File:** [DR-055](convergence-and-recovery/anti-convergence-floor.md)
+
+### DR-064 | Divergent convergence mode
+
+#### Description
+
+Verify eligible legal research STOP reasons pivot into a new focus while max iterations and non-divergent modes retain their existing paths.
+
+#### Scenario Contract
+
+Prompt summary: Validate the shipped deep-research divergent convergence branch, hard terminal boundary, and existing-mode isolation.
+
+Expected signals: Only `composite_converged` and `all_questions_answered` are eligible; `maxIterationsReached` is excluded; successful pivots restore `next_focus` and continue; `off`, `default`, and `sliding-window` cannot enter the divergent branch.
+
+#### Test Execution
+
+> **Feature File:** [DR-064](convergence-and-recovery/divergent-convergence-mode.md)
 
 ### DR-014 | Stuck recovery widens focus and continues
 

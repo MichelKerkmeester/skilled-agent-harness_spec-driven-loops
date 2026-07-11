@@ -320,13 +320,13 @@ External runtimes parse the stream incrementally to surface tool calls, partial 
 
 ### State directory
 
-OpenCode persists per-session state under `~/.opencode/state/<session_id>/`. This directory contains:
+OpenCode persists session state in a shared SQLite database and storage tree under `~/.local/share/opencode/`:
 
-- `lock` — present while the session is live
-- `messages.jsonl` — append-only message log
-- `metadata.json` — session metadata (start time, model, agent, share URL)
+- `opencode.db` (`-shm`/`-wal` companions) — the session/message database
+- `storage/` — per-session structured artifacts
+- `snapshot/` — working-tree snapshots
 
-The cli-opencode self-invocation guard probes this directory as the third-layer fallback signal (per ADR-001).
+There is no per-session directory under `~/.opencode/state/<session_id>/` on a standard install — that path does not exist on this runtime layout. To inspect a specific session, use `opencode export <session_id>` (§3) rather than reading files from a state directory. The cli-opencode self-invocation guard's Layer 3 lock-file probe (`~/.opencode/state/<id>/lock`, per ADR-001) targets the older path as a best-effort third layer on top of the env-var and process-ancestry checks; treat it as a heuristic, not a verified-present artifact, on installs where `~/.opencode/state/` does not exist.
 
 ### Share URLs
 
@@ -362,7 +362,7 @@ This reference is pinned to OpenCode v1.3.17. If the live binary reports a diffe
 | `OPENCODE_SERVER_PASSWORD required` | Server enforces basic auth | Pass `-p <password>` or set the env var |
 | `provider/model not found` | Provider not configured | Run `opencode providers` to enumerate, then `auth login <provider>` |
 | Empty output stream | `--format default` with non-TTY parent | Pass `--format json` and parse the event stream |
-| Session never finishes | Tool call hung | Inspect `~/.opencode/state/<session_id>/messages.jsonl` |
+| Session never finishes | Tool call hung | Run `opencode export <session_id>` and inspect the message log it returns |
 | Plugin load crash | Misconfigured plugin | Rerun with `--pure` to bypass all plugins |
 | Self-invocation refused | cli-opencode detected an in-OpenCode runtime | Use a sibling cli-* skill or a fresh shell session — see ADR-001 |
 | `--share` URL leaks | Share infrastructure published a session containing secrets | Operator MUST confirm before publishing per CHK-033 |

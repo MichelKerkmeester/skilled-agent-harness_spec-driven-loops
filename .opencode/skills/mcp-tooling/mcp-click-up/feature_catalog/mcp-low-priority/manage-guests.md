@@ -8,9 +8,15 @@ trigger_phrases:
   - "remove guest access"
   - "contractor workspace access"
 version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # clickup_manage_guests
+
+Add or remove guest users from the workspace. Enterprise feature.
+
+> **Capability status: UNSUPPORTED.** A direct `list_tools()` inventory (`references/mcp_tools.md`) found no guest-management tool on the registered server. Treat this card as an unsupported historical assumption until a fresh `tool_info()`/`list_tools()` capture confirms an exact callable name and schema.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -34,7 +40,7 @@ Use for contractor or client access provisioning. Requires admin-level API token
 
 | File | Layer | Role |
 |------|-------|------|
-| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

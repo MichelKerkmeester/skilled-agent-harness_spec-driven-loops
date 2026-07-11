@@ -130,6 +130,21 @@ Fix all three defects entirely within the presentation/formatting layer: render 
 | `.opencode/commands/memory/search.md` | Modify | Inline result-block templates, default `memory_context` call (`:46`), surface-parity doc note |
 | `.claude/commands/memory/search.md` | Modify | Mirror the same edits (currently byte-identical to the `.opencode/` copy) |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modify | `enforceTokenBudget` min-rows floor, `effectiveBudget` resolution fix, `compactDirectResult`/`minimalResults`/dropped-results field-shape parity |
+
+### Phase R Addendum: Cross-Cutting MCP Public-Contract Parity (Audit Remediation)
+
+`tasks.md`'s Phase R records eight tasks (T021-T028) from the 2026-07-09 10-slice parallel audit of the 028 wave. That audit assigned this packet ownership of cross-cutting MCP public-contract parity work — `memory_context`'s token-budget/envelope truncation contract plus the broader tool-schema/dispatch-parity surface — because no dedicated surface child in the 028 wave carries a `tasks.md` for that work. This extends the packet's scope boundary and files-to-change ledger beyond the P1/P2/P3 presentation-layer scope above:
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Modify | T021: explicit `floorExceededBudget`/`droppedAllResultsReason` states replacing the silent budget-fit claim; T023: shared `toMetadataOnlyContextRow` mapper with `?? r.spec_folder` fallback; T028: `includeConstitutional` consistency fix |
+| `.opencode/skills/system-spec-kit/mcp_server/context-server.ts` | Modify | T022: `resolveEnvelopeTokenBudget()` (`:678`) so the outer envelope honors a handler-validated `memory_context` `tokenBudget` override instead of re-trimming it to the fixed per-tool budget |
+| `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | Modify | T024: advertise `embedder_set.dryRun` in the public MCP schema to match the existing Zod/handler support |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Modify | T024: `dryRun` parity; T025: remove four dead `skill_graph_*` Zod registrations (migrated tools, no dispatcher); T028: `includeConstitutional` added to the public schema |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts` | Modify | T027: complete lagging dispatch-arg interfaces (`EmbedderSetArgs`, `SearchArgs`, `HealthArgs`, `SaveArgs`, `SessionResumeArgs`, `CheckpointCreateArgs`, `CausalStatsArgs`, `IngestStartArgs`) and add compile-time `Assert<HasExactSchemaKeys<...>>` parity assertions |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts` | Modify | T026: drive the real `dispatchTool` for all 41 `TOOL_DEFINITIONS` entries (was 24 of 41, never calling `dispatchTool`), asserting exactly one dispatcher owner per tool name |
+
+Verified against the merged tree (commit `f9afa7a76c`, "fix(spec-kit): 028 Phase R audit remediation"): `floorExceededBudget`/`droppedAllResultsReason` exist in `memory-context.ts`; `resolveEnvelopeTokenBudget` exists in `context-server.ts:678`; `toMetadataOnlyContextRow` exists in `memory-context.ts:1166`; `tool-schemas.ts` advertises `dryRun` for `embedder_set`; `schemas/tool-input-schemas.ts` carries no remaining `skill_graph_*` registrations and lists `includeConstitutional` in its public key sets; `tools/types.ts` defines `Assert`/`HasExactSchemaKeys` and the eight named interfaces; `tests/mcp-tool-dispatch.vitest.ts` asserts `TOOL_DEFINITIONS` has length `41` and calls `dispatchTool(definition.name, ...)` for every entry.
 <!-- /ANCHOR:scope -->
 
 ---

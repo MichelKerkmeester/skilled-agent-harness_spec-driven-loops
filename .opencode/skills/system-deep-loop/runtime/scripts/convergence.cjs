@@ -43,7 +43,7 @@ const DEFAULT_SLIDING_WINDOW_SIZE = 5;
 const MIN_OBSERVATIONS_FLOOR = 1;
 const MIN_OBSERVATIONS_CEILING = 10;
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
-const VALID_CONVERGENCE_MODES = new Set(['default', 'off', 'sliding-window']);
+const VALID_CONVERGENCE_MODES = new Set(['default', 'off', 'sliding-window', 'divergent']);
 
 /**
  * Shared convergence profile schema:
@@ -177,11 +177,11 @@ function parseMinObservationsValue(value, key = 'minObservations') {
 function parseConvergenceModeValue(value, key = 'convergenceMode') {
   if (value === undefined || value === null || value === '') return 'default';
   if (typeof value !== 'string') {
-    throw inputError(`${key} must be "default", "off", or "sliding-window"`);
+    throw inputError(`${key} must be "default", "off", "sliding-window", or "divergent"`);
   }
   const mode = value.trim();
   if (!VALID_CONVERGENCE_MODES.has(mode)) {
-    throw inputError(`${key} must be "default", "off", or "sliding-window"`);
+    throw inputError(`${key} must be "default", "off", "sliding-window", or "divergent"`);
   }
   return mode;
 }
@@ -713,6 +713,7 @@ async function main() {
         nodeCount: 0,
         edgeCount: 0,
       };
+      if (convergenceModeConfig.mode === 'divergent') data.convergenceMode = convergenceModeConfig.mode;
       const payload = { status: 'ok', data, graph_decision: data.decision, graph_decision_json: JSON.stringify(data.decision), graph_signals_json: {}, graph_blockers_json: [], graph_blockers_csv: '', graph_stop_blocked: false, graph_trace_json: [], graph_convergence_score: 0, graph_score_delta: null, graph_score_delta_json: 'null' };
       appendConvergenceObservabilityEvent(db, payload, ns);
       jsonOut(payload);
@@ -840,6 +841,7 @@ async function main() {
       edgeCount: stats.totalEdges,
       lastIteration: stats.lastIteration,
     };
+    if (convergenceModeConfig.mode === 'divergent') data.convergenceMode = convergenceModeConfig.mode;
     if (improvementEffect) data.improvementEffect = improvementEffect;
     if (observationThreshold) data.observationThreshold = observationThreshold;
     const payload = {

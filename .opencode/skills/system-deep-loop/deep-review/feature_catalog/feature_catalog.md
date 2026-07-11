@@ -1,7 +1,7 @@
 ---
 title: "deep-review: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the deep-review review-loop system."
-version: 1.11.0.13
+version: 1.11.0.14
 ---
 
 # deep-review: Feature Catalog
@@ -19,7 +19,7 @@ Use this catalog as the canonical inventory for the live `deep-review` feature s
 | Loop lifecycle | 9 features | `SKILL.md`, `references/protocol/loop_protocol.md`, deep-review workflows, fan-out runtime primitives |
 | State management | 7 features | `references/state/state_format.md`, review packet files, reducer outputs |
 | Review dimensions | 4 features | `assets/review_mode_contract.yaml`, `assets/deep_review_strategy.md` |
-| Severity system | 8 features | `references/convergence/convergence.md`, `references/state/state_format.md`, review contract |
+| Severity system | 9 features | `references/convergence/convergence.md`, `references/state/state_format.md`, review contract, divergent review pivots |
 
 ---
 
@@ -462,6 +462,22 @@ Applies the shared minimum-iteration floor, fail-closed stop policy, runtime cap
 #### Source Files
 
 See [`severity-system/cross-mode-anti-convergence-contract.md`](severity-system/cross-mode-anti-convergence-contract.md) for full implementation and validation file listings.
+
+---
+
+### Divergent convergence mode
+
+#### Description
+
+Turns an eligible clean review STOP into a bounded read-only pivot toward a new in-target review direction.
+
+#### How It Works
+
+After the existing nine legal-stop gates pass, `convergenceMode: "divergent"` translates only `all_dimensions_clean` into a native one-round, three-seat Council transaction. Candidates come from persisted review coverage and search gaps, and mutation-shaped candidates are rejected. A successful selection continues the review; verdict derivation remains exclusively in synthesis and the target remains read-only.
+
+#### Source Files
+
+See [`04--severity-system/divergent-convergence-mode.md`](04--severity-system/divergent-convergence-mode.md) for full implementation and validation file listings.
 
 ---
 

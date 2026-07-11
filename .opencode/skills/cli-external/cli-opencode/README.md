@@ -85,7 +85,7 @@ opencode run --share --port 4096 \
   </dev/null &
 ```
 
-The session runs in a separate state directory under `~/.opencode/state/<session_id>/`, and `--share` publishes a browser-accessible URL.
+The session runs under its own session id in the shared `~/.local/share/opencode/` database (`opencode.db`, `storage/`, `snapshot/`) — inspectable independently via `opencode export <session_id>`, not via a per-session directory — and `--share` publishes a browser-accessible URL.
 
 ---
 
@@ -113,9 +113,9 @@ If the agent reading this skill is already inside OpenCode, the skill refuses to
 
 1. The `$OPENCODE_CONFIG_DIR` env var and any `OPENCODE_*`-prefixed vars, which OpenCode sets on session start.
 2. Process ancestry, where an `opencode` parent in the tree trips the guard.
-3. Lock files under `~/.opencode/state/<id>/lock`, which signal an active session.
+3. A best-effort lock-file probe under `~/.opencode/state/<id>/lock` — a third layer on top of the two above; that path does not exist on every install, so this layer is a heuristic, not a guaranteed signal.
 
-The one exception is an explicit parallel detached request. When the prompt contains "parallel detached", "ablation suite", "worker farm" or "spawn detached", the guard allows the dispatch through because it spawns a separate session id and state directory, not a self-dispatch.
+The one exception is an explicit parallel detached request. When the prompt contains "parallel detached", "ablation suite", "worker farm" or "spawn detached", the guard allows the dispatch through because it spawns a separate session id, not a self-dispatch.
 
 ### Provider Auth Pre-Flight
 

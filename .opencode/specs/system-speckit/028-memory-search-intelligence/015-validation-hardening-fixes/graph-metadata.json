@@ -180,7 +180,7 @@
     ],
     "causal_summary": "F6 — the evidence \"substance\" checker has two live defects, a false-negative loophole and a false-positive regression, both in `evidenceitemhassubstance()` (`check-evidence.sh:30-68`)",
     "created_at": "2026-07-09T15:10:28.777Z",
-    "last_save_at": "2026-07-10T08:09:25.827Z",
+    "last_save_at": "2026-07-10T18:40:30.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,12 +189,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d933e138bb0f75c584e7783ac0fcb3c967b8ea3ca8fa591da96ea16c58849d45",
+    "source_fingerprint": "sha256:dea383bf67ddc3f550bf38c61be172e6ebca385f572a5d9288c06d6e350c95fa",
     "source_doc_hashes": {
       "spec.md": "38513c6d6a185fd4c352053818ffd9cd4a862f2e76b421adf0e101599a08a15b",
-      "plan.md": "3f2cfd6805920e502b4b19a0655cd29a83ba71f42152769a5c922f0d89ead7d7",
+      "plan.md": "d2dd37d615079c0036607e16ea22dc2ba30efea25d1f4a135bec855045766ca7",
       "tasks.md": "45b804d84bdd1778d2c5b9e4f293fec233ad40168a8f51bd8cc63ae45342d9e6",
-      "implementation-summary.md": "20d4f57f0ba5295101866c77d863216e2cf42d01d1269d9e4a0204c3b3822c6b"
+      "implementation-summary.md": "b5f3a287fc11b214a8c9659e204ed6374ad69df085f0a8e4e3ec397fb3465525"
     },
     "last_active_child_id": null,
     "last_active_at": null

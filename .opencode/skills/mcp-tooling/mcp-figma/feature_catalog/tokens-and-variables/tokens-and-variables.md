@@ -18,7 +18,7 @@ version: 1.0.0.2
 
 Manages Figma variables and collections, binds `var:name` references, and visualizes tokens. Reads and binds are read-only or gated; create, bind, set, rename, and visualize change the document; bulk deletes are destructive.
 
-A typical caller lists variables read-only, then creates or binds tokens behind a gate. The dangerous part of this area is the destructive subset: deleting one variable, every variable, or a batch of variables requires an explicit target and a one-line rollback. Token binding uses `var:name` (for example `bg="var:card"`), `var:collection:name` to pin a collection, or `render --collection <name>`.
+A typical caller lists variables read-only, then creates or binds tokens behind a gate. The dangerous part of this area is the destructive subset: deleting a node, or every local variable at once, requires an explicit target and a one-line rollback. Token binding uses `var:name` (for example `bg="var:card"`), `var:collection:name` to pin a collection, or `render --collection <name>`.
 
 ---
 
@@ -30,11 +30,11 @@ A typical caller lists variables read-only, then creates or binds tokens behind 
 
 ### Author tokens
 
-`figma-ds-cli var create <name> <value>` creates a variable, `figma-ds-cli var set|rename <name> ...` sets a value or renames it, `figma-ds-cli var visualize` renders a token visualization, and `figma-ds-cli use|theme <name> [--dry-run]` applies a collection or theme. All of these are MUTATING, and the `--dry-run` form of use/theme is a read-only preview.
+`figma-ds-cli var create <name> -c collection -t type [-v value]` creates a variable (collection and type are required; `-t` is one of `COLOR`, `FLOAT`, `STRING`, `BOOLEAN`; the initial value is optional), `figma-ds-cli var create-batch <json> -c collection` creates many at once, and `figma-ds-cli var visualize` renders a token visualization. `figma-ds-cli use|theme <name> [--dry-run]` applies a collection or theme. All of these are MUTATING, and the `--dry-run` form of use/theme is a read-only preview.
 
 ### Destructive deletes
 
-`figma-ds-cli delete|remove <node-or-var>` deletes a single variable, `figma-ds-cli var delete-all` deletes every variable, and `figma-ds-cli var delete-batch <ids>` deletes a batch by id. All three are DESTRUCTIVE: they require an explicit target, confirmation, and a one-line rollback, and they are never reached through an active-selection fallback.
+`figma-ds-cli delete|remove [nodeId]` deletes a node by id or the current selection. It is node-scoped, not variable-scoped, despite living in the same destructive tier as variable deletion. `figma-ds-cli var delete-all [-c collection]` deletes every local variable, or every variable in one named collection with `-c`. There is no dedicated command to delete a single named variable or an arbitrary batch of variables: `var delete-all` is all-or-nothing (optionally collection-scoped). Both are DESTRUCTIVE: they require an explicit target, confirmation, and a one-line rollback, and they are never reached through an active-selection fallback.
 
 ---
 

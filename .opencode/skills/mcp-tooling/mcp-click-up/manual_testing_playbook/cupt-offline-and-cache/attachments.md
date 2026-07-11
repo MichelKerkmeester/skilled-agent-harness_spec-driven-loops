@@ -36,9 +36,9 @@ Verify `cupt attach list TASK_ID` returns attachment metadata or 'no attachments
 1. `cupt attach list TASK_ID`  # → attachment list or 'no attachments'
 2. Verify exit 0 regardless of whether attachments exist
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-033 | List Attachments | Verify `cupt attach list TASK_ID` returns attachment me | `List all attachments on task TASK_ID.` | File list with names/sizes/dates OR 'no attachments' message; exit 0 either way. | PASS if exit 0 regardless of attachment count; FAIL if exit non-zero even when task exists | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-033 | List Attachments | Verify `cupt attach list TASK_ID` returns attachment metadata or 'no attachments' | `List all attachments on task TASK_ID.` | 1. `cupt attach list TASK_ID`  # → attachment list or 'no attachments' 2. Verify exit 0 regardless of whether attachments exist | File list with names/sizes/dates OR 'no attachments' message; exit 0 either way. | Terminal output of the command sequence above | PASS if exit 0 regardless of attachment count; FAIL if exit non-zero even when task exists | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -48,15 +48,15 @@ Verify `cupt attach list TASK_ID` returns attachment metadata or 'no attachments
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-attachments/list-attachments.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-attachments/list-attachments.md`](../../feature_catalog/cupt-attachments/list-attachments.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

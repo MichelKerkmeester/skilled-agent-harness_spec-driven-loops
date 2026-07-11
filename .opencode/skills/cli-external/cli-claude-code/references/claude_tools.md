@@ -42,10 +42,10 @@ Covers all built-in capabilities of Claude Code CLI, highlights what is unique c
 
 ### Extended Thinking
 
-**Deep chain-of-thought reasoning.** Claude's extended thinking produces detailed internal reasoning before responding, leading to higher quality outputs for complex tasks.
+**Deep extended-thinking reasoning.** Claude's extended thinking produces detailed internal reasoning before responding, leading to higher quality outputs for complex tasks. Do not assume the raw chain-of-thought is exposed verbatim in every output mode — verify against the current `--output-format` and effort-level behavior before relying on internal reasoning being visible.
 
 **Capabilities:**
-- Multi-step logical reasoning with visible chain-of-thought
+- Multi-step logical reasoning with deeper internal deliberation at higher `--effort` levels
 - Complex trade-off analysis across multiple dimensions
 - Architecture design with consideration of constraints and alternatives
 - Root cause analysis that traces through multiple code paths
@@ -69,7 +69,7 @@ claude -p "Analyze the trade-offs of our current caching strategy" \
 - Algorithm design requiring correctness proofs or edge case analysis
 - Technical decisions that will be hard to reverse
 
-**Compared to other CLIs:** OpenCode has reasoning capabilities, but Claude's extended thinking produces explicit, visible chain-of-thought that is especially strong for multi-dimensional trade-off analysis.
+**Compared to other CLIs:** OpenCode has reasoning capabilities via provider-specific `--variant` reasoning effort (its own `--effort`-shaped lever); Claude's `--effort` levels are especially strong for multi-dimensional trade-off analysis, but do not assume its internal reasoning is rendered as visible chain-of-thought without checking the current output mode.
 
 ---
 
@@ -235,41 +235,39 @@ claude -p "Full security audit of the entire src/ directory" \
 
 ### Claude Code vs OpenCode
 
+Every OpenCode-side claim below is sourced from a live `opencode run --help` capture and `cli-opencode/references/cli_reference.md` (both current as of this fix); no claim is carried over unverified from an older comparison.
+
 | Capability | Claude Code | OpenCode |
 |------------|-------------|-----------|
-| **Deep Reasoning** | Extended thinking (`--effort high`) | `xhigh` reasoning effort |
-| **Code Editing** | Edit tool (surgical diff-based) | Workspace-write sandbox |
-| **Structured Output** | `--json-schema` (validated) | Prompt-based JSON |
-| **Read-Only Mode** | `--permission-mode plan` | `--sandbox read-only` |
-| **Web Search** | N/A (use OpenCode) | `--search` flag |
-| **Cost Control** | `--max-budget-usd` | N/A |
-| **Agent System** | 9 agents via `--agent` | 9 agents via `-p` profiles |
-| **Session Continuity** | `--continue`, `--resume` | `resume`, `fork` |
-| **Image Input** | N/A | `--image` / `-i` |
-| **Memory System** | Spec Kit Memory MCP | N/A |
-| **Hooks** | Pre/post tool hooks | N/A |
-| **Model Count** | 3 (opus, sonnet, haiku) | 1 (gpt-5.3-opencode) |
-| **Auth Methods** | API key, OAuth, setup-token | API key, OAuth |
-| **Nesting Guard** | `$CLAUDECODE` env var | N/A |
-| **Non-Interactive** | `-p "prompt"` | `exec "prompt"` |
-| **Review Workflow** | Via `--agent review` | `/review` command (TUI) |
-| **Background Exec** | `& 2>&1` (shell) | `& 2>&1` (shell) |
-| **MCP Support** | Built-in | `opencode mcp` |
+| **Deep Reasoning** | `--effort` (low/medium/high/xhigh/max) | `--variant` (provider-specific reasoning effort — e.g. `high` default on `deepseek-v4-pro`, up to `xhigh` on the `openai/gpt-5.6-*` family) |
+| **Code Editing** | Built-in Edit tool (surgical diff-based) | Workspace-write sandbox via its own agent tool permissions |
+| **Structured Output** | `--json-schema` (schema-validated) | `--format json` newline-delimited event stream (prompt-shaped, not schema-validated) |
+| **Read-Only Mode** | `--permission-mode plan` (session-level flag) | No CLI-level read-only flag; achieved via a read-only agent's own tool permissions (e.g. the `context` subagent) |
+| **Cost Control** | `--max-budget-usd` | No equivalent flag documented for `opencode run` |
+| **Agent System** | 12 agents via `.claude/agents/*.md`, all directly invokable with `--agent <name>` | 12 agents via `.opencode/agents/*.md`, split into 3 classes: primary (`general`, `plan`, `orchestrate` — only `orchestrate` is a project file usable with top-level `--agent`), subagent (`context`, `markdown`, `review`, `debug`, `ai-council` — routed via `--agent orchestrate`, never direct), and command-owned (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver` — dispatched only by their parent `/deep:*` command) |
+| **Session Continuity** | `--continue`/`-c`, `--resume [id]`/`-r`, `--fork-session` | `--continue`/`-c`, `--session <id>`/`-s`, `--fork` (all flags on `opencode run`, not standalone subcommands) |
+| **File Attachment** | `--file <specs...>` (downloads named file resources at startup) | `-f`/`--file <files...>` (attaches files to the message) |
+| **Memory System** | Spec Kit Memory MCP | Also Spec Kit Memory MCP — `cli-opencode` dispatches load the project's full plugin/skill/MCP/Spec Kit Memory runtime, which is the skill's own primary value proposition; this is NOT an area where Claude Code has an advantage |
+| **Hooks** | Pre/post tool-call hooks (configured in settings) | Not documented in the current cli-opencode skill surface — unverified, do not assume absence without checking `opencode`'s own docs |
+| **Model Count** | 3 named tiers (opus, sonnet, haiku), each with dated release ids | Multiple providers, each with several models — `deepseek` (2), `minimax`/`minimax-coding-plan` (1), `xiaomi`/`xiaomi-token-plan-ams` (2), `kimi-for-coding` (1), `zai-coding-plan` (1), `openai` (12 across the base/Sol/Terra/Luna families × base/Fast/Pro tiers) |
+| **Auth Methods** | API key, OAuth, setup-token (CI/CD) | Per-provider `opencode providers login <provider>` / `opencode auth login` (OAuth-style) flows plus API keys |
+| **Nesting Guard** | `$CLAUDECODE` env var + process ancestry + `~/.claude/state/<id>/lock` probe | `OPENCODE_*` env vars + process ancestry + a best-effort `~/.opencode/state/<id>/lock` probe (ADR-001) — OpenCode has its own three-layer guard, not "N/A" |
+| **Non-Interactive** | `-p "prompt"` (print mode) | `opencode run "prompt"` (there is no separate `exec` subcommand) |
+| **Background Exec** | `& 2>&1` (shell) plus the native `--bg`/`claude agents` background-session lifecycle | `& 2>&1` (shell) |
+| **MCP Support** | Built-in, plus `--mcp-config` | `opencode mcp` subcommand for registrations, full runtime load on every `opencode run` dispatch |
 
 ### When to Choose Each
 
 | Need | Best Choice | Why |
 |------|-------------|-----|
-| Deep extended thinking | **Claude Code** | Explicit chain-of-thought with `--effort high` |
+| Deep extended-effort reasoning | **Claude Code** | `--effort high`/`xhigh` with the most explicit reasoning-depth lever for this skill's default model |
 | Surgical code edits | **Claude Code** | Edit tool operates at diff level |
-| Schema-validated JSON | **Claude Code** | `--json-schema` guarantees structure |
-| Read-only exploration | **Claude Code** or **OpenCode** | Both have enforced read-only modes |
-| Live web search | **OpenCode** | `--search` flag; Claude Code lacks web search |
-| Cost-controlled batch ops | **Claude Code** | `--max-budget-usd` built-in |
-| Diff-aware code review | **OpenCode** | `/review` command is diff-native |
-| Multi-model flexibility | **Claude Code** | 3 tiers (opus/sonnet/haiku) |
-| Visual input (screenshots) | **OpenCode** | Supports `--image` |
-| Persistent project memory | **Claude Code** | Spec Kit Memory MCP |
+| Schema-validated JSON | **Claude Code** | `--json-schema` guarantees structure; OpenCode's `--format json` is an event stream, not schema-validated |
+| Read-only exploration | **Claude Code** | `--permission-mode plan` is an explicit CLI flag; OpenCode's read-only guarantee comes from agent-level permissions, not a CLI flag |
+| Cost-controlled batch ops | **Claude Code** | `--max-budget-usd` built-in; no OpenCode equivalent documented |
+| Full project runtime (plugins/skills/MCP/memory) in one dispatch | **OpenCode** | `cli-opencode`'s stated reason to exist — every `opencode run` loads the full project runtime |
+| Multi-model / multi-provider flexibility | **OpenCode** | Many providers and models vs Claude Code's 3 named tiers |
+| Native background-session lifecycle | **Claude Code** | `--bg` plus `claude agents` for managing background sessions, beyond plain shell `&` |
 
 ---
 

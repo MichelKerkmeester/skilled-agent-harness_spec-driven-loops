@@ -16,6 +16,13 @@ Review Target: {review_target}
 Review Scope Files: {review_scope_files}
 Prior Findings: P0={p0_count} P1={p1_count} P2={p2_count}
 
+## PIVOT LINEAGE
+
+{pivot_lineage}
+
+Swept or saturated review directions that MUST NOT be re-entered:
+{saturated_directions}
+
 ## SHARED DOCTRINE
 
 Load `.opencode/skills/sk-code/code-review/references/review_core.md` before final severity calls.
@@ -58,6 +65,7 @@ All paths are relative to the repo root.
 - Target 9 tool calls. Soft max 12, hard max 13.
 - Write ALL findings to files. Do not hold in context.
 - Review target is READ-ONLY. Do not modify reviewed files.
+- Do not re-enter or restate any direction listed as swept or saturated above. The pivot-selected focus is a new read-only review direction, never permission to change the target.
 - Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.
 - **ALLOWED WRITE PATHS (the ONLY paths you may create, modify, or append to)**:
   - `{state_paths_iteration_pattern}`, this iteration's narrative markdown

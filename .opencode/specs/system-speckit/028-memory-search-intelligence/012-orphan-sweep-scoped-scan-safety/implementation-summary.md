@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Orphan Sweep Time Budget & Scoped-Scan Discovery-Gate Parity"
-description: "Status IMPLEMENTED. F1 (orphan-sweep time budget + marker-refresh cadence) and F2 (scoped-scan discovery-gate parity) are both shipped in handlers/memory-index.ts and verified against a real SQLite DB with a DELETE-heavy synthetic orphan backlog. validate.sh --strict PASSED."
+description: "Status IMPLEMENTED. F1 (orphan-sweep time budget + marker-refresh cadence) and F2 (scoped-scan discovery-gate parity) are both shipped in handlers/memory-index.ts and verified against a real SQLite DB with an ENQUEUE-heavy synthetic orphan backlog (the refresh-cadence test exercises the enqueue-page loop, not deleteIndexedRecordIds). validate.sh --strict PASSED."
 trigger_phrases:
   - "orphan sweep time budget"
   - "maintenance marker refresh cadence"
@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/012-orphan-sweep-scoped-scan-safety"
-    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_at: "2026-07-10T19:32:17.000Z"
     last_updated_by: "claude-code"
     recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
     next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
@@ -70,7 +70,7 @@ Inside `runGlobalOrphanSweep()`'s loop:
   `retry-budget.ts`, `content-router.ts`), with defaults **45,000ms** (time budget) and **20,000ms**
   (refresh cadence, matching the maintenance marker's own passive refresh interval), overridable via
   `SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS`/`SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS`. The override exists so a
-  test can shrink both intervals to make a DELETE-heavy real backlog cross the cadence fast and
+  test can shrink both intervals to make an ENQUEUE-heavy real backlog cross the cadence fast and
   deterministically, without needing a production-scale (tens-of-seconds) backlog inside a unit test --
   production behavior is unaffected unless the env vars are explicitly set.
 - `sweepOrphanIndexRows()`, the cursor-persistence functions, and `ORPHAN_SWEEP_LIMIT`/`ORPHAN_SWEEP_MAX_PAGES`
@@ -124,11 +124,11 @@ all changes are in the working tree.
 
 | Decision | Why |
 |----------|-----|
-| F1 time budget = 45,000ms, refresh cadence = 20,000ms, both env-overridable (`SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS`/`SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS`) | 45s leaves 2x headroom under the 90s `MAINTENANCE_MARKER_REFRESH_BEFORE_MS` bound while still letting one invocation clear a sizeable backlog, matching the intent behind the 1000-page cap; 20s matches the marker's own existing passive-refresh interval (`MAINTENANCE_MARKER_REFRESH_MS`), a natural, already-precedented value in the same file. Env-overridability follows an existing 4x-duplicated codebase pattern (`parsePositiveIntEnv`) and is what makes REQ-002's DELETE-heavy real-function test (T007) tractable inside vitest's default 30s test timeout, without changing production behavior when the vars are unset. |
+| F1 time budget = 45,000ms, refresh cadence = 20,000ms, both env-overridable (`SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS`/`SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS`) | 45s leaves 2x headroom under the 90s `MAINTENANCE_MARKER_REFRESH_BEFORE_MS` bound while still letting one invocation clear a sizeable backlog, matching the intent behind the 1000-page cap; 20s matches the marker's own existing passive-refresh interval (`MAINTENANCE_MARKER_REFRESH_MS`), a natural, already-precedented value in the same file. Env-overridability follows an existing 4x-duplicated codebase pattern (`parsePositiveIntEnv`) and is what makes REQ-002's ENQUEUE-heavy refresh-cadence test (T007) tractable inside vitest's default 30s test timeout, without changing production behavior when the vars are unset. |
 | Reuse `ctx.onPhase` for the mid-loop refresh instead of threading a new callback | `runGlobalOrphanSweep()` is already a closure inside `runIndexScan(args, ctx)`, so `ctx.onPhase` is already reachable; for background scans it already resolves to `maintenance.refresh()`, so repeating the same call needs no new plumbing. |
 | F2: Option A (direct predicate import) over Option B (shared helper factored into `memory-index-discovery.ts`) | Both satisfy every REQ/SC per plan.md. Option B would additionally refactor `findSpecDocuments`'s own working, already-tested per-entry gate loop to call the same shared helper -- correct in principle, but it touches code SC-004 explicitly protects (byte-identical full-tree output) for no requirement-level gain. Option A keeps the diff to two new, wholly-additive private functions plus the two construction-site edits, with zero risk to the tree-walker. |
 | Export `runIndexScan` (test-only) rather than testing through the mocked `handleMemoryIndexScan({background:true})` path | plan.md's own Phase 2 task (T007) and Affected-Surfaces table name this exact seam ("a spy on the `onPhase` callback passed into `runIndexScan`'s `ctx`"). The background-job path wires `ctx.onPhase` to `maintenance.refresh()` + `setJobPhase`, which is real but adds an unrelated job-queue dependency; the direct export lets the test spy on `onPhase` with zero extra scaffolding while still exercising the real `runGlobalOrphanSweep()` closure. |
-| DELETE-heavy F1 tests mock only scan-lease/checkpoint/embedding-profile scaffolding, leaving `incremental-index`, `vector-index`, `causal-edges`, `history` all real | REQ-002's corrected acceptance criteria explicitly rejects a scan-only mirror harness and requires the real per-row DELETE cascade (`vectorIndex.deleteMemory` + `causalEdges.deleteEdgesForMemory` + `recordHistory`) to actually run. The four mocked concerns are orthogonal to the orphan-sweep path (none of them are touched by `runGlobalOrphanSweep`) and are the same four mocks every pre-existing test of this handler already applies -- there is no precedent anywhere in this codebase for wiring `core/db-state`'s real lease DI in a unit test, and doing so was judged out of proportion to this packet's two-region diff. |
+| ENQUEUE-heavy F1 refresh-cadence tests mock only scan-lease/checkpoint/embedding-profile scaffolding, leaving `incremental-index`, `vector-index`, `causal-edges`, `history` all real | REQ-002's corrected acceptance criteria explicitly rejects a scan-only mirror harness and requires the real per-row ENQUEUE path (`appendMemoryDriftSuspects`) to actually run across multiple `ORPHAN_SWEEP_LIMIT` pages; this test exercises enqueue only, on a fresh suspect queue, and never calls `deleteIndexedRecordIds`. Delete-cascade confirmation (`deleteIndexedRecordIds` -> `vectorIndex.deleteMemory` + `causalEdges.deleteEdgesForMemory` + `recordHistory`) is a separate code path (`runSuspectConfirmation`, `handlers/memory-index.ts:993-1081`) covered by a different test, not by this refresh-cadence measurement. The four mocked concerns are orthogonal to the orphan-sweep path (none of them are touched by `runGlobalOrphanSweep`) and are the same four mocks every pre-existing test of this handler already applies -- there is no precedent anywhere in this codebase for wiring `core/db-state`'s real lease DI in a unit test, and doing so was judged out of proportion to this packet's two-region diff. |
 <!-- /ANCHOR:decisions -->
 
 ---

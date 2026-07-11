@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Server-side date filter returning only tasks with a due date matching today's date in the workspace timezone.
+Server-side date filter returning tasks due between the current local midnight and the next local midnight, using the machine's local clock — not the workspace timezone.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Search-Index Integrity Sweep [template:level_2/spec.md]"
-description: "RESUMED verification found the core search-index sweep already applied: the final pre-repair backup had 23,322 memory_index rows and the live DB has 13,529 rows, a 9,793-row drop. Completion remains blocked by failing full test suites and remaining enrichment backlog."
+title: "Feature Specification: Search-Index Integrity Sweep"
+description: "RESUMED verification found the core search-index sweep already applied: the final pre-repair backup had 23,322 memory_index rows and the live DB has 13,529 rows, a 9,793-row drop. The 2026-07-10 dedup cleanup and re-embed drain closed the duplicate-identity and enrichment-backlog gaps (0 excess rows, 100% active-shard vector coverage). Completion remains blocked by the broad test suites (still red as of the last recorded run) and by the original bulk sweep's unconfirmed checkpoint_create/checkpoint_restore rehearsal."
 trigger_phrases:
   - "search index integrity sweep"
   - "stale memory index rows"
@@ -14,9 +14,11 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/007-search-index-integrity-sweep"
     last_updated_at: "2026-07-10T08:09:04.000Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
-    next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
-    blockers: []
+    recent_action: "T021 dedup + re-embed drain closed the enrichment-backlog gap 2026-07-10"
+    next_safe_action: "Confirm original-sweep checkpoint evidence and get broad test suites green"
+    blockers:
+      - "Full broad test suites (mcp_server/scripts/system-code-graph) were red/timed-out as of the last recorded run (2026-07-09); no fresher green re-run is on file for this packet."
+      - "The original bulk sweep's own checkpoint_create name and a checkpoint_restore rehearsal remain unconfirmed (CHK-004/CHK-005); the 2026-07-10 dedup step's checkpoint (pre-dedup-canonical-duplicates-20260710) is real but covers only that later mutation."
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/active-row-predicate.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts"
@@ -27,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +54,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Core DB sweep already applied; verification blocked |
+| **Status** | PARTIAL — data-integrity sweep, dedup cleanup, and re-embed drain verified complete; packet completion blocked on broad-test-suite green state and the original sweep's checkpoint_restore rehearsal |
 | **Created** | 2026-07-09 |
 | **Branch** | `007-search-index-integrity-sweep` |
 | **Verdict** | GO — CRITICAL, reviewer-flagged live-result contamination |

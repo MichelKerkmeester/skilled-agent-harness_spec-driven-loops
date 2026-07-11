@@ -29,7 +29,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# 008 — SpecKit Surface Alignment (Remediation)
+# 005 — SpecKit Surface Alignment (Remediation)
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

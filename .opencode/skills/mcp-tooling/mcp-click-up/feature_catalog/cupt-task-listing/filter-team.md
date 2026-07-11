@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Filters tasks by team (user-group) assignment. Runs client-side by fetching all tasks and filtering locally. Multiple `--team` flags use OR logic.
+Filters tasks by team (user-group) assignment. Runs client-side by fetching tasks and filtering locally, bounded to 10 pages (with `--all`) or 15 pages (default self-scope) — the 100-task early exit is suppressed while a team filter is active, but the page cap can still truncate very large result sets before the team filter runs. Multiple `--team` flags use OR logic.
 
 ---
 

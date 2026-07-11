@@ -186,7 +186,7 @@ A: This skill is the transport that reads and writes Figma content. `sk-design` 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
-| [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Install and verify `figma-ds-cli`, the naming-trap warning, and the connect-mode setup (planned) |
+| [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Install and verify `figma-ds-cli`, the naming-trap warning, and the connect-mode setup |
 | [`references/figma_cli_reference.md`](./references/figma_cli_reference.md) | Binary identity, the Node and macOS baseline, the Figma Desktop requirement, connect modes, the daemon model, and command examples |
 | [`references/tool_surface.md`](./references/tool_surface.md) | The read-only, mutating, and destructive command taxonomy, the destructive set, the `eval/raw/run` rule, and the export no-overwrite rule |
 | [`references/mcp_wiring.md`](./references/mcp_wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery, and a `call_tool_chain` example |

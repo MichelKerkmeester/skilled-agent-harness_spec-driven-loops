@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Nobody wired any of this machinery to run without a human typing a command, so drift silently",
     "created_at": "2026-07-09T06:52:38.317Z",
-    "last_save_at": "2026-07-10T08:09:25.237Z",
+    "last_save_at": "2026-07-10T19:44:39.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef961dd4f47b367a408eac0edc3dc750ffdd9fe5a7741bc4886cd8341bb1bb6f",
+    "source_fingerprint": "sha256:5fdbfade763ffde07164a761c85512ca47e82131cd5d051e8844dfd42c2a0e3e",
     "source_doc_hashes": {
-      "spec.md": "77b8ceedd703593fc5b1b477f12c0f2f75262dcba78fddb38924b5768863039a",
-      "plan.md": "1d645aa4cdfdaafdb169a24107482680e5926c7076f19322f36d0fe56df85f5a",
-      "tasks.md": "f59076b38d0c11ca22b37cee91da59e8b83d155363da7bca7613b397a8c41a21",
-      "checklist.md": "b599caed6b9d92d0420c2b36ff11bdd82fa9578761ba4c7437ceda71ebb37a1f",
-      "implementation-summary.md": "1a039d6441bd850ab25fd75f52cf3ab3a63fe13c4a7db2c367c5530e1a141266"
+      "spec.md": "e2deea09d0e16cfc6bc216c09ecc0c18408213dd40f33fbcf142c8c310ac2f8b",
+      "plan.md": "da2bbc0dd1580f4ae2a14d0ddefd7af7a8de57defcce0040c730cb42c26c030c",
+      "tasks.md": "0287a5f171e9e738ba93055a281f8f4835b6904ec3a2787a4141ff3b761059ef",
+      "checklist.md": "6ae970b3e7c0938b0704286fad277075e0cea54c7bd2bae6178e0a3b2b48b417",
+      "implementation-summary.md": "208cb71fac8e4df2731fad8a1673757a31d307e2e74fa16f6810182b29fc7be8"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -12,6 +12,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
+const { pathToFileURL } = require('node:url');
 
 const ROOT = path.resolve(__dirname, '../../..');
 const PLUGIN_PATH = path.join(ROOT, '.opencode', 'plugins', 'mk-code-graph.js');
@@ -23,6 +24,15 @@ const BRIDGE_PATH = path.join(
   'mcp_server',
   'plugin_bridges',
   'mk-code-graph-bridge.mjs',
+);
+const TRANSPORT_PATH = path.join(
+  ROOT,
+  '.opencode',
+  'skills',
+  'system-code-graph',
+  'mcp_server',
+  'plugin_bridges',
+  'mk-code-graph-transport.mjs',
 );
 
 function transportPlan() {
@@ -90,6 +100,10 @@ const isMessageAnchorLike = (anchor) => Boolean(
   anchor && anchor.info && typeof anchor.info.id === 'string'
     && typeof anchor.info.sessionID === 'string' && Array.isArray(anchor.parts),
 );`,
+    )
+    .replace(
+      /from '\.\.\/skills\/system-code-graph\/mcp_server\/plugin_bridges\/mk-code-graph-transport\.mjs';/,
+      `from ${JSON.stringify(pathToFileURL(TRANSPORT_PATH).href)};`,
     )
     .replace(/const BRIDGE_PATH = .*?;/, "const BRIDGE_PATH = '/test/mk-code-graph-bridge.mjs';");
   const instrumented = `${source}\n// Test module identity: ${tag}-${Date.now()}-${Math.random()}\n`;
@@ -216,15 +230,16 @@ test('concurrent cold-cache transforms share one bridge subprocess', async () =>
   assert.ok(outputs.every((output) => output.system.length === 1));
 });
 
-test('transport validation rejects malformed blocks and preserves the parser guard', async () => {
+test('transport validation rejects malformed blocks and keeps the plugin default-export-only', async () => {
   const bridge = immediateExec();
   const { plugin } = await makePlugin(bridge.execFile, {}, 'validation');
   const malformed = transportPlan();
   malformed.messagesTransform = [null];
 
-  assert.equal(plugin.parseTransportPlan(bridgeResponse(malformed)), null);
-  assert.deepEqual(plugin.parseTransportPlan({ directory: ROOT }), {});
-  assert.deepEqual(Object.keys(plugin).sort(), ['default', 'parseTransportPlan']);
+  const { parseTransportPlan } = await import(pathToFileURL(TRANSPORT_PATH).href);
+  assert.equal(parseTransportPlan(bridgeResponse(malformed)), null);
+  assert.equal(parseTransportPlan({ directory: ROOT }), null);
+  assert.deepEqual(Object.keys(plugin).sort(), ['default']);
 });
 
 test('messages transform rejects invalid output containers before bridge work', async () => {
@@ -286,7 +301,7 @@ test('routine events keep warm cache entries while scoped lifecycle events inval
   assert.equal(bridge.calls(), 2);
 });
 
-test('bridge parsed flags omit raw payload and retain the requested scope metadata', async () => {
+test('bridge --minimal omits raw payload and no longer advertises a spec-folder scope', async () => {
   const payload = {
     status: 'ok',
     data: { freshness: 'live', totalFiles: 2, totalNodes: 3, totalEdges: 4 },
@@ -298,11 +313,13 @@ test('bridge parsed flags omit raw payload and retain the requested scope metada
     return child;
   }, 'minimal');
   const parsed = bridge.parseArgs(['--minimal', '--spec-folder', 'specs/example']);
+  assert.equal(parsed.minimal, true);
+  assert.equal(Object.hasOwn(parsed, 'specFolder'), false);
 
   const minimal = await bridge.runCli({ ...parsed, timeoutMs: 500, probeTimeoutMs: 10 });
   assert.equal(minimal.status, 'ok');
   assert.equal(Object.hasOwn(minimal.data, 'codeGraphStatus'), false);
-  assert.equal(minimal.metadata.specFolder, 'specs/example');
+  assert.equal(Object.hasOwn(minimal.metadata, 'specFolder'), false);
   assert.ok(minimal.data.opencodeTransport);
 
   const full = await bridge.runCli({

@@ -208,7 +208,7 @@
     ],
     "causal_summary": "F5 — RESOLVED: two different homes for new feature flags, with opposite default-polarity",
     "created_at": "2026-07-09T15:11:30.263Z",
-    "last_save_at": "2026-07-10T08:09:25.975Z",
+    "last_save_at": "2026-07-10T19:11:43.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f6a4e9d881705175c8c1309dcd601bcb2a51f0ce070860817472d29fa3abfa5",
+    "source_fingerprint": "sha256:f25eed2c91599abe99fead2bc7ad408732310e3accc31fa4c7d0acaffb474d2c",
     "source_doc_hashes": {
-      "spec.md": "717771c1f13de6f0a3f24c733b965da8544689f9ed7c145584c6a5a0587d5216",
+      "spec.md": "bfc2b607e2172bedb890904507f85506b1b46d21e5ed9b16a8f457d847fd3a53",
       "plan.md": "7ce6891915fab28e9eb55d4fbd26b421f23a9354b24903d12ae61d9ce8b81c49",
       "tasks.md": "53353f278528a8602f9f7de00b042959417211ab974bec34a23dfadbf91bea9e",
-      "implementation-summary.md": "675757a3310162981ef6b9e6ea8ff379a79237faa01d6ad2839b199f7d485156"
+      "implementation-summary.md": "4ff4caeb0b8d5ab9ce3ef272c8a6ecd9438185f6be1175ecbe269e6c9ed60169"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -14,7 +14,11 @@
       "mk-code-graph remediation",
       "mk-code-graph fixes",
       "mk-code-graph bug fixes",
-      "opencode plugin remediation"
+      "opencode plugin remediation",
+      "mk-code-graph remediation summary",
+      "mk-code-graph implementation summary",
+      "mk-code-graph fixes shipped",
+      "opencode plugin remediation summary"
     ],
     "key_topics": [
       "mk-code-graph",
@@ -22,25 +26,29 @@
       "bug",
       "opencode",
       "plugin",
+      "summary",
+      "implementation",
+      "shipped",
       "audit",
       "packet",
       "surfaced",
-      "confirmed",
-      "findings",
-      "claude",
-      "hook"
+      "confirmed"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
       ".opencode/plugins/mk-code-graph.js",
+      ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-transport.mjs",
       ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+      "fix-design/fix-design.md",
       ".claude/settings.json",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
-      "fix-design/fix-design.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -50,9 +58,33 @@
         "source": "derived"
       },
       {
+        "name": "mk-code-graph-transport.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-transport.mjs",
+        "source": "derived"
+      },
+      {
         "name": "mk-code-graph-bridge.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fix-design.md",
+        "kind": "doc",
+        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -65,12 +97,6 @@
         "name": "session-prime.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fix-design.md",
-        "kind": "doc",
-        "path": "fix-design/fix-design.md",
         "source": "derived"
       },
       {
@@ -89,6 +115,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -162,47 +194,25 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Claude",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The audit (packet 127) surfaced 13 confirmed findings in `mk-code-graph` and its Claude hook version (3 P1 / 7 P2 / 3 refinement)",
     "created_at": "2026-07-10T11:42:17.415Z",
-    "last_save_at": "2026-07-10T11:42:17.415Z",
+    "last_save_at": "2026-07-10T20:17:48.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99169b833f1c05dbb35f2545c7ba545e4ecbc28a9546c4f159b7bb5ea1923f49",
+    "source_fingerprint": "sha256:acb4c15a68027e527b57924886427f2b54b839036d3f4965f573acff65a80a12",
     "source_doc_hashes": {
       "spec.md": "6484fe6c286c8c33b8c50db055ecf5c4232a7974a537108695ae7a21ac51acac",
       "plan.md": "afdcf92e933a52112ccf56cb7beb896882dbba5fe4e0c2c328b69fc82efc9766",
-      "tasks.md": "3ba1726b9fdd58c5640e9615d92c1541f1b7ee56c36542b1665fd58a53ed5f9e"
+      "tasks.md": "8b74be7f08cab44bc5c0fadc9414119b2062ce843289227bc279003cbacf6fdb",
+      "implementation-summary.md": "12598dc551608d9fdece7e443c09fb010f95a0515e2bdcf513323977e3bb25ce"
     },
     "last_active_child_id": null,
     "last_active_at": null

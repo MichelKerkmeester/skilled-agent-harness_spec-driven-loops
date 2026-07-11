@@ -97,15 +97,15 @@
     ],
     "causal_summary": "Phase-parent packet for the 028 surface-alignment audit, Fable review narrowing, audit remediation phases, inert-novelty detector, and recorded-failure closure.",
     "created_at": "2026-07-05T13:17:54.481Z",
-    "last_save_at": "2026-07-07T12:14:09.147Z",
+    "last_save_at": "2026-07-10T19:11:12.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a10f3df18538bd346a7c43ecf3edd8d7e9618dcff173bf6600e1e0190e1b69dc",
+    "source_fingerprint": "sha256:4fcb11d9aa644805837383df085fdfb2046415daa7315db64e0fd9e5324f938a",
     "source_doc_hashes": {
-      "spec.md": "db92fc290996d64ed3005b8e1b8c4365d452793fce90416f1072b21825465249"
+      "spec.md": "896bcb118a1501b972d2351bef380d5ef5b8cf7144ba7a0aad7143648bc08454"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -54,7 +54,7 @@ This playbook provides 22 deterministic scenarios across 6 categories validating
 - Captured artifacts: screenshot file paths, HAR file paths, console message transcripts.
 - The user request that triggered the orchestration flow.
 - The orchestrator prompt (verbatim).
-- Final user-facing outcome and PASS / PARTIAL / FAIL verdict.
+- Final user-facing outcome and PASS / FAIL / SKIP verdict (SKIP requires a specific, documented sandbox blocker).
 - For destructive scenarios, evidence of session cleanup (no leaked browser processes via `pgrep -fl chrome` or equivalent).
 
 ---

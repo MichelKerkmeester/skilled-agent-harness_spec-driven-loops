@@ -37,9 +37,9 @@ Verify `cupt show TASK_ID --json` returns a complete task object is required for
 2. `bash: echo $RESULT | jq .id`  # → quoted task ID
 3. `bash: echo $RESULT | jq .status.status`  # → status string
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-017 | Show Task — cupt show --json | Verify `cupt show TASK_ID --json` returns a complete ta | `Show task TASK_ID details in JSON format.` | JSON object with `id`, `name`, `status`, `assignees` fields; exit 0 | PASS if JSON object returned with `id` field matching TASK_ID; FAIL if non-JSON output OR `id` field missing OR exit non-zero | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-017 | Show Task — cupt show --json | Verify `cupt show TASK_ID --json` returns a complete task object | `Show task TASK_ID details in JSON format.` | 1. `cupt show TASK_ID --json`  # → JSON object 2. `bash: echo $RESULT \| jq .id`  # → quoted task ID 3. `bash: echo $RESULT \| jq .status.status`  # → status string | JSON object with `id`, `name`, `status`, `assignees` fields; exit 0 | Terminal output of the command sequence above | PASS if JSON object returned with `id` field matching TASK_ID; FAIL if non-JSON output OR `id` field missing OR exit non-zero | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ Verify `cupt show TASK_ID --json` returns a complete task object is required for
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-task-details/show-task.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-task-details/show-task.md`](../../feature_catalog/cupt-task-details/show-task.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

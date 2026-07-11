@@ -38,9 +38,17 @@ freshness, fix `parent_id`. Each moved folder is a net improvement over its pre-
 
 ## 2. Post-extraction 028 scope
 
-028 top-level is now: `000-release-cleanup`, `001-speckit-memory` (the memory-search engine),
-`002-skill-advisor` (holds only the in-progress `009`), `002-spec-data-quality`, `003-review-remediation`,
-`004-dark-flag-graduation`, `005-speckit-surface-alignment`.
+As of the 2026-07-06 Batch 1/Batch 2 extraction, 028 top-level was: `000-release-cleanup`,
+`001-speckit-memory` (the memory-search engine), `002-skill-advisor` (held only the in-progress
+`001-hard-rule-and-dispatch-preflight-hardening` follow-up), `002-spec-data-quality`,
+`003-review-remediation`, `004-dark-flag-graduation`, `005-speckit-surface-alignment`.
+
+That held `002-skill-advisor` follow-up was itself extracted to
+`system-skill-advisor/011-skill-advisor-phase-parent/` on 2026-07-07, closing out 028's last
+skill-advisor remnant — `002-skill-advisor` is not a current 028 child. On 2026-07-10, eighteen
+further review-remediation children, `006-presentation-layer-fixes/` through
+`023-self-healing-model-consolidation/`, were added. `spec.md`'s PHASE DOCUMENTATION MAP is the
+current, authoritative top-level child list; do not use this section for current-scope lookups.
 
 ## 3. Memory-search engine + spec data-quality — work done and tested
 

@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CU-001` and confirm the
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CU-001 | cupt Version Check | Verify `cupt --version` exits 0 and prints a version string  | `Confirm cupt is installed and report its path and version.` | 1. `which cupt`  # → /Users/you/.local/bin/cupt | Step 1: `which cupt` returns non-empty path; exit 0. Step 2: `cupt --version` pr | Terminal output + ClickUp UI | PASS if both `which cupt` returns path AND `cupt --version` prints s; FAIL if `which cupt` returns nothing (not in PATH) OR `--version` ex | Check prerequisites and auth status |
+| CU-001 | cupt Version Check | Verify `cupt --version` exits 0 and prints a version string matching semver pattern X.Y.Z | `Confirm cupt is installed and report its path and version.` | 1. `which cupt`  # → /Users/you/.local/bin/cupt 2. `cupt --version`  # → cupt 0.7.1 | Step 1: `which cupt` returns non-empty path; exit 0. Step 2: `cupt --version` prints 'cupt X.Y.Z' matching semver; exit 0. | Terminal output of the command sequence above | PASS if both `which cupt` returns path AND `cupt --version` prints semver; FAIL if `which cupt` returns nothing (not in PATH) OR `--version` exits non-zero | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -51,16 +51,16 @@ Operators run the exact prompt and command sequence for `CU-001` and confirm the
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-global-flags/version-flag.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-global-flags/version-flag.md`](../../feature_catalog/cupt-global-flags/version-flag.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/mcp_tools.md` | MCP tool reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/mcp_tools.md`](../../references/mcp_tools.md) | MCP tool reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

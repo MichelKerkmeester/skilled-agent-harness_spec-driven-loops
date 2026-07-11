@@ -14,21 +14,21 @@ Complete feature inventory for both tools in the mcp-click-up skill. This catalo
 
 The mcp-click-up skill routes ClickUp work between two complementary tools:
 
-- **cupt CLI** (`pipx install cupt`) — 50 features across 10 command areas. Purpose-built for agent use: per-list status resolution, dry-run safety, offline cache, and `--json` output on every read command.
-- **Official ClickUp MCP** (ClickUp's hosted server at `https://mcp.clickup.com/mcp`, OAuth, via Code Mode `call_tool_chain()`). Covers surfaces cupt cannot reach: documents, time tracking, chat and reminders.
+- **cupt CLI** (`pipx install cupt`) — 50 features across 10 command areas. Purpose-built for agent use: per-list status resolution, dry-run safety, offline cache, and `--json` output on 4 of its read commands (`list`, `show`, `statuses`, `teams` — not global).
+- **Official ClickUp MCP** (the `clickup_official` manual — `@clickup/mcp-server` launched over stdio via `npx -y`, `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json`, via Code Mode `call_tool_chain({ code: "..." })`). Covers surfaces cupt cannot reach: documents, time tracking, chat and reminders.
 
-> **Open item:** this skill's routing previously assumed a 46-tool catalog including goals/OKRs, bulk task creation, webhooks and enterprise administration. Direct verification against the real official server (`list_tools()`, 2026-07) found 51 tools and no goals, bulk-create, webhook or audit-log tools. The per-feature entries below for those areas have not yet been reconciled against that finding, treat MCP-advanced entries outside task CRUD, documents, time tracking, chat and reminders as unverified until checked.
+> **Verification status (2026-07-10):** the ClickUp manual is currently unregistered in this environment (no `CLICKUP_API_KEY`/`CLICKUP_TEAM_ID`; a live `list_tools()` call returns zero `clickup_official.*` entries), and the npm package name configured in `.utcp_config.json` (`@clickup/mcp-server`) returned 404 on the public registry when checked. The last successful live inventory (2026-07) found 51 tools and confirmed **no goals/OKR, bulk-create, webhook, checklist, user-group, guest, or audit-log tools** — those capability classes are marked UNSUPPORTED on their individual cards below (Sections 12-14) rather than removed from the count, so the totals in this file still include them as documented-but-unsupported entries. See `../references/mcp_tools.md` for the reconciled, confirmed-only tool list.
 
 Routing is **operation-based**: each feature belongs to exactly one tool. See `../SKILL.md §2` for the routing pseudocode.
 
 | Metric | Value |
 |--------|-------|
 | cupt features | 50 |
-| Official MCP tools | 51 (verified via `list_tools()`), catalog below still documents the old assumed 46 |
-| Total catalog entries | 96 |
+| Official MCP tools | 51 confirmed present + not-yet-reconciled (2026-07 `list_tools()`); catalog below still lists cards for the old assumed 46, with confirmed-absent ones marked UNSUPPORTED |
+| Total catalog entries | 96 (8 MCP cards marked UNSUPPORTED — not live capabilities) |
 | cupt install | `pipx install cupt` |
-| MCP server | `https://mcp.clickup.com/mcp` (official, OAuth, no package to install) |
-| MCP invocation | `clickup.clickup_clickup_{tool_name}` via Code Mode (tool names already start with `clickup_`, so the manual prefix doubles) |
+| MCP server | `clickup_official` — `@clickup/mcp-server` via `npx -y`, `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` (not the hosted OAuth server) |
+| MCP invocation | `clickup_official.clickup_official_<tool_name>` via Code Mode — confirm every name with `tool_info()`/`list_tools()`, do not guess |
 
 See `../feature_catalog/FEATURE_CATALOG.md` for the agent decision guide.
 
@@ -344,9 +344,9 @@ See [`cupt-global-flags/version-flag.md`](cupt-global-flags/version-flag.md)
 
 ---
 
-## 12. OFFICIAL CLICKUP MCP — HIGH PRIORITY (8 Tools)
+## 12. OFFICIAL CLICKUP MCP — HIGH PRIORITY (8 CARDS, 1 UNSUPPORTED)
 
-Daily task management. All tools invoked as `clickup.clickup_{tool_name}` in Code Mode.
+Daily task management. Tools invoked as `clickup_official.clickup_official_<tool_name>` in Code Mode — confirm every name with `tool_info()`/`list_tools()`. `clickup_create_bulk_tasks` is marked UNSUPPORTED below (confirmed absent from the last live inventory); the other 7 cover standard task CRUD.
 
 ### clickup_create_task
 Create a single task in a list. Supports name, description, priority (1-4), assignees, tags, due_date, and status.
@@ -390,9 +390,9 @@ See [`mcp-high-priority/create-bulk-tasks.md`](mcp-high-priority/create-bulk-tas
 
 ---
 
-## 13. OFFICIAL CLICKUP MCP — MEDIUM PRIORITY (19 Tools)
+## 13. OFFICIAL CLICKUP MCP — MEDIUM PRIORITY (19 CARDS, 3 UNSUPPORTED)
 
-Weekly operations: structure management, documents, goals, advanced task features.
+Weekly operations: structure management, documents, advanced task features. `clickup_manage_goals` and the top-level `clickup_get_document`/`clickup_update_document` cards are marked UNSUPPORTED below (confirmed absent — or, for the two document cards, not found in the last inventory alongside document-create and document-pages tools which were confirmed).
 
 ### clickup_update_bulk_tasks
 Update multiple tasks in a single call. Accepts an array of task objects with `task_id` + fields to change.
@@ -491,9 +491,9 @@ See [`mcp-medium-priority/manage-goals.md`](mcp-medium-priority/manage-goals.md)
 
 ---
 
-## 14. OFFICIAL CLICKUP MCP — LOW PRIORITY (19 Tools)
+## 14. OFFICIAL CLICKUP MCP — LOW PRIORITY (19 CARDS, 10 UNSUPPORTED)
 
-Used for setup, enterprise administration, and specialized workflows.
+Used for setup, enterprise administration, and specialized workflows. `clickup_manage_webhooks`, `clickup_get_user_groups`, `clickup_manage_guests`, `clickup_get_audit_logs`, and all 6 checklist tools (`create`/`update`/`delete` for both checklists and checklist items) are marked UNSUPPORTED below (confirmed absent from the last live inventory).
 
 ### clickup_get_task_dependencies
 Query the dependency graph for a task (read-only). Returns all `depends_on` and `dependency_of` relationships.

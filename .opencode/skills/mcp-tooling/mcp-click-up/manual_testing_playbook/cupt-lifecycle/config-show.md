@@ -43,7 +43,7 @@ Operators run the exact prompt and command sequence for `CU-006` and confirm the
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CU-006 | Config Show | Verify `cupt config --show` prints workspace ID, default lis | `Show the current cupt configuration including workspace ID a` | 1. `cupt config --workspace-id 1234567`  # → exit 0 | Workspace ID shown matching set value; token shown as masked (e.g. pk_xxxx****); | Terminal output + ClickUp UI | PASS if workspace ID appears in output and matches the value set; FAIL if workspace ID missing from output OR exit non-zero | Check prerequisites and auth status |
+| CU-006 | Config Show | Verify `cupt config --show` prints workspace ID, default list ID, and masked token | `Show the current cupt configuration including workspace ID and default list.` | 1. `cupt config --workspace-id 1234567`  # → exit 0 2. `cupt config --show` | Workspace ID shown matching set value; token shown as masked (e.g. pk_xxxx****); exit 0. | Terminal output of the command sequence above | PASS if workspace ID appears in output and matches the value set; FAIL if workspace ID missing from output OR exit non-zero | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -53,16 +53,16 @@ Operators run the exact prompt and command sequence for `CU-006` and confirm the
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-authentication/show-config.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-authentication/show-config.md`](../../feature_catalog/cupt-authentication/show-config.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/mcp_tools.md` | MCP tool reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/mcp_tools.md`](../../references/mcp_tools.md) | MCP tool reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

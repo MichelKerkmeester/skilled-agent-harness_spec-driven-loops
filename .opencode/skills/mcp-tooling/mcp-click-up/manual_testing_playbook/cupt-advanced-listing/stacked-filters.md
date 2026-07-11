@@ -37,9 +37,9 @@ PRE: Create or find tasks in ClickUp with both tags.
 1. `cupt list --tag sprint --tag backend --json`
 2. `bash: echo $RESULT | jq '.[].tags[].name' | sort -u`  # → should include both 'sprint' and 'backend'
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-016 | Stacked Filters — AND logic for --tag | Verify stacking two --tag flags returns only tasks with | `List tasks that have both 'sprint' and 'backend' tags.` | All returned tasks have both 'sprint' and 'backend' in their tags; result may be | PASS if all returned tasks have both tags AND exit 0; FAIL if a returned task is missing one of the required tags | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-016 | Stacked Filters — AND logic for --tag | Verify stacking two --tag flags returns only tasks with BOTH tags | `List tasks that have both 'sprint' and 'backend' tags.` | 1. `cupt list --tag sprint --tag backend --json` 2. `bash: echo $RESULT \| jq '.[].tags[].name' \| sort -u`  # → should include both 'sprint' and 'backend' | All returned tasks have both 'sprint' and 'backend' in their tags; result may be [] if no tasks qualify; exit 0. | Terminal output of the command sequence above | PASS if all returned tasks have both tags AND exit 0; FAIL if a returned task is missing one of the required tags | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ PRE: Create or find tasks in ClickUp with both tags.
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-task-listing/stacked-filters.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-task-listing/stacked-filters.md`](../../feature_catalog/cupt-task-listing/stacked-filters.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

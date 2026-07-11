@@ -37,9 +37,9 @@ Verify `cupt config --clear-cache` removes cached data, forcing fresh API fetch 
 2. `cupt config --clear-cache`  # → exit 0
 3. `cupt list --offline --json`  # → may fail or return empty (cache cleared)
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-031 | Clear Cache | Verify `cupt config --clear-cache` removes cached data, | `Clear the cupt cache and verify fresh data is fetched o` | Step 2: clear cache exits 0 with confirmation. Step 3: offline mode fails or ret | PASS if step 2 exits 0 AND step 3 shows cache was cleared; FAIL if step 2 exits non-zero OR cache persists after clear | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-031 | Clear Cache | Verify `cupt config --clear-cache` removes cached data, forcing fresh API fetch | `Clear the cupt cache and verify fresh data is fetched on next command.` | 1. `cupt list --json`  # → populates cache 2. `cupt config --clear-cache`  # → exit 0 3. `cupt list --offline --json`  # → may fail or return empty (cache cleared) | Step 2: clear cache exits 0 with confirmation. Step 3: offline mode fails or returns empty because cache was cleared. | Terminal output of the command sequence above | PASS if step 2 exits 0 AND step 3 shows cache was cleared; FAIL if step 2 exits non-zero OR cache persists after clear | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ Verify `cupt config --clear-cache` removes cached data, forcing fresh API fetch 
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-authentication/clear-cache.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-authentication/clear-cache.md`](../../feature_catalog/cupt-authentication/clear-cache.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

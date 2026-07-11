@@ -37,7 +37,29 @@ const CLAUDE_HOOK_PATH = path.join(
   'hooks',
   'claude-posttooluse.sh',
 );
+const CHECK_DIST_WRAPPER = path.join(
+  __dirname,
+  '..',
+  '..',
+  'skills',
+  'sk-code',
+  'code-quality',
+  'scripts',
+  'check-dist-staleness.sh',
+);
+const CHECKER_REL = path.join(
+  '.opencode', 'skills', 'system-spec-kit', 'scripts', 'lib', 'dist-freshness.cjs',
+);
 const distFreshness = require(DIST_FRESHNESS_PATH);
+
+// Drop a stub node checker at the workspace-relative path the wrapper resolves
+// from os.getcwd(), so the wrapper's cwd branch runs it instead of the real one.
+function writeFakeChecker(dir, body) {
+  const checkerPath = path.join(dir, CHECKER_REL);
+  fs.mkdirSync(path.dirname(checkerPath), { recursive: true });
+  fs.writeFileSync(checkerPath, body);
+  return checkerPath;
+}
 
 function writeFileWithMtime(filePath, content, mtimeMs) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -362,4 +384,55 @@ test('Claude hook shares one deadline across sequential checkers', (t) => {
   assert.ok(elapsedMs < 10_000, `hook exceeded host budget: ${elapsedMs}ms`);
   assert.match(result.stderr, /comment hygiene checker failed/);
   assert.ok(result.stdout.includes('DIST CHECK REACHED') || result.stderr.includes('deadline is exhausted'));
+});
+
+test('standalone wrapper resolves the shared checker from a non-repo-root cwd', (t) => {
+  const tmpDir = temporaryDirectory(t, 'check-dist-staleness-fallback-');
+  // A cwd without .opencode forces the script-relative fallback. Before the
+  // parent-count fix it resolved to <repo>/.opencode and appended .opencode again,
+  // yielding "checker not found"; the fix must reach the real workspace root.
+  const result = spawnSync('python3', [CHECK_DIST_WRAPPER, DIST_FRESHNESS_PATH], {
+    cwd: tmpDir,
+    encoding: 'utf8',
+  });
+  assert.equal(result.status, 0);
+  assert.doesNotMatch(result.stderr, /checker not found/);
+});
+
+test('standalone wrapper surfaces checker errors and stale results distinctly', (t) => {
+  const tmpDir = temporaryDirectory(t, 'check-dist-staleness-error-');
+  writeFakeChecker(
+    tmpDir,
+    'const a=process.argv.slice(2);'
+    + "if(a.includes('check-all')){process.stdout.write(JSON.stringify({status:'degraded',stale:false,"
+    + "results:[{stale:true,packageName:'@x/y',rebuildCommand:'npm run build'},"
+    + "{status:'error',message:'watched source path missing',packageName:'@a/b'}]})+'\\n');}"
+    + "else{process.stdout.write(JSON.stringify({status:'error',message:'watched source path missing',"
+    + "packageName:'@x/y'})+'\\n');}",
+  );
+  const edited = path.join(tmpDir, 'edited.ts');
+  fs.writeFileSync(edited, 'export const edited = true;\n');
+
+  const single = spawnSync('python3', [CHECK_DIST_WRAPPER, edited], { cwd: tmpDir, encoding: 'utf8' });
+  assert.equal(single.status, 0);
+  assert.match(single.stdout, /DIST FRESHNESS CHECK ERROR: @x\/y -- watched source path missing/);
+
+  const all = spawnSync('python3', [CHECK_DIST_WRAPPER, '--all'], { cwd: tmpDir, encoding: 'utf8' });
+  assert.equal(all.status, 0);
+  assert.match(all.stdout, /STALE DIST WARNING: @x\/y/);
+  assert.match(all.stdout, /DIST FRESHNESS CHECK ERROR: @a\/b -- watched source path missing/);
+});
+
+test('standalone wrapper still prints the stale banner for a stale package', (t) => {
+  const tmpDir = temporaryDirectory(t, 'check-dist-staleness-stale-');
+  writeFakeChecker(
+    tmpDir,
+    "process.stdout.write(JSON.stringify({stale:true,packageName:'@spec-kit/mcp-server',"
+    + "rebuildCommand:'cd pkg && npm run build'})+'\\n');",
+  );
+  const edited = path.join(tmpDir, 'edited.ts');
+  fs.writeFileSync(edited, 'export const edited = true;\n');
+  const result = spawnSync('python3', [CHECK_DIST_WRAPPER, edited], { cwd: tmpDir, encoding: 'utf8' });
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /STALE DIST WARNING: @spec-kit\/mcp-server -- run: cd pkg && npm run build/);
 });

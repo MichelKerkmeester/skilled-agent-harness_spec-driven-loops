@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-When configured, uses a local AI backend (Ollama or system AI) to automatically draft a completion note based on the task description and comments. The note is appended on completion.
+Uses Apple Intelligence (via `apple-fm-sdk`, requires a supported macOS system with Apple Intelligence enabled) to draft a suggested completion note from the task description and recent comments, then prompts to accept, edit, or skip it — the note is not appended automatically. No other local AI backend is implemented today; Windows Copilot+ and Ollama are listed in the source as future, not-yet-implemented providers.
 
 ---
 

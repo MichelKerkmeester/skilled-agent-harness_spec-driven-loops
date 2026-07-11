@@ -188,10 +188,9 @@ opencode run \
 | Sibling | Persistent state | Memory continuity | Plugin runtime |
 |---------|-------------------|-------------------|----------------|
 | cli-claude-code | Per-session conversation log | `--continue` / `--resume <id>` | None (raw Claude) |
-| cli-opencode | `~/.opencode/sessions/` | `opencode resume <id>` / `opencode fork <id>` | None (raw OpenCode agent) |
-| **cli-opencode** | `~/.opencode/state/<session_id>/` | `--continue` / `-s <id>` / `--fork` | **Full plugin + skill + MCP + Spec Kit Memory** |
+| **cli-opencode** | Shared `~/.local/share/opencode/` SQLite database + storage tree (`opencode.db`, `storage/`, `snapshot/`), inspectable per-session via `opencode export <id>` | `--continue` / `-s <id>` / `--fork` | **Full plugin + skill + MCP + Spec Kit Memory** |
 
-The persistent state directory at `~/.opencode/state/` is what makes use case 2 (parallel detached sessions) possible — each session has an independent file-system footprint that the operator can inspect, archive, or replay.
+The shared session database at `~/.local/share/opencode/` is what makes use case 2 (parallel detached sessions) possible — each session id is independently addressable via `opencode export <id>`, even though sessions share the same underlying database rather than each getting its own filesystem directory.
 
 ---
 

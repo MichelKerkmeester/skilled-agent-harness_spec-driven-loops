@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates parallel execution across two MCP browser instances (`chrome_devtools_1` and `chrome_devtools_2`) for `BDG-015`. It focuses on confirming `Promise.all` over both instances returns an array of length 2, both screenshots are valid PNG-sized base64 payloads, and the total wall time is meaningfully less than 2× a single-instance run (parallelism observable). This scenario depends on CM-012 (Promise.all parallel pattern) and CM-014..CM-016 (Chrome via Code Mode).
+This scenario validates parallel execution across two MCP browser instances (`chrome_devtools_1` and `chrome_devtools_2`) for `BDG-015`. It focuses on confirming `Promise.all` over both instances returns valid screenshot files (verified by a separate filesystem check, not a base64 length), and that the same-wave median of repeated parallel navigate trials is meaningfully faster than the same-wave median of repeated sequential navigate trials (parallelism observable against a controlled, same-run baseline, not a single sample from a different scenario). This scenario depends on CM-012 (Promise.all parallel pattern) and CM-014..CM-016 (Chrome via Code Mode).
 
 ### Why This Matters
 
@@ -24,13 +24,13 @@ Dual-instance parallel is the value proposition of having two MCP browser instan
 
 Operators run the exact prompt and command sequence for `BDG-015` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `Promise.all([navigate+shot on _1, navigate+shot on _2])` returns an array of length 2 with both shot byte lengths > 1000, and total wall time < 2× single-instance baseline.
+- Objective: Verify `Promise.all([navigate+shot on _1, navigate+shot on _2])` produces two valid PNG files on disk, and that a same-wave repeated-trial parallel median is meaningfully faster than a same-wave repeated-trial sequential median.
 - Real user request: `"Open example.com on one browser and example.org on another at the same time and screenshot both."`
-- RCAF Prompt: `As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in parallel via Promise.all through Code Mode against both MCP instances. Verify both return successfully and total wall time < 2x single-instance time. Cross-reference: depends on CM-012 (Promise.all parallel). Return a concise user-facing pass/fail verdict with the main reason.`
-- Expected execution process: build a Code Mode script that runs both navigate+screenshot pairs inside `Promise.all`, measure wall time, assert array shape and byte lengths.
-- Expected signals: result is array of length 2; both shot byte lengths > 1000; wall time < 2× the prior single-instance run from BDG-014.
-- Desired user-visible outcome: A short report quoting both URLs, both byte lengths, total wall time, and a comparison vs. single-instance baseline with a PASS verdict.
-- Pass/fail: PASS if all three signals hold; FAIL if one branch throws, either screenshot is empty/short, or wall time is roughly 2× the single-instance baseline (no observable parallelism).
+- RCAF Prompt: `As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in parallel via Promise.all through Code Mode against both MCP instances. Verify both return successfully and confirm parallelism with a same-wave sequential-vs-parallel median comparison. Cross-reference: depends on CM-012 (Promise.all parallel). Return a concise user-facing pass/fail verdict with the main reason.`
+- Expected execution process: build a Code Mode script that (a) runs one functional navigate+screenshot pair inside `Promise.all` with explicit `filePath`s, then (b) runs several repeated same-wave trials of a sequential pair and a parallel pair (interleaved to control for warm-up/variance), measuring wall time per trial; verify the screenshot files with a separate shell step; compare medians.
+- Expected signals: both screenshot files exist, are non-empty, and have PNG magic bytes; the parallel-trial median wall time is below a documented fraction of the sequential-trial median (this scenario requires at least 30% faster: `parallelMedianMs < 0.7 * sequentialMedianMs`).
+- Desired user-visible outcome: A short report quoting both URLs, both screenshot file paths, the sequential and parallel medians, and a PASS verdict.
+- Pass/fail: PASS if all signals hold; FAIL if one branch throws, either screenshot file is missing/empty, or the parallel median is not meaningfully faster than the same-wave sequential median.
 
 ---
 
@@ -38,52 +38,85 @@ Operators run the exact prompt and command sequence for `BDG-015` and confirm th
 
 ### Prompt
 
-- RCAF Prompt: `As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in parallel via Promise.all through Code Mode against both MCP instances. Verify both return successfully and total wall time < 2x single-instance time. Cross-reference: depends on CM-012 (Promise.all parallel). Return a concise user-facing pass/fail verdict with the main reason.`
+- RCAF Prompt: `As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in parallel via Promise.all through Code Mode against both MCP instances. Verify both return successfully and confirm parallelism with a same-wave sequential-vs-parallel median comparison. Cross-reference: depends on CM-012 (Promise.all parallel). Return a concise user-facing pass/fail verdict with the main reason.`
 
 ### Commands
 
 1. Precondition: both `chrome_devtools_1` and `chrome_devtools_2` are registered; verify with `bash: jq '.manuals | keys' .utcp_config.json | grep chrome_devtools_`
-2. Precondition: BDG-014 single-instance baseline has been recorded (call it `T1`)
-3. Code Mode script — build and dispatch via `call_tool_chain`:
+2. Code Mode script — build and dispatch via `call_tool_chain`. Part A proves functional correctness once (explicit `filePath` per instance); Part B runs repeated, interleaved same-wave sequential and parallel navigate trials to compare medians, since a single sample against an older scenario's baseline (BDG-014) cannot control for warm/cold variance:
    ```ts
-   const t0 = Date.now();
+   // Part A: functional correctness (once)
    const [r1, r2] = await Promise.all([
      (async () => {
        await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' });
-       return chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+       return chrome_devtools_1.chrome_devtools_1_take_screenshot({ filePath: '/tmp/bdg-015-func-1.png' });
      })(),
      (async () => {
        await chrome_devtools_2.chrome_devtools_2_navigate_page({ url: 'https://example.org' });
-       return chrome_devtools_2.chrome_devtools_2_take_screenshot({});
+       return chrome_devtools_2.chrome_devtools_2_take_screenshot({ filePath: '/tmp/bdg-015-func-2.png' });
      })(),
    ]);
+
+   // Part B: same-wave timing, interleaved sequential/parallel trials
+   async function sequentialTrial(): Promise<number> {
+     const t0 = Date.now();
+     await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' });
+     await chrome_devtools_2.chrome_devtools_2_navigate_page({ url: 'https://example.org' });
+     return Date.now() - t0;
+   }
+   async function parallelTrial(): Promise<number> {
+     const t0 = Date.now();
+     await Promise.all([
+       chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' }),
+       chrome_devtools_2.chrome_devtools_2_navigate_page({ url: 'https://example.org' }),
+     ]);
+     return Date.now() - t0;
+   }
+   function median(values: number[]): number {
+     const sorted = [...values].sort((a, b) => a - b);
+     const mid = Math.floor(sorted.length / 2);
+     return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+   }
+
+   const sequentialMs: number[] = [];
+   const parallelMs: number[] = [];
+   for (let i = 0; i < 3; i++) {
+     sequentialMs.push(await sequentialTrial());
+     parallelMs.push(await parallelTrial());
+   }
+
    return {
-     wallMs: Date.now() - t0,
-     len1: (r1?.data ?? r1)?.length ?? 0,
-     len2: (r2?.data ?? r2)?.length ?? 0,
+     functional: { r1, r2 },
+     sequentialMs,
+     parallelMs,
+     sequentialMedianMs: median(sequentialMs),
+     parallelMedianMs: median(parallelMs),
    };
    ```
-4. Assert: array shape, both lengths > 1000, `wallMs < 2 * T1`
+3. `bash: ls -la /tmp/bdg-015-func-1.png /tmp/bdg-015-func-2.png && xxd /tmp/bdg-015-func-1.png | head -1 && xxd /tmp/bdg-015-func-2.png | head -1` — confirm both files exist, are non-empty, and start with the PNG magic bytes `89 50 4e 47`
+4. Assert: both screenshot files valid PNG AND `parallelMedianMs < 0.7 * sequentialMedianMs` (parallel median at least 30% faster than the same-wave sequential median)
 
 ### Expected
 
 - Step 1: both manuals registered
-- Step 3: returns `{ wallMs, len1, len2 }` with both lengths > 1000
-- Step 4: `wallMs` clearly less than `2 * T1` (parallelism observable)
+- Step 2: returns `{ functional, sequentialMs, parallelMs, sequentialMedianMs, parallelMedianMs }`, three samples each for sequential and parallel
+- Step 3: both files exist, size > 0, first bytes are the PNG magic number `89 50 4e 47`
+- Step 4: `parallelMedianMs` clearly less than `0.7 * sequentialMedianMs` (parallelism observable against a same-wave control, not an external single-sample baseline)
 
 ### Evidence
 
-Capture the Code Mode script, the returned object, single-instance baseline `T1`, and the parallel `wallMs`.
+Capture the Code Mode script, the returned object (all six trial samples plus both medians), and the `ls -la` / `xxd` output for both screenshot files.
 
 ### Pass / Fail
 
-- **Pass**: array length 2 AND both byte lengths > 1000 AND `wallMs < 2 * T1`.
-- **Fail**: one branch throws (cross-reference CM-005 namespace contract); either length too small (cross-reference BDG-014 / CM-015); `wallMs` is approximately `2 * T1` (no parallelism — likely transport serialization or shared resource).
+- **Pass**: both screenshot files exist with PNG magic bytes AND `parallelMedianMs < 0.7 * sequentialMedianMs`.
+- **Fail**: one branch throws (cross-reference CM-005 namespace contract); either file is missing/empty (cross-reference CM-015); `parallelMedianMs` is not meaningfully below the sequential median (no observable parallelism — likely transport serialization or a shared resource).
 
 ### Failure Triage
 
 1. If one branch throws "manual not found" for `chrome_devtools_2`: the second MCP is not registered — cross-reference CM-005 (manual-namespace contract) and confirm `.utcp_config.json` includes `chrome_devtools_2` with a distinct port/profile from `chrome_devtools_1`.
-2. If both calls succeed but `wallMs ~ 2 * T1`: the transport is serializing — cross-reference CM-012 (Promise.all parallel pattern) and confirm both manuals are configured with independent processes / sockets, not a shared bus.
+2. If both calls succeed but `parallelMedianMs` is close to `sequentialMedianMs`: the transport is serializing — cross-reference CM-012 (Promise.all parallel pattern) and confirm both manuals are configured with independent processes / sockets, not a shared bus.
+3. If the three sequential or three parallel samples vary widely: re-run with a larger sample count and report the full array, not just the median, since network/browser-start variance can otherwise mask or fake observable parallelism.
 
 ---
 

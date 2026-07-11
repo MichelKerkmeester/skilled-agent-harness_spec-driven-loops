@@ -1,11 +1,11 @@
 ---
 title: "Show Config"
-description: "cupt config --show — display current workspace, default list, and masked auth state."
+description: "cupt config --show — display current workspace ID, default list, user ID, and auth method."
 trigger_phrases:
   - "show config"
   - "cupt config --show"
   - "display configuration"
-  - "masked token display"
+  - "auth method display"
   - "check cupt defaults"
 version: 1.0.0.3
 ---
@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Prints the current cupt configuration: workspace ID, default list ID, auth method (token vs OAuth), and masked token (first 6 chars + asterisks).
+Prints the current cupt configuration: Workspace ID, Default List ID, User ID, Authenticated state, and Auth Method (Personal API Token vs OAuth). Never prints any part of the token itself, masked or otherwise.
 
 ---
 

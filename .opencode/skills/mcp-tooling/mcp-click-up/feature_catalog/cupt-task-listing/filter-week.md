@@ -18,7 +18,7 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Server-side date filter returning tasks due within the current calendar week (Monday-Sunday).
+Server-side date filter returning tasks due within a rolling 7-day window starting at the current local midnight — not the Monday-Sunday calendar week.
 
 ---
 

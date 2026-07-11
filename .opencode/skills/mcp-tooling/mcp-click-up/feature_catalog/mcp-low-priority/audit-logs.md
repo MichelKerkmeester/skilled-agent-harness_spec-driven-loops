@@ -8,9 +8,13 @@ trigger_phrases:
   - "compliance log review"
   - "security event history"
 version: 1.0.0.3
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # clickup_get_audit_logs
+
+Access workspace audit logs for compliance and security review. Enterprise feature.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
@@ -19,6 +23,8 @@ version: 1.0.0.3
 ## 1. OVERVIEW
 
 Returns audit log entries showing workspace activity: user actions, permission changes, and data access events. Enterprise plan required.
+
+> **Capability status: UNSUPPORTED.** A direct `list_tools()` inventory (`references/mcp_tools.md`) found no audit-log tool on the registered server. Treat this card as an unsupported historical assumption until a fresh `tool_info()`/`list_tools()` capture confirms an exact callable name and schema.
 
 ---
 
@@ -34,7 +40,7 @@ Used for compliance reporting and security investigation. Logs cover the last 90
 
 | File | Layer | Role |
 |------|-------|------|
-| `https://mcp.clickup.com/mcp` | MCP | Official ClickUp MCP via Code Mode, OAuth, mcp-remote bridge in .utcp_config.json |
+| `clickup_official` | MCP | Official ClickUp MCP via Code Mode, `npx -y @clickup/mcp-server` (stdio), `CLICKUP_API_KEY`+`CLICKUP_TEAM_ID` env vars, registered in `.utcp_config.json` |
 
 ### Validation And Tests
 

@@ -38,9 +38,9 @@ PRE: workspace must have more than 3 tasks.
 2. `cupt list -n 3 --json`  # → array with ≤ 3 elements
 3. `bash: echo $RESULT | jq length`  # → 3
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| CU-014 | Cap Results — -n N | Verify `cupt list -n 3 --json` returns at most 3 tasks  | `Fetch at most 3 tasks in JSON format.` | Step 2: JSON array returned. Step 3: `jq length` returns ≤ 3; exit 0. | PASS if `jq length` returns ≤ 3 AND exit 0; FAIL if `jq length` returns > 3 OR exit non-zero | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| CU-014 | Cap Results — -n N | Verify `cupt list -n 3 --json` returns at most 3 tasks regardless of total queue size | `Fetch at most 3 tasks in JSON format.` | 1. `cupt list --json`  # → total count > 3 2. `cupt list -n 3 --json`  # → array with ≤ 3 elements 3. `bash: echo $RESULT \| jq length`  # → 3 | Step 2: JSON array returned. Step 3: `jq length` returns ≤ 3; exit 0. | Terminal output of the command sequence above | PASS if `jq length` returns ≤ 3 AND exit 0; FAIL if `jq length` returns > 3 OR exit non-zero | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -50,15 +50,15 @@ PRE: workspace must have more than 3 tasks.
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-task-listing/cap-results.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-task-listing/cap-results.md`](../../feature_catalog/cupt-task-listing/cap-results.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

@@ -34,12 +34,12 @@ Verify `clickup_delete_task` removes the task and subsequent get returns not-fou
 ### Recommended Orchestration Process
 
 PRE: TASK_ID must be the throwaway test task created in MCP-H001.
-1. Code Mode: `clickup.clickup_delete_task({task_id: 'TASK_ID'})`
-2. Code Mode: `clickup.clickup_get_task({task_id: 'TASK_ID'})`  # → should return 404/not-found
+1. Code Mode: `clickup_official.clickup_official_clickup_delete_task({task_id: 'TASK_ID'})`
+2. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})`  # → should return 404/not-found
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| MCP-H004 | Delete Task via MCP (DESTRUCTIVE) | Verify `clickup_delete_task` removes the task and subse | `Delete task TASK_ID permanently via MCP.` | Step 1: MCP returns success. Step 2: task returns 404 or not-found error. | PASS if step 2 returns not-found error confirming deletion; FAIL if task still accessible after deletion attempt | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| MCP-H004 | Delete Task via MCP (DESTRUCTIVE) | Verify `clickup_delete_task` removes the task and subsequent get returns not-found | `Delete task TASK_ID permanently via MCP.` | 1. Code Mode: `clickup_official.clickup_official_clickup_delete_task({task_id: 'TASK_ID'})` 2. Code Mode: `clickup_official.clickup_official_clickup_get_task({task_id: 'TASK_ID'})`  # → should return 404/not-found | Step 1: MCP returns success. Step 2: task returns 404 or not-found error. | Code Mode response + terminal output of the verification step(s) above | PASS if step 2 returns not-found error confirming deletion; FAIL if task still accessible after deletion attempt | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -49,15 +49,15 @@ PRE: TASK_ID must be the throwaway test task created in MCP-H001.
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/mcp-high-priority/delete-task.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/mcp-high-priority/delete-task.md`](../../feature_catalog/mcp-high-priority/delete-task.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

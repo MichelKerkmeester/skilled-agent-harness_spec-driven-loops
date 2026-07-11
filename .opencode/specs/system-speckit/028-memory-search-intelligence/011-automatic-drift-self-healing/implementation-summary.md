@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_2/implementation-summary.md]"
-description: "Status In Progress: all 3 layers implemented and targeted-verification passing. Remaining completion gates: lint baseline, broad core-suite failures, numeric latency benchmark."
+description: "Status In Progress: all 3 layers implemented and targeted-verification passing. Numeric latency benchmark satisfied via sibling packet 020-query-time-filter-benchmark. Remaining completion gates: lint baseline, broad core-suite failures."
 trigger_phrases:
   - "automatic drift self-healing"
   - "query-time existence filtering"
@@ -11,14 +11,13 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/011-automatic-drift-self-healing"
-    last_updated_at: "2026-07-10T08:09:04.000Z"
+    last_updated_at: "2026-07-10T19:32:17.000Z"
     last_updated_by: "claude-code"
     recent_action: "Phase R audit remediation completed: swarm-implemented, Sonnet-verified, all tasks evidenced"
     next_safe_action: "Review Phase R evidence and the consolidated swarm commit"
     blockers:
       - "lint fails on pre-existing unused-variable errors, confirmed outside this diff"
       - "test:core timed out with unrelated existing failures, not re-run this pass"
-      - "Numeric Layer 1 latency benchmark has not been executed"
     key_files:
       - "mcp_server/lib/storage/memory-drift-healing.ts"
       - "mcp_server/handlers/memory-search.ts"
@@ -32,7 +31,6 @@ _memory:
       parent_session_id: null
     completion_pct: 88
     open_questions:
-      - "Run and record a numeric query latency benchmark for flag off vs. flag on."
       - "Decide whether unrelated lint/broad-suite failures should be fixed in this packet or tracked separately."
     answered_questions:
       - "Layer 1 ships behind default-off SPECKIT_QUERY_TIME_EXISTENCE_FILTER."
@@ -161,7 +159,7 @@ The git hook intentionally diverges from the code-graph hook precedent: it never
 | `npm run lint` | FAIL (re-run fresh 2026-07-09): 12 errors across 6 files. Re-checked each: only `context-server.ts:244` (`GRAPH_ENRICHMENT_SYMBOL_LIMIT` unused) falls inside a file this packet touched, and `git diff` confirms that specific line is absent from this packet's diff (pre-existing, untouched). The other 5 errored files (db-state, session-stop, batch-learning, orchestrator, and the archived-check migration script -- named without paths here to avoid false key-file linkage in generated metadata) are outside this packet's file set entirely. |
 | `npm run test:core` | NOT GREEN: timed out after 120s and surfaced unrelated existing failures across hook autosave, BM25, launcher, feature-flag docs, older regression suites, and other areas. Not independently re-run in this reconciliation pass (bounded scope); the narrower targeted suite covering every file this packet touched was re-run fresh above and is fully green. |
 | Git hooks installed in this repo's live `.git/hooks/` | PARTIAL: only `post-commit` is currently symlinked (confirmed via `ls -la .git/hooks/`); `post-merge`/`post-rewrite` exist as code-complete, smoke-tested source files but are not yet installed here -- `bash .opencode/scripts/install-git-hooks.sh` needs a re-run to pick them up. |
-| Numeric Layer 1 latency benchmark | NOT RUN |
+| Numeric Layer 1 latency benchmark | SATISFIED via sibling packet `020-query-time-filter-benchmark`: OFF mean 274.034ms, ON mean 288.022ms, 5.1045% mean overhead, 64 samples/state (REQ-001 row, `020-query-time-filter-benchmark/implementation-summary.md`) |
 
 Targeted passing command:
 
@@ -176,7 +174,7 @@ npx vitest run tests/handler-memory-index.vitest.ts tests/handler-memory-index-n
 ## Known Limitations
 
 1. Completion is not claimed because lint and broad `test:core` are not green.
-2. The Layer 1 latency budget still needs numeric measurement with the flag off vs. on.
+2. The Layer 1 latency budget is measured via sibling packet `020-query-time-filter-benchmark` rather than a benchmark executed inside this packet.
 3. Broad-suite failures appear unrelated to this packet based on affected files and test areas, but they remain unresolved in the working tree.
 4. No commit SHA exists because commit/push were explicitly not requested; all evidence above is against the current uncommitted working-tree diff.
 5. `post-merge` and `post-rewrite` are implemented and smoke-tested but not yet installed into this repo's live `.git/hooks/` -- re-running `install-git-hooks.sh` is required before Layer 2 is actually active for merges/rebases in this checkout (`post-commit` alone is already live).

@@ -303,8 +303,13 @@ Phase 1 (Setup) ──► Phase 2 (F11) ──► Phase 5 (Verify)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] F8's mechanism decision (pragma-toggle vs. deferred write) recorded before merge
-- [ ] F12's multi-stale-file merge policy recorded before merge
+- [x] F8's mechanism decision (pragma-toggle vs. deferred write) recorded before merge -- decided in Phase 1
+  (plan.md:194-195): pragma toggle. Shipped: `handlers/memory-search.ts:502-503,531` toggles
+  `busy_timeout` around the deferred write and restores it after (`537`).
+- [x] F12's multi-stale-file merge policy recorded before merge -- decided in Phase 1 (plan.md:194-195):
+  merge-all. Shipped: `lib/storage/memory-drift-processing-sweep.ts:254-259` documents and implements the
+  merge-all policy ("every stale claim file found is merged (not just the most recent)") in
+  `sweepStaleMemoryDriftProcessingMarkers`.
 
 ### Rollback Procedure
 1. Each fix is independently revertable — revert the specific commit/hunk for the fix in question.

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Drift-Marker Producer/Consumer Resilience [template:level_2/spec.md]"
+title: "Feature Specification: Drift-Marker Producer/Consumer Resilience"
 description: "The Layer-2 git-hook drift-marker pipeline shipped in 011-automatic-drift-self-healing has two real resilience gaps: its lock directory has no stale-lock recovery, so a SIGKILLed hook process leaves Layer 2 permanently and silently dead until someone manually removes the lock dir; and its marker write path is hardcoded rather than derived from the daemon's live, override-aware DB path, so under a SPEC_KIT_DB_DIR/MEMORY_DB_PATH override the hook can write markers the consumer never looks at, silently degrading to the slower Layer-3 full-sweep backstop."
 trigger_phrases:
   - "drift marker pipeline resilience"

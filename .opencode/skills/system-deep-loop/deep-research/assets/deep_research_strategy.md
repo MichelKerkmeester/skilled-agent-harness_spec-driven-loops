@@ -127,6 +127,18 @@ Generated from the reducer registry. Add external or late questions through `{sp
 
 ---
 
+<!-- ANCHOR:divergence-frontier -->
+## 10A. SATURATED DIRECTIONS AND DIVERGENCE FRONTIER
+- Completed pivots: 0
+- Failed pivots: 0
+- Audited overrides: 0
+- Saturated: none yet
+- Pivot lineage: none yet
+- Remaining frontier: none recorded
+<!-- /ANCHOR:divergence-frontier -->
+
+---
+
 <!-- ANCHOR:carried-forward-open-questions -->
 ## 11A. CARRIED-FORWARD OPEN QUESTIONS
 [Self-owned open questions from iteration write-back -- populated after iteration 1 completes]
@@ -165,7 +177,7 @@ Do not inline full source bodies. Do not dispatch the retired standalone context
 - Progressive synthesis: true (default)
 - research/research.md ownership: workflow-owned canonical synthesis output
 - Lifecycle branches: `resume`, `restart` (live); `fork`, `completed-continue` (deferred, not runtime-wired)
-- Machine-owned sections: reducer controls Sections 3, 6, 7-11A
+- Machine-owned sections: reducer controls Sections 3, 6, 7-11A, including Section 10A pivot lineage
 - Question injection surface: `{spec_folder}/research/inbox.jsonl`
 - Question conflict owner: reducer registry; `question_conflict` events surface inbox/registry disagreements for operator decision
 - Canonical pause sentinel: `research/.deep-research-pause`

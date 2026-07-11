@@ -39,9 +39,9 @@ PRE: Run against a non-production workspace; have credentials ready to re-enter.
 3. `cupt config --api-token pk_TEST_TOKEN`  # → exit 0
 4. `cupt status`  # → workspace name displayed
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| FAIL-001 | Missing Auth Recovery | Verify that after `cupt logout`, commands fail with Aut | `Simulate missing auth by logging out, then recover with` | Step 2: AuthError message; exit non-zero. Step 4: workspace name displayed; exit | PASS if step 2 shows AuthError AND step 4 shows workspace name; FAIL if step 2 does NOT show AuthError (logout failed) OR step  | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| FAIL-001 | Missing Auth Recovery | Verify that after `cupt logout`, commands fail with AuthError and `cupt auth` restores function | `Simulate missing auth by logging out, then recover with re-authentication.` | 1. `cupt logout`  # → exit 0 2. `cupt status`  # → AuthError: No credentials found 3. `cupt config --api-token pk_TEST_TOKEN`  # → exit 0 4. `cupt status`  # → workspace name displayed | Step 2: AuthError message; exit non-zero. Step 4: workspace name displayed; exit 0. | Terminal output of the command sequence above | PASS if step 2 shows AuthError AND step 4 shows workspace name; FAIL if step 2 does NOT show AuthError (logout failed) OR step 4 fails after recovery | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -51,15 +51,15 @@ PRE: Run against a non-production workspace; have credentials ready to re-enter.
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-authentication/logout.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-authentication/logout.md`](../../feature_catalog/cupt-authentication/logout.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

@@ -33,12 +33,12 @@ Verify `clickup_update_task` changes a task field and the change is reflected in
 
 ### Recommended Orchestration Process
 
-1. Code Mode: `clickup.clickup_update_task({task_id: 'TASK_ID', priority: 2})`
+1. Code Mode: `clickup_official.clickup_official_clickup_update_task({task_id: 'TASK_ID', priority: 2})`
 2. `cupt show TASK_ID --json | jq .priority.priority`  # → '2' or 'high'
 
-| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
-|---|---|---|---|---|---|---|
-| MCP-H003 | Update Task via MCP | Verify `clickup_update_task` changes a task field and t | `Update task TASK_ID priority to 2 (high) via MCP.` | Step 1: MCP returns updated task with priority 2. Step 2: cupt show confirms pri | PASS if cupt show confirms new priority value matches update; FAIL if priority unchanged after update OR MCP returns error | See `../references/troubleshooting.md` |
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| MCP-H003 | Update Task via MCP | Verify `clickup_update_task` changes a task field and the change is reflected in ClickUp | `Update task TASK_ID priority to 2 (high) via MCP.` | 1. Code Mode: `clickup_official.clickup_official_clickup_update_task({task_id: 'TASK_ID', priority: 2})` 2. `cupt show TASK_ID --json \| jq .priority.priority`  # → '2' or 'high' | Step 1: MCP returns updated task with priority 2. Step 2: cupt show confirms priority is 2/high. | Code Mode response + terminal output of the verification step(s) above | PASS if cupt show confirms new priority value matches update; FAIL if priority unchanged after update OR MCP returns error | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -48,15 +48,15 @@ Verify `clickup_update_task` changes a task field and the change is reflected in
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/mcp-high-priority/update-task.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/mcp-high-priority/update-task.md`](../../feature_catalog/mcp-high-priority/update-task.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

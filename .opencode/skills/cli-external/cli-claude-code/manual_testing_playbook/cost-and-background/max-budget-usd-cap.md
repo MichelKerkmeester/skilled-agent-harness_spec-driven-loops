@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Max budget USD cap behavior for `CC-026`. It focuses on confirming `--max-budget-usd <value>` is accepted by the CLI, that the dispatched session honors the cap and that JSON output metadata reports a `cost` value not exceeding the supplied budget for a small read-only prompt.
+This scenario validates Max budget USD cap behavior for `CC-026`. It focuses on confirming `--max-budget-usd <value>` is accepted by the CLI, that the dispatched session honors the cap and that JSON output metadata reports a present, numeric `total_cost_usd` value not exceeding the supplied budget for a small read-only prompt.
 
 ### Why This Matters
 
@@ -24,13 +24,13 @@ The `--max-budget-usd` flag is the documented cost-control surface for cross-AI 
 
 Operators run the exact prompt and command sequence for `CC-026` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm `--max-budget-usd 0.50` is accepted by the CLI, that the dispatch completes successfully for a small read-only prompt and that the JSON output reports a `cost` value not exceeding the cap.
+- Objective: Confirm `--max-budget-usd 0.50` is accepted by the CLI, that the dispatch completes successfully for a small read-only prompt and that the JSON output reports a present, numeric `total_cost_usd` value not exceeding the cap.
 - Real user request: `Run a quick code review with a 50-cent budget cap so I can guarantee unattended runs do not run away.`
-- Prompt: `Run Claude Code with a 50-cent budget cap and verify exit 0, parseable JSON, numeric cost, and cost under cap.`
-- Expected execution process: External-AI orchestrator picks a small target file, dispatches with `--max-budget-usd 0.50 --output-format json`, captures the JSON envelope, then validates the `cost` field is present and within the cap.
-- Expected signals: Dispatch exits 0. JSON output is parseable via `jq`. JSON output contains a numeric `cost` (or `total_cost_usd`) field. Reported cost is at or below 0.50. Dispatched command line includes `--max-budget-usd 0.50`.
+- Prompt: `Run Claude Code with a 50-cent budget cap and verify exit 0, parseable JSON, a present numeric cost, and cost under cap.`
+- Expected execution process: External-AI orchestrator picks a small target file, dispatches with `--max-budget-usd 0.50 --output-format json`, captures the JSON envelope, then validates the `total_cost_usd` field is present, numeric, and within the cap.
+- Expected signals: Dispatch exits 0. JSON output is parseable via `jq`. JSON output contains a PRESENT, numeric `total_cost_usd` field — a missing or null field is a FAIL, never a silent pass. Reported cost is at or below 0.50. Dispatched command line includes `--max-budget-usd 0.50`.
 - Desired user-visible outcome: A successful review output plus provable cost evidence the operator can attach to a budget audit.
-- Pass/fail: PASS if exit 0 AND JSON parseable AND cost <= 0.50. FAIL if dispatch errors, JSON malformed or cost exceeds the cap.
+- Pass/fail: PASS if exit 0 AND JSON parseable AND `total_cost_usd` is present and numeric AND cost <= 0.50. FAIL if dispatch errors, JSON malformed, the cost field is missing/null, or cost exceeds the cap.
 
 ---
 
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `CC-026` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CC-026 | Max budget USD cap behavior | Confirm `--max-budget-usd 0.50` is accepted and the reported cost is at or below the cap | `Run Claude Code with a 50-cent budget cap and verify exit 0, parseable JSON, numeric cost, and cost under cap.` | 1. `bash: claude -p "Summarize the cli-claude-code skill in one paragraph based on @./.opencode/skills/cli-external/cli-claude-code/SKILL.md." --max-budget-usd 0.50 --output-format json --permission-mode plan 2>&1 > /tmp/cc-026-output.json` -> 2. `bash: echo "Exit: $?"` -> 3. `bash: jq -e '.' /tmp/cc-026-output.json > /dev/null && echo OK_JSON` -> 4. `bash: jq -r '(.total_cost_usd // .cost // empty)' /tmp/cc-026-output.json` -> 5. `bash: jq -e '((.total_cost_usd // .cost // 0) \| tonumber) <= 0.50' /tmp/cc-026-output.json && echo OK_UNDER_CAP` | Step 1: dispatch captured; Step 2: exit 0; Step 3: JSON parseable; Step 4: cost value extracted as a number; Step 5: cost is <= 0.50 (`OK_UNDER_CAP` printed) | `/tmp/cc-026-output.json`, terminal exit codes and jq output | PASS if exit 0 AND JSON parseable AND cost <= 0.50; FAIL if dispatch errors or JSON is malformed or cost exceeds the cap | 1. If the dispatch fails immediately, the budget cap may be too low for any meaningful response, raise to 1.00 and re-test with the same prompt; 2. If JSON omits the cost field, check the CLI version supports the field, otherwise log as a documentation drift; 3. If cost exceeds the cap, the budget guardrail regressed, file a high-severity bug |
+| CC-026 | Max budget USD cap behavior | Confirm `--max-budget-usd 0.50` is accepted and the reported cost is present, numeric, and at or below the cap | `Run Claude Code with a 50-cent budget cap and verify exit 0, parseable JSON, a present numeric cost, and cost under cap.` | 1. `bash: claude -p "Summarize the cli-claude-code skill in one paragraph based on @./.opencode/skills/cli-external/cli-claude-code/SKILL.md." --max-budget-usd 0.50 --output-format json --permission-mode plan > /tmp/cc-026-output.json 2>&1` -> 2. `bash: echo "Exit: $?"` -> 3. `bash: jq -e '.' /tmp/cc-026-output.json > /dev/null && echo OK_JSON` -> 4. `bash: jq -e '.total_cost_usd \| numbers' /tmp/cc-026-output.json && echo OK_COST_PRESENT` -> 5. `bash: jq -e '(.total_cost_usd \| tonumber) <= 0.50' /tmp/cc-026-output.json && echo OK_UNDER_CAP` | Step 1: dispatch captured with stdout AND stderr both landing in the same file (`> file 2>&1` order); Step 2: exit 0; Step 3: JSON parseable; Step 4: `total_cost_usd` exists and is a JSON number — `jq -e` exits non-zero and prints nothing if the field is absent or null, so this step CANNOT pass on missing metadata; Step 5: cost is <= 0.50 (`OK_UNDER_CAP` printed) | `/tmp/cc-026-output.json`, terminal exit codes and jq output | PASS if exit 0 AND JSON parseable AND `total_cost_usd` is present and numeric (step 4 prints `OK_COST_PRESENT`) AND cost <= 0.50; FAIL if dispatch errors, JSON is malformed, the cost field is missing/null (step 4 fails), or cost exceeds the cap | 1. If the dispatch fails immediately, the budget cap may be too low for any meaningful response, raise to 1.00 and re-test with the same prompt; 2. If step 4 fails because `total_cost_usd` is absent, this is a REAL FAIL (not a documentation footnote) — the cost field contract regressed, file a high-severity bug; 3. If cost exceeds the cap, the budget guardrail regressed, file a high-severity bug |
 
 ### Optional Supplemental Checks
 
@@ -61,7 +61,7 @@ For batch-budget validation, dispatch the same prompt twice with a single `--max
 
 | File | Role |
 |---|---|
-| `MANUAL_TESTING_PLAYBOOK.md` | Root directory page and scenario summary |
+| `manual_testing_playbook.md` | Root directory page and scenario summary |
 | `../../references/cli_reference.md` | Documents the `--max-budget-usd` flag |
 
 ### Implementation And Test Anchors
@@ -77,5 +77,5 @@ For batch-budget validation, dispatch the same prompt twice with a single `--max
 
 - Group: Cost And Background
 - Playbook ID: CC-026
-- Canonical root source: `MANUAL_TESTING_PLAYBOOK.md`
+- Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `cost-and-background/max-budget-usd-cap.md`

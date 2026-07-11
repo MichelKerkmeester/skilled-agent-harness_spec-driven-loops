@@ -224,7 +224,7 @@ INPUT: prompt + calling runtime
 [ADR-001 SELF-INVOCATION GUARD]
 - Layer 1: env var lookup (any OPENCODE_* env var present?)
 - Layer 2: process ancestry (opencode in parent process tree?)
-- Layer 3: state lock-file probe (~/.opencode/state/<id>/lock present?)
+- Layer 3: best-effort lock-file probe (~/.opencode/state/<id>/lock present? -- heuristic, not guaranteed on every install)
                 |
         +-------+-------+
         |               |

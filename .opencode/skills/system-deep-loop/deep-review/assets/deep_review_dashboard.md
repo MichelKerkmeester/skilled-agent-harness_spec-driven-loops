@@ -48,6 +48,18 @@ Provides a compact, human-readable summary of the current review session. Serves
 
 ---
 
+## 2A. DIMENSION EXPANSION
+<!-- MACHINE-OWNED: START -->
+- Completed pivots: 0
+- Failed pivots: 0
+- Audited overrides: 0
+- Swept: none yet
+- Pivot lineage: none yet
+- Remaining frontier: none recorded
+<!-- MACHINE-OWNED: END -->
+
+---
+
 ## 3. FINDINGS SUMMARY
 <!-- MACHINE-OWNED: START -->
 - **P0 (Critical):** [N] active, [N] new this iteration, [N] upgrades, [N] resolved

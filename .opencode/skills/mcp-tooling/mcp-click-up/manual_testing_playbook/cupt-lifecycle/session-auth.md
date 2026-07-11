@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `CU-002` and confirm the
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CU-002 | cupt Authentication | Verify `cupt config --api-token pk_xxx` stores credentials a | `Authenticate cupt with a Personal API Token and verify works` | 1. `cupt config --api-token pk_TEST_TOKEN`  # → exit 0 | Step 1: exits 0 with confirmation. Step 2: workspace name + user email displayed | Terminal output + ClickUp UI | PASS if `cupt status` shows workspace name without error; FAIL if `cupt status` returns 401 or AuthError | Check prerequisites and auth status |
+| CU-002 | cupt Authentication | Verify `cupt config --api-token pk_xxx` stores credentials and `cupt status` confirms the workspace | `Authenticate cupt with a Personal API Token and verify workspace access.` | 1. `cupt config --api-token pk_TEST_TOKEN`  # → exit 0 2. `cupt status`  # → Workspace: My Team (ID: 123456) 3. Confirm user email displayed | Step 1: exits 0 with confirmation. Step 2: workspace name + user email displayed; exit 0. | Terminal output of the command sequence above | PASS if `cupt status` shows workspace name without error; FAIL if `cupt status` returns 401 or AuthError | See [`../../references/troubleshooting.md`](../../references/troubleshooting.md) |
 
 ---
 
@@ -52,16 +52,16 @@ Operators run the exact prompt and command sequence for `CU-002` and confirm the
 
 | File | Role |
 |------|------|
-| `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/cupt-authentication/interactive-auth.md` | Feature catalog source |
+| [`manual_testing_playbook.md`](../manual_testing_playbook.md) | Root directory and scenario summary |
+| [`../../feature_catalog/cupt-authentication/interactive-auth.md`](../../feature_catalog/cupt-authentication/interactive-auth.md) | Feature catalog source |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |------|------|
-| `../references/cupt_commands.md` | cupt command reference |
-| `../references/mcp_tools.md` | MCP tool reference |
-| `../references/troubleshooting.md` | Error diagnosis |
+| [`../../references/cupt_commands.md`](../../references/cupt_commands.md) | cupt command reference |
+| [`../../references/mcp_tools.md`](../../references/mcp_tools.md) | MCP tool reference |
+| [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Error diagnosis |
 
 ---
 

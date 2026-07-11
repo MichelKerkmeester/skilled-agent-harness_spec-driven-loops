@@ -9,7 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
-version: 1.14.0.20
+version: 1.14.0.21
 ---
 
 # Convergence Detection Reference
@@ -46,11 +46,30 @@ The live deep-research algorithm evaluates:
 
 | Stage | Outcome |
 |-------|---------|
-| Hard stops | Stop on max iterations or all key questions answered |
+| Hard stop and completion candidate | Stop unconditionally on max iterations; nominate STOP when all key questions are answered |
 | Stuck detection | Enter recovery after configured consecutive no-progress iterations |
 | Composite convergence | Nominate STOP when weighted signal score is above `0.60` |
 | Legal-stop gates | Allow or block the STOP candidate |
 | Graph gates | Add STOP-blocking graph checks when `graphEvents` exist |
+
+### Convergence Modes
+
+The shared convergence runtime accepts four values. The workflow keeps hard terminal boundaries outside mode-specific convergence handling.
+
+| Mode | Live Behavior |
+|------|---------------|
+| `default` | Uses the normal full-history convergence signals and sends a legal STOP to synthesis. This is the fallback when no mode is supplied. |
+| `off` | Skips convergence-driven STOP candidates. Max iterations, pause or cancellation, manual stop, recovery halt, and unrecoverable error behavior remain active. |
+| `sliding-window` | Uses a bounded graph-novelty window, defaulting to 5 snapshots, while preserving the ordinary legal-stop and synthesis path. |
+| `divergent` | Computes convergence normally, but translates an eligible legal STOP into a three-seat direction-selection pivot and continues from the selected focus. |
+
+#### Divergent Pivot Contract
+
+Research pivots are eligible only when the workflow decision is `STOP` and the exact internal reason is `composite_converged` or `all_questions_answered`. The legal-stop and quality gates run before this branch. `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `minIterationsNotReached`, `error`, `manualStop`, and `userPaused` are explicitly excluded. Max iterations, pause or cancellation, manual stop, and unrecoverable error therefore never dispatch a pivot Council.
+
+Each eligible pivot runs one native, in-process Council round with exactly three distinct seats: analytical, critical, and pragmatic. It does not use an external CLI. The transaction requires all three seat returns to be parse-valid and at least two seats to materially endorse the same candidate without a high-severity blocker. Research candidates come from persisted adjacent questions, contradiction or verification gaps, missing source classes, alternate evidence methods, and independent checks of recent findings. A completed pivot restores the selected candidate's focus and returns to the research loop; a failed pivot fails closed to synthesis.
+
+Every pivot dispatches three seats, so a run that pivots has proportionally higher model cost and duration than the same run under `default`, `off`, or `sliding-window`. Pivot evidence is isolated under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, including config, append-only state, three seat artifacts, deliberation, and report. This path is distinct from ordinary planning Council artifacts under a spec packet's `ai-council/**` tree.
 
 ---
 
@@ -95,7 +114,7 @@ Legacy labels are normalized before persistence:
 5. If weighted stop score > 0.60, nominate STOP.
 6. Evaluate legal-stop gates for every STOP candidate except hard max-iteration stop.
 7. If graphEvents exist, evaluate graph-aware STOP blockers.
-8. If gates pass, STOP; otherwise emit blockedStop and CONTINUE with recovery focus.
+8. If gates pass, pivot for an eligible divergent reason or STOP normally; otherwise emit blockedStop and CONTINUE with recovery focus.
 ```
 
 ### Composite Signal Weights

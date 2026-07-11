@@ -222,11 +222,11 @@ Required inventories:
 - [x] Add the rate-gated `ctx.onPhase('orphan-sweep')` re-fire inside the loop (REQ-002)
 - [x] Unit test: fixture larger than the time budget exits early with a resumable cursor, and a follow-up
   invocation resumes and completes (REQ-001, REQ-005)
-- [x] Unit test: synthetic long sweep, run through the REAL `runGlobalOrphanSweep()` function under a
-  DELETE-heavy synthetic orphan backlog (not a scan-only mirror harness), shows more than one
+- [x] Unit test: synthetic long sweep, run through the REAL `runGlobalOrphanSweep()` function under an
+  ENQUEUE-heavy synthetic orphan backlog (not a scan-only mirror harness), shows more than one
   `ctx.onPhase`/refresh call (REQ-002), via a spy on the `onPhase` callback passed into `runIndexScan`'s
-  `ctx` -- a follow-up adversarial review found the pure SCAN path already safe, so this test must exercise
-  the DELETE cascade (`deleteIndexedRecordIds`, `memory-index.ts:650-724`) to verify anything new
+  `ctx` -- rows are queued via `appendMemoryDriftSuspects`, not `deleteIndexedRecordIds`; the DELETE-cascade
+  cost this fix was originally motivated by remains unverified (see spec.md REQ-002 verification note)
 - [x] Equivalence test: a fixture split across two budget-limited invocations produces the identical final
   swept-row set as one unbounded invocation over the same fixture (REQ-005)
 
@@ -254,7 +254,7 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | F1 budget-exit correctness, refresh-cadence call count (verified via the real `runGlobalOrphanSweep()` under a DELETE-heavy synthetic backlog, not a scan-only mirror harness), cursor-resume equivalence; F2 gate-parity correctness for both `specDocFiles` and `graphMetadataFiles` | vitest, extending `orphan-sweep-corpus-repair.vitest.ts` and `memory-drift-healing.vitest.ts` |
+| Unit | F1 budget-exit correctness, refresh-cadence call count (verified via the real `runGlobalOrphanSweep()` under an ENQUEUE-heavy synthetic backlog, not a scan-only mirror harness; the DELETE-cascade path remains unverified), cursor-resume equivalence; F2 gate-parity correctness for both `specDocFiles` and `graphMetadataFiles` | vitest, extending `orphan-sweep-corpus-repair.vitest.ts` and `memory-drift-healing.vitest.ts` |
 | Regression | Full-tree (non-scoped) scan output unchanged by F2; existing orphan-sweep tests (`orphan-sweep-corpus-repair.vitest.ts`, `launcher-stop-hook-orphan-sweep.vitest.ts`, `orphan-sweeper-ipc-preserve.vitest.ts`) still pass unmodified | vitest |
 | Manual | Code-review pass confirming both `runGlobalOrphanSweep()` call sites (`:985`, `:1473`) inherit F1 uniformly | Direct read |
 | Strict validation | `validate.sh --strict` sweep after implementation | `validate.sh` |

@@ -18,13 +18,13 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-Explicit equivalent of the default. Most useful when combined with `--all` to override scope back to self.
+Explicit equivalent of the default self-assigned scope. Does NOT override `--all` — if both flags are passed, `--all` wins and the result stays workspace-wide. Use `--mine` only when `--all` is absent.
 
 ---
 
 ## 2. HOW IT WORKS
 
-Useful in combined invocations where `--all` would otherwise expand scope: `cupt list --all --tag sprint --mine`.
+`--mine` cannot narrow scope back from `--all` in the same invocation — `cupt list --all --tag sprint --mine` still returns workspace-wide results, because `cupt` unconditionally sets `mine = False` whenever `--all` is present. Run `cupt list --tag sprint` (without `--all`) for the self-assigned equivalent.
 
 ---
 

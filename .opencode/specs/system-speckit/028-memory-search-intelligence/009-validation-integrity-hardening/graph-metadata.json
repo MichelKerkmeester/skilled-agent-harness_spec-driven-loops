@@ -31,7 +31,7 @@
       "match",
       "strict"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/rules/check-canonical-save-helper.cjs",

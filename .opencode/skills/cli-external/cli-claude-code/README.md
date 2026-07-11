@@ -106,7 +106,7 @@ When any layer matches, the skill returns a refusal and loads nothing. The cli-X
 
 ### Agent Delegation
 
-Route to a specialized agent with `--agent <name>`. In this repo, Claude Code agent definitions resolve from `.opencode/agents/<name>.md` and shape how Claude Code processes the task. The current roster includes:
+Route to a specialized agent with `--agent <name>`. In this repo, Claude Code agent definitions resolve from `.claude/agents/<name>.md` and shape how Claude Code processes the task. The current roster includes:
 
 | Agent | Purpose |
 |---|---|
@@ -114,12 +114,13 @@ Route to a specialized agent with `--agent <name>`. In this repo, Claude Code ag
 | `code` | Application-code implementation via `sk-code`; orchestrator-only |
 | `context` | Codebase exploration and architecture mapping |
 | `debug` | Systematic debugging and root-cause analysis |
-| `deep-improvement` | Proposal-only deep-improvement candidate generation |
-| `deep-research` | Single-iteration deep research execution |
-| `deep-review` | Single-iteration deep review execution |
+| `deep-improvement` | Proposal-only deep-improvement candidate generation (command-owned by `/deep:agent-improvement`) |
+| `deep-research` | Single-iteration deep research execution (command-owned by `/deep:research`) |
+| `deep-review` | Single-iteration deep review execution (command-owned by `/deep:review`) |
+| `design` | UI/design work via `sk-design` |
 | `markdown` | Template-first markdown and documentation execution |
 | `orchestrate` | Multi-agent coordination |
-| `prompt-improver` | Dispatch-ready prompt package generation |
+| `prompt-improver` | Dispatch-ready prompt package generation (command-owned by `/prompt`) |
 | `review` | Code review and security audit (pair with `--permission-mode plan`) |
 
 Example: `claude -p "Review @src/auth.ts for security issues" --agent review --permission-mode plan --output-format text 2>&1`

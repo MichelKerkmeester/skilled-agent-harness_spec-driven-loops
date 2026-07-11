@@ -1,10 +1,10 @@
 ---
-title: "CO-032 -- Deep-research agent iteration loop"
-description: "This scenario validates the deep-research agent for `CO-032`. It focuses on confirming `--agent deep-research` executes a single research iteration with externalized JSONL state per the LEAF agent contract."
-version: 1.3.0.12
+title: "CO-032 -- Deep-research command-owned iteration loop"
+description: "This scenario validates the deep-research loop for `CO-032`. It focuses on confirming `/deep:research:auto` (never a raw `--agent deep-research` dispatch) drives a single iteration against a pre-bound spec packet and persists the real packet-local JSONL/strategy/dashboard state."
+version: 1.3.0.13
 ---
 
-# CO-032 -- Deep-research agent iteration loop
+# CO-032 -- Deep-research command-owned iteration loop
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-032`.
 
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the `deep-research` agent for `CO-032`. It focuses on confirming `--agent deep-research` executes a single research iteration against externalized JSONL state and respects the LEAF constraint (no nested dispatches), so the parent `/deep:research` command can manage convergence detection across multiple iterations without each iteration spawning sub-agents.
+This scenario validates the `deep-research` loop for `CO-032`. It focuses on confirming that a `/deep:research:auto` dispatch against a pre-bound spec packet runs at least one real iteration, writes the packet-local iteration file, and appends an event to the packet-local `research/deep-research-state.jsonl`, so the command's own reducer (not this scenario) can manage convergence detection across multiple iterations.
 
 ### Why This Matters
 
-`agent_delegation.md` §3 declares `deep-research` a LEAF agent dispatched only by `/deep:research` for single research-cycle execution. The skill rules in SKILL.md §4 ALWAYS rule 10 require classifying the use case (1, 2 or 3) before dispatch and the deep-research agent is the canonical executor for use case 1 research loops. If the agent silently spawns sub-agents or skips externalized state, the convergence-detection contract for autonomous research loops collapses and the parent command loses its source of truth.
+`deep-research` is a LEAF agent that is LOOP-OWNED by its parent `/deep:research` command (`SKILL.md` §3 "OpenCode Agent Delegation" item 3; `references/agent_delegation.md` §3 "@deep-research and @deep-review — Loop Executors"). The current contract forbids two shortcuts this scenario previously took: a raw top-level `opencode run --agent deep-research` dispatch (rejected the same way any other subagent slug is at the top level) and a generic `--agent orchestrate` simulation that invents its own `/tmp` state file. Neither shortcut proves the production contract, because all continuity for a real deep-research run lives on disk under `{spec_folder}/research/` (`deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `findings-registry.json`, `deep-research-dashboard.md`, plus one file per iteration) and is machine-owned by the command's reducer, not by ad-hoc prose in a dispatch prompt. If this scenario keeps testing the simulated shape, a real regression in the command-owned state machine can ship undetected.
 
 ---
 
@@ -24,13 +24,13 @@ This scenario validates the `deep-research` agent for `CO-032`. It focuses on co
 
 Operators run the exact prompt and command sequence for `CO-032` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `--agent deep-research` executes a single research iteration against externalized JSONL state at a temp path, surfaces findings or hypotheses in the response, AND respects the LEAF constraint (no nested Task-tool dispatches in the JSON event stream).
-- Real user request: `Run a single deep-research iteration on the cli-opencode self-invocation guard rationale. Externalize state under /tmp so we can re-run convergence detection later.`
-- RCAF Prompt: `As an external-AI conductor (or `/deep:research` simulator) running a single research iteration, dispatch opencode run --agent deep-research --variant high --format json --dir <repo-root> "Run iteration 1 of the deep-research loop investigating the cli-opencode self-invocation guard rationale documented in ADR-001 and integration_patterns.md §5. State externalized at /tmp/co-032-state.jsonl. Surface at least 2 findings or open hypotheses. Do not dispatch sub-agents." Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.`
-- Expected execution process: External-AI orchestrator dispatches `--agent deep-research --format json` for a single iteration, captures the JSON event stream, then validates that >= 2 findings surface and that no Task or sub-agent dispatches appear in the event stream.
-- Expected signals: Dispatch exits 0. JSON event stream contains session.started, message.delta events and session.completed. Response surfaces at least 2 findings or hypotheses (numbered or labeled). Zero Task tool.call events. Zero `opencode run` nested invocations in tool.call payloads. Dispatched command line includes `--agent deep-research`.
-- Desired user-visible outcome: A single research-iteration result the parent command can feed into convergence detection on the next iteration.
-- Pass/fail: PASS if exit 0 AND JSON parseable AND >= 2 findings AND zero nested-dispatch tool.calls AND `--agent deep-research` in dispatch. FAIL if any check misses or LEAF constraint is violated.
+- Objective: Verify `/deep:research:auto` against a pre-bound spec packet executes at least one real iteration, writes an iteration file under `{spec_folder}/research/`, and appends at least one record to `{spec_folder}/research/deep-research-state.jsonl` — without this scenario synthesizing its own `/tmp` state or routing through a generic `--agent orchestrate` simulation.
+- Real user request: `Run a single deep-research iteration on the cli-opencode self-invocation guard rationale, using the real /deep:research command against a scratch spec packet, and show me the packet-local state file it wrote.`
+- RCAF Prompt: `As an external-AI conductor exercising the production deep-research loop (never a raw --agent deep-research dispatch and never an orchestrate simulation), dispatch opencode run --command deep/research against a pre-bound scratch spec packet, with the topic "the cli-opencode self-invocation guard rationale documented in ADR-001 and integration_patterns.md §5" and a tight iteration cap so the loop stops quickly. Verify the dispatch exits 0, a new iteration file appears under <packet>/research/, and <packet>/research/deep-research-state.jsonl gained at least one new record. Return a verdict naming the iteration file and the state-file record count delta.`
+- Expected execution process: External-AI orchestrator pre-binds a scratch spec packet (never the operator's live tracked packets), dispatches through the command-owned entry point with a low `--max-iterations` cap, captures the JSON event stream, then validates the packet's `research/` directory gained the expected files rather than inspecting any `/tmp` path.
+- Expected signals: Dispatch exits 0. `<packet>/research/` contains at least one new iteration file after the run. `<packet>/research/deep-research-state.jsonl` line count increased by at least 1. No dispatch used a raw top-level `--agent deep-research` or an `--agent orchestrate` "use the deep-research subagent" simulation.
+- Desired user-visible outcome: A real, on-disk research-iteration result the command's own reducer can feed into convergence detection on the next invocation.
+- Pass/fail: PASS if exit 0 AND a new iteration file exists under `<packet>/research/` AND the state JSONL line count increased AND no raw `--agent deep-research` / orchestrate-simulation dispatch was used. FAIL if any check misses.
 
 ---
 
@@ -38,20 +38,20 @@ Operators run the exact prompt and command sequence for `CO-032` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Pre-create the state directory and snapshot the working tree.
-2. Dispatch `--agent deep-research --format json` for iteration 1.
-3. Parse the JSON event stream and count findings.
-4. Confirm zero Task tool.call events appear (LEAF compliance).
-5. Verify the response references the iteration plus state path.
-6. Return a verdict naming the findings count and confirming LEAF compliance.
+1. Pre-bind a scratch spec packet path (a throwaway packet under the tracked-packet convention, never a live operator packet) and confirm it has no pre-existing `research/` directory, or capture the current `deep-research-state.jsonl` line count if it does.
+2. Dispatch `/deep:research:auto` (via `opencode run --command deep/research`, per SKILL.md/`cli_reference.md` §4's `--command <family>/<name>` contract) against that packet with a low iteration cap.
+3. Confirm the dispatch exits 0.
+4. List `<packet>/research/` and confirm a new iteration file exists.
+5. Diff the `deep-research-state.jsonl` line count before/after and confirm it grew.
+6. Return a verdict naming the iteration file and the record-count delta.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-032 | Deep-research agent iteration loop | Verify --agent deep-research executes a single iteration with externalized state and respects the LEAF constraint | `As an external-AI conductor (or `/deep:research` simulator) running a single research iteration, dispatch opencode run --agent deep-research --variant high --format json --dir <repo-root> "Run iteration 1 of the deep-research loop investigating the cli-opencode self-invocation guard rationale documented in ADR-001 and integration_patterns.md §5. State externalized at /tmp/co-032-state.jsonl. Surface at least 2 findings or open hypotheses. Do not dispatch sub-agents." Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.` | 1. `bash: rm -rf /tmp/co-032-events.jsonl /tmp/co-032-state.jsonl && touch /tmp/co-032-state.jsonl` -> 2. `opencode run --model deepseek/deepseek-v4-pro --agent orchestrate --variant high --format json --dir "$(pwd)" "Use the deep-research subagent to run iteration 1 of the deep-research loop investigating the cli-opencode self-invocation guard rationale documented in ADR-001 and integration_patterns.md anchor 5. State externalized at /tmp/co-032-state.jsonl. Surface at least 2 findings or open hypotheses. The deep-research subagent is LEAF — it must not dispatch further sub-agents." > /tmp/co-032-events.jsonl 2>&1` -> 3. `bash: echo "Exit: $?"` -> 4. `bash: jq -r 'select(.type == "session.completed") \| .payload.summary // empty' /tmp/co-032-events.jsonl \| head -c 500` -> 5. `bash: grep -ciE '(finding\|hypothesis\|hypothes[ie]s)' /tmp/co-032-events.jsonl` -> 6. `bash: jq -r 'select(.type == "tool.call") \| .payload.name' /tmp/co-032-events.jsonl \| grep -ciE '^Task$' \| tr -d ' '` -> 7. `bash: jq -r 'select(.type == "tool.call") \| .payload.input.command // empty' /tmp/co-032-events.jsonl \| grep -ciE 'opencode run' \| tr -d ' '` | Step 1: state directory prepared; Step 2: dispatch captured; Step 3: exit 0; Step 4: session.completed summary extracted; Step 5: finding mention count >= 2; Step 6: Task tool.call count = 0 (LEAF compliance); Step 7: nested `opencode run` count = 0 | `/tmp/co-032-events.jsonl`, `/tmp/co-032-state.jsonl`, terminal grep counts | PASS if exit 0 AND JSON parseable AND >= 2 findings AND Task tool.call count = 0 AND nested opencode-run count = 0 AND `--agent deep-research` in dispatch; FAIL if any check misses or LEAF constraint is violated | (1) If Task tool.call count > 0, the LEAF constraint regressed, file a high-severity bug; (2) if findings are absent, the agent may have refused or the prompt may be too vague, refine and re-dispatch; (3) if `--agent deep-research` is rejected, run `opencode agent list` to confirm the agent is registered |
+| CO-032 | Deep-research command-owned iteration loop | Verify `/deep:research:auto` against a pre-bound packet writes a real iteration file and grows the packet-local state JSONL | `As an external-AI conductor exercising the production deep-research loop (never a raw --agent deep-research dispatch and never an orchestrate simulation), dispatch opencode run --command deep/research against a pre-bound scratch spec packet, with the topic "the cli-opencode self-invocation guard rationale documented in ADR-001 and integration_patterns.md §5" and a tight iteration cap so the loop stops quickly. Verify the dispatch exits 0, a new iteration file appears under <packet>/research/, and <packet>/research/deep-research-state.jsonl gained at least one new record. Return a verdict naming the iteration file and the state-file record count delta.` | 1. `bash: PACKET=".opencode/specs/skilled-agent-orchestration/999-co-032-scratch-probe"; mkdir -p "$PACKET"; wc -l "$PACKET/research/deep-research-state.jsonl" 2>/dev/null || echo "PRE_COUNT=0"` -> 2. `bash: opencode run --command deep/research --variant high --format json --dir "$(pwd)" "auto: the cli-opencode self-invocation guard rationale documented in ADR-001 and integration_patterns.md §5 -- spec folder $PACKET, --max-iterations 1" > /tmp/co-032-events.jsonl 2>&1; echo "Exit: $?"` -> 3. `bash: ls -1t "$PACKET/research/"*.md 2>/dev/null \| head -3` -> 4. `bash: wc -l "$PACKET/research/deep-research-state.jsonl" 2>/dev/null` -> 5. `bash: rm -rf "$PACKET"` (scratch-packet teardown, run after every pass or fail) | Step 1: pre-count captured (0 for a fresh scratch packet); Step 2: exit 0; Step 3: at least one iteration file listed; Step 4: line count > pre-count; Step 5: scratch packet removed | `/tmp/co-032-events.jsonl`, `$PACKET/research/` directory listing, before/after JSONL line counts | PASS if exit 0 AND >= 1 new iteration file AND state JSONL line count increased AND the scratch packet was never a live operator packet; FAIL if any check misses or the dispatch fell back to a raw `--agent deep-research` / orchestrate-simulation shape | (1) If `--command deep/research` does not resolve the `:auto` mode as expected, confirm the exact non-interactive invocation shape against `.opencode/commands/deep/research.md` before assuming the command is broken; (2) if no iteration file appears, the loop may have exited on a Gate-3 or setup halt — inspect stderr and `$PACKET/research/deep-research-state.jsonl` for a blocked-stop record; (3) never point `$PACKET` at a tracked operator packet — this scenario's writes must stay inside a disposable scratch packet |
 
 ### Optional Supplemental Checks
 
-For full convergence-detection validation, run a second iteration with `-c` (continue) and verify the second iteration references findings from the first via the externalized state. The parent command (`/deep:research`) is the canonical convergence detector but a manual two-iteration smoke test confirms state externalization works.
+For full convergence-detection validation, re-invoke `/deep:research:auto` against the same scratch packet and confirm the reducer resumes the existing lineage (per the README's "Because state is on disk, a crashed run resumes from the packet files" behavior) rather than starting a new one. The command's own reducer is the canonical convergence detector; this scenario only proves the on-disk contract is exercised end-to-end.
 
 ---
 
@@ -61,15 +61,16 @@ For full convergence-detection validation, run a second iteration with `-c` (con
 
 | File | Role |
 |---|---|
-| `MANUAL_TESTING_PLAYBOOK.md` | Root directory page and scenario summary |
-| `../../references/agent_delegation.md` (§3 deep-research) | Documents the deep-research LEAF agent contract |
+| `manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../references/agent_delegation.md` (§3 "@deep-research and @deep-review — Loop Executors") | Documents the deep-research LEAF, command-owned contract |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` (line 251) | Documents `--agent deep-research` in §3 agent routing table |
+| `../../SKILL.md` §3 "OpenCode Agent Delegation" item 3 | Command-owned loop executor contract (never raw `--agent deep-research`) |
 | `../../references/agent_delegation.md` | §3 deep-research, LEAF iteration loop executor |
+| `system-deep-loop/deep-research/README.md` | Packet-local artifact layout (`research/deep-research-state.jsonl` etc.) and `/deep:research:auto` invocation shape |
 | `.opencode/agents/deep-research.md` | Agent definition file |
 
 ---
@@ -78,5 +79,5 @@ For full convergence-detection validation, run a second iteration with `-c` (con
 
 - Group: Agent Routing
 - Playbook ID: CO-032
-- Canonical root source: `MANUAL_TESTING_PLAYBOOK.md`
+- Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `agent-routing/deep-research-agent-iterations.md`

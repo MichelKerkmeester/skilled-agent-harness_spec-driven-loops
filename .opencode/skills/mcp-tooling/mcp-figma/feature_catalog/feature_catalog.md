@@ -46,7 +46,7 @@ Every command below carries one tag. Local exports are read-only but still write
 | Inspect | READ | Always safe, nothing is written to the document |
 | Design-system extract and import | READ (extract) feeding judgment / MUTATING (import) | Extract read-only with explicit output; import gated |
 | Render and create | WRITE | Gated: confirmation + explicit target |
-| Tokens and variables | WRITE (+ destructive deletes) | Gated; `var delete-all` / `delete-batch` are destructive |
+| Tokens and variables | WRITE (+ destructive deletes) | Gated; `var delete-all` (variables) and `delete\|remove` (nodes) are destructive |
 | Export | READ | Safe; explicit output path, no silent overwrite |
 | A11y and analysis | READ | Always safe |
 | Optional MCP context | READ (opt-in) | Code Mode; verify the manual and tools live first |
@@ -110,7 +110,7 @@ See [`design-system-extract-and-import/design-system-extract-and-import.md`](des
 
 ## 5. RENDER AND CREATE
 
-Author content in the document: render JSX-described nodes, create frames/icons/images and primitives, lay out and arrange, duplicate, convert to components, and generate variants and combos. Every verb here changes the document and is gated. `--dry-run` variants of arrange/unstack/use/combos are read-only previews. Prefer `render`/`render-batch` over `eval` for visual nodes (eval bypasses positioning).
+Author content in the document: render JSX-described nodes, create frames/icons/images and primitives, lay out, duplicate, convert to components, and generate variants and combos. Every verb here changes the document and is gated; `arrange` is gated more strictly and is DESTRUCTIVE (the binary's own `--help` labels it destructive). `--dry-run` variants of unstack/use/combos are read-only previews; `arrange` has no `--dry-run`. Prefer `render`/`render-batch` over `eval` for visual nodes (eval bypasses positioning).
 
 | Feature | One-line description | Class | figma-ds-cli command |
 |---|---|---|---|
@@ -120,7 +120,8 @@ Author content in the document: render JSX-described nodes, create frames/icons/
 | Create primitives (aliases) | Top-level shape/text/group aliases | MUTATING | `figma-ds-cli rect\|ellipse\|text\|line\|component\|group\|autolayout ...` |
 | Set property | Sets a property (fill, etc.; supports `var:name`) | MUTATING | `figma-ds-cli set <prop> <value>` |
 | Layout verbs | Sizing, padding, gap, align on a node | MUTATING | `figma-ds-cli sizing\|padding\|gap\|align <node> ...` |
-| Arrange / unstack | Arranges or unstacks nodes (preview with `--dry-run`) | MUTATING | `figma-ds-cli arrange\|unstack <node> [--dry-run]` |
+| Unstack | Spreads overlapping nodes (preview with `--dry-run`) | MUTATING | `figma-ds-cli unstack [-g] [--dry-run]` |
+| Arrange | Rearranges ALL top-level frames on canvas, sorted alphabetically; no `--dry-run` | **DESTRUCTIVE** | `figma-ds-cli arrange [-g] [-c]` |
 | Duplicate | Duplicates a node | MUTATING | `figma-ds-cli duplicate <node>` |
 | To component | Converts a node into a component | MUTATING | `figma-ds-cli node to-component <node>` |
 | Variants / sizes / combos | Generates component variants, sizes, or combos | MUTATING | `figma-ds-cli variants\|sizes\|combos ... [--dry-run]` |
@@ -140,14 +141,13 @@ Manage Figma variables and collections, bind `var:name` references, and visualiz
 |---|---|---|---|
 | List variables / collections | Lists variables, collections, or finds a variable | READ-ONLY | `figma-ds-cli var list \| var find <q> \| collections list` |
 | Token overlap | Reports overlapping/conflicting tokens | READ-ONLY | `figma-ds-cli tokens overlap` |
-| Create variable | Creates a variable | MUTATING | `figma-ds-cli var create <name> <value>` |
+| Create variable | Creates a variable | MUTATING | `figma-ds-cli var create <name> -c <collection> -t <type> [-v <value>]` |
 | Bind variable | Binds a variable to a node property | MUTATING | `figma-ds-cli var bind <node> <prop> <var> \| bind <node> <var>` |
 | Set / rename variable | Sets a variable value or renames it | MUTATING | `figma-ds-cli var set\|rename <name> ...` |
 | Visualize tokens | Renders a token visualization | MUTATING | `figma-ds-cli var visualize` |
 | Use / theme | Applies a collection or theme | MUTATING | `figma-ds-cli use\|theme <name> [--dry-run]` |
-| Delete one variable | Deletes a single variable | DESTRUCTIVE | `figma-ds-cli delete\|remove <node-or-var>` |
-| Delete all variables | Deletes every variable, requires confirm + rollback | DESTRUCTIVE | `figma-ds-cli var delete-all` |
-| Delete variable batch | Deletes a batch of variables by id | DESTRUCTIVE | `figma-ds-cli var delete-batch <ids>` |
+| Delete node | Deletes a node by id or current selection (node-scoped, not variable-scoped) | DESTRUCTIVE | `figma-ds-cli delete\|remove [nodeId]` |
+| Delete all variables | Deletes every local variable, or one collection's with `-c`; the only variable-delete command, all-or-nothing | DESTRUCTIVE | `figma-ds-cli var delete-all [-c <collection>]` |
 
 See [`tokens-and-variables/tokens-and-variables.md`](tokens-and-variables/tokens-and-variables.md) for the bind syntax and the destructive delete gate.
 
@@ -159,10 +159,11 @@ Write assets and code out of the document: PNG/SVG, CSS, Tailwind, JSX, and Stor
 
 | Feature | One-line description | Class | figma-ds-cli command |
 |---|---|---|---|
-| Export asset | Exports a node as a screenshot/PNG/SVG to an explicit path | READ-ONLY (explicit output) | `figma-ds-cli export screenshot\|node <node> <output>` |
-| Export CSS / Tailwind | Exports node styles as CSS or Tailwind | READ-ONLY (explicit output) | `figma-ds-cli export css\|tailwind <node> <output>` |
-| Export JSX | Exports a node as JSX | READ-ONLY (explicit output) | `figma-ds-cli export-jsx <node> <output>` |
-| Export Storybook | Exports components as Storybook stories | READ-ONLY (explicit output) | `figma-ds-cli export-storybook <output>` |
+| Export screenshot | Exports the selected node or current page as a screenshot/PNG/SVG | READ-ONLY (explicit output) | `figma-ds-cli export screenshot [-o file] [-s scale] [-f png\|jpg\|svg\|pdf]` |
+| Export node | Exports one specific node by id | READ-ONLY (explicit output) | `figma-ds-cli export node <nodeId> [-o file] [-s scale] [-f png\|svg\|pdf\|jpg]` |
+| Export CSS / Tailwind | Exports the file's variables as CSS or a Tailwind config; no node or output argument | READ-ONLY | `figma-ds-cli export css \| export tailwind` |
+| Export JSX | Exports a node (or the selection) as JSX; stdout unless `-o` names a file | READ-ONLY (explicit output) | `figma-ds-cli export-jsx [nodeId] [-o file] [--pretty]` |
+| Export Storybook | Exports components as Storybook stories; stdout unless `-o` names a file | READ-ONLY (explicit output) | `figma-ds-cli export-storybook [nodeId] [-o file]` |
 
 See [`export/export.md`](export/export.md) for the export surface and the explicit-output, no-overwrite rule.
 
@@ -206,11 +207,11 @@ Each capability area maps to exactly one per-feature file in its numbered catego
 | 2 | Connect and daemon | 10 | `connect-and-daemon/connect-and-daemon.md` |
 | 3 | Inspect | 10 | `inspect/inspect.md` |
 | 4 | Design-system extract and import | 2 | `design-system-extract-and-import/design-system-extract-and-import.md` |
-| 5 | Render and create | 12 | `render-and-create/render-and-create.md` |
-| 6 | Tokens and variables | 10 | `tokens-and-variables/tokens-and-variables.md` |
-| 7 | Export | 4 | `export/export.md` |
+| 5 | Render and create | 14 | `render-and-create/render-and-create.md` |
+| 6 | Tokens and variables | 9 | `tokens-and-variables/tokens-and-variables.md` |
+| 7 | Export | 5 | `export/export.md` |
 | 8 | A11y and analysis | 5 | `a11y-and-analysis/a11y-and-analysis.md` |
 | 9 | Optional MCP context | 2 | `optional-mcp/optional-mcp-context.md` |
-| **Total** | **8 capability areas** | **55 command rows** | **8 per-feature files** |
+| **Total** | **8 capability areas** | **57 command rows** | **8 per-feature files** |
 
 > Counts cover the decision-relevant commands digested in the figma-cli capability research; the full per-command flag surface (≈130 rows) lives in the research raw output and is not reproduced here. The per-feature file count MUST equal the 8 capability areas; keep them in sync as areas are added or revised. Verify any command, flag, or class against `figma-ds-cli --help` before relying on it.
