@@ -54,8 +54,8 @@ This phase ran the four gates from `research.md` Deliverable 4 and rolled up the
 | File | Action | Purpose |
 |------|--------|---------|
 | `implementation-summary.md` | Create | Gate evidence for this phase |
-| `../spec.md` | Modify | Parent Status → Complete; phase-map statuses |
-| `../graph-metadata.json` | Modify | Parent rollup: status complete + last_active_child_id |
+| [`../spec.md`](../spec.md) | Modify | Parent Status → Complete; phase-map statuses |
+| [`../graph-metadata.json`](../graph-metadata.json) | Modify | Parent rollup: status complete + last_active_child_id |
 | `benchmark/router-mode-a/skill-benchmark-report.{json,md}` | Modify | Regenerated Gate-2 evidence (9 scenarios incl. OC-009) |
 
 <!-- /ANCHOR:what-built -->
@@ -64,7 +64,7 @@ This phase ran the four gates from `research.md` Deliverable 4 and rolled up the
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-All gates ran in the isolated worktree pinned to the origin tip, so the deterministic router-replay used the clean origin harness (score-skill-benchmark.cjs) rather than a dirty working-tree copy — the verdict is reproducible at that commit. The metadata generators and `validate.sh` were driven from the main tree against the worktree's folder paths (the worktree ships no `node_modules`/dist), which is a read-and-write-file operation with no database side effects.
+All gates ran in the isolated worktree pinned to the origin tip, so the deterministic router-replay used the clean origin harness (score-skill-benchmark.cjs) rather than a dirty working-tree copy — the verdict is reproducible at that commit. The metadata generators and `validate.sh` were driven from the main tree against the worktree's folder paths (the worktree ships no `node_modules`/dist), a plain filesystem read/write, with no database side effects.
 
 <!-- /ANCHOR:how-delivered -->
 ---
