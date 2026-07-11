@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/131-command-agent-conformance-audit/006-validation-closeout",
+  "spec_folder": "skilled-agent-orchestration/131-command-agent-conformance-audit/006-validation-closeout",
+  "parent_id": "skilled-agent-orchestration/131-command-agent-conformance-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validation closeout",
+      "recursive strict validate",
+      "doctor route-validate parent rollup",
+      "advisor re-baseline no regression",
+      "006-validation-closeout",
+      "validation closeout plan",
+      "build-artifact regen plan",
+      "skill-graph regen operator gate",
+      "006-validation-closeout plan",
+      "validation closeout tasks",
+      "build-artifact regen tasks",
+      "skill-graph regen operator gate tasks"
+    ],
+    "key_topics": [
+      "validation",
+      "closeout",
+      "recursive",
+      "strict",
+      "validate",
+      "doctor",
+      "route-validate",
+      "parent",
+      "rollup",
+      "advisor",
+      "re-baseline",
+      "regression"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/commands/doctor/scripts/route-validate.sh",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/specs/skilled-agent-orchestration/131-command-agent-conformance-audit/spec.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+      ".opencode/commands/doctor/scripts/skill-graph-freshness.cjs",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      "implementation-summary.md",
+      "plan.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+      ".opencode/commands/deep/assets/compiled/deep_research.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep_review.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep_ai-council.contract.md",
+      ".opencode/commands/deep/assets/compiled/manifest.jsonl",
+      "spec.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/route-validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_compiler.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_review.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ai-council.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep_ai-council.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.jsonl",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 002-005 remediate the command, doctor, agent, and README surfaces one at a time, but nothing yet proves the program landed cleanly as an integrated whole",
+    "created_at": "2026-07-10T18:53:47Z",
+    "last_save_at": "2026-07-11T08:49:20.809Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:77e803c8c26fed406de2b1ef09b203e39d04d7d2fb49880d941e37f4686b6a46",
+    "source_doc_hashes": {
+      "spec.md": "34b5ee8a2e943b680b4c9661ead60f8462fcf262ac37c8ebf6ab164e47dba921",
+      "plan.md": "5b3a72bb6916863d4e40b4fe79a32cb777444913edc5ed6e34f976c0672e0f56",
+      "tasks.md": "a2515d0d2a743e92fd350a709594fd19585d691b8e2c8259c04759d9a3892752",
+      "implementation-summary.md": "7c777c2badf47e6ac302afd2b8d0b58c00da23457d72924cf61ad4b5f378cef3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

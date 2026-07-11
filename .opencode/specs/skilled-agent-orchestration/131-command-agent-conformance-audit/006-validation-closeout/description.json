@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/131-command-agent-conformance-audit/006-validation-closeout",
+  "description": "Phases 002-005 remediate the command, doctor, agent, and README surfaces one at a time, but nothing yet proves the program landed cleanly as an",
+  "keywords": [
+    "phases",
+    "remediate",
+    "command",
+    "doctor",
+    "agent",
+    "readme",
+    "surfaces",
+    "one",
+    "time",
+    "nothing",
+    "proves",
+    "program",
+    "landed",
+    "cleanly"
+  ],
+  "lastUpdated": "2026-07-11T08:49:01.500Z",
+  "specId": "006",
+  "folderSlug": "validation-closeout",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "131-command-agent-conformance-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

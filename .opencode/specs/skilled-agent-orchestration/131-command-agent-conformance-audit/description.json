@@ -1,0 +1,33 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/131-command-agent-conformance-audit",
+  "description": "The skill layer has moved substantially — parent hubs now own former standalone skills as modes, several command/agent/skill names changed, and one",
+  "keywords": [
+    "skill",
+    "layer",
+    "moved",
+    "substantially",
+    "parent",
+    "hubs",
+    "now",
+    "own",
+    "former",
+    "standalone",
+    "skills",
+    "modes",
+    "several",
+    "command",
+    "agent",
+    "names",
+    "changed",
+    "one"
+  ],
+  "lastUpdated": "2026-07-11T08:49:01.160Z",
+  "specId": "131",
+  "folderSlug": "command-agent-conformance-audit",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
