@@ -70,7 +70,7 @@ Mode: [auto|confirm|ask]
 Feature flags: [with-context yes/no] [with-phases yes/no] [intake-only yes/no]
 
 Q0. Feature Description, if not provided: What feature should be planned?
-Q1. Spec Folder: A) Use existing  B) Create new  C) Update related  D) Skip documentation  E) Phase folder
+Q1. Spec Folder: A) Use existing  B) Create new  C) Update related  D) Extend phased packet  E) Skip documentation
 Q2. Execution Mode, if no suffix: A) Autonomous  B) Interactive
 Q3. Dispatch Mode: A) Single Agent  B) Multi-Agent (1+2)  C) Multi-Agent (1+3)
 Q4. Prior Work Context, only when prior records exist: A) Latest  B) Recent 3  C) Skip
@@ -78,7 +78,7 @@ Q5. Research Intent: A) add_feature  B) fix_bug  C) refactor  D) understand
 Q6. Phase Decomposition, if not already enabled: A) No  B) Yes
 Q7. Phase Count, if phase decomposition is enabled and not provided: default 3
 Q8. Phase Names, if phase decomposition is enabled and not provided: optional comma-separated names
-Q9. Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Skip  C) Set goal: <objective>
+Q9. Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Set goal: <objective>  C) Skip
 
 If folder intake is required, include the intake interview in this same prompt.
 

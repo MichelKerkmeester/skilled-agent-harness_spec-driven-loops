@@ -49,7 +49,7 @@ Q1. Confirm Detected Session, if auto-detected: A) Yes, resume  B) Select differ
 Q2. Continuation Validation, if handoff and indexed continuity disagree: A) Use handoff  B) Use indexed continuity  C) Investigate first
 Q3. Missing Artifacts, if required artifacts are incomplete: A) Run /speckit:plan  B) Select different folder  C) Continue anyway
 Q4. Recovery Depth, when the canonical packet is thin: A) Fast resume  B) Fill missing next step or blockers  C) Deeper context  D) Canonical artifacts only
-Q5. Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Skip  C) Set goal: <objective>
+Q5. Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Set goal: <objective>  C) Skip
 
 Reply format covers Q0-Q5 in order, with `-` for omitted conditional answers: "A, A, -, -, A, A" or "A, A, B, C, B, B".
 ```

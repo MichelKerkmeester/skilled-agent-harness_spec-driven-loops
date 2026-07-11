@@ -87,8 +87,8 @@ Q3. Spec Folder (required for full-create/full-update)
 A) Existing
 B) New
 C) Update related
-D) Skip
-E) Phase folder
+D) Extend phased packet
+E) Skip
 
 For reference-only/asset-only:
 A) Attach existing spec path for continuity tracking

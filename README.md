@@ -338,7 +338,7 @@ TypeScript sources compile to `.opencode/skills/system-spec-kit/scripts/dist/`. 
   │  Gate 3: Spec Folder (HARD BLOCK)           │
   │  Only if file modification detected           │
   │  A) Existing  B) New  C) Update             │
-  │  D) Skip      E) Extend phased packet       │
+  │  D) Extend phased packet  E) Skip           │
   └──────────────────┬──────────────────────────┘
                      │
                      ▼

@@ -256,7 +256,7 @@ The phased-packet preference does not override qualification. If only one or nei
 
 New/unrelated work is allowed to use Option B, but the new packet must still be evaluated independently. If it meets both phase thresholds, create a new phased packet; otherwise create a standard packet.
 
-**Phased Packets:** If the target already has child phase folders, use the active child when the work fits that child's scope. For a distinct but related workstream, prefer Option E and add the next sequential child phase instead of creating a new top-level sibling packet. Use the coordination root only for phase-map updates, root-scope decisions, and tree-truth verification. Use Option B only when the work is outside the phase parent's documented purpose and scope.
+**Phased Packets:** If the target already has child phase folders, use the active child when the work fits that child's scope. For a distinct but related workstream, prefer Option D and add the next sequential child phase instead of creating a new top-level sibling packet. Use the coordination root only for phase-map updates, root-scope decisions, and tree-truth verification. Use Option B only when the work is outside the phase parent's documented purpose and scope.
 
 **Small-task definition:** "Small" means exempt work or work that remains Level 1 after LOC guidance and all secondary risk/complexity factors are applied. A Level 2 or Level 3 task that does not phase-qualify is not automatically "small"; it remains standard because the phase thresholds were not both met.
 
@@ -269,10 +269,10 @@ When Gate 3 applies, always present all five stable labels and ask the user to c
 **Option A:** Continue in the detected/current spec or current phase child when its scope fits.
 **Option B:** Create a new top-level packet for new/unrelated work; independently evaluate whether that new packet qualifies for phases.
 **Option C:** Update another related existing spec when it is a better scope match.
-**Option D:** Skip spec documentation after the required warning or under an existing exemption.
-**Option E:** Extend a phased packet by adding or targeting a specific child, or decompose a related standard packet that meets both phase thresholds.
+**Option D:** Extend a phased packet by adding or targeting a specific child, or decompose a related standard packet that meets both phase thresholds.
+**Option E:** Skip spec documentation after the required warning or under an existing exemption.
 
-**Recommendation priority:** `E` for a distinct related workstream in an existing or qualifying phased packet; otherwise `A` when the current packet fits; otherwise `C` for another related packet; `B` only for new/unrelated work; `D` is never the default.
+**Recommendation priority:** `D` for a distinct related workstream in an existing or qualifying phased packet; otherwise `A` when the current packet fits; otherwise `C` for another related packet; `B` only for new/unrelated work; `E` is never the default.
 
 **AI Agent Rule:** Recommend the best-fit option using this priority, but NEVER select it autonomously. The user must choose A/B/C/D/E.
 
@@ -589,7 +589,7 @@ specs/###-parent/
 - Template files (.opencode/skills/system-spec-kit/templates/*.md)
 - Build files (package.json, requirements.txt)
 
-**No exceptions** (unless user explicitly selects Option D)
+**No exceptions** (unless user explicitly selects Option E)
 
 ---
 

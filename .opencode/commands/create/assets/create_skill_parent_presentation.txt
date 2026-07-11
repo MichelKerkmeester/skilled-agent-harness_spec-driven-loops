@@ -89,8 +89,8 @@ Q3. Spec Folder
 A) Existing
 B) New
 C) Update related
-D) Skip
-E) Phase folder
+D) Extend phased packet
+E) Skip
 
 Q4. Prior Work Context (when the existing spec has prior continuity)
 A) Load most recent spec-doc record

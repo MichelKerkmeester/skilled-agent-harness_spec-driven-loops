@@ -88,8 +88,8 @@ Q3. Spec Folder
 A) Existing
 B) New
 C) Update related
-D) Skip
-E) Phase folder
+D) Extend phased packet
+E) Skip
 
 Q4. Prior Session Context (if existing spec has it)
 A) Load handover plus implementation-summary continuity

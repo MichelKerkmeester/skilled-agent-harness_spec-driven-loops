@@ -48,7 +48,7 @@ Q2. Execution Mode, if no suffix: A) Autonomous  B) Interactive
 Q3. Dispatch Mode: A) Single Agent  B) Multi-Agent (1+2)  C) Multi-Agent (1+3)
 Q4. Prior Work Context, only when prior records exist: A) Latest  B) Recent 3  C) Skip
 Q5. Incomplete Session, only when detected: A) Resume  B) Restart  C) Cancel
-Q6. Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Skip  C) Set goal: <objective>
+Q6. Session Goal (optional): A) Offer or reference a session goal for this workflow  B) Set goal: <objective>  C) Skip
 
 Reply format covers Q0-Q6 in order, with `-` for omitted conditional answers: "specs/example/, A, A, B, C, -, A" or "A, A, A, C, -, -, B".
 ```

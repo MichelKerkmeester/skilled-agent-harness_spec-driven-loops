@@ -202,10 +202,10 @@ Phase folders use the same status values as regular spec folders:
 When the current work is already inside a phase parent:
 
 1. Use Option A when the requested work fits the current active, draft, or paused child phase.
-2. Prefer Option E when the work is a distinct but related workstream within the parent's documented purpose and scope. Add the next sequential child phase and update the Phase Documentation Map.
+2. Prefer Option D when the work is a distinct but related workstream within the parent's documented purpose and scope. Add the next sequential child phase and update the Phase Documentation Map.
 3. Use Option C when another related existing packet is a better scope match.
 4. Use Option B only when the work is new or unrelated to the phase parent's purpose, requirements, and Phase Documentation Map.
-5. Option D remains an explicit documentation opt-out and is never the default.
+5. Option E remains an explicit documentation opt-out and is never the default.
 
 The phase-qualification thresholds govern whether a standard packet may become a phase parent. An already-established phase parent does not need to requalify for every later child, but every new child must remain inside the parent's documented scope and use the documentation level appropriate to that child. A standard non-phased packet may not gain phase children unless both qualification thresholds are met.
 

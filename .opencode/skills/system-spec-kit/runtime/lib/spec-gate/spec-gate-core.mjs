@@ -106,8 +106,8 @@ export const GATE_3_QUESTION = [
   'A) Use an existing spec folder (name it)',
   'B) Create a new spec folder',
   'C) Update a related spec folder (name it)',
-  'D) Skip (no spec folder needed for this change)',
-  'E) Use a phase folder (e.g. .opencode/specs/<parent>/<NNN-phase>, name it)',
+  'D) Use a phase folder (e.g. .opencode/specs/<parent>/<NNN-phase>, name it)',
+  'E) Skip (no spec folder needed for this change)',
 ].join('\n');
 
 // The human-facing relay question above and the model-facing deny reason
