@@ -1,7 +1,7 @@
 # Runtime skill-graph state. The tracked fallback lives at ../scripts/skill-graph.json.
 *.sqlite
 *.sqlite-*
-*.sqlite.bak*
+*.sqlite.*
 *.db
 *.db-*
 skill-graph.json
