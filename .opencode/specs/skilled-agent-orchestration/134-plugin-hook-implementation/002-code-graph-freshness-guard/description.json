@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/134-plugin-hook-implementation/002-code-graph-freshness-guard",
+  "description": "After a source edit, the structural code graph drifts soft-stale, and `detectchanges` / `blastradius` / `codegraphcontext` fall back to a false-safe",
+  "keywords": [
+    "source",
+    "edit",
+    "structural",
+    "code",
+    "graph",
+    "drifts",
+    "soft-stale",
+    "detectchanges",
+    "blastradius",
+    "codegraphcontext",
+    "fall",
+    "back",
+    "false-safe"
+  ],
+  "lastUpdated": "2026-07-11T06:25:16.143Z",
+  "specId": "002",
+  "folderSlug": "code-graph-freshness-guard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-plugin-hook-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
