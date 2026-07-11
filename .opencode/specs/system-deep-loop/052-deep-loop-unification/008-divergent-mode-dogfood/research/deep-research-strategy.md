@@ -76,7 +76,10 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
-[No exhausted approach categories yet]
+### Requiring deep-ai-council to emit review/research-style iteration delta files was ruled out. Council's session/topic/round event hierarchy is intentionally different and already gives the host deterministic state ownership; parity should be semantic, not filename/schema cloning. [SOURCE: .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep_mode.md:38-103] -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: Requiring deep-ai-council to emit review/research-style iteration delta files was ruled out. Council's session/topic/round event hierarchy is intentionally different and already gives the host deterministic state ownership; parity should be semantic, not filename/schema cloning. [SOURCE: .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep_mode.md:38-103]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Requiring deep-ai-council to emit review/research-style iteration delta files was ruled out. Council's session/topic/round event hierarchy is intentionally different and already gives the host deterministic state ownership; parity should be semantic, not filename/schema cloning. [SOURCE: .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep_mode.md:38-103]
 
 <!-- /ANCHOR:exhausted-approaches -->
 
@@ -84,7 +87,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 
 <!-- ANCHOR:ruled-out-directions -->
 ## 10. RULED OUT DIRECTIONS
-[None yet]
+- Requiring deep-ai-council to emit review/research-style iteration delta files was ruled out. Council's session/topic/round event hierarchy is intentionally different and already gives the host deterministic state ownership; parity should be semantic, not filename/schema cloning. [SOURCE: .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep_mode.md:38-103] (iteration 3)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -112,6 +115,10 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 - Which operator ergonomics and cost/performance issues dominate actual loop runs beyond validator-triggered redispatch? (iteration 2)
 - How do the four subskills invoke shared runtime surfaces in ways that trigger or mask the iteration-001 defects? (iteration 2)
 - Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents? (iteration 2)
+- Which cost and operator-friction defects dominate after validator-triggered redispatch and unrestricted council seat startup are corrected? (iteration 3)
+- How do deep-improvement's candidate prompts and reducer boundaries compare with these two failure patterns? (iteration 3)
+- Are the review prompt/validator schema mismatches covered by command-contract tests outside the skill-local test directory, or only by dogfood failures? (iteration 3)
+- Does any supported OpenCode CLI flag select `ai-council` while preserving the current isolated seat process, or should route proof identify a generic council-seat executor instead? (iteration 3)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -119,7 +126,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents?
+Does any supported OpenCode CLI flag select `ai-council` while preserving the current isolated seat process, or should route proof identify a generic council-seat executor instead?
 
 <!-- /ANCHOR:next-focus -->
 

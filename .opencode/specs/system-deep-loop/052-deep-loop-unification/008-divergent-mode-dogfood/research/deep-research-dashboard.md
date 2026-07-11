@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Identify concrete improvements, refinements, and upgrade opportunities for the system-deep-loop skill: its shared runtime (.opencode/skills/system-deep-loop/runtime/**), all four subskills (deep-research, deep-review, deep-ai-council, deep-improvement), the deep/* commands (.opencode/commands/deep/**), and their agent definitions (.claude/agents/deep-research.md, .claude/agents/deep-review.md, and OpenCode equivalents). Look across correctness, ergonomics, cost/performance, documentation accuracy, and test coverage. Rotate focus across these areas iteration to iteration rather than fixating on one.
 - Started: 2026-07-11T06:21:34.834Z
 - Status: INITIALIZED
-- Iteration: 2 of 10
+- Iteration: 3 of 10
 - Session ID: dr-008-divergent-retry-1783750894834
 - Parent Session: none
 - Lifecycle Mode: new
@@ -33,8 +33,9 @@ Reducer-generated observability surface for the active research packet.
 |---|-------|-------|-------|----------|--------|
 | undefined | Shared runtime correctness, edge cases, documentation drift, and test gaps | - | 0.86 | 0 | insight |
 | undefined | Where command contracts and runtime-specific agent definitions diverge from current behavior | - | 0.92 | 0 | complete |
+| undefined | Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents? | - | 0.90 | 0 | insight |
 
-- iterationsCompleted: 2
+- iterationsCompleted: 3
 - keyFindings: 0
 - openQuestions: 5
 - resolvedQuestions: 0
@@ -62,19 +63,19 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
-- score sparkline: ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
-- Last 3 ratios: 0.86 -> 0.92
+- newInfoRatio sparkline: ▁▂▂▃▄▅▅▆▇███▇▇▇▇▆▆▆▆
+- score sparkline: ▁▂▂▃▄▅▅▆▇███▇▇▇▇▆▆▆▆
+- Last 3 ratios: 0.86 -> 0.92 -> 0.90
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.92
-- coverageBySources: {}
+- convergenceScore: 0.90
+- coverageBySources: {"other":10}
 - Advisory events: none
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:dead-ends -->
 ## 6. DEAD ENDS
-- None yet
+- Requiring deep-ai-council to emit review/research-style iteration delta files was ruled out. Council's session/topic/round event hierarchy is intentionally different and already gives the host deterministic state ownership; parity should be semantic, not filename/schema cloning. [SOURCE: .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep_mode.md:38-103] (iteration 3)
 
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:divergent-pivots -->
@@ -89,7 +90,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents?
+Does any supported OpenCode CLI flag select `ai-council` while preserving the current isolated seat process, or should route proof identify a generic council-seat executor instead?
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

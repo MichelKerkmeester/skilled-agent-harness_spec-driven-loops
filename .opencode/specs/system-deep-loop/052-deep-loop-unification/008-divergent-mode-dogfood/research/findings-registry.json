@@ -160,6 +160,26 @@
       "text": "Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents?",
       "addedAtIteration": 2,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Which cost and operator-friction defects dominate after validator-triggered redispatch and unrestricted council seat startup are corrected?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How do deep-improvement's candidate prompts and reducer boundaries compare with these two failure patterns?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are the review prompt/validator schema mismatches covered by command-contract tests outside the skill-local test directory, or only by dogfood failures?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does any supported OpenCode CLI flag select `ai-council` while preserving the current isolated seat process, or should route proof identify a generic council-seat executor instead?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -170,7 +190,14 @@
     "What test coverage gaps exist across the runtime scripts, subskills, and commands?"
   ],
   "keyFindings": [],
-  "ruledOutDirections": [],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-dd9103ad19d8",
+      "text": "Requiring deep-ai-council to emit review/research-style iteration delta files was ruled out. Council's session/topic/round event hierarchy is intentionally different and already gives the host deterministic state ownership; parity should be semantic, not filename/schema cloning. [SOURCE: .opencode/skills/system-deep-loop/deep-ai-council/references/convergence/deep_mode.md:38-103]",
+      "contentHash": "dd9103ad19d8",
+      "addedAtIteration": 3
+    }
+  ],
   "rejectedPatterns": [],
   "rejectedPatternIndex": {
     "maxEntries": 100,
@@ -206,18 +233,20 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 2,
+    "iterationsCompleted": 3,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 7,
+    "carriedForwardOpenQuestions": 11,
     "keyFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.92,
-    "coverageBySources": {},
+    "convergenceScore": 0.9,
+    "coverageBySources": {
+      "other": 10
+    },
     "completedPivots": 0,
     "failedPivots": 0,
     "pivotOverrides": 0
