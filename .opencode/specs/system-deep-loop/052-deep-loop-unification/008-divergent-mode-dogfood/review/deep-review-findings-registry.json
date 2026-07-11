@@ -209,6 +209,35 @@
         "correctness"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P1-001",
+      "severity": "P1",
+      "title": "Checked incident claims lack durable evidence and conflict with the active retry lineage",
+      "file": ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/checklist.md",
+      "line": 60,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -224,19 +253,19 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 7,
+    "P1": 8,
     "P2": 0
   },
-  "openFindingsCount": 7,
+  "openFindingsCount": 8,
   "resolvedFindingsCount": 0,
-  "convergenceScore": 0,
-  "graphConvergenceScore": 0.66,
+  "convergenceScore": 0.5,
+  "graphConvergenceScore": 0.643,
   "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [
     {
       "type": "uncovered_dimensions",
-      "description": "Dimension coverage (0%) is below threshold (80%). 9 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
-      "count": 9,
+      "description": "Dimension coverage (0%) is below threshold (80%). 12 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "count": 12,
       "severity": "blocking"
     }
   ],
@@ -244,13 +273,14 @@
     "dimensionCoverage": 0,
     "findingStability": 1,
     "p0ResolutionRate": 1,
-    "evidenceDensity": 0.4,
+    "evidenceDensity": 0.2857142857142857,
     "hotspotSaturation": 1,
-    "score": 0.66
+    "score": 0.643
   },
   "candidateCoverage": {
     "covered": [
       "artifact_consistency",
+      "checklist_evidence",
       "compiled_artifact_freshness",
       "cross_runtime_contract_drift",
       "gate_bypass",
@@ -371,12 +401,13 @@
         ]
       },
       "checklist_evidence": {
-        "covered": false,
+        "covered": true,
         "ruledOut": false,
         "deferred": true,
         "blocked": false,
         "iterations": [
-          3
+          3,
+          5
         ]
       },
       "generated_contract_ownership": {
@@ -564,12 +595,10 @@
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "generated_contract_ownership",
-      "compiled_artifact_freshness"
+      "checklist_evidence"
     ],
     "covered": [
-      "generated_contract_ownership",
-      "compiled_artifact_freshness"
+      "checklist_evidence"
     ],
     "ruledOut": [],
     "deferred": [],
@@ -578,53 +607,16 @@
   },
   "traceability": {
     "summary": {
-      "required": 2,
-      "executed": 1,
+      "required": 0,
+      "executed": 0,
       "pass": 0,
-      "partial": 1,
+      "partial": 0,
       "fail": 0,
       "blocked": 0,
       "notApplicable": 0,
       "gatingFailures": 0
     },
-    "results": [
-      {
-        "protocolId": "spec_code",
-        "status": "partial",
-        "gateClass": "hard",
-        "applicable": true,
-        "counts": {
-          "pass": 0,
-          "partial": 1,
-          "fail": 0,
-          "skipped": 0
-        },
-        "evidence": [
-          ".opencode/skills/system-deep-loop/deep-review/assets/review_mode_contract.yaml:374-486"
-        ],
-        "findingRefs": [
-          "R4-P1-001"
-        ],
-        "summary": "Declared generation ownership has no executable renderer."
-      },
-      {
-        "protocolId": "checklist_evidence",
-        "status": "deferred",
-        "gateClass": "hard",
-        "applicable": true,
-        "counts": {
-          "pass": 0,
-          "partial": 0,
-          "fail": 0,
-          "skipped": 1
-        },
-        "evidence": [
-          ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/deep-review-strategy.md:114-117"
-        ],
-        "findingRefs": [],
-        "summary": "Deferred to the scheduled stabilization traceability pass."
-      }
-    ]
+    "results": []
   },
   "divergence": {
     "started": [],
