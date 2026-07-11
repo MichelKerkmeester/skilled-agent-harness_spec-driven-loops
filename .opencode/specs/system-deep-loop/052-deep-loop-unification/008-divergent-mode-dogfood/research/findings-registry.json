@@ -1,0 +1,208 @@
+{
+  "sessionId": "dr-008-divergent-retry-1783750894834",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-correctness-bugs-or-edge-case-gaps-exist-in-the-shared-runtime-convergence-",
+      "inboxId": null,
+      "text": "What correctness bugs or edge-case gaps exist in the shared runtime (convergence.cjs, executor-audit.ts, divergent-pivot.ts, prompt-pack.ts) and the four subskills?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-where-does-documentation-skill-md-files-command-contracts-agent-definitions-drif",
+      "inboxId": null,
+      "text": "Where does documentation (SKILL.md files, command contracts, agent definitions) drift from actual runtime behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-ergonomics-friction-exists-for-operators-driving-these-loops-setup-dispatch",
+      "inboxId": null,
+      "text": "What ergonomics friction exists for operators driving these loops (setup, dispatch, convergence, resume, fan-out)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-what-cost-performance-issues-exist-redundant-dispatches-token-waste-inefficient-",
+      "inboxId": null,
+      "text": "What cost/performance issues exist (redundant dispatches, token waste, inefficient tool-call budgets, timeout tuning)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-test-coverage-gaps-exist-across-the-runtime-scripts-subskills-and-commands",
+      "inboxId": null,
+      "text": "What test coverage gaps exist across the runtime scripts, subskills, and commands?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-correctness-bugs-or-edge-case-gaps-exist-in-the-shared-runtime-convergence-",
+      "inboxId": null,
+      "text": "What correctness bugs or edge-case gaps exist in the shared runtime (convergence.cjs, executor-audit.ts, divergent-pivot.ts, prompt-pack.ts) and the four subskills?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-where-does-documentation-skill-md-files-command-contracts-agent-definitions-drif",
+      "inboxId": null,
+      "text": "Where does documentation (SKILL.md files, command contracts, agent definitions) drift from actual runtime behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-what-ergonomics-friction-exists-for-operators-driving-these-loops-setup-dispatch",
+      "inboxId": null,
+      "text": "What ergonomics friction exists for operators driving these loops (setup, dispatch, convergence, resume, fan-out)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-what-cost-performance-issues-exist-redundant-dispatches-token-waste-inefficient-",
+      "inboxId": null,
+      "text": "What cost/performance issues exist (redundant dispatches, token waste, inefficient tool-call budgets, timeout tuning)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-test-coverage-gaps-exist-across-the-runtime-scripts-subskills-and-commands",
+      "inboxId": null,
+      "text": "What test coverage gaps exist across the runtime scripts, subskills, and commands?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Are async executor provenance guarantees intentionally weaker than synchronous dispatch, and is that documented?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which operator ergonomics and cost/performance issues dominate actual loop runs?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the four subskills invoke these runtime surfaces in ways that trigger or mask the identified defects?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where do command contracts and runtime-specific agent definitions diverge from current behavior?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "What correctness bugs or edge-case gaps exist in the shared runtime (convergence.cjs, executor-audit.ts, divergent-pivot.ts, prompt-pack.ts) and the four subskills?",
+    "Where does documentation (SKILL.md files, command contracts, agent definitions) drift from actual runtime behavior?",
+    "What ergonomics friction exists for operators driving these loops (setup, dispatch, convergence, resume, fan-out)?",
+    "What cost/performance issues exist (redundant dispatches, token waste, inefficient tool-call budgets, timeout tuning)?",
+    "What test coverage gaps exist across the runtime scripts, subskills, and commands?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 4,
+    "keyFindings": 0,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.86,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0028-divergent-dogfood-retry/.opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

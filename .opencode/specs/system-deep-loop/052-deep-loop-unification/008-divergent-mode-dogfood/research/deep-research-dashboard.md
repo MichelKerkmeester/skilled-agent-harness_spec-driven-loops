@@ -1,0 +1,110 @@
+---
+title: Deep Research Dashboard
+description: Auto-generated reducer view over the research packet.
+---
+
+# Deep Research Dashboard - Session Overview
+
+Auto-generated from JSONL state log, iteration files, findings registry, and strategy state. Never manually edited.
+
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+Reducer-generated observability surface for the active research packet.
+
+<!-- /ANCHOR:overview -->
+<!-- ANCHOR:status -->
+## 2. STATUS
+- Topic: Identify concrete improvements, refinements, and upgrade opportunities for the system-deep-loop skill: its shared runtime (.opencode/skills/system-deep-loop/runtime/**), all four subskills (deep-research, deep-review, deep-ai-council, deep-improvement), the deep/* commands (.opencode/commands/deep/**), and their agent definitions (.claude/agents/deep-research.md, .claude/agents/deep-review.md, and OpenCode equivalents). Look across correctness, ergonomics, cost/performance, documentation accuracy, and test coverage. Rotate focus across these areas iteration to iteration rather than fixating on one.
+- Started: 2026-07-11T06:21:34.834Z
+- Status: INITIALIZED
+- Iteration: 1 of 10
+- Session ID: dr-008-divergent-retry-1783750894834
+- Parent Session: none
+- Lifecycle Mode: new
+- Generation: 1
+- continuedFromRun: none
+
+<!-- /ANCHOR:status -->
+<!-- ANCHOR:progress -->
+## 3. PROGRESS
+
+| # | Focus | Track | Ratio | Findings | Status |
+|---|-------|-------|-------|----------|--------|
+| undefined | Shared runtime correctness, edge cases, documentation drift, and test gaps | - | 0.86 | 0 | insight |
+
+- iterationsCompleted: 1
+- keyFindings: 0
+- openQuestions: 5
+- resolvedQuestions: 0
+
+<!-- /ANCHOR:progress -->
+<!-- ANCHOR:questions -->
+## 4. QUESTIONS
+- Answered: 0/5
+- [ ] What correctness bugs or edge-case gaps exist in the shared runtime (convergence.cjs, executor-audit.ts, divergent-pivot.ts, prompt-pack.ts) and the four subskills? [legacy-import]
+- [ ] Where does documentation (SKILL.md files, command contracts, agent definitions) drift from actual runtime behavior? [legacy-import]
+- [ ] What ergonomics friction exists for operators driving these loops (setup, dispatch, convergence, resume, fan-out)? [legacy-import]
+- [ ] What cost/performance issues exist (redundant dispatches, token waste, inefficient tool-call budgets, timeout tuning)? [legacy-import]
+- [ ] What test coverage gaps exist across the runtime scripts, subskills, and commands? [legacy-import]
+
+<!-- /ANCHOR:questions -->
+<!-- ANCHOR:uncovered-questions -->
+## Uncovered Questions
+- Count: 5
+- [ ] What correctness bugs or edge-case gaps exist in the shared runtime (convergence.cjs, executor-audit.ts, divergent-pivot.ts, prompt-pack.ts) and the four subskills?
+- [ ] Where does documentation (SKILL.md files, command contracts, agent definitions) drift from actual runtime behavior?
+- [ ] What ergonomics friction exists for operators driving these loops (setup, dispatch, convergence, resume, fan-out)?
+- [ ] What cost/performance issues exist (redundant dispatches, token waste, inefficient tool-call budgets, timeout tuning)?
+- [ ] What test coverage gaps exist across the runtime scripts, subskills, and commands?
+
+<!-- /ANCHOR:uncovered-questions -->
+<!-- ANCHOR:trend -->
+## 5. TREND
+- newInfoRatio sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+- score sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+- Last 3 ratios: 0.86
+- Stuck count: 0
+- Guard violations: none recorded by the reducer pass
+- convergenceScore: 0.86
+- coverageBySources: {}
+- Advisory events: none
+
+<!-- /ANCHOR:trend -->
+<!-- ANCHOR:dead-ends -->
+## 6. DEAD ENDS
+- None yet
+
+<!-- /ANCHOR:dead-ends -->
+<!-- ANCHOR:divergent-pivots -->
+## 6A. DIVERGENT PIVOTS
+- Completed pivots: 0
+- Failed pivots: 0
+- Audited overrides: 0
+- Saturated: none yet
+- Pivot lineage: none yet
+- Remaining frontier: none recorded
+
+<!-- /ANCHOR:divergent-pivots -->
+<!-- ANCHOR:next-focus -->
+## 7. NEXT FOCUS
+Where do command contracts and runtime-specific agent definitions diverge from current behavior?
+
+<!-- /ANCHOR:next-focus -->
+<!-- ANCHOR:active-risks -->
+## 8. ACTIVE RISKS
+- None active beyond normal research uncertainty.
+
+<!-- /ANCHOR:active-risks -->
+<!-- ANCHOR:blocked-stops -->
+## 9. BLOCKED STOPS
+No blocked-stop events recorded.
+
+<!-- /ANCHOR:blocked-stops -->
+<!-- ANCHOR:graph-convergence -->
+## 10. GRAPH CONVERGENCE
+- graphConvergenceScore: 0.00
+- graphDecision: CONTINUE
+- graphBlockers: none recorded
+
+<!-- /ANCHOR:graph-convergence -->
