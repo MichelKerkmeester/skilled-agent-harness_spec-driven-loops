@@ -42,10 +42,10 @@ feature_catalog/
 ├── mutation/                 # memory-indexing-memorysave.md, ...
 ├── discovery/                # health-diagnostics-memoryhealth.md, ...
 ├── maintenance/
-└── ...                           # twenty-plus numbered category folders
+└── ...                           # twenty-plus category folders
 ```
 
-The catalog groups a large MCP surface into category folders, each holding one file per feature. The root `feature_catalog.md` is the only navigation surface and owns the section order; the folder names do not encode ordering. (The paths shown above still carry the historical numeric prefixes on disk; the convention no longer adds them.)
+The catalog groups a large MCP surface into category folders, each holding one file per feature. The root `feature_catalog.md` is the only navigation surface and owns the section order; the folder names do not encode ordering. Both the category folders and the per-feature files use bare descriptive slugs with no numeric prefix.
 
 ---
 
