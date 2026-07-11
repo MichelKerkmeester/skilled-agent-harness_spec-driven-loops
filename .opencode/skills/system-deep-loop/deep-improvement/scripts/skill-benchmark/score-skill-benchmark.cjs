@@ -261,8 +261,22 @@ function scoreD3({ negative, d1intra, routerResult, expected }) {
       note: 'not-applicable: no expected-resource gold to measure over-routing against',
     };
   }
+  // Routed nothing against positive gold: there is no routing to measure
+  // efficiency over. Crediting full efficiency here would reward a total recall
+  // miss (d1-intra/d2 are already 0), flooring an outright failure. Mark it
+  // not-applicable so the dimension drops out and the row is judged on recall
+  // alone — the same convention as the no-positive-gold case above.
+  if (routed === 0) {
+    return {
+      score: null,
+      routedCount: 0,
+      wastedCount: 0,
+      proxy: 'no-routing',
+      note: 'not-applicable: nothing routed against positive gold; over-routing efficiency undefined',
+    };
+  }
   return {
-    score: routed === 0 ? 1 : Math.max(0, 1 - unexpectedRoutedCount / routed),
+    score: Math.max(0, 1 - unexpectedRoutedCount / routed),
     routedCount: routed,
     wastedCount: unexpectedRoutedCount,
     proxy: 'router-overload',

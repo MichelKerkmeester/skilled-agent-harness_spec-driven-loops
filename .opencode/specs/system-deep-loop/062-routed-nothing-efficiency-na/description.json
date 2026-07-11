@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/062-routed-nothing-efficiency-na",
+  "description": "The stage-aware scorer (packet 061) added a fitted-vs-holdout split and a `generalizationGap`",
+  "keywords": [
+    "stage-aware",
+    "scorer",
+    "packet",
+    "fitted-vs-holdout",
+    "split",
+    "generalizationgap"
+  ],
+  "lastUpdated": "2026-07-11T21:54:59.859Z",
+  "specId": "062",
+  "folderSlug": "routed-nothing-efficiency-na",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

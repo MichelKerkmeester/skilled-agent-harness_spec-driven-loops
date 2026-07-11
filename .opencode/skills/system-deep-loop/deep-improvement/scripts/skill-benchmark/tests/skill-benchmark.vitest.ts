@@ -566,6 +566,20 @@ describe('Lane C — stage-aware scoring (fitted/holdout split)', () => {
     expect(hold.negativeActivation).toBe(false);
     rmSync(dir, { recursive: true, force: true });
   });
+
+  it('scores a positive scenario that routed nothing as a recall failure (D3 N/A, not a 31 floor)', () => {
+    // A decontaminated/holdout prompt the keyword router cannot match routes
+    // nothing. Efficiency must be undefined (not a full-marks salvage), so the
+    // row is judged on recall alone and an outright miss scores 0.
+    const row = scoreScenario({
+      scenarioId: 'empty', tier: 'T2',
+      routerResult: { parseable: true, intents: [], resources: [], missingResources: [], scores: [] },
+      expected: { intentKeys: ['REVIEW'], resources: ['references/a.md'] },
+    });
+    expect(row.dims.d3.score).toBeNull();
+    expect(row.dims.d3.proxy).toBe('no-routing');
+    expect(row.modeAScore).toBe(0);
+  });
 });
 
 describe('Lane C — malformed-fixture degradation', () => {
