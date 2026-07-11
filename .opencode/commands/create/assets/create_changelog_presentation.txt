@@ -98,14 +98,14 @@ D) Build - hotfix on an already-published version
 E) Auto-detect from change type
 
 Q2. Execution Mode (if no :auto/:confirm suffix)
-A) Autonomous - execute without prompts
-B) Interactive - confirm at each step
+A) Interactive - confirm at each step
+B) Autonomous - execute without prompts
 
 Q3. Publish Release? (if no --release flag)
 A) Yes - create tag and GitHub release after changelog
 B) No - only create the changelog file
 
-Reply with answers, for example: A <spec-folder>, E, A, B
+Reply with answers, for example: A <spec-folder>, E, B, B
 ```
 
 Hard stops:
@@ -132,6 +132,11 @@ Proceed only when every required field has a value.
 
 ## 5. Completion Result Template
 
+`Release Published` reflects what step 7 (`step_7_publish_release`) actually did, not the raw `publish_release` input:
+- `publish_release` was `false` (default or explicit No) -> `Not requested`
+- `publish_release` was `true` and the tag + release were created -> `Yes -- {release_tag} ({release_url})`
+- `publish_release` was `true` but publishing did not happen (nested changelog_mode, tag collision, missing `gh` auth, or skipped/aborted at the Step 7 checkpoint) -> `No -- {reason}`
+
 ```text
 Changelog Created
 
@@ -143,7 +148,7 @@ Summary: [summary_first_sentence]
 
 Sections: [section_count] highlight categories
 Files Tracked: [files_changed_count]
-Release Published: [yes/no/not requested]
+Release Published: [release_published_display]
 
 STATUS=OK PATH=[output_path]
 ```

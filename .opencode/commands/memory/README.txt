@@ -207,6 +207,10 @@ The `/memory:manage` command accepts these subcommands:
 | `stats` | (none) | Show memory database statistics |
 | `scan` | `[--force]` | Scan workspace for new/changed continuity artifacts and canonical spec docs |
 | `cleanup` | (none) | Remove orphaned or invalid entries |
+| `retention-sweep` | `[--dry-run]` | Sweep expired records past retention policy; dry-run by default, mutation requires confirmation |
+| `learned-expire` | `[--dry-run]` | Expire aged learned-trigger terms; dry-run by default, mutation requires confirmation |
+| `learned-clear` | (none) | Clear all learned triggers from every memory row; requires confirmation |
+| `ledger-sweep` | `[--dry-run] [--apply]` | Age-based sweep across the seven bounded feedback/audit ledgers; dry-run by default, `--apply` requires confirmation |
 | `bulk-delete` | `<tier> [--older-than <days>] [--folder <spec>]` | Bulk delete by tier |
 | `tier` | `<id> <tier>` | Change importance tier of a memory |
 | `triggers` | `<id>` | View trigger phrases for a memory |

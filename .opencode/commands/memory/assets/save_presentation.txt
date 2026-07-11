@@ -66,7 +66,7 @@ Current triggers
 2. <phrase_2>
 3. <phrase_3>
 
-Actions: [a] add | [r] remove number | [s] save | [d] done
+Actions: [a] add | [r] remove number | [s] save | [b] back
 STATUS=OK ID=<id> TRIGGERS=<count>
 ```
 

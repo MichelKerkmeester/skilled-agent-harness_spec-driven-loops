@@ -422,7 +422,7 @@ workflow:
 
   step_6_context_save_and_index:
     purpose: Persist context with system-spec-kit compatibility
-    condition: "spec_path exists and spec_choice is not D"
+    condition: "spec_path exists"
     activities:
     - Save context using generate-context.js
     - Index memory for immediate retrieval

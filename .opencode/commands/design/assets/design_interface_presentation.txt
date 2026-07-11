@@ -23,9 +23,8 @@ Design Interface setup
 
 Q1. Which interface surface (target), and is this Brand or Product register?
 Q2. Task lane, if not the default: A) direction  B) directions  C) redesign  D) preflight  E) build  F) aesthetic
-Q3. Execution mode, if no suffix: A) Auto  B) Confirm
 
-Reply format: "<target>, <brand|product>, <lane-letter or ->, <A|B>"
+Reply format: "<target>, <brand|product>, <lane-letter or ->"
 ```
 
 Never split these questions into separate visible prompts.

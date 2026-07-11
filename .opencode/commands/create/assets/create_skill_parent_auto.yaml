@@ -254,6 +254,8 @@ workflow_overview:
   steps:
     - id: step_1_preflight
       purpose: "Normalize inputs and enforce H0-H2"
+    - id: step_1b_spec_folder_setup
+      purpose: "Resolve spec_choice into spec_path and create/confirm the documentation folder for tracking this work"
     - id: step_2_mode_planning
       purpose: "Resolve the mode list and per-packet plan"
     - id: step_3_template_loading
@@ -262,6 +264,8 @@ workflow_overview:
       purpose: "Create or update hub, registry, packets, and shared with one identity"
     - id: step_5_validation
       purpose: "Run hub validation, registry coverage, and the one-identity invariant"
+    - id: step_5b_save_context
+      purpose: "Persist spec-folder documentation and index the implementation summary for this parent-skill work"
     - id: step_6_completion
       purpose: "Emit deterministic completion report"
 
@@ -297,6 +301,30 @@ workflow:
       - mode_list
       - target_existence_state
       - memory_loaded
+
+  step_1b_spec_folder_setup:
+    purpose: Resolve spec_choice into spec_path and create/confirm the documentation folder for tracking this work
+    condition: "spec_choice != E (Skip)"
+    activities:
+    - IF spec_choice == B (Create new):
+      - Find next available spec number
+      - Command: "ls -d specs/[0-9]*/ | sed 's/.*\\/\\([0-9]*\\)-.*/\\1/' | sort -n | tail -1"
+      - Create folder: specs/[NNN]-[skill_name]-parent/
+    - IF spec_choice == A, C, or D (Existing, Update related, or Extend phased packet):
+      - Use selected spec_path
+    - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
+    templates:
+    # Use Level 2 templates as default for parent-skill scaffolding
+    - .opencode/skills/system-spec-kit/templates/examples/level_2/spec.md
+    - .opencode/skills/system-spec-kit/templates/examples/level_2/plan.md
+    - .opencode/skills/system-spec-kit/templates/examples/level_2/tasks.md
+    - .opencode/skills/system-spec-kit/templates/examples/level_2/checklist.md
+    outputs:
+    - spec_path_resolved
+    - spec.md: created_or_updated
+    - plan.md: created_or_updated
+    - tasks.md: created_or_updated
+    - checklist.md: created_or_updated
 
   step_2_mode_planning:
     purpose: Resolve the mode list and per-packet plan
@@ -370,15 +398,43 @@ workflow:
       - one_identity_passed
       - advisor_projection_guard_passed
 
+  step_5b_save_context:
+    purpose: Preserve spec-folder documentation and index the implementation summary for this parent-skill work
+    condition: "spec_path is not null"
+    activities:
+    - Invoke system-spec-kit skill
+    - Document parent-skill decisions (mode list, packet plan, advisorRouting choices, validation results)
+    - Record any logged assumptions from mode planning or generation
+    - Create or update implementation-summary.md with timestamp
+    - Index implementation-summary.md for immediate search availability
+    tool_invocation:
+      command: 'Read(".opencode/skills/system-spec-kit/SKILL.md")'
+      note: "Activate context saving via memory skill"
+    outputs:
+    - implementation_summary: "[spec_path]/implementation-summary.md"
+    validation: context_saved
+
+    post_save_indexing:
+      purpose: "Index the canonical spec document immediately for search availability"
+      mcp_tool: memory_save
+      invocation: |
+        memory_save({
+          filePath: "[spec_path]/implementation-summary.md"
+        })
+      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode. The save target is a canonical spec document; standalone memory/*.md files are retired and the runtime rejects them."
+      when: "Immediately after implementation-summary.md is written to disk"
+
   step_6_completion:
     purpose: Emit completion status
     activities:
       - Summarize operation, mode list, and generated paths
       - Report identity counts and validation results
       - "Report advisor projection emission when any mode is routingClass lexical or alias-fold (see advisor_map_sync_note)"
+      - "Report spec-folder tracking status: [spec_path] ([created|existing|skipped])"
       - Return STATUS=OK PATH=[skill_root]
     outputs:
       - completion_report
+      - spec_folder_status
 
   advisor_map_sync_note:
     when: "any generated mode has advisorRouting.routingClass == lexical or alias-fold"
@@ -428,6 +484,9 @@ completion_report_template: |
   Modes: [mode_list]
   Mode: :auto
   Target: [skill_root]
+
+  Spec Folder: [spec_path] ([created|existing|skipped])
+  Context saved: [yes/no]
 
   Identity:
   - Hub graph-metadata.json count: [count, must be 1]

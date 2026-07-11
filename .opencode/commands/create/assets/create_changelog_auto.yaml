@@ -25,14 +25,14 @@ action: Detect work context, resolve component folder, calculate version, genera
 # ─────────────────────────────────────────────────────────────────
 
 operating_mode:
-  workflow: sequential_7_step
+  workflow: sequential_8_step
   workflow_compliance: MANDATORY
   workflow_execution: autonomous
   approvals: none
   tracking: progressive_task_checklists
   validation: continuous_self_validation
   description: |
-    Executes the 7-step changelog creation workflow without step-by-step approval.
+    Executes the 8-step changelog creation workflow without step-by-step approval.
     Pauses only if confidence drops below threshold or component resolution is ambiguous.
 
 development_philosophy:
@@ -120,6 +120,13 @@ user_inputs:
     One of: major, minor, patch, build, auto
     FROM UNIFIED SETUP PHASE (--bump flag or Q1).
 
+  publish_release: |
+    [PUBLISH_RELEASE]
+    Boolean: true or false.
+    FROM UNIFIED SETUP PHASE (--release flag or PRE-BOUND SETUP marker).
+    Defaults to false. Only becomes true via an explicit flag or marker --
+    never a silent default. See step_7_publish_release.
+
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
 # ─────────────────────────────────────────────────────────────────
@@ -131,6 +138,11 @@ field_handling:
   version_bump:
     validation: "must be one of: major, minor, patch, build, auto"
     default: "auto"
+
+  publish_release:
+    validation: "must be boolean (true/false)"
+    default: false
+    note: "Only true via explicit --release flag or PRE-BOUND SETUP marker. Never silently defaulted to true; autonomous mode never infers this from context."
 
   defaults:
     changelog_root: ".opencode/changelog/"
@@ -147,6 +159,7 @@ input_contract:
     - spec_folder
     - component_hint
     - version_bump
+    - publish_release
 
 # ─────────────────────────────────────────────────────────────────
 # DOCUMENTATION LEVEL
@@ -339,6 +352,9 @@ gate_logic:
     S1_auto_bump:
       description: "Auto-detected version bump may proceed with logged assumptions"
       fail_action: "Proceed with rationale"
+    S2_release_optional:
+      description: "Publish-release is opt-in; skipping it never blocks changelog completion"
+      fail_action: "Continue to step_8_save_context with release_published=false"
 
 workflow_overview:
   steps:
@@ -354,7 +370,9 @@ workflow_overview:
       purpose: "Validate structure, versioning, and completeness"
     - id: step_6_write_file
       purpose: "Write the changelog entry to the resolved component folder"
-    - id: step_7_save_context
+    - id: step_7_publish_release
+      purpose: "Create a git tag and GitHub release, only when publish_release was explicitly set to true"
+    - id: step_8_save_context
       purpose: "Persist spec context and emit completion status"
 
 workflow:
@@ -580,7 +598,47 @@ workflow:
       - file_verified: "true/false"
     validation: file_written
 
-  step_7_save_context:
+  step_7_publish_release:
+    purpose: Create an annotated git tag and GitHub release, only when publish_release was explicitly set to true (never a silent default)
+    activities:
+      - |
+        IF publish_release != true:
+          Set release_published = false, release_tag = null, release_url = null
+          Set release_published_display = "Not requested"
+          Skip the remaining activities in this step and continue to step_8_save_context
+      - |
+        IF publish_release == true AND changelog_mode == nested:
+          PAUSE - nested changelog_mode has no single repo-wide version to tag
+          Report: "Publish Release requested but changelog_mode is nested -- a release tag needs one repo-wide version. Skipping release; the changelog file is already written."
+          Set release_published = false
+          Set release_published_display = "No -- nested changelog_mode has no repo-wide version to tag"
+          Continue to step_8_save_context
+      - "Derive release_tag: \"v{next_version}\" -- the same version already written to {output_path}"
+      - "Check for tag collision: run `git tag --list {release_tag}`. IF the tag already exists -> PAUSE, report the conflict, do not overwrite it, set release_published = false, set release_published_display = \"No -- tag {release_tag} already exists\""
+      - "Verify `gh` CLI is available and authenticated: run `gh auth status`. IF unavailable/unauthenticated -> PAUSE, report, set release_published = false, set release_published_display = \"No -- gh CLI unavailable or unauthenticated\""
+      - "Check working tree state: run `git status --porcelain -- {output_path}`. IF uncommitted, log a warning that the tag was created on a HEAD that may not include the just-written changelog file (autonomous mode never auto-commits)"
+      - |
+        Prepare the release notes body from {output_path}:
+          IF the file's first line starts with "# " (an H1 heading):
+            Strip that line and any immediately following blank lines into a temp notes file (e.g., /tmp/release-notes-{release_tag}.md)
+          ELSE:
+            Use {output_path} directly as the notes file
+      - "Run: git tag -a {release_tag} -m \"{release_tag}: {summary_first_sentence}\""
+      - "Run: git push origin {release_tag}"
+      - "Run: gh release create {release_tag} --title \"{release_tag} -- {primary_component}\" --notes-file {notes_file_path}"
+      - "Capture the release URL returned by gh release create"
+      - |
+        ON success:
+          Set release_published = true
+          Set release_published_display = "Yes -- {release_tag} ({release_url})"
+    outputs:
+      - release_published: "true/false"
+      - release_tag: "The tag name created (e.g., v2.1.0.0) or null"
+      - release_url: "GitHub release URL returned by gh release create, or null"
+      - release_published_display: "Human-readable summary for the completion report"
+    validation: release_decision_recorded
+
+  step_8_save_context:
     purpose: Report completion and preserve context
     activities:
       - "Display completion report (see completion_report section)"
@@ -633,6 +691,9 @@ autonomous_execution:
     - "Component resolution ambiguous (multiple equally likely)"
     - "Version calculation produces unexpected result"
     - "Generated content has empty required sections"
+    - "publish_release=true but changelog_mode=nested (no single repo-wide version to tag)"
+    - "publish_release=true but the derived release_tag already exists (would overwrite)"
+    - "publish_release=true but `gh` CLI is unavailable or unauthenticated"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT
@@ -649,6 +710,7 @@ completion_report:
 
     Sections: {section_count} highlight categories
     Files Tracked: {files_changed_count}
+    Release Published: {release_published_display}
 
     STATUS=OK PATH={output_path}
 
@@ -685,11 +747,15 @@ error_recovery:
     action: "Check permissions, retry once"
     fallback: "Display content for manual save"
 
+  release_publish_failure:
+    action: "Check tag collision (git tag --list), gh auth status, and network; report the exact failing command"
+    fallback: "Changelog file remains written; report release_published=false and let the user retry publish manually"
+
 # ─────────────────────────────────────────────────────────────────
 # TERMINATION
 # ─────────────────────────────────────────────────────────────────
 termination:
-  after_step: 7
+  after_step: 8
   message: "Changelog creation workflow complete."
   next_steps:
     - "Review the generated changelog at {output_path}"
@@ -702,7 +768,7 @@ termination:
 # ─────────────────────────────────────────────────────────────────
 rules:
   ALWAYS:
-    - "Follow the 7-step workflow in sequence"
+    - "Follow the 8-step workflow in sequence"
     - "Validate version is sequential before writing"
     - "Match the established changelog format (400+ existing files)"
     - "Include all required sections: title, backlink, version+date, summary, highlights"
@@ -716,3 +782,5 @@ rules:
     - "Never guess component folder without file path analysis"
     - "Never use a version number that already exists"
     - "Never create changelog folders that don't already exist"
+    - "Never publish a release (tag or GitHub release) unless publish_release was explicitly set to true via --release flag or explicit PRE-BOUND SETUP marker, never via a silent default"
+    - "Never overwrite or re-tag an existing release tag"

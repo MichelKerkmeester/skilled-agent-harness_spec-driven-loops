@@ -5,7 +5,7 @@ Single source of truth for `/memory:manage` dashboards, confirmations, and resul
 ## 1. General Display Rules
 
 - Use stable labels and a single `STATUS=` line.
-- Ask confirmation before scans, deletes, restores, and mutating retention sweeps.
+- Ask confirmation before scans, deletes, restores, and mutating retention sweeps, learned-trigger expiry, learned-trigger clear, and ledger-sweep applies.
 - Never suggest raw SQL recovery.
 - Keep dashboards compact enough for model dispatch.
 
@@ -128,7 +128,7 @@ Undo        /memory:manage checkpoint restore <checkpoint_name>
 STATUS=OK REMOVED=<count> KEPT=<count> CHECKPOINT=<name>
 ```
 
-## 5. Retention and Bulk Delete
+## 5. Retention, Learned-Trigger Maintenance, Ledger Sweeps, and Bulk Delete
 
 ```text
 MEMORY:RETENTION-SWEEP
@@ -138,6 +138,86 @@ Expired     <count>
 Deleted     <count>
 
 STATUS=OK ACTION=retention-sweep EXPIRED=<count> DELETED=<count>
+```
+
+Learned-trigger expiry runs dry-run by default. Show the preview, then gate the mutating pass behind confirmation.
+
+```text
+MEMORY:LEARNED-EXPIRE
+--------------------------------------------------
+Mode        preview (dry-run)
+Expired     <count> learned trigger term(s)
+Updated     <count> memory row(s)
+
+Confirm: [y] expire now | [n] cancel
+STATUS=AWAITING_INPUT ACTION=learned-expire
+```
+
+```text
+MEMORY:LEARNED-EXPIRE
+--------------------------------------------------
+Mode        <dry-run|apply>
+Expired     <count> learned trigger term(s)
+Updated     <count> memory row(s)
+
+STATUS=OK ACTION=learned-expire MODE=<dry-run|apply> EXPIRED=<count> UPDATED=<count>
+```
+
+Learned-trigger clear removes learned triggers from every memory row. There is no preview count available before confirmation; always gate behind an explicit yes/no.
+
+```text
+MEMORY:LEARNED-CLEAR
+--------------------------------------------------
+Action      Clear ALL learned triggers on every memory row
+
+Confirm: [y] clear all | [n] cancel
+STATUS=AWAITING_INPUT ACTION=learned-clear
+```
+
+```text
+MEMORY:LEARNED-CLEAR
+--------------------------------------------------
+Affected    <count> memory row(s) had learned triggers
+Cleared     <count> memory row(s) cleared
+
+STATUS=OK ACTION=learned-clear AFFECTED=<count> CLEARED=<count>
+```
+
+Ledger sweeps default to dry-run and touch seven bounded feedback/audit ledgers. Always report matched and deleted counts per ledger, even when a count is zero.
+
+```text
+MEMORY:LEDGER-SWEEP
+--------------------------------------------------
+Mode        preview (dry-run)
+
+Ledger                  Matched   Deleted
+feedback_events         <count>   <count>
+shadow_scoring_log      <count>   <count>
+batch_learning_log      <count>   <count>
+learned_feedback_audit  <count>   <count>
+memory_promotion_audit  <count>   <count>
+memory_conflicts        <count>   <count>
+adaptive_signal_events  <count>   <count>
+
+Confirm: [y] apply sweep | [n] cancel
+STATUS=AWAITING_INPUT ACTION=ledger-sweep
+```
+
+```text
+MEMORY:LEDGER-SWEEP
+--------------------------------------------------
+Mode        <dry-run|apply>
+
+Ledger                  Matched   Deleted
+feedback_events         <count>   <count>
+shadow_scoring_log      <count>   <count>
+batch_learning_log      <count>   <count>
+learned_feedback_audit  <count>   <count>
+memory_promotion_audit  <count>   <count>
+memory_conflicts        <count>   <count>
+adaptive_signal_events  <count>   <count>
+
+STATUS=OK ACTION=ledger-sweep MODE=<dry-run|apply>
 ```
 
 ```text

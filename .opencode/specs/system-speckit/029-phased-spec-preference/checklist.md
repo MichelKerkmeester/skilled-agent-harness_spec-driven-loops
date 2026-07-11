@@ -73,6 +73,10 @@ _No code in this packet — items below cover the dispatched proposal's quality 
 - [x] CHK-014 [P0] `memory_choice`/`memory_loaded` gap independently verified as a real defect (not intentional design) before implementation - [evidence: Fable-model agent verdict "real gap — implement it", grounded in 4 independent proofs cross-checked against actual files, see `implementation-summary.md` Round 9]
 - [x] CHK-015 [P0] `context_loading` fix applied across all 16 YAML files, verified by a separate read-only agent (not the implementing agents' self-report) - [evidence: 20/20 PASS in the independent verify-phase agent's PASS/FAIL table, `implementation-summary.md` Verification]
 - [x] CHK-016 [P1] `context_loading` fix scoped to only `.opencode/commands/create/assets/`, no unrelated files touched - [evidence: `git diff --stat` shows exactly 20 files changed in that directory, 335 insertions/42 deletions, additive-only]
+- [x] CHK-017 [P0] Build-vs-remove decisions for the 8 "needs your call" findings obtained from the operator before implementation, not assumed - [evidence: single consolidated AskUserQuestion with 4 sub-questions, per Consolidated Question Protocol]
+- [x] CHK-018 [P0] Changelog release automation cannot silently create a git tag/GitHub release - [evidence: `field_handling.publish_release.default: false` in both confirm/auto YAML; confirm mode shows literal tag+commands at an explicit checkpoint; auto mode requires explicit `--release` flag/marker]
+- [x] CHK-019 [P1] Round 10's 20 touched YAML files parse, verified independently (not just subagent self-report) - [evidence: `python3 -c "import yaml..."` run directly by this session, 20/20 clean]
+- [x] CHK-020 [P1] Design exec-mode removal left no dangling references - [evidence: `grep -rn "ADR-002\|Execution mode: Auto"` across `.opencode/commands/design/assets/` returns zero hits]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -137,8 +141,8 @@ _No code in this packet — items below cover the dispatched proposal's quality 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 10/11 (1 N/A: input validation - no code) |
-| P1 Items | 11 | 8/11 (3 N/A: edge cases, error scenarios, code comments - no code) |
+| P0 Items | 13 | 12/13 (1 N/A: input validation - no code) |
+| P1 Items | 13 | 10/13 (3 N/A: edge cases, error scenarios, code comments - no code) |
 | P2 Items | 1 | 0/1 (N/A: no README affected) |
 
 **Verification Date**: 2026-07-11

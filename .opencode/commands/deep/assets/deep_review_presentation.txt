@@ -303,7 +303,7 @@ Run an iterative loop for code review: Initialize the review packet under `{arti
 
 - Pauses after each iteration for user approval
 - Presents iteration findings summary with dimension coverage
-- Options at each gate: Approve, Review Details, Modify Scope, Skip Dimension, Abort
+- Options at each gate: Continue, Adjust Scope or Focus, Stop and Synthesize, Cancel
 - Documents user decisions at each checkpoint
 - Allows course correction of dimensions, depth, or scope throughout
 

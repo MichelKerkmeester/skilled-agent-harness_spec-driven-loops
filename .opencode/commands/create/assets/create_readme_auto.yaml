@@ -1000,7 +1000,7 @@ install_guide_workflow:
     - Write all 11 sections (9 required + 2 optional)
     - Add platform-specific configuration (Claude Code, OpenCode)
     - Create Quick Reference at end
-    - Write to output_path
+    - Write to output_path per error_recovery.install_guide_exists when existing_file is true (resolve existing_file_action -- Overwrite replaces the whole file, Merge regenerates only install_guide_required_sections while preserving other headings, Cancel halts this step with no write); write directly when existing_file is false
     quality_requirements:
       ai_first_section: "Copy-paste prompt with placeholders, 'What AI will do' list"
       sections: "All 11 sections numbered"
@@ -1520,6 +1520,40 @@ error_recovery:
     restart_from: "step_2_content_discovery"
 
   # ── Install-guide-specific recovery ───────────────────────────
+  install_guide_exists:
+    operation: install_guide
+    field: existing_file_action
+    action: "Resolve via existing_file_action (Q_I3 options E/F/G in create_readme_presentation.txt): Overwrite, Merge, or Cancel"
+    options: [ "Overwrite", "Merge", "Cancel" ]
+    resolution:
+      overwrite:
+        existing_file_action: overwrite
+        behavior: >-
+          Replace the entire existing file at output_path with the freshly generated
+          install guide: the AI-First section, every section in
+          install_guide_required_sections (0-10), and the trailing Quick Reference.
+          No content from the existing file is retained.
+      merge:
+        existing_file_action: merge
+        behavior: >-
+          Read the existing file at output_path first. Regenerate only the headings
+          matching install_guide_required_sections by number and name (0 AI-FIRST
+          INSTALL GUIDE through 10 RESOURCES, plus the trailing Quick Reference) with
+          freshly discovered content. Preserve, unchanged and in their original
+          position, any headings that do not match install_guide_required_sections --
+          e.g. a manually added Notes, Changelog, or custom appendix section, or extra
+          subsections a maintainer inserted beyond the template scaffold. If a required
+          section is missing from the existing file, insert the newly generated section
+          at its correct numeric position.
+        preserves: "Headings outside install_guide_required_sections (custom/manual content)"
+        replaces: "Headings matching install_guide_required_sections (0-10) and Quick Reference"
+      cancel:
+        existing_file_action: cancel
+        behavior: >-
+          Write nothing to output_path. Leave the existing file completely untouched
+          and halt step_4_content_generation for this run; no regeneration occurs.
+        halts: step_4_content_generation
+        result: "STATUS=CANCELLED PATH=[output_path]"
   unknown_project_type:
     operation: install_guide
     action: "Ask for project documentation/repo"

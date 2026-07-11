@@ -2,9 +2,9 @@
 # OPENCODE CREATE: AGENT CREATION WORKFLOW (CONFIRM MODE)
 # ─────────────────────────────────────────────────────────────────
 # Mode: confirm-only (interactive step-by-step approval)
-# Note: This workflow does NOT support :auto mode due to its complex
-#       multi-phase nature requiring user decisions at each checkpoint.
-#       All executions use interactive confirmation gates.
+# Note: This workflow mirrors auto mode and adds user approval gates
+#       at each checkpoint. Workflow behavior must stay equivalent
+#       to create_agent_auto.yaml except for checkpoint handling.
 # ─────────────────────────────────────────────────────────────────
 role: Expert Agent Creator using sk-doc skill
 purpose: Create production-ready OpenCode agents with 6-step workflow

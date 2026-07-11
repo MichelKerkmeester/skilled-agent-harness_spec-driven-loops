@@ -18,7 +18,7 @@ user_inputs:
 checkpoint:
   type: consolidated_setup_prompt
   source: ".opencode/commands/design/assets/design_interface_presentation.txt Consolidated Prompt Template"
-  shown: "Always, even when $ARGUMENTS is fully specified (per ADR-002's confirm-always-shows rule)."
+  shown: "Always, even when $ARGUMENTS is fully specified."
   wait_for: user_reply
 
 task_lanes:

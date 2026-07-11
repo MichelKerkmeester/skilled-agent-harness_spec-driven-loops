@@ -23,9 +23,8 @@ Design Motion setup
 
 Q1. Which component or state transition should the motion describe, and which library?
 Q2. Is this Brand or Product register?
-Q3. Execution mode, if no suffix: A) Auto  B) Confirm
 
-Reply format: "<component-state>, <library or ->, <brand|product>, <A|B>"
+Reply format: "<component-state>, <library or ->, <brand|product>"
 ```
 
 Never split these questions into separate visible prompts.

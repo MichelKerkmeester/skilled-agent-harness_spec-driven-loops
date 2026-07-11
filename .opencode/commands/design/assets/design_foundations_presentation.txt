@@ -23,9 +23,8 @@ Design Foundations setup
 
 Q1. Which axis (color, type, layout, spacing, tokens) and for which target surface?
 Q2. Is this Brand or Product register?
-Q3. Execution mode, if no suffix: A) Auto  B) Confirm
 
-Reply format: "<axis>, <target>, <brand|product>, <A|B>"
+Reply format: "<axis>, <target>, <brand|product>"
 ```
 
 Never split these questions into separate visible prompts.

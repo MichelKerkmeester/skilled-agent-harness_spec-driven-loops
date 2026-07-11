@@ -197,6 +197,8 @@ workflow_overview:
   steps:
     - id: step_1_preflight
       purpose: "Normalize inputs and enforce H0-H2"
+    - id: step_1b_spec_folder_setup
+      purpose: "Resolve spec_choice into spec_path and create/confirm the documentation folder for tracking this work"
     - id: step_2_source_discovery
       purpose: "Resolve inventory sources and category taxonomy"
     - id: step_3_template_loading
@@ -205,6 +207,8 @@ workflow_overview:
       purpose: "Create or update rooted catalog artifacts"
     - id: step_5_validation
       purpose: "Run root validation and path/link consistency checks"
+    - id: step_5b_save_context
+      purpose: "Persist spec-folder documentation and index the implementation summary for this catalog work"
     - id: step_6_completion
       purpose: "Emit deterministic completion report"
 
@@ -238,6 +242,30 @@ workflow:
     outputs:
       - normalized_inputs
       - target_existence_state
+
+  step_1b_spec_folder_setup:
+    purpose: Resolve spec_choice into spec_path and create/confirm the documentation folder for tracking this work
+    condition: "spec_choice != E (Skip)"
+    activities:
+    - IF spec_choice == B (Create new):
+      - Find next available spec number
+      - Command: "ls -d specs/[0-9]*/ | sed 's/.*\\/\\([0-9]*\\)-.*/\\1/' | sort -n | tail -1"
+      - Create folder: specs/[NNN]-[skill_name]-feature-catalog/
+    - IF spec_choice == A, C, or D (Existing, Update related, or Extend phased packet):
+      - Use selected spec_path
+    - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
+    templates:
+    # Use Level 2 templates as default for feature catalog package creation
+    - .opencode/skills/system-spec-kit/templates/examples/level_2/spec.md
+    - .opencode/skills/system-spec-kit/templates/examples/level_2/plan.md
+    - .opencode/skills/system-spec-kit/templates/examples/level_2/tasks.md
+    - .opencode/skills/system-spec-kit/templates/examples/level_2/checklist.md
+    outputs:
+    - spec_path_resolved
+    - spec.md: created_or_updated
+    - plan.md: created_or_updated
+    - tasks.md: created_or_updated
+    - checklist.md: created_or_updated
 
   step_2_source_discovery:
     purpose: Resolve source strategy and inventory inputs
@@ -285,14 +313,42 @@ workflow:
       - root_validation_passed
       - consistency_checks_passed
 
+  step_5b_save_context:
+    purpose: Preserve spec-folder documentation and index the implementation summary for this catalog work
+    condition: "spec_path is not null"
+    activities:
+    - Invoke system-spec-kit skill
+    - Document catalog decisions (source_strategy, category/feature plan, validation results)
+    - Record any logged assumptions from source discovery or generation
+    - Create or update implementation-summary.md with timestamp
+    - Index implementation-summary.md for immediate search availability
+    tool_invocation:
+      command: 'Read(".opencode/skills/system-spec-kit/SKILL.md")'
+      note: "Activate context saving via memory skill"
+    outputs:
+    - implementation_summary: "[spec_path]/implementation-summary.md"
+    validation: context_saved
+
+    post_save_indexing:
+      purpose: "Index the canonical spec document immediately for search availability"
+      mcp_tool: memory_save
+      invocation: |
+        memory_save({
+          filePath: "[spec_path]/implementation-summary.md"
+        })
+      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode. The save target is a canonical spec document; standalone memory/*.md files are retired and the runtime rejects them."
+      when: "Immediately after implementation-summary.md is written to disk"
+
   step_6_completion:
     purpose: Emit completion status
     activities:
       - Summarize operation, source strategy, and generated paths
       - Report validation results
+      - "Report spec-folder tracking status: [spec_path] ([created|existing|skipped])"
       - Return STATUS=OK PATH=[catalog_root]
     outputs:
       - completion_report
+      - spec_folder_status
 
 error_recovery:
   missing_catalog_on_update:
@@ -330,6 +386,9 @@ completion_report_template: |
   Source strategy: [source_strategy]
   Mode: :auto
   Target: [catalog_root]
+
+  Spec Folder: [spec_path] ([created|existing|skipped])
+  Context saved: [yes/no]
 
   Validation:
   - Root validation: [passed/failed]

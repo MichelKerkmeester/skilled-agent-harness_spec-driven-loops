@@ -123,7 +123,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    A) Inline skill — direct, in-context (default)              │
    │    B) Agent — fresh context, structured return                 │
    │                                                                │
-   │ Reply format: "A, A, D, A, A" or                               │
+   │ Reply format: "A, D, A, A" or                                  │
    │ "my prompt text here, B, A, A, B"                              │
    └────────────────────────────────────────────────────────────────┘
 
