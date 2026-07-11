@@ -39,20 +39,23 @@
       "saturated"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
       ".opencode/commands/deep/assets/deep_research_auto.yaml",
       ".opencode/commands/deep/assets/deep_review_auto.yaml",
       ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "spec.md",
+      "research/phase-0-baseline.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "research/research.md",
       "ai-council/council-report.md",
       "implementation-summary.md",
+      "spec.md",
+      "research/research.md",
       "ai-council/ai-council-state.jsonl",
+      ".opencode/package.json",
+      "feature_catalog/feature_catalog.md",
       ".opencode/skills/system-deep-loop/SKILL.md"
     ],
     "entities": [
@@ -81,9 +84,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "phase-0-baseline.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "research/phase-0-baseline.md",
         "source": "derived"
       },
       {
@@ -105,12 +108,6 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "council-report.md",
         "kind": "doc",
         "path": "ai-council/council-report.md",
@@ -123,9 +120,33 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "ai-council-state.jsonl",
         "kind": "file",
         "path": "ai-council/ai-council-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
         "source": "derived"
       },
       {
@@ -181,30 +202,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Implement",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Additive",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Deep research and deep review are designed to converge",
     "created_at": "2026-07-10T09:06:56Z",
-    "last_save_at": "2026-07-10T09:51:43.760Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-07-11T03:57:45.676Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -214,13 +217,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:de770a7b1d300f96a19c7058c9e2a58dae2ecdd7edbe017b83cbd9d12e9113a5",
+    "source_fingerprint": "sha256:6c5a0be700890fbb24b4b1beab3849592aa2bea547ab182081e953a226b710d4",
     "source_doc_hashes": {
-      "spec.md": "06b6b8b8e812cbcea13aee26d5a84282461a7b73810d664cd8006c577155fba4",
-      "plan.md": "f97d16ae9d170bab4cb08d7c4d8d9c81c9e3d3521c68c22707f186b1baf7bc85",
-      "tasks.md": "9ef6e8e36d6ad31d455e80e3f8f1a2a2a082a67890e1d58915c566f4185d6042",
-      "checklist.md": "79020a71741136b7b2f74bbae42ab0fa99a320c15baffa7a596809bf119512f5",
-      "implementation-summary.md": "0b9692028e9ad8c5370d84f0167bc99c99ae25d89a536f0daf9ed40173bd61c1",
+      "spec.md": "c25c9ae3b51ad3a657ca6d54c651bea470aee9501cdaa736c0741f77f7d8e972",
+      "plan.md": "ca0af0e0e23803f47995db3f29383bfbf4b3bd502be4d38b7ff93d5c477ffcd7",
+      "tasks.md": "dc813fcb3042ca083e5f8f1928eebecdbbf1e1a0b6d10fac81adc0be3cae4116",
+      "checklist.md": "486805c7321d9c6ca3ed488919edf092fd5b3e6b5fa10235db3c5688cd4585a8",
+      "implementation-summary.md": "f878adc1d14406ab5742df91ad879768d7fcb3e015fe600ca99e80ab5ce4e952",
       "research/research.md": "37ff7404156a30acbb9b1b2f869614e1f62841887fb0da43c0dad621013cbc4d"
     },
     "last_active_child_id": null,
