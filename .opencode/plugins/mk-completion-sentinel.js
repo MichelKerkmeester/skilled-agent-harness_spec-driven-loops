@@ -11,7 +11,8 @@
 // ║          core so the Claude Stop hook enforces the identical rule; this  ║
 // ║          file only maps OpenCode's event/ctx.client shape onto it. Never ║
 // ║          writes stdout/stderr (advisories go to the shared bounded log)  ║
-// ║          and fails open on any resolution or internal error.            ║
+// ║          and fails open on any resolution or internal error. Also       ║
+// ║          throttled-sweeps the shared state dir on session.created.      ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -112,6 +113,7 @@ async function resolveLastAssistantText(client, sessionID) {
  */
 export default async function MkCompletionSentinelPlugin(ctx) {
   const projectDir = ctx?.directory || process.cwd();
+  const runtimeState = { lastSentinelSweepAtMs: 0 };
 
   return {
     async event(input = {}) {
@@ -119,7 +121,13 @@ export default async function MkCompletionSentinelPlugin(ctx) {
         if (process.env[sentinelCore.KILL_SWITCH_ENV] === '1') return;
 
         const event = input && typeof input.event === 'object' ? input.event : input;
-        if (!event || event.type !== 'session.idle') return;
+        if (!event || typeof event.type !== 'string') return;
+
+        if (event.type === 'session.created') {
+          sentinelCore.sweepStaleSentinelState(projectDir, runtimeState);
+          return;
+        }
+        if (event.type !== 'session.idle') return;
 
         const sessionID = sessionIdFromEvent(event);
         if (!sessionID) return;

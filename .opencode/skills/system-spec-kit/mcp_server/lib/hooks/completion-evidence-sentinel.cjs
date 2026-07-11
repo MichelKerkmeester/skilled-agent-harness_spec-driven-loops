@@ -26,8 +26,10 @@ const {
   appendFileSync,
   copyFileSync,
   mkdirSync,
+  readdirSync,
   readFileSync,
   renameSync,
+  rmdirSync,
   statSync,
   truncateSync,
   unlinkSync,
@@ -75,10 +77,15 @@ const SPEC_FOLDER_TEXT_PATTERN = /(?:\.opencode\/)?specs\/[^\s"'`)\]]+/;
 const STATE_DIR_RELATIVE_PATH = '.opencode/skills/.completion-sentinel-state';
 const LOG_RELATIVE_PATH = '.opencode/logs/completion-sentinel-advisories.log';
 const DEDUP_FILE_NAME = 'advisory-dedup.json';
+const ADVISORY_LOG_BACKUP_SUFFIX = '.1';
+const SWEEP_LOCK_DIR_NAME = '.sweep.lock';
+const STRAY_TEMP_FILE_SUFFIX = '.tmp';
 
 const KILL_SWITCH_ENV = 'MK_COMPLETION_SENTINEL_DISABLED';
 const CHECK_TIMEOUT_MS_ENV = 'SPECKIT_COMPLETION_SENTINEL_CHECK_TIMEOUT_MS';
 const LOG_MAX_BYTES_ENV = 'SPECKIT_COMPLETION_SENTINEL_LOG_MAX_BYTES';
+const RETENTION_DAYS_ENV = 'MK_COMPLETION_SENTINEL_RETENTION_DAYS';
+const SWEEP_INTERVAL_MS_ENV = 'MK_COMPLETION_SENTINEL_SWEEP_INTERVAL_MS';
 
 // Kept well under the NFR-P01 bound (<1.5s) so the check stays a small slice
 // of whichever budget calls it -- generous for the Claude Stop hook's 10s
@@ -87,6 +94,9 @@ const LOG_MAX_BYTES_ENV = 'SPECKIT_COMPLETION_SENTINEL_LOG_MAX_BYTES';
 const DEFAULT_CHECK_TIMEOUT_MS = 1200;
 const DEFAULT_LOG_MAX_BYTES = 256 * 1024;
 const EXEC_MAX_BUFFER_BYTES = 256 * 1024;
+const DEFAULT_RETENTION_DAYS = 30;
+const DEFAULT_SWEEP_INTERVAL_MS = 60 * 60 * 1000;
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 const CHECKLIST_ADVISE_STATUSES = new Set([
   'EVIDENCE_MISSING',
@@ -305,7 +315,7 @@ function appendAdvisoryLog(projectDir, detail) {
     try {
       const maxBytes = positiveIntFromEnv(environment, LOG_MAX_BYTES_ENV, DEFAULT_LOG_MAX_BYTES);
       if (statSync(logPath).size >= maxBytes) {
-        copyFileSync(logPath, `${logPath}.1`);
+        copyFileSync(logPath, `${logPath}${ADVISORY_LOG_BACKUP_SUFFIX}`);
         truncateSync(logPath, 0);
       }
     } catch (_) {
@@ -319,7 +329,141 @@ function appendAdvisoryLog(projectDir, detail) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9. MAIN ENTRYPOINT (runtime-neutral)
+// 9. STATE SWEEP (throttled, adapter-invoked, fail-open)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Unlike the per-session gate-state files the spec-gate sweep archives, this
+// dedup store is one shared JSON map keyed per spec folder -- it only ever
+// grew, with no age-based retention path at all. The sweep below prunes
+// entries whose advisedAt has aged past the retention window, removes stray
+// leftover temp files from an interrupted atomic write, and age-prunes the
+// rotated advisory-log backup, mirroring the spec-gate/deep-loop-guard sweep
+// shape (throttle via runtimeState, a directory-lock to serialize concurrent
+// callers, and per-entry fail-open so one bad record never aborts the pass).
+
+function acquireSweepLock(stateDir, intervalMs, now) {
+  try {
+    mkdirSync(stateDir, { recursive: true });
+  } catch (_) {
+    return null;
+  }
+
+  const lockPath = join(stateDir, SWEEP_LOCK_DIR_NAME);
+  try {
+    mkdirSync(lockPath, { mode: 0o700 });
+    return lockPath;
+  } catch (error) {
+    if (!error || error.code !== 'EEXIST') return null;
+  }
+
+  try {
+    const lockStats = statSync(lockPath);
+    if (now - lockStats.mtimeMs <= intervalMs) return null;
+    rmdirSync(lockPath);
+    mkdirSync(lockPath, { mode: 0o700 });
+    return lockPath;
+  } catch (_) {
+    return null;
+  }
+}
+
+// Drops any dedup entry whose advisedAt is older than retentionMs and
+// atomically rewrites the store only when something actually changed. A
+// corrupt/unreadable store already reads as {} (see readDedupStore), so the
+// loop below simply has nothing to iterate and nothing gets written back --
+// the sweep is a true no-op rather than a store-clobbering rewrite.
+function pruneDedupStore(stateDir, retentionMs, now) {
+  try {
+    const store = readDedupStore(stateDir);
+    let changed = false;
+    const kept = {};
+    for (const [key, entry] of Object.entries(store)) {
+      const advisedAtMs = entry && typeof entry.advisedAt === 'string' ? Date.parse(entry.advisedAt) : NaN;
+      if (Number.isFinite(advisedAtMs) && now - advisedAtMs > retentionMs) {
+        changed = true;
+        continue;
+      }
+      kept[key] = entry;
+    }
+    if (changed) writeDedupStoreAtomic(stateDir, kept);
+  } catch (_) {
+    // Fail open: an unreadable/corrupt store means no-op, never a crash.
+  }
+}
+
+// Removes stray *.tmp leftovers from an atomic write that never reached its
+// rename step (e.g. a process killed mid-write), once they are old enough
+// that a concurrent in-flight write is no longer a plausible explanation.
+function pruneStraySentinelTempFiles(stateDir, retentionMs, now) {
+  let entries;
+  try {
+    entries = readdirSync(stateDir, { withFileTypes: true });
+  } catch (_) {
+    return;
+  }
+  for (const entry of entries) {
+    if (!entry.isFile() || !entry.name.endsWith(STRAY_TEMP_FILE_SUFFIX)) continue;
+    const filePath = join(stateDir, entry.name);
+    try {
+      const fileStats = statSync(filePath);
+      if (now - fileStats.mtimeMs > retentionMs) unlinkSync(filePath);
+    } catch (_) {
+      // Fail open on a single entry; the rest of the sweep pass still runs.
+    }
+  }
+}
+
+// Ages out the single rotated advisory-log backup once it is old enough that
+// nobody will need to consult it, mirroring the spec-gate warning-log's own
+// archive-retention prune.
+function pruneRotatedAdvisoryLogBackup(logPath, retentionMs, now) {
+  const backupPath = `${logPath}${ADVISORY_LOG_BACKUP_SUFFIX}`;
+  try {
+    const fileStats = statSync(backupPath);
+    if (now - fileStats.mtimeMs > retentionMs) unlinkSync(backupPath);
+  } catch (_) {
+    // Absent or unreadable backup requires no maintenance.
+  }
+}
+
+/**
+ * Throttled, fail-open maintenance pass over the sentinel's own state: prunes
+ * aged dedup entries, stray temp files, and the rotated advisory-log backup.
+ * Adapter-invoked (OpenCode session.created, the Claude Stop adapter as a
+ * best-effort step) -- never called from evaluateCompletionEvidence itself.
+ *
+ * @param {string} projectDir - project root (OpenCode ctx.directory / Claude cwd)
+ * @param {{ lastSentinelSweepAtMs?: number }} runtimeState - per-adapter-instance throttle state
+ */
+function sweepStaleSentinelState(projectDir, runtimeState) {
+  let lockPath = null;
+  try {
+    if (process.env[KILL_SWITCH_ENV] === '1') return;
+
+    const { stateDir, logPath } = resolveSentinelPaths(projectDir || process.cwd());
+    const intervalMs = positiveIntFromEnv(process.env, SWEEP_INTERVAL_MS_ENV, DEFAULT_SWEEP_INTERVAL_MS);
+    const now = Date.now();
+    if (now - (runtimeState.lastSentinelSweepAtMs || 0) <= intervalMs) return;
+
+    lockPath = acquireSweepLock(stateDir, intervalMs, now);
+    if (!lockPath) return;
+    runtimeState.lastSentinelSweepAtMs = now;
+
+    const retentionMs = positiveIntFromEnv(process.env, RETENTION_DAYS_ENV, DEFAULT_RETENTION_DAYS) * MS_PER_DAY;
+    pruneDedupStore(stateDir, retentionMs, now);
+    pruneStraySentinelTempFiles(stateDir, retentionMs, now);
+    pruneRotatedAdvisoryLogBackup(logPath, retentionMs, now);
+  } catch (_) {
+    // Fail open: a sweep error must never affect the observed turn/session.
+  } finally {
+    if (lockPath) {
+      try { rmdirSync(lockPath); } catch (_ignored) { /* a lost lock must not affect session lifecycle */ }
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. MAIN ENTRYPOINT (runtime-neutral)
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -387,7 +531,7 @@ function evaluateCompletionEvidence(request = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 10. EXPORTS
+// 11. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
@@ -399,7 +543,11 @@ module.exports = {
   KILL_SWITCH_ENV,
   CHECK_TIMEOUT_MS_ENV,
   LOG_MAX_BYTES_ENV,
+  RETENTION_DAYS_ENV,
+  SWEEP_INTERVAL_MS_ENV,
   DEFAULT_CHECK_TIMEOUT_MS,
+  DEFAULT_RETENTION_DAYS,
+  DEFAULT_SWEEP_INTERVAL_MS,
   // detection + resolution helpers
   detectCompletionClaim,
   resolveSpecFolderFromText,
@@ -409,4 +557,6 @@ module.exports = {
   evaluateCompletionEvidence,
   // logging (adapter-invoked)
   appendAdvisoryLog,
+  // state sweep (adapter-invoked, throttled, fail-open)
+  sweepStaleSentinelState,
 };

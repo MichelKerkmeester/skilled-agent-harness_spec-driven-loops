@@ -6,11 +6,11 @@
 // - Level 1 fallback: no checklist.md falls back to an implementation-summary.md stat
 // - Dedup: an identical packet+message pair only advises once
 // - Kill switch + fail-open on an unexpected internal error
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createRequire } from 'node:module';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import childProcess from 'node:child_process';
 
 const require = createRequire(import.meta.url);
@@ -18,6 +18,8 @@ const sentinelCore = require('../lib/hooks/completion-evidence-sentinel.cjs') as
   COMPLETION_CLAIM_PATTERN: RegExp;
   SPEC_FOLDER_TEXT_PATTERN: RegExp;
   KILL_SWITCH_ENV: string;
+  RETENTION_DAYS_ENV: string;
+  SWEEP_INTERVAL_MS_ENV: string;
   detectCompletionClaim: (text: string) => boolean;
   resolveSpecFolderFromText: (text: string) => string | null;
   resolveSentinelPaths: (projectDir: string) => { stateDir: string; logPath: string; checkCompletionScriptPath: string };
@@ -28,6 +30,7 @@ const sentinelCore = require('../lib/hooks/completion-evidence-sentinel.cjs') as
     env?: NodeJS.ProcessEnv;
   }) => { decision: 'ok' | 'advise'; detail: string | null; deduped: boolean };
   appendAdvisoryLog: (projectDir: string, detail: string) => boolean;
+  sweepStaleSentinelState: (projectDir: string, runtimeState: { lastSentinelSweepAtMs?: number }) => void;
 };
 
 const CLAIM_TEXT = 'The core is now complete and shipped.';
@@ -253,5 +256,160 @@ describe('completion-evidence-sentinel core', () => {
     const content = readFileSync(logPath, 'utf8');
     expect(content).toMatch(/test advisory line/);
     expect(content).toMatch(/\[completion-evidence-sentinel\]/);
+  });
+});
+
+describe('sweepStaleSentinelState (throttled, adapter-invoked, fail-open state maintenance)', () => {
+  const tempDirs: string[] = [];
+  let previousRetentionDays: string | undefined;
+  let previousSweepIntervalMs: string | undefined;
+  let previousKillSwitch: string | undefined;
+
+  function newProjectDir(): string {
+    const dir = mkdtempSync(join(tmpdir(), 'completion-sentinel-sweep-'));
+    tempDirs.push(dir);
+    return dir;
+  }
+
+  function isoDaysAgo(days: number): string {
+    return new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+  }
+
+  function backdate(targetPath: string, days: number): void {
+    const when = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+    utimesSync(targetPath, when, when);
+  }
+
+  function writeDedupStore(stateDir: string, store: Record<string, unknown>): void {
+    mkdirSync(stateDir, { recursive: true });
+    writeFileSync(join(stateDir, 'advisory-dedup.json'), JSON.stringify(store), 'utf8');
+  }
+
+  function readDedupStore(stateDir: string): Record<string, unknown> {
+    return JSON.parse(readFileSync(join(stateDir, 'advisory-dedup.json'), 'utf8'));
+  }
+
+  beforeEach(() => {
+    previousRetentionDays = process.env[sentinelCore.RETENTION_DAYS_ENV];
+    previousSweepIntervalMs = process.env[sentinelCore.SWEEP_INTERVAL_MS_ENV];
+    previousKillSwitch = process.env[sentinelCore.KILL_SWITCH_ENV];
+    delete process.env[sentinelCore.RETENTION_DAYS_ENV];
+    delete process.env[sentinelCore.SWEEP_INTERVAL_MS_ENV];
+    delete process.env[sentinelCore.KILL_SWITCH_ENV];
+  });
+
+  afterEach(() => {
+    if (previousRetentionDays === undefined) delete process.env[sentinelCore.RETENTION_DAYS_ENV];
+    else process.env[sentinelCore.RETENTION_DAYS_ENV] = previousRetentionDays;
+    if (previousSweepIntervalMs === undefined) delete process.env[sentinelCore.SWEEP_INTERVAL_MS_ENV];
+    else process.env[sentinelCore.SWEEP_INTERVAL_MS_ENV] = previousSweepIntervalMs;
+    if (previousKillSwitch === undefined) delete process.env[sentinelCore.KILL_SWITCH_ENV];
+    else process.env[sentinelCore.KILL_SWITCH_ENV] = previousKillSwitch;
+
+    for (const dir of tempDirs.splice(0)) {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('prunes a stale dedup entry by advisedAt age while keeping a fresh one', () => {
+    const projectDir = newProjectDir();
+    const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
+    const freshAdvisedAt = isoDaysAgo(1);
+    writeDedupStore(stateDir, {
+      stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(40) },
+      fresh: { fingerprint: 'sha256:fresh', advisedAt: freshAdvisedAt },
+    });
+
+    sentinelCore.sweepStaleSentinelState(projectDir, {});
+
+    expect(readDedupStore(stateDir)).toEqual({
+      fresh: { fingerprint: 'sha256:fresh', advisedAt: freshAdvisedAt },
+    });
+  });
+
+  it('removes a stray .tmp file older than the retention window, keeps a fresh one', () => {
+    const projectDir = newProjectDir();
+    const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
+    mkdirSync(stateDir, { recursive: true });
+    const stalePath = join(stateDir, 'advisory-dedup.json.111.222.tmp');
+    const freshPath = join(stateDir, 'advisory-dedup.json.333.444.tmp');
+    writeFileSync(stalePath, '{}', 'utf8');
+    writeFileSync(freshPath, '{}', 'utf8');
+    backdate(stalePath, 40);
+
+    sentinelCore.sweepStaleSentinelState(projectDir, {});
+
+    expect(existsSync(stalePath)).toBe(false);
+    expect(existsSync(freshPath)).toBe(true);
+  });
+
+  it('age-prunes the rotated advisory-log backup past the retention window', () => {
+    const projectDir = newProjectDir();
+    const { logPath } = sentinelCore.resolveSentinelPaths(projectDir);
+    mkdirSync(dirname(logPath), { recursive: true });
+    const backupPath = `${logPath}.1`;
+    writeFileSync(backupPath, 'old backup\n', 'utf8');
+    backdate(backupPath, 40);
+
+    sentinelCore.sweepStaleSentinelState(projectDir, {});
+
+    expect(existsSync(backupPath)).toBe(false);
+  });
+
+  it('keeps a rotated advisory-log backup that is still within the retention window', () => {
+    const projectDir = newProjectDir();
+    const { logPath } = sentinelCore.resolveSentinelPaths(projectDir);
+    mkdirSync(dirname(logPath), { recursive: true });
+    const backupPath = `${logPath}.1`;
+    writeFileSync(backupPath, 'recent backup\n', 'utf8');
+    backdate(backupPath, 1);
+
+    sentinelCore.sweepStaleSentinelState(projectDir, {});
+
+    expect(existsSync(backupPath)).toBe(true);
+  });
+
+  it('an unreadable/corrupt dedup store is a no-op: never throws, never rewrites', () => {
+    const projectDir = newProjectDir();
+    const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
+    mkdirSync(stateDir, { recursive: true });
+    const dedupPath = join(stateDir, 'advisory-dedup.json');
+    writeFileSync(dedupPath, 'not valid json{{{', 'utf8');
+
+    expect(() => sentinelCore.sweepStaleSentinelState(projectDir, {})).not.toThrow();
+    expect(readFileSync(dedupPath, 'utf8')).toBe('not valid json{{{');
+  });
+
+  it('kill switch (MK_COMPLETION_SENTINEL_DISABLED=1) makes the sweep a full no-op', () => {
+    const projectDir = newProjectDir();
+    const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
+    const originalStore = { stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(400) } };
+    writeDedupStore(stateDir, originalStore);
+
+    process.env[sentinelCore.KILL_SWITCH_ENV] = '1';
+    sentinelCore.sweepStaleSentinelState(projectDir, {});
+
+    expect(readDedupStore(stateDir)).toEqual(originalStore);
+  });
+
+  it('throttles a second sweep on the same runtimeState within the interval (no-op)', () => {
+    const projectDir = newProjectDir();
+    const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
+    writeDedupStore(stateDir, { stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(40) } });
+
+    const runtimeState: { lastSentinelSweepAtMs?: number } = {};
+    sentinelCore.sweepStaleSentinelState(projectDir, runtimeState);
+    expect(readDedupStore(stateDir)).toEqual({});
+
+    // Re-seed a stale entry directly (bypassing the sweep) to prove the
+    // SECOND call, on the same runtimeState and well within the sweep
+    // interval, never touches the store at all.
+    const secondStaleAdvisedAt = isoDaysAgo(40);
+    writeDedupStore(stateDir, { stale2: { fingerprint: 'sha256:stale2', advisedAt: secondStaleAdvisedAt } });
+    sentinelCore.sweepStaleSentinelState(projectDir, runtimeState);
+
+    expect(readDedupStore(stateDir)).toEqual({
+      stale2: { fingerprint: 'sha256:stale2', advisedAt: secondStaleAdvisedAt },
+    });
   });
 });

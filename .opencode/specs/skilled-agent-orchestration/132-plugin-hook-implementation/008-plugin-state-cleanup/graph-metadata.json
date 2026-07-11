@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-plugin-hook-implementation/008-plugin-state-cleanup",
+  "spec_folder": "skilled-agent-orchestration/132-plugin-hook-implementation/008-plugin-state-cleanup",
+  "parent_id": "skilled-agent-orchestration/132-plugin-hook-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "completion sentinel state cleanup",
+      "smart router telemetry rotation",
+      "advisory dedup prune",
+      "plugin state dir sweep",
+      "state hygiene remediation",
+      "sentinel sweep implementation plan",
+      "telemetry jsonl rotation plan",
+      "sweepStaleSentinelState",
+      "state dir cleanup approach",
+      "singular plural telemetry path",
+      "sentinel sweep tasks",
+      "telemetry rotation tasks"
+    ],
+    "key_topics": [
+      "completion",
+      "sentinel",
+      "state",
+      "cleanup",
+      "smart",
+      "router",
+      "telemetry",
+      "rotation",
+      "advisory",
+      "dedup",
+      "prune",
+      "plugin"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/hooks/completion-evidence-sentinel.cjs",
+      ".opencode/plugins/mk-completion-sentinel.js",
+      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/completion-evidence-stop.cjs",
+      ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/plugins/tests/mk-completion-sentinel.test.cjs",
+      ".opencode/skills/.completion-sentinel-state/advisory-dedup.json",
+      ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/completion-evidence-sentinel.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/hook-completion-evidence-stop.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "completion-evidence-sentinel.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/hooks/completion-evidence-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-completion-sentinel.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-completion-sentinel.js",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-stop.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/completion-evidence-stop.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "smart-router-telemetry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/observability/smart-router-telemetry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "mk-completion-sentinel.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-completion-sentinel.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisory-dedup.json",
+        "kind": "config",
+        "path": ".opencode/skills/.completion-sentinel-state/advisory-dedup.json",
+        "source": "derived"
+      },
+      {
+        "name": "compliance.jsonl",
+        "kind": "file",
+        "path": ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/completion-evidence-sentinel.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-completion-evidence-stop.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/hook-completion-evidence-stop.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "smart-router-telemetry.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/smart-router-telemetry.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dir Auto",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code Stop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An audit of the seven plugin state dirs found five already bounded (freshness, spec-gate, loop-guard, and goal each ship sweep + archive/prune + log rotation; the skill-advisor `.advisor-state` is daemon-managed with SQLite stale-lease reclaim), but two have real retention gaps",
+    "created_at": "2026-07-11T10:57:17Z",
+    "last_save_at": "2026-07-11T11:22:33.998Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e032d003dd4f291afb284bf7350b0e9742489bc684bd7d345a759e901755935a",
+    "source_doc_hashes": {
+      "spec.md": "632e27a196dd94ca959133fcb55f502bd59af29faa0dc17c709f170081306e2d",
+      "plan.md": "ed6d4e215eb237617346c9f4f08a2a95d18a079096b329aefc1c651e800a1980",
+      "tasks.md": "b23d0b97628843724256f02182e29ae3abace6b796fa5f588eaa6a17ffc348c3",
+      "checklist.md": "d4b4e24152018f93a0a2a5f7d1e786773781933dd9b8f00304aa5c33811d29e8",
+      "implementation-summary.md": "fd1d7c3f4f87e04c0ea1d1137d9dd46cd5e0aa3f1b5f96050d3c6d2cf5734f93"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

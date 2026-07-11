@@ -117,6 +117,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | 5 | 005-mcp-route-guard/ | Warn-only nudge to route external MCP calls through Code Mode; OpenCode `tool.execute.before` + Claude `PreToolUse(mcp__claude_ai_.*)`, manifest-derived warn-set. | Planned |
 | 6 | 006-spec-mutation-gate/ | Gate-3 spec-folder-before-mutation guard; classify (chat.transform / UserPromptSubmit) + enforce (tool.execute.before / PreToolUse Write\|Edit), deny opt-in behind `MK_SPEC_GATE_ENFORCE`. | Planned |
 | 7 | 007-speckit-completion-exposer/ | Read-only spec completion-state tool via the unused OpenCode `tool.register` surface, over a shared completion-state core. | Planned |
+| 8 | 008-plugin-state-cleanup/ | State-hygiene remediation: adds auto-cleanup to the two plugin state dirs that lacked it (completion-sentinel dedup sweep/prune, smart-router-telemetry size-cap rotation), matching the bounded pattern the other guards already use. | Planned |
 
 ### Phase Transition Rules
 
@@ -136,6 +137,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | 004-completion-evidence-sentinel | 005-mcp-route-guard | Claude `Stop` owner extended advisory-only (no `decision:block`); shared evidence core reused, tests never execute a build | 004 core unit tests green (advise + no-op gate) |
 | 005-mcp-route-guard | 006-spec-mutation-gate | Warn-only MCP guard shipped; manifest-strict-vs-broad fork resolved by operator | 005 table-driven normalization tests green |
 | 006-spec-mutation-gate | 007-speckit-completion-exposer | Spec Mutation Gate shipped classify+advise with enforce default-off; false-positive corpus recorded before any enforce flip | 006 golden-loop vitest green; fail-open assertions pass |
+| 007-speckit-completion-exposer | 008-plugin-state-cleanup | The plugin/hook pairs are shipped; their per-session state dirs are the cleanup target | 008 sentinel-sweep + telemetry-rotation tests green |
 <!-- /ANCHOR:phase-map -->
 
 ---

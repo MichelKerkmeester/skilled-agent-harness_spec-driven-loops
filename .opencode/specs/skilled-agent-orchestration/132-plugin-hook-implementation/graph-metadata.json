@@ -11,7 +11,8 @@
     "skilled-agent-orchestration/132-plugin-hook-implementation/004-completion-evidence-sentinel",
     "skilled-agent-orchestration/132-plugin-hook-implementation/005-mcp-route-guard",
     "skilled-agent-orchestration/132-plugin-hook-implementation/006-spec-mutation-gate",
-    "skilled-agent-orchestration/132-plugin-hook-implementation/007-speckit-completion-exposer"
+    "skilled-agent-orchestration/132-plugin-hook-implementation/007-speckit-completion-exposer",
+    "skilled-agent-orchestration/132-plugin-hook-implementation/008-plugin-state-cleanup"
   ],
   "manual": {
     "depends_on": [],
@@ -105,15 +106,15 @@
     ],
     "causal_summary": "The repo already ships seven OpenCode plugins with paired Claude hooks, but a large body of proven policy and validation logic stays locked inside skills that run only in CI or on manual invocation, and two OpenCode plugin surfaces (`tool.execute.after`, `tool.register`) are entirely unused",
     "created_at": "2026-07-11T05:50:59Z",
-    "last_save_at": "2026-07-11T09:03:31.798Z",
+    "last_save_at": "2026-07-11T11:22:33.540Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c29db66558a4702b98dfa959c4a47a9676976763e26666afa06f4fb3819b251a",
+    "source_fingerprint": "sha256:0819f30e52420d60099488015b11bb758a51c1230f0d1ad51e44ca0ffb6d2708",
     "source_doc_hashes": {
-      "spec.md": "73aeac38c502b19ce482c1bdfbb4514794e9c9828ebce38aef5f3e7c4b0f89df"
+      "spec.md": "964e8c4a163a72d17d74a193a262c9f22adfab4a84404d8d0b559d01f7137955"
     },
     "last_active_child_id": null,
     "last_active_at": null
