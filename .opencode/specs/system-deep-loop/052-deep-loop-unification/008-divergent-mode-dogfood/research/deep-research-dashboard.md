@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Identify concrete improvements, refinements, and upgrade opportunities for the system-deep-loop skill: its shared runtime (.opencode/skills/system-deep-loop/runtime/**), all four subskills (deep-research, deep-review, deep-ai-council, deep-improvement), the deep/* commands (.opencode/commands/deep/**), and their agent definitions (.claude/agents/deep-research.md, .claude/agents/deep-review.md, and OpenCode equivalents). Look across correctness, ergonomics, cost/performance, documentation accuracy, and test coverage. Rotate focus across these areas iteration to iteration rather than fixating on one.
 - Started: 2026-07-11T06:21:34.834Z
 - Status: INITIALIZED
-- Iteration: 6 of 10
+- Iteration: 7 of 10
 - Session ID: dr-008-divergent-retry-1783750894834
 - Parent Session: none
 - Lifecycle Mode: new
@@ -37,8 +37,9 @@ Reducer-generated observability surface for the active research packet.
 | undefined | Does any supported OpenCode CLI flag select ai-council while preserving the current isolated seat process, or should route proof identify a generic council-seat executor instead? | - | 0.78 | 0 | insight |
 | undefined | Which cost and operator-friction defects dominate after route proof and unrestricted council seat startup are corrected? | - | 0.88 | 0 | insight |
 | undefined | Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model? | - | 0.84 | 0 | insight |
+| undefined | Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance? | - | 0.76 | 0 | insight |
 
-- iterationsCompleted: 6
+- iterationsCompleted: 7
 - keyFindings: 0
 - openQuestions: 5
 - resolvedQuestions: 0
@@ -66,12 +67,12 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: ▅▆▇▇██▇▇▆▅▃▂▂▃▄▆▆▅▅▄
-- score sparkline: ▅▆▇▇██▇▇▆▅▃▂▂▃▄▆▆▅▅▄
-- Last 3 ratios: 0.78 -> 0.88 -> 0.84
+- newInfoRatio sparkline: ▅▆▇██▇▇▆▄▃▃▄▅▆▆▅▄▃▂▁
+- score sparkline: ▅▆▇██▇▇▆▄▃▃▄▅▆▆▅▄▃▂▁
+- Last 3 ratios: 0.88 -> 0.84 -> 0.76
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.84
+- convergenceScore: 0.76
 - coverageBySources: {"other":10}
 - Advisory events: none
 
@@ -93,7 +94,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance?
+Which shared-runtime and command-contract tests are missing for the four cost/liveness defects from iteration 5?
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
@@ -111,6 +112,6 @@ No blocked-stop events recorded.
 - graphConvergenceScore: 0.51
 - graphDecision: STOP_BLOCKED
 - Blocker: unnamed-blocker (blocking): count=1, description=Source diversity (0.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions., type=source_diversity_guard
-- Blocker: unnamed-blocker (blocking): count=1, description=1 claim(s) remain unverified, type=unverified_claims
+- Blocker: unnamed-blocker (blocking): count=2, description=2 claim(s) remain unverified, type=unverified_claims
 
 <!-- /ANCHOR:graph-convergence -->

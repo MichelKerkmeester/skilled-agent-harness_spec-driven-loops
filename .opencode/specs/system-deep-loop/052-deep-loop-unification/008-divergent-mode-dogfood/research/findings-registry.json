@@ -215,6 +215,11 @@
       "text": "Which shared-runtime and command-contract tests are missing for executor-family/model separation, per-seat model selection, and requested-versus-effective provenance?",
       "addedAtIteration": 6,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Which shared-runtime and command-contract tests are missing for the four cost/liveness defects from iteration 5?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -257,8 +262,8 @@
     },
     {
       "type": "unverified_claims",
-      "description": "1 claim(s) remain unverified",
-      "count": 1,
+      "description": "2 claim(s) remain unverified",
+      "count": 2,
       "severity": "blocking"
     }
   ],
@@ -274,17 +279,17 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 6,
+    "iterationsCompleted": 7,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 18,
+    "carriedForwardOpenQuestions": 19,
     "keyFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.84,
+    "convergenceScore": 0.76,
     "coverageBySources": {
       "other": 10
     },
