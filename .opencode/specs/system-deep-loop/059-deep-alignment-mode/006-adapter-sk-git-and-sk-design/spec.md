@@ -31,7 +31,8 @@ _memory:
     open_questions:
       - "sk-git discover() scope grammar: commit range vs branch-diff vs path glob"
       - "sk-design known-deviation list storage format (authority-local per ADR-005; file format TBD at build time)"
-    answered_questions: []
+    answered_questions:
+      - "sk-design live-render scope: ADR-009 LOCKED, split into peer phase 010-adapter-sk-design-live-render"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 6: adapter-sk-git-and-sk-design
@@ -96,7 +97,7 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 ### In Scope
 - Plan the sk-git adapter: `discover()` scope resolution over a commit range or branch diff, `standardSource()` reading sk-git's deterministic commit-message grammar and branch-naming rule, `check()` flagging conventional-commit and branch-naming violations.
 - Plan the sk-design adapter (v1, static only): `discover()` scope resolution over DESIGN.md/tokens.json-bearing paths, `standardSource()` reading the shared design token vocabulary and audit rubric, `check()` flagging structural and token nonconformance.
-- Document the explicit v1 boundary: the sk-design adapter is static-artifact review only; live-render and `chrome-devtools`-driven accessibility/performance audits are OUT for this phase and deferred to a later phase (TBD, not phase 007 or 008).
+- Document the explicit v1 boundary: the sk-design adapter is static-artifact review only; live-render and `chrome-devtools`-driven accessibility/performance audits are OUT for this phase — ADR-009 (now LOCKED) splits that dimension into its own peer phase, `010-adapter-sk-design-live-render`, not phase 007 or 008.
 - Document each adapter's known-deviation / accepted-convention list per the alignment contract's suppression invariant.
 - Document each adapter's VERIFY-FIRST re-probe step (alignment contract invariant 1).
 
@@ -106,7 +107,7 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 - The sk-code adapter - owned by phase 007.
 - Wiring these adapters into the iterate/converge loop - owned by phase 008.
 - Command, agent, and advisor cutover work - owned by phase 009.
-- sk-design live-render/`chrome-devtools` audits - explicitly deferred past this phase.
+- sk-design live-render/`chrome-devtools` audits - split into phase 010 (`010-adapter-sk-design-live-render`, ADR-009 LOCKED), a peer adapter phase, not owned here.
 
 ### Files to Change
 
@@ -126,7 +127,7 @@ This is **Phase 6** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Name the sk-git adapter's rule sources with real paths. | `plan.md` cites `.opencode/skills/sk-git/SKILL.md` §"Commit Message Logic" (lines 309-457, especially the type/scope/summary grammar at lines 328-397) and the branch-naming rule at line 298 as the `standardSource()` input. |
-| REQ-002 | State the sk-design adapter's v1 static-only boundary explicitly. | `spec.md` Scope and Open Questions name the deferred live-render capability and cite `.opencode/skills/sk-design/design-audit/references/audit_contract.md` and `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md` as the v1 rule sources. |
+| REQ-002 | State the sk-design adapter's v1 static-only boundary explicitly. | `spec.md` Scope names the live-render capability as split into phase 010 (ADR-009 LOCKED) and cites `.opencode/skills/sk-design/design-audit/references/audit_contract.md` and `.opencode/skills/sk-design/design-md-generator/references/design_md_format.md` as the v1 static rule sources. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

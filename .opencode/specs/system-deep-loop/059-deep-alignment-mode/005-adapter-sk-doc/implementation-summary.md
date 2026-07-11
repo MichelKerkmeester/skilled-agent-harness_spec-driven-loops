@@ -52,7 +52,7 @@ Nothing yet. This phase authored a plan for the sk-doc reference adapter: `stand
 
 ### sk-doc Reference Adapter Plan (documented, not yet executed)
 
-`spec.md` and `plan.md` specify how the adapter wraps `.opencode/skills/sk-doc/scripts/validate_document.py` (template/format conformance) and `.opencode/skills/sk-doc/scripts/extract_structure.py` (DQI scoring), how `check()` re-probes live ground truth before asserting any reality-drift finding, and how the suppression list carries forward the four real deviations already found and accepted in the manual precedent review at `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/`.
+`spec.md` and `plan.md` specify how the adapter wraps `.opencode/skills/sk-doc/scripts/validate_document.py` (template/format conformance) and `.opencode/skills/sk-doc/scripts/extract_structure.py` (DQI scoring), how `check()` re-probes live ground truth before asserting any reality-drift finding, and how the suppression list carries forward the four real deviations already found and accepted in the manual precedent review at `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/`.
 
 ### Files Changed
 

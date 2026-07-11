@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/059-deep-alignment-mode/000-deep-loop-runtime-refinement",
+  "description": "Packet `052-deep-loop-unification/008-divergent-mode-dogfood` ran two real, evidence-heavy 10-iteration loops (`/deep:research`, `/deep:review`)",
+  "keywords": [
+    "packet",
+    "052-deep-loop-unification",
+    "008-divergent-mode-dogfood",
+    "ran",
+    "two",
+    "real",
+    "evidence-heavy",
+    "10-iteration",
+    "loops",
+    "deep",
+    "research",
+    "review"
+  ],
+  "lastUpdated": "2026-07-11T10:45:24.729Z",
+  "specId": "000",
+  "folderSlug": "deep-loop-runtime-refinement",
+  "parentChain": [
+    "system-deep-loop",
+    "059-deep-alignment-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -88,7 +88,7 @@ Thin-router command plus LEAF-only iteration agent plus registry-driven advisor 
 - **`mode-registry.json` entry**: a new object in the `modes` array per `.opencode/skills/system-deep-loop/mode-registry.json`'s documented `discriminator` (`workflowMode`, `runtimeLoopType`, `backendKind`) and `advisorRoutingContract` (`routingClass`, `legacyAdvisorId`, `legacyAliases`, `packetSkillName`) fields, with `runtimeLoopType` set per whichever option phase 008's convergence decision lands on (either `"alignment"` if the enum is extended, or `null`/`"review"` if reused).
 - **Advisor projection-map updates**: add the new mode to `DEEP_ROUTING_MODE_BY_KEY` in `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py` and to `DEEP_MODE_BY_CANONICAL` in `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts`, keeping both in sync with the new registry entry per the registry's own documented invariant ("the advisor keeps hardcoded projection maps... in sync with this registry's advisorRouting projection... a CI drift-guard asserts maps == registry projection"). Verify with `.opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts`.
 - **Behavior benchmark**: a new `deep-alignment/behavior_benchmark/` folder mirroring `.opencode/skills/system-deep-loop/deep-review/behavior_benchmark/`'s shape (`behavior_benchmark.md`, `scenarios/`, `baselines/`), with scenarios covering at minimum: a clean corpus (expect PASS/converge quickly), a corpus with real conventional-commit violations (expect the sk-git lane to FAIL with cited evidence), and a known-deviation-suppressed corpus (expect no false-positive findings).
-- **Cutover gates**: run `node .opencode/commands/doctor/scripts/parent-skill-check.cjs` in STRICT mode against the real `deep-alignment` skill directory once phase 003's skeleton is built out, then `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/059-deep-alignment-mode --recursive --strict` across the full packet.
+- **Cutover gates**: run `node .opencode/commands/doctor/scripts/parent-skill-check.cjs` in STRICT mode against the real `deep-alignment` skill directory once phase 003's skeleton is built out AND every adapter phase (005-007, 010) has landed, then `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/059-deep-alignment-mode --recursive --strict` across the full 10-phase packet.
 
 ### Data Flow
 A user or the advisor invokes `/deep:alignment`, the command dispatches to the SCOPE phase (structured lane-resolution question or non-interactive lane args), the loop (phase 008's wiring) drives iterations by dispatching `@deep-alignment` once per iteration, findings roll up through the per-lane reducer, and the command reports the converged `alignment-report.md`. The advisor's registry entry and projection maps make this reachable by natural-language routing in addition to explicit `/deep:alignment` invocation.
@@ -133,9 +133,9 @@ Required inventories:
 - [ ] Author the behavior benchmark folder and its three minimum scenarios.
 
 ### Phase 3: Verification (future execution pass — not run in this phase)
-- [ ] Run `parent-skill-check.cjs` in STRICT mode against the real `deep-alignment` skill directory.
-- [ ] Run `validate.sh .opencode/specs/system-deep-loop/059-deep-alignment-mode --recursive --strict` across the full packet.
-- [ ] Run the behavior benchmark and confirm all three minimum scenarios behave as expected.
+- [ ] Run `parent-skill-check.cjs` in STRICT mode against the real `deep-alignment` skill directory, once phases 001-008 and 010 are all real code.
+- [ ] Run `validate.sh .opencode/specs/system-deep-loop/059-deep-alignment-mode --recursive --strict` across the full 10-phase packet.
+- [ ] Run the behavior benchmark and confirm all three minimum scenarios behave as expected, including a phase-010 live-render lane scenario if scoped by then.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -159,7 +159,7 @@ Required inventories:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 003 mode-packet skeleton | Internal, sibling phase | Not yet built | Command/agent files have no confirmed home until this lands. |
-| Phases 006-008 adapters + runtime wiring | Internal | Planned, not yet built | The agent's per-lane findings contract cannot be finalized in code until these are real. |
+| Phases 006-008, 010 adapters + runtime wiring | Internal | Planned, not yet built | The agent's per-lane findings contract cannot be finalized in code until these are real, including peer adapter phase 010's live-render lane. |
 | Advisor drift-guard test | Internal CI gate | Existing, live | If the new registry entry and both projection maps are not added together, this test fails and blocks cutover. |
 <!-- /ANCHOR:dependencies -->
 

@@ -69,7 +69,7 @@ _memory:
 - [ ] T007 [B] Implement `check()` layer 1 deterministic pass invoking the Webflow minification/verification script chain for WEBFLOW surface (adapters/sk-code-adapter)
 - [ ] T008 [B] Implement `check()` layer 2 reasoning-agent pass with evidence citation and layer tagging (adapters/sk-code-adapter)
 - [ ] T009 [B] Author the accepted-deviation set seeded from `verify_alignment_drift.py`'s skip-path allowlist functions
-- [ ] T010 [B] Write the honest automatability-limits statement into adapter documentation (closing or amending open ADR-008 with evidence)
+- [ ] T010 [B] Write the honest automatability-limits statement into adapter documentation, providing the evidence-cited deterministic-vs-reasoning split for ADR-008's LOCKED HYBRID decision
 <!-- /ANCHOR:phase-2 -->
 
 ---

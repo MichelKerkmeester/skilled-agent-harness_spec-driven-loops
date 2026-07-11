@@ -57,10 +57,10 @@ FAILURE MODES:
 | **Created** | 2026-07-11 |
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 9 |
+| **Phase** | 9 of 10 |
 | **Predecessor** | 008-iterate-converge-report |
-| **Successor** | None - final phase of the 059 packet |
-| **Handoff Criteria** | A future executor can build the command, agent, advisor entries, benchmark, and run the cutover gates directly from this plan, once phases 001-008 are actually implemented (not just scaffolded) - this phase names every artifact and gate with real precedent paths. |
+| **Successor** | None - terminal phase of the 059 packet; its gates run last, after every other phase (numeric ID 010 included) is implemented, even though 010's folder number is higher |
+| **Handoff Criteria** | A future executor can build the command, agent, advisor entries, benchmark, and run the cutover gates directly from this plan, once phases 001-008 AND 010 are actually implemented (not just scaffolded) - this phase names every artifact and gate with real precedent paths. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -86,7 +86,7 @@ This is **Phase 9**, the final phase, of the `system-deep-loop/059-deep-alignmen
 
 **Scope Boundary**: Plan only. No command file, no agent file, no `mode-registry.json` edit, no advisor script edit, no benchmark folder, and no `SKILL.md` for the real `deep-alignment` skill ship in this phase. This phase documents the plan for those artifacts.
 
-**Dependencies**: Phase 003 (scaffold-mode-packet) plans the mode-packet skeleton this phase's command/agent point at. Phases 004-008 supply the scoping, adapters, and runtime wiring the command/agent actually invoke once built.
+**Dependencies**: Phase 003 (scaffold-mode-packet) plans the mode-packet skeleton this phase's command/agent point at. Phases 004-008 and peer adapter phase `010-adapter-sk-design-live-render` supply the scoping, adapters (including the sk-design live-render dimension), and runtime wiring the command/agent actually invoke once built.
 
 **Deliverables**: A named plan for the `/deep:alignment` command and its auto/confirm assets, the `@deep-alignment` leaf agent contract, the `mode-registry.json` entry and advisor projection-map updates, a behavior benchmark plan, and the exact cutover-gate sequence.
 
@@ -98,7 +98,7 @@ This is **Phase 9**, the final phase, of the `system-deep-loop/059-deep-alignmen
 - Plan the `mode-registry.json` entry for a new `workflowMode: "alignment"` (or the name the 002/003 decisions settle on), including its `advisorRouting` block (`routingClass`, `legacyAdvisorId`, `legacyAliases`, `packetSkillName`) per the registry's documented discriminator contract.
 - Plan the advisor projection-map updates: `DEEP_ROUTING_MODE_BY_KEY` in `skill_advisor.py` and `DEEP_MODE_BY_CANONICAL` in `aliases.ts`, both checked by the existing drift-guard test.
 - Plan a behavior benchmark folder mirroring `deep-review/behavior_benchmark/`'s shape (`behavior_benchmark.md`, `scenarios/`, `baselines/`).
-- Plan the cutover-gate sequence: `parent-skill-check.cjs` STRICT plus `validate.sh --strict --recursive` across the full 059 packet, run only after phases 001-008 land as real code, not just specs.
+- Plan the cutover-gate sequence: `parent-skill-check.cjs` STRICT plus `validate.sh --strict --recursive` across the full 059 packet (now 10 phase children, including peer adapter phase 010), run only after phases 001-008 and 010 land as real code, not just specs.
 
 ### Out of Scope
 - Writing the actual command file, agent file, `mode-registry.json` edit, advisor script edits, benchmark files, or the real `deep-alignment` `SKILL.md` - future implementation work, not this scaffold.
@@ -152,7 +152,7 @@ This is **Phase 9**, the final phase, of the `system-deep-loop/059-deep-alignmen
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phases 001-008 must be real code, not just specs, before cutover gates mean anything. | Running `parent-skill-check.cjs --strict` against an unimplemented mode-packet would fail on missing files, not report meaningful drift. | State explicitly in this phase that cutover gates run only after implementation, never against the scaffold itself. |
+| Dependency | Phases 001-008 and 010 must be real code, not just specs, before cutover gates mean anything. | Running `parent-skill-check.cjs --strict` against an unimplemented mode-packet would fail on missing files, not report meaningful drift. | State explicitly in this phase that cutover gates run only after every phase — including peer adapter phase 010 — is implemented, never against the scaffold itself. |
 | Dependency | Advisor drift-guard test (`routing-registry-drift-guard.vitest.ts`) | If the new mode-registry entry and the two projection maps are not updated together, the drift guard fails CI. | Name all three surfaces in one requirement (REQ-004) so a future implementer updates them atomically. |
 | Risk | `@deep-alignment`'s per-lane findings model does not map cleanly onto `@deep-review`'s per-dimension findings model. | A naive copy-paste of the deep-review agent contract could leave stale "dimension" language that confuses lane semantics. | Explicitly call out in `plan.md` which sections need lane-aware rewording versus which can be reused verbatim. |
 <!-- /ANCHOR:risks -->

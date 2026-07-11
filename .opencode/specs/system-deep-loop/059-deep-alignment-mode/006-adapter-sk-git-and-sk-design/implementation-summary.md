@@ -53,7 +53,7 @@ Nothing yet. This phase is planned, not implemented: `spec.md` and `plan.md` nam
 
 ### Planned Scope (not yet built)
 
-The sk-git adapter will check conventional-commit grammar and `wt/{NNNN}-{name}` branch naming against the live rules in `.opencode/skills/sk-git/SKILL.md`. The sk-design adapter will check `DESIGN.md`/token structural conformance in v1 static mode only, against `.opencode/skills/sk-design/design-audit/` and `design-md-generator/` rule sources, with live-render audits explicitly deferred to a later phase.
+The sk-git adapter will check conventional-commit grammar and `wt/{NNNN}-{name}` branch naming against the live rules in `.opencode/skills/sk-git/SKILL.md`. The sk-design adapter will check `DESIGN.md`/token structural conformance in v1 static mode only, against `.opencode/skills/sk-design/design-audit/` and `design-md-generator/` rule sources, with live-render audits split into peer phase 010 (`010-adapter-sk-design-live-render`, ADR-009 LOCKED) rather than owned here.
 
 ### Files Changed
 
@@ -77,7 +77,7 @@ Not applicable yet. When this phase executes, delivery will follow `tasks.md` Ph
 
 | Decision | Why |
 |----------|-----|
-| sk-design adapter is v1 static-only, live-render deferred | The design brief locks this boundary explicitly; live-render/`chrome-devtools` audits need a separate phase with its own risk and tooling profile. |
+| sk-design adapter is v1 static-only, live-render split into phase 010 | ADR-009 (LOCKED) resolves this boundary: live-render/`chrome-devtools` audits need a separate phase with its own risk and tooling profile, so they ship as peer phase `010-adapter-sk-design-live-render`. |
 | sk-git adapter reads the same grammar source as the live `commit-msg` hook rather than reimplementing it | Prevents the adapter's conformance checks from drifting from the actual enforced rule over time. |
 <!-- /ANCHOR:decisions -->
 
@@ -99,7 +99,7 @@ Not applicable yet. When this phase executes, delivery will follow `tasks.md` Ph
 ## Known Limitations
 
 1. **No adapter code exists.** This phase is planning-only per the parent packet's scaffold constraint; `tasks.md` T004-T010 remain the actual build work.
-2. **sk-design v1 boundary is static-only.** Live-render, `chrome-devtools`-driven accessibility/performance checks are explicitly out of scope until a future phase is opened for them.
+2. **sk-design v1 boundary is static-only.** Live-render, `chrome-devtools`-driven accessibility/performance checks are out of scope for this phase; peer phase `010-adapter-sk-design-live-render` now owns that dimension per ADR-009 (LOCKED).
 3. **Known-deviation list format is not yet decided.** ADR-005 locks suppression lists as per-authority; this phase defaults to an authority-local file colocated with the adapter, with the exact file format settled at build time.
 <!-- /ANCHOR:limitations -->
 

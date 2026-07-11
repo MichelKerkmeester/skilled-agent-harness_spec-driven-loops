@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-deep-loop/059-deep-alignment-mode/010-adapter-sk-design-live-render",
+  "description": "ADR-004 locked `sk-design`'s v1 adapter (phase 006) to static `DESIGN.md`/token checks only — live-render (chrome-devtools-driven)",
+  "keywords": [
+    "adr-004",
+    "locked",
+    "sk-design",
+    "adapter",
+    "phase",
+    "static",
+    "design",
+    "token",
+    "checks",
+    "only",
+    "live-render",
+    "chrome-devtools-driven"
+  ],
+  "lastUpdated": "2026-07-11T09:41:53.919Z",
+  "specId": "010",
+  "folderSlug": "adapter-sk-design-live-render",
+  "parentChain": [
+    "system-deep-loop",
+    "059-deep-alignment-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

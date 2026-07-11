@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 7: adapter-sk-code"
-description: "Phase 007 plans the sk-code deep-alignment adapter, the hardest of the four v1 authorities: it detects the active sk-code surface via the shared smart-router markers, loads that surface's reference patterns, and reason-checks code conformance. It layers the existing deterministic pattern-drift checkers where they exist and is candid about the rest being reasoning-agent judgment with an accepted-deviation set, not a deterministic linter."
+description: "Phase 007 plans the sk-code deep-alignment adapter, the hardest of the four v1 authorities. ADR-008 is LOCKED to HYBRID: it detects the active sk-code surface via the shared smart-router markers, loads that surface's reference patterns, and runs a two-layer check() — the existing deterministic pattern-drift checkers where they exist, plus reasoning-agent judgment for the rest, each finding honestly layer-tagged with an accepted-deviation set, not a deterministic linter."
 trigger_phrases:
   - "deep-alignment sk-code adapter"
   - "sk-code surface detection alignment"
@@ -29,9 +29,9 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "How deterministic can pattern-conformance be beyond the existing verify_alignment_drift.py coverage"
       - "Whether MOTION_DEV overlay findings route through the WEBFLOW lane or their own peer lane"
-    answered_questions: []
+    answered_questions:
+      - "ADR-008 LOCKED: HYBRID — deterministic surface-detection + reasoning-based pattern-conformance, honestly layer-tagged; this phase designs the specific split, not whether to use one"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 7: adapter-sk-code
@@ -209,7 +209,7 @@ This is **Phase 7** of the `system-deep-loop/059-deep-alignment-mode` mode-packe
 
 ## 10. OPEN QUESTIONS
 
-- How deterministic can pattern-conformance become beyond the existing `verify_alignment_drift.py` coverage without building a new linter (explicitly out of scope for this phase) - recorded as open ADR-008 in 002's decision-record and owned by this phase; this phase's execution closes or amends ADR-008 with evidence from real sk-code surfaces.
+- ADR-008 is now LOCKED: HYBRID (deterministic surface-detection + reasoning-based pattern-conformance, honestly layer-tagged per ADR-005). This phase no longer chooses between fully-reasoning/hybrid/deterministic-only shapes; its remaining design task is the *specific* deterministic-vs-reasoning split within that locked frame — how much beyond the existing `verify_alignment_drift.py` coverage layer 1 reaches (without building a new linter, explicitly out of scope) versus what layer 2 covers by reasoning-agent judgment — and this phase's execution pass produces that evidence-cited split.
 - Whether MOTION_DEV overlay findings route through the WEBFLOW lane's report or form their own peer lane - TBD.
 - Whether the accepted-deviation set for sk-code should be seeded from `verify_alignment_drift.py`'s own skip-path allowlist (e.g. `is_context_advisory_path`, `is_test_heavy_path`) or authored fresh - TBD.
 <!-- /ANCHOR:questions -->

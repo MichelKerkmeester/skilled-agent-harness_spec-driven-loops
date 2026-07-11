@@ -52,7 +52,7 @@ _memory:
 - [ ] T001 Read `.opencode/skills/sk-doc/scripts/validate_document.py` in full for its CLI contract and exit-code semantics.
 - [ ] T002 [P] Read `.opencode/skills/sk-doc/scripts/extract_structure.py` in full for its DQI scoring and document-type detection.
 - [ ] T003 [P] Read `.opencode/skills/sk-doc/shared/references/core_standards.md` for filename conventions and document-type detection.
-- [ ] T004 [P] Read `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/iterations/iteration-001.md` and `iteration-002.md` for the real known-deviation findings.
+- [ ] T004 [P] Read `.opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md` and `iteration-002.md` for the real known-deviation findings.
 - [ ] T005 Re-read phase 004's finalized `discover(scope)->artifacts` contract signature.
 <!-- /ANCHOR:phase-1 -->
 

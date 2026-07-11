@@ -63,11 +63,12 @@ _memory:
 
 <!-- These tasks belong to a future execution pass, gated behind the 005-007 adapter phases. -->
 
-- [ ] T004 [B] Decide the convergence reuse-vs-extend option and close/amend open ADR-010 in 002's decision-record (owned by this phase's execution pass)
-- [ ] T005 [B] Implement the alignment-report reducer per the reduce-state.cjs-mirrored plan (blocked on T004)
-- [ ] T006 [B] Add `LEAF_BY_LOOP`/`STATE_LOG_BY_LOOP` entries for `alignment` in verify-iteration.cjs
-- [ ] T007 [B] Implement lane-round-robin corpus partitioning for iteration dispatch
-- [ ] T008 [B] Stand up the `alignment/` state-file layout mirroring the real `review/` precedent
+- [ ] T004 [B] Relocate `reduce-state.cjs` from `deep-review/scripts/` to shared `runtime/scripts/` per ADR-010 (LOCKED), repoint `deep-review`'s import (behavior-preserving)
+- [ ] T005 [B] Decide the convergence reuse-vs-extend option (this phase's own execution-time call, independent of ADR-010)
+- [ ] T006 [B] Implement `runtime/scripts/reduce-alignment-state.cjs`, the alignment-report reducer, as a sibling of the relocated `reduce-state.cjs` (blocked on T005)
+- [ ] T007 [B] Add `LEAF_BY_LOOP`/`STATE_LOG_BY_LOOP` entries for `alignment` in verify-iteration.cjs
+- [ ] T008 [B] Implement lane-round-robin corpus partitioning for iteration dispatch
+- [ ] T009 [B] Stand up the `alignment/` state-file layout mirroring the real `review/` precedent
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -77,10 +78,11 @@ _memory:
 
 <!-- These tasks belong to a future execution pass, gated behind the 005-007 adapter phases. -->
 
-- [ ] T009 [B] Dry-run the loop-lock acquire/status/refresh/release cycle against a scratch `alignment/` directory
-- [ ] T010 [B] Dry-run the reducer against a synthetic multi-lane findings set; confirm a FAIL lane is not averaged away
-- [ ] T011 [B] Confirm "nothing to converge" reporting when zero lanes resolve
-- [ ] T012 [B] Update `checklist.md` with evidence for each verified item
+- [ ] T010 [B] Diff `deep-review`'s reducer output before/after the T004 relocation and confirm it is byte-identical (ADR-010 behavior-preservation check)
+- [ ] T011 [B] Dry-run the loop-lock acquire/status/refresh/release cycle against a scratch `alignment/` directory
+- [ ] T012 [B] Dry-run the reducer against a synthetic multi-lane findings set; confirm a FAIL lane is not averaged away
+- [ ] T013 [B] Confirm "nothing to converge" reporting when zero lanes resolve
+- [ ] T014 [B] Update `checklist.md` with evidence for each verified item
 <!-- /ANCHOR:phase-3 -->
 
 ---

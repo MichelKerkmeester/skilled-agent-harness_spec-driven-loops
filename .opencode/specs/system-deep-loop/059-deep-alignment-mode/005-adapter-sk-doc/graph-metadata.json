@@ -44,7 +44,7 @@
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       ".opencode/skills/sk-doc/scripts/extract_structure.py",
       ".opencode/skills/sk-doc/shared/references/core_standards.md",
-      ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/iterations/iteration-001.md",
+      ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md",
       "tasks.md",
       "spec.md",
       "plan.md",
@@ -73,7 +73,7 @@
       {
         "name": "iteration-001.md",
         "kind": "doc",
-        "path": ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-review/review/iterations/iteration-001.md",
+        "path": ".opencode/specs/skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`deep-alignment` has no reference adapter yet",
     "created_at": "2026-07-11T06:22:12.777Z",
-    "last_save_at": "2026-07-11T06:51:21.781Z",
+    "last_save_at": "2026-07-11T09:57:48.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c95c07299f975e6b79133a9ac5e592686ac3d75a5d941a3cc76e44c3c9986870",
+    "source_fingerprint": "sha256:da17fa46cb8ada6895bb1a262d40dc9faffde4f4d2fe0bde124321dc85651a52",
     "source_doc_hashes": {
-      "spec.md": "337a71c689340300e255dc390806dbac0c633cfbdd397f05425ffd283133fe74",
-      "plan.md": "edc088c400dfc991a6230a851863e247c9bc77924978fe8bcd963402eaf9a6d5",
-      "tasks.md": "bbaf5c0b06bde4fe4d74d8ae925bce62940197e303496da926313b7a0e643822",
+      "spec.md": "a85b515226caa4254ad23e76de86e5689f4323eb1df5503f983ffd7b77461e94",
+      "plan.md": "298b16289fa6ba23193fa2b18c38d6c3851085838235e979861c877924a59d22",
+      "tasks.md": "44b04675b752f3894e1d3ae8d655ba9c88f687fae783c794bca72576f74594a9",
       "checklist.md": "0a8677b2af020055f6c2c484e4344a9456aa4079f3cb014b144f856d41a04aae",
-      "implementation-summary.md": "1942f72690c27c7ba326c8a14907acecdf54b6c5a45fe2c8b581149f36ad3c88"
+      "implementation-summary.md": "d0af548bce261f57dcd9005e60d703004c793444ece91b9a790affeba39caa95"
     },
     "last_active_child_id": null,
     "last_active_at": null
