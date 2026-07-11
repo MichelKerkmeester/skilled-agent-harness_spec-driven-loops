@@ -62,7 +62,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "489e960f4dd6fd720614343c7e55e8ab08d84f4195124e8a16a22c72ef0e7e0c",
+      "sha256": "fe7ac548e359951d11905f938ae1761dfd17d80c5a6b4a2333c4ec2460f3acd3",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      "sha256": "2831ba9a12799019fc5789551887fd57c319f0dd3202f35d537427a4b91bdee0",
+      "sha256": "9936aa71f10f125790fd54d5cbc08200fce0e7610a74ff2727d5dcf0a568bf4c",
       "section": "full"
     },
     {
