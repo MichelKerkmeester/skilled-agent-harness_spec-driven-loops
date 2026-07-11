@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/001-research"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T08:29:40Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the 10-round research charter (3 thrusts, 11 angles) with a runnable cli-opencode GPT-5.6-sol executor config"
-    next_safe_action: "1-round smoke check of the cli-opencode executor, then launch the 10-round loop"
+    recent_action: "Completed the 10-round Rust-standards research and merged research.md"
+    next_safe_action: "Execute phase 002-upgrade from the research.md manifest"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,12 +26,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-07-11-sk-code-018-001-rust-standards-research"
       parent_session_id: null
-    completion_pct: 0
-    status: "Not Started"
-    open_questions:
-      - "Does Rust belong as a code-opencode language trio, or does interop/build content warrant a dedicated sub-area?"
-      - "Which determinism/parity rules must be Rust non-negotiables to match the six-decimal/stable-sort contracts the 011/013 charters flagged?"
-    answered_questions: []
+    completion_pct: 100
+    status: "Complete"
+    open_questions: []
+    answered_questions:
+      - "Does Rust belong as a code-opencode language trio? YES — a language slice of the code-opencode surface (mode-registry two-axis model), interop/build content stays in the Rust trio, not a new shared file."
+      - "Which determinism/parity rules must be Rust non-negotiables? Byte-for-byte TS parity: per-operation six-decimal numerics, complete comparators with terminal unique tie-break, deterministic-ID preimage/encoding, BTreeMap/IndexMap for observable order, no unsafe without SAFETY+test, panics never as boundary errors (research.md Deliverable 1)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 1 — Rust Standards Deep Research
@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Not Started |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 2 (research gate) |

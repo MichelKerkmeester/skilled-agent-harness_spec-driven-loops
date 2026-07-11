@@ -37,7 +37,8 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "001-research/spec.md"
+      "001-research/spec.md",
+      "001-research/research/research.md"
     ],
     "entities": [
       {
@@ -85,7 +86,7 @@
     ],
     "causal_summary": "`sk-code`'s `code-opencode` surface encodes per-language standards (TypeScript, Python, shell, JavaScript, config) as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio plus an `assets/checklists/<lang>checklist.md` and a `manualtestingplaybook/language-standards/` entry, wired into a machine-readable SMART ROUTING block whose `RESOURCEMAP` the parent hub mirrors under a drift guard",
     "created_at": "2026-07-11T07:13:21.076Z",
-    "last_save_at": "2026-07-11T07:14:26.873Z",
+    "last_save_at": "2026-07-11T08:30:22.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

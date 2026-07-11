@@ -20,7 +20,9 @@
       "rust standards research plan",
       "10 round rust research allocation",
       "018 rust research tasks",
-      "rust standards research checklist"
+      "rust standards research checklist",
+      "018 rust research summary",
+      "rust standards research outcome"
     ],
     "key_topics": [
       "rust",
@@ -43,8 +45,21 @@
       "plan.md",
       "research/deep-research-strategy.md",
       "research/deep-research-fanout-config.json",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/spec/validate.sh",
-      "tasks.md"
+      ".opencode/skills/sk-code/code-opencode/SKILL.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/shared/references/stack_detection.md",
+      ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
+      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns.md",
+      ".opencode/skills/sk-code/code-opencode/references/shared/code_organization.md",
+      ".opencode/skills/sk-code/mode-registry.json"
     ],
     "entities": [
       {
@@ -72,15 +87,87 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "stack_detection.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/shared/references/stack_detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "verify_stack_folders.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "universal_patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "code_organization.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
         "source": "derived"
       },
       {
@@ -91,12 +178,6 @@
       },
       {
         "name": "Rust Standards Deep Research",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Not Started",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -120,81 +201,31 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Phase Context This",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "External Rust",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Run",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "citations",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Adding a language to `code-opencode` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART ROUTING block, and a parent-hub `RESOURCEMAP` union enforced by a drift guard and a skill-benchmark router-replay",
     "created_at": "2026-07-11T07:13:20.590Z",
-    "last_save_at": "2026-07-11T07:13:20.590Z",
+    "last_save_at": "2026-07-11T08:32:22.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:bc6545a6b007a476fb00d7fffdc2fa31cc6d7ad1157fb30fb3ad24da01114df7",
+    "source_fingerprint": "sha256:8fab13e169aa4a852eab1e3243c13ed41c01274b8a9cf49e475937a004869e9f",
     "source_doc_hashes": {
-      "spec.md": "78be49b9f0732bb581639ec6fdad897b7b739c5faa4ef1d418d49e656941cc3d",
-      "plan.md": "eb9e5fd7543c6b5ee4601da35b2fa2cbca75ee923c4d9edf56942d0607d522c8",
-      "tasks.md": "6203d792a7d01e8e1b0123fb88f3d368c6b6c6275ec0854a83e9e1613dccccba"
+      "spec.md": "74a68b3e8bcb1d6eb57c6ff053e2c4b062babca2ba53d496a019717ddaf18838",
+      "plan.md": "90474be36150826b1906654c5cb71183f21f08d1189a2a23333bb1eb83709149",
+      "tasks.md": "88142b6416c068303a70ece7dd99f59cf7c73ae1012fc007c54e239fd5130135",
+      "implementation-summary.md": "b1964f4edda20cd23374ad056764f68381d5037476a0845659ce6bd4ad3e5468",
+      "research/research.md": "2fe7068d3c7731bb9f6ead1a7c482763a020bf167f5ef04c3783ce00d976cba0"
     },
     "last_active_child_id": null,
     "last_active_at": null
