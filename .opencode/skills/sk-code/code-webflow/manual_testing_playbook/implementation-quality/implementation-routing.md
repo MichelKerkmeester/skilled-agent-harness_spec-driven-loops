@@ -19,7 +19,10 @@ expected_resources:
   - references/implementation/webflow_patterns/overview-limits-and-collection-lists.md
   - references/implementation/webflow_patterns/development-and-production.md
   - references/implementation/webflow_patterns/finsweet-custom-select-bridge.md
-  - references/shared/dev_workflow.md
+  - references/shared/dev_workflow/overview-nav-and-logging.md
+  - references/shared/dev_workflow/automation-errors-and-compat.md
+  - references/shared/dev_workflow/common-commands.md
+  - references/shared/dev_workflow/checklists-and-decision-matrix.md
   - assets/integrations/README.md
   - assets/patterns/README.md
   - assets/templates/README.md

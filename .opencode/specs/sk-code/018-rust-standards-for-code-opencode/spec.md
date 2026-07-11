@@ -127,7 +127,7 @@ This phase parent hosts **two workstreams** against the `sk-code` skill:
 | 007 | `007-code-opencode-rust-references/` | Split the 4 Rust docs (style_guide 1987, quick_reference 1571, quality_standards 1475, rust_checklist 1005) → 21 parts; rewire RUST + CODE_QUALITY RESOURCE_MAPs, parent union, both vitests, playbook expected_resources | Complete |
 | 008 | `008-code-opencode-other-references/` | Split 9 code-opencode docs (typescript/shell/javascript trios + shared code_organization/universal_patterns) → 20 parts | Complete |
 | 009 | `009-code-webflow-implementation-references/` | Split 11 code-webflow implementation-cluster docs → 29 parts | Complete |
-| 010 | `010-code-webflow-other-references/` | Split 8 code-webflow docs (debugging 1940, css patterns/quality, javascript quality, shared dev_workflow, verification, minification) | Planned |
+| 010 | `010-code-webflow-other-references/` | Split 8 code-webflow docs (debugging 1940, css patterns/quality, javascript quality, shared dev_workflow, verification, minification) → 31 parts | Complete |
 | 011 | `011-code-quality-and-flagged/` | Split code-quality `code_quality_checklist.md` → parts; document the 2 code-review exemptions | Planned |
 | 012 | `012-gate-verification-rollup/` | Full deterministic gate (both vitests + path-parse + `validate.sh --recursive --strict`), live-benchmark re-baseline follow-up, parent rollup | Planned |
 

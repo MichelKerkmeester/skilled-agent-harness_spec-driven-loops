@@ -9,7 +9,8 @@ expected_resources:
   - references/implementation/animation_workflows/motion-dev-and-performance.md
   - references/implementation/animation_workflows/testing-and-common-issues.md
   - references/implementation/animation_workflows/motion-dev-advanced.md
-  - references/verification/verification_workflows.md
+  - references/verification/verification_workflows/gate-and-automated-options.md
+  - references/verification/verification_workflows/requirements-rules-and-checklist.md
 version: 1.0.0.0
 ---
 

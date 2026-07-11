@@ -107,7 +107,7 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 | SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`code-webflow/references/shared/*` or `code-opencode/references/shared/*`) |
 | INTENT | After intent classification | Implementation, debugging, verification, performance, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | OPENCODE only | JavaScript, TypeScript, Python, Shell, Config standards from the matching `code-opencode/<lang>/*` folder |
-| ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `code-webflow/references/css/patterns.md` for advanced CSS patterns) |
+| ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `code-webflow/references/css/patterns/tokens-state-machine-and-triggers.md` for advanced CSS patterns) |
 
 ---
 
@@ -117,12 +117,12 @@ WEBFLOW loads from `code-webflow/references/` and `code-webflow/assets/`. The pe
 
 | Intent | Resources |
 | --- | --- |
-| IMPLEMENTATION | MUST load the implementation trio: `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`, `code-webflow/references/implementation/implementation_workflows/condition-based-waiting.md`, `code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`; then add per-language style guides (`code-webflow/references/javascript/style_guide.md`, `code-webflow/references/css/style_guide.md`) and focused guides such as forms/vendor refs as needed |
-| CODE_QUALITY | `code-review/assets/code_quality_checklist.md`, `code-webflow/references/javascript/quality_standards.md`, `code-webflow/references/css/quality_standards.md`, `code-webflow/references/shared/enforcement.md` |
-| DEBUGGING | `code-webflow/references/debugging/*`, `code-webflow/references/shared/dev_workflow.md`, universal debugging checklist |
-| VERIFICATION | `code-webflow/references/verification/verification_workflows.md`, `code-webflow/references/shared/enforcement.md`, verification checklist |
-| PERFORMANCE | `code-webflow/references/performance/cwv_remediation.md`, `code-webflow/references/performance/resource_loading.md`, `code-webflow/references/performance/interaction_gated_loading.md`, `code-webflow/references/css/quality_standards.md` (will-change, GPU props), `code-webflow/references/javascript/quality_standards.md` (RAF, debounce) |
-| DEPLOYMENT | `code-webflow/references/deployment/cdn_deployment.md`, `code-webflow/references/deployment/minification_guide.md`, `code-webflow/references/deployment/webflow_staging_production.md` |
+| IMPLEMENTATION | MUST load the implementation trio: `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`, `code-webflow/references/implementation/implementation_workflows/condition-based-waiting.md`, `code-webflow/references/implementation/performance_patterns/overview-and-checklist.md`; then add per-language style guides (`code-webflow/references/javascript/style_guide/overview-naming-and-structure.md`, `code-webflow/references/css/style_guide.md`) and focused guides such as forms/vendor refs as needed |
+| CODE_QUALITY | `code-review/assets/code_quality_checklist.md`, `code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md`, `code-webflow/references/css/quality_standards/patterns-and-naming-enforcement.md`, `code-webflow/references/shared/enforcement.md` |
+| DEBUGGING | `code-webflow/references/debugging/*`, `code-webflow/references/shared/dev_workflow/overview-nav-and-logging.md`, universal debugging checklist |
+| VERIFICATION | `code-webflow/references/verification/verification_workflows/gate-and-automated-options.md`, `code-webflow/references/shared/enforcement.md`, verification checklist |
+| PERFORMANCE | `code-webflow/references/performance/cwv_remediation.md`, `code-webflow/references/performance/resource_loading.md`, `code-webflow/references/performance/interaction_gated_loading.md`, `code-webflow/references/css/quality_standards/patterns-and-naming-enforcement.md` (will-change, GPU props), `code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md` (RAF, debounce) |
+| DEPLOYMENT | `code-webflow/references/deployment/cdn_deployment.md`, `code-webflow/references/deployment/minification_guide/overview-terser-and-patterns.md`, `code-webflow/references/deployment/webflow_staging_production.md` |
 
 ### Implementation trio contract
 
@@ -358,7 +358,10 @@ RESOURCE_MAP = {
         "code-webflow/references/implementation/webflow_patterns/overview-limits-and-collection-lists.md",
         "code-webflow/references/implementation/webflow_patterns/development-and-production.md",
         "code-webflow/references/implementation/webflow_patterns/finsweet-custom-select-bridge.md",
-        "code-webflow/references/shared/dev_workflow.md",
+        "code-webflow/references/shared/dev_workflow/overview-nav-and-logging.md",
+        "code-webflow/references/shared/dev_workflow/automation-errors-and-compat.md",
+        "code-webflow/references/shared/dev_workflow/common-commands.md",
+        "code-webflow/references/shared/dev_workflow/checklists-and-decision-matrix.md",
         "code-opencode/references/shared/universal_patterns/naming-and-commenting.md",
         "code-opencode/references/shared/universal_patterns/organization-security-and-examples.md",
         "code-opencode/references/shared/code_organization/overview-and-module-organization.md",
@@ -391,13 +394,19 @@ RESOURCE_MAP = {
     ],
     "DEBUGGING": [
         "references/universal/error_recovery.md",
-        "code-webflow/references/debugging/debugging_workflows.md",
+        "code-webflow/references/debugging/debugging_workflows/systematic-four-phases.md",
+        "code-webflow/references/debugging/debugging_workflows/rules-and-root-cause.md",
+        "code-webflow/references/debugging/debugging_workflows/performance-debugging.md",
+        "code-webflow/references/debugging/debugging_workflows/quick-reference-and-lenis.md",
+        "code-webflow/references/debugging/debugging_workflows/sub-agent-verification.md",
+        "code-webflow/references/debugging/debugging_workflows/scroll-interceptor-and-related.md",
         "code-webflow/references/debugging/error_recovery.md",
         "references/universal-debugging_checklist.md",
         "code-webflow/assets/webflow-debugging_checklist.md"
     ],
     "VERIFICATION": [
-        "code-webflow/references/verification/verification_workflows.md",
+        "code-webflow/references/verification/verification_workflows/gate-and-automated-options.md",
+        "code-webflow/references/verification/verification_workflows/requirements-rules-and-checklist.md",
         "code-opencode/references/shared/alignment_verification_automation.md",
         "references/universal-verification_checklist.md",
         "code-webflow/assets/webflow-verification_checklist.md",
@@ -408,7 +417,9 @@ RESOURCE_MAP = {
     ],
     "DEPLOYMENT": [
         "code-webflow/references/deployment/cdn_deployment.md",
-        "code-webflow/references/deployment/minification_guide.md",
+        "code-webflow/references/deployment/minification_guide/overview-terser-and-patterns.md",
+        "code-webflow/references/deployment/minification_guide/workflow-verification-and-debugging.md",
+        "code-webflow/references/deployment/minification_guide/batch-rules-and-related.md",
         "code-webflow/references/deployment/webflow_staging_production.md",
         "code-webflow/assets/scripts/README.md"
     ],
@@ -451,7 +462,8 @@ RESOURCE_MAP = {
         "code-webflow/references/implementation/animation_workflows/motion-dev-and-performance.md",
         "code-webflow/references/implementation/animation_workflows/testing-and-common-issues.md",
         "code-webflow/references/implementation/animation_workflows/motion-dev-advanced.md",
-        "code-webflow/references/verification/verification_workflows.md"
+        "code-webflow/references/verification/verification_workflows/gate-and-automated-options.md"
+        "code-webflow/references/verification/verification_workflows/requirements-rules-and-checklist.md"
     ],
     "FORMS": [
         "code-webflow/references/implementation/form_upload_workflows/overview-architecture-and-filepond.md",
@@ -477,13 +489,25 @@ RESOURCE_MAP = {
     ],
     "LANGUAGE_STANDARDS": [
         "code-webflow/references/css/style_guide.md",
-        "code-webflow/references/css/quality_standards.md",
+        "code-webflow/references/css/quality_standards/patterns-and-naming-enforcement.md",
+        "code-webflow/references/css/quality_standards/typography-autofill-and-color.md",
+        "code-webflow/references/css/quality_standards/focus-has-print-and-quick-reference.md",
         "code-webflow/references/css/quick_reference.md",
-        "code-webflow/references/css/patterns.md",
+        "code-webflow/references/css/patterns/tokens-state-machine-and-triggers.md",
+        "code-webflow/references/css/patterns/data-attributes-and-forms.md",
+        "code-webflow/references/css/patterns/focus-accessibility-and-mobile.md",
+        "code-webflow/references/css/patterns/designer-component-and-performance.md",
+        "code-webflow/references/css/patterns/quick-reference-and-related.md",
         "code-webflow/references/html/style_guide.md",
         "code-webflow/references/html/quality_standards.md",
-        "code-webflow/references/javascript/style_guide.md",
-        "code-webflow/references/javascript/quality_standards.md",
+        "code-webflow/references/javascript/style_guide/overview-naming-and-structure.md",
+        "code-webflow/references/javascript/style_guide/formatting.md",
+        "code-webflow/references/javascript/style_guide/commenting-and-related.md",
+        "code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md",
+        "code-webflow/references/javascript/quality_standards/observer-validation-and-performance.md",
+        "code-webflow/references/javascript/quality_standards/state-and-cleanup.md",
+        "code-webflow/references/javascript/quality_standards/shared-listener-and-weakmap.md",
+        "code-webflow/references/javascript/quality_standards/enforcement-and-quick-reference.md",
         "code-webflow/references/javascript/quick_reference.md"
     ],
     "JAVASCRIPT": [

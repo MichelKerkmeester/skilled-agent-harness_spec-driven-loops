@@ -4,7 +4,8 @@ category: implementation-quality
 title: 'Verification routing'
 expected_intent: VERIFICATION
 expected_resources:
-  - references/verification/verification_workflows.md
+  - references/verification/verification_workflows/gate-and-automated-options.md
+  - references/verification/verification_workflows/requirements-rules-and-checklist.md
   - assets/webflow-verification_checklist.md
 version: 1.0.0.0
 ---

@@ -24,9 +24,9 @@ metadata:
 ## 2. REFERENCE MAP
 
 Language standards (load the detected language's trio; a frontend task legitimately spans all three):
-- CSS — `references/css/style_guide.md`, `references/css/quality_standards.md`, `references/css/quick_reference.md`, `references/css/patterns.md`
+- CSS — `references/css/style_guide.md`, `references/css/quality_standards/patterns-and-naming-enforcement.md`, `references/css/quick_reference.md`, `references/css/patterns/tokens-state-machine-and-triggers.md`
 - HTML — `references/html/style_guide.md`, `references/html/quality_standards.md`
-- JavaScript — `references/javascript/style_guide.md`, `references/javascript/quality_standards.md`, `references/javascript/quick_reference.md`
+- JavaScript — `references/javascript/style_guide/overview-naming-and-structure.md`, `references/javascript/quality_standards/init-dom-error-and-async.md`, `references/javascript/quick_reference.md`
 
 Implementation patterns (`references/implementation/`):
 - Core: `implementation_workflows.md`, `webflow_patterns.md`, `animation_workflows.md`
@@ -60,7 +60,10 @@ This block is the deterministic projection of code-webflow's own reference/asset
 # (re-prefixed with code-webflow/) and the sibling code-opencode map plus the
 # parent-owned universal/shared tier; a drift guard enforces that equality.
 DEFAULT_RESOURCE = [
-    "references/shared/dev_workflow.md",
+    "references/shared/dev_workflow/overview-nav-and-logging.md",
+    "references/shared/dev_workflow/automation-errors-and-compat.md",
+    "references/shared/dev_workflow/common-commands.md",
+    "references/shared/dev_workflow/checklists-and-decision-matrix.md",
 ]
 
 INTENT_SIGNALS = {
@@ -96,7 +99,10 @@ RESOURCE_MAP = {
         "references/implementation/webflow_patterns/overview-limits-and-collection-lists.md",
         "references/implementation/webflow_patterns/development-and-production.md",
         "references/implementation/webflow_patterns/finsweet-custom-select-bridge.md",
-        "references/shared/dev_workflow.md",
+        "references/shared/dev_workflow/overview-nav-and-logging.md",
+        "references/shared/dev_workflow/automation-errors-and-compat.md",
+        "references/shared/dev_workflow/common-commands.md",
+        "references/shared/dev_workflow/checklists-and-decision-matrix.md",
         "assets/integrations/README.md",
         "assets/patterns/README.md",
         "assets/templates/README.md"
@@ -106,12 +112,18 @@ RESOURCE_MAP = {
         "references/shared/enforcement.md",
     ],
     "DEBUGGING": [
-        "references/debugging/debugging_workflows.md",
+        "references/debugging/debugging_workflows/systematic-four-phases.md",
+        "references/debugging/debugging_workflows/rules-and-root-cause.md",
+        "references/debugging/debugging_workflows/performance-debugging.md",
+        "references/debugging/debugging_workflows/quick-reference-and-lenis.md",
+        "references/debugging/debugging_workflows/sub-agent-verification.md",
+        "references/debugging/debugging_workflows/scroll-interceptor-and-related.md",
         "references/debugging/error_recovery.md",
         "assets/webflow-debugging_checklist.md"
     ],
     "VERIFICATION": [
-        "references/verification/verification_workflows.md",
+        "references/verification/verification_workflows/gate-and-automated-options.md",
+        "references/verification/verification_workflows/requirements-rules-and-checklist.md",
         "assets/webflow-verification_checklist.md"
     ],
     "TESTING": [
@@ -119,7 +131,9 @@ RESOURCE_MAP = {
     ],
     "DEPLOYMENT": [
         "references/deployment/cdn_deployment.md",
-        "references/deployment/minification_guide.md",
+        "references/deployment/minification_guide/overview-terser-and-patterns.md",
+        "references/deployment/minification_guide/workflow-verification-and-debugging.md",
+        "references/deployment/minification_guide/batch-rules-and-related.md",
         "references/deployment/webflow_staging_production.md",
         "assets/scripts/README.md"
     ],
@@ -161,7 +175,8 @@ RESOURCE_MAP = {
         "references/implementation/animation_workflows/motion-dev-and-performance.md",
         "references/implementation/animation_workflows/testing-and-common-issues.md",
         "references/implementation/animation_workflows/motion-dev-advanced.md",
-        "references/verification/verification_workflows.md"
+        "references/verification/verification_workflows/gate-and-automated-options.md"
+        "references/verification/verification_workflows/requirements-rules-and-checklist.md"
     ],
     "FORMS": [
         "references/implementation/form_upload_workflows/overview-architecture-and-filepond.md",
@@ -178,13 +193,25 @@ RESOURCE_MAP = {
     ],
     "LANGUAGE_STANDARDS": [
         "references/css/style_guide.md",
-        "references/css/quality_standards.md",
+        "references/css/quality_standards/patterns-and-naming-enforcement.md",
+        "references/css/quality_standards/typography-autofill-and-color.md",
+        "references/css/quality_standards/focus-has-print-and-quick-reference.md",
         "references/css/quick_reference.md",
-        "references/css/patterns.md",
+        "references/css/patterns/tokens-state-machine-and-triggers.md",
+        "references/css/patterns/data-attributes-and-forms.md",
+        "references/css/patterns/focus-accessibility-and-mobile.md",
+        "references/css/patterns/designer-component-and-performance.md",
+        "references/css/patterns/quick-reference-and-related.md",
         "references/html/style_guide.md",
         "references/html/quality_standards.md",
-        "references/javascript/style_guide.md",
-        "references/javascript/quality_standards.md",
+        "references/javascript/style_guide/overview-naming-and-structure.md",
+        "references/javascript/style_guide/formatting.md",
+        "references/javascript/style_guide/commenting-and-related.md",
+        "references/javascript/quality_standards/init-dom-error-and-async.md",
+        "references/javascript/quality_standards/observer-validation-and-performance.md",
+        "references/javascript/quality_standards/state-and-cleanup.md",
+        "references/javascript/quality_standards/shared-listener-and-weakmap.md",
+        "references/javascript/quality_standards/enforcement-and-quick-reference.md",
         "references/javascript/quick_reference.md"
     ],
 }
@@ -192,7 +219,7 @@ RESOURCE_MAP = {
 
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
-- **CDN runtime reality.** Client scripts ship over a CDN with cache lag; treat every deploy as versioned and verify the minified runtime, not just the source. See `references/deployment/minification_guide.md` and `references/verification/verification_workflows.md`.
+- **CDN runtime reality.** Client scripts ship over a CDN with cache lag; treat every deploy as versioned and verify the minified runtime, not just the source. See `references/deployment/minification_guide/overview-terser-and-patterns.md` and `references/verification/verification_workflows/gate-and-automated-options.md`.
 - **Interaction-gated loading.** Heavy vendors (HLS.js, FilePond, Swiper) load on interaction/visibility, never eagerly. See `references/performance/interaction_gated_loading.md` and `references/implementation/observer_patterns/mutation-and-intersection.md`.
 - **Core Web Vitals are a gate, not a report.** LCP/CLS/INP regressions block; remediate against `references/performance/cwv_remediation.md` and `references/performance/webflow_constraints.md`.
 - **Focus and forms are accessibility-load-bearing.** Focus traps and upload flows follow `references/implementation/focus_management/selector-and-focus-trap.md` and `references/implementation/form_upload_workflows/overview-architecture-and-filepond.md`.

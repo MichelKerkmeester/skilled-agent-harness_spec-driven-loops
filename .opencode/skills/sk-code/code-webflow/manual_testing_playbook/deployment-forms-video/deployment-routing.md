@@ -5,7 +5,9 @@ title: 'Deployment routing'
 expected_intent: DEPLOYMENT
 expected_resources:
   - references/deployment/cdn_deployment.md
-  - references/deployment/minification_guide.md
+  - references/deployment/minification_guide/overview-terser-and-patterns.md
+  - references/deployment/minification_guide/workflow-verification-and-debugging.md
+  - references/deployment/minification_guide/batch-rules-and-related.md
   - references/deployment/webflow_staging_production.md
   - assets/scripts/README.md
 version: 1.0.0.0

@@ -37,8 +37,8 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - `references/smart_routing.md`
 - `references/smart_routing.md`
 - `code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md`
-- `code-webflow/references/javascript/quality_standards.md`
-- `code-webflow/references/verification/verification_workflows.md`
+- `code-webflow/references/javascript/quality_standards/init-dom-error-and-async.md`
+- `code-webflow/references/verification/verification_workflows/gate-and-automated-options.md`
 - `code-webflow/references/animation/performance_and_pitfalls.md`
 - `code-webflow/references/animation/integration_patterns.md`
 
@@ -56,7 +56,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Failure triage**:
 1. If Motion reduced-motion guidance is missing, inspect `code-webflow/references/animation/performance_and_pitfalls.md`.
-2. If Webflow verification is missing, inspect `code-webflow/references/verification/verification_workflows.md`.
+2. If Webflow verification is missing, inspect `code-webflow/references/verification/verification_workflows/gate-and-automated-options.md`.
 3. If the response only says "disable animations", check whether it preserves state changes and usability.
 
 ---
@@ -75,7 +75,7 @@ Evidence files:
 
 - `.opencode/skills/sk-code/code-webflow/references/animation/performance_and_pitfalls.md` - Motion reduced-motion guidance.
 - `.opencode/skills/sk-code/code-webflow/references/implementation/animation_workflows/overview-decision-tree-and-css.md` - Webflow animation accessibility guidance.
-- `.opencode/skills/sk-code/code-webflow/references/verification/verification_workflows.md` - Browser evidence expectations.
+- `.opencode/skills/sk-code/code-webflow/references/verification/verification_workflows/gate-and-automated-options.md` - Browser evidence expectations.
 - `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/hover_gesture.js` - Reduced-motion snippet pattern.
 
 ---
