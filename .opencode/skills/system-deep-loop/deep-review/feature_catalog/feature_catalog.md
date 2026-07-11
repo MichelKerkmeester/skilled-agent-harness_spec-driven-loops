@@ -477,7 +477,7 @@ After the existing nine legal-stop gates pass, `convergenceMode: "divergent"` tr
 
 #### Source Files
 
-See [`04--severity-system/divergent-convergence-mode.md`](04--severity-system/divergent-convergence-mode.md) for full implementation and validation file listings.
+See [`severity-system/divergent-convergence-mode.md`](severity-system/divergent-convergence-mode.md) for full implementation and validation file listings.
 
 ---
 
