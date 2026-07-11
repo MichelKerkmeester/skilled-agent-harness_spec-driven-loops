@@ -62,6 +62,14 @@ function analyzeCoverage(skillRoot) {
   return { intents, resourceTargets, negatives, existingCount: existing.length, routerParseable: router.parseable };
 }
 
+function slugifyScenarioTitle(title) {
+  return String(title || 'scenario')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'scenario';
+}
+
 /**
  * Render one scenario in the GOLD per-feature format the parser reads.
  *
@@ -72,13 +80,16 @@ function analyzeCoverage(skillRoot) {
  * @param {string} spec.expectedSurface - Asserted surface (defaults to UNKNOWN).
  * @param {string[]} spec.expectedResources - Expected references.
  * @param {boolean} spec.negative - Whether the skill should NOT activate.
+ * @param {string} [spec.stage=routing] - Benchmark stage.
  * @returns {string} The rendered scenario markdown.
  */
-function renderScenarioMarkdown({ id, title, prompt, expectedSurface, expectedResources, negative }) {
+function renderScenarioMarkdown({ id, title, prompt, expectedSurface, expectedResources, negative, stage = 'routing' }) {
   const refs = (expectedResources || []).map((r) => `- \`${r}\``).join('\n') || '- (none)';
   return `---
+id: "${id}"
 title: "${id}: ${title}"
 description: "Auto-generated (tier T1-auto) routing scenario for ${title}."
+stage: ${stage}
 ---
 
 # ${id}: ${title}
@@ -174,14 +185,23 @@ async function generatePlaybook({ skillRoot, createMissing = false, author, dry 
   }));
 
   const staged = [];
+  const usedFilenames = new Set();
   for (const spec of specs) {
     const a = await authorFn(spec);
     const title = `${spec.intent} coverage`;
+    const baseSlug = slugifyScenarioTitle(title);
+    let filename = `${baseSlug}.md`;
+    let suffix = 2;
+    while (usedFilenames.has(filename)) {
+      filename = `${baseSlug}-${suffix}.md`;
+      suffix += 1;
+    }
+    usedFilenames.add(filename);
     const md = renderScenarioMarkdown({ id: spec.id, title, prompt: a.prompt, expectedSurface: a.expectedSurface, expectedResources: a.expectedResources, negative: spec.negative });
     const gates = validateGenerated({ skillRoot, skillId, scenarioMd: md, prompt: a.prompt, expectedResources: a.expectedResources, stagingDir, id: spec.id });
     if (!dry) {
       fs.mkdirSync(stagingDir, { recursive: true });
-      fs.writeFileSync(path.join(stagingDir, `${spec.id}.md`), md);
+      fs.writeFileSync(path.join(stagingDir, filename), md);
     }
     staged.push({ id: spec.id, intent: spec.intent, gates, promotable: gates.allPassed });
   }

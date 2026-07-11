@@ -86,6 +86,7 @@ Package invariants:
 - Per-feature files use stable slugs such as `feature-name.md`; no numeric file prefix.
 - Per-feature snippet order is defined by the root playbook listing order.
 - Display order is owned by the root playbook index (`manual_testing_playbook.md`), not the folder name.
+- Benchmark tier is owned by the per-feature file's optional `stage:` frontmatter field (`routing` default, or `holdout`/`negative`), not by a filename token.
 - Every feature ID maps to exactly one per-feature file.
 
 Do not create:
@@ -310,7 +311,7 @@ Document any remaining manual scope honestly in the generated playbook docs.
 5. Use packet-history or spec-phase references as scenario identity.
 6. Ship unsynchronized prompt fields.
 7. Add packet-local `graph-metadata.json`.
-8. Add numeric prefixes to category folder names; the root playbook index owns display order.
+8. Add numeric prefixes to category folder names or per-feature filenames; the root playbook index owns display order and the per-feature `stage:` field owns benchmark tier.
 
 ### ESCALATE IF
 

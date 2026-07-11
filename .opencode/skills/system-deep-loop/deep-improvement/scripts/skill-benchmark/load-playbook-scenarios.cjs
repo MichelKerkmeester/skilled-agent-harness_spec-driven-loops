@@ -299,15 +299,21 @@ function loadYamlFrontmatterScenarios(playbookDir) {
     for (const e of entries) {
       const full = path.join(cur, e.name);
       if (e.isDirectory()) { stack.push(full); continue; }
-      if (!e.isFile() || !/^\d{3}-.*\.md$/.test(e.name)) continue;
+      if (!e.isFile() || !e.name.endsWith('.md')
+          || e.name === 'manual_testing_playbook.md' || e.name === 'feature_catalog.md') continue;
       const text = readFileSafe(full);
       if (!text) continue;
       const fm = /^---\n([\s\S]*?)\n---/.exec(text);
       if (!fm) continue;
       const block = fm[1];
-      const idM = /(?:^|\n)id:\s*["']?([A-Za-z0-9-]+)/.exec(block);
-      const intentM = /expected_intent:\s*["']?([A-Za-z0-9_-]+)/.exec(block);
-      const resM = /expected_resources:\s*\n((?:\s*-\s*.+\n?)+)/.exec(block);
+      if (!/(?:^|\n)[ \t]*(?:id|expected_intent|expected_resources)[ \t]*:/.test(block)) continue;
+      const idM = /(?:^|\n)[ \t]*id:\s*["']?([A-Za-z0-9-]+)/.exec(block);
+      const intentM = /(?:^|\n)[ \t]*expected_intent:\s*["']?([A-Za-z0-9_-]+)/.exec(block);
+      const resM = /(?:^|\n)[ \t]*expected_resources:\s*\n((?:\s*-\s*.+\n?)+)/.exec(block);
+      const stageM = /(?:^|\n)[ \t]*stage:\s*["']?([A-Za-z0-9_-]+)/.exec(block);
+      const stage = stageM && ['routing', 'holdout', 'negative'].includes(stageM[1])
+        ? stageM[1]
+        : 'routing';
       const resources = resM ? extractPaths(resM[1]) : [];
       const expectedRankBelowSkillIds = parseFrontmatterList(block, [
         'rankBelowSkillIds',
@@ -321,6 +327,7 @@ function loadYamlFrontmatterScenarios(playbookDir) {
         scenarioId: id,
         category,
         prompt: prompt || null,
+        stage,
         classKind: classifyKind(id, category, null, intentM ? intentM[1] : ''),
         expectedSurface: null,
         expectedSubLanguage: null,
