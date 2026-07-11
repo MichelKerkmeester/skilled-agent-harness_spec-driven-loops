@@ -52,7 +52,7 @@ This agent is LEAF-only.
 Before any write, enforce the packet scope lock:
 - Allowed write root is the resolved local-owner research packet only: root-spec `{spec_folder}/research/`, or the child/sub-phase local `research/` packet supplied by the orchestrator.
 - Allowed write targets are `research/iterations/iteration-NNN.md`, one append-only iteration record to `research/deep-research-state.jsonl`, one write-once `research/deltas/iter-NNN.jsonl` per iteration (the structured delta stream required by the iteration prompt contract), optional `idea_observed` event rows when dispatch explicitly allows idea capture, `research/research.md` only when `progressiveSynthesis == true`, and `research/research-ideas.md` only when operator-authored file capture is explicitly allowed and packet-local.
-- Reducer-owned files (`research/deep-research-strategy.md`, `research/deep-research-findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
+- Reducer-owned files (`research/deep-research-strategy.md`, `research/findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
 - If any intended write path escapes the resolved packet root, targets a reducer-owned file, or would overwrite an existing iteration file or delta file, STOP and return `Status: error` without writing outside the boundary.
 
 ---
@@ -70,9 +70,10 @@ Every iteration follows this sequence:
 4. CLASSIFY EDGES ──> Handle ambiguity, contradictions, missing deps, partial success
 5. EXECUTE RESEARCH ─> 3-5 research actions (WebFetch, Grep, Read, memory_search)
 6. WRITE FINDINGS ──> Create research/iterations/iteration-NNN.md
-7. APPEND STATE ────> Add exactly one iteration record to JSONL
-8. UPDATE RESEARCH ─> Progressively update research/research.md when enabled
-9. VERIFY OUTPUTS ──> Check files, append, citations, and scope before reporting
+7. APPEND STATE ────> Add exactly one canonical iteration record to JSONL
+8. WRITE DELTA ─────> Create research/deltas/iter-NNN.jsonl with the same canonical record
+9. UPDATE RESEARCH ─> Progressively update research/research.md when enabled
+10. VERIFY OUTPUTS ─> Check narrative, state, delta, citations, and scope
 ```
 
 ### Step 1: Read State
@@ -81,7 +82,7 @@ Read the paths provided in dispatch context:
 - `research/deep-research-config.json` -- lifecycle mode, budgets, packet boundaries
 - `research/deep-research-state.jsonl` -- iteration history
 - `research/deep-research-strategy.md` -- focus, key questions, exhausted approaches
-- `research/deep-research-findings-registry.json` (if exists) -- open/resolved questions and key findings
+- `research/findings-registry.json` (if exists) -- open/resolved questions and key findings
 - `research/research-ideas.md` (if exists) -- deferred tangents
 
 Extract:
@@ -225,7 +226,7 @@ Do not write a placeholder iteration file. If findings are sparse because a tool
 
 ### Step 7: Respect Reducer-Owned State
 
-Do not use `research/deep-research-strategy.md`, `research/deep-research-findings-registry.json`, or `research/deep-research-dashboard.md` as primary write targets. Instead:
+Do not use `research/deep-research-strategy.md`, `research/findings-registry.json`, or `research/deep-research-dashboard.md` as primary write targets. Instead:
 1. Put worked/failed guidance, answered questions, edge-case notes, and next-focus recommendations in the iteration file.
 2. Append the structured JSONL record.
 3. Let the workflow reducer refresh strategy machine-owned sections, registry, and dashboard.
@@ -235,7 +236,7 @@ Do not use `research/deep-research-strategy.md`, `research/deep-research-finding
 Append exactly ONE iteration record to `research/deep-research-state.jsonl`:
 
 ```json
-{"type":"iteration","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","edgeCase":"none","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"timestamp":"ISO-8601","durationMs":NNNNN}
+{"type":"iteration","iteration":N,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","edgeCase":"none","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"timestamp":"ISO-8601","durationMs":NNNNN,"graphEvents":[]}
 ```
 
 **Status values**: `complete | timeout | error | stuck | insight | thought`
@@ -257,11 +258,15 @@ Optional fields:
 - `edgeCase`: `none`, `ambiguous-input`, `contradictory-evidence`, `missing-dependency`, or `partial-success`
 
 **Append discipline**:
-- Append exactly one JSONL record for the iteration.
+- Append exactly one canonical JSONL record for the iteration.
 - Optional idea capture may append additional `idea_observed` event rows after the iteration record when dispatch explicitly allows it.
 - Never append `idea_promoted` or `idea_rejected`; reducer and operator workflows own those events.
 - Never rewrite, truncate, sort, or reformat existing JSONL lines.
 - If append verification shows zero iteration records appended or more than one new iteration record, return `Status: error` and name the mismatch.
+
+### Step 9: Write Delta
+
+Create `research/deltas/iter-NNN.jsonl` once. Its first line MUST be byte-equivalent JSON data to the canonical state-log iteration record. Append any finding, invariant, observation, graph-event, edge, or ruled-out records after it, one JSON object per line. Never overwrite an existing delta file.
 
 **newInfoRatio calculation**:
 - Fully new findings count as 1.0.
@@ -375,9 +380,10 @@ All paths resolve from the target spec folder. Root-spec targets write directly 
 | Config | `research/deep-research-config.json` | Read only |
 | State log | `research/deep-research-state.jsonl` | Read + append exactly one line |
 | Strategy | `research/deep-research-strategy.md` | Read only for focus selection |
-| Findings registry | `research/deep-research-findings-registry.json` | Read only |
+| Findings registry | `research/findings-registry.json` | Read only |
 | Dashboard | `research/deep-research-dashboard.md` | Read only if needed |
 | Iteration findings | `research/iterations/iteration-{NNN}.md` | Write new file only |
+| Iteration delta | `research/deltas/iter-{NNN}.jsonl` | Write new file only |
 | Research output | `research/research.md` | Read + edit only when `progressiveSynthesis` is true |
 | Idea observations | `research/deep-research-state.jsonl` | Append `idea_observed` events only when explicit idea capture is allowed |
 | Ideas file | `research/research-ideas.md` | Append only when operator-authored file capture is explicitly allowed |
@@ -462,7 +468,7 @@ Return this summary to the dispatcher:
 **Files written**:
 - research/iterations/iteration-[NNN].md
 - research/deep-research-state.jsonl (appended exactly one iteration record, plus any explicitly allowed idea_observed events)
-- workflow reducer refreshes research/deep-research-strategy.md, research/deep-research-findings-registry.json, and research/deep-research-dashboard.md
+- workflow reducer refreshes research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
 - research/research.md (updated, if applicable)
 
 **Verification**:

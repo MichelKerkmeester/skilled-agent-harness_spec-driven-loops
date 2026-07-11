@@ -17,6 +17,7 @@ const DEFAULT_COUNCIL_COST_GUARDS = Object.freeze({
   max_topics_per_session: 5,
   saturation_threshold: 0.2,
   seats_per_round: 3,
+  max_concurrent_seats: 3,
   lag_ceiling: 5000,
 });
 
@@ -63,7 +64,7 @@ function normalizeCostGuards(input = {}) {
     ...DEFAULT_COUNCIL_COST_GUARDS,
     ...(input || {}),
   };
-  for (const key of ['max_rounds_per_topic', 'max_topics_per_session', 'seats_per_round']) {
+  for (const key of ['max_rounds_per_topic', 'max_topics_per_session', 'seats_per_round', 'max_concurrent_seats']) {
     if (!isPositiveInteger(guards[key])) {
       throw new RangeError(`${key} must be a positive integer`);
     }

@@ -1344,14 +1344,6 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     relativeRankingSignal,
   });
   const gateFailed = connectivity.gateFailed;
-  let verdict;
-  if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
-  else if (hubRouteGate.failed) verdict = 'BLOCKED-BY-ROUTING';
-  else if (toolSurfaceGate.failed) verdict = 'BLOCKED-BY-TOOL-SURFACE';
-  else if (aggregateScore == null) verdict = 'NO-SCENARIOS';
-  else if (aggregateScore >= 80) verdict = 'PASS';
-  else if (aggregateScore >= 50) verdict = 'CONDITIONAL';
-  else verdict = 'FAIL';
 
   // Bottlenecks: D5 findings + any scenario stage failures, ranked by severity.
   const bottlenecks = [...connectivity.findings];
@@ -1366,6 +1358,16 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       detail: `${headlineBottleneck[1]} scenario(s) first fail at stage '${headlineBottleneck[0]}'`,
     });
   }
+
+  const hasActiveP1 = bottlenecks.some((bottleneck) => bottleneck.severity === 'P1');
+  let verdict;
+  if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
+  else if (hubRouteGate.failed) verdict = 'BLOCKED-BY-ROUTING';
+  else if (toolSurfaceGate.failed) verdict = 'BLOCKED-BY-TOOL-SURFACE';
+  else if (aggregateScore == null) verdict = 'NO-SCENARIOS';
+  else if (aggregateScore >= 80 && !hasActiveP1) verdict = 'PASS';
+  else if (aggregateScore >= 50) verdict = 'CONDITIONAL';
+  else verdict = 'FAIL';
 
   return {
     schemaVersion: 'skill-benchmark-report.v1',

@@ -61,27 +61,46 @@ Expected output: a JSON wrapper with `status`, `data`, and workflow-facing field
 **Step 2: Import a runtime module from your TypeScript loop code.**
 
 ```typescript
-import { acquireLoopLock, releaseLoopLock } from '../../runtime//lib/deep-loop/loop-lock.js';
-import { renderPromptPack } from '../../runtime//lib/deep-loop/prompt-pack.js';
-import { validateIterationOutputs } from '../../runtime//lib/deep-loop/post-dispatch-validate.js';
+import { join } from 'node:path';
 
-const lock = await acquireLoopLock(specFolder);
+import { acquireLoopLock, releaseLoopLock } from '../../runtime/lib/deep-loop/loop-lock.js';
+import { renderPromptPack } from '../../runtime/lib/deep-loop/prompt-pack.js';
+import { validateIterationOutputs } from '../../runtime/lib/deep-loop/post-dispatch-validate.js';
+
+const lockPath = join(specFolder, 'research', '.deep-loop.lock');
+const now = new Date().toISOString();
+const lockResult = acquireLoopLock(lockPath, {
+  ownerPid: process.pid,
+  startedAtIso: now,
+  lastHeartbeatIso: now,
+  ttlMs: 60_000,
+  packetId: specFolder,
+  runtimeKind: 'main',
+});
+if (!lockResult.acquired) throw new Error('Deep-loop lock is already held');
+
 try {
-  const prompt = renderPromptPack(template, vars);
-  const result = await dispatch(prompt);
-  validateIterationOutputs(result, iterationDir);
+  const prompt = renderPromptPack(templatePath, vars);
+  await dispatch(prompt);
+  validateIterationOutputs({
+    iterationFile,
+    stateLogPath,
+    previousStateLogSize,
+    requiredJsonlFields,
+    deltaFilePath,
+  });
 } finally {
-  await releaseLoopLock(lock);
+  releaseLoopLock(lockPath, process.pid);
 }
 ```
 
 **Step 3: Run the runtime tests to confirm your environment works.**
 
 ```bash
-pnpm --dir .opencode/skills/system-spec-kit/mcp_server exec vitest run ../../runtime//tests
+npm --prefix .opencode/skills/system-deep-loop/runtime test
 ```
 
-Expected output: the vitest runner discovers the unit, integration and lifecycle tests through the cross-package glob in `system-spec-kit/mcp_server/vitest.config.ts`. A green run confirms the runtime is wired correctly.
+Expected output: the runtime-local Vitest configuration discovers the unit, integration, council, and lifecycle suites. A green run confirms the runtime is wired correctly.
 
 ---
 

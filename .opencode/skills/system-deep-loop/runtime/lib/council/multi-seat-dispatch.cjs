@@ -140,16 +140,30 @@ async function dispatchCouncilSeats(options) {
 
   const now = typeof options.now === 'function' ? options.now : () => new Date();
   const seats = options.seats.map(normalizeSeat);
+  const maxConcurrency = options.maxConcurrency === undefined ? 3 : options.maxConcurrency;
+  if (!Number.isInteger(maxConcurrency) || maxConcurrency <= 0) {
+    throw new TypeError('maxConcurrency must be a positive integer');
+  }
+
   const startedAtIso = normalizeTimestamp(now());
-  const results = await Promise.all(
-    seats.map((seat, index) => settleSeat({
-      seat,
-      index,
-      roundId,
-      dispatchSeat: options.dispatchSeat,
-      context: options.context || {},
-      now,
-    })),
+  const results = new Array(seats.length);
+  let nextIndex = 0;
+  async function runWorker() {
+    while (nextIndex < seats.length) {
+      const index = nextIndex;
+      nextIndex += 1;
+      results[index] = await settleSeat({
+        seat: seats[index],
+        index,
+        roundId,
+        dispatchSeat: options.dispatchSeat,
+        context: options.context || {},
+        now,
+      });
+    }
+  }
+  await Promise.all(
+    Array.from({ length: Math.min(maxConcurrency, seats.length) }, () => runWorker()),
   );
   const completedAtIso = normalizeTimestamp(now());
   const succeeded = results.filter((result) => result.status === 'fulfilled').length;

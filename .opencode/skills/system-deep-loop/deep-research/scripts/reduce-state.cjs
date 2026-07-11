@@ -1552,8 +1552,9 @@ function extractListItems(sectionText) {
   return sectionText
     .split('\n')
     .map((line) => line.trim())
-    .filter((line) => /^([-*]|\d+\.)\s+/.test(line))
-    .map((line) => normalizeText(line.replace(/^([-*]|\d+\.)\s+/, '')))
+    .filter((line) => /^([-*]|\d+\.)\s+/.test(line)
+      || /^###\s+(?:F-[A-Z0-9-]+|P[012]\s*:)/i.test(line))
+    .map((line) => normalizeText(line.replace(/^(?:(?:[-*]|\d+\.)\s+|###\s+)/, '')))
     .filter(Boolean);
 }
 

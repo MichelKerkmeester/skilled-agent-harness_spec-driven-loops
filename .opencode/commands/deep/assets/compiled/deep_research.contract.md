@@ -82,7 +82,7 @@
     },
     {
       "path": ".opencode/agents/deep-research.md",
-      "sha256": "7d44b7ebaaf0935598a590760f026542018b716433045d338bf2fe90cf8382c8",
+      "sha256": "15e836a94646c0728b39d77e9fcd991e64b659263d04f15b978c04ce2a34d989",
       "section": "full"
     },
     {

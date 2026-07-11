@@ -188,8 +188,9 @@ describe('deep-ai-council session CLI runner', () => {
       expect(stderr.text()).toBe('');
       expect(fakeSpawn).toHaveBeenCalledTimes(1);
       expect(spawns[0].command).toBe('opencode');
-      expect(spawns[0].args.slice(0, 4)).toEqual(['run', '--model', 'test-model', '--dangerously-skip-permissions']);
-      const seatPrompt = spawns[0].args[4];
+      expect(spawns[0].args.slice(0, 5)).toEqual(['run', '--agent', 'plan', '--model', 'test-model']);
+      expect(spawns[0].args).not.toContain('--dangerously-skip-permissions');
+      const seatPrompt = spawns[0].args[5];
       expect(seatPrompt).toContain('You are seat-001, a Analytical council seat');
       expect(seatPrompt).toContain('## Resolved Route');
       expect(seatPrompt).toContain('"mode": "ai-council"');

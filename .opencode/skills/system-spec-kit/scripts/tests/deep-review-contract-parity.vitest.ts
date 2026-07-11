@@ -198,6 +198,37 @@ function readWorkspaceFile(relativePath: string): string {
     }
   });
 
+  it('seeds review graph coverage from canonical dimensions/filesReviewed without gating on graphEvents, and both YAMLs agree', () => {
+    const stepBlockPattern = /^ {6}step_graph_upsert:[\s\S]*?(?=\n {6}\S)/m;
+
+    for (const docPath of commandAssets) {
+      const content = readWorkspaceFile(docPath);
+      const match = content.match(stepBlockPattern);
+      expect(match, `${docPath} should contain step_graph_upsert`).not.toBeNull();
+      const block = match![0];
+
+      expect(block, `${docPath} step_graph_upsert should seed configured dimensions`).toContain(
+        'Seed one stable DIMENSION node for every configured review dimension',
+      );
+      expect(block, `${docPath} step_graph_upsert should seed current filesReviewed coverage`).toContain(
+        'filesReviewed entry and emit a COVERS edge',
+      );
+      expect(block, `${docPath} step_graph_upsert should not gate coverage on graphEvents presence`).not.toContain(
+        'If graphEvents is absent or empty',
+      );
+      expect(block, `${docPath} step_graph_upsert should not skip the upsert based on graphEvents`).not.toContain(
+        'skip_conditions',
+      );
+      expect(block, `${docPath} step_graph_upsert should treat graphEvents as optional enrichment`).toContain(
+        'Merge optional graphEvents',
+      );
+    }
+
+    const autoBlock = readWorkspaceFile(commandAssets[0]).match(stepBlockPattern)![0];
+    const confirmBlock = readWorkspaceFile(commandAssets[1]).match(stepBlockPattern)![0];
+    expect(confirmBlock, 'auto and confirm step_graph_upsert blocks should be identical').toBe(autoBlock);
+  });
+
   // Add executable coverage for deep-review runtime-capabilities.cjs
   it('exposes a machine-readable capability matrix for every supported deep-review runtime', () => {
     const runtimeIds = reviewCapabilityModule!.listRuntimeCapabilityIds();

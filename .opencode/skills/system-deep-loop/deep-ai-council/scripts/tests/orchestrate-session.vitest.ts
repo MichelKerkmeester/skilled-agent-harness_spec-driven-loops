@@ -189,10 +189,11 @@ describe('deep-ai-council session orchestration', () => {
       });
 
       expect(seenConfigs).toHaveLength(1);
-      expect(seenConfigs[0].resolved_route_header).toBe('Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true');
+      expect(seenConfigs[0].resolved_route_header).toBe('Resolved route: mode=ai-council; target_agent=plan; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true');
       expect(seenConfigs[0].route_fields).toMatchObject({
         mode: 'ai-council',
-        target_agent: '@ai-council',
+        target_agent: 'plan',
+        agent_definition_loaded: true,
         state_source: 'ai-council/session-state.jsonl',
       });
     });

@@ -134,8 +134,9 @@ Every iteration follows this exact sequence. Do not reorder, skip, or combine st
 6. CLASSIFY FINDINGS ► Assign P0/P1/P2 with file:line evidence
 7. WRITE FINDINGS ───► Create review/iterations/iteration-NNN.md
 8. UPDATE STRATEGY ─► Edit review/deep-review-strategy.md sections
-9. APPEND JSONL ─────► Add exactly ONE iteration record
-10. VERIFY OUTPUTS ──► Prove artifact, strategy, and JSONL agree
+9. APPEND JSONL ─────► Add exactly ONE canonical iteration record
+10. WRITE DELTA ─────► Create review/deltas/iter-NNN.jsonl
+11. VERIFY OUTPUTS ──► Prove narrative, strategy, state, and delta agree
 ```
 
 If any hard-block invariant fails before Step 7, do not write partial iteration artifacts. Return an error status that names the failed invariant. If a failure occurs after writing begins, make durable state internally honest across artifact, strategy, and JSONL.
@@ -232,20 +233,26 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 #### Step 9: Append JSONL
 
 - Append exactly ONE `type:"iteration"` line to `review/deep-review-state.jsonl`.
+- Required route proof is `"iteration":N`, `"mode":"review"`, `"target_agent":"deep-review"`, `"agent_definition_loaded":true`, and `"resolved_route":"Resolved route: mode=review target_agent=deep-review"`.
+- Required review data includes `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `traceabilityChecks`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, and `durationMs`.
 - Allowed `status`: `complete | timeout | error | stuck | insight | thought`.
-- Required fields include run, status, focus, dimension(s), findings counts, `findingDetails`, `newFindingsRatio`, `noveltyJustification`, files reviewed, scores, finding refs, traceability checks, edge cases, coverage, `ruledOut`, `budgetProfile`, timestamp, and duration.
-- `findingDetails` is an array of active findings with ID, severity, title, dimension, file:line, evidence, recommendation, disposition, `findingClass`, `scopeProof`, and `affectedSurfaceHints`; use an empty array when there are no findings.
-- Optional fields: `focusTrack` and `integrationEvidence` when actually inspected.
-- The orchestrator may enrich with `segment` and `convergenceSignals`; this agent does not write them.
+- For explicit review-depth v2 records, include the complete `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, and `searchLedger` contract from the rendered iteration prompt.
 - `newFindingsRatio = (weightedNew + weightedRefinement) / weightedTotal` with weights P0=10, P1=5, P2=1 and refinement at 0.5x.
 - If no findings exist, set ratio to 0.0; if any new P0 exists, set `newFindingsRatio = max(calculated, 0.50)`.
 
-#### Step 10: Verify Outputs
+#### Step 10: Write Delta
 
-- Verify iteration file exists and contains focus, finding severity sections, traceability checks, edge cases, ruled-out section, and next focus.
+- Create `review/deltas/iter-NNN.jsonl` once.
+- Its first line MUST contain the same canonical iteration record as the state-log append.
+- Append structured finding, classification, traceability-check, graph-event, and ruled-out records after it, one JSON object per line.
+- Never overwrite an existing delta file.
+
+#### Step 11: Verify Outputs
+
+- Verify the narrative contains focus, finding severity sections, traceability checks, edge cases, ruled-out section, and next focus.
 - Verify strategy contains updated dimension status, running counts, edge-case carry-forward when applicable, and next focus.
-- Verify JSONL has exactly one new `type:"iteration"` line for the current run.
-- Verify JSONL `run`, `status`, `focus`, `dimension`, `findingsSummary`, `findingDetails`, `newFindingsRatio`, `ruledOut`, `budgetProfile`, and `edgeCases` match the iteration artifact.
+- Verify state JSONL has exactly one new canonical iteration record with complete route proof.
+- Verify `review/deltas/iter-NNN.jsonl` exists and its canonical iteration record matches the state-log record.
 - Verify `integrationEvidence` appears only when exact integration surfaces were reviewed.
 - Verify no review target, config, registry, reducer output, dashboard, report, command, skill, canonical agent, or runtime mirror file was modified.
 - If verification fails, fix safely or return `status: "error"` with the failed verification item.
@@ -365,6 +372,7 @@ All paths resolve from the target spec folder. Root-spec targets write directly 
 | Findings registry | `review/deep-review-findings-registry.json` | Read only |
 | Strategy | `review/deep-review-strategy.md` | Read + edit specific sections |
 | Iteration findings | `review/iterations/iteration-{NNN}.md` | Write new file |
+| Iteration delta | `review/deltas/iter-{NNN}.jsonl` | Write new file |
 | Pause sentinel | `review/.deep-review-pause` | Read only |
 
 ### Iteration Number Derivation
@@ -383,7 +391,7 @@ Do not trust a dispatch-provided iteration number until it matches the JSONL-der
 - Strategy: use Edit tool to modify specific sections; never use Write to replace the whole file.
 - Iteration file: create a new file; it must not already exist.
 - Review target files are READ-ONLY.
-- Only write to `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, and `review/deep-review-state.jsonl`.
+- Only write to `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, `review/deep-review-state.jsonl`, and the write-once `review/deltas/iter-NNN.jsonl`.
 - NEVER write config, findings registry, reducer outputs, dashboards, reports, source files, command files, skill files, canonical agent files, or runtime mirrors.
 - Before every write, restate the resolved path mentally against the review packet root. If it is outside the packet, stop.
 

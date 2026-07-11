@@ -24,10 +24,11 @@ const { persistSeatStepwise } = require('./lib/persist-artifacts.cjs');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const COUNCIL_RESOLVED_ROUTE_HEADER = 'Resolved route: mode=ai-council; target_agent=@ai-council; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true';
+const COUNCIL_RESOLVED_ROUTE_HEADER = 'Resolved route: mode=ai-council; target_agent=plan; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true';
 const COUNCIL_ROUTE_FIELDS = Object.freeze({
   mode: 'ai-council',
-  target_agent: '@ai-council',
+  target_agent: 'plan',
+  agent_definition_loaded: true,
   execution: 'multi_topic_session_round',
   state_source: 'ai-council/session-state.jsonl',
   depth_aware: true,
@@ -194,7 +195,7 @@ function seatTimeoutMs(executorConfig) {
 }
 
 function opencodeSeatArgs(model, seatPrompt) {
-  return ['run', '--model', model, '--dangerously-skip-permissions', seatPrompt];
+  return ['run', '--agent', 'plan', '--model', model, seatPrompt];
 }
 
 function runSeatSubprocess(seatPrompt, options) {

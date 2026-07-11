@@ -86,6 +86,20 @@ function runFixture(slug, deltaRecords) {
   }
 }
 
+function runIterationRecordsFixture(slug, iterationRecords) {
+  const { root, specFolder, reviewDir } = makeSpecFolder(slug);
+  try {
+    writeBaseConfig(reviewDir);
+    writeJsonl(path.join(reviewDir, 'deep-review-state.jsonl'), [
+      { type: 'config', mode: 'review', sessionId: 'rvw-summary-fallback' },
+      ...iterationRecords,
+    ]);
+    return reduceReviewState(specFolder, { write: false }).registry;
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+}
+
 function testSummaryOnlyFallback() {
   const registry = runFixture('summary-only', [iterationRecord()]);
 
@@ -137,6 +151,96 @@ function testStructuredRowsDoNotDoubleCount() {
   assert.equal(registry.openFindings.filter((finding) => finding.findingClass === 'summary-only').length, 0);
 }
 
+function testTraceabilityRollupUnionsLatestPerProtocol() {
+  const registry = runIterationRecordsFixture('traceability-union', [
+    iterationRecord({
+      run: 1,
+      timestamp: '2026-06-29T00:01:00Z',
+      traceabilityChecks: {
+        results: [
+          { protocolId: 'checklist_evidence', status: 'fail', applicable: true, gateClass: 'hard' },
+        ],
+      },
+    }),
+    iterationRecord({
+      run: 2,
+      timestamp: '2026-06-29T00:02:00Z',
+      // Iteration 2 only re-executes a different protocol; it must not erase
+      // iteration 1's checklist_evidence result from canonical state.
+      traceabilityChecks: {
+        results: [
+          { protocolId: 'other_protocol', status: 'pass', applicable: true, gateClass: 'soft' },
+        ],
+      },
+    }),
+  ]);
+
+  const protocolIds = registry.traceability.results.map((result) => result.protocolId).sort();
+  assert.deepEqual(protocolIds, ['checklist_evidence', 'other_protocol']);
+
+  const checklistResult = registry.traceability.results.find((result) => result.protocolId === 'checklist_evidence');
+  assert.equal(checklistResult.status, 'fail');
+  assert.equal(registry.traceability.summary.fail, 1);
+  assert.equal(registry.traceability.summary.pass, 1);
+  assert.equal(registry.traceability.summary.gatingFailures, 1);
+}
+
+function testSearchDebtReconciliationClearsResolvedBugClass() {
+  const registry = runIterationRecordsFixture('search-debt-reconciliation', [
+    iterationRecord({
+      run: 1,
+      timestamp: '2026-06-29T00:01:00Z',
+      reviewDepthSchemaVersion: 2,
+      searchLedger: [
+        {
+          id: 'row-sql-1',
+          dimension: 'security',
+          bugClass: 'sql-injection',
+          disposition: 'deferred',
+          targetRefs: ['src/db.ts'],
+          rationale: 'needs schema access',
+          deferredReason: 'blocked on schema access',
+        },
+        {
+          id: 'row-xss-1',
+          dimension: 'security',
+          bugClass: 'xss',
+          disposition: 'blocked',
+          targetRefs: ['src/render.ts'],
+          rationale: 'blocked on external review',
+          blockedReason: 'awaiting security team',
+        },
+      ],
+    }),
+    iterationRecord({
+      run: 2,
+      timestamp: '2026-06-29T00:02:00Z',
+      reviewDepthSchemaVersion: 2,
+      searchLedger: [
+        {
+          id: 'row-sql-2',
+          dimension: 'security',
+          bugClass: 'sql-injection',
+          disposition: 'covered',
+          targetRefs: ['src/db.ts'],
+          rationale: 'executed parametrized-query check',
+        },
+      ],
+    }),
+  ]);
+
+  // The later 'covered' disposition must clear the earlier 'deferred' debt for
+  // the same bug class instead of leaving a stale duplicate entry.
+  assert.equal(registry.searchDebt.length, 1);
+  assert.equal(registry.searchDebt[0].bugClass, 'xss');
+  assert.equal(registry.candidateCoverage.byBugClass['sql-injection'].deferred, false);
+  assert.ok(registry.candidateCoverage.covered.includes('sql-injection'));
+  assert.ok(!registry.candidateCoverage.deferred.includes('sql-injection'));
+  assert.deepEqual(registry.candidateCoverage.blocked, ['xss']);
+}
+
 testSummaryOnlyFallback();
 testStructuredRowsDoNotDoubleCount();
+testTraceabilityRollupUnionsLatestPerProtocol();
+testSearchDebtReconciliationClearsResolvedBugClass();
 console.log('[deep-review] reduce-state summary fallback regression passed');
