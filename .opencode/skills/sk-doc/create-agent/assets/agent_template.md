@@ -30,8 +30,9 @@ Agents are specialized AI personas with defined authority, tool permissions, and
 | **Purpose** | Persona with authority to act | Knowledge/workflow bundle |
 | **Location** | `.opencode/agents/` | `.opencode/skills/` |
 | **Invocation** | `@agent-name` or automatic routing | Skill loading by request or routing |
-| **Has Tools** | Yes, via `permission:` and optional `mcpServers:` | No independent tool boundary |
-| **Frontmatter** | `name`, `description`, `mode`, `temperature`, `permission`, optional `mcpServers` | `name`, `description`, `allowed-tools` |
+| **Has Tools** | Yes, via a runtime-specific schema (see below) | No independent tool boundary |
+| **Frontmatter (OpenCode)** | `name`, `description`, `mode`, `temperature`, `permission`, optional `mcpServers` | `name`, `description`, `allowed-tools` |
+| **Frontmatter (Claude Code)** | `name`, `description`, `tools` (no `mode`/`temperature`/`permission`) | `name`, `description`, `allowed-tools` |
 
 ### When to Create an Agent
 
@@ -86,7 +87,17 @@ mcpServers:
 ---
 ```
 
-Use the unified `permission:` object with `allow`, `deny`, or `ask`. The older separate `tools:` object is deprecated.
+Use the `permission:` object with `allow`, `deny`, or `ask` for `.opencode/agents/`. For `.claude/agents/`, use the runtime-specific `tools:` allow-list instead — Claude Code enforces only `tools:` and silently ignores `permission:`:
+
+```yaml
+---
+name: agent-name
+description: One-line description of purpose, authority, and major boundary
+tools: Read, Write, Edit, Bash, Grep, Glob
+---
+```
+
+Decision rule: authoring for `.opencode/agents/` emits `permission:` (never bare `tools:`); authoring for `.claude/agents/` emits `tools:` (never `permission:`). Map the `permission:` allow-set to the `tools:` list by including only the tools set to `allow`/`ask` and dropping the ones set to `deny`.
 
 ### Field Reference
 

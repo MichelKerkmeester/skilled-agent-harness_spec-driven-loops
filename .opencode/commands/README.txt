@@ -35,20 +35,20 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt`, `/memory:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
+Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt-improve`, `/memory:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
 
 Commands are organized into five groups plus root-level utilities:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 10 | Scaffold OpenCode components, documentation packages, and changelogs |
-| **deep** | `commands/deep/` | 8 | Deep research, review, context, AI council, improvement and benchmark loops |
+| **deep** | `commands/deep/` | 7 | Deep research, review, AI council, improvement and benchmark loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
-| **root** | `commands/` | 2 | Standalone `/agent_router` and `/prompt` utilities |
+| **root** | `commands/` | 3 | Standalone `/agent_router`, `/prompt-improve`, and `/goal_opencode` utilities |
 
-Standalone commands live at the root level: `agent_router.md` routes requests to AI systems, and `prompt.md` is the canonical prompt-improvement surface.
+Standalone commands live at the root level: `agent_router.md` routes requests to AI systems, `prompt-improve.md` is the canonical prompt-improvement surface, and `goal_opencode.md` manages the passive session goal via the `mk-goal` plugin.
 
 <!-- /ANCHOR:overview -->
 
@@ -71,7 +71,8 @@ This file is descriptive only. The executable contract for any workflow lives in
 ```
 command/
 ├── agent_router.md           # Route requests to AI systems
-├── prompt.md                 # Canonical prompt improvement command
+├── prompt-improve.md         # Canonical prompt improvement command
+├── goal_opencode.md          # Session-goal router for the mk-goal plugin (OpenCode only)
 ├── create/                   # Component creation commands
 │   ├── agent.md              # Create new agent
 │   ├── changelog.md          # Create changelog entry
@@ -88,7 +89,6 @@ command/
 │   ├── agent-improvement.md  # Evaluator-first agent improvement loop
 │   ├── ai-council.md         # Multi-seat AI council planning
 │   ├── ai-system-improvement.md # AI-system packaging improvement loop
-│   ├── context.md            # Codebase-context parallel sweep loop
 │   ├── model-benchmark.md    # Model/prompt-framework benchmark loop
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
@@ -140,12 +140,14 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 
 ### Doctor Commands
 
-Diagnose, install, and repair MCP server connections. Backed by `mcp-doctor.sh` diagnostic script and interactive YAML workflows.
+Three command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp-doctor.sh`, and interactive YAML workflows.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
+| Doctor Router | `/doctor <target> [flags]` (backed by `doctor/speckit.md`) | Single entry point for 9 subsystems (`memory`, `embeddings`, `causal-graph`, `code-graph`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `fable-mode`); argv-positional dispatch via `_routes.yaml` |
 | MCP Debug | `/doctor:mcp debug [--fix] [--server <name>]` | Diagnose and fix MCP connection issues across all runtimes |
 | MCP Install | `/doctor:mcp install [--server <name>] [--runtime <name>]` | Fresh install or reinstall all supported MCP servers from install guides |
+| Update | `/doctor:update [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (code-graph, context/vector index, causal-edges, skill-graph, advisor, deep-loop, eval) |
 
 ### Deep Commands
 
@@ -168,7 +170,8 @@ Root commands have no group prefix.
 | Command | Invocation | Purpose |
 |---------|------------|---------|
 | Agent Router | `/agent_router <request>` | Route a request through intelligent AI system selection |
-| Prompt | `/prompt <prompt_or_topic> [:auto\|:confirm]` | Create or improve prompts using frameworks, DEPTH thinking, and CLEAR scoring |
+| Prompt | `/prompt-improve <prompt_or_topic> [:auto\|:confirm]` | Create or improve prompts using frameworks, DEPTH thinking, and CLEAR scoring |
+| Goal (OpenCode) | `/goal_opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `mk-goal` plugin |
 
 ### Memory Commands
 
@@ -200,7 +203,7 @@ Structured workflows for the spec folder development lifecycle.
 ## 5. INSTRUCTIONS
 
 1. Choose the command group that matches your intent: `create`, `deep`, `doctor`, `memory`, or `speckit`.
-2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/agent_router` or `/prompt`.
+2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/agent_router` or `/prompt-improve`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.
 5. Follow the family-specific index under `commands/<group>/README.txt` when one exists and you need detailed routing help.
@@ -219,7 +222,7 @@ Structured workflows for the spec folder development lifecycle.
 /create:manual-testing-playbook system-spec-kit update :auto
 /create:skill my-new-skill full-create :auto
 /deep:agent-improvement .opencode/agents/review.md :confirm
-/prompt $improve "Build a clearer CLI handoff prompt" :auto
+/prompt-improve $improve "Build a clearer CLI handoff prompt" :auto
 /memory:save specs/007-feature
 /speckit:plan "Add user authentication" :auto
 ```
@@ -320,7 +323,7 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 | [AGENTS.md](../../AGENTS.md) | Framework defining gates, protocols, agent routing |
 | [Create Commands](create/README.txt) | Detailed index for all `/create:*` commands |
 | [Deep Agent Improvement Command](deep/agent-improvement.md) | Agent improvement loop command |
-| [Prompt Command](prompt.md) | Canonical prompt improvement command |
+| [Prompt Command](prompt-improve.md) | Canonical prompt improvement command |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Documentation standards and component creation |
 | [system-spec-kit SKILL.md](../skills/system-spec-kit/SKILL.md) | Spec folder workflow and memory system |
 | [Memory Commands](memory/README.txt) | Memory save, analyze, learn, manage, and shared commands |

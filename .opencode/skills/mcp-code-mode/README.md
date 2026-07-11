@@ -135,10 +135,13 @@ Skip Code Mode for native MCP tools in `opencode.json` (Spec Kit Memory, Skill A
 
 ### Related Skills
 
+All three MCP tool skills below now nest under the `mcp-tooling` parent hub as workflow modes (dispatched via `mcp-tooling/mode-registry.json`); each still consumes Code Mode as its transport.
+
 | Skill | Relationship |
 |---|---|
-| `mcp-chrome-devtools` | Consumes Code Mode as its MCP transport. Routes Chrome DevTools calls through `call_tool_chain()` and registers chrome_devtools entries in `.utcp_config.json`. |
-| `mcp-click-up` | Consumes Code Mode as its MCP transport. Routes ClickUp calls through `call_tool_chain()` and registers clickup entries in `.utcp_config.json`. |
+| `mcp-tooling/mcp-chrome-devtools` | Consumes Code Mode as its MCP transport. Routes Chrome DevTools calls through `call_tool_chain()` and registers chrome_devtools entries in `.utcp_config.json`. |
+| `mcp-tooling/mcp-click-up` | Consumes Code Mode as its MCP transport. Routes ClickUp calls through `call_tool_chain()` and registers clickup entries in `.utcp_config.json`. |
+| `mcp-tooling/mcp-figma` | Optionally consumes Code Mode as its MCP transport (Figma Desktop CLI is the primary surface). Routes the opt-in Framelink `figma` MCP context pull through `call_tool_chain()`. |
 
 ---
 

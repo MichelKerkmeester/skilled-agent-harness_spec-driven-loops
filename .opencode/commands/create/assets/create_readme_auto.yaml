@@ -34,7 +34,7 @@ action: Generate scannable, well-organized documentation (README or Install Guid
 # OPERATION ROUTING
 # ─────────────────────────────────────────────────────────────────
 # This YAML handles both README and Install Guide operations.
-# The setup phase in folder_readme.md determines which operation
+# The setup phase in .opencode/commands/create/readme.md determines which operation
 # to execute based on the user's command arguments:
 #
 #   /create:readme [path]           → README operation
@@ -80,7 +80,7 @@ development_philosophy:
     mandate: "Every install guide starts with AI-First section for immediate value"
 
 runtime_agent_path_resolution:
-  default: .opencode/agent
+  default: .opencode/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────
@@ -145,7 +145,7 @@ request_analysis_framework:
 
 input_contract:
   required:
-  - create_agent_verified
+  - create_readme_verified
   - operation
   - execution_mode
   optional:
@@ -600,7 +600,7 @@ readme_workflow:
   step_5b_quality_validation:
     purpose: Quality-validate the created README artifact
     agent_availability:
-      agent_file: "[runtime_agent_path]/write.md"
+      agent_file: "[runtime_agent_path]/markdown.md"
       template_contract:
         source: "sk-doc"
         validators: "validate_document.py + extract_structure.py"
@@ -1052,7 +1052,7 @@ install_guide_workflow:
   step_5b_quality_validation:
     purpose: Quality-validate the created install guide artifact
     agent_availability:
-      agent_file: "[runtime_agent_path]/write.md"
+      agent_file: "[runtime_agent_path]/markdown.md"
       template_contract:
         source: "sk-doc"
         validators: "validate_document.py + extract_structure.py"

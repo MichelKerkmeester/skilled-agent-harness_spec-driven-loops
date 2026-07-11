@@ -629,6 +629,92 @@ def validate_feature_catalog_table(content: str, doc_type_rules: Dict[str, Any])
     return errors
 
 
+def validate_agent_frontmatter(content: str, file_path: str) -> List[Dict[str, Any]]:
+    """Validate an agent file's frontmatter against its runtime-specific schema.
+
+    `.claude/agents/` files must use the `tools:` allow-list — Claude Code enforces only
+    `tools:` and silently ignores `permission:`; an absent `tools:` inherits the parent
+    session's full, unrestricted tool set (the AGT-02 defect class).
+    `.opencode/agents/` files must use the `permission:` object — OpenCode enforces only
+    `permission:` and silently ignores `tools:`.
+    Runtime is detected from the file's own path (never a global default), matching the
+    same path-resolution invariant AGT-01 depends on.
+    """
+    errors: List[Dict[str, Any]] = []
+
+    path_str = str(file_path).replace('\\', '/')
+    is_claude = '/.claude/agents/' in f'/{path_str}' or path_str.startswith('.claude/agents/')
+    is_opencode = '/.opencode/agents/' in f'/{path_str}' or path_str.startswith('.opencode/agents/')
+
+    if not is_claude and not is_opencode:
+        # Runtime cannot be determined from the path; skip schema enforcement rather than guess.
+        return errors
+
+    if not content.startswith('---'):
+        errors.append({
+            'type': 'agent_frontmatter_missing',
+            'severity': 'blocking',
+            'message': 'Agent file has no YAML frontmatter block',
+            'fix_hint': 'Add a frontmatter block with name, description, and the runtime-correct schema (tools: or permission:)'
+        })
+        return errors
+
+    lines = content.split('\n')
+    end_idx = None
+    for i, line in enumerate(lines[1:], start=1):
+        if line.strip() == '---':
+            end_idx = i
+            break
+
+    if end_idx is None:
+        errors.append({
+            'type': 'agent_frontmatter_unclosed',
+            'severity': 'blocking',
+            'message': 'Agent frontmatter is not closed (missing closing ---)',
+            'fix_hint': 'Close the frontmatter block with a trailing ---'
+        })
+        return errors
+
+    raw = '\n'.join(lines[1:end_idx])
+
+    tools_match = re.search(r'^tools:\s*(.*)$', raw, re.MULTILINE)
+    has_tools = bool(tools_match and tools_match.group(1).strip())
+    has_permission = bool(re.search(r'^permission:\s*(\{.*\}|\S.*)?\s*$', raw, re.MULTILINE))
+
+    if is_claude:
+        if not has_tools:
+            errors.append({
+                'type': 'agent_schema_missing_tools',
+                'severity': 'blocking',
+                'message': 'Claude Code agent (.claude/agents/) is missing a non-empty tools: allow-list — an absent or empty tools: inherits the parent session\'s full, unrestricted tool set',
+                'fix_hint': 'Add "tools: Read, Write, Edit, ..." mapping the intended least-authority allow-list'
+            })
+        if has_permission:
+            errors.append({
+                'type': 'agent_schema_wrong_key_permission',
+                'severity': 'warning',
+                'message': 'Claude Code agent (.claude/agents/) has a permission: block, which Claude Code silently ignores',
+                'fix_hint': 'Remove permission: and express the same intent via tools:'
+            })
+    elif is_opencode:
+        if not has_permission:
+            errors.append({
+                'type': 'agent_schema_missing_permission',
+                'severity': 'blocking',
+                'message': 'OpenCode agent (.opencode/agents/) is missing a permission: object',
+                'fix_hint': 'Add a permission: object with explicit allow/deny/ask values'
+            })
+        if has_tools:
+            errors.append({
+                'type': 'agent_schema_wrong_key_tools',
+                'severity': 'warning',
+                'message': 'OpenCode agent (.opencode/agents/) has a tools: key, which OpenCode silently ignores',
+                'fix_hint': 'Remove tools: and express the same intent via permission:'
+            })
+
+    return errors
+
+
 def validate_document(
     file_path: str,
     doc_type: Optional[str] = None,
@@ -703,6 +789,8 @@ def validate_document(
     all_errors.extend(validate_required_sections(content, doc_type_rules))
     if doc_type == 'feature_catalog':
         all_errors.extend(validate_feature_catalog_table(content, doc_type_rules))
+    if doc_type == 'agent':
+        all_errors.extend(validate_agent_frontmatter(content, file_path))
 
     blocking_errors = [e for e in all_errors if e.get('severity') == 'blocking']
     warnings = [e for e in all_errors if e.get('severity') == 'warning']

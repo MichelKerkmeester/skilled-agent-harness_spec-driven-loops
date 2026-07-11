@@ -36,7 +36,7 @@ Do not embed workflow steps or presentation content in this file. Workflow steps
 - **Prefer `/design:interface` when** the request is to invent the overall interface direction, voice, or signature visual concept first.
 - **Prefer `/design:md-generator` when** the request is to extract measured tokens from a live site into DESIGN.md.
 - **Prefer `/design:motion` when** the request is animation, transition choreography, micro-interactions, or reduced-motion behavior.
-- **Prefer `/design:design-mcp-open-design` when** the request is to wire, read, or drive Open Design's MCP server rather than author a static visual system from judgment.
+- **Prefer the `sk-design` skill's `design-mcp-open-design` transport mode when** the request is to wire, read, or drive Open Design's MCP server rather than author a static visual system from judgment. This is a nested mode reached through `sk-design`, not an independently dispatchable `/design:*` command.
 - **Defer to the `sk-design` hub when** the request spans invention of the overall interface direction, motion choreography, or release-quality audit.
 <!-- /ANCHOR:sibling-discriminator -->
 

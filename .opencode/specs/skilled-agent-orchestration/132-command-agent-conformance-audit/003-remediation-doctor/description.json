@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/132-command-agent-conformance-audit/003-remediation-doctor",
+  "description": "The 001 deep-research synthesis confirmed six `/doctor` defects, all re-verified against current disk state: (DR-01, P1, most-corroborated finding in",
+  "keywords": [
+    "deep-research",
+    "synthesis",
+    "confirmed",
+    "six",
+    "doctor",
+    "defects",
+    "re-verified",
+    "against",
+    "current",
+    "disk",
+    "state",
+    "dr-01",
+    "most-corroborated",
+    "finding"
+  ],
+  "lastUpdated": "2026-07-11T04:41:16.459Z",
+  "specId": "003",
+  "folderSlug": "remediation-doctor",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "132-command-agent-conformance-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

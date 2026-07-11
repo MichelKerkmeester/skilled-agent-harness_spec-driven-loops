@@ -38,7 +38,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.20
   executor:
     mode: in-cli  # in-cli | external-cli
-    cli: active-runtime  # active-runtime | cli-opencode | cli-claude-code | cli-opencode
+    cli: active-runtime  # active-runtime | cli-opencode | cli-claude-code
     model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
     reasoning: ""  # optional reasoning effort or variant
     service_tier: ""  # optional, executor-specific
@@ -102,7 +102,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --executor-mode=<in-cli|external-cli> -> executor.mode
-   |-- --executor=<active-runtime|cli-opencode|cli-claude-code|cli-opencode> -> executor.cli
+   |-- --executor=<active-runtime|cli-opencode|cli-claude-code> -> executor.cli
    |-- --model=<id> -> executor.model
    |-- --reasoning-effort=<level> -> executor.reasoning
    |-- --service-tier=<tier> -> executor.service_tier
@@ -142,9 +142,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q4. Executor (optional, press enter for default):
      A) Active runtime / in-cli (default) - use the current runtime's council seats.
-     B) cli-opencode - one external  round.
+     B) cli-opencode - one external OpenCode round.
      C) cli-claude-code - one external Claude Code round.
-     D) cli-opencode - one external OpenCode round.
 
    Reply format examples:
    - `"runtime boundary strategy, A, A"`

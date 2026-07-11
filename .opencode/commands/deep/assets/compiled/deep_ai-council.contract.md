@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/ai-council.md",
-      "sha256": "6b3aa609321b1f318731026a56a7a84be8069f612ceb79e6795772a0af8c3f9d",
+      "sha256": "b02ec4804027c8362d0c45dadbcc638ba40eeaba58e421f2fe4e3fadfc2fd1df",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_ai-council_presentation.txt",
-      "sha256": "8ae76e135526d1663efb3ac3d07eeef47607a31408356b5b1ac4635fc68ee216",
+      "sha256": "8e63ca3c2302f9646784e3f2012567d5abdb7e445c107d870647c03878bc9810",
       "section": "full"
     },
     {
@@ -32,17 +32,17 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "6d41d1cfeff3b422ef5686c839c7e64118a3e0cfdf9eeced58166ef7486447a3",
+      "sha256": "39bc42a8881b45c5a16a432bb33f94f62565b2d935c31e5b9c373c5e144a019f",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "46d1f01bd81c2dcfa1dd37a146899cffce712e682ed4ef12d603e9d3be9729ba",
+      "sha256": "4d990838018f72d97d426e8aa7cbd26e3042ace7eb9844c793a0b15b2fb466e3",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "fb8f16f8ccb93f1a4dfc0a1b9f454d1db0767daedb3d89c33d69fbb4c67f3d61",
+      "sha256": "5562bf7fb1d48ab59928a0543b6136526363b4acba5c6c18e1c03a516d077eef",
       "section": "full"
     },
     {
@@ -87,7 +87,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/structure/state_format.md",
-      "sha256": "c3a3a55bf5980f98a644a69a0860b2eff8bb50a504885d9326f843ad6154e5fb",
+      "sha256": "2c2ed8cfbccb824f086a625862e711c19145575d3f280207dfb4b9cb6875cef7",
       "section": "full"
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/integration/loop_protocol.md",
-      "sha256": "6c9b0a6d5595c7c094bf6d67059e6257a126e3b430e53ab94ff75e9a97d83f96",
+      "sha256": "c90186af1f78ca3cda1ec267a0f1a76b16472e303b0a00486cb0932365bb5517",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".opencode/agents/ai-council.md",
-      "sha256": "9b7290195dab7e4428f5dc81b4595389178ad00a0bdd5ada21045e0c2c821d85",
+      "sha256": "d26d4c01ce5cb77559f186ccaf8c3d85d9f6871d9bf203a753ce9e35742968bf",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "67425794f9de2d20ec957aaea288653d7e07daadf146632df4ce018c99a04c65"
+  "compiledBodyDigest": "a4cf6c52b49750aeeff047b4c386fc6596c97c31c198f4167e59120040e3c829"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -253,7 +253,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.20
   executor:
     mode: in-cli  # in-cli | external-cli
-    cli: active-runtime  # active-runtime | cli-opencode | cli-claude-code | cli-opencode
+    cli: active-runtime  # active-runtime | cli-opencode | cli-claude-code
     model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
     reasoning: ""  # optional reasoning effort or variant
     service_tier: ""  # optional, executor-specific
@@ -325,7 +325,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --executor-mode=<in-cli|external-cli> -> executor.mode
-   |-- --executor=<active-runtime|cli-opencode|cli-claude-code|cli-opencode> -> executor.cli
+   |-- --executor=<active-runtime|cli-opencode|cli-claude-code> -> executor.cli
    |-- --model=<id> -> executor.model
    |-- --reasoning-effort=<level> -> executor.reasoning
    |-- --service-tier=<tier> -> executor.service_tier
@@ -365,9 +365,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q4. Executor (optional, press enter for default):
      A) Active runtime / in-cli (default) - use the current runtime's council seats.
-     B) cli-opencode - one external  round.
+     B) cli-opencode - one external OpenCode round.
      C) cli-claude-code - one external Claude Code round.
-     D) cli-opencode - one external OpenCode round.
 
    Reply format examples:
    - `"runtime boundary strategy, A, A"`

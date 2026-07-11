@@ -180,7 +180,7 @@ workflow:
       - "Generate exclude-rule recommendations"
       - "Generate language-filter recommendations"
       - "Build diagnostic report markdown"
-      - "Write report to {packet_scratch}/code-graph-diagnostic-{timestamp}.md (umask 077)"
+      - "Write report to {packet_scratch}/code-graph-diagnostic-{timestamp}.md (umask 077; mutation class: add-only per _routes.yaml, the code-graph index itself stays read-only)"
       - "Display report path and summary"
     outputs:
       - report_path: "{packet_scratch}/code-graph-diagnostic-{timestamp}.md"

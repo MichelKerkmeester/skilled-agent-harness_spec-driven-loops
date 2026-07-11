@@ -1210,11 +1210,11 @@ workflow:
           wait_for_completion: true
           notes:
             - "Routed through runAuditedExecutorCommand so opencode produces INTENT + COMPLETION dispatch receipts; recursion guard + env allowlist enforced via buildExecutorDispatchEnv"
-            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (cli-opencode SKILL.md §4 ALWAYS rule)"
+            - "input:'' yields closed stdin (EOF), equivalent to </dev/null — opencode v1.14.39 reads stdin at startup and hangs at 0% CPU after +60s snapshot prune without it (the `cli-external/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external/cli-opencode/SKILL.md`) §4 ALWAYS rule)"
             - "opencode run takes a positional message; prompt is the route-proof preamble + iteration body"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
-            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         post_dispatch_validate:
           validator: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           command: "node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir {artifact_dir} --iteration {current_iteration}"

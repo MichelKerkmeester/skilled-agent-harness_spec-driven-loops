@@ -8,7 +8,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, mcp__mk_spec_me
 
 Executes exactly ONE research iteration in the `/deep:research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
@@ -51,9 +51,9 @@ This agent is LEAF-only.
 
 Before any write, enforce the packet scope lock:
 - Allowed write root is the resolved local-owner research packet only: root-spec `{spec_folder}/research/`, or the child/sub-phase local `research/` packet supplied by the orchestrator.
-- Allowed write targets are `research/iterations/iteration-NNN.md`, one append-only iteration record to `research/deep-research-state.jsonl`, optional `idea_observed` event rows when dispatch explicitly allows idea capture, `research/research.md` only when `progressiveSynthesis == true`, and `research/research-ideas.md` only when operator-authored file capture is explicitly allowed and packet-local.
+- Allowed write targets are `research/iterations/iteration-NNN.md`, one append-only iteration record to `research/deep-research-state.jsonl`, one write-once `research/deltas/iter-NNN.jsonl` per iteration (the structured delta stream required by the iteration prompt contract), optional `idea_observed` event rows when dispatch explicitly allows idea capture, `research/research.md` only when `progressiveSynthesis == true`, and `research/research-ideas.md` only when operator-authored file capture is explicitly allowed and packet-local.
 - Reducer-owned files (`research/deep-research-strategy.md`, `research/deep-research-findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
-- If any intended write path escapes the resolved packet root, targets a reducer-owned file, or would overwrite an existing iteration file, STOP and return `Status: error` without writing outside the boundary.
+- If any intended write path escapes the resolved packet root, targets a reducer-owned file, or would overwrite an existing iteration file or delta file, STOP and return `Status: error` without writing outside the boundary.
 
 ---
 

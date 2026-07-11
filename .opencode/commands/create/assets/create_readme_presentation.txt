@@ -16,7 +16,7 @@ Indicators:
 - sk-doc skill integration is available
 
 If all indicators are present:
-- create_agent_verified = true
+- create_readme_verified = true
 - Continue to setup
 
 If any indicator is missing or uncertain:
@@ -135,7 +135,7 @@ Hard stops:
 
 | Field | Required | Value | Source |
 | --- | --- | --- | --- |
-| `create_agent_verified` | Yes | `[value]` | Phase 0 self-check |
+| `create_readme_verified` | Yes | `[value]` | Phase 0 self-check |
 | `operation` | Yes | `[value]` | Detection or Q_OP |
 | `target_path` | README only | `[value]` | Q_R1 or `$ARGUMENTS` |
 | `readme_type` | README only | `[value]` | Q_R2 or `--type` |

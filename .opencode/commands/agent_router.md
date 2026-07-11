@@ -1,7 +1,7 @@
 ---
 description: Route requests to AI Systems with full skill-identity adoption
 argument-hint: "[system|path:<path>] <request>"
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, WebSearch, AskUserQuestion
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch
 ---
 
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
@@ -90,13 +90,13 @@ Systems are discovered at runtime by scanning the filesystem. A **system** is an
 Derive `ai_systems_root` from the current workspace path. Do not hardcode user-specific absolute paths.
 
 1. Start from the current working directory.
-2. Find the nearest ancestor that represents the active Barter workspace:
-   - Prefer an ancestor containing this `agent_router.md` and `z — Global (Shared)/`.
-   - Otherwise, use the nearest ancestor named `Barter`.
-   - Accept both parent naming styles, `AI_Systems` and `AI Systems`, as broader workspace containers, but do not scan sibling workspaces when already inside `Barter`.
-3. Set `ai_systems_root` to the Barter workspace root.
-   - Example: `/Users/alex/MEGA/Development/AI_Systems/Barter` -> `/Users/alex/MEGA/Development/AI_Systems/Barter`
-4. If no Barter workspace root can be derived, use a `path:` override from the user.
+2. Find the nearest ancestor that represents the active multi-system workspace:
+   - Prefer the ancestor directory containing this `agent_router.md` (walk up from its own path, e.g. the parent of the `.opencode/commands/` or `.claude/commands/` tree it lives under).
+   - Otherwise, use the nearest ancestor directory that contains 2+ subdirectories each holding their own `AGENTS.md` file.
+   - Do not hardcode a specific workspace directory name; the detection is structural (presence of this file, or multiple sibling `AGENTS.md`-bearing directories), not name-based.
+3. Set `ai_systems_root` to that resolved workspace root.
+   - Example: `/Users/alex/Projects/MyWorkspace` -> `/Users/alex/Projects/MyWorkspace`
+4. If no workspace root can be derived, use a `path:` override from the user.
 
 ### Discovery Procedure
 
@@ -109,8 +109,8 @@ Derive `ai_systems_root` from the current workspace path. Do not hardcode user-s
 
 2. For each result, extract:
     - `agent_folder` — the parent directory of the AGENTS.md file
-    - `system_name` — the folder name, with number prefix stripped (e.g., `1. Barter - Copywriter` → `Barter - Copywriter`)
-    - `group` — the first directory under `ai_systems_root` for nested systems (e.g., `MCP`), otherwise the workspace name (e.g., `Barter`)
+    - `system_name` — the folder name, with number prefix stripped (e.g., `1. Copywriter` → `Copywriter`)
+    - `group` — the first directory under `ai_systems_root` for nested systems (e.g., `MCP`), otherwise the resolved workspace folder's own name
 
 3. **Deduplication:** If the same system name exists in multiple locations, prefer the shallower path under `ai_systems_root`. If depth is equal, prefer the non-archive/non-backup path.
 
@@ -121,7 +121,7 @@ Derive `ai_systems_root` from the current workspace path. Do not hardcode user-s
 ### Name Normalization
 
 Strip number prefixes to derive the canonical system name:
-- `1. Barter - Copywriter` → `Barter - Copywriter`
+- `1. Copywriter` → `Copywriter`
 - `3. TikTok SEO` → `TikTok SEO`
 - `4. Pieter Bertram` → `Pieter Bertram`
 - `Media Editor` → `Media Editor` (no prefix to strip)
@@ -149,7 +149,7 @@ $ARGUMENTS
     │   │
     │   │   Match algorithm (applied against discovered registry):
     │   │   1. EXACT match on normalized system_name (case-insensitive)
-    │   │      e.g., "copywriter" → Barter - Copywriter
+    │   │      e.g., "copywriter" → Copywriter
     │   │   2. PARTIAL match: first word(s) appear in system_name
     │   │      e.g., "tiktok" → TikTok SEO
     │   │   3. WORD match: any significant word from system_name
@@ -225,7 +225,7 @@ Reply with letter:
 3. For each result:
     - Extract `agent_folder` (parent directory of AGENTS.md)
     - Extract `group`:
-      - If `agent_folder` is a direct child of `ai_systems_root`, use the workspace folder name (for this repo: `Barter`)
+      - If `agent_folder` is a direct child of `ai_systems_root`, use the resolved `ai_systems_root` directory's own folder name
       - If nested, use the first directory under `ai_systems_root` (for example, `MCP`)
     - Extract raw folder name and normalize to `system_name`:
       - Strip leading number prefix: `\d+\.\s*` → empty (e.g., `3. TikTok SEO` → `TikTok SEO`)

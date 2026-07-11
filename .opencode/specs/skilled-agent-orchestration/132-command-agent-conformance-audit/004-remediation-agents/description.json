@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/132-command-agent-conformance-audit/004-remediation-agents",
+  "description": "`001-conformance-deep-research` confirmed 9 agent-surface defects (AGT-01..AGT-09), re-verified against file:line evidence as of 2026-07-10",
+  "keywords": [
+    "001-conformance-deep-research",
+    "confirmed",
+    "agent-surface",
+    "defects",
+    "agt-01",
+    "agt-09",
+    "re-verified",
+    "against",
+    "file",
+    "line",
+    "evidence"
+  ],
+  "lastUpdated": "2026-07-11T05:10:27.565Z",
+  "specId": "004",
+  "folderSlug": "remediation-agents",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "132-command-agent-conformance-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

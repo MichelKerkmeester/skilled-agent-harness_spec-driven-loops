@@ -882,17 +882,23 @@ Skills are automatically discovered from:
 - `.claude/skills/<name>/SKILL.md` (Claude-compatible)
 
 **Current Skills:**
-| Skill                      | Version    | Purpose                                              |
-| -------------------------- | ---------- | ---------------------------------------------------- |
-| mcp-code-mode        | v1.0.7.0   | External tool orchestration                          |
-| system-spec-kit      | v2.2.26.0  | Spec folder + template system + context preservation |
-| mcp-chrome-devtools  | v1.0.7.0   | Browser debugging                                    |
-| cli-opencode            | v1.2.0     | OpenCode CLI orchestration for code and research |
-| cli-claude-code      | v1.0.0     | Claude Code CLI orchestration                        |
-| sk-code  | v1.1.0.0   | Stack-aware code workflow + quality standard (customizable per project) |
-| sk-doc               | v1.1.2.0   | Unified markdown and skill management                |
-| sk-git               | v1.1.0.0   | Git workflow orchestrator                            |
-| sk-prompt   | v1.2.0.0   | Prompt engineering frameworks and scoring            |
+
+Skills are organized as parent hubs that own workflow modes (dispatched via each hub's `mode-registry.json`), plus a handful of single-mode skills.
+
+| Hub / Skill             | Modes                                                                                                                                              | Purpose                                                                       |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `cli-external`         | cli-opencode, cli-claude-code                                                                                                                     | External CLI dispatch: OpenCode CLI and Claude Code CLI orchestration        |
+| `mcp-tooling`          | mcp-chrome-devtools, mcp-click-up, mcp-figma                                                                                                      | MCP tool bridges: browser debugging, ClickUp, Figma transport                |
+| `sk-prompt`            | prompt-improve, prompt-models                                                                                                                     | Prompt engineering frameworks, CLEAR scoring, small-model dispatch profiles  |
+| `system-deep-loop`     | deep-research, deep-review, deep-ai-council, deep-improvement                                                                                     | Unified deep iterative research / review / council / improvement loops       |
+| `sk-design`            | design-interface, design-foundations, design-motion, design-audit, design-md-generator, design-mcp-open-design (nested transport)                | UI/design judgment, tokens, motion, audit, and Open Design transport         |
+| `sk-code`              | code-quality, code-review, code-webflow, code-opencode                                                                                            | Stack-aware code workflow, quality gates, and review                         |
+| `sk-doc`               | create-skill, create-readme, create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-benchmark, create-flowchart, create-changelog, create-quality-control | Documentation / component authoring plus DQI scoring |
+| `sk-git`               | (single-mode)                                                                                                                                      | Git workflow orchestrator: worktrees, commits, PRs                           |
+| `mcp-code-mode`        | (transport skill)                                                                                                                                  | External MCP tool orchestration via Code Mode (~98% context reduction)       |
+| `system-code-graph`    | (single-mode)                                                                                                                                      | Structural code intelligence (`mk_code_index` MCP)                           |
+| `system-skill-advisor` | (single-mode)                                                                                                                                      | Native skill recommendation engine                                           |
+| `system-spec-kit`      | (single-mode)                                                                                                                                      | Spec folder workflow, context preservation, and Spec Kit Memory MCP          |
 
 **How it works:**
 - OpenCode scans skill folders on startup

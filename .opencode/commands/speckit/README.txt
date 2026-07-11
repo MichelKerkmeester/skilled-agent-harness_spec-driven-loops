@@ -40,7 +40,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The `spec_kit` command group manages the full development lifecycle around spec folders. Commands cover planning, implementation, deep-research, resumption, and end-to-end workflows.
+The `speckit` command group manages the full development lifecycle around spec folders. Commands cover planning, implementation, deep-research, resumption, and end-to-end workflows.
 
 Each command loads a YAML workflow from `assets/` and executes it step by step. Most commands support `:auto` and `:confirm` execution modes.
 
@@ -82,7 +82,7 @@ SEARCH ROUTING: semantic or concept code discovery routes to `code_graph_query +
 ## 3. STRUCTURE
 
 ```text
-spec_kit/
+speckit/
 ├── README.txt        # This file, 6-command index and workflow guide
 ├── complete.md       # /speckit:complete - Full end-to-end workflow
 ├── implement.md      # /speckit:implement - Execute planned work
@@ -109,7 +109,7 @@ deep/                 # Deep workflows (research, review, AI council)
     ├── deep_review_confirm.yaml
     └── deep_ai-council_auto.yaml
 
-> Note: `/doctor skill-advisor` previously lived under `spec_kit/`; it is now organized under `.opencode/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
+> Note: `/doctor skill-advisor` previously lived under `speckit/`; it is now organized under `.opencode/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
 ```
 
 <!-- /ANCHOR:structure -->
@@ -170,8 +170,8 @@ The `complete` command supports two additional flags:
 | `:with-research` | Add research phase before planning |
 
 Each mode maps to a YAML workflow file in `assets/`:
-- Auto: `spec_kit_<command>_auto.yaml`
-- Confirm: `spec_kit_<command>_confirm.yaml`
+- Auto: `speckit_<command>_auto.yaml`
+- Confirm: `speckit_<command>_confirm.yaml`
 
 <!-- /ANCHOR:execution-modes -->
 
@@ -202,7 +202,7 @@ Each mode maps to a YAML workflow file in `assets/`:
 # Full end-to-end with research
 /speckit:complete "Add WebSocket support" :auto :with-research
 
-# Optimize skill advisor scoring (now under /doctor:* group, not spec_kit)
+# Optimize skill advisor scoring (now under /doctor:* group, not speckit)
 /doctor skill-advisor :auto
 ```
 
@@ -255,9 +255,9 @@ The `:with-phases` flag on `/speckit:plan` or `/speckit:complete` creates a pare
 
 | Document | Purpose |
 |----------|---------|
-| [Parent: OpenCode Commands](../README.md) | Overview of all command groups |
-| [system-spec-kit SKILL.md](../../skill/system-spec-kit/SKILL.md) | Spec folder workflow, documentation levels, memory system |
+| [Parent: OpenCode Commands](../README.txt) | Overview of all command groups |
+| [system-spec-kit SKILL.md](../../skills/system-spec-kit/SKILL.md) | Spec folder workflow, documentation levels, memory system |
 | [AGENTS.md](../../../AGENTS.md) | Gate system, agent routing, spec folder requirements |
-| [Memory Commands](../memory/README.md) | Memory operations used by spec kit workflows |
+| [Memory Commands](../memory/README.txt) | Memory operations used by spec kit workflows |
 
 <!-- /ANCHOR:related-documents -->

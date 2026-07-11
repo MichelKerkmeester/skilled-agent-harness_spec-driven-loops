@@ -228,7 +228,7 @@ workflow:
     purpose: "Emit packet-local report + state log."
     activities:
       - "Compose report following OUTPUT CONTRACT in deep-loop.md."
-      - "Write state log to <packet_scratch>/doctor-deep-loop-state.<timestamp>.json."
+      - "Write state log to <packet_scratch>/doctor-deep-loop-state.<timestamp>.json (mutation class: add-only per _routes.yaml; the deep-loop/council graphs themselves stay read-only)."
       - "Print summary table to stdout."
     outputs:
       - state_log_path: "<packet_scratch>/doctor-deep-loop-state.<timestamp>.json"

@@ -49,7 +49,7 @@ Pick the lane that matches the request; if none fits, defer to the `sk-design` h
 - **Prefer `/design:foundations` when** the request is static token work: color, typography, layout, spacing, responsive adaptation, or theming.
 - **Prefer `/design:md-generator` when** the request is extracting a live site's measured CSS into DESIGN.md.
 - **Prefer `/design:motion` when** the request is animation choreography, transitions, micro-interactions, or reduced-motion behavior.
-- **Prefer `/design:design-mcp-open-design` when** the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction.
+- **Prefer the `sk-design` skill's `design-mcp-open-design` transport mode when** the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction. This is a nested mode reached through `sk-design`, not an independently dispatchable `/design:*` command.
 - **Defer to the `sk-design` hub when** the request is primarily static tokens, motion behavior, audit findings, or measured CSS extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 

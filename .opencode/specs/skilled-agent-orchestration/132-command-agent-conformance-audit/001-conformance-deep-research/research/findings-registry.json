@@ -1,0 +1,859 @@
+{
+  "sessionId": "research-132-001-1783712861900",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-do-all-command-md-dispatch-paths-mode-suffixes-and-asset-links-resolve-to-real-s",
+      "inboxId": null,
+      "text": "Do all command.md dispatch paths, mode suffixes, and asset links resolve to real skills/modes/files under the current hub structure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-are-command-workflow-route-yaml-presentation-txt-internally-consistent-with-thei",
+      "inboxId": null,
+      "text": "Are command workflow/route YAML + presentation .txt internally consistent with their command.md (modes, flags, allowed-tools, registered MCP namespaces)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-does-the-doctor-subsystem-router-speckit-md-routes-yaml-per-target-yaml-scripts-",
+      "inboxId": null,
+      "text": "Does the /doctor subsystem (router speckit.md, _routes.yaml, per-target YAML, scripts) have full route<->yaml<->script tri-existence + honest mutation-class, and do the read-only targets run clean?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-are-the-12-agents-cross-runtime-body-synced-claude-vs-opencode-with-coherent-too",
+      "inboxId": null,
+      "text": "Are the 12 agents cross-runtime body-synced (.claude vs .opencode), with coherent tool grants, correct path self-refs, and current skill/model refs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-cross-surface-drift-exists-command-skill-agent-advisor-dead-refs-stale-enum",
+      "inboxId": null,
+      "text": "What cross-surface drift exists (command<->skill<->agent<->advisor: dead refs, stale enumerations, renamed-skill fallout) beyond the 9 recon seed defects?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-do-all-command-md-dispatch-paths-mode-suffixes-and-asset-links-resolve-to-real-s",
+      "inboxId": null,
+      "text": "Do all command.md dispatch paths, mode suffixes, and asset links resolve to real skills/modes/files under the current hub structure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-are-command-workflow-route-yaml-presentation-txt-internally-consistent-with-thei",
+      "inboxId": null,
+      "text": "Are command workflow/route YAML + presentation .txt internally consistent with their command.md (modes, flags, allowed-tools, registered MCP namespaces)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-does-the-doctor-subsystem-router-speckit-md-routes-yaml-per-target-yaml-scripts-",
+      "inboxId": null,
+      "text": "Does the /doctor subsystem (router speckit.md, _routes.yaml, per-target YAML, scripts) have full route<->yaml<->script tri-existence + honest mutation-class, and do the read-only targets run clean?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-are-the-12-agents-cross-runtime-body-synced-claude-vs-opencode-with-coherent-too",
+      "inboxId": null,
+      "text": "Are the 12 agents cross-runtime body-synced (.claude vs .opencode), with coherent tool grants, correct path self-refs, and current skill/model refs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-cross-surface-drift-exists-command-skill-agent-advisor-dead-refs-stale-enum",
+      "inboxId": null,
+      "text": "What cross-surface drift exists (command<->skill<->agent<->advisor: dead refs, stale enumerations, renamed-skill fallout) beyond the 9 recon seed defects?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Validate every allowed-tool grant against the active OpenCode tool registry, especially legacy root commands and MCP method-level names.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Mechanically compare every command Markdown asset link with all 62 YAML and 35 presentation files, including mode and flag parity.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Confirm the `.codex/agents` README seed in the agent-focused iteration; README remediation remains out of scope.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Audit all 12 Claude/OpenCode agent mirror pairs for body drift beyond the confirmed deep-research localization miss.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Compare deep command Markdown, auto/confirm YAML, presentations, compiled contracts, and manifest records field by field.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Verify doctor route-to-YAML-to-script tri-existence and execute read-only doctor targets; this iteration checked manifest/table existence only.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does canonical skill-graph reindex remove every retired topology node, or are source metadata changes also required?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do all command workflow YAMLs and presentations outside `/doctor` match their command Markdown and compiled contracts field by field?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which remaining router-level allowed tools are unused overgrants after route-specific reconciliation?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Are all 12 Claude/OpenCode agent mirrors body-synced and correctly localized?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which frontmatter schema does the installed Claude runtime enforce for `.claude/agents/*.md`, and should `create-agent` emit different schemas for Claude and OpenCode?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `.codex/agents` intended to be restored as a generated mirror in a later phase, or should all live agent-directory claims be removed now?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do all command workflow YAMLs and presentations outside `/doctor` match command Markdown and compiled contracts field by field?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do any additional presentation fields use copy-pasted state names that disagree with their command family?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which command-to-skill and command-to-agent references remain dead after excluding the already confirmed design transport routes?",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which router-level allowed-tool grants are unused overgrants after route-specific reconciliation?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should create-agent call the system-spec-kit command workflow directly, or should a new typed handoff field replace the retired `speckit.md` agent lookup?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should runtime directory inventories be generated from runtime capability metadata rather than repeated in command YAML?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `mutation_boundaries:` become a cross-family workflow-YAML convention, or is it correctly doctor-specific alongside `approval_gates:`/`forbidden_operations:` elsewhere?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `compile-command-contracts.cjs` be wired into a pre-commit/CI hook keyed on the same source paths it digests, and who owns triggering re-compilation when `mode-registry.json` or a mode `SKILL.md` changes?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which remaining router-level allowed-tool grants are unused overgrants after route-specific reconciliation? (carried forward, unaddressed this iteration)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should doctor `_routes.yaml` trigger_phrases be actively wired into the advisor's signal map, or is the presentation-menu-driven dispatch intentionally exempt from Gate-2 lexical routing (and the header comment simply wrong)?",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should create-agent call the system-spec-kit command workflow directly, or should a new typed handoff field replace the retired `speckit.md` agent lookup? (carried forward)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `compile-command-contracts.cjs` be wired into a pre-commit/CI hook? (carried forward, still unaddressed)",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `mutation_boundaries:` become a cross-family workflow-YAML convention? (carried forward, still unaddressed)",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which remaining router-level allowed-tool grants are unused overgrants after route-specific reconciliation? (carried forward, still unaddressed)",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which command-to-skill and command-to-agent references remain dead beyond the classes already found across iterations 5 and 7 (`speckit.md`, `write.md`, singular `.opencode/agent`)? A full mechanical sweep of every `agent_file:`/`agent_availability` block across all 62 workflow YAMLs beyond `/create` and `/deep` and `/speckit` families has not yet been done.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does canonical skill-graph reindex remove every retired topology node, or are source metadata changes also required? (carried forward, still unaddressed)",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should doctor `_routes.yaml` trigger_phrases be actively wired into the advisor's signal map? (carried forward, still unaddressed)",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `mutation_boundaries:` become a cross-family workflow-YAML convention, or is it correctly doctor-specific alongside `approval_gates:`/`forbidden_operations:` elsewhere? (carried forward since iteration 6)",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which remaining router-level allowed-tool grants are unused overgrants after route-specific reconciliation? (carried forward since iteration 5)",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does canonical skill-graph reindex remove every retired topology node, or are source metadata changes also required? (carried forward since iteration 2)",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `compile-command-contracts.cjs` be wired into a pre-commit/CI hook keyed on the same source paths it digests, and who owns triggering re-compilation when `mode-registry.json` or a mode `SKILL.md` changes? (carried forward since iteration 6)",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should create-agent call the system-spec-kit command workflow directly, or should a new typed handoff field replace the retired `speckit.md` agent lookup? (carried forward since iteration 5)",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which command-to-skill and command-to-agent references remain dead beyond the classes already found across iterations 5 and 7 (`speckit.md`, `write.md`, singular `.opencode/agent`)? A full mechanical sweep of every `agent_file:`/`agent_availability` block across all 62 workflow YAMLs beyond `/create`, `/deep`, and `/speckit` families has not yet been done. (carried forward since iteration 7)",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should create-agent call the system-spec-kit command workflow directly, or should a new typed handoff field replace the retired `speckit.md` agent lookup? (carried forward since iteration 5 — answered in principle at iteration 7, implementation not yet applied)",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `mutation_boundaries:` become a cross-family workflow-YAML convention? (inventory complete at iter-10; adoption decision deferred to implementation)",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which remaining router-level allowed-tool grants are unused overgrants after route-specific reconciliation? (carried forward since iteration 5 — still unaddressed)",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which frontmatter schema does the installed Claude runtime enforce? (carried since iteration 3 — P1-A1 remains)",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which remaining router-level allowed-tool grants are unused overgrants after route-specific reconciliation? (carried since iteration 5)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should runtime directory inventories be generated from runtime capability metadata rather than repeated in command YAML? (carried since iteration 5)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `compile-command-contracts.cjs` be wired into a pre-commit/CI hook? (carried since iteration 6)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should doctor `_routes.yaml` trigger_phrases be actively wired into the advisor's signal map? (carried since iteration 6)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does canonical skill-graph reindex remove every retired topology node, or are source metadata changes also required? (carried since iteration 2)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should create-agent call the system-spec-kit command workflow directly, or should a new typed handoff field replace the retired `speckit.md` agent lookup? (carried since iteration 5 — answered in principle at iteration 7, implementation not yet applied)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `.codex/agents` intended to be restored as a generated mirror in a later phase? (carried since iteration 3)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `mutation_boundaries:` become a cross-family workflow-YAML convention? (inventory complete at iter-10; adoption decision deferred)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should doctor `_routes.yaml` trigger_phrases be actively wired into the advisor's signal map? (carried since iteration 6 — P1-D1 resolved the \"is the header wrong\" sub-question; the \"should it be wired\" sub-question remains)",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should create-agent call the system-spec-kit command workflow directly? (carried since iteration 5 — answered in principle at iteration 7/10, implementation not yet applied)",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should doctor `_routes.yaml` trigger_phrases be actively wired into the advisor's signal map? (carried since iteration 6 — the \"is the header wrong\" sub-question was resolved at iter 13; the \"should it be wired\" sub-question remains)",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `mutation_boundaries:` become a cross-family workflow-YAML convention? (inventory complete at iter 10; adoption decision deferred — iter 13 resolved: No, correctly doctor-specific)",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Do all command.md dispatch paths, mode suffixes, and asset links resolve to real skills/modes/files under the current hub structure?",
+    "Are command workflow/route YAML + presentation .txt internally consistent with their command.md (modes, flags, allowed-tools, registered MCP namespaces)?",
+    "Does the /doctor subsystem (router speckit.md, _routes.yaml, per-target YAML, scripts) have full route<->yaml<->script tri-existence + honest mutation-class, and do the read-only targets run clean?",
+    "Are the 12 agents cross-runtime body-synced (.claude vs .opencode), with coherent tool grants, correct path self-refs, and current skill/model refs?",
+    "What cross-surface drift exists (command<->skill<->agent<->advisor: dead refs, stale enumerations, renamed-skill fallout) beyond the 9 recon seed defects?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-agents-the-claude-deep-research-mirror-has-an-opencode-localized-self-reference-",
+      "text": "**[agents] The Claude deep-research mirror has an OpenCode-localized self-reference.** `.claude/agents/deep-research.md:11` says to use only `.opencode/agents/*.md`, while the corresponding OpenCode agent correctly uses `.opencode/agents/*.md` at `.opencode/agents/deep-research.md:28`; the Claude runtime's own context-agent convention uses `.claude/agents/*.md`. **Concrete fix:** change the Claude mirror line to `.claude/agents/*.md` and include path localization in mirror-sync validation. [SOURCE: .claude/agents/deep-research.md:7-13] [SOURCE: .opencode/agents/deep-research.md:24-30]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-commands-all-five-design-routers-send-users-to-a-nonexistent-slash-command-the-r",
+      "text": "**[commands] All five design routers send users to a nonexistent slash command.** The referrals occur at `.opencode/commands/design/interface.md:52`, `.opencode/commands/design/foundations.md:39`, `.opencode/commands/design/motion.md:39`, `.opencode/commands/design/audit.md:39`, and `.opencode/commands/design/md-generator.md:39`. No `.opencode/commands/design/design-mcp-open-design.md` exists, while the current transport is a nested `sk-design` packet. **Concrete fix:** replace the slash-command referrals with routing language that loads `sk-design` plus its nested `design-mcp-open-design` transport mode, or add a real thin command router if a public slash command is intended. [SOURCE: .opencode/commands/design/interface.md:44-54] [SOURCE: .opencode/commands/design/foundations.md:31-41] [SOURCE: .opencode/commands/design/motion.md:31-41] [SOURCE: .opencode/commands/design/audit.md:31-41] [SOURCE: .opencode/commands/design/md-generator.md:31-41] [INFERENCE: scoped Glob for `.opencode/commands/design/design-mcp-open-design.md` returned no file]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-commands-the-root-agent-router-is-coupled-to-an-unrelated-barter-workspace-contr",
+      "text": "**[commands] The root `agent_router` is coupled to an unrelated Barter workspace contract and cannot discover this repository's current skill/agent topology by default.** It claims dynamic discovery, but requires an ancestor containing `z — Global (Shared)/` or named `Barter`, then searches for arbitrary `AGENTS.md` files and a singular `skill/SKILL.md`; this repository is the `Public` workspace with skills under `.opencode/skills/` and runtime agents under `.opencode/agents/` / `.claude/agents/`. Its frontmatter also grants `WebSearch` and `AskUserQuestion`, which are not among the current OpenCode command tool names evidenced by this runtime. **Concrete fix:** retire this workspace-specific command or rewrite it as a thin current-runtime router using Skill Advisor plus the checked-in runtime agent directories; replace non-current grants with supported tools. [SOURCE: .opencode/commands/agent_router.md:1-5] [SOURCE: .opencode/commands/agent_router.md:43-54] [SOURCE: .opencode/commands/agent_router.md:82-107]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-cross-surface-deep-research-executor-notes-use-an-ambiguous-top-level-style-cli-",
+      "text": "**[cross-surface] Deep-research executor notes use an ambiguous top-level-style `cli-opencode SKILL.md` reference after the skill moved under the `cli-external` hub.** The notes at `.opencode/commands/deep/assets/deep_research_auto.yaml:1012` and `:1016` name `cli-opencode SKILL.md` without its owning hub path, while the actual file is `.opencode/skills/cli-external/cli-opencode/SKILL.md`. Execution is not broken because these are notes, but maintainers are pointed at an unresolved shorthand rather than a durable source path. **Concrete fix:** replace both shorthand references with the full nested path and describe `cli-opencode` as a `cli-external` workflow mode. [SOURCE: .opencode/commands/deep/assets/deep_research_auto.yaml:1010-1016] [SOURCE: .opencode/skills/cli-external/cli-opencode/SKILL.md:1]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-doctor-the-doctor-router-s-human-facing-workflow-table-omits-a-live-canonical-ro",
+      "text": "**[doctor] The doctor router's human-facing workflow table omits a live canonical route.** `_routes.yaml` defines `skill-graph-freshness` and maps it to `doctor_skill-graph-freshness.yaml`, and that asset exists, but `.opencode/commands/doctor/speckit.md:29-40` lists only nine targets and omits it. The statement at line 41 that no workflow-asset gap exists is therefore misleading as route-table documentation, even though the underlying asset is present. **Concrete fix:** add the `skill-graph-freshness` row to the table and generate or validate this table from `_routes.yaml` to prevent recurrence. [SOURCE: .opencode/commands/doctor/speckit.md:25-41] [SOURCE: .opencode/commands/doctor/_routes.yaml:171-184] [SOURCE: .opencode/commands/doctor/assets/doctor_skill-graph-freshness.yaml:1-6]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-causal-graph-writes-a-state-log-under-packet-scratch-source-opencode-commands-do",
+      "text": "Causal graph writes a state log under `<packet_scratch>` [SOURCE: .opencode/commands/doctor/assets/doctor_causal-graph.yaml:210-217].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-code-graph-writes-a-diagnostic-report-under-packet-scratch-source-opencode-comma",
+      "text": "Code graph writes a diagnostic report under `{packet_scratch}` [SOURCE: .opencode/commands/doctor/assets/doctor_code-graph.yaml:174-186].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-deep-loop-writes-a-state-log-under-packet-scratch-source-opencode-commands-docto",
+      "text": "Deep loop writes a state log under `<packet_scratch>` [SOURCE: .opencode/commands/doctor/assets/doctor_deep-loop.yaml:227-235].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-memory-writes-a-report-and-state-log-under-packet-scratch-source-opencode-comman",
+      "text": "Memory writes a report and state log under `<packet_scratch>` [SOURCE: .opencode/commands/doctor/assets/doctor_memory.yaml:202-225].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-no-broad-body-sync-defect-after-stripping-runtime-specific-frontmatter-and-norma",
+      "text": "No broad body-sync defect: after stripping runtime-specific frontmatter and normalizing `.claude/agents`/`.opencode/agents` path tokens, 11 pairs are identical. `orchestrate.md` has one additional Claude-only canonical-source clarification at line 798; it is coherent localization, not accidental drift. [SOURCE: .claude/agents/orchestrate.md:798] [SOURCE: .opencode/agents/orchestrate.md:806]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-no-dead-literal-skill-path-was-confirmed-in-the-24-agent-bodies-the-only-mechani",
+      "text": "No dead literal skill path was confirmed in the 24 agent bodies. The only mechanical warning was `.opencode/skills/sk-code/SKILL.md:62`, where `:62` is a source-line suffix rather than part of the filesystem path. [SOURCE: .claude/agents/code.md:429] [SOURCE: .opencode/agents/code.md:444]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-no-p0-finding-was-identified-in-this-focus-area",
+      "text": "No P0 finding was identified in this focus area.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-no-stale-hard-coded-model-identifier-was-found-codex-tokens-in-deep-improvement-",
+      "text": "No stale hard-coded model identifier was found. Codex tokens in `deep-improvement.md`, `prompt-improver.md`, and `orchestrate.md` were not treated as retired `cli-codex` residue.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-opencode-commands-create-assets-create-agent-auto-yaml-45",
+      "text": "`.opencode/commands/create/assets/create_agent_auto.yaml:45`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-opencode-commands-create-assets-create-agent-confirm-yaml-46",
+      "text": "`.opencode/commands/create/assets/create_agent_confirm.yaml:46`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-opencode-commands-create-assets-create-readme-auto-yaml-83",
+      "text": "`.opencode/commands/create/assets/create_readme_auto.yaml:83`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-opencode-commands-create-assets-create-readme-confirm-yaml-78",
+      "text": "`.opencode/commands/create/assets/create_readme_confirm.yaml:78`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-opencode-commands-doctor-assets-doctor-speckit-presentation-txt-lines-38-40-numb",
+      "text": "`.opencode/commands/doctor/assets/doctor_speckit_presentation.txt` lines 38-40 number options 1-10 but skip `skill-graph-freshness` entirely, and line 79's \"Valid targets:\" enumeration also omits it — so a user typing `/doctor skill-graph-freshness` would work (router reads `_routes.yaml` directly) but the `list`/`?`/help paths give no way to discover the target exists.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-opencode-commands-doctor-speckit-md-workflow-assets-table-lines-29-39-lists-9-ta",
+      "text": "`.opencode/commands/doctor/speckit.md` \"Workflow Assets\" table (lines 29-39) lists 9 targets, omitting `skill-graph-freshness` (route exists at `_routes.yaml:171-185`, yaml asset `doctor_skill-graph-freshness.yaml` confirmed present).",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-opencode-commands-deep-assets-deep-research-auto-yaml-1016",
+      "text": "`.opencode/commands/deep/assets/deep_research_auto.yaml:1016`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-opencode-commands-deep-assets-deep-research-confirm-yaml-765",
+      "text": "`.opencode/commands/deep/assets/deep_research_confirm.yaml:765`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-opencode-commands-deep-assets-deep-review-auto-yaml-1073",
+      "text": "`.opencode/commands/deep/assets/deep_review_auto.yaml:1073`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-opencode-commands-deep-assets-deep-review-confirm-yaml-840",
+      "text": "`.opencode/commands/deep/assets/deep_review_confirm.yaml:840`",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-p2-c1-ai-council-md-both-runtimes-has-no-path-convention-line-at-all-unlike-the-",
+      "text": "**P2-C1** — `ai-council.md` (both runtimes) has no Path Convention line at all, unlike the other 11 agents (iter 7, `f-ai-council-no-path-convention`). Fix: add a Path Convention line consistent with sibling agents' phrasing, per-runtime.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-p2-c2-claude-agents-orchestrate-md-784-and-opencode-agents-orchestrate-md-809-di",
+      "text": "**P2-C2** — `.claude/agents/orchestrate.md:784` and `.opencode/agents/orchestrate.md:809` disagree on dual-runtime canonical-source provenance prose (iter 7, `f-orchestrate-dual-runtime-asymmetry`). Fix: add the equivalent clause to the OpenCode mirror or drop it from Claude for parity.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-p2-c3-deep-family-s-4-agent-file-sites-are-documentation-only-dispatch-is-by-bar",
+      "text": "**P2-C3** — Deep family's 4 `agent_file:` sites are documentation-only (dispatch is by bare `agent:` name) — a different semantic than create/speckit's live-interpolated `agent_file:`, risking a future miscorrection (iter 9, `f-deep-agent-file-schema-inconsistent`). Fix: add a one-line schema note clarifying the field is documentation-only in this family.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-p2-c4-deep-command-frontmatter-omits-flags-that-presentation-contracts-parse-ite",
+      "text": "**P2-C4** — Deep command frontmatter omits flags that presentation contracts parse (iter 4, `f-iter004-003`). Fix: sync frontmatter flag declarations with what the presentation `.txt` actually parses.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-p2-c5-readme-workflow-assets-retain-dead-router-and-copied-verification-names-it",
+      "text": "**P2-C5** — README workflow assets retain dead router and copied verification names (iter 4, `f-iter004-004`) — noted per topic scope as README-adjacent; core finding retained here since it lives in a workflow YAML asset, not the README itself, but remediation should be sequenced with phase-005 README work.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-p2-c6-deep-review-includes-a-nonexistent-agents-runtime-reference-iter-5-f-iter0",
+      "text": "**P2-C6** — `deep-review` includes a nonexistent `.agents` runtime reference (iter 5, `f-iter005-003`). Fix: remove or correct the phantom runtime reference.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-p2-c7-command-validation-lacks-referential-integrity-checks-generally-iter-5-f-i",
+      "text": "**P2-C7** — Command validation lacks referential-integrity checks generally (iter 5, `f-iter005-004`) — a tooling-gap finding parallel to P1-C5's specific mutation-honesty gap; both point at the same underlying need to harden `route-validate.py`/command validators beyond schema hygiene.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-p2-c8-no-non-doctor-confirm-yaml-declares-the-structured-mutation-boundaries-sch",
+      "text": "**P2-C8** — No non-doctor confirm YAML declares the structured `mutation_boundaries` schema used by doctor routes (iter 6, `f-iter006-005`) — ties directly to the still-open \"should `mutation_boundaries:` become cross-family\" question; confirmed this iteration via grep that the schema remains doctor-exclusive (10/10 doctor files, 0/52 non-doctor files) plus one narrower `forbidden_operations`/`approval_gates` usage in `deep_research_confirm.yaml`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-p2-d1-superseded-duplicate-of-p0-d1-retained-for-registry-traceability-iter-1-s-",
+      "text": "**P2-D1** — (Superseded duplicate of P0-D1, retained for registry traceability) iter 1's `f-iter001-004` and iter 2's `f-iter002-004` were earlier, less-precise passes over the same skill-graph-freshness omission that iter 6/7 later confirmed with full file:line precision — no separate action needed beyond P0-D1's fix.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-12-p2-x1-opencode-install-guides-readme-md-current-skills-catalog-is-stale-noted-pe",
+      "text": "**P2-X1** — `.opencode/install_guides/README.md` \"Current Skills\" catalog is stale — noted per the audit context's own instruction to defer to phase 005; not actioned here.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-opencode-commands-doctor-speckit-md-workflow-assets-table-lines-29-39-lists-9-ta",
+      "text": "`.opencode/commands/doctor/speckit.md` \"Workflow Assets\" table (lines 29-39): lists 9 targets (memory, embeddings, causal-graph, code-graph, deep-loop, skill-advisor, skill-budget, parent-skill, fable-mode); omits `skill-graph-freshness`, which is route #9 of 10 in `_routes.yaml:171-185` with a real asset (`doctor_skill-graph-freshness.yaml`, confirmed present on disk).",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-doctor-speckit-presentation-txt-numbered-menu-lines-30-41-options-1-10-and-valid",
+      "text": "`doctor_speckit_presentation.txt` numbered menu (lines 30-41, options 1-10) and \"Valid targets:\" line (line 79) both also skip `skill-graph-freshness` entirely — verified again this iteration, unchanged since discovery.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-family-mismatch-compiled-vs-disk-sk-design-disk-sk-hub-compiled-sk-code-sk-promp",
+      "text": "**FAMILY MISMATCH (compiled vs disk)**: `sk-design` (disk: `sk-hub`, compiled: `sk-code`); `sk-prompt` (disk: `sk-hub`, compiled: `sk-util`).",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-ghost-compiled-json-not-on-disk-cli-claude-code-cli-opencode-deep-loop-runtime-d",
+      "text": "**GHOST (compiled JSON, not on disk)**: `cli-claude-code`, `cli-opencode`, `deep-loop-runtime`, `deep-loop-workflows`, `mcp-chrome-devtools`, `mcp-click-up`, `mcp-figma`, `mcp-open-design`, `sk-prompt-models` — 9 nodes from the pre-restructuring flat topology that were renamed/nested but never purged from the compiled graph (generated 2026-07-04).",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-4-null-derived-generated-at-12-hub-skills-cli-external-mcp-code-mode-mcp-tooling-s",
+      "text": "**NULL `derived.generated_at`**: 12 hub skills (`cli-external`, `mcp-code-mode`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `sk-git`, `sk-prompt`, `system-code-graph`, `system-deep-loop`, `system-skill-advisor`, `system-spec-kit`) have null derived-timestamp fields.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-3-zombie-sqlite-not-on-disk-cli-codex-retired-the-retired-cli-codex-skill-persists",
+      "text": "**ZOMBIE (SQLite, not on disk)**: `cli-codex-retired` — the retired cli-codex skill persists in the SQLite skill graph despite being removed from disk.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-12-1-claude-agents-md-11-of-12-agents-use-tools-read-write-edit-the-claude-code-nativ",
+      "text": "`.claude/agents/*.md` — **11 of 12** agents use `tools: Read, Write, Edit, ...` (the Claude Code native schema). Claude Code subagents parse a comma-separated `tools:` string and enforce it as the only tool restriction mechanism. Fields `mode`, `temperature`, `permission:`, `mcpServers:` are OpenCode-specific and silently ignored by the Claude Code runtime.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-2-opencode-agents-md-all-12-agents-use-mode-subagent-temperature-0-1-permission-re",
+      "text": "`.opencode/agents/*.md` — **all 12** agents use `mode: subagent`, `temperature: 0.1`, `permission: { read: allow, ... }` (the OpenCode native schema). OpenCode parses the `permission:` object for per-tool allow/deny/ask enforcement.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-6-create-agent-assets-agent-template-md-34-frontmatter-table-shows-only-permission",
+      "text": "`create-agent/assets/agent_template.md:34` — Frontmatter table shows only `permission`/`mcpServers` with no mention of `tools:` at all.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-10-create-agent-assets-agent-template-md-document-both-schemas-in-the-frontmatter-t",
+      "text": "`create-agent/assets/agent_template.md`: document both schemas in the frontmatter table (line 34).",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-11-create-agent-skill-md-105-do-not-use-deprecated-standalone-tools-as-the-canonica",
+      "text": "`create-agent/SKILL.md:105` — \"do not use deprecated standalone `tools:` as the canonical model\"",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-4-create-agent-skill-md-105-do-not-use-deprecated-standalone-tools-as-the-canonica",
+      "text": "`create-agent/SKILL.md:105` — \"do not use deprecated standalone `tools:` as the canonical model\" — but `tools:` is NOT deprecated; it is the **only** enforceable schema under Claude Code.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-12-create-agent-skill-md-177-never-use-deprecated-standalone-tools-frontmatter-as-t",
+      "text": "`create-agent/SKILL.md:177` — \"Never use deprecated standalone `tools:` frontmatter as the canonical permission model\"",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-5-create-agent-skill-md-177-never-use-deprecated-standalone-tools-frontmatter-as-t",
+      "text": "`create-agent/SKILL.md:177` — \"Never use deprecated standalone `tools:` frontmatter as the canonical permission model\" — same false deprecation.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-3-create-agent-skill-md-71-96-declares-permission-as-the-sole-canonical-schema-wit",
+      "text": "`create-agent/SKILL.md:71-96` declares `permission:` as the **sole** canonical schema with no runtime branching.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-8-create-agent-skill-md-2-canonical-frontmatter-add-a-runtime-detection-branch-whe",
+      "text": "`create-agent/SKILL.md` §2 Canonical Frontmatter: add a runtime-detection branch. When target is `.claude/agents/`, emit `tools:` string. When target is `.opencode/agents/`, emit `permission:` object.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-7-validate-document-py-zero-agent-specific-frontmatter-schema-checks-grep-for-perm",
+      "text": "`validate_document.py` — **zero** agent-specific frontmatter schema checks (grep for `permission`/`tools`/`frontmatter` returns no schema-validation hits across 838 lines). It validates markdown structure only.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-13-if-file-path-is-under-claude-agents-require-tools-field-present-and-non-empty-wa",
+      "text": "If file path is under `.claude/agents/`: require `tools:` field present and non-empty; warn if `permission:` is used instead.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-14-if-file-path-is-under-opencode-agents-require-permission-object-with-at-least-re",
+      "text": "If file path is under `.opencode/agents/`: require `permission:` object with at least `read`, `write`, `task` keys; warn if `tools:` is used instead.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-12-9-remove-deprecated-language-from-lines-105-and-177-replace-with-runtime-specific-",
+      "text": "Remove \"deprecated\" language from lines 105 and 177; replace with \"runtime-specific\" guidance.",
+      "addedAtIteration": 12,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-create-speckit-families-create-new-paths-dynamically-they-don-t-have-a-pre-enume",
+      "text": "**Create/speckit families create new paths dynamically.** They don't have a pre-enumerated set of allowed write-targets; spec-folder paths are determined at runtime from user input. `mutation_boundaries:` would require an empty or `<active-spec-folder>/**` `allowed_targets` list that provides no real validation value over AGENTS.md's SCOPE LOCK rule.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-1-domain-fit-mismatch-the-mutation-boundaries-schema-models-filesystem-path-target",
+      "text": "**Domain fit mismatch.** The `mutation_boundaries:` schema models filesystem-path-target validation (`allowed_targets`/`forbidden_targets` as glob patterns + `validator` with realpath resolution and glob matching). This is the doctor subsystem's unique mutation-safety concern: diagnosing and optionally repairing specific DB/file targets while guaranteeing no write escapes the allowed set. No other command family has this need.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-other-families-use-semantically-different-safety-models-the-deep-family-s-forbid",
+      "text": "**Other families use semantically different safety models.** The deep family's `forbidden_operations:` block (`deep_research_confirm.yaml:47-51`) models **behavioral** constraints — \"executor dispatch must not occur\", \"state mutation must not occur\" — not path-target constraints. Promoting `mutation_boundaries:` to deep would be a category error: behavioral constraints are about *what operations* are forbidden, path-target constraints are about *which files* may be touched.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-over-abstraction-risk-per-agents-md-4-anti-pattern-wrong-abstraction-forcing-a-d",
+      "text": "**Over-abstraction risk.** Per AGENTS.md §4 anti-pattern (\"Wrong abstraction\"): forcing a doctor-specific path-validation schema onto families with different mutation models would create coupling without shared semantics.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-6-p1-d2-f-iter006-003-doctor-fable-mode-yaml-still-lacks-mutation-boundaries-confi",
+      "text": "**P1-D2** (`f-iter006-003`): `doctor_fable-mode.yaml` still lacks `mutation_boundaries:` — confirmed this iteration. The file has only a prose `read_only_invariant:` block (line 20-24) and no structured path-target validation. Fix unchanged: add a `mutation_boundaries:` block consistent with its 10 siblings' schema.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-5-within-doctor-standardization-is-the-real-priority-the-more-valuable-consistency",
+      "text": "**Within-doctor standardization is the real priority.** The more valuable consistency fix is internal to doctor: `fable-mode` still lacks the block (P1-D2), and doctor already runs two orthogonal schemas (`mutation_boundaries:` for path-safety + `approval_gates:` for human checkpoints in code-graph/skill-advisor) that would benefit from a documented composition rule, not cross-family promotion.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-14-1-create-agent-auto-yaml-300-305-full-agent-availability-block-with-agent-file-run",
+      "text": "`create_agent_auto.yaml:300-305` — full `agent_availability` block with `agent_file: \"[runtime_agent_path]/speckit.md\"`",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-3-create-agent-auto-yaml-311-312-spec-md-created-via-speckit-plan-md-created-via-s",
+      "text": "`create_agent_auto.yaml:311-312`: `spec.md: created_via_speckit` / `plan.md: created_via_speckit`",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-2-create-agent-confirm-yaml-333-338-identical-block",
+      "text": "`create_agent_confirm.yaml:333-338` — identical block",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-4-create-agent-confirm-yaml-344-345-spec-md-created-via-speckit-plan-md-created-vi",
+      "text": "`create_agent_confirm.yaml:344-345`: `spec.md: created_via_speckit` / `plan.md: created_via_speckit`",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-5-line-299-keep-route-spec-md-and-plan-md-creation-through-distributed-governance-",
+      "text": "Line 299: Keep `\"Route spec.md and plan.md creation through distributed governance (AGENTS.md Rule 5)\"` (already correct activity prose — matches sibling intent).",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-9-line-332-keep-the-existing-distributed-governance-activity-prose",
+      "text": "Line 332: Keep the existing distributed-governance activity prose.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-8-line-45-change-default-opencode-agent-default-opencode-agents-p0-c2-prerequisite",
+      "text": "Line 45: Change `default: .opencode/agent` → `default: .opencode/agents` (P0-C2, prerequisite).",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-12-line-46-change-default-opencode-agent-default-opencode-agents-p0-c2-prerequisite",
+      "text": "Line 46: Change `default: .opencode/agent` → `default: .opencode/agents` (P0-C2, prerequisite).",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-6-lines-300-305-delete-the-entire-agent-availability-block-6-lines",
+      "text": "Lines 300-305: **Delete** the entire `agent_availability:` block (6 lines).",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-7-lines-311-312-change-created-via-speckit-created-or-updated",
+      "text": "Lines 311-312: Change `created_via_speckit` → `created_or_updated`.",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-10-lines-333-338-delete-the-entire-agent-availability-block-6-lines",
+      "text": "Lines 333-338: **Delete** the entire `agent_availability:` block (6 lines).",
+      "addedAtIteration": 14,
+      "sources": []
+    },
+    {
+      "id": "finding-14-11-lines-344-345-change-created-via-speckit-created-or-updated",
+      "text": "Lines 344-345: Change `created_via_speckit` → `created_or_updated`.",
+      "addedAtIteration": 14,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 15,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 51,
+    "keyFindings": 71,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.15,
+    "coverageBySources": {
+      "code": 5,
+      "other": 21
+    }
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

@@ -1,22 +1,7 @@
 ---
 name: deep-improvement
 description: Proposal-only mutator for bounded deep-improvement candidate generation with evaluator-first rules
-mode: subagent
-temperature: 0.2
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  bash: allow
-  grep: allow
-  glob: allow
-  webfetch: deny
-  memory: deny
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
-  external_directory: allow
+tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # The Recursive Agent: Proposal-Only Mutator

@@ -43,7 +43,7 @@ development_philosophy:
   mandate: "Concrete use cases first, then tools/permissions, then content"
 
 runtime_agent_path_resolution:
-  default: .opencode/agent
+  default: .opencode/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────
@@ -330,19 +330,13 @@ workflow:
     - IF spec_choice == A or C (Use existing):
       - Use selected spec_path
     - "Route spec.md and plan.md creation through distributed governance (AGENTS.md Rule 5)"
-    agent_availability:
-      agent_file: "[runtime_agent_path]/speckit.md"
-      rule_reference: "AGENTS.md Rule 5 — spec folder docs"
-      condition: "ONLY when this step is actively executing"
-      fallback: "general (with warning: bypasses template enforcement)"
-      not_for: "reviewing this workflow prompt or any pre-step activity"
     templates:
     # Use Level 1 templates as default for agent creation
     - .opencode/skills/system-spec-kit/templates/level_1/spec.md
     - .opencode/skills/system-spec-kit/templates/level_1/plan.md
     outputs:
-    - spec.md: created_via_speckit
-    - plan.md: created_via_speckit
+    - spec.md: created_or_updated
+    - plan.md: created_or_updated
     checkpoint:
       question: "Spec folder created/confirmed. Continue to understanding phase?"
       options: checkpoint_options.standard
@@ -592,7 +586,7 @@ workflow:
   step_5b_quality_validation:
     purpose: Quality-validate the created agent artifact
     agent_availability:
-      agent_file: "[runtime_agent_path]/write.md"
+      agent_file: "[runtime_agent_path]/markdown.md"
       template_contract:
         source: "sk-doc"
         validators: "validate_document.py + extract_structure.py + quick_validate.py (description-length budget)"

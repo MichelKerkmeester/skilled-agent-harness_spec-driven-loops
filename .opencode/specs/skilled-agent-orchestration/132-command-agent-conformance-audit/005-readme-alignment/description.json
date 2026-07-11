@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/132-command-agent-conformance-audit/005-readme-alignment",
+  "description": "The skill layer moved from flat standalone skills to parent hubs that own former skills as modes, and several command/skill names were retired",
+  "keywords": [
+    "skill",
+    "layer",
+    "moved",
+    "flat",
+    "standalone",
+    "skills",
+    "parent",
+    "hubs",
+    "own",
+    "former",
+    "modes",
+    "several",
+    "command",
+    "names",
+    "retired"
+  ],
+  "lastUpdated": "2026-07-11T05:41:51.207Z",
+  "specId": "005",
+  "folderSlug": "readme-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "132-command-agent-conformance-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

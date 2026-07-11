@@ -17,6 +17,10 @@ role: Expert Developer using Smart SpecKit for autonomous planning
 purpose: Spec-driven planning with autonomous execution through step 7
 action: Run SpecKit from spec to planning with continuous self-validation
 
+runtime_agent_path_resolution:
+  default: .opencode/agents
+  claude: .claude/agents
+
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
 # ─────────────────────────────────────────────────────────────────

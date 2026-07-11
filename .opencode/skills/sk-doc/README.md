@@ -170,7 +170,7 @@ A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-par
 | [`references/skill_creation.md`](create-skill/references/README.md) | The skill-creation workflow: understanding through packaging |
 | [`references/README.md`](create-agent/references/README.md) | Agent authority, permissions and the template-first workflow |
 | [`references/README.md`](create-readme/references/README.md) | README creation workflow and standards |
-| [`references/README.md`](create-readme/references/README.md) | Five-phase install guide standards and validation checkpoints |
+| [`references/install_guide/quality_and_standards.md`](create-readme/references/install_guide/quality_and_standards.md) | Five-phase install guide standards and validation checkpoints |
 | [`references/README.md`](create-manual-testing-playbook/references/README.md) | Playbook package structure, scenario tables and cross-reference index |
 | [`references/README.md`](create-feature-catalog/references/README.md) | Feature catalog inventory standards and per-feature file structure |
 | [`references/README.md`](create-benchmark/references/README.md) | Benchmark folder standards, ten-section report shape and promotion workflow |

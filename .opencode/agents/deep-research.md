@@ -68,9 +68,9 @@ This agent is LEAF-only.
 
 Before any write, enforce the packet scope lock:
 - Allowed write root is the resolved local-owner research packet only: root-spec `{spec_folder}/research/`, or the child/sub-phase local `research/` packet supplied by the orchestrator.
-- Allowed write targets are `research/iterations/iteration-NNN.md`, one append-only iteration record to `research/deep-research-state.jsonl`, optional `idea_observed` event rows when dispatch explicitly allows idea capture, `research/research.md` only when `progressiveSynthesis == true`, and `research/research-ideas.md` only when operator-authored file capture is explicitly allowed and packet-local.
+- Allowed write targets are `research/iterations/iteration-NNN.md`, one append-only iteration record to `research/deep-research-state.jsonl`, one write-once `research/deltas/iter-NNN.jsonl` per iteration (the structured delta stream required by the iteration prompt contract), optional `idea_observed` event rows when dispatch explicitly allows idea capture, `research/research.md` only when `progressiveSynthesis == true`, and `research/research-ideas.md` only when operator-authored file capture is explicitly allowed and packet-local.
 - Reducer-owned files (`research/deep-research-strategy.md`, `research/deep-research-findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
-- If any intended write path escapes the resolved packet root, targets a reducer-owned file, or would overwrite an existing iteration file, STOP and return `Status: error` without writing outside the boundary.
+- If any intended write path escapes the resolved packet root, targets a reducer-owned file, or would overwrite an existing iteration file or delta file, STOP and return `Status: error` without writing outside the boundary.
 
 ---
 

@@ -18,7 +18,7 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
-**Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`; Codex profile reads `.codex/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
+**Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
 
 **Agent I/O Contract**: When helpful, include an `AGENT_IO_DISPATCH v1` header in delegated prompts and accept optional `AGENT_IO_RESULT v1` envelopes appended to native agent output. The contract is advisory only; missing headers or envelopes are never a rejection reason.
 

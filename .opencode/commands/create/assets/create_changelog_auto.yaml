@@ -41,7 +41,7 @@ development_philosophy:
   mandate: "Dynamic detection with human-quality output matching 400+ existing changelogs"
 
 runtime_agent_path_resolution:
-  default: .opencode/agent
+  default: .opencode/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────

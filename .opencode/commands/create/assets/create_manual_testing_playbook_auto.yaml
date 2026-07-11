@@ -42,7 +42,7 @@ development_philosophy:
   mandate: "Prefer realistic orchestrator-led scenarios over command-paraphrase testing"
 
 runtime_agent_path_resolution:
-  default: .opencode/agent
+  default: .opencode/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────

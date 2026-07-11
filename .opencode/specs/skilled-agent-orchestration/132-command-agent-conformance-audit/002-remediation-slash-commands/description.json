@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/132-command-agent-conformance-audit/002-remediation-slash-commands",
+  "description": "The 001 deep-research packet (15 iterations, 3 model batches) confirmed 12 command-surface defects still present on disk as of 2026-07-10: a",
+  "keywords": [
+    "deep-research",
+    "packet",
+    "iterations",
+    "model",
+    "batches",
+    "confirmed",
+    "command-surface",
+    "defects",
+    "still",
+    "present",
+    "disk"
+  ],
+  "lastUpdated": "2026-07-11T04:44:52.298Z",
+  "specId": "002",
+  "folderSlug": "remediation-slash-commands",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "132-command-agent-conformance-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

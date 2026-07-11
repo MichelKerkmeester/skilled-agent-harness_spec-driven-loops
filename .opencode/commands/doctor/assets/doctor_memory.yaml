@@ -202,7 +202,7 @@ workflow:
     purpose: Emit packet-local report + state log
     activities:
       - "Compose report following OUTPUT CONTRACT in memory.md"
-      - "Write to <packet_scratch>/doctor-memory-report.<timestamp>.md"
+      - "Write to <packet_scratch>/doctor-memory-report.<timestamp>.md (mutation class: add-only per _routes.yaml; the canonical memory DB itself stays read-only)"
       - "Print summary table to stdout"
     outputs:
       - report_path: string

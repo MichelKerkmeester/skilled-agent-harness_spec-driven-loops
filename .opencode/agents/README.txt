@@ -5,7 +5,7 @@ This directory contains agent definitions for the OpenCode runtime.
 Each .md file defines one agent surface with frontmatter (tools, permissions, model)
 and behavioral instructions.
 
-Sibling runtimes: .claude/agents/ (.md) and .codex/agents/ (.toml)
+Sibling runtime: .claude/agents/ (.md)
 Inventory rule: if an agent file is not present in this directory, it is not a live runtime surface here.
 
 Agents:
@@ -16,6 +16,7 @@ Agents:
   deep-improvement: proposal-only mutator for bounded agent improvement, evaluator-first
   deep-research:    autonomous deep-research iterations with externalized state
   deep-review:      deep-review iteration agent, one dimension per pass with P0/P1/P2 findings
+  design:           design specialist via sk-design parent hub, applies interface/foundations/motion/audit/md-generator modes, LEAF
   markdown:         template-first markdown and documentation executor for /create:* commands and spec docs
   orchestrate:      senior multi-agent orchestration, decomposition, delegation and synthesis
   prompt-improver:  prompt-engineering specialist, framework selection and CLEAR validation

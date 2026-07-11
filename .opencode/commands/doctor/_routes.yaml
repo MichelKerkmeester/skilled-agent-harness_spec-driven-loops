@@ -4,7 +4,14 @@
 # Source of truth for /doctor <target> dispatch.
 # Read by: .opencode/commands/doctor/speckit.md (the router)
 # Validated by: .opencode/commands/doctor/scripts/route-validate.sh
-# Consumed by: Skill Advisor lexical lane (per-target trigger_phrases)
+# Consumed by: NOT currently harvested by either Skill Advisor implementation.
+#   Both harvesters (Python skill_advisor.py:810-871 _DOC_HARVEST_SUBDIRS =
+#   ("references","assets") rooted at SKILLS_DIR; TS doc-frontmatter.ts:23)
+#   walk only .opencode/skills/*/{references,assets}/*.md frontmatter — a
+#   .yaml file under .opencode/commands/doctor/ is out of scope by both file
+#   type and root. /doctor <target> dispatch is presentation-menu/argv-driven
+#   (see speckit.md), not advisor-driven. The trigger_phrases field below is
+#   retained for a possible future doctor-routes harvester but is inert today.
 #
 # Schema (per route):
 #   target:           string — positional name the user types
@@ -14,7 +21,8 @@
 #   mutating:         enum   — read-only | add-only | mutates
 #   gate3_location:   string — concrete mutation target (or "n/a" for read-only)
 #   mcp_tools:        list   — subset of router's frontmatter allowed-tools union
-#   trigger_phrases:  list   — advisor lexical-routing phrases for this target
+#   trigger_phrases:  list   — descriptive routing phrases for this target; not
+#                              currently harvested by advisor (see "Consumed by" above)
 #
 # Code-graph implementation/docs are owned by .opencode/skills/system-code-graph/;
 # stable code_graph/detect_changes MCP tools are registered through mk-code-index.
@@ -28,11 +36,10 @@ routes:
     yaml: doctor_memory.yaml
     setup_vars: [execution_mode, intent, incremental]
     allowed_flags: ["--incremental=true|false"]
-    mutating: read-only
-    gate3_location: "n/a (read-only diagnostic; reports drift and recommends action, no DB writes)"
+    mutating: add-only
+    gate3_location: "<packet_scratch>/doctor-memory-report.<timestamp>.md + <packet_scratch>/doctor-memory-state.<timestamp>.json"
     mcp_tools:
       - mcp__mk_spec_memory__memory_health
-      - mcp__mk_spec_memory__memory_index_scan
       - mcp__mk_spec_memory__memory_drift_why
       - mcp__mk_spec_memory__memory_search
       - mcp__mk_spec_memory__memory_stats
@@ -61,8 +68,8 @@ routes:
     yaml: doctor_causal-graph.yaml
     setup_vars: [execution_mode, intent, confidence_threshold]
     allowed_flags: ["--confidence-threshold=N"]
-    mutating: read-only
-    gate3_location: "n/a (read-only diagnostic; samples causal_edges and recommends candidates, no writes)"
+    mutating: add-only
+    gate3_location: "<packet_scratch>/doctor-causal-graph-state.<timestamp>.json"
     mcp_tools:
       - mcp__mk_spec_memory__memory_causal_stats
       - mcp__mk_spec_memory__memory_drift_why
@@ -80,8 +87,8 @@ routes:
       # apply-mode flags (--operation, --confirm) return when the confirm workflow is promoted (phase_b)
       - "--scope=stale|missed|bloat|all|excludes"
       - "--dry-run"
-    mutating: read-only
-    gate3_location: "n/a (Phase A diagnostic is read-only; emits an exclude/language report, never scans or writes the index)"
+    mutating: add-only
+    gate3_location: "{packet_scratch}/code-graph-diagnostic-{timestamp}.md"
     mcp_tools:
       - mcp__mk_code_index__code_graph_status
       - mcp__mk_code_index__code_graph_query
@@ -101,8 +108,8 @@ routes:
     yaml: doctor_deep-loop.yaml
     setup_vars: [execution_mode, intent, scope]
     allowed_flags: ["--scope=research|review|council|both|all"]
-    mutating: read-only
-    gate3_location: "n/a (read-only diagnostic; reads coverage + council graphs and iteration folders + ai-council artifacts, never upserts)"
+    mutating: add-only
+    gate3_location: "<packet_scratch>/doctor-deep-loop-state.<timestamp>.json"
     mcp_tools: []
     script_invocations:
       - 'node .opencode/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'

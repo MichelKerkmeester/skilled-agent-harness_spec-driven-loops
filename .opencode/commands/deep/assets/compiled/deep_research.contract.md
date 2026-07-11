@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/research.md",
-      "sha256": "4adc3a1b85adc3448cb0a507a13e86a9b4d1cc890baad554f08d41905fd8857f",
+      "sha256": "0d57caf892d159383f4219d0e5ed4a81332ad041c6380b1aa325c585604833b1",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_presentation.txt",
-      "sha256": "71cc378130891c45341900234c22bf6b21220756b26edaf3a5f386a1a99195f7",
+      "sha256": "5d41b58b666bb9245f0c3a53c1bb4a4e03625b88f5827f021703f13201b4cbd6",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      "sha256": "e62bbe262d83df83feaf49eb435fd81c3c4885731b7713c6e4d576b0ae0e44a7",
+      "sha256": "f176f62f83d21294509b69e9c9f633dbbbe1452dae12ef2fd22ca530f362a0e5",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_research_confirm.yaml",
-      "sha256": "67e1565fe6ed66ff008383b7aa4decca5ea96f681a80d3ef233642eca4da7dd1",
+      "sha256": "21bb1d9c246804a65b45d0d83a5b9a5054286b02f29eb0d40291c8526ebede40",
       "section": "full"
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "489e960f4dd6fd720614343c7e55e8ab08d84f4195124e8a16a22c72ef0e7e0c",
+      "sha256": "fe7ac548e359951d11905f938ae1761dfd17d80c5a6b4a2333c4ec2460f3acd3",
       "section": "full"
     },
     {
@@ -77,12 +77,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      "sha256": "2831ba9a12799019fc5789551887fd57c319f0dd3202f35d537427a4b91bdee0",
+      "sha256": "9936aa71f10f125790fd54d5cbc08200fce0e7610a74ff2727d5dcf0a568bf4c",
       "section": "full"
     },
     {
       "path": ".opencode/agents/deep-research.md",
-      "sha256": "8b8d0326878ec395b68b89e318d643fad1e91283c824f1531ca743b1e08e0468",
+      "sha256": "7d44b7ebaaf0935598a590760f026542018b716433045d338bf2fe90cf8382c8",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "592998459f9245d802ec409f1679a77e905f23cb17d6f4c428f5968358720093"
+  "compiledBodyDigest": "531a40fb665b75feaa8ed6b30f88c72f5b8d2753b1c7babc13fec88f9dba86a3"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -185,7 +185,7 @@ PRE-BOUND SETUP ANSWERS:
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
-  executor: native  # native | cli-opencode | cli-claude-code | cli-opencode
+  executor: native  # native | cli-opencode | cli-claude-code
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional reasoning effort
@@ -248,7 +248,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-opencode` | `cli-claude-code` | `cli-opencode`)
+   |-- --executor=<type> -> config.executor.type (`native` | `cli-opencode` | `cli-claude-code`)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -311,9 +311,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-research agent with Opus.
-     B) cli-opencode — ` exec` with --model X -c model_reasoning_effort -c service_tier.
+     B) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax/Xiaomi token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
       C) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort and optional `--config-dir=PATH` for CLAUDE_CONFIG_DIR. No service-tier.
-     D) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax/Xiaomi token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
 
    Reply format examples:
    - `"A, A"`

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-command-agent-conformance-audit/004-remediation-agents",
+  "spec_folder": "skilled-agent-orchestration/132-command-agent-conformance-audit/004-remediation-agents",
+  "parent_id": "skilled-agent-orchestration/132-command-agent-conformance-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remediate agent files",
+      "cross runtime agent sync",
+      "claude opencode agent drift",
+      "agent tool grant coherence",
+      "004-remediation-agents",
+      "implementation",
+      "plan",
+      "agent frontmatter schema",
+      "remediation agents",
+      "plan core",
+      "tasks",
+      "agent remediation tasks"
+    ],
+    "key_topics": [
+      "remediate",
+      "agent",
+      "files",
+      "cross",
+      "runtime",
+      "sync",
+      "claude",
+      "opencode",
+      "drift",
+      "tool",
+      "grant",
+      "coherence"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-agent/SKILL.md",
+      ".opencode/skills/sk-doc/create-agent/assets/agent_template.md",
+      ".claude/agents/deep-improvement.md",
+      ".claude/agents/deep-research.md",
+      ".opencode/agents/deep-research.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".claude/agents/markdown.md",
+      ".claude/agents/ai-council.md",
+      ".opencode/agents/ai-council.md",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".claude/agents/deep-review.md",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/prompt-improver.md",
+      ".opencode/agents/prompt-improver.md",
+      ".claude/agents/README.txt",
+      ".opencode/agents/README.txt",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-agent/assets/agent_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".claude/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".claude/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".claude/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".claude/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediate Agent Files",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Both Runtimes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Convention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Dependencies",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`001-conformance-deep-research` confirmed 9 agent-surface defects (AGT-01..AGT-09), re-verified against file:line evidence as of 2026-07-10",
+    "created_at": "2026-07-10T18:53:46Z",
+    "last_save_at": "2026-07-11T05:10:33.547Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0e543497f46615afd83c90fcab153dac4624940a27eb2e9cd51a92ddc8ac7eb9",
+    "source_doc_hashes": {
+      "spec.md": "0374c3af633e0bb42fe564e5841c91fab965efc9429d10565b77ab3f5dfdcff6",
+      "plan.md": "0d3e7f1541669b0ee8413c8e428c8b11dc5e6b7a515b0ecd2c285b9ef671bca4",
+      "tasks.md": "7fb11aaa072544f58461fe1ed1f457bfbd8d4288db6f98a689862dc681d352a4",
+      "checklist.md": "125d8aa2201292b70be925144fa760a55738e3e41c344805a22939ef342e0e53",
+      "implementation-summary.md": "45cfc6d307d0fd723f47ddbb14a3372871b962e8b293564adc7e622e9be93ab6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -211,7 +211,7 @@ workflow:
     purpose: "Emit packet-local report + state log."
     activities:
       - "Compose report following OUTPUT CONTRACT in causal-graph.md."
-      - "Write state log to <packet_scratch>/doctor-causal-graph-state.<timestamp>.json."
+      - "Write state log to <packet_scratch>/doctor-causal-graph-state.<timestamp>.json (mutation class: add-only per _routes.yaml; the causal_edges table itself stays read-only)."
       - "Print summary table to stdout."
     outputs:
       - state_log_path: "<packet_scratch>/doctor-causal-graph-state.<timestamp>.json"

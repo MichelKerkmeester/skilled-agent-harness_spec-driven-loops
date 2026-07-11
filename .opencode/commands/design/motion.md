@@ -36,7 +36,7 @@ Do not embed workflow steps or presentation content in this file. Workflow steps
 - **Prefer `/design:foundations` when** the request is static color, type, layout, responsive, or theme-token work.
 - **Prefer `/design:interface` when** the request is to invent the full visual direction or interface concept first.
 - **Prefer `/design:md-generator` when** the request is to capture measured CSS or tokens from a live site.
-- **Prefer `/design:design-mcp-open-design` when** the request is to wire, read, or drive Open Design's MCP server rather than design animation or motion behavior.
+- **Prefer the `sk-design` skill's `design-mcp-open-design` transport mode when** the request is to wire, read, or drive Open Design's MCP server rather than design animation or motion behavior. This is a nested mode reached through `sk-design`, not an independently dispatchable `/design:*` command.
 - **Defer to the `sk-design` hub when** the request is primarily static visual-system design, interface direction, audit scoring, or measured CSS extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 

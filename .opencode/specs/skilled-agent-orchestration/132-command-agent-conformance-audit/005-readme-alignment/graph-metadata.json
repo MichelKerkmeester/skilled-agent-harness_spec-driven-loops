@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-command-agent-conformance-audit/005-readme-alignment",
+  "spec_folder": "skilled-agent-orchestration/132-command-agent-conformance-audit/005-readme-alignment",
+  "parent_id": "skilled-agent-orchestration/132-command-agent-conformance-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "readme alignment",
+      "stale skill catalog readme",
+      "install guide current skills",
+      "repo readme reality sync",
+      "005-readme-alignment",
+      "readme alignment plan",
+      "cmd-09 readme fix",
+      "install guide catalog fix",
+      "005-readme-alignment plan",
+      "readme alignment tasks",
+      "cmd-09 tasks",
+      "005-readme-alignment tasks"
+    ],
+    "key_topics": [
+      "readme",
+      "alignment",
+      "stale",
+      "skill",
+      "catalog",
+      "install",
+      "guide",
+      "current",
+      "skills",
+      "repo",
+      "reality",
+      "sync"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/install_guides/README.md",
+      ".opencode/skills/mcp-code-mode/README.md",
+      ".opencode/bin/README.md",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt",
+      ".opencode/commands/README.txt",
+      ".opencode/commands/create/README.txt",
+      ".opencode/commands/speckit/README.txt",
+      ".opencode/skills/sk-doc/README.md",
+      ".opencode/skills/cli-external/cli-claude-code/README.md",
+      "implementation-summary.md",
+      ".opencode/commands/create/readme.md",
+      ".opencode/skills/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Align Repo",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "With Current Reality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Skills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stale Fix Set",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Set",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill layer moved from flat standalone skills to parent hubs that own former skills as modes, and several command/skill names were retired",
+    "created_at": "2026-07-10T18:53:46Z",
+    "last_save_at": "2026-07-11T05:46:58.896Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b01da1d71d4140a166f67ca74874a5434106ab1e359f076d8f91c9b26f8f1b0a",
+    "source_doc_hashes": {
+      "spec.md": "b1f38d5d6509938117708532a9bc223ec8df65800c31a72805611f39fdc83acc",
+      "plan.md": "3b50ea3080c776d4a7a51f9fb3f8c8772149d4062ea4f84637913c8ef66dffdf",
+      "tasks.md": "26be84cb3adfbafcebf79f59ddebdc97383f18940ba7b7b1356a5dc8cac5eebc",
+      "implementation-summary.md": "d1493612f62d76fa7d5842ed7955c0f56b9c68ecaf558053777144938044e64b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

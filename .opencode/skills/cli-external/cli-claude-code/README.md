@@ -120,7 +120,7 @@ Route to a specialized agent with `--agent <name>`. In this repo, Claude Code ag
 | `design` | UI/design work via `sk-design` |
 | `markdown` | Template-first markdown and documentation execution |
 | `orchestrate` | Multi-agent coordination |
-| `prompt-improver` | Dispatch-ready prompt package generation (command-owned by `/prompt`) |
+| `prompt-improver` | Dispatch-ready prompt package generation (command-owned by `/prompt-improve`) |
 | `review` | Code review and security audit (pair with `--permission-mode plan`) |
 
 Example: `claude -p "Review @src/auth.ts for security issues" --agent review --permission-mode plan --output-format text 2>&1`

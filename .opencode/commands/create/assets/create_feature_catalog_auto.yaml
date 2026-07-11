@@ -42,7 +42,7 @@ development_philosophy:
   mandate: "Prefer the shipped sk-doc package shape over ad-hoc catalog layouts"
 
 runtime_agent_path_resolution:
-  default: .opencode/agent
+  default: .opencode/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────

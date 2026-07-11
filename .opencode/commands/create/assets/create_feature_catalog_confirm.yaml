@@ -42,7 +42,7 @@ development_philosophy:
   mandate: "Ask for approval at the category/feature plan and root-catalog preview checkpoints"
 
 runtime_agent_path_resolution:
-  default: .opencode/agent
+  default: .opencode/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────

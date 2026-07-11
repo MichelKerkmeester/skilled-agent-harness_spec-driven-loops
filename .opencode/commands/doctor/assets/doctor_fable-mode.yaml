@@ -17,11 +17,15 @@ operating_mode:
   tracking: single_run
   validation: read_only_assertion
 
-read_only_invariant: |
-  This diagnostic is read-only. It reads deep-loop state JSONL plus iteration markdown and the
-  baseline snapshot, renders metrics, and exits. It MUST NOT write files, mutate any database or
-  graph metadata, or edit the inspected artifacts. The metric computation is deterministic for a
-  fixed corpus.
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This diagnostic is read-only. It reads deep-loop state JSONL plus iteration markdown and the baseline snapshot, renders metrics, and exits. It MUST NOT write files, mutate any database or graph metadata, or edit the inspected artifacts. The metric computation is deterministic for a fixed corpus."
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS

@@ -64,7 +64,7 @@ Use these IDs when a recommendation depends on an integration point.
 | `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
 | `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, or `copilot` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
 | `INT-MCP-CALLER-SUPPLIED` | `mcp_tools` field | Caller-supplied downstream MCP tool constraints only; include or warn about them without inventing or invoking tools |
-| `INT-RUNTIME-MIRRORS` | `.claude/agents`, `.codex/agents` | Downstream packaging surfaces only; never use them as canonical prompt authority |
+| `INT-RUNTIME-MIRRORS` | `.claude/agents` | Downstream packaging surface only; never use it as canonical prompt authority |
 
 ---
 

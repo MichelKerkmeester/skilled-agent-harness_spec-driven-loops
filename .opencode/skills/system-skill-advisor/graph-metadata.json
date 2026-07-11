@@ -7,14 +7,14 @@
     "depends_on": [],
     "enhances": [
       {
-        "target": "cli-claude-code",
+        "target": "cli-external",
         "weight": 0.7,
-        "context": "routes claude delegation requests"
+        "context": "routes opencode and claude delegation requests via the cli-external hub (cli-opencode / cli-claude-code modes)"
       },
       {
-        "target": "mcp-chrome-devtools",
+        "target": "mcp-tooling",
         "weight": 0.7,
-        "context": "routes browser debugging requests"
+        "context": "routes browser-debugging and MCP tooling requests via the mcp-tooling hub"
       },
       {
         "target": "system-code-graph",
@@ -50,11 +50,6 @@
         "target": "system-spec-kit",
         "weight": 0.7,
         "context": "routes spec folder and memory requests"
-      },
-      {
-        "target": "cli-opencode",
-        "weight": 0.7,
-        "context": "routes opencode delegation requests"
       },
       {
         "target": "system-deep-loop",

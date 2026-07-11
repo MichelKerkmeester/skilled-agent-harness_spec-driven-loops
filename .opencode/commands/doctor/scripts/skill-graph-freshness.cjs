@@ -60,7 +60,8 @@ function fromSqlite() {
 }
 
 // id -> family from the depth-1 on-disk graph-metadata (the source of truth; excludes
-// z_archive/, which is a nested tier). Also collects which skills have a null generated_at.
+// z_archive/, which is a nested tier). Also collects which skills lack any derived freshness
+// timestamp (hub metadata carries derived.last_updated_at; generated_at is checked as a fallback).
 function fromDisk() {
   const map = new Map();
   const nullStamp = [];
@@ -73,7 +74,7 @@ function fromDisk() {
       const g = JSON.parse(fs.readFileSync(gm, 'utf8'));
       if (typeof g.skill_id !== 'string') continue;
       map.set(g.skill_id, g.family || '(none)');
-      const stamp = g.derived && g.derived.generated_at;
+      const stamp = g.derived && (g.derived.generated_at || g.derived.last_updated_at);
       if (stamp === null || stamp === undefined) nullStamp.push(g.skill_id);
     } catch { /* skip malformed */ }
   }
@@ -107,7 +108,7 @@ function main() {
       [...disk.map].filter(([id, fam]) => compiled.map.has(id) && compiled.map.get(id) !== fam)
         .map(([id, fam]) => `${id} (disk:${fam} compiled:${compiled.map.get(id)})`));
   }
-  report('NULL derived.generated_at', disk.nullStamp);
+  report('NULL derived timestamp', disk.nullStamp);
 
   out.push('  (report-only — the canonical reindex is operator-gated; nothing was written)');
   process.stdout.write(out.join('\n') + '\n');

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-command-agent-conformance-audit/002-remediation-slash-commands",
+  "spec_folder": "skilled-agent-orchestration/132-command-agent-conformance-audit/002-remediation-slash-commands",
+  "parent_id": "skilled-agent-orchestration/132-command-agent-conformance-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remediate slash commands",
+      "fix command md yaml presentation",
+      "design dead command reference",
+      "command asset alignment fix",
+      "002-remediation-slash-commands",
+      "remediate slash commands plan",
+      "command fix sequencing",
+      "cmd findings implementation plan",
+      "remediate slash commands tasks",
+      "cmd findings task list",
+      "002-remediation-slash-commands tasks",
+      "remediate slash commands checklist"
+    ],
+    "key_topics": [
+      "remediate",
+      "slash",
+      "commands",
+      "command",
+      "yaml",
+      "presentation",
+      "design",
+      "dead",
+      "reference",
+      "asset",
+      "alignment",
+      "002-remediation-slash-commands"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
+      ".opencode/commands/create/assets/create_agent_auto.yaml",
+      ".opencode/commands/create/assets/create_agent_confirm.yaml",
+      ".opencode/commands/create/assets/create_readme_auto.yaml",
+      ".opencode/commands/create/assets/create_readme_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_research_presentation.txt",
+      ".opencode/commands/deep/assets/deep_review_presentation.txt",
+      ".opencode/commands/design/interface.md",
+      ".opencode/commands/agent_router.md",
+      ".opencode/commands/deep/research.md",
+      ".opencode/skills/cli-external/cli-opencode/SKILL.md",
+      ".opencode/commands/create/readme.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      ".opencode/agents/markdown.md",
+      ".claude/agents/markdown.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "speckit_plan_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_agent_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_agent_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_agent_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_readme_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_readme_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create_readme_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_readme_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep_research_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep_review_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep_review_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "interface.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/interface.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent_router.md",
+        "kind": "doc",
+        "path": ".opencode/commands/agent_router.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/readme.md",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".opencode/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediate Slash Commands",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 001 deep-research packet (15 iterations, 3 model batches) confirmed 12 command-surface defects still present on disk as of 2026-07-10: a copy-pasted singular-path typo (`CMD-02`) breaks 10 create-family YAMLs' agent-path resolution; the speckit family interpolates a `[runtimeagentpath]` token with zero resolution definition anywhere in the repo (`CMD-01`); the create family still targets two agents retired in commit `dde19822df` (`speckit.md` in `CMD-03`, `write.md` in `CMD-04`); five `/design` commands advertise a nonexistent slash command (`CMD-07`); and the root `agentrouter.md`",
+    "created_at": "2026-07-10T18:53:44Z",
+    "last_save_at": "2026-07-11T04:45:00.096Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5e50ee4b9c770bc8efb41a5e8dcc71a5b0cf7d01b7dd8c25a8ee3c1d6ffb5415",
+    "source_doc_hashes": {
+      "spec.md": "a83b031c6bf4f17109847f9c540d016cbda0c1a85dd056789df6b671ecdfff40",
+      "plan.md": "994bc60a81cdc023d40d7b6debf5785be665afb92e8c0d1ae9eaf553ac2bf616",
+      "tasks.md": "dd488e74ed322a8790cf870a1e049df65eb7d53d67039d60c17659b752a20a0d",
+      "checklist.md": "17220028784a6821da659a726b0e6fe5f7554d46e6c1eb2d93c6bae41d6f184a",
+      "implementation-summary.md": "43e5a495c5e198daf460b81ab5a0147797a463b249ce8f7609c8f3a151a96c9b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

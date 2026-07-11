@@ -45,7 +45,7 @@ development_philosophy:
   mandate: "Never continue past a checkpoint without an explicit outcome"
 
 runtime_agent_path_resolution:
-  default: .opencode/agent
+  default: .opencode/agents
   claude: .claude/agents
 
 # ─────────────────────────────────────────────────────────────────

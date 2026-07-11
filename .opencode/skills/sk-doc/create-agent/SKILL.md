@@ -70,7 +70,21 @@ The output file contract:
 
 ### Canonical Frontmatter
 
-Every agent starts with valid YAML frontmatter using the unified `permission:` object.
+Frontmatter schema is runtime-specific — never emit the same schema for both runtime directories:
+
+| Runtime directory | Canonical schema | Rationale |
+| --- | --- | --- |
+| `.opencode/agents/` | `permission:` object | OpenCode enforces the `permission:` object; it ignores a standalone `tools:` key. |
+| `.claude/agents/` | `tools:` allow-list | Claude Code enforces only `tools:` (a comma-separated allow-list); it silently ignores `permission:`. Omitting `tools:` makes the agent inherit the parent session's full, unrestricted tool set. |
+
+Decision rule:
+
+```text
+Authoring for .opencode/agents/? -> emit `permission:` (never bare `tools:`)
+Authoring for .claude/agents/?   -> emit `tools:` (never `permission:`)
+```
+
+**OpenCode (`.opencode/agents/`) frontmatter:**
 
 ```yaml
 ---
@@ -95,15 +109,26 @@ permission:
 ---
 ```
 
+**Claude Code (`.claude/agents/`) frontmatter:**
+
+```yaml
+---
+name: agent-name
+description: One-line purpose statement with scope and boundary
+tools: Read, Write, Edit, Bash, Grep, Glob
+---
+```
+
+Map the `permission:` allow-set to the `tools:` list when authoring the same role for both runtimes: include only the tools with `allow` (or `ask`) and drop the ones with `deny`. `mode` and `temperature` are OpenCode-only fields with no Claude Code equivalent — omit both from `.claude/agents/` frontmatter.
+
 Frontmatter rules:
 
 1. `name` must match the filename stem.
 2. `description` is one line describing role and scope.
-3. `mode` must match runtime invocation, commonly `subagent` for specialists.
-4. `temperature` should reflect determinism needs, commonly `0.1`.
-5. `permission` values must be explicit, least-authority, and justified by the role.
-6. Use only `allow`, `deny`, or `ask`; do not use deprecated standalone `tools:` as the canonical model.
-7. Set `task: allow` only for agents whose explicit authority is orchestration.
+3. `mode` and `temperature` are OpenCode-only fields; set `mode` to match runtime invocation (commonly `subagent` for specialists) and `temperature` to reflect determinism needs (commonly `0.1`) — `.claude/agents/` frontmatter omits both.
+4. Under `.opencode/agents/`, `permission` values must be explicit, least-authority, justified by the role, and use only `allow`, `deny`, or `ask`.
+5. Under `.claude/agents/`, `tools:` is the runtime-specific canonical schema — a comma-separated least-authority allow-list; never emit `permission:` there, and never leave `tools:` absent or empty (an absent `tools:` inherits the parent session's full tool set).
+6. Set `task: allow` (or include `Task` in `tools:`) only for agents whose explicit authority is orchestration.
 
 ### Required Body Shape
 
@@ -163,7 +188,7 @@ Required checks: frontmatter parses, filename stem matches `name`, required sect
 2. Search existing agents before creating a new one.
 3. Use the active runtime agent directory, not a convenient nearby path.
 4. Keep filename stem and frontmatter `name` identical.
-5. Use the unified `permission:` object with explicit least-authority choices.
+5. Use the runtime-correct frontmatter schema — `permission:` object for `.opencode/agents/`, `tools:` allow-list for `.claude/agents/` — with explicit least-authority choices.
 6. Set `task: allow` only when orchestration is the agent's explicit authority.
 7. Include hard boundary, core workflow, capability scan, output verification, anti-patterns, and related resources.
 8. Keep deep domain knowledge in skills or references and link to it.
@@ -174,7 +199,7 @@ Required checks: frontmatter parses, filename stem matches `name`, required sect
 
 1. Never add `graph-metadata.json` to this packet.
 2. Never create an agent for reusable knowledge alone.
-3. Never use deprecated standalone `tools:` frontmatter as the canonical permission model.
+3. `tools:` is runtime-specific, not obsolete: it is Claude Code's canonical schema. Never emit `tools:` under `.opencode/agents/`, and never emit a bare `permission:` block under `.claude/agents/`.
 4. Never grant broad permissions because they might be useful later.
 5. Never give a LEAF agent `task: allow`.
 6. Never paste full skill guidance into an agent body.

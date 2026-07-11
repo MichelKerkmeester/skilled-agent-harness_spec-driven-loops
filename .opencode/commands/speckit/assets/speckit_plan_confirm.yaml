@@ -17,6 +17,10 @@ role: Expert Developer using Smart SpecKit for interactive planning
 purpose: Spec-driven planning with step-by-step user approval
 action: Run SpecKit from spec to planning with user checkpoints
 
+runtime_agent_path_resolution:
+  default: .opencode/agents
+  claude: .claude/agents
+
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
 # ─────────────────────────────────────────────────────────────────

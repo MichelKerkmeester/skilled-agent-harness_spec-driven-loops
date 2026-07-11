@@ -1034,8 +1034,8 @@ workflow:
             - "opencode run takes a positional message; prompt is fed via command substitution"
             - "--variant maps reasoningEffort to opencode's provider-specific reasoning lever (e.g., high, medium, minimal)"
             - "--dangerously-skip-permissions enables hands-off automation; sandboxMode='read-only' is not currently honored (no opencode equivalent)"
-            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). The cli-opencode skill SKILL.md §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
-            - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See cli-opencode SKILL.md §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
+            - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
+            - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See the `cli-external/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external/cli-opencode/SKILL.md`) §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
           validator: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
           assert_exists: "{state_paths.iteration_pattern}"

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research",
+  "spec_folder": "skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research",
+  "parent_id": "skilled-agent-orchestration/132-command-agent-conformance-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conformance deep research",
+      "command agent audit research",
+      "deep-research 15 iterations three models",
+      "command asset drift investigation",
+      "001-conformance-deep-research",
+      "implementation",
+      "plan",
+      "name",
+      "template",
+      "plan core",
+      "tasks",
+      "tasks core"
+    ],
+    "key_topics": [
+      "conformance",
+      "deep",
+      "research",
+      "command",
+      "agent",
+      "audit",
+      "deep-research",
+      "iterations",
+      "three",
+      "models",
+      "asset",
+      "drift"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research/research/deep-research-config.json",
+      "research/deep-research-config.json",
+      ".opencode/install_guides/README.md",
+      "spec.md",
+      "plan.md",
+      ".opencode/skills/cli-external/cli-opencode/SKILL.md",
+      ".opencode/commands/create/readme.md",
+      ".claude/agents/deep-improvement.md",
+      "tasks.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/132-command-agent-conformance-audit/001-conformance-deep-research/research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conformance Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The command, /doctor, agent, and presentation-asset surfaces have drifted out of sync with current skill reality, and the drift ships live: dead slash commands are referenced in shipped command docs, an agent doc points at the wrong mirror directory, doctor route tables omit real routes, and workflow YAML still calls a relocated CLI a standalone \"skill.\" These defects are scattered across ~140 files with no ranked inventory, so remediation cannot start without first knowing exactly what is wrong, where (file:line), and how severe",
+    "created_at": "2026-07-10T18:53:44Z",
+    "last_save_at": "2026-07-11T05:46:58.615Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:adc851cfe8a616acdb0325aa5666dc67ac5ce33be118c909952413aeacee3efe",
+    "source_doc_hashes": {
+      "spec.md": "3c6d2e11d50dd807daf8ad95d2e1478938be480d29eb1460d3d27b0ecde27a65",
+      "plan.md": "8911b3730a5a4c9e1acd0f81fa1c79519d6e2ab460fad488c67855c828af3b52",
+      "tasks.md": "f2242c60b8a25d7f2d28f6ec577bef3377cc4b003b8b8a09e14c70bfca7075a2",
+      "research/research.md": "c5843f2f49295b89dd2283d0bfa1f2a2f9d4118b9213035fd2b8748cef172b82"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

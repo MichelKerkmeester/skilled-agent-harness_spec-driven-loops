@@ -992,7 +992,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 
 **Prompt-Improver**
 - **Strengthens high-stakes prompts.** Picks the best `sk-prompt` framework, applies DEPTH at the right energy and validates with CLEAR
-- **Returns a structured package** (`FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, `ESCALATION_NOTES`). Used by the CLI mirror-card pipeline and `/prompt` agent mode when inline prompting is too weak
+- **Returns a structured package** (`FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, `ESCALATION_NOTES`). Used by the CLI mirror-card pipeline and `/prompt-improve` agent mode when inline prompting is too weak
 
 &nbsp;
 #### DEEP LOOP
@@ -1185,7 +1185,7 @@ The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 - Use for cross-AI delegation where the target AI needs to behave as itself
 
 **Prompt**
-- Refines prompts and prompt packages through `/prompt` using 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
+- Refines prompts and prompt packages through `/prompt-improve` using 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
 - Applies DEPTH thinking methodology with CLEAR quality scoring
 - Can return inline improvements or route to `@prompt-improver` for higher-stakes prompt packages
 

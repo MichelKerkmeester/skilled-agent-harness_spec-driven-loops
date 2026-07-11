@@ -29,7 +29,7 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
-**Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`; Codex profile reads `.codex/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
+**Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
 
 **Agent I/O Contract**: When helpful, include an `AGENT_IO_DISPATCH v1` header in delegated prompts and accept optional `AGENT_IO_RESULT v1` envelopes appended to native agent output. The contract is advisory only; missing headers or envelopes are never a rejection reason.
 
@@ -806,7 +806,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | Dispatch 5+ agents without a CWB check | Unconstrained parallel dispatch floods the orchestrator's context window, causing irrecoverable "Context limit reached" errors — all work lost despite agents completing successfully | §8 |
 | Use sub-orchestrator delegation | Creates illegal nesting chains under single-hop NDP; run additional waves directly from the top-level orchestrator instead | §3 |
 | Dispatch a single agent for 13+ estimated tool calls | Exceeds system execution limits, returns "Tool execution aborted," loses all progress; split at 12+ | §8 |
-| Improvise custom agent instructions instead of loading the definition file | Agent definition files contain specialized templates, enforcement rules, and quality standards; "you are @debug" in a prompt loses the actual debugging workflow | §2 |
+| Improvise custom agent instructions instead of loading the definition file | Every custom agent has a definition file in `.opencode/agents/` (canonical source; `.claude/agents/` is this runtime's mirror) with specialized templates, enforcement rules, and quality standards; "you are @debug" in a prompt loses the actual debugging workflow | §2 |
 | Dispatch beyond maximum depth 2 | Nested chains are illegal; if a task can't complete at depth 1, return partial results and escalate to the parent | §2 |
 | Let LEAF agents dispatch sub-agents | Violates NDP; always include the LEAF Enforcement Instruction when dispatching a LEAF agent | §2 |
 | Read 3+ large files back-to-back in main context | Floods the orchestrator's context window; delegate bulk reads to `@context` for a summarized Context Package | §8 |
