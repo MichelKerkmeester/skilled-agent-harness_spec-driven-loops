@@ -1,0 +1,485 @@
+{
+  "sessionId": "2026-07-11T06:22:25Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Delta validation does not enforce canonical-record parity",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+      "line": 1182,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Narrative verdict gate accepts a non-final or duplicated verdict",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      "line": 136,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Dispatch receipts cannot authenticate across the workflow process boundary",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      "line": 410,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-002",
+      "severity": "P1",
+      "title": "The advertised permissions gate is not connected to executor dispatch",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts",
+      "line": 428,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 0
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0.6,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "type": "uncovered_dimensions",
+      "description": "Dimension coverage (0%) is below threshold (80%). 3 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "count": 3,
+      "severity": "blocking"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0,
+    "findingStability": 1,
+    "p0ResolutionRate": 1,
+    "evidenceDensity": 0,
+    "hotspotSaturation": 1,
+    "score": 0.6
+  },
+  "candidateCoverage": {
+    "covered": [
+      "artifact_consistency",
+      "gate_bypass",
+      "receipt_integrity",
+      "workspace_containment"
+    ],
+    "ruledOut": [
+      "command_injection",
+      "durable_replay",
+      "secret_exposure",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "artifact_consistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "gate_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "durable_replay": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "receipt_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "workspace_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "divergent-pivot.ts",
+        "divergent-pivot.vitest.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Direct source and integration tests agree.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:685-705",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:868-895",
+        ".opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:246-341"
+      ],
+      "reason": "Three-seat quorum and blocker veto are explicit."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "divergent-pivot.ts",
+        "divergent-pivot.vitest.ts"
+      ],
+      "bugClass": "durable_replay",
+      "disposition": "ruled_out",
+      "rationale": "Durable replay is idempotent for tested interruption boundaries.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:499-573",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1028-1160",
+        ".opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:401-434"
+      ],
+      "reason": "Event IDs and persisted seat discovery gate redispatch."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "executor-audit.ts",
+        "deep_review_auto.yaml"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation exists at the reviewed dispatch boundary.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:874-881",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:1225-1261"
+      ],
+      "reason": "spawn/spawnSync receive structured argv arrays."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "executor-audit.ts",
+        "executor-audit-receipts.test.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No child-visible key path was identified.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:391-427",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:730-756",
+        ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts:159-236"
+      ],
+      "reason": "Source and end-to-end child visibility test agree."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "divergent-pivot.ts",
+        "divergent-pivot.vitest.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Direct source and integration tests agree.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:685-705",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:868-895",
+        ".opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:246-341"
+      ],
+      "proof": "Three-seat quorum and blocker veto are explicit."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "divergent-pivot.ts",
+        "divergent-pivot.vitest.ts"
+      ],
+      "bugClass": "durable_replay",
+      "disposition": "ruled_out",
+      "rationale": "Durable replay is idempotent for tested interruption boundaries.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:499-573",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:1028-1160",
+        ".opencode/skills/system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts:401-434"
+      ],
+      "proof": "Event IDs and persisted seat discovery gate redispatch."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "executor-audit.ts",
+        "deep_review_auto.yaml"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "No shell interpolation exists at the reviewed dispatch boundary.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:874-881",
+        ".opencode/commands/deep/assets/deep_review_auto.yaml:1225-1261"
+      ],
+      "proof": "spawn/spawnSync receive structured argv arrays."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "executor-audit.ts",
+        "executor-audit-receipts.test.ts"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "No child-visible key path was identified.",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:391-427",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:730-756",
+        ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts:159-236"
+      ],
+      "proof": "Source and end-to-end child visibility test agree."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "receipt_integrity",
+      "workspace_containment",
+      "command_injection",
+      "secret_exposure"
+    ],
+    "covered": [
+      "receipt_integrity",
+      "workspace_containment"
+    ],
+    "ruledOut": [
+      "command_injection",
+      "secret_exposure"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 2,
+      "pass": 0,
+      "partial": 1,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/commands/deep/assets/deep_review_auto.yaml:1207-1301",
+          ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:391-582"
+        ],
+        "findingRefs": [
+          "R2-P1-001"
+        ],
+        "summary": "Receipt authority and write-boundary claims were checked against active workflow wiring."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/system-deep-loop/runtime/feature_catalog/state-safety/permissions-gate.md:21-31",
+          ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts:393-445"
+        ],
+        "findingRefs": [
+          "R2-P1-002"
+        ],
+        "summary": "F009 is catalogued as shipped, but no production dispatch caller exists."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
