@@ -12,7 +12,7 @@ This document combines the full manual-validation contract for the `sk-code` ski
 
 ---
 
-This playbook package adopts the Feature Catalog split-document pattern. The root document acts as the directory, review surface, and orchestration guide; per-feature execution detail lives in the numbered category folders at the playbook root.
+This playbook package adopts the Feature Catalog split-document pattern. The root document acts as the directory, review surface, and orchestration guide; per-feature execution detail lives in the category folders at the playbook root.
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`

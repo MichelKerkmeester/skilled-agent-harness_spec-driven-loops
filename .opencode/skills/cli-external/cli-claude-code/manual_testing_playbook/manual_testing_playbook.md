@@ -12,7 +12,7 @@ This document combines the full manual-validation contract for the `cli-claude-c
 
 ---
 
-This playbook package adopts the Feature Catalog split-document pattern for the `cli-claude-code` skill. The root document acts as the directory, review surface and orchestration guide, while per-feature execution detail lives in the numbered category folders at the playbook root.
+This playbook package adopts the Feature Catalog split-document pattern for the `cli-claude-code` skill. The root document acts as the directory, review surface and orchestration guide, while per-feature execution detail lives in the category folders at the playbook root.
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`

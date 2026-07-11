@@ -40,7 +40,7 @@ End-to-end manual testing reference for the mcp-click-up skill. Every scenario v
 | Recovery and Failure | auth fail, empty queue, status errors, MCP fail | 3 |
 | **TOTAL** | **96 features** | **37 scenarios** |
 
-Scenario count verified by direct file count against the 10 numbered scenario category folders (39 files; 37 distinct IDs -- `MCP-M015` and `MCP-M019` each currently have two canonical files pending de-duplication, counted once above). The routing-recall holdout set validates smart-router intent selection on a separate ID scheme and is not an executable manual-testing scenario, so it is excluded from this count.
+Scenario count verified by direct file count against the 10 scenario category folders (39 files; 37 distinct IDs -- `MCP-M015` and `MCP-M019` each currently have two canonical files pending de-duplication, counted once above). The routing-recall holdout set validates smart-router intent selection on a separate ID scheme and is not an executable manual-testing scenario, so it is excluded from this count.
 
 ### Realistic Test Model
 

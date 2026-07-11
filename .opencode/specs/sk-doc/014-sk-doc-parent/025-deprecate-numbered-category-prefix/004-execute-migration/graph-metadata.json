@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Phase 004. Run the Phase 003 migration tooling against the live tree, fanned out by skill family so each batch validates independently: rename all 390 numbered category folders to their bare slug, rewrite every in-scope reference (115 frontmatter category values, ~1,052 index-table rows, ~5,298 nav/cross-ref links, the two SKILL.md router-prefix blocks), and leave the changelog/history surface untouched. Path-scoped commits inside the isolated worktree. Gated on Phase 002's tolerant classifier landing first (ADR-002).",
     "created_at": "2026-07-10T18:51:13.032Z",
-    "last_save_at": "2026-07-11T04:21:40.480Z",
+    "last_save_at": "2026-07-11T19:48:28.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a9340897d3e653707478fa387ad00a309c3bdf5ce789dd7f7e03bf755e9d35c",
+    "source_fingerprint": "sha256:c5398061c516c765d0c80f3e0e91e16a310629ae5cafd98aa7611d9f71e85918",
     "source_doc_hashes": {
-      "spec.md": "5bba6d1ac94ba3507ccb76251d9509b56197ae0df2c349bd90d70b90dfe288c5",
-      "plan.md": "fae635e404a05097d07162ca3358ef37e0da4d23017c6ebe474b8b28c3b5fa5d",
-      "tasks.md": "2331cb05ae32999fe05af6025b04ade03b4ba865f5e3acecf844c9f5782ed9c3",
-      "checklist.md": "81161f3606b3237904339a0f494ef1c1a02db7470188b38f15c0793034d9ca54",
-      "implementation-summary.md": "b6a7691acc5dccee9c6bbc6c0731f237c24aff4a54e46a9c06da343210e15f08"
+      "spec.md": "4014d5dc0ab6bfb60cc6e69bc98867b28b55a4546cb8b635934bd62d6e7eeb96",
+      "plan.md": "81681921c82219a7d15b0559708c5a652b49f9cd2af2994080e10b94a69bffd8",
+      "tasks.md": "9a250e8c6160b2a0fe347c35a0cdb5379c8e24ad2c674bb844313de445512871",
+      "checklist.md": "2677b8f818892b4cb618f00afab6fe214d4b41d47c7d2f81689d98d8da06a357",
+      "implementation-summary.md": "5c7e7ed3c1bc243f76056ce30fe8eaaf7a14fe2bb090ba8e7b557368a7495468"
     },
     "last_active_child_id": null,
     "last_active_at": null

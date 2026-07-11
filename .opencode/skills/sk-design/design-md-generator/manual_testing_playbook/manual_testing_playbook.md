@@ -42,7 +42,7 @@ End-to-end manual testing reference for the md-generator skill. Every scenario v
 
 This playbook defines 18 deterministic scenarios across 16 categories validating the full surface of the `md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-21 plus the procedure-card contract section, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 23.
 
-> **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 21 lists every scenario file.
+> **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The cross-reference index in Section 21 lists every scenario file.
 
 ### Realistic Test Model
 
@@ -526,7 +526,7 @@ The procedure-card contract lane checks `SKILL.md` procedure selection, the exac
 
 ## 23. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-Each scenario maps to exactly one per-scenario file in a numbered category folder at the playbook root, and to its capability area in the feature catalog. Keep the per-scenario filenames stable once published.
+Each scenario maps to exactly one per-scenario file in a category folder at the playbook root, and to its capability area in the feature catalog. Keep the per-scenario filenames stable once published.
 
 | ID | Scenario | Category | Feature File | Catalog File |
 |---|---|---|---|---|

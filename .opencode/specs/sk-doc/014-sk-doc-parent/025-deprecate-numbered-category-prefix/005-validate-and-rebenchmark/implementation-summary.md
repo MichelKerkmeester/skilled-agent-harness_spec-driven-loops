@@ -7,9 +7,9 @@ parent: "sk-doc/014-sk-doc-parent/025-deprecate-numbered-category-prefix"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/025-deprecate-numbered-category-prefix/005-validate-and-rebenchmark"
-    last_updated_at: "2026-07-10T00:00:00Z"
+    last_updated_at: "2026-07-11T19:50:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Recursive validate 0 errors; Lane C no regression; guard proven"
+    recent_action: "Post-ship prose remediation: 18 stale 'numbered category folder' refs corrected"
     next_safe_action: "Complete"
     blockers: []
     completion_pct: 100
@@ -63,4 +63,11 @@ freshly-created `99--` folder**. Validator regression suites all PASS.
 ## Known Limitations
 Benchmark scope is limited to the skills the migration touched; unaffected skills were not re-run. The single
 broken markdown link found is pre-existing and unrelated to the migration (an install-guide link).
+
+Post-ship remediation debt: the folder-name guard (`check_no_numbered_categories.py`) scans directory names, not
+prose, so 18 descriptive lines across 15 skill docs still called the de-numbered directories "numbered category
+folders". This validation phase asserted "deprecated repo-wide" but did not grep the prose, so those stale
+adjectives survived. They were corrected to "category folders" (a one-word deletion per line) with no behavior
+impact; the guard, the legitimate "numbered category sections" (root-index heading) references, and the
+`{PREFIX}-NNN` feature-ID scheme were left untouched.
 <!-- /ANCHOR:limitations -->

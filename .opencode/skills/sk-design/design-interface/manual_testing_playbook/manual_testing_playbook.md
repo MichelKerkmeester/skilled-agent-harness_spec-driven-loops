@@ -12,7 +12,7 @@ This document combines the full manual-validation contract for the `interface` s
 
 ---
 
-This playbook package adopts the split-document pattern for the `design-interface` skill. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail lives in the numbered category folders at the playbook root.
+This playbook package adopts the split-document pattern for the `design-interface` skill. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail lives in the category folders at the playbook root.
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`

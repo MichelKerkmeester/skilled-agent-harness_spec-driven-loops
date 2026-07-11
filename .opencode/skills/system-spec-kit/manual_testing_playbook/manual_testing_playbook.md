@@ -13,7 +13,7 @@ This document combines the full manual-validation contract for the Spec Kit Memo
 
 ---
 
-This playbook package adopts the Feature Catalog split-document pattern for canonical Spec Kit operator validation. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail now lives in the numbered category folders at the playbook root.
+This playbook package adopts the Feature Catalog split-document pattern for canonical Spec Kit operator validation. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail now lives in the category folders at the playbook root.
 
 Canonical source artifacts:
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval/`
@@ -218,7 +218,7 @@ Rule: keep global verdict logic in the root playbook. Put feature-specific accep
 
 This section records coordinator/worker utilization guidance for assembling or reviewing playbook bundles. It is not a runtime support matrix and does not, by itself, prove Hydra feature parity for OpenCode or any other CLI.
 
-The wave plans here apply to the split playbook package: the root `manual_testing_playbook.md` acts as the directory, review surface, and orchestration guide, while the detailed scenario contracts live in the numbered category folders at the playbook root.
+The wave plans here apply to the split playbook package: the root `manual_testing_playbook.md` acts as the directory, review surface, and orchestration guide, while the detailed scenario contracts live in the category folders at the playbook root.
 
 ### Run A: OpenCode 5.3 xhigh (Observed)
 

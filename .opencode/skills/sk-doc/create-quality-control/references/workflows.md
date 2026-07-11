@@ -38,7 +38,7 @@ Workflows define the execution patterns and operational modes for the markdown d
 - Mode 5 (Playbooks): [create-manual-testing-playbook references](../../create-manual-testing-playbook/references/README.md), [manual_testing_playbook_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../create-manual-testing-playbook/assets/manual_testing_playbook_snippet_template.md)
 - Companion catalog workflow: [create-feature-catalog references](../../create-feature-catalog/references/README.md) plus the [feature catalog template bundle](../../create-feature-catalog/assets/)
 
-The playbook workflow assumes a root directory playbook plus required per-feature files in numbered category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
+The playbook workflow assumes a root directory playbook plus required per-feature files in category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
 
 ### Core Principle
 

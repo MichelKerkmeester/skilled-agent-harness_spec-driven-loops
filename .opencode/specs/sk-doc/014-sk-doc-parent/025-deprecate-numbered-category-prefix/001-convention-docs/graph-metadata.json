@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 001 of the numbered-prefix deprecation. Update the two authoritative sk-doc convention skills (create-feature-catalog, create-manual-testing-playbook), their asset templates, and the /create:* command generators so the documented canonical category-folder name is the bare descriptive slug, not NN--slug. Ordering is documented as owned by the root index table. Docs-only phase — no folders are renamed here; it removes the mandate that would otherwise re-introduce numbers.",
     "created_at": "2026-07-10T18:51:12.648Z",
-    "last_save_at": "2026-07-11T04:21:39.695Z",
+    "last_save_at": "2026-07-11T19:48:28.058Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43ed4a211ed66e9838a1b9c3750e8e05beaf98e64d871260e9b8238a846e9e09",
+    "source_fingerprint": "sha256:115d24f97ccdab64b9f68a024b852533b48f4f480ad20d4f442f33e6392bd8ee",
     "source_doc_hashes": {
-      "spec.md": "8d9f38b33e95d7a5236d6fa61eea16c5f83302c706d90be2521fb3ea561982fc",
-      "plan.md": "39fe2d5637d5690f20f03eec3d49dd983b39b6fab2834acb21cbaf52127a795f",
-      "tasks.md": "ddfb08f31e9d9856ddc3808d2bb45a6a5937b1edcdafb42079c05e9ccb3603ae",
-      "checklist.md": "de043b933bc7f81f2de4176e73eca9c4f6b0ebdd7c4b43b63a6d08cd0e196fe1",
-      "implementation-summary.md": "d2b1d46e1e8bb4867654c5ca506ecc54d20744f7a0e1b6b1168a767a1ea3bb84"
+      "spec.md": "f0f8f0b07c7c511d049a94649584b3e9e51c51767e932c0ea6aaa8344461a0a0",
+      "plan.md": "3d1f36dafddca565f71c42a9555879d8c6469a2ad909c9898bf53440d7803a44",
+      "tasks.md": "e390a161367eb33d5922c7356ce69e8a4e5bed99470307d28ccb05cca369e3d0",
+      "checklist.md": "01a51f997f1bc39b97bcd0c41dc70da56ffac91c966c7496d65c903ed45b9f5e",
+      "implementation-summary.md": "aaf2aa2a9a7936787f9053bb14c2cda4d42af505a8739a8620aebf35f7d65c16"
     },
     "last_active_child_id": null,
     "last_active_at": null

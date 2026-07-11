@@ -200,7 +200,7 @@ See [`optional-mcp/optional-mcp-context.md`](optional-mcp/optional-mcp-context.m
 
 ## 10. CAPABILITY COUNT SUMMARY
 
-Each capability area maps to exactly one per-feature file in its numbered category folder. The command count is the decision-relevant command surface digested per area, not the per-feature file count.
+Each capability area maps to exactly one per-feature file in its category folder. The command count is the decision-relevant command surface digested per area, not the per-feature file count.
 
 | Section | Area | Commands listed | Per-feature file |
 |---|---|---|---|
