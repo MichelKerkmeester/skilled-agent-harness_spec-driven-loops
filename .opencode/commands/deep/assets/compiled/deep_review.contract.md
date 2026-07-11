@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/review.md",
-      "sha256": "bad1c2bdfc0e903a83df0fa094e3715658d3de2bbaf00a97270aca3be1f1e7d6",
+      "sha256": "04a5f98061f50d035256779859e133517ff6e3800cc7c57850968953492b1829",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_presentation.txt",
-      "sha256": "8422819c5bdaa5e6fcdf6824c5a4367a07a574b44e5a824401807e1616284324",
+      "sha256": "a3e3564bdd269cb013f7ba0ab356b49d90275d03c6bd8c454f076e29ef6c54b8",
       "section": "full"
     },
     {
@@ -22,27 +22,27 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
-      "sha256": "107fba9d8591235c1339e077e072aef18678acace24b67c29f3892f987495310",
+      "sha256": "ed49e7839cec737d6135bb616e3a499ccf2554c1c38b277940cfe22a94b0a34f",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_confirm.yaml",
-      "sha256": "95cf6636f4bdab9fd20cdee221d0b3a5a49ba06de02311b3c30ef0cbdfe69d16",
+      "sha256": "98e7d657c285b9940d31cc8a62936b5e87c07930e2979184ded75536107ff54f",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "6d41d1cfeff3b422ef5686c839c7e64118a3e0cfdf9eeced58166ef7486447a3",
+      "sha256": "39bc42a8881b45c5a16a432bb33f94f62565b2d935c31e5b9c373c5e144a019f",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "46d1f01bd81c2dcfa1dd37a146899cffce712e682ed4ef12d603e9d3be9729ba",
+      "sha256": "4d990838018f72d97d426e8aa7cbd26e3042ace7eb9844c793a0b15b2fb466e3",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "8c50be061a45bc8e8e74ef723ddd77a35a52fe3016e15dfe0f7b1a6129cfeee1",
+      "sha256": "bc22366b07144194a72a2a6669ca003cfc5c3e14c29766785bdbd3384ee96147",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl",
-      "sha256": "cb2c88a32d68bbc135a0767e7689d42e4289a275d35cac9a25f6511b090ea51b",
+      "sha256": "fc24ccb0525e8ef6a36b4df71d43584662c35fab4ba5943a79212f20d70ee639",
       "section": "full"
     },
     {
@@ -86,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "274a380721b570ffc988456bf7402b38b0218b9e1b2760f212060c94a15f3885"
+  "compiledBodyDigest": "6522f40805c534a2f9bdbd05b07c8bc1bb87048a37fc2f8d834fe3a855318fe2"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -159,7 +159,7 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_review_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_review_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -181,6 +181,7 @@ PRE-BOUND SETUP ANSWERS:
  lineage_mode: auto  # one of: auto | resume | restart
   maxIterations: 10
   convergenceThreshold: 0.10
+  convergence_mode: default  # default | off | sliding-window | divergent
   stop_policy: convergence  # one of: convergence | max-iterations
   executor: native  # one of: native | cli-opencode | cli-claude-code | cli-opencode
   executor_model: ""  # optional, executor-specific (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
@@ -212,6 +213,7 @@ Rules:
 | `lineage_mode` | Y | flag `--restart`, flag `--lineage-mode=auto|resume|restart`, marker `lineage_mode`, or default | `auto` | N |
 | `maxIterations` | Y | flag `--max-iterations`, marker `maxIterations`, or default | `7` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or default | `0.10` | N |
+| `convergence_mode` | Y | flag `--convergence-mode=default|off|sliding-window|divergent`, marker `convergence_mode`, or default | `default` | N |
 | `stop_policy` | Y | flag `--stop-policy=convergence|max-iterations`, marker `stop_policy`, or default | `convergence` | N |
 | `executor` | N | flag `--executor`, marker `executor`, config file, or default | `native` | N |
 | `executor_model` | N | flag `--model`, marker `executor_model`, or executor-specific validation | none | N |
@@ -260,6 +262,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 3. PARSE optional flags from $ARGUMENTS:
    |-- --max-iterations=N -> maxIterations = N
    |-- --convergence=N -> convergenceThreshold = N
+   |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --stop-policy=convergence|max-iterations -> stop_policy = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --restart -> lineage_mode = restart
@@ -282,7 +285,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
    |   - Review fan-out verdict: strongest-restriction (any lineage active P0 → merged FAIL)
    |
-   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
+   +-- Defaults: maxIterations=7, convergenceThreshold=0.10, antiConvergence.convergenceMode=`default`, antiConvergence.divergent=`{}`, stop_policy=`convergence`, lineage_mode=`auto`, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
    - CLI flag > config file > schema defaults
@@ -295,6 +298,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - `--reasoning-effort` -> `config.executor.reasoningEffort`
    - `--service-tier` -> `config.executor.serviceTier`
    - `--executor-timeout` -> `config.executor.timeoutSeconds`
+   - `--convergence-mode` -> `antiConvergence.convergenceMode`
 
    Validation hook:
    - `parseExecutorConfig` from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` runs at config-write time
@@ -362,6 +366,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - lineage_mode = [auto/resume/restart from flag, marker, or default auto]
    - maxIterations = [from Q3 or flag or default 7]
    - convergenceThreshold = [from flag or default 0.10]
+   - convergence_mode = [from flag, marker, or default `default`; one of `default`, `off`, `sliding-window`, `divergent`]
    - stop_policy = [from flag, marker, or default convergence]
     - executor config = [CLI flags, compact reply, config file, or default `native`; map compact reply fields to `config.executor.type/model/configDir/reasoningEffort/serviceTier`, and accept an optional volunteered convergence value before executor fields]
 
@@ -377,7 +382,7 @@ NEVER split questions into multiple prompts
 **Phase Output:**
 
 - `review_target` | `review_target_type` | `review_dimensions`
-- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `stop_policy`
+- `spec_choice` | `spec_path` | `execution_mode` | `maxIterations` | `convergenceThreshold` | `convergence_mode` | `stop_policy`
 - `lineage_mode`
 - `config.fanout_lineage_artifact_dir` when present
 ~~~

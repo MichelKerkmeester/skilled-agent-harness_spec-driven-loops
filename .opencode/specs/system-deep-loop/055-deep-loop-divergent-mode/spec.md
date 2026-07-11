@@ -48,9 +48,10 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planning |
+| **Status** | Implemented (verified; `validate.sh --strict` deferred to post-merge on `main`) |
 | **Created** | 2026-07-10 |
-| **Branch** | Current working branch |
+| **Implemented** | 2026-07-10 |
+| **Branch** | `wt/0026-deep-loop-divergent-mode` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -251,4 +252,4 @@ Add an opt-in `divergent` convergence mode to deep research and deep review. In 
 - **Task Breakdown**: See `tasks.md`.
 - **Verification Checklist**: See `checklist.md`.
 - **Council Recommendation**: See `ai-council/council-report.md` after deliberation.
-- **Implementation Summary**: Reserved in `implementation-summary.md`; no implementation is authorized by this planning run.
+- **Implementation Summary**: See `implementation-summary.md` — implemented and independently verified across 5 phases; `validate.sh --strict` deferred to post-merge on `main`.
