@@ -84,6 +84,6 @@ Notes:
 
 ## 5. RELATED RESOURCES
 
-- [code_organization.md](./code_organization.md)
-- [universal_patterns.md](./universal_patterns.md)
+- [code_organization.md](code_organization/overview-and-module-organization.md)
+- [universal_patterns.md](universal_patterns/naming-and-commenting.md)
 - [hooks.md](./hooks.md)

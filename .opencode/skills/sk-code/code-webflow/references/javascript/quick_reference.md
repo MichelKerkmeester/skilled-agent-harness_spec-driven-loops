@@ -35,7 +35,7 @@ Copy-paste-ready JS snippets and one-liners for the Webflow stack — condition-
 
 Production-tested snippets beat ad-hoc inventions for Webflow's CDN-loaded runtime.
 
-> See [`../shared/dev_workflow.md`](../shared/dev_workflow.md) for cross-language commands (DevTools, validation patterns, security, debugging) and decision matrix.
+> See [`../shared/dev_workflow/overview-nav-and-logging.md`](../shared/dev_workflow/overview-nav-and-logging.md) for cross-language commands (DevTools, validation patterns, security, debugging) and decision matrix.
 
 ---
 
@@ -284,10 +284,10 @@ CSS counterpart and full pattern reference: [`../css/quick_reference.md`](../css
 
 ## RELATED RESOURCES
 
-- [`./style_guide.md`](./style_guide.md) — JS naming, file structure, formatting rules
-- [`./quality_standards.md`](./quality_standards.md) — defensive patterns with rationale
+- [`style_guide/overview-naming-and-structure.md`](style_guide/overview-naming-and-structure.md) — JS naming, file structure, formatting rules
+- [`quality_standards/init-dom-error-and-async.md`](quality_standards/init-dom-error-and-async.md) — defensive patterns with rationale
 - [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) — cross-language conventions
-- [`../shared/dev_workflow.md`](../shared/dev_workflow.md) — DevTools, common commands, debugging checklist
+- [`../shared/dev_workflow/overview-nav-and-logging.md`](../shared/dev_workflow/overview-nav-and-logging.md) — DevTools, common commands, debugging checklist
 - [`../css/quick_reference.md`](../css/quick_reference.md) — CSS counterpart (Webflow tokens, validation classes, reduced motion, focus detection)
 
 ### Copy-paste template

@@ -110,5 +110,5 @@ When any failure occurs:
 ## 6. RELATED RESOURCES
 
 - [cdn_deployment.md](../deployment/cdn_deployment.md) - CDN deployment workflow
-- [minification_guide.md](../deployment/minification_guide.md) - Minification procedures
-- [debugging_workflows.md](./debugging_workflows.md) - General debugging
+- [minification_guide.md](../deployment/minification_guide/overview-terser-and-patterns.md) - Minification procedures
+- [debugging_workflows.md](debugging_workflows/systematic-four-phases.md) - General debugging

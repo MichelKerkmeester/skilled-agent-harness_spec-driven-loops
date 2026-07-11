@@ -1,20 +1,22 @@
 {
   "specFolder": "sk-code/018-rust-standards-for-code-opencode",
-  "description": "`sk-code`'s `code-opencode` surface encodes per-language standards (TypeScript, Python, shell, JavaScript, config) as a",
+  "description": "WS1: `sk-code`'s `code-opencode` surface encodes per-language standards as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio",
   "keywords": [
+    "ws1",
     "sk-code",
     "code-opencode",
     "surface",
     "encodes",
     "per-language",
     "standards",
-    "typescript",
-    "python",
-    "shell",
-    "javascript",
-    "config"
+    "references",
+    "lang",
+    "styleguide",
+    "qualitystandards",
+    "quickreference",
+    "trio"
   ],
-  "lastUpdated": "2026-07-11T11:58:49.101Z",
+  "lastUpdated": "2026-07-11T22:15:10.523Z",
   "specId": "018",
   "folderSlug": "rust-standards-for-code-opencode",
   "parentChain": [

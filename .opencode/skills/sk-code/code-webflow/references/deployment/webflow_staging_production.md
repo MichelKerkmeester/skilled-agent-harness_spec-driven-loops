@@ -248,12 +248,12 @@ If you must serve fresh code at the SAME version (rare — usually a sign you sh
 
 ## RELATED RESOURCES
 
-- [`./minification_guide.md`](./minification_guide.md) — JS minification workflow with terser
+- [`minification_guide/overview-terser-and-patterns.md`](minification_guide/overview-terser-and-patterns.md) — JS minification workflow with terser
 - [`./cdn_deployment.md`](./cdn_deployment.md) — R2 deployment + version-pin pattern for custom JS bundles
 - [`../performance/cwv_remediation.md`](../performance/cwv_remediation.md) — Core Web Vitals checks to run before promotion
 - [`../performance/third_party.md`](../performance/third_party.md) — Third-party script loading strategy (relevant for promotion)
 - [`../performance/webflow_constraints.md`](../performance/webflow_constraints.md) — Webflow platform constraints (Typekit, jQuery, Webflow.js — what you can/can't change)
-- [`../implementation/webflow_patterns.md`](../implementation/webflow_patterns.md) — Webflow-specific implementation patterns (collection lists, page transitions)
+- [`../implementation/webflow_patterns/overview-limits-and-collection-lists.md`](../implementation/webflow_patterns/overview-limits-and-collection-lists.md) — Webflow-specific implementation patterns (collection lists, page transitions)
 
 ### External documentation
 

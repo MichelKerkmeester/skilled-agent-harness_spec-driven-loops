@@ -150,7 +150,7 @@ Despite platform constraints, you CAN optimize:
 
 ### Internal References
 
-- [`../implementation/performance_patterns.md`](../implementation/performance_patterns.md) - Umbrella performance checklist + budgets + anti-patterns (high-level entry point)
+- [`../implementation/performance_patterns/overview-and-checklist.md`](../implementation/performance_patterns/overview-and-checklist.md) - Umbrella performance checklist + budgets + anti-patterns (high-level entry point)
 - [cwv_remediation.md](./cwv_remediation.md) - Core Web Vitals optimization patterns
 - [third_party.md](./third_party.md) - Third-party script optimization
 - [resource_loading.md](./resource_loading.md) - Resource hints and loading strategies

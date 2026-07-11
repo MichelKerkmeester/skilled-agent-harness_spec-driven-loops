@@ -311,7 +311,7 @@ Use a bracketed module prefix for inline comments:
 // [module-name] Description of what this does
 ```
 
-Cite only durable references — never a spec-folder-internal id. Comments must not embed a spec folder/number, task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; see [`../shared/universal_patterns.md`](../shared/universal_patterns.md) §4 and [`../../universal/code_style_guide.md`](../../../shared/references/universal/code_style_guide.md) §4 "No ephemeral-artifact pointers".
+Cite only durable references — never a spec-folder-internal id. Comments must not embed a spec folder/number, task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; see [`../shared/universal_patterns/naming-and-commenting.md`](../shared/universal_patterns/naming-and-commenting.md) §4 and [`../../universal/code_style_guide.md`](../../../shared/references/universal/code_style_guide.md) §4 "No ephemeral-artifact pointers".
 
 ```javascript
 // GOOD — durable WHY, no ephemeral id
@@ -451,5 +451,5 @@ const logger = require('../utils/logger');
 
 ## 9. RELATED RESOURCES
 
-- [quality_standards.md](./quality_standards.md) - Error handling, JSDoc, security patterns
+- [quality_standards.md](quality_standards/overview-modules-and-docs.md) - Error handling, JSDoc, security patterns
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets

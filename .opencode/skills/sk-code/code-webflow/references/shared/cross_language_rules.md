@@ -14,7 +14,7 @@ version: 3.5.0.3
 # Cross-Language Rules: Webflow
 
 These rules apply to ALL Webflow code — JavaScript, CSS, and HTML alike. Per-language conventions (naming, formatting, type-specific patterns) live in:
-- [`../javascript/style_guide.md`](../javascript/style_guide.md)
+- [`../javascript/style_guide/overview-naming-and-structure.md`](../javascript/style_guide/overview-naming-and-structure.md)
 - [`../css/style_guide.md`](../css/style_guide.md)
 - [`../html/style_guide.md`](../html/style_guide.md)
 
@@ -195,4 +195,4 @@ if (window[INIT_FLAG]) return;
 
 - Per-language style guides (linked above)
 - [`./enforcement.md`](./enforcement.md) — how these rules get enforced at gate time
-- [`./dev_workflow.md`](./dev_workflow.md) — DevTools, logging, testing patterns shared across languages
+- [`dev_workflow/overview-nav-and-logging.md`](dev_workflow/overview-nav-and-logging.md) — DevTools, logging, testing patterns shared across languages

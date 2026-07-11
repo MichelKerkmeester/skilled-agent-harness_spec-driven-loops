@@ -174,9 +174,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "WS2 (007-011) split 33 oversized reference/asset docs into ~120 parts and rewired the router contract",
+    "causal_summary": "WS2 (007-011) split 33 oversized reference/asset docs into 104 parts and rewired the router contract",
     "created_at": "2026-07-11T18:03:16.099Z",
-    "last_save_at": "2026-07-11T18:03:16.099Z",
+    "last_save_at": "2026-07-11T22:18:57.896Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,12 +185,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c66481b2bb3801291967dea9cc1c4bfd7f371bc0239716d920567e2c58a86e15",
+    "source_fingerprint": "sha256:7f1e19b51c7cb7ab7d2ec50d233585d2dac736baa4c63dce483ccd070653142d",
     "source_doc_hashes": {
-      "spec.md": "7d581165a01ce658505362aecd6e6f27ae20928515a57200e473aab1004b258c",
+      "spec.md": "78f943ae43718159401b09d1a2bcbd57cad0df8ebdbf9a8c89d4470106b26189",
       "plan.md": "284d7abf73fdec1b1df950890defeb340e46c2986ad6e652f2e1861f7a827dfb",
       "tasks.md": "cdd01fb2c915e2cf5bee86a37135ab84ffa7fa81964fe82869fd36993a402135",
-      "implementation-summary.md": "db2bb0a65d1db8e166cc70c2e3e7e95d96b11188fb91755babad6e781ed36ce2"
+      "implementation-summary.md": "c51040b01518163665a56d68cf93992bb1277db127b7284df5e505bb2b456f5f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`code-quality/assets/codequalitychecklist.md` (542 lines) is the last oversized reference/asset in the hygiene scope",
     "created_at": "2026-07-11T17:50:12.246Z",
-    "last_save_at": "2026-07-11T17:57:34.748Z",
+    "last_save_at": "2026-07-11T22:11:46.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,9 +197,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:454744025bbcdfd7ba46eb0a25165b2c4824a30d6e765f0f86fd6a587b0d279a",
+    "source_fingerprint": "sha256:ed9dc1685cb3eeaf7eb336a2a8d868037c6ea5de8c8a5324954741708f0ae2d1",
     "source_doc_hashes": {
-      "spec.md": "0ac7d2af924f8a9130553e64f5b302a1d5576a1a6f027dbc85c4a82584c7a3c4",
+      "spec.md": "788c81607b3053d082ae1fe9412f99d2180806582dacd8792b5d8696a92569a4",
       "plan.md": "fb30afa430b291ce96d7993ffb563264de6d52fd22fab65c73191c46724abc81",
       "tasks.md": "3f5df7dc58efa7e70378d76ce970e97260589c17d753378c67cae6d9cdccd5b2",
       "implementation-summary.md": "5855b86277e2848609077cca04237c297a21eb55e2e09832f9de61c8a61a7dc9"

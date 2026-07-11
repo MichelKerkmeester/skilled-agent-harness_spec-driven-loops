@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 12 — Gate Verification & Parent Rollup"
-description: "Terminal gate for WS2 reference-file hygiene: all 33 oversized reference/asset docs split into ~120 parts across 007-011, 3 router guards 21/21 with zero regressions, splits byte-lossless and all part links resolve, 018 parent rolled up. Documents 3 accepted >500 exemptions."
+description: "Terminal gate for WS2 reference-file hygiene: all 33 oversized reference/asset docs split into 104 parts across 007-011, 3 router guards 21/21 with zero regressions, splits byte-lossless and all part links resolve, 018 parent rolled up. Documents 3 accepted >500 exemptions."
 trigger_phrases:
   - "018 phase 012 summary rollup"
 importance_tier: "important"
@@ -36,7 +36,7 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-Terminal verification + rollup for WS2. Across 007-011, 33 oversized reference/asset docs (largest 1987) were split into ~120 topic-cohesive parts and the router contract rewired.
+Terminal verification + rollup for WS2. Across 007-011, 33 oversized reference/asset docs (largest 1987) were split into 104 topic-cohesive parts and the router contract rewired.
 
 | Phase | Scope | Split |
 |---|---|---|

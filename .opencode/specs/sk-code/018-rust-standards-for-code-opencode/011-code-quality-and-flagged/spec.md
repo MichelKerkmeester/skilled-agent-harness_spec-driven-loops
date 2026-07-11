@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged"
     last_updated_at: "2026-07-11T15:50:00Z"
     last_updated_by: "claude-code"
-    recent_action: "code_quality_checklist split (3 parts) + rewired; code-review exemptions documented; 21/21 guards, 0 regressions"
+    recent_action: "code-quality checklist split (3 parts); router rewired; exemptions recorded"
     next_safe_action: "Commit phase 011, then proceed to phase 012 (terminal gate + parent rollup)"
     blockers: []
     completion_pct: 100

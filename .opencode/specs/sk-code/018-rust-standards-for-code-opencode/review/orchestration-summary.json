@@ -1,0 +1,22 @@
+{
+  "run_id": "1783806617661-0vtm5z",
+  "loop_type": "review",
+  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-code/018-rust-standards-for-code-opencode",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-code/018-rust-standards-for-code-opencode/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

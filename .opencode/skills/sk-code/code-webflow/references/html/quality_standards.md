@@ -202,7 +202,7 @@ For every JS function that changes UI state, audit the corresponding ARIA contra
 | Form field invalid | `aria-invalid="true"` on input, `aria-describedby` linking to error message id |
 | Loading state | `aria-busy="true"` on the loading region |
 
-The action-routing pattern in [`../javascript/quality_standards.md`](../javascript/quality_standards.md) §13 includes the toggle handlers that perform this sync — use it as the canonical implementation.
+The action-routing pattern in [`../javascript/quality_standards/init-dom-error-and-async.md`](../javascript/quality_standards/init-dom-error-and-async.md) §13 includes the toggle handlers that perform this sync — use it as the canonical implementation.
 
 ---
 
@@ -341,7 +341,7 @@ Before claiming HTML implementation done:
 - [`./style_guide.md`](./style_guide.md) — HTML conventions (data attributes, semantic HTML, ARIA basics, head/footer comment style)
 - [`../shared/cross_language_rules.md`](../shared/cross_language_rules.md) — file naming, comment principles, file-header banner format
 - [`../shared/enforcement.md`](../shared/enforcement.md) — pre-completion gate workflow
-- [`../javascript/quality_standards.md`](../javascript/quality_standards.md) — action routing pattern (§13) for ARIA state-sync helpers
+- [`../javascript/quality_standards/init-dom-error-and-async.md`](../javascript/quality_standards/init-dom-error-and-async.md) — action routing pattern (§13) for ARIA state-sync helpers
 - [`../javascript/quick_reference.md`](../javascript/quick_reference.md) — form validation class helpers
 - [`../css/quick_reference.md`](../css/quick_reference.md) — CSS counterpart for form validation classes + Webflow tokens
 

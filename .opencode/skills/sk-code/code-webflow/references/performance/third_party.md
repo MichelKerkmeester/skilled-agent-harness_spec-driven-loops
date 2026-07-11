@@ -169,10 +169,10 @@ Always verify GDPR/CCPA compliance before modifying consent scripts.
 
 ### Internal References
 
-- [`../implementation/performance_patterns.md`](../implementation/performance_patterns.md) - Umbrella performance checklist + budgets + anti-patterns (high-level entry point)
+- [`../implementation/performance_patterns/overview-and-checklist.md`](../implementation/performance_patterns/overview-and-checklist.md) - Umbrella performance checklist + budgets + anti-patterns (high-level entry point)
 - [cwv_remediation.md](./cwv_remediation.md) - Core Web Vitals optimization patterns
 - [resource_loading.md](./resource_loading.md) - Resource hints and loading strategies
-- [../implementation/async_patterns.md](../implementation/async_patterns.md) - requestIdleCallback patterns
+- [../implementation/async_patterns.md](../implementation/async_patterns/raf-ric-microtask-and-posttask.md) - requestIdleCallback patterns
 
 ### External Documentation
 

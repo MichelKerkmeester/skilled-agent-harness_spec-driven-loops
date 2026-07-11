@@ -1,0 +1,25 @@
+{
+  "sessionId": "fanout-gpt56-sol-fast-high-1783806617661-0vtm5z",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P0","category":"traceability","status":"active","dimension":"traceability","title":"Completed packet fails its mandatory strict validation gate","file":".opencode/specs/sk-code/018-rust-standards-for-code-opencode/spec.md","line":54,"firstSeen":3,"lastSeen":7,"content_hash":"b531ad3f430ec190a76d7647a78d768c5dc0c125d7d4adeedaae2d71931a6751"},
+    {"findingId":"F002","severity":"P1","category":"maintainability","status":"active","dimension":"maintainability","title":"Reference splits left broken markdown links across shipped sk-code docs","file":".opencode/skills/sk-code/code-webflow/references/debugging/error_recovery.md","line":113,"firstSeen":4,"lastSeen":7,"content_hash":"02963188df5902490dc6e81b1eef5ba31472cca733b4d01811f3c1601ac34dcf"},
+    {"findingId":"F003","severity":"P1","category":"traceability","status":"active","dimension":"traceability","title":"Code-quality benchmark gold still names the deleted checklist path","file":".opencode/skills/sk-code/code-quality/manual_testing_playbook/quality-gate/quality-checklist.md","line":7,"firstSeen":5,"lastSeen":7,"content_hash":"bc6157eb07f77b26e96e3094c38fb1d87da7261d524284105a2e7c3539a64330"},
+    {"findingId":"F004","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"WS2 rollup overstates the number of generated parts","file":".opencode/specs/sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup/implementation-summary.md","line":39,"firstSeen":6,"lastSeen":7,"content_hash":"db2bb0a65d1db8e166cc70c2e3e7e95d96b11188fb91755babad6e781ed36ce2"}
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": ["F001","F002","F003","F004"],
+  "severityChanged": [],
+  "repeatedFindings": ["F001","F002","F003","F004"],
+  "dimensionCoverage": {"correctness":true,"security":true,"traceability":true,"maintainability":true},
+  "findingsBySeverity": {"P0":1,"P1":2,"P2":1},
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 1.0,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

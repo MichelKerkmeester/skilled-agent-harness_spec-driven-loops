@@ -47,7 +47,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-WS2 (007-011) split 33 oversized reference/asset docs into ~120 parts and rewired the router contract. The workstream is not done until the full deterministic gate is green, losslessness is independently verified, and the 018 parent is rolled up.
+WS2 (007-011) split 33 oversized reference/asset docs into 104 parts and rewired the router contract. The workstream is not done until the full deterministic gate is green, losslessness is independently verified, and the 018 parent is rolled up.
 
 ### Purpose
 Run the terminal gate, confirm zero oversized content references remain (exemptions aside), and roll up the parent.
