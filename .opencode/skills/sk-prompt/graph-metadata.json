@@ -8,7 +8,7 @@
     "enhances": [
       {
         "target": "cli-external",
-        "weight": 0.8,
+        "weight": 0.7,
         "context": "prompt quality card for both cli-external modes (cli-opencode, cli-claude-code), plus per-model prompt-craft profiles for cli-opencode's small-model executors: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek via opencode-go pool + Kimi-k2.7-code via the Kimi For Coding plan + MiniMax-M3 via the Token Plan + MiMo-V2.5-Pro via the Xiaomi Token Plan + GLM-5.2 via the Z.AI GLM Coding Plan (folded in from the dissolved sk-prompt-models identity). Repointed from separate cli-opencode/cli-claude-code edges after the cli-external parent-hub fold-in (packet 125-cli-external-parent)."
       }
     ],
