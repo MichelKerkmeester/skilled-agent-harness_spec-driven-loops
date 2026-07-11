@@ -7,7 +7,7 @@
 | Area | Files |
 |---|---|
 | Spec seed | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md` |
-| Feature catalog | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`, `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` |
+| Feature catalog | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`, `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md` |
 | Manual playbook | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`, scenarios 135-138 |
 | Implementation samples | `mcp_server/handlers/memory-search.ts`, `mcp_server/handlers/memory-save.ts`, `mcp_server/handlers/memory-crud-delete.ts`, `mcp_server/api/eval.ts`, `mcp_server/handlers/index.ts` |
 | Verifier dependency | `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py` |

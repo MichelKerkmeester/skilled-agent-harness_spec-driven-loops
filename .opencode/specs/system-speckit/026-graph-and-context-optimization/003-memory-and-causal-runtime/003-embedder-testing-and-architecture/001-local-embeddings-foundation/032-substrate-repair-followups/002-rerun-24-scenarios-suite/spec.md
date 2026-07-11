@@ -1,6 +1,6 @@
 ---
 title: "002 rerun-24-scenarios-suite (validate post-fix substrate)"
-description: "Re-run the full 15-scenario suite in `manual_testing_playbook/24--local-llm-query-intelligence/` after Wave 1 lands. Produce a real PASS/FAIL distribution against the post-fix substrate."
+description: "Re-run the full 15-scenario suite in `manual_testing_playbook/local-llm-query-intelligence/` after Wave 1 lands. Produce a real PASS/FAIL distribution against the post-fix substrate."
 trigger_phrases:
   - "rerun 24 scenarios suite post-032"
   - "post-fix substrate validation"
@@ -20,8 +20,8 @@ _memory:
       - "Spec Kit Memory MCP launcher fails with missing zod-to-json-schema"
       - "opencode-go/kimi-k2.6 provider route fails from sandbox"
     key_files:
-      - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md"
-      - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh"
+      - "_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md"
+      - "_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000322"
       session_id: "002-rerun-24-scenarios-suite"
@@ -49,7 +49,7 @@ _memory:
 | **Status** | Blocked |
 | **Level** | 2 |
 | **Executor** | cli-codex with external `cli-opencode` dispatch |
-| **Evidence** | `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md` |
+| **Evidence** | `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The post-fix memory substrate needs a real validation signal from the 15 scenario playbook in `manual_testing_playbook/24--local-llm-query-intelligence/`. Earlier runs were dominated by substrate-level save failures rather than meaningful query-quality results, so this packet exists to rerun the suite after governance and build fixes landed.
+The post-fix memory substrate needs a real validation signal from the 15 scenario playbook in `manual_testing_playbook/local-llm-query-intelligence/`. Earlier runs were dominated by substrate-level save failures rather than meaningful query-quality results, so this packet exists to rerun the suite after governance and build fixes landed.
 
 The purpose is to measure actual local-LLM memory behavior through OpenCode and `kimi-k2.6`, not to repair substrate bugs during the run.
 <!-- /ANCHOR:problem -->
@@ -71,8 +71,8 @@ The purpose is to measure actual local-LLM memory behavior through OpenCode and 
 
 - Execute scenarios 401-415 sequentially via `opencode run --pure -m opencode-go/kimi-k2.6 --variant high`.
 - Confirm preflight `memory_health` and a sample inline `memory_save` / `memory_delete` round-trip before running scenarios.
-- Capture per-scenario logs under `_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-032/`.
-- Write the final report at `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md`.
+- Capture per-scenario logs under `_sandbox/local-llm-query-intelligence/evidence/per-scenario-logs-post-032/`.
+- Write the final report at `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md`.
 - Maintain packet Level-2 docs and `graph-metadata.json` status.
 
 ### Out of Scope

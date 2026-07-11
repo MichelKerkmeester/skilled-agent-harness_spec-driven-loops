@@ -38,7 +38,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | `cli-opencode` dispatch (`openai/gpt-5.5-fast --variant medium --format json`); `skill_advisor.py` deterministic probe; sk-design's `mode-registry.json`/`hub-router.json` routing contract |
-| **Framework** | `manual_testing_playbook` `{PREFIX}-NNN` scenario contract (`03--transform-verb-framing/`) |
+| **Framework** | `manual_testing_playbook` `{PREFIX}-NNN` scenario contract (`transform-verb-framing/`) |
 | **Storage** | `/tmp/skd-TV00*-response.jsonl` (raw transcripts), this folder (graded evidence) |
 | **Testing** | Real dispatch + manual grading against each scenario's own Pass/Fail Criteria section (no automated harness for this phase) |
 

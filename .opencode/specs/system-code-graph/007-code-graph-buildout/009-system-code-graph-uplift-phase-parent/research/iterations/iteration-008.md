@@ -36,7 +36,7 @@ This matches the feature_catalog template contract (feature_catalog_template.md:
 
 **Finding 3: Per-feature files do not match playbook_feature contract**
 
-Sampled per-feature file (`01--read-path-freshness/01-ensure-code-graph-ready.md`):
+Sampled per-feature file (`read-path-freshness/01-ensure-code-graph-ready.md`):
 - Has frontmatter (01-ensure-code-graph-ready.md:1-8)
 - Has numbered H2 sections: OVERVIEW, CURRENT REALITY, SOURCE FILES, SOURCE METADATA (01-ensure-code-graph-ready.md:13, 19, 35, 55)
 - Uses ANCHOR comments (<!-- ANCHOR:overview -->, <!-- /ANCHOR:overview -->) (01-ensure-code-graph-ready.md:12, 16)
@@ -73,7 +73,7 @@ The playbook type in template_rules.json specifies:
 
 **Finding 6: Per-scenario files DO validate as playbook_feature type**
 
-Sampled per-scenario file (`01--read-path-freshness/ensure-ready-selective-reindex.md`):
+Sampled per-scenario file (`read-path-freshness/ensure-ready-selective-reindex.md`):
 - Has frontmatter with title, description, trigger_phrases, importance_tier (ensure-ready-selective-reindex.md:1-9)
 - Has required sections: OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES, SOURCE METADATA (ensure-ready-selective-reindex.md:12, 18, 30, 53, 62)
 - Has numbered H2 sections matching the playbook_feature contract

@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "manual_testing_playbook/manual_testing_playbook.md"
-      - "manual_testing_playbook/05--lifecycle/"
-      - "manual_testing_playbook/04--maintenance/"
+      - "manual_testing_playbook/lifecycle/"
+      - "manual_testing_playbook/maintenance/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-testing-playbook-update-packet-setup"
@@ -76,12 +76,12 @@ Add six new human-run `EX-###` scenarios in the existing playbook format: one fe
 Split-document feature-file pattern, additive. The master index (`manual_testing_playbook.md`) is the directory; each scenario's execution contract lives in a numbered feature file under `NN--category/`. New scenarios reuse the exact section structure of the validated `EX-014`/`EX-015` files so the playbook stays uniform.
 
 ### Key Components
-- **EX-037 (`05--lifecycle/`)**: checkpoint-v2 create→restore round-trip; `snapshot_format`/`snapshot_path`; restore-journal crash-safety; sharded `active_vec` case.
-- **EX-038 (`04--maintenance/`)**: schema v30 post-insert enrichment lifecycle; repair-on-replay; scan-lease backfill.
-- **EX-039 (`04--maintenance/`)**: index_scan phased-async (walk → commit-lexical → async drain); auto-reindex; packet-move reconciliation; active-row uniqueness (mig 28); repair counts.
-- **EX-040 (`14--pipeline-architecture/`)**: front-proxy RSS-recycle transparency; `SPECKIT_BACKEND_ONLY`; `-32002` fail-closed; `-32001` retryable-recycle.
-- **EX-041 (`16--tooling-and-scripts/`)**: sk-git `wt/{NNNN}-{name}` worktree-convention validation; `.worktrees/{NNNN}-{name}` layout; 4-digit max+1 numbering.
-- **EX-042 (`05--lifecycle/`)**: `.needs-rebuild` self-heal across boot, pre-scan, and scan-lease entry points.
+- **EX-037 (`lifecycle/`)**: checkpoint-v2 create→restore round-trip; `snapshot_format`/`snapshot_path`; restore-journal crash-safety; sharded `active_vec` case.
+- **EX-038 (`maintenance/`)**: schema v30 post-insert enrichment lifecycle; repair-on-replay; scan-lease backfill.
+- **EX-039 (`maintenance/`)**: index_scan phased-async (walk → commit-lexical → async drain); auto-reindex; packet-move reconciliation; active-row uniqueness (mig 28); repair counts.
+- **EX-040 (`pipeline-architecture/`)**: front-proxy RSS-recycle transparency; `SPECKIT_BACKEND_ONLY`; `-32002` fail-closed; `-32001` retryable-recycle.
+- **EX-041 (`tooling-and-scripts/`)**: sk-git `wt/{NNNN}-{name}` worktree-convention validation; `.worktrees/{NNNN}-{name}` layout; 4-digit max+1 numbering.
+- **EX-042 (`lifecycle/`)**: `.needs-rebuild` self-heal across boot, pre-scan, and scan-lease entry points.
 
 ### Data Flow
 Operator reads the master-index entry → opens the feature file → runs the documented prompt/commands → captures evidence → returns a PASS/FAIL verdict. No runtime or schema change; the playbook only describes how to exercise already-shipped behavior.
@@ -97,10 +97,10 @@ This packet is documentation-only, but it asserts behavioral facts about live su
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `manual_testing_playbook.md` `## 7` | EX scenario directory | update (add EX-037..EX-042 entries) | Entries link to the new feature files |
-| `05--lifecycle/050-*.md`, `051-*.md` | Checkpoint scenario files | create | Mirror EX-015 shape; cite checkpoints.ts |
-| `04--maintenance/039-*.md`, `040-*.md` | Maintenance scenario files | create | Mirror EX-014 shape; cite enrichment-state.ts / memory-index.ts |
-| `14--pipeline-architecture/258-*.md` | Front-proxy scenario file | create | Cite launcher-session-proxy.cjs; correct -32001/-32002 meaning |
-| `16--tooling-and-scripts/300-*.md` | sk-git scenario file | create | Cite sk-git SKILL.md worktree rule |
+| `lifecycle/050-*.md`, `051-*.md` | Checkpoint scenario files | create | Mirror EX-015 shape; cite checkpoints.ts |
+| `maintenance/039-*.md`, `040-*.md` | Maintenance scenario files | create | Mirror EX-014 shape; cite enrichment-state.ts / memory-index.ts |
+| `pipeline-architecture/258-*.md` | Front-proxy scenario file | create | Cite launcher-session-proxy.cjs; correct -32001/-32002 meaning |
+| `tooling-and-scripts/300-*.md` | sk-git scenario file | create | Cite sk-git SKILL.md worktree rule |
 | `lib/storage/checkpoints.ts` | Checkpoint v2 runtime | read-only reference | Anchors: `createCheckpointV2`, `restoreCheckpointV2`, `VACUUM ... INTO`, `NEEDS_REBUILD_SENTINEL_NAME` |
 | `lib/search/vector-index-schema.ts` | Schema v28-30 | read-only reference | Anchors: `SCHEMA_VERSION = 30`, mig 28/29/30 |
 | `.opencode/bin/lib/launcher-session-proxy.cjs` | Front-proxy | read-only reference | Anchors: `-32001` RETRYABLE_RECYCLE_ERROR, `-32002` PROTOCOL_MISMATCH_ERROR |
@@ -285,7 +285,7 @@ Full ADRs live in `decision-record.md`. Summary:
 
 **Consequences**:
 - Preserves every existing scenario ID and cross-reference.
-- Two checkpoint-related scenarios share the `05--lifecycle/` folder with the existing `EX-015`..`EX-018`.
+- Two checkpoint-related scenarios share the `lifecycle/` folder with the existing `EX-015`..`EX-018`.
 
 **Alternatives Rejected**:
-- A new top-level "013 roadmap" section: fragments checkpoint coverage away from the existing `05--lifecycle` checkpoint block.
+- A new top-level "013 roadmap" section: fragments checkpoint coverage away from the existing `lifecycle` checkpoint block.

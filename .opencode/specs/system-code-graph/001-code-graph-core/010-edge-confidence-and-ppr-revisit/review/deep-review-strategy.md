@@ -219,10 +219,10 @@ Prior context load was skipped for this review session (fresh review, no `memory
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | security/reliability | 3 | - | reviewed |
 | `.opencode/skills/system-code-graph/SKILL.md` | traceability/maintainability | 4 | - | reviewed |
 | `.opencode/skills/system-code-graph/README.md` | traceability/maintainability | 4 | - | reviewed |
-| `.opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/code-graph-context.md` | traceability/maintainability | 4 | P2-005 | advisory |
+| `.opencode/skills/system-code-graph/feature_catalog/context-retrieval/code-graph-context.md` | traceability/maintainability | 4 | P2-005 | advisory |
 | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` | traceability/maintainability | 4 | P2-005 | advisory |
 | `.opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md` | traceability/maintainability | 4 | P2-005 | advisory |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/04--context-retrieval/code-graph-context-readiness-block.md` | traceability/maintainability | 4 | P2-005 | advisory |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/context-retrieval/code-graph-context-readiness-block.md` | traceability/maintainability | 4 | P2-005 | advisory |
 | `.opencode/agents/deep-review.md` | agent_cross_runtime | 4 | - | reviewed |
 <!-- MACHINE-OWNED: END -->
 

@@ -131,7 +131,7 @@ After this phase, a successful build yields a fresh verdict in the same session,
 | .opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts | Modify | Surface skip reason; record last-fallback status; warning suppression in spawn |
 | .opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts | Modify | Expose last-fallback status |
 | .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts | Modify | content_text column fix; sampled labels; mismatchedIds cap; last-scan without runtime; maintenance lastRun |
-| .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/dist-freshness-enforcement.md | Modify | Exit 69→actual taxonomy; hash-cache paragraph rewrite ("never pre-warmed" becomes false) |
+| .opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/dist-freshness-enforcement.md | Modify | Exit 69→actual taxonomy; hash-cache paragraph rewrite ("never pre-warmed" becomes false) |
 | .opencode/skills/system-spec-kit/mcp_server/tests/dist-freshness.vitest.ts | Modify | Deadlock-bootstrap regression test |
 | .opencode/skills/system-spec-kit/scripts/spec/validate.sh (+ scripts/validation/continuity-freshness.ts chain) | Modify | Verify + fix CONTINUITY_FRESHNESS spec-doc-structure.js import |
 | Daemon launcher (locate via `rg -n "backoff|respawn|restart" .opencode/skills/system-spec-kit/mcp_server`) | Modify | Backoff cap for crash-loop mitigation |

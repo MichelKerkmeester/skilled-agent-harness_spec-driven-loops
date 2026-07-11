@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Finalize the remaining 009 remediation phases"
     blockers: []
     key_files:
-      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md"
+      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/loop-lock.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "adversarial-playbook-scenarios-2026-06-29"
@@ -91,9 +91,9 @@ A reviewer runs the named test, requires EXIT 0, confirms the named assertion st
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `04--state-safety/*.md` (5 files) | Feature validation scenarios. | Add five adversarial sections. | `validate_document.py`; deep-loop-runtime suite. |
-| `09--fanout/fanout-salvage-recovery.md` | Salvage feature scenario. | Add the exit-0/no-artifact adversarial section. | `validate_document.py`; fanout-run vitest. |
-| `02--cli-hooks-and-plugin/goal-opencode-plugin.md` | Goal-plugin scenario. | Add two adversarial sections (revival, injection clamp). | `validate_document.py`; goal-plugin node tests. |
+| `state-safety/*.md` (5 files) | Feature validation scenarios. | Add five adversarial sections. | `validate_document.py`; deep-loop-runtime suite. |
+| `fanout/fanout-salvage-recovery.md` | Salvage feature scenario. | Add the exit-0/no-artifact adversarial section. | `validate_document.py`; fanout-run vitest. |
+| `cli-hooks-and-plugin/goal-opencode-plugin.md` | Goal-plugin scenario. | Add two adversarial sections (revival, injection clamp). | `validate_document.py`; goal-plugin node tests. |
 
 Required inventories:
 - Cluster-to-test mapping confirmed by reading each regression test for the named assertion.

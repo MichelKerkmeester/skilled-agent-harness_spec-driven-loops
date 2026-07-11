@@ -91,7 +91,7 @@ Make broad-scope scans usable by either (a) eliminating the parser crash at the 
 | `mcp_server/code_graph/handlers/scan.ts` | Modify | Surface parser-error rate in scan response |
 | `mcp_server/code_graph/handlers/status.ts` | Modify | Expose skip-list size + last-seen cohort in status |
 | `mcp_server/code_graph/tests/parser-skip-list.vitest.ts` | Create | Unit + integration coverage for skip-list policy |
-| `manual_testing_playbook/02--manual-scan-verify-status/` | Modify | Add scenario for broad-scope scan with skip-list verification |
+| `manual_testing_playbook/manual-scan-verify-status/` | Modify | Add scenario for broad-scope scan with skip-list verification |
 <!-- /ANCHOR:scope -->
 
 ---

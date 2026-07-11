@@ -51,9 +51,9 @@ The stale SC-004/SC-005 scenarios, the feature-catalog attribution doc, and a st
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.../08--scorer-fusion/004-lane-attribution.md` | Modify | Expect shadowOnly:false |
-| `.../08--scorer-fusion/005-ablation.md` | Modify | Non-zero ablation lane |
-| `.../feature_catalog/04--scorer-fusion/04-attribution.md` | Modify | Match the live lane |
+| `.../scorer-fusion/004-lane-attribution.md` | Modify | Expect shadowOnly:false |
+| `.../scorer-fusion/005-ablation.md` | Modify | Non-zero ablation lane |
+| `.../feature_catalog/scorer-fusion/04-attribution.md` | Modify | Match the live lane |
 | `.../lib/scorer/lanes/semantic-shadow.ts` | Modify | Rewrote stale comment / clarified the raw shadowOnly flag |
 <!-- /ANCHOR:what-built -->
 

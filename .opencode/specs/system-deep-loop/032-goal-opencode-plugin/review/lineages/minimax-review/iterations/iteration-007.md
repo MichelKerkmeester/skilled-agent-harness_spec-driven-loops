@@ -4,9 +4,9 @@
 
 - Dimension: traceability (overlay: feature_catalog_code)
 - Goal: compare the two feature-catalog rows for the goal plugin
-  (`.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md`
+  (`.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md`
   and
-  `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md`)
+  `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md`)
   against the on-disk shipped surface (`mk-goal.js` GOAL_ACTIONS,
   test files, command verbs).
 
@@ -28,9 +28,9 @@ None.
 
 - **F024 — Both feature catalogs list 7 of 8 goal-related test files;
   `speckit-goal-offer-contract.test.cjs` is missing from BOTH** —
-  `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md:58-64`
+  `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md:58-64`
   and
-  `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:61-67`
+  `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:61-67`
   enumerate 7 test files each. The on-disk test directory has
   8 goal-related cjs files
   (`.opencode/plugins/tests/`); the missing one is
@@ -55,10 +55,10 @@ None.
   system-spec-kit's description matches the file's actual coverage
   better than system-skill-advisor's** —
   system-spec-kit
-  (`feature_catalog/18--ux-hooks/goal-opencode-plugin.md:58`) says
+  (`feature_catalog/ux-hooks/goal-opencode-plugin.md:58`) says
   "State, generated prompt fields, injection, caps, and
   sanitization." system-skill-advisor
-  (`feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:61`)
+  (`feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:61`)
   says "Session-keyed persistence, tool output and passive
   injection". The system-spec-kit description covers 5 of 21 tests
   in the file (per the test count at
@@ -91,8 +91,8 @@ None.
   remediation is now redundant.
   - Category: traceability
   - Source evidence: dossier §D DOC-2;
-    feature_catalog/18--ux-hooks/goal-opencode-plugin.md:60;
-    feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:62.
+    feature_catalog/ux-hooks/goal-opencode-plugin.md:60;
+    feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:62.
   - Affected surface hints: `["audit dossier DOC-2",
     "phase 015 REQ-010 (redundant after live state)"]`
 
@@ -137,16 +137,16 @@ None.
 
 Iteration 008: playbook_capability overlay — verify the two manual
 testing playbook rows
-(`manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`
+(`manual_testing_playbook/ux-hooks/goal-opencode-plugin.md`
 and
-`manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md`)
+`manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md`)
 describe executable scenarios that match the shipped plugin surface.
 
 ## Claim Adjudication
 
 ```json
-{"findingId":"F024","claim":"Both feature catalogs list 7 of 8 goal-related test files; speckit-goal-offer-contract.test.cjs is missing from BOTH.","evidenceRefs":[".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md:58-64",".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:61-67",".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"],"counterevidenceSought":"Re-grepped both catalog files for 'speckit' or 'speckit-goal-offer-contract'; not present. Re-ran ls on tests/; 8 goal-related files confirmed.","alternativeExplanation":"Could be that the speckit-goal-offer-contract test is intentionally excluded because it's a contract test for a system-spec-kit integration, not a goal-plugin behavior test; but other contract-style tests (export-contract) ARE listed.","finalSeverity":"P1","confidence":0.85,"downgradeTrigger":"If the operator considers the speckit-goal-offer-contract test out of scope for the goal-plugin feature catalog, downgrade to P2."}
-{"findingId":"F025","claim":"The two feature-catalog rows describe mk-goal-state.test.cjs with different scopes; system-spec-kit's description matches the file's actual coverage better than system-skill-advisor's.","evidenceRefs":[".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md:58",".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:61",".opencode/plugins/tests/mk-goal-state.test.cjs:515 lines, 21 tests"],"counterevidenceSought":"Re-read both catalog descriptions; confirmed the scope difference. Re-counted tests in mk-goal-state.test.cjs (21).","alternativeExplanation":"Could be that the system-skill-advisor catalog intentionally describes the test at a higher level (less detail) for skill-advisor context; but the convention is per-test-file detailed descriptions.","finalSeverity":"P1","confidence":0.8,"downgradeTrigger":"If the system-skill-advisor catalog intentionally uses less-detailed descriptions, downgrade to P2."}
+{"findingId":"F024","claim":"Both feature catalogs list 7 of 8 goal-related test files; speckit-goal-offer-contract.test.cjs is missing from BOTH.","evidenceRefs":[".opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md:58-64",".opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:61-67",".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"],"counterevidenceSought":"Re-grepped both catalog files for 'speckit' or 'speckit-goal-offer-contract'; not present. Re-ran ls on tests/; 8 goal-related files confirmed.","alternativeExplanation":"Could be that the speckit-goal-offer-contract test is intentionally excluded because it's a contract test for a system-spec-kit integration, not a goal-plugin behavior test; but other contract-style tests (export-contract) ARE listed.","finalSeverity":"P1","confidence":0.85,"downgradeTrigger":"If the operator considers the speckit-goal-offer-contract test out of scope for the goal-plugin feature catalog, downgrade to P2."}
+{"findingId":"F025","claim":"The two feature-catalog rows describe mk-goal-state.test.cjs with different scopes; system-spec-kit's description matches the file's actual coverage better than system-skill-advisor's.","evidenceRefs":[".opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md:58",".opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:61",".opencode/plugins/tests/mk-goal-state.test.cjs:515 lines, 21 tests"],"counterevidenceSought":"Re-read both catalog descriptions; confirmed the scope difference. Re-counted tests in mk-goal-state.test.cjs (21).","alternativeExplanation":"Could be that the system-skill-advisor catalog intentionally describes the test at a higher level (less detail) for skill-advisor context; but the convention is per-test-file detailed descriptions.","finalSeverity":"P1","confidence":0.8,"downgradeTrigger":"If the system-skill-advisor catalog intentionally uses less-detailed descriptions, downgrade to P2."}
 ```
 
 Review verdict: CONDITIONAL

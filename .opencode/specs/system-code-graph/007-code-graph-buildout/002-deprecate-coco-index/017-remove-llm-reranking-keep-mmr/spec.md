@@ -84,7 +84,7 @@ Permanently align live code, tests, and operator docs to the MMR-only Stage 3 re
 
 ### Out of Scope
 - Historical benchmark records under `mcp_server/benchmarks/**`, because they are frozen historical records.
-- `feature_catalog/16--tooling-and-scripts/04-dead-code-removal.md`, because it is a historical cleanup record.
+- `feature_catalog/tooling-and-scripts/04-dead-code-removal.md`, because it is a historical cleanup record.
 - `references/memory/embedder_pluggability.md:156` Path A rejection rationale, because it records decision history.
 - Already-correct "REMOVED in 014" notices in `SKILL.md` and `references/memory/embedder_architecture.md`.
 - Session-health `QualityScore`, because it is a different four-factor score: recency, recovery, graphFreshness, and continuity.

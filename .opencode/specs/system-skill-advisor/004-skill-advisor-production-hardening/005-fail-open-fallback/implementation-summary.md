@@ -114,9 +114,9 @@ The 008/008 packet now uses the runtime `skill_advisor` path spelling, carries f
 | `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/checklist.md` | Modified | Add resolvable evidence anchors and validation status. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/decision-record.md` | Modified | Add child ADRs for the remediated sub-tracks. |
 | `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/implementation-summary.md` | Modified | Fix lane weight and promotion-gate traceability. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md` | Modified | Add untrusted scan negative case. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/01-five-lane-fusion.md` | Modified | Align derived_generated lane weight at 0.15. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/04--scorer-fusion/06-weights-config.md` | Modified | Document registry-derived lane weights. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/operator-h5/003-unavailable-daemon.md` | Modified | Add untrusted scan negative case. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/scorer-fusion/01-five-lane-fusion.md` | Modified | Align derived_generated lane weight at 0.15. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/scorer-fusion/06-weights-config.md` | Modified | Document registry-derived lane weights. |
 <!-- /ANCHOR:what-built -->
 
 ---

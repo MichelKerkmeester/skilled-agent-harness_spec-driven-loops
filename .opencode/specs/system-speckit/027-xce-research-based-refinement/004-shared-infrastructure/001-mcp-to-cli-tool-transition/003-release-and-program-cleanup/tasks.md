@@ -98,7 +98,7 @@ _memory:
 
 - [x] T070 [P] IN-FLIGHT reconcile: system-spec-kit feature catalog section(s) for the `spec-memory` CLI + playbook rows incl. 028 CLI stress scenarios; bump the playbook's hand-maintained file-count self-check and big-table index (`.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`)
 - [x] T071 [P] IN-FLIGHT reconcile: system-code-graph catalog + playbook rows for the `code-index` CLI and bridge repair (`.opencode/skills/system-code-graph/feature_catalog/`, `.opencode/skills/system-code-graph/manual_testing_playbook/`)
-- [x] T072 [P] IN-FLIGHT reconcile: system-skill-advisor catalog + playbook rows — `02--cli-hooks-and-plugin/` scenarios already exist; verify coverage incl. trust gate + dual-failure stress rows (`.opencode/skills/system-skill-advisor/feature_catalog/`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/`)
+- [x] T072 [P] IN-FLIGHT reconcile: system-skill-advisor catalog + playbook rows — `cli-hooks-and-plugin/` scenarios already exist; verify coverage incl. trust gate + dual-failure stress rows (`.opencode/skills/system-skill-advisor/feature_catalog/`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/`)
 
 ### Group (h) — Changelog
 

@@ -184,11 +184,11 @@ Define a complete, reproducible, future-run-ready full-matrix stress test for sy
 
 The root feature catalog says it is the canonical inventory for current runtime behavior and delivered refinements (`feature_catalog.md:142`, `:144`). It also records active category entries and audit totals in the hundreds (`feature_catalog.md:67`, `:69`, `:107`, `:109`). The manual playbook requires real execution, not mock-only claims, and defines the evidence shape for realistic user-driven tests (`manual_testing_playbook.md:9`, `:177`, `:184`, `:205`, `:213`).
 
-The folder inventory found 23 category directories when counting the duplicate `14--pipeline-architecture` and `14--stress-testing` roots separately, plus a `.github` support folder. That means the user's "00-14" shorthand is not the current on-disk category boundary; this design maps that larger current inventory into the requested F1-F14 stress categories rather than pretending the catalog stops at 14.
+The folder inventory found 23 category directories when counting the duplicate `pipeline-architecture` and `stress-testing` roots separately, plus a `.github` support folder. That means the user's "00-14" shorthand is not the current on-disk category boundary; this design maps that larger current inventory into the requested F1-F14 stress categories rather than pretending the catalog stops at 14.
 
 ### Stress-Test Pattern Evidence
 
-The stress-test feature catalog defines a cycle as a frozen corpus, executed cells, evidence, dimension scores, narrative findings, and machine-readable rubric sidecar (`feature_catalog/14--stress-testing/01-stress-test-cycle.md:11`, `:38`, `:49`, `:51`, `:57`). It also defines the verdict ladder and requires Hunter -> Skeptic -> Referee for every REGRESSION (`feature_catalog/14--stress-testing/01-stress-test-cycle.md:59`, `:68`). The manual playbook adds freeze, score, sidecar, aggregate, comparison, telemetry, and strict validator steps (`manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md:29`, `:45`, `:71`, `:85`, `:98`, `:109`, `:117`).
+The stress-test feature catalog defines a cycle as a frozen corpus, executed cells, evidence, dimension scores, narrative findings, and machine-readable rubric sidecar (`feature_catalog/stress-testing/01-stress-test-cycle.md:11`, `:38`, `:49`, `:51`, `:57`). It also defines the verdict ladder and requires Hunter -> Skeptic -> Referee for every REGRESSION (`feature_catalog/stress-testing/01-stress-test-cycle.md:59`, `:68`). The manual playbook adds freeze, score, sidecar, aggregate, comparison, telemetry, and strict validator steps (`manual_testing_playbook/stress-testing/01-run-stress-cycle.md:29`, `:45`, `:71`, `:85`, `:98`, `:109`, `:117`).
 
 ### Current Harness Evidence
 
@@ -207,19 +207,19 @@ Today's main branch commits include the stress pattern docs, embedding-readiness
 
 | Feature | Surface | Existing Evidence | Scenario Families |
 |---------|---------|-------------------|-------------------|
-| F1 | Spec-folder workflow | Gate 3 classifier tokens (`shared/gate-3-classifier.ts:68`, `:88`), canonical continuity substrate (`13--memory-quality-and-indexing/27-canonical-continuity-save-substrate.md:17`, `:29`) | create/level-routing, strict validation, continuity frontmatter |
+| F1 | Spec-folder workflow | Gate 3 classifier tokens (`shared/gate-3-classifier.ts:68`, `:88`), canonical continuity substrate (`memory-quality-and-indexing/27-canonical-continuity-save-substrate.md:17`, `:29`) | create/level-routing, strict validation, continuity frontmatter |
 | F2 | Skill advisor + skill graph | Native tools and 5-lane fusion (`skill_advisor/README.md:42`, `:47`, `:135`, `:147`) | exact routing, ambiguous routing, stale/disabled fail-open |
-| F3 | `memory_search` | Hybrid pipeline, wide parameter surface, response policy (`01--retrieval/02-semantic-and-lexical-search-memorysearch.md:20`, `:32`) | semantic/hybrid, multi-concept, refusal/envelope |
-| F4 | `memory_context` | Intent routing, modes, token budget, session transition (`01--retrieval/01-unified-context-retrieval-memorycontext.md:19`, `:29`) | mode routing, pressure/budget, resume/session |
+| F3 | `memory_search` | Hybrid pipeline, wide parameter surface, response policy (`retrieval/02-semantic-and-lexical-search-memorysearch.md:20`, `:32`) | semantic/hybrid, multi-concept, refusal/envelope |
+| F4 | `memory_context` | Intent routing, modes, token budget, session transition (`retrieval/01-unified-context-retrieval-memorycontext.md:19`, `:29`) | mode routing, pressure/budget, resume/session |
 | F5 | `code_graph_query` | Query/status/context tools and fallback decision (`22--context-preservation-and-code-graph/08-code-graph-storage-query.md:11`, `:14`) | outline/calls/imports, blocked full-scan, degraded readiness |
 | F6 | `code_graph_scan` / verify | Scan handler and readiness/status tests (`22--context-preservation-and-code-graph/08-code-graph-storage-query.md:29`, `:40`) | incremental scan, full scan, gold battery verify |
-| F7 | Causal graph | Six relations, stats, balance metrics (`06--analysis/01-causal-edge-creation-memorycausallink.md:19`, `:25`; `06--analysis/02-causal-graph-statistics-memorycausalstats.md:19`, `:25`) | link/unlink/stats, relation balance, deltaByRelation |
+| F7 | Causal graph | Six relations, stats, balance metrics (`analysis/01-causal-edge-creation-memorycausallink.md:19`, `:25`; `analysis/02-causal-graph-statistics-memorycausalstats.md:19`, `:25`) | link/unlink/stats, relation balance, deltaByRelation |
 | F8 | CocoIndex search | Semantic search skill and bridge metadata (`mcp-coco-index/SKILL.md:12`, `:22`, `:34`; `22--context-preservation-and-code-graph/09-cocoindex-bridge-context.md:13`) | semantic code search, missing index, calibration/fidelity |
-| F9 | Continuity / generate-context | Save routing, metadata refresh, resume ladder (`13--memory-quality-and-indexing/27-canonical-continuity-save-substrate.md:19`, `:29`, `:41`, `:47`) | canonical save, indexing, description/graph refresh |
+| F9 | Continuity / generate-context | Save routing, metadata refresh, resume ladder (`memory-quality-and-indexing/27-canonical-continuity-save-substrate.md:19`, `:29`, `:41`, `:47`) | canonical save, indexing, description/graph refresh |
 | F10 | Deep-research / deep-review | Command-owned loops and executor invariants (`sk-deep-research/SKILL.md:47`, `:65`, `:94`, `:120`; `sk-deep-review/SKILL.md:44`, `:61`, `:91`, `:117`) | externalized state, convergence, flat-first artifacts |
 | F11 | Hooks | Runtime matrix and shared fail-open behavior (`references/hooks/skill-advisor-hook.md:55`, `:64`, `:76`, `:85`) | advisor hook, Gate 3 classifier, session stop/precompact |
-| F12 | Validators | Spec-doc validator rules (`13--memory-quality-and-indexing/26-spec-doc-structure-validator.md:17`, `:25`) | frontmatter block, anchor lint, strict validator |
-| F13 | Stress-test cycle pattern | Rubric, sidecar, verdict ladder (`14--stress-testing/01-stress-test-cycle.md:40`, `:49`, `:55`, `:68`) | meta-cycle compliance, honest verdicts, regression review |
+| F12 | Validators | Spec-doc validator rules (`memory-quality-and-indexing/26-spec-doc-structure-validator.md:17`, `:25`) | frontmatter block, anchor lint, strict validator |
+| F13 | Stress-test cycle pattern | Rubric, sidecar, verdict ladder (`stress-testing/01-stress-test-cycle.md:40`, `:49`, `:55`, `:68`) | meta-cycle compliance, honest verdicts, regression review |
 | F14 | Search W3-W13 features | Phase F recommended W8-W13 and packet 029 reports W3-W13 verdicts (`020-enterprise-readiness-verification-expansion-research/research/research-report.md:64`, `:66`; `029-clean-infrastructure-stress-test/findings-v1-0-4.md:87`, `:99`) | trust tree, rerank, shadow, calibration, readiness, audit/SLA |
 
 ---

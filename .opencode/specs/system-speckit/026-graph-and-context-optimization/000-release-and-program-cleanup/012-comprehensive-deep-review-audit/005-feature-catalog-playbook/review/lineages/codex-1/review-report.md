@@ -22,12 +22,12 @@ Route to remediation planning because active P1 findings remain. The immediate w
 
 | ID | Severity | Finding | Evidence |
 |---|---|---|---|
-| P1-001 | P1 | Catalog master overstates feature annotation coverage versus the dedicated feature leaf. | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946`, `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26` |
+| P1-001 | P1 | Catalog master overstates feature annotation coverage versus the dedicated feature leaf. | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946`, `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md:26` |
 | P1-002 | P1 | MCP tool count is 37 in catalog/live schema but 36 in README and one test. | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:48`, `.opencode/skills/system-spec-kit/README.md:45`, `.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:117` |
 | P1-003 | P1 | Root playbook release gate expects 380 scenario files; current documented glob counts 384. | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:140`, `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:166` |
-| P1-004 | P1 | Five playbook scenario files link to missing catalog targets. | `.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md:55`, plus four more cited in iteration 003 |
-| P1-005 | P1 | Scenario 136's dedicated feature file has malformed executable validation prose. | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:18` |
-| P1-006 | P1 | Local-LLM catalog category points to stale implementation paths. | `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:40`, `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:468` |
+| P1-004 | P1 | Five playbook scenario files link to missing catalog targets. | `.opencode/skills/system-spec-kit/manual_testing_playbook/mutation/feature-09-direct-manual-scenario-per-memory-history-log.md:55`, plus four more cited in iteration 003 |
+| P1-005 | P1 | Scenario 136's dedicated feature file has malformed executable validation prose. | `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md:18` |
+| P1-006 | P1 | Local-LLM catalog category points to stale implementation paths. | `.opencode/skills/system-spec-kit/feature_catalog/local-llm-query-intelligence/category-overview.md:40`, `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:468` |
 
 ## Remediation Workstreams
 

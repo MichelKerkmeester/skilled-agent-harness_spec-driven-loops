@@ -67,13 +67,13 @@ Discovery enumerated the package via the phase glob and `rg --files`. The packet
 
 | File | Fix |
 |------|-----|
-| 14--stress-testing/run-stress-cycle.md | `mcp_server/tests/search-quality/corpus.ts` to `mcp_server/stress_test/search-quality/corpus.ts` (file moved) |
-| 16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md | `matrix-definition.json` to `matrix-manifest.json` (renamed) |
-| 16--tooling-and-scripts/debug-delegation-scaffold-generator.md | `spec_kit_implement_auto.yaml` / `spec_kit_complete_auto.yaml` to `speckit_*` (3 occurrences, renamed) |
-| 01--retrieval/unified-context-retrieval-memory-context.md | `handlers/memory/context.ts` to `handlers/memory-context.ts` |
-| 22--context-preservation/query-intent-routing.md | `handlers/memory/context.ts` to `handlers/memory-context.ts` |
-| 18--ux-hooks/A,B,C,E--comment-hygiene-*.md | `119-comment-ref-hygiene` to `z_archive/119-comment-ref-hygiene` (6 refs, folder archived) |
-| 02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md | feature-file-path metadata to `02--mutation/per-memory-history-log.md` (matched the section-4 link) |
+| stress-testing/run-stress-cycle.md | `mcp_server/tests/search-quality/corpus.ts` to `mcp_server/stress_test/search-quality/corpus.ts` (file moved) |
+| tooling-and-scripts/cli-matrix-adapter-runner-smoke.md | `matrix-definition.json` to `matrix-manifest.json` (renamed) |
+| tooling-and-scripts/debug-delegation-scaffold-generator.md | `spec_kit_implement_auto.yaml` / `spec_kit_complete_auto.yaml` to `speckit_*` (3 occurrences, renamed) |
+| retrieval/unified-context-retrieval-memory-context.md | `handlers/memory/context.ts` to `handlers/memory-context.ts` |
+| context-preservation/query-intent-routing.md | `handlers/memory/context.ts` to `handlers/memory-context.ts` |
+| ux-hooks/A,B,C,E--comment-hygiene-*.md | `119-comment-ref-hygiene` to `z_archive/119-comment-ref-hygiene` (6 refs, folder archived) |
+| mutation/feature-09-direct-manual-scenario-per-memory-history-log.md | feature-file-path metadata to `mutation/per-memory-history-log.md` (matched the section-4 link) |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -35,7 +35,7 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 | .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
 
 ---

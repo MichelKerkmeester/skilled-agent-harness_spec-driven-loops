@@ -16,7 +16,7 @@ Should iteration 10 sweep the distinct non-README doc classes requested by the s
 
 ### P2 - Goal-plugin manual playbooks do not validate the new `store_health` and `/goal set` `mutation=` output fields
 
-The final doc-class sweep found the goal-plugin manual playbooks are still correct about the command file and plugin-tool routing, but their pass criteria stop before the new output fields added by the current source. The system-spec-kit playbook asks operators to verify `STATUS=OK`, active status, `goal_prompt` metadata, prompt framework/max chars, and injection preview at `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md:34`, and it captures `/goal show` or Node transcripts at lines 50 and 59. The system-skill-advisor playbook asks only that `mk_goal_status` includes `injection_preview=` at `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md:61`.
+The final doc-class sweep found the goal-plugin manual playbooks are still correct about the command file and plugin-tool routing, but their pass criteria stop before the new output fields added by the current source. The system-spec-kit playbook asks operators to verify `STATUS=OK`, active status, `goal_prompt` metadata, prompt framework/max chars, and injection preview at `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md:34`, and it captures `/goal show` or Node transcripts at lines 50 and 59. The system-skill-advisor playbook asks only that `mk_goal_status` includes `injection_preview=` at `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md:61`.
 
 Current source emits the additional status surface: `store_health` is produced by `goalStateLines()` at `.opencode/plugins/mk-goal.js:1602-1646`, and `/goal set` returns `mutation=created|refreshed|replaced` at `.opencode/plugins/mk-goal.js:1674-1675`. The playbooks are not contradicted by source, but they are stale as validation surfaces because a manual validation can pass without checking these newly documented output fields.
 
@@ -28,9 +28,9 @@ This was known from earlier iterations and remains open after the final non-READ
 
 ### Ruled Out - No additional `feature_catalog/` or `manual_testing_playbook/` goal-plugin entries outside the two updated skills
 
-The path-scoped sweep across all `.opencode/skills/**/feature_catalog/**/*.md` and `.opencode/skills/**/manual_testing_playbook/**/*.md` found goal-plugin entries only under `system-spec-kit` and `system-skill-advisor`, plus the expected cross-runtime fallback entry. The relevant catalog entries point to `.opencode/commands/goal_opencode.md` and `.opencode/plugins/mk-goal.js` accurately, including `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md:35`, `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md:47-50`, `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:27`, and `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:49-50`.
+The path-scoped sweep across all `.opencode/skills/**/feature_catalog/**/*.md` and `.opencode/skills/**/manual_testing_playbook/**/*.md` found goal-plugin entries only under `system-spec-kit` and `system-skill-advisor`, plus the expected cross-runtime fallback entry. The relevant catalog entries point to `.opencode/commands/goal_opencode.md` and `.opencode/plugins/mk-goal.js` accurately, including `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md:35`, `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md:47-50`, `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:27`, and `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:49-50`.
 
-The system-skill-advisor catalog also correctly states that `usage_limited` is a supported goal state at `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:35`, which aligns with `recordProviderUsageLimit()` in source at `.opencode/plugins/mk-goal.js:1354`.
+The system-skill-advisor catalog also correctly states that `usage_limited` is a supported goal state at `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:35`, which aligns with `recordProviderUsageLimit()` in source at `.opencode/plugins/mk-goal.js:1354`.
 
 ### Ruled Out - No constitutional goal-plugin references outside `goal-prompting-runtime-specific.md`
 
@@ -40,7 +40,7 @@ No other constitutional file in that directory mentioned `mk-goal.js`, `/goal`, 
 
 ### Ruled Out - No live markdown claims that `usage_limited` is dead/unimplemented or goal state never gets cleaned up
 
-The final negative sweep did not find a current live markdown claim that `usage_limited` is dead/unimplemented or that goal-state files never get cleaned up. The live goal-specific catalog entry instead says `usage_limited` is supported at `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:35`, and source confirms `recordProviderUsageLimit()` at `.opencode/plugins/mk-goal.js:1354`.
+The final negative sweep did not find a current live markdown claim that `usage_limited` is dead/unimplemented or that goal-state files never get cleaned up. The live goal-specific catalog entry instead says `usage_limited` is supported at `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:35`, and source confirms `recordProviderUsageLimit()` at `.opencode/plugins/mk-goal.js:1354`.
 
 ## SESSION SUMMARY OF OPEN ITEMS
 

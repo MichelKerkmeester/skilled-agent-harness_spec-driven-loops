@@ -49,7 +49,7 @@ _memory:
   - **Evidence**: Phase 008 closed 2026-07-06 per its `implementation-summary.md`; the six README edits land as part of the same packet session after that closure, confirmed via `git diff` scope review (CHK-030).
 - [x] CHK-004 [P0] [EVIDENCE: logic-sync review] Logic-sync conflicts between this plan's cited counts and the live tree are escalated before writing
   - **Evidence required**: Any conflict between this spec's counts (procedure-card counts, playbook scenario counts) and the live tree is reported with the prevailing truth decision.
-  - **Evidence**: No conflict found. Live counts match `spec.md`'s cited figures exactly: 6/3/1/2/1 procedure cards for interface/foundations/motion/audit/md-generator, and 10 `MOTION-*` scenarios across 6 categories (including `06--advanced-craft`) in `design-motion/manual_testing_playbook/manual_testing_playbook.md`.
+  - **Evidence**: No conflict found. Live counts match `spec.md`'s cited figures exactly: 6/3/1/2/1 procedure cards for interface/foundations/motion/audit/md-generator, and 10 `MOTION-*` scenarios across 6 categories (including `advanced-craft`) in `design-motion/manual_testing_playbook/manual_testing_playbook.md`.
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -68,7 +68,7 @@ _memory:
   - **Evidence**: All five confirmed via `grep -n "procedures/"` against each mode README: `design-interface/README.md` lines 108/182 (6 cards named), `design-foundations/README.md` lines 96/150 (3 cards), `design-motion/README.md` lines 56/112 (1 card), `design-audit/README.md` lines 81/128 (2 cards), `design-md-generator/README.md` lines 123/239 (1 card).
 - [x] CHK-013 [P1] [EVIDENCE: design-motion/README.md VERIFICATION] `design-motion/README.md`'s scenario count and category list match the live playbook
   - **Evidence required**: The VERIFICATION section's scenario count and category names match `design-motion/manual_testing_playbook/manual_testing_playbook.md` Section 1 exactly.
-  - **Evidence**: `design-motion/README.md` line 94 states "Ten scenarios across `01--strategy`, `02--presence`, `03--reduced-motion`, `04--micro-interactions`, `05--decision` and `06--advanced-craft` categories"; the live playbook's Section 1 overview table lists exactly 10 `MOTION-*` rows across those 6 categories.
+  - **Evidence**: `design-motion/README.md` line 94 states "Ten scenarios across `strategy`, `presence`, `reduced-motion`, `micro-interactions`, `decision` and `advanced-craft` categories"; the live playbook's Section 1 overview table lists exactly 10 `MOTION-*` rows across those 6 categories.
 - [x] CHK-014 [P1] [EVIDENCE: design-md-generator/README.md frontmatter] `design-md-generator/README.md` carries a frontmatter block matching sibling convention
   - **Evidence required**: `title`, `description`, `trigger_phrases`, and `version` fields exist, with `trigger_phrases` sourced from `mode-registry.json`'s `md-generator` `aliases`.
   - **Evidence**: `design-md-generator/README.md` lines 1-9 carry the frontmatter block; all 5 `trigger_phrases` ("extract design system", "generate design.md", "capture website css", "design tokens from url", "validate design.md") are a verified subset of `mode-registry.json` line 127's `md-generator` `aliases` array.

@@ -51,7 +51,7 @@ Every one of phase 014's 6 confirmed drift clusters is now patched to match curr
 
 ### Cluster 1 — cli-opencode direct `ai-council` dispatch
 
-`SKILL.md` (lines ~31, ~285), `README.md` (lines 76, 164), `assets/prompt_templates.md` Template 10, `manual_testing_playbook.md`'s CO-017 entry, and its linked feature file `04--agent-routing/multi-ai-council-multi-strategy.md` all previously instructed direct `--agent ai-council` dispatch. All now route through `--agent orchestrate` with an ai-council-shaped prompt, or `/deep:ai-council`, matching the already-correct `references/agent_delegation.md`.
+`SKILL.md` (lines ~31, ~285), `README.md` (lines 76, 164), `assets/prompt_templates.md` Template 10, `manual_testing_playbook.md`'s CO-017 entry, and its linked feature file `agent-routing/multi-ai-council-multi-strategy.md` all previously instructed direct `--agent ai-council` dispatch. All now route through `--agent orchestrate` with an ai-council-shaped prompt, or `/deep:ai-council`, matching the already-correct `references/agent_delegation.md`.
 
 ### Clusters 2/3/4 — retired `.opencode/agents/*.toml` mirror
 
@@ -73,7 +73,7 @@ A dedicated investigation (launched before touching either file, per the operato
 | `.opencode/skills/cli-opencode/README.md` | Modified | Cluster 1 |
 | `.opencode/skills/cli-opencode/assets/prompt_templates.md` | Modified | Cluster 1 |
 | `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md` | Modified | Cluster 1 |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md` | Modified | Cluster 1 |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md` | Modified | Cluster 1 |
 | `.opencode/skills/deep-loop-workflows/deep-research/SKILL.md` | Modified | Cluster 2 |
 | `.opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md` | Modified | Cluster 2 |
 | `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | Modified | Cluster 3 |
@@ -84,12 +84,12 @@ A dedicated investigation (launched before touching either file, per the operato
 | `.opencode/skills/deep-loop-workflows/deep-ai-council/references/structure/output_schema.md` | Modified | Clusters 2/3 |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/scan-integration.cjs` | Modified | Cluster 4 (code) |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/README.md` | Modified | Cluster 4 |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/02--integration-scanning/runtime-mirrors.md` | Modified | Cluster 4 |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/integration-scanning/runtime-mirrors.md` | Modified | Cluster 4 |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md` | Modified | Cluster 4 |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/mirror_drift_policy.md` | Modified | Cluster 4 |
 | `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md` | Modified | Cluster 4 |
 | `.opencode/plugins/README.md` | Modified | Cluster 5 |
-| 13 additional files (deep-research/deep-review manual_testing_playbook + `07--command-flow-stress-tests/setup-cp-sandbox.sh` x2; deep-review's `assets/review_mode_contract.yaml`; deep-ai-council feature_catalog + playbook files) | Modified | Additional `.toml` references found via post-fix re-scan (beyond phase 014's citation sample) |
+| 13 additional files (deep-research/deep-review manual_testing_playbook + `command-flow-stress-tests/setup-cp-sandbox.sh` x2; deep-review's `assets/review_mode_contract.yaml`; deep-ai-council feature_catalog + playbook files) | Modified | Additional `.toml` references found via post-fix re-scan (beyond phase 014's citation sample) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -105,7 +105,7 @@ After the 6 originally-cited clusters were done, ran a broader scoped grep acros
 
 While live-testing the two fixed `setup-cp-sandbox.sh` scripts end-to-end (not just checking `bash -n` syntax), discovered both failed with a doubled `.opencode/.opencode/` path — a pre-existing `REPO_ROOT` off-by-one bug (5 `../` levels instead of 6) that predates this session entirely (confirmed via `git log`) and was unrelated to the `.toml` edit itself. Fixed it in both scripts since it was blocking verification of my own actual change, then confirmed both scripts now run to completion and produce the correct 2-file sandbox.
 
-One `deep-improvement` fixture script (`08--agent-discipline-stress-tests/setup-cp-sandbox.sh`) was deliberately left untouched: its referenced `.md`/`.claude/agents/*.md` fixture paths are also missing entirely (a `060-stress-test` fixture directory that doesn't exist), which is a separate, broader pre-existing issue unrelated to the TOML mirror removal specifically — fixing it would mean creating missing fixture files, out of this phase's scope.
+One `deep-improvement` fixture script (`agent-discipline-stress-tests/setup-cp-sandbox.sh`) was deliberately left untouched: its referenced `.md`/`.claude/agents/*.md` fixture paths are also missing entirely (a `060-stress-test` fixture directory that doesn't exist), which is a separate, broader pre-existing issue unrelated to the TOML mirror removal specifically — fixing it would mean creating missing fixture files, out of this phase's scope.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -119,7 +119,7 @@ One `deep-improvement` fixture script (`08--agent-discipline-stress-tests/setup-
 | Kept `orchestrate.md`'s `@deep-review` row untouched in both runtimes | It's load-bearing: `deep-review.md`'s own "Caller/coordinator only" contract already depends on it, and removing it would reopen the exact routing gap phase 009 was built to close. |
 | Fixed 13 additional `.toml` references beyond phase 014's citation sample | Phase 014's own Plan Seed explicitly called for a post-fix re-scan; these are the same category of confirmed drift, not new scope. |
 | Fixed the pre-existing `REPO_ROOT` off-by-one bug in two sandbox scripts | Found while live-verifying my own fix (not just syntax-checking); leaving it would mean I couldn't confirm my actual change worked end-to-end, and it's a one-line, low-risk fix. |
-| Left `deep-improvement`'s `08--agent-discipline-stress-tests/setup-cp-sandbox.sh` untouched | Its brokenness predates and is unrelated to the TOML removal (missing `.md` fixtures too, not just `.toml`) — fixing it is a separate, larger task (creating fixture files) outside this phase's scope. |
+| Left `deep-improvement`'s `agent-discipline-stress-tests/setup-cp-sandbox.sh` untouched | Its brokenness predates and is unrelated to the TOML removal (missing `.md` fixtures too, not just `.toml`) — fixing it is a separate, larger task (creating fixture files) outside this phase's scope. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -145,7 +145,7 @@ One `deep-improvement` fixture script (`08--agent-discipline-stress-tests/setup-
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`deep-improvement`'s `08--agent-discipline-stress-tests/setup-cp-sandbox.sh` remains broken** for reasons unrelated to this phase (missing `.md`/`.claude` fixtures, not just `.toml`) — flagged, not fixed.
+1. **`deep-improvement`'s `agent-discipline-stress-tests/setup-cp-sandbox.sh` remains broken** for reasons unrelated to this phase (missing `.md`/`.claude` fixtures, not just `.toml`) — flagged, not fixed.
 2. **Cluster 6's fix is a wording reconciliation, not new enforcement.** It clarifies the contract; it doesn't mechanically prevent `orchestrate` from misusing the loop-executor hand-off. That mechanical enforcement is deferred to phase 016.
 3. **The 13 additional `.toml` references were found via one broad grep pass**, not an exhaustive audit — a residual instance elsewhere in the repo (outside `deep-loop-workflows`/`deep-loop-runtime`/`cli-opencode`/`plugins`) is possible but was not the stated scope of phase 014's finding.
 <!-- /ANCHOR:limitations -->

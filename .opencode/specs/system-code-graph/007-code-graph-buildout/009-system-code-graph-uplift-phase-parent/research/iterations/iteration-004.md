@@ -113,7 +113,7 @@ This iteration classifies each authored document under `.opencode/skills/system-
 
 #### 3. Per-Feature Files (feature_catalog/)
 
-**Sample: feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md** <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md" />
+**Sample: feature_catalog/read-path-freshness/01-ensure-code-graph-ready.md** <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/feature_catalog/read-path-freshness/01-ensure-code-graph-ready.md" />
 - **sk-doc --type:** `feature_catalog_entry` (per-feature file)
 - **Frontmatter:** Custom - `title`, `description`, `trigger_phrases`, `importance_tier` (lines 1-8) ✅
 - **H1 format:** "# Ensure code graph ready" (line 10) ✅
@@ -127,7 +127,7 @@ This iteration classifies each authored document under `.opencode/skills/system-
 
 #### 4. Per-Scenario Files (manual_testing_playbook/)
 
-**Sample: manual_testing_playbook/01--read-path-freshness/ensure-ready-selective-reindex.md** <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/01--read-path-freshness/ensure-ready-selective-reindex.md" />
+**Sample: manual_testing_playbook/read-path-freshness/ensure-ready-selective-reindex.md** <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/read-path-freshness/ensure-ready-selective-reindex.md" />
 - **sk-doc --type:** `manual_testing_playbook_scenario` (per-scenario file)
 - **Frontmatter:** Custom - `title`, `description`, `trigger_phrases`, `importance_tier` (lines 1-9) ✅
 - **H1 format:** "# 001 ensure-ready selective reindex" (line 10) ✅

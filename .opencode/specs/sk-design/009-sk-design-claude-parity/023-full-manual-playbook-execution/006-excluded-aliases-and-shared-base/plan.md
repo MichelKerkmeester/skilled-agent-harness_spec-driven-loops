@@ -39,7 +39,7 @@ _memory:
 |--------|-------|
 | **Language/Stack** | `skill_advisor.py` deterministic CLI probe; `opencode run` CLI live orchestrator dispatch; markdown playbook scenario contracts |
 | **Framework** | Existing `manual_testing_playbook` `{PREFIX}-NNN` scenario contract shape |
-| **Storage** | `.opencode/skills/sk-design/manual_testing_playbook/03--transform-verb-framing/`, `.opencode/skills/sk-design/manual_testing_playbook/05--shared-reference-base/` |
+| **Storage** | `.opencode/skills/sk-design/manual_testing_playbook/transform-verb-framing/`, `.opencode/skills/sk-design/manual_testing_playbook/shared-reference-base/` |
 | **Testing** | `python3 skill_advisor.py "<prompt>" --threshold 0.8` + `opencode run --model openai/gpt-5.5-fast --variant medium --format json` |
 
 ### Overview

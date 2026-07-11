@@ -210,25 +210,25 @@ These are the workflow definitions the AI runtime executes step-by-step. Heavy r
 
 **Heaviest edits (architecture/path content):**
 - `feature_catalog/feature_catalog.md` (master) — lines 42, 141, 255, 1469, 1873, 2995, 3298, 3899, 4160, 4446-4449. Replace banned vocab with `feature area`, `retrieval defaults`, `planned feature`, `roadmap flags`, `type`, `Level`.
-- `feature_catalog/16--tooling-and-scripts/30-template-composition-system.md` — lines 19, 25, 29-31, 41 describe obsolete composer/build-time composition. Full rewrite around C+F greenfield generation.
+- `feature_catalog/tooling-and-scripts/30-template-composition-system.md` — lines 19, 25, 29-31, 41 describe obsolete composer/build-time composition. Full rewrite around C+F greenfield generation.
 - `feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` — lines 10, 18, 28 reference root `templates/resource-map.md` + `templates/level_*`. Repoint at generated Level packet output.
-- `feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md` — lines 80-83, 137 expose `capability-flags.ts`. Rename to roadmap flag/default resolvers; CI exemption may be needed if source path keeps name.
-- `feature_catalog/19--feature-flag-reference/11-memory-roadmap-capability-flags.md` — lines 2/3/6/8/14/24-29/42 leak capability vocab throughout. Retitle to "Memory roadmap flags".
-- `feature_catalog/14--pipeline-architecture/22-mcp-server-public-api-barrel.md` — lines 20/34/56/63-64.
-- `feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md` — lines 3/32/45/47.
-- `feature_catalog/16--tooling-and-scripts/36-copilot-target-authority-helper.md` — lines 18-19/23-25/27/29/33 expose `kind` contract.
-- `feature_catalog/05--lifecycle/01-checkpoint-creation-checkpointcreate.md` — line 18.
+- `feature_catalog/feature-flag-reference/01-1-search-pipeline-features-speckit.md` — lines 80-83, 137 expose `capability-flags.ts`. Rename to roadmap flag/default resolvers; CI exemption may be needed if source path keeps name.
+- `feature_catalog/feature-flag-reference/11-memory-roadmap-capability-flags.md` — lines 2/3/6/8/14/24-29/42 leak capability vocab throughout. Retitle to "Memory roadmap flags".
+- `feature_catalog/pipeline-architecture/22-mcp-server-public-api-barrel.md` — lines 20/34/56/63-64.
+- `feature_catalog/tooling-and-scripts/37-cli-matrix-adapter-runners.md` — lines 3/32/45/47.
+- `feature_catalog/tooling-and-scripts/36-copilot-target-authority-helper.md` — lines 18-19/23-25/27/29/33 expose `kind` contract.
+- `feature_catalog/lifecycle/01-checkpoint-creation-checkpointcreate.md` — line 18.
 
 **Mechanical wording cleanup (banned-word-only hits):**
-- `feature_catalog/01--retrieval/{07-ast-level-section-retrieval-tool, 12-search-api-surface}.md`
-- `feature_catalog/02--mutation/09-correction-tracking-with-undo.md`
-- `feature_catalog/09--evaluation-and-measurement/17-memory-roadmap-baseline-snapshot.md`
-- `feature_catalog/11--scoring-and-calibration/{04-classification-based-decay, 24-skill-advisor-affordance-evidence}.md`
-- `feature_catalog/14--pipeline-architecture/{04-template-anchor-optimization, 20-7-layer-tool-architecture-metadata}.md`
-- `feature_catalog/16--tooling-and-scripts/{09-migration-checkpoint-scripts, 12-session-capturing-pipeline-quality, 25-memory-maintenance-and-migration-clis}.md`
-- `feature_catalog/17--governance/01-feature-flag-governance.md`
-- `feature_catalog/18--ux-hooks/10-atomic-save-parity-and-partial-indexing-hints.md`
-- `feature_catalog/21--implement-and-remove-deprecated-features/01-category-stub.md`
+- `feature_catalog/retrieval/{07-ast-level-section-retrieval-tool, 12-search-api-surface}.md`
+- `feature_catalog/mutation/09-correction-tracking-with-undo.md`
+- `feature_catalog/evaluation-and-measurement/17-memory-roadmap-baseline-snapshot.md`
+- `feature_catalog/scoring-and-calibration/{04-classification-based-decay, 24-skill-advisor-affordance-evidence}.md`
+- `feature_catalog/pipeline-architecture/{04-template-anchor-optimization, 20-7-layer-tool-architecture-metadata}.md`
+- `feature_catalog/tooling-and-scripts/{09-migration-checkpoint-scripts, 12-session-capturing-pipeline-quality, 25-memory-maintenance-and-migration-clis}.md`
+- `feature_catalog/governance/01-feature-flag-governance.md`
+- `feature_catalog/ux-hooks/10-atomic-save-parity-and-partial-indexing-hints.md`
+- `feature_catalog/implement-and-remove-deprecated-features/01-category-stub.md`
 - `feature_catalog/22--context-preservation-and-code-graph/06-runtime-detection.md`
 
 #### manual_testing_playbook (8 MODIFY)
@@ -236,13 +236,13 @@ These are the workflow definitions the AI runtime executes step-by-step. Heavy r
 | Path | Lines | Theme |
 |---|---|---|
 | `manual_testing_playbook/manual_testing_playbook.md` (master) | 2458, 2471, 3727 | Capability wording + 1 stale `125-hydra...` link |
-| `manual_testing_playbook/16--tooling-and-scripts/244-template-composition-system.md` | 18-19, 23, 32, 37-40, 48, 52, 57 | Validates `compose.sh` + composer drift + generated `templates/level_*`. Replace with Level generation/invariance checks against new flow. |
+| `manual_testing_playbook/tooling-and-scripts/244-template-composition-system.md` | 18-19, 23, 32, 37-40, 48, 52, 57 | Validates `compose.sh` + composer drift + generated `templates/level_*`. Replace with Level generation/invariance checks against new flow. |
 | `manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` | 18-20, 22, 38 | Repoint at Level packet resource-map output, not deleted root template |
-| `manual_testing_playbook/19--feature-flag-reference/125-memory-roadmap-capability-flags.md` | 2-5, 8, 10, 16, 56-59, 76, 80, 87, 93, 103 | Retitle to roadmap flags |
-| `manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md` | 129 | "phase manifest" → "phase map" |
-| `manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md` | 96, 105 | "manifest" → "matrix definition applicability rule/file" |
+| `manual_testing_playbook/feature-flag-reference/125-memory-roadmap-capability-flags.md` | 2-5, 8, 10, 16, 56-59, 76, 80, 87, 93, 103 | Retitle to roadmap flags |
+| `manual_testing_playbook/stress-testing/01-run-stress-cycle.md` | 129 | "phase manifest" → "phase map" |
+| `manual_testing_playbook/tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md` | 96, 105 | "manifest" → "matrix definition applicability rule/file" |
 | `manual_testing_playbook/22--context-preservation-and-code-graph/250-session-start-startup.md` | 20, 23, 63, 72 | `kind=startup` → "startup payload type/status" (unless transport field renamed) |
-| `manual_testing_playbook/02--mutation/192-correction-tracking-with-undo.md` | 44 | "library capability" → "library behavior/API" |
+| `manual_testing_playbook/mutation/192-correction-tracking-with-undo.md` | 44 | "library capability" → "library behavior/API" |
 
 #### stress_test (0 MODIFY)
 
@@ -417,7 +417,7 @@ Full per-finding detail with replacement guidance lives in:
 | Phase 4B: AI-facing prompt + workflow cleanup | 0 | 29 (deduped AI-facing docs, agents, commands, references, assets) | 0 | 0 |
 | Phase 4C: catalog/playbook + final proof | 0 | 31 (workflow-invariance allowlist + 22 feature_catalog + 8 manual_testing_playbook; stress_test NO-OP) | 0 | 0 |
 | **TOTAL** | **21** | **80** | **57** | **−16 net files**; templates folder specifically: ~74 → 14 = 13 .md.tmpl + 1 internal README (created Phase 1 per T-117a) |
-| **Audit-surfaced impact** | (none new) | **62** (32 from A/B/C in §2.5a-f + 30 from D in §2.5g) | (none new) | Stress_test surfaces ALL clean (audit-D); catalog/playbook impact concentrated in 14--pipeline-architecture, 16--tooling-and-scripts, 19--feature-flag-reference, 22--context-preservation subdirs |
+| **Audit-surfaced impact** | (none new) | **62** (32 from A/B/C in §2.5a-f + 30 from D in §2.5g) | (none new) | Stress_test surfaces ALL clean (audit-D); catalog/playbook impact concentrated in pipeline-architecture, tooling-and-scripts, feature-flag-reference, context-preservation subdirs |
 
 ---
 

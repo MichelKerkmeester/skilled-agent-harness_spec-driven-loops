@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/code-review/SKILL.md"
-      - ".opencode/skills/sk-code/code-review/manual_testing_playbook/10--intra-routing-recall/"
+      - ".opencode/skills/sk-code/code-review/manual_testing_playbook/intra-routing-recall/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session_01Ht7J9NZTEBBXwzTeNvras9"
@@ -79,7 +79,7 @@ After the live-scoring fix (sibling packet 001), `code-review` still scored lowe
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `sk-code/code-review/SKILL.md` | Modify | Add 4 intents + RESOURCE_MAP entries (orphan wiring) |
-| `sk-code/code-review/manual_testing_playbook/10--intra-routing-recall/*` | Modify | Prepend ALWAYS refs to each scenario's gold |
+| `sk-code/code-review/manual_testing_playbook/intra-routing-recall/*` | Modify | Prepend ALWAYS refs to each scenario's gold |
 | `sk-code/code-review/benchmark/**` | Modify | Re-baselined reports |
 <!-- /ANCHOR:scope -->
 

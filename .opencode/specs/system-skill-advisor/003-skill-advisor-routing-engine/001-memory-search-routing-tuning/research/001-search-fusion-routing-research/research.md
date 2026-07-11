@@ -372,7 +372,7 @@ Practical result:
 
 - `SKILL.md` is accurate at the summary level: it correctly describes the 4-stage pipeline, the rerank minimum of `4`, the compatibility-only `applyLengthPenalty`, and the presence of cache telemetry. [SOURCE: .opencode/skills/system-spec-kit/SKILL.md:592]
 - `ARCHITECTURE.md` and `configs/README.md` get the constants right but overstate the continuity-lambda story by implying that continuity-oriented reranking is live end to end. [SOURCE: .opencode/skills/system-spec-kit/ARCHITECTURE.md:150] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/configs/README.md:50]
-- The feature-catalog page for the 4-stage pipeline repeats the same stronger claim. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md:25]
+- The feature-catalog page for the 4-stage pipeline repeats the same stronger claim. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/retrieval/05-4-stage-pipeline-architecture.md:25]
 
 Practical result:
 

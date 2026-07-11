@@ -39,10 +39,10 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/error-code-reference.md | Validated | OK | Findings P0=0 P1=0 P2=0; Iterations=1 |
+| .opencode/skills/system-spec-kit/feature_catalog/bug-fixes-and-data-integrity/error-code-reference.md | Validated | OK | Findings P0=0 P1=0 P2=0; Iterations=1 |
 | .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md | Analyzed | OK | Findings P0=0 P1=1 P2=1; Iterations=3 |
-| .opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/index-scan-phased-async-refinements.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=2 |
-| .opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md | Validated | OK | Findings P0=0 P1=0 P2=0; Iterations=1 |
+| .opencode/skills/system-spec-kit/manual_testing_playbook/maintenance/index-scan-phased-async-refinements.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=2 |
+| .opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/checkpoint-v2-file-snapshot-roundtrip.md | Validated | OK | Findings P0=0 P1=0 P2=0; Iterations=1 |
 | .opencode/skills/system-spec-kit/mcp_server/README.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=2 |
 | .opencode/skills/system-spec-kit/mcp_server/stress_test/durability/checkpoint-v2-contention-stress.vitest.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 | .opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-recycle-transparency-stress.vitest.ts | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=2 |

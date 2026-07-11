@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/speckit-autopilot-lifecycle.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "tighten-playbook-pass-criteria-tasks-2026-06-29"
@@ -62,10 +62,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 Tighten pass/fail criteria in `04--state-safety`
-- [x] T006 Tighten pass/fail criteria in `06--coverage-graph`
-- [x] T007 Tighten pass/fail criteria in `09--fanout`
-- [x] T008 Tighten pass/fail criteria in `03--validation`
+- [x] T005 Tighten pass/fail criteria in `state-safety`
+- [x] T006 Tighten pass/fail criteria in `coverage-graph`
+- [x] T007 Tighten pass/fail criteria in `fanout`
+- [x] T008 Tighten pass/fail criteria in `validation`
 - [x] T009 Mandate `coverage-graph-query.vitest.ts` for `coverage-graph-fuzzy-merge.md`
 - [x] T010 Mandate `atomic-state.vitest.ts` for `single-loop-telemetry-heartbeat.md`
 - [x] T011 Mandate `speckit-autopilot-contract.vitest.ts` for `speckit-autopilot-lifecycle.md`

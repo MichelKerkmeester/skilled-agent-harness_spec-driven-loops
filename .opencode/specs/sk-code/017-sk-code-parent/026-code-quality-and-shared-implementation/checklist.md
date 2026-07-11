@@ -69,7 +69,7 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-024 [P0] Proposal D shipped — hook coverage + deep-review note [EVIDENCE: `TH-002` present in playbook §15 (section header line 292, row line 299); new `09--tooling-and-hooks/comment-hygiene-hook.md` exists with a Deep-Review Consumption Note (§5 line 124) mapping the envelope onto deep-review traceability (README:80), P0/P1/P2 severity (README:84), and the verdict (README:27)]
+- [x] CHK-024 [P0] Proposal D shipped — hook coverage + deep-review note [EVIDENCE: `TH-002` present in playbook §15 (section header line 292, row line 299); new `tooling-and-hooks/comment-hygiene-hook.md` exists with a Deep-Review Consumption Note (§5 line 124) mapping the envelope onto deep-review traceability (README:80), P0/P1/P2 severity (README:84), and the verdict (README:27)]
 - [x] CHK-025 [P1] Playbook totals reconciled [EVIDENCE: `manual_testing_playbook.md` reads "30 deterministic scenarios across 9 categories" (line 33), "Total scenarios: 30" (line 364), "Categories: 9" (line 366); §5 release-readiness reads "Coverage is 100% of playbook scenarios (30 / 30)" (line 145); no residual `28` remains]
 - [x] CHK-026 [P1] Dist-staleness cross-reference repointed [EVIDENCE: `check-dist-staleness-hook.md:95` "Related" now points to `TH-002` / `comment-hygiene-hook.md`, retiring its prior "no scenario exists" claim]
 

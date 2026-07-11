@@ -61,9 +61,9 @@ This packet audited system-spec-kit operator-facing Markdown docs for stale advi
 | `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md` | Modified | Retargeted bridge validation paths and added advisor package build. |
 | `.opencode/skills/system-spec-kit/scripts/observability/README.md` | Modified | Fixed sibling advisor relative path. |
 | `.opencode/install_guides/SET-UP - Skill Advisor.md` | Modified | Retargeted build/test/install checks to `system-skill-advisor`. |
-| `.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/24-skill-advisor-affordance-evidence.md` | Deleted | Advisor-owned feature catalog entry removed from spec-kit catalog. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md` | Deleted | Advisor-owned manual scenario removed from spec-kit playbook. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-advisor-status-rebuild-separation.md` | Deleted | Duplicate advisor repair scenario removed; sibling advisor playbook owns it. |
+| `.opencode/skills/system-spec-kit/feature_catalog/scoring-and-calibration/24-skill-advisor-affordance-evidence.md` | Deleted | Advisor-owned feature catalog entry removed from spec-kit catalog. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/scoring-and-calibration/199-skill-advisor-affordance-evidence.md` | Deleted | Advisor-owned manual scenario removed from spec-kit playbook. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/279-advisor-status-rebuild-separation.md` | Deleted | Duplicate advisor repair scenario removed; sibling advisor playbook owns it. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Removed the deleted local row 279. |
 | `013-remove-spec-kit-references/*` | Created/modified | Level 2 packet docs and metadata. |
 <!-- /ANCHOR:what-built -->

@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts"
       - ".opencode/skills/sk-code/shared/references/smart_routing.md"
-      - ".opencode/skills/system-deep-loop/{deep-research,deep-review,deep-improvement}/manual_testing_playbook/10--intra-routing-recall/"
+      - ".opencode/skills/system-deep-loop/{deep-research,deep-review,deep-improvement}/manual_testing_playbook/intra-routing-recall/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session_01Ht7J9NZTEBBXwzTeNvras9"
@@ -76,7 +76,7 @@ Legend: `[x]` done · `[~]` partial/representative · `[ ]` gated/deferred.
 <!-- /ANCHOR:cross-refs -->
 
 ## P0 — Drift reconciliation
-- [x] Fix `sk-code/manual_testing_playbook/01--surface-detection/webflow-detection.md` nonexistent checklist path (→ `code-webflow/assets/webflow-verification_checklist.md`) — commit `ed16475077`
+- [x] Fix `sk-code/manual_testing_playbook/surface-detection/webflow-detection.md` nonexistent checklist path (→ `code-webflow/assets/webflow-verification_checklist.md`) — commit `ed16475077`
 - [x] Capture the `sk-code/benchmark/router-baseline/` invariant (hub Mode-A 85, no volatile timestamp) — commit `ed16475077`
 
 ## P1 — Architecture ADR

@@ -8,11 +8,11 @@
 
 ## Files Reviewed
 
-- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/multi-feature-annotation-coverage.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/multi-feature-annotation-coverage.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md`
 
 ## Findings - New
 

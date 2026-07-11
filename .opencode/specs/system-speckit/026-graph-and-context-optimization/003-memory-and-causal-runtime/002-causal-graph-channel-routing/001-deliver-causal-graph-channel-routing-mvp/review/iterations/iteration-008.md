@@ -25,9 +25,9 @@ Traceability Replay — deep-audit of resource-map coverage, feature catalog con
 | `entity-density.ts` | 1-172 | Entity-density cache — build/index/lookup |
 | `routing-telemetry.ts` | 1-93 | Telemetry ring buffer |
 | `memory-crud-health.ts` | 620-678 | Handler — data.routing block |
-| `feature_catalog/12--query-intelligence/12-graph-channel-preservation.md` | 1-79 | Feature catalog — traceability table, source files, overview |
-| `feature_catalog/03--discovery/03-health-diagnostics-memoryhealth.md` | 1-62 | Feature catalog — health diagnostics entry |
-| `playbook/14--pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` | 1-88 | Manual test playbook — scenario contract |
+| `feature_catalog/query-intelligence/12-graph-channel-preservation.md` | 1-79 | Feature catalog — traceability table, source files, overview |
+| `feature_catalog/discovery/03-health-diagnostics-memoryhealth.md` | 1-62 | Feature catalog — health diagnostics entry |
+| `playbook/pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` | 1-88 | Manual test playbook — scenario contract |
 | `scratch/live-smoke-results.md` | 1-120 | Live smoke evidence |
 | `scratch/stress-test-results.md` | 1-129 | Stress test evidence |
 
@@ -59,7 +59,7 @@ Traceability Replay — deep-audit of resource-map coverage, feature catalog con
 - **Recommendation**: Update the citation to `query-router.ts:183-205`.
 
 #### P2-TR-004 [P2] Feature catalog validation table omits stress test file
-- **File**: `feature_catalog/12--query-intelligence/12-graph-channel-preservation.md:50-53`
+- **File**: `feature_catalog/query-intelligence/12-graph-channel-preservation.md:50-53`
 - **Evidence**: The "Validation And Tests" table lists `query-router.vitest.ts` and `entity-density.vitest.ts` but omits `routing-telemetry-stress.vitest.ts`, which contains 11 stress tests (012-S1..S4) created by this packet. Implementation-summary.md lines 89 and 133 confirm this file was created.
 - **Finding class**: instance-only
 - **Scope proof**: Grep for `routing-telemetry-stress` in the feature catalog file returns zero matches.

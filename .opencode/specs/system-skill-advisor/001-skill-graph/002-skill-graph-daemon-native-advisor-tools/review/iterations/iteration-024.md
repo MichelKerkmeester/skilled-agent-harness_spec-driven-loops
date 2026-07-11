@@ -21,7 +21,7 @@
 17. `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs`
 18. `.opencode/skills/skill-advisor/scripts/skill_advisor.py`
 19. `.claude/skills/sk-deep-review/references/quick_reference.md`
-20. `.claude/skills/sk-deep-review/feature_catalog/03--review-dimensions/04-maintainability.md`
+20. `.claude/skills/sk-deep-review/feature_catalog/review-dimensions/04-maintainability.md`
 
 ## Findings by Severity (P0/P1/P2)
 

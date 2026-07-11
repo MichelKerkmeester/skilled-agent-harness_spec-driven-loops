@@ -63,7 +63,7 @@ F-004 is the maintainability finding for this iteration.
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/cli-matrix.vitest.ts`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_start-research-loop_auto.yaml`
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/36-copilot-target-authority-helper.md`
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/36-copilot-target-authority-helper.md`
 
 ## Suggested focus for iteration 004
 Deepen Q-DOC + Q-COV across the 28 catalog/playbook updates. Prioritize terminology and operator instructions for degraded code-graph states: verify that `trustState`, `readiness.action`, `fallbackDecision`, CocoIndex seed telemetry, and manual fallback guidance match the actual shipped behavior after F-001 through F-003.

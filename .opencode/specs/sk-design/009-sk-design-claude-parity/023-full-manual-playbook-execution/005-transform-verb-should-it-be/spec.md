@@ -51,7 +51,7 @@ _memory:
 
 ### Problem Statement
 
-The sk-design manual-testing-playbook category `03--transform-verb-framing` has three scenario files (`should-it-be-audit.md`, `clarify-alias-only.md`, `foundations-excluded-aliases.md`) that assert precise routing contracts for `transformVerbRouting` in `mode-registry.json`: "should it be"-framed transform verbs must resolve to `audit`; `clarify` must resolve to `interface` (as an alias-only entry excluded from command projection parity); and `typeset`/`colorize` must never resolve to `foundations` solely by themselves. None of these assertions had been exercised against the real `opencode run` orchestrator dispatch path — only reasoned about from the registry source.
+The sk-design manual-testing-playbook category `transform-verb-framing` has three scenario files (`should-it-be-audit.md`, `clarify-alias-only.md`, `foundations-excluded-aliases.md`) that assert precise routing contracts for `transformVerbRouting` in `mode-registry.json`: "should it be"-framed transform verbs must resolve to `audit`; `clarify` must resolve to `interface` (as an alias-only entry excluded from command projection parity); and `typeset`/`colorize` must never resolve to `foundations` solely by themselves. None of these assertions had been exercised against the real `opencode run` orchestrator dispatch path — only reasoned about from the registry source.
 
 ### Purpose
 
@@ -176,7 +176,7 @@ None - see section 7.
 
 ## RELATED DOCUMENTS
 
-- **Scenario files**: `.opencode/skills/sk-design/manual_testing_playbook/03--transform-verb-framing/{should-it-be-audit,clarify-alias-only,foundations-excluded-aliases}.md`
+- **Scenario files**: `.opencode/skills/sk-design/manual_testing_playbook/transform-verb-framing/{should-it-be-audit,clarify-alias-only,foundations-excluded-aliases}.md`
 - **Parent packet**: `../` (`023-full-manual-playbook-execution`)
 - **Precedent Level 2 shape**: `../../022-benchmark-rerun-and-coverage-fill/`
 - **Dispatch Evidence**: See `dispatch-log.md`

@@ -115,7 +115,7 @@ Define the benchmark and release-readiness gate that proves the refactored `sk-d
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md` | Create | Conditional release report comparing baseline to after-009 |
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json` | Regenerate | Memory discovery metadata |
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json` | Regenerate | Graph traversal metadata |
-| `.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/*.md` | Existing Phase 005 artifact | Parity behavior scenarios PB-001 through PB-003 |
+| `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/*.md` | Existing Phase 005 artifact | Parity behavior scenarios PB-001 through PB-003 |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Existing Phase 005 artifact | Root playbook index includes category 06 and PB-001 through PB-003 |
 | `.opencode/skills/sk-design/benchmark/after-009/report.json` | Update | Fresh router-mode benchmark report |
 | `.opencode/skills/sk-design/benchmark/after-009/report.md` | Update | Fresh rendered router-mode benchmark report |

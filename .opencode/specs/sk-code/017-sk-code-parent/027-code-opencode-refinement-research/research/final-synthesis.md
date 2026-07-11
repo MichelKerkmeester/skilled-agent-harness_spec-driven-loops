@@ -39,7 +39,7 @@ Process notes: only **9 iteration files** exist (iter-10 was the synthesis → `
 10. `SKILL.md:16` — separate surface trigger (path under `.opencode/`) from extension→trio sub-detection (P1-22).
 11. `sk-code/shared/references/workflow_verify.md` (+`workflow_implement.md`) — OPENCODE verification-reality subsection: real command chain + dist-trap + det-env + native-ABI + `validate.sh` exit codes (P1-8 + P2-32/33/34 + P3-50).
 12. Cross-file sweep (error_recovery.md, universal_patterns.md, mcp_server_authoring.md:67-68, config/quality_standards.md:97, command_authoring.md:64) — batched stale-prefix/dead-link re-pathing (P1-24).
-13. `SKILL.md` §4 + `assets/scripts/README.md` + `assets/scripts/verify_stack_folders.py` + `sk-code/manual_testing_playbook/08--design-restraint/stack-folders-validator.md` — document `assets/scripts/`; retire/rewrite the always-failing validator + impossible DR-004; fix doubly-stale README (P1-25, P3-51).
+13. `SKILL.md` §4 + `assets/scripts/README.md` + `assets/scripts/verify_stack_folders.py` + `sk-code/manual_testing_playbook/design-restraint/stack-folders-validator.md` — document `assets/scripts/`; retire/rewrite the always-failing validator + impossible DR-004; fix doubly-stale README (P1-25, P3-51).
 14. `sk-code/shared/references/workflow_implement.md` §2.3 — cross-link the two shared tiers (0 links today) (P1-23).
 
 ### Tier 2 — drift/coverage (P2, surviving)

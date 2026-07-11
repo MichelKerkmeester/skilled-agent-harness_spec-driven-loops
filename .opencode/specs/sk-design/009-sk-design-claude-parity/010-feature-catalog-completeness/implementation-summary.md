@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-This phase originally planned — without implementing — a complete set of sk-doc-conformant `feature_catalog/` packages for the `sk-design` hub and its five mode packets. Two of the six packages (the hub and `design-interface`) were already completed correctly in an earlier out-of-band session and are the reference pattern this remediation matched stylistically. The remaining four packages needed real work: `design-foundations` had only a root catalog file with no per-feature files; `design-motion` and `design-audit` had only empty category-directory shells with zero files; `design-md-generator` had a complete 7-category catalog missing only its private procedure-card entry. The operator explicitly decided to finish the implementation inside this phase rather than opening a new one or reverting the partial work. This remediation authored 5 new per-feature files for `design-foundations`, a full 5-file package (root + 4 per-feature files) for `design-motion`, a full 5-file package (root + 4 per-feature files) for `design-audit`, and a new `08--procedure-cards/` category plus a new root "9. PROCEDURE CARDS" section for `design-md-generator` — 18 files created or changed in total. Every file was validated with `validate_document.py` (0 issues each), and the hub/`design-interface` packages were left completely untouched.
+This phase originally planned — without implementing — a complete set of sk-doc-conformant `feature_catalog/` packages for the `sk-design` hub and its five mode packets. Two of the six packages (the hub and `design-interface`) were already completed correctly in an earlier out-of-band session and are the reference pattern this remediation matched stylistically. The remaining four packages needed real work: `design-foundations` had only a root catalog file with no per-feature files; `design-motion` and `design-audit` had only empty category-directory shells with zero files; `design-md-generator` had a complete 7-category catalog missing only its private procedure-card entry. The operator explicitly decided to finish the implementation inside this phase rather than opening a new one or reverting the partial work. This remediation authored 5 new per-feature files for `design-foundations`, a full 5-file package (root + 4 per-feature files) for `design-motion`, a full 5-file package (root + 4 per-feature files) for `design-audit`, and a new `procedure-cards/` category plus a new root "9. PROCEDURE CARDS" section for `design-md-generator` — 18 files created or changed in total. Every file was validated with `validate_document.py` (0 issues each), and the hub/`design-interface` packages were left completely untouched.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -56,49 +56,49 @@ This phase originally planned — without implementing — a complete set of sk-
 
 ### `design-foundations/feature_catalog/` (6 files: root already existed, 5 new)
 
-- `01--token-system/oklch-color-and-token-system.md` (new)
-- `01--token-system/typography-and-spacing-scale.md` (new)
-- `02--adaptation-and-data/context-adaptation-matrix.md` (new)
-- `02--adaptation-and-data/data-visualization-discipline.md` (new)
-- `03--procedure-cards/foundations-procedure-card-inventory.md` (new)
+- `token-system/oklch-color-and-token-system.md` (new)
+- `token-system/typography-and-spacing-scale.md` (new)
+- `adaptation-and-data/context-adaptation-matrix.md` (new)
+- `adaptation-and-data/data-visualization-discipline.md` (new)
+- `procedure-cards/foundations-procedure-card-inventory.md` (new)
 
 ### `design-motion/feature_catalog/` (5 files, all new)
 
 - `feature_catalog.md` (new root)
-- `01--restraint-gate-and-choreography/motion-restraint-gate.md` (new)
-- `01--restraint-gate-and-choreography/choreography-and-reduced-motion.md` (new)
-- `02--build-cards/motion-fill-in-cards.md` (new)
-- `03--procedure-cards/motion-procedure-card-inventory.md` (new)
+- `restraint-gate-and-choreography/motion-restraint-gate.md` (new)
+- `restraint-gate-and-choreography/choreography-and-reduced-motion.md` (new)
+- `build-cards/motion-fill-in-cards.md` (new)
+- `procedure-cards/motion-procedure-card-inventory.md` (new)
 
 ### `design-audit/feature_catalog/` (5 files, all new)
 
 - `feature_catalog.md` (new root)
-- `01--findings-first-review/findings-first-report-and-scoring.md` (new)
-- `01--findings-first-review/register-gated-severity.md` (new)
-- `02--ai-tell-catalog/ai-fingerprint-tell-catalog.md` (new)
-- `03--procedure-cards/audit-procedure-card-inventory.md` (new)
+- `findings-first-review/findings-first-report-and-scoring.md` (new)
+- `findings-first-review/register-gated-severity.md` (new)
+- `ai-tell-catalog/ai-fingerprint-tell-catalog.md` (new)
+- `procedure-cards/audit-procedure-card-inventory.md` (new)
 
 ### `design-md-generator/feature_catalog/` (9 files: 8 already existed, 1 new + 1 root edit)
 
-- `08--procedure-cards/md-generator-procedure-card-inventory.md` (new)
+- `procedure-cards/md-generator-procedure-card-inventory.md` (new)
 - `feature_catalog.md` (edited: appended "## 9. PROCEDURE CARDS" section; sections 1-8 and categories 01-07 left unmodified in substance)
 
 ### Files Changed
 
 | File Path | Action | Purpose |
 |-----------|--------|---------|
-| `.opencode/skills/sk-design/design-foundations/feature_catalog/01--token-system/*.md` (2 files) | Created | Token-system per-feature catalog entries |
-| `.opencode/skills/sk-design/design-foundations/feature_catalog/02--adaptation-and-data/*.md` (2 files) | Created | Adaptation and data-visualization per-feature entries |
-| `.opencode/skills/sk-design/design-foundations/feature_catalog/03--procedure-cards/foundations-procedure-card-inventory.md` | Created | Foundations procedure-card inventory entry |
+| `.opencode/skills/sk-design/design-foundations/feature_catalog/token-system/*.md` (2 files) | Created | Token-system per-feature catalog entries |
+| `.opencode/skills/sk-design/design-foundations/feature_catalog/adaptation-and-data/*.md` (2 files) | Created | Adaptation and data-visualization per-feature entries |
+| `.opencode/skills/sk-design/design-foundations/feature_catalog/procedure-cards/foundations-procedure-card-inventory.md` | Created | Foundations procedure-card inventory entry |
 | `.opencode/skills/sk-design/design-motion/feature_catalog/feature_catalog.md` | Created | Root catalog for `design-motion` |
-| `.opencode/skills/sk-design/design-motion/feature_catalog/01--restraint-gate-and-choreography/*.md` (2 files) | Created | Restraint-gate and choreography entries |
-| `.opencode/skills/sk-design/design-motion/feature_catalog/02--build-cards/motion-fill-in-cards.md` | Created | Fill-in build-card entry |
-| `.opencode/skills/sk-design/design-motion/feature_catalog/03--procedure-cards/motion-procedure-card-inventory.md` | Created | Motion procedure-card inventory entry |
+| `.opencode/skills/sk-design/design-motion/feature_catalog/restraint-gate-and-choreography/*.md` (2 files) | Created | Restraint-gate and choreography entries |
+| `.opencode/skills/sk-design/design-motion/feature_catalog/build-cards/motion-fill-in-cards.md` | Created | Fill-in build-card entry |
+| `.opencode/skills/sk-design/design-motion/feature_catalog/procedure-cards/motion-procedure-card-inventory.md` | Created | Motion procedure-card inventory entry |
 | `.opencode/skills/sk-design/design-audit/feature_catalog/feature_catalog.md` | Created | Root catalog for `design-audit` |
-| `.opencode/skills/sk-design/design-audit/feature_catalog/01--findings-first-review/*.md` (2 files) | Created | Findings-first report/scoring and register-gated severity entries |
-| `.opencode/skills/sk-design/design-audit/feature_catalog/02--ai-tell-catalog/ai-fingerprint-tell-catalog.md` | Created | AI-tell catalog entry |
-| `.opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md` | Created | Audit procedure-card inventory entry |
-| `.opencode/skills/sk-design/design-md-generator/feature_catalog/08--procedure-cards/md-generator-procedure-card-inventory.md` | Created | Md-generator procedure-card inventory entry (closes the completeness gap) |
+| `.opencode/skills/sk-design/design-audit/feature_catalog/findings-first-review/*.md` (2 files) | Created | Findings-first report/scoring and register-gated severity entries |
+| `.opencode/skills/sk-design/design-audit/feature_catalog/ai-tell-catalog/ai-fingerprint-tell-catalog.md` | Created | AI-tell catalog entry |
+| `.opencode/skills/sk-design/design-audit/feature_catalog/procedure-cards/audit-procedure-card-inventory.md` | Created | Audit procedure-card inventory entry |
+| `.opencode/skills/sk-design/design-md-generator/feature_catalog/procedure-cards/md-generator-procedure-card-inventory.md` | Created | Md-generator procedure-card inventory entry (closes the completeness gap) |
 | `.opencode/skills/sk-design/design-md-generator/feature_catalog/feature_catalog.md` | Modified | Appended "## 9. PROCEDURE CARDS" section only; sections 1-8 untouched |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md` | Updated | Reconciled to the executed/Complete state |
 | `implementation-summary.md` | Created | This document |
@@ -128,7 +128,7 @@ A separate verification pass then independently re-checked every claim against t
 |----------|--------|--------|
 | Finish the implementation inside this same phase instead of reverting or opening a new phase | Accepted (operator decision, 2026-07-06) | Closed the real content gap immediately using this phase's own pre-existing evidence map, at the cost of a documentation-reconciliation pass across `spec.md`/`plan.md`/`tasks.md`/`checklist.md` |
 | Leave the hub and `design-interface` packages completely untouched | Accepted | Both were already correct and served as the reference pattern; re-touching them risked introducing stylistic drift from the proven DONE shape |
-| Default `design-md-generator`'s new category to `08--procedure-cards/`, preserving the existing `01`-`07` numbering | Accepted (matches the original plan's stated default) | Avoids renumbering 7 existing categories for one addition |
+| Default `design-md-generator`'s new category to `procedure-cards/`, preserving the existing `01`-`07` numbering | Accepted (matches the original plan's stated default) | Avoids renumbering 7 existing categories for one addition |
 | Use `validate_document.py` auto-detect rather than a literal `--type feature_catalog` flag | Accepted | The installed CLI only accepts `{readme,skill,reference,asset,agent,command,install_guide,spec,changelog}`; auto-detect correctly classifies per-feature files as `feature_catalog` and root catalogs as `readme`, both passing with 0 issues |
 
 <!-- /ANCHOR:decisions -->

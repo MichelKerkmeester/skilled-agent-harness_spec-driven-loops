@@ -71,7 +71,7 @@ While checking for leftover daemon-kill logic, the `process-memory-harness.ts` R
 | `.opencode/commands/memory/manage.md` | Modified | removed ccc subcommand + CCC MODE; renumbered §18→17, §19→18 |
 | `.gitignore` | Modified | dropped `.cocoindex_code/` |
 | `.opencode/bin/lib/sidecar-env-allowlist.cjs` | Modified | dropped dead `RERANK_` env prefix |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/250-session-start-startup.md` | Modified | `.venv/bin/ccc` (×3) → code-graph readiness |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/context-preservation/250-session-start-startup.md` | Modified | `.venv/bin/ccc` (×3) → code-graph readiness |
 | `.opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts` | Modified | removed coco/rerank daemon-kill rules + ccc-daemon class + fixtures |
 | `.opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts` | Modified | updated fixture/assertions/counts |
 | `.opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts` | Modified | re-pointed sidecar test to ollama; dropped ccc-daemon test |

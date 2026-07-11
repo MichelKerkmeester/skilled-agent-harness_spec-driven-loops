@@ -38,7 +38,7 @@ Root-index files (`feature_catalog.md`) at all 6 catalog roots are conformant (T
 
 - `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md` (canonical 4-section per-feature shape)
 - `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md` (root-index template — for context)
-- A reference example: `.opencode/skills/sk-improve-agent/feature_catalog/01--evaluation-loop/01-rubric-loader.md` (cleanly conformant)
+- A reference example: `.opencode/skills/sk-improve-agent/feature_catalog/evaluation-loop/01-rubric-loader.md` (cleanly conformant)
 - `.opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md` (honor in any new content)
 - `.opencode/skills/sk-doc/references/global/core_standards.md`
 - `.opencode/skills/sk-doc/references/global/hvr_rules.md`

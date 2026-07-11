@@ -22,7 +22,7 @@ _memory:
     key_files:
       - ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md"
       - ".opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/mutation/soft-delete-tombstones-and-active-purgeable-partitions.md"
       - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -71,7 +71,7 @@ Align only the cited documentation and code-comment surfaces with shipped behavi
 ### In Scope
 - Confirm and keep `.opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md:23` on `SPECKIT_RETENTION_FORGETTING`.
 - Add a one-line supersession pointer at `.opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md:114` and fix the final tally row at line 183 to `SPECKIT_RETENTION_FORGETTING`.
-- Confirm and keep `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md:20` on active-row default exclusion behavior.
+- Confirm and keep `.opencode/skills/system-spec-kit/feature_catalog/mutation/soft-delete-tombstones-and-active-purgeable-partitions.md:20` on active-row default exclusion behavior.
 - Confirm and keep `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1350-1352` on default-on, opt-out envelope fidelity wording.
 
 ### Out of Scope

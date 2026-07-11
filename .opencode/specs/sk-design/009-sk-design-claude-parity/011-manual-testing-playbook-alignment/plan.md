@@ -68,9 +68,9 @@ The implementation preserves the existing split-document playbook package shape:
 
 | Component | Implemented Shape |
 |-----------|-------------------|
-| Hub parity extension | `PB-004..006` in existing `06--parity-behavior/` |
-| Hub fallback category | `07--fallback-and-resilience/` with `FR-001..002` |
-| Hub manager category | `08--hub-manager-intake/` with `HM-001..003` |
+| Hub parity extension | `PB-004..006` in existing `parity-behavior/` |
+| Hub fallback category | `fallback-and-resilience/` with `FR-001..002` |
+| Hub manager category | `hub-manager-intake/` with `HM-001..003` |
 | Mode categories | `NN--procedure-card-contract/` in each mode playbook, 3 scenarios each |
 | Root updates | Hub 32/8; interface 20/14; foundations 11; motion 13; audit 14; md-generator 18/16 |
 

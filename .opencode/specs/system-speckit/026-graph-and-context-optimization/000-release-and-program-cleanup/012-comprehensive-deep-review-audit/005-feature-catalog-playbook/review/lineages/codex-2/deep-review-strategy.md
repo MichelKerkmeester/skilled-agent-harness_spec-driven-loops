@@ -37,10 +37,10 @@ Review the Level 1 feature-catalog/playbook verification slice for catalog-to-co
 |---|---|---|
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md` | read | Scope and success criteria. |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | read | Master catalog sample and item 214 master entry. |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` | read | Split catalog entry for code-reference traceability. |
+| `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md` | read | Split catalog entry for code-reference traceability. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | read | Root playbook policy, release rules, and scenarios 135-138. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | read | Scenario 135. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md` | read | Scenario 136. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | read | Scenario 135. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md` | read | Scenario 136. |
 | Representative live source files | sampled | Annotation coverage and stale-label evidence. |
 
 ## Known Context

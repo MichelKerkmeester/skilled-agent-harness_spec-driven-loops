@@ -30,7 +30,7 @@
 
 ## Tests And Playbooks
 
-- `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md`.
+- `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md`.
 - Pending tests named by `009/002` and `009/003` tasks.
 
 ## Coverage Notes

@@ -86,7 +86,7 @@ No non-code-graph surface routes to, declares, classifies, or ignores a deleted 
 | `.opencode/commands/memory/manage.md` | Modify | remove ccc subcommand + CCC MODE; renumber §18/§19 |
 | `.gitignore` | Modify | drop `.cocoindex_code/` |
 | `.opencode/bin/lib/sidecar-env-allowlist.cjs` | Modify | drop `RERANK_` prefix |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/250-session-start-startup.md` | Modify | `.venv/bin/ccc` → code-graph readiness |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/context-preservation/250-session-start-startup.md` | Modify | `.venv/bin/ccc` → code-graph readiness |
 | `.opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts` | Modify | remove coco/rerank daemon-kill rules + ccc-daemon class + fixtures |
 | `.opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts` | Modify | update fixture + assertions + counts |
 | `.opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts` | Modify | re-point sidecar test to ollama; drop ccc-daemon test |

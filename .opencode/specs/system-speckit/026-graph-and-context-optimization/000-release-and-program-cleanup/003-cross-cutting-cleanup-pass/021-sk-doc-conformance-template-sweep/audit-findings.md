@@ -53,7 +53,7 @@ Per-surface verdicts from 7 parallel cli-codex gpt-5.5 high fast agents (audit b
 
 | Directory | Verdict | Effort | Key drift |
 |---|---|---|---|
-| `system-spec-kit/feature_catalog/` (canonical) | PARTIAL | high | 292 files have packet-history references (`Phase 017`, `phase_018_change`, `Source spec`, `Graduated via`); 272/302 missing canonical source line; many use `### Tests` not `### Validation And Tests`; duplicate `14--` directory; non-feature `14--stress-testing/README.md` |
+| `system-spec-kit/feature_catalog/` (canonical) | PARTIAL | high | 292 files have packet-history references (`Phase 017`, `phase_018_change`, `Source spec`, `Graduated via`); 272/302 missing canonical source line; many use `### Tests` not `### Validation And Tests`; duplicate `14--` directory; non-feature `stress-testing/README.md` |
 | `mcp-coco-index/feature_catalog/` | COMPLIANT | low | None material |
 | `sk-improve-agent/feature_catalog/` | PARTIAL | low | All 13 per-feature files include extra `## TABLE OF CONTENTS` (root-style, not snippet-style) |
 | `sk-deep-research/feature_catalog/` | PARTIAL | low | Validation table label `### Tests` not canonical `### Validation And Tests` |

@@ -84,10 +84,10 @@ Doctor integration patterns:
 Relevant references:
 
 - `system-code-graph/feature_catalog/feature_catalog.md` says deleted `deep_loop_graph_*` MCP tools now live as direct `.cjs` scripts.
-- `system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-query.md` points to `scripts/query.cjs`.
-- `system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-status.md` points to `scripts/status.cjs`.
-- `system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-upsert.md` points to `scripts/upsert.cjs`.
-- `system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-convergence.md` points to `scripts/convergence.cjs`.
+- `system-code-graph/feature_catalog/coverage-graph/deep-loop-graph-query.md` points to `scripts/query.cjs`.
+- `system-code-graph/feature_catalog/coverage-graph/deep-loop-graph-status.md` points to `scripts/status.cjs`.
+- `system-code-graph/feature_catalog/coverage-graph/deep-loop-graph-upsert.md` points to `scripts/upsert.cjs`.
+- `system-code-graph/feature_catalog/coverage-graph/deep-loop-graph-convergence.md` points to `scripts/convergence.cjs`.
 
 ---
 
@@ -165,7 +165,7 @@ The following consumers were surfaced by a deep-research audit and were absent f
 | 2 | `deep-ai-council` orchestration | `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
 | 3 | `/doctor` route manifest | `.opencode/commands/doctor/_routes.yaml:88-104` | gate3_location + 4 script_invocations + 4 trigger_phrases routing operator commands to runtime/ scripts |
 | 4 | `/doctor` update command | `.opencode/commands/doctor/update.md:28, :220, :272` | References deep-loop scripts plus the `.pre-doctor-update.*.bak` backup-pattern reads |
-| 5 | `system-code-graph` playbook | `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-*.md` + `010-*.md` | Operator scenarios exercising the coverage-graph scripts end-to-end |
+| 5 | `system-code-graph` playbook | `.opencode/skills/system-code-graph/manual_testing_playbook/coverage-graph/009-*.md` + `010-*.md` | Operator scenarios exercising the coverage-graph scripts end-to-end |
 | 6 | Legacy MCP server READMEs | `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
 | 7 | Doctor + deep-improvement | `.opencode/commands/doctor/assets/doctor_deep-loop.yaml` + `doctor_update.yaml` + `.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
 

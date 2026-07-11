@@ -11,7 +11,7 @@
 
 **009/001 implementation-summary** claims "553/555 pass, 2 failures pre-existing" (executor-provenance-mismatch + dependency-seams). These are named test files. Again, plausible but not re-run this round.
 
-**GLM review P1-005** cites `manual_testing_playbook/09--fanout/fanout-salvage-recovery.md:86` — "claims exit-0/no-artifact coverage, but the referenced regression never exercises that path." This is a playbook-vs-test gap: the manual testing playbook ASSERTS coverage that doesn't exist in automated tests. This is a traceability defect — the playbook overclaims.
+**GLM review P1-005** cites `manual_testing_playbook/fanout/fanout-salvage-recovery.md:86` — "claims exit-0/no-artifact coverage, but the referenced regression never exercises that path." This is a playbook-vs-test gap: the manual testing playbook ASSERTS coverage that doesn't exist in automated tests. This is a traceability defect — the playbook overclaims.
 
 **Net assessment:** test citations in review findings are structurally precise (real files, real lines) but their pass/fail status is NOT independently verified by any automated gate during remediation. The 009/001 "553/555" claim is taken at face value. Recommendation: remediation phases should attach a `test-evidence.json` (command + exit code + counts) rather than prose claims, so validate.sh can check test-run recency.
 

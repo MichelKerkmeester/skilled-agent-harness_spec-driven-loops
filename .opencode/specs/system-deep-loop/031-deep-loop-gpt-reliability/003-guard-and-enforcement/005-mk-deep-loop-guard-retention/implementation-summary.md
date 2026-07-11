@@ -66,8 +66,8 @@ A new `event` hook fires `sweepStaleLoopGuardStates` on `session.created`, throt
 | `.opencode/plugins/mk-deep-loop-guard.js` | Modified | Sweep/archive/prune functions, `event` hook, retention constants, warn-log rotation |
 | `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs` | Modified | Mutation-proved sweep/archive test, throttle test, prune test, event-type test |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | New "DEEP-LOOP GUARD PLUGIN" section documenting all 5 of this plugin's env vars (the 3 new retention vars plus the 2 pre-existing `REJECT`/`REJECT_LOOP` vars, previously undocumented there) |
-| `.opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md` | Modified | New retention subsection, version 1.1.0.0 -> 1.2.0.0 |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/mk-deep-loop-guard.md` | Modified | New retention test step and failure mode, version 1.0.0.0 -> 1.1.0.0 |
+| `.opencode/skills/deep-loop-runtime/feature_catalog/validation/mk-deep-loop-guard.md` | Modified | New retention subsection, version 1.1.0.0 -> 1.2.0.0 |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/validation/mk-deep-loop-guard.md` | Modified | New retention test step and failure mode, version 1.0.0.0 -> 1.1.0.0 |
 | `.opencode/plugins/README.md` | Modified | Plugin-list row updated to mention the new `event` hook and retention behavior |
 | `.opencode/skills/deep-loop-runtime/feature_catalog/feature_catalog.md` | Modified | Master-index summary for this plugin updated to mention the retention sweep |
 | `.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md` | Modified | Master-index summary and expected-signals updated to mention the retention sweep |

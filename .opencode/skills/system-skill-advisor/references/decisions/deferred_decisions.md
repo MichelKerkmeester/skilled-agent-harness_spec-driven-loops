@@ -198,7 +198,7 @@ None. Status quo. If a future sk-doc template revision broadens the canonical st
 
 ### Current state
 
-`feature_catalog/feature_catalog.md` TOC numbers sections 1-8 sequentially while directory layout uses 01, 02, 03, 04, 06, 07, 08 (gap at 05). Section 5 (SCORER FUSION) in the TOC maps to directory `04--scorer-fusion`, section 6 (MCP SURFACE) maps to `06--mcp-surface`, creating a mismatch.
+`feature_catalog/feature_catalog.md` TOC numbers sections 1-8 sequentially while directory layout uses 01, 02, 03, 04, 06, 07, 08 (gap at 05). Section 5 (SCORER FUSION) in the TOC maps to directory `scorer-fusion`, section 6 (MCP SURFACE) maps to `mcp-surface`, creating a mismatch.
 
 ### Action already taken
 
@@ -208,18 +208,18 @@ Gap-05 explanatory note added to feature_catalog.md §1 documenting the intentio
 
 None. Status quo. Renumbering would either:
 
-- Force a global rename of `04--scorer-fusion` → `05--scorer-fusion` plus `06-08` shift up, breaking spec-folder cross-references in packets 058, 098, 100, plus others.
+- Force a global rename of `scorer-fusion` → `05--scorer-fusion` plus `06-08` shift up, breaking spec-folder cross-references in packets 058, 098, 100, plus others.
 - Or renumber the TOC to match directory numbers (gap-05 in TOC too), making the TOC look broken.
 
 Both options are worse than the current explanatory-note approach. Leave as-is.
 
 ---
 
-## 6. F36: 07--hooks-and-plugin file numbering gap
+## 6. F36: hooks-and-plugin file numbering gap
 
 ### Current state
 
-Directory `feature_catalog/07--hooks-and-plugin/` contains files 01, 03, 04, 05 (missing 02).
+Directory `feature_catalog/hooks-and-plugin/` contains files 01, 03, 04, 05 (missing 02).
 
 ### Recommended action
 
@@ -237,15 +237,15 @@ Pick A unless a maintainer reports operator confusion from the gap.
 
 ### Status: DONE as of 2026-05-16 in packet `008-tier-d-execution`
 
-Playbook root `manual_testing_playbook.md` now carries §17.5 "Catalog group ↔ playbook category mapping" with all 7 catalog groups mapped plus the 2 playbook-only categories (`03--compat-and-disable`, `04--operator-h5`) called out explicitly. Mapping is documented as intentionally asymmetric, with rationale ("catalog models feature ownership; playbook models operator workflow"). Renumbering decision deferred indefinitely because it would break checked-in inventory tests.
+Playbook root `manual_testing_playbook.md` now carries §17.5 "Catalog group ↔ playbook category mapping" with all 7 catalog groups mapped plus the 2 playbook-only categories (`compat-and-disable`, `operator-h5`) called out explicitly. Mapping is documented as intentionally asymmetric, with rationale ("catalog models feature ownership; playbook models operator workflow"). Renumbering decision deferred indefinitely because it would break checked-in inventory tests.
 
 ### Original-current state (preserved for history)
 
 `manual_testing_playbook/` has 9 categories. `feature_catalog/` has 7 groups. Mapping is not 1:1:
 
-- Playbook `03--compat-and-disable` plus `04--operator-h5` have NO corresponding feature_catalog groups.
-- Catalog `01--daemon-and-freshness` has NO dedicated playbook category (split across `05--auto-update-daemon` plus `04--operator-h5`).
-- Catalog `06--mcp-surface` has NO dedicated playbook category (split across `01--native-mcp-tools` plus `02--cli-hooks-and-plugin`).
+- Playbook `compat-and-disable` plus `operator-h5` have NO corresponding feature_catalog groups.
+- Catalog `daemon-and-freshness` has NO dedicated playbook category (split across `auto-update-daemon` plus `operator-h5`).
+- Catalog `mcp-surface` has NO dedicated playbook category (split across `native-mcp-tools` plus `cli-hooks-and-plugin`).
 
 ### Recommended action
 

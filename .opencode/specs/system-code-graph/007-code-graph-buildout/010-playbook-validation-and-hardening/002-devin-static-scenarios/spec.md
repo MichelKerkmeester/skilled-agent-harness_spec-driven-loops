@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Author RCAF dispatch prompt + agent-config recipe for SWE-1.6"
     blockers: []
     key_files:
-      - ".opencode/skills/system-code-graph/manual_testing_playbook/09--post-rename-infrastructure"
+      - ".opencode/skills/system-code-graph/manual_testing_playbook/post-rename-infrastructure"
       - ".opencode/skills/system-code-graph/manual_testing_playbook/10--devin-hooks/devin-session-start.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

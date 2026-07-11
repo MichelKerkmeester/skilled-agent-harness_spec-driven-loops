@@ -41,8 +41,8 @@ You wire tool/resource/MCP-resource affordances into the existing `derived` and 
 | `mcp_server/skill_advisor/tests/affordance-normalizer.test.ts` | **CREATE** — allowlist + privacy + sanitization tests |
 | `mcp_server/skill_advisor/tests/lane-attribution.test.ts` (or extend existing) | **MODIFY** — verify affordance evidence routes to derived/graph-causal (not a new lane) |
 | `mcp_server/skill_advisor/tests/routing-fixtures.*` | **EXTEND** — fixtures showing affordance evidence improves recall without precision regression |
-| `.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
+| `.opencode/skills/system-spec-kit/feature_catalog/scoring-and-calibration/<new-entry>.md` | **CREATE** via `/create:feature-catalog` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/scoring-and-calibration/<new-entry>.md` | **CREATE** via `/create:testing-playbook` |
 | `012/004/implementation-summary.md` | **MODIFY** — populate Affordance Allowlist Decided, What Was Built, Static Check Results |
 
 ## Files you may NOT touch

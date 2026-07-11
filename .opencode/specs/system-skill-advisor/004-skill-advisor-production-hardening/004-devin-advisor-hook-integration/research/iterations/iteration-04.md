@@ -49,8 +49,8 @@ The following files reference the legacy name and need updating:
 - `.opencode/plugins/README.md:52` - Bridge module list entry
 - `.opencode/skills/system-skill-advisor/SET-UP_GUIDE.md:136` - OpenCode plugin reference
 - `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md:142` - Plugin path reference
-- `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md` - Multiple references
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md` - Multiple references
+- `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/05-opencode-plugin-bridge.md` - Multiple references
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/005-opencode-plugin-bridge.md` - Multiple references
 
 **Tests**:
 - `.opencode/skills/system-skill-advisor/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` - Test filename and imports
@@ -113,8 +113,8 @@ This provides:
 1. `.opencode/plugins/README.md` - Table entries (lines 43, 52)
 2. `.opencode/skills/system-skill-advisor/SET-UP_GUIDE.md` - Plugin path reference
 3. `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` - Plugin path reference
-4. `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md` - Multiple references
-5. `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md` - Multiple references
+4. `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/05-opencode-plugin-bridge.md` - Multiple references
+5. `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/005-opencode-plugin-bridge.md` - Multiple references
 6. `.opencode/skills/system-skill-advisor/mcp_server/tests/spec-kit-skill-advisor-plugin.vitest.ts` - Filename and imports
 7. `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge.vitest.ts` - Imports
 8. `.opencode/skills/system-skill-advisor/mcp_server/stress_test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts` - Imports

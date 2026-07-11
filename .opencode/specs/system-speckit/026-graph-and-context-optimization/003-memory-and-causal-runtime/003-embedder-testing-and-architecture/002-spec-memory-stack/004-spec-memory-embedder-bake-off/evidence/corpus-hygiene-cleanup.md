@@ -41,7 +41,7 @@ The stale audit remaps were rechecked against the post-prune corpus:
 
 cat-24/409 now uses deterministic fixture file:
 
-`.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json`
+`.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-fixture.json`
 
 The fixture has 10 live IDs, all with `embedding_status = success`, existing source files, and content length above 500 characters. Difficulty distribution:
 

@@ -10,8 +10,8 @@ Traceability review across the target spec, public MCP tool definitions, runtime
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/17--governance/governed-ingest-cancel-lifecycle.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/discovery/session-bootstrap-reader-ready-context.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/governance/governed-ingest-cancel-lifecycle.md`
 
 ## Findings
 
@@ -42,10 +42,10 @@ Two operator-facing examples no longer match the live schemas.
 
 Evidence:
 
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md:37` calls `session_bootstrap({ input: ..., includeGraphStatus: true })`.
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/discovery/session-bootstrap-reader-ready-context.md:37` calls `session_bootstrap({ input: ..., includeGraphStatus: true })`.
 - The live public schema for `session_bootstrap` only exposes `specFolder` at `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:649` through line 659.
 - Runtime filtering also allows only `specFolder` for `session_bootstrap` at `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:608`.
-- `.opencode/skills/system-spec-kit/feature_catalog/17--governance/governed-ingest-cancel-lifecycle.md:28` advertises `memory_ingest_start(paths, dryRun)`.
+- `.opencode/skills/system-spec-kit/feature_catalog/governance/governed-ingest-cancel-lifecycle.md:28` advertises `memory_ingest_start(paths, dryRun)`.
 - The live public schema for `memory_ingest_start` exposes `paths` and `specFolder` at `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:531` through line 549, and runtime filtering at `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:598` has no `dryRun`.
 
 Impact:

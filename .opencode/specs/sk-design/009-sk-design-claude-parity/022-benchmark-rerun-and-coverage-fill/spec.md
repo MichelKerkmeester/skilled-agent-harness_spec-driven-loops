@@ -80,10 +80,10 @@ Rerun both benchmark trace modes (router for a fast deterministic confirmation, 
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
-| `.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/interface-variation-set-selection-proof.md` | Create | `PB-007` |
-| `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/code-review-routes-skcode.md` | Create | `AI-004` |
-| `.opencode/skills/sk-design/manual_testing_playbook/04--md-generator-pipeline/brief-only-authoring-boundary.md` | Create | `MG-004` |
-| `.opencode/skills/sk-design/manual_testing_playbook/08--hub-manager-intake/design-mode-pairing-before-run.md` | Create | `HM-004` |
+| `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/interface-variation-set-selection-proof.md` | Create | `PB-007` |
+| `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/code-review-routes-skcode.md` | Create | `AI-004` |
+| `.opencode/skills/sk-design/manual_testing_playbook/md-generator-pipeline/brief-only-authoring-boundary.md` | Create | `MG-004` |
+| `.opencode/skills/sk-design/manual_testing_playbook/hub-manager-intake/design-mode-pairing-before-run.md` | Create | `HM-004` |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Edit | Category tables, cross-reference index, critical-path list, totals, coverage notes; version bump |
 | `.opencode/skills/sk-design/README.md` | Edit | Stale "33-scenario" playbook description line |
 | `.opencode/skills/sk-design/benchmark/after-021-validator-rewrite/` | Create | Fresh live-mode + router-mode baseline |

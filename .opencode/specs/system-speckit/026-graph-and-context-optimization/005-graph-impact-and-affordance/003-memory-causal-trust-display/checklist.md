@@ -20,7 +20,7 @@ contextType: "implementation"
 - [x] Display placement decision recorded in `implementation-summary.md` — see §"Display Placement Decision".
 
 ## P2 — Documentation
-- [x] feature_catalog entry in `13--memory-quality-and-indexing/` — `28-memory-causal-trust-display.md` created.
+- [x] feature_catalog entry in `memory-quality-and-indexing/` — `28-memory-causal-trust-display.md` created.
 - [x] manual_testing_playbook entry in same category — `203-memory-causal-trust-display.md` created.
 - [ ] sk-doc DQI ≥85 — OPERATOR-PENDING. Original implementation reported feature catalog 87 and playbook 91 via `extract_structure.py`, but those scores were captured outside the canonical Wave-3 channel. Marked R-007-21 — premature PASS. Operator must re-run `python3 .opencode/skills/sk-doc/scripts/validate_document.py` for both entries to attest the numeric scores.
 

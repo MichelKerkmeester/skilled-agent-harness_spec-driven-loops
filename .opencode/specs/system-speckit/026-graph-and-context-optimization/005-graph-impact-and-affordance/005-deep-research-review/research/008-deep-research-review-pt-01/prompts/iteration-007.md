@@ -46,7 +46,7 @@ D2. Smoke-test invocation examples for detect_changes, blast_radius, memory_sear
 
 E1. `feature_catalog/feature_catalog.md` index: does it list all entries authored under 010/006?
 E2. The simple-terms FAQ: was the broken `FEATURE_CATALOG_IN_SIMPLE_TERMS.md` link removed (T-F R-007-18)?
-E3. The 5 010-shipped feature_catalog entries (`03--discovery/04`, `06--analysis/08`, `11--scoring-and-calibration/24`, `13--memory-quality-and-indexing/28`, `14--pipeline-architecture/N`) — confirm they exist and reference correct mcp_server source files.
+E3. The 5 010-shipped feature_catalog entries (`discovery/04`, `analysis/08`, `scoring-and-calibration/24`, `memory-quality-and-indexing/28`, `pipeline-architecture/N`) — confirm they exist and reference correct mcp_server source files.
 
 ### Section F — `manual_testing_playbook/` umbrella consistency
 

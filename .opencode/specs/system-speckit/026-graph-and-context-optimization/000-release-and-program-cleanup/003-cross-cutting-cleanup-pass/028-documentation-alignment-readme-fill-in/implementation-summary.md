@@ -115,7 +115,7 @@ Phase 0 scaffolded the Level 3 packet (`spec.md`, `plan.md`, `tasks.md`, `checkl
 
 1. **Strict validate baseline is errors=2.** TEMPLATE_HEADERS and ANCHORS_VALID flag missing Level 3 sections (EXECUTIVE SUMMARY, NON-FUNCTIONAL REQUIREMENTS, etc.) that the canonical Level 3 templates require but that this doc-only packet does not need. Sibling packet 052 hits the same floor; the parent treats this as the accepted ceiling for doc-only Level 3 work.
 2. **NC-004 receiver content is leaner than the original operator-runbook NC-004.** A prior partial cli-codex run emptied the OVERVIEW and SCENARIO CONTRACT sections of NC-004 before being killed; the file currently passes validation and contains the SAD-002 absorbed table but loses the original NC-004 narrative. A follow-on packet can restore the original narrative from git history if release review demands it.
-3. **`02--cli-hooks-and-plugin/` is missing CL-002.** The original operator_runbook tree never had a `002-*.md` file in this category; the gap is preserved post-merge for traceability rather than renumbering.
+3. **`cli-hooks-and-plugin/` is missing CL-002.** The original operator_runbook tree never had a `002-*.md` file in this category; the gap is preserved post-merge for traceability rather than renumbering.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,0 +1,76 @@
+---
+title: "175 -- Typed traversal (SPECKIT_TYPED_TRAVERSAL)"
+description: "This scenario validates typed traversal (SPECKIT_TYPED_TRAVERSAL) for `175`. It focuses on the default-on graduated rollout and verifying sparse-first policy and intent-aware edge traversal scoring."
+audited_post_018: true
+version: 3.6.0.14
+---
+
+# 175 -- Typed traversal (SPECKIT_TYPED_TRAVERSAL)
+
+## 1. OVERVIEW
+
+This scenario validates typed traversal (SPECKIT_TYPED_TRAVERSAL) for `175`. It focuses on the default-on graduated rollout and verifying sparse-first policy and intent-aware edge traversal scoring.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Verify sparse-first policy + intent-aware edge traversal scoring.
+- Real user request: `Please validate Typed traversal (SPECKIT_TYPED_TRAVERSAL) against SPECKIT_TYPED_TRAVERSAL and tell me whether the expected signals are present: SPARSE_DENSITY_THRESHOLD=0.5 gates sparse-first policy; SPARSE_MAX_HOPS=1 constrains traversal in sparse graphs; INTENT_EDGE_PRIORITY maps intents to edge-type orderings; scoring formula = seedScore * edgePrior * hopDecay * freshness; edge prior tiers: first=1.0, second=0.75, remaining=0.5; MAX_HOPS=2 in normal mode.`
+- Prompt: `Validate typed traversal and cite sparse-first gating, hop limits, intent edge priorities, scoring formula, and prior tiers.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: SPARSE_DENSITY_THRESHOLD=0.5 gates sparse-first policy; SPARSE_MAX_HOPS=1 constrains traversal in sparse graphs; INTENT_EDGE_PRIORITY maps intents to edge-type orderings; scoring formula = seedScore * edgePrior * hopDecay * freshness; edge prior tiers: first=1.0, second=0.75, remaining=0.5; MAX_HOPS=2 in normal mode
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if sparse graphs constrain to 1-hop and intent-aware scoring applies correct formula with edge prior tiers; FAIL if sparse graphs allow multi-hop, intent mapping missing, or scoring formula incorrect
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate typed traversal and cite sparse-first gating, hop limits, intent edge priorities, scoring formula, and prior tiers.
+```
+
+### Commands
+
+1. Confirm `SPECKIT_TYPED_TRAVERSAL` is unset or `true`
+2. Run search against a sparse graph (density < 0.5)
+3. Verify traversal constrained to SPARSE_MAX_HOPS=1
+4. Run search with classified intent (e.g., fix_bug)
+5. Verify INTENT_EDGE_PRIORITY mapping applied
+6. Confirm score = seedScore * edgePrior * hopDecay * freshness
+
+### Expected
+
+isTypedTraversalEnabled() returns true; sparse-first: density < 0.5 → 1-hop; INTENT_EDGE_PRIORITY maps fix_bug/add_feature/find_decision/understand/find_spec/refactor/security_audit; edge prior tiers: 1.0/0.75/0.5; MAX_BOOST_PER_HOP=0.05; MAX_COMBINED_BOOST=0.20
+
+### Evidence
+
+Causal boost output + traversal hop count + edge prior values + scoring breakdown + test transcript
+
+### Pass / Fail
+
+- **Pass**: sparse-first constrains to 1-hop and intent-aware scoring uses correct formula and edge priors
+- **Fail**: sparse graphs allow > 1 hop, intent mapping missing, or scoring formula wrong
+
+### Failure Triage
+
+Verify isTypedTraversalEnabled() → Confirm flag is not forced off → Check SPARSE_DENSITY_THRESHOLD=0.5 → Inspect SPARSE_MAX_HOPS=1 enforcement → Verify INTENT_EDGE_PRIORITY mappings → Check scoring formula components
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [graph-signal-activation/typed-traversal.md](../../feature_catalog/graph-signal-activation/typed-traversal.md)
+- Feature flag reference: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../feature_catalog/feature-flag-reference/1-search-pipeline-features-speckit.md)
+- Source file: `mcp_server/lib/search/causal-boost.ts`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Graph signal activation
+- Playbook ID: 175
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `graph-signal-activation/typed-traversal-speckit-typed-traversal.md`

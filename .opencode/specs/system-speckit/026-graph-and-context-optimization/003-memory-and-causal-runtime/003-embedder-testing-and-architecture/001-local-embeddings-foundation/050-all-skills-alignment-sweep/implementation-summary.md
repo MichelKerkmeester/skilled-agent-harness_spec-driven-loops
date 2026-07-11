@@ -77,7 +77,7 @@ Aligned the root README and `.opencode/skills/README.md` to the current 19-skill
 
 ### Final Close-Out Cleanup
 
-Final stale-reference grep found two additional active-doc issues: duplicate generated `_TODO` sections in `cli-codex/references/hook_contract.md` and an obsolete `54-tool count` reference in `system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md`. Both were fixed and validated before close-out.
+Final stale-reference grep found two additional active-doc issues: duplicate generated `_TODO` sections in `cli-codex/references/hook_contract.md` and an obsolete `54-tool count` reference in `system-spec-kit/feature_catalog/mutation/12-memory-retention-sweep.md`. Both were fixed and validated before close-out.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -125,7 +125,7 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 | Final `quick_validate.py` for 19 skills | PASS, 19/19 valid |
 | Final primary README validation | PASS, 21/21 root and skill READMEs valid |
 | Final stale-reference grep | PASS, no active-doc matches for `_TODO`, old advisor compat paths, transitional skill-graph dependency, wrong advisor DB path, stale `parallel 010` wording or `54-tool count` |
-| Final changed reference validation | PASS, `cli-codex/references/hook_contract.md` and `system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md` valid |
+| Final changed reference validation | PASS, `cli-codex/references/hook_contract.md` and `system-spec-kit/feature_catalog/mutation/12-memory-retention-sweep.md` valid |
 | Packet strict validation | PASS |
 <!-- /ANCHOR:verification -->
 

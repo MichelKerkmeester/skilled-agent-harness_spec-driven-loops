@@ -16,11 +16,11 @@ This playbook package adopts the Feature Catalog split-document pattern. The roo
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
-- `01--mode-routing/`
-- `02--improvement-lane-routing/`
-- `03--advisor-integration/`
-- `04--runtime-and-backend/`
-- `05--state-and-convergence-discipline/`
+- `mode-routing/`
+- `improvement-lane-routing/`
+- `advisor-integration/`
+- `runtime-and-backend/`
+- `state-and-convergence-discipline/`
 
 ---
 
@@ -145,46 +145,46 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `MR-001` | Research Routing | Outward investigation request resolves to `research` | `01--mode-routing/research-routing.md` | Yes |
-| `MR-002` | Review Routing | Iterative review request resolves to `review` | `01--mode-routing/review-routing.md` | Yes |
-| `MR-003` | AI Council Routing | Multi-seat planning deliberation resolves to `ai-council` | `01--mode-routing/ai-council-routing.md` | Yes |
-| `MR-004` | Mode-Hint Override | Explicit `research:` hint overrides ambiguous wording | `01--mode-routing/mode-hint-override.md` | No |
+| `MR-001` | Research Routing | Outward investigation request resolves to `research` | `mode-routing/research-routing.md` | Yes |
+| `MR-002` | Review Routing | Iterative review request resolves to `review` | `mode-routing/review-routing.md` | Yes |
+| `MR-003` | AI Council Routing | Multi-seat planning deliberation resolves to `ai-council` | `mode-routing/ai-council-routing.md` | Yes |
+| `MR-004` | Mode-Hint Override | Explicit `research:` hint overrides ambiguous wording | `mode-routing/mode-hint-override.md` | No |
 
 ### Improvement Lane Routing (`IL-001..IL-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `IL-001` | Agent Improvement | Alias-fold default routes agent evaluation to `agent-improvement` | `02--improvement-lane-routing/agent-improvement.md` | Yes |
-| `IL-002` | Model Benchmark | `/deep:model-benchmark` command routes to `model-benchmark` | `02--improvement-lane-routing/model-benchmark.md` | Yes |
-| `IL-003` | Skill Benchmark | `/deep:skill-benchmark` command routes to `skill-benchmark` | `02--improvement-lane-routing/skill-benchmark.md` | Yes |
-| `IL-004` | AI System Improvement | `/deep:ai-system-improvement` command routes to `ai-system-improvement` | `02--improvement-lane-routing/ai-system-improvement.md` | Yes |
+| `IL-001` | Agent Improvement | Alias-fold default routes agent evaluation to `agent-improvement` | `improvement-lane-routing/agent-improvement.md` | Yes |
+| `IL-002` | Model Benchmark | `/deep:model-benchmark` command routes to `model-benchmark` | `improvement-lane-routing/model-benchmark.md` | Yes |
+| `IL-003` | Skill Benchmark | `/deep:skill-benchmark` command routes to `skill-benchmark` | `improvement-lane-routing/skill-benchmark.md` | Yes |
+| `IL-004` | AI System Improvement | `/deep:ai-system-improvement` command routes to `ai-system-improvement` | `improvement-lane-routing/ai-system-improvement.md` | Yes |
 
 ### Advisor Integration (`AI-001..AI-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `AI-001` | Single Advisor Identity | Positive deep-loop controls surface `system-deep-loop` as the hub identity | `03--advisor-integration/single-advisor-identity.md` | Yes |
-| `AI-002` | Lexical Mode Scoring | Lexical modes are scored through their `legacyAdvisorId` entries | `03--advisor-integration/lexical-mode-scoring.md` | No |
-| `AI-003` | Command-Bridge Guard | Command-bridge modes do not fire from bare advisor aliases | `03--advisor-integration/command-bridge-guard.md` | No |
-| `AI-004` | No False Fire | Plain code-edit prompt routes to `sk-code`, not deep-loop | `03--advisor-integration/no-false-fire-code-edit.md` | Yes |
+| `AI-001` | Single Advisor Identity | Positive deep-loop controls surface `system-deep-loop` as the hub identity | `advisor-integration/single-advisor-identity.md` | Yes |
+| `AI-002` | Lexical Mode Scoring | Lexical modes are scored through their `legacyAdvisorId` entries | `advisor-integration/lexical-mode-scoring.md` | No |
+| `AI-003` | Command-Bridge Guard | Command-bridge modes do not fire from bare advisor aliases | `advisor-integration/command-bridge-guard.md` | No |
+| `AI-004` | No False Fire | Plain code-edit prompt routes to `sk-code`, not deep-loop | `advisor-integration/no-false-fire-code-edit.md` | Yes |
 
 ### Runtime and Backend (`RB-001..RB-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `RB-001` | Runtime Loop Research | `research` resolves to `runtime-loop-type` and `runtimeLoopType: research` | `04--runtime-and-backend/runtime-loop-research.md` | Yes |
-| `RB-002` | Runtime Loop Council | `ai-council` resolves to `runtime-loop-type` and `runtimeLoopType: council` | `04--runtime-and-backend/runtime-loop-council.md` | No |
-| `RB-003` | Improvement Host | `agent-improvement` resolves to `improvement-host` and null runtime loop type | `04--runtime-and-backend/improvement-host.md` | Yes |
-| `RB-004` | External Adapter | `ai-system-improvement` resolves to `external-adapter` and null runtime loop type | `04--runtime-and-backend/external-adapter.md` | Yes |
+| `RB-001` | Runtime Loop Research | `research` resolves to `runtime-loop-type` and `runtimeLoopType: research` | `runtime-and-backend/runtime-loop-research.md` | Yes |
+| `RB-002` | Runtime Loop Council | `ai-council` resolves to `runtime-loop-type` and `runtimeLoopType: council` | `runtime-and-backend/runtime-loop-council.md` | No |
+| `RB-003` | Improvement Host | `agent-improvement` resolves to `improvement-host` and null runtime loop type | `runtime-and-backend/improvement-host.md` | Yes |
+| `RB-004` | External Adapter | `ai-system-improvement` resolves to `external-adapter` and null runtime loop type | `runtime-and-backend/external-adapter.md` | Yes |
 
 ### State and Convergence Discipline (`SC-001..SC-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `SC-001` | Externalized State | Runtime modes use packet-owned externalized state, not manual `/tmp` state | `05--state-and-convergence-discipline/externalized-state.md` | Yes |
-| `SC-002` | Artifact Root Writes | Iterations write to the mode's registry artifact root | `05--state-and-convergence-discipline/artifact-root-writes.md` | Yes |
-| `SC-003` | Convergence Stop | Convergence detection ends the loop rather than continuing indefinitely | `05--state-and-convergence-discipline/convergence-stop.md` | No |
-| `SC-004` | Hub Logic Boundary | Hub holds no per-mode convergence, state, or synthesis logic | `05--state-and-convergence-discipline/hub-logic-boundary.md` | Yes |
+| `SC-001` | Externalized State | Runtime modes use packet-owned externalized state, not manual `/tmp` state | `state-and-convergence-discipline/externalized-state.md` | Yes |
+| `SC-002` | Artifact Root Writes | Iterations write to the mode's registry artifact root | `state-and-convergence-discipline/artifact-root-writes.md` | Yes |
+| `SC-003` | Convergence Stop | Convergence detection ends the loop rather than continuing indefinitely | `state-and-convergence-discipline/convergence-stop.md` | No |
+| `SC-004` | Hub Logic Boundary | Hub holds no per-mode convergence, state, or synthesis logic | `state-and-convergence-discipline/hub-logic-boundary.md` | Yes |
 
 ---
 
@@ -204,26 +204,26 @@ Tests NOT covered by automation here:
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
-| Mode Routing | MR-001 | `01--mode-routing/research-routing.md` | Yes |
-| Mode Routing | MR-002 | `01--mode-routing/review-routing.md` | Yes |
-| Mode Routing | MR-003 | `01--mode-routing/ai-council-routing.md` | Yes |
-| Mode Routing | MR-004 | `01--mode-routing/mode-hint-override.md` | No |
-| Improvement Lane Routing | IL-001 | `02--improvement-lane-routing/agent-improvement.md` | Yes |
-| Improvement Lane Routing | IL-002 | `02--improvement-lane-routing/model-benchmark.md` | Yes |
-| Improvement Lane Routing | IL-003 | `02--improvement-lane-routing/skill-benchmark.md` | Yes |
-| Improvement Lane Routing | IL-004 | `02--improvement-lane-routing/ai-system-improvement.md` | Yes |
-| Advisor Integration | AI-001 | `03--advisor-integration/single-advisor-identity.md` | Yes |
-| Advisor Integration | AI-002 | `03--advisor-integration/lexical-mode-scoring.md` | No |
-| Advisor Integration | AI-003 | `03--advisor-integration/command-bridge-guard.md` | No |
-| Advisor Integration | AI-004 | `03--advisor-integration/no-false-fire-code-edit.md` | Yes |
-| Runtime and Backend | RB-001 | `04--runtime-and-backend/runtime-loop-research.md` | Yes |
-| Runtime and Backend | RB-002 | `04--runtime-and-backend/runtime-loop-council.md` | No |
-| Runtime and Backend | RB-003 | `04--runtime-and-backend/improvement-host.md` | Yes |
-| Runtime and Backend | RB-004 | `04--runtime-and-backend/external-adapter.md` | Yes |
-| State and Convergence Discipline | SC-001 | `05--state-and-convergence-discipline/externalized-state.md` | Yes |
-| State and Convergence Discipline | SC-002 | `05--state-and-convergence-discipline/artifact-root-writes.md` | Yes |
-| State and Convergence Discipline | SC-003 | `05--state-and-convergence-discipline/convergence-stop.md` | No |
-| State and Convergence Discipline | SC-004 | `05--state-and-convergence-discipline/hub-logic-boundary.md` | Yes |
+| Mode Routing | MR-001 | `mode-routing/research-routing.md` | Yes |
+| Mode Routing | MR-002 | `mode-routing/review-routing.md` | Yes |
+| Mode Routing | MR-003 | `mode-routing/ai-council-routing.md` | Yes |
+| Mode Routing | MR-004 | `mode-routing/mode-hint-override.md` | No |
+| Improvement Lane Routing | IL-001 | `improvement-lane-routing/agent-improvement.md` | Yes |
+| Improvement Lane Routing | IL-002 | `improvement-lane-routing/model-benchmark.md` | Yes |
+| Improvement Lane Routing | IL-003 | `improvement-lane-routing/skill-benchmark.md` | Yes |
+| Improvement Lane Routing | IL-004 | `improvement-lane-routing/ai-system-improvement.md` | Yes |
+| Advisor Integration | AI-001 | `advisor-integration/single-advisor-identity.md` | Yes |
+| Advisor Integration | AI-002 | `advisor-integration/lexical-mode-scoring.md` | No |
+| Advisor Integration | AI-003 | `advisor-integration/command-bridge-guard.md` | No |
+| Advisor Integration | AI-004 | `advisor-integration/no-false-fire-code-edit.md` | Yes |
+| Runtime and Backend | RB-001 | `runtime-and-backend/runtime-loop-research.md` | Yes |
+| Runtime and Backend | RB-002 | `runtime-and-backend/runtime-loop-council.md` | No |
+| Runtime and Backend | RB-003 | `runtime-and-backend/improvement-host.md` | Yes |
+| Runtime and Backend | RB-004 | `runtime-and-backend/external-adapter.md` | Yes |
+| State and Convergence Discipline | SC-001 | `state-and-convergence-discipline/externalized-state.md` | Yes |
+| State and Convergence Discipline | SC-002 | `state-and-convergence-discipline/artifact-root-writes.md` | Yes |
+| State and Convergence Discipline | SC-003 | `state-and-convergence-discipline/convergence-stop.md` | No |
+| State and Convergence Discipline | SC-004 | `state-and-convergence-discipline/hub-logic-boundary.md` | Yes |
 
 **Total scenarios**: 20
 **Critical-path scenarios**: 15

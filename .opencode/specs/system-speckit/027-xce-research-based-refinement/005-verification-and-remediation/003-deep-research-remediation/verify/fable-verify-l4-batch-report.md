@@ -64,7 +64,7 @@
 
 - The gate still claims it: `manual_testing_playbook.md:142` (100% coverage "defined by the root index and backed by per-scenario files") and `:145` ("Orphan scenario count is zero (every scenario file is linked in Section 12)").
 - The deterministic check (`:149-170`) remains a bare file count asserting `TOTAL_FEATURES == 410` — it proves neither root-index linkage nor link resolution.
-- Measured against live files (2026-06-12): 410 immediate scenario files; the root doc carries 326 distinct relative scenario links; **1 broken link target** — `11--scoring-and-calibration/102-Ollama runtime-optionaldependencies.md`, referenced at `:2172` and `:3658`, does not exist on disk; **85 orphan immediate scenario files** not linked from the root doc (banked figure was 185; the orphan population shrank but the gate is still materially weaker than it claims).
+- Measured against live files (2026-06-12): 410 immediate scenario files; the root doc carries 326 distinct relative scenario links; **1 broken link target** — `scoring-and-calibration/102-Ollama runtime-optionaldependencies.md`, referenced at `:2172` and `:3658`, does not exist on disk; **85 orphan immediate scenario files** not linked from the root doc (banked figure was 185; the orphan population shrank but the gate is still materially weaker than it claims).
 - **Risk:** release-readiness can report READY while scenarios are unlinked/unresolvable — the gate's two strongest clauses are unverified.
 - **Fix class:** code-small (a CI/script guard that derives rows-vs-files from one inventory and fails on missing targets or orphans, per fix_sketch), plus repairing the one broken link.
 

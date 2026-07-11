@@ -6,7 +6,7 @@ I followed the open seam left by iteration 46: concrete false-positive prompt co
 ## Findings
 
 ### Finding R47-001
-- **File:** `AGENTS.md`; `.opencode/skills/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/confirm-mode-checkpointed-review.md`; `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md`
+- **File:** `AGENTS.md`; `.opencode/skills/sk-deep-review/manual_testing_playbook/entry-points-and-modes/confirm-mode-checkpointed-review.md`; `.opencode/skills/sk-deep-research/manual_testing_playbook/synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md`
 - **Lines:** `AGENTS.md:182-185`; `confirm-mode-checkpointed-review.md:26-32,44-45`; `ruled-out-directions-in-synthesis.md:26-32,44-45`
 - **Severity:** P2
 - **Description:** Gate 3's file-modification trigger list is broad enough to collide with the repository's own non-mutating research/review prompts. The hard trigger word `phase` appears in `AGENTS.md`, but current manual-testing prompts use phrases like `phase transition` and `synthesis phase` for pure validation work that inspects docs and YAML rather than editing files.

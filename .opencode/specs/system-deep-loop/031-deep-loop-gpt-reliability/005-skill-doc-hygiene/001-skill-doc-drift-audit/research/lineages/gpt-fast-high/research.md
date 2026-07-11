@@ -21,7 +21,7 @@ Stale docs:
 Related living-doc drift outside the spec's explicit SKILL/README candidate list:
 
 - `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:417` still verifies `--agent ai-council`. [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:417]
-- `.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md:27-43` and `:51` require direct `--agent ai-council`. [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md:27-43] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md:51]
+- `.opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md:27-43` and `:51` require direct `--agent ai-council`. [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md:27-43] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md:51]
 
 ### F-B: `cli-opencode/SKILL.md` Partially Contradicts Orchestrate Deep-Review Routing
 
@@ -58,7 +58,7 @@ Stale docs and implementation-coupled evidence:
 
 - `.opencode/skills/deep-loop-workflows/deep-improvement/README.md:81` says the scanner inventories three runtime mirrors and duplicates `.opencode/agents/` in the parenthetical. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/README.md:81]
 - `.opencode/skills/deep-loop-workflows/deep-improvement/README.md:161` says the scanner finds the canonical definition plus three runtime mirrors. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/README.md:161]
-- `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/02--integration-scanning/runtime-mirrors.md:29` says hardcoded templates include `.opencode/agents/{name}.toml`. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/02--integration-scanning/runtime-mirrors.md:29]
+- `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/integration-scanning/runtime-mirrors.md:29` says hardcoded templates include `.opencode/agents/{name}.toml`. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/integration-scanning/runtime-mirrors.md:29]
 - `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md:42-47` lists `.opencode/agents/{name}.toml` as an OpenCode mirror, and `:80-85` shows it in example output. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md:42-47] [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md:80-85]
 - `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/mirror_drift_policy.md:41-43` requires the TOML surface and says OpenCode TOML is compared by extracted body tokens. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/mirror_drift_policy.md:41-43]
 - `.opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md:94` requires agent-definition targets across all four runtime mirrors and mentions OpenCode TOML extraction. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/references/shared/promotion_rules.md:94]
@@ -72,12 +72,12 @@ Stale doc:
 
 Related pre-existing identity drift, likely not caused by 031:
 
-- `.opencode/skills/deep-loop-workflows/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:25-31` expects `@deep-ai-council` as current runtime name, but the registry's dispatched `agent` remains `ai-council`. [SOURCE: .opencode/skills/deep-loop-workflows/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:25-31] [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:66-72]
+- `.opencode/skills/deep-loop-workflows/deep-ai-council/manual_testing_playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:25-31` expects `@deep-ai-council` as current runtime name, but the registry's dispatched `agent` remains `ai-council`. [SOURCE: .opencode/skills/deep-loop-workflows/deep-ai-council/manual_testing_playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:25-31] [SOURCE: .opencode/skills/deep-loop-workflows/mode-registry.json:66-72]
 
 ## Confirmed Non-Findings
 
 - `cli-opencode/references/agent_delegation.md` already states direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. [SOURCE: .opencode/skills/cli-opencode/references/agent_delegation.md:197]
-- `deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md` correctly documents the new guard name, env var, and live validation. [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md:12-34]
+- `deep-loop-runtime/feature_catalog/validation/mk-deep-loop-guard.md` correctly documents the new guard name, env var, and live validation. [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/validation/mk-deep-loop-guard.md:12-34]
 - `AGENTS.md` and root `README.md` checked lines contain neutral `/deep:ai-council`, `@ai-council`, or `ai-council/**` references, not stale direct `--agent` or `mode: all` claims. [SOURCE: AGENTS.md:453] [SOURCE: README.md:850] [SOURCE: README.md:1169-1170]
 - Historical old-name mentions inside phase 011's implementation summary are intentional history, not living-doc drift. [SOURCE: .opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/011-deep-route-guard-plugin/implementation-summary.md:129-133]
 

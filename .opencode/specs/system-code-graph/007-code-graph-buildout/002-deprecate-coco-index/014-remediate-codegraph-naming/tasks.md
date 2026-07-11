@@ -70,7 +70,7 @@ _memory:
 - [x] T013 `feature_catalog/feature_catalog.md` — removed `07--ccc-integration` section + ToC + table row, renumbered DOCTOR 9→8, fixed counts (17→14 features, 8→7 groups), phantom-tool garble
 - [x] T014 `manual_testing_playbook/manual_testing_playbook.md` — removed `07--ccc-integration` section + ToC + table row, renumbered 14–18→13–17, fixed counts (19→16 scenarios)
 - [x] T018 [expanded] `ARCHITECTURE.md` — reframed "structural search bridge" subsystem → Index lifecycle, fixed diagram + topology comment, dropped false sqlite-vec/semantic-runtime claims
-- [x] T019 [expanded] `feature_catalog/06--mcp-tool-surface/01-tool-registrations.md` — phantom `code_graph_* and detect_changes` tool name
+- [x] T019 [expanded] `feature_catalog/mcp-tool-surface/01-tool-registrations.md` — phantom `code_graph_* and detect_changes` tool name
 <!-- /ANCHOR:phase-2 -->
 
 ---

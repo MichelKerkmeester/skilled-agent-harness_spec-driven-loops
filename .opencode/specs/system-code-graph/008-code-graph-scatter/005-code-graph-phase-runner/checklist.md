@@ -27,7 +27,7 @@ contextType: "implementation"
 - [x] Diff parser handles standard unified diff; returns `parse_error` on unknown format — `parseUnifiedDiff` discriminated union; covered by "returns parse_error on malformed @@ header" + 5 other parser cases
 
 ## P2 — Documentation
-- [x] feature_catalog entries created in `03--discovery/` (detect_changes) and `14--pipeline-architecture/` (phase-DAG) — `04-detect-changes-preflight.md` and `25-code-graph-phase-dag-runner.md`
+- [x] feature_catalog entries created in `discovery/` (detect_changes) and `pipeline-architecture/` (phase-DAG) — `04-detect-changes-preflight.md` and `25-code-graph-phase-dag-runner.md`
 - [x] manual_testing_playbook entries created in same categories — `014-detect-changes-preflight.md` and `271-code-graph-phase-dag-runner.md`
 - [ ] sk-doc DQI score ≥85 on new entries — OPERATOR-PENDING. Structural template adherence verified (frontmatter, canonical sections, line counts within peer band) but the prior `[x]` was premature (R-007-19 — premature PASS): no script-backed DQI score was captured. Operator must run `python3 .opencode/skills/sk-doc/scripts/validate_document.py <doc> --json` for each of the 4 catalog/playbook entries to numerically confirm ≥85.
 

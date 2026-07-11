@@ -74,5 +74,5 @@ ps -eo pid,etime,rss,pcpu,command | grep -E 'ollama runner'
 - ADR-011 (rescue layer default-on gate): `decision-record.md`
 - ADR-012 (jina-v3 production ratification): `decision-record.md`
 - Rescue ON/OFF benchmark: `d-rescue-on-vs-off.jsonl` + `d-rescue-layer-cost-benefit.md`
-- cat-24/409 fixture: `../../../manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json`
+- cat-24/409 fixture: `../../../manual_testing_playbook/local-llm-query-intelligence/409-fixture.json`
 - Per-embedder cat-24 results: `cat-24-rerun.jsonl` + `embedder-comparison-with-rescue.jsonl`

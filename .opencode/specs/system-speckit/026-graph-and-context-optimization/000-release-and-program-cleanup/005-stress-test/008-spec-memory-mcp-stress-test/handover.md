@@ -43,7 +43,7 @@ _memory:
 
 **Two test surfaces:**
 1. **All 39 mk-spec-memory MCP tools** — exercise each tool through its happy path + at least one edge case. Confirm tool advertises in `/mcp` and the handler returns a well-formed MCP response.
-2. **All 345 manual_testing_playbook scenarios** under `.opencode/skills/system-spec-kit/manual_testing_playbook/` (**25 category dirs** — `14--pipeline-architecture` and `14--stress-testing` share the `14--` prefix). Each scenario MUST be executed for real, not mocked (playbook execution policy).
+2. **All 345 manual_testing_playbook scenarios** under `.opencode/skills/system-spec-kit/manual_testing_playbook/` (**25 category dirs** — `pipeline-architecture` and `stress-testing` share the `14--` prefix). Each scenario MUST be executed for real, not mocked (playbook execution policy).
 
 **Why now:** Commit `b062b12b4` (packet 113) un-excluded z_archive from `EXCLUDED_FOR_MEMORY`. 2618 archived rows are now indexed with 0.1 decay multiplier. Behavior under load + scoring fidelity needs validation against the 345-scenario corpus. The fix shipped tests + docs cleanly (packet 113 strict-validate PASS, vitest 159/159), but only narrow surface coverage. The 345-scenario sweep is the real-traffic equivalent.
 
@@ -115,19 +115,19 @@ Root index: `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_tes
 Category groups (alphabetical numeric prefix):
 
 ```
-01--retrieval                            13--memory-quality-and-indexing
-02--mutation                             14--pipeline-architecture
-03--discovery                            14--stress-testing  (note: duplicate 14 prefix)
-04--maintenance                          15--retrieval-enhancements
-05--lifecycle                            16--tooling-and-scripts
-06--analysis                             17--governance
-07--evaluation                           18--ux-hooks
-08--bug-fixes-and-data-integrity         19--feature-flag-reference
-09--evaluation-and-measurement           20--remediation-revalidation
-10--graph-signal-activation              21--implement-and-remove-deprecated-features
-11--scoring-and-calibration              22--context-preservation
-12--query-intelligence                   23--doctor-commands
-                                         24--local-llm-query-intelligence
+retrieval                            memory-quality-and-indexing
+mutation                             pipeline-architecture
+discovery                            stress-testing  (note: duplicate 14 prefix)
+maintenance                          retrieval-enhancements
+lifecycle                            tooling-and-scripts
+analysis                             governance
+evaluation                           ux-hooks
+bug-fixes-and-data-integrity         feature-flag-reference
+evaluation-and-measurement           remediation-revalidation
+graph-signal-activation              implement-and-remove-deprecated-features
+scoring-and-calibration              context-preservation
+query-intelligence                   doctor-commands
+                                         local-llm-query-intelligence
 ```
 
 **Playbook execution policy (verbatim from root index):**
@@ -136,7 +136,7 @@ Category groups (alphabetical numeric prefix):
 
 ### Why z_archive matters for THIS sweep
 
-Scenarios under `01--retrieval`, `04--maintenance`, `13--memory-quality-and-indexing`, and `20--remediation-revalidation` have historical assertions that z_archive content is absent. Post-113, those assertions are wrong. **Watch for false FAILs** where a scenario expects `count=0` rows and now sees ≥ 2618. Reclassify those as PARTIAL with a 113-context note, then file a follow-on cleanup TSV per the packet 113 pattern.
+Scenarios under `retrieval`, `maintenance`, `memory-quality-and-indexing`, and `remediation-revalidation` have historical assertions that z_archive content is absent. Post-113, those assertions are wrong. **Watch for false FAILs** where a scenario expects `count=0` rows and now sees ≥ 2618. Reclassify those as PARTIAL with a 113-context note, then file a follow-on cleanup TSV per the packet 113 pattern.
 
 ### cli-devin v1.0.4.1 recipe + dispatch pattern (proven)
 
@@ -193,7 +193,7 @@ For each of 25 categories:
 - Prompt reads each `.md` scenario file under the category dir
 - Executes the scenario per its embedded contract (real, not mocked)
 - Records per-scenario JSONL: `{category, scenario_id, classification, evidence}` to `evidence/playbook-results.jsonl`
-- **Multi-prompt scenario files**: many scenario `.md` files contain >1 `### Prompt` block (e.g. `01--retrieval/unified-context-retrieval-memory-context.md` has 2 — basic `memory_context` + token-budget envelope contract). Row contract: **one row per scenario file**; `classification` = WORST outcome across blocks (any FAIL → FAIL; any PARTIAL with all-else PASS → PARTIAL; etc.); the `evidence` field captures sub-block per-prompt results so detail is preserved. Floor of ≥345 rows (per `spec.md` REQ-002) is the FILE count, not the prompt-block count.
+- **Multi-prompt scenario files**: many scenario `.md` files contain >1 `### Prompt` block (e.g. `retrieval/unified-context-retrieval-memory-context.md` has 2 — basic `memory_context` + token-budget envelope contract). Row contract: **one row per scenario file**; `classification` = WORST outcome across blocks (any FAIL → FAIL; any PARTIAL with all-else PASS → PARTIAL; etc.); the `evidence` field captures sub-block per-prompt results so detail is preserved. Floor of ≥345 rows (per `spec.md` REQ-002) is the FILE count, not the prompt-block count.
 - Categories with > 30 scenarios may need to be split into 2–3 batches (concretely: cat 16 has 55, cats 13/14-pipeline have 29/26)
 
 Dispatch paired (2 categories concurrent) × ~13 batches.

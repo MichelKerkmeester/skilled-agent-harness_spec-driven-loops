@@ -99,7 +99,7 @@ Delivered by a deterministic exact-string replacement keyed on the natural token
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Testing-playbook scenario filename** - `manual_testing_playbook/01--intent-detection/doc-quality.md` keeps its filename (it names the user intent concept); its content was repointed.
+1. **Testing-playbook scenario filename** - `manual_testing_playbook/intent-detection/doc-quality.md` keeps its filename (it names the user intent concept); its content was repointed.
 2. **Concurrently-dirty referencers** - Any referencing file held dirty by a concurrent lane was repointed in the working tree and committed by its owner to preserve 0-leak.
 
 <!-- /ANCHOR:limitations -->

@@ -52,8 +52,8 @@ _memory:
 - [x] [T012] [P1] `commands/doctor/assets/doctor_memory.yaml:23` — invariant list drops "llama-cpp"
 - [x] [T013] [P1] `commands/doctor/update.md:317` — example snapshot_path uses `hf-local` instead of `llama-cpp`
 - [x] [T014] [P1] `references/memory/embedder_architecture.md:174` — routing-table column drops `/ llama-cpp` suffix
-- [x] [T015] [P1] `manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md` — 5 `llama-cpp.ts` → `hf-local.ts` substitutions + `LlamaCppProvider` → `HfLocalProvider`
-- [x] [T016] [P1] `manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md:37` — `llama-cpp.ts` → `hf-local.ts` in test scenario subject
+- [x] [T015] [P1] `manual_testing_playbook/detect-changes/detect-changes-multi-file-diff.md` — 5 `llama-cpp.ts` → `hf-local.ts` substitutions + `LlamaCppProvider` → `HfLocalProvider`
+- [x] [T016] [P1] `manual_testing_playbook/mcp-tool-surface/code-graph-query-blast-radius.md:37` — `llama-cpp.ts` → `hf-local.ts` in test scenario subject
 - [x] [T017] [P1] Author spec.md, plan.md, tasks.md, implementation-summary.md, description.json, graph-metadata.json
 - [x] [T018] [P1] Update parent graph-metadata.json children_ids to include `012-remove-llama-cpp-residue`
 <!-- /ANCHOR:phase-2 -->

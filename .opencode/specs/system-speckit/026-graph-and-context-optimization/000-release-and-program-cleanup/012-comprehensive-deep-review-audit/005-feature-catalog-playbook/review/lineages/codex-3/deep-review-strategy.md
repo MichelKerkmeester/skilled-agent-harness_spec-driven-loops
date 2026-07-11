@@ -6,10 +6,10 @@
 |---|---|---|
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md` | Slice scope | read |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Master catalog | sampled |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` | Code-reference feature entry | reviewed |
+| `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md` | Code-reference feature entry | reviewed |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Master playbook and cross-reference index | reviewed |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | Traceability grep scenario | reviewed |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md` | Annotation-name validity scenario | reviewed |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | Traceability grep scenario | reviewed |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md` | Annotation-name validity scenario | reviewed |
 
 ## Cross-Reference Status
 

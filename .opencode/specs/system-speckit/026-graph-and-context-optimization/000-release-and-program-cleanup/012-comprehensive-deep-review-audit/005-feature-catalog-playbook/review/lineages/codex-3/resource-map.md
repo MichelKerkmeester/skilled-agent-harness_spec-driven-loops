@@ -8,10 +8,10 @@
 |---|---|
 | `spec.md` | Slice scope and acceptance criteria. |
 | `feature_catalog/feature_catalog.md` | Master feature inventory. |
-| `feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` | Code-reference traceability claim. |
+| `feature_catalog/tooling-and-scripts/feature-catalog-code-references.md` | Code-reference traceability claim. |
 | `manual_testing_playbook/manual_testing_playbook.md` | Master playbook, release-readiness rules, cross-reference index. |
-| `manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | Grep traceability scenario. |
-| `manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md` | Annotation-name validity scenario. |
+| `manual_testing_playbook/tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | Grep traceability scenario. |
+| `manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md` | Annotation-name validity scenario. |
 
 ## Checks
 

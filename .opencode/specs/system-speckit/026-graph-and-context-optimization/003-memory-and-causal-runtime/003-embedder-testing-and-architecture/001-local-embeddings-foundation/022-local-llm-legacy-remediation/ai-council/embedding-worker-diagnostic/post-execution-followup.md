@@ -44,7 +44,7 @@ After dropping `retentionPolicy: "ephemeral"` from the `memory_save` call:
    - Document that it implies full governed-ingest fields, OR
    - Fail with a SPECIFIC error like `E_GOV_EPHEMERAL_REQUIRES_FIELDS` that lists exactly what's missing.
 
-3. **All 15 scenarios in `manual_testing_playbook/24--local-llm-query-intelligence/` reference `retentionPolicy: "ephemeral"`** because I (Claude) wrote them that way during the earlier scenario rewrite. They need to be updated to either:
+3. **All 15 scenarios in `manual_testing_playbook/local-llm-query-intelligence/` reference `retentionPolicy: "ephemeral"`** because I (Claude) wrote them that way during the earlier scenario rewrite. They need to be updated to either:
    - Drop `retentionPolicy: "ephemeral"`, OR
    - Pass the full governance field set.
 
@@ -52,7 +52,7 @@ After dropping `retentionPolicy: "ephemeral"` from the `memory_save` call:
 
 - **Replace E081 catch-all with specific error codes** in `handlers/save/response-builder.ts:511`. Emit `EMBEDDING_PROVIDER_ERROR`, `GOVERNANCE_REJECTED`, `SQLITE_BUSY`, `SQLITE_LOCKED`, etc. with their actual issue lists preserved.
 - **Fix or document `retentionPolicy: "ephemeral"` governance trigger.** Either remove `retentionPolicy === 'ephemeral'` from `requiresGovernedIngest()`, or update the tool description to make the implicit governance requirement explicit.
-- **Update 24--local-llm-query-intelligence scenarios 401, 411-415** to drop `retentionPolicy: "ephemeral"` (or supply governance fields). After fixing, re-run the suite via cli-codex or cli-opencode.
+- **Update local-llm-query-intelligence scenarios 401, 411-415** to drop `retentionPolicy: "ephemeral"` (or supply governance fields). After fixing, re-run the suite via cli-codex or cli-opencode.
 
 ## Status
 

@@ -8,7 +8,7 @@
 
 ## [P1][BROKEN-FEATURE] CLI and daemon disagree on propagate-enhances trust gating
 
-- Evidence: .opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/skill-advisor-cli.md:23; .opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts:655-664; .opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts:40-43
+- Evidence: .opencode/skills/system-skill-advisor/feature_catalog/mcp-surface/skill-advisor-cli.md:23; .opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts:655-664; .opencode/skills/system-skill-advisor/mcp_server/handlers/skill-graph/propagate-enhances.ts:40-43
 - Detail: Docs and CLI client-side validation treat only real apply-mode `skill_graph_propagate_enhances` as requiring `--trusted`, but the daemon handler requires trusted caller context for report/propose/apply before any detection runs. That means the CLI contract is not byte-for-byte aligned with daemon enforcement for the default no-write report path.
 - Fix sketch: Either require `--trusted` for all `skill_graph_propagate_enhances` modes in the CLI/docs, or relax daemon auth for report/propose only.
 

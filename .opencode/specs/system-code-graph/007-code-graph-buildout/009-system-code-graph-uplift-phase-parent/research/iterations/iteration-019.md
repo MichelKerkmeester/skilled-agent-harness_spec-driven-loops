@@ -44,8 +44,8 @@ The manual_testing_playbook contains 22 scenario files under numbered category f
 
 | File | Path | Required Sections Present | H2 Case Compliance |
 |------|------|---------------------------|-------------------|
-| `ensure-ready-selective-reindex.md` | `manual_testing_playbook/01--read-path-freshness/` | Not validated in this iteration (sample check deferred to Q8) | Not validated |
-| `tool-call-shape-validation.md` | `manual_testing_playbook/06--mcp-tool-surface/` | Not validated in this iteration (sample check deferred to Q8) | Not validated |
+| `ensure-ready-selective-reindex.md` | `manual_testing_playbook/read-path-freshness/` | Not validated in this iteration (sample check deferred to Q8) | Not validated |
+| `tool-call-shape-validation.md` | `manual_testing_playbook/mcp-tool-surface/` | Not validated in this iteration (sample check deferred to Q8) | Not validated |
 
 ### Per-Feature Catalog Files (sample validation)
 
@@ -61,8 +61,8 @@ The feature_catalog contains 17 per-feature files under numbered category folder
 
 | File | Path | Required Sections Present | Notes |
 |------|------|---------------------------|-------|
-| `01-ensure-code-graph-ready.md` | `feature_catalog/01--read-path-freshness/` | Not validated in this iteration (sample check deferred to Q7) | Deferred to Q7 iteration |
-| `01-tool-registrations.md` | `feature_catalog/06--mcp-tool-surface/` | Not validated in this iteration (sample check deferred to Q7) | Deferred to Q7 iteration |
+| `01-ensure-code-graph-ready.md` | `feature_catalog/read-path-freshness/` | Not validated in this iteration (sample check deferred to Q7) | Deferred to Q7 iteration |
+| `01-tool-registrations.md` | `feature_catalog/mcp-tool-surface/` | Not validated in this iteration (sample check deferred to Q7) | Deferred to Q7 iteration |
 
 ### MCP Server Sub-folder READMEs
 

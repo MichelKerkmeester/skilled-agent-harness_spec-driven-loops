@@ -60,27 +60,27 @@ Added 15 missing current-state feature catalog entries for shipped release featu
 
 | Entry | File |
 |------|------|
-| Semantic trigger shadow matcher and hybrid handler | `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md` |
-| Trigger embedding backfill | `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/trigger-embedding-backfill.md` |
-| Provenance source_kind write-ingress guard and mutation audit | `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/provenance-source-kind-write-ingress-guard-and-mutation-audit.md` |
-| Memory idempotency receipts and near-duplicate hints | `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/memory-idempotency-receipts-and-near-duplicate-hints.md` |
-| Soft-delete tombstones and active/purgeable partitions | `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md` |
-| Causal tombstone sweep and metadata-edge promoter | `.opencode/skills/system-spec-kit/feature_catalog/06--analysis/causal-tombstone-sweep-and-metadata-edge-promoter.md` |
-| Learning feedback reducers | `.opencode/skills/system-spec-kit/feature_catalog/06--analysis/learning-feedback-reducers.md` |
-| Retrieval observability diagnostics | `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/retrieval-observability-diagnostics.md` |
-| Completion-verdict freshness validation | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/completion-verdict-freshness-validation.md` |
-| Daemon-backed code-index CLI surface | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/code-index-cli-daemon-backed-surface.md` |
-| Daemon-backed skill-advisor CLI surface | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md` |
-| Stale-exclusion audit and tool-ownership lint | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/stale-exclusion-audit-and-tool-ownership-lint.md` |
-| Automated writers never overwrite manual constitutional rule | `.opencode/skills/system-spec-kit/feature_catalog/17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md` |
-| Entity co-occurrence is not causal constitutional rule | `.opencode/skills/system-spec-kit/feature_catalog/17--governance/entity-cooccurrence-is-not-causal-constitutional-rule.md` |
-| OpenLTM continuity resilience | `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/openltm-continuity-resilience.md` |
+| Semantic trigger shadow matcher and hybrid handler | `.opencode/skills/system-spec-kit/feature_catalog/retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md` |
+| Trigger embedding backfill | `.opencode/skills/system-spec-kit/feature_catalog/retrieval/trigger-embedding-backfill.md` |
+| Provenance source_kind write-ingress guard and mutation audit | `.opencode/skills/system-spec-kit/feature_catalog/mutation/provenance-source-kind-write-ingress-guard-and-mutation-audit.md` |
+| Memory idempotency receipts and near-duplicate hints | `.opencode/skills/system-spec-kit/feature_catalog/mutation/memory-idempotency-receipts-and-near-duplicate-hints.md` |
+| Soft-delete tombstones and active/purgeable partitions | `.opencode/skills/system-spec-kit/feature_catalog/mutation/soft-delete-tombstones-and-active-purgeable-partitions.md` |
+| Causal tombstone sweep and metadata-edge promoter | `.opencode/skills/system-spec-kit/feature_catalog/analysis/causal-tombstone-sweep-and-metadata-edge-promoter.md` |
+| Learning feedback reducers | `.opencode/skills/system-spec-kit/feature_catalog/analysis/learning-feedback-reducers.md` |
+| Retrieval observability diagnostics | `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/retrieval-observability-diagnostics.md` |
+| Completion-verdict freshness validation | `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/completion-verdict-freshness-validation.md` |
+| Daemon-backed code-index CLI surface | `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/code-index-cli-daemon-backed-surface.md` |
+| Daemon-backed skill-advisor CLI surface | `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md` |
+| Stale-exclusion audit and tool-ownership lint | `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/stale-exclusion-audit-and-tool-ownership-lint.md` |
+| Automated writers never overwrite manual constitutional rule | `.opencode/skills/system-spec-kit/feature_catalog/governance/automated-writers-never-overwrite-manual-constitutional-rule.md` |
+| Entity co-occurrence is not causal constitutional rule | `.opencode/skills/system-spec-kit/feature_catalog/governance/entity-cooccurrence-is-not-causal-constitutional-rule.md` |
+| OpenLTM continuity resilience | `.opencode/skills/system-spec-kit/feature_catalog/context-preservation/openltm-continuity-resilience.md` |
 
 ### Entries Skipped
 
 | Requested Feature | Existing Entry |
 |------|------|
-| Daemon-backed spec-memory CLI front door | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md` |
+| Daemon-backed spec-memory CLI front door | `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md` |
 <!-- /ANCHOR:what-built -->
 
 ---

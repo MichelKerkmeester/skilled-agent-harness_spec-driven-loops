@@ -64,9 +64,9 @@ Bring the playbook, skill-level advisor descriptor, and graph metadata into sync
 
 ### In Scope
 
-- Add `MR-007` (`01--mode-routing/mcp-open-design-mode.md`): a new critical-path mode-routing scenario verifying an Open Design wiring request resolves to `design-mcp-open-design`, not a design-judgment mode or the external `mcp-figma` sibling.
-- Add a `P6` probe to `AI-001` (`02--advisor-integration/positive-design-controls.md`): extends the existing five-probe positive-control battery with an Open Design wiring prompt, so the advisor-integration critical-path check covers all six modes, not five.
-- Fix stale "five modes" references incidentally found while updating the above: `manual_testing_playbook.md` (overview, preconditions, critical-path list, cross-reference index, totals), `README.md` (playbook description line), `AI-003`'s own prompt text and its playbook table row (`02--advisor-integration/doc-write-routes-elsewhere.md`).
+- Add `MR-007` (`mode-routing/mcp-open-design-mode.md`): a new critical-path mode-routing scenario verifying an Open Design wiring request resolves to `design-mcp-open-design`, not a design-judgment mode or the external `mcp-figma` sibling.
+- Add a `P6` probe to `AI-001` (`advisor-integration/positive-design-controls.md`): extends the existing five-probe positive-control battery with an Open Design wiring prompt, so the advisor-integration critical-path check covers all six modes, not five.
+- Fix stale "five modes" references incidentally found while updating the above: `manual_testing_playbook.md` (overview, preconditions, critical-path list, cross-reference index, totals), `README.md` (playbook description line), `AI-003`'s own prompt text and its playbook table row (`advisor-integration/doc-write-routes-elsewhere.md`).
 - Sync the skill-level advisor descriptor `description.json` (description, keywords, trigger_examples, `modes[]`, `backend_kinds[]`) to include `design-mcp-open-design` / `od-cli-transport`.
 - Sync `graph-metadata.json`'s `causal_summary` and `intent_signals` to mention the sixth mode and its transport nature.
 - Re-run the router-mode skill-benchmark (fast, deterministic) to confirm the new scenario is picked up and D5 connectivity stays clean.
@@ -82,9 +82,9 @@ Bring the playbook, skill-level advisor descriptor, and graph metadata into sync
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
-| `.opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md` | Create | New `MR-007` scenario |
-| `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md` | Edit | Add `P6` probe to `AI-001` |
-| `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/doc-write-routes-elsewhere.md` | Edit | Fix stale "five modes" prompt text |
+| `.opencode/skills/sk-design/manual_testing_playbook/mode-routing/mcp-open-design-mode.md` | Create | New `MR-007` scenario |
+| `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/positive-design-controls.md` | Edit | Add `P6` probe to `AI-001` |
+| `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/doc-write-routes-elsewhere.md` | Edit | Fix stale "five modes" prompt text |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Edit | Overview, preconditions, critical-path list, cross-reference index, totals |
 | `.opencode/skills/sk-design/README.md` | Edit | Playbook description line (also fixes a pre-existing separate staleness: "24-scenario" when the playbook already declared 32) |
 | `.opencode/skills/sk-design/description.json` | Edit | description, keywords, trigger_examples, modes[], backend_kinds[]; version bump |

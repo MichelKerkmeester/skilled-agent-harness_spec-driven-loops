@@ -106,7 +106,7 @@ Bring all five surfaces into alignment with sk-doc's canonical templates in a si
 - Sk-code surface alignment work — handled by separate sibling packet `002-sk-code-opencode-alignment` under same parent.
 - Executable-code changes in `predicates/` or `utils/` — README addition only.
 - Scenario-content semantic changes inside operator_runbook or manual_testing_playbook — only structural reframing to sk-doc per-feature template.
-- Renaming category dirs in the merged playbook (`10--python-compat/` stays at `10--`; no renumbering to close the `09--` gap).
+- Renaming category dirs in the merged playbook (`python-compat/` stays at `10--`; no renumbering to close the `09--` gap).
 - Updating skill_advisor's `SKILL.md` to reference the merged playbook unless `rg` finds an explicit `operator_runbook` link in it (in which case it falls into "update cross-references").
 
 ### Files to Change

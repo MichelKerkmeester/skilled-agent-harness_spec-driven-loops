@@ -10,11 +10,11 @@ import { spawnSync } from 'node:child_process';
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, '../../../../../..');
 const MEMORY_SERVER_ROOT = path.join(REPO_ROOT, '.opencode/skills/system-spec-kit/mcp_server');
-const SANDBOX_RUN_DIR = path.join(REPO_ROOT, '_sandbox/24--local-llm-query-intelligence');
+const SANDBOX_RUN_DIR = path.join(REPO_ROOT, '_sandbox/local-llm-query-intelligence');
 const SANDBOX_EVIDENCE_DIR = path.join(SANDBOX_RUN_DIR, 'evidence');
 const PLAYBOOK_DIR = path.join(
   REPO_ROOT,
-  '.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence',
+  '.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence',
 );
 const SUMMARY_TSV = path.join(
   SANDBOX_EVIDENCE_DIR,
@@ -536,7 +536,7 @@ function buildLatencyWorkload() {
 
 async function runLatencyScenario(client) {
   const workload = buildLatencyWorkload();
-  const workloadDir = path.join(REPO_ROOT, '_sandbox/24--local-llm-query-intelligence/410');
+  const workloadDir = path.join(REPO_ROOT, '_sandbox/local-llm-query-intelligence/410');
   fs.mkdirSync(workloadDir, { recursive: true });
   fs.writeFileSync(path.join(workloadDir, 'workload.json'), `${JSON.stringify(workload, null, 2)}\n`);
 
@@ -775,7 +775,7 @@ function writeSummary(rows) {
 // (unset) keeps the normal skip-not-fail behavior unchanged. Returns the dir path or null.
 export function hermeticCodeIndexDbDir(runId = RUN_ID) {
   if (process.env.SPECKIT_SUBSTRATE_HERMETIC !== '1') return null;
-  return path.join(REPO_ROOT, '_sandbox/24--local-llm-query-intelligence/.tmp-cg-db', runId);
+  return path.join(REPO_ROOT, '_sandbox/local-llm-query-intelligence/.tmp-cg-db', runId);
 }
 
 function hermeticCodeIndexExtras() {

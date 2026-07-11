@@ -101,7 +101,7 @@ Close all three P1s with concrete fixes + regression tests, and absorb the 15 P2
 | `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/decision-record.md` | Modify | DR-008-D1-P2-002, DR-008-D4-P2-006 (path spelling + ADR sub-track split) |
 | `specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/implementation-summary.md` | Modify | DR-008-D3-P2-003 (gate-bundle artifact reference cleanup) |
 | `mcp_server/skill_advisor/lib/scorer/weights-config.ts` OR catalog/summary docs | Modify | DR-008-D3-P2-002 (lane weight 0.10 vs 0.15 reconciliation) |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/04--operator-h5/003-unavailable-daemon.md` | Modify | DR-008-D3-P2-001 (untrusted scan negative case) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/operator-h5/003-unavailable-daemon.md` | Modify | DR-008-D3-P2-001 (untrusted scan negative case) |
 | `mcp_server/skill_advisor/lib/daemon/watcher.ts` | Modify | DR-008-D4-P2-001 (extract daemon-state mutation helper with shared busy retry) |
 | `mcp_server/skill_advisor/lib/scorer/types.ts` + `weights-config.ts` + `lanes/*.ts` + schema | Modify | DR-008-D4-P2-002 (lane registry) |
 | `mcp_server/skill_advisor/scripts/skill_advisor.py` + plugin bridge | Modify | DR-008-D4-P2-003 (compat contract single-source) |

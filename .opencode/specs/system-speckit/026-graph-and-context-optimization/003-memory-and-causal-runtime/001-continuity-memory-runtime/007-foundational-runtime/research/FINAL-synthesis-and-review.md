@@ -86,10 +86,10 @@ Phase 017 should treat the four P0 candidates as **anchor workstreams** (one per
 | `skill/skill-advisor/tests/test_skill_advisor.py` | 4 | 3 | D4 (subsidiary) | R43-001, R45-002, R46-001 |
 | `skill/sk-deep-research/SKILL.md` / `skill/system-spec-kit/SKILL.md` | 3 | 2 | D4 | R44-002, R47-002 |
 | `skill/skill-advisor/feature_catalog/04--testing/02-health-check.md` | 1 | 1 | D4 | R42-002 |
-| `skill/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/confirm-mode-checkpointed-review.md` | 2 | 1 | D4 | R45-001, R47-001 |
-| `skill/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | 1 | 1 | D4 | R47-001 |
-| `skill/system-spec-kit/manual_testing_playbook/05--lifecycle/097-async-ingestion-job-lifecycle-p0-3.md` | 1 | 1 | D4 | R50-002 |
-| `skill/system-spec-kit/manual_testing_playbook/05--lifecycle/144-advisory-ingest-lifecycle-forecast.md` | 1 | 1 | D4 | R50-002 |
+| `skill/sk-deep-review/manual_testing_playbook/entry-points-and-modes/confirm-mode-checkpointed-review.md` | 2 | 1 | D4 | R45-001, R47-001 |
+| `skill/sk-deep-research/manual_testing_playbook/synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | 1 | 1 | D4 | R47-001 |
+| `skill/system-spec-kit/manual_testing_playbook/lifecycle/097-async-ingestion-job-lifecycle-p0-3.md` | 1 | 1 | D4 | R50-002 |
+| `skill/system-spec-kit/manual_testing_playbook/lifecycle/144-advisory-ingest-lifecycle-forecast.md` | 1 | 1 | D4 | R50-002 |
 | `skill/system-spec-kit/references/intake-contract.md` | 2 | 2 | D4 | R41-001, R47-002 |
 | `skill/system-spec-kit/SKILL.md` (routing + body) | 2 | 1 | D4 | R44-002, R47-002 |
 | `skill/system-spec-kit/README.md` | 1 | 1 | D4 | R47-002 |

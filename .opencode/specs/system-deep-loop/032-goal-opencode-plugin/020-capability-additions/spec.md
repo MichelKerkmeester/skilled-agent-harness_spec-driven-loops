@@ -130,10 +130,10 @@ Operators can inspect goal history and plugin health, resume paused goals, set t
 | `.opencode/plugins/tests/` (mk-goal test files) | Modify/Create | Regression coverage for each new verb/env/detection path |
 | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | Modify | Document new verbs, envs, status fields |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modify | Add new `MK_GOAL_*` vars (currently exactly 10) |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | Modify | Catalog sync |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | Modify | Catalog sync |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | Modify | Playbook sync |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | Modify | Playbook sync |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | Modify | Catalog sync |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | Modify | Catalog sync |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | Modify | Playbook sync |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | Modify | Playbook sync |
 <!-- /ANCHOR:scope -->
 
 ---

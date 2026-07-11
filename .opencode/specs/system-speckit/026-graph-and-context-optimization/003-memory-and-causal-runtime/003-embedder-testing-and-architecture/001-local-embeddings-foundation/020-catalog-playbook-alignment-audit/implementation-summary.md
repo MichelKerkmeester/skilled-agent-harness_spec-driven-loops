@@ -71,10 +71,10 @@ Created a Level 3 child phase packet that captures catalog/playbook alignment fi
 
 | Action | Target File | Required Change |
 |--------|-------------|-----------------|
-| Update | `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` | Added full provider cascade and `llama-cpp`/GGUF then `hf-local`/ONNX q8 defaults. |
-| Update | `.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/032-5-embedding-and-api.md` | Added tests for full cascade and local/fallback defaults. |
-| Update | `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md` | Added current default provider profile/model IDs. |
-| Update | `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/219-embeddings-and-retry-api.md` | Added provider profile/model ID validation to the manual scenario. |
+| Update | `.opencode/skills/system-spec-kit/feature_catalog/feature-flag-reference/05-5-embedding-and-api.md` | Added full provider cascade and `llama-cpp`/GGUF then `hf-local`/ONNX q8 defaults. |
+| Update | `.opencode/skills/system-spec-kit/manual_testing_playbook/feature-flag-reference/032-5-embedding-and-api.md` | Added tests for full cascade and local/fallback defaults. |
+| Update | `.opencode/skills/system-spec-kit/feature_catalog/pipeline-architecture/23-embeddings-and-retry-api.md` | Added current default provider profile/model IDs. |
+| Update | `.opencode/skills/system-spec-kit/manual_testing_playbook/pipeline-architecture/219-embeddings-and-retry-api.md` | Added provider profile/model ID validation to the manual scenario. |
 | Update | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Mirrored corrected embedding/API flag summary. |
 | Update | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Mirrored corrected EX-032 summary. |
 | Update | `.opencode/skills/mcp-coco-index/feature_catalog/03--indexing-pipeline/04-embedding-provider-selection.md` | Replaced stale `all-MiniLM-L6-v2` wording with current EmbeddingGemma and `InstructionRetrieval` defaults. |

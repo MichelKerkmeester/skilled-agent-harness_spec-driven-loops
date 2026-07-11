@@ -16,14 +16,14 @@ This playbook package adopts the Feature Catalog split-document pattern for the 
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
-- `01--baseline-review-flow/`
-- `02--security-and-correctness-minimums/`
-- `03--severity-and-evidence-discipline/`
-- `04--scope-and-precedence/`
-- `05--re-review-and-stale-context/`
-- `06--cross-cli-orchestration/`
-- `07--structural-impact-preflight/`
-- `08--efficiency-and-restraint/`
+- `baseline-review-flow/`
+- `security-and-correctness-minimums/`
+- `severity-and-evidence-discipline/`
+- `scope-and-precedence/`
+- `re-review-and-stale-context/`
+- `cross-cli-orchestration/`
+- `structural-impact-preflight/`
+- `efficiency-and-restraint/`
 
 ---
 
@@ -241,7 +241,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-001](01--baseline-review-flow/small-pr-single-file.md)
+> **Feature File:** [CR-001](baseline-review-flow/small-pr-single-file.md)
 
 ### CR-002 | Large refactor PR
 
@@ -257,7 +257,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-002](01--baseline-review-flow/large-refactor-pr.md)
+> **Feature File:** [CR-002](baseline-review-flow/large-refactor-pr.md)
 
 ### CR-003 | Multi-commit feature branch
 
@@ -273,7 +273,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-003](01--baseline-review-flow/multi-commit-feature-branch.md)
+> **Feature File:** [CR-003](baseline-review-flow/multi-commit-feature-branch.md)
 
 ---
 
@@ -295,7 +295,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-004](02--security-and-correctness-minimums/security-sensitive-auth.md)
+> **Feature File:** [CR-004](security-and-correctness-minimums/security-sensitive-auth.md)
 
 ### CR-005 | Input validation injection
 
@@ -311,7 +311,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-005](02--security-and-correctness-minimums/input-validation-injection.md)
+> **Feature File:** [CR-005](security-and-correctness-minimums/input-validation-injection.md)
 
 ### CR-006 | Secrets and hardcoded credentials
 
@@ -327,7 +327,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-006](02--security-and-correctness-minimums/secrets-and-hardcoded-creds.md)
+> **Feature File:** [CR-006](security-and-correctness-minimums/secrets-and-hardcoded-creds.md)
 
 ---
 
@@ -349,7 +349,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-007](03--severity-and-evidence-discipline/p0-blocker-with-file-line.md)
+> **Feature File:** [CR-007](severity-and-evidence-discipline/p0-blocker-with-file-line.md)
 
 ### CR-008 | Class of bug vs instance-only
 
@@ -365,7 +365,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-008](03--severity-and-evidence-discipline/class-of-bug-vs-instance-only.md)
+> **Feature File:** [CR-008](severity-and-evidence-discipline/class-of-bug-vs-instance-only.md)
 
 ### CR-009 | Cross-consumer affected surface
 
@@ -381,7 +381,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-009](03--severity-and-evidence-discipline/cross-consumer-affected-surface.md)
+> **Feature File:** [CR-009](severity-and-evidence-discipline/cross-consumer-affected-surface.md)
 
 ---
 
@@ -403,7 +403,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-010](04--scope-and-precedence/explicit-scope-security-only.md)
+> **Feature File:** [CR-010](scope-and-precedence/explicit-scope-security-only.md)
 
 ### CR-011 | Baseline vs surface precedence
 
@@ -419,7 +419,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-011](04--scope-and-precedence/baseline-vs-surface-precedence.md)
+> **Feature File:** [CR-011](scope-and-precedence/baseline-vs-surface-precedence.md)
 
 ### CR-012 | Test code review
 
@@ -435,7 +435,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-012](04--scope-and-precedence/test-code-review.md)
+> **Feature File:** [CR-012](scope-and-precedence/test-code-review.md)
 
 ---
 
@@ -457,7 +457,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-013](05--re-review-and-stale-context/re-review-after-fixes.md)
+> **Feature File:** [CR-013](re-review-and-stale-context/re-review-after-fixes.md)
 
 ### CR-014 | Stale architecture fresh pass
 
@@ -473,7 +473,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-014](05--re-review-and-stale-context/stale-architecture-fresh-pass.md)
+> **Feature File:** [CR-014](re-review-and-stale-context/stale-architecture-fresh-pass.md)
 
 ### CR-015 | AI-generated suspect quality
 
@@ -489,7 +489,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-015](05--re-review-and-stale-context/ai-generated-code-suspect-quality.md)
+> **Feature File:** [CR-015](re-review-and-stale-context/ai-generated-code-suspect-quality.md)
 
 ---
 
@@ -511,7 +511,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-016](06--cross-cli-orchestration/native-claude-code-invocation.md)
+> **Feature File:** [CR-016](cross-cli-orchestration/native-claude-code-invocation.md)
 
 ### CR-017 | cli-opencode delegation
 
@@ -527,7 +527,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-017](06--cross-cli-orchestration/cli-opencode-delegation.md)
+> **Feature File:** [CR-017](cross-cli-orchestration/cli-opencode-delegation.md)
 
 ### CR-018 | cli-opencode and cli-claude-code handback
 
@@ -543,7 +543,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-claude-code-handback.md)
+> **Feature File:** [CR-018](cross-cli-orchestration/cli-opencode-and-cli-claude-code-handback.md)
 
 ---
 
@@ -565,7 +565,7 @@ Desired user-visible outcome: A findings-first review artifact that records the 
 
 #### Test Execution
 
-> **Feature File:** [CR-019](07--structural-impact-preflight/detect-changes-assisted-review.md)
+> **Feature File:** [CR-019](structural-impact-preflight/detect-changes-assisted-review.md)
 
 ---
 
@@ -587,7 +587,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-020](08--efficiency-and-restraint/reinvent-the-wheel-detection.md)
+> **Feature File:** [CR-020](efficiency-and-restraint/reinvent-the-wheel-detection.md)
 
 ### CR-021 | Unrequested-code removal prompt
 
@@ -603,7 +603,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-021](08--efficiency-and-restraint/unrequested-code-removal.md)
+> **Feature File:** [CR-021](efficiency-and-restraint/unrequested-code-removal.md)
 
 ### CR-022 | Ceiling-comment downgrade
 
@@ -619,7 +619,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-022](08--efficiency-and-restraint/ceiling-comment-downgrade.md)
+> **Feature File:** [CR-022](efficiency-and-restraint/ceiling-comment-downgrade.md)
 
 ### CR-023 | Review-depth alias
 
@@ -635,7 +635,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-023](08--efficiency-and-restraint/review-depth-alias.md)
+> **Feature File:** [CR-023](efficiency-and-restraint/review-depth-alias.md)
 
 ### CR-024 | Rule-invariant canary
 
@@ -651,7 +651,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-024](08--efficiency-and-restraint/rule-invariant-canary.md)
+> **Feature File:** [CR-024](efficiency-and-restraint/rule-invariant-canary.md)
 
 ---
 
@@ -673,27 +673,27 @@ Validator limitation: per-feature file completeness requires the structural swee
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
-| CR-001 | Small PR single-file | BASELINE REVIEW FLOW | [CR-001](01--baseline-review-flow/small-pr-single-file.md) |
-| CR-002 | Large refactor PR | BASELINE REVIEW FLOW | [CR-002](01--baseline-review-flow/large-refactor-pr.md) |
-| CR-003 | Multi-commit feature branch | BASELINE REVIEW FLOW | [CR-003](01--baseline-review-flow/multi-commit-feature-branch.md) |
-| CR-004 | Security-sensitive auth | SECURITY AND CORRECTNESS MINIMUMS | [CR-004](02--security-and-correctness-minimums/security-sensitive-auth.md) |
-| CR-005 | Input validation injection | SECURITY AND CORRECTNESS MINIMUMS | [CR-005](02--security-and-correctness-minimums/input-validation-injection.md) |
-| CR-006 | Secrets and hardcoded credentials | SECURITY AND CORRECTNESS MINIMUMS | [CR-006](02--security-and-correctness-minimums/secrets-and-hardcoded-creds.md) |
-| CR-007 | P0 blocker with file:line | SEVERITY AND EVIDENCE DISCIPLINE | [CR-007](03--severity-and-evidence-discipline/p0-blocker-with-file-line.md) |
-| CR-008 | Class of bug vs instance-only | SEVERITY AND EVIDENCE DISCIPLINE | [CR-008](03--severity-and-evidence-discipline/class-of-bug-vs-instance-only.md) |
-| CR-009 | Cross-consumer affected surface | SEVERITY AND EVIDENCE DISCIPLINE | [CR-009](03--severity-and-evidence-discipline/cross-consumer-affected-surface.md) |
-| CR-010 | Explicit scope security only | SCOPE AND PRECEDENCE | [CR-010](04--scope-and-precedence/explicit-scope-security-only.md) |
-| CR-011 | Baseline vs surface precedence | SCOPE AND PRECEDENCE | [CR-011](04--scope-and-precedence/baseline-vs-surface-precedence.md) |
-| CR-012 | Test code review | SCOPE AND PRECEDENCE | [CR-012](04--scope-and-precedence/test-code-review.md) |
-| CR-013 | Re-review after fixes | RE-REVIEW AND STALE CONTEXT | [CR-013](05--re-review-and-stale-context/re-review-after-fixes.md) |
-| CR-014 | Stale architecture fresh pass | RE-REVIEW AND STALE CONTEXT | [CR-014](05--re-review-and-stale-context/stale-architecture-fresh-pass.md) |
-| CR-015 | AI-generated suspect quality | RE-REVIEW AND STALE CONTEXT | [CR-015](05--re-review-and-stale-context/ai-generated-code-suspect-quality.md) |
-| CR-016 | Native Claude Code invocation | CROSS-CLI ORCHESTRATION | [CR-016](06--cross-cli-orchestration/native-claude-code-invocation.md) |
-| CR-017 | cli-opencode delegation | CROSS-CLI ORCHESTRATION | [CR-017](06--cross-cli-orchestration/cli-opencode-delegation.md) |
-| CR-018 | cli-opencode and cli-claude-code handback | CROSS-CLI ORCHESTRATION | [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-claude-code-handback.md) |
-| CR-019 | detect_changes-assisted review | STRUCTURAL IMPACT PREFLIGHT | [CR-019](07--structural-impact-preflight/detect-changes-assisted-review.md) |
-| CR-020 | Reinvent-the-wheel detection | EFFICIENCY AND RESTRAINT | [CR-020](08--efficiency-and-restraint/reinvent-the-wheel-detection.md) |
-| CR-021 | Unrequested-code removal prompt | EFFICIENCY AND RESTRAINT | [CR-021](08--efficiency-and-restraint/unrequested-code-removal.md) |
-| CR-022 | Ceiling-comment downgrade | EFFICIENCY AND RESTRAINT | [CR-022](08--efficiency-and-restraint/ceiling-comment-downgrade.md) |
-| CR-023 | Review-depth alias | EFFICIENCY AND RESTRAINT | [CR-023](08--efficiency-and-restraint/review-depth-alias.md) |
-| CR-024 | Rule-invariant canary | EFFICIENCY AND RESTRAINT | [CR-024](08--efficiency-and-restraint/rule-invariant-canary.md) |
+| CR-001 | Small PR single-file | BASELINE REVIEW FLOW | [CR-001](baseline-review-flow/small-pr-single-file.md) |
+| CR-002 | Large refactor PR | BASELINE REVIEW FLOW | [CR-002](baseline-review-flow/large-refactor-pr.md) |
+| CR-003 | Multi-commit feature branch | BASELINE REVIEW FLOW | [CR-003](baseline-review-flow/multi-commit-feature-branch.md) |
+| CR-004 | Security-sensitive auth | SECURITY AND CORRECTNESS MINIMUMS | [CR-004](security-and-correctness-minimums/security-sensitive-auth.md) |
+| CR-005 | Input validation injection | SECURITY AND CORRECTNESS MINIMUMS | [CR-005](security-and-correctness-minimums/input-validation-injection.md) |
+| CR-006 | Secrets and hardcoded credentials | SECURITY AND CORRECTNESS MINIMUMS | [CR-006](security-and-correctness-minimums/secrets-and-hardcoded-creds.md) |
+| CR-007 | P0 blocker with file:line | SEVERITY AND EVIDENCE DISCIPLINE | [CR-007](severity-and-evidence-discipline/p0-blocker-with-file-line.md) |
+| CR-008 | Class of bug vs instance-only | SEVERITY AND EVIDENCE DISCIPLINE | [CR-008](severity-and-evidence-discipline/class-of-bug-vs-instance-only.md) |
+| CR-009 | Cross-consumer affected surface | SEVERITY AND EVIDENCE DISCIPLINE | [CR-009](severity-and-evidence-discipline/cross-consumer-affected-surface.md) |
+| CR-010 | Explicit scope security only | SCOPE AND PRECEDENCE | [CR-010](scope-and-precedence/explicit-scope-security-only.md) |
+| CR-011 | Baseline vs surface precedence | SCOPE AND PRECEDENCE | [CR-011](scope-and-precedence/baseline-vs-surface-precedence.md) |
+| CR-012 | Test code review | SCOPE AND PRECEDENCE | [CR-012](scope-and-precedence/test-code-review.md) |
+| CR-013 | Re-review after fixes | RE-REVIEW AND STALE CONTEXT | [CR-013](re-review-and-stale-context/re-review-after-fixes.md) |
+| CR-014 | Stale architecture fresh pass | RE-REVIEW AND STALE CONTEXT | [CR-014](re-review-and-stale-context/stale-architecture-fresh-pass.md) |
+| CR-015 | AI-generated suspect quality | RE-REVIEW AND STALE CONTEXT | [CR-015](re-review-and-stale-context/ai-generated-code-suspect-quality.md) |
+| CR-016 | Native Claude Code invocation | CROSS-CLI ORCHESTRATION | [CR-016](cross-cli-orchestration/native-claude-code-invocation.md) |
+| CR-017 | cli-opencode delegation | CROSS-CLI ORCHESTRATION | [CR-017](cross-cli-orchestration/cli-opencode-delegation.md) |
+| CR-018 | cli-opencode and cli-claude-code handback | CROSS-CLI ORCHESTRATION | [CR-018](cross-cli-orchestration/cli-opencode-and-cli-claude-code-handback.md) |
+| CR-019 | detect_changes-assisted review | STRUCTURAL IMPACT PREFLIGHT | [CR-019](structural-impact-preflight/detect-changes-assisted-review.md) |
+| CR-020 | Reinvent-the-wheel detection | EFFICIENCY AND RESTRAINT | [CR-020](efficiency-and-restraint/reinvent-the-wheel-detection.md) |
+| CR-021 | Unrequested-code removal prompt | EFFICIENCY AND RESTRAINT | [CR-021](efficiency-and-restraint/unrequested-code-removal.md) |
+| CR-022 | Ceiling-comment downgrade | EFFICIENCY AND RESTRAINT | [CR-022](efficiency-and-restraint/ceiling-comment-downgrade.md) |
+| CR-023 | Review-depth alias | EFFICIENCY AND RESTRAINT | [CR-023](efficiency-and-restraint/review-depth-alias.md) |
+| CR-024 | Rule-invariant canary | EFFICIENCY AND RESTRAINT | [CR-024](efficiency-and-restraint/rule-invariant-canary.md) |

@@ -144,7 +144,7 @@ None outstanding for this wave. Whether `TV-001-V1`'s repo-editing behavior and 
 ## RELATED DOCUMENTS
 
 - **Phase Parent**: `../spec.md` (`023-full-manual-playbook-execution`)
-- **Constituent Scenario Files**: `.opencode/skills/sk-design/manual_testing_playbook/03--transform-verb-framing/make-it-interface.md`, `.opencode/skills/sk-design/manual_testing_playbook/03--transform-verb-framing/should-it-be-audit.md`
+- **Constituent Scenario Files**: `.opencode/skills/sk-design/manual_testing_playbook/transform-verb-framing/make-it-interface.md`, `.opencode/skills/sk-design/manual_testing_playbook/transform-verb-framing/should-it-be-audit.md`
 - **Sibling Wave (TV-002-V2..V4)**: `../005-transform-verb-should-it-be/`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`

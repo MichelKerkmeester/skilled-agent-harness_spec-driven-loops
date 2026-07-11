@@ -11,7 +11,7 @@ Apply sequential_thinking with ≥ 5 thoughts BEFORE emitting the output.
 Goal: manual_testing_playbook/09 GAP investigation + coverage matrix vs feature_catalog
 
 Steps:
-1. Read these evidence files with file:line citations: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/
+1. Read these evidence files with file:line citations: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/python-compat/, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/
 2. Run targeted greps for these patterns: ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/; rg -n '09--|gap.*09|09.*gap|SAD-' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md; git -C /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public log --oneline --all -- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/ 2>/dev/null | head -30
 3. Cross-reference against prior iters at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-documentation-quality-refactor/001-documentation-quality-audit-research/research/iterations/iteration-001.md through iteration-013.md. Cite each prior iter you reference by number.
 4. Identify gaps prior iters missed; tag findings drift|bug|gap|HVR-violation|alignment-miss with severity P0|P1|P2 and impact-rank 1-10.
@@ -30,7 +30,7 @@ Verification: count of file:line citations matches claim count; JSONL delta row 
 
 ## Research Question (scoped)
 
-Root-cause of missing 09 slot in playbook (only 10--python-compat exists at slot 10). Cross-reference playbook category coverage against feature_catalog groups: does every feature group have a corresponding playbook category?
+Root-cause of missing 09 slot in playbook (only python-compat exists at slot 10). Cross-reference playbook category coverage against feature_catalog groups: does every feature group have a corresponding playbook category?
 
 ## Output contract
 

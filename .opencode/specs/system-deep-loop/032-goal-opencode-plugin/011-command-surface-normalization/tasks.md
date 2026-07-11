@@ -72,10 +72,10 @@ _memory:
 - [x] T007 [P] Update filename references in phase 008's docs (032-goal-opencode-plugin/008-system-spec-kit-integration/*.md)
 <!-- agent: direct | deps: [T004] | touched-files: ["032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json"] -->
 - [x] T008 [P] [DR-007-P2] Update the filename reference in phase 004's graph-metadata.json `key_files`, and strip any non-deliverable files from that same array while touching it (032-goal-opencode-plugin/004-lifecycle-tracking/graph-metadata.json)
-<!-- agent: direct | deps: [T004] | touched-files: [".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md", ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md"] -->
-- [x] T009 [P] [DR-008] Fix stale command path in both feature catalogs (.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/, .opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/)
-<!-- agent: direct | deps: [T004] | touched-files: [".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md", ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md"] -->
-- [x] T010 [P] [DR-008] Fix stale command path in both manual-testing playbooks (.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/, .opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/)
+<!-- agent: direct | deps: [T004] | touched-files: [".opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md", ".opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md"] -->
+- [x] T009 [P] [DR-008] Fix stale command path in both feature catalogs (.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/, .opencode/skills/system-spec-kit/feature_catalog/ux-hooks/)
+<!-- agent: direct | deps: [T004] | touched-files: [".opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md", ".opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md"] -->
+- [x] T010 [P] [DR-008] Fix stale command path in both manual-testing playbooks (.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/, .opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/)
 <!-- agent: direct | deps: [] | touched-files: [".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md", ".opencode/plugins/mk-goal.js"] -->
 - [x] T011 [DR-010-P1] Decide `MK_GOAL_PLUGIN_DISABLED`'s contract and make code (.opencode/plugins/mk-goal.js) and docs (.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md) agree
 <!-- agent: direct | deps: [] | touched-files: [".opencode/plugins/mk-goal.js"] -->

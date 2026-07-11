@@ -92,7 +92,7 @@ Only stale documentation surfaces were updated. Candidate skills that already ma
 | .opencode/skills/system-spec-kit/references/memory/memory_system.md | Modified | Corrected schema baseline, 37-tool surface, tool table, and scan behavior |
 | .opencode/skills/system-spec-kit/references/config/environment_variables.md | Modified | Corrected 37-tool count and added default-off 027 flag table |
 | .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md | Modified | Added missing 027 flags and bumped documented variable count |
-| .opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md | Modified | Updated current-state schema history from v30 to v37 |
+| .opencode/skills/system-spec-kit/feature_catalog/bug-fixes-and-data-integrity/schema-version-history-v28-v30.md | Modified | Updated current-state schema history from v30 to v37 |
 | .opencode/skills/cli-opencode/SKILL.md | Modified | Added daemon-backed CLI front-door guidance for Spec Kit runtime handback |
 | implementation-summary.md | Modified | Recorded drift inventory, evidence, and completion status |
 <!-- /ANCHOR:scope -->

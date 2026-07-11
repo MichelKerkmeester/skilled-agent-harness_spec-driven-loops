@@ -54,7 +54,7 @@ The daemon-reliability features are now discoverable. They shipped as code plus 
 ### What was added
 
 - **ENV_REFERENCE.md** gained 8 flag rows: `SPECKIT_LAUNCHER_LOG` / `_PATH` / `_MAX_BYTES` (018), `SPECKIT_LEASE_PROBE_RETRIES` / `_RETRY_TIMEOUT_MS` / `_RETRY_BACKOFF_MS` (019), `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` (021), and `SPECKIT_DAEMON_REELECTION` (022, marked experimental/default-off).
-- **feature_catalog** gained 5 entries (018/019/020/022 under `14--pipeline-architecture`, 021 under `16--tooling-and-scripts`) plus 5 `###` index sections in `feature_catalog.md`.
+- **feature_catalog** gained 5 entries (018/019/020/022 under `pipeline-architecture`, 021 under `tooling-and-scripts`) plus 5 `###` index sections in `feature_catalog.md`.
 - **manual_testing_playbook** gained 5 scenarios (IDs 422-426) plus 5 big-table rows; the deterministic file-count self-check moved 386 -> 391, and scenario 419 now cross-references the new 425 orphan-sweep fallback.
 - **READMEs + SKILL**: `mcp_server/README.md` gained 5 lifecycle rows (with a clarification that the code-index reconnect is the client-survival path, distinct from the deploy `--recycle`); `bin/README.md`, root `README.md`, `database/README.md`, and `system-spec-kit/SKILL.md` gained flag pointers / artifact notes.
 
@@ -67,11 +67,11 @@ A gpt-5.5 (cli-codex) audit produced the feature x surface matrix. Two `@markdow
 | File | Action | Purpose |
 |------|--------|---------|
 | `mcp_server/ENV_REFERENCE.md` | Modified | 8 launcher/daemon flag rows |
-| `feature_catalog/14--pipeline-architecture/{mcp-launcher-persistent-log,lease-probe-retry-reap-hardening,mcp-code-index-reconnecting-proxy,daemon-ownership-reelection}.md` + `16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md` | Created | 5 catalog entries |
+| `feature_catalog/pipeline-architecture/{mcp-launcher-persistent-log,lease-probe-retry-reap-hardening,mcp-code-index-reconnecting-proxy,daemon-ownership-reelection}.md` + `tooling-and-scripts/orphan-sweep-stop-hook-activation.md` | Created | 5 catalog entries |
 | `feature_catalog/feature_catalog.md` | Modified | 5 `###` index sections |
 | `manual_testing_playbook/.../{5 scenarios}.md` | Created | Scenarios 422-426 |
 | `manual_testing_playbook/manual_testing_playbook.md` | Modified | 5 table rows + count 386->391 |
-| `manual_testing_playbook/16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` | Modified | 419 -> 425 cross-reference |
+| `manual_testing_playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` | Modified | 419 -> 425 cross-reference |
 | `mcp_server/README.md`, `bin/README.md`, root `README.md`, `mcp_server/database/README.md`, `SKILL.md` | Modified | Lifecycle rows / flag pointers / artifact note |
 <!-- /ANCHOR:what-built -->
 

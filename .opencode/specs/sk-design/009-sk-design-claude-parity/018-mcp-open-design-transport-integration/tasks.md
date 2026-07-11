@@ -65,8 +65,8 @@ _memory:
 - [x] T006 [P] Fix `INSTALL_GUIDE.md` (2 sibling-skill links + 4 hardcoded script paths + title/prose rename)
 - [x] T007 [P] Fix `references/inner_generator_binding.md`, `guarded_proxy.md`, `freshness_invalidation.md`, `cli_child_pairing.md` (design_proof_token.md depth fix, system-spec-kit depth fix, JSON example strings)
 - [x] T008 [P] Fix `references/design_parity_transport.md` (real_ui_loop.md depth fix x2, identity rename)
-- [x] T009 [P] Fix `feature_catalog/03--grounding/design-system-grounding.md` and `feature_catalog/feature_catalog.md` (missing design-interface/ segment + identity rename)
-- [x] T010 [P] Fix `manual_testing_playbook/05--design-gate/mandatory-design-gate.md` and `manual_testing_playbook/manual_testing_playbook.md` (missing design-interface/ segment + identity rename)
+- [x] T009 [P] Fix `feature_catalog/grounding/design-system-grounding.md` and `feature_catalog/feature_catalog.md` (missing design-interface/ segment + identity rename)
+- [x] T010 [P] Fix `manual_testing_playbook/design-gate/mandatory-design-gate.md` and `manual_testing_playbook/manual_testing_playbook.md` (missing design-interface/ segment + identity rename)
 - [x] T011 [P] Rename identity in `README.md` (title, H1, 4 validator command paths, Skills Library link depth) and `scripts/{install.sh,_common.sh,doctor.sh}` + `mcp-servers/open-design/README.md` (comment/log mentions)
 - [x] T012 Delete `design-mcp-open-design/graph-metadata.json`
 

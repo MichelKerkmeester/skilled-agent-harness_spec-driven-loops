@@ -27,7 +27,7 @@ Trigger: `/speckit:plan` recommended. Eight active P1 findings require remediati
 | P1-002 | P1 | fanout-lineage-isolation | Unrecoverable iteration salvage can still produce a fulfilled lineage when the summary report exists | `deep-loop-runtime/scripts/fanout-run.cjs:1416` |
 | P1-003 | P1 | correctness | Mixed salvage/missing-artifact failures skip the transient retry path | `deep-loop-runtime/scripts/lib/cli-guards.cjs:176` |
 | P1-004 | P1 | security | Detached OpenCode lineages run with prompt-only write isolation | `deep-loop-runtime/scripts/fanout-run.cjs:1084` |
-| P1-005 | P1 | traceability | Fan-out adversarial playbook claims exit-0/no-artifact coverage, but the referenced regression never exercises that path | `deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md:86` |
+| P1-005 | P1 | traceability | Fan-out adversarial playbook claims exit-0/no-artifact coverage, but the referenced regression never exercises that path | `deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md:86` |
 | P1-006 | P1 | maintainability | 009 remediation parent marked complete while parent docs still contain scaffolds and pending child states | `030-deep-loop-improved/008-loop-systems-remediation/spec.md:18` |
 | P1-007 | P1 | resource-map-coverage | Parent and remediation discovery metadata omit the fan-out/remediation implementation surfaces operators must resume | `030-deep-loop-improved/graph-metadata.json:48` |
 | P1-011-001 | P1 | synthesis-readiness | Leaf-only review lineages are skipped by registry-only fan-out merge | `deep-loop-runtime/scripts/fanout-merge.cjs:717` |

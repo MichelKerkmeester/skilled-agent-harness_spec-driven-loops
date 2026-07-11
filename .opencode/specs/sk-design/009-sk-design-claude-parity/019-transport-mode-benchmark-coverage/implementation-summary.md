@@ -21,7 +21,7 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-      - ".opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md"
+      - ".opencode/skills/sk-design/manual_testing_playbook/mode-routing/mcp-open-design-mode.md"
       - ".opencode/skills/sk-design/description.json"
       - ".opencode/skills/sk-design/benchmark/after-018-transport-integration/report.json"
     session_dedup:
@@ -60,9 +60,9 @@ Phase 018 registered `design-mcp-open-design` as a new `packetKind: "transport"`
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md` | Created | `MR-007`: Open Design transport mode routing scenario |
-| `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md` | Edited | Added `P6` probe to `AI-001`; version 1.0.0.0 -> 1.1.0.0 |
-| `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/doc-write-routes-elsewhere.md` | Edited | Fixed stale "five modes" prompt text; version 1.0.0.0 -> 1.0.1.0 |
+| `.opencode/skills/sk-design/manual_testing_playbook/mode-routing/mcp-open-design-mode.md` | Created | `MR-007`: Open Design transport mode routing scenario |
+| `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/positive-design-controls.md` | Edited | Added `P6` probe to `AI-001`; version 1.0.0.0 -> 1.1.0.0 |
+| `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/doc-write-routes-elsewhere.md` | Edited | Fixed stale "five modes" prompt text; version 1.0.0.0 -> 1.0.1.0 |
 | `.opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md` | Edited | Overview, preconditions, Section 7 table, critical-path list, AI-003 row, cross-reference index, totals (32 -> 33 scenarios, 14 -> 15 critical-path); version 1.0.0.0 -> 1.1.0.0 |
 | `.opencode/skills/sk-design/README.md` | Edited | Fixed playbook description line (also resolved a pre-existing, unrelated staleness: it said "24-scenario" when the playbook already had 32) |
 | `.opencode/skills/sk-design/description.json` | Edited | description, keywords, trigger_examples, modes[], backend_kinds[]; version 1.1.0.0 -> 1.2.0.0 |

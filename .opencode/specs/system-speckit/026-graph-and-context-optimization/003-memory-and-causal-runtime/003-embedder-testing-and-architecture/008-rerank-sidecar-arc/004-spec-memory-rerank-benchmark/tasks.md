@@ -93,5 +93,5 @@ T001-T017 with evidence; T018 nice-to-have. Phase 005's promotion decision deriv
 - Successor `../005-promote-qwen-as-default/` — consumes the §8 RECOMMENDATIONS
 - Reference (sk-doc template): `.opencode/skills/sk-doc/references/benchmarks/FORMAT.md` (post-packet 006 sk-doc-owned)
 - Reference (cocoindex benchmark): `.opencode/skills/mcp-coco-index/mcp_server/benchmarks/benchmark-2026-05-20-expanded/` — structural model for our report
-- Reference (paraphrase fixture): `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json` (cat-24/409 baseline)
+- Reference (paraphrase fixture): `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-fixture.json` (cat-24/409 baseline)
 <!-- /ANCHOR:cross-refs -->

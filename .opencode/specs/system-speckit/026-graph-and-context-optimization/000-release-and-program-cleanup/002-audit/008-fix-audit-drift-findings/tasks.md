@@ -101,8 +101,8 @@ _memory:
 - **Source files modified**:
   - `mcp_server/skill_advisor/lib/derived/extract.ts`
   - `mcp_server/skill_advisor/lib/derived/sync.ts`
-  - `mcp_server/skill_advisor/feature_catalog/08--python-compat/02-regression-suite.md`
-  - `mcp_server/skill_advisor/feature_catalog/08--python-compat/03-bench-runner.md`
+  - `mcp_server/skill_advisor/feature_catalog/python-compat/02-regression-suite.md`
+  - `mcp_server/skill_advisor/feature_catalog/python-compat/03-bench-runner.md`
   - 3 test files
 <!-- /ANCHOR:cross-refs -->
 

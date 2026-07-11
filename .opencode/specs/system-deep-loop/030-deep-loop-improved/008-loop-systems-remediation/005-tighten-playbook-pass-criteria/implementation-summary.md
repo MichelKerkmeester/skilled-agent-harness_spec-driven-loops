@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/speckit-autopilot-lifecycle.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "tighten-playbook-pass-criteria-summary-2026-06-29"
@@ -61,9 +61,9 @@ Confirmed all three named source-only audit scenarios have runnable tests:
 
 | Scenario | Runnable Test |
 |----------|---------------|
-| `system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md` | `tests/unit/speckit-autopilot-contract.vitest.ts` |
-| `deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md` | `tests/unit/atomic-state.vitest.ts` |
-| `deep-loop-runtime/manual_testing_playbook/06--coverage-graph/coverage-graph-fuzzy-merge.md` | `tests/unit/coverage-graph-query.vitest.ts` |
+| `system-spec-kit/manual_testing_playbook/lifecycle/speckit-autopilot-lifecycle.md` | `tests/unit/speckit-autopilot-contract.vitest.ts` |
+| `deep-loop-runtime/manual_testing_playbook/observability/single-loop-telemetry-heartbeat.md` | `tests/unit/atomic-state.vitest.ts` |
+| `deep-loop-runtime/manual_testing_playbook/coverage-graph/coverage-graph-fuzzy-merge.md` | `tests/unit/coverage-graph-query.vitest.ts` |
 
 None of the three needed an inspection-by-nature exception.
 
@@ -71,12 +71,12 @@ None of the three needed an inspection-by-nature exception.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/*.md` | Modified | Require executed test evidence for state-safety scenarios. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/06--coverage-graph/*.md` | Modified | Require executed test evidence for coverage-graph scenarios and name the fuzzy-merge test command. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/*.md` | Modified | Normalize fan-out test-count pass criteria to EXIT 0 wording. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/*.md` | Modified | Require executed test evidence for validation scenarios. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md` | Modified | Mandate the telemetry regression test command. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md` | Modified | Mandate the autopilot regression test command. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/*.md` | Modified | Require executed test evidence for state-safety scenarios. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/coverage-graph/*.md` | Modified | Require executed test evidence for coverage-graph scenarios and name the fuzzy-merge test command. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/*.md` | Modified | Normalize fan-out test-count pass criteria to EXIT 0 wording. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/validation/*.md` | Modified | Require executed test evidence for validation scenarios. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/observability/single-loop-telemetry-heartbeat.md` | Modified | Mandate the telemetry regression test command. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/speckit-autopilot-lifecycle.md` | Modified | Mandate the autopilot regression test command. |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Modified | Completed Level-1 phase docs from scaffold. |
 <!-- /ANCHOR:what-built -->
 

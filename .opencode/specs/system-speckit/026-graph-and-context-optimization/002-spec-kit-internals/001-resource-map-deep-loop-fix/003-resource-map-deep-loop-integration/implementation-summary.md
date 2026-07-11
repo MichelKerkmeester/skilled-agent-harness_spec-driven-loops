@@ -81,10 +81,10 @@ The skill docs, command entrypoints, convergence references, feature-catalog ent
 | `.opencode/commands/deep/start-research-loop.md` | Modified | Mentions emitted artifact and `--no-resource-map`. |
 | `.opencode/skills/sk-deep-review/references/convergence.md` | Modified | Notes synthesis-time emission for converged review loops. |
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Modified | Notes synthesis-time emission for converged research loops. |
-| `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Created | Adds the review-side catalog entry for this feature. |
-| `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Created | Adds the research-side catalog entry for this feature. |
-| `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` | Created | Adds the review-side manual validation scenario. |
-| `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md` | Created | Adds the research-side manual validation scenario. |
+| `.opencode/skills/sk-deep-review/feature_catalog/loop-lifecycle/06-resource-map-emission.md` | Created | Adds the review-side catalog entry for this feature. |
+| `.opencode/skills/sk-deep-research/feature_catalog/loop-lifecycle/06-resource-map-emission.md` | Created | Adds the research-side catalog entry for this feature. |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/synthesis-save-and-guardrails/resource-map-emission.md` | Created | Adds the review-side manual validation scenario. |
+| `.opencode/skills/sk-deep-research/manual_testing_playbook/synthesis-save-and-guardrails/027-resource-map-emission.md` | Created | Adds the research-side manual validation scenario. |
 <!-- /ANCHOR:what-built -->
 
 ---

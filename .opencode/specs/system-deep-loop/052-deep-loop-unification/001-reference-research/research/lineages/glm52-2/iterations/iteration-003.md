@@ -21,7 +21,7 @@ Beyond the four the spec names (runtime package.json, runtime tsconfig.json, mcp
 - `mcp_server/tests/memory-runtime-retention.vitest.ts:9` — live `import … from '../../../deep-loop-runtime/lib/deep-loop/loop-lock.js'`
 - `mcp_server/tests/council-playbook-anchor-integrity.vitest.ts:12,28,30,64` — hardcoded regex literals `…/deep-loop-runtime/tests/…`
 - `scripts/tests/deep-review-auto-restart-contract.vitest.ts:19` — reads `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` as a workspace string
-- `manual_testing_playbook/16--tooling-and-scripts/graph-degraded-stress-cell-isolation.md:57` — a vitest `include:` glob string in prose
+- `manual_testing_playbook/tooling-and-scripts/graph-degraded-stress-cell-isolation.md:57` — a vitest `include:` glob string in prose
 
 The spec's "4 more hardcoded relative paths" understates the test-file surface. None change the strategy, but the execution file-list must enumerate all of them.
 [SOURCE: system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts:9; council-playbook-anchor-integrity.vitest.ts:12,28,30,64; scripts/tests/deep-review-auto-restart-contract.vitest.ts:19]

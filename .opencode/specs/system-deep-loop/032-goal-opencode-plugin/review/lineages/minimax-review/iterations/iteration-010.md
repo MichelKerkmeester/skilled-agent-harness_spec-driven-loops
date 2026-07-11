@@ -73,8 +73,8 @@ None.
   - Category: traceability
   - Source evidence: F024 + F026 + this iteration's
     `node --test` reporter output.
-  - Affected surface hints: `["feature_catalog/18--ux-hooks/goal-opencode-plugin.md",
-    "feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md",
+  - Affected surface hints: `["feature_catalog/ux-hooks/goal-opencode-plugin.md",
+    "feature_catalog/hooks-and-plugin/goal-opencode-plugin.md",
     "phase 015 REQ-010",
     "phase 008 system-spec-kit integration scope"]`
 

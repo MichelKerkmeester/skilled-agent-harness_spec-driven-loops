@@ -88,7 +88,7 @@ CHK-010 cites `python3 check-comment-hygiene.sh` but the script is a POSIX `.sh`
 
 ## 8. Deferred Items
 
-- **D001** (deferred, phase correctly documented): `deep-improvement/.../08--agent-discipline-stress-tests/setup-cp-sandbox.sh` references a `.toml` fixture, but the entire `test-fixtures/060-stress-test/` dir is MISSING — pre-existing, broader than the TOML removal. Phase's Known Limitations #1 is accurate. Not blocking.
+- **D001** (deferred, phase correctly documented): `deep-improvement/.../agent-discipline-stress-tests/setup-cp-sandbox.sh` references a `.toml` fixture, but the entire `test-fixtures/060-stress-test/` dir is MISSING — pre-existing, broader than the TOML removal. Phase's Known Limitations #1 is accurate. Not blocking.
 - **D002** (advisory): deferral-consistency note — phase fixed `.toml` playbook refs in deep-research/deep-review (T013) but deferred deep-improvement's. Defensible (whole fixture dir missing); noted for a future fixture-restoration task.
 - **Repo-wide `.toml` outside stated scope:** all residual `.toml` agent-mirror references outside `deep-loop-workflows/deep-loop-runtime/cli-opencode` live in historical specs (`z_archive`, iteration files) or retired skills (`cli-codex-retired`), correctly preserved per spec NFR; project-config `.toml` (Cargo.toml, pyproject.toml) are unrelated. Consistent with phase's Known Limitations #3.
 

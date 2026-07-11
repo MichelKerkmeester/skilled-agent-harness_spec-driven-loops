@@ -2,17 +2,17 @@ Framework: BUILD
 
 Apply sequential_thinking with ≥ 5 thoughts BEFORE emitting the output.
 
-# Iter 008 — feature_catalog/01--daemon-and-freshness sk-doc alignment
+# Iter 008 — feature_catalog/daemon-and-freshness sk-doc alignment
 
 ## Pre-planning
 
 **Sequential_thinking mandatory**: call mcp__sequential_thinking__sequentialthinking with ≥ 5 thoughts before producing the output. The recipe's mcp_servers + system_instructions enforce this — do not skip.
 
-Goal: feature_catalog/01--daemon-and-freshness sk-doc alignment
+Goal: feature_catalog/daemon-and-freshness sk-doc alignment
 
 Steps:
-1. Read these evidence files with file:line citations: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/
-2. Run targeted greps for these patterns: ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/; rg -E '^## |^---' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md
+1. Read these evidence files with file:line citations: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/daemon-and-freshness/, /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/
+2. Run targeted greps for these patterns: ls /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/daemon-and-freshness/; rg -E '^## |^---' /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md
 3. Cross-reference against prior iters at /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-documentation-quality-refactor/001-documentation-quality-audit-research/research/iterations/iteration-001.md through iteration-007.md. Cite each prior iter you reference by number.
 4. Identify gaps prior iters missed; tag findings drift|bug|gap|HVR-violation|alignment-miss with severity P0|P1|P2 and impact-rank 1-10.
 5. Group findings by sub-phase target: 002-documentation-bug-fixes, 003-readme-problem-first-rewrite, 004-sk-doc-type-validation-alignment, 005-content-additions-hvr-polish.
@@ -30,14 +30,14 @@ Verification: count of file:line citations matches claim count; JSONL delta row 
 
 ## Research Question (scoped)
 
-Does feature_catalog/01--daemon-and-freshness/ follow sk-doc feature_catalog template 1:1? Are per-feature files complete with feature.md + feature_test.md?
+Does feature_catalog/daemon-and-freshness/ follow sk-doc feature_catalog template 1:1? Are per-feature files complete with feature.md + feature_test.md?
 
 ## Output contract
 
 Write to: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-docs/004-documentation-quality-refactor/001-documentation-quality-audit-research/research/iterations/iteration-008.md
 
 Required heading structure:
-- # Iter 008 — feature_catalog/01--daemon-and-freshness sk-doc alignment
+- # Iter 008 — feature_catalog/daemon-and-freshness sk-doc alignment
 - ## Question
 - ## Evidence (file:line citations required)
 - ## Findings (numbered, severity-tagged P0|P1|P2, impact-ranked 1-10, sub-phase-targeted 002|003|004|005)
@@ -54,7 +54,7 @@ Required JSONL fields:
 - executor=cli-devin
 - model=swe-1.6
 - status=complete|failed
-- focus="feature_catalog/01--daemon-and-freshness sk-doc alignment"
+- focus="feature_catalog/daemon-and-freshness sk-doc alignment"
 - findings_count (integer)
 - gaps_count (integer)
 - newInfoRatio (decimal 0..1; estimate based on novelty vs prior iters)

@@ -204,7 +204,7 @@ describe('retrieval rescue layer', () => {
       '..',
       '..',
       'manual_testing_playbook',
-      '24--local-llm-query-intelligence',
+      'local-llm-query-intelligence',
       '409-fixture.json'
     );
     const fixture = JSON.parse(readFileSync(fixturePath, 'utf8')) as Array<{

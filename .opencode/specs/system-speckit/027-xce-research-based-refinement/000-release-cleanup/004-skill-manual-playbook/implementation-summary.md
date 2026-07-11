@@ -60,16 +60,16 @@ Added ten executable manual-testing scenarios for release-hardening coverage and
 
 | Playbook ID | Title | File |
 |-------------|-------|------|
-| 439 | Semantic Trigger Shadow and Union Modes | `19--feature-flag-reference/semantic-trigger-shadow-and-union.md` |
-| 440 | Memory Idempotency Replay and Conflict | `19--feature-flag-reference/memory-idempotency-replay-and-conflict.md` |
-| 441 | Soft-Delete Tombstones | `19--feature-flag-reference/soft-delete-tombstones.md` |
-| 442 | Session-Trace Causal Inference | `19--feature-flag-reference/session-trace-causal-inference.md` |
-| 443 | Feedback Retention Learning Modes | `19--feature-flag-reference/feedback-retention-learning-modes.md` |
-| 444 | Authored Continuity Snapshot | `19--feature-flag-reference/authored-continuity-snapshot.md` |
-| 445 | Completion Freshness Validator | `19--feature-flag-reference/completion-freshness-validator.md` |
-| 446 | Retrieval Observability Trace and Health | `15--retrieval-enhancements/retrieval-observability-trace-and-health.md` |
-| 447 | Source Kind Provenance Guard | `17--governance/source-kind-provenance-guard.md` |
-| 448 | Stale-Exclusion Audit and Tool-Ownership Lint | `17--governance/stale-exclusion-audit-and-tool-ownership-lint.md` |
+| 439 | Semantic Trigger Shadow and Union Modes | `feature-flag-reference/semantic-trigger-shadow-and-union.md` |
+| 440 | Memory Idempotency Replay and Conflict | `feature-flag-reference/memory-idempotency-replay-and-conflict.md` |
+| 441 | Soft-Delete Tombstones | `feature-flag-reference/soft-delete-tombstones.md` |
+| 442 | Session-Trace Causal Inference | `feature-flag-reference/session-trace-causal-inference.md` |
+| 443 | Feedback Retention Learning Modes | `feature-flag-reference/feedback-retention-learning-modes.md` |
+| 444 | Authored Continuity Snapshot | `feature-flag-reference/authored-continuity-snapshot.md` |
+| 445 | Completion Freshness Validator | `feature-flag-reference/completion-freshness-validator.md` |
+| 446 | Retrieval Observability Trace and Health | `retrieval-enhancements/retrieval-observability-trace-and-health.md` |
+| 447 | Source Kind Provenance Guard | `governance/source-kind-provenance-guard.md` |
+| 448 | Stale-Exclusion Audit and Tool-Ownership Lint | `governance/stale-exclusion-audit-and-tool-ownership-lint.md` |
 
 ### Skipped As Already Covered
 
@@ -82,10 +82,10 @@ Added ten executable manual-testing scenarios for release-hardening coverage and
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Added Playbook ID rows 439-448 and bumped scenario-file count statements from 399 to 409 |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/retrieval-observability-trace-and-health.md` | Created | Executable retrieval observability scenario |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/source-kind-provenance-guard.md` | Created | Executable provenance guard scenario |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/stale-exclusion-audit-and-tool-ownership-lint.md` | Created | Executable stale-exclusion and lint scenario |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/*.md` | Created | Seven executable default-off flag/mode scenarios |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/retrieval-enhancements/retrieval-observability-trace-and-health.md` | Created | Executable retrieval observability scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/governance/source-kind-provenance-guard.md` | Created | Executable provenance guard scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/governance/stale-exclusion-audit-and-tool-ownership-lint.md` | Created | Executable stale-exclusion and lint scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/feature-flag-reference/*.md` | Created | Seven executable default-off flag/mode scenarios |
 | `implementation-summary.md` | Modified | Recorded added scenarios, count-bump locations, and validation evidence |
 | `tasks.md` | Modified | Marked phase tasks complete with evidence |
 | `spec.md`, `plan.md`, `description.json`, `graph-metadata.json` | Modified | Reconciled status and continuity metadata to complete |

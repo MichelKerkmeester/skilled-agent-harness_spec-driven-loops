@@ -30,13 +30,13 @@ The capability surface has one hard prerequisite and four phases. Everything dep
 
 | Capability area | What it does | Per-feature file |
 |---|---|---|
-| Extract | Crawls a live URL across 5 viewports, collects computed CSS, emits tokens.json | `01--extract/extract.md` |
-| Cluster and classify | OKLCH color clustering and L1-L4 stability classification on extracted tokens | `02--cluster-classify/cluster-classify.md` |
-| Write DESIGN.md | Composes the v3 Style Reference DESIGN.md, pasting deterministic value sections (formatters-v3.ts) and writing prose only | `03--write-design-md/write-design-md.md` |
-| Validate | Checks hex accuracy against tokens.json, v3 section completeness, and Quick-Start fidelity | `04--validate/validate.md` |
-| Report and preview | Generates HTML report, visual preview, and proof artifacts | `05--report-preview/report-preview.md` |
-| Feature extractors | Per-feature detection: accessibility, dark mode, framework, icons, motion, design boundary | `06--feature-extractors/feature-extractors.md` |
-| Interaction capture | Records hover/focus/active/disabled component states (`--with-interaction`) for the v3 Components section | `07--interaction-capture/interaction-capture.md` |
+| Extract | Crawls a live URL across 5 viewports, collects computed CSS, emits tokens.json | `extract/extract.md` |
+| Cluster and classify | OKLCH color clustering and L1-L4 stability classification on extracted tokens | `cluster-classify/cluster-classify.md` |
+| Write DESIGN.md | Composes the v3 Style Reference DESIGN.md, pasting deterministic value sections (formatters-v3.ts) and writing prose only | `write-design-md/write-design-md.md` |
+| Validate | Checks hex accuracy against tokens.json, v3 section completeness, and Quick-Start fidelity | `validate/validate.md` |
+| Report and preview | Generates HTML report, visual preview, and proof artifacts | `report-preview/report-preview.md` |
+| Feature extractors | Per-feature detection: accessibility, dark mode, framework, icons, motion, design boundary | `feature-extractors/feature-extractors.md` |
+| Interaction capture | Records hover/focus/active/disabled component states (`--with-interaction`) for the v3 Components section | `interaction-capture/interaction-capture.md` |
 
 ---
 
@@ -58,7 +58,7 @@ Crawls a live URL across five viewports with Playwright, collects computed CSS v
 
 #### Source Files
 
-See [`01--extract/extract.md`](01--extract/extract.md) for the crawl model, extraction flags, and the tokens.json schema.
+See [`extract/extract.md`](extract/extract.md) for the crawl model, extraction flags, and the tokens.json schema.
 
 ---
 
@@ -81,7 +81,7 @@ Transforms raw color data from `tokens.json` into stability-classified tokens vi
 
 #### Source Files
 
-See [`02--cluster-classify/cluster-classify.md`](02--cluster-classify/cluster-classify.md) for the OKLCH clustering algorithm, the stability-classification heuristic, and the boundary-disambiguation rule.
+See [`cluster-classify/cluster-classify.md`](cluster-classify/cluster-classify.md) for the OKLCH clustering algorithm, the stability-classification heuristic, and the boundary-disambiguation rule.
 
 ---
 
@@ -106,7 +106,7 @@ Produces the v3 Style Reference `DESIGN.md` from `tokens.json` — a named, role
 
 #### Source Files
 
-See [`03--write-design-md/write-design-md.md`](03--write-design-md/write-design-md.md) for the cardinal fidelity rule, the v3 Style Reference contract, the doc-as-view v3 emitters, and the write-phase prompt template.
+See [`write-design-md/write-design-md.md`](write-design-md/write-design-md.md) for the cardinal fidelity rule, the v3 Style Reference contract, the doc-as-view v3 emitters, and the write-phase prompt template.
 
 ---
 
@@ -129,7 +129,7 @@ Confirms every hex in DESIGN.md traces to `tokens.json`, the required v3 Style R
 
 #### Source Files
 
-See [`04--validate/validate.md`](04--validate/validate.md) for the validation rules, the score model, and the escalation triggers.
+See [`validate/validate.md`](validate/validate.md) for the validation rules, the score model, and the escalation triggers.
 
 ---
 
@@ -148,7 +148,7 @@ Optional post-validation phase that renders visual artifacts — HTML report, CS
 
 #### Source Files
 
-See [`05--report-preview/report-preview.md`](05--report-preview/report-preview.md) for the report schema, preview rendering, and proof artifact format.
+See [`report-preview/report-preview.md`](report-preview/report-preview.md) for the report schema, preview rendering, and proof artifact format.
 
 ---
 
@@ -170,7 +170,7 @@ Six per-feature detectors that run inline during extraction, each targeting a sp
 
 #### Source Files
 
-See [`06--feature-extractors/feature-extractors.md`](06--feature-extractors/feature-extractors.md) for each detector's extraction method, the token-schema fields it populates, and the absence-reporting rule.
+See [`feature-extractors/feature-extractors.md`](feature-extractors/feature-extractors.md) for each detector's extraction method, the token-schema fields it populates, and the absence-reporting rule.
 
 ---
 
@@ -190,7 +190,7 @@ Captures hover, focus, active, and disabled component states when extraction run
 
 #### Source Files
 
-See [`07--interaction-capture/interaction-capture.md`](07--interaction-capture/interaction-capture.md) for the interaction-capture method, the state-matrix schema, and the `--with-interaction` flag contract.
+See [`interaction-capture/interaction-capture.md`](interaction-capture/interaction-capture.md) for the interaction-capture method, the state-matrix schema, and the `--with-interaction` flag contract.
 
 ---
 
@@ -206,4 +206,4 @@ The mode cites the card when the request asks to extract tokens, capture CSS, ge
 
 #### Source Files
 
-See [`08--procedure-cards/md-generator-procedure-card-inventory.md`](08--procedure-cards/md-generator-procedure-card-inventory.md) for the card definition, tool boundary, and conflict rule.
+See [`procedure-cards/md-generator-procedure-card-inventory.md`](procedure-cards/md-generator-procedure-card-inventory.md) for the card definition, tool boundary, and conflict rule.

@@ -15,9 +15,9 @@ _memory:
     next_safe_action: "Commit; proceed to child 003"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/403-code-intent-matching.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/404-disambiguation-under-context.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/407-adversarial-near-miss.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/403-code-intent-matching.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/404-disambiguation-under-context.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/407-adversarial-near-miss.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003614"
       session_id: "036-002-impl"
@@ -64,9 +64,9 @@ This took two false starts I want to be honest about. First I trusted a swarm cl
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `manual_testing_playbook/24--local-llm-query-intelligence/403-code-intent-matching.md` | Modified | 4 calls + prose ref → code_graph_context |
-| `manual_testing_playbook/24--local-llm-query-intelligence/404-disambiguation-under-context.md` | Modified | 3 calls → code_graph_context |
-| `manual_testing_playbook/24--local-llm-query-intelligence/407-adversarial-near-miss.md` | Modified | 3 calls → code_graph_context |
+| `manual_testing_playbook/local-llm-query-intelligence/403-code-intent-matching.md` | Modified | 4 calls + prose ref → code_graph_context |
+| `manual_testing_playbook/local-llm-query-intelligence/404-disambiguation-under-context.md` | Modified | 3 calls → code_graph_context |
+| `manual_testing_playbook/local-llm-query-intelligence/407-adversarial-near-miss.md` | Modified | 3 calls → code_graph_context |
 <!-- /ANCHOR:what-built -->
 
 ---

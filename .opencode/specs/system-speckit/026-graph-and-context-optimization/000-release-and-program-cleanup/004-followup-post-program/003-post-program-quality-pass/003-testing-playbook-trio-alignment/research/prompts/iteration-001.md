@@ -22,7 +22,7 @@ find .opencode/skills/sk-doc -name '*playbook*'
 
 Read at least one existing playbook entry to understand the format.
 
-Note: `cli-opencode` skill already has a manual testing playbook with multiple numbered subdirs (`01--cli-invocation/`, `02--external-dispatch/`, etc.) — that's the format pattern to follow.
+Note: `cli-opencode` skill already has a manual testing playbook with multiple numbered subdirs (`cli-invocation/`, `external-dispatch/`, etc.) — that's the format pattern to follow.
 
 ### Entries to add
 

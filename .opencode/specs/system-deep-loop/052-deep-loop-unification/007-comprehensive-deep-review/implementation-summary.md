@@ -59,7 +59,7 @@ A genuine 20-iteration `/deep:review` loop over the entire `.opencode/skills/sys
 | `deep-research/SKILL.md`, `references/guides/quick_reference.md`, `assets/prompt_pack_iteration.md.tmpl` | Edit | Added untrusted-WebFetch-content guardrail rules |
 | `system-spec-kit/shared/review-research-paths.cjs` | Edit | Added workspace-root containment check to `resolveArtifactRoot()` (shared by deep-research + deep-review) |
 | `system-deep-loop/runtime/scripts/compile-command-contracts.cjs` | Edit | Fixed generated-contract wording claiming the LEAF agent owns the loop |
-| `deep-review/references/protocol/loop_protocol.md`, `feature_catalog/01--loop-lifecycle/executor-selection-contract.md` | Edit | Corrected stale workspace-write sandboxing claims to match live `--dangerously-skip-permissions` behavior |
+| `deep-review/references/protocol/loop_protocol.md`, `feature_catalog/loop-lifecycle/executor-selection-contract.md` | Edit | Corrected stale workspace-write sandboxing claims to match live `--dangerously-skip-permissions` behavior |
 | `deep-research/references/protocol/loop_protocol.md` | Edit | Same class of stale-sandboxing fix, found via the DR-011 verify agent's incidental discovery |
 | `deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs`, `scripts/lib/profile-resolve.cjs` | Edit | Added ID-based fixture resolution fallback |
 | `deep-improvement/scripts/shared/{promote-candidate,rollback-candidate}.cjs`, `scripts/agent-improvement/rollback-candidate.cjs` | Edit | Added realpath allowed-root containment checks before mutating writes |

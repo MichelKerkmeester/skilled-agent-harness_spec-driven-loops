@@ -105,6 +105,6 @@ The SessionStart-hook ownership pivot was the only non-trivial decision: researc
 
 - **OLD location actual removal stays deferred**: F6 deprecation banners set a 2026-08-16 target. Actual deletion of `.opencode/skills/system-spec-kit/mcp_server/hooks/` requires the 90-day window to elapse plus a verification pass that no remaining runtime consumers point at OLD paths. Out of scope here.
 - **Devin runtime restart needed for F4 to take effect**: The `.devin/hooks.v1.json` edit is config; Devin must restart (or reload its config) to pick up the new hook paths. Until then, the operator's running Devin sessions still use OLD paths. Document this in the next session-start communication.
-- **F35 and F36 stay status quo**: per deferred-decisions.md §5 and §6 recommendations. Catalog TOC numbering mismatch (gap-05) and 07--hooks-and-plugin file gap (missing 02) remain as documented intentional state. Renumbering would break checked-in inventory tests.
+- **F35 and F36 stay status quo**: per deferred-decisions.md §5 and §6 recommendations. Catalog TOC numbering mismatch (gap-05) and hooks-and-plugin file gap (missing 02) remain as documented intentional state. Renumbering would break checked-in inventory tests.
 - **F34 deviation note approach (not restructure)** was finalized in packet 007. No further action here.
 <!-- /ANCHOR:limitations -->

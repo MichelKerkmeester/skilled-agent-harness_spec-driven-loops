@@ -38,7 +38,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | `skill_advisor.py` deterministic local/native advisor scorer; `opencode run --model openai/gpt-5.5-fast --variant medium` real dispatch; JSON-lines transcript parsing |
-| **Framework** | `manual_testing_playbook/01--mode-routing/*.md` scenario contract shape |
+| **Framework** | `manual_testing_playbook/mode-routing/*.md` scenario contract shape |
 | **Storage** | `/tmp/skd-<id>-response.jsonl` transcripts; this wave's spec-folder docs |
 | **Testing** | Manual grading against each scenario file's own "Pass/Fail Criteria" section |
 
@@ -90,7 +90,7 @@ Sequential single-agent dispatch loop: probe -> dispatch -> capture -> grade, re
 | This wave's spec-folder docs | New Level-2 folder | Created | `validate.sh --strict` |
 
 Required inventories:
-- Same-class producers: no other in-flight work touches `manual_testing_playbook/01--mode-routing/` or this wave's spec folder concurrently.
+- Same-class producers: no other in-flight work touches `manual_testing_playbook/mode-routing/` or this wave's spec folder concurrently.
 - Consumers: the parent phase's `verdict-matrix.md` (to be built by the phase-parent agent after all 10 children complete) is the sole downstream consumer of this wave's 5 verdicts.
 - Matrix axes: dispatch x {advisor top-1 + confidence, resolved mode, packet loaded, resources cited, tool surface, scenario's own PASS/FAIL/triage text} — the grading grid applied per dispatch.
 - Algorithm invariant: every verdict traces to a directly-quoted criterion line from that scenario's own `### Pass/Fail Criteria` section, never a cross-scenario or generic bar.

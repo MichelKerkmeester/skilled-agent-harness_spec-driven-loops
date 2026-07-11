@@ -90,8 +90,8 @@ Additive-only playbook and descriptor updates — no change to the registries th
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `manual_testing_playbook/01--mode-routing/` | 6 existing scenarios | Add `MR-007` | Router-mode benchmark scenario count |
-| `manual_testing_playbook/02--advisor-integration/` | 3 existing scenarios | Extend `AI-001`, fix `AI-003` prompt text | Router-mode benchmark report |
+| `manual_testing_playbook/mode-routing/` | 6 existing scenarios | Add `MR-007` | Router-mode benchmark scenario count |
+| `manual_testing_playbook/advisor-integration/` | 3 existing scenarios | Extend `AI-001`, fix `AI-003` prompt text | Router-mode benchmark report |
 | `manual_testing_playbook/manual_testing_playbook.md` | Root index | Update overview, preconditions, critical-path list, cross-reference index, totals | Grep sweep + validate.sh |
 | `sk-design/description.json`, `sk-design/graph-metadata.json` | Skill-level advisor descriptors | Sync to six modes | JSON parse + grep sweep |
 | `sk-design/benchmark/after-018-transport-integration/` | Does not exist yet | New live-mode baseline | Directory listing + report verdict |

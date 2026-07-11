@@ -38,7 +38,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | `skill_advisor.py` deterministic local/native advisor scorer; `opencode run --model openai/gpt-5.5-fast --variant medium` real dispatch; JSON-lines transcript parsing |
-| **Framework** | `manual_testing_playbook/02--advisor-integration/positive-design-controls.md` (`AI-001`) single-file 6-probe battery contract |
+| **Framework** | `manual_testing_playbook/advisor-integration/positive-design-controls.md` (`AI-001`) single-file 6-probe battery contract |
 | **Storage** | `/tmp/skd-AI-001-P<n>-response.jsonl` transcripts; this wave's spec-folder docs |
 | **Testing** | Manual grading against `AI-001`'s own "Pass/Fail Criteria" section |
 
@@ -91,7 +91,7 @@ Sequential single-agent dispatch loop: probe -> dispatch -> capture -> grade, re
 | `~/.config/opencode/opencode.json` (global, out-of-repo) | User's real OpenCode MCP config | Mutated by `P6`'s dispatch (not by this wave's own actions) | Read-only inspection after the fact; documented, not reverted |
 
 Required inventories:
-- Same-class producers: no other in-flight work touches `manual_testing_playbook/02--advisor-integration/` or this wave's spec folder concurrently.
+- Same-class producers: no other in-flight work touches `manual_testing_playbook/advisor-integration/` or this wave's spec folder concurrently.
 - Consumers: the parent phase's `verdict-matrix.md` (to be built by the phase-parent agent after all 10 children complete) is the sole downstream consumer of this wave's 5 verdicts.
 - Matrix axes: dispatch x {advisor top-1 + confidence, resolved mode, packet loaded, resources cited, tool surface, `AI-001`'s own PASS/FAIL/triage text} — the grading grid applied per dispatch.
 - Algorithm invariant: every verdict traces to a directly-quoted criterion line from `AI-001`'s own `### Pass/Fail Criteria` section, never a generic bar.

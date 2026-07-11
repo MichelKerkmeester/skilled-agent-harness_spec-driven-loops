@@ -54,7 +54,7 @@ _memory:
 | T1.5 | Update `.opencode/plugins/README.md` plugin table and bridge list entries. | F004/Q4, F009/Q9 |
 | T1.6 | Create/update advisor `mcp_server/plugin_bridges/README.md` for `mk-skill-advisor`. | F005/Q5, F009/Q9 |
 | T1.7 | Update advisor `SKILL.md`, `INSTALL_GUIDE.md`, `SET-UP_GUIDE.md`, and `ARCHITECTURE.md` where current plugin/hook names appear. | F009/Q9 |
-| T1.8 | Update `feature_catalog/07--hooks-and-plugin/*` current plugin references. | F009/Q9 |
+| T1.8 | Update `feature_catalog/hooks-and-plugin/*` current plugin references. | F009/Q9 |
 | T1.9 | Update manual testing playbook entries for `mk-skill-advisor` and Devin hook smoke. | F009/Q9 |
 | T1.10 | Rename/update test files and fixtures that match the old plugin name. | F004/Q4, F006/Q6 |
 | T1.11 | Update `.opencode/skills/cli-devin/references/devin_tools.md:106` Hooks row from `No` to `Yes - Claude-compatible hooks`. | F001/Q1 |

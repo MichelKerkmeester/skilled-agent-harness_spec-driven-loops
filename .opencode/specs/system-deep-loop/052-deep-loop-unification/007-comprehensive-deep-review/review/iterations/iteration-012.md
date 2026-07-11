@@ -19,8 +19,8 @@ Traceability -- `deep-review` packet.
 | `.opencode/agents/deep-review.md` | Lines 34-39 and 124-139 confirm the current single-iteration LEAF contract and writable packet files. |
 | `.opencode/skills/system-deep-loop/deep-review/README.md` | Lines 193-218 list the current navigation set for packet references, assets, feature catalog, playbook, and behavior benchmark. |
 | `.opencode/skills/system-deep-loop/deep-review/changelog/v1.11.0.0.md` | Lines 1-13 record the latest checked-in changelog entry and the grouped reference-library state. |
-| `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/07--command-flow-stress-tests/three-artifact-iteration-contract.md` | Lines 81-87 contain stale source anchors. |
-| `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/07--command-flow-stress-tests/synthesis-save-boundary.md` | Lines 82-88 contain stale source anchors. |
+| `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/command-flow-stress-tests/three-artifact-iteration-contract.md` | Lines 81-87 contain stale source anchors. |
+| `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/command-flow-stress-tests/synthesis-save-boundary.md` | Lines 82-88 contain stale source anchors. |
 
 Required sk-doc template check output:
 
@@ -46,7 +46,7 @@ None.
 
 ### P2 Findings
 
-1. **Manual testing source anchors point to non-existent current lines** -- `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/07--command-flow-stress-tests/three-artifact-iteration-contract.md:85` and `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/07--command-flow-stress-tests/synthesis-save-boundary.md:86` cite `.opencode/commands/deep/review.md` ranges `199-207`, `361-365`, `249-265`, and `269-283`, but the current command file is only the 9-line render wrapper at `.opencode/commands/deep/review.md:1-9`. The same tables cite `.opencode/skills/system-deep-loop/deep-review/SKILL.md` ranges `496-514` and `563-575`, but the current trimmed SKILL ends at line 438. These anchors cannot guide operators to the claimed workflow-output, read-only model, loop-completion, or continuity evidence.
+1. **Manual testing source anchors point to non-existent current lines** -- `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/command-flow-stress-tests/three-artifact-iteration-contract.md:85` and `.opencode/skills/system-deep-loop/deep-review/manual_testing_playbook/command-flow-stress-tests/synthesis-save-boundary.md:86` cite `.opencode/commands/deep/review.md` ranges `199-207`, `361-365`, `249-265`, and `269-283`, but the current command file is only the 9-line render wrapper at `.opencode/commands/deep/review.md:1-9`. The same tables cite `.opencode/skills/system-deep-loop/deep-review/SKILL.md` ranges `496-514` and `563-575`, but the current trimmed SKILL ends at line 438. These anchors cannot guide operators to the claimed workflow-output, read-only model, loop-completion, or continuity evidence.
 
 Finding class: matrix/evidence
 

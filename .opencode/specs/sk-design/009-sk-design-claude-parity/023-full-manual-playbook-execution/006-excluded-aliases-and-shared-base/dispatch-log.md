@@ -7,7 +7,7 @@ One row per dispatch. All dispatches ran sequentially via `opencode run --model 
 ## TV-005
 
 - **Scenario ID**: `TV-005`
-- **Scenario file**: `manual_testing_playbook/03--transform-verb-framing/audit-excluded-aliases.md`
+- **Scenario file**: `manual_testing_playbook/transform-verb-framing/audit-excluded-aliases.md`
 - **Exact prompt**: `Make this card feel polished and visually hardened without running an audit report.`
 - **No-target clause**: Present ("this card" — hypothetical local UI surface, no literal repo target)
 - **Advisor top-1 / confidence**: `sk-code` / `0.82` (native advisor). Diverges from the scenario's "Expected advisor behavior" prose (`sk-design` top-1 >= 0.80) — see rationale below.
@@ -22,7 +22,7 @@ One row per dispatch. All dispatches ran sequentially via `opencode run --model 
 ## SR-002-P1
 
 - **Scenario ID**: `SR-002` (probe P1 of 3)
-- **Scenario file**: `manual_testing_playbook/05--shared-reference-base/reference-base-backend-modes.md`
+- **Scenario file**: `manual_testing_playbook/shared-reference-base/reference-base-backend-modes.md`
 - **Exact prompt**: `Create a responsive spacing system and token starter for this product dashboard.`
 - **No-target clause**: Present ("this product dashboard" — hypothetical local UI surface, no literal repo target)
 - **Advisor top-1 / confidence**: `sk-design` / `0.8835` (native advisor). Matches expected advisor behavior (top-1 `sk-design` >= 0.80).
@@ -37,7 +37,7 @@ One row per dispatch. All dispatches ran sequentially via `opencode run --model 
 ## SR-002-P2
 
 - **Scenario ID**: `SR-002` (probe P2 of 3)
-- **Scenario file**: `manual_testing_playbook/05--shared-reference-base/reference-base-backend-modes.md`
+- **Scenario file**: `manual_testing_playbook/shared-reference-base/reference-base-backend-modes.md`
 - **Exact prompt**: `Design the motion budget and reduced-motion alternative for this onboarding flow.`
 - **No-target clause**: Present ("this onboarding flow" — hypothetical local UI surface, no literal repo target)
 - **Advisor top-1 / confidence**: `sk-design` / `0.95` (local fallback scorer; native advisor unavailable for this probe). Matches expected advisor behavior.
@@ -52,7 +52,7 @@ One row per dispatch. All dispatches ran sequentially via `opencode run --model 
 ## SR-002-P3
 
 - **Scenario ID**: `SR-002` (probe P3 of 3)
-- **Scenario file**: `manual_testing_playbook/05--shared-reference-base/reference-base-backend-modes.md`
+- **Scenario file**: `manual_testing_playbook/shared-reference-base/reference-base-backend-modes.md`
 - **Exact prompt**: `Audit this page for design slop and give severity-ranked findings.`
 - **No-target clause**: Present ("this page" — hypothetical local UI surface, no literal repo target)
 - **Advisor top-1 / confidence**: `sk-code` / `0.8262` (native advisor). Diverges from the scenario's "Expected advisor behavior" prose (`sk-design` top-1 >= 0.80) — see rationale below.
@@ -67,7 +67,7 @@ One row per dispatch. All dispatches ran sequentially via `opencode run --model 
 ## SR-003
 
 - **Scenario ID**: `SR-003`
-- **Scenario file**: `manual_testing_playbook/05--shared-reference-base/shared-base-not-workflow.md`
+- **Scenario file**: `manual_testing_playbook/shared-reference-base/shared-base-not-workflow.md`
 - **Exact prompt**: `Use the shared design reference base as the workflow for this task.`
 - **No-target clause**: Empty (hub-intake premise question about the shared reference base itself; names no local UI surface)
 - **Advisor top-1 / confidence**: `sk-design` / `0.95` (local fallback scorer). The scenario's own "Expected advisor behavior" anticipates "defer or low-confidence `sk-design`"; the standalone deterministic probe instead returned high confidence. However, the orchestrator's own internal `advisor_recommend` tool call (visible in the transcript) returned a genuinely ambiguous field (`sk-doc` 0.88, `sk-design` 0.86, `system-spec-kit` 0.82, `sk-code` 0.82) and the model itself narrated "advisor is ambiguous" before choosing `sk-design` because the user explicitly named a design-reference workflow.

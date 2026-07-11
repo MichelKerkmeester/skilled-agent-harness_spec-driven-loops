@@ -69,8 +69,8 @@ The trust display ships on each `MemoryResultEnvelope` result in `memory_search`
 | `mcp_server/lib/response/profile-formatters.ts` | Modified | Preserve trust badges through response-profile typing |
 | `mcp_server/tests/memory/trust-badges.test.ts` | Created | Cover badge derivation, age rendering, orphan detection, and explicit payload preservation |
 | `mcp_server/tests/response-profile-formatters.vitest.ts` | Modified | Cover profile preservation for `trustBadges` |
-| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/28-memory-causal-trust-display.md` | Created | Packet-local feature catalog entry |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md` | Created | Packet-local manual testing playbook entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/memory-quality-and-indexing/28-memory-causal-trust-display.md` | Created | Packet-local feature catalog entry |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/203-memory-causal-trust-display.md` | Created | Packet-local manual testing playbook entry |
 | `implementation-summary.md` | Modified | Record placement, delivery, and verification state for 012/005 |
 <!-- /ANCHOR:what-built -->
 

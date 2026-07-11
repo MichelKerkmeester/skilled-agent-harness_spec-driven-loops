@@ -103,12 +103,19 @@ function checkCollisions(renames) {
 }
 
 function buildReferenceMaps(renames) {
-  return renames.map(({ kind, oldName, newName }) => ({
-    oldPath: `${kind}/${oldName}`,
-    newPath: `${kind}/${newName}`,
-    oldCategory: oldName,
-    newCategory: newName,
-  })).sort((a, b) => b.oldPath.length - a.oldPath.length || a.oldPath.localeCompare(b.oldPath));
+  // A single bare category-name token (`NN--slug`) is the right unit: references appear
+  // as `kind/NN--slug` (router prefixes), category-relative `NN--slug/file` (root index
+  // rows), and relative links `../NN--slug/file` — all of which contain the bare name
+  // bounded by a path/quote/whitespace char. The same NN--slug can recur across skills;
+  // dedupe so each token is swept once. Longest-first avoids a shorter name matching
+  // inside a longer sibling.
+  const seen = new Map();
+  for (const { oldName, newName } of renames) {
+    if (!seen.has(oldName)) seen.set(oldName, newName);
+  }
+  return [...seen.entries()]
+    .map(([oldCategory, newCategory]) => ({ oldCategory, newCategory }))
+    .sort((a, b) => b.oldCategory.length - a.oldCategory.length || a.oldCategory.localeCompare(b.oldCategory));
 }
 
 function escapeRegex(value) {
@@ -163,17 +170,19 @@ function computeReferenceEdits(root, files, references) {
     let content = fs.readFileSync(file, 'utf8');
     const pathEdits = [];
     const frontmatterEdits = [];
-    for (const reference of references) {
-      const result = replaceWithBoundary(content, reference.oldPath, reference.newPath);
-      if (result.count > 0) {
-        pathEdits.push({ old: reference.oldPath, new: reference.newPath, count: result.count });
-        content = result.content;
-      }
-    }
+    // Frontmatter `category:` value first, so the token sweep does not double-count it.
     for (const reference of references) {
       const result = replaceFrontmatterCategory(content, reference.oldCategory, reference.newCategory);
       if (result.count > 0) {
         frontmatterEdits.push({ old: reference.oldCategory, new: reference.newCategory, count: result.count });
+        content = result.content;
+      }
+    }
+    // Bare category-name token — covers every remaining reference shape in one sweep.
+    for (const reference of references) {
+      const result = replaceWithBoundary(content, reference.oldCategory, reference.newCategory);
+      if (result.count > 0) {
+        pathEdits.push({ old: reference.oldCategory, new: reference.newCategory, count: result.count });
         content = result.content;
       }
     }

@@ -40,14 +40,14 @@ The `042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation/spec
 Six surface buckets host promotion prose inside `skill-advisor/`:
 - `README.md` (repo overview — flag any "promotion gates" prose)
 - `feature_catalog/05--promotion-gates/` — entire directory (6 files, all promotion-specific)
-- `feature_catalog/02--auto-indexing/05-anti-stuffing.md` — incidental ref (verify before scrub)
-- `feature_catalog/04--scorer-fusion/{01,03,05,06}*.md` — 4 files with incidental promotion-gates references in fusion docs
-- `feature_catalog/06--mcp-surface/03-advisor-validate.md` — references promotion in MCP surface doc
+- `feature_catalog/auto-indexing/05-anti-stuffing.md` — incidental ref (verify before scrub)
+- `feature_catalog/scorer-fusion/{01,03,05,06}*.md` — 4 files with incidental promotion-gates references in fusion docs
+- `feature_catalog/mcp-surface/03-advisor-validate.md` — references promotion in MCP surface doc
 - `feature_catalog/feature_catalog.md` — index file, scrub the section pointer
 - `manual_testing_playbook/09--promotion-gates/` — entire directory (5 files, all promotion-specific)
-- `manual_testing_playbook/06--auto-indexing/005-anti-stuffing.md` — incidental
-- `manual_testing_playbook/07--lifecycle-routing/005-rollback-lifecycle.md` — promotion-rollback specific
-- `manual_testing_playbook/08--scorer-fusion/{001,005}*.md` — 2 files with incidental refs
+- `manual_testing_playbook/auto-indexing/005-anti-stuffing.md` — incidental
+- `manual_testing_playbook/lifecycle-routing/005-rollback-lifecycle.md` — promotion-rollback specific
+- `manual_testing_playbook/scorer-fusion/{001,005}*.md` — 2 files with incidental refs
 - `manual_testing_playbook/manual_testing_playbook.md` — index file, scrub section pointer
 [SOURCE: `find .../skill-advisor -type f | xargs grep -l ...` — 16 distinct doc files]
 

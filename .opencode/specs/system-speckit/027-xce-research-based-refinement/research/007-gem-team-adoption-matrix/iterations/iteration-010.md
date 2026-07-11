@@ -20,7 +20,7 @@
 ### NEGATIVE / RULED-OUT
 Reject adopting Gem’s `flaky` and `platform_specific` actions as-is: “mark complete” and “skip test, continue” undermine spec-kit’s completion verification and halt-on-test-failure rules. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:283] [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:287] [SOURCE: AGENTS.md:25] [SOURCE: AGENTS.md:31]
 
-Do not replace deep-loop stuck recovery with Gem’s taxonomy wholesale: our deep-research machinery already classifies stalled progress and selects targeted recovery strategies. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:277] [SOURCE: .opencode/skills/deep-research/feature_catalog/03--convergence/012-stuck-detection.md:26] [SOURCE: .opencode/skills/deep-research/feature_catalog/03--convergence/012-stuck-detection.md:28]
+Do not replace deep-loop stuck recovery with Gem’s taxonomy wholesale: our deep-research machinery already classifies stalled progress and selects targeted recovery strategies. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/external/gem-team-main/.apm/agents/gem-orchestrator.agent.md:277] [SOURCE: .opencode/skills/deep-research/feature_catalog/convergence/012-stuck-detection.md:26] [SOURCE: .opencode/skills/deep-research/feature_catalog/convergence/012-stuck-detection.md:28]
 
 ### OPEN QUESTIONS
 Should the adapted failure taxonomy live in `AGENTS.md` as a universal rule, or only in deep-loop/spec-planning workflows?

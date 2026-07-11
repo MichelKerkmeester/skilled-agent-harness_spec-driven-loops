@@ -32,8 +32,8 @@
 - `.opencode/skills/sk-design/design-interface/procedures/wireframe_exploration.md:23`
 - `.opencode/skills/sk-design/design-interface/procedures/prototype_flow_spec.md:23`
 - `.opencode/skills/sk-design/design-interface/procedures/deck_direction_spec.md:23`
-- `.opencode/skills/sk-design/design-interface/manual_testing_playbook/14--procedure-card-contract/direct-fallback-without-subagents.md:1`
-- `.opencode/skills/sk-design/design-interface/manual_testing_playbook/14--procedure-card-contract/direct-fallback-without-subagents.md:41`
+- `.opencode/skills/sk-design/design-interface/manual_testing_playbook/procedure-card-contract/direct-fallback-without-subagents.md:1`
+- `.opencode/skills/sk-design/design-interface/manual_testing_playbook/procedure-card-contract/direct-fallback-without-subagents.md:41`
 - Packet-wide `Glob` and `Grep` coverage over `.opencode/skills/sk-design/design-interface/**` for references, links, transform claims, and Write/Edit/Bash/Task boundary language.
 
 ## Findings by Severity
@@ -72,7 +72,7 @@ None.
 - `spec_code`: PASS for assigned scope. Review stayed inside `.opencode/skills/sk-design/design-interface/**` for target evidence and did not review sibling `design-foundations` or hub internals.
 - `checklist_evidence`: N/A. This leaf review wrote evidence artifacts only and did not update checklist completion.
 - `skill_agent`: PASS. The packet entry point declares `allowed-tools: [Read, Grep, Glob]` at `.opencode/skills/sk-design/design-interface/SKILL.md:4`, and the direct-fallback contract repeats that no Write/Edit/Bash/Task is allowed at `.opencode/skills/sk-design/design-interface/SKILL.md:171`.
-- `agent_cross_runtime`: PASS for this iteration. No sub-agents were dispatched; direct-fallback playbook coverage at `.opencode/skills/sk-design/design-interface/manual_testing_playbook/14--procedure-card-contract/direct-fallback-without-subagents.md:41` requires Read/Glob/Grep only.
+- `agent_cross_runtime`: PASS for this iteration. No sub-agents were dispatched; direct-fallback playbook coverage at `.opencode/skills/sk-design/design-interface/manual_testing_playbook/procedure-card-contract/direct-fallback-without-subagents.md:41` requires Read/Glob/Grep only.
 - `feature_catalog_code`: PARTIAL. Catalog-to-code traceability is assigned to iteration 7; this pass only used catalog absence as supporting scope proof for the transform loading defect.
 - `playbook_capability`: PARTIAL. The direct-fallback playbook supports the read-only boundary. Transform-specific playbook coverage was not found during this correctness/security pass and is covered by P1-006-001's resource reachability finding.
 

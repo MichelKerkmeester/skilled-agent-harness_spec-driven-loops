@@ -89,7 +89,7 @@ Sequential single-agent execution of the validated 4-step recipe (advisor probe 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `sk-design` orchestrator dispatches (via `opencode run`) | Live evaluation target | 5 standalone, read-only evaluation calls | Full JSON-lines transcript captured per dispatch, tool-call sequence inspected for mutating-tool absence |
-| `.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/`, `07--fallback-and-resilience/` | Scenario source of truth | Read only, not edited | Confirmed via `git status` showing no changes under these paths from this wave's work |
+| `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/`, `fallback-and-resilience/` | Scenario source of truth | Read only, not edited | Confirmed via `git status` showing no changes under these paths from this wave's work |
 
 Required inventories:
 - Same-class producers: no other in-flight work in this session touches `sk-design`'s skill files during this wave's dispatches; each dispatch is a standalone evaluation call per the addendum text.

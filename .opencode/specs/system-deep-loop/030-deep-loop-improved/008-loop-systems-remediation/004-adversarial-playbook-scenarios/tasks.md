@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Finalize the remaining 009 remediation phases"
     blockers: []
     key_files:
-      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md"
+      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/loop-lock.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "adversarial-playbook-scenarios-2026-06-29"
@@ -62,13 +62,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T005 Add the loop-lock split-brain adversarial section (`04--state-safety/loop-lock.md`)
-- [x] T006 Add the non-representable-state-throws section (`04--state-safety/atomic-state-integrity-helpers.md`)
-- [x] T007 Add the concurrent diff-gated append section (`04--state-safety/atomic-state-serialize-diff.md`)
-- [x] T008 Add the deferred-flush-error section (`04--state-safety/atomic-state-deferred-writer.md`)
-- [x] T009 Add the jsonl no-trailing-newline section (`04--state-safety/jsonl-repair.md`)
-- [x] T010 Add the fan-out exit-0/no-artifact section (`09--fanout/fanout-salvage-recovery.md`)
-- [x] T011 Add the goal-plugin revival and injection-clamp sections (`02--cli-hooks-and-plugin/goal-opencode-plugin.md`)
+- [x] T005 Add the loop-lock split-brain adversarial section (`state-safety/loop-lock.md`)
+- [x] T006 Add the non-representable-state-throws section (`state-safety/atomic-state-integrity-helpers.md`)
+- [x] T007 Add the concurrent diff-gated append section (`state-safety/atomic-state-serialize-diff.md`)
+- [x] T008 Add the deferred-flush-error section (`state-safety/atomic-state-deferred-writer.md`)
+- [x] T009 Add the jsonl no-trailing-newline section (`state-safety/jsonl-repair.md`)
+- [x] T010 Add the fan-out exit-0/no-artifact section (`fanout/fanout-salvage-recovery.md`)
+- [x] T011 Add the goal-plugin revival and injection-clamp sections (`cli-hooks-and-plugin/goal-opencode-plugin.md`)
 - [x] T012 Author concrete Level-1 docs (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`)
 <!-- /ANCHOR:phase-2 -->
 

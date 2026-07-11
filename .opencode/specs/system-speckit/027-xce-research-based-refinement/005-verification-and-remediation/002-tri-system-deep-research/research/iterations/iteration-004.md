@@ -20,7 +20,7 @@
 
 ## [P1][DOC-DRIFT] Docs still describe active weekly holdout replay
 
-- Evidence: .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/shadow-feedback-holdout-evaluation.md:18-30 says the feature runs 20% of queries weekly and logs audit results; .opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/shadow-feedback-speckit-shadow-feedback.md:18-24 expects shadow_scoring_log rows; code at .opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:204-210 says the clean schema yields an empty pool.
+- Evidence: .opencode/skills/system-spec-kit/feature_catalog/scoring-and-calibration/shadow-feedback-holdout-evaluation.md:18-30 says the feature runs 20% of queries weekly and logs audit results; .opencode/skills/system-spec-kit/manual_testing_playbook/scoring-and-calibration/shadow-feedback-speckit-shadow-feedback.md:18-24 expects shadow_scoring_log rows; code at .opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts:204-210 says the clean schema yields an empty pool.
 - Detail: The docs describe the pre-PII behavior as if it still works in production. The code now explicitly treats an empty replay pool as the correct privacy outcome until a new replay pool exists.
 - Fix sketch: Update feature catalog and playbook to state that scheduled production replay is currently starved on clean schemas and document the required replacement replay-pool design.
 

@@ -524,53 +524,53 @@ function preclassifiedUnautomatableReason(definition: ScenarioDefinition): strin
     return 'Prose-first operator workflow requires manual/source cross-checks beyond direct handler output.';
   }
 
-  if (definition.category === '19--feature-flag-reference') {
+  if (definition.category === 'feature-flag-reference') {
     return 'Flag-reference scenarios require catalog/manual-guidance cross-checks beyond direct handler responses.';
   }
 
   if (
-    definition.filePath.includes('05--lifecycle/017-')
-    || definition.filePath.includes('05--lifecycle/097-')
-    || definition.filePath.includes('05--lifecycle/114-')
-    || definition.filePath.includes('05--lifecycle/144-')
+    definition.filePath.includes('lifecycle/017-')
+    || definition.filePath.includes('lifecycle/097-')
+    || definition.filePath.includes('lifecycle/114-')
+    || definition.filePath.includes('lifecycle/144-')
   ) {
     return 'Lifecycle scenario requires checkpoint/async-worker barrier orchestration or restart semantics beyond this direct-handler runner.';
   }
 
   if (
-    definition.filePath.includes('07--evaluation/026-')
-    || definition.filePath.includes('07--evaluation/027-')
+    definition.filePath.includes('evaluation/026-')
+    || definition.filePath.includes('evaluation/027-')
   ) {
     return 'Evaluation scenario depends on production-like eval DB provenance or dashboard ordering checks outside the ephemeral fixture contract.';
   }
 
-  if (definition.filePath.includes('08--bug-fixes-and-data-integrity/002-')) {
+  if (definition.filePath.includes('bug-fixes-and-data-integrity/002-')) {
     return 'Chunk-collapse validation requires multi-chunk seeding and collapse-stage inspection beyond the direct handler contract.';
   }
 
-  if (definition.filePath.includes('12--query-intelligence/161-')) {
+  if (definition.filePath.includes('query-intelligence/161-')) {
     return 'LLM reformulation validation requires external LLM/cache inspection beyond this direct-handler runner.';
   }
 
-  if (definition.filePath.includes('02--mutation/191-')) {
+  if (definition.filePath.includes('mutation/191-')) {
     return 'Shared-memory admin lifecycle scenario uses actor-hint narrative flows that need manual scope verification beyond direct handler output.';
   }
 
-  if (definition.filePath.includes('17--governance/123-')) {
+  if (definition.filePath.includes('governance/123-')) {
     return 'Governance rollout scenario requires actor-scoped state transitions and race checks beyond direct handler automation.';
   }
 
-  if (definition.filePath.includes('02--mutation/192-')) {
+  if (definition.filePath.includes('mutation/192-')) {
     return 'Scenario explicitly requires direct library invocation rather than MCP handler dispatch.';
   }
 
-  if (definition.filePath.includes('02--mutation/101-')) {
+  if (definition.filePath.includes('mutation/101-')) {
     return 'Scenario validates MCP schema enforcement, which raw handler calls do not exercise.';
   }
 
   if (
-    definition.filePath.includes('22--context-preservation/261-')
-    || definition.filePath.includes('22--context-preservation/264-')
+    definition.filePath.includes('context-preservation/261-')
+    || definition.filePath.includes('context-preservation/264-')
   ) {
     return 'Scenario depends on MCP transport hooks, session priming envelopes, or populated code-graph routing beyond raw handler calls.';
   }

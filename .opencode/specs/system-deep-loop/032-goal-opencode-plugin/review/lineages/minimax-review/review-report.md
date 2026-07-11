@@ -57,8 +57,8 @@ No active P0 findings. The audit dossier's F4 (disabled-flag inertness) and F5 (
 | F017 | `loadPluginModule`/`withState` helpers duplicated across 7 of 8 goal test files | maintainability | tests/mk-goal-capabilities.test.cjs:20 | 5 | no |
 | F018 ★ | Phase 018 "16-seam pin" narrative is stale; current `__test` has 17 seams | maintainability | mk-goal.js:2637 | 5 | yes (5→10) |
 | F021 | SKILL.md `allowed-tools` includes `Task` but runtime agents deny `Task` (LEAF-only contract drift) | traceability | deep-review/SKILL.md:4 | 6 | no |
-| F024 | Both feature catalogs miss `speckit-goal-offer-contract.test.cjs` (8th goal test file) | traceability | feature_catalog/18--ux-hooks/goal-opencode-plugin.md:58 | 7 | no |
-| F025 | Two catalog rows describe `mk-goal-state.test.cjs` with different scopes (description parity broken) | traceability | feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:61 | 7 | no |
+| F024 | Both feature catalogs miss `speckit-goal-offer-contract.test.cjs` (8th goal test file) | traceability | feature_catalog/ux-hooks/goal-opencode-plugin.md:58 | 7 | no |
+| F025 | Two catalog rows describe `mk-goal-state.test.cjs` with different scopes (description parity broken) | traceability | feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:61 | 7 | no |
 | F030 | Parent "6-file test suite" narrative is wrong; actual is 8 files / 101 tests | correctness | spec.md:216 | 10 | no |
 
 ### P2 (17)
@@ -77,9 +77,9 @@ No active P0 findings. The audit dossier's F4 (disabled-flag inertness) and F5 (
 | F020 | tests/helpers/ has only one file; helper extraction is partial | maintainability | tests/helpers/ |
 | F022 | OpenCode/Codex deep-review agents are byte-identical; Claude differs in 4 lines | traceability | .opencode/agents/deep-review.md |
 | F023 | SKILL.md `allowed-tools` missing MCP allowlist specifics | traceability | deep-review/SKILL.md:4 |
-| F026 ★ | Audit dossier DOC-2 (missing export-contract row) is now obsolete; row is present | traceability | feature_catalog/18--ux-hooks/goal-opencode-plugin.md:60 |
-| F027 | system-spec-kit playbook is 196 lines / 5 sections vs system-skill-advisor's 503 lines / 8 sections (depth disparity) | maintainability | manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md |
-| F028 | system-spec-kit playbook omits `mk-goal-continuation.test.cjs` from fallback path | traceability | manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md:48 |
+| F026 ★ | Audit dossier DOC-2 (missing export-contract row) is now obsolete; row is present | traceability | feature_catalog/ux-hooks/goal-opencode-plugin.md:60 |
+| F027 | system-spec-kit playbook is 196 lines / 5 sections vs system-skill-advisor's 503 lines / 8 sections (depth disparity) | maintainability | manual_testing_playbook/ux-hooks/goal-opencode-plugin.md |
+| F028 | system-spec-kit playbook omits `mk-goal-continuation.test.cjs` from fallback path | traceability | manual_testing_playbook/ux-hooks/goal-opencode-plugin.md:48 |
 | F029 | Cross-runtime parity for the deep-review skill is strong (3 SKILL.md + 3 commands byte-identical; 3 agents with 1 per-runtime translation) | traceability | .opencode/skills/deep-loop-workflows/deep-review/SKILL.md |
 | F031 | Combined F024+F026: phase 015 REQ-010 partially redundant; 8th test file still missing from catalogs | traceability | spec.md:216 |
 
@@ -131,7 +131,7 @@ The 14 P1 findings cluster into 5 ordered workstreams. The workstreams are sorte
 
 **Action:**
 - F021: Update `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md:4` to remove `Task` from `allowed-tools` (or document the orchestrator-vs-agent split).
-- F024: Add `speckit-goal-offer-contract.test.cjs` to BOTH feature catalogs (system-spec-kit:18--ux-hooks, system-skill-advisor:07--hooks-and-plugin).
+- F024: Add `speckit-goal-offer-contract.test.cjs` to BOTH feature catalogs (system-spec-kit:ux-hooks, system-skill-advisor:hooks-and-plugin).
 - F025: Sync the two `mk-goal-state.test.cjs` descriptions; system-spec-kit's is more accurate. Pick one canonical description.
 - F028 (related P2): Add `mk-goal-continuation.test.cjs` to system-spec-kit playbook fallback path.
 
@@ -202,8 +202,8 @@ Minimal spec updates implied by the findings:
 3. **Parent `description.json`**: change `level: "phase"` to `level: "phase parent"` to match spec.md:45.
 4. **Parent `graph-metadata.json:244`**: change `last_active_child_id` to a Complete phase (currently 018 is Planned, which is wrong).
 5. **Audit dossier `scratch/2026-07-03-four-reviewer-audit-findings.md`**: refresh F4, F5, DOC-2, 014 Status row, e-2.2 with current-state evidence; add a "Refreshed 2026-07-04" header.
-6. **Both feature catalogs** (system-spec-kit:18--ux-hooks/goal-opencode-plugin.md and system-skill-advisor:07--hooks-and-plugin/goal-opencode-plugin.md): add `speckit-goal-offer-contract.test.cjs` row; sync the `mk-goal-state.test.cjs` description.
-7. **System-spec-kit playbook** (manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md:48): add `mk-goal-continuation.test.cjs` to fallback path; add the adversarial-regression and evidence-template sections to bring depth in line with system-skill-advisor playbook.
+6. **Both feature catalogs** (system-spec-kit:ux-hooks/goal-opencode-plugin.md and system-skill-advisor:hooks-and-plugin/goal-opencode-plugin.md): add `speckit-goal-offer-contract.test.cjs` row; sync the `mk-goal-state.test.cjs` description.
+7. **System-spec-kit playbook** (manual_testing_playbook/ux-hooks/goal-opencode-plugin.md:48): add `mk-goal-continuation.test.cjs` to fallback path; add the adversarial-regression and evidence-template sections to bring depth in line with system-skill-advisor playbook.
 8. **Deep-review SKILL.md** (`.opencode/skills/deep-loop-workflows/deep-review/SKILL.md:4`): remove `Task` from `allowed-tools` (or document the orchestrator-vs-agent split).
 9. **Planned phases' implementation-summary.md templates** (015-021): change the `Status: Complete` boilerplate to `Status: Planned` until the phase is actually Complete.
 10. **changelog/README.md**: add 5 placeholder rows (015, 016, 017, 018, 019, 020, 021) with "Planned; no changelog yet" status.
@@ -325,10 +325,10 @@ Rolling average (last 2): 0.5. Coverage: 4/4 dimensions. Required protocols: cov
 | `.opencode/plugins/tests/helpers/continuation-log.cjs` | 005 |
 | `.opencode/commands/goal_opencode.md` | (referenced in 001) |
 | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | (referenced in 001) |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | 007 |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | 007 |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | 008 |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | 008 |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | 007 |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | 007 |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | 008 |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | 008 |
 | `.opencode/skills/deep-loop-workflows/deep-review/SKILL.md` | 006, 009 |
 | `.opencode/agents/deep-review.md` | 006, 009 |
 | `.claude/agents/deep-review.md` | 006, 009 |

@@ -35,7 +35,7 @@ The narrowed docs sweep surfaced these non-excluded files for later inspection:
 - `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` [SOURCE: `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:700-772`]
 - `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md` from the narrowed file list
 - `.opencode/skills/system-spec-kit/ARCHITECTURE.md` from the narrowed file list
-- `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/cross-runtime-fallback.md` from the narrowed file list
+- `.opencode/skills/system-spec-kit/feature_catalog/context-preservation/cross-runtime-fallback.md` from the narrowed file list
 
 The sweep also found many `.opencode/specs/deep-loops/032-goal-opencode-plugin/**` phase/review/archive files. Those are important historical traceability surfaces, but they are not the related-skill/README surfaces targeted first by this iteration.
 
@@ -55,4 +55,4 @@ The sweep also found many `.opencode/specs/deep-loops/032-goal-opencode-plugin/*
 
 # Next Focus
 
-Iteration 2 should inspect the remaining non-excluded candidate docs directly: `README.md`, `.opencode/plugins/README.md`, `.opencode/skills/system-skill-advisor/README.md`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md`, `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/cross-runtime-fallback.md`, and `ENV_REFERENCE.md`. Confirm whether each is stale, merely high-level, or historical-only.
+Iteration 2 should inspect the remaining non-excluded candidate docs directly: `README.md`, `.opencode/plugins/README.md`, `.opencode/skills/system-skill-advisor/README.md`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md`, `.opencode/skills/system-spec-kit/feature_catalog/context-preservation/cross-runtime-fallback.md`, and `ENV_REFERENCE.md`. Confirm whether each is stale, merely high-level, or historical-only.

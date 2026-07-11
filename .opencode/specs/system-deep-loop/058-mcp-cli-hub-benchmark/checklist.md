@@ -61,7 +61,7 @@ Every item carries benchmark or router-replay evidence; keyword-broadening integ
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [x] Gold under each child's `manual_testing_playbook/10--intra-routing-recall/`; router edits in each child SKILL.md; mcp-figma key-sync test under the harness tests dir.
+- [x] Gold under each child's `manual_testing_playbook/intra-routing-recall/`; router edits in each child SKILL.md; mcp-figma key-sync test under the harness tests dir.
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

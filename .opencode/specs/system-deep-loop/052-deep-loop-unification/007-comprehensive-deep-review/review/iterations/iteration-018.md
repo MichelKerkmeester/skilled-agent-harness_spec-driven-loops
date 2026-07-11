@@ -42,7 +42,7 @@ Correctness + security: `deep-ai-council` packet.
 - `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.cjs:29`
 - `.opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/rollback.cjs:93`
 - `.opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs:111`
-- `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/03--artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md:25`
+- `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md:25`
 
 ## Findings By Severity
 

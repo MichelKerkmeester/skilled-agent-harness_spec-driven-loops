@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/speckit-autopilot-lifecycle.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "tighten-playbook-pass-criteria-2026-06-29"
@@ -66,7 +66,7 @@ This phase closes a manual validation loophole in data-integrity and concurrency
 - The existing `sk-doc` document validator remains the structural check for playbook roots.
 
 **Deliverables**:
-- High-risk `deep-loop-runtime` playbook pass criteria tightened under `04--state-safety`, `06--coverage-graph`, `09--fanout`, and `03--validation`.
+- High-risk `deep-loop-runtime` playbook pass criteria tightened under `state-safety`, `coverage-graph`, `fanout`, and `validation`.
 - The three MiMo source-only audit scenarios updated to name their runnable test commands.
 - Level-1 phase documentation completed with verification evidence.
 
@@ -106,12 +106,12 @@ Require runnable test evidence for high-risk manual validation so a PASS means t
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/*.md` | Modify | Require EXIT 0 matching-test evidence plus source confirmation. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/06--coverage-graph/*.md` | Modify | Require EXIT 0 matching-test evidence plus source confirmation; name the fuzzy-merge test command. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/*.md` | Modify | Normalize fan-out pass criteria to require test execution with EXIT 0. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/*.md` | Modify | Require EXIT 0 matching-test evidence plus source confirmation. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md` | Modify | Mandate the runnable telemetry regression test. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md` | Modify | Mandate the runnable autopilot regression test. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/*.md` | Modify | Require EXIT 0 matching-test evidence plus source confirmation. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/coverage-graph/*.md` | Modify | Require EXIT 0 matching-test evidence plus source confirmation; name the fuzzy-merge test command. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/*.md` | Modify | Normalize fan-out pass criteria to require test execution with EXIT 0. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/validation/*.md` | Modify | Require EXIT 0 matching-test evidence plus source confirmation. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/observability/single-loop-telemetry-heartbeat.md` | Modify | Mandate the runnable telemetry regression test. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/speckit-autopilot-lifecycle.md` | Modify | Mandate the runnable autopilot regression test. |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Modify | Replace scaffolded phase docs with completed Level-1 documentation. |
 <!-- /ANCHOR:scope -->
 

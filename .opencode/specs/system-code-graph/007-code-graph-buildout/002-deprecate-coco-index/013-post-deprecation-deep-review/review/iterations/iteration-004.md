@@ -11,7 +11,7 @@
 - `.opencode/skills/cli-gemini/SKILL.md:309`
 - `.opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md:189`
 - `.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC3-happy-path.json:22`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json:3`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-fixture.json:3`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts`

@@ -16,7 +16,7 @@
 - `.opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts:20-21,38,71-72`
 - `.opencode/skills/cli-codex/SKILL.md:357`
 - `.opencode/skills/cli-claude-code/SKILL.md:350`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/250-session-start-startup.md:20,23,143`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/context-preservation/250-session-start-startup.md:20,23,143`
 
 ## Findings
 
@@ -33,7 +33,7 @@
 ### P2
 - **F013**: Vestigial `RERANK_` env prefix in sidecar allowlist — `.opencode/bin/lib/sidecar-env-allowlist.cjs:17` — The `RERANK_` prefix (line 17) is dead since the rerank sidecar was deleted in 014. This file itself may be vestigial since no sidecar exists to consume the allowlist. Recommendation: Remove the `RERANK_` prefix and evaluate whether the entire file is still needed (no active sidecar consumers).
 
-- **F014**: Obsolete ccc path reference in session-start testing playbook — `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/250-session-start-startup.md:20,23,143` — Lines 20, 23, 143 reference `.opencode/skills/system-code-graph/mcp_server/.venv/bin/ccc` which no longer exists (tree-sitter has no venv/ccc). Recommendation: Update to reflect tree-sitter readiness check or remove the ccc-specific assertion.
+- **F014**: Obsolete ccc path reference in session-start testing playbook — `.opencode/skills/system-spec-kit/manual_testing_playbook/context-preservation/250-session-start-startup.md:20,23,143` — Lines 20, 23, 143 reference `.opencode/skills/system-code-graph/mcp_server/.venv/bin/ccc` which no longer exists (tree-sitter has no venv/ccc). Recommendation: Update to reflect tree-sitter readiness check or remove the ccc-specific assertion.
 
 ## Confirmed-Clean Surfaces
 - **feature_catalog in other skills**: deep-agent-improvement, deep-ai-council, deep-loop-runtime, deep-research, deep-review catalogs contain no coco/ccc/rerank references (grepped with case-insensitive patterns).

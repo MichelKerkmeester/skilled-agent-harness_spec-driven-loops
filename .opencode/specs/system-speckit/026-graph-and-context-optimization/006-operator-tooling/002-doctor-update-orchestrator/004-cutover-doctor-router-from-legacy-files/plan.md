@@ -99,7 +99,7 @@ Remove the same 9 names with `.toml` extension under `.gemini/commands/doctor/`.
 
 ### Step 3: Sed pass on 23 manual playbook scenarios
 
-Apply exact substitutions in `.opencode/specs/system-spec-kit/manual_testing_playbook/23--doctor-commands/*.md`:
+Apply exact substitutions in `.opencode/specs/system-spec-kit/manual_testing_playbook/doctor-commands/*.md`:
 
 - `/doctor:mcp_debug` -> `/doctor:mcp debug`
 - `/doctor:mcp_install` -> `/doctor:mcp install`
@@ -113,7 +113,7 @@ Apply exact substitutions in `.opencode/specs/system-spec-kit/manual_testing_pla
 
 ### Step 4: Sed pass on sandbox wrappers and harness
 
-Apply the same substitutions to `.sh` files under `_sandbox/23--doctor-commands/`, then run `bash -n` for every shell file.
+Apply the same substitutions to `.sh` files under `_sandbox/doctor-commands/`, then run `bash -n` for every shell file.
 
 ### Step 5: Cross-reference audit of `doctor_update.yaml`
 

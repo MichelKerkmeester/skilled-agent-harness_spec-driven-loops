@@ -1,0 +1,63 @@
+---
+title: "Schema compatibility validation"
+description: "Schema compatibility validation performs a non-throwing readiness check against an open database to verify required tables and columns are present."
+trigger_phrases:
+  - schema compatibility validation
+  - validateBackwardCompatibility
+  - database readiness check
+  - required table column check
+  - schema migration probe
+version: 3.6.0.10
+---
+
+# Schema compatibility validation
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Schema compatibility validation performs a non-throwing readiness check against an open database to verify required tables and columns are present.
+
+This feature checks whether the database has the right structure before the system tries to use it. If required tables or columns are missing, it reports the problem clearly instead of crashing. It is like checking that a form has all the expected fields before you start filling it out, so you catch formatting problems early rather than halfway through.
+
+---
+
+## 2. HOW IT WORKS
+
+`validateBackwardCompatibility()` performs a non-throwing readiness check against an already-open database connection. The helper treats `memory_index` and `schema_version` as hard requirements and validates that `memory_index` still exposes the core columns the current runtime expects (`id`, `spec_folder`, `file_path`, `importance_tier`, `context_type`, `session_id`, `created_at`, `updated_at`).
+
+Compatibility fails only when those required tables or columns are missing. Supporting tables such as `memory_history`, `checkpoints` and `memory_conflicts` are reported as warnings instead, which makes the helper useful for rollout logging, migration probes and degraded-mode diagnostics without crashing startup or test flows.
+
+The function is exported in both snake_case and camelCase form from `vector-index-schema.ts`, so call sites can import `validateBackwardCompatibility` while the source file preserves the existing internal naming pattern.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp_server/lib/search/vector-index-schema.ts` | Lib | Backward-compatibility validation and schema-report generation |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp_server/tests/vector-index-schema-compatibility.vitest.ts` | Automated test | Missing-table detection, required-column coverage and compatible-schema success path |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Tooling And Scripts
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `tooling-and-scripts/schema-compatibility-validation.md`
+
+Related references:
+- [migration-checkpoint-scripts.md](migration-checkpoint-scripts.md) — Migration checkpoint scripts
+- [feature-catalog-code-references.md](feature-catalog-code-references.md) — Feature catalog code references
+
+---
+## 5. PLAYBOOK COVERAGE
+
+- Mapped to manual testing playbook scenario 128

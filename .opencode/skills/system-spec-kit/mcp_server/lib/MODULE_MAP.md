@@ -378,90 +378,90 @@ Notes:
 
 ## 3. FEATURE CATALOG MAPPING
 
-Feature-catalog categories referenced here are the 25 top-level directories under `feature_catalog/` (numbered through 24; note the duplicate `14--` prefix on `14--pipeline-architecture` and `14--stress-testing`):
+Feature-catalog categories referenced here are the 25 top-level directories under `feature_catalog/` (numbered through 24; note the duplicate `14--` prefix on `pipeline-architecture` and `stress-testing`):
 
-- `01--retrieval`
-- `02--mutation`
-- `03--discovery`
-- `04--maintenance`
-- `05--lifecycle`
-- `06--analysis`
-- `07--evaluation`
-- `08--bug-fixes-and-data-integrity`
-- `09--evaluation-and-measurement`
-- `10--graph-signal-activation`
-- `11--scoring-and-calibration`
-- `12--query-intelligence`
-- `13--memory-quality-and-indexing`
-- `14--pipeline-architecture`
-- `14--stress-testing`
-- `15--retrieval-enhancements`
-- `16--tooling-and-scripts`
-- `17--governance`
-- `18--ux-hooks`
-- `19--feature-flag-reference`
-- `20--remediation-revalidation`
-- `21--implement-and-remove-deprecated-features`
-- `22--context-preservation`
-- `23--doctor-commands`
-- `24--local-llm-query-intelligence`
+- `retrieval`
+- `mutation`
+- `discovery`
+- `maintenance`
+- `lifecycle`
+- `analysis`
+- `evaluation`
+- `bug-fixes-and-data-integrity`
+- `evaluation-and-measurement`
+- `graph-signal-activation`
+- `scoring-and-calibration`
+- `query-intelligence`
+- `memory-quality-and-indexing`
+- `pipeline-architecture`
+- `stress-testing`
+- `retrieval-enhancements`
+- `tooling-and-scripts`
+- `governance`
+- `ux-hooks`
+- `feature-flag-reference`
+- `remediation-revalidation`
+- `implement-and-remove-deprecated-features`
+- `context-preservation`
+- `doctor-commands`
+- `local-llm-query-intelligence`
 
 ### 3.1 `lib/` Directory -> Feature Categories
 
 | `lib/` directory | Feature-catalog categories |
 |------------------|----------------------------|
-| `architecture` | `14--pipeline-architecture` |
-| `cache` | `01--retrieval`, `13--memory-quality-and-indexing`, `15--retrieval-enhancements` |
-| `chunking` | `13--memory-quality-and-indexing`, `15--retrieval-enhancements` |
-| `cognitive` | `05--lifecycle`, `11--scoring-and-calibration`, `15--retrieval-enhancements`, `19--feature-flag-reference` |
-| `collab` | `17--governance` |
-| `config` | `11--scoring-and-calibration`, `17--governance`, `19--feature-flag-reference` |
-| `contracts` | `14--pipeline-architecture` |
-| `errors` | `08--bug-fixes-and-data-integrity`, `18--ux-hooks` |
-| `eval` | `07--evaluation`, `09--evaluation-and-measurement` |
-| `extraction` | `02--mutation`, `13--memory-quality-and-indexing`, `17--governance` |
-| `feedback` | `11--scoring-and-calibration`, `13--memory-quality-and-indexing`, `19--feature-flag-reference` |
-| `governance` | `17--governance` |
-| `graph` | `06--analysis`, `10--graph-signal-activation`, `15--retrieval-enhancements` |
-| `interfaces` | `14--pipeline-architecture` |
-| `learning` | `05--lifecycle`, `11--scoring-and-calibration` |
-| `manage` | `04--maintenance`, `10--graph-signal-activation`, `11--scoring-and-calibration` |
-| `ops` | `04--maintenance`, `13--memory-quality-and-indexing`, `16--tooling-and-scripts` |
-| `parsing` | `01--retrieval`, `12--query-intelligence`, `13--memory-quality-and-indexing` |
-| `providers` | `01--retrieval`, `13--memory-quality-and-indexing`, `15--retrieval-enhancements` |
-| `response` | `14--pipeline-architecture`, `18--ux-hooks` |
-| `scoring` | `10--graph-signal-activation`, `11--scoring-and-calibration`, `15--retrieval-enhancements` |
-| `search` | `01--retrieval`, `03--discovery`, `06--analysis`, `10--graph-signal-activation`, `11--scoring-and-calibration`, `12--query-intelligence`, `14--pipeline-architecture`, `15--retrieval-enhancements`, `19--feature-flag-reference` |
-| `session` | `05--lifecycle`, `15--retrieval-enhancements` |
-| `spec` | `14--pipeline-architecture` |
-| `storage` | `02--mutation`, `04--maintenance`, `05--lifecycle`, `08--bug-fixes-and-data-integrity`, `10--graph-signal-activation`, `13--memory-quality-and-indexing`, `17--governance` |
-| `telemetry` | `09--evaluation-and-measurement`, `11--scoring-and-calibration`, `17--governance`, `18--ux-hooks` |
-| `utils` | `08--bug-fixes-and-data-integrity`, `16--tooling-and-scripts`, `18--ux-hooks` |
-| `validation` | `02--mutation`, `08--bug-fixes-and-data-integrity`, `13--memory-quality-and-indexing` |
+| `architecture` | `pipeline-architecture` |
+| `cache` | `retrieval`, `memory-quality-and-indexing`, `retrieval-enhancements` |
+| `chunking` | `memory-quality-and-indexing`, `retrieval-enhancements` |
+| `cognitive` | `lifecycle`, `scoring-and-calibration`, `retrieval-enhancements`, `feature-flag-reference` |
+| `collab` | `governance` |
+| `config` | `scoring-and-calibration`, `governance`, `feature-flag-reference` |
+| `contracts` | `pipeline-architecture` |
+| `errors` | `bug-fixes-and-data-integrity`, `ux-hooks` |
+| `eval` | `evaluation`, `evaluation-and-measurement` |
+| `extraction` | `mutation`, `memory-quality-and-indexing`, `governance` |
+| `feedback` | `scoring-and-calibration`, `memory-quality-and-indexing`, `feature-flag-reference` |
+| `governance` | `governance` |
+| `graph` | `analysis`, `graph-signal-activation`, `retrieval-enhancements` |
+| `interfaces` | `pipeline-architecture` |
+| `learning` | `lifecycle`, `scoring-and-calibration` |
+| `manage` | `maintenance`, `graph-signal-activation`, `scoring-and-calibration` |
+| `ops` | `maintenance`, `memory-quality-and-indexing`, `tooling-and-scripts` |
+| `parsing` | `retrieval`, `query-intelligence`, `memory-quality-and-indexing` |
+| `providers` | `retrieval`, `memory-quality-and-indexing`, `retrieval-enhancements` |
+| `response` | `pipeline-architecture`, `ux-hooks` |
+| `scoring` | `graph-signal-activation`, `scoring-and-calibration`, `retrieval-enhancements` |
+| `search` | `retrieval`, `discovery`, `analysis`, `graph-signal-activation`, `scoring-and-calibration`, `query-intelligence`, `pipeline-architecture`, `retrieval-enhancements`, `feature-flag-reference` |
+| `session` | `lifecycle`, `retrieval-enhancements` |
+| `spec` | `pipeline-architecture` |
+| `storage` | `mutation`, `maintenance`, `lifecycle`, `bug-fixes-and-data-integrity`, `graph-signal-activation`, `memory-quality-and-indexing`, `governance` |
+| `telemetry` | `evaluation-and-measurement`, `scoring-and-calibration`, `governance`, `ux-hooks` |
+| `utils` | `bug-fixes-and-data-integrity`, `tooling-and-scripts`, `ux-hooks` |
+| `validation` | `mutation`, `bug-fixes-and-data-integrity`, `memory-quality-and-indexing` |
 
 ### 3.2 Feature Categories -> Main `lib/` Directories
 
 | Feature category | Main `lib/` directories |
 |------------------|-------------------------|
-| `01--retrieval` | `cache`, `parsing`, `providers`, `search` |
-| `02--mutation` | `extraction`, `storage`, `validation` |
-| `03--discovery` | `search` |
-| `04--maintenance` | `manage`, `ops`, `storage` |
-| `05--lifecycle` | `cognitive`, `learning`, `session`, `storage` |
-| `06--analysis` | `graph`, `search` |
-| `07--evaluation` | `eval` |
-| `08--bug-fixes-and-data-integrity` | `errors`, `storage`, `utils`, `validation` |
-| `09--evaluation-and-measurement` | `eval`, `telemetry` |
-| `10--graph-signal-activation` | `graph`, `manage`, `scoring`, `search`, `storage` |
-| `11--scoring-and-calibration` | `cognitive`, `config`, `feedback`, `learning`, `manage`, `scoring`, `search`, `telemetry` |
-| `12--query-intelligence` | `parsing`, `search` |
-| `13--memory-quality-and-indexing` | `cache`, `chunking`, `extraction`, `feedback`, `ops`, `parsing`, `providers`, `storage`, `validation` |
-| `14--pipeline-architecture` | `architecture`, `contracts`, `interfaces`, `response`, `search`, `spec` |
-| `15--retrieval-enhancements` | `cache`, `chunking`, `cognitive`, `graph`, `providers`, `scoring`, `search`, `session` |
-| `16--tooling-and-scripts` | `ops`, `utils` |
-| `17--governance` | `collab`, `config`, `extraction`, `governance`, `storage`, `telemetry` |
-| `18--ux-hooks` | `errors`, `response`, `telemetry`, `utils` |
-| `19--feature-flag-reference` | `cognitive`, `config`, `feedback`, `search` |
+| `retrieval` | `cache`, `parsing`, `providers`, `search` |
+| `mutation` | `extraction`, `storage`, `validation` |
+| `discovery` | `search` |
+| `maintenance` | `manage`, `ops`, `storage` |
+| `lifecycle` | `cognitive`, `learning`, `session`, `storage` |
+| `analysis` | `graph`, `search` |
+| `evaluation` | `eval` |
+| `bug-fixes-and-data-integrity` | `errors`, `storage`, `utils`, `validation` |
+| `evaluation-and-measurement` | `eval`, `telemetry` |
+| `graph-signal-activation` | `graph`, `manage`, `scoring`, `search`, `storage` |
+| `scoring-and-calibration` | `cognitive`, `config`, `feedback`, `learning`, `manage`, `scoring`, `search`, `telemetry` |
+| `query-intelligence` | `parsing`, `search` |
+| `memory-quality-and-indexing` | `cache`, `chunking`, `extraction`, `feedback`, `ops`, `parsing`, `providers`, `storage`, `validation` |
+| `pipeline-architecture` | `architecture`, `contracts`, `interfaces`, `response`, `search`, `spec` |
+| `retrieval-enhancements` | `cache`, `chunking`, `cognitive`, `graph`, `providers`, `scoring`, `search`, `session` |
+| `tooling-and-scripts` | `ops`, `utils` |
+| `governance` | `collab`, `config`, `extraction`, `governance`, `storage`, `telemetry` |
+| `ux-hooks` | `errors`, `response`, `telemetry`, `utils` |
+| `feature-flag-reference` | `cognitive`, `config`, `feedback`, `search` |
 
 ---
 

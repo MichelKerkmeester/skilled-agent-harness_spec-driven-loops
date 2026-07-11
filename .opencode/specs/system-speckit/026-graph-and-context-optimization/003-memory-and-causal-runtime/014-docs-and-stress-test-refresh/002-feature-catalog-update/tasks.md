@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "feature_catalog/feature_catalog.md"
-      - "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
-      - "feature_catalog/14--pipeline-architecture/"
+      - "feature_catalog/lifecycle/checkpoint-creation-checkpointcreate.md"
+      - "feature_catalog/pipeline-architecture/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "feature-catalog-update-packet-setup"
@@ -54,10 +54,10 @@ _memory:
 
 **Phase 1 - Expand checkpoint files with the v2 path** (no new files; expand-in-place).
 
-- [x] T001 Expand the v2 `VACUUM INTO` create path, v29 columns, manifest, `active_vec` shard-attach (05--lifecycle/checkpoint-creation-checkpointcreate.md)
-- [x] T002 Document the `.needs-rebuild` sentinel and `MAX_CHECKPOINTS` dir-aware pruning in the create file (05--lifecycle/checkpoint-creation-checkpointcreate.md)
-- [x] T003 Expand the v2 file-swap restore, `reopenActiveDatabase`, two-phase restore journal (`swap-pending`/`swap-done`) (05--lifecycle/checkpoint-restore-checkpointrestore.md)
-- [x] T004 Document boot crash-recovery and the `.needs-rebuild` sentinel in the restore file (05--lifecycle/checkpoint-restore-checkpointrestore.md)
+- [x] T001 Expand the v2 `VACUUM INTO` create path, v29 columns, manifest, `active_vec` shard-attach (lifecycle/checkpoint-creation-checkpointcreate.md)
+- [x] T002 Document the `.needs-rebuild` sentinel and `MAX_CHECKPOINTS` dir-aware pruning in the create file (lifecycle/checkpoint-creation-checkpointcreate.md)
+- [x] T003 Expand the v2 file-swap restore, `reopenActiveDatabase`, two-phase restore journal (`swap-pending`/`swap-done`) (lifecycle/checkpoint-restore-checkpointrestore.md)
+- [x] T004 Document boot crash-recovery and the `.needs-rebuild` sentinel in the restore file (lifecycle/checkpoint-restore-checkpointrestore.md)
 - [x] T005 Sync the matching Description/How-It-Works blocks in section 6 Lifecycle (feature_catalog/feature_catalog.md)
 - [x] T006 Gate: every checkpoint claim traces to a read source anchor in checkpoints.ts / vector-index-schema.ts
 <!-- /ANCHOR:phase-1 -->
@@ -69,9 +69,9 @@ _memory:
 
 **Phase 2 - New front-proxy, schema-history, and error-code files** (create + register).
 
-- [x] T007 Author the front-proxy file: reconnecting session proxy, in-place daemon recycle, `SPECKIT_BACKEND_ONLY`, `-32002` fail-closed (14--pipeline-architecture/mcp-launcher-front-proxy.md)
-- [x] T008 Author the schema-version-history file: v28 → v29 → v30 timeline and what each migration added (08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md)
-- [x] T009 Author the unified error-code reference: `E429`, `-32001` (retryable recycle — STILL LIVE), `-32002` (protocol fail-closed) (08--bug-fixes-and-data-integrity/error-code-reference.md)
+- [x] T007 Author the front-proxy file: reconnecting session proxy, in-place daemon recycle, `SPECKIT_BACKEND_ONLY`, `-32002` fail-closed (pipeline-architecture/mcp-launcher-front-proxy.md)
+- [x] T008 Author the schema-version-history file: v28 → v29 → v30 timeline and what each migration added (bug-fixes-and-data-integrity/schema-version-history-v28-v30.md)
+- [x] T009 Author the unified error-code reference: `E429`, `-32001` (retryable recycle — STILL LIVE), `-32002` (protocol fail-closed) (bug-fixes-and-data-integrity/error-code-reference.md)
 - [x] T010 Register the three new files in the index (feature_catalog/feature_catalog.md)
 - [x] T011 Gate: `-32001` documented as still-live; 36-tool count preserved; claims trace to launcher / schema / errors anchors
 <!-- /ANCHOR:phase-2 -->
@@ -83,8 +83,8 @@ _memory:
 
 **Phase 3 - Enrichment discoverability, sk-git, registration, and validation**.
 
-- [x] T012 Author the enrichment-marker file with the `post_insert_enrichment` trigger phrase and the four marker columns (13--memory-quality-and-indexing/post-insert-enrichment-marker.md)
-- [x] T013 Author the sk-git worktree-convention file: `wt/{NNNN}-{name}` branches, `.worktrees/{NNNN}-{name}` dirs, cross-reference to the sk-git skill (16--tooling-and-scripts/sk-git-worktree-convention.md)
+- [x] T012 Author the enrichment-marker file with the `post_insert_enrichment` trigger phrase and the four marker columns (memory-quality-and-indexing/post-insert-enrichment-marker.md)
+- [x] T013 Author the sk-git worktree-convention file: `wt/{NNNN}-{name}` branches, `.worktrees/{NNNN}-{name}` dirs, cross-reference to the sk-git skill (tooling-and-scripts/sk-git-worktree-convention.md)
 - [x] T014 Register both new files in the index (feature_catalog/feature_catalog.md)
 - [x] T015 Run `validate.sh --strict` on this packet to Errors: 0
 - [x] T016 Gate: every new file registered; accuracy pass complete; packet validates clean

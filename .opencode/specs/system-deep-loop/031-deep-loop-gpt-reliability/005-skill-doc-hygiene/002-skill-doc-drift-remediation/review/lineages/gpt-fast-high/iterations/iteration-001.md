@@ -10,8 +10,8 @@ Files reviewed:
 - `.opencode/skills/cli-opencode/README.md`
 - `.opencode/skills/cli-opencode/references/agent_delegation.md`
 - `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md`
-- `.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/general-agent-default.md`
+- `.opencode/skills/cli-opencode/manual_testing_playbook/cli-invocation/base-non-interactive-invocation.md`
+- `.opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/general-agent-default.md`
 
 ## Findings
 

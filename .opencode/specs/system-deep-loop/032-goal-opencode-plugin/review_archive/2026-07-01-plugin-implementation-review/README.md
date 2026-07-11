@@ -10,7 +10,7 @@ The goal-plugin review surface is:
 |---------|------|
 | Plugin | `.opencode/plugins/mk-goal.js` |
 | Command | `.opencode/commands/goal.md` |
-| Playbook | `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` |
+| Playbook | `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` |
 
 ## Review Evidence
 

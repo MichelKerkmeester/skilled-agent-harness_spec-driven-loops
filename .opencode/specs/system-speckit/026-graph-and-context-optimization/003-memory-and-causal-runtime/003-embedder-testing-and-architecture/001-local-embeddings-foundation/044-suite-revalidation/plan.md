@@ -18,7 +18,7 @@ _memory:
     blockers:
       - "Nested codex exec app-server initialization is denied by the current sandbox"
     key_files:
-      - "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh"
+      - "_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000043"
       session_id: "044-suite-revalidation-plan"
@@ -83,11 +83,11 @@ Sequential evidence runner with per-scenario child processes and TSV aggregation
 
 ### Key Components
 
-- **Scenario source**: `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/401-415`.
-- **Runner**: `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh`.
-- **Logs**: `_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/<scenario>.log`.
-- **Summary**: `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv`.
-- **Comparison source**: `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.summary.tsv`.
+- **Scenario source**: `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/401-415`.
+- **Runner**: `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh`.
+- **Logs**: `_sandbox/local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/<scenario>.log`.
+- **Summary**: `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv`.
+- **Comparison source**: `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.summary.tsv`.
 
 ### Data Flow
 
@@ -210,9 +210,9 @@ Scaffold packet -> Author runner -> Run scenarios -> Aggregate TSV -> Compare ba
 
 ### Rollback Procedure
 
-1. Remove `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh`.
-2. Remove `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv`.
-3. Remove `_sandbox/24--local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/` if raw logs should not be retained.
+1. Remove `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.sh`.
+2. Remove `_sandbox/local-llm-query-intelligence/evidence/run-2026-05-14-post-wave.summary.tsv`.
+3. Remove `_sandbox/local-llm-query-intelligence/evidence/per-scenario-logs-post-wave/` if raw logs should not be retained.
 4. Remove `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation/`.
 
 ### Data Reversal

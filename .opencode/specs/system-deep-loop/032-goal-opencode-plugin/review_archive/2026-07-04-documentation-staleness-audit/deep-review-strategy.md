@@ -160,7 +160,7 @@ Research's own reducer stalled on repeated ground for iterations 4-9 (per operat
 | `.opencode/plugins/README.md` | security | 2 | no security finding | reviewed |
 | `README.md` (root) | security | 2 | no security finding | reviewed |
 | `.opencode/skills/system-skill-advisor/README.md` | | | | pending |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | security | 2 | no security finding | reviewed |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | security | 2 | no security finding | reviewed |
 | `.opencode/skills/system-spec-kit/feature_catalog/**/goal-opencode-plugin.md` | security | 2 | no security finding | reviewed |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/**/goal-opencode-plugin.md` | security | 2 | no security finding | reviewed |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/**/goal-opencode-plugin.md` | security | 2 | no security finding | reviewed |

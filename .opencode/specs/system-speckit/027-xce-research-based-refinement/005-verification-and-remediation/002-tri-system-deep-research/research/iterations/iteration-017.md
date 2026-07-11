@@ -20,7 +20,7 @@
 
 ## [P2][BROKEN-FEATURE] Feature-flag governance guard is manual, not automated
 
-- Evidence: .opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/feature-flag-governance.md:36-40 lists pseudo-steps `enumerate flags`, `verify each flag row`, `record any flag`; line 57 says to diff code-declared flags against ENV_REFERENCE; `grep` for `ENV_REFERENCE\.md|Total unique variables documented` in `.opencode/skills/system-spec-kit/mcp_server/tests` returned `No files found`.
+- Evidence: .opencode/skills/system-spec-kit/manual_testing_playbook/governance/feature-flag-governance.md:36-40 lists pseudo-steps `enumerate flags`, `verify each flag row`, `record any flag`; line 57 says to diff code-declared flags against ENV_REFERENCE; `grep` for `ENV_REFERENCE\.md|Total unique variables documented` in `.opencode/skills/system-spec-kit/mcp_server/tests` returned `No files found`.
 - Detail: The governance scenario describes the right invariant, but there is no executable guard enforcing it. Existing tests cover selected catalog mappings, not the ENV_REFERENCE-vs-code truth surface.
 - Fix sketch: Promote the manual scenario into a Vitest or Node CLI checker that extracts code-declared env vars, parses ENV_REFERENCE, reports missing/stale rows, and runs in the normal test suite.
 

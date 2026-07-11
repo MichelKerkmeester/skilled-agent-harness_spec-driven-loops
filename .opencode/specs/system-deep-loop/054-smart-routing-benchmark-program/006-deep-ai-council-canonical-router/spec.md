@@ -51,7 +51,7 @@ never landed in this branch's working tree — this phase lands it.
 <!-- ANCHOR:scope -->
 - Convert the `SKILL.md` router block `INTENT_MODEL` → canonical `INTENT_SIGNALS` (keys identical to
   the 10 RESOURCE_MAP keys); sync the `classify_intents` pseudocode + the one prose reference.
-- Add `manual_testing_playbook/10--intra-routing-recall/` with 10 single-intent scenarios,
+- Add `manual_testing_playbook/intra-routing-recall/` with 10 single-intent scenarios,
   `expected_resources` = the router's designed load (Option G).
 - Add a key-sync unit test (INTENT_SIGNALS keys == RESOURCE_MAP keys; paths exist; no orphans).
 - Record the weight-flattening decision as durable-WHY prose.

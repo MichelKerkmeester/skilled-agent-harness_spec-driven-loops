@@ -117,7 +117,7 @@ _memory:
   - Track A: Run `/doctor:update` E2E against fresh v3-3 workspace to verify all 13 shipped fixes (G4-G9 runtime smoke gates). Sibling 002 packet has v3-3 + v3-4 fixtures wired.
   - Track B: Fix G3 template-manifest validator drift across 001 + 002 + 003 packets (same cross-packet issue; use 010/003 as canonical reference)
   - Track C: Run `/doctor:memory`, `/doctor:causal-graph`, `/doctor:deep-loop`, `/doctor:cocoindex` individually as G4 sub-gates before the unified `/doctor:update` G5 gate
-  - Track D: Build + smoke-test Docker image from 002's `_sandbox/23--doctor-commands/` to exercise the full sandbox boundary
+  - Track D: Build + smoke-test Docker image from 002's `_sandbox/doctor-commands/` to exercise the full sandbox boundary
 
 - **Read first:**
   - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/001-implement-initial-doctor-command-set/spec.md` (council 10-line orchestrator contract — REQ-004..REQ-017 + ADR-001..ADR-010)
@@ -132,15 +132,15 @@ _memory:
    ```bash
    cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
    SPECKIT_SANDBOX=1 SPECKIT_WORKSPACE_ROOT=/tmp/doctor_update_e2e_$$ \
-     bash .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/run-all.sh --scenario DOC-345
+     bash .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/harness/run-all.sh --scenario DOC-345
    ```
-   DOC-345 specifically tests `/doctor:update` against the v3-3 → v3-4.1 migration. Evidence collected at `_sandbox/23--doctor-commands/evidence/DOC-345/`. Closes G4-G6 runtime smoke gates.
+   DOC-345 specifically tests `/doctor:update` against the v3-3 → v3-4.1 migration. Evidence collected at `_sandbox/doctor-commands/evidence/DOC-345/`. Closes G4-G6 runtime smoke gates.
 
 2. **Run individual subsystem doctors as G4 sub-gates** — `/doctor:memory`, `/doctor:causal-graph`, `/doctor:deep-loop`, `/doctor:cocoindex` against v3-3 fixture independently to isolate any per-subsystem drift before the orchestrator gate.
 
 3. **Fix G3 template-manifest drift** — TEMPLATE_HEADERS + ANCHORS_VALID errors persist on strict-validate. Cross-packet pattern (002, 003 affected too). Use 010/003 canonical reference; cli-codex gpt-5.5 high fast with iterative validation.
 
-4. **Build + smoke-test Docker image** — `docker compose build` from `_sandbox/23--doctor-commands/` then run DOC-345 inside the container to verify cap_drop + narrowed mount + flock work under containerized execution.
+4. **Build + smoke-test Docker image** — `docker compose build` from `_sandbox/doctor-commands/` then run DOC-345 inside the container to verify cap_drop + narrowed mount + flock work under containerized execution.
 
 5. **G8 migration gap detection smoke** — synthetic unknown source version, verify migration-manifest refuses with clear error (per ADR-008 detect-and-recommend).
 
@@ -251,9 +251,9 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 
 # 6. G4 sub-gate: run individual doctor commands against v3-3 fixture (sibling 002 wired)
 SPECKIT_SANDBOX=1 SPECKIT_WORKSPACE_ROOT=/tmp/doctor_smoke_$$ \
-  bash .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/run-all.sh --scenario DOC-323
+  bash .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/harness/run-all.sh --scenario DOC-323
 
 # 7. G5 orchestrator gate: /doctor:update v3-3 → v3-4.1 migration end-to-end
 SPECKIT_SANDBOX=1 SPECKIT_WORKSPACE_ROOT=/tmp/doctor_update_e2e_$$ \
-  bash .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/23--doctor-commands/harness/run-all.sh --scenario DOC-345
+  bash .opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/doctor-commands/harness/run-all.sh --scenario DOC-345
 ```

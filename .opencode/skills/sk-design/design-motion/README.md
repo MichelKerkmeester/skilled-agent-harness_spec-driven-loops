@@ -91,7 +91,7 @@ The mode ships a manual testing playbook. Run it against the live skill and the 
 
 | Check | Result |
 |---|---|
-| [`manual_testing_playbook/`](./manual_testing_playbook/manual_testing_playbook.md) | Ten scenarios across `01--strategy`, `02--presence`, `03--reduced-motion`, `04--micro-interactions`, `05--decision` and `06--advanced-craft` categories |
+| [`manual_testing_playbook/`](./manual_testing_playbook/manual_testing_playbook.md) | Ten scenarios across `strategy`, `presence`, `reduced-motion`, `micro-interactions`, `decision` and `advanced-craft` categories |
 | `python3 .opencode/skills/sk-doc/scripts/package_skill.py --check .opencode/skills/sk-design` | Exit 0, the parent skill packages cleanly |
 
 ---

@@ -12,20 +12,20 @@ version: 1.0.0.3
 
 | ID | Scenario | Intent | File |
 | --- | --- | --- | --- |
-| AUDIT-SCORE-001 | Findings-first `/20` audit report | AUDIT_CONTRACT | [`01--score/findings-first-score.md`](01--score/findings-first-score.md) |
-| AUDIT-SCORE-002 | Transform remediation routing | TRANSFORM_REMEDIATION | [`01--score/transform-remediation-routing.md`](01--score/transform-remediation-routing.md) |
-| AUDIT-SCORE-003 | Evidence capture and labeling | EVIDENCE_CAPTURE | [`01--score/evidence-capture.md`](01--score/evidence-capture.md) |
-| AUDIT-SCORE-004 | Audit report template fill-in | AUDIT_CONTRACT | [`01--score/audit-report-template.md`](01--score/audit-report-template.md) |
-| AUDIT-A11Y-001 | Accessibility and performance gate | ACCESSIBILITY_PERFORMANCE | [`02--a11y-performance/accessibility-performance-gate.md`](02--a11y-performance/accessibility-performance-gate.md) |
-| AUDIT-A11Y-002 | Accessibility quick-fix references | ACCESSIBILITY_PERFORMANCE | [`02--a11y-performance/a11y-quick-fixes.md`](02--a11y-performance/a11y-quick-fixes.md) |
-| AUDIT-SLOP-001 | Anti-slop and production hardening | ANTI_PATTERNS_PRODUCTION | [`03--slop-hardening/anti-slop-production-hardening.md`](03--slop-hardening/anti-slop-production-hardening.md) |
-| AUDIT-SLOP-002 | AI fingerprint tell detection | ANTI_PATTERNS_PRODUCTION | [`03--slop-hardening/ai-fingerprint-tells.md`](03--slop-hardening/ai-fingerprint-tells.md) |
-| AUDIT-SLOP-003 | Hardening edge-case matrix | CRITIQUE_HARDENING | [`03--slop-hardening/hardening-edge-cases.md`](03--slop-hardening/hardening-edge-cases.md) |
-| AUDIT-EVIDENCE-010 | Evidence worksheet label carry-through | EVIDENCE_CAPTURE | [`04--evidence-worksheet/evidence-worksheet-labels.md`](04--evidence-worksheet/evidence-worksheet-labels.md) |
-| AUDIT-EVIDENCE-011 | Evidence-backed release-readiness gate | AUDIT_CONTRACT | [`04--evidence-worksheet/evidence-backed-release-readiness.md`](04--evidence-worksheet/evidence-backed-release-readiness.md) |
-| AUDIT-PROCCARD-001 | Procedure-card selection proof | PROCEDURE_CARD_SELECTION | [`05--procedure-card-contract/card-selection-proof.md`](05--procedure-card-contract/card-selection-proof.md) |
-| AUDIT-PROCCARD-002 | No-card fallback | PROCEDURE_CARD_FALLBACK | [`05--procedure-card-contract/no-card-fallback.md`](05--procedure-card-contract/no-card-fallback.md) |
-| AUDIT-PROCCARD-003 | Direct fallback without subagents | DIRECT_FALLBACK | [`05--procedure-card-contract/direct-fallback-without-subagents.md`](05--procedure-card-contract/direct-fallback-without-subagents.md) |
+| AUDIT-SCORE-001 | Findings-first `/20` audit report | AUDIT_CONTRACT | [`score/findings-first-score.md`](score/findings-first-score.md) |
+| AUDIT-SCORE-002 | Transform remediation routing | TRANSFORM_REMEDIATION | [`score/transform-remediation-routing.md`](score/transform-remediation-routing.md) |
+| AUDIT-SCORE-003 | Evidence capture and labeling | EVIDENCE_CAPTURE | [`score/evidence-capture.md`](score/evidence-capture.md) |
+| AUDIT-SCORE-004 | Audit report template fill-in | AUDIT_CONTRACT | [`score/audit-report-template.md`](score/audit-report-template.md) |
+| AUDIT-A11Y-001 | Accessibility and performance gate | ACCESSIBILITY_PERFORMANCE | [`a11y-performance/accessibility-performance-gate.md`](a11y-performance/accessibility-performance-gate.md) |
+| AUDIT-A11Y-002 | Accessibility quick-fix references | ACCESSIBILITY_PERFORMANCE | [`a11y-performance/a11y-quick-fixes.md`](a11y-performance/a11y-quick-fixes.md) |
+| AUDIT-SLOP-001 | Anti-slop and production hardening | ANTI_PATTERNS_PRODUCTION | [`slop-hardening/anti-slop-production-hardening.md`](slop-hardening/anti-slop-production-hardening.md) |
+| AUDIT-SLOP-002 | AI fingerprint tell detection | ANTI_PATTERNS_PRODUCTION | [`slop-hardening/ai-fingerprint-tells.md`](slop-hardening/ai-fingerprint-tells.md) |
+| AUDIT-SLOP-003 | Hardening edge-case matrix | CRITIQUE_HARDENING | [`slop-hardening/hardening-edge-cases.md`](slop-hardening/hardening-edge-cases.md) |
+| AUDIT-EVIDENCE-010 | Evidence worksheet label carry-through | EVIDENCE_CAPTURE | [`evidence-worksheet/evidence-worksheet-labels.md`](evidence-worksheet/evidence-worksheet-labels.md) |
+| AUDIT-EVIDENCE-011 | Evidence-backed release-readiness gate | AUDIT_CONTRACT | [`evidence-worksheet/evidence-backed-release-readiness.md`](evidence-worksheet/evidence-backed-release-readiness.md) |
+| AUDIT-PROCCARD-001 | Procedure-card selection proof | PROCEDURE_CARD_SELECTION | [`procedure-card-contract/card-selection-proof.md`](procedure-card-contract/card-selection-proof.md) |
+| AUDIT-PROCCARD-002 | No-card fallback | PROCEDURE_CARD_FALLBACK | [`procedure-card-contract/no-card-fallback.md`](procedure-card-contract/no-card-fallback.md) |
+| AUDIT-PROCCARD-003 | Direct fallback without subagents | DIRECT_FALLBACK | [`procedure-card-contract/direct-fallback-without-subagents.md`](procedure-card-contract/direct-fallback-without-subagents.md) |
 
 ## 2. GLOBAL PRECONDITIONS
 

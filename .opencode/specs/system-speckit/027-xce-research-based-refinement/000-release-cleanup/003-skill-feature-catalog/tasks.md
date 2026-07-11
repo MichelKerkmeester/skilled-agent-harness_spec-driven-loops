@@ -55,7 +55,7 @@ _memory:
 ## PHASE 1: SETUP
 
 - [x] T001 Inventory current claims (.opencode/skills/system-spec-kit/feature_catalog/**) Evidence: read root catalog, existing entry format, relevant category files, and committed release changelogs before edits.
-- [x] T002 List claims about schema, flags, CLI, constitutional rules, memory features, and doctrine (.opencode/skills/system-spec-kit/feature_catalog/**) Evidence: identified 15 missing entries and 1 existing skip (`16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md`).
+- [x] T002 List claims about schema, flags, CLI, constitutional rules, memory features, and doctrine (.opencode/skills/system-spec-kit/feature_catalog/**) Evidence: identified 15 missing entries and 1 existing skip (`tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md`).
 <!-- /ANCHOR:phase-1 -->
 
 ---

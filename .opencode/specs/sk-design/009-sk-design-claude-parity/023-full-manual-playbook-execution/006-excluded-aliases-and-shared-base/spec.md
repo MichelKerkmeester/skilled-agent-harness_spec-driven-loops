@@ -181,7 +181,7 @@ None - see section 7.
 ## RELATED DOCUMENTS
 
 - **Sibling waves**: `../001-mode-routing-core/` through `../010-md-generator-serial-pipeline/` (the other 9 waves of the same parent execution)
-- **Constituent scenarios**: `../../../../../../skills/sk-design/manual_testing_playbook/03--transform-verb-framing/audit-excluded-aliases.md`, `../../../../../../skills/sk-design/manual_testing_playbook/05--shared-reference-base/reference-base-backend-modes.md`, `../../../../../../skills/sk-design/manual_testing_playbook/05--shared-reference-base/shared-base-not-workflow.md`
+- **Constituent scenarios**: `../../../../../../skills/sk-design/manual_testing_playbook/transform-verb-framing/audit-excluded-aliases.md`, `../../../../../../skills/sk-design/manual_testing_playbook/shared-reference-base/reference-base-backend-modes.md`, `../../../../../../skills/sk-design/manual_testing_playbook/shared-reference-base/shared-base-not-workflow.md`
 - **Structural precedent**: `../../022-benchmark-rerun-and-coverage-fill/` (Level 2 shape mirrored for this wave)
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`

@@ -61,7 +61,7 @@ describe('outsourced agent handback docs', () => {
 
   it('keeps the feature catalog aligned to the 015 handback phase', () => {
     const content = readWorkspaceFile(
-      '.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/149-outsourced-agent-memory-capture.md',
+      '.opencode/skills/system-spec-kit/feature_catalog/memory-quality-and-indexing/149-outsourced-agent-memory-capture.md',
     );
 
     expect(content).toContain('015-outsourced-agent-handback');

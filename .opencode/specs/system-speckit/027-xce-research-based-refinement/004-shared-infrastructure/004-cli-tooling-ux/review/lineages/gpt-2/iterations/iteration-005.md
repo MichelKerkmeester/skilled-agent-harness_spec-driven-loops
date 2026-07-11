@@ -24,7 +24,7 @@ Replayed unified reference, SKILL notes, and playbook capability after all dimen
 ## Cross-Reference Results
 | Protocol | Status | Gate | Evidence | Notes |
 | --- | --- | --- | --- | --- |
-| playbook_capability | partial | advisory | `daemon_cli_reference.md:115-121`; `manual_testing_playbook/16--tooling-and-scripts/cli-list-tools-parity.md:32-50` | Canonical reference is current; legacy playbook remains stale as F003. |
+| playbook_capability | partial | advisory | `daemon_cli_reference.md:115-121`; `manual_testing_playbook/tooling-and-scripts/cli-list-tools-parity.md:32-50` | Canonical reference is current; legacy playbook remains stale as F003. |
 
 ## Assessment
 - New findings ratio: 0.00

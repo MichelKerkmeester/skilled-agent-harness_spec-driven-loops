@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "manual_testing_playbook/manual_testing_playbook.md"
-      - "manual_testing_playbook/05--lifecycle/"
-      - "manual_testing_playbook/04--maintenance/"
+      - "manual_testing_playbook/lifecycle/"
+      - "manual_testing_playbook/maintenance/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-testing-playbook-update-packet-setup"
@@ -77,8 +77,8 @@ The manual testing playbook stops at `EX-036` and predates the 013 memory-index-
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Additive EX scenarios (chosen)** | Preserves every existing ID and cross-reference; minimal blast radius | Two checkpoint scenarios share the `05--lifecycle` folder | 9/10 |
-| New top-level "013 roadmap" section | Groups the new work together | Fragments checkpoint coverage away from the existing `05--lifecycle` block; new section type to maintain | 4/10 |
+| **Additive EX scenarios (chosen)** | Preserves every existing ID and cross-reference; minimal blast radius | Two checkpoint scenarios share the `lifecycle` folder | 9/10 |
+| New top-level "013 roadmap" section | Groups the new work together | Fragments checkpoint coverage away from the existing `lifecycle` block; new section type to maintain | 4/10 |
 | Renumber to interleave by topic | Tidier ordering | Breaks every table that references existing EX IDs | 1/10 |
 
 **Why this one**: Additivity keeps all existing references valid while still surfacing the new behaviors from the master index.
@@ -94,7 +94,7 @@ The manual testing playbook stops at `EX-036` and predates the 013 memory-index-
 - No existing scenario, ID, or cross-reference changes.
 
 **What it costs**:
-- The `05--lifecycle` folder now holds two extra checkpoint scenarios. Mitigation: numbered filenames keep them ordered after the existing checkpoint block.
+- The `lifecycle` folder now holds two extra checkpoint scenarios. Mitigation: numbered filenames keep them ordered after the existing checkpoint block.
 
 **Risks**:
 
@@ -125,7 +125,7 @@ The manual testing playbook stops at `EX-036` and predates the 013 memory-index-
 ### Implementation
 
 **What changes**:
-- Six new feature files under `05--lifecycle/`, `04--maintenance/`, `14--pipeline-architecture/`, `16--tooling-and-scripts/`.
+- Six new feature files under `lifecycle/`, `maintenance/`, `pipeline-architecture/`, `tooling-and-scripts/`.
 - Six `### EX-###` entries in `manual_testing_playbook.md` `## 7`.
 
 **How to roll back**: Revert any feature file and its single index entry; nothing else is affected.
@@ -150,13 +150,13 @@ The playbook groups feature files into topical `NN--category/` folders. Each new
 
 ### Constraints
 
-- Checkpoint scenarios already live in `05--lifecycle/`.
-- Maintenance/index scenarios already live in `04--maintenance/`.
-- Pipeline/runtime infra fits `14--pipeline-architecture/`; tooling/scripts fit `16--tooling-and-scripts/`.
+- Checkpoint scenarios already live in `lifecycle/`.
+- Maintenance/index scenarios already live in `maintenance/`.
+- Pipeline/runtime infra fits `pipeline-architecture/`; tooling/scripts fit `tooling-and-scripts/`.
 
 ### Decision
 
-**We chose**: Place checkpoint-v2 round-trip and `.needs-rebuild` self-heal in `05--lifecycle/`; enrichment-v30 and index_scan in `04--maintenance/`; front-proxy in `14--pipeline-architecture/`; sk-git in `16--tooling-and-scripts/`.
+**We chose**: Place checkpoint-v2 round-trip and `.needs-rebuild` self-heal in `lifecycle/`; enrichment-v30 and index_scan in `maintenance/`; front-proxy in `pipeline-architecture/`; sk-git in `tooling-and-scripts/`.
 
 ### Alternatives Considered
 
@@ -246,7 +246,7 @@ The MCP front-proxy uses two JSON-RPC error codes with very different semantics.
 
 ### Implementation
 
-**What changes**: `14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md` states both codes with their semantics, citing `launcher-session-proxy.cjs` lines 18-26 and 617-620.
+**What changes**: `pipeline-architecture/front-proxy-reconnect-and-backend-only.md` states both codes with their semantics, citing `launcher-session-proxy.cjs` lines 18-26 and 617-620.
 
 **How to roll back**: Revert the feature file; no shared state.
 

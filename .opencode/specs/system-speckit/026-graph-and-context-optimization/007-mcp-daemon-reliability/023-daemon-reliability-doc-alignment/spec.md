@@ -109,7 +109,7 @@ Bring the operator-facing docs into alignment with 018-022: ENV_REFERENCE flags,
 ### Acceptance Criteria (Given/When/Then)
 
 - **Given** the new flags, **When** grepping ENV_REFERENCE, **Then** all 8 are present.
-- **Given** the catalog, **When** listing 14--pipeline-architecture + 16--tooling-and-scripts, **Then** the 5 entries exist + are indexed.
+- **Given** the catalog, **When** listing pipeline-architecture + tooling-and-scripts, **Then** the 5 entries exist + are indexed.
 - **Given** the playbook, **When** running its file-count self-check, **Then** it passes at 391.
 - **Given** the docs, **When** the link checker runs, **Then** 0 broken.
 - **Given** a catalog entry, **When** grepping its SOURCE FILES, **Then** every path/symbol/flag resolves.
@@ -167,7 +167,7 @@ Bring the operator-facing docs into alignment with 018-022: ENV_REFERENCE flags,
 
 ### Data Boundaries
 - 020 has no env flag: ENV_REFERENCE entry N/A (documented via catalog/playbook instead).
-- 16--tooling-and-scripts entries (021) use the same relative-link depth as 14--pipeline-architecture siblings.
+- tooling-and-scripts entries (021) use the same relative-link depth as pipeline-architecture siblings.
 
 ### Error Scenarios
 - A custom non-`.log` launcher-log path: ENV_REFERENCE notes the `.prev` rotation behavior.

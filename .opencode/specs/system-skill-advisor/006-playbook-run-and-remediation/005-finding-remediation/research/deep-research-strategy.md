@@ -79,10 +79,10 @@ Findings source: `.opencode/specs/system-skill-advisor/006-playbook-run-and-reme
 
 Key code paths to investigate:
 - F1: `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts`, `mcp_server/lib/scorer/`, `mcp_server/scripts/skill_advisor_regression.py`, `mcp_server/scripts/fixtures/skill_advisor_regression_cases.jsonl`, the validation corpus.
-- F2: `mcp_server/scripts/skill_advisor_bench.py`, `mcp_server/bench/`, the PC-005 scenario doc `manual_testing_playbook/10--python-compat/005-bench-runner.md`.
-- F3: `mcp_server/lib/scorer/` lane-weight source of truth (config/constants), SC-004/SC-005 scenario docs under `08--scorer-fusion/`.
+- F2: `mcp_server/scripts/skill_advisor_bench.py`, `mcp_server/bench/`, the PC-005 scenario doc `manual_testing_playbook/python-compat/005-bench-runner.md`.
+- F3: `mcp_server/lib/scorer/` lane-weight source of truth (config/constants), SC-004/SC-005 scenario docs under `scorer-fusion/`.
 - F4: `mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`, `mcp_server/compat/index.ts` (built to `dist/mcp_server/compat/index.js`), `.opencode/plugins/mk-skill-advisor.js`.
-- F5: `manual_testing_playbook/01--native-mcp-tools/004-*.md` + `005-*.md`, actual test dir `mcp_server/tests/`.
+- F5: `manual_testing_playbook/native-mcp-tools/004-*.md` + `005-*.md`, actual test dir `mcp_server/tests/`.
 
 Live evidence (generation 4464): laneWeights `{explicit_author:0.42, lexical:0.28, graph_causal:0.13, derived_generated:0.12, semantic_shadow:0.05}`; advisor_validate perSkill `sk-deep-research` 0/34, `sk-deep-review` 0/19, `system-spec-kit` 28/55; PC-004 main-env 54/96, P0 12/24, top1 62.79%, all gates fail.
 

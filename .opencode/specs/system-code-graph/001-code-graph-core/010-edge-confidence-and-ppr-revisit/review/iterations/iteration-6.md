@@ -36,7 +36,7 @@ Runtime integration correctness: MCP handler reachability, package/build-order a
 - `.opencode/skills/system-code-graph/tsconfig.json:23` - code-graph compilation includes only `mcp_server/**/*.ts` under this skill.
 - `.opencode/skills/system-spec-kit/mcp_server/package.json:20` - spec-kit MCP can build its own dist, but it is not wired from code-graph package scripts.
 - `.opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs:19` - spec-kit build asserts a limited required artifact set, not the graph traversal module.
-- `.opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/code-graph-context.md:33` - operator docs describe live debug callers passing `includeTrace:true`.
+- `.opencode/skills/system-code-graph/feature_catalog/context-retrieval/code-graph-context.md:33` - operator docs describe live debug callers passing `includeTrace:true`.
 
 # Findings by Severity
 
@@ -64,7 +64,7 @@ No new P1 findings. Two active P1s are strengthened by runtime integration evide
 - Claim adjudication update: The trace-loss path is reachable from the live `code_graph_context` MCP tool surface when the process env flag is enabled and a caller requests impact mode with trace output.
 - Evidence: The advertised schema accepts `queryMode: "impact"` and `includeTrace`; the handler passes `args.includeTrace` into `buildContext`; `buildContext` passes `args.includeTrace === true` into `expandAnchor`; seeded-PPR activates for `mode === "impact"` plus `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`; and the seeded-PPR branch records `recordWhyIncluded` from only the candidate edge. [SOURCE: `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:82`, `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:105`, `.opencode/skills/system-code-graph/mcp_server/handlers/context.ts:301`, `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:295`, `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:452`, `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:457`, `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:1112`, `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts:1129`]
 - Counterevidence sought: A real handler guard forbidding `includeTrace` with seeded-PPR impact mode, or evidence that no live caller can set `includeTrace:true`.
-- Counterevidence result: No such guard appears on the handler path; the feature catalog explicitly tells debug callers they can pass `includeTrace:true`. [SOURCE: `.opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/code-graph-context.md:33`]
+- Counterevidence result: No such guard appears on the handler path; the feature catalog explicitly tells debug callers they can pass `includeTrace:true`. [SOURCE: `.opencode/skills/system-code-graph/feature_catalog/context-retrieval/code-graph-context.md:33`]
 - Alternative explanation considered: No internal production caller hardcodes this combination today. That does not make it future-only because MCP callers can supply the schema-declared arguments directly when the env flag is enabled.
 - Final severity: P1 remains appropriate because the flagged feature's live trace mode can emit incomplete provenance for multi-hop impact candidates.
 - Confidence: high.

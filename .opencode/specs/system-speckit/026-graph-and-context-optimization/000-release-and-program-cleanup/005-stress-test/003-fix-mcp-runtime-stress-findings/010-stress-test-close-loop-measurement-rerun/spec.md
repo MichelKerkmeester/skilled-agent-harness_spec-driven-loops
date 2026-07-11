@@ -219,7 +219,7 @@ These extend (not replace) the v1.0.1 4-dim rubric. They live in each cell's sco
 
 ### See Also
 
-- Stress test cycle pattern: `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md`.
+- Stress test cycle pattern: `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle.md`.
 - Corpus source-of-truth: `../001-search-intelligence-stress-playbook/001-search-scenario-design/spec.md` §Scenario Corpus.
 - Dispatch script template: `../001-search-intelligence-stress-playbook/001-search-scenario-design/scripts/`.
 - Live-probe template (REQ-001): `../008-mcp-daemon-rebuild-protocol/references/live-probe-template.md`.

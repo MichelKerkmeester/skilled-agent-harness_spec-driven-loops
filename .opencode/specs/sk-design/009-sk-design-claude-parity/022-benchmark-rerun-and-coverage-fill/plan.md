@@ -79,7 +79,7 @@ Coverage audit used a 3-phase Workflow: parallel independent judgment (7 agents,
 ### Key Components
 
 - **Per-mode/parent audit agents**: each graded on the SAME adequacy bar (routing proof + registry-property exercise + boundary/precondition proof), not raw scenario count — this is why `md-generator` (8 scenario-touches, more than most modes) was still flagged inadequate: its gap was a specific untested precondition (brief-only authoring boundary), not volume.
-- **Synthesis agent's dedup catch**: the `design-mcp-open-design` audit and the parent-hub audit both independently proposed a mandatory-pairing-gate scenario; synthesis discovered (by reading the transport packet's own NESTED `manual_testing_playbook/05--design-gate/mandatory-design-gate.md`) that `GATE-001` already exhaustively covers the packet-internal half of that gap, so it kept only the genuinely uncovered remainder (hub-level pairing visibility) as `HM-004` and dropped the redundant one.
+- **Synthesis agent's dedup catch**: the `design-mcp-open-design` audit and the parent-hub audit both independently proposed a mandatory-pairing-gate scenario; synthesis discovered (by reading the transport packet's own NESTED `manual_testing_playbook/design-gate/mandatory-design-gate.md`) that `GATE-001` already exhaustively covers the packet-internal half of that gap, so it kept only the genuinely uncovered remainder (hub-level pairing visibility) as `HM-004` and dropped the redundant one.
 - **Authoring agents' verification discipline**: each explicitly re-confirmed every cited fact (alias strings, procedure-card names, resource paths) against the real source files rather than trusting the synthesis step's summary verbatim — caught in their own result text ("confirmed by grep/read, not assumed").
 <!-- /ANCHOR:architecture -->
 
@@ -90,7 +90,7 @@ Coverage audit used a 3-phase Workflow: parallel independent judgment (7 agents,
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `06--parity-behavior/`, `02--advisor-integration/`, `04--md-generator-pipeline/`, `08--hub-manager-intake/` | 4 category folders | +1 scenario file each | Router-mode benchmark scenario count |
+| `parity-behavior/`, `advisor-integration/`, `md-generator-pipeline/`, `hub-manager-intake/` | 4 category folders | +1 scenario file each | Router-mode benchmark scenario count |
 | `manual_testing_playbook.md` | Root index | Tables, cross-reference index, critical-path list, totals, coverage notes | Manual re-read + total-count arithmetic check |
 | `sk-design/README.md` | Hub README | Fixed stale scenario count | Grep |
 | `sk-design/benchmark/` | Result archive | New baseline folder | Directory listing |

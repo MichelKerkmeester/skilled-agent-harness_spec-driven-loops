@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files:
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-006"
@@ -50,7 +50,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-NC-004 (`01--native-mcp-tools/ambiguous-brief-rendering.md:38`) and NC-005 (`lifecycle-redirect-metadata.md:36`) document a vitest command run from `system-spec-kit/mcp_server` against `skill-advisor/tests/...`, which resolves to NO test files (the tests moved to `system-skill-advisor/mcp_server/tests/` during the skill extraction). Operators following the doc see "No test files found." The audit found exactly these two scenarios affected.
+NC-004 (`native-mcp-tools/ambiguous-brief-rendering.md:38`) and NC-005 (`lifecycle-redirect-metadata.md:36`) document a vitest command run from `system-spec-kit/mcp_server` against `skill-advisor/tests/...`, which resolves to NO test files (the tests moved to `system-skill-advisor/mcp_server/tests/` during the skill extraction). Operators following the doc see "No test files found." The audit found exactly these two scenarios affected.
 
 ### Purpose
 Correct the two scenario docs to the canonical invocation so the documented command actually runs the 49 tests.
@@ -72,8 +72,8 @@ Correct the two scenario docs to the canonical invocation so the documented comm
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md` | Modify | Correct vitest command |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md` | Modify | Correct vitest command |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md` | Modify | Correct vitest command |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/lifecycle-redirect-metadata.md` | Modify | Correct vitest command |
 <!-- /ANCHOR:scope -->
 
 ---

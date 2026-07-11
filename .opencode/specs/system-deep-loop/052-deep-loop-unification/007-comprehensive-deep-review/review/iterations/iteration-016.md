@@ -18,13 +18,13 @@ Traceability - deep-improvement packet.
 - `.opencode/commands/deep/ai-system-improvement.md:37`
 - `.opencode/commands/deep/ai-system-improvement.md:101`
 - `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs:45`
-- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/04--model-benchmark-mode/mode-switch.md:27`
-- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/04--model-benchmark-mode/mode-switch.md:29`
-- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/05--skill-benchmark/mode-wiring.md:25`
-- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/06--non-dev-ai-system/guarded-refine-loop.md:29`
-- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/06--non-dev-ai-system/self-target-packaging-profile.md:29`
-- `.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/criteria-exec-gate.md:17`
-- `.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/10--skill-benchmark/mode-wiring-routing.md:17`
+- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/model-benchmark-mode/mode-switch.md:27`
+- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/model-benchmark-mode/mode-switch.md:29`
+- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/skill-benchmark/mode-wiring.md:25`
+- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/non-dev-ai-system/guarded-refine-loop.md:29`
+- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/non-dev-ai-system/self-target-packaging-profile.md:29`
+- `.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/model-benchmark-mode/criteria-exec-gate.md:17`
+- `.opencode/skills/system-deep-loop/deep-improvement/manual_testing_playbook/skill-benchmark/mode-wiring-routing.md:17`
 
 ## Findings By Severity
 
@@ -42,9 +42,9 @@ None new. Existing DR-014-P1-001 and DR-015-P1-001 were carried forward as conte
 
 - Severity: P2
 - Category: traceability-documentation
-- File: `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/04--model-benchmark-mode/mode-switch.md:29`
+- File: `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/model-benchmark-mode/mode-switch.md:29`
 - Claim: The live model-benchmark feature catalog entry says `VALID_MODES` holds only `agent-improvement` and `model-benchmark`, but current `loop-host.cjs` exposes four valid modes and the adjacent Lane C/D catalog entries document the newer modes.
-- EvidenceRefs: `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/04--model-benchmark-mode/mode-switch.md:29`, `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs:45`, `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/05--skill-benchmark/mode-wiring.md:25`, `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/06--non-dev-ai-system/guarded-refine-loop.md:29`
+- EvidenceRefs: `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/model-benchmark-mode/mode-switch.md:29`, `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs:45`, `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/skill-benchmark/mode-wiring.md:25`, `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/non-dev-ai-system/guarded-refine-loop.md:29`
 - CounterevidenceSought: Checked Lane C and Lane D feature-catalog entries plus the four improvement-lane command markdown files; those surfaces describe the current Lane C/D routes, so the issue appears isolated to this older Lane B feature entry rather than a command-level routing contradiction.
 - AlternativeExplanation: The Lane B entry may have intentionally described only the original model-benchmark addition when it was authored. It is still a live feature-catalog entry rather than historical/changelog prose, so current readers can reasonably treat the closed-set claim as current truth.
 - FinalSeverity: P2

@@ -49,7 +49,7 @@
 - File: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/002-sandbox-testing-playbook/spec.md:193`
 - Evidence: SC-001 reads "25 scenario .md files exist + each passes validate_document.py --type playbook_feature". However, the specification body (lines 3, 43, 99-100) correctly states 23 scenarios. ADR-008 in `decision-record.md` documents that DOC-337 and DOC-343 were intentionally dropped during mode-reduction, reducing 25 planned IDs to 23 active. The SC-001 count was never updated to reflect this reduction.
 - Finding class: instance-only
-- Scope proof: `ls .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/*.md | wc -l` returns 23. ADR-008 confirms intentional gaps.
+- Scope proof: `ls .opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/*.md | wc -l` returns 23. ADR-008 confirms intentional gaps.
 - Affected surface hints: ["002 spec", "success criteria", "documentation consistency"]
 - Recommendation: Update SC-001 from "25" to "23" and add a parenthetical "(2 IDs retired per ADR-008: DOC-337 + DOC-343)" for clarity.
 

@@ -1,0 +1,69 @@
+---
+title: "Folder-level relevance scoring"
+description: "Describes the four-factor weighted formula (recency, importance, activity and validation) that scores spec folders for two-phase retrieval, with archive folder multipliers and damped aggregation via DocScore."
+trigger_phrases:
+  - "folder-level relevance scoring"
+  - "SPECKIT_FOLDER_SCORING"
+  - "DocScore damped folder aggregation"
+  - "four-factor spec folder scoring"
+  - "two-phase retrieval folder ranking"
+version: 3.6.0.14
+---
+
+# Folder-level relevance scoring
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Describes the four-factor weighted formula (recency, importance, activity and validation) that scores spec folders for two-phase retrieval, with archive folder multipliers and damped aggregation via DocScore.
+
+Instead of searching through every spec-doc record equally, this feature first ranks the folders they live in. Recent, important and actively used folders rise to the top while archived folders sink to the bottom. The system then searches within the top folders first. It is like checking the most promising filing cabinets before digging through the dusty ones in the back.
+
+---
+
+## 2. HOW IT WORKS
+
+A four-factor weighted formula scores each spec folder: `score = (recency * 0.40) + (importance * 0.30) + (activity * 0.20) + (validation * 0.10)`. Recency uses a decay function `1 / (1 + days * 0.10)` so a 7-day-old folder scores about 0.59 and a 10-day-old folder about 0.50. Importance averages the tier weights of all spec-doc records in the folder. Activity caps at 1.0 when a folder has 5 or more memories. Archive folders (`z_archive/`, `scratch/`, `test-`, `prototype/`) receive a 0.1-0.2 multiplier to keep them out of top results.
+
+This scoring enables two-phase retrieval: first rank folders by aggregated score, then search within the top-ranked folders. The DocScore formula `(1/sqrt(M+1)) * SUM(score(m))` provides damped aggregation so large folders do not dominate by volume alone. Runs behind the `SPECKIT_FOLDER_SCORING` flag (default ON).
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|------|-------|------|
+| `mcp_server/lib/scoring/folder-scoring.ts` | Lib | Folder scoring implementation |
+| `mcp_server/lib/search/folder-relevance.ts` | Lib | Folder relevance scoring |
+| `shared/normalization.ts` | Shared | Text normalization |
+| `shared/scoring/folder-scoring.ts` | Shared | Shared folder scoring |
+| `shared/types.ts` | Shared | Type definitions |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `mcp_server/tests/folder-relevance.vitest.ts` | Automated test | Folder relevance scoring |
+| `mcp_server/tests/folder-scoring.vitest.ts` | Automated test | Folder scoring tests |
+| `mcp_server/tests/memory-types.vitest.ts` | Automated test | Memory type tests |
+| `mcp_server/tests/score-normalization.vitest.ts` | Automated test | Score normalization tests |
+| `mcp_server/tests/scoring.vitest.ts` | Automated test | General scoring tests |
+| `mcp_server/tests/unit-composite-scoring-types.vitest.ts` | Automated test | Scoring type tests |
+| `mcp_server/tests/unit-folder-scoring-types.vitest.ts` | Automated test | Folder scoring type tests |
+| `mcp_server/tests/unit-normalization-roundtrip.vitest.ts` | Automated test | Normalization roundtrip |
+| `mcp_server/tests/unit-normalization.vitest.ts` | Automated test | Normalization unit tests |
+| `mcp_server/tests/unit-tier-classifier-types.vitest.ts` | Automated test | Tier classifier types |
+| `mcp_server/tests/unit-transaction-metrics-types.vitest.ts` | Automated test | Transaction metric types |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Scoring And Calibration
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `scoring-and-calibration/folder-level-relevance-scoring.md`
+Related references:
+- [classification-based-decay.md](classification-based-decay.md) — Classification-based decay
+- [embedding-cache.md](embedding-cache.md) — Embedding cache

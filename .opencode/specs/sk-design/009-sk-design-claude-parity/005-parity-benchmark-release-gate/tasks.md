@@ -59,7 +59,7 @@ _memory:
 - [x] T010 [P] Draft golden prompts for `design-md-generator` with extraction preservation and style-reference expectations (golden prompt corpus). Evidence: MR-005, MG-001..MG-003, PB-003 in `manual_testing_playbook.md`.
 - [x] T011 Add negative controls for vague, non-design, conflicting, unsafe, and router-misdirection prompts (golden prompt corpus). Evidence: AI-002, AI-003, SR-003, TV-004, TV-005 in `manual_testing_playbook.md`.
 - [x] T012 Define context manifest and proof fields for every prompt (release report schema). Evidence: root playbook global evidence requirements and PB scenario files.
-- [x] T013 Define manual playbook scenarios for live usefulness and parity feel (manual playbook artifact). Evidence: PB-001, PB-002, PB-003 under `manual_testing_playbook/06--parity-behavior/`.
+- [x] T013 Define manual playbook scenarios for live usefulness and parity feel (manual playbook artifact). Evidence: PB-001, PB-002, PB-003 under `manual_testing_playbook/parity-behavior/`.
 <!-- /ANCHOR:phase-2 -->
 
 ---

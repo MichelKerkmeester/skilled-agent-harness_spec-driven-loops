@@ -184,7 +184,7 @@ None - see section 7.
 
 - **Parent Phase**: `../` (`023-full-manual-playbook-execution/`, the phase-parent orchestrating all 10 waves)
 - **Sibling Reference**: `../022-benchmark-rerun-and-coverage-fill/` (the exact Level 2 doc-shape template this wave mirrored)
-- **Scenario Sources**: `.opencode/skills/sk-design/manual_testing_playbook/05--shared-reference-base/hub-routing-only.md`, `.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/{procedure-selection-proof,context-proof-gates,motion-procedure-selection-proof,audit-procedure-selection-proof}.md`
+- **Scenario Sources**: `.opencode/skills/sk-design/manual_testing_playbook/shared-reference-base/hub-routing-only.md`, `.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/{procedure-selection-proof,context-proof-gates,motion-procedure-selection-proof,audit-procedure-selection-proof}.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

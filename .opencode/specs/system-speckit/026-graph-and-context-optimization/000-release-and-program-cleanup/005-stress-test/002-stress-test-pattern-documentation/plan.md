@@ -23,7 +23,7 @@ _memory:
     completion_pct: 20
     open_questions: []
     answered_questions:
-      - "Use new section 14--stress-testing per spec default."
+      - "Use new section stress-testing per spec default."
 ---
 # Implementation Plan: Stress Test Pattern Documentation
 
@@ -82,7 +82,7 @@ This is a documentation-only packet with three artifact groups:
 - **B manual playbook**: the operational guide for running the cycle.
 - **C templates**: reusable sidecar schema and findings skeleton.
 
-Follow the existing `feature_catalog/13--memory-quality-and-indexing/` and `manual_testing_playbook/13--memory-quality-and-indexing/` patterns: frontmatter, H1, numbered sections, current-reality language, references, and source metadata.
+Follow the existing `feature_catalog/memory-quality-and-indexing/` and `manual_testing_playbook/memory-quality-and-indexing/` patterns: frontmatter, H1, numbered sections, current-reality language, references, and source metadata.
 
 ### Key Components
 
@@ -100,8 +100,8 @@ Follow the existing `feature_catalog/13--memory-quality-and-indexing/` and `manu
 
 | File | Role |
 |------|------|
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/README` | Section index for stress testing |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle` | Canonical feature reference |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/README` | Section index for stress testing |
+| `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle` | Canonical feature reference |
 
 - Define a stress test cycle as structured manual evaluation across packets, scored on a frozen rubric.
 - Document release-readiness, post-remediation, and regression-hunting use cases.
@@ -112,8 +112,8 @@ Follow the existing `feature_catalog/13--memory-quality-and-indexing/` and `manu
 
 | File | Role |
 |------|------|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README` | Section index for stress-testing playbooks |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle` | Operational guide for running a cycle |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/README` | Section index for stress-testing playbooks |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/stress-testing/01-run-stress-cycle` | Operational guide for running a cycle |
 
 - State preconditions for baseline stability and prior rubric availability.
 - Provide the ten requested steps from corpus freeze through parent PHASE MAP update.

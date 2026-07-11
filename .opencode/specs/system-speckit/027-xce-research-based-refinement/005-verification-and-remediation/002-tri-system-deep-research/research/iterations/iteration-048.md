@@ -8,7 +8,7 @@
 
 ## [P1][DOC-DRIFT] skill-advisor CLI manifest is documented as generated from TOOL_DEFINITIONS but is hand-maintained
 
-- Evidence: .opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/skill-advisor-cli.md:17 and :41 claim byte-identical/generated from TOOL_DEFINITIONS; .opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli-manifest.ts:22-140 defines a separate static SKILL_ADVISOR_TOOL_DEFINITIONS array; server TOOL_DEFINITIONS are assembled separately in .opencode/skills/system-skill-advisor/mcp_server/tools/index.ts:37-43.
+- Evidence: .opencode/skills/system-skill-advisor/feature_catalog/mcp-surface/skill-advisor-cli.md:17 and :41 claim byte-identical/generated from TOOL_DEFINITIONS; .opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli-manifest.ts:22-140 defines a separate static SKILL_ADVISOR_TOOL_DEFINITIONS array; server TOOL_DEFINITIONS are assembled separately in .opencode/skills/system-skill-advisor/mcp_server/tools/index.ts:37-43.
 - Detail: The current schemas appear aligned by source inspection, but the documented drift-proof mechanism does not exist for skill-advisor. A future server tool/schema change can drift from the CLI unless both duplicated registries are updated.
 - Fix sketch: Derive SKILL_ADVISOR_CLI_TOOL_MANIFEST from the server TOOL_DEFINITIONS or add a direct test that deep-compares names, descriptions, and input schemas.
 

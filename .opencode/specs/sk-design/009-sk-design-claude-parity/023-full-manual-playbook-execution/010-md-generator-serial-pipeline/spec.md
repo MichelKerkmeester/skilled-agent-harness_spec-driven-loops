@@ -49,7 +49,7 @@ _memory:
 
 ### Problem Statement
 
-The `md-generator` mode is the only `sk-design` mode with `mutatesWorkspace: true` and `Write`/`Edit`/`Bash` tool access, so its manual-testing-playbook scenarios (mode routing, positive advisor control P5, parity preservation, the full four-scenario `04--md-generator-pipeline/` set, and both md-generator variants of the fallback-and-resilience negative controls) had never been run through a real `opencode run` dispatch that actually performs a live URL crawl and writes files. Because every dispatch in this wave can write real files (repo-root, `/tmp` sandboxes, and the model's own approved `/var/.../T/skd-*` extraction sandbox), the 9 dispatches had to run strictly one at a time in a fixed order — never parallel — so that a fixture pair produced by one dispatch (`MG-001`) could be deterministically copied forward as seed input for two downstream dispatches (`MG-002`, `MG-003`).
+The `md-generator` mode is the only `sk-design` mode with `mutatesWorkspace: true` and `Write`/`Edit`/`Bash` tool access, so its manual-testing-playbook scenarios (mode routing, positive advisor control P5, parity preservation, the full four-scenario `md-generator-pipeline/` set, and both md-generator variants of the fallback-and-resilience negative controls) had never been run through a real `opencode run` dispatch that actually performs a live URL crawl and writes files. Because every dispatch in this wave can write real files (repo-root, `/tmp` sandboxes, and the model's own approved `/var/.../T/skd-*` extraction sandbox), the 9 dispatches had to run strictly one at a time in a fixed order — never parallel — so that a fixture pair produced by one dispatch (`MG-001`) could be deterministically copied forward as seed input for two downstream dispatches (`MG-002`, `MG-003`).
 
 ### Purpose
 
@@ -63,7 +63,7 @@ Execute the 9 assigned dispatches in the mandated strict serial order using the 
 
 ### In Scope
 
-- Read all 9 constituent scenario files across `01--mode-routing/`, `02--advisor-integration/`, `06--parity-behavior/`, `04--md-generator-pipeline/`, and `07--fallback-and-resilience/` in full before dispatching.
+- Read all 9 constituent scenario files across `mode-routing/`, `advisor-integration/`, `parity-behavior/`, `md-generator-pipeline/`, and `fallback-and-resilience/` in full before dispatching.
 - Run the advisor probe (`skill_advisor.py --threshold 0.8`) for each dispatch's clean exact prompt and record top-1 skill + confidence, including recording native-daemon-unavailable fallback-scorer noise as observed, not corrected.
 - Run the real orchestrator dispatch (`opencode run --model openai/gpt-5.5-fast --variant medium --format json`) for each of the 9 assigned dispatch IDs in the mandated strict order, one at a time, never parallel.
 - After every dispatch capable of a repo-root or non-sandbox write (`MR-005`, `AI-001-P5`), run `git status --porcelain` and record the output verbatim in `dispatch-log.md`, without silently cleaning up any leaked artifact.

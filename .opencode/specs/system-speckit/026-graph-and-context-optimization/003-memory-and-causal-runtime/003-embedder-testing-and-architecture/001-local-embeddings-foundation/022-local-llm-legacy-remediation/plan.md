@@ -47,7 +47,7 @@ Scope (one dispatch, file list bound in prompt):
 - `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` (default model list — keep cascade narrative)
 - `.opencode/skills/system-spec-kit/references/memory/embedding_resilience.md` (1024-dim cache key + Voyage primary diagram)
 - `.opencode/skills/system-spec-kit/README.md` (hybrid-search channel docs + provider table + Voyage env row)
-- `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` (EMBEDDING_DIM + EMBEDDINGS_PROVIDER rows)
+- `.opencode/skills/system-spec-kit/feature_catalog/feature-flag-reference/05-5-embedding-and-api.md` (EMBEDDING_DIM + EMBEDDINGS_PROVIDER rows)
 - `.opencode/skills/system-spec-kit/references/config/environment_variables.md`
 - `.opencode/skills/mcp-coco-index/README.md` (default model line, settings YAML sample)
 - `.opencode/skills/mcp-coco-index/INSTALL_GUIDE.md` (default+recommended table, primary recommendation block, 5 config-template samples, defaults summary table)

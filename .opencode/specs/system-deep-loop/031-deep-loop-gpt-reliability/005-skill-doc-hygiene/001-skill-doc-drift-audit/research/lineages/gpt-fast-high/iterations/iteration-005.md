@@ -26,7 +26,7 @@ Check for stale plugin filename/env/log-prefix references and whether plugin inv
 
 - Worked: checking actual plugin files prevented falsely flagging historical `deep-route-guard` mentions in phase summaries.
 - Failed: no direct old-name stale reference found in living skill docs; the issue is README inventory omission.
-- Ruled out: current deep-loop-runtime feature catalog already documents `mk-deep-loop-guard`, `MK_DEEP_LOOP_GUARD_REJECT`, and the new log prefix correctly. [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/03--validation/mk-deep-loop-guard.md:12-34]
+- Ruled out: current deep-loop-runtime feature catalog already documents `mk-deep-loop-guard`, `MK_DEEP_LOOP_GUARD_REJECT`, and the new log prefix correctly. [SOURCE: .opencode/skills/deep-loop-runtime/feature_catalog/validation/mk-deep-loop-guard.md:12-34]
 
 ## Recommended Next Focus
 

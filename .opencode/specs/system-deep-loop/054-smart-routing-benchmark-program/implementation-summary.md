@@ -19,7 +19,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts"
       - ".opencode/skills/sk-code/shared/references/smart_routing.md"
       - ".opencode/skills/sk-code/*/manual_testing_playbook/"
-      - ".opencode/skills/system-deep-loop/{deep-research,deep-review,deep-improvement}/manual_testing_playbook/10--intra-routing-recall/"
+      - ".opencode/skills/system-deep-loop/{deep-research,deep-review,deep-improvement}/manual_testing_playbook/intra-routing-recall/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session_01Ht7J9NZTEBBXwzTeNvras9"

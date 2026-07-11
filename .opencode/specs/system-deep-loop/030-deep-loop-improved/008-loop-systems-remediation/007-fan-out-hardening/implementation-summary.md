@@ -77,7 +77,7 @@ A new gate throws when `salvage.failed > 0` even when the top-level report exist
 | `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modified | reconstruction regressions |
 | `.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts` | Modified | sandboxMode acceptance contract |
 | `.opencode/skills/deep-loop-runtime/tests/helpers/spawn-cjs.ts` | Modified | Pre-existing duplicate-decl fix (unblocked suite) |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md` | Modified | Repoint to exit-0/no-artifact regression |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md` | Modified | Repoint to exit-0/no-artifact regression |
 <!-- /ANCHOR:what-built -->
 
 ---

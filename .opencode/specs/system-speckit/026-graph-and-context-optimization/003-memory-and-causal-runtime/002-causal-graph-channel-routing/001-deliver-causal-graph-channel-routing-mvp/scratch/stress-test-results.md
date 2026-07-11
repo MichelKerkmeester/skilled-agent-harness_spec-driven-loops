@@ -122,7 +122,7 @@ Latencies from the 25 calls span:
 
 ## 5. Notes for follow-on work
 
-The original `feature_catalog/12--query-intelligence/12-graph-channel-preservation.md` and `manual_testing_playbook/14--pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` may be updated with one nit:
+The original `feature_catalog/query-intelligence/12-graph-channel-preservation.md` and `manual_testing_playbook/pipeline-architecture/272-routing-telemetry-and-graph-channel-invocation.md` may be updated with one nit:
 
 - Playbook 272 §3.2 expected query "alternatives considered for caching" → `find_decision` intent. Live classifier returns `understand`. Either pick a different phrasing the classifier confidently routes as `find_decision`, or relax the playbook expectation to "≥2 of 5 graph hits" (current behavior). Code is correct.
 

@@ -74,7 +74,7 @@ No CHK item lacks concrete evidence. Every evidence string references either a f
 
 | Path in resource-map | Actual path on disk |
 |---------------------|-------------------|
-| `manual_testing_playbook/14--pipeline-architecture/210-routing-telemetry-and-graph-channel-invocation.md` | `272-routing-telemetry-and-graph-channel-invocation.md` |
+| `manual_testing_playbook/pipeline-architecture/210-routing-telemetry-and-graph-channel-invocation.md` | `272-routing-telemetry-and-graph-channel-invocation.md` |
 
 ### CREATED FILE NOT IN RESOURCE-MAP (1 entry)
 

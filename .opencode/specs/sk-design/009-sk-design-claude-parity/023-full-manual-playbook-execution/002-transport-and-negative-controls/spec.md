@@ -178,7 +178,7 @@ None beyond section 7.
 
 - **Phase Parent**: `../spec.md` (`023-full-manual-playbook-execution`)
 - **Sibling Waves**: `../001-mode-routing-core/`, `../003-advisor-positive-controls/`, etc.
-- **Scenario Sources**: `.opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md`, `.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/{pure-code-routes-skcode,doc-write-routes-elsewhere,code-review-routes-skcode}.md`, `.opencode/skills/sk-design/manual_testing_playbook/05--shared-reference-base/interface-shared-references.md`
+- **Scenario Sources**: `.opencode/skills/sk-design/manual_testing_playbook/mode-routing/mcp-open-design-mode.md`, `.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/{pure-code-routes-skcode,doc-write-routes-elsewhere,code-review-routes-skcode}.md`, `.opencode/skills/sk-design/manual_testing_playbook/shared-reference-base/interface-shared-references.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`

@@ -41,7 +41,7 @@ Register Open Design's stdio MCP server into opencode or Claude Code so its tool
 
 `node "$OD_BIN" mcp install <agent>` wires the Open Design MCP server into a terminal agent. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`. For Claude Code it delegates to `claude mcp add --scope user open-design`. The dry-run form `--print --json` writes nothing and prints the exact entry first.
 
-See [`01--wiring/od-mcp-install.md`](01--wiring/od-mcp-install.md) for the full behavior and the manual-config fallback.
+See [`wiring/od-mcp-install.md`](wiring/od-mcp-install.md) for the full behavior and the manual-config fallback.
 
 ---
 
@@ -53,7 +53,7 @@ List projects, read the active context, read a design system's files, and fetch 
 
 Read-only tools split into two axes (see [`references/tool_surface.md`](../references/tool_surface.md) §2): pure-transport reads (`list_projects`, `list_files`, `list_skills`, `list_plugins`, `list_agents`) are always safe to call, since they return inventory only. Design-feeding reads (`get_active_context`, `get_project`, `get_file`, `search_files`, `get_artifact`, `get_run`) are guarded — their output needs `sk-design`'s ground → token-system → critique before it shapes a design decision, except `get_file`/`search_files` with a non-design-use receipt. From the CLI directly, `node "$OD_BIN" tools design-systems read --path <manifest-path>` reads a registered design system's pull-layer files. A design system is a `DESIGN.md` (9-section prose), a paste-ready `tokens.css` (a `:root` block), and an optional `components.html`.
 
-See [`02--reading/read-only-content.md`](02--reading/read-only-content.md) for the tool list and the live-content rule.
+See [`reading/read-only-content.md`](reading/read-only-content.md) for the tool list and the live-content rule.
 
 ---
 
@@ -65,7 +65,7 @@ When an Open Design read feeds a design decision, the work becomes design work a
 
 `sk-design` is a hard precondition: any read or run that feeds a design decision MUST load it first (only pure transport — wiring, a bare inventory that feeds no design decision — is exempt). The agent loads its design principles and runs ground then token-system then critique before deciding, then reuses the resolved system's `tokens.css` and `components.html` at build time in the target app. Reuse happens live: Open Design content is never copied or cached into a repo, because its per-source licenses would attach. At most one system is resolved from the subject and brief, never surfaced as a pick-a-vibe menu across the roughly 150 available systems.
 
-See [`03--grounding/design-system-grounding.md`](03--grounding/design-system-grounding.md) for the integration contract and the guardrails that must survive.
+See [`grounding/design-system-grounding.md`](grounding/design-system-grounding.md) for the integration contract and the guardrails that must survive.
 
 ---
 
@@ -77,7 +77,7 @@ Commission Open Design to spawn its own inner agent and produce a rendered desig
 
 Generation is multi-turn. `start_run(prompt, [skill], [agent], ...)` (MCP) or `od run start` (CLI) fires turn 1, which returns a discovery question-form and zero files. Answering it with `od ui respond` (or a follow-up message) fires the build run that writes the design and gives the project a `previewUrl`, after which the agent polls `get_run(runId)` and fetches output with `get_artifact`. CLI run verbs are `od run start|watch|cancel|list|info`. Other headless mutating verbs include `od automation` (schedule or fire routines) and `od media generate`. `od artifacts create` only adds a file to a project and never produces a rendered design, so it is not the generation path. Each mutating verb is gated behind explicit user confirmation, an explicit target project or name, and a rollback note. Destructive verbs `delete_file` and `delete_project` additionally require `confirm:true` and are never reached through the active-project fallback.
 
-See [`04--runs/headless-runs.md`](04--runs/headless-runs.md) for the surface, gate, and omit policy.
+See [`runs/headless-runs.md`](runs/headless-runs.md) for the surface, gate, and omit policy.
 
 ---
 
@@ -89,7 +89,7 @@ Every tool call proxies to a local daemon that the desktop app hosts. The CLI is
 
 There is no global `od` on PATH (bare `od` is the unrelated octal-dump tool). The CLI is `app/prebundled/daemon/daemon-cli.mjs` run under Node or the bundled Electron with `ELECTRON_RUN_AS_NODE=1`. The daemon is discovered over a Unix socket (`OD_SIDECAR_IPC_PATH`) on an ephemeral loopback port, not a fixed `127.0.0.1:7456` (that port is only the default for a standalone `od --no-open` daemon). The `od mcp --help` text lists a documentation subset of about 8 tools, but the running server registers roughly 18, including mutating and destructive ones. The live `tools/list` is always verified before relying on a tool's name or read-only status.
 
-See [`05--transport/daemon-and-verification.md`](05--transport/daemon-and-verification.md) for the locate-and-confirm sequence and the verification requirement.
+See [`transport/daemon-and-verification.md`](transport/daemon-and-verification.md) for the locate-and-confirm sequence and the verification requirement.
 
 ---
 
@@ -97,9 +97,9 @@ See [`05--transport/daemon-and-verification.md`](05--transport/daemon-and-verifi
 
 | Section | Feature | Per-feature file |
 |---|---|---|
-| MCP Server Wiring | od mcp install | `01--wiring/od-mcp-install.md` |
-| Local Content Reads | Read-only content access | `02--reading/read-only-content.md` |
-| Design-System Grounding | Grounding and reuse loop | `03--grounding/design-system-grounding.md` |
-| Headless Runs | Headless runs and mutating verbs | `04--runs/headless-runs.md` |
-| Daemon Transport | Daemon model and tool-surface verification | `05--transport/daemon-and-verification.md` |
+| MCP Server Wiring | od mcp install | `wiring/od-mcp-install.md` |
+| Local Content Reads | Read-only content access | `reading/read-only-content.md` |
+| Design-System Grounding | Grounding and reuse loop | `grounding/design-system-grounding.md` |
+| Headless Runs | Headless runs and mutating verbs | `runs/headless-runs.md` |
+| Daemon Transport | Daemon model and tool-surface verification | `transport/daemon-and-verification.md` |
 | **Total** | **5 features** | **5 per-feature files** |

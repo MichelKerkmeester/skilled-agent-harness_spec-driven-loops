@@ -10,7 +10,7 @@
 | `002-sandbox-testing-playbook/handover.md` | state-accuracy | G3/G4 PASS claims vs IMS G3/G4 warnings |
 | `001-initial-doctor-commands/implementation-summary.md` | cross-phase-consistency | completion_pct 99 vs body ~30%; deleted-YAML references |
 | `001-initial-doctor-commands/spec.md` | command-surface-contract | Cross-ref of 5 command names against 002 scenario invocations |
-| `23--doctor-commands/*.md` (23 files) | playbook-scenarios | Verified 5-section structure + SECTION 4 YAML asset citations |
+| `doctor-commands/*.md` (23 files) | playbook-scenarios | Verified 5-section structure + SECTION 4 YAML asset citations |
 | `_sandbox/.../scenarios/*.sh` (23 files) | cross-phase-command | All 23 wrappers invoke canonical `/doctor:*` commands 1:1 |
 | `commands/doctor/*.md` (5 files) | implementation-surface | All 5 doctor command entrypoints exist on disk |
 | `commands/doctor/assets/doctor_*.yaml` (5 files) | implementation-surface | All 5 YAML assets exist on disk |
@@ -36,7 +36,7 @@
 - **File**: `002-sandbox-testing-playbook/spec.md:193`
 - **Evidence**: SC-001 reads "25 scenario .md files exist + each passes validate_document.py". REQ-001 at spec.md:152 correctly states "All 23 playbook scenario .md files exist at IDs 323-336, 338-342, 344-347 (gaps at 337 + 343)". Mode reduction removed DOC-337 and DOC-343 (per handover.md:67) leaving 23 scenarios. SC-001 was not updated.
 - **Finding class**: instance-only — single stale success criterion reference.
-- **Scope proof**: `ls 23--doctor-commands/ | wc -l` returns 23. REQ-001 and spec frontmatter both state 23. Only SC-001 says 25.
+- **Scope proof**: `ls doctor-commands/ | wc -l` returns 23. REQ-001 and spec frontmatter both state 23. Only SC-001 says 25.
 - **Recommendation**: Update SC-001 at spec.md:193 from "25 scenario" to "23 scenario".
 
 #### P1-002 [P1] 002 implementation-summary internal contradiction — `completion_pct: 70` vs body `COMPLETE (~95%)`
@@ -73,7 +73,7 @@
 
 #### P1-006 [P1] Cross-phase command invocation verification passes but no end-to-end execution evidence
 
-- **File**: `_sandbox/23--doctor-commands/scenarios/DOC-*.sh` (23 files) vs `implementation-summary.md:186-192`
+- **File**: `_sandbox/doctor-commands/scenarios/DOC-*.sh` (23 files) vs `implementation-summary.md:186-192`
 - **Evidence**: All 23 scenario wrappers correctly invoke canonical `/doctor:*` commands (grep confirms 23 `/doctor:` invocations mapping 1:1 to the 5 command surfaces). However, implementation-summary.md:186-192 acknowledges "Real fixture URLs are still placeholders, so full Docker-backed end-to-end execution remains deferred" and handover.md:51 states "Phase NOT Completed: actual scenario execution (zero scenarios run end-to-end)." The playbook's REQ-022 (invoke canonical commands) is structurally satisfied but the actual runtime behavior has never been exercised.
 - **Finding class**: class-of-bug — all 23 scenarios remain structurally authored but functionally unvalidated.
 - **Scope proof**: `grep -l '/doctor:'` across 23 scenario `.sh` files confirms 1:1 mapping. handover.md confirms zero executions.

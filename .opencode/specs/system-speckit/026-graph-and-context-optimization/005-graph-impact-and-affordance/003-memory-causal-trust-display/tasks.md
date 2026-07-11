@@ -17,7 +17,7 @@ contextType: "implementation"
 | T-005-B1 | Add `trustBadges` to `MemoryResultEnvelope` | B | pending |
 | T-005-B2 | Propagate badges in `profile-formatters.ts` | B | pending |
 | T-005-B3 | Confirm backward compat | B | pending |
-| T-005-C1 | feature_catalog entry for `13--memory-quality-and-indexing/` | C | pending |
+| T-005-C1 | feature_catalog entry for `memory-quality-and-indexing/` | C | pending |
 | T-005-C2 | manual_testing_playbook entry for same category | C | pending |
 | T-005-C3 | sk-doc DQI ≥85 | C | pending |
 | T-005-D1 | Unit tests | D | pending |

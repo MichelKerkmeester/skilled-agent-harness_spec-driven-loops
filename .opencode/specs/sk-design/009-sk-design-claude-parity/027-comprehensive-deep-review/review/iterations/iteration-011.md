@@ -22,7 +22,7 @@
 - `.opencode/skills/sk-design/design-audit/README.md:79`
 - `.opencode/skills/sk-design/design-audit/procedures/accessibility_audit.md:1`
 - `.opencode/skills/sk-design/design-audit/procedures/ai_slop_check.md:1`
-- `.opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md:18`
+- `.opencode/skills/sk-design/design-audit/feature_catalog/procedure-cards/audit-procedure-card-inventory.md:18`
 - `.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:144`
 - `.opencode/skills/sk-design/design-audit/references/critique_hardening.md:133`
 
@@ -40,7 +40,7 @@
 - Evidence: `mode-registry.json` declares the audit packet as `design-audit` and `proceduresPath: "design-audit/procedures"` at `.opencode/skills/sk-design/mode-registry.json:112` through `.opencode/skills/sk-design/mode-registry.json:114`.
 - Evidence: `SKILL.md` lists internal procedure support at `.opencode/skills/sk-design/design-audit/SKILL.md:114` and states the private procedure-card selection table is part of the routing contract at `.opencode/skills/sk-design/design-audit/SKILL.md:117`.
 - Evidence: `SKILL.md` requires selecting at most one procedure card and citing it by relative path at `.opencode/skills/sk-design/design-audit/SKILL.md:291` through `.opencode/skills/sk-design/design-audit/SKILL.md:299`.
-- Evidence: the feature catalog independently describes the two private cards as the design-audit procedure-card surface at `.opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md:18` through `.opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md:28`.
+- Evidence: the feature catalog independently describes the two private cards as the design-audit procedure-card surface at `.opencode/skills/sk-design/design-audit/feature_catalog/procedure-cards/audit-procedure-card-inventory.md:18` through `.opencode/skills/sk-design/design-audit/feature_catalog/procedure-cards/audit-procedure-card-inventory.md:28`.
 - Evidence: `/design:audit` command choreography loads the packet SKILL and then only `.opencode/skills/sk-design/design-audit/references/`, with no procedure-card surface named, at `.opencode/skills/sk-design/command-metadata.json:48` through `.opencode/skills/sk-design/command-metadata.json:52`.
 - Counterevidence sought: searched `.opencode/skills/sk-design/command-metadata.json` for `design-audit/procedures`, `procedures/accessibility_audit`, `procedures/ai_slop_check`, `shared/procedures`, `polish_gate_orchestration`, and `procedures/`; no matches were found.
 - Alternative explanation: the command metadata may intend the `SKILL.md` load to subsume private procedures. That does not match the command projection pattern being reviewed because the metadata explicitly projects follow-on resources for commands, and this packet has a declared `proceduresPath` plus a routing-proof obligation.
@@ -68,8 +68,8 @@
 - `toolSurface`: PASS at coarse metadata level. `mode-registry.json:106` through `mode-registry.json:110` allows Read/Glob/Grep and forbids Write/Edit/Bash; packet frontmatter allows Read/Grep/Glob at `.opencode/skills/sk-design/design-audit/SKILL.md:4`.
 - `skill_agent`: PASS. No subagents were dispatched; the packet requires direct fallback with Read/Glob/Grep only at `.opencode/skills/sk-design/design-audit/SKILL.md:305`.
 - `agent_cross_runtime`: N/A. This leaf review did not dispatch agents.
-- `feature_catalog_code`: PASS for the procedure-card inventory. The catalog enumerates the two procedure cards and their shared-card handoffs at `.opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md:18` through `.opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md:40`.
-- `playbook_capability`: PASS by sampled procedure-card scenario coverage. `README.md` points to the manual playbook at `.opencode/skills/sk-design/design-audit/README.md:102` through `.opencode/skills/sk-design/design-audit/README.md:109`; grep confirmed `manual_testing_playbook/05--procedure-card-contract/card-selection-proof.md` covers both cards.
+- `feature_catalog_code`: PASS for the procedure-card inventory. The catalog enumerates the two procedure cards and their shared-card handoffs at `.opencode/skills/sk-design/design-audit/feature_catalog/procedure-cards/audit-procedure-card-inventory.md:18` through `.opencode/skills/sk-design/design-audit/feature_catalog/procedure-cards/audit-procedure-card-inventory.md:40`.
+- `playbook_capability`: PASS by sampled procedure-card scenario coverage. `README.md` points to the manual playbook at `.opencode/skills/sk-design/design-audit/README.md:102` through `.opencode/skills/sk-design/design-audit/README.md:109`; grep confirmed `manual_testing_playbook/procedure-card-contract/card-selection-proof.md` covers both cards.
 - Maintainability duplication check: no new finding. The packet uses the shared register/context/handoff base by reference in `SKILL.md:99` through `SKILL.md:114`, and the only script-backed references found were discoverability aids or deterministic checks already referenced from packet docs.
 
 ## Verdict

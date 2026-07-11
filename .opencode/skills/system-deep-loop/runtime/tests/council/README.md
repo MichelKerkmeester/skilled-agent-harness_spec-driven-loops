@@ -24,4 +24,4 @@ Per-module coverage for the 5 council durability primitives under `lib/council/`
 ## 3. RELATED RESOURCES
 
 - Parent tests README: `.opencode/skills/system-deep-loop/runtime/tests/README.md`
-- Council feature catalog: `.opencode/skills/system-deep-loop/runtime/feature_catalog/08--council/`
+- Council feature catalog: `.opencode/skills/system-deep-loop/runtime/feature_catalog/council/`

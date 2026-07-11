@@ -81,9 +81,9 @@ Runtime note: the second router-mode rerun was measured with shell `time` and co
 
 | Scenario | Lane | Automated Router-Mode Result | Live/Manual Status | Evidence |
 |----------|------|------------------------------|--------------------|----------|
-| PB-001 | Procedure-selection proof | Passed replay; `workflowMode: interface`, aliases `less generic` and `sk-design`, packet `design-interface` | Not run in this pass, requires operator execution | `benchmark/after-009/report.json` lines 1850-1868; `manual_testing_playbook/06--parity-behavior/procedure-selection-proof.md` |
-| PB-002 | Context and proof gates | Passed replay; `workflowMode: foundations`, alias `hierarchy`, packet `design-foundations` | Not run in this pass, requires operator execution | `benchmark/after-009/report.json` lines 1953-1970; `manual_testing_playbook/06--parity-behavior/context-proof-gates.md` |
-| PB-003 | md-generator preservation confirmation | Passed replay; `workflowMode: md-generator`, alias `design.md`, backend `playwright-extract`, packet `design-md-generator` | Not run in this pass, requires operator execution for live extraction | `benchmark/after-009/report.json` lines 2055-2071; `manual_testing_playbook/06--parity-behavior/md-generator-preservation-confirmation.md` |
+| PB-001 | Procedure-selection proof | Passed replay; `workflowMode: interface`, aliases `less generic` and `sk-design`, packet `design-interface` | Not run in this pass, requires operator execution | `benchmark/after-009/report.json` lines 1850-1868; `manual_testing_playbook/parity-behavior/procedure-selection-proof.md` |
+| PB-002 | Context and proof gates | Passed replay; `workflowMode: foundations`, alias `hierarchy`, packet `design-foundations` | Not run in this pass, requires operator execution | `benchmark/after-009/report.json` lines 1953-1970; `manual_testing_playbook/parity-behavior/context-proof-gates.md` |
+| PB-003 | md-generator preservation confirmation | Passed replay; `workflowMode: md-generator`, alias `design.md`, backend `playwright-extract`, packet `design-md-generator` | Not run in this pass, requires operator execution for live extraction | `benchmark/after-009/report.json` lines 2055-2071; `manual_testing_playbook/parity-behavior/md-generator-preservation-confirmation.md` |
 | MR-001..MR-006 | Browser/live mode routing | Routed out by router harness | Not run in this pass, requires operator execution | `benchmark/after-009/report.md` lines 42-47 |
 <!-- /ANCHOR:scenario-evidence -->
 

@@ -25,7 +25,7 @@ Plan remediation because the active P1 findings affect executable standards guid
 | F001 | P1 | correctness | Documented comment-hygiene command executes the Python checker through bash | `.opencode/skills/sk-code/SKILL.md:216`; `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh:1` | active |
 | F002 | P1 | security | Comment-hygiene enforcement is documented stronger than the actual protected paths | `.opencode/skills/system-spec-kit/constitutional/comment-hygiene.md:66`; `.github/workflows/comment-hygiene.yml:2`; `.opencode/skills/system-spec-kit/constitutional/main-branch-direct-push.md:20` | active |
 | F003 | P1 | traceability | sk-doc tells agents to remove spec YAML frontmatter that Spec Kit templates now require | `.opencode/skills/sk-doc/assets/frontmatter_templates.md:400`; `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl:2` | active |
-| F004 | P2 | traceability | sk-doc filename standards still require snake_case despite hyphenated shipped docs | `.opencode/skills/sk-doc/references/global/core_standards.md:31`; `.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/markdown-agent-cli-codex.md:1` | active |
+| F004 | P2 | traceability | sk-doc filename standards still require snake_case despite hyphenated shipped docs | `.opencode/skills/sk-doc/references/global/core_standards.md:31`; `.opencode/skills/sk-doc/manual_testing_playbook/agent-dispatch/markdown-agent-cli-codex.md:1` | active |
 | F005 | P2 | maintainability | sk-code verifier reports Python `.sh` entrypoints as shell-style drift | `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py:31`; `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh:1` | active |
 
 ## 4. Remediation Workstreams

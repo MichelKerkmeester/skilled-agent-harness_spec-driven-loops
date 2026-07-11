@@ -49,11 +49,11 @@ This pass challenges the accumulated touchpoint map from iterations 001-010. It 
 | `.opencode/commands/memory/search.md:116` | "CocoIndex semantic search (mcp__cocoindex_code__search) integrates as the vector/semantic channel" | EDIT-remove-ref | 007 | [SOURCE: search.md:116] |
 | `.opencode/skills/system-code-graph/references/runtime/ownership_boundary.md:66` | "11 tools through mk_code_index server: ... ccc_status, ccc_reindex and ccc_feedback" | EDIT-decouple | 002 | [SOURCE: ownership_boundary.md:66] |
 | `.opencode/skills/system-code-graph/references/runtime/tool_surface.md:41,55,78` | Tool surface docs listing ccc_* tools in maintenance category | EDIT-decouple | 002 | [SOURCE: tool_surface.md:41,55,78] |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/mcp-tool-manifest-post-rename.md:24,41` | Test manifest expects exactly 11 tools including ccc_* | EDIT-decouple | 002 | [SOURCE: mcp-tool-manifest-post-rename.md:24,41] |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/mcp-tool-surface/mcp-tool-manifest-post-rename.md:24,41` | Test manifest expects exactly 11 tools including ccc_* | EDIT-decouple | 002 | [SOURCE: mcp-tool-manifest-post-rename.md:24,41] |
 | `.opencode/skills/system-code-graph/INSTALL_GUIDE.md:17,111,133` | Install guide lists ccc_* in tool enumeration | EDIT-decouple | 002 | [SOURCE: INSTALL_GUIDE.md:17,111,133] |
 | `.opencode/skills/system-code-graph/SKILL.md:285` | SKILL.md lists `ccc_status/reindex/feedback` in tool table | EDIT-decouple | 002 | [SOURCE: system-code-graph/SKILL.md:285] |
 | `.gemini/commands/doctor/update.toml:2` | Gemini-mirrored update command references `ccc_*` tools | EDIT-remove-ref | 006 | [SOURCE: gemini/commands/doctor/update.toml:2] |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/47-orphan-mcp-sweeper-and-launchagent-template.md:21` | Feature catalog doc refs `ORPHAN_PRESERVE_RERANK_SIDECAR` | EDIT-remove-ref | 007 | [SOURCE: 47-orphan-mcp-sweeper-and-launchagent-template.md:21] |
+| `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/47-orphan-mcp-sweeper-and-launchagent-template.md:21` | Feature catalog doc refs `ORPHAN_PRESERVE_RERANK_SIDECAR` | EDIT-remove-ref | 007 | [SOURCE: 47-orphan-mcp-sweeper-and-launchagent-template.md:21] |
 | `.opencode/skills/system-code-graph/references/integrations/ccc_bridge_integration.md:1-158` | CCC bridge integration doc (already listed in iter-001 as DELETE) | DELETE | 002 | Already in iter-001 — confirmed |
 
 ## Mis-classifications / corrections

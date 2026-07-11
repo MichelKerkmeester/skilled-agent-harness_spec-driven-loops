@@ -14,13 +14,13 @@
 
 ## [P1][BROKEN-FEATURE] Spec-kit root playbook release-readiness coverage check does not prove linked scenario coverage
 
-- Evidence: .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:138-145 requires 100% coverage and orphan scenario count zero; command output: featureFileRows=226 missing=1 immediateFiles=410 orphanImmediate=185; missing link at manual_testing_playbook.md:2172 and :3658 targets 11--scoring-and-calibration/102-Ollama runtime-optionaldependencies.md
+- Evidence: .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:138-145 requires 100% coverage and orphan scenario count zero; command output: featureFileRows=226 missing=1 immediateFiles=410 orphanImmediate=185; missing link at manual_testing_playbook.md:2172 and :3658 targets scoring-and-calibration/102-Ollama runtime-optionaldependencies.md
 - Detail: The root playbook's deterministic count only proves there are 410 immediate scenario files, not that the root index links every scenario or that links resolve. The current root index has many unlisted immediate scenario files and at least one broken scenario link, so the release-readiness gate is materially weaker than it claims.
 - Fix sketch: Add a CI guard that compares root scenario rows to live files, fails on missing targets and orphan files, and derives the displayed totals from that same inventory.
 
 ## [P1][DOC-DRIFT] Skill-advisor feature catalog count is internally contradictory and stale
 
-- Evidence: .opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md:21 says 38 features across 7 groups; lines 25-33 table counts sum to 42 and line 32 claims 4 hooks/plugin files; command output: overview=38/7 tableSum=42 ... 07--hooks-and-plugin claimed=4 actual=3, immediate feature files=41
+- Evidence: .opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md:21 says 38 features across 7 groups; lines 25-33 table counts sum to 42 and line 32 claims 4 hooks/plugin files; command output: overview=38/7 tableSum=42 ... hooks-and-plugin claimed=4 actual=3, immediate feature files=41
 - Detail: The catalog's overview, group table, and live file inventory disagree. Operators using the catalog as a governance inventory cannot tell whether the package has 38, 41, or 42 features.
 - Fix sketch: Generate the overview and group counts from the feature_catalog directory tree or add a test that fails when claimed counts diverge from files.
 

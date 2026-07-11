@@ -74,10 +74,10 @@ Verifier results now carry `verifierSource` in the `maybeVerifyGoal` envelope an
 | `.opencode/plugins/tests/mk-goal-supervisor.test.cjs` | Modified | Added positive default verifier, eight-case negative matrix, LLM error/success paths, and provenance assertions. |
 | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md` | Modified | Documented default verifier behavior, `MK_GOAL_VERIFIER`, `verifier_source`, and heuristic rules. |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Modified | Added `MK_GOAL_VERIFIER` as the thirteenth `MK_GOAL_*` variable and updated the total variable count. |
-| `.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/goal-opencode-plugin.md` | Modified | Synced feature catalog behavior and supervisor-test role. |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | Modified | Synced feature catalog behavior and supervisor-test role. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` | Modified | Added verifier env, provenance, and default-verifier safety expectations. |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | Modified | Added verifier env, provenance, and default-verifier failure triage. |
+| `.opencode/skills/system-spec-kit/feature_catalog/ux-hooks/goal-opencode-plugin.md` | Modified | Synced feature catalog behavior and supervisor-test role. |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | Modified | Synced feature catalog behavior and supervisor-test role. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` | Modified | Added verifier env, provenance, and default-verifier safety expectations. |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | Modified | Added verifier env, provenance, and default-verifier failure triage. |
 | `.opencode/specs/system-deep-loop/032-goal-opencode-plugin/021-completion-verifier-wiring/tasks.md` | Modified | Recorded task completion evidence. |
 | `.opencode/specs/system-deep-loop/032-goal-opencode-plugin/021-completion-verifier-wiring/implementation-summary.md` | Modified | Replaced scaffold content with this implementation summary. |
 <!-- /ANCHOR:what-built -->

@@ -54,7 +54,7 @@ _memory:
 
 ### Problem Statement
 
-The sk-design `manual_testing_playbook`'s `01--mode-routing` category has never been dispatched for real. The automated Lane C skill-benchmark harness force-classifies every `MR-*` scenario as `browser` and routes it out of live-mode scoring entirely, so no genuine end-to-end evidence exists that a generic visual-direction prompt, a static token-system prompt, a temporal motion prompt, a QA-audit prompt, or an explicit `motion:` mode-hint prompt actually resolve through the `sk-design` hub to their documented `workflowMode` and packet in a real `cli-opencode` session.
+The sk-design `manual_testing_playbook`'s `mode-routing` category has never been dispatched for real. The automated Lane C skill-benchmark harness force-classifies every `MR-*` scenario as `browser` and routes it out of live-mode scoring entirely, so no genuine end-to-end evidence exists that a generic visual-direction prompt, a static token-system prompt, a temporal motion prompt, a QA-audit prompt, or an explicit `motion:` mode-hint prompt actually resolve through the `sk-design` hub to their documented `workflowMode` and packet in a real `cli-opencode` session.
 
 ### Purpose
 

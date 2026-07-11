@@ -20,11 +20,11 @@ After sub-phases 002, 003, 004, 005 ship, you sync the umbrella docs (root READM
    - `.../012/004-skill-advisor-affordance-evidence/implementation-summary.md`
    - `.../012/005-memory-causal-trust-display/implementation-summary.md`
 5. **Per-packet entries already written (002-005 inline):**
-   - `feature_catalog/03--discovery/` (002 entry)
-   - `feature_catalog/06--analysis/` (003 entry)
-   - `feature_catalog/11--scoring-and-calibration/` (004 entry)
-   - `feature_catalog/13--memory-quality-and-indexing/` (005 entry)
-   - `feature_catalog/14--pipeline-architecture/` (002 entry)
+   - `feature_catalog/discovery/` (002 entry)
+   - `feature_catalog/analysis/` (003 entry)
+   - `feature_catalog/scoring-and-calibration/` (004 entry)
+   - `feature_catalog/memory-quality-and-indexing/` (005 entry)
+   - `feature_catalog/pipeline-architecture/` (002 entry)
    - Same five categories under `manual_testing_playbook/`
 
 ## Worktree + branch
@@ -62,7 +62,7 @@ After sub-phases 002, 003, 004, 005 ship, you sync the umbrella docs (root READM
 3. **No broken links** — every internal reference must resolve. Use `grep` or a link checker.
 4. **sk-doc DQI ≥85** on each modified umbrella doc.
 5. **INSTALL_GUIDE smoke tests** — at least one verification step per new capability (detect_changes, blast_radius enrichment, affordance evidence, memory trust badges). Each smoke test must be runnable end-to-end.
-6. **Top-level index entries** — list all 5 new per-packet entries (002 contributes 2: `03--discovery` + `14--pipeline-architecture`; 003 contributes 1: `06--analysis`; 004 contributes 1: `11--scoring-and-calibration`; 005 contributes 1: `13--memory-quality-and-indexing`).
+6. **Top-level index entries** — list all 5 new per-packet entries (002 contributes 2: `discovery` + `pipeline-architecture`; 003 contributes 1: `analysis`; 004 contributes 1: `scoring-and-calibration`; 005 contributes 1: `memory-quality-and-indexing`).
 7. **Read whole file before edit.**
 
 ## Success criteria

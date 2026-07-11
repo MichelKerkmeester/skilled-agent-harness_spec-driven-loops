@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Finalize the remaining 009 remediation phases"
     blockers: []
     key_files:
-      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md"
+      - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/loop-lock.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "adversarial-playbook-scenarios-2026-06-29"
@@ -101,13 +101,13 @@ Add one adversarial regression scenario per fixed cluster, phrased to FAIL when 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/loop-lock.md` | Modify | Add the refresh-vs-reclaim split-brain adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-integrity-helpers.md` | Modify | Add the non-representable-state-throws adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-serialize-diff.md` | Modify | Add the concurrent diff-gated append no-row-loss adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state-deferred-writer.md` | Modify | Add the deferred-flush-error-surfaces adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/jsonl-repair.md` | Modify | Add the no-trailing-newline no-corrupt adversarial scenario. |
-| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md` | Modify | Add the exit-0/no-artifact not-fulfilled adversarial scenario. |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` | Modify | Add the terminal-revival stale-usage and injection-clamp marker adversarial scenarios. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/loop-lock.md` | Modify | Add the refresh-vs-reclaim split-brain adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/atomic-state-integrity-helpers.md` | Modify | Add the non-representable-state-throws adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/atomic-state-serialize-diff.md` | Modify | Add the concurrent diff-gated append no-row-loss adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/atomic-state-deferred-writer.md` | Modify | Add the deferred-flush-error-surfaces adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/state-safety/jsonl-repair.md` | Modify | Add the no-trailing-newline no-corrupt adversarial scenario. |
+| `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md` | Modify | Add the exit-0/no-artifact not-fulfilled adversarial scenario. |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | Modify | Add the terminal-revival stale-usage and injection-clamp marker adversarial scenarios. |
 <!-- /ANCHOR:scope -->
 
 ---

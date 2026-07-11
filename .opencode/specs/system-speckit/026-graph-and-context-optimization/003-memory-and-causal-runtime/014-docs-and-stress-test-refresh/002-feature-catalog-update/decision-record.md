@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "feature_catalog/feature_catalog.md"
-      - "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
-      - "feature_catalog/14--pipeline-architecture/"
+      - "feature_catalog/lifecycle/checkpoint-creation-checkpointcreate.md"
+      - "feature_catalog/pipeline-architecture/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "feature-catalog-update-packet-setup"
@@ -122,7 +122,7 @@ Checkpoint v2 is the same capability as v1 (`checkpoint_create` / `checkpoint_re
 ### Implementation
 
 **What changes**:
-- `05--lifecycle/checkpoint-creation-checkpointcreate.md` and `checkpoint-restore-checkpointrestore.md` gain the v2 path.
+- `lifecycle/checkpoint-creation-checkpointcreate.md` and `checkpoint-restore-checkpointrestore.md` gain the v2 path.
 - `feature_catalog.md` section 6 Lifecycle blocks are synced.
 
 **How to roll back**: Revert the two file edits; the prior v1-only content returns with no runtime effect.
@@ -154,7 +154,7 @@ The front-proxy, schema-version-history, and post-insert enrichment marker are c
 
 **We chose**: Give each new capability its own numbered file in the next free slot of its category, then register it in the index.
 
-**How it works**: The front-proxy lands in `14--pipeline-architecture/189`, the schema history and error-code reference in `08--bug-fixes-and-data-integrity/069` and `070`, the enrichment marker in `13--memory-quality-and-indexing/162`, and the sk-git convention in `16--tooling-and-scripts/241`.
+**How it works**: The front-proxy lands in `pipeline-architecture/189`, the schema history and error-code reference in `bug-fixes-and-data-integrity/069` and `070`, the enrichment marker in `memory-quality-and-indexing/162`, and the sk-git convention in `tooling-and-scripts/241`.
 
 ### Alternatives Considered
 
@@ -221,7 +221,7 @@ The front-proxy, schema-version-history, and post-insert enrichment marker are c
 
 ### Decision
 
-**We chose**: One unified error-code reference file (`08--bug-fixes-and-data-integrity/070`) that lists `E429`, `-32001`, and `-32002` with their retry semantics and source anchors.
+**We chose**: One unified error-code reference file (`bug-fixes-and-data-integrity/070`) that lists `E429`, `-32001`, and `-32002` with their retry semantics and source anchors.
 
 **How it works**: The file unifies the scattered mentions into one table with code, meaning, retry semantics, and source file, so an operator reads one page.
 
@@ -263,7 +263,7 @@ The front-proxy, schema-version-history, and post-insert enrichment marker are c
 ### Implementation
 
 **What changes**:
-- New `08--bug-fixes-and-data-integrity/error-code-reference.md`; registered in the index.
+- New `bug-fixes-and-data-integrity/error-code-reference.md`; registered in the index.
 
 **How to roll back**: Delete the file and its index entry.
 

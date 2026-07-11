@@ -92,7 +92,7 @@ Every system-code-graph doc uses code-graph's own current names and contains zer
 | `.opencode/skills/system-code-graph/mcp_server/tests/lib/README.md` | Modify | shared/retired-search-path.ts ref |
 | `.opencode/skills/system-code-graph/mcp_server/stress_test/code-graph/README.md` | Modify | "CCC bridge" prose + ghost ccc-integration-stress test |
 | `.opencode/skills/system-code-graph/ARCHITECTURE.md` | Modify | (expanded) "structural search bridge" subsystem + diagram + false sqlite-vec/semantic-runtime claims |
-| `.opencode/skills/system-code-graph/feature_catalog/06--mcp-tool-surface/01-tool-registrations.md` | Modify | (expanded) phantom `code_graph_* and detect_changes` tool name |
+| `.opencode/skills/system-code-graph/feature_catalog/mcp-tool-surface/01-tool-registrations.md` | Modify | (expanded) phantom `code_graph_* and detect_changes` tool name |
 <!-- /ANCHOR:scope -->
 
 ---

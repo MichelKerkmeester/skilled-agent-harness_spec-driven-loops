@@ -87,7 +87,7 @@ Move the 009 packet from CONDITIONAL to PASS by remediating all 11 active findin
 | `.opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts` | Modify | Use output-policy resolver + render-safety sanitizers (Seam B, C, E) |
 | `.opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts` | Modify | Use output-policy resolver (Seam B) |
 | `.opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts` | Modify | Fix transition comma-splitting (Seam D) |
-| `.opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md` | Modify | Align overwrite-behavior claim with code (Seam E) |
+| `.opencode/skills/sk-design/design-md-generator/feature_catalog/report-preview/report-preview.md` | Modify | Align overwrite-behavior claim with code (Seam E) |
 | `.opencode/skills/sk-design/shared/procedure_card_schema.md` | Modify | Wire schema lint into canon checker (P2-001) |
 | `.opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md` | Modify | Resolve duplicate benchmark artifact naming (P2-002) |
 | `.opencode/skills/sk-design/design-md-generator/backend/tests/*` | Modify/Create | Regression tests for all seams + P2-003 test coverage |

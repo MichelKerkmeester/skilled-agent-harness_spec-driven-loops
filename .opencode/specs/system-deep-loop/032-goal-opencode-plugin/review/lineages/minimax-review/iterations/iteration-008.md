@@ -5,9 +5,9 @@
 - Dimension: traceability (overlay: playbook_capability)
 - Goal: compare the two manual testing playbook rows for the goal
   plugin
-  (`manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`
+  (`manual_testing_playbook/ux-hooks/goal-opencode-plugin.md`
   and
-  `manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md`)
+  `manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md`)
   against the shipped plugin surface, the test files, and the
   expected output signals.
 
@@ -37,11 +37,11 @@ None.
   less detailed than system-skill-advisor playbook (503 lines); the
   latter has 7 sections vs the former's 5** —
   `wc -l` confirms
-  `manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` is
+  `manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` is
   196 lines with sections 1. OVERVIEW, 2. SCENARIO CONTRACT,
   3. TEST EXECUTION (with sub-sections), 4. SOURCE FILES, 5. SOURCE
   METADATA. The system-skill-advisor
-  (`manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md`)
+  (`manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md`)
   is 503 lines with 8 sections including 5. ADVERSARIAL REGRESSION
   (with sub-sections 5.1, 5.2, Regression Anchors), 7. EVIDENCE
   (with sub-sections), 8. PASS/FAIL. The system-skill-advisor
@@ -138,8 +138,8 @@ frontmatter only.
 ## Claim Adjudication
 
 ```json
-{"findingId":"F027","claim":"system-spec-kit playbook is 196 lines, 5 sections; system-skill-advisor playbook is 503 lines, 8 sections. The latter includes adversarial-regression and evidence-template sections the former omits.","evidenceRefs":[".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md"],"counterevidenceSought":"Re-counted sections and lines for both playbooks; confirmed the depth disparity.","alternativeExplanation":"Could be that system-spec-kit and system-skill-advisor are intentionally maintained at different depths (system-spec-kit as a quick-reference, system-skill-advisor as the canonical deep playbook).","finalSeverity":"P2","confidence":0.85,"downgradeTrigger":"If the system-spec-kit playbook is intentionally a quick-reference and the system-skill-advisor is the canonical deep version, downgrade to P2 (already P2)."}
-{"findingId":"F028","claim":"system-spec-kit playbook omits mk-goal-continuation.test.cjs from its test-fallback path; system-skill-advisor playbook includes it.","evidenceRefs":[".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md §3.10-11",".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md §3.1-2"],"counterevidenceSought":"Re-grepped both playbooks for 'continuation.test' or similar; confirmed system-spec-kit is missing it.","alternativeExplanation":"Could be that the system-spec-kit playbook was authored before phase 012 added the continuation test, and the doc-staleness audit should have surfaced this. The audit did not.","finalSeverity":"P2","confidence":0.95,"downgradeTrigger":"None — this is a documentation drift, not a defect."}
+{"findingId":"F027","claim":"system-spec-kit playbook is 196 lines, 5 sections; system-skill-advisor playbook is 503 lines, 8 sections. The latter includes adversarial-regression and evidence-template sections the former omits.","evidenceRefs":[".opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md",".opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md"],"counterevidenceSought":"Re-counted sections and lines for both playbooks; confirmed the depth disparity.","alternativeExplanation":"Could be that system-spec-kit and system-skill-advisor are intentionally maintained at different depths (system-spec-kit as a quick-reference, system-skill-advisor as the canonical deep playbook).","finalSeverity":"P2","confidence":0.85,"downgradeTrigger":"If the system-spec-kit playbook is intentionally a quick-reference and the system-skill-advisor is the canonical deep version, downgrade to P2 (already P2)."}
+{"findingId":"F028","claim":"system-spec-kit playbook omits mk-goal-continuation.test.cjs from its test-fallback path; system-skill-advisor playbook includes it.","evidenceRefs":[".opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md §3.10-11",".opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md §3.1-2"],"counterevidenceSought":"Re-grepped both playbooks for 'continuation.test' or similar; confirmed system-spec-kit is missing it.","alternativeExplanation":"Could be that the system-spec-kit playbook was authored before phase 012 added the continuation test, and the doc-staleness audit should have surfaced this. The audit did not.","finalSeverity":"P2","confidence":0.95,"downgradeTrigger":"None — this is a documentation drift, not a defect."}
 ```
 
 Review verdict: PASS

@@ -58,7 +58,7 @@ _memory:
 ### Docs (2 files)
 
 - `mcp_server/ENV_REFERENCE.md` §14 RERANKER — intro paragraph rewritten with removal narrative + activation instructions.
-- `feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` — `COHERE_API_KEY` row deleted; `VOYAGE_API_KEY` row scoped to embeddings only with note that reranker support was removed in 022/013; `RERANKER_LOCAL` description updated to reflect it is now the only activation path.
+- `feature_catalog/feature-flag-reference/05-5-embedding-and-api.md` — `COHERE_API_KEY` row deleted; `VOYAGE_API_KEY` row scoped to embeddings only with note that reranker support was removed in 022/013; `RERANKER_LOCAL` description updated to reflect it is now the only activation path.
 
 ### Tests (2 modified + 1 deleted)
 
@@ -146,7 +146,7 @@ Code (4 files):
 
 Docs (2 files):
 - ENV_REFERENCE.md §14 RERANKER intro rewritten.
-- feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md:
+- feature_catalog/feature-flag-reference/05-5-embedding-and-api.md:
   COHERE_API_KEY row deleted; VOYAGE_API_KEY row scoped to embeddings
   only.
 
@@ -182,7 +182,7 @@ Explicit paths:
 .opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts
 .opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts
 .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md
-.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md
+.opencode/skills/system-spec-kit/feature_catalog/feature-flag-reference/05-5-embedding-and-api.md
 .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts
 .opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts
 .opencode/skills/system-spec-kit/mcp_server/tests/reranker-eval-comparison.vitest.ts  (DELETED)

@@ -57,7 +57,7 @@ description: "Auto-generated research resource map from convergence evidence."
 | .opencode/skills/sk-doc/scripts/validate-doc-model-refs.js:144,160 | Cited | MISSING | Citations=1; Iterations=1 |
 | .opencode/skills/system-code-graph/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/system-spec-kit/constitutional/ | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/04-dead-code-removal.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/04-dead-code-removal.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json:155,795 | Cited | MISSING | Citations=1; Iterations=1 |

@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/SKILL.md"
       - ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:f81ea6b5135398414319c9e07f124145b03d0178cbc439bc3e0a5cdc6fbdf38e"
       session_id: "goal-system-spec-kit-integration-20260630"
@@ -65,7 +65,7 @@ _memory:
 - [x] T004 Add goal-plugin operator reference (`.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md`)
 - [x] T005 Update system-spec-kit routing and runtime docs (`SKILL.md`, `references/config/hook_system.md`, `ARCHITECTURE.md`)
 - [x] T006 Update bridge/env boundary docs (`mcp_server/plugin_bridges/README.md`, `mcp_server/ENV_REFERENCE.md`)
-- [x] T007 Add feature catalog and manual playbook assets (`feature_catalog/18--ux-hooks/goal-opencode-plugin.md`, `manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`)
+- [x] T007 Add feature catalog and manual playbook assets (`feature_catalog/ux-hooks/goal-opencode-plugin.md`, `manual_testing_playbook/ux-hooks/goal-opencode-plugin.md`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

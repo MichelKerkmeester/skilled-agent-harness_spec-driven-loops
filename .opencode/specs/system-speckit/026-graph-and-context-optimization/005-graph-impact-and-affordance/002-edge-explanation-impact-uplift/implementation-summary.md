@@ -37,8 +37,8 @@ _memory:
 - Ambiguous symbol subjects return candidate metadata and a structured fallback instead of silently choosing a default graph node.
 - Added targeted test coverage in existing Code Graph Vitest files for edge metadata, relationship output, context propagation, risk levels, confidence filtering, ambiguity candidates and failure fallback.
 - Added per-packet docs:
-  - `.opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md`
-  - `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md`
+  - `.opencode/skills/system-spec-kit/feature_catalog/analysis/08-code-graph-edge-explanation-blast-radius-uplift.md`
+  - `.opencode/skills/system-spec-kit/manual_testing_playbook/analysis/026-code-graph-edge-explanation-blast-radius-uplift.md`
 
 ## Risk Classification Rules Decided
 Final graph-local `riskLevel` rules:

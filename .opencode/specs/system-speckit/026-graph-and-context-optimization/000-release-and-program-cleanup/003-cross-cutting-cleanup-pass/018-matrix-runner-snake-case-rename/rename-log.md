@@ -69,9 +69,9 @@ _memory:
 - `.opencode/skills/system-spec-kit/ARCHITECTURE.md`
 - `.opencode/skills/system-spec-kit/README.md`
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/37-cli-matrix-adapter-runners.md`
 - `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/282-code-graph-cell-coverage-evidence.md`
 - `.opencode/skills/system-spec-kit/mcp_server/README.md`
 - `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md`

@@ -8,7 +8,7 @@ Focus: **F2 — PC-005 bench runner.** The PC-005 scenario doc omits the require
 KEY FILES:
 - `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py` (argparse: --dataset required; default gate thresholds)
 - `.opencode/skills/system-skill-advisor/mcp_server/bench/` (latency-bench.ts, scorer-bench.ts, baselines)
-- scenario doc: `.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/005-bench-runner.md`
+- scenario doc: `.opencode/skills/system-skill-advisor/manual_testing_playbook/python-compat/005-bench-runner.md`
 - Evidence from 028: bench with --dataset exited 1, gates {warm_p95:false, cold_p95:false, throughput_multiplier:true}.
 
 OUTPUT CONTRACT (all THREE required):

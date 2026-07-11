@@ -124,7 +124,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `../before-vs-after.md` (49, 61, 193) | "renamed twice" vs "renamed three times" wobble; false `opencode_goal.md` narrative; false "goal.md never actually shipped" claim | Reconcile to "three times"; correct narrative; drop the never-shipped claim | `grep` for corrected text; internal consistency between §3/§10 |
 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` (125) | Claims mk-goal lifecycle handlers cover "compaction" | Remove/qualify the word | `grep -n "compaction"` context matches actual handled events (session.created/status/idle/deleted, message.updated, permission.\*, question.\*, \*.disposed) |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md` (192) | Link text `007-goal-opencode-plugin.md` vs actual file `goal-opencode-plugin.md` | Fix link text | `grep -n "007-goal-opencode-plugin.md"` returns zero hits; href still resolves |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` (58-66) | Validation table omits `mk-goal-export-contract.test.cjs` | Add the missing test row | Table lists all live plugin test files |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` (58-66) | Validation table omits `mk-goal-export-contract.test.cjs` | Add the missing test row | Table lists all live plugin test files |
 | `../graph-metadata.json` (parent) | `derived.status` may lag corrected phase statuses | Regenerate via `backfill-graph-metadata.ts` after doc fixes land | Script output / diff review |
 
 Required inventories:

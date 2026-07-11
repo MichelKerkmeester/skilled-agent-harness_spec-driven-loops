@@ -8,7 +8,7 @@ Inspect deep-improvement docs that describe integration scanning and mirror gate
 
 1. `deep-improvement/README.md` says `scan-integration.cjs` inventories three runtime mirrors and lists `.opencode/agents/`, `.claude/agents/`, and `.opencode/agents/` again, which is internally ambiguous and stale relative to the removed TOML mirror requirement. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/README.md:81]
 2. The same README FAQ says the scanner finds the canonical definition plus three runtime mirrors. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/README.md:161]
-3. `feature_catalog/02--integration-scanning/runtime-mirrors.md` explicitly says the hardcoded templates include `.opencode/agents/{name}.toml`. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/02--integration-scanning/runtime-mirrors.md:27-30]
+3. `feature_catalog/integration-scanning/runtime-mirrors.md` explicitly says the hardcoded templates include `.opencode/agents/{name}.toml`. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/integration-scanning/runtime-mirrors.md:27-30]
 4. `references/agent_improvement/integration_scanning.md` lists `.opencode/agents/{name}.toml` as an OpenCode mirror and includes it in example output. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md:42-47] [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md:80-85]
 5. `references/agent_improvement/mirror_drift_policy.md` requires `.opencode/agents/`, `.claude/agents/`, and `.opencode/agents/` to contain the corresponding agent and says OpenCode TOML is compared by extracted `developer_instructions`. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/mirror_drift_policy.md:41-43]
 6. This is implementation-coupled drift, not only prose: `scan-integration.cjs` still has `.opencode/agents/{name}.toml` in its mirror templates. [SOURCE: .opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/scan-integration.cjs:18]
@@ -16,7 +16,7 @@ Inspect deep-improvement docs that describe integration scanning and mirror gate
 ## Sources Consulted
 
 - `.opencode/skills/deep-loop-workflows/deep-improvement/README.md`
-- `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/02--integration-scanning/runtime-mirrors.md`
+- `.opencode/skills/deep-loop-workflows/deep-improvement/feature_catalog/integration-scanning/runtime-mirrors.md`
 - `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/integration_scanning.md`
 - `.opencode/skills/deep-loop-workflows/deep-improvement/references/agent_improvement/mirror_drift_policy.md`
 - `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/scan-integration.cjs`

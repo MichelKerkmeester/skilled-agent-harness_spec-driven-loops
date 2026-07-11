@@ -64,15 +64,15 @@ This packet resolves the 4 `FIXME(sa-*)` markers left in stress tests by packets
 
 ### sa-004: Test Cleanup (No Product Change)
 
-The FIXME on `generation-snapshot-stress.vitest.ts` line 63 claimed the catalog expected `unavailable` trust state for corrupted counters. Re-reading catalog `01--daemon-and-freshness/04-generation.md` §2 shows it actually says: *"Corrupted counters are recovered when recoverable and reported as `unavailable` freshness when not."* — both behaviors are valid. The test is now anchored to the catalog quote, asserts the `recovered` path explicitly (since the test environment is writable), and the FIXME is gone.
+The FIXME on `generation-snapshot-stress.vitest.ts` line 63 claimed the catalog expected `unavailable` trust state for corrupted counters. Re-reading catalog `daemon-and-freshness/04-generation.md` §2 shows it actually says: *"Corrupted counters are recovered when recoverable and reported as `unavailable` freshness when not."* — both behaviors are valid. The test is now anchored to the catalog quote, asserts the `recovered` path explicitly (since the test environment is writable), and the FIXME is gone.
 
 ### sa-036: Catalog Count Correction
 
-Catalog `08--python-compat/02-regression-suite.md` claimed "52/52" cases passing. The fixture JSONL at `scripts/fixtures/skill_advisor_regression_cases.jsonl` actually has 51 lines. Catalog updated to 51/51 (title, description, trigger phrase, current-reality prose).
+Catalog `python-compat/02-regression-suite.md` claimed "52/52" cases passing. The fixture JSONL at `scripts/fixtures/skill_advisor_regression_cases.jsonl` actually has 51 lines. Catalog updated to 51/51 (title, description, trigger phrase, current-reality prose).
 
 ### sa-037: Catalog Wording
 
-Catalog `08--python-compat/03-bench-runner.md` documented `cache-hit p95 ≤ 50 ms` and `uncached p95 ≤ 60 ms` ambiguously — they read like CI gates but are actually design ceilings on a stable workstation. Updated to clarify they are "design ceilings rather than enforceable CI gates" and added a sentence about the test wrapper's actual contract. Test FIXME removed.
+Catalog `python-compat/03-bench-runner.md` documented `cache-hit p95 ≤ 50 ms` and `uncached p95 ≤ 60 ms` ambiguously — they read like CI gates but are actually design ceilings on a stable workstation. Updated to clarify they are "design ceilings rather than enforceable CI gates" and added a sentence about the test wrapper's actual contract. Test FIXME removed.
 
 ### Files Changed
 
@@ -80,8 +80,8 @@ Catalog `08--python-compat/03-bench-runner.md` documented `cache-hit p95 ≤ 50 
 |------|--------|---------|
 | `mcp_server/skill_advisor/lib/derived/extract.ts` | Modified | sa-011 fix: 3 surgical edits to bucket merge, dependency dedup, graph-metadata exclusion |
 | `mcp_server/skill_advisor/lib/derived/sync.ts` | Modified | sa-011 fix: stableDerivedJson + preserve-existing-on-stable branch |
-| `mcp_server/skill_advisor/feature_catalog/08--python-compat/02-regression-suite.md` | Modified | sa-036: 52 → 51 |
-| `mcp_server/skill_advisor/feature_catalog/08--python-compat/03-bench-runner.md` | Modified | sa-037: design envelope wording |
+| `mcp_server/skill_advisor/feature_catalog/python-compat/02-regression-suite.md` | Modified | sa-036: 52 → 51 |
+| `mcp_server/skill_advisor/feature_catalog/python-compat/03-bench-runner.md` | Modified | sa-037: design envelope wording |
 | `mcp_server/skill_advisor/tests/lifecycle-derived-metadata.vitest.ts` | Modified | Updated unit test for new bucket semantics; 16/16 still pass |
 | `mcp_server/stress_test/skill-advisor/auto-indexing-derived-sync-stress.vitest.ts` | Modified | sa-011 FIXME removed; tightened to assert `changed=false` on second pass |
 | `mcp_server/stress_test/skill-advisor/generation-snapshot-stress.vitest.ts` | Modified | sa-004 FIXME removed; assertion anchored to catalog quote |

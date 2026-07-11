@@ -100,7 +100,7 @@ confidence: 0.94
 
 ### DR-004-04 [P2] [traceability] Feature catalog still routes removed deep-loop coverage graph tools through system-spec-kit MCP files
 
-file: `.opencode/skills/system-code-graph/feature_catalog/06--mcp-tool-surface/01-tool-registrations.md:14`
+file: `.opencode/skills/system-code-graph/feature_catalog/mcp-tool-surface/01-tool-registrations.md:14`
 
 evidence:
 
@@ -136,7 +136,7 @@ evidence:
 
 why: The root catalog now says the deep-loop MCP tools were removed and replaced by direct `.cjs` scripts, but the tool-registration feature file still tells readers that system-spec-kit registers and dispatches those tools and cites stale schema ranges. The cited `system-spec-kit` dispatcher currently lists only context, memory, causal, checkpoint and lifecycle modules, so the feature file's source anchors no longer describe the live surface.
 
-fix: Update `06--mcp-tool-surface/01-tool-registrations.md` to remove the system-spec-kit MCP dispatch/schema rows or mark them historical, and point live coverage graph references at `.opencode/skills/deep-loop-runtime/scripts/{query,status,upsert,convergence}.cjs`.
+fix: Update `mcp-tool-surface/01-tool-registrations.md` to remove the system-spec-kit MCP dispatch/schema rows or mark them historical, and point live coverage graph references at `.opencode/skills/deep-loop-runtime/scripts/{query,status,upsert,convergence}.cjs`.
 
 confidence: 0.93
 

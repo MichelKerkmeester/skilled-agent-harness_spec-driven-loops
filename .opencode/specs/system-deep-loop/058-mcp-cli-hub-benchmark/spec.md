@@ -52,10 +52,10 @@ Delivered as a flat packet (not phase children):
 - **mcp-figma router normalization** — additive `INTENT_SIGNALS` mirror of the runtime `INTENT_MODEL` (per-intent
   weight = max per-keyword weight), runtime selector byte-unchanged, key-sync vitest (4/4). Parser now yields all
   6 intents (was 0).
-- **Per-child Type-1 gold** (5 children) — `manual_testing_playbook/10--intra-routing-recall/` packs: a T1
+- **Per-child Type-1 gold** (5 children) — `manual_testing_playbook/intra-routing-recall/` packs: a T1
   scenario per `INTENT_SIGNALS` key (`expected_resources` verbatim from `RESOURCE_MAP`) + T2 blind holdouts + a T3
   negative. Every child now scores real Type-1 (no NO-SCENARIOS).
-- **Hub Type-2 hardening** — blind holdouts added to each hub's `01--hub-routing/`; both hubs route them correctly.
+- **Hub Type-2 hardening** — blind holdouts added to each hub's `hub-routing/`; both hubs route them correctly.
 - **Genuine Mode-B live dispatch** — proven via a configured model env (`SKILL_BENCH_OPENCODE_MODEL`); a blind
   holdout that scored 31 deterministically routed at 66 live.
 - **Router improvements from the findings** — per-child keyword broadening (domain synonyms, blind to the

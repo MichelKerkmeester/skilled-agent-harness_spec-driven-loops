@@ -15,7 +15,7 @@ I've completed a thorough read-only trace of the slice. Here is my analysis.
 - `convergence.cjs`, `upsert.cjs`, `loop-lock.cjs` — executed via `bash:`/`command:` in all four loops.
 - `fanout-run.cjs` — executed (research/review; opt-in in context). `fanout-pool.cjs` / `fanout-salvage.cjs` — live top-level `require()` inside `fanout-run.cjs` (`fanout-run.cjs:34,325`), so transitively wired.
 - `fanout-merge.cjs` — genuinely executed in research/review synthesis (`deep_research_auto.yaml:860`, `command:`); the deep-context `tool:`/"reuse its shape" reference (`deep_context_auto.yaml:490`) is by design — deep-context does a HOST merge and `reduce-state.cjs` is the writer.
-- `query.cjs` — **not** loop-wired, but documented manual/doctor entry point (`script_interface_contract.md`, `feature_catalog/07--script-entry-points/query-script.md`, doctor `_routes.yaml`). Not dead.
+- `query.cjs` — **not** loop-wired, but documented manual/doctor entry point (`script_interface_contract.md`, `feature_catalog/script-entry-points/query-script.md`, doctor `_routes.yaml`). Not dead.
 - `lib/cli-guards.cjs`, `status.cjs` — required by multiple scripts / wired in ai-council.
 
 ### Per-mode workflow scripts — all reachable

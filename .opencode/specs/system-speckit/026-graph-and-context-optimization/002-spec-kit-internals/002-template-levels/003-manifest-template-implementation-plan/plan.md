@@ -249,11 +249,11 @@ Emit description.json + graph-metadata.json with `level: 3` field embedded
 19. ADD workflow-invariance allowlist entry for the literal `capability-flags.ts` source-path/symbol identifier per T-430a, complete audit-D catalog/playbook cleanup (30 MODIFY files), confirm stress-test NO-OP scope, and run final validation + rollback dry-run.
 
    **Heaviest catalog/playbook edits**:
-   - `feature_catalog/16--tooling-and-scripts/30-template-composition-system.md` (full rewrite for C+F greenfield)
+   - `feature_catalog/tooling-and-scripts/30-template-composition-system.md` (full rewrite for C+F greenfield)
    - `feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` (repoint root-template refs)
-   - `feature_catalog/19--feature-flag-reference/{01-1-search-pipeline-features-speckit, 11-memory-roadmap-capability-flags}.md` (banned-vocab retitle; CI exemption may be needed if `capability-flags.ts` source path keeps name)
-   - `manual_testing_playbook/16--tooling-and-scripts/244-template-composition-system.md` (full rewrite — replaces `compose.sh` validation with Level generation/invariance checks)
-   - `manual_testing_playbook/19--feature-flag-reference/125-memory-roadmap-capability-flags.md` (parallel retitle)
+   - `feature_catalog/feature-flag-reference/{01-1-search-pipeline-features-speckit, 11-memory-roadmap-capability-flags}.md` (banned-vocab retitle; CI exemption may be needed if `capability-flags.ts` source path keeps name)
+   - `manual_testing_playbook/tooling-and-scripts/244-template-composition-system.md` (full rewrite — replaces `compose.sh` validation with Level generation/invariance checks)
+   - `manual_testing_playbook/feature-flag-reference/125-memory-roadmap-capability-flags.md` (parallel retitle)
    - Plus 13 mechanical wording cleanups in feature_catalog and 4 moderate edits in manual_testing_playbook
 
 **GATE 4A:**
@@ -270,7 +270,7 @@ Emit description.json + graph-metadata.json with `level: 3` field embedded
 - [ ] `bash scripts/tests/workflow-invariance.vitest.ts` passes (no banned vocabulary in any of the 8 surface categories)
 
 **GATE 4C:**
-- [ ] `rg "compose\.sh"` returns 0 hits in `system-spec-kit/{feature_catalog/16--tooling-and-scripts/30-template-composition-system.md, manual_testing_playbook/16--tooling-and-scripts/244-template-composition-system.md}` (full rewrites complete per audit §2.5g)
+- [ ] `rg "compose\.sh"` returns 0 hits in `system-spec-kit/{feature_catalog/tooling-and-scripts/30-template-composition-system.md, manual_testing_playbook/tooling-and-scripts/244-template-composition-system.md}` (full rewrites complete per audit §2.5g)
 - [ ] `rg -i "memory roadmap capability flags"` returns 0 hits in feature_catalog/19 + manual_testing_playbook/19 (retitled to "roadmap flags" per audit §2.5g)
 - [ ] Stress-test surfaces remain byte-identical to pre-impl state (`templates/stress_test/` and `mcp_server/stress_test/`)
 - [ ] `bash validate.sh --strict` passes against all 868 existing spec folders + 6 freshly-scaffolded sample packets

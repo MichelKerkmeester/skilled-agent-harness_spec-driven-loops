@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md"
       - ".opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/mutation/soft-delete-tombstones-and-active-purgeable-partitions.md"
       - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -59,7 +59,7 @@ The false-now correction pass aligned current reader-facing docs with shipped be
 | Retention survivor table | Requested drift was `SPECKIT_RETENTION_FORGETTING_V1` at `feature-flags.md:23`; session read found line 23 already corrected. | `.opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md:23` names `SPECKIT_RETENTION_FORGETTING`. |
 | Track-C supersession | `.opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md:112-116` said Track C was proposed, not run, and no code had landed with no pointer to later measured results. | `.opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md:114` adds the supersession pointer to the later landed thirteen-switch benchmark section. |
 | Retention final tally row | `.opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md:181` named `SPECKIT_RETENTION_FORGETTING_V1`. | `.opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md:183` names `SPECKIT_RETENTION_FORGETTING`. |
-| Soft-delete catalog | Requested drift was a claim that recall surfaces do not filter tombstoned rows by default; session read found line 20 already corrected. | `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md:20` states search, list, triggers, stats, and dedup reads exclude soft-deleted rows by default. |
+| Soft-delete catalog | Requested drift was a claim that recall surfaces do not filter tombstoned rows by default; session read found line 20 already corrected. | `.opencode/skills/system-spec-kit/feature_catalog/mutation/soft-delete-tombstones-and-active-purgeable-partitions.md:20` states search, list, triggers, stats, and dedup reads exclude soft-deleted rows by default. |
 | Envelope fidelity comment | Requested drift was `gated dark` / `Off by default`; session read found the comment already corrected. | `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1350-1352` states default-on behavior and `SPECKIT_ENVELOPE_FIDELITY=false` opt-out. |
 
 ### Files Changed

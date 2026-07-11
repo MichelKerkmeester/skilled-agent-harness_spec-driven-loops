@@ -75,9 +75,9 @@ This phase implemented the full alignment pass: 8 new hub scenarios, 15 new mode
 
 ### In Scope
 
-- Added hub `PB-004..006` inside `06--parity-behavior/` for motion procedure selection, audit procedure selection, and shared polish-gate selection.
-- Added hub `07--fallback-and-resilience/` with `FR-001..002` for no-card fallback and direct fallback without subagents.
-- Added hub `08--hub-manager-intake/` with `HM-001..003` for context-first intake, visible plan, and verifier-cadence pause.
+- Added hub `PB-004..006` inside `parity-behavior/` for motion procedure selection, audit procedure selection, and shared polish-gate selection.
+- Added hub `fallback-and-resilience/` with `FR-001..002` for no-card fallback and direct fallback without subagents.
+- Added hub `hub-manager-intake/` with `HM-001..003` for context-first intake, visible plan, and verifier-cadence pause.
 - Added one procedure-card-contract category per mode packet, each with 3 scenarios.
 - Updated the hub and all five mode root `manual_testing_playbook.md` files for category rows, scenario counts, and cross-reference indexes.
 - Updated Phase 011 tracking docs and created `implementation-summary.md`.
@@ -122,7 +122,7 @@ This phase implemented the full alignment pass: 8 new hub scenarios, 15 new mode
 
 | ID | Requirement | Completion Evidence |
 |----|-------------|---------------------|
-| REQ-008 | Category folders use `NN--kebab-case` | New folders: `07--fallback-and-resilience`, `08--hub-manager-intake`, and per-mode `NN--procedure-card-contract`. |
+| REQ-008 | Category folders use `NN--kebab-case` | New folders: `fallback-and-resilience`, `hub-manager-intake`, and per-mode `NN--procedure-card-contract`. |
 | REQ-009 | Root playbooks updated | Six root playbooks updated with category/count/index entries. |
 | REQ-010 | Critical-path recommendation recorded | Hub root records PB/FR/HM additions as candidate critical-path items, not silently promoted. |
 | REQ-011 | Verification commands stated | `implementation-summary.md` records validation command and result; checklist records consistency evidence. |

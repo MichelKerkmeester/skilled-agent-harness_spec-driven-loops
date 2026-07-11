@@ -131,7 +131,7 @@ _memory:
   - **Evidence**: `find ... -name '[0-9][0-9][0-9]-*.md' | wc -l` returns 42
 - [x] CHK-503 [P0] Entry-point `manual_testing_playbook.md` follows sk-doc §1–6 structure
   - **Evidence**: §1-18 sections present; passes validator as `readme` type
-- [x] CHK-504 [P0] All 9 category dirs exist (01--native-mcp-tools through 10--python-compat, with 09-- gap preserved)
+- [x] CHK-504 [P0] All 9 category dirs exist (native-mcp-tools through python-compat, with 09-- gap preserved)
   - **Evidence**: `find -maxdepth 2 -type d` lists 01..08 + 10
 - [x] CHK-505 [P0] SAD-001..SAD-004 absorbed into NC-001/NC-004/NC-006/CL-001 with "Absorbed from former SAD-NNN" notes
   - **Evidence**: `grep 'Absorbed from former SAD'` finds 4 hits in receiver OVERVIEW sections

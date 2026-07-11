@@ -17,8 +17,8 @@ Inventory pass for `.opencode/skills/system-deep-loop`, covering the hub, four w
 - `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs:21` - reducer sample; state parsing and registry synchronization are central correctness surfaces.
 - `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md:60` - deep-research lifecycle reference sample; dense cross-file state references merit later traceability review.
 - `.opencode/skills/system-deep-loop/deep-improvement/references/shared/quick_reference.md:41` - deep-improvement operator command and runtime layout sample.
-- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/05--skill-benchmark/dual-report-and-remediation.md:23` - benchmark/reporting cross-reference sample; explicitly documents a taxonomy/reporting non-wiring caveat.
-- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/05--skill-benchmark/scoring-and-funnel.md:23` - benchmark scoring cross-reference sample; explicitly documents hardcoded-vs-reference profile behavior.
+- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/skill-benchmark/dual-report-and-remediation.md:23` - benchmark/reporting cross-reference sample; explicitly documents a taxonomy/reporting non-wiring caveat.
+- `.opencode/skills/system-deep-loop/deep-improvement/feature_catalog/skill-benchmark/scoring-and-funnel.md:23` - benchmark scoring cross-reference sample; explicitly documents hardcoded-vs-reference profile behavior.
 - `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:122` - council resource-domain and script surface sample.
 
 Tree inventory was confirmed with `find .opencode/skills/system-deep-loop -maxdepth 2 -type d | sort`. Major structural units present: hub files, `deep-research/`, `deep-review/`, `deep-improvement/`, `deep-ai-council/`, `runtime/`, `shared/`, `benchmark/`, `changelog/`, `manual_testing_playbook/`, and multiple `node_modules/` directories. The `node_modules/` directories are dependency trees and are out of review scope.

@@ -21,7 +21,7 @@ Ambiguity note: the focus could include every deep-loop mode. I selected the nar
 
 ## Dead Ends
 
-- Deep-review graphless fallback surfaces were discovered but not investigated in this iteration because they are review-specific, not memory-save/resume/deep-research reliability references. They remain a possible later audit path for cross-mode fallback consistency. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md:13]
+- Deep-review graphless fallback surfaces were discovered but not investigated in this iteration because they are review-specific, not memory-save/resume/deep-research reliability references. They remain a possible later audit path for cross-mode fallback consistency. [SOURCE: .opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/review-depth-v2-rollout/stop-gate-graphless-fallback.md:13]
 
 ## Edge Cases
 
@@ -46,7 +46,7 @@ Ambiguity note: the focus could include every deep-loop mode. I selected the nar
 - `.opencode/commands/deep/assets/deep_research_auto.yaml:1039`
 - `.opencode/commands/deep/assets/deep_research_auto.yaml:1154`
 - `.opencode/skills/deep-loop-workflows/deep-research/manual_testing_playbook/manual_testing_playbook.md:683`
-- `.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md:13`
+- `.opencode/skills/deep-loop-workflows/deep-review/manual_testing_playbook/review-depth-v2-rollout/stop-gate-graphless-fallback.md:13`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/research/deep-research-strategy.md:122`
 
 ## Assessment

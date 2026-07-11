@@ -119,7 +119,7 @@ Revalidated success criteria:
 
 - `R-008` Severity `P2`. Either expose effective live/candidate lane weights or explicitly document `laneWeights` as static defaults. Target files: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-status.ts`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/scorer/weights-config.ts`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/schemas/advisor-tool-schemas.ts`. Diff shape: relax literal-only schemas and source `laneWeights` from real state, or narrow docs and field names.
 - `R-009` Severity `P2`. Narrow or implement two-cycle restart persistence. Target files: `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/two-cycle-requirement.ts`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/promotion/rollback.ts`. Diff shape: either wire persistence explicitly or edit docs to remove the restart-durability promise.
-- `R-010` Severity `P2`. Repair OpenCode bridge docs/playbooks and lock the path in regression coverage. Target files: `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts`. Diff shape: update examples/current-reality text and add a path-focused assertion.
+- `R-010` Severity `P2`. Repair OpenCode bridge docs/playbooks and lock the path in regression coverage. Target files: `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/hooks-and-plugin/05-opencode-plugin-bridge.md`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/005-opencode-plugin-bridge.md`, `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts`. Diff shape: update examples/current-reality text and add a path-focused assertion.
 
 ## Negative Knowledge
 
@@ -210,8 +210,8 @@ Novelty trended as `0.32, 0.24, 0.19, 0.15, 0.12, 0.09, 0.08, 0.07, 0.06, 0.04`.
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/README.md`
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/05--promotion-gates/04-two-cycle.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/07--hooks-and-plugin/05-opencode-plugin-bridge.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/feature_catalog/hooks-and-plugin/05-opencode-plugin-bridge.md`
+- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/005-opencode-plugin-bridge.md`
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/compat/plugin-bridge.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/tests/handlers/advisor-validate.vitest.ts`

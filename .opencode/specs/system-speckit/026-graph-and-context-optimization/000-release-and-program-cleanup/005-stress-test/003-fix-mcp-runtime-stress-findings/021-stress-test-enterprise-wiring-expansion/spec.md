@@ -157,7 +157,7 @@ Capture a measurement-only v1.0.3 stress run with real telemetry artifacts, per-
 
 ### See Also
 
-- Stress test cycle pattern: `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/01-stress-test-cycle.md`.
+- Stress test cycle pattern: `.opencode/skills/system-spec-kit/feature_catalog/stress-testing/01-stress-test-cycle.md`.
 
 ---
 

@@ -14,7 +14,7 @@ _memory:
     next_safe_action: "Gate then commit"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/403-code-intent-matching.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/403-code-intent-matching.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003613"
       session_id: "036-002-checklist"

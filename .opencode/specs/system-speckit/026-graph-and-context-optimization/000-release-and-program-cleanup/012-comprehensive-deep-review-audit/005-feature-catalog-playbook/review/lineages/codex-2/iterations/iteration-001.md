@@ -15,7 +15,7 @@ Reviewed the target spec, the master feature catalog entry for feature catalog c
 ## Findings
 
 ### P1, Required
-- **F001**: Master catalog overstates universal feature annotation coverage. The master catalog says feature catalog references exist in "every source file" and that implementation files carry `// Feature catalog:` annotations [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946] [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950]. The split item for the same feature says the convention is partial, with about 69% coverage and explicit exemptions [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26]. A sampled live feature file names `mcp_server/handlers/embedder-status.ts` as the implementation for embedder status [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/embedder-status-and-active-pointer.md:42], while the handler exports the live implementation without a nearby feature-catalog annotation in the reviewed header/handler range [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts:117]. Command evidence recorded `195` annotated files out of `437` source files in the mcp_server/shared source scope [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/review/lineages/codex-2/logs/evidence-commands.md:6].
+- **F001**: Master catalog overstates universal feature annotation coverage. The master catalog says feature catalog references exist in "every source file" and that implementation files carry `// Feature catalog:` annotations [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946] [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950]. The split item for the same feature says the convention is partial, with about 69% coverage and explicit exemptions [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md:26]. A sampled live feature file names `mcp_server/handlers/embedder-status.ts` as the implementation for embedder status [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/embedder-status-and-active-pointer.md:42], while the handler exports the live implementation without a nearby feature-catalog annotation in the reviewed header/handler range [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts:117]. Command evidence recorded `195` annotated files out of `437` source files in the mcp_server/shared source scope [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/review/lineages/codex-2/logs/evidence-commands.md:6].
 
 ```json
 {
@@ -24,8 +24,8 @@ Reviewed the target spec, the master feature catalog entry for feature catalog c
   "evidenceRefs": [
     ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946",
     ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950",
-    ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26",
-    ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/embedder-status-and-active-pointer.md:42",
+    ".opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md:26",
+    ".opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/embedder-status-and-active-pointer.md:42",
     ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts:117"
   ],
   "counterevidenceSought": "Checked the split item 214 catalog file, sampled the embedder_status feature file and handler, counted annotated files in mcp_server/shared, and validated annotation-name matching separately.",
@@ -44,14 +44,14 @@ Reviewed the target spec, the master feature catalog entry for feature catalog c
 }
 ```
 
-- **F002**: Catalog cleanup claim is false while phase-style labels remain in non-test source comments. Item 214 states that stale Sprint/Phase/spec-number references in non-test comments have been removed [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:30], and the master catalog repeats that stale Sprint/Phase/spec-number references are gone [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950]. Live non-test source still contains phase-style labels in comments, including `PI-B3` in the memory-context handler [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:54], `PI-A4` in the memory surface hook [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:372], and `PI-A2` in the hybrid-search module [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:202].
+- **F002**: Catalog cleanup claim is false while phase-style labels remain in non-test source comments. Item 214 states that stale Sprint/Phase/spec-number references in non-test comments have been removed [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md:30], and the master catalog repeats that stale Sprint/Phase/spec-number references are gone [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950]. Live non-test source still contains phase-style labels in comments, including `PI-B3` in the memory-context handler [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:54], `PI-A4` in the memory surface hook [SOURCE: .opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:372], and `PI-A2` in the hybrid-search module [SOURCE: .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:202].
 
 ```json
 {
   "findingId": "F002",
   "claim": "The catalog cleanup claim that stale phase/spec-style labels were removed from non-test source comments is contradicted by live non-test source comments.",
   "evidenceRefs": [
-    ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:30",
+    ".opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md:30",
     ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950",
     ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:54",
     ".opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:372",

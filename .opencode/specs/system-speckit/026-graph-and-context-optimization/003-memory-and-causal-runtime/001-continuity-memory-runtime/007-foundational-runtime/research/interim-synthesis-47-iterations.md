@@ -64,8 +64,8 @@ After deduplication the full set compresses to approximately **59 distinct issue
 | `skill/skill-advisor/tests/test_skill_advisor.py`             | 4        | 3               | D4               |
 | `skill/sk-deep-research/SKILL.md` / `skill/system-spec-kit/SKILL.md` | 3  | 2               | D4               |
 | `skill/skill-advisor/feature_catalog/04--testing/02-health-check.md` | 1 | 1               | D4               |
-| `skill/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/confirm-mode-checkpointed-review.md` [NEW since 44] | 2 | 1 | D4 |
-| `skill/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` [NEW since 44] | 1 | 1 | D4 |
+| `skill/sk-deep-review/manual_testing_playbook/entry-points-and-modes/confirm-mode-checkpointed-review.md` [NEW since 44] | 2 | 1 | D4 |
+| `skill/sk-deep-research/manual_testing_playbook/synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` [NEW since 44] | 1 | 1 | D4 |
 | `skill/system-spec-kit/references/intake-contract.md` [NEW since 44] | 2 | 2 | D4 |
 | `skill/system-spec-kit/SKILL.md` (routing + SKILL.md body) [NEW since 44] | 2 | 1 | D4 |
 | `skill/system-spec-kit/README.md` [NEW since 44] | 1 | 1 | D4 |

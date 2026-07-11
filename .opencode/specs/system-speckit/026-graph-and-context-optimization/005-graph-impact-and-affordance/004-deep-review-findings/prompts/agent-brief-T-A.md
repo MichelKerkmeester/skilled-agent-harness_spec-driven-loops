@@ -55,8 +55,8 @@ Pick **one** of:
 | `.opencode/skills/system-spec-kit/README.md` | sync mention | sync as internal |
 | `.opencode/skills/system-spec-kit/mcp_server/README.md` | add new tool entry | mark internal |
 | `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | smoke test fixed | smoke test rewritten |
-| `010/006/feature_catalog/03--discovery/04-detect-changes-preflight.md` | update | update |
-| `010/006/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md` | update | update |
+| `010/006/feature_catalog/discovery/04-detect-changes-preflight.md` | update | update |
+| `010/006/manual_testing_playbook/discovery/014-detect-changes-preflight.md` | update | update |
 | `010/007-review-remediation/implementation-summary.md` | populate "Findings Closed → R-007-2/14" with decision + evidence | same |
 
 ## Files you may NOT touch

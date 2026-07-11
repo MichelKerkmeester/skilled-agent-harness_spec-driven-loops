@@ -58,13 +58,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 [P] Cluster 1: patched `cli-opencode/SKILL.md:31,285`, `README.md:76,164`, `assets/prompt_templates.md:372,386-392`, `manual_testing_playbook.md:417-423`, `04--agent-routing/multi-ai-council-multi-strategy.md:27-43,51` (multi-part edit).
+- [x] T004 [P] Cluster 1: patched `cli-opencode/SKILL.md:31,285`, `README.md:76,164`, `assets/prompt_templates.md:372,386-392`, `manual_testing_playbook.md:417-423`, `agent-routing/multi-ai-council-multi-strategy.md:27-43,51` (multi-part edit).
 - [x] T005 [P] Clusters 2/3: patched `deep-research/SKILL.md:17-20` (+`capability_matrix.md:51-55`), `deep-review/SKILL.md:16-20` (+`loop_protocol.md:721-724`), `deep-context/SKILL.md:279-287,302`, `deep-loop-runtime/SKILL.md:253-261`, `deep-ai-council/SKILL.md:431-432` (+`output_schema.md:27-29`).
 - [x] T006 [P] Cluster 4: patched `deep-improvement/scripts/agent-improvement/scan-integration.cjs:18` (removed `.toml` from `MIRROR_TEMPLATES`) and its 6 supporting docs. Live-verified: `node scan-integration.cjs --agent=deep-review` still runs clean.
 - [x] T007 [P] Cluster 5: patched `.opencode/plugins/README.md:3,42-50` (6-entry count, new `mk-deep-loop-guard.js` row).
 - [x] T008 Cluster 6: patched `cli-opencode/SKILL.md` (lines ~31, ~293-295) per investigation outcome (narrow wording, keep orchestrate's row). `orchestrate.md` intentionally untouched -- confirmed load-bearing by the investigation.
-- [x] T013 Post-fix comprehensive re-scan (beyond phase 014's original citation sample) found 13 additional real `.opencode/agents/*.toml` references across deep-research/deep-review/deep-ai-council manual-testing-playbook and asset files -- fixed all 13, per phase 014's own Plan Seed instruction to re-scan after edits. One deep-improvement fixture script (`08--agent-discipline-stress-tests/setup-cp-sandbox.sh`) left untouched -- its `.md` fixture paths are also missing entirely, a separate pre-existing issue unrelated to the TOML removal.
-- [x] T014 Discovered and fixed a pre-existing (pre-dates this session) off-by-one bug in `REPO_ROOT` path climbing in `deep-research` and `deep-review`'s `07--command-flow-stress-tests/setup-cp-sandbox.sh` (5 `../` levels landed at `.opencode/` instead of the repo root) -- found while live-verifying my own Cluster 2/3 fix; both scripts now run end-to-end successfully.
+- [x] T013 Post-fix comprehensive re-scan (beyond phase 014's original citation sample) found 13 additional real `.opencode/agents/*.toml` references across deep-research/deep-review/deep-ai-council manual-testing-playbook and asset files -- fixed all 13, per phase 014's own Plan Seed instruction to re-scan after edits. One deep-improvement fixture script (`agent-discipline-stress-tests/setup-cp-sandbox.sh`) left untouched -- its `.md` fixture paths are also missing entirely, a separate pre-existing issue unrelated to the TOML removal.
+- [x] T014 Discovered and fixed a pre-existing (pre-dates this session) off-by-one bug in `REPO_ROOT` path climbing in `deep-research` and `deep-review`'s `command-flow-stress-tests/setup-cp-sandbox.sh` (5 `../` levels landed at `.opencode/` instead of the repo root) -- found while live-verifying my own Cluster 2/3 fix; both scripts now run end-to-end successfully.
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -66,7 +66,7 @@ _memory:
 - [x] T005 F2: Fixed `README.md` "Sibling Boundaries" table - deleted the stale `cli-opencode | OpenAI` row (retired cli-codex description) at the former `README.md:143`.
 - [x] T006 F3: Fixed `README.md` Step 4 - added a share-confirmation blockquote note citing the `share-requires-confirmation` hard_rule directly above the `--share --port 4096` code block.
 - [x] T007 F4: Fixed `README.md` Step 3 - removed the top-level `--agent context` flag, moved the role into the prompt body ("Act as a context-retrieval agent: ...").
-- [x] T008 F5: Repaired 6 corrupted filename links - 4 in `manual_testing_playbook.md` (CO-035/CO-036 Feature File links + both PROMPT TEMPLATES index-list links), 1 each in `07--prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md` and `07--prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md`.
+- [x] T008 F5: Repaired 6 corrupted filename links - 4 in `manual_testing_playbook.md` (CO-035/CO-036 Feature File links + both PROMPT TEMPLATES index-list links), 1 each in `prompt-templates/deepseek-v4-direct-with-sk-prompt-models.md` and `prompt-templates/kimi-k2-7-direct-with-sk-prompt-models.md`.
 - [x] T009 Bumped `SKILL.md` frontmatter `version: 1.3.15.2` → `1.3.15.3`.
 - [x] T010 Authored `changelog/v1.3.15.3.md` documenting all 5 fixes, following the `v1.3.15.2.md`/`v1.3.15.0.md` entry format.
 <!-- /ANCHOR:phase-2 -->

@@ -9,10 +9,10 @@
 ## Files Reviewed
 
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/paraphrase-recall.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/llm-made-memory-recall.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/local-llm-query-intelligence/category-overview.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/README.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/paraphrase-recall.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/llm-made-memory-recall.md`
 
 ## Findings - New
 
@@ -22,7 +22,7 @@
 
 ### P2
 
-- **F004**: Local-LLM category catalog points operators at 40*.md specs while the files are numbered 361-375 - `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:47` - The feature catalog says the playbook peer uses `manual_testing_playbook/24--local-llm-query-intelligence/40*.md` for scenarios 401-415. The current scenario files in that directory are named `paraphrase-recall.md` through `concurrent-multi-ai-safety.md`, even though their internal titles retain 401-415. Operators following the catalog source-file pattern will not find the scenario specs. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:28] [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:47] [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/paraphrase-recall.md:2]
+- **F004**: Local-LLM category catalog points operators at 40*.md specs while the files are numbered 361-375 - `.opencode/skills/system-spec-kit/feature_catalog/local-llm-query-intelligence/category-overview.md:47` - The feature catalog says the playbook peer uses `manual_testing_playbook/local-llm-query-intelligence/40*.md` for scenarios 401-415. The current scenario files in that directory are named `paraphrase-recall.md` through `concurrent-multi-ai-safety.md`, even though their internal titles retain 401-415. Operators following the catalog source-file pattern will not find the scenario specs. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/local-llm-query-intelligence/category-overview.md:28] [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/local-llm-query-intelligence/category-overview.md:47] [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/paraphrase-recall.md:2]
 
 ## Traceability Checks
 
@@ -30,8 +30,8 @@
 |---|---|---|---|
 | spec_code | partial | `.opencode/specs/.../005-feature-catalog-playbook/spec.md:36` | Representative sample completed; active findings show verification gaps remain. |
 | checklist_evidence | partial | `.opencode/specs/.../005-feature-catalog-playbook/spec.md:56` | No checklist.md exists for this Level 1 slice; checked against success criteria instead. |
-| feature_catalog_code | partial | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26` | Code annotations exist for sampled features, but master prose and local-LLM path pattern drift. |
-| playbook_capability | fail | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md:38` | At least one documented scenario command is not executable as written. |
+| feature_catalog_code | partial | `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md:26` | Code annotations exist for sampled features, but master prose and local-LLM path pattern drift. |
+| playbook_capability | fail | `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md:38` | At least one documented scenario command is not executable as written. |
 
 ## Confirmed-Clean Surfaces
 

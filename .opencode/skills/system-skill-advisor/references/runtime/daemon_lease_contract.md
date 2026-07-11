@@ -149,6 +149,6 @@ The launcher keeps `process.on('exit', clearLeaseFile)` as a normal-exit backsto
 - [`freshness_contract.md`](./freshness_contract.md), daemon responsibilities plus trust state vocabulary
 - [`db_path_policy.md`](../config/db_path_policy.md), where the lease file plus SQLite live
 - [`validation_baselines.md`](../scoring/validation_baselines.md), latency baselines that depend on lease cleanliness
-- `feature_catalog/01--daemon-and-freshness/lease.md`, feature inventory entry
-- `manual_testing_playbook/05--auto-update-daemon/lease-single-writer.md`, operator scenario
+- `feature_catalog/daemon-and-freshness/lease.md`, feature inventory entry
+- `manual_testing_playbook/auto-update-daemon/lease-single-writer.md`, operator scenario
 - `mcp_server/lib/daemon/lease.ts`, source-of-truth implementation

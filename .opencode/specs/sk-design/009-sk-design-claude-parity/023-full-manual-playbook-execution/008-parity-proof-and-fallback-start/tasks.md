@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read `shared-polish-gate-selection-proof.md` in full (`.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/shared-polish-gate-selection-proof.md`)
-- [x] T002 Read `interface-variation-set-selection-proof.md` in full (`.opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/interface-variation-set-selection-proof.md`)
-- [x] T003 Read `no-card-matches-fallback.md` in full (`.opencode/skills/sk-design/manual_testing_playbook/07--fallback-and-resilience/no-card-matches-fallback.md`)
+- [x] T001 Read `shared-polish-gate-selection-proof.md` in full (`.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/shared-polish-gate-selection-proof.md`)
+- [x] T002 Read `interface-variation-set-selection-proof.md` in full (`.opencode/skills/sk-design/manual_testing_playbook/parity-behavior/interface-variation-set-selection-proof.md`)
+- [x] T003 Read `no-card-matches-fallback.md` in full (`.opencode/skills/sk-design/manual_testing_playbook/fallback-and-resilience/no-card-matches-fallback.md`)
 - [x] T004 Read `../022-benchmark-rerun-and-coverage-fill/` docs as the exact Level 2 structural template
 <!-- /ANCHOR:phase-1 -->
 

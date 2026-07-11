@@ -19,8 +19,8 @@ contextType: "implementation"
 | T-003-B3 | Implement risk classification rules | B | complete — documented in `implementation-summary.md` |
 | T-003-B4 | Implement ambiguity detection + candidate surfacing | B | complete — ambiguous `fq_name`/`name` subjects return candidates and fallback |
 | T-003-B5 | Wrap failure paths in structured `failureFallback` | B | complete — unresolved/ambiguous/query-failure paths return structured fallback |
-| T-003-C1 | feature_catalog entry for `06--analysis/` | C | complete — `08-code-graph-edge-explanation-blast-radius-uplift.md` |
-| T-003-C2 | manual_testing_playbook entry for `06--analysis/` | C | complete — `026-code-graph-edge-explanation-blast-radius-uplift.md` |
+| T-003-C1 | feature_catalog entry for `analysis/` | C | complete — `08-code-graph-edge-explanation-blast-radius-uplift.md` |
+| T-003-C2 | manual_testing_playbook entry for `analysis/` | C | complete — `026-code-graph-edge-explanation-blast-radius-uplift.md` |
 | T-003-C3 | sk-doc DQI ≥85 | C | complete — feature catalog DQI 87; playbook DQI 89 |
 | T-003-D1 | Unit tests for all requirements | D | complete — targeted Vitest cases added |
 | T-003-D2 | Run existing code-graph vitest suite | D | blocked — `npx vitest` attempted network fetch and local Vitest is absent |

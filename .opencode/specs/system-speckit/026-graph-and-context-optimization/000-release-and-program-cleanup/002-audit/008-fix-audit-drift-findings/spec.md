@@ -69,8 +69,8 @@ Fix the real bug (sa-011), update the catalog text to match reality (sa-036, sa-
 |---------|------|----------------|
 | sa-011 | **Real bug** | `mcp_server/skill_advisor/lib/derived/extract.ts`, `mcp_server/skill_advisor/lib/derived/sync.ts`, test in `tests/lifecycle-derived-metadata.vitest.ts` |
 | sa-004 | Test correction (no bug) | `mcp_server/stress_test/skill-advisor/generation-snapshot-stress.vitest.ts` |
-| sa-036 | Catalog drift | `mcp_server/skill_advisor/feature_catalog/08--python-compat/02-regression-suite.md` |
-| sa-037 | Catalog wording | `mcp_server/skill_advisor/feature_catalog/08--python-compat/03-bench-runner.md`, test in `mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts` |
+| sa-036 | Catalog drift | `mcp_server/skill_advisor/feature_catalog/python-compat/02-regression-suite.md` |
+| sa-037 | Catalog wording | `mcp_server/skill_advisor/feature_catalog/python-compat/03-bench-runner.md`, test in `mcp_server/stress_test/skill-advisor/python-bench-runner-stress.vitest.ts` |
 
 ### Out of Scope
 - Other product code changes

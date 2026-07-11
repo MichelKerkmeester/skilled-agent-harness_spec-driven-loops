@@ -18,7 +18,7 @@ You are producing two artifacts for spec-kit packet 042. Repository root: `/User
    - `search-quality/` (~17 files, W3-W13 harness)
    - `matrix/` (1 file)
 4. **Vitest unit tests** — `.opencode/skills/system-spec-kit/mcp_server/code_graph/__tests__/` and `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/__tests__/` (or wherever the subsystem-local tests live — search to confirm).
-5. **Manual playbook** — `.opencode/skills/system-spec-kit/mcp_server/manual_testing_playbook/` (scenario folders such as `01--native-mcp-tools/`, `02--manual-scan-verify-status/`).
+5. **Manual playbook** — `.opencode/skills/system-spec-kit/mcp_server/manual_testing_playbook/` (scenario folders such as `native-mcp-tools/`, `manual-scan-verify-status/`).
 6. **Stress runner config** — `.opencode/skills/system-spec-kit/mcp_server/package.json` and `vitest.stress.config.ts`.
 
 ## Output 1: `coverage-matrix.csv`

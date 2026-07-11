@@ -87,7 +87,7 @@ lib/shared/mcp-types.ts:9-14
   }
 tool-schemas.ts:200-209  validateToolArgs(): finds the tool, checks input is an object, returns rawInput unchanged.
 index.ts:84-86  const args = (request.params.arguments ?? {}); return await codeGraphTools.dispatch(request.params.name, args);
-VS feature_catalog/06--mcp-tool-surface/01-tool-registrations.md:26-28  "Schema validation rejects malformed tool calls before handler execution for registered names."
+VS feature_catalog/mcp-tool-surface/01-tool-registrations.md:26-28  "Schema validation rejects malformed tool calls before handler execution for registered names."
 ```
 
 **Why it's wrong:** The MCP SDK validates the CallTool request envelope, not the per-tool inputSchema. parseArgs is a pure cast and validateToolArgs returns its input unchanged, so malformed enum/range/additionalProperties inputs reach handlers. Handlers do manual required-string checks for a few tools (query/classify/detect_changes) but no enum/range validation. For code_graph_query, readiness/inline-index work can run before an invalid `operation` is rejected, so a malformed call can consume work / trigger inline selective indexing.
@@ -765,13 +765,13 @@ Severity P2 is correct — pure documentation/accuracy misalignment, no runtime 
 
 #### CG-027 · P2 · MISALIGNMENT — Feature catalog detail files carry stale schema/handler line citations across scan, status, and detect_changes entries
 
-- **Location:** `.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/03-code-graph-status.md:36-39`
+- **Location:** `.opencode/skills/system-code-graph/feature_catalog/manual-scan-verify-status/03-code-graph-status.md:36-39`
 - **Source:** workflow:doc-code-misalignment
 
 **Evidence**
 
 ```
-03-code-graph-status.md:39 cites "tool-schemas.ts:72-76" but codeGraphStatus is at lines 66-70; lines 36-38 cite handler ranges status.ts:158-180/181-212/214-260 but handleCodeGraphStatus begins at status.ts:198. Sibling files repeat the drift: 01-code-graph-scan.md:39 cites "tool-schemas.ts:19-48" (codeGraphScan is 13-42; handleCodeGraphScan is at scan.ts:311, not the cited 177-230); 03--detect-changes/01-detect-changes-preflight.md:40 cites "tool-schemas.ts:169-180" (detectChanges is 172-183; 169-171 is the tail of codeGraphApply).
+03-code-graph-status.md:39 cites "tool-schemas.ts:72-76" but codeGraphStatus is at lines 66-70; lines 36-38 cite handler ranges status.ts:158-180/181-212/214-260 but handleCodeGraphStatus begins at status.ts:198. Sibling files repeat the drift: 01-code-graph-scan.md:39 cites "tool-schemas.ts:19-48" (codeGraphScan is 13-42; handleCodeGraphScan is at scan.ts:311, not the cited 177-230); detect-changes/01-detect-changes-preflight.md:40 cites "tool-schemas.ts:169-180" (detectChanges is 172-183; 169-171 is the tail of codeGraphApply).
 ```
 
 **Why it's wrong:** These detail files are the per-feature source-of-truth anchors; the line ranges are consistently off (schema cites ~6 lines high, status handler cited before the function even starts), so anyone Read-ing the cited ranges sees unrelated code, undermining the catalog's role as the implementation map.
@@ -780,13 +780,13 @@ Severity P2 is correct — pure documentation/accuracy misalignment, no runtime 
 
 **Verification:** All factual claims in the finding verified against real source.
 
-PRIMARY FILE (02--manual-scan-verify-status/03-code-graph-status.md:36-39):
+PRIMARY FILE (manual-scan-verify-status/03-code-graph-status.md:36-39):
 - Line 39 cites `tool-schemas.ts:72-76` for the status schema. ACTUAL: `codeGraphStatus: ToolDefinition` is at tool-schemas.ts:66-70 (single-line inputSchema, ends line 70). Lines 72-76 are a blank line plus the START of the unrelated `codeGraphContext` definition. Citation is ~6 lines high and points at the wrong tool. CONFIRMED.
 - Lines 36-38 cite handler ranges status.ts:158-180 / 181-212 / 214-260. ACTUAL: `handleCodeGraphStatus` begins at status.ts:198 (verified via rg; file is 397 lines). 158-180 is entirely inside helper code (getVerificationTimestampMs tail, line 166 closes a helper); 214-260 is inside the function but the first cited range fully precedes the function start. CONFIRMED.
 
 SIBLING FILES (drift repeats):
 - 01-code-graph-scan.md:39 cites `tool-schemas.ts:19-48`; actual `codeGraphScan` is 13-42. Line 36 cites `scan.ts:177-230` for the handler; actual `handleCodeGraphScan` is at scan.ts:311 (177-183 is the `countPersistableNodes` helper). CONFIRMED.
-- 03--detect-changes/01-detect-changes-preflight.md:40 cites `tool-schemas.ts:169-180`; actual `detectChanges` is 172-183, and 169-171 is the tail (closing braces) of `codeGraphApply`. CONFIRMED.
+- detect-changes/01-detect-changes-preflight.md:40 cites `tool-schemas.ts:169-180`; actual `detectChanges` is 172-183, and 169-171 is the tail (closing braces) of `codeGraphApply`. CONFIRMED.
 
 REASONING: Valid. These detail files are per-feature source-of-truth anchors with explicit line citations; the ranges are consistently off (schema ~6 lines high, status/scan handlers cited before the function even begins), so a reader who Read-s the cited ranges lands on unrelated helper code or the wrong tool's schema. No guard/typed-union elsewhere mitigates this — it is a plain documentation-accuracy defect.
 
@@ -796,7 +796,7 @@ SEVERITY: P2 is correct. Pure documentation drift, no runtime/correctness/securi
 
 #### CG-028 · P2 · MISALIGNMENT — Scenario 016 says "Exactly 8 tools" then lists 11 names (3 duplicates), making its pass criteria self-contradictory
 
-- **Location:** `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/mcp-tool-manifest-post-rename.md:24, 41`
+- **Location:** `.opencode/skills/system-code-graph/manual_testing_playbook/mcp-tool-surface/mcp-tool-manifest-post-rename.md:24, 41`
 - **Source:** workflow:doc-code-misalignment
 
 **Evidence**
@@ -809,7 +809,7 @@ Line 24: "Expected signals: Exactly 8 tools: code_graph_scan, code_graph_query, 
 
 **Suggested fix:** Delete the trailing duplicate tokens so the list is the 8 distinct tool IDs (code_graph_scan, code_graph_query, code_graph_classify_query_intent, code_graph_status, code_graph_context, code_graph_verify, code_graph_apply, detect_changes) at both lines 24 and 41.
 
-**Verification:** Quotes match verbatim. File /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/mcp-tool-manifest-post-rename.md line 24 and line 41 both read "Exactly 8 tools:" then enumerate 11 tokens where code_graph_scan, code_graph_status, and code_graph_verify each appear twice (verified via tokenize+uniq: 11 total, 8 distinct). Line 26 pass/fail says "PASS if 8 tools with matching names." The contradiction is genuine: an operator matching tools/list against the 11 listed names cannot also confirm exactly 8. The authoritative manifest mcp_server/tool-schemas.ts defines exactly 8 distinct tools (code_graph_scan, code_graph_query, code_graph_status, code_graph_context, code_graph_classify_query_intent, code_graph_verify, code_graph_apply, detect_changes) — matching the intended 8, so the proposed fix (delete the 3 trailing duplicate tokens at both lines) is correct. Reasoning holds; no guard or context elsewhere resolves it. Severity downgraded P1->P2: this is a manual-test-playbook documentation defect with no runtime/code impact and the correct 8-tool intent is recoverable from the title/objective/description; low blast radius. Still a real, fixable contradiction.
+**Verification:** Quotes match verbatim. File /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/mcp-tool-surface/mcp-tool-manifest-post-rename.md line 24 and line 41 both read "Exactly 8 tools:" then enumerate 11 tokens where code_graph_scan, code_graph_status, and code_graph_verify each appear twice (verified via tokenize+uniq: 11 total, 8 distinct). Line 26 pass/fail says "PASS if 8 tools with matching names." The contradiction is genuine: an operator matching tools/list against the 11 listed names cannot also confirm exactly 8. The authoritative manifest mcp_server/tool-schemas.ts defines exactly 8 distinct tools (code_graph_scan, code_graph_query, code_graph_status, code_graph_context, code_graph_classify_query_intent, code_graph_verify, code_graph_apply, detect_changes) — matching the intended 8, so the proposed fix (delete the 3 trailing duplicate tokens at both lines) is correct. Reasoning holds; no guard or context elsewhere resolves it. Severity downgraded P1->P2: this is a manual-test-playbook documentation defect with no runtime/code impact and the correct 8-tool intent is recoverable from the title/objective/description; low blast radius. Still a real, fixable contradiction.
 
 ---
 
@@ -965,7 +965,7 @@ Severity P2 is correct: observability/metrics-fidelity gap only. The recovered s
 
 #### CG-036 · P2 · MISALIGNMENT — Playbook 023 points at non-existent implementation files lib/apply-mode/{rescan,prune,repair,recovery,rollback}.ts
 
-- **Location:** `.opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md:81`
+- **Location:** `.opencode/skills/system-code-graph/manual_testing_playbook/doctor-code-graph/code-graph-apply-sub-operations.md:81`
 - **Source:** workflow:recovery-apply-path
 
 **Evidence**
@@ -994,7 +994,7 @@ There is no `mcp_server/lib/apply-mode/` directory (confirmed by listing). The r
 
 Minor refinement to the proposed fix: prune-excludes classification actually lives in `mcp_server/lib/exclude-rule-classifier.ts` (classifyExcludeRules), so a complete source-map would add that file. The fix's two named targets (apply-orchestrator.ts, recovery-procedures.ts) are the correct core mappings.
 
-File: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md:81
+File: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/doctor-code-graph/code-graph-apply-sub-operations.md:81
 
 ---
 

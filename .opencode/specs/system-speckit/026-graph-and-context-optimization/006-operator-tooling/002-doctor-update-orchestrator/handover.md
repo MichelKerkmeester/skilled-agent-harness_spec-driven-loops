@@ -219,7 +219,7 @@ _memory:
 
 ### 2026-05-10 Scenario verification pass
 
-- **Scenario inventory covered:** BOOT fresh-start MCP launcher/startup plus manual playbook scenarios DOC-338, DOC-339, DOC-340, DOC-341, DOC-342, DOC-344, DOC-345, DOC-346, and DOC-347 from `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands`.
+- **Scenario inventory covered:** BOOT fresh-start MCP launcher/startup plus manual playbook scenarios DOC-338, DOC-339, DOC-340, DOC-341, DOC-342, DOC-344, DOC-345, DOC-346, and DOC-347 from `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands`.
 - **Contract matrix result:** 17/17 PASS across startup config, bootstrap/restart contract, failure injection, rollback/retry, concurrent refusal, SIGINT restore/exit-130 contract, migration gap refusal, dashboard rows for all 8 subsystems, tier-aware prompt docs, 3.3.0.0 two-hop migration, legacy-file preservation, cleanup prompt behavior, current-version no-op, state schema, and all six update flags.
 - **Gap found and fixed:** DOC-338 referenced `SPECKIT_FAIL_STEP=causal-edges-init`, but `doctor_update.yaml` did not explicitly define that test hook. Added a disposable-workspace-only `test_failure_injection` contract and documented it in `/doctor:update`.
 - **Bootstrap fixture result:** `/tmp/sk_bootstrap_full_matrix` with no `node_modules`/`dist` passed `doctor-runtime-bootstrap.sh --json`, created `.opencode/skill -> skills`, built MCP/scripts dist, stayed pure JSON on stdout, and passed a second idempotent run with `restart_required=false`.

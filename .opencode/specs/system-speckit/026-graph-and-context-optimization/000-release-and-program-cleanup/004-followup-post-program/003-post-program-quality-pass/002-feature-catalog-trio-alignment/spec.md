@@ -92,13 +92,13 @@ Refresh the existing catalogs with line-cited current-reality entries while keep
 | `specs/.../002-feature-catalog-trio-alignment/*.md` | Create | Level 2 packet docs and discovery notes |
 | `specs/.../002-feature-catalog-trio-alignment/*.json` | Create | Packet metadata and graph metadata |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Modify | Tool count and new root catalog summaries |
-| `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md` | Create | Retention sweep feature entry |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md` | Create | CLI matrix runner feature entry |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md` | Create | Codex smoke-check feature entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/mutation/12-memory-retention-sweep.md` | Create | Retention sweep feature entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/37-cli-matrix-adapter-runners.md` | Create | CLI matrix runner feature entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/38-codex-hook-freshness-smoke-check.md` | Create | Codex smoke-check feature entry |
 | `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation-and-code-graph/24-code-graph-readiness-contract.md` | Modify | Read-path/manual freshness contract note |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` | Modify | Advisor MCP surface count and entry list |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md` | Modify | Diagnostic-only status contract |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/05-advisor-rebuild.md` | Create | Advisor rebuild feature entry |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/mcp-surface/02-advisor-status.md` | Modify | Diagnostic-only status contract |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/mcp-surface/05-advisor-rebuild.md` | Create | Advisor rebuild feature entry |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -27,17 +27,17 @@ R3’s review finding is valid as a documentation/evidence failure, not as proof
     {
       "claim": "deep-research feature_catalog is EARNED; recommend keep.",
       "status": "confirmed",
-      "evidence": "SKILL.md:15 defines iterative research with externalized state/convergence; feature_catalog/feature_catalog.md:17-22 covers lifecycle/state/convergence/output; feature_catalog/01--loop-lifecycle/initialization.md:33-53 lists implementation files and validation playbooks."
+      "evidence": "SKILL.md:15 defines iterative research with externalized state/convergence; feature_catalog/feature_catalog.md:17-22 covers lifecycle/state/convergence/output; feature_catalog/loop-lifecycle/initialization.md:33-53 lists implementation files and validation playbooks."
     },
     {
       "claim": "deep-review feature_catalog is EARNED; recommend keep.",
       "status": "confirmed",
-      "evidence": "SKILL.md:27-33 covers multi-round review dimensions and spec/code alignment; feature_catalog/feature_catalog.md:17-22 covers lifecycle/state/dimensions/severity; feature_catalog/04--severity-system/quality-gates.md:49-67 maps gates to implementation and validation scenarios."
+      "evidence": "SKILL.md:27-33 covers multi-round review dimensions and spec/code alignment; feature_catalog/feature_catalog.md:17-22 covers lifecycle/state/dimensions/severity; feature_catalog/severity-system/quality-gates.md:49-67 maps gates to implementation and validation scenarios."
     },
     {
       "claim": "deep-improvement feature_catalog is EARNED; recommend keep.",
       "status": "confirmed",
-      "evidence": "SKILL.md:30-41 defines four co-equal lanes; feature_catalog/feature_catalog.md:21-36 maps lanes A-D and shared scoring; feature_catalog/05--skill-benchmark/mode-wiring.md:31-46 anchors mode wiring to scripts and tests."
+      "evidence": "SKILL.md:30-41 defines four co-equal lanes; feature_catalog/feature_catalog.md:21-36 maps lanes A-D and shared scoring; feature_catalog/skill-benchmark/mode-wiring.md:31-46 anchors mode wiring to scripts and tests."
     },
     {
       "claim": "deep-context feature_catalog is EARNED; recommend keep.",
@@ -62,7 +62,7 @@ R3’s review finding is valid as a documentation/evidence failure, not as proof
     {
       "claim": "There are stale playbook references saying no feature catalog exists.",
       "status": "confirmed",
-      "evidence": "command `rg -n 'No dedicated feature catalog exists yet|No feature catalog exists yet' .../manual_testing_playbook | wc -l` -> 83; per mode: deep-research 30, deep-review 28, deep-ai-council 25. Examples: deep-research/manual_testing_playbook/01--entry-points-and-modes/auto-mode-deep-research-kickoff.md:68, deep-review/.../auto-mode-deep-review-kickoff.md:68, deep-ai-council/.../runtime-agent-renamed-to-deep-ai-council.md:82."
+      "evidence": "command `rg -n 'No dedicated feature catalog exists yet|No feature catalog exists yet' .../manual_testing_playbook | wc -l` -> 83; per mode: deep-research 30, deep-review 28, deep-ai-council 25. Examples: deep-research/manual_testing_playbook/entry-points-and-modes/auto-mode-deep-research-kickoff.md:68, deep-review/.../auto-mode-deep-review-kickoff.md:68, deep-ai-council/.../runtime-agent-renamed-to-deep-ai-council.md:82."
     },
     {
       "claim": "Removing catalogs is higher blast than documenting keep-all.",

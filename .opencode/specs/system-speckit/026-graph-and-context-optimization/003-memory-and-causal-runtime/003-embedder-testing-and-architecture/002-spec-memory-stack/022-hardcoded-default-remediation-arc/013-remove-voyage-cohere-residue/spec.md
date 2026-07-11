@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/feature-flag-reference/05-5-embedding-and-api.md"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-extended.vitest.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts"
     session_dedup:
@@ -75,7 +75,7 @@ Voyage and Cohere also sell embeddings under the same API keys. An operator sett
 - `mcp_server/lib/search/search-flags.ts` — `hasAnyCrossEncoderOptInSignal()` no longer treats VOYAGE/COHERE keys as activation signals; `looksLikeValidApiKey()` helper deleted (no remaining callers)
 - `mcp_server/lib/search/evidence-gap-detector.ts` — comment about "long-term fix" updated to reference only `RERANKER_LOCAL=true`
 - `mcp_server/ENV_REFERENCE.md` — §14 RERANKER intro rewritten with removal-narrative
-- `feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` — `COHERE_API_KEY` row deleted; `VOYAGE_API_KEY` row scoped to embeddings only; `RERANKER_LOCAL` description updated
+- `feature_catalog/feature-flag-reference/05-5-embedding-and-api.md` — `COHERE_API_KEY` row deleted; `VOYAGE_API_KEY` row scoped to embeddings only; `RERANKER_LOCAL` description updated
 - `mcp_server/tests/cross-encoder-extended.vitest.ts` — describes 2 (`rerankVoyage`), 3 (`rerankCohere`), 8 (provider priority) deleted; describe 5 routes test rewritten to use `SPECKIT_CROSS_ENCODER=true + RERANKER_LOCAL=true`; describes 6 + 7 cache/latency mocks updated to local response shape (`results:` not `data:`)
 - `mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts` — provider fixture strings `'voyage'`/`'cohere'` → `'local'`; "different providers have independent circuit states" test removed (no multi-provider isolation left)
 
@@ -128,7 +128,7 @@ Single-pass main-agent direct edits. No CLI executor dispatch. Verification via 
 ## 8. OPEN QUESTIONS
 
 - Should the `Z_SCORE_THRESHOLD` in `evidence-gap-detector.ts` be revisited now that the cloud reranker path is gone? (The current 1.3 threshold reflects the "no real reranker available" floor — with `RERANKER_LOCAL=true` always available, the threshold could potentially rise back to 1.5. Out of scope for this packet.)
-- Should `feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` also drop the `EMBEDDING_DIM` row's mention of "Voyage 1024" since Voyage embeddings ARE still supported? (Decision: keep — Voyage embeddings stay.)
+- Should `feature_catalog/feature-flag-reference/05-5-embedding-and-api.md` also drop the `EMBEDDING_DIM` row's mention of "Voyage 1024" since Voyage embeddings ARE still supported? (Decision: keep — Voyage embeddings stay.)
 <!-- /ANCHOR:questions -->
 
 <!-- ANCHOR:cross-links -->

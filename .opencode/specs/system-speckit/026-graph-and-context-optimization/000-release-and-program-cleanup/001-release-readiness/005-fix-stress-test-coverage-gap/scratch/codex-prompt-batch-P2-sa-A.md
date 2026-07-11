@@ -23,15 +23,15 @@ Result: 2-4 files covering 9 features.
 
 | feature_id | Catalog path |
 |------------|--------------|
-| sa-008 | `mcp_server/skill_advisor/feature_catalog/02--auto-indexing/01-derived-extraction.md` |
-| sa-009 | `mcp_server/skill_advisor/feature_catalog/02--auto-indexing/02-a7-sanitizer.md` |
-| sa-010 | `mcp_server/skill_advisor/feature_catalog/02--auto-indexing/03-provenance.md` |
-| sa-011 | `mcp_server/skill_advisor/feature_catalog/02--auto-indexing/04-graph-metadata-sync.md` |
-| sa-014 | `mcp_server/skill_advisor/feature_catalog/03--lifecycle-routing/01-age-haircut.md` |
-| sa-015 | `mcp_server/skill_advisor/feature_catalog/03--lifecycle-routing/02-supersession.md` |
-| sa-016 | `mcp_server/skill_advisor/feature_catalog/03--lifecycle-routing/03-archive-future.md` |
-| sa-017 | `mcp_server/skill_advisor/feature_catalog/03--lifecycle-routing/04-schema-backfill.md` |
-| sa-018 | `mcp_server/skill_advisor/feature_catalog/03--lifecycle-routing/05-atomic-rollback.md` |
+| sa-008 | `mcp_server/skill_advisor/feature_catalog/auto-indexing/01-derived-extraction.md` |
+| sa-009 | `mcp_server/skill_advisor/feature_catalog/auto-indexing/02-a7-sanitizer.md` |
+| sa-010 | `mcp_server/skill_advisor/feature_catalog/auto-indexing/03-provenance.md` |
+| sa-011 | `mcp_server/skill_advisor/feature_catalog/auto-indexing/04-graph-metadata-sync.md` |
+| sa-014 | `mcp_server/skill_advisor/feature_catalog/lifecycle-routing/01-age-haircut.md` |
+| sa-015 | `mcp_server/skill_advisor/feature_catalog/lifecycle-routing/02-supersession.md` |
+| sa-016 | `mcp_server/skill_advisor/feature_catalog/lifecycle-routing/03-archive-future.md` |
+| sa-017 | `mcp_server/skill_advisor/feature_catalog/lifecycle-routing/04-schema-backfill.md` |
+| sa-018 | `mcp_server/skill_advisor/feature_catalog/lifecycle-routing/05-atomic-rollback.md` |
 
 ## Requirements
 

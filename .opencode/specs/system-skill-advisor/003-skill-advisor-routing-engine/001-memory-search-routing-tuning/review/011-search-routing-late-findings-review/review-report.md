@@ -48,5 +48,5 @@ Ten iterations covered the live router/save runtime, Tier-3 end-to-end behavior,
 ## 5. Cross-References
 
 - Config mirrors correctly say always on: `.mcp.json:24`, `opencode.json:33`, `.claude/mcp.json:23`, `.vscode/mcp.json:24`, `.gemini/settings.json:40`.
-- Feature-flag reference correctly says removed: `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md:130`.
+- Feature-flag reference correctly says removed: `.opencode/skills/system-spec-kit/feature_catalog/feature-flag-reference/01-1-search-pipeline-features-speckit.md:130`.
 - Child validation reruns on 2026-04-13: `validate.sh --strict` returned `RESULT: FAILED` for `001`, `002`, and `003`, and `RESULT: PASSED` for `004`.

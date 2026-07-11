@@ -99,8 +99,8 @@ Shared predicate plus call-site replacement. The storage boundary is centralized
 1. **REQ-008** post-merge identity drift in 005 root docs: rewrite `010-memory-indexer-invariants` references to `005-memory-indexer-invariants` in `spec.md`, leaving aliases only where explicit.
 2. **REQ-004** checklist evidence: open 005-memory-indexer-invariants/checklist.md; add `file:line` anchors to each `[x]` CHK-* item that currently cites only file or narrative.
 3. **REQ-014** ADR alternatives: back-fill decision-record.md ADR-008..ADR-012 with a strongest rejected alternative + rationale per ADR.
-4. **REQ-009** feature catalog refresh: update packet path + ADR identifiers in .opencode/skills/sk-doc/feature_catalog/13--memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md.
-5. **REQ-010** manual playbook scenarios: add explicit cleanup-apply, rollback, restore-validation, walker-DoS, promotion-bypass scenarios in .opencode/skills/sk-doc/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md.
+4. **REQ-009** feature catalog refresh: update packet path + ADR identifiers in .opencode/skills/sk-doc/feature_catalog/memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md.
+5. **REQ-010** manual playbook scenarios: add explicit cleanup-apply, rollback, restore-validation, walker-DoS, promotion-bypass scenarios in .opencode/skills/sk-doc/manual_testing_playbook/memory-quality-and-indexing/003-context-save-index-update.md.
 6. **REQ-011** runtime trace comments: grep for `packet 026/011` in runtime files; rewrite to `packet 026/005` where the reference is to memory-indexer ADRs.
 7. **REQ-013** operator README: append Repair / Verify / Rollback subsection under "Index Scope Invariants" in mcp_server/README.md.
 8. **REQ-003** strategy artifact map paths: fix `code-graph` → `code_graph` and `handlers/memory-parser.ts` → `lib/parsing/memory-parser.ts` in the deep-review strategy file.

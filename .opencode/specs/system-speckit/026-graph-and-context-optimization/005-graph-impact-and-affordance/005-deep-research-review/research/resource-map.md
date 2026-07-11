@@ -110,7 +110,7 @@ This document maps every finding from the 10-iteration deep-research review to t
 |---|---|---|
 | `mcp_server/code_graph/handlers/query.ts` | (riskLevel derivation) | Hard-coded threshold count of 10 |
 | `010/003/spec.md` + `implementation-summary.md` | (riskLevel section) | Threshold count not documented |
-| `manual_testing_playbook/06--analysis/026-...md` | (Block A) | Threshold not stated |
+| `manual_testing_playbook/analysis/026-...md` | (Block A) | Threshold not stated |
 
 ---
 
@@ -142,7 +142,7 @@ This document maps every finding from the 10-iteration deep-research review to t
 | `mcp_server/skill_advisor/scripts/skill_graph_compiler.py` | (validate_derived_affordances) | Reserved-field rejection (Python only) |
 | `mcp_server/skill_advisor/lib/affordance-normalizer.ts` | (TS normalize) | Does NOT enforce `conflicts_with` rejection |
 | `mcp_server/skill_advisor/tests/python/test_skill_advisor.py` | (R-007-8 test) | Python-only |
-| `manual_testing_playbook/11--scoring-and-calibration/199-...md` | (claim) | Implies parity but TS coverage absent |
+| `manual_testing_playbook/scoring-and-calibration/199-...md` | (claim) | Implies parity but TS coverage absent |
 
 ---
 

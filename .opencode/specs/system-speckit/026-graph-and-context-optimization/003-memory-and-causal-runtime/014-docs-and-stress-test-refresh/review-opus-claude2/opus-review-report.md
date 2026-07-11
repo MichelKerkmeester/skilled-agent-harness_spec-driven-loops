@@ -22,7 +22,7 @@
    The move UPDATE sets `file_path` + `canonical_file_path` but **not** `spec_folder`, leaving the stored grouping key stale after a folder rename; the mtime fast-path then blocks self-heal. Material in this repo given documented folder renumbering. **Verified:** the SET clause (566-567) has no `spec_folder =`.
    *Fix:* include `spec_folder = ?` in the reconcile UPDATE.
 
-4. **L1 — Version / tool-count sweep incomplete** · `feature_catalog/02--mutation/026-…:31` ("41-tool"), `references/config/environment_variables.md:26` ("54-tool"), `mcp_server/INSTALL_GUIDE.md:3` ("v1.7.2") (+ 1.7.2 inside 014/002+003 specs)
+4. **L1 — Version / tool-count sweep incomplete** · `feature_catalog/mutation/026-…:31` ("41-tool"), `references/config/environment_variables.md:26` ("54-tool"), `mcp_server/INSTALL_GUIDE.md:3` ("v1.7.2") (+ 1.7.2 inside 014/002+003 specs)
    The remediation corrected the cited files but other present-tense `mk-spec-memory` tool-count / version references survive, now inconsistent with the corrected **36 / 1.8.0**. **Verified:** all three stale strings present.
    *Fix:* sweep remaining present-tense tool-count → 36 and current-version → 1.8.0.
 

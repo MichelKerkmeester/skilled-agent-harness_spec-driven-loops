@@ -93,7 +93,7 @@ Extraction (`extract.ts`) -> guided run (`guided-run.ts`) -> write prompt (`buil
 | `report-gen.ts` / `preview-gen.ts` renderers | Interpolate source-derived CSS/dark-mode values into style attributes raw | Update to call `render-safety.ts` | Malformed CSS-value fixture tests |
 | `css-analyzer.ts` transition parser | `value.split(',')` on transition shorthand | Replace with paren-depth-aware split | `cubic-bezier(...)`, `steps(...)`, multi-transition tests |
 | `build-write-prompt.ts` | Interpolates extracted strings directly into prompt, omits component facts | Add data-encoder wrapper + component-facts section | Malicious-string test, component-facts-present test |
-| `feature_catalog/05--report-preview/report-preview.md` | Documents overwrite protection that isn't implemented | Align to implemented guard (code fix, not doc-only) | Diff catalog text against implemented behavior |
+| `feature_catalog/report-preview/report-preview.md` | Documents overwrite protection that isn't implemented | Align to implemented guard (code fix, not doc-only) | Diff catalog text against implemented behavior |
 | `shared/procedure_card_schema.md` | Schema lint is manual-only | Wire into existing canon checker script | Canon checker run includes schema lint |
 | `012-routing-benchmark-rigor/decision-record.md` | Byte-identical benchmark artifacts under two naming conventions | Pick one convention, document the decision | Diff shows single naming convention going forward |
 

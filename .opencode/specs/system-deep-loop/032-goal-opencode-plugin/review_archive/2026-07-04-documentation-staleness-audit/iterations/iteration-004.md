@@ -14,7 +14,7 @@ Traceability + maintainability audit focused on the companion research claims fo
 - `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:14-17` - actual goal plugin contract introduction.
 - `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:24-52` - runtime surfaces, behavior contract and environment-variable table.
 - `.opencode/skills/system-skill-advisor/README.md:42-85` - skill-owned plugin documentation context and OpenCode plugin note.
-- `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:27-41` - `/goal` plugin state, tools, lifecycle and live-verification claims.
+- `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:27-41` - `/goal` plugin state, tools, lifecycle and live-verification claims.
 
 ## Finding #3 Audit
 
@@ -44,14 +44,14 @@ Recommendation: retarget the root `README.md:1233` pointer to `.opencode/skills/
 
 Verdict: confirmed at P2.
 
-`.opencode/skills/system-skill-advisor/README.md:42` says this skill owns OpenCode hook/plugin docs including `/goal`, and `.opencode/skills/system-skill-advisor/README.md:85` says live OpenCode-run tool invocation is still under investigation. The sibling feature catalog contradicts that status: `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:41` says a real `opencode serve` run lists `mk_goal` and `mk_goal_status`, and that a live model turn calls `mk_goal` and persists per-session state.
+`.opencode/skills/system-skill-advisor/README.md:42` says this skill owns OpenCode hook/plugin docs including `/goal`, and `.opencode/skills/system-skill-advisor/README.md:85` says live OpenCode-run tool invocation is still under investigation. The sibling feature catalog contradicts that status: `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:41` says a real `opencode serve` run lists `mk_goal` and `mk_goal_status`, and that a live model turn calls `mk_goal` and persists per-session state.
 
 I keep this at P2 rather than P1 because the contradiction is localized documentation drift inside the same skill and does not by itself misdescribe the root operator contract or runtime behavior. It still matters: the quick-start README is the higher-visibility status surface and currently weakens the verified catalog evidence.
 
 ### P2-001 [P2] Skill Advisor README contradicts the feature catalog's verified `/goal` live-tool status
 
 - Claim: The system-skill-advisor README says `/goal` live OpenCode-run tool invocation remains under investigation, while the sibling feature catalog says a live `opencode serve` run verified tool listing and live model state persistence.
-- Evidence refs: `.opencode/skills/system-skill-advisor/README.md:42`, `.opencode/skills/system-skill-advisor/README.md:85`, `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:41`.
+- Evidence refs: `.opencode/skills/system-skill-advisor/README.md:42`, `.opencode/skills/system-skill-advisor/README.md:85`, `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:41`.
 - Counterevidence sought: I checked the feature catalog for whether it only documented unit/tool-path tests or an unverified plan. It explicitly claims `opencode serve` tool listing plus a live model turn persisting state.
 - Alternative explanation: The README may have intended to say active autonomous continuation invocation is still under investigation, not basic `mk_goal` / `mk_goal_status` tool invocation. If so, the wording is ambiguous and should be narrowed.
 - Final severity: P2.

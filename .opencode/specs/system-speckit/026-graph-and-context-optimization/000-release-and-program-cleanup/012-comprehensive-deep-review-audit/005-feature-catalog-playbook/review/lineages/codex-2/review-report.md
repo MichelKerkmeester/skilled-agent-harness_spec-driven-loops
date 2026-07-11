@@ -17,9 +17,9 @@ Route this packet to remediation planning before release readiness. The blocking
 ## Active Finding Registry
 | ID | Severity | Dimension | Title | Evidence | Status |
 |---|---|---|---|---|---|
-| F001 | P1 | correctness | Master catalog overstates universal feature annotation coverage | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946`, `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26` | active |
-| F002 | P1 | correctness | Catalog cleanup claim is false while phase-style labels remain in non-test source comments | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:30`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:54` | active |
-| F003 | P2 | traceability | Detailed scenario 136 has malformed request and expected-signal text | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:18` | active |
+| F001 | P1 | correctness | Master catalog overstates universal feature annotation coverage | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946`, `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md:26` | active |
+| F002 | P1 | correctness | Catalog cleanup claim is false while phase-style labels remain in non-test source comments | `.opencode/skills/system-spec-kit/feature_catalog/tooling-and-scripts/feature-catalog-code-references.md:30`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:54` | active |
+| F003 | P2 | traceability | Detailed scenario 136 has malformed request and expected-signal text | `.opencode/skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md:18` | active |
 
 ## Remediation Workstreams
 1. Catalog wording alignment: reconcile the master catalog's universal annotation language with the split item 214 partial-coverage statement, or add a generated coverage proof that justifies the stronger wording.

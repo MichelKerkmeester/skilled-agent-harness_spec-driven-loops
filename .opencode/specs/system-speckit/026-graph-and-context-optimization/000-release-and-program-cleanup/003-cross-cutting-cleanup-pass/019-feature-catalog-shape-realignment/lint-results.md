@@ -63,7 +63,7 @@ Unexempted packet-history wording was removed from touched feature catalog files
 Retained false positives:
 
 - Stable manual playbook scenario paths such as `manual_testing_playbook/.../001-...`.
-- One published feature file path: `19--feature-flag-reference/08-audit-phase-020-mapping-note.md`. The file content was cleaned, but the published path was preserved.
+- One published feature file path: `feature-flag-reference/08-audit-phase-020-mapping-note.md`. The file content was cleaned, but the published path was preserved.
 <!-- /ANCHOR:evergreen -->
 
 ---

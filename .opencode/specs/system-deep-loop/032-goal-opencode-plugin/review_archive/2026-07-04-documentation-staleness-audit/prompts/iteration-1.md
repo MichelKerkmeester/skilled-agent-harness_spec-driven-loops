@@ -31,7 +31,7 @@ Review Scope Files (representative; full list + more may be discovered):
 - .opencode/plugins/README.md
 - README.md (repo root)
 - .opencode/skills/system-skill-advisor/README.md
-- .opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md
+- .opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md
 - .opencode/skills/system-spec-kit/feature_catalog/**/goal-opencode-plugin.md
 - .opencode/skills/system-spec-kit/manual_testing_playbook/**/goal-opencode-plugin.md
 - .opencode/skills/system-skill-advisor/manual_testing_playbook/**/goal-opencode-plugin.md

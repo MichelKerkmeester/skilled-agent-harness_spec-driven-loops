@@ -100,8 +100,8 @@ Per the operator's explicit instruction, each companion-research finding was ind
     "README.md",
     ".opencode/plugins/README.md",
     ".opencode/skills/system-skill-advisor/README.md",
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md",
-    ".opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md",
+    ".opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
     ".opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/handover.md",
     ".opencode/specs/deep-loops/032-goal-opencode-plugin/011-command-surface-normalization/tasks.md",
     ".opencode/plugins/tests/mk-goal-tool-path.test.cjs"
@@ -122,7 +122,7 @@ Per the operator's explicit instruction, each companion-research finding was ind
 | P1-002 | P1 | goal_plugin.md (already updated) still omits same 3 env vars + store_health/mutation | correctness, traceability | `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md:33-52` | open |
 | P1-003 | P1 | Root README delegates /goal plugin contract to an inventory that doesn't define it | traceability, maintainability | `README.md:1230-1233` → `.opencode/plugins/README.md` | open |
 | P2-001 | P2 | Skill Advisor README contradicts feature catalog on live-tool verification | traceability | `.opencode/skills/system-skill-advisor/README.md:85` | open |
-| P2-002 | P2 | Manual playbooks don't validate store_health=/mutation= output | traceability | `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md:19-25` (+ skill-advisor sibling) | open |
+| P2-002 | P2 | Manual playbooks don't validate store_health=/mutation= output | traceability | `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md:19-25` (+ skill-advisor sibling) | open |
 | DR-006-P2-001 | P2 | Packet-history docs contain current-and-wrong stale goal.md claims | correctness, traceability | `009-.../handover.md:95`, `011-.../tasks.md:66,109` | open |
 | I8-P2-1 | P2 | Goal-plugin docs lack a single contract owner / canonical output-field schema | maintainability | multiple (see below) | open |
 | I9-P2-1 | P2 | ENV_REFERENCE.md carries a stale generated-date marker | traceability | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:772` | open |
@@ -154,14 +154,14 @@ Per the operator's explicit instruction, each companion-research finding was ind
 
 ### P2-001 — Skill Advisor README self-contradiction
 
-- **Evidence:** `.opencode/skills/system-skill-advisor/README.md:85` says `/goal` live OpenCode-tool invocation is "still under investigation"; the sibling `feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md:41` states a real `opencode serve` run listed `mk_goal`/`mk_goal_status` and a live model turn persisted state.
+- **Evidence:** `.opencode/skills/system-skill-advisor/README.md:85` says `/goal` live OpenCode-tool invocation is "still under investigation"; the sibling `feature_catalog/hooks-and-plugin/goal-opencode-plugin.md:41` states a real `opencode serve` run listed `mk_goal`/`mk_goal_status` and a live model turn persisted state.
 - **Impact:** internal contradiction within the same skill's own documentation set on a verification-status claim.
 - **Fix recommendation:** update `README.md:85` to match the feature catalog's verified status (or narrow the wording to a more specific unverified sub-claim, if one exists).
 - **Finding class:** instance-only. **Affected surfaces:** `system-skill-advisor/README.md`, its feature catalog.
 
 ### P2-002 — Manual testing playbooks don't validate the new output fields
 
-- **Evidence:** neither `system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md` nor `system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md` names `store_health=` or `mutation=<created|refreshed|replaced>` as a pass criterion; exact-string sweep confirms zero hits.
+- **Evidence:** neither `system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md` nor `system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` names `store_health=` or `mutation=<created|refreshed|replaced>` as a pass criterion; exact-string sweep confirms zero hits.
 - **Impact:** a manual test run can currently pass without ever exercising these newly-shipped status surfaces.
 - **Asymmetry noted (iteration 5):** the system-skill-advisor playbook has a generic post-mutation-state check that could catch some regressions incidentally; the system-spec-kit playbook has no equivalent step at all.
 - **Fix recommendation:** add explicit `store_health=` and `mutation=` pass criteria to both playbooks.
@@ -295,7 +295,7 @@ Dimension coverage: 4/4 (correctness: iterations 1, 3, 6, 9, 10; security: itera
 
 ### Sources Reviewed (representative, not exhaustive — see individual iteration files for full lists)
 
-`.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`, `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md`, `.opencode/plugins/README.md`, `README.md`, `.opencode/skills/system-skill-advisor/README.md`, `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/goal-opencode-plugin.md`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md`, `.opencode/plugins/tests/mk-goal-tool-path.test.cjs`, phase 009/011/003 packet docs, `review_archive/2026-07-01-plugin-implementation-review/README.md`, and the companion `research/research.md` packet.
+`.opencode/plugins/mk-goal.js`, `.opencode/commands/goal_opencode.md`, `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`, `.opencode/skills/system-spec-kit/references/hooks/goal_plugin.md`, `.opencode/plugins/README.md`, `README.md`, `.opencode/skills/system-skill-advisor/README.md`, `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/manual_testing_playbook/ux-hooks/goal-opencode-plugin.md`, `.opencode/skills/system-skill-advisor/manual_testing_playbook/cli-hooks-and-plugin/goal-opencode-plugin.md`, `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md`, `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md`, `.opencode/skills/system-spec-kit/ARCHITECTURE.md`, `.opencode/plugins/tests/mk-goal-tool-path.test.cjs`, phase 009/011/003 packet docs, `review_archive/2026-07-01-plugin-implementation-review/README.md`, and the companion `research/research.md` packet.
 
 **Iteration artifacts:** `review/iterations/iteration-{001..010}.md`, `review/deltas/iter-{001..010}.jsonl`, `review/deep-review-state.jsonl`, `review/deep-review-findings-registry.json`, `review/deep-review-dashboard.md`, `review/deep-review-strategy.md`.
 

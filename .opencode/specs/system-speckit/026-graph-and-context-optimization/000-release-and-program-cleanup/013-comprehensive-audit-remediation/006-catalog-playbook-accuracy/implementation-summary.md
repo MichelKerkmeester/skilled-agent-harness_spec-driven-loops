@@ -19,8 +19,8 @@ _memory:
       - ".opencode/skills/system-spec-kit/README.md"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/local-llm-query-intelligence/category-overview.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "subagent-F-catalog-playbook-implement"
@@ -70,11 +70,11 @@ manual_testing_playbook.md lines 166 and 173: the bash threshold (`-ne 380`) and
 ### F4: Five broken catalog links repaired
 
 Five scenario files pointed to catalog files that do not exist. Each was corrected to the actual file on disk:
-- scenario 019: `02--mutation/10-per-record-history-log.md` -> `02--mutation/per-memory-history-log.md`
-- scenario 006: `01--retrieval/hybrid-search-pipeline.md` -> `01--retrieval/hybrid-search-pipeline.md`
-- scenario 007: `01--retrieval/4-stage-pipeline-architecture.md` -> `01--retrieval/4-stage-pipeline-architecture.md`
-- scenario 170: `14--stress-testing/01-stress-test-cycle.md` -> `14--stress-testing/category-overview.md`
-- scenario 036: `04--maintenance/startup-runtime-compatibility-guards.md` -> `04--maintenance/startup-runtime-compatibility-guards.md`
+- scenario 019: `mutation/10-per-record-history-log.md` -> `mutation/per-memory-history-log.md`
+- scenario 006: `retrieval/hybrid-search-pipeline.md` -> `retrieval/hybrid-search-pipeline.md`
+- scenario 007: `retrieval/4-stage-pipeline-architecture.md` -> `retrieval/4-stage-pipeline-architecture.md`
+- scenario 170: `stress-testing/01-stress-test-cycle.md` -> `stress-testing/category-overview.md`
+- scenario 036: `maintenance/startup-runtime-compatibility-guards.md` -> `maintenance/startup-runtime-compatibility-guards.md`
 
 The same stale paths also appeared in the root playbook's index/cross-reference table and were corrected there as well.
 
@@ -102,7 +102,7 @@ scenario 234 line 38: `python3 ../sk-code/scripts/verify_alignment_drift.py` -> 
 
 ### F9: Scenario numbers 401-415 -> 361-375
 
-manual_testing_playbook/24--local-llm-query-intelligence/README.md: all scenario rows (401-415) updated to (361-375); Band A header updated to "(361-370)", Band B to "(371-375)"; cross-AI reference "(414, 415)" updated to "(374, 375)". Related references in the same README also updated (stale causal handler paths). category-overview.md "How It Works" and SOURCE FILES table both updated.
+manual_testing_playbook/local-llm-query-intelligence/README.md: all scenario rows (401-415) updated to (361-375); Band A header updated to "(361-370)", Band B to "(371-375)"; cross-AI reference "(414, 415)" updated to "(374, 375)". Related references in the same README also updated (stale causal handler paths). category-overview.md "How It Works" and SOURCE FILES table both updated.
 
 ### F10: Stale MCP call shapes
 
@@ -114,21 +114,21 @@ manual_testing_playbook/24--local-llm-query-intelligence/README.md: all scenario
 | File | Action | Purpose |
 |------|--------|---------|
 | `feature_catalog/feature_catalog.md` | Modified | F1: partial-coverage language; F7: qualified cleanup-complete claim |
-| `feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` | Modified | F7: qualified cleanup-complete claim |
+| `feature_catalog/tooling-and-scripts/feature-catalog-code-references.md` | Modified | F7: qualified cleanup-complete claim |
 | `README.md` | Modified | F2: 36-tool -> 37-tool (5 occurrences) |
 | `mcp_server/tests/review-fixes.vitest.ts` | Modified | F2: toBe(36) -> toBe(37) |
 | `manual_testing_playbook/manual_testing_playbook.md` | Modified | F3: 380->384; F4: root index links; F5: garbled line 2692 |
-| `manual_testing_playbook/02--mutation/019-*.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/01--retrieval/hybrid-search-pipeline.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/01--retrieval/4-stage-pipeline-architecture.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/14--stress-testing/run-stress-cycle.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/04--maintenance/startup-runtime-compatibility-guards.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md` | Modified | F5: garbled contract fields |
-| `feature_catalog/24--local-llm-query-intelligence/category-overview.md` | Modified | F6: stale paths; F9: scenario range |
-| `manual_testing_playbook/24--local-llm-query-intelligence/README.md` | Modified | F9: scenario numbers 401-415 -> 361-375 |
-| `manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md` | Modified | F8: wrong verifier path |
-| `manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md` | Modified | F10: stale session_bootstrap call shape |
-| `feature_catalog/17--governance/governed-ingest-cancel-lifecycle.md` | Modified | F10: stale memory_ingest_start call shape |
+| `manual_testing_playbook/mutation/019-*.md` | Modified | F4: broken catalog link |
+| `manual_testing_playbook/retrieval/hybrid-search-pipeline.md` | Modified | F4: broken catalog link |
+| `manual_testing_playbook/retrieval/4-stage-pipeline-architecture.md` | Modified | F4: broken catalog link |
+| `manual_testing_playbook/stress-testing/run-stress-cycle.md` | Modified | F4: broken catalog link |
+| `manual_testing_playbook/maintenance/startup-runtime-compatibility-guards.md` | Modified | F4: broken catalog link |
+| `manual_testing_playbook/tooling-and-scripts/feature-catalog-annotation-name-validity.md` | Modified | F5: garbled contract fields |
+| `feature_catalog/local-llm-query-intelligence/category-overview.md` | Modified | F6: stale paths; F9: scenario range |
+| `manual_testing_playbook/local-llm-query-intelligence/README.md` | Modified | F9: scenario numbers 401-415 -> 361-375 |
+| `manual_testing_playbook/tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md` | Modified | F8: wrong verifier path |
+| `manual_testing_playbook/discovery/session-bootstrap-reader-ready-context.md` | Modified | F10: stale session_bootstrap call shape |
+| `feature_catalog/governance/governed-ingest-cancel-lifecycle.md` | Modified | F10: stale memory_ingest_start call shape |
 <!-- /ANCHOR:what-built -->
 
 ---

@@ -9,13 +9,13 @@ Check `cli-opencode` references/assets for concrete command examples that still 
 1. `cli-opencode/assets/prompt_templates.md` Template 10 declares `Agent: ai-council` and gives a copy-paste command using `--agent ai-council`. [SOURCE: .opencode/skills/cli-opencode/assets/prompt_templates.md:369-388]
 2. That template contradicts phase 010's redirect: direct `opencode run --agent ai-council` is no longer reachable; callers should use `/deep:ai-council` for a full session or a primary/general/orchestrate Task-dispatch path for a single planning pass. [SOURCE: .opencode/specs/deep-loops/031-deep-loop-issues-with-gpt-opencode/010-ai-council-subagent-only/implementation-summary.md:63-68]
 3. `cli-opencode/manual_testing_playbook/manual_testing_playbook.md` still says CO-017 verifies `--agent ai-council`. This is outside the 014 spec's explicit README/SKILL candidate list, but it is an active skill doc surface and is stale for the same phase 010 reason. [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:417]
-4. `cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md` is a concrete stale scenario: objective, request, execution step, and table all require `--agent ai-council`. [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md:27-43] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md:51]
+4. `cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md` is a concrete stale scenario: objective, request, execution step, and table all require `--agent ai-council`. [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md:27-43] [SOURCE: .opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md:51]
 
 ## Sources Consulted
 
 - `.opencode/skills/cli-opencode/assets/prompt_templates.md`
 - `.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md`
+- `.opencode/skills/cli-opencode/manual_testing_playbook/agent-routing/multi-ai-council-multi-strategy.md`
 - `010-ai-council-subagent-only/implementation-summary.md`
 
 ## Assessment

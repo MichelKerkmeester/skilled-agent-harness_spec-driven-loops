@@ -14,18 +14,18 @@ This document combines the operator-facing manual validation contract for the `r
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
-- `01--executor/`
-- `02--prompt-rendering/`
-- `03--validation/`
-- `04--state-safety/`
-- `05--scoring/`
-- `06--coverage-graph/`
-- `07--script-entry-points/`
-- `08--council/`
-- `09--fanout/`
-- `10--lifecycle/`
-- `11--observability/`
-- `12--testing/`
+- `executor/`
+- `prompt-rendering/`
+- `validation/`
+- `state-safety/`
+- `scoring/`
+- `coverage-graph/`
+- `script-entry-points/`
+- `council/`
+- `fanout/`
+- `lifecycle/`
+- `observability/`
+- `testing/`
 
 ---
 
@@ -118,7 +118,7 @@ Prompt: `Validate Executor config and report whether the current source, script 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
 #### Test Execution
-> **Feature File:** [DLR-001](01--executor/executor-config.md)
+> **Feature File:** [DLR-001](executor/executor-config.md)
 
 ### DLR-002 | Executor audit
 
@@ -131,7 +131,7 @@ Prompt: `Validate Executor audit and report whether the current source, script s
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
 #### Test Execution
-> **Feature File:** [DLR-002](01--executor/executor-audit.md)
+> **Feature File:** [DLR-002](executor/executor-audit.md)
 
 ### DLR-003 | Fallback router
 
@@ -144,7 +144,7 @@ Prompt: `Validate Fallback router and report whether the current source, script 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
 #### Test Execution
-> **Feature File:** [DLR-003](01--executor/fallback-router.md)
+> **Feature File:** [DLR-003](executor/fallback-router.md)
 
 ---
 
@@ -159,7 +159,7 @@ Prompt: `Validate Fallback-router typed reroute and report whether the current s
 Expected signals: Route trace metadata, preflight validation errors, cycle detection, and same-scope routing coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-044](01--executor/fallback-router-typed-reroute.md)
+> **Feature File:** [DLR-044](executor/fallback-router-typed-reroute.md)
 
 ---
 
@@ -178,7 +178,7 @@ Prompt: `Validate Prompt pack and report whether the current source, script surf
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
 #### Test Execution
-> **Feature File:** [DLR-004](02--prompt-rendering/prompt-pack.md)
+> **Feature File:** [DLR-004](prompt-rendering/prompt-pack.md)
 
 ---
 
@@ -197,7 +197,7 @@ Prompt: `Validate Post-dispatch validate and report whether the current source, 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
 #### Test Execution
-> **Feature File:** [DLR-005](03--validation/post-dispatch-validate.md)
+> **Feature File:** [DLR-005](validation/post-dispatch-validate.md)
 
 ---
 
@@ -212,7 +212,7 @@ Prompt: `Validate LLM-judge hardening and report whether the current source, scr
 Expected signals: Retry behavior, neutral fallback card shape, quarantine skip paths, and non-quarantined success coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-045](03--validation/llm-judge-hardening.md)
+> **Feature File:** [DLR-045](validation/llm-judge-hardening.md)
 
 ---
 
@@ -227,7 +227,7 @@ Prompt: `Verify mk-deep-loop-guard still detects a Deep Route mode mismatch and 
 Expected signals: Hook fires and logs a warning on mismatch or loop-repeat (default); throws and blocks the dispatch when the matching reject env var is set; stays silent on matching modes, command-driven iterations, non-deep/non-loop-executor `subagent_type` values, and when the registry/state directory is unreadable. A stale per-session state file is archived (not deleted) on the next `session.created` sweep.
 
 #### Test Execution
-> **Feature File:** [DLR-052](03--validation/mk-deep-loop-guard.md)
+> **Feature File:** [DLR-052](validation/mk-deep-loop-guard.md)
 
 ---
 
@@ -246,7 +246,7 @@ Prompt: `Validate Atomic state and report whether the current source, script sur
 Expected signals: Deterministic mutation safety evidence from source and unit tests.
 
 #### Test Execution
-> **Feature File:** [DLR-006](04--state-safety/atomic-state.md)
+> **Feature File:** [DLR-006](state-safety/atomic-state.md)
 
 ### DLR-007 | JSONL repair
 
@@ -259,7 +259,7 @@ Prompt: `Validate JSONL repair and report whether the current source, script sur
 Expected signals: Deterministic mutation safety evidence from source and unit tests.
 
 #### Test Execution
-> **Feature File:** [DLR-007](04--state-safety/jsonl-repair.md)
+> **Feature File:** [DLR-007](state-safety/jsonl-repair.md)
 
 ### DLR-008 | Loop lock
 
@@ -272,7 +272,7 @@ Prompt: `Validate Loop lock and report whether the current source, script surfac
 Expected signals: Deterministic mutation safety evidence from source and unit tests.
 
 #### Test Execution
-> **Feature File:** [DLR-008](04--state-safety/loop-lock.md)
+> **Feature File:** [DLR-008](state-safety/loop-lock.md)
 
 ### DLR-009 | Permissions gate
 
@@ -285,7 +285,7 @@ Prompt: `Validate Permissions gate and report whether the current source, script
 Expected signals: Deterministic mutation safety evidence from source and unit tests.
 
 #### Test Execution
-> **Feature File:** [DLR-009](04--state-safety/permissions-gate.md)
+> **Feature File:** [DLR-009](state-safety/permissions-gate.md)
 
 ---
 
@@ -300,7 +300,7 @@ Prompt: `Validate Atomic-state serialize-diff and report whether the current sou
 Expected signals: Compare-before-write behavior from source plus unit coverage for first write, unchanged skip, and changed-state rewrite.
 
 #### Test Execution
-> **Feature File:** [DLR-030](04--state-safety/atomic-state-serialize-diff.md)
+> **Feature File:** [DLR-030](state-safety/atomic-state-serialize-diff.md)
 
 ### DLR-031 | Atomic-state integrity helpers
 
@@ -313,7 +313,7 @@ Prompt: `Validate Atomic-state integrity helpers and report whether the current 
 Expected signals: Integrity hash, stamping, stable key order, and mismatch warning behavior from unit tests.
 
 #### Test Execution
-> **Feature File:** [DLR-031](04--state-safety/atomic-state-integrity-helpers.md)
+> **Feature File:** [DLR-031](state-safety/atomic-state-integrity-helpers.md)
 
 ### DLR-032 | Atomic-state deferred writer
 
@@ -326,7 +326,7 @@ Prompt: `Validate Atomic-state deferred writer and report whether the current so
 Expected signals: Debounce, superseded-write coalescing, dirty-again reflush, flushNow, and close coverage in atomic-state unit tests.
 
 #### Test Execution
-> **Feature File:** [DLR-032](04--state-safety/atomic-state-deferred-writer.md)
+> **Feature File:** [DLR-032](state-safety/atomic-state-deferred-writer.md)
 
 ### DLR-035 | JSONL lock-held merge
 
@@ -339,7 +339,7 @@ Prompt: `Validate JSONL lock-held merge and report whether the current source, s
 Expected signals: Merge dedupe, reread-under-lock behavior, atomic rewrite, and fanout-salvage integration tests.
 
 #### Test Execution
-> **Feature File:** [DLR-035](04--state-safety/jsonl-lock-held-merge.md)
+> **Feature File:** [DLR-035](state-safety/jsonl-lock-held-merge.md)
 
 ### DLR-036 | Loop-lock heartbeat hardening
 
@@ -352,7 +352,7 @@ Prompt: `Validate Loop-lock heartbeat hardening and report whether the current s
 Expected signals: Heartbeat refresh updates, metadata preservation, stale holder replacement, and loop-lock unit coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-036](04--state-safety/loop-lock-heartbeat-hardening.md)
+> **Feature File:** [DLR-036](state-safety/loop-lock-heartbeat-hardening.md)
 
 ### DLR-037 | Loop-lock single-flight decision
 
@@ -365,7 +365,7 @@ Prompt: `Validate Loop-lock single-flight decision and report whether the curren
 Expected signals: Default file-lock behavior remains unchanged while opt-in host-local same-lock attempts refuse the second live holder.
 
 #### Test Execution
-> **Feature File:** [DLR-037](04--state-safety/loop-lock-single-flight-decision.md)
+> **Feature File:** [DLR-037](state-safety/loop-lock-single-flight-decision.md)
 
 ---
 
@@ -384,7 +384,7 @@ Prompt: `Validate Bayesian scorer and report whether the current source, script 
 Expected signals: Runtime behavior matches the source contract and primary regression test.
 
 #### Test Execution
-> **Feature File:** [DLR-010](05--scoring/bayesian-scorer.md)
+> **Feature File:** [DLR-010](scoring/bayesian-scorer.md)
 
 ---
 
@@ -399,7 +399,7 @@ Prompt: `Validate Convergence score-delta and report whether the current source,
 Expected signals: First-iteration null delta, prior-snapshot delta, graph output bindings, and improvement-effect trace coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-040](05--scoring/convergence-score-delta.md)
+> **Feature File:** [DLR-040](scoring/convergence-score-delta.md)
 
 ---
 
@@ -418,7 +418,7 @@ Prompt: `Validate Coverage graph DB and report whether the current source, scrip
 Expected signals: Session-scoped graph behavior, schema/query/signal outputs, and matching integration or lifecycle evidence.
 
 #### Test Execution
-> **Feature File:** [DLR-011](06--coverage-graph/coverage-graph-db.md)
+> **Feature File:** [DLR-011](coverage-graph/coverage-graph-db.md)
 
 ### DLR-012 | Coverage graph query
 
@@ -431,7 +431,7 @@ Prompt: `Validate Coverage graph query and report whether the current source, sc
 Expected signals: Session-scoped graph behavior, schema/query/signal outputs, and matching integration or lifecycle evidence.
 
 #### Test Execution
-> **Feature File:** [DLR-012](06--coverage-graph/coverage-graph-query.md)
+> **Feature File:** [DLR-012](coverage-graph/coverage-graph-query.md)
 
 ### DLR-013 | Coverage graph signals
 
@@ -444,7 +444,7 @@ Prompt: `Validate Coverage graph signals and report whether the current source, 
 Expected signals: Session-scoped graph behavior, schema/query/signal outputs, and matching integration or lifecycle evidence.
 
 #### Test Execution
-> **Feature File:** [DLR-013](06--coverage-graph/coverage-graph-signals.md)
+> **Feature File:** [DLR-013](coverage-graph/coverage-graph-signals.md)
 
 ---
 
@@ -459,7 +459,7 @@ Prompt: `Validate Observation-threshold guard and report whether the current sou
 Expected signals: Default-off parity, configured threshold parsing, sub-threshold STOP blocking, and passing-threshold evidence coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-041](06--coverage-graph/observation-threshold-guard.md)
+> **Feature File:** [DLR-041](coverage-graph/observation-threshold-guard.md)
 
 ### DLR-042 | Coverage-graph time decay
 
@@ -472,7 +472,7 @@ Prompt: `Validate Coverage-graph time decay and report whether the current sourc
 Expected signals: No-decay full weight, half-life decay math, ranking integration, and convergence parity coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-042](06--coverage-graph/coverage-graph-time-decay.md)
+> **Feature File:** [DLR-042](coverage-graph/coverage-graph-time-decay.md)
 
 ### DLR-043 | Coverage-graph fuzzy merge
 
@@ -485,7 +485,7 @@ Prompt: `Validate Coverage-graph fuzzy merge and report whether the current sour
 Expected signals: Similarity thresholding, category guard, bounded namespace behavior, and query-only consolidation candidate tests.
 
 #### Test Execution
-> **Feature File:** [DLR-043](06--coverage-graph/coverage-graph-fuzzy-merge.md)
+> **Feature File:** [DLR-043](coverage-graph/coverage-graph-fuzzy-merge.md)
 
 ---
 
@@ -504,7 +504,7 @@ Prompt: `Validate convergence.cjs and report whether the current source, script 
 Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
 
 #### Test Execution
-> **Feature File:** [DLR-014](07--script-entry-points/convergence-script.md)
+> **Feature File:** [DLR-014](script-entry-points/convergence-script.md)
 
 ### DLR-015 | upsert.cjs
 
@@ -517,7 +517,7 @@ Prompt: `Validate upsert.cjs and report whether the current source, script surfa
 Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
 
 #### Test Execution
-> **Feature File:** [DLR-015](07--script-entry-points/upsert-script.md)
+> **Feature File:** [DLR-015](script-entry-points/upsert-script.md)
 
 ### DLR-016 | query.cjs
 
@@ -530,7 +530,7 @@ Prompt: `Validate query.cjs and report whether the current source, script surfac
 Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
 
 #### Test Execution
-> **Feature File:** [DLR-016](07--script-entry-points/query-script.md)
+> **Feature File:** [DLR-016](script-entry-points/query-script.md)
 
 ### DLR-017 | status.cjs
 
@@ -543,7 +543,7 @@ Prompt: `Validate status.cjs and report whether the current source, script surfa
 Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for invalid input, and DB close in `finally` where the script opens the graph DB.
 
 #### Test Execution
-> **Feature File:** [DLR-017](07--script-entry-points/status-script.md)
+> **Feature File:** [DLR-017](script-entry-points/status-script.md)
 
 ---
 
@@ -558,7 +558,7 @@ Per the Runtime Boundary Decision (ADR-001), `lib/council/` provides 5 durabilit
 Runs seat executors in parallel for one council round; preserves seat result order; returns fulfilled or rejected per-seat outcomes plus round summary counts.
 
 #### Test Execution
-> **Feature File:** [DLR-018](08--council/multi-seat-dispatch.md)
+> **Feature File:** [DLR-018](council/multi-seat-dispatch.md)
 
 ### DLR-019 | Round-state JSONL
 
@@ -567,7 +567,7 @@ Runs seat executors in parallel for one council round; preserves seat result ord
 Appends per-round JSONL records with a lock-file single-writer guard; repairs corrupt trailing JSONL before append; fsyncs writes; exposes round-state readers for resume.
 
 #### Test Execution
-> **Feature File:** [DLR-019](08--council/round-state-jsonl.md)
+> **Feature File:** [DLR-019](council/round-state-jsonl.md)
 
 ### DLR-020 | Adjudicator verdict scoring
 
@@ -576,7 +576,7 @@ Appends per-round JSONL records with a lock-file single-writer guard; repairs co
 Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for option change, confidence delta, material-risk Jaccard delta, axis flip rate, and blocking-disagreement delta.
 
 #### Test Execution
-> **Feature File:** [DLR-020](08--council/adjudicator-verdict-scoring.md)
+> **Feature File:** [DLR-020](council/adjudicator-verdict-scoring.md)
 
 ### DLR-021 | Cost guards
 
@@ -585,7 +585,7 @@ Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for
 Normalizes and enforces ADR-004 defaults for max_rounds_per_topic, max_topics_per_session, saturation_threshold, and seats_per_round; computes upper-bound seat-output budgets.
 
 #### Test Execution
-> **Feature File:** [DLR-021](08--council/cost-guards.md)
+> **Feature File:** [DLR-021](council/cost-guards.md)
 
 ### DLR-022 | Session state hierarchy
 
@@ -594,7 +594,7 @@ Normalizes and enforces ADR-004 defaults for max_rounds_per_topic, max_topics_pe
 Creates and validates the ADR-002 session->topic->round state shape, including stable topic-NNN-slug and round-NNN ids.
 
 #### Test Execution
-> **Feature File:** [DLR-022](08--council/session-state-hierarchy.md)
+> **Feature File:** [DLR-022](council/session-state-hierarchy.md)
 
 ---
 
@@ -613,7 +613,7 @@ Prompt: `Validate fan-out config schema and confirm the 9 fan-out tests pass and
 Expected signals: 36/36 executor-config tests pass; fan-out schema layer does not modify existing `executorConfigSchema`.
 
 #### Test Execution
-> **Feature File:** [DLR-023](09--fanout/fanout-config-schema.md)
+> **Feature File:** [DLR-023](fanout/fanout-config-schema.md)
 
 ### DLR-024 | Fan-out worker pool concurrency cap
 
@@ -626,7 +626,7 @@ Prompt: `Validate the fan-out worker pool and confirm the 10 unit tests pass, ve
 Expected signals: 10/10 pool tests pass; gated-worker confirms max N in flight; failure-isolation confirms pool continues after one rejection.
 
 #### Test Execution
-> **Feature File:** [DLR-024](09--fanout/fanout-pool-concurrency-cap.md)
+> **Feature File:** [DLR-024](fanout/fanout-pool-concurrency-cap.md)
 
 ### DLR-025 | Fan-out CLI lineage driver spawn and isolation
 
@@ -639,7 +639,7 @@ Prompt: `Validate the fan-out CLI lineage driver and confirm the 5 integration t
 Expected signals: 5/5 fanout-run tests pass; lineage dirs distinct; orchestration summary present.
 
 #### Test Execution
-> **Feature File:** [DLR-025](09--fanout/fanout-run-cli-lineage-spawn.md)
+> **Feature File:** [DLR-025](fanout/fanout-run-cli-lineage-spawn.md)
 
 ### DLR-026 | Fan-out write-failure salvage
 
@@ -652,7 +652,7 @@ Prompt: `Validate the fan-out salvage module and confirm the 11 unit tests pass,
 Expected signals: 11/11 fanout-salvage tests pass.
 
 #### Test Execution
-> **Feature File:** [DLR-026](09--fanout/fanout-salvage-recovery.md)
+> **Feature File:** [DLR-026](fanout/fanout-salvage-recovery.md)
 
 ### DLR-027 | Fan-out merge: research dedup and attribution
 
@@ -665,7 +665,7 @@ Prompt: `Validate the research fan-out merge and confirm the 3 research unit tes
 Expected signals: Research tests pass; duplicate `findingId` → single entry with `_lineages` array.
 
 #### Test Execution
-> **Feature File:** [DLR-027](09--fanout/fanout-merge-research.md)
+> **Feature File:** [DLR-027](fanout/fanout-merge-research.md)
 
 ### DLR-028 | Fan-out merge: review strongest-restriction
 
@@ -678,7 +678,7 @@ Prompt: `Validate the review fan-out strongest-restriction merge and confirm all
 Expected signals: 5/5 review tests pass; clean+P0 → FAIL; all clean → PASS; P1-only → CONDITIONAL.
 
 #### Test Execution
-> **Feature File:** [DLR-028](09--fanout/fanout-merge-review-strongest-restriction.md)
+> **Feature File:** [DLR-028](fanout/fanout-merge-review-strongest-restriction.md)
 
 ### DLR-029 | Artifact-dir override and single-executor parity
 
@@ -691,7 +691,7 @@ Prompt: `Validate fan-out YAML parity: confirm single-executor behavior is uncha
 Expected signals: `if_absent` command unchanged; `step_fanout_spawn` and `step_fanout_merge` have `skip_when: "config.fanout is absent"`; vitest 197/197.
 
 #### Test Execution
-> **Feature File:** [DLR-029](09--fanout/artifact-dir-override-parity.md)
+> **Feature File:** [DLR-029](fanout/artifact-dir-override-parity.md)
 
 ---
 
@@ -706,7 +706,7 @@ Prompt: `Validate Fixed-rate overrun accounting and report whether the current s
 Expected signals: Fast-slot zero skip, overrun skip count, slot duration persistence, and no catch-up dispatch behavior.
 
 #### Test Execution
-> **Feature File:** [DLR-039](09--fanout/fixed-rate-overrun-accounting.md)
+> **Feature File:** [DLR-039](fanout/fixed-rate-overrun-accounting.md)
 
 ### DLR-046 | Fan-out stall watchdog
 
@@ -719,7 +719,7 @@ Prompt: `Validate Fan-out stall watchdog and report whether the current source, 
 Expected signals: No-op default behavior, lag-ceiling event emission, abort-and-requeue handling, and required positive threshold validation.
 
 #### Test Execution
-> **Feature File:** [DLR-046](09--fanout/fanout-stall-watchdog.md)
+> **Feature File:** [DLR-046](fanout/fanout-stall-watchdog.md)
 
 ### DLR-047 | Persisted-wait crash resume
 
@@ -732,7 +732,7 @@ Prompt: `Validate Persisted-wait crash resume and report whether the current sou
 Expected signals: Wait checkpoint persistence, resume-waiting startup branch, null legacy migration behavior, and fanout-run unit coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-047](09--fanout/persisted-wait-crash-resume.md)
+> **Feature File:** [DLR-047](fanout/persisted-wait-crash-resume.md)
 
 ---
 
@@ -751,7 +751,7 @@ Prompt: `Validate Abortable chunked sleep and report whether the current source,
 Expected signals: Sleep resolves after chunked waits, rejects on abort, removes listeners, and supports composed abort-signal cancellation.
 
 #### Test Execution
-> **Feature File:** [DLR-033](10--lifecycle/abortable-chunked-sleep.md)
+> **Feature File:** [DLR-033](lifecycle/abortable-chunked-sleep.md)
 
 ### DLR-034 | Lifecycle taxonomy guards
 
@@ -764,7 +764,7 @@ Prompt: `Validate Lifecycle taxonomy guards and report whether the current sourc
 Expected signals: Taxonomy export, legal-transition map, backward-compatible literals, and one-shot resume gate coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-034](10--lifecycle/lifecycle-taxonomy-guards.md)
+> **Feature File:** [DLR-034](lifecycle/lifecycle-taxonomy-guards.md)
 
 ---
 
@@ -783,7 +783,7 @@ Prompt: `Validate Byte-offset log regions and report whether the current source,
 Expected signals: Stamped offset fields, readable byte slices, schema fields, and reducer dashboard output coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-038](11--observability/byte-offset-log-regions.md)
+> **Feature File:** [DLR-038](observability/byte-offset-log-regions.md)
 
 ### DLR-048 | Single-loop telemetry heartbeat
 
@@ -796,7 +796,7 @@ Prompt: `Validate Single-loop telemetry heartbeat and report whether the current
 Expected signals: Started/progress/terminal heartbeat producers, single-loop row shape, no-change suppression, and YAML parse coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-048](11--observability/single-loop-telemetry-heartbeat.md)
+> **Feature File:** [DLR-048](observability/single-loop-telemetry-heartbeat.md)
 
 ### DLR-049 | Unified observability event envelope
 
@@ -809,7 +809,7 @@ Prompt: `Validate Unified observability event envelope and report whether the cu
 Expected signals: Envelope normalization, append behavior, core emitter wiring, and status/convergence parity coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-049](11--observability/unified-observability-event-envelope.md)
+> **Feature File:** [DLR-049](observability/unified-observability-event-envelope.md)
 
 ---
 
@@ -828,7 +828,7 @@ Prompt: `Validate Hermetic test isolation and report whether the current source,
 Expected signals: Per-test HOME/DB/temp isolation, child-env injection, cleanup behavior, and parallel fanout-run test coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-050](12--testing/hermetic-test-isolation.md)
+> **Feature File:** [DLR-050](testing/hermetic-test-isolation.md)
 
 ### DLR-051 | Record-replay cassette harness
 
@@ -841,7 +841,7 @@ Prompt: `Validate Record-replay cassette harness and report whether the current 
 Expected signals: Cassette recording, deterministic replay, redacted path/timestamp placeholders, and convergence/fanout regression coverage.
 
 #### Test Execution
-> **Feature File:** [DLR-051](12--testing/record-replay-cassette-harness.md)
+> **Feature File:** [DLR-051](testing/record-replay-cassette-harness.md)
 
 ---
 
@@ -866,55 +866,55 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 
 | Scenario | Feature Catalog Entry | Scenario File |
 |---|---|---|
-| DLR-001 | [F001 Executor config](../feature_catalog/01--executor/executor-config.md) | [01--executor/executor-config.md](01--executor/executor-config.md) |
-| DLR-002 | [F002 Executor audit](../feature_catalog/01--executor/executor-audit.md) | [01--executor/executor-audit.md](01--executor/executor-audit.md) |
-| DLR-003 | [F003 Fallback router](../feature_catalog/01--executor/fallback-router.md) | [01--executor/fallback-router.md](01--executor/fallback-router.md) |
-| DLR-004 | [F004 Prompt pack](../feature_catalog/02--prompt-rendering/prompt-pack.md) | [02--prompt-rendering/prompt-pack.md](02--prompt-rendering/prompt-pack.md) |
-| DLR-005 | [F005 Post-dispatch validate](../feature_catalog/03--validation/post-dispatch-validate.md) | [03--validation/post-dispatch-validate.md](03--validation/post-dispatch-validate.md) |
-| DLR-006 | [F006 Atomic state](../feature_catalog/04--state-safety/atomic-state.md) | [04--state-safety/atomic-state.md](04--state-safety/atomic-state.md) |
-| DLR-007 | [F007 JSONL repair](../feature_catalog/04--state-safety/jsonl-repair.md) | [04--state-safety/jsonl-repair.md](04--state-safety/jsonl-repair.md) |
-| DLR-008 | [F008 Loop lock](../feature_catalog/04--state-safety/loop-lock.md) | [04--state-safety/loop-lock.md](04--state-safety/loop-lock.md) |
-| DLR-009 | [F009 Permissions gate](../feature_catalog/04--state-safety/permissions-gate.md) | [04--state-safety/permissions-gate.md](04--state-safety/permissions-gate.md) |
-| DLR-010 | [F010 Bayesian scorer](../feature_catalog/05--scoring/bayesian-scorer.md) | [05--scoring/bayesian-scorer.md](05--scoring/bayesian-scorer.md) |
-| DLR-011 | [F011 Coverage graph DB](../feature_catalog/06--coverage-graph/coverage-graph-db.md) | [06--coverage-graph/coverage-graph-db.md](06--coverage-graph/coverage-graph-db.md) |
-| DLR-012 | [F012 Coverage graph query](../feature_catalog/06--coverage-graph/coverage-graph-query.md) | [06--coverage-graph/coverage-graph-query.md](06--coverage-graph/coverage-graph-query.md) |
-| DLR-013 | [F013 Coverage graph signals](../feature_catalog/06--coverage-graph/coverage-graph-signals.md) | [06--coverage-graph/coverage-graph-signals.md](06--coverage-graph/coverage-graph-signals.md) |
-| DLR-014 | [F014 convergence.cjs](../feature_catalog/07--script-entry-points/convergence-script.md) | [07--script-entry-points/convergence-script.md](07--script-entry-points/convergence-script.md) |
-| DLR-015 | [F015 upsert.cjs](../feature_catalog/07--script-entry-points/upsert-script.md) | [07--script-entry-points/upsert-script.md](07--script-entry-points/upsert-script.md) |
-| DLR-016 | [F016 query.cjs](../feature_catalog/07--script-entry-points/query-script.md) | [07--script-entry-points/query-script.md](07--script-entry-points/query-script.md) |
-| DLR-017 | [F017 status.cjs](../feature_catalog/07--script-entry-points/status-script.md) | [07--script-entry-points/status-script.md](07--script-entry-points/status-script.md) |
-| DLR-018 | [F018 Multi-seat dispatch](../feature_catalog/08--council/multi-seat-dispatch.md) | [08--council/multi-seat-dispatch.md](08--council/multi-seat-dispatch.md) |
-| DLR-019 | [F019 Round-state JSONL](../feature_catalog/08--council/round-state-jsonl.md) | [08--council/round-state-jsonl.md](08--council/round-state-jsonl.md) |
-| DLR-020 | [F020 Adjudicator verdict scoring](../feature_catalog/08--council/adjudicator-verdict-scoring.md) | [08--council/adjudicator-verdict-scoring.md](08--council/adjudicator-verdict-scoring.md) |
-| DLR-021 | [F021 Cost guards](../feature_catalog/08--council/cost-guards.md) | [08--council/cost-guards.md](08--council/cost-guards.md) |
-| DLR-022 | [F022 Session state hierarchy](../feature_catalog/08--council/session-state-hierarchy.md) | [08--council/session-state-hierarchy.md](08--council/session-state-hierarchy.md) |
-| DLR-023 | [F023 Fan-out config schema](../feature_catalog/09--fanout/fanout-config-schema.md) | [09--fanout/fanout-config-schema.md](09--fanout/fanout-config-schema.md) |
-| DLR-024 | [F024 Fan-out worker pool](../feature_catalog/09--fanout/fanout-pool.md) | [09--fanout/fanout-pool-concurrency-cap.md](09--fanout/fanout-pool-concurrency-cap.md) |
-| DLR-025 | [F025 Fan-out CLI lineage driver](../feature_catalog/09--fanout/fanout-run.md) | [09--fanout/fanout-run-cli-lineage-spawn.md](09--fanout/fanout-run-cli-lineage-spawn.md) |
-| DLR-026 | [F026 Fan-out write-failure salvage](../feature_catalog/09--fanout/fanout-salvage.md) | [09--fanout/fanout-salvage-recovery.md](09--fanout/fanout-salvage-recovery.md) |
-| DLR-027 | [F027 Fan-out cross-lineage merge (research)](../feature_catalog/09--fanout/fanout-merge.md) | [09--fanout/fanout-merge-research.md](09--fanout/fanout-merge-research.md) |
-| DLR-028 | [F027 Fan-out cross-lineage merge (review)](../feature_catalog/09--fanout/fanout-merge.md) | [09--fanout/fanout-merge-review-strongest-restriction.md](09--fanout/fanout-merge-review-strongest-restriction.md) |
-| DLR-029 | [F023 Artifact-dir override / parity](../feature_catalog/09--fanout/fanout-config-schema.md) | [09--fanout/artifact-dir-override-parity.md](09--fanout/artifact-dir-override-parity.md) |
-| DLR-030 | [F028 Atomic-state serialize-diff](../feature_catalog/04--state-safety/atomic-state-serialize-diff.md) | [04--state-safety/atomic-state-serialize-diff.md](04--state-safety/atomic-state-serialize-diff.md) |
-| DLR-031 | [F029 Atomic-state integrity helpers](../feature_catalog/04--state-safety/atomic-state-integrity-helpers.md) | [04--state-safety/atomic-state-integrity-helpers.md](04--state-safety/atomic-state-integrity-helpers.md) |
-| DLR-032 | [F030 Atomic-state deferred writer](../feature_catalog/04--state-safety/atomic-state-deferred-writer.md) | [04--state-safety/atomic-state-deferred-writer.md](04--state-safety/atomic-state-deferred-writer.md) |
-| DLR-033 | [F031 Abortable chunked sleep](../feature_catalog/10--lifecycle/abortable-chunked-sleep.md) | [10--lifecycle/abortable-chunked-sleep.md](10--lifecycle/abortable-chunked-sleep.md) |
-| DLR-034 | [F032 Lifecycle taxonomy guards](../feature_catalog/10--lifecycle/lifecycle-taxonomy-guards.md) | [10--lifecycle/lifecycle-taxonomy-guards.md](10--lifecycle/lifecycle-taxonomy-guards.md) |
-| DLR-035 | [F033 JSONL lock-held merge](../feature_catalog/04--state-safety/jsonl-lock-held-merge.md) | [04--state-safety/jsonl-lock-held-merge.md](04--state-safety/jsonl-lock-held-merge.md) |
-| DLR-036 | [F034 Loop-lock heartbeat hardening](../feature_catalog/04--state-safety/loop-lock-heartbeat-hardening.md) | [04--state-safety/loop-lock-heartbeat-hardening.md](04--state-safety/loop-lock-heartbeat-hardening.md) |
-| DLR-037 | [F035 Loop-lock single-flight decision](../feature_catalog/04--state-safety/loop-lock-single-flight-decision.md) | [04--state-safety/loop-lock-single-flight-decision.md](04--state-safety/loop-lock-single-flight-decision.md) |
-| DLR-038 | [F036 Byte-offset log regions](../feature_catalog/11--observability/byte-offset-log-regions.md) | [11--observability/byte-offset-log-regions.md](11--observability/byte-offset-log-regions.md) |
-| DLR-039 | [F037 Fixed-rate overrun accounting](../feature_catalog/09--fanout/fixed-rate-overrun-accounting.md) | [09--fanout/fixed-rate-overrun-accounting.md](09--fanout/fixed-rate-overrun-accounting.md) |
-| DLR-040 | [F038 Convergence score-delta](../feature_catalog/05--scoring/convergence-score-delta.md) | [05--scoring/convergence-score-delta.md](05--scoring/convergence-score-delta.md) |
-| DLR-041 | [F039 Observation-threshold guard](../feature_catalog/06--coverage-graph/observation-threshold-guard.md) | [06--coverage-graph/observation-threshold-guard.md](06--coverage-graph/observation-threshold-guard.md) |
-| DLR-042 | [F040 Coverage-graph time decay](../feature_catalog/06--coverage-graph/coverage-graph-time-decay.md) | [06--coverage-graph/coverage-graph-time-decay.md](06--coverage-graph/coverage-graph-time-decay.md) |
-| DLR-043 | [F041 Coverage-graph fuzzy merge](../feature_catalog/06--coverage-graph/coverage-graph-fuzzy-merge.md) | [06--coverage-graph/coverage-graph-fuzzy-merge.md](06--coverage-graph/coverage-graph-fuzzy-merge.md) |
-| DLR-044 | [F042 Fallback-router typed reroute](../feature_catalog/01--executor/fallback-router-typed-reroute.md) | [01--executor/fallback-router-typed-reroute.md](01--executor/fallback-router-typed-reroute.md) |
-| DLR-045 | [F043 LLM-judge hardening](../feature_catalog/03--validation/llm-judge-hardening.md) | [03--validation/llm-judge-hardening.md](03--validation/llm-judge-hardening.md) |
-| DLR-046 | [F044 Fan-out stall watchdog](../feature_catalog/09--fanout/fanout-stall-watchdog.md) | [09--fanout/fanout-stall-watchdog.md](09--fanout/fanout-stall-watchdog.md) |
-| DLR-047 | [F045 Persisted-wait crash resume](../feature_catalog/09--fanout/persisted-wait-crash-resume.md) | [09--fanout/persisted-wait-crash-resume.md](09--fanout/persisted-wait-crash-resume.md) |
-| DLR-048 | [F046 Single-loop telemetry heartbeat](../feature_catalog/11--observability/single-loop-telemetry-heartbeat.md) | [11--observability/single-loop-telemetry-heartbeat.md](11--observability/single-loop-telemetry-heartbeat.md) |
-| DLR-049 | [F047 Unified observability event envelope](../feature_catalog/11--observability/unified-observability-event-envelope.md) | [11--observability/unified-observability-event-envelope.md](11--observability/unified-observability-event-envelope.md) |
-| DLR-050 | [F048 Hermetic test isolation](../feature_catalog/12--testing/hermetic-test-isolation.md) | [12--testing/hermetic-test-isolation.md](12--testing/hermetic-test-isolation.md) |
-| DLR-051 | [F049 Record-replay cassette harness](../feature_catalog/12--testing/record-replay-cassette-harness.md) | [12--testing/record-replay-cassette-harness.md](12--testing/record-replay-cassette-harness.md) |
-| DLR-052 | [F050 mk-deep-loop-guard](../feature_catalog/03--validation/mk-deep-loop-guard.md) | [03--validation/mk-deep-loop-guard.md](03--validation/mk-deep-loop-guard.md) |
+| DLR-001 | [F001 Executor config](../feature_catalog/executor/executor-config.md) | [executor/executor-config.md](executor/executor-config.md) |
+| DLR-002 | [F002 Executor audit](../feature_catalog/executor/executor-audit.md) | [executor/executor-audit.md](executor/executor-audit.md) |
+| DLR-003 | [F003 Fallback router](../feature_catalog/executor/fallback-router.md) | [executor/fallback-router.md](executor/fallback-router.md) |
+| DLR-004 | [F004 Prompt pack](../feature_catalog/prompt-rendering/prompt-pack.md) | [prompt-rendering/prompt-pack.md](prompt-rendering/prompt-pack.md) |
+| DLR-005 | [F005 Post-dispatch validate](../feature_catalog/validation/post-dispatch-validate.md) | [validation/post-dispatch-validate.md](validation/post-dispatch-validate.md) |
+| DLR-006 | [F006 Atomic state](../feature_catalog/state-safety/atomic-state.md) | [state-safety/atomic-state.md](state-safety/atomic-state.md) |
+| DLR-007 | [F007 JSONL repair](../feature_catalog/state-safety/jsonl-repair.md) | [state-safety/jsonl-repair.md](state-safety/jsonl-repair.md) |
+| DLR-008 | [F008 Loop lock](../feature_catalog/state-safety/loop-lock.md) | [state-safety/loop-lock.md](state-safety/loop-lock.md) |
+| DLR-009 | [F009 Permissions gate](../feature_catalog/state-safety/permissions-gate.md) | [state-safety/permissions-gate.md](state-safety/permissions-gate.md) |
+| DLR-010 | [F010 Bayesian scorer](../feature_catalog/scoring/bayesian-scorer.md) | [scoring/bayesian-scorer.md](scoring/bayesian-scorer.md) |
+| DLR-011 | [F011 Coverage graph DB](../feature_catalog/coverage-graph/coverage-graph-db.md) | [coverage-graph/coverage-graph-db.md](coverage-graph/coverage-graph-db.md) |
+| DLR-012 | [F012 Coverage graph query](../feature_catalog/coverage-graph/coverage-graph-query.md) | [coverage-graph/coverage-graph-query.md](coverage-graph/coverage-graph-query.md) |
+| DLR-013 | [F013 Coverage graph signals](../feature_catalog/coverage-graph/coverage-graph-signals.md) | [coverage-graph/coverage-graph-signals.md](coverage-graph/coverage-graph-signals.md) |
+| DLR-014 | [F014 convergence.cjs](../feature_catalog/script-entry-points/convergence-script.md) | [script-entry-points/convergence-script.md](script-entry-points/convergence-script.md) |
+| DLR-015 | [F015 upsert.cjs](../feature_catalog/script-entry-points/upsert-script.md) | [script-entry-points/upsert-script.md](script-entry-points/upsert-script.md) |
+| DLR-016 | [F016 query.cjs](../feature_catalog/script-entry-points/query-script.md) | [script-entry-points/query-script.md](script-entry-points/query-script.md) |
+| DLR-017 | [F017 status.cjs](../feature_catalog/script-entry-points/status-script.md) | [script-entry-points/status-script.md](script-entry-points/status-script.md) |
+| DLR-018 | [F018 Multi-seat dispatch](../feature_catalog/council/multi-seat-dispatch.md) | [council/multi-seat-dispatch.md](council/multi-seat-dispatch.md) |
+| DLR-019 | [F019 Round-state JSONL](../feature_catalog/council/round-state-jsonl.md) | [council/round-state-jsonl.md](council/round-state-jsonl.md) |
+| DLR-020 | [F020 Adjudicator verdict scoring](../feature_catalog/council/adjudicator-verdict-scoring.md) | [council/adjudicator-verdict-scoring.md](council/adjudicator-verdict-scoring.md) |
+| DLR-021 | [F021 Cost guards](../feature_catalog/council/cost-guards.md) | [council/cost-guards.md](council/cost-guards.md) |
+| DLR-022 | [F022 Session state hierarchy](../feature_catalog/council/session-state-hierarchy.md) | [council/session-state-hierarchy.md](council/session-state-hierarchy.md) |
+| DLR-023 | [F023 Fan-out config schema](../feature_catalog/fanout/fanout-config-schema.md) | [fanout/fanout-config-schema.md](fanout/fanout-config-schema.md) |
+| DLR-024 | [F024 Fan-out worker pool](../feature_catalog/fanout/fanout-pool.md) | [fanout/fanout-pool-concurrency-cap.md](fanout/fanout-pool-concurrency-cap.md) |
+| DLR-025 | [F025 Fan-out CLI lineage driver](../feature_catalog/fanout/fanout-run.md) | [fanout/fanout-run-cli-lineage-spawn.md](fanout/fanout-run-cli-lineage-spawn.md) |
+| DLR-026 | [F026 Fan-out write-failure salvage](../feature_catalog/fanout/fanout-salvage.md) | [fanout/fanout-salvage-recovery.md](fanout/fanout-salvage-recovery.md) |
+| DLR-027 | [F027 Fan-out cross-lineage merge (research)](../feature_catalog/fanout/fanout-merge.md) | [fanout/fanout-merge-research.md](fanout/fanout-merge-research.md) |
+| DLR-028 | [F027 Fan-out cross-lineage merge (review)](../feature_catalog/fanout/fanout-merge.md) | [fanout/fanout-merge-review-strongest-restriction.md](fanout/fanout-merge-review-strongest-restriction.md) |
+| DLR-029 | [F023 Artifact-dir override / parity](../feature_catalog/fanout/fanout-config-schema.md) | [fanout/artifact-dir-override-parity.md](fanout/artifact-dir-override-parity.md) |
+| DLR-030 | [F028 Atomic-state serialize-diff](../feature_catalog/state-safety/atomic-state-serialize-diff.md) | [state-safety/atomic-state-serialize-diff.md](state-safety/atomic-state-serialize-diff.md) |
+| DLR-031 | [F029 Atomic-state integrity helpers](../feature_catalog/state-safety/atomic-state-integrity-helpers.md) | [state-safety/atomic-state-integrity-helpers.md](state-safety/atomic-state-integrity-helpers.md) |
+| DLR-032 | [F030 Atomic-state deferred writer](../feature_catalog/state-safety/atomic-state-deferred-writer.md) | [state-safety/atomic-state-deferred-writer.md](state-safety/atomic-state-deferred-writer.md) |
+| DLR-033 | [F031 Abortable chunked sleep](../feature_catalog/lifecycle/abortable-chunked-sleep.md) | [lifecycle/abortable-chunked-sleep.md](lifecycle/abortable-chunked-sleep.md) |
+| DLR-034 | [F032 Lifecycle taxonomy guards](../feature_catalog/lifecycle/lifecycle-taxonomy-guards.md) | [lifecycle/lifecycle-taxonomy-guards.md](lifecycle/lifecycle-taxonomy-guards.md) |
+| DLR-035 | [F033 JSONL lock-held merge](../feature_catalog/state-safety/jsonl-lock-held-merge.md) | [state-safety/jsonl-lock-held-merge.md](state-safety/jsonl-lock-held-merge.md) |
+| DLR-036 | [F034 Loop-lock heartbeat hardening](../feature_catalog/state-safety/loop-lock-heartbeat-hardening.md) | [state-safety/loop-lock-heartbeat-hardening.md](state-safety/loop-lock-heartbeat-hardening.md) |
+| DLR-037 | [F035 Loop-lock single-flight decision](../feature_catalog/state-safety/loop-lock-single-flight-decision.md) | [state-safety/loop-lock-single-flight-decision.md](state-safety/loop-lock-single-flight-decision.md) |
+| DLR-038 | [F036 Byte-offset log regions](../feature_catalog/observability/byte-offset-log-regions.md) | [observability/byte-offset-log-regions.md](observability/byte-offset-log-regions.md) |
+| DLR-039 | [F037 Fixed-rate overrun accounting](../feature_catalog/fanout/fixed-rate-overrun-accounting.md) | [fanout/fixed-rate-overrun-accounting.md](fanout/fixed-rate-overrun-accounting.md) |
+| DLR-040 | [F038 Convergence score-delta](../feature_catalog/scoring/convergence-score-delta.md) | [scoring/convergence-score-delta.md](scoring/convergence-score-delta.md) |
+| DLR-041 | [F039 Observation-threshold guard](../feature_catalog/coverage-graph/observation-threshold-guard.md) | [coverage-graph/observation-threshold-guard.md](coverage-graph/observation-threshold-guard.md) |
+| DLR-042 | [F040 Coverage-graph time decay](../feature_catalog/coverage-graph/coverage-graph-time-decay.md) | [coverage-graph/coverage-graph-time-decay.md](coverage-graph/coverage-graph-time-decay.md) |
+| DLR-043 | [F041 Coverage-graph fuzzy merge](../feature_catalog/coverage-graph/coverage-graph-fuzzy-merge.md) | [coverage-graph/coverage-graph-fuzzy-merge.md](coverage-graph/coverage-graph-fuzzy-merge.md) |
+| DLR-044 | [F042 Fallback-router typed reroute](../feature_catalog/executor/fallback-router-typed-reroute.md) | [executor/fallback-router-typed-reroute.md](executor/fallback-router-typed-reroute.md) |
+| DLR-045 | [F043 LLM-judge hardening](../feature_catalog/validation/llm-judge-hardening.md) | [validation/llm-judge-hardening.md](validation/llm-judge-hardening.md) |
+| DLR-046 | [F044 Fan-out stall watchdog](../feature_catalog/fanout/fanout-stall-watchdog.md) | [fanout/fanout-stall-watchdog.md](fanout/fanout-stall-watchdog.md) |
+| DLR-047 | [F045 Persisted-wait crash resume](../feature_catalog/fanout/persisted-wait-crash-resume.md) | [fanout/persisted-wait-crash-resume.md](fanout/persisted-wait-crash-resume.md) |
+| DLR-048 | [F046 Single-loop telemetry heartbeat](../feature_catalog/observability/single-loop-telemetry-heartbeat.md) | [observability/single-loop-telemetry-heartbeat.md](observability/single-loop-telemetry-heartbeat.md) |
+| DLR-049 | [F047 Unified observability event envelope](../feature_catalog/observability/unified-observability-event-envelope.md) | [observability/unified-observability-event-envelope.md](observability/unified-observability-event-envelope.md) |
+| DLR-050 | [F048 Hermetic test isolation](../feature_catalog/testing/hermetic-test-isolation.md) | [testing/hermetic-test-isolation.md](testing/hermetic-test-isolation.md) |
+| DLR-051 | [F049 Record-replay cassette harness](../feature_catalog/testing/record-replay-cassette-harness.md) | [testing/record-replay-cassette-harness.md](testing/record-replay-cassette-harness.md) |
+| DLR-052 | [F050 mk-deep-loop-guard](../feature_catalog/validation/mk-deep-loop-guard.md) | [validation/mk-deep-loop-guard.md](validation/mk-deep-loop-guard.md) |

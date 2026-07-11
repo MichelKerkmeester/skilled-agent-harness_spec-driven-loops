@@ -8,7 +8,7 @@
 
 ## [P1][BROKEN-FEATURE] Feedback-retention shadow/blocked modes pause baseline TTL deletion
 
-- Evidence: .opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:458-483 returns immediately with swept:0 for shadow or activeBlocked; .opencode/skills/system-spec-kit/mcp_server/tests/feedback-reducers-integration.vitest.ts:211-237 and :240-267 assert rows stay unchanged; .opencode/skills/system-spec-kit/feature_catalog/04--maintenance/memory-retention-sweep.md:18-20 says the sweep deletes expired delete_after rows.
+- Evidence: .opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:458-483 returns immediately with swept:0 for shadow or activeBlocked; .opencode/skills/system-spec-kit/mcp_server/tests/feedback-reducers-integration.vitest.ts:211-237 and :240-267 assert rows stay unchanged; .opencode/skills/system-spec-kit/feature_catalog/maintenance/memory-retention-sweep.md:18-20 says the sweep deletes expired delete_after rows.
 - Detail: When feedback retention learning is enabled in default shadow mode, the retention sweep records feedback audits and exits before the normal delete path. That means expired unprotected rows are not swept, so a learning/audit flag changes the core retention-enforcement semantics.
 - Fix sketch: Record feedback shadow/blocked audits, then fall through to the existing baseline protected-tier TTL sweep instead of returning early.
 

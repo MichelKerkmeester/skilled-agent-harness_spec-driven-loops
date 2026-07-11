@@ -148,7 +148,7 @@ Packet 032's phase 010-014 spec-folder metadata, phase-count labels, rename narr
 | `../before-vs-after.md` | Modify | Rename-narrative correction (lines ~49, ~61, ~193) |
 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Modify | Qualify "compaction" claim (DOC-1) |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Modify | Fix link text at line ~192 (DOC-2) |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | Modify | Add missing test row to validation table |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | Modify | Add missing test row to validation table |
 | `../graph-metadata.json` (parent) | Modify | Regenerate via backfill script after doc fixes |
 <!-- /ANCHOR:scope -->
 

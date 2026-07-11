@@ -38,10 +38,10 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 **Benchmark enablement.** Authored per-child Type-1 gold under each child's
-`manual_testing_playbook/10--intra-routing-recall/` — a T1 scenario per `INTENT_SIGNALS` key (prompt carrying the
+`manual_testing_playbook/intra-routing-recall/` — a T1 scenario per `INTENT_SIGNALS` key (prompt carrying the
 intent keywords; `expected_resources` copied verbatim from `RESOURCE_MAP[intent]`), plus T2 blind holdouts and a
 T3 negative. Every child now scores real Type-1 (previously all five returned NO-SCENARIOS). Hardened both hubs'
-`01--hub-routing/` gold with blind holdouts. **mcp-figma normalization:** its runtime router is `INTENT_MODEL`
+`hub-routing/` gold with blind holdouts. **mcp-figma normalization:** its runtime router is `INTENT_MODEL`
 with tuple-weighted keywords, invisible to the replay parser (parsed 0 intents); added an additive
 `INTENT_SIGNALS` mirror (per-intent weight = max per-keyword weight) with a key-sync vitest — runtime selector
 byte-unchanged, parser now yields all 6 intents. **Genuine Mode-B live dispatch** proven via a configured model

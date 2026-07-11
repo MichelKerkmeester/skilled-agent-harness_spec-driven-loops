@@ -33,10 +33,10 @@ D3 Traceability. This pass audited core `spec_code` and `checklist_evidence` pro
 - `.opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/README.md`
 - `.opencode/skills/system-spec-kit/scripts/memory/README.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md`
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/003-context-save-index-update.md`
 - 15 focused Vitest files named by the packet/checklist and README-regression set.
 
 ## Findings — P0 (Blockers)
@@ -57,7 +57,7 @@ This is not the same as the already-open strategy-map drift. The strategy issue 
 
 ### P2-007: Feature catalog entry is mostly current but points at stale packet and ADR identifiers
 
-The global catalog has an index-scope invariant entry, so the capability is discoverable. It documents `shouldIndexForMemory()`, `shouldIndexForCodeGraph()`, symlink hardening, the constitutional README exclusion, cleanup `--apply` / `--verify`, and walker DoS caps in `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md:25`.
+The global catalog has an index-scope invariant entry, so the capability is discoverable. It documents `shouldIndexForMemory()`, `shouldIndexForCodeGraph()`, symlink hardening, the constitutional README exclusion, cleanup `--apply` / `--verify`, and walker DoS caps in `.opencode/skills/system-spec-kit/feature_catalog/memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md:25`.
 
 The traceability labels are stale, though: that same entry calls the source "Packet 026/010/002" and says the constitutional README exclusion is "per ADR-005" at line 25. The current packet is `005-memory-indexer-invariants` (`spec.md:2`), and the README exclusion decision is ADR-006 at `decision-record.md:217` through `decision-record.md:235`. The operator README now documents the stable runtime and cleanup action strings at `.opencode/skills/system-spec-kit/mcp_server/README.md:121` through `.opencode/skills/system-spec-kit/mcp_server/README.md:125`, but the catalog entry does not name the cleanup-specific action or shared governance-audit helper surface.
 
@@ -65,7 +65,7 @@ Patch the catalog entry to the current packet path, current ADR number, and the 
 
 ### P2-008: Manual playbook covers the broad save/index scenario but misses first-class adversarial scenarios
 
-The playbook has one broad context-save/index-update scenario for the packet at `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md:17` through line 19. It asks operators to verify cleanup `--verify` at line 28, the four invariant counts at lines 35-36, and a non-constitutional `importanceTier: "constitutional"` spot-check at line 44. That is useful, but it does not satisfy the overlay prompt's capability matrix.
+The playbook has one broad context-save/index-update scenario for the packet at `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/003-context-save-index-update.md:17` through line 19. It asks operators to verify cleanup `--verify` at line 28, the four invariant counts at lines 35-36, and a non-constitutional `importanceTier: "constitutional"` spot-check at line 44. That is useful, but it does not satisfy the overlay prompt's capability matrix.
 
 Missing first-class scenarios: cleanup CLI `--apply` execution and rollback evidence, checkpoint restore invariant validation, walker DoS adversarial inputs, and constitutional-tier promotion bypasses through update/post-insert/restore surfaces. The root playbook requires real execution and evidence at `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:9` and evidence capture at lines 205-213, so these paths should have dedicated scenario files or explicit steps instead of being implicit in the broad context-save scenario.
 
@@ -121,11 +121,11 @@ Protocol verdict: fail, already tracked by P2-002. This pass quantifies the scop
 
 ### OVERLAY: `feature_catalog_code`
 
-Status: partial. The catalog has a real capability entry at `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md:25`, and the root catalog includes it in the split corpus. Claims are mostly consistent with post-Wave-2 behavior: shared helper, `z_future`/`external`, symlink realpath, README exclusion, cleanup CLI, and walker cap are all represented. Gaps: stale packet/ADR identifiers and missing explicit stable cleanup action/helper names. See P2-007.
+Status: partial. The catalog has a real capability entry at `.opencode/skills/system-spec-kit/feature_catalog/memory-quality-and-indexing/25-indexing-runtime-bootstrap-api.md:25`, and the root catalog includes it in the split corpus. Claims are mostly consistent with post-Wave-2 behavior: shared helper, `z_future`/`external`, symlink realpath, README exclusion, cleanup CLI, and walker cap are all represented. Gaps: stale packet/ADR identifiers and missing explicit stable cleanup action/helper names. See P2-007.
 
 ### OVERLAY: `playbook_capability`
 
-Status: fail/advisory. Existing broad scenario: `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md:17` through line 55. Missing first-class playbook scenarios for cleanup `--apply`, checkpoint restore validation, walker DoS adversarial inputs, and non-save constitutional-tier promotion bypasses. See P2-008.
+Status: fail/advisory. Existing broad scenario: `.opencode/skills/system-spec-kit/manual_testing_playbook/memory-quality-and-indexing/003-context-save-index-update.md:17` through line 55. Missing first-class playbook scenarios for cleanup `--apply`, checkpoint restore validation, walker DoS adversarial inputs, and non-save constitutional-tier promotion bypasses. See P2-008.
 
 ### Inventory Drift Cleanup
 

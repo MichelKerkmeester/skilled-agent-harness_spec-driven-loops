@@ -15,7 +15,7 @@
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts:167` -- exit-0/no-artifact stub exists for targeted coverage.
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts:776` -- salvage-miss retry coverage uses the flaky non-zero first-attempt stub.
 - `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:244` -- status classification source remains the mapped ledger-event switch checked by the tests.
-- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md:87` -- playbook names the exit-0/no-artifact invariant as required manual evidence.
+- `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md:87` -- playbook names the exit-0/no-artifact invariant as required manual evidence.
 
 ## Findings - New
 
@@ -37,7 +37,7 @@ None.
 - `.opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts` raw lag-ceiling event coverage.
 - `.opencode/skills/deep-loop-runtime/tests/unit/observability-events.vitest.ts` normalized envelope coverage.
 - `.opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts` salvage/retry and no-artifact fixture coverage.
-- `.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md` adversarial playbook invariant.
+- `.opencode/skills/deep-loop-runtime/manual_testing_playbook/fanout/fanout-salvage-recovery.md` adversarial playbook invariant.
 
 ## Edge Cases
 - Direct-leaf lineage convention intentionally lacks local config/registry/dashboard/report files; dispatch forbade creating them, so state continuity used the moved GLM JSONL and strategy only.

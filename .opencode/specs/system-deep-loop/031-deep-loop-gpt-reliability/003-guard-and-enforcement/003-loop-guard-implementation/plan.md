@@ -104,7 +104,7 @@ A Task-tool dispatch is about to execute → `tool.execute.before` fires → `re
 | `.opencode/plugins/mk-deep-loop-guard.js` | Mode-mismatch-only detector (phase 011) | Add identity resolution + loop-repeat detection | Hermetic test suite + live smoke |
 | `.opencode/plugins/tests/mk-deep-loop-guard.test.cjs` | 8-scenario regression suite | Extend with identity/loop scenarios | `node mk-deep-loop-guard.test.cjs` exit 0 |
 | `.opencode/skills/.loop-guard-state/` | Does not exist yet | New session-state directory, created on first loop-executor dispatch | Fail-open test (path collision) |
-| `feature_catalog`/`manual_testing_playbook` `03--validation/mk-deep-loop-guard.md` | Documents phase-011 behavior only | Add loop-detection capability + env var | Doc read-through |
+| `feature_catalog`/`manual_testing_playbook` `validation/mk-deep-loop-guard.md` | Documents phase-011 behavior only | Add loop-detection capability + env var | Doc read-through |
 
 Required inventories:
 - Same-class producers: none — this extends the sole existing consumer of `mode-registry.json` at this hook point.

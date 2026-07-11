@@ -92,7 +92,7 @@ Date:   Sun Jun 28 16:26:46 2026 +0200
 .opencode/skills/cli-opencode/assets/prompt_quality_card.md
 .opencode/skills/cli-opencode/assets/prompt_templates.md
 .opencode/skills/cli-opencode/graph-metadata.json
-.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/minimax-design-context-manifest.md
+.opencode/skills/cli-opencode/manual_testing_playbook/prompt-templates/minimax-design-context-manifest.md
 .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md
 .opencode/skills/cli-opencode/references/context-budget.md
 .opencode/skills/cli-opencode/references/permissions-matrix.md

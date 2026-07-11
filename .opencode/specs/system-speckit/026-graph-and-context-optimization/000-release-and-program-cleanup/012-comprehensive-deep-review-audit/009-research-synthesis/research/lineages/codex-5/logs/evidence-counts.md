@@ -29,7 +29,7 @@ Command: `find .opencode/skills/system-spec-kit/manual_testing_playbook -path '.
 Output: `0`
 
 ## Local LLM Scenario Filenames
-Command: `find .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence -maxdepth 1 -type f -name '*.md'`
+Command: `find .opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence -maxdepth 1 -type f -name '*.md'`
 
 Observed files:
 - `paraphrase-recall.md`

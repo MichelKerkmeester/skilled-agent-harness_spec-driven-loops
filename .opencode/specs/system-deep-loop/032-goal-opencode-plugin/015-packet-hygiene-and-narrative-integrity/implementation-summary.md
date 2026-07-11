@@ -24,7 +24,7 @@ _memory:
       - ".opencode/specs/system-deep-loop/032-goal-opencode-plugin/013-design-fidelity-and-polish/implementation-summary.md"
       - ".opencode/skills/system-spec-kit/references/config/hook_system.md"
       - ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md"
+      - ".opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "032-phase-015-packet-hygiene-20260703"
@@ -91,7 +91,7 @@ The leftover `[template:level_1/plan.md]` and `[template:level_1/tasks.md]` suff
 | `009-diagnostic-review/review-report.md` | Modified | Added a local artifact pointer note. |
 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Modified | Qualified the OpenCode goal-plugin lifecycle event claim. |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Modified | Corrected the goal-plugin playbook link text. |
-| `.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/goal-opencode-plugin.md` | Modified | Added the missing export-contract test row. |
+| `.opencode/skills/system-skill-advisor/feature_catalog/hooks-and-plugin/goal-opencode-plugin.md` | Modified | Added the missing export-contract test row. |
 | `015-packet-hygiene-and-narrative-integrity/tasks.md` | Modified | Recorded T023-T033 completion evidence. |
 | `015-packet-hygiene-and-narrative-integrity/graph-metadata.json` | Regenerated | Refreshed packet graph metadata after scoped repairs. |
 | `015-packet-hygiene-and-narrative-integrity/implementation-summary.md` | Modified | Replaced the placeholder summary with final evidence and status. |
@@ -131,7 +131,7 @@ The remaining tasks were completed as surgical documentation edits under the app
 | T024 targets exist | PASS: `ls` returned archive iteration files `iteration-002.md`, `iteration-003.md`, `iteration-004.md`, `iteration-005.md`, `iteration-007.md`, and `iteration-008.md`. |
 | T025 pointer and targets | PASS: `grep -n "Artifact pointer" 009-diagnostic-review/review-report.md` returned line 13; `ls` returned `iterations/`, `deltas/`, `deep-review-state.jsonl`, `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `deep-review-strategy.md`. |
 | T026 event wording | PASS: `grep -n "session.created.*session.status.*session.idle.*session.deleted.*message.updated.*permission.\*.*question.\*.*\*.disposed" hook_system.md` returned line 125. |
-| T027 playbook link | PASS: `grep -n "goal-opencode-plugin.md.*02--cli-hooks-and-plugin/goal-opencode-plugin.md" manual_testing_playbook.md` returned line 192; `ls` returned the linked playbook file. |
+| T027 playbook link | PASS: `grep -n "goal-opencode-plugin.md.*cli-hooks-and-plugin/goal-opencode-plugin.md" manual_testing_playbook.md` returned line 192; `ls` returned the linked playbook file. |
 | T027a catalog row | PASS: `grep -n "mk-goal-export-contract.test.cjs" goal-opencode-plugin.md` returned line 62; `ls .opencode/plugins/tests/mk-goal-export-contract.test.cjs` returned the test file. |
 | T032 title cleanup | PASS: `grep -n "[template:level_1/(plan|tasks).md]"` across the four phase 011/013 plan/task files returned no output. |
 | T033 trigger phrases | PASS: `grep -n "goal plugin usage limited detector\|goal plugin continuity fingerprint refresh\|goal plugin store health status\|goal plugin fsync debug logging" 013-design-fidelity-and-polish/implementation-summary.md` returned lines 5-8. |

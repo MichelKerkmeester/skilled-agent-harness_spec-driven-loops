@@ -32,9 +32,9 @@ Traceability + maintainability — `deep-ai-council` packet.
 - `.opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat_diversity_patterns.md:52` — same-CLI vantage model inspected.
 - `.opencode/skills/system-deep-loop/deep-ai-council/feature_catalog/feature_catalog.md:15` — feature catalog overview inspected.
 - `.opencode/skills/system-deep-loop/deep-ai-council/feature_catalog/feature_catalog.md:39` — DAC-001 catalog entry inspected.
-- `.opencode/skills/system-deep-loop/deep-ai-council/feature_catalog/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:31` — DAC-001 detail page inspected.
-- `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:25` — DAC-001 scenario objective inspected.
-- `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:30` — DAC-001 desired visible outcome inspected.
+- `.opencode/skills/system-deep-loop/deep-ai-council/feature_catalog/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:31` — DAC-001 detail page inspected.
+- `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:25` — DAC-001 scenario objective inspected.
+- `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:30` — DAC-001 desired visible outcome inspected.
 - `.opencode/agents/ai-council.md:2` — live OpenCode agent identity inspected.
 
 ## Findings By Severity
@@ -62,9 +62,9 @@ None new. `DR-018-P1-001` remains active and was carried forward only: persisten
 
 #### DR-019-P2-002 [P2] DAC-001 still expects `@deep-ai-council` as the active runtime agent identity
 
-- File: `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:30`
+- File: `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:30`
 - Evidence: The live registry says the packet is `deep-ai-council`, but the command agent is `ai-council` and artifact root is `ai-council/`. The live OpenCode agent frontmatter also names `ai-council`. `SKILL.md` success criteria describe exactly that split: packet folder/SKILL name is `deep-ai-council`, while the dispatched agent identity remains `ai-council`. DAC-001 still asks testers to verify active runtime mirrors use `deep-ai-council` and says the desired visible outcome is `@deep-ai-council`, which contradicts the current preserved agent identity.
-- Evidence refs: `.opencode/skills/system-deep-loop/mode-registry.json:90`, `.opencode/skills/system-deep-loop/mode-registry.json:92`, `.opencode/skills/system-deep-loop/mode-registry.json:93`, `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:432`, `.opencode/agents/ai-council.md:2`, `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:25`, `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:30`
+- Evidence refs: `.opencode/skills/system-deep-loop/mode-registry.json:90`, `.opencode/skills/system-deep-loop/mode-registry.json:92`, `.opencode/skills/system-deep-loop/mode-registry.json:93`, `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md:432`, `.opencode/agents/ai-council.md:2`, `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:25`, `.opencode/skills/system-deep-loop/deep-ai-council/manual_testing_playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md:30`
 - Finding class: matrix/evidence
 - Scope proof: The DAC-001 feature detail partly corrects the split at line 31, but the root feature row and playbook scenario still encode the obsolete expectation, so a future maintainer/tester can get conflicting instructions from the catalog/playbook path.
 - Recommendation: Rename DAC-001 around the current split, e.g. packet routes to `deep-ai-council` while runtime agent remains `@ai-council`, and update scenario expected signals/pass-fail accordingly.

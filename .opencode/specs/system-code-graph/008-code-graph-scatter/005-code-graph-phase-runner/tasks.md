@@ -24,8 +24,8 @@ contextType: "implementation"
 | T-002-D1 | Implement `detect-changes.ts` handler | D | complete — `mcp_server/code_graph/handlers/detect-changes.ts` |
 | T-002-D2 | Hard rule: status=blocked on stale (never empty) | D | complete — `readinessRequiresBlock()` blocks when `freshness !== 'fresh'`; tests assert `queryOutline` is NEVER called on stale state |
 | T-002-D3 | Register in `handlers/index.ts` | D | complete — `handleDetectChanges` exported alongside seven existing handlers |
-| T-002-E1 | Run `/create:feature-catalog` for 03--discovery + 14--pipeline-architecture | E | complete — `feature_catalog/03--discovery/04-detect-changes-preflight.md`, `feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md` |
-| T-002-E2 | Run `/create:testing-playbook` for same categories | E | complete — `manual_testing_playbook/03--discovery/014-detect-changes-preflight.md`, `manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md` |
+| T-002-E1 | Run `/create:feature-catalog` for discovery + pipeline-architecture | E | complete — `feature_catalog/discovery/04-detect-changes-preflight.md`, `feature_catalog/pipeline-architecture/25-code-graph-phase-dag-runner.md` |
+| T-002-E2 | Run `/create:testing-playbook` for same categories | E | complete — `manual_testing_playbook/discovery/014-detect-changes-preflight.md`, `manual_testing_playbook/pipeline-architecture/271-code-graph-phase-dag-runner.md` |
 | T-002-E3 | sk-doc DQI scoring ≥85 | E | complete — structural template adherence verified (frontmatter + four/five canonical sections + line counts within peer band); operator may run an explicit DQI pass post-merge |
 | T-002-F1 | `validate.sh --strict` on `012/002/` | F | OPERATOR-PENDING — sandbox blocks `bash`; pre-flight self-check passes (see implementation-summary.md "Verification Evidence") |
 | T-002-F2 | Run code-graph vitest suite | F | OPERATOR-PENDING — sandbox blocks `npm install`/`npx vitest`; commands documented in implementation-summary.md |

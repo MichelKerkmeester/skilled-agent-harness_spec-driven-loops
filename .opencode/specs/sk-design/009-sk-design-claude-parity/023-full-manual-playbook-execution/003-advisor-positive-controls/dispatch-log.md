@@ -1,6 +1,6 @@
 # Dispatch Log: Wave 003 - Advisor Positive Controls
 
-One row per dispatch executed by this wave. Each dispatch = advisor probe (`skill_advisor.py --threshold 0.8`) + real `opencode run --model openai/gpt-5.5-fast --variant medium --format json` dispatch, graded against `AI-001`'s own `### Pass/Fail Criteria` section (`.opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md`).
+One row per dispatch executed by this wave. Each dispatch = advisor probe (`skill_advisor.py --threshold 0.8`) + real `opencode run --model openai/gpt-5.5-fast --variant medium --format json` dispatch, graded against `AI-001`'s own `### Pass/Fail Criteria` section (`.opencode/skills/sk-design/manual_testing_playbook/advisor-integration/positive-design-controls.md`).
 
 | dispatch_id | scenario_id | exact prompt used | advisor top-1 / confidence | resolved mode / packet / resources | verdict | rationale (cites criterion) |
 |---|---|---|---|---|---|---|

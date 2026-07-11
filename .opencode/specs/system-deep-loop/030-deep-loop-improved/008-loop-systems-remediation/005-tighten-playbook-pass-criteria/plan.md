@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/deep-loop-runtime/manual_testing_playbook/"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md"
+      - ".opencode/skills/system-spec-kit/manual_testing_playbook/lifecycle/speckit-autopilot-lifecycle.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "tighten-playbook-pass-criteria-plan-2026-06-29"
@@ -90,12 +90,12 @@ Manual validators read a scenario, inspect the source anchors, run the named or 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `deep-loop-runtime/manual_testing_playbook/04--state-safety` | State and lock safety manual contracts | Tightened PASS criteria and test-run steps | Grep for old wording plus targeted Vitest coverage |
-| `deep-loop-runtime/manual_testing_playbook/06--coverage-graph` | Coverage graph manual contracts | Tightened PASS criteria and named fuzzy-merge test command | `coverage-graph-query.vitest.ts` exit 0 |
-| `deep-loop-runtime/manual_testing_playbook/09--fanout` | Fan-out concurrency manual contracts | Normalized existing test-count criteria to require EXIT 0 | Grep for `EXIT 0` in fan-out pass criteria |
-| `deep-loop-runtime/manual_testing_playbook/03--validation` | Validation hardening manual contracts | Tightened PASS criteria and test-run steps | Grep for old wording plus playbook validator |
-| `deep-loop-runtime/manual_testing_playbook/11--observability/single-loop-telemetry-heartbeat.md` | MiMo source-only audit scenario | Mandated `atomic-state.vitest.ts` | Targeted Vitest command exit 0 |
-| `system-spec-kit/manual_testing_playbook/05--lifecycle/speckit-autopilot-lifecycle.md` | MiMo source-only audit scenario | Mandated `speckit-autopilot-contract.vitest.ts` | Targeted Vitest command exit 0 |
+| `deep-loop-runtime/manual_testing_playbook/state-safety` | State and lock safety manual contracts | Tightened PASS criteria and test-run steps | Grep for old wording plus targeted Vitest coverage |
+| `deep-loop-runtime/manual_testing_playbook/coverage-graph` | Coverage graph manual contracts | Tightened PASS criteria and named fuzzy-merge test command | `coverage-graph-query.vitest.ts` exit 0 |
+| `deep-loop-runtime/manual_testing_playbook/fanout` | Fan-out concurrency manual contracts | Normalized existing test-count criteria to require EXIT 0 | Grep for `EXIT 0` in fan-out pass criteria |
+| `deep-loop-runtime/manual_testing_playbook/validation` | Validation hardening manual contracts | Tightened PASS criteria and test-run steps | Grep for old wording plus playbook validator |
+| `deep-loop-runtime/manual_testing_playbook/observability/single-loop-telemetry-heartbeat.md` | MiMo source-only audit scenario | Mandated `atomic-state.vitest.ts` | Targeted Vitest command exit 0 |
+| `system-spec-kit/manual_testing_playbook/lifecycle/speckit-autopilot-lifecycle.md` | MiMo source-only audit scenario | Mandated `speckit-autopilot-contract.vitest.ts` | Targeted Vitest command exit 0 |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

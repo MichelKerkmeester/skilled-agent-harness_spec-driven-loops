@@ -18,7 +18,7 @@ Final verdict: CONDITIONAL. The completed 10-iteration deep review found 0 P0, 8
     ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
     ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts",
     ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
-    ".opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md",
+    ".opencode/skills/sk-design/design-md-generator/feature_catalog/report-preview/report-preview.md",
     ".opencode/skills/sk-design/design-md-generator/backend/tests"
   ],
   "severityBreakdown": {
@@ -38,7 +38,7 @@ Top-level `.opencode/specs/sk-design/010-*` was not observed in the current spec
 | P1-001 | P1 | WRITE prompt omits component facts while requiring exact component values | `.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:53` | 0.88 | active |
 | P1-002 | P1 | md-generator output guard does not enforce the documented spec-folder or sandbox boundary | `.opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:267` | 0.84 | active |
 | P1-003 | P1 | Extracted live-site values enter the WRITE prompt without prompt-data isolation | `.opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts:18` | 0.80 | active |
-| P1-004 | P1 | Report/preview catalog promises overwrite protection the scripts do not implement | `.opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md:59` | 0.86 | active |
+| P1-004 | P1 | Report/preview catalog promises overwrite protection the scripts do not implement | `.opencode/skills/sk-design/design-md-generator/feature_catalog/report-preview/report-preview.md:59` | 0.86 | active |
 | P1-005 | P1 | Guided run validates relative output against one cwd but executes extraction from another | `.opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts:149` | 0.87 | active |
 | P1-006 | P1 | Dark-mode CSS variable values are injected into report style attributes without data isolation | `.opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts:533` | 0.84 | active |
 | P1-007 | P1 | Transition shorthand parsing splits cubic-bezier commas into bogus transitions | `.opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts:224` | 0.82 | active |
@@ -101,7 +101,7 @@ Finding: P1-004.
 
 Proposed fix: choose one contract and make docs/code agree. Either implement output-exists guards or explicit `--force` behavior for `report.html`, `preview.html`, `proof-data.json`, and `proof.html`, or revise the feature catalog/playbook to state the scripts overwrite fixed artifact names in the chosen output directory.
 
-Estimated blast radius: low to medium. Code path touches `report-gen.ts`, `preview-gen.ts`, `proof.ts`, and tests if guards are implemented; doc-only path touches `feature_catalog/05--report-preview/report-preview.md` and playbook wording.
+Estimated blast radius: low to medium. Code path touches `report-gen.ts`, `preview-gen.ts`, `proof.ts`, and tests if guards are implemented; doc-only path touches `feature_catalog/report-preview/report-preview.md` and playbook wording.
 
 Fix type: code or docs; code is recommended because the same shared output-policy resolver from Seam B can supply the guard.
 

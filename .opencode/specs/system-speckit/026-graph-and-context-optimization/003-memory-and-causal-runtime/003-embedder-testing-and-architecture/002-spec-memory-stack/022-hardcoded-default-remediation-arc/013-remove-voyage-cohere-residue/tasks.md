@@ -46,7 +46,7 @@ _memory:
 - [x] [T006] [P1] `mcp_server/lib/search/search-flags.ts` — `hasAnyCrossEncoderOptInSignal()` no longer treats VOYAGE/COHERE keys as opt-in signals; `looksLikeValidApiKey()` helper deleted
 - [x] [T007] [P1] `mcp_server/lib/search/evidence-gap-detector.ts` — Z_SCORE_THRESHOLD comment updated to reference only `RERANKER_LOCAL=true`
 - [x] [T008] [P1] `mcp_server/ENV_REFERENCE.md` §14 RERANKER intro rewritten with removal-narrative
-- [x] [T009] [P1] `feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md` — `COHERE_API_KEY` row deleted; `VOYAGE_API_KEY` row scoped to embeddings only; `RERANKER_LOCAL` description updated
+- [x] [T009] [P1] `feature_catalog/feature-flag-reference/05-5-embedding-and-api.md` — `COHERE_API_KEY` row deleted; `VOYAGE_API_KEY` row scoped to embeddings only; `RERANKER_LOCAL` description updated
 - [x] [T010] [P1] `mcp_server/tests/cross-encoder-extended.vitest.ts` — describes 2/3/8 deleted; describe 5 routes test rewritten; cache/latency mocks updated to `results:` shape
 - [x] [T011] [P1] `mcp_server/tests/cross-encoder-circuit-breaker.vitest.ts` — `'voyage'`/`'cohere'` fixture strings → `'local'`; multi-provider isolation test removed
 - [x] [T012] [P1] `mcp_server/tests/reranker-eval-comparison.vitest.ts` DELETED (entire file was a Voyage/Cohere comparison skeleton)

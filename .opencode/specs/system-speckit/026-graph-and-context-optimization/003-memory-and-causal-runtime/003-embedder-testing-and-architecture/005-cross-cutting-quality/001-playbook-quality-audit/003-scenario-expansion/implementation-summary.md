@@ -46,12 +46,12 @@ _memory:
 
 | Category | Scenarios | Tools covered |
 |---|---|---|
-| 03--discovery | 015, 016, 017 | session_bootstrap / session_resume / session_health |
-| 04--maintenance | 279 | memory_retention_sweep dry-run |
-| 06--analysis | 027 | memory_causal_stats edge case |
-| 07--evaluation | 028, 029 | eval_run_ablation + eval_reporting_dashboard |
-| 16--tooling-and-scripts | 281, 282, 283 | **embedder_list / embedder_set / embedder_status (NEW MCP tools from 016/003)** |
-| 17--governance | 274, 275, 276, 277, 278 | council_graph_* + deep_loop_graph_* + governed-ingest lifecycle |
+| discovery | 015, 016, 017 | session_bootstrap / session_resume / session_health |
+| maintenance | 279 | memory_retention_sweep dry-run |
+| analysis | 027 | memory_causal_stats edge case |
+| evaluation | 028, 029 | eval_run_ablation + eval_reporting_dashboard |
+| tooling-and-scripts | 281, 282, 283 | **embedder_list / embedder_set / embedder_status (NEW MCP tools from 016/003)** |
+| governance | 274, 275, 276, 277, 278 | council_graph_* + deep_loop_graph_* + governed-ingest lifecycle |
 
 **3 repaired scenarios** (cat-24 calibration, commit `ec9b5bae7`):
 - 402-synonymy-across-vocabularies — example display fixed
