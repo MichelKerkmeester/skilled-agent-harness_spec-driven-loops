@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-command-agent-conformance-audit/006-validation-closeout"
-    last_updated_at: "2026-07-11T06:46:46Z"
+    last_updated_at: "2026-07-11T07:15:28Z"
     last_updated_by: "fable-5"
     recent_action: "Authored implementation-summary for the closed program"
     next_safe_action: "Program complete; parent rollup shows all 6 children complete"
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Closed the conformance-audit program's terminal phase: recompiled the 3 build-artifact findings this phase owns (CMD-05, XS-01, XS-03), then ran the full validation gate and reconciled the parent rollup. The 30-finding backlog from `001-conformance-deep-research/research/research.md` is now fully dispositioned across phases 002-006 — every P0/P1 finding is fixed, and the remaining P2s are either fixed or explicitly deferred with rationale.
+Closed the conformance-audit program's terminal phase: recompiled the 3 build-artifact findings this phase owns (CMD-05, XS-01, XS-03), then ran the full validation gate and reconciled the parent rollup. The 30-finding backlog from `001-conformance-deep-research/research/research.md` is now fully dispositioned across phases 002-006 — every finding, P0 through P2 (including the net-new XS-04 checker, built in the closeout), is fixed.
 
 ### Findings Owned by This Phase
 - **XS-01** (P0, operator-gated): `skill-graph.json` regenerated via `skill_graph_compiler.py` — 9 ghost nodes and 2 family mismatches purged, 12 skills / 0 ghosts / 0 family mismatches on the compiled graph. `skill_graph_scan` re-indexed `.opencode/skills` and purged the SQLite `cli-codex-retired` zombie. Advisor `graph-metadata.json` enhances-edges retargeted (`cli-claude-code`+`cli-opencode` -> `cli-external`; `mcp-chrome-devtools` -> `mcp-tooling`). Operator approved; executed, not deferred.
@@ -112,6 +112,6 @@ Build-artifact regen ran first (CMD-05, XS-03, operator-approved XS-01) so the v
 
 1. **7 of 9 read-only `/doctor` targets not independently re-executed this pass** — `skill-graph-freshness` and `parent-skill` were live-verified; `memory`, `embeddings`, `causal-graph`, `code-graph`, `deep-loop`, `skill-budget`, and `fable-mode` were not re-run because no change in phases 002-006 touched those subsystems. Set `SPECKIT_DOCTOR_FULL_SWEEP` (or run `/doctor` per target manually) if a future session wants a full 9-target re-verification.
 2. **Memory-save (`generate-context.js`) not run** — this phase's scope was the metadata regen (`description.json`/`graph-metadata.json`), not a constitutional memory save. Run `/memory:save` explicitly if program continuity should be indexed for `memory_search`.
-3. **XS-04 (net-new referential-integrity validator) stays deferred** — research.md's own routing table sends XS-04 to phase 002, which deferred it with a design note (no clean insertion point spanning create/deep/design); this phase's scope never included XS-04, and it remains an open follow-up for a future packet.
+3. **XS-04 (net-new referential-integrity validator) — built, superseding the earlier deferral.** research.md's routing table sent XS-04 to phase 002, which initially deferred it with a design note (no obvious insertion point spanning create/deep/design). In the program closeout it was built as `.opencode/commands/scripts/validate-command-references.cjs` — a standalone checker with a `--self-test` and a committed broken fixture — and 002's ledger was reconciled deferred → fixed. Designing it also surfaced + fixed 2 dead create-family template refs. It is no longer an open follow-up; see 002's implementation-summary for the checker's design and scope.
 4. **Advisor regression fixture (`skill_advisor_regression_cases.jsonl`) left un-updated** — the 4 `mcp-chrome-devtools` cases are stale relative to XS-01's intentional edge retargeting. The fixture is a `system-skill-advisor` skill asset, outside this phase's writable scope (spec-doc bookkeeping only); a future `system-skill-advisor` packet should update the fixture's `expected_top_any` to `mcp-tooling` for those cases.
 <!-- /ANCHOR:limitations -->
