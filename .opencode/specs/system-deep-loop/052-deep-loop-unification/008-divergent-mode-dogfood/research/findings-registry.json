@@ -145,6 +145,21 @@
       "text": "Where do command contracts and runtime-specific agent definitions diverge from current behavior?",
       "addedAtIteration": 1,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Which operator ergonomics and cost/performance issues dominate actual loop runs beyond validator-triggered redispatch?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How do the four subskills invoke shared runtime surfaces in ways that trigger or mask the iteration-001 defects?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -169,9 +184,16 @@
   "promotedIdeas": [],
   "suppressedIdeas": [],
   "blockedStopHistory": [],
-  "graphConvergenceScore": 0,
-  "graphDecision": "CONTINUE",
-  "graphBlockers": [],
+  "graphConvergenceScore": 0.76,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "type": "source_diversity_guard",
+      "description": "Source diversity (0.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions.",
+      "count": 1,
+      "severity": "blocking"
+    }
+  ],
   "divergence": {
     "started": [],
     "completed": [],
@@ -184,17 +206,17 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 1,
+    "iterationsCompleted": 2,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 4,
+    "carriedForwardOpenQuestions": 7,
     "keyFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.86,
+    "convergenceScore": 0.92,
     "coverageBySources": {},
     "completedPivots": 0,
     "failedPivots": 0,

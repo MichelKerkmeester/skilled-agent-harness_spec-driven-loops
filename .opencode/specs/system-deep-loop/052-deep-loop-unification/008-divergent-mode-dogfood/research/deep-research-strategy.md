@@ -109,6 +109,9 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 - Which operator ergonomics and cost/performance issues dominate actual loop runs? (iteration 1)
 - Do the four subskills invoke these runtime surfaces in ways that trigger or mask the identified defects? (iteration 1)
 - Where do command contracts and runtime-specific agent definitions diverge from current behavior? (iteration 1)
+- Which operator ergonomics and cost/performance issues dominate actual loop runs beyond validator-triggered redispatch? (iteration 2)
+- How do the four subskills invoke shared runtime surfaces in ways that trigger or mask the iteration-001 defects? (iteration 2)
+- Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents? (iteration 2)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -116,7 +119,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Where do command contracts and runtime-specific agent definitions diverge from current behavior?
+Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents?
 
 <!-- /ANCHOR:next-focus -->
 

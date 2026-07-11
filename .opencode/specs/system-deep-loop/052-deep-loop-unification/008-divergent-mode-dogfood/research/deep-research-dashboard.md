@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Identify concrete improvements, refinements, and upgrade opportunities for the system-deep-loop skill: its shared runtime (.opencode/skills/system-deep-loop/runtime/**), all four subskills (deep-research, deep-review, deep-ai-council, deep-improvement), the deep/* commands (.opencode/commands/deep/**), and their agent definitions (.claude/agents/deep-research.md, .claude/agents/deep-review.md, and OpenCode equivalents). Look across correctness, ergonomics, cost/performance, documentation accuracy, and test coverage. Rotate focus across these areas iteration to iteration rather than fixating on one.
 - Started: 2026-07-11T06:21:34.834Z
 - Status: INITIALIZED
-- Iteration: 1 of 10
+- Iteration: 2 of 10
 - Session ID: dr-008-divergent-retry-1783750894834
 - Parent Session: none
 - Lifecycle Mode: new
@@ -32,8 +32,9 @@ Reducer-generated observability surface for the active research packet.
 | # | Focus | Track | Ratio | Findings | Status |
 |---|-------|-------|-------|----------|--------|
 | undefined | Shared runtime correctness, edge cases, documentation drift, and test gaps | - | 0.86 | 0 | insight |
+| undefined | Where command contracts and runtime-specific agent definitions diverge from current behavior | - | 0.92 | 0 | complete |
 
-- iterationsCompleted: 1
+- iterationsCompleted: 2
 - keyFindings: 0
 - openQuestions: 5
 - resolvedQuestions: 0
@@ -61,12 +62,12 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-- score sparkline: ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-- Last 3 ratios: 0.86
+- newInfoRatio sparkline: ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+- score sparkline: ▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▇▇▇██
+- Last 3 ratios: 0.86 -> 0.92
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.86
+- convergenceScore: 0.92
 - coverageBySources: {}
 - Advisory events: none
 
@@ -88,7 +89,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Where do command contracts and runtime-specific agent definitions diverge from current behavior?
+Do deep-review and deep-ai-council prompt packs have equivalent schema, delta, or reducer-ownership drift against their agents?
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
@@ -103,8 +104,8 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->
 ## 10. GRAPH CONVERGENCE
-- graphConvergenceScore: 0.00
-- graphDecision: CONTINUE
-- graphBlockers: none recorded
+- graphConvergenceScore: 0.76
+- graphDecision: STOP_BLOCKED
+- Blocker: unnamed-blocker (blocking): count=1, description=Source diversity (0.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions., type=source_diversity_guard
 
 <!-- /ANCHOR:graph-convergence -->
