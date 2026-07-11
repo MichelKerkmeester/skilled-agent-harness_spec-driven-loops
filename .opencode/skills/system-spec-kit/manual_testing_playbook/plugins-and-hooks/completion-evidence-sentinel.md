@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion sentinel plugin"
   - "completion-evidence-sentinel"
   - "stop hook advisory"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Completion Evidence Sentinel
@@ -259,6 +259,7 @@ duplicate append) after the second, dedicated to `deduped:true` in the core.
 ### 5. Direct manual invocation of the real Claude Stop hook (stdin contract, exit-code contract)
 
 ```bash
+REPO_ROOT="$(pwd)"
 PROJECT_DIR="$(mktemp -d)"
 SPEC_DIR="$(mktemp -d)"
 SESSION_ID="manual-stop-hook-demo"
@@ -274,16 +275,23 @@ fs.mkdirSync(stateDir, { recursive: true });
 fs.writeFileSync(path.join(stateDir, sessionHash + '.json'), JSON.stringify({ lastSpecFolder: '$SPEC_DIR' }), 'utf8');
 "
 printf '%s' '{"stop_hook_active":false,"session_id":"'"$SESSION_ID"'","last_assistant_message":"The core is now complete and shipped."}' \
-  | (cd "$PROJECT_DIR" && node .opencode/skills/system-spec-kit/mcp_server/hooks/claude/completion-evidence-stop.cjs)
+  | (cd "$PROJECT_DIR" && node "$REPO_ROOT/.opencode/skills/system-spec-kit/mcp_server/hooks/claude/completion-evidence-stop.cjs")
 echo "exit code: $?"
 cat "$PROJECT_DIR/.opencode/logs/completion-sentinel-advisories.log"
 rm -rf "$PROJECT_DIR" "$SPEC_DIR"
 ```
 
-Note: this manual invocation must be run with the project root as `PWD` (so the relative
-`.opencode/skills/.../completion-evidence-stop.cjs` path resolves); the harness that produced the
-EVIDENCE below invoked the script by its absolute path instead while `cd`-ing only into
-`$PROJECT_DIR`, which is equivalent.
+Note: `REPO_ROOT` is captured before the `cd`, and the hook script is invoked by its ABSOLUTE
+`$REPO_ROOT/.opencode/skills/.../completion-evidence-stop.cjs` path. This is required because the
+`cd "$PROJECT_DIR"` puts the shell in a disposable scratch directory that has no `.opencode/`
+subtree, so a repo-relative script path would fail with `MODULE_NOT_FOUND`. The `cd` into
+`$PROJECT_DIR` is still intentional and must stay: the hook derives BOTH its `projectDir` (where it
+writes the advisory log) and its `sha256(cwd)` state-file lookup key from `process.cwd()`, so the
+hook's working directory has to be `$PROJECT_DIR` — matching the state file seeded above — for the
+seeded `lastSpecFolder` to resolve. Only the script PATH is absolute; the runtime CWD payload the
+hook consumes is `$PROJECT_DIR`, exactly as `.claude/settings.json` wires it (`cd
+"${CLAUDE_PROJECT_DIR:-$PWD}" && node <repo-relative hook>`), where the project dir and the repo
+root coincide in production.
 
 Expected: `WARN [speckit-hook:completion-evidence-stop] claimed done but no implementation-summary.md
 recorded in <SPEC_DIR>` on stderr, `exit code: 0`, and the identical line appended to
@@ -448,14 +456,19 @@ log line count first vs second pass: 1 vs 1
 
 ### Step 5 -- direct manual invocation of the real Claude Stop hook (real stdout/stderr)
 
+Command as documented above, run fresh from the repo root (`REPO_ROOT="$(pwd)"` captured before the
+`cd "$PROJECT_DIR"`; hook invoked by absolute `$REPO_ROOT/.opencode/.../completion-evidence-stop.cjs`
+path while CWD is `$PROJECT_DIR`). Real output:
+
 ```text
-wrote hook state at /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-claude-hooks/4926729892a5/6482d51f2ce8d3a8.json
---- invoking completion-evidence-stop.cjs with a normal turn-end + completion claim (Level 1 folder, no implementation-summary.md) ---
-WARN [speckit-hook:completion-evidence-stop] claimed done but no implementation-summary.md recorded in /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.2JcUxQq7mA
+WARN [speckit-hook:completion-evidence-stop] claimed done but no implementation-summary.md recorded in /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.X9LI0uE5ue
 exit code: 0
---- advisory log written by the Claude Stop hook ---
-2026-07-11T12:42:41.143Z [completion-evidence-sentinel] claimed done but no implementation-summary.md recorded in /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.2JcUxQq7mA
+2026-07-11T16:40:25.639Z [completion-evidence-sentinel] claimed done but no implementation-summary.md recorded in /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.X9LI0uE5ue
 ```
+
+The `WARN [speckit-hook:completion-evidence-stop] ...` line is stderr, `exit code: 0` confirms the
+hook never blocked, and the trailing `[completion-evidence-sentinel] ...` line is the identical
+advisory appended to `$PROJECT_DIR/.opencode/logs/completion-sentinel-advisories.log`.
 
 ---
 

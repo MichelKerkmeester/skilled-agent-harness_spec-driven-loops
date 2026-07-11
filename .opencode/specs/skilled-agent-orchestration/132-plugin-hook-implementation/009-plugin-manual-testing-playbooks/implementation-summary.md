@@ -11,9 +11,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation/009-plugin-manual-testing-playbooks"
-    last_updated_at: "2026-07-11T14:07:09Z"
-    last_updated_by: "spec-author"
-    recent_action: "Authored and reviewer-verified 11 manual-testing-playbook scenarios, all PASS"
+    last_updated_at: "2026-07-11T17:04:41Z"
+    last_updated_by: "cross-model-validation"
+    recent_action: "Cross-model validated 11 scenarios and fixed 4 harness defects, all re-confirmed PASS"
     next_safe_action: "None; phase 9 of 9 is complete, no successor phase"
     blockers: []
     key_files:
@@ -129,6 +129,19 @@ A Sonnet-5 xhigh agent authored each scenario against the real plugin/hook/core 
 | 4 backfill scenarios (code-graph, spec-memory, dist-freshness-guard, session-cleanup) | PASS - confirmed against existing plugin coverage |
 | Independent review pass | PASS - 6 real defects found and fixed inline across 5 scenarios, 0 remaining after fix |
 | `validate.sh --strict` on this phase folder | PASS - Errors: 0 (see checklist.md for the run detail) |
+
+### Post-Delivery Cross-Model Validation (2026-07-11)
+
+Every one of the 11 scenarios was then independently re-executed by an external model, GPT-5.6-sol-fast (`--variant high`, direct OpenAI provider), acting as a blind test operator that ran each scenario's TEST EXECUTION commands verbatim and reported its own verdict. 7 scenarios passed clean on the first pass. The run surfaced 4 defects, all in the scenario/harness layer, never in plugin logic; every plugin's own unit suite stayed green throughout.
+
+| Scenario | Defect surfaced by independent execution | Fix applied |
+|----------|-------------------------------------------|-------------|
+| completion-evidence-sentinel | The Stop-hook step invoked the hook by a repo-relative path after `cd` into a temp dir, so it failed with `MODULE_NOT_FOUND` | Capture the repo root first and invoke the hook by absolute path while the working directory stays the temp project |
+| spec-mutation-gate-enforce | The unit test and the live enforce-deny step inherited the operator's ambient `AI_SESSION_CHILD=1`, which forces advise-only and suppresses the expected deny | Neutralize `AI_SESSION_CHILD` (and `MK_SPEC_GATE_ENFORCE`) with `env -u` on the two deny-path commands |
+| session-cleanup-plugin | The live-injection assertion assumed `worktree-guard.sh` always emits, but it is git-state-driven and stays silent in an isolated checkout or when `AI_SESSION_CHILD=1` | Pin a throwaway shared-checkout fixture and `env -u AI_SESSION_CHILD` so the real guard emits deterministically; document the empty-when-silenced branch as a valid pass with the second-call-always-empty invariant |
+| spec-memory-plugin | A cleanup step deleted the live-check fixture before a later step re-ran it | Move the single teardown to after the final step that uses the fixture |
+
+After the fixes, all 4 were re-confirmed PASS by two independent operators (GPT-5.6-sol-fast and Sonnet), each running the corrected commands under the same leaky operator environment (`AI_SESSION_CHILD=1 MK_SPEC_GATE_ENFORCE=0`) the defects were originally exposed under.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -136,7 +149,7 @@ A Sonnet-5 xhigh agent authored each scenario against the real plugin/hook/core 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Backfill scenarios carry inherited evidence.** The 4 backfill scenarios (`code-graph-plugin.md`, `spec-memory-plugin.md`, `dist-freshness-guard.md`, `session-cleanup-plugin.md`) record a PASS verdict verified against the existing plugin coverage rather than a fresh live test run captured specifically inside this phase; treat their evidence as inherited, not re-executed here.
+1. **Backfill scenarios were re-executed post-delivery.** The 4 backfill scenarios (`code-graph-plugin.md`, `spec-memory-plugin.md`, `dist-freshness-guard.md`, `session-cleanup-plugin.md`) originally recorded a PASS verdict against existing plugin coverage rather than a fresh run captured inside this phase. The 2026-07-11 cross-model validation pass (see Verification) has since re-executed all of them live on GPT-5.6-sol-fast, so their evidence is no longer inherited-only.
 2. **No CI wiring yet.** These 11 scenarios run on operator demand per the playbook's manual EXECUTION POLICY; nothing schedules them automatically. A future phase could wire a subset into CI if that becomes valuable.
 <!-- /ANCHOR:limitations -->
 
