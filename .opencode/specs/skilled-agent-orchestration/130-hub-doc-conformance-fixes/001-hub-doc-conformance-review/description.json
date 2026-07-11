@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/130-hub-doc-conformance-fixes/001-hub-doc-conformance-review",
+  "description": "The `cli-external` and `mcp-tooling` hub docs — feature catalogs, manual testing playbooks, references, vendored `mcp-servers//README.md` files, and",
+  "keywords": [
+    "cli-external",
+    "mcp-tooling",
+    "hub",
+    "docs",
+    "feature",
+    "catalogs",
+    "manual",
+    "testing",
+    "playbooks",
+    "references",
+    "vendored",
+    "mcp-servers",
+    "readme",
+    "files"
+  ],
+  "lastUpdated": "2026-07-11T09:13:33.411Z",
+  "specId": "001",
+  "folderSlug": "hub-doc-conformance-review",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "130-hub-doc-conformance-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
