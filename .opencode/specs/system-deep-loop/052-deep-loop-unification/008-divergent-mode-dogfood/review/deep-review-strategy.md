@@ -33,7 +33,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 <!-- MACHINE-OWNED: START -->
 - [x] D1 Correctness, Logic errors, off-by-one, wrong return types, broken invariants
 - [x] D2 Security, Injection, auth bypass, secrets exposure, unsafe deserialization
-- [ ] D3 Traceability, Spec/code alignment, checklist evidence, cross-reference integrity
+- [x] D3 Traceability, Spec/code alignment, checklist evidence, cross-reference integrity
 - [ ] D4 Maintainability, Patterns, clarity, documentation quality, safe follow-on change cost
 <!-- MACHINE-OWNED: END -->
 
@@ -62,6 +62,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 |-----------|---------|-----------|---------|
 | Correctness | CONDITIONAL | 1 | Two P1 gate defects: state/delta canonical parity and narrative verdict placement. |
 | Security | CONDITIONAL | 2 | Two P1 control defects: cross-process receipt authentication and disconnected workspace permissions enforcement. |
+| Traceability | CONDITIONAL | 3 | One P1 cross-consumer contract split across both runtime agents, the active workflow, and the playbook; checklist evidence deferred to stabilization. |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -69,9 +70,9 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 ## 7. RUNNING FINDINGS
 <!-- MACHINE-OWNED: START -->
 - **P0 (Critical):** 0 active
-- **P1 (Major):** 4 active
+- **P1 (Major):** 5 active
 - **P2 (Minor):** 0 active
-- **Delta this iteration:** +0 P0, +2 P1, +0 P2
+- **Delta this iteration:** +0 P0, +1 P1, +0 P2
 
 [Findings are tracked in `deep-review-findings-registry.json`. This section provides a running count summary updated after each iteration.]
 <!-- MACHINE-OWNED: END -->
@@ -81,12 +82,14 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 ## 8. WHAT WORKED
 - Iteration 1: Risk-ordering the shared validation and divergent-pivot boundaries exposed two cross-consumer correctness defects while ruling out quorum, blocker-veto, and durable-replay hypotheses.
 - Iteration 2: Cross-process receipt replay and production-call-site search exposed two security-control defects while ruling out shell interpolation and child key disclosure.
+- Iteration 3: Cross-runtime contract comparison exposed one shared artifact/state mismatch and showed that the playbook repeats two incompatible definitions of the iteration outputs.
 
 ---
 
 ## 9. WHAT FAILED
 - Iteration 1: Code graph coverage was unavailable for this bounded slice; exact search and direct source/test reads provided the evidence instead.
 - Iteration 2: Code graph remained empty; graphless exact search, direct reads, and a live receipt replay supplied evidence.
+- Iteration 3: Code graph remained unavailable; exact cross-runtime search supplied contract evidence. Packet checklist evidence was deferred to a stabilization traceability pass.
 
 ---
 
@@ -110,7 +113,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 
 ## 12. NEXT FOCUS
 <!-- MACHINE-OWNED: START -->
-Iteration 3: traceability review of core spec/checklist evidence and cross-runtime agent/command parity.
+Iteration 4: maintainability review, followed by a stabilization traceability pass for deferred packet checklist evidence before legal STOP.
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -133,12 +136,12 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
 | `spec_code` | core | partial | 1 | Owning verdict/artifact contracts checked against runtime validators. |
-| `checklist_evidence` | core | pending | - | - |
-| `skill_agent` | overlay | partial | 1 | Canonical deep-review agent contract loaded for iteration workflow. |
-| `agent_cross_runtime` | overlay | pending | - | - |
+| `checklist_evidence` | core | deferred | 3 | Packet checklist acceptance evidence retained for the stabilization traceability pass. |
+| `skill_agent` | overlay | fail | 3 | Canonical agents omit the required delta write and contradict append-only state handling. |
+| `agent_cross_runtime` | overlay | fail | 3 | OpenCode and Claude copies duplicate the same stale LEAF contract. |
 | `feature_catalog_code` | overlay | pending | - | - |
 | `feature_catalog_code` | overlay | fail | 2 | F009 claims shipped pre-dispatch permissions behavior, but no production caller exists. |
-| `playbook_capability` | overlay | pending | - | - |
+| `playbook_capability` | overlay | fail | 3 | Playbook gives incompatible identities for the three required iteration artifacts. |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -154,6 +157,9 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 | `runtime/lib/deep-loop/post-dispatch-validate.ts` | security | 2 | R2-P1-001 | reviewed |
 | `runtime/lib/deep-loop/permissions-gate.ts` | security | 2 | R2-P1-002 | reviewed |
 | `.opencode/commands/deep/assets/deep_review_auto.yaml` | security | 2 | R2-P1-001, R2-P1-002 | reviewed |
+| `.opencode/agents/deep-review.md` | traceability | 3 | R3-P1-001 | reviewed |
+| `.claude/agents/deep-review.md` | traceability | 3 | R3-P1-001 | reviewed |
+| `deep-review/manual_testing_playbook/manual_testing_playbook.md` | traceability | 3 | R3-P1-001 | reviewed |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -179,7 +185,6 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 
 <!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
-- [ ] traceability
 - [ ] maintainability
 
 <!-- /ANCHOR:review-dimensions -->
@@ -188,13 +193,14 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 ## 4. COMPLETED DIMENSIONS
 - [x] correctness
 - [x] security
+- [x] traceability
 
 <!-- /ANCHOR:completed-dimensions -->
 
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 4
+- P1 (Required): 5
 - P2 (Suggestions): 0
 - Resolved: 0
 
@@ -266,6 +272,6 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-traceability
+maintainability
 
 <!-- /ANCHOR:next-focus -->

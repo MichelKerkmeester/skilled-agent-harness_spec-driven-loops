@@ -122,6 +122,35 @@
         "security"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "Cross-runtime LEAF contracts omit the required delta artifact and contradict append-only state handling",
+      "file": ".opencode/agents/deep-review.md",
+      "line": 387,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -132,15 +161,15 @@
   "dimensionCoverage": {
     "correctness": true,
     "security": true,
-    "traceability": false,
+    "traceability": true,
     "maintainability": false
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 4,
+    "P1": 5,
     "P2": 0
   },
-  "openFindingsCount": 4,
+  "openFindingsCount": 5,
   "resolvedFindingsCount": 0,
   "convergenceScore": 0,
   "graphConvergenceScore": 0.6,
@@ -148,8 +177,8 @@
   "graphBlockers": [
     {
       "type": "uncovered_dimensions",
-      "description": "Dimension coverage (0%) is below threshold (80%). 3 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
-      "count": 3,
+      "description": "Dimension coverage (0%) is below threshold (80%). 6 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "count": 6,
       "severity": "blocking"
     }
   ],
@@ -164,8 +193,11 @@
   "candidateCoverage": {
     "covered": [
       "artifact_consistency",
+      "cross_runtime_contract_drift",
       "gate_bypass",
+      "playbook_capability_drift",
       "receipt_integrity",
+      "spec_code_drift",
       "workspace_containment"
     ],
     "ruledOut": [
@@ -174,7 +206,9 @@
       "secret_exposure",
       "state_transition"
     ],
-    "deferred": [],
+    "deferred": [
+      "checklist_evidence"
+    ],
     "blocked": [],
     "byBugClass": {
       "artifact_consistency": {
@@ -248,10 +282,62 @@
         "iterations": [
           2
         ]
+      },
+      "spec_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_runtime_contract_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_capability_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "checklist_evidence": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
       }
     }
   },
-  "searchDebt": [],
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-012",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "deferred",
+      "rationale": "Must be executed in a stabilization traceability pass before legal STOP.",
+      "evidenceRefs": [
+        ".opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/deep-review-config.json:9-12"
+      ],
+      "reason": "Iteration budget prioritized the newly discovered cross-consumer contract split."
+    }
+  ],
   "ruledOutCandidates": [
     {
       "iteration": 1,
@@ -400,76 +486,34 @@
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "receipt_integrity",
-      "workspace_containment",
-      "command_injection",
-      "secret_exposure"
+      "spec_code_drift",
+      "cross_runtime_contract_drift",
+      "playbook_capability_drift"
     ],
     "covered": [
-      "receipt_integrity",
-      "workspace_containment"
+      "spec_code_drift",
+      "cross_runtime_contract_drift",
+      "playbook_capability_drift"
     ],
-    "ruledOut": [
-      "command_injection",
-      "secret_exposure"
+    "ruledOut": [],
+    "deferred": [
+      "checklist_evidence"
     ],
-    "deferred": [],
     "blocked": [],
     "graphCoverageMode": "graphless_fallback"
   },
   "traceability": {
     "summary": {
       "required": 0,
-      "executed": 2,
+      "executed": 0,
       "pass": 0,
-      "partial": 1,
-      "fail": 1,
+      "partial": 0,
+      "fail": 0,
       "blocked": 0,
       "notApplicable": 0,
       "gatingFailures": 0
     },
-    "results": [
-      {
-        "protocolId": "spec_code",
-        "status": "partial",
-        "gateClass": "hard",
-        "applicable": true,
-        "counts": {
-          "pass": 0,
-          "partial": 1,
-          "fail": 0,
-          "skipped": 0
-        },
-        "evidence": [
-          ".opencode/commands/deep/assets/deep_review_auto.yaml:1207-1301",
-          ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:391-582"
-        ],
-        "findingRefs": [
-          "R2-P1-001"
-        ],
-        "summary": "Receipt authority and write-boundary claims were checked against active workflow wiring."
-      },
-      {
-        "protocolId": "feature_catalog_code",
-        "status": "fail",
-        "gateClass": "advisory",
-        "applicable": true,
-        "counts": {
-          "pass": 0,
-          "partial": 0,
-          "fail": 1,
-          "skipped": 0
-        },
-        "evidence": [
-          ".opencode/skills/system-deep-loop/runtime/feature_catalog/state-safety/permissions-gate.md:21-31",
-          ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/permissions-gate.ts:393-445"
-        ],
-        "findingRefs": [
-          "R2-P1-002"
-        ],
-        "summary": "F009 is catalogued as shipped, but no production dispatch caller exists."
-      }
-    ]
+    "results": []
   },
   "divergence": {
     "started": [],
