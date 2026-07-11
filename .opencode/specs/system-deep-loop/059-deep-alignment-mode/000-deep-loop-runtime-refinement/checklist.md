@@ -8,13 +8,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/000-deep-loop-runtime-refinement"
-    last_updated_at: "2026-07-11T08:54:42Z"
+    last_updated_at: "2026-07-11T21:43:06Z"
     last_updated_by: "claude"
-    recent_action: "Triage-phase checklist items verified; fix-phase items N/A until confirmed"
-    next_safe_action: "Operator confirms remediation scope"
+    recent_action: "Tier 1+2 fix-verification items confirmed against green suite"
+    next_safe_action: "Track Tier 3 items in a follow-up pass"
     blockers: []
     key_files: []
-    completion_pct: 20
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-N/A — no code changed in this planning-only pass.
+Tier 1+2 code changes were applied after operator confirmation and are gated by the existing suites — 73 files / 721 tests green, compiled-contract drift clean. No unrelated scope creep (fixes limited to the §5 candidate list).
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -57,7 +57,7 @@ N/A — no code changed in this planning-only pass.
 ## Testing
 
 - [x] CHK-010 [P0] Every Tier-1/Tier-2 finding in `spec.md` §5 independently spot-verified against its cited file:line before inclusion (not relayed purely from the source loop's claim) — `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:1551-1558`, `.opencode/skills/system-deep-loop/deep-review/scripts/reduce-state.cjs:1187-1210,1349-1428`, and other cited locations confirmed to exist and match the described shape
-- [ ] CHK-011 [P1] Fix-verification per remediated finding — **N/A until Phase 1+ starts**
+- [x] CHK-011 [P1] Fix-verification per remediated finding — Tier 1+2 applied + test-gated (commits `0803969e41`, `3e9892a9c0`, `a8b3f0af01`); runtime suite 73 files / 721 tests green; the H3-heading fix is present at `deep-research/scripts/reduce-state.cjs:1556`. Tier 3 deferred (P2, documented in `spec.md` §5)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -65,7 +65,7 @@ N/A — no code changed in this planning-only pass.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-N/A — no findings fixed in this planning-only pass; the triaged candidate list in `spec.md` §5 stands as the deliverable.
+Tier 1+2 candidates from `spec.md` §5 are fixed and test-gated; Tier 3 items are deferred to a follow-up pass (documented, not dropped).
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -100,7 +100,7 @@ N/A — no findings fixed in this planning-only pass; the triaged candidate list
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 4 | 4/4 |
-| P1 Items | 2 | 1/2 (CHK-011 N/A until fixes start) |
+| P1 Items | 2 | 2/2 |
 
-**Verification Date**: 2026-07-11 (triage phase only)
+**Verification Date**: 2026-07-11 (triage + Tier 1+2 remediation applied and test-gated)
 <!-- /ANCHOR:summary -->

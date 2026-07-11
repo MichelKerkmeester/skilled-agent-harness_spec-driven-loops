@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: system-deep-loop Runtime Remediation (from dogfood findings)"
-description: "Triaged remediation plan for real bugs found by the 008-divergent-mode-dogfood run's research and review loops against system-deep-loop's own runtime, subskills, and agent definitions. Planning only — no fixes applied yet."
+description: "Triaged remediation plan for real bugs found by the 008-divergent-mode-dogfood run's research and review loops against system-deep-loop's own runtime, subskills, and agent definitions. Tier 1+2 fixes applied and test-gated; Tier 3 deferred to a follow-up pass."
 trigger_phrases:
   - "system-deep-loop remediation"
   - "dogfood findings remediation"
@@ -10,15 +10,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/000-deep-loop-runtime-refinement"
-    last_updated_at: "2026-07-11T08:54:42Z"
+    last_updated_at: "2026-07-11T21:43:06Z"
     last_updated_by: "claude"
     recent_action: "Tier 1+2 remediation applied and test-gated"
-    next_safe_action: "Commit fixes; schedule Tier 3 investigation"
+    next_safe_action: "Track Tier 3 items in a follow-up pass"
     blockers: []
     key_files:
       - "../../052-deep-loop-unification/008-divergent-mode-dogfood/research/research.md"
       - "../../052-deep-loop-unification/008-divergent-mode-dogfood/review/deep-review-findings-registry.json"
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Operator confirmed Tier 1+2 fixes 2026-07-11; Tier 3 deferred to a design pass"
@@ -36,7 +36,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In progress (Tier 1+2 applied; Tier 3 deferred) |
+| **Status** | Complete (Tier 1+2 applied + test-gated; Tier 3 deferred to follow-up) |
 | **Created** | 2026-07-11 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -65,11 +65,12 @@ Triage the findings, confirm a prioritized subset genuinely worth fixing now, an
 - Document the triaged candidate list with file:line evidence pointers back to the source findings.
 - Propose a phased remediation order for the confirmed candidates.
 
-### Explicitly NOT in scope yet
-- Any actual code change to `system-deep-loop`'s runtime, subskills, commands, or agent definitions — this packet is planning-only until the operator confirms which findings to act on.
-- Re-litigating findings already covered by other open packets (none currently known to overlap).
+### Scope evolution (planning pass → applied)
+- Code change was gated on operator confirmation. That confirmation landed 2026-07-11; the Tier 1+2 candidates in §5 were then applied and test-gated (commits `0803969e41`, `3e9892a9c0`, `a8b3f0af01`).
+- Tier 3 items (§5) stay out of scope here, deferred to a follow-up pass.
+- Re-litigating findings already covered by other open packets (none currently known to overlap) stayed out of scope.
 
-### Files Likely to Change (once remediation is approved — none touched yet)
+### Files Changed (Tier 1+2 remediation, applied 2026-07-11)
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
@@ -95,7 +96,7 @@ Triage the findings, confirm a prioritized subset genuinely worth fixing now, an
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|----------------------|
 | REQ-002 | Findings that are duplicated/corroborated across both loops are flagged as such (higher confidence) | Section 5 marks cross-loop corroboration explicitly |
-| REQ-003 | No remediation code change happens without an explicit operator go-ahead on this packet's scope | This spec stays "Planning" status until that confirmation lands |
+| REQ-003 | No remediation code change happens without an explicit operator go-ahead on this packet's scope | SATISFIED — operator confirmed 2026-07-11 before any Tier 1+2 fix landed |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -105,7 +106,7 @@ Triage the findings, confirm a prioritized subset genuinely worth fixing now, an
 
 - **SC-001**: Every Tier-1/Tier-2 candidate cites real, independently spot-verified evidence (file:line), not relayed purely from the source loop's claim.
 - **SC-002**: The triaged list is honest about tier confidence — cross-loop-corroborated findings (Tier 1) are distinguished from single-loop-but-well-evidenced ones (Tier 2), and needs-more-investigation items (Tier 3) are named as such rather than silently dropped or silently promoted.
-- **SC-003**: Zero code changes land in this packet before operator confirmation of remediation scope.
+- **SC-003**: Zero code changes landed before operator confirmation — met; the Tier 1+2 fixes followed the 2026-07-11 confirmation and are test-gated (runtime suite 721/721 green).
 
 ### Tier 1 — High confidence, corroborated by both loops independently
 
@@ -146,7 +147,7 @@ Triage the findings, confirm a prioritized subset genuinely worth fixing now, an
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which Tier-1/Tier-2 findings should this packet actually fix, and in what order? Awaiting operator confirmation before any code change.
+- RESOLVED (2026-07-11): operator confirmed the Tier 1+2 candidates in §5; they were applied in dependency order and test-gated. Tier 3 deferred to a follow-up pass.
 <!-- /ANCHOR:questions -->
 
 ---
