@@ -85,9 +85,9 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->
 ## 7. GRAPH CONVERGENCE
-- graphConvergenceScore: 0.64
+- graphConvergenceScore: 0.62
 - graphDecision: STOP_BLOCKED
-- graphBlockers: {"type":"uncovered_dimensions","description":"Dimension coverage (0%) is below threshold (80%). 18 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.","count":18,"severity":"blocking"}
+- graphBlockers: {"type":"uncovered_dimensions","description":"Dimension coverage (0%) is below threshold (80%). 22 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.","count":22,"severity":"blocking"}, {"type":"unstable_findings","description":"5 contradiction(s) are lowering finding stability below threshold","count":5,"severity":"blocking"}
 
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
