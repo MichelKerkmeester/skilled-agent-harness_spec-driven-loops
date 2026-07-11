@@ -107,10 +107,16 @@ const RUST_TRIO = [
   'code-opencode/references/rust/quick_reference/rustdoc-and-cargo.md',
   'code-opencode/references/rust/quick_reference/determinism-parity-and-related.md',
 ];
+// The typescript trio was split into topic-cohesive parts, so the router now
+// returns each part; the slice assertion checks that whole part set loads.
 const TS_TRIO = [
-  'code-opencode/references/typescript/style_guide.md',
-  'code-opencode/references/typescript/quality_standards.md',
-  'code-opencode/references/typescript/quick_reference.md',
+  'code-opencode/references/typescript/style_guide/overview-strict-and-naming.md',
+  'code-opencode/references/typescript/style_guide/formatting-imports-and-coexistence.md',
+  'code-opencode/references/typescript/quality_standards/overview-and-type-system.md',
+  'code-opencode/references/typescript/quality_standards/tsdoc-errors-and-async.md',
+  'code-opencode/references/typescript/quality_standards/tsconfig-and-modules.md',
+  'code-opencode/references/typescript/quick_reference/template-naming-and-types.md',
+  'code-opencode/references/typescript/quick_reference/imports-errors-and-tsconfig.md',
 ];
 
 describe('sk-code rust language-slice sync — touched-language set loads the right trios', () => {

@@ -196,8 +196,8 @@ OPENCODE loads from `code-opencode/references/` and `assets/code-opencode/`.
 
 ### Always-load (every OPENCODE invocation)
 
-- `code-opencode/references/shared/universal_patterns.md`
-- `code-opencode/references/shared/code_organization.md`
+- `code-opencode/references/shared/universal_patterns/naming-and-commenting.md`
+- `code-opencode/references/shared/code_organization/overview-and-module-organization.md`
 
 ### Intent overlay
 
@@ -350,8 +350,11 @@ RESOURCE_MAP = {
         "code-webflow/references/implementation/third_party_integrations.md",
         "code-webflow/references/implementation/webflow_patterns.md",
         "code-webflow/references/shared/dev_workflow.md",
-        "code-opencode/references/shared/universal_patterns.md",
-        "code-opencode/references/shared/code_organization.md",
+        "code-opencode/references/shared/universal_patterns/naming-and-commenting.md",
+        "code-opencode/references/shared/universal_patterns/organization-security-and-examples.md",
+        "code-opencode/references/shared/code_organization/overview-and-module-organization.md",
+        "code-opencode/references/shared/code_organization/imports-and-exports.md",
+        "code-opencode/references/shared/code_organization/directory-and-test-conventions.md",
         "code-opencode/assets/checklists/agent_authoring.md",
         "code-opencode/assets/checklists/command_authoring.md",
         "code-opencode/assets/checklists/skill_authoring.md",
@@ -461,13 +464,18 @@ RESOURCE_MAP = {
     ],
     "JAVASCRIPT": [
         "code-opencode/references/javascript/style_guide.md",
-        "code-opencode/references/javascript/quality_standards.md",
+        "code-opencode/references/javascript/quality_standards/overview-modules-and-docs.md",
+        "code-opencode/references/javascript/quality_standards/security-testing-and-exemptions.md",
         "code-opencode/references/javascript/quick_reference.md"
     ],
     "TYPESCRIPT": [
-        "code-opencode/references/typescript/style_guide.md",
-        "code-opencode/references/typescript/quality_standards.md",
-        "code-opencode/references/typescript/quick_reference.md"
+        "code-opencode/references/typescript/style_guide/overview-strict-and-naming.md",
+        "code-opencode/references/typescript/style_guide/formatting-imports-and-coexistence.md",
+        "code-opencode/references/typescript/quality_standards/overview-and-type-system.md",
+        "code-opencode/references/typescript/quality_standards/tsdoc-errors-and-async.md",
+        "code-opencode/references/typescript/quality_standards/tsconfig-and-modules.md",
+        "code-opencode/references/typescript/quick_reference/template-naming-and-types.md"
+        "code-opencode/references/typescript/quick_reference/imports-errors-and-tsconfig.md"
     ],
     "PYTHON": [
         "code-opencode/references/python/style_guide.md",
@@ -475,9 +483,12 @@ RESOURCE_MAP = {
         "code-opencode/references/python/quick_reference.md"
     ],
     "SHELL": [
-        "code-opencode/references/shell/style_guide.md",
-        "code-opencode/references/shell/quality_standards.md",
-        "code-opencode/references/shell/quick_reference.md"
+        "code-opencode/references/shell/style_guide/overview-structure-and-naming.md",
+        "code-opencode/references/shell/style_guide/variables-functions-and-output.md",
+        "code-opencode/references/shell/quality_standards/overview-and-priority-blockers.md",
+        "code-opencode/references/shell/quality_standards/validation-security-and-shellcheck.md",
+        "code-opencode/references/shell/quick_reference/template-variables-and-loops.md"
+        "code-opencode/references/shell/quick_reference/functions-strings-and-checklist.md"
     ],
     "RUST": [
         "code-opencode/references/rust/style_guide/overview-and-file-header.md",

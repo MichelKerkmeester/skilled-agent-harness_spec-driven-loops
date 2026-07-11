@@ -24,11 +24,11 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 - Sub-language: `SHELL` (target `.sh`, signals: `set -euo pipefail`, `trap`)
 
 **Expected references loaded**:
-- `code-opencode/references/shell/style_guide.md`
-- `code-opencode/references/shell/quality_standards.md`
-- `code-opencode/references/shell/quick_reference.md`
-- `code-opencode/references/shared/code_organization.md`
-- `code-opencode/references/shared/universal_patterns.md`
+- `code-opencode/references/shell/style_guide/overview-structure-and-naming.md`
+- `code-opencode/references/shell/quality_standards/overview-and-priority-blockers.md`
+- `code-opencode/references/shell/quick_reference/template-variables-and-loops.md`
+- `code-opencode/references/shared/code_organization/overview-and-module-organization.md`
+- `code-opencode/references/shared/universal_patterns/naming-and-commenting.md`
 
 **Expected assets loaded**:
 - `code-opencode/assets/checklists/shell_checklist.md`

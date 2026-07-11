@@ -31,11 +31,11 @@ Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion de
 - `references/stack_detection.md`
 - `references/smart_routing.md`
 - `references/smart_routing.md`
-- `code-opencode/references/shared/universal_patterns.md`
-- `code-opencode/references/shared/code_organization.md`
-- `code-opencode/references/typescript/quick_reference.md`
-- `code-opencode/references/typescript/style_guide.md`
-- `code-opencode/references/typescript/quality_standards.md`
+- `code-opencode/references/shared/universal_patterns/naming-and-commenting.md`
+- `code-opencode/references/shared/code_organization/overview-and-module-organization.md`
+- `code-opencode/references/typescript/quick_reference/template-naming-and-types.md`
+- `code-opencode/references/typescript/style_guide/overview-strict-and-naming.md`
+- `code-opencode/references/typescript/quality_standards/overview-and-type-system.md`
 - `code-webflow/references/animation/quick_start.md`
 - `code-webflow/references/animation/integration_patterns.md`
 - `code-webflow/references/animation/animate_and_timelines.md`
@@ -76,7 +76,7 @@ Evidence files:
 
 - `.opencode/skills/sk-code/shared/references/stack_detection.md` - OPENCODE precedence rule.
 - `.opencode/skills/sk-code/shared/references/smart_routing.md` - OPENCODE and MOTION_DEV maps.
-- `.opencode/skills/sk-code/code-opencode/references/typescript/quick_reference.md` - Expected TypeScript route.
+- `.opencode/skills/sk-code/code-opencode/references/typescript/quick_reference/template-naming-and-types.md` - Expected TypeScript route.
 - `.opencode/skills/sk-code/code-webflow/assets/animation/snippets/es_module_bootstrap.js` - Supplementary Motion ESM pattern.
 
 ---

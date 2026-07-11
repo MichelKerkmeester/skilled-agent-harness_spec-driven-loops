@@ -26,11 +26,11 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 - Sub-language: `TYPESCRIPT` (target file `.ts`)
 
 **Expected references loaded** (must be EXACTLY this set, no more, no less from the language tier):
-- `code-opencode/references/typescript/style_guide.md`
-- `code-opencode/references/typescript/quality_standards.md`
-- `code-opencode/references/typescript/quick_reference.md`
-- `code-opencode/references/shared/code_organization.md`
-- `code-opencode/references/shared/universal_patterns.md`
+- `code-opencode/references/typescript/style_guide/overview-strict-and-naming.md`
+- `code-opencode/references/typescript/quality_standards/overview-and-type-system.md`
+- `code-opencode/references/typescript/quick_reference/template-naming-and-types.md`
+- `code-opencode/references/shared/code_organization/overview-and-module-organization.md`
+- `code-opencode/references/shared/universal_patterns/naming-and-commenting.md`
 
 **Expected assets loaded**:
 - `code-opencode/assets/checklists/typescript_checklist.md`

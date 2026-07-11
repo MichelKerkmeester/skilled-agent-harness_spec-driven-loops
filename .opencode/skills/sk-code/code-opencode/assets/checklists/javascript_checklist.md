@@ -350,4 +350,4 @@ grep -n "^export " file.js              # Review: allowed only for ESM/plugin pa
 
 ### Style Guide
 - [JavaScript Style Guide](../../references/javascript/style_guide.md)
-- [JavaScript Quality Standards](../../references/javascript/quality_standards.md)
+- [JavaScript Quality Standards](../../references/javascript/quality_standards/overview-modules-and-docs.md)
