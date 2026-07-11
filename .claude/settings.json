@@ -19,6 +19,11 @@
             "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs'",
             "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs'",
+            "timeout": 5
           }
         ]
       },
@@ -31,6 +36,26 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "matcher": "mcp__claude_ai_.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/mcp-code-mode/runtime/hooks/claude/mcp-route-guard.cjs'",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs'",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -40,6 +65,11 @@
           {
             "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
+            "timeout": 3
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs'",
             "timeout": 3
           }
         ]
@@ -93,6 +123,12 @@
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js'",
             "timeout": 10,
             "async": true
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp_server/hooks/claude/completion-evidence-stop.cjs'",
+            "timeout": 10,
+            "async": true
           }
         ]
       }
@@ -115,8 +151,23 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.sh'",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/sk-code/code-quality/scripts/hooks/claude-posttooluse.cjs'",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-code-graph/runtime/hooks/claude/code-graph-freshness.cjs'",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .opencode/skills/cli-external/cli-opencode/scripts/hooks/dispatch-audit-posttooluse.mjs'",
+            "timeout": 5
           }
         ]
       }

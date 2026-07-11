@@ -8,6 +8,7 @@
 // is not a dispatch shape, and it FAILS OPEN — any internal error approves silently, never blocks.
 
 import { readHardRules, evaluate } from '../lib/dispatch-rule-checks.mjs';
+import { DISPATCH_SHAPES as DISPATCH_SKILLS } from '../lib/dispatch-audit.mjs';
 import path from 'node:path';
 
 // Dispatch-shape registry: command pattern → the skill whose SKILL.md declares its hard_rules.
@@ -15,12 +16,9 @@ import path from 'node:path';
 // hub-relative path segment under .opencode/skills/ used to resolve SKILL.md — both
 // cli-opencode and cli-claude-code now live nested under the cli-external parent hub,
 // so packetPath carries the hub prefix while skill stays
-// the short, human-readable name. Extend by adding an entry as new cli-* dispatch skills
-// gain a hard_rules block.
-const DISPATCH_SKILLS = [
-  { test: /\bopencode\s+run\b/, skill: 'cli-opencode', packetPath: 'cli-external/cli-opencode' },
-  { test: /\bclaude\s+(-p|--print)\b/, skill: 'cli-claude-code', packetPath: 'cli-external/cli-claude-code' },
-];
+// the short, human-readable name. Shared with the post-execution dispatch-audit core so the
+// before-lint and the after-audit can never disagree about what counts as a dispatch; extend by
+// adding an entry there as new cli-* dispatch skills gain a hard_rules block.
 
 function approve() {
   // No output + exit 0 → defer to the normal permission flow.
