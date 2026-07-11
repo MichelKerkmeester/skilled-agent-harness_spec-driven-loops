@@ -1,0 +1,372 @@
+<title>Command Asset Audit — Broken Wires</title>
+<style>
+  :root{
+    --bg:#F5F6F4; --surface:#FFFFFF; --surface-2:#EFF1ED;
+    --ink:#1B1F1D; --ink-muted:#5E6660; --ink-faint:#8A928C;
+    --line:#DCE0D8; --line-strong:#C3C9BE;
+    --accent:#B5581F; --accent-ink:#8A4118;
+    --sev-fix:#2F7D5C; --sev-fix-bg:#E7F3EC;
+    --sev-decide:#A8791E; --sev-decide-bg:#F7EFDC;
+    --sev-pattern:#7A3FA3; --sev-pattern-bg:#F1E8F7;
+    --sev-cosmetic:#5E6660; --sev-cosmetic-bg:#EEEFEC;
+    --sev-clean:#3C6E58; --sev-clean-bg:#E7F0EA;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  }
+  :root[data-theme="dark"]{
+    --bg:#14161A; --surface:#1B1E20; --surface-2:#222528;
+    --ink:#E7E9E4; --ink-muted:#9BA39B; --ink-faint:#6E766E;
+    --line:#2C302C; --line-strong:#3A3F3A;
+    --accent:#E0925A; --accent-ink:#F0A870;
+    --sev-fix:#5FBF92; --sev-fix-bg:#1A2B22;
+    --sev-decide:#D8AE5C; --sev-decide-bg:#2C260F;
+    --sev-pattern:#C79BE0; --sev-pattern-bg:#271C2E;
+    --sev-cosmetic:#9BA39B; --sev-cosmetic-bg:#20221F;
+    --sev-clean:#7FCBA4; --sev-clean-bg:#182720;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14161A; --surface:#1B1E20; --surface-2:#222528;
+      --ink:#E7E9E4; --ink-muted:#9BA39B; --ink-faint:#6E766E;
+      --line:#2C302C; --line-strong:#3A3F3A;
+      --accent:#E0925A; --accent-ink:#F0A870;
+      --sev-fix:#5FBF92; --sev-fix-bg:#1A2B22;
+      --sev-decide:#D8AE5C; --sev-decide-bg:#2C260F;
+      --sev-pattern:#C79BE0; --sev-pattern-bg:#271C2E;
+      --sev-cosmetic:#9BA39B; --sev-cosmetic-bg:#20221F;
+      --sev-clean:#7FCBA4; --sev-clean-bg:#182720;
+    }
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent); color:#fff;}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px 96px;}
+
+  /* ---------- header / status panel ---------- */
+  header.top{
+    padding:56px 24px 32px; border-bottom:1px solid var(--line);
+    background:
+      linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+  }
+  .top-inner{max-width:920px; margin:0 auto;}
+  .eyebrow{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent-ink); font-weight:600; display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--accent); flex:none;}
+  h1{
+    font-size:clamp(28px,4vw,40px); line-height:1.08; letter-spacing:-.01em;
+    margin:14px 0 10px; font-weight:800; text-wrap:balance;
+  }
+  .dek{
+    font-size:16px; color:var(--ink-muted); max-width:62ch; margin:0 0 28px;
+  }
+  .dek code{color:var(--ink);}
+
+  .statline{
+    display:flex; flex-wrap:wrap; gap:0; border:1px solid var(--line); border-radius:2px;
+    overflow:hidden; background:var(--surface);
+  }
+  .stat{
+    flex:1 1 140px; padding:14px 18px; border-right:1px solid var(--line);
+    min-width:130px;
+  }
+  .stat:last-child{border-right:none;}
+  .stat .n{
+    font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:22px;
+    font-weight:700; color:var(--ink); line-height:1.1;
+  }
+  .stat .l{
+    font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint);
+    margin-top:4px;
+  }
+
+  /* ---------- section scaffolding ---------- */
+  section.tier{padding:44px 0 8px; border-bottom:1px solid var(--line);}
+  section.tier:last-of-type{border-bottom:none;}
+  .tier-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px; flex-wrap:wrap;}
+  .tier-badge{
+    font-family:var(--mono); font-size:11px; letter-spacing:.06em; font-weight:700;
+    padding:3px 8px; border-radius:2px; text-transform:uppercase; flex:none;
+  }
+  .tier-badge.fix{color:var(--sev-fix); background:var(--sev-fix-bg);}
+  .tier-badge.decide{color:var(--sev-decide); background:var(--sev-decide-bg);}
+  .tier-badge.pattern{color:var(--sev-pattern); background:var(--sev-pattern-bg);}
+  .tier-badge.cosmetic{color:var(--sev-cosmetic); background:var(--sev-cosmetic-bg);}
+  .tier-badge.clean{color:var(--sev-clean); background:var(--sev-clean-bg);}
+  .tier h2{font-size:20px; margin:0; font-weight:700; letter-spacing:-.005em;}
+  .tier-sub{color:var(--ink-muted); font-size:14.5px; max-width:68ch; margin:6px 0 22px;}
+
+  /* ---------- finding card ---------- */
+  .finding{
+    position:relative; padding:16px 0 16px 22px; border-top:1px solid var(--line);
+  }
+  .finding:first-of-type{border-top:none;}
+  .finding::before{
+    content:""; position:absolute; left:0; top:24px; width:9px; height:9px;
+    border-radius:50%; border:2px solid var(--sev-decide); background:var(--surface);
+  }
+  .finding.fix::before{background:var(--sev-fix); border-color:var(--sev-fix);}
+  .finding.pattern::before{background:var(--sev-pattern); border-color:var(--sev-pattern);}
+  .finding.cosmetic::before{background:transparent; border-color:var(--sev-cosmetic);}
+  .finding.clean::before{background:transparent; border-color:var(--sev-clean); border-style:dashed;}
+
+  .f-top{display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .f-title{font-weight:700; font-size:15px; letter-spacing:-.003em;}
+  .f-lane{
+    font-family:var(--mono); font-size:11px; color:var(--ink-faint); text-transform:uppercase;
+    letter-spacing:.06em; flex:none; white-space:nowrap;
+  }
+  .f-path{
+    font-family:var(--mono); font-size:12.5px; color:var(--accent-ink); margin:5px 0 8px;
+    word-break:break-word;
+  }
+  .f-body{font-size:14.5px; color:var(--ink); max-width:74ch;}
+  .f-body p{margin:0 0 8px;}
+  .f-body p:last-child{margin-bottom:0;}
+  .quote{
+    display:block; font-family:var(--mono); font-size:12.5px; background:var(--surface-2);
+    border:1px solid var(--line); border-radius:2px; padding:9px 11px; margin:8px 0;
+    color:var(--ink); overflow-x:auto; white-space:pre-wrap; line-height:1.5;
+  }
+  .fix-line{
+    font-family:var(--mono); font-size:12.5px; margin-top:8px; padding-top:8px;
+    border-top:1px dashed var(--line-strong); color:var(--ink-muted);
+  }
+  .fix-line b{color:var(--sev-fix); font-family:var(--sans); text-transform:uppercase; font-size:10.5px; letter-spacing:.06em;}
+  .decide-line{
+    font-family:var(--sans); font-size:13px; margin-top:8px; padding-top:8px;
+    border-top:1px dashed var(--line-strong); color:var(--ink-muted);
+  }
+  .decide-line b{color:var(--sev-decide); text-transform:uppercase; font-size:10.5px; letter-spacing:.06em;}
+
+  /* ---------- clean grid ---------- */
+  .clean-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:2px; overflow:hidden;
+    margin-top:6px;
+  }
+  .clean-cell{background:var(--surface); padding:12px 14px; font-size:13px;}
+  .clean-cell .lane{
+    font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--sev-clean); margin-bottom:3px; display:block;
+  }
+
+  footer.meta{
+    padding:36px 0 0; color:var(--ink-faint); font-size:12.5px; font-family:var(--mono);
+    line-height:1.7;
+  }
+  footer.meta a{color:var(--accent-ink);}
+
+  @media (max-width:640px){
+    header.top{padding:40px 16px 24px;}
+    .wrap{padding:0 16px 72px;}
+    .stat{flex:1 1 45%;}
+  }
+</style>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="eyebrow"><span class="dot"></span>Command Asset Audit</div>
+    <h1>Broken wires in the option menus</h1>
+    <p class="dek">Six parallel passes over every <code>/create</code>, <code>/deep</code>, <code>/design</code>, <code>/doctor</code>, <code>/memory</code>, and <code>/speckit</code> command asset, checking whether every lettered option a user can pick actually routes to a handler. Following up on the resume-command fix that started this: a <code>D) Phase folder</code> choice with no code behind it.</p>
+    <div class="statline">
+      <div class="stat"><div class="n">6 / 6</div><div class="l">lanes returned</div></div>
+      <div class="stat"><div class="n">27</div><div class="l">findings</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">my own regressions</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">16-file pattern</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">fixes applied yet</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="tier">
+    <div class="tier-head">
+      <span class="tier-badge fix">Fix now</span>
+      <h2>Confirmed regressions — verified, safe, no design call needed</h2>
+    </div>
+    <p class="tier-sub">Re-checked myself against the live files before listing these. Ready to apply on your go-ahead.</p>
+
+    <div class="finding fix">
+      <div class="f-top"><span class="f-title">"Option E is selected" should read "Option D" — my own miss from the Skip-reorder pass</span><span class="f-lane">speckit</span></div>
+      <div class="f-path">speckit_plan_confirm.yaml:110 · speckit_plan_auto.yaml:110 · speckit_complete_confirm.yaml:137 · speckit_complete_auto.yaml:164</div>
+      <div class="f-body">
+        <p>When I swapped <code>D)/E)</code> so Skip sorts last, I edited the presentation text but missed the internal cross-reference note in the matching workflow YAML — verified: all four still say <span class="quote" style="display:inline; padding:1px 5px;">"When Option E is selected... spec_id derives from the parent folder"</span> but E means Skip now; D means Extend phased packet.</p>
+      </div>
+      <div class="fix-line"><b>Fix</b> — s/Option E is selected/Option D is selected/ in all four files.</div>
+    </div>
+
+    <div class="finding fix">
+      <div class="f-top"><span class="f-title">Same phrase, but fully dangling — implement never had a lettered phase-folder option</span><span class="f-lane">speckit</span></div>
+      <div class="f-path">speckit_implement_confirm.yaml:66 · speckit_implement_auto.yaml:66</div>
+      <div class="f-body">
+        <p>Copy-pasted from the plan/complete template. Implement's own Q1 is only <code>A) Yes, implement  B) Different folder  C) Cancel and plan first</code> — no D, no E, ever. This note refers to a letter that was never real here; pre-existing, not caused by my edit.</p>
+      </div>
+      <div class="fix-line"><b>Fix</b> — drop the "When Option E is selected or" clause; key the note off <code>--phase-folder</code> alone.</div>
+    </div>
+  </section>
+
+  <section class="tier">
+    <div class="tier-head">
+      <span class="tier-badge decide">Needs your call</span>
+      <h2>Real orphaned options — implement vs. remove is a product decision</h2>
+    </div>
+    <p class="tier-sub">Each one is a genuine dead end: a choice the presentation text offers that the workflow never branches on. Most sit mid-list, so deleting them cleanly requires relettering the options after — not a blind delete.</p>
+
+    <div class="finding">
+      <div class="f-top"><span class="f-title">Code-graph scope: "5) excludes" has zero handler</span><span class="f-lane">doctor</span></div>
+      <div class="f-path">doctor_speckit_presentation.txt:130-138 → doctor_code-graph.yaml (scope_policy)</div>
+      <div class="f-body"><p><code>doctor_code-graph.yaml</code>'s <code>scope_policy</code> only implements <code>all|stale|missed|bloat</code> — no <code>excludes</code> branch, no phase that "reviews the exclude config."</p></div>
+      <div class="decide-line"><b>Choice</b> — drop option 5 (trailing, safe to remove), or build the excludes-review phase it promises.</div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="f-title">"Filter to specific skills" and "Skip verification" — accepted as input, never branched on</span><span class="f-lane">doctor</span></div>
+      <div class="f-path">doctor_skill-advisor.yaml:109-113 (pre_phase_2 B) · doctor_skill-advisor.yaml:144-155 (pre_phase_4 C)</div>
+      <div class="f-body"><p>Choosing B never filters the generated proposals to the named skill list. Choosing C ("Skip verification, NOT recommended") doesn't skip verification — <code>phase_4_verify</code> runs unconditionally either way.</p></div>
+      <div class="decide-line"><b>Choice</b> — both sit mid-list; a clean delete needs relettering the option after it, or wire the branch in.</div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="f-title">Spec Folder question (A-E) — asked, then completely ignored, in three command families</span><span class="f-lane">create</span></div>
+      <div class="f-path">create_feature_catalog · create_manual_testing_playbook · create_skill_parent (6 YAML files)</div>
+      <div class="f-body"><p>All three declare <code>spec.md/plan.md/tasks.md/checklist.md</code> as required output, then never write them — <code>spec_choice</code> is declared as an input field and never referenced again. <code>create_agent_confirm.yaml</code> implements this exact pattern correctly, proving it's a real gap, not an intentional omission.</p></div>
+      <div class="decide-line"><b>Fix direction</b> — port <code>create_agent</code>'s spec-folder step into the three families that are missing it.</div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="f-title">A stale letter-check from before "Extend phased packet" existed</span><span class="f-lane">create</span></div>
+      <div class="f-path">create_skill_confirm.yaml:452 · create_skill_auto.yaml:408</div>
+      <div class="f-body"><p><code>condition: "spec_path exists and spec_choice is not D"</code> — but D means Skip in neither of this command's two Q3 variants (E in the 5-option list, B in the 2-option list). Pre-existing, unrelated to this session's edits.</p></div>
+      <div class="fix-line"><b>Fix</b> — the underlying <code>spec_path exists</code> check already does the right thing on its own; the stale letter clause can just be deleted.</div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="f-title">"Publish Release?" — neither Yes nor No does anything</span><span class="f-lane">create</span></div>
+      <div class="f-path">create_changelog_presentation.txt:104-106 → create_changelog_confirm.yaml / _auto.yaml (1,393 lines, searched exhaustively)</div>
+      <div class="f-body"><p>No <code>git tag</code>, no <code>gh release</code>, no reference to <code>publish_release</code> anywhere past the input declaration. The completion template even has a "Release Published" line with nothing computing it.</p></div>
+      <div class="decide-line"><b>Choice</b> — build the tag+release step, or remove the question until it's real.</div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="f-title">File-conflict resolution (Overwrite/Merge/Cancel) for install guides — no handler, and the nearest lookalike is scoped wrong</span><span class="f-lane">create</span></div>
+      <div class="f-path">create_readme_presentation.txt:110-115</div>
+      <div class="f-body"><p>The field this promises to resolve, <code>existing_file_action</code>, appears nowhere in either YAML. The closest match, <code>error_recovery.readme_exists</code>, is scoped to <code>operation: readme</code> (not install_guide) and offers four options, not the three presented.</p></div>
+      <div class="decide-line"><b>Fix direction</b> — add an install_guide-scoped conflict handler with the three options actually shown.</div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="f-title">"Execution mode: Auto / Confirm" — collected at every design command, consumed by none</span><span class="f-lane">design</span></div>
+      <div class="f-path">design_audit / design_foundations / design_interface / design_md-generator / design_motion — all 5 confirm.yaml files</div>
+      <div class="f-body"><p>Each cites "ADR-002's confirm-always-shows rule" as the reason the question always appears — no ADR-002 exists anywhere in the repo. The A/B reply is captured and then never referenced by any <code>on_A</code>/<code>on_B</code> logic or the hub's own SKILL.md.</p></div>
+      <div class="decide-line"><b>Choice</b> — remove the question (matches the Phase-folder precedent), or wire an A-reply to actually short-circuit toward auto-completion.</div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="f-title">Three real, confirmable, mutating actions with no presentation contract to render them</span><span class="f-lane">memory</span></div>
+      <div class="f-path">manage.md documents learned-expire / learned-clear / ledger-sweep → manage_presentation.txt has zero matches for any of the three</div>
+      <div class="f-body"><p>A user running <code>/memory:manage learned-expire</code> or <code>ledger-sweep --apply</code> has no defined confirmation prompt or result dashboard. Same root cause: <code>README.txt</code>'s subcommand table omits all four modes too.</p></div>
+      <div class="decide-line"><b>Fix</b> — add the three missing dashboard blocks (draft shape supplied by the subagent, field names need reconciling against the real tool schemas first).</div>
+    </div>
+  </section>
+
+  <section class="tier">
+    <div class="tier-head">
+      <span class="tier-badge pattern">Biggest single pattern</span>
+      <h2>"Prior Session Context" — asked eight times, acted on zero times</h2>
+    </div>
+    <div class="finding pattern">
+      <div class="f-top"><span class="f-title">memory_choice / memory_loaded drives no differentiated behavior anywhere it's asked</span><span class="f-lane">create — 16 files</span></div>
+      <div class="f-path">agent · command · benchmark · feature_catalog · flowchart · manual_testing_playbook · skill_parent · skill — confirm.yaml + auto.yaml, all 8 families</div>
+      <div class="f-body">
+        <p>Every one of these asks something like <code>A) Load handover... B) Load canonical docs... C) Skip</code>, records the answer, and then — checked exhaustively across all 16 files — never conditions on it. Not even to skip the loading activity when <code>C) Skip</code> is chosen. Because it's this consistent across every single family, it doesn't read like eight separate bugs; it reads like a systemic gap in how this question was authored into the template.</p>
+        <p style="color:var(--sev-pattern); font-weight:600;">Genuinely open: this could be intentional — the executing AI may be meant to read the letter as a free-text instruction to interpret in the moment, not a scripted state-machine branch. Nothing in any of the 16 files confirms or denies that. Worth settling once, since the answer applies to every family at once.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tier">
+    <div class="tier-head">
+      <span class="tier-badge cosmetic">Lower stakes</span>
+      <h2>Stale cross-references and wording drift</h2>
+    </div>
+    <p class="tier-sub">Nothing here breaks a flow — just numbers and words that no longer match their neighbors.</p>
+
+    <div class="finding cosmetic">
+      <div class="f-top"><span class="f-title">"(Q3 if applicable)" should say Q4 — copied from a sibling with one fewer question</span><span class="f-lane">create</span></div>
+      <div class="f-path">create_command_confirm.yaml:123,272 · create_command_auto.yaml:122,257 · create_flowchart_confirm.yaml:121,274 · create_flowchart_auto.yaml:120,259</div>
+      <div class="f-body"><p>Both commands' own presentation files number "Prior Session Context" as Q4, not Q3. The comment governs how an executing AI maps a reply onto the right field, so a wrong number here risks a real misassignment.</p></div>
+    </div>
+
+    <div class="finding cosmetic">
+      <div class="f-top"><span class="f-title">Header claims :auto is unsupported — a 760-line :auto workflow says otherwise</span><span class="f-lane">create</span></div>
+      <div class="f-path">create_agent_confirm.yaml:4-8</div>
+      <div class="f-body"><p><code>create_agent_auto.yaml</code> is real, complete, and actively routed to from <code>agent.md</code>. The comment predates it.</p></div>
+    </div>
+
+    <div class="finding cosmetic">
+      <div class="f-top"><span class="f-title">Execution Mode letters reversed vs. every sibling command</span><span class="f-lane">create</span></div>
+      <div class="f-path">create_changelog_presentation.txt:100-102</div>
+      <div class="f-body"><p>Every other <code>/create:*</code> command uses <code>A) Interactive / B) Autonomous</code>. Changelog alone flips it. Internally consistent, just means "A" means opposite things depending which command you're answering.</p></div>
+    </div>
+
+    <div class="finding cosmetic">
+      <div class="f-top"><span class="f-title">Summary line names options that don't exist in the real gates</span><span class="f-lane">deep</span></div>
+      <div class="f-path">deep_review_presentation.txt:306</div>
+      <div class="f-body"><p>"Options at each gate: Approve, Review Details, Modify Scope, Skip Dimension, Abort" — neither "Review Details" nor "Skip Dimension" appears anywhere in the actual per-iteration or post-synthesis gates.</p></div>
+    </div>
+
+    <div class="finding cosmetic">
+      <div class="f-top"><span class="f-title">Reply-format example has an ambiguous token count</span><span class="f-lane">speckit</span></div>
+      <div class="f-path">speckit_complete_presentation.txt:83 · speckit_plan_presentation.txt:85</div>
+      <div class="f-body"><p>Declares "Q0-Q9" (10 slots) but the phase-names answer embeds its own comma list ("api,tests,docs") using the same delimiter as the outer format, and Q0 is dropped instead of shown as the stated <code>-</code> placeholder.</p></div>
+    </div>
+
+    <div class="finding cosmetic">
+      <div class="f-top"><span class="f-title">Phase Names field contradicts itself</span><span class="f-lane">speckit</span></div>
+      <div class="f-path">speckit_complete_presentation.txt:78</div>
+      <div class="f-body"><p>Q8 says "required literal slugs," but the same file's own Auto Resolution Table says not required, and both YAMLs default it to <code>auto-generate</code>.</p></div>
+    </div>
+
+    <div class="finding cosmetic">
+      <div class="f-top"><span class="f-title">Two sibling trigger-edit dashboards use different exit labels</span><span class="f-lane">memory</span></div>
+      <div class="f-path">manage_presentation.txt:186 ([b] back) vs save_presentation.txt:69 ([d] done)</div>
+      <div class="f-body"><p>Identical dashboard shape, same underlying flow, different label for the same "leave this screen" action.</p></div>
+    </div>
+
+    <div class="finding cosmetic">
+      <div class="f-top"><span class="f-title">Reply-format example has one extra token</span><span class="f-lane">prompt-improve</span></div>
+      <div class="f-path">prompt-improve.md:126</div>
+      <div class="f-body"><p>"A, A, D, A, A" puts a letter in Q0's slot, but Q0 is free text with no lettered options — should be a 4-token "A, D, A, A" for the omitted-Q0 case.</p></div>
+    </div>
+  </section>
+
+  <section class="tier">
+    <div class="tier-head">
+      <span class="tier-badge clean">Verified clean</span>
+      <h2>Checked in full, nothing wrong</h2>
+    </div>
+    <div class="clean-grid">
+      <div class="clean-cell"><span class="lane">deep</span>agent-improvement, ai-council, ai-system-improvement, model-benchmark, research, skill-benchmark</div>
+      <div class="clean-cell"><span class="lane">deep</span>Phase-folder A-E in research/review/ai-council — a real, wired convergent choice (unlike speckit_resume's dead one)</div>
+      <div class="clean-cell"><span class="lane">doctor</span>/doctor:mcp family, main router, memory/embeddings/causal-graph/deep-loop, skill-budget, parent-skill, update</div>
+      <div class="clean-cell"><span class="lane">memory</span>learn, search, goal_opencode, agent_router, prompt-improve's own Q1-Q4 handlers</div>
+      <div class="clean-cell"><span class="lane">speckit</span>All letter-contiguity and Skip-ordering — the prior human pass held up under independent re-check</div>
+      <div class="clean-cell"><span class="lane">create</span>readme's other questions, flowchart Q2, changelog Q0/Q1, benchmark, all 10 router .md files</div>
+    </div>
+  </section>
+
+  <footer class="meta">
+    6 parallel Claude Sonnet 5 subagents, ~1.16M tokens, ~227 tool calls total · scratch/luna-audit/ (prompts + the abandoned GPT-5.6-luna-fast attempt, killed after ~48min of provider-side stall)<br>
+    Nothing applied yet — this is the discovery pass.
+  </footer>
+
+</div>

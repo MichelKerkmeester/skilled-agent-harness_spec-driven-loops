@@ -134,7 +134,7 @@ field_handling:
     fallback: "Extract numeric portion or use timestamp if extraction fails"
   defaults: { spec_folder_empty: "Auto-create specs/{NNN} from highest +001", context_empty: "Infer from [REQUEST], [STAGING LINK], and codebase exploration", issues_empty: "Investigate and discover during workflow", environment_empty: "Skip browser testing steps", scope_empty: "Use scope_policy.default" }
   phase_folder_awareness:
-    note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option E is selected or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. Predecessor validation required for non-first phases."
+    note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option D is selected or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. Predecessor validation required for non-first phases."
     path_pattern: "specs/{NNN-parent}/{NNN-phase}/"
   scope_policy: { default: "specs/**", rule: "Limit file operations to scope when provided" }
   intake_contract:

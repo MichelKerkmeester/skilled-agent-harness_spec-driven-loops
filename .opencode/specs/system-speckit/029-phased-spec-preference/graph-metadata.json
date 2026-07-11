@@ -57,6 +57,7 @@
       ".opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md",
       "runtime/lib/spec-gate/spec-gate-core.mjs",
       "manual_testing_playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
+      "scratch/luna-audit/report.html",
       "assets/level_decision_matrix.md",
       "constitutional/spec-folder-naming.md",
       "implementation-summary.md"
@@ -159,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "report.html",
+        "kind": "file",
+        "path": "scratch/luna-audit/report.html",
+        "source": "derived"
+      },
+      {
         "name": "level_decision_matrix.md",
         "kind": "doc",
         "path": "assets/level_decision_matrix.md",
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "system-spec-kit already has a phase-decomposition system (`phasesystem.md`, `phasedefinitions.md`) gated on a complexity score (>=25/50) AND a level threshold (>=3), but nothing tells AI agents to prefer extending an existing phased packet with a new phase over spinning up a brand-new sibling spec folder",
     "created_at": "2026-07-11T11:09:23Z",
-    "last_save_at": "2026-07-11T14:37:26.646Z",
+    "last_save_at": "2026-07-11T15:51:28.507Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8565482ee96a39f998dffe99816b6b3bd84994210b21a7355dab127d058103a0",
+    "source_fingerprint": "sha256:7f8302077acef66b730fff3786bf6244552d7ac849727fcb2b69b7e760fe38a5",
     "source_doc_hashes": {
-      "spec.md": "f5868bcbda18cc1e12cb4725fb0d1898bcbde818a0509d6c2fa6da8550b35825",
-      "plan.md": "9c711db34a0182374d9d7f53e4fec0058d4c20ef6bc5bde0668e64a866aa5827",
-      "tasks.md": "916a9360b2610c2da5b7e5801a73e3960debbeffc7647469e2b5e19ea02247ae",
-      "checklist.md": "bc13958998c1e1fc9bd596a15563fb68697311e4b2408bb9817d0f3ab81ba5fe",
-      "implementation-summary.md": "1a39cfcac2f546e30a5d39ed3f113ac1cf049a2a9614927f12c6c4b37ca48bb2"
+      "spec.md": "19d90d15b527994150451eebb1c9267b8fc23b332d854617f3d4d229fc6a7388",
+      "plan.md": "c42c2106842fb5da9276be0a445ed32b539b515dc43e683ce770556f1e538bc8",
+      "tasks.md": "0c1825cf4d64e0e6f77d38d6220b563b3c5e842d2bdd4f2c8beeb3f412cb50ec",
+      "checklist.md": "b12365854ac2040520fa87cf9ee70b1446b21f0fcaa1fbeacb1092318013b51a",
+      "implementation-summary.md": "10cbab05a2b6dded3408c9eb9e4b465fccff77620f30329de1404218da927d19"
     },
     "last_active_child_id": null,
     "last_active_at": null

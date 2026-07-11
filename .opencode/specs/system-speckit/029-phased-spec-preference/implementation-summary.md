@@ -11,7 +11,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/029-phased-spec-preference"
-    last_updated_at: "2026-07-11T14:37:26.367Z"
+    last_updated_at: "2026-07-11T15:51:28.214Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"
@@ -112,6 +112,14 @@ Operator flagged not to forget speckit's own presentation assets. Re-audited eve
 ### Round 6: Removed a non-functional Q0 option (operator follow-up)
 
 Operator questioned whether Round 5's `D) Phase folder` reletter was actually meaningful, or should sit before `C) Cancel`. Traced the real mechanics in `speckit_resume_confirm.yaml`: phase-folder handling in `/speckit:resume` is a fully automatic downstream step (`phase_folder_detection`, triggered after the spec folder is already resolved — reads `graph-metadata.json`'s `derived.last_active_child_id` pointer to auto-redirect, or falls back to listing children for the user to pick from). It is not a Q0 branch; no `on_D`-style handling exists anywhere for it. `D) Phase folder` was never a real selectable choice, so the right fix isn't reordering it relative to Cancel — it's removing it. Q0 is now `A) List and select  B) Start new with /speckit:complete  C) Cancel`, a clean 3-option list with Cancel already last.
+
+### Round 7: 6-lane command-asset audit (operator follow-up)
+
+Operator asked to have GPT-5.6-luna-fast (xhigh) double-check every OTHER command family for the same class of defect, spawning >=5 parallel dispatches. The GPT dispatch stalled after ~48 minutes with zero output across all 6 lanes (provider-side contention from 6 concurrent xhigh requests on one API key, not a true hang — confirmed alive via low but non-zero CPU) and was killed cleanly with no side effects. Operator redirected to a 6-lane Claude Sonnet 5 subagent swarm covering `/create`, `/deep`, `/design`, `/doctor`, `/memory` + standalone commands (`agent_router.md`, `goal_opencode.md`, `prompt-improve.md`), and an independent re-check of `/speckit`. All 6 completed with real findings: 27 total across the six lanes, spanning genuinely orphaned options (a lettered choice with zero handler anywhere), a systemic 16-file pattern (`memory_choice`/`memory_loaded` "Prior Session Context" asked in 8 `/create:*` families, never once branched on), and assorted stale cross-references. One finding was a regression from this packet's own Round 4 work: the D/E relabel swapped which letter means "Extend phased packet" vs "Skip" in the presentation text, but 4 internal `phase_folder_awareness.note` cross-references in the matching workflow YAML still said "Option E" — independently verified via grep + git log (those YAML lines weren't touched this session, so the note went stale the moment the sibling presentation.txt was edited). Full findings published as an artifact and archived at `scratch/luna-audit/report.html`; raw dispatch prompts also archived in the same folder. Nothing was applied in this round — pure discovery, pending operator review.
+
+### Round 8: Applied the confirmed-regression fixes only (operator follow-up)
+
+Operator approved applying just the 2 confirmed, zero-decision-needed fixes from Round 7, leaving the other 25 findings (all of which need an implement-vs-remove call) for a separate follow-on. Fixed: `speckit_plan_confirm.yaml:110`, `speckit_plan_auto.yaml:110`, `speckit_complete_confirm.yaml:137`, `speckit_complete_auto.yaml:164` — "Option E is selected" → "Option D is selected" (matches the current presentation text where D is now Extend-phased-packet). Also `speckit_implement_confirm.yaml:66` and `speckit_implement_auto.yaml:66` — dropped the "When Option E is selected or" clause entirely, since implement's own Q1 (`A) Yes, implement  B) Different folder  C) Cancel and plan first`) never had a D or E option; this was a fully vestigial copy-paste from the plan/complete template, pre-existing and unrelated to Round 4. All 6 files re-verified: YAML parses clean, zero remaining "Option E is selected" anywhere in `.opencode/commands/`.
 <!-- /ANCHOR:what-built -->
 
 ---
