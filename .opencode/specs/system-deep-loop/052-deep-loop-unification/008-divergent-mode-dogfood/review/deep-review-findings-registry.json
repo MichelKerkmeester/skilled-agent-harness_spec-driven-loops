@@ -267,6 +267,64 @@
         "correctness"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P1-001",
+      "severity": "P1",
+      "title": "Council convergence discards proposal identity before stability scoring",
+      "file": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+      "line": 244,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R7-P1-002",
+      "severity": "P1",
+      "title": "Auto model-benchmark synthesis executes an unbound promotion step",
+      "file": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+      "line": 192,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     }
   ],
   "resolvedFindings": [],
@@ -282,33 +340,34 @@
   },
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 9,
+    "P1": 11,
     "P2": 0
   },
-  "openFindingsCount": 9,
+  "openFindingsCount": 11,
   "resolvedFindingsCount": 0,
   "convergenceScore": 0.5,
-  "graphConvergenceScore": 0.631,
+  "graphConvergenceScore": 0.622,
   "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [
     {
       "type": "uncovered_dimensions",
-      "description": "Dimension coverage (0%) is below threshold (80%). 12 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
-      "count": 12,
+      "description": "Dimension coverage (0%) is below threshold (80%). 15 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "count": 15,
       "severity": "blocking"
     }
   ],
   "graphSignals": {
     "dimensionCoverage": 0,
-    "findingStability": 0.875,
+    "findingStability": 0.7777777777777778,
     "p0ResolutionRate": 1,
-    "evidenceDensity": 0.375,
+    "evidenceDensity": 0.4444444444444444,
     "hotspotSaturation": 1,
-    "score": 0.631
+    "score": 0.622
   },
   "candidateCoverage": {
     "covered": [
       "artifact_consistency",
+      "autonomous_promotion_boundary",
       "checklist_evidence",
       "compiled_artifact_freshness",
       "cross_runtime_contract_drift",
@@ -316,6 +375,7 @@
       "generated_contract_ownership",
       "overlay_contract_drift",
       "playbook_capability_drift",
+      "proposal_identity",
       "receipt_integrity",
       "spec_code_drift",
       "workspace_containment"
@@ -475,6 +535,24 @@
         "blocked": false,
         "iterations": [
           6
+        ]
+      },
+      "proposal_identity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "autonomous_promotion_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
         ]
       }
     }
@@ -678,31 +756,52 @@
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "overlay_contract_drift",
-      "cross_runtime_parity"
+      "proposal_identity",
+      "autonomous_promotion_boundary"
     ],
     "covered": [
-      "overlay_contract_drift"
+      "proposal_identity",
+      "autonomous_promotion_boundary"
     ],
-    "ruledOut": [
-      "cross_runtime_parity"
-    ],
+    "ruledOut": [],
     "deferred": [],
     "blocked": [],
     "graphCoverageMode": "graphless_fallback"
   },
   "traceability": {
     "summary": {
-      "required": 0,
-      "executed": 0,
+      "required": 2,
+      "executed": 2,
       "pass": 0,
-      "partial": 0,
+      "partial": 2,
       "fail": 0,
       "blocked": 0,
       "notApplicable": 0,
       "gatingFailures": 0
     },
-    "results": []
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 2,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs:244-252",
+          ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml:192-195"
+        ],
+        "findingRefs": [
+          "R7-P1-001",
+          "R7-P1-002"
+        ],
+        "summary": "Two mode-packet behavior claims diverge from default executable paths."
+      }
+    ]
   },
   "divergence": {
     "started": [],

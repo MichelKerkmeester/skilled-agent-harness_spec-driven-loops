@@ -85,6 +85,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 2: Cross-process receipt replay and production-call-site search exposed two security-control defects while ruling out shell interpolation and child key disclosure.
 - Iteration 3: Cross-runtime contract comparison exposed one shared artifact/state mismatch and showed that the playbook repeats two incompatible definitions of the iteration outputs.
 - Iteration 4: Generated-ownership tracing exposed one declarative-only renderer contract and one live stale compiled-contract path; digest replay and the focused drift test supplied executable evidence.
+- Iteration 7: Producer-consumer tracing across the previously unreviewed Council and improvement packets exposed proposal-identity loss in Council convergence and an unbound autonomous Lane B promotion step.
 
 ---
 
@@ -93,6 +94,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 2: Code graph remained empty; graphless exact search, direct reads, and a live receipt replay supplied evidence.
 - Iteration 3: Code graph remained unavailable; exact cross-runtime search supplied contract evidence. Packet checklist evidence was deferred to a stabilization traceability pass.
 - Iteration 4: Code graph remained absent; exact search, digest replay, byte comparison, and the focused drift gate supplied graphless fallback evidence.
+- Iteration 7: Code graph remained unavailable; exact search, direct reads, and auto-vs-confirm workflow comparison supplied graphless fallback evidence.
 
 ---
 
@@ -208,7 +210,7 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 9
+- P1 (Required): 11
 - P2 (Suggestions): 0
 - Resolved: 0
 
@@ -225,6 +227,11 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - What was tried: `checklist_evidence`: deferred as previously scheduled for the stabilization traceability pass.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `checklist_evidence`: deferred as previously scheduled for the stabilization traceability pass.
+
+### `checklist_evidence`: not re-entered; iteration 5 owns that completed direction. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `checklist_evidence`: not re-entered; iteration 5 owns that completed direction.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `checklist_evidence`: not re-entered; iteration 5 owns that completed direction.
 
 ### `checklist_evidence`: pending, not part of this security slice. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: `checklist_evidence`: pending, not part of this security slice.
@@ -276,6 +283,11 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `spec_code`: partial, compared receipt authority and write-boundary claims with the active auto workflow and runtime implementation.
 
+### `spec_code`: partial. The Council's material-agreement claim was checked against the production parser/adjudicator/scorer chain; Lane B's benchmark-only command claim was checked against its auto workflow and promotion helper. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: `spec_code`: partial. The Council's material-agreement claim was checked against the production parser/adjudicator/scorer chain; Lane B's benchmark-only command claim was checked against its auto workflow and promotion helper.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `spec_code`: partial. The Council's material-agreement claim was checked against the production parser/adjudicator/scorer chain; Lane B's benchmark-only command claim was checked against its auto workflow and promotion helper.
+
 ### `spec_code`: partial. The declared review contract generation model was checked against discoverable implementation; its render/validation claims have no executable owner. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: `spec_code`: partial. The declared review contract generation model was checked against discoverable implementation; its render/validation claims have no executable owner.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -301,10 +313,25 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Other overlay protocols: pending.
 
+### Overlay protocols: not re-entered; iteration 6 owns the overlay stabilization direction. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: Overlay protocols: not re-entered; iteration 6 owns the overlay stabilization direction.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Overlay protocols: not re-entered; iteration 6 owns the overlay stabilization direction.
+
 ### Premature pivot completion on high-severity blocker: ruled out because agreement convergence requires zero high blockers at `divergent-pivot.ts:868-895`. -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: Premature pivot completion on high-severity blocker: ruled out because agreement convergence requires zero high blockers at `divergent-pivot.ts:868-895`.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Premature pivot completion on high-severity blocker: ruled out because agreement convergence requires zero high blockers at `divergent-pivot.ts:868-895`.
+
+### Resource map: not present, so the coverage gate remains skipped. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: Resource map: not present, so the coverage gate remains skipped.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Resource map: not present, so the coverage gate remains skipped.
+
+### Review depth: complex/strict with graphless fallback. Required bug classes `proposal_identity` and `autonomous_promotion_boundary` both produced findings; no high-risk selected target was omitted. -- BLOCKED (iteration 7, 1 attempts)
+- What was tried: Review depth: complex/strict with graphless fallback. Required bug classes `proposal_identity` and `autonomous_promotion_boundary` both produced findings; no high-risk selected target was omitted.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Review depth: complex/strict with graphless fallback. Required bug classes `proposal_identity` and `autonomous_promotion_boundary` both produced findings; no high-risk selected target was omitted.
 
 ### Shell interpolation in the active `cli-opencode` and `cli-claude-code` dispatches: arguments are passed as arrays without `shell:true`. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: Shell interpolation in the active `cli-opencode` and `cli-claude-code` dispatches: arguments are passed as arrays without `shell:true`.

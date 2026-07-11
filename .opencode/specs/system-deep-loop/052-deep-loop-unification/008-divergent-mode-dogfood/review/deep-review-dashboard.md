@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active review packet.
 - Review Target: .opencode/skills/system-deep-loop (skill)
 - Started: 2026-07-11T06:22:25Z
 - Status: INITIALIZED
-- Iteration: 6 of 10
+- Iteration: 7 of 10
 - Provisional Verdict: CONDITIONAL
 - hasSearchDebt: true
 - hasAdvisories: false
@@ -45,7 +45,7 @@ Reducer-generated observability surface for the active review packet.
 | Severity | Count |
 |----------|------:|
 | P0 (Blockers) | 0 |
-| P1 (Required) | 9 |
+| P1 (Required) | 11 |
 | P2 (Suggestions) | 0 |
 | Resolved | 0 |
 
@@ -61,6 +61,7 @@ Reducer-generated observability surface for the active review packet.
 | run-004 | maintainability | maintainability | 1.00 | 0/2/0 | complete |
 | run-005 | traceability stabilization: checklist_evidence and typed adjudication recovery | traceability | 0.50 | 0/1/0 | complete |
 | run-006 | traceability overlay protocol coverage: skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability | traceability | 0.50 | 0/1/0 | complete |
+| run-007 | correctness second pass: deep-ai-council and deep-improvement mode packets | correctness | 0.50 | 0/2/0 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -68,7 +69,7 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 7 |
+| correctness | covered | 9 |
 | security | covered | 2 |
 | traceability | covered | 0 |
 | maintainability | covered | 0 |
@@ -81,16 +82,16 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:blocked-stops -->
 <!-- ANCHOR:graph-convergence -->
 ## 7. GRAPH CONVERGENCE
-- graphConvergenceScore: 0.63
+- graphConvergenceScore: 0.62
 - graphDecision: STOP_BLOCKED
-- graphBlockers: {"type":"uncovered_dimensions","description":"Dimension coverage (0%) is below threshold (80%). 12 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.","count":12,"severity":"blocking"}
+- graphBlockers: {"type":"uncovered_dimensions","description":"Dimension coverage (0%) is below threshold (80%). 15 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.","count":15,"severity":"blocking"}
 
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 1.00 -> 0.50 -> 0.50
+- Last 3 ratios: 0.50 -> 0.50 -> 0.50
 - convergenceScore: 0.50
-- openFindings: 9
+- openFindings: 11
 - persistentSameSeverity: 0
 - severityChanged: 0
 - repeatedFindings (deprecated combined bucket): 0
@@ -104,7 +105,7 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=11, ruledOut=5, deferred=1, blocked=0
+- candidateCoverage: covered=13, ruledOut=5, deferred=1, blocked=0
 
 ### Search Debt
 - iteration 3 checklist_evidence (deferred): Iteration budget prioritized the newly discovered cross-consumer contract split.; evidence=.opencode/specs/system-deep-loop/052-deep-loop-unification/008-divergent-mode-dogfood/review/deep-review-config.json:9-12
@@ -131,7 +132,7 @@ No corrupt JSONL lines detected.
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 9 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 11 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 - 1 search-debt obligation(s) remain deferred or blocked. Verdict is CONDITIONAL until they are covered or ruled out.
 
 <!-- /ANCHOR:active-risks -->
