@@ -194,6 +194,30 @@
         "routingClass": "command-bridge",
         "packetSkillName": "deep-improvement"
       }
+    },
+    {
+      "workflowMode": "alignment",
+      "runtimeLoopType": "review",
+      "backendKind": "runtime-loop-type",
+      "packetKind": "workflow",
+      "grandfatheredFolderMismatch": false,
+      "toolSurface": {
+        "allowed": ["Read", "Grep", "Glob", "Task", "Bash"],
+        "forbidden": ["Write", "Edit"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "deep-alignment",
+      "command": "/deep:alignment",
+      "agent": "deep-alignment",
+      "artifactRoot": "alignment/",
+      "aliases": ["deep-alignment", "alignment lane", "conformance review", "standard authority check", "alignment conformance audit"],
+      "advisorRouting": {
+        "routingClass": "lexical",
+        "legacyAdvisorId": "deep-alignment",
+        "legacyAliases": ["command-spec-kit-deep-alignment", "/deep:alignment", "spec_kit:deep-alignment", "deep-alignment", "sk-deep-alignment"],
+        "packetSkillName": "deep-alignment"
+      }
     }
   ]
 }

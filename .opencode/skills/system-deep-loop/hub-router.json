@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": "research",
     "ambiguityDelta": 1,
-    "tieBreak": ["research", "review", "ai-council", "agent-improvement", "model-benchmark", "skill-benchmark", "ai-system-improvement"],
+    "tieBreak": ["research", "review", "ai-council", "agent-improvement", "model-benchmark", "skill-benchmark", "ai-system-improvement", "alignment"],
     "outcomes": {
       "single": "one dominant deep-loop intent routes to one mode",
       "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
@@ -47,6 +47,11 @@
       "weight": 4,
       "classes": ["ai-system-improvement-aliases", "hub-identity"],
       "resources": ["deep-improvement/SKILL.md"]
+    },
+    "alignment": {
+      "weight": 4,
+      "classes": ["alignment-aliases", "hub-identity"],
+      "resources": ["deep-alignment/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -73,6 +78,9 @@
     },
     "ai-system-improvement-aliases": {
       "keywords": ["non-dev ai system", "non-dev-ai-system", "package ai system benchmark"]
+    },
+    "alignment-aliases": {
+      "keywords": ["deep-alignment", "alignment lane", "conformance review", "standard authority check", "alignment conformance audit"]
     }
   }
 }

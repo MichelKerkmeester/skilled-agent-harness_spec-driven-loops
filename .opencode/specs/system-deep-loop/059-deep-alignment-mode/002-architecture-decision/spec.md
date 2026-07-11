@@ -1,7 +1,7 @@
 ---
 title: "Feature Specification: Phase 2: architecture-decision"
 description: "Freeze the deep-alignment architecture before any mode-packet scaffolding starts: new-packet-vs-review-mode, the scoping decision tree, the pluggable per-authority adapter contract, the alignment contract, the state machine, artifact layout, and the boundaries against parent-skill-check.cjs and deep-review. Records the frozen brief's locked decisions as accepted ADRs and its open questions as explicitly open ADRs."
-status: planned
+status: complete
 trigger_phrases:
   - "deep-alignment architecture decision"
   - "alignment adapter contract freeze"
@@ -13,10 +13,10 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/002-architecture-decision"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T13:14:00Z"
     last_updated_by: "claude"
-    recent_action: "Drafted the architecture-decision gate scaffold"
-    next_safe_action: "Route decision-record.md for operator approval"
+    recent_action: "Phase 001 confirmed zero ADR contradictions"
+    next_safe_action: "Await operator go for phase 003"
     blockers:
       - "Human approval required before phase 003 starts"
     key_files:
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-002-architecture-decision"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "sk-code adapter automatability limits"
       - "sk-design live-render audit v2+ scope"
@@ -55,7 +55,7 @@ FAILURE MODES:
 <!-- ANCHOR:executive-summary -->
 ## EXECUTIVE SUMMARY
 
-This gate freezes the deep-alignment architecture: a new `system-deep-loop` mode-packet (not a `deep-review` mode), a structured three-axis scoping decision tree with a non-interactive arg form, a pluggable per-authority adapter contract (`discover`/`standardSource`/`check`), an alignment contract (verify-first, known-deviation suppression, read-only default, gated remediation), a seven-state loop (`INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT -> optional REMEDIATE`), and an explicit boundary against `parent-skill-check.cjs` (hub structure) and `deep-review` (general correctness). Seven ADRs in `decision-record.md` record these as Accepted, reflecting decisions already locked in the frozen design brief. Five further ADRs record the brief's open questions as explicitly Open, owned by later phases. This spec.md itself has not yet been walked through a human-approval sitting — that approval is the sole blocker before phase 003 scaffolds the mode-packet skeleton.
+This gate freezes the deep-alignment architecture: a new `system-deep-loop` mode-packet (not a `deep-review` mode), a structured three-axis scoping decision tree with a non-interactive arg form, a pluggable per-authority adapter contract (`discover`/`standardSource`/`check`), an alignment contract (verify-first, known-deviation suppression, read-only default, gated remediation), a seven-state loop (`INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT -> optional REMEDIATE`), and an explicit boundary against `parent-skill-check.cjs` (hub structure) and `deep-review` (general correctness). Seven ADRs in `decision-record.md` record these as Accepted, reflecting decisions already locked in the frozen design brief. Five further ADRs record the brief's open questions as explicitly Open, owned by later phases. The operator approved this architecture on 2026-07-11 after phase 001's zero-contradiction confirmation, and phase 003 has since started scaffolding against it.
 <!-- /ANCHOR:executive-summary -->
 
 ---
@@ -67,7 +67,7 @@ This gate freezes the deep-alignment architecture: a new `system-deep-loop` mode
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Branch** | `system-deep-loop/059-deep-alignment-mode` |
 | **Phase** | 2 of 9 |

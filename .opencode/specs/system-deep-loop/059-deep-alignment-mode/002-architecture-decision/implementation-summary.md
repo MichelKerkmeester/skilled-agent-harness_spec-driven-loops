@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 2 architecture-decision"
-description: "Planned-status stub. Phase 002's 12 ADRs are drafted but the gate has not yet been walked through operator approval; this stub records the next action so a resume can pick up the approval routing without re-deriving scope."
+description: "Phase 002 is complete: all 12 ADRs Accepted, operator approved 2026-07-11, phase 003 has since built the real scaffold against this architecture."
 trigger_phrases:
   - "deep-alignment architecture decision summary"
   - "phase 002 implementation summary"
@@ -10,19 +10,18 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/059-deep-alignment-mode/002-architecture-decision"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T13:16:04Z"
     last_updated_by: "claude"
     recent_action: "Scaffolded planned-status stub"
     next_safe_action: "Route decision-record.md for operator approval"
     blockers:
-      - "Human approval required before phase 003 starts"
     key_files:
       - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-059-002-architecture-decision"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-architecture-decision |
-| **Completed** | Not yet — planned, pending operator approval |
+| **Completed** | 2026-07-11 — operator approved after phase 001 confirmed zero ADR contradictions |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,9 +48,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The 12 ADRs in `decision-record.md` are drafted — seven Accepted (the frozen design brief's locked decisions) and five explicitly Open (the brief's open questions, each with a named owning phase). What has not happened yet is the human-approval walkthrough this gate requires before phase 003 can start scaffolding the mode-packet skeleton.
+The 12 ADRs in `decision-record.md` are authored and all Status: Accepted — the seven originally locked in the frozen design brief, plus the five that were Open pending an operator decision (resolved 2026-07-11: sk-code adapter hybrid, sk-design live-render as a new peer phase, reduce-state.cjs promoted to shared runtime, non-interactive lanes via config-file only, adapter-registration governance). The human-approval walkthrough happened 2026-07-11.
 
-Nothing outside this phase folder has been touched. No `deep-alignment` skill files, `mode-registry.json` entries, or commands exist yet — those are planned for phases 003 and 009.
+Phase 003 has since used this frozen architecture to build the real `deep-alignment` skill skeleton, `mode-registry.json` entry, and `hub-router.json` touchpoints.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -59,7 +58,7 @@ Nothing outside this phase folder has been touched. No `deep-alignment` skill fi
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not applicable yet for the approval step — the ADR content was authored directly from the frozen design brief plus scaffold-time reads of the runtime scripts; phase 001's research gate re-confirms those facts before this gate is walked. Delivery of the actual gate closure is the pending human-approval round trip named in `spec.md`'s Handoff Criteria.
+The ADR content was authored directly from the frozen design brief plus scaffold-time reads of the runtime scripts. Phase 001's research gate independently re-confirmed those facts before this gate closed, finding zero contradictions against any of the 12 ADRs.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -80,8 +79,8 @@ Not applicable yet for the approval step — the ADR content was authored direct
 
 | Check | Result |
 |-------|--------|
-| `validate.sh 002-architecture-decision --strict` | Not yet run for execution — scaffold-time validation only |
-| Operator approval of decision-record.md | Pending — blocks phase 003 |
+| `validate.sh 002-architecture-decision --strict` | Errors:0 Warnings:0 PASSED |
+| Operator approval of decision-record.md | Granted 2026-07-11 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -89,8 +88,7 @@ Not applicable yet for the approval step — the ADR content was authored direct
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **This is a scaffold, not an approved architecture gate.** The 12 ADRs represent a faithful transcription of the frozen design brief's locked decisions and open questions, not an independently re-derived architecture. Operator review may amend any ADR before phase 003 starts.
-2. **The five Open ADRs intentionally carry no Five Checks Evaluation.** That evaluation applies once the owning phase proposes a concrete answer, not to the act of deferring itself.
+1. **The original five Open ADRs were transcriptions of the frozen design brief's open questions, not independently re-derived.** They have since been resolved by explicit operator decision (2026-07-11), not by further architectural analysis.
 <!-- /ANCHOR:limitations -->
 
 ---
