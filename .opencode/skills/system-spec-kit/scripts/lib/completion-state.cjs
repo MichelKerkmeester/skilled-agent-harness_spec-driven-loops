@@ -66,7 +66,16 @@ function resolveProjectDir(projectDir) {
 
 function resolveSpecFolder(specFolder, projectDir) {
   if (typeof specFolder === 'string' && specFolder.trim()) {
-    return isAbsolute(specFolder) ? specFolder : resolve(projectDir, specFolder);
+    if (isAbsolute(specFolder)) return specFolder;
+    const direct = resolve(projectDir, specFolder);
+    // Accept the track-relative shorthand (<track>/<packet>) that the memory
+    // tools use: when the path is not found under the project root, retry under
+    // the canonical specs root before falling back to the direct (not-found) path.
+    if (!existsSync(direct)) {
+      const underSpecs = resolve(projectDir, '.opencode/specs', specFolder);
+      if (existsSync(underSpecs)) return underSpecs;
+    }
+    return direct;
   }
   // No folder given: fall back to the project root itself rather than
   // erroring, so a bare call still returns a (likely mostly-unavailable)

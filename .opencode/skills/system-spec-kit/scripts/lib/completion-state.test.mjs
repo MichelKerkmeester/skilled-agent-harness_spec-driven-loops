@@ -49,7 +49,7 @@ const LEVEL2_INCOMPLETE_FIXTURE = path.join(
 // stable Level-3 fixture without depending on any sibling packet.
 const LEVEL3_FIXTURE = path.join(
   PROJECT_ROOT,
-  '.opencode/specs/skilled-agent-orchestration/134-plugin-hook-implementation/007-speckit-completion-exposer',
+  '.opencode/specs/skilled-agent-orchestration/132-plugin-hook-implementation/007-speckit-completion-exposer',
 );
 const NONEXISTENT_FIXTURE = path.join(PROJECT_ROOT, '.opencode/specs/__does-not-exist-fixture__');
 const CLI_SHIM_PATH = path.join(PROJECT_ROOT, '.opencode/bin/speckit-completion.cjs');
