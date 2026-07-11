@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep_review_presentation.txt",
-      "sha256": "56b03e77c982c10250f77e6591539ec539473b598a96ab55a9d98877f569099e",
+      "sha256": "4283099c0835f8916cbb455d87b61d258d8bdae3b421afdbc1d1a762a54c0fb1",
       "section": "full"
     },
     {
