@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/018-rust-standards-for-code-opencode/007-code-opencode-rust-references",
+  "description": "Four `code-opencode` Rust docs exceed 500 lines — `references/rust/styleguide.md` (1987), `references/rust/quickreference.md` (1571),",
+  "keywords": [
+    "four",
+    "code-opencode",
+    "rust",
+    "docs",
+    "exceed",
+    "lines",
+    "references",
+    "styleguide",
+    "quickreference"
+  ],
+  "lastUpdated": "2026-07-11T16:34:10.868Z",
+  "specId": "007",
+  "folderSlug": "code-opencode-rust-references",
+  "parentChain": [
+    "sk-code",
+    "018-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

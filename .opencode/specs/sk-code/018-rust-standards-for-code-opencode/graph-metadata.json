@@ -9,7 +9,13 @@
     "sk-code/018-rust-standards-for-code-opencode/003-surface-routing",
     "sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard",
     "sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
-    "sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup"
+    "sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup",
+    "sk-code/018-rust-standards-for-code-opencode/007-code-opencode-rust-references",
+    "sk-code/018-rust-standards-for-code-opencode/008-code-opencode-other-references",
+    "sk-code/018-rust-standards-for-code-opencode/009-code-webflow-implementation-references",
+    "sk-code/018-rust-standards-for-code-opencode/010-code-webflow-other-references",
+    "sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged",
+    "sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +45,7 @@
       "typescript"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-research/research/research.md",
@@ -102,7 +108,7 @@
     "source_doc_hashes": {
       "spec.md": "a626a16ec6465406a73bb27f2dea715716c14adebf4291296f86e357adfca6d3"
     },
-    "last_active_child_id": "sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup",
-    "last_active_at": "2026-07-11T13:20:00Z"
+    "last_active_child_id": "sk-code/018-rust-standards-for-code-opencode/007-code-opencode-rust-references",
+    "last_active_at": "2026-07-11T14:00:00Z"
   }
 }

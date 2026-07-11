@@ -540,7 +540,7 @@ readonly MAX_RETRIES=3
 - `../typescript/style_guide.md` - TypeScript naming, types, interfaces, imports
 - `../python/style_guide.md` - Python naming, docstrings, imports
 - `../shell/style_guide.md` - Shell shebang, quoting, functions
-- `../rust/style_guide.md` - Rust naming, boundary API, error style, module layout
+- `../rust/style_guide/` - Rust naming, boundary API, error style, module layout (split into topic parts)
 - `../config/style_guide.md` - JSON/JSONC structure, comments
 
 ### Cross-Language Determinism Contracts

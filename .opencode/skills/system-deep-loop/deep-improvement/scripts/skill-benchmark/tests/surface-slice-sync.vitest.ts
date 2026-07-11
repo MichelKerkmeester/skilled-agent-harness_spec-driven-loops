@@ -86,10 +86,26 @@ const langFolders = (paths: string[]): Set<string> => {
   }
   return s;
 };
+// The rust reference trio was split into topic-cohesive parts, so the router now
+// returns each part; the slice assertion checks that whole part set loads.
 const RUST_TRIO = [
-  'code-opencode/references/rust/style_guide.md',
-  'code-opencode/references/rust/quality_standards.md',
-  'code-opencode/references/rust/quick_reference.md',
+  'code-opencode/references/rust/style_guide/overview-and-file-header.md',
+  'code-opencode/references/rust/style_guide/toolchain-and-project-structure.md',
+  'code-opencode/references/rust/style_guide/naming-conventions.md',
+  'code-opencode/references/rust/style_guide/formatting-and-imports.md',
+  'code-opencode/references/rust/style_guide/commenting-and-rustdoc.md',
+  'code-opencode/references/rust/style_guide/interop-model.md',
+  'code-opencode/references/rust/style_guide/interop-errors-and-parity.md',
+  'code-opencode/references/rust/quality_standards/overview-and-data-ownership.md',
+  'code-opencode/references/rust/quality_standards/modeling-collections-and-api.md',
+  'code-opencode/references/rust/quality_standards/docs-errors-and-async.md',
+  'code-opencode/references/rust/quality_standards/build-and-organization.md',
+  'code-opencode/references/rust/quality_standards/determinism-and-parity.md',
+  'code-opencode/references/rust/quick_reference/overview-and-boundary-template.md',
+  'code-opencode/references/rust/quick_reference/naming-ordering-and-signatures.md',
+  'code-opencode/references/rust/quick_reference/collections-imports-and-errors.md',
+  'code-opencode/references/rust/quick_reference/rustdoc-and-cargo.md',
+  'code-opencode/references/rust/quick_reference/determinism-parity-and-related.md',
 ];
 const TS_TRIO = [
   'code-opencode/references/typescript/style_guide.md',
@@ -129,7 +145,7 @@ describe('sk-code rust language-slice sync — touched-language set loads the ri
       'review the .opencode/native/src/lib.rs sidecar for clippy lints and unsafe-block SAFETY invariants',
     );
     expect(langFolders(r)).toEqual(new Set(['rust']));
-    expect(r).toContain('code-opencode/references/rust/quality_standards.md');
+    expect(r).toContain('code-opencode/references/rust/quality_standards/overview-and-data-ownership.md');
   });
 
   it('never loads the rust trio for a non-Rust OpenCode task — the touched-set does not over-route', () => {

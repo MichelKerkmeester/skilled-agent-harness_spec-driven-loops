@@ -1,32 +1,31 @@
 ---
-title: "Feature Specification: Rust Standards for the code-opencode Surface (Phase Parent)"
-description: "Phase parent for adding Rust as a first-class language to the sk-code code-opencode surface: a 10-round GPT-5.6-sol deep-research pass over Rust best practices (weighted to napi-rs/WASM interop with the TS/Node MCP backend and determinism parity), our own skill conventions, and how code-opencode encodes standards for its other languages, followed by an implementation phase that ships the Rust standards/assets and keeps the parent-hub union + drift guard green."
+title: "Feature Specification: Rust Standards + sk-code Reference-File Hygiene (Phase Parent)"
+description: "Phase parent with two workstreams. WS1 (001-006, complete): add Rust as a first-class language to the sk-code code-opencode surface. WS2 (007-012): hub-wide reference-file hygiene — split every reference/asset doc over 500 lines into topic-cohesive sub-files and rewire the machine-readable router contract (child SKILL.md RESOURCE_MAPs, the parent smart_routing.md union, the drift-guard and surface-slice vitests, and graded playbook expected_resources) so every deterministic gate stays green."
 trigger_phrases:
   - "018 rust standards code-opencode"
   - "sk-code rust language support"
   - "code-opencode rust standards"
-  - "rust best practices sk-code"
-  - "add rust to sk-code"
+  - "sk-code reference file hygiene"
+  - "split oversized sk-code references"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-rust-standards-for-code-opencode"
-    last_updated_at: "2026-07-11T13:20:00Z"
+    last_updated_at: "2026-07-11T14:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "All phases 001-006 complete; Rust is a first-class code-opencode language"
-    next_safe_action: "Packet 018 complete — no further action"
+    recent_action: "WS1 (001-006) complete. Opened WS2 reference-hygiene phases 007-012; executing 007 (code-opencode Rust references)"
+    next_safe_action: "Execute phase 007: split the 4 Rust reference/asset docs and rewire the router contract green"
     blockers: []
     key_files:
       - "spec.md"
-      - "001-research/research/research.md"
-      - "002-standard-docs/spec.md"
+      - "007-code-opencode-rust-references/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-07-11-sk-code-018-rust-standards-parent"
+      session_id: "2026-07-11-sk-code-018-reference-hygiene"
       parent_session_id: null
-    completion_pct: 100
-    status: "Complete"
+    completion_pct: 55
+    status: "In Progress"
     open_questions: []
     answered_questions: []
 ---
@@ -34,11 +33,16 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 
-# Feature Specification: Rust Standards for the code-opencode Surface (Phase Parent)
+# Feature Specification: Rust Standards + sk-code Reference-File Hygiene (Phase Parent)
 
 ## How to read this packet
 
-This packet adds **Rust** as a first-class language to the `sk-code` `code-opencode` surface, so that when Rust enters the codebase (the 011/013/030 rewrite-research packets all point at napi-rs/WASM/sidecar Rust as the realistic target), sk-code already carries its standards, checklists, and routing. Phase `001-research/` runs the deep-research pass; phases `002-standard-docs/` through `006-gate-verification-rollup/` implement the code-opencode change from the research findings (see the Phase Documentation Map below).
+This phase parent hosts **two workstreams** against the `sk-code` skill:
+
+- **Workstream 1 — Rust standards (phases `001-006`, complete).** Adds **Rust** as a first-class language to the `code-opencode` surface so a future `.rs` task routes to real standards. See phases `001-research/` through `006-gate-verification-rollup/`.
+- **Workstream 2 — reference-file hygiene (phases `007-012`).** Every `references/`/`assets` doc across the whole `sk-code` hub that exceeds **500 lines** is split into topic-cohesive sub-files (semantic kebab-case names in a subdir per file; no numbered snippet filenames). Because most of these files are entries in a machine-readable router contract, each split rewires that contract in lockstep and is proven green by the deterministic gates. Scope covers all four surfaces/modes: `code-opencode`, `code-webflow`, `code-quality`, `code-review`.
+
+> **Why WS2 lives here:** the operator elected to house hub-wide reference hygiene under 018 as new phases rather than a standalone packet (Gate 3 answer, 2026-07-11). WS2 is not Rust-specific; the two workstreams share only this parent.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -47,7 +51,7 @@ This packet adds **Rust** as a first-class language to the `sk-code` `code-openc
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-07-11 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `sk-code` |
@@ -59,12 +63,16 @@ This packet adds **Rust** as a first-class language to the `sk-code` `code-openc
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`sk-code`'s `code-opencode` surface encodes per-language standards (TypeScript, Python, shell, JavaScript, config) as a `references/<lang>/{style_guide,quality_standards,quick_reference}.md` trio plus an `assets/checklists/<lang>_checklist.md` and a `manual_testing_playbook/language-standards/` entry, wired into a machine-readable SMART ROUTING block whose `RESOURCE_MAP` the parent hub mirrors under a drift guard. **Rust is not represented.** As the rewrite-research packets (`system-code-graph/011`, `system-skill-advisor/013`, `system-speckit/030`) converge on napi-rs/WASM/sidecar Rust as the plausible future, sk-code has no Rust standard to route to — a task touching a future `.rs` file would fall through to generic guidance.
+**WS1:** `sk-code`'s `code-opencode` surface encodes per-language standards as a `references/<lang>/{style_guide,quality_standards,quick_reference}.md` trio plus an `assets/checklists/<lang>_checklist.md` and a `manual_testing_playbook/language-standards/` entry, wired into a machine-readable SMART ROUTING block whose `RESOURCE_MAP` the parent hub mirrors under a drift guard. Rust was not represented.
+
+**WS2:** 33 reference/asset docs across the hub exceed 500 lines (the largest is 1987). Oversized references are hard to maintain and violate the repo's progressive-disclosure and ≤500-line doc-hygiene norm. But most are load-bearing entries in the router contract — the child SKILL.md `RESOURCE_MAP`s, the parent `shared/references/smart_routing.md` union, the `sk-code-router-sync` and `surface-slice-sync` vitests, and ~30 graded playbook `expected_resources` blocks — so they cannot be split with a naive file move.
 
 ### Purpose
-Produce, from evidence, a Rust standard that (1) matches idiomatic Rust and the official API/style/lint guidance, (2) is weighted toward how this repo will actually use Rust — native modules interoperating with a TypeScript/Node MCP backend, under byte-for-byte determinism/parity contracts — and (3) is a faithful structural sibling of the existing language trios, then ship it into `code-opencode` without breaking the parent-hub union or the drift guard.
+**WS1:** produce, from evidence, a Rust standard and ship it into `code-opencode` without breaking the parent-hub union or drift guard. (Complete.)
 
-> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. The research charter and the implementation plan live in the phase children.
+**WS2:** split every >500-line reference/asset into topic-cohesive sub-files (each ≤500 lines) and rewire every live authored reference to the new parts — leaving generated benchmark reports and historical spec-docs/changelogs untouched — so the deterministic router gates (`sk-code-router-sync.vitest.ts`, `surface-slice-sync.vitest.ts`, `code-surface-path-parse.vitest.ts`) and `validate.sh --strict` all stay green.
+
+> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Each workstream's detail lives in its phase children.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -73,26 +81,27 @@ Produce, from evidence, a Rust standard that (1) matches idiomatic Rust and the 
 ## 3. SCOPE
 
 ### In Scope
-- Root-level routing for this packet's phase children.
-- Holding `code-opencode` (and its parent hub `sk-code`) as the upgrade target and the existing language trios as the template.
+- Root-level routing for this packet's phase children (both workstreams).
+- WS2: splitting the 33 oversized `references/`/`assets` docs across `code-opencode`, `code-webflow`, `code-quality` (and a documented decision on the 2 flagged `code-review` files), and rewiring the machine-readable router contract to match.
 
 ### Out of Scope
-- Writing Rust application code or scaffolding a Rust crate (this packet ships *standards*, not a Rust implementation).
-- Changing the other language standards, the code-review or code-quality modes, or unrelated surfaces.
+- WS1: writing Rust application code (ships *standards*, not an implementation).
+- WS2: changing the *content* of any reference (splits are lossless partitions — no rewriting), adding new intents/sub-routing, or splitting files ≤500 lines.
+- WS2 flagged exemptions (operator decision 2026-07-11): `code-review/SKILL.md` (a skill entry doc — splitting breaks the routing frontmatter contract) and `code-review/manual_testing_playbook/manual_testing_playbook.md` (a benchmark index over an already-split scenario tree).
+- Editing generated benchmark reports (`benchmark/*/skill-benchmark-report.*`) or historical spec-docs/changelogs to point at new paths (would falsify record; reports refresh on the next benchmark run).
 
 ### Files to Change
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `spec.md` | Create | parent | Root purpose and child map |
-| `description.json` | Create | parent | Search metadata for the parent |
-| `graph-metadata.json` | Create | parent | Child identity and parent graph metadata |
-| `001-research/**` | Create | 001 | 10-round GPT-5.6-sol deep-research charter + loop artifacts (complete) |
-| `002-standard-docs/**` | Create | 002 | Author the Rust trio + checklist + playbook |
-| `003-surface-routing/**` | Create | 003 | code-opencode/SKILL.md detection + RUST intent/resource |
-| `004-parent-union-drift-guard/**` | Create | 004 | smart_routing.md parent union + drift guard green |
-| `005-touchpoints-and-multilang/**` | Create | 005 | Six registration touchpoints + touched-language-set change |
-| `006-gate-verification-rollup/**` | Create | 006 | Run the gate plan + roll up the parent |
+| `spec.md` | Update | parent | Add WS2 framing + phase map (this edit) |
+| `graph-metadata.json` | Update | parent | children_ids += 007-012; last_active_child_id → 007 |
+| `007-code-opencode-rust-references/**` | Create | 007 | Split 4 Rust docs (1987/1571/1475/1005) → 21 parts; rewire |
+| `008-code-opencode-other-references/**` | Create | 008 | Split 9 code-opencode non-Rust + shared docs → ~22 parts |
+| `009-code-webflow-implementation-references/**` | Create | 009 | Split 11 code-webflow implementation docs → ~34 parts |
+| `010-code-webflow-other-references/**` | Create | 010 | Split 8 code-webflow docs (incl. debugging 1940) → ~30 parts |
+| `011-code-quality-and-flagged/**` | Create | 011 | Split code-quality checklist → parts; record code-review exemptions |
+| `012-gate-verification-rollup/**` | Create | 012 | Full vitest + validate --strict recursive + parent rollup |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -100,31 +109,42 @@ Produce, from evidence, a Rust standard that (1) matches idiomatic Rust and the 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
+### Workstream 1 — Rust standards (complete)
+
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-research/` | 10-round deep-research pass (GPT-5.6-sol, high, fast, via `cli-opencode`) producing `research.md` with the Rust standard synthesis and an exact upgrade file/edit manifest | Complete |
-| 002 | `002-standard-docs/` | Author the Rust standard docs: `references/rust/{style_guide,quality_standards,quick_reference}.md`, `assets/checklists/rust_checklist.md`, and `manual_testing_playbook/language-standards/009-rust-standards.md` (content from research.md Deliverables 1 + 3) | Complete |
-| 003 | `003-surface-routing/` | `code-opencode/SKILL.md`: `.rs`/Cargo detection, RUST `INTENT_SIGNALS` + `RESOURCE_MAP`, `CODE_QUALITY` registration, surface non-negotiable (Deliverable 2B) | Complete |
-| 004 | `004-parent-union-drift-guard/` | `shared/references/smart_routing.md` parent RUST union + `CODE_QUALITY`; make `sk-code-router-sync.vitest.ts` pass (Deliverable 2C). NOTE: the union is here, not in `sk-code/SKILL.md` | Complete |
-| 005 | `005-touchpoints-and-multilang/` | Six registration touchpoints (stack_detection, hub-router.json, two Python verifiers, router-replay.cjs, shared trio) + the touched-language-set behavior change (Deliverable 2D) | Complete |
-| 006 | `006-gate-verification-rollup/` | Run the Deliverable 4 gate plan (drift guard, fail-closed router-replay, verifiers, `validate.sh --strict`) and roll up the parent | Complete |
+| 001 | `001-research/` | 10-round deep-research pass producing `research.md` with the Rust standard + upgrade manifest | Complete |
+| 002 | `002-standard-docs/` | Author the Rust trio + checklist + playbook | Complete |
+| 003 | `003-surface-routing/` | `code-opencode/SKILL.md`: `.rs`/Cargo detection, RUST intent/resource, CODE_QUALITY registration | Complete |
+| 004 | `004-parent-union-drift-guard/` | `shared/references/smart_routing.md` parent RUST union + drift guard green | Complete |
+| 005 | `005-touchpoints-and-multilang/` | Six registration touchpoints + touched-language-set behavior | Complete |
+| 006 | `006-gate-verification-rollup/` | Run the WS1 gate plan and roll up the parent | Complete |
+
+### Workstream 2 — reference-file hygiene (in progress)
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 007 | `007-code-opencode-rust-references/` | Split the 4 Rust docs (style_guide 1987, quick_reference 1571, quality_standards 1475, rust_checklist 1005) → 21 parts; rewire RUST + CODE_QUALITY RESOURCE_MAPs, parent union, both vitests, playbook 009 expected_resources | Planned |
+| 008 | `008-code-opencode-other-references/` | Split 9 code-opencode docs (typescript/shell/javascript trios + shared code_organization/universal_patterns) | Planned |
+| 009 | `009-code-webflow-implementation-references/` | Split 11 code-webflow implementation-cluster docs | Planned |
+| 010 | `010-code-webflow-other-references/` | Split 8 code-webflow docs (debugging 1940, css patterns/quality, javascript quality, shared dev_workflow, verification, minification) | Planned |
+| 011 | `011-code-quality-and-flagged/` | Split code-quality `code_quality_checklist.md` → parts; document the 2 code-review exemptions | Planned |
+| 012 | `012-gate-verification-rollup/` | Full deterministic gate (both vitests + path-parse + `validate.sh --recursive --strict`), live-benchmark re-baseline follow-up, parent rollup | Planned |
 
 ### Phase Transition Rules
 
-- 001 is research-only (complete): it wrote findings under `001-research/research/` and touched no skill source.
-- 002–005 run in dependency order (docs → surface routing → parent union → touchpoints); each phase's plan/tasks derive from `research.md`'s upgrade manifest.
-- The upgrade is not "done" until phase 006's gates — the drift guard, the skill-benchmark router-replay (asserted fail-closed), and strict validation — are all green (the parent-hub union equality is a hard gate).
+- WS1 (001-006) is complete and frozen; WS2 does not modify WS1's phase docs.
+- WS2 phases 007-011 each: split their files (lossless line-partition), rewire the router contract for those files, and MUST leave `sk-code-router-sync.vitest.ts` + `surface-slice-sync.vitest.ts` + `code-surface-path-parse.vitest.ts` green before commit.
+- 012 is the terminal gate: recursive strict validation + a clean full vitest run + parent rollup. The live Mode-B benchmark re-baseline (some runs paid) is a tracked follow-up, not a blocker (same posture as the pre-existing stale-report limitation).
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-research | 002-standard-docs | Loop hit the 10-round cap with a decision-ready manifest | `001-research/research/research.md` exists with a Rust standard + file/edit manifest (done) |
-| 002 | 003 | Rust trio + checklist + playbook authored | The five `references/rust/*` + checklist + playbook files exist |
-| 003 | 004 | code-opencode/SKILL.md routes RUST | Detection + RUST intent/resource + CODE_QUALITY registration present |
-| 004 | 005 | Parent union mirrors the child map | `sk-code-router-sync.vitest.ts` passes |
-| 005 | 006 | Every touchpoint recognizes Rust; touched-language set works | Verifiers + router-replay fixtures green |
-| 006 | done | All gates green and parent rolled up | drift guard + fail-closed router-replay + verifiers + `validate.sh --strict` all pass |
+| 006 | 007 | WS1 done; parent widened for WS2 | This spec + graph-metadata list 007-012 |
+| 007-011 | next | Phase's files split; router gates green; phase committed | 3 vitests pass; no dangling old paths grep-clean; `validate.sh --strict` on the child |
+| 011 | 012 | All hub reference splits done | Every routable doc ≤500 lines; child maps == parent union |
+| 012 | done | Recursive strict + full vitest green; parent rolled up | `validate.sh --recursive --strict` + full vitest suite |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -132,15 +152,15 @@ Produce, from evidence, a Rust standard that (1) matches idiomatic Rust and the 
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- None for parent wiring. The substantive research questions live in `001-research/spec.md`; the implementation questions resolve across phases `002-standard-docs/` through `006-gate-verification-rollup/` after research.
+- WS1: none. WS2: live Mode-B benchmark re-baseline requires paid runs and is deferred to a post-012 follow-up (deterministic gates cover correctness in the meantime).
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## RELATED DOCUMENTS
 
-- **Research child**: `001-research/` (complete)
-- **Implementation children**: `002-standard-docs/`, `003-surface-routing/`, `004-parent-union-drift-guard/`, `005-touchpoints-and-multilang/`, `006-gate-verification-rollup/`
-- **Upgrade target**: `../../../skills/sk-code/code-opencode/` (and parent hub `../../../skills/sk-code/`)
-- **Motivating precedent**: `../../system-code-graph/011-rust-backend-rewrite-research/`, `../../system-skill-advisor/013-rust-backend-rewrite-research/`, `../../system-speckit/030-rust-backend-rewrite-research/`
+- **WS1 children**: `001-research/` … `006-gate-verification-rollup/` (complete)
+- **WS2 children**: `007-code-opencode-rust-references/` … `012-gate-verification-rollup/`
+- **Upgrade target**: `../../../skills/sk-code/` (all four surfaces/modes)
+- **Router contract**: `../../../skills/sk-code/shared/references/smart_routing.md`; guards under `../../../skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/`
 - **Graph metadata**: `graph-metadata.json`

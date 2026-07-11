@@ -4,9 +4,23 @@ category: language-standards
 title: 'Rust standards routing'
 expected_intent: RUST
 expected_resources:
-  - references/rust/style_guide.md
-  - references/rust/quality_standards.md
-  - references/rust/quick_reference.md
+  - references/rust/style_guide/overview-and-file-header.md
+  - references/rust/style_guide/toolchain-and-project-structure.md
+  - references/rust/style_guide/naming-conventions.md
+  - references/rust/style_guide/formatting-and-imports.md
+  - references/rust/style_guide/commenting-and-rustdoc.md
+  - references/rust/style_guide/interop-model.md
+  - references/rust/style_guide/interop-errors-and-parity.md
+  - references/rust/quality_standards/overview-and-data-ownership.md
+  - references/rust/quality_standards/modeling-collections-and-api.md
+  - references/rust/quality_standards/docs-errors-and-async.md
+  - references/rust/quality_standards/build-and-organization.md
+  - references/rust/quality_standards/determinism-and-parity.md
+  - references/rust/quick_reference/overview-and-boundary-template.md
+  - references/rust/quick_reference/naming-ordering-and-signatures.md
+  - references/rust/quick_reference/collections-imports-and-errors.md
+  - references/rust/quick_reference/rustdoc-and-cargo.md
+  - references/rust/quick_reference/determinism-parity-and-related.md
 version: 1.0.0.0
 ---
 

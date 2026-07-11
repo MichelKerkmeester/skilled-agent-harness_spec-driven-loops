@@ -217,7 +217,7 @@ OPENCODE loads from `code-opencode/references/` and `assets/code-opencode/`.
 | TYPESCRIPT | `code-opencode/references/typescript/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/typescript_checklist.md` |
 | PYTHON | `code-opencode/references/python/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/python_checklist.md` |
 | SHELL | `code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/shell_checklist.md` |
-| RUST | `code-opencode/references/rust/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/rust_checklist.md` |
+| RUST | `code-opencode/references/rust/{style_guide,quality_standards,quick_reference}/` (each split into topic parts), `code-opencode/assets/checklists/rust_checklist/` |
 | CONFIG | `code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`, `code-opencode/assets/checklists/config_checklist.md` |
 
 ### Authoring checklist gating
@@ -371,7 +371,10 @@ RESOURCE_MAP = {
         "code-opencode/assets/checklists/typescript_checklist.md",
         "code-opencode/assets/checklists/python_checklist.md",
         "code-opencode/assets/checklists/shell_checklist.md",
-        "code-opencode/assets/checklists/rust_checklist.md",
+        "code-opencode/assets/checklists/rust_checklist/overview-and-p0-parity.md",
+        "code-opencode/assets/checklists/rust_checklist/p0-safety-and-boundary-discipline.md",
+        "code-opencode/assets/checklists/rust_checklist/p1-required.md",
+        "code-opencode/assets/checklists/rust_checklist/p2-evidence-validation-and-resources.md",
         "code-review/assets/code_quality_checklist.md"
     ],
     "DEBUGGING": [
@@ -477,9 +480,23 @@ RESOURCE_MAP = {
         "code-opencode/references/shell/quick_reference.md"
     ],
     "RUST": [
-        "code-opencode/references/rust/style_guide.md",
-        "code-opencode/references/rust/quality_standards.md",
-        "code-opencode/references/rust/quick_reference.md"
+        "code-opencode/references/rust/style_guide/overview-and-file-header.md",
+        "code-opencode/references/rust/style_guide/toolchain-and-project-structure.md",
+        "code-opencode/references/rust/style_guide/naming-conventions.md",
+        "code-opencode/references/rust/style_guide/formatting-and-imports.md",
+        "code-opencode/references/rust/style_guide/commenting-and-rustdoc.md",
+        "code-opencode/references/rust/style_guide/interop-model.md",
+        "code-opencode/references/rust/style_guide/interop-errors-and-parity.md",
+        "code-opencode/references/rust/quality_standards/overview-and-data-ownership.md",
+        "code-opencode/references/rust/quality_standards/modeling-collections-and-api.md",
+        "code-opencode/references/rust/quality_standards/docs-errors-and-async.md",
+        "code-opencode/references/rust/quality_standards/build-and-organization.md",
+        "code-opencode/references/rust/quality_standards/determinism-and-parity.md",
+        "code-opencode/references/rust/quick_reference/overview-and-boundary-template.md",
+        "code-opencode/references/rust/quick_reference/naming-ordering-and-signatures.md",
+        "code-opencode/references/rust/quick_reference/collections-imports-and-errors.md",
+        "code-opencode/references/rust/quick_reference/rustdoc-and-cargo.md",
+        "code-opencode/references/rust/quick_reference/determinism-parity-and-related.md"
     ],
 }
 ```
