@@ -24,7 +24,7 @@ const requireCjs = createRequire(import.meta.url);
 
 const { readConvergenceModeConfig } = requireCjs('../../scripts/convergence.cjs') as {
   readConvergenceModeConfig: (args: Record<string, unknown>) => {
-    mode: 'default' | 'off' | 'sliding-window';
+    mode: 'default' | 'off' | 'sliding-window' | 'divergent';
     slidingWindowSize: number;
   };
 };
@@ -298,6 +298,23 @@ describe('coverage-graph-signals', () => {
     );
   });
 
+  it('readConvergenceModeConfig accepts all modes from camelCase and snake_case CLI/config forms', () => {
+    const modes = ['default', 'off', 'sliding-window', 'divergent'] as const;
+    for (const mode of modes) {
+      const forms = [
+        { convergenceMode: mode },
+        { convergence_mode: mode },
+        { configJson: JSON.stringify({ convergenceMode: mode }) },
+        { configJson: JSON.stringify({ convergence_mode: mode }) },
+        { configJson: JSON.stringify({ antiConvergence: { convergenceMode: mode } }) },
+        { configJson: JSON.stringify({ antiConvergence: { convergence_mode: mode } }) },
+      ];
+      for (const form of forms) {
+        expect(readConvergenceModeConfig(form).mode).toBe(mode);
+      }
+    }
+  });
+
   it('readConvergenceModeConfig validates slidingWindowSize and unknown modes', () => {
     expect(readConvergenceModeConfig({ convergenceMode: 'sliding-window' })).toEqual({
       mode: 'sliding-window',
@@ -321,7 +338,7 @@ describe('coverage-graph-signals', () => {
       slidingWindowSize: 1.5,
     })).toThrow(/slidingWindowSize must be a positive integer/);
     expect(() => readConvergenceModeConfig({ convergenceMode: 'unknown' })).toThrow(
-      /convergenceMode must be "default", "off", or "sliding-window"/,
+      /convergenceMode must be "default", "off", "sliding-window", or "divergent"/,
     );
   });
 

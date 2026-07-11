@@ -311,6 +311,74 @@ describe('convergence.cjs direct invocation', () => {
     expect(data.blockers).toEqual([]);
   });
 
+  it('accepts divergent mode while preserving existing convergence decisions', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedConvergedResearchGraph(namespace).exitCode).toBe(0);
+
+    const results = new Map([
+      ['default', runScript('convergence', namespaceArgs(namespace))],
+      ['off', runScript('convergence', [...namespaceArgs(namespace), '--convergence-mode', 'off'])],
+      ['sliding-window', runScript('convergence', [...namespaceArgs(namespace), '--convergence-mode', 'sliding-window'])],
+      ['divergent', runScript('convergence', [...namespaceArgs(namespace), '--convergence-mode', 'divergent'])],
+    ]);
+    const decisionEnvelope = (result: ReturnType<typeof runScript>) => ({
+      decision: result.json.graph_decision,
+      reason: (result.json.data as Record<string, unknown>).reason,
+      score: result.json.graph_convergence_score,
+      blockers: result.json.graph_blockers_json,
+      trace: result.json.graph_trace_json,
+    });
+    const defaultEnvelope = decisionEnvelope(results.get('default')!);
+
+    for (const result of results.values()) {
+      expect(result.exitCode).toBe(0);
+      expect(decisionEnvelope(result)).toEqual(defaultEnvelope);
+    }
+    expect(defaultEnvelope.decision).toBe('STOP_ALLOWED');
+    expect(results.get('divergent')!.json.data).toMatchObject({ convergenceMode: 'divergent' });
+    expect(results.get('default')!.json.data).not.toHaveProperty('convergenceMode');
+    expect(results.get('off')!.json.data).not.toHaveProperty('convergenceMode');
+    expect(results.get('sliding-window')!.json.data).not.toHaveProperty('convergenceMode');
+  });
+
+  it('keeps divergent CONTINUE and STOP_BLOCKED decisions identical to existing modes', () => {
+    const emptyResearch = uniqueNamespace('convergence', 'research');
+    const blockedReview = uniqueNamespace('convergence', 'review');
+    namespaces.push(emptyResearch, blockedReview);
+    expect(seedReviewNode(blockedReview).exitCode).toBe(0);
+
+    const decisionEnvelope = (result: ReturnType<typeof runScript>) => ({
+      decision: result.json.graph_decision,
+      reason: (result.json.data as Record<string, unknown>).reason,
+      score: result.json.graph_convergence_score,
+      signals: result.json.graph_signals_json,
+      blockers: result.json.graph_blockers_json,
+      trace: result.json.graph_trace_json,
+      stopBlocked: result.json.graph_stop_blocked,
+    });
+    const modes = ['default', 'off', 'sliding-window', 'divergent'] as const;
+
+    for (const [namespace, expectedDecision] of [
+      [emptyResearch, 'CONTINUE'],
+      [blockedReview, 'STOP_BLOCKED'],
+    ] as const) {
+      const results = modes.map((mode) => runScript('convergence', [
+        ...namespaceArgs(namespace),
+        '--convergence-mode',
+        mode,
+      ]));
+      const defaultEnvelope = decisionEnvelope(results[0]);
+
+      for (const result of results) {
+        expect(result.exitCode).toBe(0);
+        expect(decisionEnvelope(result)).toEqual(defaultEnvelope);
+      }
+      expect(defaultEnvelope.decision).toBe(expectedDecision);
+      expect(results[3].json.data).toMatchObject({ convergenceMode: 'divergent' });
+    }
+  });
+
   it('blocks research STOP under an explicit observation threshold until the leading finding is confirmed enough times', () => {
     const namespace = uniqueNamespace('convergence', 'research');
     namespaces.push(namespace);
