@@ -407,7 +407,7 @@ Turns an eligible, legally converged research direction into a bounded scope-exp
 
 #### Source Files
 
-See [`03--convergence/divergent-convergence-mode.md`](03--convergence/divergent-convergence-mode.md) for full implementation and validation file listings.
+See [`convergence/divergent-convergence-mode.md`](convergence/divergent-convergence-mode.md) for full implementation and validation file listings.
 
 ---
 
