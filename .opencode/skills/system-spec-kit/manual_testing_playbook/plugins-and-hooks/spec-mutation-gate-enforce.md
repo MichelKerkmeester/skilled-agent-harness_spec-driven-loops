@@ -8,7 +8,7 @@ trigger_phrases:
   - "spec gate enforce"
   - "gate-3 question"
   - "MK_SPEC_GATE_ENFORCE"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Spec Mutation Gate Enforce
@@ -43,10 +43,10 @@ This scenario validates, with real executed evidence: (a) with enforce OFF (the 
 
 ## 3. TEST EXECUTION
 
-1. Run the OpenCode plugin adapter's unit-test suite:
+1. Run the OpenCode plugin adapter's unit-test suite. Neutralize the two vars the operator may export ambiently (`AI_SESSION_CHILD` and `MK_SPEC_GATE_ENFORCE`) with `env -u` so the suite is hermetic -- `AI_SESSION_CHILD=1` in the inherited env would force the WS4 child-session advise-only path and suppress the "must deny" assertion, producing a spurious `# fail 1`:
 
 ```bash
-node .opencode/plugins/tests/mk-spec-gate.test.cjs
+env -u AI_SESSION_CHILD -u MK_SPEC_GATE_ENFORCE node .opencode/plugins/tests/mk-spec-gate.test.cjs
 ```
 
 Expected: TAP output, `# tests 11`, `# pass 11`, `# fail 0`.
@@ -86,11 +86,11 @@ printf '%s' '{"tool_name":"Write","tool_input":{"file_path":"src/login.ts"},"ses
 
 Expected: exit 0, `additionalContext` present, `permissionDecision` absent.
 
-6. Flip the enforce env var: the identical Write must now `deny`:
+6. Flip the enforce env var: the identical Write must now `deny`. Neutralize the operator's ambient `AI_SESSION_CHILD` with `env -u` for this one command -- a dispatched/child session (`AI_SESSION_CHILD=1`) correctly advises instead of denying (that is step 7's contract), so the deny path is only reachable when that signal is absent, exactly as it is in a real interactive Claude session:
 
 ```bash
 printf '%s' '{"tool_name":"Write","tool_input":{"file_path":"src/login.ts"},"session_id":"hook-demo-a","cwd":"'"$TMPDIR_A"'"}' \
-  | MK_SPEC_GATE_ENFORCE=1 node .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs
+  | env -u AI_SESSION_CHILD MK_SPEC_GATE_ENFORCE=1 node .opencode/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs
 ```
 
 Expected: exit 0, `permissionDecision:"deny"` with a reason starting `DENIED: this Write/Edit needs a bound spec folder first`.
@@ -167,12 +167,10 @@ Expected: `"MK_SPEC_GATE_ENFORCE": "0"` and both hooks wired as documented in Ov
 
 ## 4. EVIDENCE
 
-Plugin adapter unit-test run (real, step 1):
+Plugin adapter unit-test run (real, step 1, hermetic `env -u` command):
 
 ```text
-$ node .opencode/plugins/tests/mk-spec-gate.test.cjs
-TAP version 13
-...
+$ env -u AI_SESSION_CHILD -u MK_SPEC_GATE_ENFORCE node .opencode/plugins/tests/mk-spec-gate.test.cjs
 1..11
 # tests 11
 # suites 0
@@ -181,10 +179,12 @@ TAP version 13
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 43.3115
+# duration_ms 22.702583
 ```
 
 All 11 subtests passed, including `MK_SPEC_GATE_ENFORCE unset: no Write/Edit is ever denied through the OpenCode adapter, even after classify opens the gate` and `WS4: AI_SESSION_CHILD=1 + enforce on + open gate -> tool.execute.before never throws (advise, not deny)`.
+
+The `env -u` neutralization is load-bearing: with the operator's ambient env leaked (`export AI_SESSION_CHILD=1 MK_SPEC_GATE_ENFORCE=0`), the bare `node .opencode/plugins/tests/mk-spec-gate.test.cjs` command reports `# pass 10 / # fail 1` -- the single failure is `not ok 7 - P2 fix: classify and enforce key an absent sessionID under the same fallback -- enforce sees what classify opened` with `error: 'Missing expected rejection: enforce must see the same no-session gate state classify opened, and deny'`. `AI_SESSION_CHILD=1` forces the WS4 child-session advise-only path, which suppresses the deny that assertion expects. This is an ambient-env leak in the invocation, not a plugin defect; the `env -u` form above restores a clean 11/11.
 
 Shared core unit-test run (real, step 2):
 
@@ -313,6 +313,6 @@ $ grep -n "MK_SPEC_GATE_ENFORCE" .claude/settings.json
 
 **PASS**
 
-Both shipped unit-test suites are fully green (`mk-spec-gate.test.cjs`: 11/11; `spec-gate-core.test.mjs`: 66/66). Live invocation of the actual Claude hook scripts (`spec-gate-classify.mjs` / `spec-gate-enforce.mjs`), piped real hook-shaped JSON payloads against a disposable non-exempt fixture, reproduced every required signal: enforce OFF never denied a real Write; flipping `MK_SPEC_GATE_ENFORCE=1` produced a real `deny` with the exact Gate-3 detail string; a dispatched/child session (`AI_SESSION_CHILD=1`) advised instead of denying even with enforce on; a spec-tree target stayed exempt and allowed even with enforce on; and the kill-switch (`MK_SPEC_GATE_DISABLED=1`) was a full no-op. A separate live probe against three read-only/review-shaped prompts confirmed zero false-positive gate-opens. This repo's own real `spec-gate-warnings.log` (188 lines, produced by real Claude Code sessions under this project's actual `MK_SPEC_GATE_ENFORCE=0` wiring) independently confirms zero real denies to date and sizes the would-deny exposure at 21/188 (~11%) `write`/`edit` events -- the concrete false-positive rate an operator should weigh before flipping enforce globally.
+Both shipped unit-test suites are fully green (`mk-spec-gate.test.cjs`: 11/11 when invoked hermetically via `env -u AI_SESSION_CHILD -u MK_SPEC_GATE_ENFORCE ...` per step 1; `spec-gate-core.test.mjs`: 66/66). Live invocation of the actual Claude hook scripts (`spec-gate-classify.mjs` / `spec-gate-enforce.mjs`), piped real hook-shaped JSON payloads against a disposable non-exempt fixture, reproduced every required signal: enforce OFF never denied a real Write; flipping `MK_SPEC_GATE_ENFORCE=1` produced a real `deny` with the exact Gate-3 detail string; a dispatched/child session (`AI_SESSION_CHILD=1`) advised instead of denying even with enforce on; a spec-tree target stayed exempt and allowed even with enforce on; and the kill-switch (`MK_SPEC_GATE_DISABLED=1`) was a full no-op. A separate live probe against three read-only/review-shaped prompts confirmed zero false-positive gate-opens. This repo's own real `spec-gate-warnings.log` (188 lines, produced by real Claude Code sessions under this project's actual `MK_SPEC_GATE_ENFORCE=0` wiring) independently confirms zero real denies to date and sizes the would-deny exposure at 21/188 (~11%) `write`/`edit` events -- the concrete false-positive rate an operator should weigh before flipping enforce globally.
 
 One non-blocking caveat surfaced by that same telemetry, not a failure of this scenario's tested behavior: `isExemptTargetPath()` does not recognize a worktree's own nested `.opencode/specs/` tree as exempt (it only matches `.opencode/specs/` relative to the running session's resolved project root), so `edit` calls against spec docs inside `.worktrees/<name>/.opencode/specs/...` show up as real `would-deny` events today. Flag this to whoever owns the enforce-flip decision before enabling it in worktree-heavy sessions.

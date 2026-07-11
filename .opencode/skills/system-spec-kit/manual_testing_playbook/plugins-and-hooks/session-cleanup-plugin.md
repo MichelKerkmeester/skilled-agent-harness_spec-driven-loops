@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode plugin dispose"
   - "startup guard warnings"
   - "session teardown sweep"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Session Cleanup Plugin
@@ -56,9 +56,24 @@ targets the same underlying cleanup script the plugin's `dispose()` calls.
   `bash .opencode/scripts/session-cleanup.sh || true` directly (no plugin layer on that side).
 - Expected signals:
   - Unit suite: `# tests 13`, `# suites 3`, `# pass 13`, `# fail 0` from `node --test`.
-  - Live event: `experimental.chat.system.transform` output contains
-    `[session-cleanup] Startup safety warnings:` followed by the real `worktree-guard.sh` warning
-    line when running on a shared (non-worktree) checkout branch.
+  - Live event (deterministic): `worktree-guard.sh` is git-state-driven, not stateful/debounced --
+    it emits its warning to stderr only when its working directory is a shared (non-worktree)
+    checkout (`git rev-parse --git-dir` equals `--git-common-dir`), and stays silent inside an
+    isolated worktree, when `SPECKIT_WORKTREE_GUARD=off`, when `AI_SESSION_CHILD=1`, or outside a
+    git repo. So the injected warning is environment-dependent unless it is pinned on two axes. The
+    live step therefore (a) points the plugin's `directory` context at a throwaway shared-checkout
+    git repo, and (b) neutralizes the operator's ambient `AI_SESSION_CHILD` with `env -u` for that
+    one command -- a top-level interactive session, which is exactly the context this injection path
+    serves, carries no such signal. Together these make the REAL guard emit deterministically (no
+    bypass): the first `experimental.chat.system.transform` output contains `[session-cleanup]
+    Startup safety warnings:` followed by the real `[worktree-guard] ... shared '<branch>' checkout
+    ...` line.
+  - Invariant (holds regardless of guard state): the SECOND
+    `experimental.chat.system.transform` call for the same session id is ALWAYS an empty `system`
+    array -- the captured warning is consumed exactly once. The FIRST call injects exactly the
+    captured guard output: the worktree warning when the guard emits (as forced here), or nothing
+    when the guard is silenced/debounced/off (an empty first-call `system` array is then a valid
+    PASS for that path, not a failure).
   - Live dispose: `.opencode/scripts/session-cleanup.sh` emits `action=skip reason=no-session-pid`
     when invoked with the plugin's forced-empty session-PID env, and exits `0`.
   - Idempotency: a second `dispose()` call on the same plugin instance makes no further
@@ -88,9 +103,21 @@ Expected: `# tests 13`, `# suites 3`, `# pass 13`, `# fail 0`.
 
 2. Exercise the real plugin factory end-to-end (`session.created` -> injection preview ->
    `session.deleted` -> `dispose()` -> repeat `dispose()`), scoping the cleanup log to a scratch
-   path and never supplying a real session PID:
+   path and never supplying a real session PID. To make the git-state-driven `worktree-guard.sh`
+   emit deterministically regardless of whether this harness itself runs inside an isolated
+   worktree, first stand up a throwaway shared-checkout git repo and point the plugin's `directory`
+   context at it (this drives the REAL guard scripts -- the plugin still resolves them from the
+   repo internally -- it only moves their working directory; it is not a mock or a synthetic
+   capture):
 
 ```bash
+# Deterministic shared (non-worktree) checkout so the real worktree-guard.sh always warns.
+SCRATCH="$(mktemp -d)"
+git -C "$SCRATCH" init -q -b sandbox-shared-checkout
+git -C "$SCRATCH" config user.email guard@fixture.local
+git -C "$SCRATCH" config user.name "guard fixture"
+SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$SCRATCH" commit -q --allow-empty -m "chore(sandbox): init deterministic guard fixture"
+
 cat > /tmp/live-session-cleanup.mjs <<'EOF'
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
@@ -99,7 +126,12 @@ const REPO_ROOT = process.cwd();
 const PLUGIN_PATH = resolve(REPO_ROOT, '.opencode/plugins/session-cleanup.js');
 const plugin = (await import(pathToFileURL(PLUGIN_PATH).href)).default;
 
-const hooks = await plugin({ directory: REPO_ROOT });
+// Point the plugin's guard/cleanup working directory (its `directory` context) at a
+// deterministic shared (non-worktree) checkout so the REAL worktree-guard.sh reliably
+// emits its warning even if this harness runs inside a git worktree. The guard SCRIPTS
+// stay the real repo scripts; only their working directory moves -- no bypass, no mock.
+const GUARD_CWD = process.env.GUARD_CWD || REPO_ROOT;
+const hooks = await plugin({ directory: GUARD_CWD });
 
 console.log('--- session.created event (real worktree-guard.sh + check-git-hooks.sh) ---');
 await hooks.event({ event: { type: 'session.created', properties: { info: { id: 'live-demo-session' } } } });
@@ -125,13 +157,18 @@ await hooks.dispose();
 
 console.log('DONE');
 EOF
-SESSION_CLEANUP_LOG_PATH=/tmp/session-cleanup-live.log node /tmp/live-session-cleanup.mjs
+env -u AI_SESSION_CHILD GUARD_CWD="$SCRATCH" SESSION_CLEANUP_LOG_PATH=/tmp/session-cleanup-live.log node /tmp/live-session-cleanup.mjs
+rm -rf "$SCRATCH"
 ```
 
-Expected: the injection preview contains `[session-cleanup] Startup safety warnings:` and the
-real `[worktree-guard] ...` line; the second transform call for the same session id returns an
-empty `system` array; the scratch log file contains `action=skip reason=no-session-pid` after
-`dispose()`.
+Expected: the first injection preview contains `[session-cleanup] Startup safety warnings:` and the
+real `[worktree-guard] ... shared 'sandbox-shared-checkout' checkout ...` line; the second transform
+call for the same session id returns an empty `system` array (consumed exactly once); the scratch
+log file contains `action=skip reason=no-session-pid` after `dispose()`. If you instead run without
+the scratch-checkout fixture (plain `directory: REPO_ROOT`) from inside an isolated worktree, with
+`SPECKIT_WORKTREE_GUARD=off`, or with `AI_SESSION_CHILD=1` left set (no `env -u`), the guard is
+silent and the first preview is a valid empty `system` array -- the second-call-always-empty
+invariant still holds either way.
 
 3. Confirm the Claude Code `SessionEnd` wiring calls the same script the plugin's `dispose()`
    calls:
@@ -216,11 +253,18 @@ ok 3 - session-cleanup live process tree
 # duration_ms 811.480459
 ```
 
-Live invocation command (real plugin factory, real `spawnSync`, no test overrides, log path
-scoped to a scratch file):
+Live invocation command (real plugin factory, real `spawnSync`, no test overrides, guard working
+directory pinned to a throwaway shared-checkout git repo so the real `worktree-guard.sh` emits
+deterministically, log path scoped to a scratch file):
 
 ```bash
-SESSION_CLEANUP_LOG_PATH=/tmp/session-cleanup-live.log node /tmp/live-session-cleanup.mjs
+SCRATCH="$(mktemp -d)"
+git -C "$SCRATCH" init -q -b sandbox-shared-checkout
+git -C "$SCRATCH" config user.email guard@fixture.local
+git -C "$SCRATCH" config user.name "guard fixture"
+SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$SCRATCH" commit -q --allow-empty -m "chore(sandbox): init deterministic guard fixture"
+env -u AI_SESSION_CHILD GUARD_CWD="$SCRATCH" SESSION_CLEANUP_LOG_PATH=/tmp/session-cleanup-live.log node /tmp/live-session-cleanup.mjs
+rm -rf "$SCRATCH"
 ```
 
 Real captured stdout:
@@ -230,7 +274,7 @@ Real captured stdout:
 --- experimental.chat.system.transform (injection preview) ---
 {
   "system": [
-    "[session-cleanup] Startup safety warnings:\n[worktree-guard] This top-level session is running on the shared 'skilled/v4.0.0.0' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .opencode/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)"
+    "[session-cleanup] Startup safety warnings:\n[worktree-guard] This top-level session is running on the shared 'sandbox-shared-checkout' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .opencode/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)"
   ]
 }
 --- second transform call for same session (must be empty: injected once) ---
@@ -248,12 +292,16 @@ Real content of `/tmp/session-cleanup-live.log` after the run (written by the re
 the plugin always forces `SESSION_CLEANUP_PID`/`CLAUDE_SESSION_PID` to `''`):
 
 ```text
-2026-07-11T14:40:06+0200 action=skip reason=no-session-pid
+2026-07-11T18:41:32+0200 action=skip reason=no-session-pid
 ```
 
-The `check-git-hooks.sh` half of the startup guard produced no output in this run (no invalid
-hook symlinks in this checkout), so only the `worktree-guard.sh` warning appears in the injected
-text -- consistent with the plugin joining only non-empty guard outputs (`session-cleanup.js:144-151`).
+The `check-git-hooks.sh` half of the startup guard produced no output in this run: from the scratch
+shared-checkout working directory it finds no versioned `.opencode/scripts/git-hooks/` source and
+exits silently, so only the `worktree-guard.sh` warning appears in the injected text -- consistent
+with the plugin joining only non-empty guard outputs (`session-cleanup.js:144-151`). Because the
+guard's warning is driven purely by git state (shared checkout vs. isolated worktree) and not by any
+debounce/state file, pinning the working directory to a freshly-initialized shared checkout makes
+this injection reproduce deterministically on any host, in or out of a worktree.
 
 Claude Code `SessionEnd` wiring command:
 
@@ -305,9 +353,12 @@ signal-exit, static shell contracts (neutral config, deepest-first kill order, n
 ownership claim, per-branch worktree warning, hook-symlink resolution, `bash -n` syntax validity),
 and two live process-tree tests that spawn real process trees and confirm deepest-first
 termination plus reparented-orphan non-interference. The separate live invocation reproduced the
-documented behavior end-to-end against the real repo scripts (not mocked): the startup guard
-correctly captured and injected the real `worktree-guard.sh` warning for this shared checkout
-exactly once, the second `dispose()` call made no further subprocess call, and
+documented behavior end-to-end against the real repo scripts (not mocked): with the guard's working
+directory pinned to a throwaway shared-checkout git repo, the startup guard deterministically
+captured and injected the real `worktree-guard.sh` warning (for branch `sandbox-shared-checkout`)
+exactly once, the second `experimental.chat.system.transform` call for that session returned an
+empty `system` array (consumed exactly once), the second `dispose()` call made no further
+subprocess call, and
 `.opencode/scripts/session-cleanup.sh` took the safe no-session-pid branch and logged
 `action=skip reason=no-session-pid`, exiting `0`. The Claude Code `SessionEnd` wiring in
 `.claude/settings.json` was confirmed to target the identical `.opencode/scripts/session-cleanup.sh`

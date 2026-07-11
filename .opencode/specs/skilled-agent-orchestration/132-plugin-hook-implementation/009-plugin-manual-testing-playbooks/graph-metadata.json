@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The plugin-and-hook implementation program (phases 001-007) shipped seven policy/logic cores with paired OpenCode plugin and Claude hook adapters, and the repo already carries four older plugins with no dedicated manual-validation scenario",
     "created_at": "2026-07-11T12:36:31Z",
-    "last_save_at": "2026-07-11T14:07:09.929Z",
+    "last_save_at": "2026-07-11T17:07:46.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79d7c0a6d89de5bee4883687ce8b52ec1357eff9ae97b5b6f70e3aa927ddfffa",
+    "source_fingerprint": "sha256:49558fd5c11e34455561823e89a9c331d8c0e4f373c2507d8019dd8176847506",
     "source_doc_hashes": {
       "spec.md": "eb92546cb1707a165dab8175936f4e6ed47eca3bdd396bf44fa1997eb11ea9ad",
       "plan.md": "e58ffe7f6cf372bdd990c9b57216627978a964e15200431c14ef2c8de2f921e1",
       "tasks.md": "5fae49265dec9bee7b16110988df066adb724ba7046c6ea2164fa2af29fac1e6",
       "checklist.md": "cb6b5464929a97fd67bd9eef442a3db7dd3a9f1bdbf974c618929d2641a981b6",
-      "implementation-summary.md": "9564c1298bfb0559d6d4166618b3e767705898e839e4fbc970df7e9486716174"
+      "implementation-summary.md": "2e825a919c794ea9ff085b52f870050305cd7e4043572e5610cbc52f33dfdfbd"
     },
     "last_active_child_id": null,
     "last_active_at": null

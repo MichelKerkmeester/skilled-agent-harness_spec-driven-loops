@@ -7,7 +7,7 @@ trigger_phrases:
   - "spec memory plugin"
   - "spec memory bridge"
   - "continuity injection"
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Spec Memory OpenCode Plugin
@@ -106,13 +106,15 @@ await hooks['experimental.chat.system.transform']({ sessionID: 'live-check-sessi
 console.log(JSON.stringify(output, null, 2));
 SCRIPT
 node /tmp/mk-spec-memory-live-check.mjs
-rm /tmp/mk-spec-memory-live-check.mjs
 ```
 
-6. Kill-switch check — re-run the same script with the disable env set and confirm the bridge subprocess never spawns:
+Keep the fixture in place — step 6 re-runs the very same script, so the single teardown lives at the end of step 6.
+
+6. Kill-switch check — re-run the same script with the disable env set and confirm the bridge subprocess never spawns, then tear the fixture down:
 
 ```bash
 MK_SPEC_MEMORY_PLUGIN_DISABLED=1 node /tmp/mk-spec-memory-live-check.mjs
+rm /tmp/mk-spec-memory-live-check.mjs
 ```
 
 Expected: `enabled=false`, `disabled_reason=MK_SPEC_MEMORY_PLUGIN_DISABLED`, `bridge_invocations=0`.
@@ -284,7 +286,7 @@ warm_retryable=true
 warm_exit_code=75
 ```
 
-Kill-switch check (`MK_SPEC_MEMORY_PLUGIN_DISABLED=1`, same script):
+Kill-switch check (`MK_SPEC_MEMORY_PLUGIN_DISABLED=1`, same script, fixture still present because the teardown now runs after this step):
 
 ```text
 --- mk_spec_memory_status.execute() ---
@@ -307,6 +309,22 @@ last_duration_ms=0
 bridge_invocations=0
 continuity_lookups=0
 cache_entries=0
+cache_hits=0
+cache_misses=0
+cache_hit_rate=0
+continuity_recovery=per_transform_warm
+continuity_compaction=unsupported_runtime_event
+continuity_autosave=unsupported_runtime_event
+warm_status=skipped
+warm_error=MK_SPEC_MEMORY_PLUGIN_DISABLED
+warm_route=unknown
+warm_retryable=false
+warm_exit_code=none
+
+--- experimental.chat.system.transform() ---
+{
+  "system": []
+}
 ```
 
 Claude Code hook wiring evidence from `.claude/settings.json` (the sibling continuity delivery path for the Claude runtime, not this OpenCode plugin):
