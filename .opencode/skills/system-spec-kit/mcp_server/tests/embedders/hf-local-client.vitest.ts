@@ -2,6 +2,10 @@
 // TEST: HF local HTTP client provider
 // ───────────────────────────────────────────────────────────────
 
+import { mkdtempSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -10,6 +14,54 @@ import {
 } from '../../../shared/embeddings/providers/hf-local.js';
 
 const MODEL = 'nomic-ai/nomic-embed-text-v1.5';
+const ORIGINAL_HF_EMBED_SERVER_URL = process.env.HF_EMBED_SERVER_URL;
+const ORIGINAL_SPECKIT_IPC_SOCKET_DIR = process.env.SPECKIT_IPC_SOCKET_DIR;
+const DEAD_PID = 2_147_483_647;
+
+function restoreEnv(name: string, value: string | undefined): void {
+  if (value === undefined) {
+    delete process.env[name];
+  } else {
+    process.env[name] = value;
+  }
+}
+
+function createEnoentError(): Error & { code: string } {
+  const error = new Error('connect ENOENT') as Error & { code: string };
+  error.code = 'ENOENT';
+  return error;
+}
+
+function useVirtualReadinessClock() {
+  const clock = { now: Date.now() };
+  vi.spyOn(Date, 'now').mockImplementation(() => clock.now);
+  __hfLocalProviderTestables.setSleep(async (ms) => {
+    clock.now += ms;
+  });
+  return clock;
+}
+
+function useSocketFixture(): string {
+  const socketDir = mkdtempSync(path.join(tmpdir(), 'hf-local-readiness-'));
+  delete process.env.HF_EMBED_SERVER_URL;
+  process.env.SPECKIT_IPC_SOCKET_DIR = socketDir;
+  __hfLocalProviderTestables.setSpawnAuthorityDbDir(socketDir);
+  return socketDir;
+}
+
+function readinessTransport(clock: { now: number }, readyAt: number | null) {
+  type ProviderOptions = NonNullable<ConstructorParameters<typeof HfLocalProvider>[0]>;
+  type TransportRequest = Parameters<NonNullable<ProviderOptions['request']>>[0];
+  return async (request: TransportRequest) => {
+    if (request.path === '/api/health') {
+      if (readyAt === null || clock.now < readyAt) {
+        throw createEnoentError();
+      }
+      return jsonResponse(200, { state: 'ready', model: MODEL, dim: 3 });
+    }
+    return jsonResponse(200, { embeddings: [vector(3)], dim: 3 });
+  };
+}
 
 function jsonResponse(status: number, body: unknown, statusText = `HTTP ${status}`) {
   return {
@@ -32,6 +84,8 @@ describe('HfLocalProvider HTTP client', () => {
   afterEach(() => {
     __hfLocalProviderTestables.reset();
     vi.restoreAllMocks();
+    restoreEnv('HF_EMBED_SERVER_URL', ORIGINAL_HF_EMBED_SERVER_URL);
+    restoreEnv('SPECKIT_IPC_SOCKET_DIR', ORIGINAL_SPECKIT_IPC_SOCKET_DIR);
   });
 
   it('applies document and query prefixes before POST /api/embed', async () => {
@@ -269,6 +323,112 @@ describe('HfLocalProvider HTTP client', () => {
       },
     });
     await expect(provider.embedQuery('never answers')).rejects.toThrow(/was unreachable after \d+ms/);
+  });
+
+  it('fails after the socket startup grace when ENOENT has no live spawn authority', async () => {
+    useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    const startedAt = clock.now;
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, null),
+    });
+
+    await expect(provider.embedQuery('no authority')).rejects.toThrow(
+      /socket .* is absent and no live launcher or model-server spawn authority exists; not retrying/,
+    );
+    expect(clock.now - startedAt).toBeGreaterThanOrEqual(5000);
+    expect(clock.now - startedAt).toBeLessThan(7000);
+  });
+
+  it('keeps retrying ENOENT while a fresh live owner lease can spawn the server', async () => {
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    writeFileSync(path.join(socketDir, '.spec-memory-owner.json'), JSON.stringify({
+      ownerPid: process.pid,
+      lastHeartbeatIso: new Date(clock.now).toISOString(),
+      ttlMs: 60_000,
+    }));
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, clock.now + 6000),
+    });
+
+    await expect(provider.embedQuery('live owner')).resolves.toHaveLength(3);
+  });
+
+  it('keeps retrying ENOENT while a live respawn lock can spawn the server', async () => {
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    writeFileSync(path.join(socketDir, 'hf-embed-respawn.lock'), JSON.stringify({
+      pid: process.pid,
+      startedAt: new Date(clock.now).toISOString(),
+    }));
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, clock.now + 6000),
+    });
+
+    await expect(provider.embedQuery('live respawn lock')).resolves.toHaveLength(3);
+  });
+
+  it('keeps retrying ENOENT while a live model-server pid can bind the socket', async () => {
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    writeFileSync(path.join(socketDir, 'hf-embed.pid'), JSON.stringify({
+      pid: process.pid,
+      startedAt: new Date(clock.now).toISOString(),
+      ownerLauncher: 'test',
+      socketPath: path.join(socketDir, 'hf-embed.sock'),
+    }));
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, clock.now + 6000),
+    });
+
+    await expect(provider.embedQuery('live model server')).resolves.toHaveLength(3);
+  });
+
+  it('fails fast when the owner heartbeat is expired and lock and pid owners are dead', async () => {
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    writeFileSync(path.join(socketDir, '.spec-memory-owner.json'), JSON.stringify({
+      ownerPid: process.pid,
+      lastHeartbeatIso: new Date(clock.now - 120_000).toISOString(),
+      ttlMs: 1000,
+    }));
+    writeFileSync(path.join(socketDir, 'hf-embed-respawn.lock'), JSON.stringify({ pid: DEAD_PID }));
+    writeFileSync(path.join(socketDir, 'hf-embed.pid'), String(DEAD_PID));
+    const startedAt = clock.now;
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 20_000,
+      request: readinessTransport(clock, null),
+    });
+
+    await expect(provider.embedQuery('stale authority')).rejects.toThrow(/not retrying/);
+    expect(clock.now - startedAt).toBeGreaterThanOrEqual(5000);
+    expect(clock.now - startedAt).toBeLessThan(7000);
+  });
+
+  it('retains the normal readiness timeout for TCP targets returning ENOENT', async () => {
+    const socketDir = useSocketFixture();
+    const clock = useVirtualReadinessClock();
+    process.env.HF_EMBED_SERVER_URL = 'tcp://127.0.0.1:65535';
+    writeFileSync(path.join(socketDir, '.spec-memory-owner.json'), '{}');
+    const startedAt = clock.now;
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 7000,
+      request: readinessTransport(clock, null),
+    });
+
+    await expect(provider.embedQuery('tcp timeout')).rejects.toThrow(/was unreachable after 7000ms/);
+    expect(clock.now - startedAt).toBe(7000);
   });
 
   it('adopts the server-reported embedding dimension', async () => {

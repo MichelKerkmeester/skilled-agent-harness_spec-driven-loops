@@ -32,6 +32,7 @@ CANDIDATE_AGES=()
 CANDIDATE_ETIMES=()
 CANDIDATE_RSSES=()
 CANDIDATE_COMMANDS=()
+CANDIDATE_DB_DIRS=()
 
 KILL_PIDS=()
 KILL_CLASSES=()
@@ -45,6 +46,8 @@ MIN_AGES=()
 MIN_PIDS=()
 
 SESSION_TREE_PIDS=()
+CONTEXT_SINGLETON_PIDS=()
+CONTEXT_SINGLETON_REASONS=()
 
 # ───────────────────────────────────────────────────────────────
 # 2. CLI PARSING
@@ -279,6 +282,171 @@ pid_in_list() {
   return 1
 }
 
+canonical_existing_dir() {
+  local dir="$1"
+  [[ "$dir" = /* ]] || return 1
+  (cd "$dir" 2>/dev/null && pwd -P)
+}
+
+resolve_context_server_db_dir() {
+  local pid="$1"
+  local cmd="$2"
+  local env_line token spec_dir="" legacy_dir="" memory_path="" candidate=""
+
+  env_line="$(ps eww -p "$pid" -o command= 2>/dev/null || true)"
+  for token in $env_line; do
+    case "$token" in
+      SPEC_KIT_DB_DIR=*) [[ -n "$spec_dir" ]] || spec_dir="${token#SPEC_KIT_DB_DIR=}" ;;
+      SPECKIT_DB_DIR=*) [[ -n "$legacy_dir" ]] || legacy_dir="${token#SPECKIT_DB_DIR=}" ;;
+      MEMORY_DB_PATH=*) [[ -n "$memory_path" ]] || memory_path="${token#MEMORY_DB_PATH=}" ;;
+    esac
+  done
+
+  if [[ -n "$spec_dir" ]]; then
+    candidate="$spec_dir"
+  elif [[ -n "$legacy_dir" ]]; then
+    candidate="$legacy_dir"
+  elif [[ -n "$memory_path" ]] && [[ "$memory_path" = */* ]]; then
+    candidate="${memory_path%/*}"
+  else
+    for token in $cmd; do
+      case "$token" in
+        *"/system-spec-kit/mcp_server/dist/context-server.js"*)
+          candidate="${token%%/mcp_server/dist/context-server.js*}/mcp_server/database"
+          break
+          ;;
+      esac
+    done
+  fi
+
+  canonical_existing_dir "$candidate" 2>/dev/null || printf '%s\n' "unknown"
+}
+
+candidate_db_dir_for_pid() {
+  local pid="$1"
+  local i
+  for i in "${!CANDIDATE_PIDS[@]}"; do
+    if [[ "${CANDIDATE_PIDS[$i]}" = "$pid" ]]; then
+      printf '%s\n' "${CANDIDATE_DB_DIRS[$i]}"
+      return 0
+    fi
+  done
+  printf '%s\n' "unknown"
+}
+
+has_active_maintenance_marker() {
+  local pid="$1"
+  local db_dir="$2"
+  local marker="$db_dir/.maintenance-active.json"
+  [[ -f "$marker" ]] || return 1
+
+  node -e '
+    const fs = require("node:fs");
+    try {
+      const marker = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+      const pid = Number(process.argv[2]);
+      process.exit(
+        Number.isInteger(marker.childPid) && marker.childPid > 0 &&
+        marker.childPid === pid && Number.isFinite(marker.activeUntilMs) &&
+        marker.activeUntilMs > Date.now() ? 0 : 1
+      );
+    } catch {
+      process.exit(1);
+    }
+  ' "$marker" "$pid" 2>/dev/null
+}
+
+has_confirmed_daemon_listener() {
+  local pid="$1"
+  local db_dir="$2"
+  local socket_path="$db_dir/daemon-ipc.sock"
+  local line
+
+  while IFS= read -r line; do
+    [[ "$line" = "n$socket_path" ]] && return 0
+  done <<EOF
+$(lsof -nP -a -p "$pid" -U -FfnT 2>/dev/null || true)
+EOF
+  return 1
+}
+
+daemon_socket_fd_state() {
+  local pid="$1"
+  local out rc
+
+  if out="$(lsof -nP -a -p "$pid" -U -FfnT 2>/dev/null)"; then
+    rc=0
+  else
+    rc=$?
+  fi
+  if [[ "$rc" -ne 0 ]] || [[ -z "$out" ]]; then
+    printf '%s\n' "unknown"
+  elif [[ "$out" = *daemon-ipc.sock* ]]; then
+    printf '%s\n' "held"
+  else
+    printf '%s\n' "none"
+  fi
+}
+
+has_daemon_socket_fd() {
+  [[ "$(daemon_socket_fd_state "$1")" = "held" ]]
+}
+
+context_singleton_reason_for_pid() {
+  local pid="$1"
+  local i
+  for i in "${!CONTEXT_SINGLETON_PIDS[@]}"; do
+    if [[ "${CONTEXT_SINGLETON_PIDS[$i]}" = "$pid" ]]; then
+      printf '%s\n' "${CONTEXT_SINGLETON_REASONS[$i]}"
+      return 0
+    fi
+  done
+  return 1
+}
+
+build_context_singleton_decisions() {
+  local i j db_dir group_count listener_count listener_pid reason
+  CONTEXT_SINGLETON_PIDS=()
+  CONTEXT_SINGLETON_REASONS=()
+
+  for i in "${!CANDIDATE_PIDS[@]}"; do
+    [[ "${CANDIDATE_CLASSES[$i]}" = "spec-memory-context-server" ]] || continue
+    db_dir="${CANDIDATE_DB_DIRS[$i]}"
+    [[ "$db_dir" != "unknown" ]] || continue
+    context_singleton_reason_for_pid "${CANDIDATE_PIDS[$i]}" >/dev/null 2>&1 && continue
+
+    group_count=0
+    listener_count=0
+    listener_pid=""
+    for j in "${!CANDIDATE_PIDS[@]}"; do
+      [[ "${CANDIDATE_CLASSES[$j]}" = "spec-memory-context-server" ]] || continue
+      [[ "${CANDIDATE_DB_DIRS[$j]}" = "$db_dir" ]] || continue
+      group_count=$((group_count + 1))
+      if has_confirmed_daemon_listener "${CANDIDATE_PIDS[$j]}" "$db_dir"; then
+        listener_count=$((listener_count + 1))
+        listener_pid="${CANDIDATE_PIDS[$j]}"
+      fi
+    done
+    [[ "$group_count" -gt 1 ]] || continue
+
+    for j in "${!CANDIDATE_PIDS[@]}"; do
+      [[ "${CANDIDATE_CLASSES[$j]}" = "spec-memory-context-server" ]] || continue
+      [[ "${CANDIDATE_DB_DIRS[$j]}" = "$db_dir" ]] || continue
+      if [[ "$listener_count" -eq 1 ]]; then
+        if [[ "${CANDIDATE_PIDS[$j]}" = "$listener_pid" ]]; then
+          reason="same-db-singleton-listener"
+        else
+          reason="same-db-nonlistener-duplicate"
+        fi
+      else
+        reason="same-db-listener-ambiguous"
+      fi
+      CONTEXT_SINGLETON_PIDS+=("${CANDIDATE_PIDS[$j]}")
+      CONTEXT_SINGLETON_REASONS+=("$reason")
+    done
+  done
+}
+
 # ───────────────────────────────────────────────────────────────
 # 6. SESSION TREE DISCOVERY
 # ───────────────────────────────────────────────────────────────
@@ -358,6 +526,10 @@ preserve_reason() {
   local cmd="$4"
   local freshest_pid
   local freshest_age
+  local db_dir
+  local singleton_reason
+  local singleton_nonlistener=false
+  local daemon_socket_state
 
   # Operator-owned interactive/dispatch sessions across runtimes. These commands name a
   # session the operator is actively running; their MCP helpers must never be swept.
@@ -374,11 +546,54 @@ preserve_reason() {
     return 0
   fi
 
-  freshest_pid="$(freshest_pid_for_class "$class" 2>/dev/null || true)"
-  freshest_age="$(freshest_age_for_class "$class" 2>/dev/null || echo 999999)"
-  if [[ "$pid" = "$freshest_pid" ]] && [[ "$freshest_age" -lt "$AGE_MIN_SEC" ]]; then
-    printf '%s\n' "freshest-young-instance"
-    return 0
+  if [[ "$class" = "spec-memory-context-server" ]]; then
+    db_dir="$(candidate_db_dir_for_pid "$pid")"
+    if [[ "$db_dir" = "unknown" ]]; then
+      printf '%s\n' "db-dir-unresolved"
+      return 0
+    fi
+    if has_active_maintenance_marker "$pid" "$db_dir"; then
+      printf '%s\n' "maintenance-active"
+      return 0
+    fi
+    singleton_reason="$(context_singleton_reason_for_pid "$pid" 2>/dev/null || true)"
+    if [[ "$singleton_reason" = "same-db-singleton-listener" ]] ||
+       [[ "$singleton_reason" = "same-db-listener-ambiguous" ]]; then
+      printf '%s\n' "$singleton_reason"
+      return 0
+    fi
+    if [[ "$singleton_reason" = "same-db-nonlistener-duplicate" ]]; then
+      daemon_socket_state="$(daemon_socket_fd_state "$pid")"
+      case "$daemon_socket_state" in
+        held)
+          printf '%s\n' "holds-daemon-socket-preserve"
+          return 0
+          ;;
+        unknown)
+          printf '%s\n' "daemon-socket-probe-unknown-preserve"
+          return 0
+          ;;
+        none)
+          singleton_nonlistener=true
+          ;;
+      esac
+    fi
+    if [[ -z "$singleton_reason" ]]; then
+      daemon_socket_state="$(daemon_socket_fd_state "$pid")"
+      if [[ "$daemon_socket_state" != "none" ]]; then
+        printf '%s\n' "daemon-socket-listener-ambiguous"
+        return 0
+      fi
+    fi
+  fi
+
+  if [[ "$singleton_nonlistener" = false ]]; then
+    freshest_pid="$(freshest_pid_for_class "$class" 2>/dev/null || true)"
+    freshest_age="$(freshest_age_for_class "$class" 2>/dev/null || echo 999999)"
+    if [[ "$pid" = "$freshest_pid" ]] && [[ "$freshest_age" -lt "$AGE_MIN_SEC" ]]; then
+      printf '%s\n' "freshest-young-instance"
+      return 0
+    fi
   fi
 
   if has_non_mcp_listener "$pid"; then
@@ -399,7 +614,7 @@ preserve_reason() {
 # ───────────────────────────────────────────────────────────────
 
 scan_processes() {
-  local pid _ppid etime rss _stat command class age
+  local pid _ppid etime rss _stat command class age db_dir
   while read -r pid _ppid etime rss _stat command; do
     [[ -n "${pid:-}" ]] || continue
     class="$(classify_command "${command:-}" 2>/dev/null || true)"
@@ -412,6 +627,12 @@ scan_processes() {
     CANDIDATE_ETIMES+=("$etime")
     CANDIDATE_RSSES+=("$rss")
     CANDIDATE_COMMANDS+=("${command:-}")
+    if [[ "$class" = "spec-memory-context-server" ]]; then
+      db_dir="$(resolve_context_server_db_dir "$pid" "${command:-}")"
+    else
+      db_dir=""
+    fi
+    CANDIDATE_DB_DIRS+=("$db_dir")
     remember_min_for_class "$class" "$age" "$pid"
   done <<EOF
 $(ps -axo pid=,ppid=,etime=,rss=,stat=,command=)
@@ -420,6 +641,7 @@ EOF
 
 select_kill_candidates() {
   local i pid class age etime rss cmd reason
+  build_context_singleton_decisions
   for i in "${!CANDIDATE_PIDS[@]}"; do
     pid="${CANDIDATE_PIDS[$i]}"
     : "${CANDIDATE_PPIDS[$i]}"
@@ -449,7 +671,7 @@ select_kill_candidates() {
 # ───────────────────────────────────────────────────────────────
 
 terminate_candidates() {
-  local i pid class age etime rss cmd
+  local i pid class age etime rss cmd current_cmd current_class reason
   for i in "${!KILL_PIDS[@]}"; do
     pid="${KILL_PIDS[$i]}"
     class="${KILL_CLASSES[$i]}"
@@ -457,6 +679,21 @@ terminate_candidates() {
     etime="${KILL_ETIMES[$i]}"
     rss="${KILL_RSSES[$i]}"
     cmd="${KILL_COMMANDS[$i]}"
+
+    current_cmd="$(ps -p "$pid" -o command= 2>/dev/null || true)"
+    [[ -n "$current_cmd" ]] || continue
+    current_class="$(classify_command "$current_cmd" 2>/dev/null || true)"
+    if [[ "$current_class" != "$class" ]] || [[ "$current_cmd" != "$cmd" ]]; then
+      emit "action=preserve reason=pid-reclassified pid=$pid class=${current_class:-unknown} command=$current_cmd"
+      continue
+    fi
+
+    build_context_singleton_decisions
+    reason="$(preserve_reason "$pid" "$current_class" "$age" "$current_cmd" 2>/dev/null || true)"
+    if [[ -n "$reason" ]]; then
+      emit "action=preserve reason=$reason pid=$pid class=$current_class command=$current_cmd"
+      continue
+    fi
 
     log_action "action=kill signal=TERM pid=$pid class=$class rss_kb=$rss age_sec=$age etime=$etime command=$cmd"
     if [[ "$DRY_RUN" = false ]]; then
@@ -474,12 +711,27 @@ terminate_candidates() {
   for i in "${!KILL_PIDS[@]}"; do
     pid="${KILL_PIDS[$i]}"
     class="${KILL_CLASSES[$i]}"
-    if kill -0 "$pid" 2>/dev/null; then
-      emit "action=kill signal=KILL pid=$pid class=$class"
-      if ! kill -9 "$pid" 2>/dev/null; then
-        emit "action=kill-failed signal=KILL pid=$pid class=$class"
-        EXIT_CODE=1
-      fi
+    age="${KILL_AGES[$i]}"
+    cmd="${KILL_COMMANDS[$i]}"
+    current_cmd="$(ps -p "$pid" -o command= 2>/dev/null || true)"
+    [[ -n "$current_cmd" ]] || continue
+    current_class="$(classify_command "$current_cmd" 2>/dev/null || true)"
+    if [[ "$current_class" != "$class" ]] || [[ "$current_cmd" != "$cmd" ]]; then
+      emit "action=preserve reason=pid-reclassified pid=$pid class=${current_class:-unknown} command=$current_cmd"
+      continue
+    fi
+
+    build_context_singleton_decisions
+    reason="$(preserve_reason "$pid" "$current_class" "$age" "$current_cmd" 2>/dev/null || true)"
+    if [[ -n "$reason" ]]; then
+      emit "action=preserve reason=$reason pid=$pid class=$current_class command=$current_cmd"
+      continue
+    fi
+
+    emit "action=kill signal=KILL pid=$pid class=$class"
+    if ! kill -9 "$pid" 2>/dev/null; then
+      emit "action=kill-failed signal=KILL pid=$pid class=$class"
+      EXIT_CODE=1
     fi
   done
 }

@@ -221,6 +221,7 @@ describe('cross-launcher hf model server supervision', () => {
     const secondStart = await second.startDemandListener({ socketPath });
     expect(firstStart).toMatchObject({ started: true, socketPath });
     expect(secondStart).toMatchObject({ started: false, reason: 'model-server-respawn-lock-held', lockPath });
+    expect(['already-owned', 'model-server-alive', 'model-server-respawn-lock-held']).toContain(secondStart.reason);
     expect(serverHarness.listenCalls).toEqual([socketPath]);
 
     const demand = await invokeDemand(serverHarness.handlers[0]);
