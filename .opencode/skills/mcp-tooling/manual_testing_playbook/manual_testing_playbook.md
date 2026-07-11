@@ -26,10 +26,10 @@ Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (th
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|
-| MT-001 | `hub-routing/001-chrome-devtools-browser-debug.md` | `mcp-chrome-devtools` (browser/HAR/screenshot signal) |
-| MT-002 | `hub-routing/002-clickup-task-management.md` | `mcp-click-up` (ClickUp/cupt task signal) |
-| MT-003 | `hub-routing/003-figma-transport.md` | `mcp-figma` (Figma Desktop/render/export signal) |
-| MT-004 | `hub-routing/004-ambiguous-defer.md` | `defer` (no strong tool signal — router asks, does not silently default) |
+| MT-001 | `hub-routing/chrome-devtools-browser-debug.md` | `mcp-chrome-devtools` (browser/HAR/screenshot signal) |
+| MT-002 | `hub-routing/clickup-task-management.md` | `mcp-click-up` (ClickUp/cupt task signal) |
+| MT-003 | `hub-routing/figma-transport.md` | `mcp-figma` (Figma Desktop/render/export signal) |
+| MT-004 | `hub-routing/ambiguous-defer.md` | `defer` (no strong tool signal — router asks, does not silently default) |
 
 A separate, non-scored functional check: a raw "chrome devtools" query should read `.opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md` (not the hub's own thin `SKILL.md`) — verified directly during the fold-in, not part of this scored corpus.
 
