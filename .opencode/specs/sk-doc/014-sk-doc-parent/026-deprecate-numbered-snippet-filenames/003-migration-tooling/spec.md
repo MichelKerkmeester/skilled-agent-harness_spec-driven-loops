@@ -11,7 +11,7 @@ parent: "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames/003-migration-tooling"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T17:41:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase spec authored"
     next_safe_action: "Implement the rename engine + dry-run report"
@@ -32,7 +32,7 @@ _memory:
 |-------|-------|
 | **Packet** | 026/003-migration-tooling |
 | **Level** | 2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Phase** | 003 of 005 (tooling) |
 <!-- /ANCHOR:metadata -->
 
@@ -43,9 +43,10 @@ The numbered-snippet-filename deprecation touches 111 per-scenario snippet files
 them by filename. Doing this rename by hand is error-prone against two load-bearing hazards: the
 deep-improvement Lane C skill-benchmark loader (`load-playbook-scenarios.cjs`) currently gates ingestion on a
 `^\d{3}-.*\.md$` filename match, so a naive strip would silently drop scenarios from the corpus unless the
-loader is made number-agnostic first (Phase 001); and 63 of the 111 files presently encode a
-routing/holdout/negative (R/H/N) grouping in their ordinal + filename token, which must be preserved as an
-explicit `stage:` frontmatter field rather than lost with the number. This phase authors a single deterministic
+loader is made number-agnostic first (Phase 001); and the 88 files in the routing-recall / hub-routing
+categories carry a routing/holdout/negative (R/H/N) grouping (an initial estimate said 63; the live tree has 88,
+per `decision-record.md` ADR-004) that must be preserved as an explicit `stage:` frontmatter field rather than
+lost with the number. This phase authors a single deterministic
 rename engine, `denumber-snippet-filenames.mjs`, adapted from the proven `108-catalog-playbook-snippet-denumbering`
 packet's `denumber-snippets.cjs`. Unlike that script's generic per-tree walk, this engine enumerates only the
 scoped 111 in-scope files across the 9 named packets, explicitly excluding the 20 legitimate system-spec-kit
@@ -85,10 +86,10 @@ own spec-folder evidence. Phase 004 is the only place this script runs with muta
   packet path (correcting 108's stale `999-sk-doc-parent` self-exclusion, per ADR-006/ADR-008).
 - **Collision-abort**: computed rename map is checked for any two stripped names colliding within a parent
   category folder before anything is written; aborts the run if found.
-- **`stage:` frontmatter derivation + injection**: for the 63 R/H/N-structured files (the `intra-routing-recall`
-  / `hub-routing` categories that carry holdout/negative tokens), derive `stage: holdout|negative|routing` from
-  the filename's ordinal/token and stage it as a frontmatter edit in the dry-run plan (default `routing` for
-  untagged files inside those categories, per operator Decision A).
+- **`stage:` frontmatter derivation + injection**: for the 88 R/H/N-category files (the `intra-routing-recall`
+  / `hub-routing` categories; operator-amended from an initial 63 estimate, ADR-004), derive
+  `stage: holdout|negative|routing` from the filename token or category and stage it as a frontmatter edit in the
+  dry-run plan (default `routing` for untagged files inside those categories, per operator Decision A).
 - **Reference sweep**: rewrite the 3 hub-routing root-index tables (`cli-external`, `mcp-tooling`, `sk-prompt`)
   that cite the old filenames, word-boundary safe (adapted from 108's boundary-safe basename replace).
 - The dry-run report format: rename map, per-file diff, stage-injection preview, collision report, and an

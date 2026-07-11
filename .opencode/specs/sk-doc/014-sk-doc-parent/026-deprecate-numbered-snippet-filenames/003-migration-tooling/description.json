@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames/003-migration-tooling",
   "description": "Phase 003 of the numbered-snippet-filename deprecation.",
   "keywords": [
@@ -6,7 +7,7 @@
     "numbered-snippet-filename",
     "deprecation"
   ],
-  "lastUpdated": "2026-07-11T14:46:54.064Z",
+  "lastUpdated": "2026-07-11T17:17:24.945Z",
   "specId": "003",
   "folderSlug": "migration-tooling",
   "parentChain": [
@@ -15,6 +16,5 @@
     "026-deprecate-numbered-snippet-filenames"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

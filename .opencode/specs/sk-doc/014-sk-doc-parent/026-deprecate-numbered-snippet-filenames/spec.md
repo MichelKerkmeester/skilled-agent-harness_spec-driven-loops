@@ -13,7 +13,7 @@ parent: "sk-doc/014-sk-doc-parent"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T17:41:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase spec authored"
     next_safe_action: "Implement 001-loader-and-guard"
@@ -41,7 +41,7 @@ _memory:
 | **Packet** | sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames |
 | **Level** | phase parent (program Level 3) |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-11 |
 | **Owner skill** | sk-doc (owns the `create-feature-catalog` + `create-manual-testing-playbook` convention) and system-deep-loop/deep-improvement (owns the Lane C skill-benchmark loader that is load-bearing on the filename number) |
 | **Origin** | Fresh cleanup: 111 numbered per-scenario snippet filenames were re-introduced across 9 skill packets by the Smart-Routing Benchmark Program, 5+ weeks after archived packet 108 de-numbered the whole snippet-file corpus repo-wide. This packet closes the same anti-pattern again, at the filename level, and closes it with a benchmark-loader fix so it cannot silently drop corpus scenarios this time. |

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames/002-generator-alignment",
   "description": "Phase 002 of the numbered-snippet-filename deprecation.",
   "keywords": [
@@ -6,7 +7,7 @@
     "numbered-snippet-filename",
     "deprecation"
   ],
-  "lastUpdated": "2026-07-11T14:45:18.857Z",
+  "lastUpdated": "2026-07-11T17:16:59.818Z",
   "specId": "002",
   "folderSlug": "generator-alignment",
   "parentChain": [
@@ -15,6 +16,5 @@
     "026-deprecate-numbered-snippet-filenames"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

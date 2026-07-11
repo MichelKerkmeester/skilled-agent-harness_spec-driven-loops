@@ -7,12 +7,12 @@ parent: "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/026-deprecate-numbered-snippet-filenames/002-generator-alignment"
-    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_at: "2026-07-11T17:41:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase checklist authored"
-    next_safe_action: "Implement the generator fix (playbook-generator.cjs id/filename derivation)"
+    recent_action: "Generator slug-filename alignment shipped"
+    next_safe_action: "Complete"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -28,50 +28,52 @@ Every item carries a grep, dry-run, or fresh-reader evidence line.
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
-- [ ] Enumerated every `AG-NNN` id/filename use site in `playbook-generator.cjs` (not just the two known line
+- [x] Enumerated every `AG-NNN` id/filename use site in `playbook-generator.cjs` (not just the two known line
       numbers).
-- [ ] Baseline grep of the convention docs, templates, and `/create:*` generators for numbered per-feature
+- [x] Baseline grep of the convention docs, templates, and `/create:*` generators for numbered per-feature
       filename mandates recorded.
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
-- [ ] Slug derivation is deterministic and readable; no leftover ordinal-based logic in the id/filename path.
-- [ ] The `stage:` field addition does not disturb the existing `id:` identity semantics.
+- [x] Slug derivation in `playbook-generator.cjs` is deterministic and readable; no leftover ordinal-based logic
+      in the id/filename path.
+- [x] The `stage:` field addition does not disturb the existing `id:` identity semantics.
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
-- [ ] Generator dry-run produces slug filenames (evidence: sample output listing).
-- [ ] Generator output loads cleanly through the number-agnostic benchmark loader (evidence: load run,
+- [x] Generator dry-run (`node playbook-generator.cjs`) produces slug filenames (sample output listing).
+- [x] Generator output loads cleanly through the number-agnostic `load-playbook-scenarios.cjs` loader (load run,
       error-free).
-- [ ] Grep: zero surviving numbered per-feature mandate/example in the verified/edited convention surfaces.
-- [ ] `validate.sh --strict` Errors 0 on this phase folder.
+- [x] `rg '^[0-9]{3}-'` over the verified/edited convention surfaces: zero surviving numbered per-feature
+      mandate/example.
+- [x] `validate.sh --strict` Errors 0 on this phase folder.
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
-- [ ] `playbook-generator.cjs` confirmed as the only code emitter of `AG-NNN` filenames, now fixed; no other
+- [x] `playbook-generator.cjs` confirmed as the only code emitter of `AG-NNN` filenames, now fixed; no other
       generator found emitting the anti-pattern.
-- [ ] Convention docs, templates, and `/create:*` generators confirmed already compliant, or fixed if a gap was
+- [x] Convention docs, templates, and `/create:*` generators confirmed already compliant, or fixed if a gap was
       found.
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
-- [ ] No executable/config behavior changed beyond the id/filename derivation; no new file-system write outside
-      the existing staging directory.
+- [x] No executable/config behavior changed beyond the id/filename derivation in `playbook-generator.cjs`; no
+      new file-system write outside the existing staging directory.
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
-- [ ] The `stage:` field is documented as optional, default `routing`, consistent with the parent packet's
+- [x] The `stage:` field is documented as optional, default `routing`, consistent with the parent packet's
       decision record.
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
-- [ ] Edits confined to `playbook-generator.cjs` and, only if a gap was found, the affected sk-doc convention
+- [x] Edits confined to `playbook-generator.cjs` and, only if a gap was found, the affected sk-doc convention
       SKILL.md / template / generator file(s).
 <!-- /ANCHOR:file-org -->
 
