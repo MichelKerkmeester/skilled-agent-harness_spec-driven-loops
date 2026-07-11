@@ -11,14 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation/009-plugin-manual-testing-playbooks"
-    last_updated_at: "2026-07-11T13:12:24Z"
+    last_updated_at: "2026-07-11T14:07:09Z"
     last_updated_by: "spec-author"
     recent_action: "Authored and reviewer-verified 11 manual-testing-playbook scenarios, all PASS"
     next_safe_action: "None; phase 9 of 9 is complete, no successor phase"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/cli-external/manual_testing_playbook/plugins-and-hooks/"
+      - ".opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/"
+      - ".opencode/skills/sk-code/manual_testing_playbook/plugins-and-hooks/"
+      - ".opencode/skills/mcp-code-mode/manual_testing_playbook/plugins-and-hooks/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/009-plugin-manual-testing-playbooks"
@@ -67,7 +70,7 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] 12/12 changed files are markdown docs (11 scenarios + 1 index); 0/0 plugin or hook source files modified by this phase
+- [x] CHK-010 [P0] 16/16 changed files are markdown docs (11 scenarios distributed across 5 owning skills + 5 per-skill index registrations); 0/0 plugin or hook source files modified by this phase
 - [x] CHK-011 [P0] Every scenario cites the real vitest or node:test command it ran, not a hypothetical one
 - [x] CHK-012 [P1] All 11/11 scenarios use the playbook's verdict vocabulary (PASS/FAIL/SKIP/UNAUTOMATABLE), no invented in-between state
 - [x] CHK-013 [P1] Comment hygiene: 11/11 scenario files carry durable technical detail (plugin names, real file paths, command shapes), no ephemeral packet/phase ids embedded
@@ -113,7 +116,7 @@ FAILURE MODES:
 ## Documentation
 
 - [x] CHK-040 [P1] 4/4 docs synchronized for phase 9 (spec.md, plan.md, tasks.md, checklist.md)
-- [x] CHK-041 [P1] manual_testing_playbook.md registers the plugins-and-hooks/ category with a one-line description covering all 11/11 scenarios
+- [x] CHK-041 [P1] Each of the 5 owning skills' manual_testing_playbook.md registers the plugins-and-hooks/ category with a one-line description; together the 5 registrations cover all 11/11 scenarios
 - [x] CHK-042 [P2] 008-plugin-state-cleanup/spec.md phase link updated: Phase 8 of 8 -> 8 of 9, Successor None -> 009-plugin-manual-testing-playbooks
 <!-- /ANCHOR:docs -->
 
@@ -122,7 +125,7 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] All 11/11 scenario files live under manual_testing_playbook/plugins-and-hooks/, not inside this spec folder
+- [x] CHK-050 [P1] All 11/11 scenario files live under their owning skill's manual_testing_playbook/plugins-and-hooks/ directory (distributed across system-spec-kit, cli-external, system-code-graph, sk-code, mcp-code-mode), not inside this spec folder
 - [x] CHK-051 [P1] `scratch/` holds only `.gitkeep` before completion; 0 working files left behind
 <!-- /ANCHOR:file-org -->
 

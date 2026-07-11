@@ -1,5 +1,5 @@
 ---
-title: "PLG-011 -- Session Cleanup Plugin"
+title: "Session Cleanup Plugin"
 description: "Manual scenario validating the session-cleanup OpenCode plugin startup guard and teardown sweep"
 trigger_phrases:
   - "plg-001"
@@ -11,7 +11,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-011 -- Session Cleanup Plugin
+# Session Cleanup Plugin
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -288,7 +288,7 @@ to via `CLEANUP_SCRIPT = join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh')
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-011
+- Playbook ID: session-cleanup-plugin
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/session-cleanup-plugin.md
 

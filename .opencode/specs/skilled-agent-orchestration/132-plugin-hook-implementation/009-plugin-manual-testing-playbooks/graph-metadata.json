@@ -41,47 +41,44 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/cli-dispatch-audit-trail.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/code-graph-freshness-guard.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/post-edit-quality-router.md",
+      ".opencode/skills/cli-external/manual_testing_playbook/plugins-and-hooks/cli-dispatch-audit-trail.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/code-graph-freshness-guard.md",
+      ".opencode/skills/sk-code/manual_testing_playbook/plugins-and-hooks/post-edit-quality-router.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/completion-evidence-sentinel.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/mcp-route-guard.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/plugins-and-hooks/mcp-route-guard.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/speckit-completion-exposer.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/code-graph-plugin.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/code-graph-plugin.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-memory-plugin.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/dist-freshness-guard.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/session-cleanup-plugin.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/cli-external/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
       {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "cli-dispatch-audit-trail.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/cli-dispatch-audit-trail.md",
+        "path": ".opencode/skills/cli-external/manual_testing_playbook/plugins-and-hooks/cli-dispatch-audit-trail.md",
         "source": "derived"
       },
       {
         "name": "code-graph-freshness-guard.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/code-graph-freshness-guard.md",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/code-graph-freshness-guard.md",
         "source": "derived"
       },
       {
         "name": "post-edit-quality-router.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/post-edit-quality-router.md",
+        "path": ".opencode/skills/sk-code/manual_testing_playbook/plugins-and-hooks/post-edit-quality-router.md",
         "source": "derived"
       },
       {
@@ -93,7 +90,7 @@
       {
         "name": "mcp-route-guard.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/mcp-route-guard.md",
+        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/plugins-and-hooks/mcp-route-guard.md",
         "source": "derived"
       },
       {
@@ -111,7 +108,7 @@
       {
         "name": "code-graph-plugin.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/code-graph-plugin.md",
+        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/code-graph-plugin.md",
         "source": "derived"
       },
       {
@@ -130,6 +127,12 @@
         "name": "session-cleanup-plugin.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/session-cleanup-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -154,12 +157,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -203,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The plugin-and-hook implementation program (phases 001-007) shipped seven policy/logic cores with paired OpenCode plugin and Claude hook adapters, and the repo already carries four older plugins with no dedicated manual-validation scenario",
     "created_at": "2026-07-11T12:36:31Z",
-    "last_save_at": "2026-07-11T13:12:24.903Z",
+    "last_save_at": "2026-07-11T14:07:09.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:868447ae2a9fcea03eedf8093aa378fb481c7d9cf10c9e3be274f86fb5f6f0e2",
+    "source_fingerprint": "sha256:79d7c0a6d89de5bee4883687ce8b52ec1357eff9ae97b5b6f70e3aa927ddfffa",
     "source_doc_hashes": {
-      "spec.md": "80e2fb8a0bfbd231bda0bb91a3f200ad11239a22d561cdd208f33a7cfb0e0b75",
-      "plan.md": "5fba54d8cdba0c48d0f8c7ac1a26cecec322f00311abadaf3af31ffb91177acb",
-      "tasks.md": "e02adf774eb3aeda793ec1bf6a3a87a26ff5b0f3b7d6d63f246928d2a0c5d2bd",
-      "checklist.md": "68e154e6f837683ec97b57b51682a4cff96bb025b5b3d37c4d2b2c59f52da539",
-      "implementation-summary.md": "88af1e0dc6e0465d986ccde448dfe442d768db6c119f5d50bb99376d6553e2bd"
+      "spec.md": "eb92546cb1707a165dab8175936f4e6ed47eca3bdd396bf44fa1997eb11ea9ad",
+      "plan.md": "e58ffe7f6cf372bdd990c9b57216627978a964e15200431c14ef2c8de2f921e1",
+      "tasks.md": "5fae49265dec9bee7b16110988df066adb724ba7046c6ea2164fa2af29fac1e6",
+      "checklist.md": "cb6b5464929a97fd67bd9eef442a3db7dd3a9f1bdbf974c618929d2641a981b6",
+      "implementation-summary.md": "9564c1298bfb0559d6d4166618b3e767705898e839e4fbc970df7e9486716174"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "PLG-010 -- Dist Freshness Guard"
+title: "Dist Freshness Guard"
 description: "Manual validation of the mk-dist-freshness-guard OpenCode plugin dist staleness warning."
 trigger_phrases:
   - "mk-dist-freshness-guard"
@@ -9,7 +9,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-010 -- Dist Freshness Guard
+# Dist Freshness Guard
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -277,7 +277,7 @@ same shared `dist-freshness.cjs` core.
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-010
+- Playbook ID: dist-freshness-guard
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `plugins-and-hooks/dist-freshness-guard.md`
 

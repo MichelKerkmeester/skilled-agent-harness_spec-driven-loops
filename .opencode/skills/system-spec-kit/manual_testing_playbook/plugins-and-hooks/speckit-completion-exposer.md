@@ -1,5 +1,5 @@
 ---
-title: "PLG-007 -- Speckit Completion Exposer"
+title: "Speckit Completion Exposer"
 description: "Manual scenario validating mk-speckit-completion tool and Claude CLI shim parity."
 trigger_phrases:
   - "mk-speckit-completion"
@@ -10,7 +10,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-007 -- Speckit Completion Exposer
+# Speckit Completion Exposer
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -430,7 +430,7 @@ Observation (not part of the pass/fail contract, recorded for maintainers): the 
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-007
+- Playbook ID: speckit-completion-exposer
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/speckit-completion-exposer.md
 

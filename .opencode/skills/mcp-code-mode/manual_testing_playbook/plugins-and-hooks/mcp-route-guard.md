@@ -1,5 +1,5 @@
 ---
-title: "PLG-005 -- MCP Route Guard"
+title: "MCP Route Guard"
 description: "Manual scenario validating the mk-mcp-route-guard PreToolUse routing advisory guard."
 trigger_phrases:
   - "mk-mcp-route-guard"
@@ -10,7 +10,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-005 -- MCP Route Guard
+# MCP Route Guard
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -246,7 +246,7 @@ All five are internal-exempt tokens per `guardCore.INTERNAL_RAW_TOKENS`, so no n
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-005
+- Playbook ID: mcp-route-guard
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/mcp-route-guard.md
 

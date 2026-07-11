@@ -1,5 +1,5 @@
 ---
-title: "PLG-006 -- Spec Mutation Gate Enforce"
+title: "Spec Mutation Gate Enforce"
 description: "Manual scenario validating the mk-spec-gate classify/enforce surfaces and deny predicate."
 trigger_phrases:
   - "plg-001"
@@ -11,7 +11,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-006 -- Spec Mutation Gate Enforce
+# Spec Mutation Gate Enforce
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -303,7 +303,7 @@ $ grep -n "MK_SPEC_GATE_ENFORCE" .claude/settings.json
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-006
+- Playbook ID: spec-mutation-gate-enforce
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/spec-mutation-gate-enforce.md
 

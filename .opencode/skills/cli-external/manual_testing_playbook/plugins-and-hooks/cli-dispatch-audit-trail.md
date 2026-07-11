@@ -1,5 +1,5 @@
 ---
-title: "PLG-001 -- CLI Dispatch Audit Trail"
+title: "CLI Dispatch Audit Trail"
 description: "Manual scenario validating the mk-cli-dispatch-audit plugin and Claude hook twin."
 trigger_phrases:
   - "mk-cli-dispatch-audit"
@@ -9,7 +9,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-001 -- CLI Dispatch Audit Trail
+# CLI Dispatch Audit Trail
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -246,7 +246,7 @@ This is real, unmocked confirmation that the same `DISPATCH_SHAPES` regex table 
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-001
+- Playbook ID: cli-dispatch-audit-trail
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/cli-dispatch-audit-trail.md
 

@@ -11,14 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation/009-plugin-manual-testing-playbooks"
-    last_updated_at: "2026-07-11T13:12:24Z"
+    last_updated_at: "2026-07-11T14:07:09Z"
     last_updated_by: "spec-author"
     recent_action: "Authored and reviewer-verified 11 manual-testing-playbook scenarios, all PASS"
     next_safe_action: "None; phase 9 of 9 is complete, no successor phase"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/cli-external/manual_testing_playbook/plugins-and-hooks/"
+      - ".opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/"
+      - ".opencode/skills/sk-code/manual_testing_playbook/plugins-and-hooks/"
+      - ".opencode/skills/mcp-code-mode/manual_testing_playbook/plugins-and-hooks/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/009-plugin-manual-testing-playbooks"
@@ -64,24 +67,28 @@ Each scenario reads the pair's real shared core plus both adapters and runs the 
 
 ### Playbook index registration
 
-`manual_testing_playbook.md` now lists `plugins-and-hooks/` alongside every other category, with a one-line description of what it covers. The scenario runner discovers files by recursive directory listing, so this single index entry is enough to make all 11 files reachable.
+Each of the 5 owning skills' own `manual_testing_playbook.md` now lists `plugins-and-hooks/` alongside its other categories, with a one-line description of what it covers: system-spec-kit (6 scenarios), cli-external (1), system-code-graph (2), sk-code (1), and mcp-code-mode (1). Each skill's scenario runner discovers files by recursive directory listing, so one index entry per owning skill is enough to make that skill's scenarios reachable.
 
 ### Files Changed
 
-| File | Action | Purpose |
-|------|--------|---------|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/cli-dispatch-audit-trail.md` | Created | Live scenario for mk-cli-dispatch-audit |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/code-graph-freshness-guard.md` | Created | Live scenario for mk-code-graph-freshness |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/post-edit-quality-router.md` | Created | Live scenario for mk-post-edit-quality |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/completion-evidence-sentinel.md` | Created | Live scenario for mk-completion-sentinel |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/mcp-route-guard.md` | Created | Live scenario for mk-mcp-route-guard |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-mutation-gate-enforce.md` | Created | Live scenario for mk-spec-gate |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/speckit-completion-exposer.md` | Created | Live scenario for mk-speckit-completion |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/code-graph-plugin.md` | Created | Backfill scenario for mk-code-graph |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-memory-plugin.md` | Created | Backfill scenario for mk-spec-memory |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/dist-freshness-guard.md` | Created | Backfill scenario for mk-dist-freshness-guard |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/session-cleanup-plugin.md` | Created | Backfill scenario for session-cleanup |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Registered the plugins-and-hooks/ category |
+| File | Owning Skill | Action | Purpose |
+|------|--------------|--------|---------|
+| `.opencode/skills/cli-external/manual_testing_playbook/plugins-and-hooks/cli-dispatch-audit-trail.md` | cli-external | Created | Live scenario for mk-cli-dispatch-audit |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/code-graph-freshness-guard.md` | system-code-graph | Created | Live scenario for mk-code-graph-freshness |
+| `.opencode/skills/sk-code/manual_testing_playbook/plugins-and-hooks/post-edit-quality-router.md` | sk-code | Created | Live scenario for mk-post-edit-quality |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/completion-evidence-sentinel.md` | system-spec-kit | Created | Live scenario for mk-completion-sentinel |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/plugins-and-hooks/mcp-route-guard.md` | mcp-code-mode | Created | Live scenario for mk-mcp-route-guard |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-mutation-gate-enforce.md` | system-spec-kit | Created | Live scenario for mk-spec-gate |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/speckit-completion-exposer.md` | system-spec-kit | Created | Live scenario for mk-speckit-completion |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/code-graph-plugin.md` | system-code-graph | Created | Backfill scenario for mk-code-graph |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-memory-plugin.md` | system-spec-kit | Created | Backfill scenario for mk-spec-memory |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/dist-freshness-guard.md` | system-spec-kit | Created | Backfill scenario for mk-dist-freshness-guard |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/session-cleanup-plugin.md` | system-spec-kit | Created | Backfill scenario for session-cleanup |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | system-spec-kit | Modified | Registered the plugins-and-hooks/ category (6 scenarios) |
+| `.opencode/skills/cli-external/manual_testing_playbook/manual_testing_playbook.md` | cli-external | Modified | Registered the plugins-and-hooks/ category (1 scenario) |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md` | system-code-graph | Modified | Registered the plugins-and-hooks/ category (2 scenarios) |
+| `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md` | sk-code | Modified | Registered the plugins-and-hooks/ category (1 scenario) |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md` | mcp-code-mode | Modified | Registered the plugins-and-hooks/ category (1 scenario) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -102,7 +109,7 @@ A Sonnet-5 xhigh agent authored each scenario against the real plugin/hook/core 
 | Two-agent author-then-review pipeline instead of single-pass authoring | The reviewer pass is what actually caught the 6 real defects across 5 scenarios; a single author would have shipped those unnoticed |
 | Backfill the 4 pre-existing plugins into this phase instead of leaving them out | Gives the new plugins-and-hooks/ category full 11-of-11 coverage instead of a category that looks half-finished |
 | Exclude mk-skill-advisor, mk-goal, and mk-deep-loop-guard | Each already has manual-testing coverage elsewhere; a second scenario here would fork the source of truth |
-| Register the category once in the root index rather than one entry per scenario | The scenario runner already discovers files by recursive directory listing, so one category line is sufficient |
+| Register the category once per owning skill's own index rather than one entry per scenario | Each skill's scenario runner already discovers files by recursive directory listing, so one category line per owning skill is sufficient |
 <!-- /ANCHOR:decisions -->
 
 ---

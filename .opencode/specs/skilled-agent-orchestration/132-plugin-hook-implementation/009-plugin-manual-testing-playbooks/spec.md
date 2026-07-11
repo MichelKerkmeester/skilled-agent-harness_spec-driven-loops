@@ -12,14 +12,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation/009-plugin-manual-testing-playbooks"
-    last_updated_at: "2026-07-11T13:12:24Z"
+    last_updated_at: "2026-07-11T14:07:09Z"
     last_updated_by: "spec-author"
     recent_action: "Authored and reviewer-verified 11 manual-testing-playbook scenarios, all PASS"
     next_safe_action: "None; phase 9 of 9 is complete, no successor phase"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/"
-      - ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/cli-external/manual_testing_playbook/plugins-and-hooks/"
+      - ".opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/"
+      - ".opencode/skills/sk-code/manual_testing_playbook/plugins-and-hooks/"
+      - ".opencode/skills/mcp-code-mode/manual_testing_playbook/plugins-and-hooks/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/009-plugin-manual-testing-playbooks"
@@ -57,7 +60,7 @@ FAILURE MODES:
 | **Phase** | 9 of 9 |
 | **Predecessor** | 008-plugin-state-cleanup |
 | **Successor** | None |
-| **Handoff Criteria** | All 11 scenarios classify PASS with real command evidence, review pass closes real defects, playbook index registers the category |
+| **Handoff Criteria** | All 11 scenarios classify PASS with real command evidence, review pass closes real defects, each owning skill's playbook index registers the category |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -74,8 +77,8 @@ This is **Phase 9** of the Author runnable manual-testing-playbook scenarios for
 - The `manual_testing_playbook.md` operator directory and its EXECUTION POLICY contract (real commands, no mocked or stubbed results).
 
 **Deliverables**:
-- 11 runnable scenario files under `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/`, one per plugin/hook pair.
-- A registered `plugins-and-hooks/` category entry in `manual_testing_playbook.md` so the runner's recursive directory discovery picks up all 11 files automatically.
+- 11 runnable scenario files, one per plugin/hook pair, distributed across the owning skill of each pair's shared core (6 under system-spec-kit, 1 under cli-external, 2 under system-code-graph, 1 under sk-code, 1 under mcp-code-mode) - see the scenario-to-owning-skill mapping table in §3 SCOPE.
+- A registered `plugins-and-hooks/` category entry in each of the 5 owning skills' own `manual_testing_playbook.md` so each skill's recursive directory discovery picks up its own scenarios automatically.
 - An independent review pass that verified every command and expected-signal claim against the real code and fixed defects inline.
 
 **Changelog**:
@@ -100,8 +103,8 @@ Give operators one runnable, evidence-backed scenario per plugin/hook pair (11 t
 ## 3. SCOPE
 
 ### In Scope
-- Author one scenario file per plugin/hook pair (7 from this program + 4 pre-existing) under `plugins-and-hooks/`, each grounded in a real source read and an actual executed test run.
-- Register the new `plugins-and-hooks/` category in `manual_testing_playbook.md` so the recursive scenario runner discovers it.
+- Author one scenario file per plugin/hook pair (7 from this program + 4 pre-existing), each placed under the `plugins-and-hooks/` directory of the skill that owns that pair's shared core, grounded in a real source read and an actual executed test run.
+- Register the `plugins-and-hooks/` category in each owning skill's own `manual_testing_playbook.md` so that skill's recursive scenario runner discovers its own scenarios.
 - An independent review pass verifying every scenario's commands and expected signals against the real plugin/hook/core source, fixing defects inline.
 
 ### Out of Scope
@@ -111,20 +114,26 @@ Give operators one runnable, evidence-backed scenario per plugin/hook pair (11 t
 
 ### Files to Change
 
-| File Path | Change Type | Description |
-|-----------|-------------|--------------|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/cli-dispatch-audit-trail.md` | Create | Scenario for `mk-cli-dispatch-audit` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/code-graph-freshness-guard.md` | Create | Scenario for `mk-code-graph-freshness` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/post-edit-quality-router.md` | Create | Scenario for `mk-post-edit-quality` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/completion-evidence-sentinel.md` | Create | Scenario for `mk-completion-sentinel` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/mcp-route-guard.md` | Create | Scenario for `mk-mcp-route-guard` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-mutation-gate-enforce.md` | Create | Scenario for `mk-spec-gate` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/speckit-completion-exposer.md` | Create | Scenario for `mk-speckit-completion` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/code-graph-plugin.md` | Create | Backfill scenario for `mk-code-graph` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-memory-plugin.md` | Create | Backfill scenario for `mk-spec-memory` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/dist-freshness-guard.md` | Create | Backfill scenario for `mk-dist-freshness-guard` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/session-cleanup-plugin.md` | Create | Backfill scenario for `session-cleanup` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modify | Register the `plugins-and-hooks/` category |
+Scenarios are distributed across the owning skill of each plugin/hook pair's shared core, not concentrated under system-spec-kit:
+
+| File Path | Owning Skill | Change Type | Description |
+|-----------|--------------|-------------|--------------|
+| `.opencode/skills/cli-external/manual_testing_playbook/plugins-and-hooks/cli-dispatch-audit-trail.md` | cli-external | Create | Scenario for `mk-cli-dispatch-audit` |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/code-graph-freshness-guard.md` | system-code-graph | Create | Scenario for `mk-code-graph-freshness` |
+| `.opencode/skills/sk-code/manual_testing_playbook/plugins-and-hooks/post-edit-quality-router.md` | sk-code | Create | Scenario for `mk-post-edit-quality` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/completion-evidence-sentinel.md` | system-spec-kit | Create | Scenario for `mk-completion-sentinel` |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/plugins-and-hooks/mcp-route-guard.md` | mcp-code-mode | Create | Scenario for `mk-mcp-route-guard` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-mutation-gate-enforce.md` | system-spec-kit | Create | Scenario for `mk-spec-gate` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/speckit-completion-exposer.md` | system-spec-kit | Create | Scenario for `mk-speckit-completion` |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/plugins-and-hooks/code-graph-plugin.md` | system-code-graph | Create | Backfill scenario for `mk-code-graph` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/spec-memory-plugin.md` | system-spec-kit | Create | Backfill scenario for `mk-spec-memory` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/dist-freshness-guard.md` | system-spec-kit | Create | Backfill scenario for `mk-dist-freshness-guard` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/session-cleanup-plugin.md` | system-spec-kit | Create | Backfill scenario for `session-cleanup` |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | system-spec-kit | Modify | Register the `plugins-and-hooks/` category (6 scenarios) |
+| `.opencode/skills/cli-external/manual_testing_playbook/manual_testing_playbook.md` | cli-external | Modify | Register the `plugins-and-hooks/` category (1 scenario) |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md` | system-code-graph | Modify | Register the `plugins-and-hooks/` category (2 scenarios) |
+| `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md` | sk-code | Modify | Register the `plugins-and-hooks/` category (1 scenario) |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md` | mcp-code-mode | Modify | Register the `plugins-and-hooks/` category (1 scenario) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -144,7 +153,7 @@ Give operators one runnable, evidence-backed scenario per plugin/hook pair (11 t
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|----------------------|
-| REQ-004 | `manual_testing_playbook.md` registers the new `plugins-and-hooks/` category | The root playbook lists the category path and a one-line description; the recursive scenario runner discovers all 11 files without further index changes |
+| REQ-004 | Each owning skill's `manual_testing_playbook.md` registers the `plugins-and-hooks/` category for the scenarios it owns | Each of the 5 owning-skill playbooks (system-spec-kit, cli-external, system-code-graph, sk-code, mcp-code-mode) lists the category path and a one-line description; each skill's recursive scenario runner discovers its own scenarios without further index changes |
 | REQ-005 | The 3 plugins with pre-existing coverage are explicitly named as out of scope, not silently omitted | spec.md scope section names `mk-skill-advisor`, `mk-goal`, `mk-deep-loop-guard` and states why each is excluded |
 <!-- /ANCHOR:requirements -->
 
@@ -155,7 +164,7 @@ Give operators one runnable, evidence-backed scenario per plugin/hook pair (11 t
 
 - **SC-001**: All 11 scenarios classify PASS, each backed by a real command transcript rather than a mocked or stubbed one.
 - **SC-002**: The independent review pass closes every real defect it finds before the phase is marked complete; the count and location of fixes is documented, not glossed over.
-- **SC-003**: An operator can open `manual_testing_playbook.md`, follow the `plugins-and-hooks/` link, and run any of the 11 scenarios end to end with no missing preconditions.
+- **SC-003**: An operator can open any of the 5 owning skills' `manual_testing_playbook.md`, follow its `plugins-and-hooks/` link, and run that skill's scenarios end to end with no missing preconditions.
 <!-- /ANCHOR:success-criteria -->
 
 ---

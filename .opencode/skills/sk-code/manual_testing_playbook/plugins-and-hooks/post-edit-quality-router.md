@@ -1,5 +1,5 @@
 ---
-title: "PLG-003 -- Post-Edit Quality Router"
+title: "Post-Edit Quality Router"
 description: "Manual validation for the mk-post-edit-quality plugin and Claude PostToolUse hook"
 trigger_phrases:
   - "plg-001"
@@ -10,7 +10,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-003 -- Post-Edit Quality Router
+# Post-Edit Quality Router
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -352,7 +352,7 @@ directories; it made no edits to any source file.
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-003
+- Playbook ID: post-edit-quality-router
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/post-edit-quality-router.md
 

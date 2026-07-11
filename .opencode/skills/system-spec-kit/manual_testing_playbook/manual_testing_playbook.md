@@ -40,7 +40,7 @@ Canonical source artifacts:
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/context-preservation/`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/doctor-commands/`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/` — local-LLM memory substrate (query intelligence + causal graph + drift detection + cross-AI handoff + concurrent multi-AI safety)
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/` — live-validation scenarios for the OpenCode plugins and Claude hooks (dispatch audit, freshness guards, post-edit quality, completion sentinel, MCP route guard, spec mutation gate, completion exposer, code-graph, spec-memory, dist freshness, session cleanup)
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/plugins-and-hooks/` — live-validation scenarios for the system-spec-kit-owned plugins/hooks (completion sentinel, spec mutation gate, speckit completion exposer, spec-memory, dist freshness, session cleanup). Scenarios for plugins whose core lives elsewhere are hosted by their owning skill: cli-external (dispatch audit), system-code-graph (freshness guard, code-graph plugin), sk-code (post-edit quality), mcp-code-mode (MCP route guard)
 
 ---
 

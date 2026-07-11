@@ -1,5 +1,5 @@
 ---
-title: "PLG-009 -- Spec Memory OpenCode Plugin"
+title: "Spec Memory OpenCode Plugin"
 description: "Manual validation for the mk-spec-memory OpenCode plugin and warm CLI bridge."
 trigger_phrases:
   - "plg-001"
@@ -10,7 +10,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-009 -- Spec Memory OpenCode Plugin
+# Spec Memory OpenCode Plugin
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -354,7 +354,7 @@ OpenCode MCP daemon registration evidence from `opencode.json` (the standalone d
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-009
+- Playbook ID: spec-memory-plugin
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/spec-memory-plugin.md
 

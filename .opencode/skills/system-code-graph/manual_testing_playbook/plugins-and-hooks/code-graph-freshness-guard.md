@@ -1,5 +1,5 @@
 ---
-title: "PLG-002 -- Code Graph Freshness Guard"
+title: "Code Graph Freshness Guard"
 description: "Manual scenario validating the mk-code-graph-freshness plugin and hook."
 trigger_phrases:
   - "plg-001"
@@ -10,7 +10,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-002 -- Code Graph Freshness Guard
+# Code Graph Freshness Guard
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -302,7 +302,7 @@ Note: writing this very scenario file would not itself trigger the guard even wi
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-002
+- Playbook ID: code-graph-freshness-guard
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/code-graph-freshness-guard.md
 

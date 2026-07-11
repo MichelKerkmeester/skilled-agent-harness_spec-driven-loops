@@ -17,7 +17,7 @@ This playbook validates the code graph runtime at `.opencode/skills/system-code-
 
 ## 1. OVERVIEW
 
-The playbook contains 26 scenarios across 8 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes.
+The playbook contains 28 scenarios across 9 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -29,6 +29,7 @@ The playbook contains 26 scenarios across 8 groups. It targets the current reali
 | MCP tool surface | [mcp-tool-surface](./mcp-tool-surface/) |
 | Doctor code graph | [doctor-code-graph](./doctor-code-graph/) |
 | Post-rename infrastructure | [post-rename-infrastructure](./post-rename-infrastructure/) |
+| Plugins and hooks | [plugins-and-hooks](./plugins-and-hooks/) |
 
 ## 2. GLOBAL PRECONDITIONS
 
@@ -144,10 +145,19 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 15. PLUGINS AND HOOKS
+
+| ID | Scenario | File |
+| --- | --- | --- |
+| code-graph-freshness-guard | Code Graph Freshness Guard | [code-graph-freshness-guard.md](./plugins-and-hooks/code-graph-freshness-guard.md) |
+| code-graph-plugin | Code Graph OpenCode Plugin | [code-graph-plugin.md](./plugins-and-hooks/code-graph-plugin.md) |
+
+---
+
+## 16. AUTOMATED TEST CROSS-REFERENCE
 
 Automated coverage lives in the code_graph runtime tests and build checks. Use this section as the manual-to-automated trace point when recording evidence for release review.
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 Each scenario maps to the runtime catalog at [../feature_catalog/feature_catalog.md](../feature_catalog/feature_catalog.md).

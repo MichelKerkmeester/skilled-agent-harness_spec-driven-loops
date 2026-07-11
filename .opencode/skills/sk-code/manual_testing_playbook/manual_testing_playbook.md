@@ -25,12 +25,13 @@ Canonical package artifacts:
 - `cross-stack-routing/`
 - `design-restraint/`
 - `tooling-and-hooks/`
+- `plugins-and-hooks/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 30 deterministic scenarios across 9 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 31 deterministic scenarios across 10 categories validating the `sk-code` skill surface. Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
 - WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
@@ -44,6 +45,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 - Cross-stack routing checks: Webflow plus Motion.dev, non-Webflow Motion.dev, OpenCode plus Motion.dev, decision-matrix use, snippet reuse, CWV dual loading, and reduced-motion guidance.
 - Design restraint scenarios (added 2026-06-13, v3.4.0.0): the pre-write Design Restraint Ladder rung selection, the implementer anti-stall rule, the `ceiling:` intentional-simplification convention, and the STACK_FOLDERS-to-disk validator.
 - Tooling and hooks: the shared `claude-posttooluse.sh` PostToolUse hook's two warn-only banner branches — dist-staleness wiring (`check-dist-staleness.sh`; TH-001, added 2026-07-02, v3.5.0.16) and comment-hygiene wiring (`check-comment-hygiene.sh`; TH-002, added 2026-07-07) — each a deterministic stdout/exit-code check independent of skill routing.
+- Plugins and hooks: the runtime-neutral `mk-post-edit-quality` post-edit quality router shared by the OpenCode plugin adapter (`tool.execute.before`/`tool.execute.after`/`experimental.chat.system.transform`) and the Claude Code `PostToolUse(Write|Edit)` hook (`post-edit-quality-router`, added 2026-07-11) — a live dual-runtime dispatch/checker check independent of skill routing.
 
 ### Realistic Test Model
 
@@ -302,7 +304,19 @@ Per-feature files: see `tooling-and-hooks/`.
 
 ---
 
-## 16. AUTOMATED TEST CROSS-REFERENCE
+## 16. PLUGINS AND HOOKS (`plugins-and-hooks`)
+
+This category validates the runtime-neutral `mk-post-edit-quality` post-edit quality router shared by the OpenCode plugin adapter and the Claude Code `PostToolUse` hook. Scenarios here exercise the real dispatch/router core, the real Claude hook binary, and the real OpenCode plugin module end-to-end — independent of skill-advisor routing or surface detection. IDs in this category are descriptive kebab-slugs, not numbered `{PREFIX}-NNN` ids.
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `post-edit-quality-router` | Post-Edit Quality Router | Verify the shared `mk-post-edit-quality` core dispatches identically for the OpenCode plugin and the Claude Code `PostToolUse` hook, is warn-only/fail-open, and fully silences under its kill-switch | (no orchestrator prompt — direct live invocation battery; see per-feature file) | run `node --test .opencode/plugins/tests/mk-post-edit-quality.test.cjs` → live Claude adapter invocation against a genuine ephemeral-comment fixture → live kill-switch invocation → live dynamic import of the real OpenCode plugin module → adversarial outside-project-root invocation | unit suite `# pass 38`/`# fail 0`; live Claude adapter prints `COMMENT HYGIENE WARNING` banner, exit `0`; kill-switch invocation empty stdout, exit `0`; OpenCode plugin surfaces exactly one `system` entry via `experimental.chat.system.transform` with zero terminal writes; outside-root path resolves to `[]` (no finding) | inline command output captured in the per-feature file's EVIDENCE section (unit-test tail, live adapter stdout, kill-switch stdout, OpenCode plugin JSON output, outside-root stdout) | PASS iff the unit suite is fully green AND the live Claude adapter invocation prints the banner with exit 0 AND the kill-switch and outside-root cases both produce empty output AND the live OpenCode plugin import surfaces the buffered finding with zero terminal writes | If the banner is missing, verify the fixture comment matches a `VIOLATION_PATTERN` in `check-comment-hygiene.sh`; if the kill-switch fails to suppress, verify `MK_POST_EDIT_QUALITY_DISABLED` is read by both adapters before dispatch; if outside-root still dispatches, verify `relativeSegments()` in `post-edit-router.cjs` |
+
+Per-feature files: see `plugins-and-hooks/`.
+
+---
+
+## 17. AUTOMATED TEST CROSS-REFERENCE
 
 The sk-code skill currently has these automated tests:
 
@@ -324,9 +338,11 @@ Tests NOT covered by automation (manual playbook is the only validation):
 
 **Comment-hygiene hook wiring (TH-002)**: no automated test covers `claude-posttooluse.sh`'s comment-hygiene branch (`check-comment-hygiene.sh`, see `references/universal/code_style_guide.md` §4); it is now covered by the manual scenario TH-002 (see `tooling-and-hooks/comment-hygiene-hook.md`), which exercises the warn-only banner path and the checker's rc=1-then-rc=0 contract across an in-place fix. This closes the gap previously flagged here alongside the TH-001 addition; the `check-comment-hygiene.sh` checker itself still has no dedicated automated unit test, so this manual scenario is its only coverage.
 
+**Post-edit quality router (`post-edit-quality-router`)**: the shared `mk-post-edit-quality` dispatch/router core has a real automated unit-test suite (`.opencode/plugins/tests/mk-post-edit-quality.test.cjs`, 38 tests), but the two live runtime adapters (the OpenCode plugin's actual `tool.execute.before`/`tool.execute.after`/`experimental.chat.system.transform` sequence firing inside a running OpenCode session, and the Claude Code `PostToolUse` hook firing from a real `Write`/`Edit` tool call) are only exercised by the manual scenario `plugins-and-hooks/post-edit-quality-router.md`, which additionally proves the kill-switch and outside-project-root fail-safes live, not only in the unit suite.
+
 ---
 
-## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
@@ -360,7 +376,8 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Design Restraint | DR-004 | `design-restraint/stack-folders-validator.md` | No |
 | Tooling And Hooks | TH-001 | `tooling-and-hooks/check-dist-staleness-hook.md` | No |
 | Tooling And Hooks | TH-002 | `tooling-and-hooks/comment-hygiene-hook.md` | No |
+| Plugins And Hooks | `post-edit-quality-router` | `plugins-and-hooks/post-edit-quality-router.md` | No |
 
-**Total scenarios**: 30
+**Total scenarios**: 31
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
-**Categories**: 9
+**Categories**: 10

@@ -1,5 +1,5 @@
 ---
-title: "PLG-008 -- Code Graph OpenCode Plugin"
+title: "Code Graph OpenCode Plugin"
 description: "Manual scenario validating the mk-code-graph OpenCode plugin tool and hooks."
 trigger_phrases:
   - "plg-001"
@@ -10,7 +10,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-008 -- Code Graph OpenCode Plugin
+# Code Graph OpenCode Plugin
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -287,7 +287,7 @@ Warm-daemon injection note (scope-limited SKIP for this run): no warm `mk-code-i
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-008
+- Playbook ID: code-graph-plugin
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/code-graph-plugin.md
 

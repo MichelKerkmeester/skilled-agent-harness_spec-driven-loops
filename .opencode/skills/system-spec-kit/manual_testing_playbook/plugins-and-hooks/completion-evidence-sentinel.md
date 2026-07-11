@@ -1,5 +1,5 @@
 ---
-title: "PLG-004 -- Completion Evidence Sentinel"
+title: "Completion Evidence Sentinel"
 description: "Manual scenario validating the mk-completion-sentinel plugin and Stop hook advisory flow."
 trigger_phrases:
   - "plg-001"
@@ -11,7 +11,7 @@ trigger_phrases:
 version: 1.0.0.0
 ---
 
-# PLG-004 -- Completion Evidence Sentinel
+# Completion Evidence Sentinel
 
 <!-- sk-doc-template: manual_testing_playbook -->
 
@@ -477,7 +477,7 @@ exit code: 0
 ## 6. SOURCE METADATA
 
 - Group: Plugins And Hooks
-- Playbook ID: PLG-004
+- Playbook ID: completion-evidence-sentinel
 - Canonical root source: manual_testing_playbook.md
 - Feature file path: plugins-and-hooks/completion-evidence-sentinel.md
 
