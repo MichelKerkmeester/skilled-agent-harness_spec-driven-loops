@@ -57,6 +57,24 @@ function renderReport(report) {
     lines.push('');
     lines.push(`- Scored (text executors): **${c.scored}** · routed out to browser harness: **${c.routedOut}**`);
     lines.push(`- By class — routing: ${c.routing} · advisor: ${c.advisor} · browser: ${c.browser}`);
+    if (c.holdout || c.negative) {
+      lines.push(`- By stage — holdout: ${c.holdout || 0} · negative (suppression): ${c.negative || 0}`);
+    }
+    lines.push('');
+  }
+
+  if (r.generalization) {
+    const g = r.generalization;
+    lines.push('## Generalization (fitted vs holdout)');
+    lines.push('');
+    if (!g.holdoutCount) {
+      lines.push(`- Fitted aggregate: **${g.fittedScore != null ? `${g.fittedScore}/100` : '—'}** · holdout: _none declared_ · negatives: ${g.negativeCount}`);
+    } else {
+      const gapSign = g.generalizationGap >= 0 ? '+' : '';
+      lines.push(`- Fitted (${g.fittedCount}): **${g.fittedScore}/100** · Holdout (${g.holdoutCount}): **${g.holdoutScore}/100** · Gap: **${gapSign}${g.generalizationGap}**`);
+      lines.push(`- Negatives (suppression): ${g.negativeCount}`);
+    }
+    lines.push(`- _${g.note}_`);
     lines.push('');
   }
 
@@ -122,12 +140,13 @@ function renderReport(report) {
   const rows = r.scenarioRows || [];
   if (!rows.length) lines.push('_No scenarios._');
   else {
-    lines.push('| Scenario | Class | Score | First failing stage |');
-    lines.push('| -------- | ----- | ----- | ------------------- |');
+    lines.push('| Scenario | Class | Stage | Score | First failing stage |');
+    lines.push('| -------- | ----- | ----- | ----- | ------------------- |');
     for (const s of rows) {
       const score = s.routedOut ? '_routed-out_' : (typeof s.modeAScore === 'number' ? `${s.modeAScore}/100` : '—');
-      const stage = s.routedOut ? (s.reason || 'browser harness') : (s.firstFailingStage || 'passed');
-      lines.push(`| ${s.scenarioId} | ${s.classKind || s.tier || '—'} | ${score} | ${String(stage).replace(/\|/g, '\\|')} |`);
+      const failStage = s.routedOut ? (s.reason || 'browser harness') : (s.firstFailingStage || 'passed');
+      const benchStage = s.stage || 'routing';
+      lines.push(`| ${s.scenarioId} | ${s.classKind || s.tier || '—'} | ${benchStage} | ${score} | ${String(failStage).replace(/\|/g, '\\|')} |`);
     }
   }
   lines.push('');

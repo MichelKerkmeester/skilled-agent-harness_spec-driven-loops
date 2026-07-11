@@ -177,7 +177,7 @@ async function generatePlaybook({ skillRoot, createMissing = false, author, dry 
     return { staged: [], proposalDir: null, coverage, promoteHint: 'pass createMissing:true to author staged scenarios' };
   }
   const stagingDir = path.join(skillRoot, 'manual_testing_playbook', '_generated_staging');
-  const specs = coverage.intents.map((intent, i) => ({ id: `AG-${String(i + 1).padStart(3, '0')}`, intent, negative: false }));
+  const specs = coverage.intents.map((intent, i) => ({ id: `AG-${String(i + 1).padStart(3, '0')}`, intent, negative: false, stage: 'routing' }));
   const authorFn = author || (async (spec) => ({
     prompt: `(auto stub) exercise the ${spec.intent} path for ${skillId}`,
     expectedSurface: 'UNKNOWN',
@@ -197,7 +197,7 @@ async function generatePlaybook({ skillRoot, createMissing = false, author, dry 
       suffix += 1;
     }
     usedFilenames.add(filename);
-    const md = renderScenarioMarkdown({ id: spec.id, title, prompt: a.prompt, expectedSurface: a.expectedSurface, expectedResources: a.expectedResources, negative: spec.negative });
+    const md = renderScenarioMarkdown({ id: spec.id, title, prompt: a.prompt, expectedSurface: a.expectedSurface, expectedResources: a.expectedResources, negative: spec.negative, stage: spec.stage || (spec.negative ? 'negative' : 'routing') });
     const gates = validateGenerated({ skillRoot, skillId, scenarioMd: md, prompt: a.prompt, expectedResources: a.expectedResources, stagingDir, id: spec.id });
     if (!dry) {
       fs.mkdirSync(stagingDir, { recursive: true });

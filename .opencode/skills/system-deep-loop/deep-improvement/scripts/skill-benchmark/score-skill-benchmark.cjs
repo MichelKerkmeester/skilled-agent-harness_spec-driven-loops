@@ -1125,6 +1125,12 @@ function scoreScenario(arg) {
 
   const dims = {};
   const negative = expected && expected.negativeActivation === true;
+  // Benchmark stage drives the aggregate's fitted/holdout partition. Only
+  // holdout/negative are meaningful; anything else (incl. the legacy
+  // no-scenario call shape) is fitted routing.
+  const stage = scenario && (scenario.stage === 'holdout' || scenario.stage === 'negative')
+    ? scenario.stage
+    : 'routing';
 
   // D1-intra: did the in-skill router select the expected intents + resources?
   // Live mode reports references and assets on SEPARATE channels (the model states
@@ -1220,7 +1226,7 @@ function scoreScenario(arg) {
   const liveEvidence = buildLiveEvidence(obs);
 
   return {
-    scenarioId, tier, dims, firstFailingStage: failingStage, modeAScore: score, applicable: true, recipeCapped,
+    scenarioId, tier, stage, dims, firstFailingStage: failingStage, modeAScore: score, applicable: true, recipeCapped,
     classKind: scenario ? scenario.classKind : undefined,
     expectedWorkflowMode: expected && expected.workflowMode,
     expectedSurface, observedSurface, surfaceMatch,
@@ -1293,6 +1299,19 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     const vals = rows.map(sel).filter((v) => typeof v === 'number');
     return vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
   };
+  // Benchmark stage partition. The fitted set (routing + negative) is what the
+  // skill was tuned on; holdout is the decontaminated generalization check and
+  // is kept OUT of the headline aggregate so it can neither inflate nor deflate
+  // it. When no row declares a stage (every shipped corpus today) fittedRows ===
+  // rows, so aggregateScore is byte-identical to the pre-split behavior.
+  const stageOf = (r) => (r && (r.stage === 'holdout' || r.stage === 'negative') ? r.stage : 'routing');
+  const fittedRows = rows.filter((r) => stageOf(r) !== 'holdout');
+  const holdoutRows = rows.filter((r) => stageOf(r) === 'holdout');
+  const negativeRows = rows.filter((r) => stageOf(r) === 'negative');
+  const avgOf = (subset, sel) => {
+    const vals = subset.map(sel).filter((v) => typeof v === 'number');
+    return vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
+  };
   // Per-classKind coverage. Browser scenarios are routed out of the text
   // executors; routed-out rows enter neither the funnel nor the score average.
   const coverage = { routing: 0, advisor: 0, browser: 0, routedOut: 0, scored: 0 };
@@ -1302,6 +1321,10 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     if (r.routedOut) coverage.routedOut += 1;
     else if (typeof r.modeAScore === 'number') coverage.scored += 1;
   }
+  // Stage-axis counts (orthogonal to the classKind buckets above): how many
+  // scenarios are decontaminated holdout vs adversarial suppression.
+  coverage.holdout = holdoutRows.length;
+  coverage.negative = negativeRows.length;
   // Funnel attrition: count first-failing-stage occurrences (scored rows only).
   const funnel = {};
   for (const r of rows) {
@@ -1334,7 +1357,12 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   };
 
   const d5 = connectivity.score;
-  const aggregateScore = avg((r) => r.modeAScore);
+  // Headline aggregate is the FITTED set only (holdout excluded).
+  const aggregateScore = avgOf(fittedRows, (r) => r.modeAScore);
+  const holdoutScore = avgOf(holdoutRows, (r) => r.modeAScore);
+  const generalizationGap = (aggregateScore != null && holdoutScore != null)
+    ? aggregateScore - holdoutScore
+    : null;
   // D1-inter is scored only when advisor probes ran; avg() returns null if no row
   // carried a numeric D1-inter score, so the dimension self-reports its coverage.
   const d1interAvg = avg((r) => (r.dims && r.dims.d1inter && typeof r.dims.d1inter.score === 'number'
@@ -1418,6 +1446,22 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   else if (aggregateScore >= 50) verdict = 'CONDITIONAL';
   else verdict = 'FAIL';
 
+  // Generalization / circularity block: fitted vs decontaminated-holdout scores
+  // and their gap. A large positive gap (fitted >> holdout) is the circularity
+  // signal — the skill scores well on what it was tuned against but generalizes
+  // worse. Dormant (holdout null) until a corpus declares stage:holdout fixtures.
+  const generalization = {
+    fittedScore: aggregateScore,
+    holdoutScore,
+    generalizationGap,
+    fittedCount: fittedRows.filter((r) => typeof r.modeAScore === 'number').length,
+    holdoutCount: holdoutRows.filter((r) => typeof r.modeAScore === 'number').length,
+    negativeCount: negativeRows.length,
+    note: holdoutRows.length === 0
+      ? 'no holdout-staged scenarios; fitted aggregate equals the overall score (score-preserving)'
+      : 'holdout excluded from the fitted aggregate; gap = fitted minus holdout',
+  };
+
   return {
     schemaVersion: 'skill-benchmark-report.v1',
     status: 'skill-benchmark-complete',
@@ -1427,6 +1471,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     targetSkill: { id: skillId, root: skillRoot },
     verdict,
     aggregateScore,
+    generalization,
     gate: {
       d5Score: d5,
       gateFailed,
