@@ -200,6 +200,16 @@
       "text": "Which cost and operator-friction defects dominate after route proof and unrestricted council seat startup are corrected?",
       "addedAtIteration": 4,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Which shared-runtime and command-contract tests are missing for the four cost/liveness defects found here?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -231,12 +241,18 @@
   "promotedIdeas": [],
   "suppressedIdeas": [],
   "blockedStopHistory": [],
-  "graphConvergenceScore": 0.76,
+  "graphConvergenceScore": 0.507,
   "graphDecision": "STOP_BLOCKED",
   "graphBlockers": [
     {
       "type": "source_diversity_guard",
       "description": "Source diversity (0.00) is below the blocking threshold (1.5). STOP is blocked until diverse sources cover key questions.",
+      "count": 1,
+      "severity": "blocking"
+    },
+    {
+      "type": "unverified_claims",
+      "description": "1 claim(s) remain unverified",
       "count": 1,
       "severity": "blocking"
     }
@@ -253,17 +269,17 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 4,
+    "iterationsCompleted": 5,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 15,
+    "carriedForwardOpenQuestions": 17,
     "keyFindings": 0,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.78,
+    "convergenceScore": 0.88,
     "coverageBySources": {
       "other": 10
     },

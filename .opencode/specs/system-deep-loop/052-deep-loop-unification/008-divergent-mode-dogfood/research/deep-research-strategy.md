@@ -123,6 +123,8 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 - How do deep-improvement candidate prompts and reducer boundaries compare with the review and council failure patterns? (iteration 4)
 - Should the seat executor schema distinguish executor family, effective primary agent, requested council mode, seat id, lens, and model as separate fields? (iteration 4)
 - Which cost and operator-friction defects dominate after route proof and unrestricted council seat startup are corrected? (iteration 4)
+- Which shared-runtime and command-contract tests are missing for the four cost/liveness defects found here? (iteration 5)
+- Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model? (iteration 5)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -130,7 +132,7 @@ Convergence per configured thresholds (divergent mode active — legal STOP trig
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Which cost and operator-friction defects dominate after route proof and unrestricted council seat startup are corrected?
+Should the council seat executor schema separate executor family, effective primary agent, requested mode, seat id, lens, and model?
 
 <!-- /ANCHOR:next-focus -->
 
