@@ -1,0 +1,112 @@
+{
+  "run_id": "1783743995827-g7k8yl",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/skilled-agent-orchestration/133-plugin-hook-opportunities",
+  "base_artifact_dir": ".opencode/specs/skilled-agent-orchestration/133-plugin-hook-opportunities/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm52",
+      "state_log": ".opencode/specs/skilled-agent-orchestration/133-plugin-hook-opportunities/research/lineages/glm52/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-11T04:26:35.831Z",
+        "end_at_iso": "2026-07-11T04:39:49.003Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 6,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-07-11T06:35:00Z",
+          "deltaMs": 6790997
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-07-11T06:42:00Z",
+          "deltaMs": 7210997
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-11T06:50:00Z",
+          "deltaMs": 7690997
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-11T06:58:00Z",
+          "deltaMs": 8170997
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-11T07:05:00Z",
+          "deltaMs": 8590997
+        }
+      ]
+    },
+    {
+      "label": "gptsol",
+      "state_log": ".opencode/specs/skilled-agent-orchestration/133-plugin-hook-opportunities/research/lineages/gptsol/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-07-11T04:26:35.834Z",
+        "end_at_iso": "2026-07-11T04:41:48.407Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 4,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-07-11T04:50:00Z",
+          "deltaMs": 371593
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-07-11T04:51:00Z",
+          "deltaMs": 431593
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-07-11T04:51:00Z",
+          "deltaMs": 431593
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-07-11T04:54:00Z",
+          "deltaMs": 611593
+        }
+      ]
+    }
+  ]
+}

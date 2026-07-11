@@ -1,0 +1,1 @@
+{"type":"iteration","run":2,"status":"complete","focus":"sk-doc, sk-prompt, sk-design hook/plugin candidates","findingsCount":5,"newInfoRatio":0.8,"noveltyJustification":"All 5 candidates are net-new, but the PostToolUse-on-scripts pattern is now established","timestamp":"2026-07-11T06:42:00Z","durationMs":420000}
