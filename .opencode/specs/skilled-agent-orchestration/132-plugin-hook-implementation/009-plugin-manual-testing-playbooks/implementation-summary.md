@@ -11,9 +11,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/132-plugin-hook-implementation/009-plugin-manual-testing-playbooks"
-    last_updated_at: "2026-07-11T17:04:41Z"
+    last_updated_at: "2026-07-11T19:09:27Z"
     last_updated_by: "cross-model-validation"
-    recent_action: "Cross-model validated 11 scenarios and fixed 4 harness defects, all re-confirmed PASS"
+    recent_action: "Second-model GPT-5.6-terra-fast confirmed all 11 scenarios PASS after the 4 harness fixes"
     next_safe_action: "None; phase 9 of 9 is complete, no successor phase"
     blockers: []
     key_files:
@@ -142,6 +142,8 @@ Every one of the 11 scenarios was then independently re-executed by an external 
 | spec-memory-plugin | A cleanup step deleted the live-check fixture before a later step re-ran it | Move the single teardown to after the final step that uses the fixture |
 
 After the fixes, all 4 were re-confirmed PASS by two independent operators (GPT-5.6-sol-fast and Sonnet), each running the corrected commands under the same leaky operator environment (`AI_SESSION_CHILD=1 MK_SPEC_GATE_ENFORCE=0`) the defects were originally exposed under.
+
+A second external model, GPT-5.6-terra-fast (`--variant medium`), was then run over all 11 scenarios and confirmed 11/11 PASS. On its first pass terra doc-halted at the repo's Gate-3 spec-folder question on 3 of the 11 (`speckit-completion-exposer`, `code-graph-plugin`, `mcp-route-guard`), asking an A-E routing question instead of running the read-only test; GPT-5.6-sol-fast at higher reasoning had halted on none. Re-dispatching those 3 with an explicit read-only / no-Gate-3 preamble cleared the halt and all three passed. This is a known GPT behavior (the model obeying the Gate-3 documentation rule literally), surfaced more readily at the lower reasoning tier; it is not a plugin or scenario defect.
 <!-- /ANCHOR:verification -->
 
 ---
