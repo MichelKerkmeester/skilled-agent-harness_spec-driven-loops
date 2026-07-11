@@ -34,7 +34,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - [x] D1 Correctness, Logic errors, off-by-one, wrong return types, broken invariants
 - [x] D2 Security, Injection, auth bypass, secrets exposure, unsafe deserialization
 - [x] D3 Traceability, Spec/code alignment, checklist evidence, cross-reference integrity
-- [ ] D4 Maintainability, Patterns, clarity, documentation quality, safe follow-on change cost
+- [x] D4 Maintainability, Patterns, clarity, documentation quality, safe follow-on change cost
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -63,6 +63,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 | Correctness | CONDITIONAL | 1 | Two P1 gate defects: state/delta canonical parity and narrative verdict placement. |
 | Security | CONDITIONAL | 2 | Two P1 control defects: cross-process receipt authentication and disconnected workspace permissions enforcement. |
 | Traceability | CONDITIONAL | 3 | One P1 cross-consumer contract split across both runtime agents, the active workflow, and the playbook; checklist evidence deferred to stabilization. |
+| Maintainability | CONDITIONAL | 4 | Two P1 generated-contract ownership failures: an inert review taxonomy renderer contract and stale runtime command-contract injection. |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -70,9 +71,9 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 ## 7. RUNNING FINDINGS
 <!-- MACHINE-OWNED: START -->
 - **P0 (Critical):** 0 active
-- **P1 (Major):** 5 active
+- **P1 (Major):** 7 active
 - **P2 (Minor):** 0 active
-- **Delta this iteration:** +0 P0, +1 P1, +0 P2
+- **Delta this iteration:** +0 P0, +2 P1, +0 P2
 
 [Findings are tracked in `deep-review-findings-registry.json`. This section provides a running count summary updated after each iteration.]
 <!-- MACHINE-OWNED: END -->
@@ -83,6 +84,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 1: Risk-ordering the shared validation and divergent-pivot boundaries exposed two cross-consumer correctness defects while ruling out quorum, blocker-veto, and durable-replay hypotheses.
 - Iteration 2: Cross-process receipt replay and production-call-site search exposed two security-control defects while ruling out shell interpolation and child key disclosure.
 - Iteration 3: Cross-runtime contract comparison exposed one shared artifact/state mismatch and showed that the playbook repeats two incompatible definitions of the iteration outputs.
+- Iteration 4: Generated-ownership tracing exposed one declarative-only renderer contract and one live stale compiled-contract path; digest replay and the focused drift test supplied executable evidence.
 
 ---
 
@@ -90,6 +92,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 - Iteration 1: Code graph coverage was unavailable for this bounded slice; exact search and direct source/test reads provided the evidence instead.
 - Iteration 2: Code graph remained empty; graphless exact search, direct reads, and a live receipt replay supplied evidence.
 - Iteration 3: Code graph remained unavailable; exact cross-runtime search supplied contract evidence. Packet checklist evidence was deferred to a stabilization traceability pass.
+- Iteration 4: Code graph remained absent; exact search, digest replay, byte comparison, and the focused drift gate supplied graphless fallback evidence.
 
 ---
 
@@ -113,7 +116,7 @@ Review target: `.opencode/skills/system-deep-loop` (type: skill). Scope: SKILL.m
 
 ## 12. NEXT FOCUS
 <!-- MACHINE-OWNED: START -->
-Iteration 4: maintainability review, followed by a stabilization traceability pass for deferred packet checklist evidence before legal STOP.
+Iteration 5: stabilization traceability pass for deferred packet checklist evidence and iteration-3 typed adjudication recovery before legal STOP.
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -160,6 +163,10 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 | `.opencode/agents/deep-review.md` | traceability | 3 | R3-P1-001 | reviewed |
 | `.claude/agents/deep-review.md` | traceability | 3 | R3-P1-001 | reviewed |
 | `deep-review/manual_testing_playbook/manual_testing_playbook.md` | traceability | 3 | R3-P1-001 | reviewed |
+| `deep-review/assets/review_mode_contract.yaml` | maintainability | 4 | R4-P1-001 | reviewed |
+| `runtime/scripts/compile-command-contracts.cjs` | maintainability | 4 | R4-P1-002 | reviewed |
+| `runtime/scripts/render-command-contract.cjs` | maintainability | 4 | R4-P1-002 | reviewed |
+| `.opencode/commands/deep/assets/compiled/deep_review.contract.md` | maintainability | 4 | R4-P1-002 | reviewed |
 <!-- MACHINE-OWNED: END -->
 
 ---
@@ -185,7 +192,7 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 
 <!-- ANCHOR:review-dimensions -->
 ## 3. REVIEW DIMENSIONS (remaining)
-- [ ] maintainability
+[All dimensions complete]
 
 <!-- /ANCHOR:review-dimensions -->
 
@@ -194,13 +201,14 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - [x] correctness
 - [x] security
 - [x] traceability
+- [x] maintainability
 
 <!-- /ANCHOR:completed-dimensions -->
 
 <!-- ANCHOR:running-findings -->
 ## 5. RUNNING FINDINGS
 - P0 (Blockers): 0
-- P1 (Required): 5
+- P1 (Required): 7
 - P2 (Suggestions): 0
 - Resolved: 0
 
@@ -208,6 +216,16 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 
 <!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
+### `agent_cross_runtime`: not re-entered; iteration 3 owns that direction. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: `agent_cross_runtime`: not re-entered; iteration 3 owns that direction.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `agent_cross_runtime`: not re-entered; iteration 3 owns that direction.
+
+### `checklist_evidence`: deferred as previously scheduled for the stabilization traceability pass. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: `checklist_evidence`: deferred as previously scheduled for the stabilization traceability pass.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `checklist_evidence`: deferred as previously scheduled for the stabilization traceability pass.
+
 ### `checklist_evidence`: pending, not part of this security slice. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: `checklist_evidence`: pending, not part of this security slice.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -222,6 +240,21 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - What was tried: `feature_catalog_code`: fail for F009 because the catalog marks the permissions gate shipped but no production dispatch caller exists.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `feature_catalog_code`: fail for F009 because the catalog marks the permissions gate shipped but no production dispatch caller exists.
+
+### `feature_catalog_code`: not re-entered; iteration 2 owns that direction. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: `feature_catalog_code`: not re-entered; iteration 2 owns that direction.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `feature_catalog_code`: not re-entered; iteration 2 owns that direction.
+
+### `playbook_capability`: not re-entered; iteration 3 owns that direction. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: `playbook_capability`: not re-entered; iteration 3 owns that direction.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `playbook_capability`: not re-entered; iteration 3 owns that direction.
+
+### `skill_agent`: not re-entered; iteration 3 owns that direction. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: `skill_agent`: not re-entered; iteration 3 owns that direction.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `skill_agent`: not re-entered; iteration 3 owns that direction.
 
 ### `skill_agent`: partial from iteration 1; not re-entered. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: `skill_agent`: partial from iteration 1; not re-entered.
@@ -242,6 +275,16 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 - What was tried: `spec_code`: partial, compared receipt authority and write-boundary claims with the active auto workflow and runtime implementation.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: `spec_code`: partial, compared receipt authority and write-boundary claims with the active auto workflow and runtime implementation.
+
+### `spec_code`: partial. The declared review contract generation model was checked against discoverable implementation; its render/validation claims have no executable owner. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: `spec_code`: partial. The declared review contract generation model was checked against discoverable implementation; its render/validation claims have no executable owner.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: `spec_code`: partial. The declared review contract generation model was checked against discoverable implementation; its render/validation claims have no executable owner.
+
+### Code graph: unavailable (`trustState=absent`, zero nodes); exact search, direct reads, digest replay, byte comparison, and focused tests supplied graphless fallback evidence. -- BLOCKED (iteration 4, 1 attempts)
+- What was tried: Code graph: unavailable (`trustState=absent`, zero nodes); exact search, direct reads, digest replay, byte comparison, and focused tests supplied graphless fallback evidence.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Code graph: unavailable (`trustState=absent`, zero nodes); exact search, direct reads, digest replay, byte comparison, and focused tests supplied graphless fallback evidence.
 
 ### Direct receipt-key disclosure to the executor child: the secret is module-scoped and the non-native environment is allowlisted. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: Direct receipt-key disclosure to the executor child: the secret is module-scoped and the non-native environment is allowlisted.
@@ -272,6 +315,6 @@ No prior memory_context results were loaded for this fresh lineage (prior packet
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-maintainability
+[All dimensions covered]
 
 <!-- /ANCHOR:next-focus -->
