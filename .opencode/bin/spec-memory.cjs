@@ -1,14 +1,22 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Spec Memory CLI Shim                                         ║
+// ║ COMPONENT: Spec Memory CLI Shim                                          ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Runs the built daemon-backed mk-spec-memory CLI.                ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const opencodeDir = path.resolve(__dirname, '..');
 const mcpServerDir = path.join(opencodeDir, 'skills', 'system-spec-kit', 'mcp_server');
@@ -20,6 +28,10 @@ const allowStale = process.env.SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE === '1';
 const EXIT_PROTOCOL = 69;
 const EXIT_RETRYABLE = 75;
 const FRESHNESS_EXEMPT_COMMANDS = new Set(['completion']);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. ARGV AND OUTPUT HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function requestedFormat(argv) {
   for (let index = 0; index < argv.length; index += 1) {
@@ -62,6 +74,10 @@ function isFreshnessExemptArgv(argv) {
     || FRESHNESS_EXEMPT_COMMANDS.has(command);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. SHIM META COMMANDS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function readShimVersion() {
   try {
     const parsed = JSON.parse(fs.readFileSync(path.join(mcpServerDir, 'package.json'), 'utf8'));
@@ -95,6 +111,10 @@ function handleShimMetaArgv(argv) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENVIRONMENT SETUP
+// ─────────────────────────────────────────────────────────────────────────────
+
 function ensureFreshDist() {
   const result = checkPackageFreshness('system-spec-kit/mcp_server', {
     workspaceRoot: path.dirname(opencodeDir),
@@ -122,6 +142,10 @@ function ensureSocketDir() {
     fail(`spec-memory socket path exceeds the Darwin sun_path limit: ${socketPath}. Set SPECKIT_IPC_SOCKET_DIR to a shorter directory or a tcp:// endpoint.`);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 const shimArgv = process.argv.slice(2);
 handleShimMetaArgv(shimArgv);

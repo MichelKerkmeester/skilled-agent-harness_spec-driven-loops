@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/024-canon-self-enforcement",
+  "spec_folder": "sk-doc/014-sk-doc-parent/024-canon-self-enforcement",
+  "parent_id": "sk-doc/014-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "canon self-enforcement plan",
+      "014 sk-doc phase 024",
+      "parent hub advisor hardening",
+      "canon self-enforcement plan detail",
+      "014 sk-doc phase 024 plan",
+      "canon self-enforcement tasks",
+      "014 sk-doc phase 024 tasks",
+      "canon self-enforcement checklist",
+      "014 sk-doc phase 024 checklist",
+      "canon self-enforcement decisions",
+      "014 sk-doc phase 024 adr",
+      "canon self-enforcement summary"
+    ],
+    "key_topics": [
+      "canon",
+      "self-enforcement",
+      "plan",
+      "sk-doc",
+      "phase",
+      "parent",
+      "hub",
+      "advisor",
+      "hardening",
+      "detail",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".github/workflows/routing-registry-drift.yml",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "references/wu11-dead-id-sequencing.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "wu11-dead-id-sequencing.md",
+        "kind": "doc",
+        "path": "references/wu11-dead-id-sequencing.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Canon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Convert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Work Units",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Canon is declared once in each hub's `mode-registry.json` and then hand-copied into ~12 consumer dialects that must agree but are only kept in sync by discipline",
+    "created_at": "2026-07-07T20:30:08.079Z",
+    "last_save_at": "2026-07-09T10:02:44.861Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:81db2c713ca9b3f542f6f851992a0164b0bd929ff54d0e21755edfa387f3bc49",
+    "source_doc_hashes": {
+      "spec.md": "a64d1b52ac2f332b39040980e6093f1855bbaeda7a006656d111d1756be85ef1",
+      "plan.md": "d5e6687b69f0ef3680789bb31db5711bc5c840efdda1da50e0d1db99d88d1603",
+      "tasks.md": "0de8cab653033704d5bccd95f9ffa5b55c7ea78c79c64c9891f8f4dae52e596a",
+      "checklist.md": "03cc42aac2da1e4d6594c3d87402faa0e729329f2b68299c216ae7986c58efb5",
+      "decision-record.md": "96b7a8b637a29e2054bccbf8fcb5d46bae358120fbd66558bbe5a4473534a985",
+      "implementation-summary.md": "e7426193429c39bf35d39ecba8140753dc67ec74a9e837165ee463a50693f0b1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

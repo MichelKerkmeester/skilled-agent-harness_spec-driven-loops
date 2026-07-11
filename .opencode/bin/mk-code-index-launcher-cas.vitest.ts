@@ -1,7 +1,19 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Owner Lease Stale-Reclaim CAS Tests
+// ───────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ─────────────────────────────────────────────────────────────────────────────
 
 type OwnerLease = {
   ownerPid: number;
@@ -28,6 +40,10 @@ type AcquireOwnerLeaseFile = () => {
   classification?: string;
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. TEST SUBJECT (CJS REQUIRE)
+// ─────────────────────────────────────────────────────────────────────────────
+
 const require = createRequire(import.meta.url);
 const fs = require('node:fs') as typeof import('node:fs');
 const {
@@ -44,9 +60,17 @@ const {
   staleLeaseUnchanged: (snapshot: OwnerLeaseSnapshot | null, current: OwnerLeaseSnapshot | null) => boolean;
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. TEST STATE
+// ─────────────────────────────────────────────────────────────────────────────
+
 const testDir = dirname(fileURLToPath(import.meta.url));
 
 let tempRoot: string;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. HELPER FUNCTIONS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function leaseFor(ownerPid: number, overrides: Partial<OwnerLease> = {}): OwnerLease {
   const nowIso = new Date().toISOString();
@@ -66,6 +90,10 @@ function leaseFor(ownerPid: number, overrides: Partial<OwnerLease> = {}): OwnerL
 function writeLease(lease: OwnerLease): void {
   fs.writeFileSync(ownerLeasePath(), `${JSON.stringify(lease, null, 2)}\n`, { mode: 0o600 });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. TEST SUITE
+// ─────────────────────────────────────────────────────────────────────────────
 
 describe('owner lease stale-reclaim CAS', () => {
   beforeEach(() => {

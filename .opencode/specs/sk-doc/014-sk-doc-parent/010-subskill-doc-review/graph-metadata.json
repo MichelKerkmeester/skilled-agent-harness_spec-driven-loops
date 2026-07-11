@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/010-subskill-doc-review",
+  "spec_folder": "sk-doc/014-sk-doc-parent/010-subskill-doc-review",
+  "parent_id": "sk-doc/014-sk-doc-parent",
+  "children_ids": [
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/001-create-skill",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/002-create-readme",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/003-create-agent",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/004-create-command",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/005-create-feature-catalog",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/006-create-manual-testing-playbook",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/007-create-benchmark",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/008-create-flowchart",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/009-create-changelog",
+    "skilled-agent-orchestration/125-sk-doc-parent/010-subskill-doc-review/010-doc-quality",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/001-create-skill",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/002-create-readme",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/003-create-agent",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/004-create-command",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/005-create-feature-catalog",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/006-create-manual-testing-playbook",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/007-create-benchmark",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/008-create-flowchart",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/009-create-changelog",
+    "sk-doc/014-sk-doc-parent/010-subskill-doc-review/010-doc-quality"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc subskill doc review",
+      "125 sk-doc phase 010",
+      "sk-doc 4-iteration deep review",
+      "sk-doc packet template alignment",
+      "sk-doc subskill doc review plan",
+      "125 sk-doc phase 010 plan",
+      "sk-doc deep review swarm",
+      "sk-doc subskill doc review tasks",
+      "125 sk-doc phase 010 tasks",
+      "subskill doc review summary",
+      "125 sk-doc phase 010 summary"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "subskill",
+      "doc",
+      "review",
+      "phase",
+      "4-iteration",
+      "deep",
+      "packet",
+      "template",
+      "alignment",
+      "plan",
+      "swarm"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `creation.md` reference dissection split each sk-doc packet's authoring doctrine into its own creation-guideline reference (`skillcreation.md`, `readmecreation.md`, `agentcreation.md`, `commandcreation.md`, `featurecatalogcreation.md`, `manualtestingplaybookcreation.md`, `benchmarkcreation.md`, `flowchartcreation.md`, `changelogcreation.md`, plus `doc-quality`'s `workflows.md`/`optimization.md`)",
+    "created_at": "2026-07-07T04:51:44.516Z",
+    "last_save_at": "2026-07-09T10:02:44.727Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:82ead99f18491b29f746ef0a7fd10768ae72ffb2b663c57d82d158048a4c657b",
+    "source_doc_hashes": {
+      "spec.md": "1bd959b98da06a7d9373a6bc85f6c00ac04223284935006721df1458e4e7d04a",
+      "plan.md": "30683e5b0bb0fefa97610cc0efbd37198ed874f710086c587f771b1d8b190008",
+      "tasks.md": "8be6f2012be524d15bc31f5ea873f15291fe7c2c82e740ea98a3662608760e38",
+      "implementation-summary.md": "6811a7af5abafc0c3dbe1aba43e0c5ec7b0c82b834b22cd77f23408a4f589040"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

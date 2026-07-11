@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-#
-# worktree-guard.sh — detect-and-warn guard for AI SessionStart hook chains.
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Worktree Guard
+# ───────────────────────────────────────────────────────────────
+# Detect-and-warn guard for AI SessionStart hook chains.
 #
 # Companion to worktree-session.sh. A SessionStart hook cannot relocate an
 # already-started process into a worktree, but it CAN warn the operator when a
@@ -22,14 +24,14 @@ set -euo pipefail
 # Orchestrated children are expected to share the parent's tree — never warn for them.
 [ "${AI_SESSION_CHILD:-}" = "1" ] && exit 0
 
-git_dir="$(git rev-parse --git-dir 2>/dev/null || true)"
-common_dir="$(git rev-parse --git-common-dir 2>/dev/null || true)"
+GUARD_GIT_DIR="$(git rev-parse --git-dir 2>/dev/null || true)"
+GUARD_GIT_COMMON_DIR="$(git rev-parse --git-common-dir 2>/dev/null || true)"
 
 # Not a git repo: nothing to guard.
-[ -z "$git_dir" ] && exit 0
+[ -z "$GUARD_GIT_DIR" ] && exit 0
 
 # Inside a linked worktree => already isolated, no warning.
-if [ -n "$git_dir" ] && [ -n "$common_dir" ] && [ "$git_dir" != "$common_dir" ]; then
+if [ -n "$GUARD_GIT_DIR" ] && [ -n "$GUARD_GIT_COMMON_DIR" ] && [ "$GUARD_GIT_DIR" != "$GUARD_GIT_COMMON_DIR" ]; then
   exit 0
 fi
 

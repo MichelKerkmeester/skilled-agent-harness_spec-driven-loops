@@ -1,0 +1,30 @@
+{
+  "level": 1,
+  "specFolder": "sk-doc/014-sk-doc-parent/021-flatten-asset-subfolders",
+  "description": "Six sk-doc packets wrap their templates in a redundant single subfolder whose name just repeats the packet domain — e.g",
+  "keywords": [
+    "six",
+    "sk-doc",
+    "packets",
+    "wrap",
+    "templates",
+    "redundant",
+    "single",
+    "subfolder",
+    "whose",
+    "name",
+    "just",
+    "repeats",
+    "packet",
+    "domain"
+  ],
+  "lastUpdated": "2026-07-08T05:23:49.313Z",
+  "specId": "021",
+  "folderSlug": "flatten-asset-subfolders",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

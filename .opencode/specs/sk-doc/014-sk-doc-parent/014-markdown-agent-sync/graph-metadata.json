@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/014-markdown-agent-sync",
+  "spec_folder": "sk-doc/014-sk-doc-parent/014-markdown-agent-sync",
+  "parent_id": "sk-doc/014-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "markdown agent sync",
+      "125 sk-doc phase 014",
+      "markdown.md sk-doc reconciliation",
+      "markdown agent sync plan",
+      "125 sk-doc phase 014 plan",
+      "markdown agent sync tasks",
+      "125 sk-doc phase 014 tasks",
+      "markdown agent sync summary",
+      "125 sk-doc phase 014 summary"
+    ],
+    "key_topics": [
+      "markdown",
+      "agent",
+      "sync",
+      "sk-doc",
+      "phase",
+      "reconciliation",
+      "plan",
+      "tasks",
+      "summary",
+      "opencode",
+      "agents",
+      "claude"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/agents/markdown.md",
+      ".claude/agents/markdown.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".opencode/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Agent Directory Resolution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dependency",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.opencode/agents/markdown.md` and `.claude/agents/markdown.md` are the two runtime mirrors of the markdown-authoring agent, and both cite `sk-doc` packet paths directly (template paths per `/create:` command, the required-reading table, and the resource inventory)",
+    "created_at": "2026-07-07T04:51:45.089Z",
+    "last_save_at": "2026-07-09T10:02:44.787Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b0d3cd86b3d1c2e72b3ac2b97225389b9b092a7d634d344dccb6c1d040375de1",
+    "source_doc_hashes": {
+      "spec.md": "dc95ffc6ba810e31f1bdaa6bc0bd7f608b95cbe869a10a7b4551ff0b89473fda",
+      "plan.md": "7c0c9b5e03aac7c02b56bef4689db497814ea4d6638c1119b2b5976959089d0d",
+      "tasks.md": "8a865d15105a0d497c5af4f5180b205d4d4a94b1474ad4a90aa1b8d5b19c4263",
+      "implementation-summary.md": "f229d100424c69acfc947e29dc4a6742c5348c8ae59b6898af10d65cf89b8ba6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

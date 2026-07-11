@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Spec-Kit Completion-State CLI Shim                           ║
+// ║ COMPONENT: Spec-Kit Completion-State CLI Shim                            ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Claude/Bash parity front door over the runtime-neutral          ║
-// ║          completion-state core. OpenCode fronts the same core with a    ║
+// ║          completion-state core. OpenCode fronts the same core with a     ║
 // ║          registered `mk_speckit_completion` tool; Claude has no plugin   ║
-// ║          tool-register surface, so this thin shim prints the identical  ║
+// ║          tool-register surface, so this thin shim prints the identical   ║
 // ║          merged JSON payload to stdout for a Bash-invoked caller. All    ║
 // ║          resolution, exec, and fail-open logic lives in the core -- this ║
-// ║          file only maps argv in and JSON out.                           ║
+// ║          file only maps argv in and JSON out.                             ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

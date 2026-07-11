@@ -1,21 +1,41 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: CLI Offline Smoke                                             ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Daemon-free list-tools + cwd-independence smoke check for the   ║
+// ║ spec-memory, code-index, and skill-advisor CLI shims.                    ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { spawnSync } = require('child_process');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const repoRoot = path.resolve(__dirname, '..', '..');
 const socketFileName = 'daemon-ipc.sock';
-const checks = [
+const DEFAULT_TIMEOUT_MS = 20_000;
+const MAX_BUFFER_BYTES = 1024 * 1024 * 10;
+const CHECKS = [
   { name: 'spec-memory', shim: path.join(__dirname, 'spec-memory.cjs'), expectedCount: 39 },
   { name: 'code-index', shim: path.join(__dirname, 'code-index.cjs'), expectedCount: 8 },
   { name: 'skill-advisor', shim: path.join(__dirname, 'skill-advisor.cjs'), expectedCount: 9 },
 ];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. ARGUMENT PARSING
+// ─────────────────────────────────────────────────────────────────────────────
+
 function parseArgs(argv) {
-  const options = { format: 'text', timeoutMs: 20_000 };
+  const options = { format: 'text', timeoutMs: DEFAULT_TIMEOUT_MS };
   for (let index = 0; index < argv.length; index += 1) {
     const value = argv[index];
     if (value === '--format') {
@@ -31,6 +51,10 @@ function parseArgs(argv) {
   }
   return options;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. SMOKE CHECK HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function classifyFreshness(exitCode, stderr) {
   if (exitCode === 69 && /dist entrypoint is (stale|missing)/i.test(stderr)) {
@@ -63,7 +87,7 @@ function spawnListTools(check, cwd, timeoutMs) {
       },
       encoding: 'utf8',
       timeout: timeoutMs,
-      maxBuffer: 1024 * 1024 * 10,
+      maxBuffer: MAX_BUFFER_BYTES,
       stdio: ['ignore', 'pipe', 'pipe'],
     });
     const payload = parseJson(result.stdout);
@@ -134,6 +158,10 @@ function runCwdIndependenceCheck(check, timeoutMs) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. OUTPUT RENDERING
+// ─────────────────────────────────────────────────────────────────────────────
+
 function renderText(payload) {
   const lines = [
     `CLI offline smoke: ${payload.status.toUpperCase()}`,
@@ -149,10 +177,14 @@ function renderText(payload) {
   return `${lines.join('\n')}\n`;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
+
 function main() {
   const options = parseArgs(process.argv.slice(2));
-  const results = checks.map((check) => runCheck(check, options.timeoutMs));
-  const cwdResults = checks.map((check) => runCwdIndependenceCheck(check, options.timeoutMs));
+  const results = CHECKS.map((check) => runCheck(check, options.timeoutMs));
+  const cwdResults = CHECKS.map((check) => runCwdIndependenceCheck(check, options.timeoutMs));
   const ok = results.every((result) => result.ok)
     && cwdResults.every((result) => result.ok);
   const payload = {

@@ -1,5 +1,17 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Code Index Launcher Owner Reclaim Tests
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 import { describe, expect, it } from 'vitest';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type OwnerReclaimInput = {
   pidAlive: boolean;
@@ -12,10 +24,18 @@ type OwnerReclaimInput = {
   heartbeatTtlMs: number;
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TEST SUBJECT (CJS REQUIRE)
+// ───────────────────────────────────────────────────────────────────
+
 const require = createRequire(import.meta.url);
 const { classifyOwnerReclaim } = require('./mk-code-index-launcher.cjs') as {
   classifyOwnerReclaim: (input: OwnerReclaimInput) => string;
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const baseInput: OwnerReclaimInput = {
   pidAlive: true,
@@ -28,9 +48,17 @@ const baseInput: OwnerReclaimInput = {
   heartbeatTtlMs: 1_000,
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPER FUNCTIONS
+// ───────────────────────────────────────────────────────────────────
+
 function reclaimInput(overrides: Partial<OwnerReclaimInput>): OwnerReclaimInput {
   return { ...baseInput, ...overrides };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. TEST SUITE
+// ───────────────────────────────────────────────────────────────────
 
 describe('classifyOwnerReclaim', () => {
   it.each([

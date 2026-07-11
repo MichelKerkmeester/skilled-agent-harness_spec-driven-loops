@@ -6,10 +6,18 @@
 
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const defaultRoot = path.resolve(__dirname, '..', '..', '..');
 const defaultOpencodeDir = path.join(defaultRoot, '.opencode');
@@ -34,6 +42,10 @@ const MODEL_SERVER_DEMAND_STATUS = 503;
 const DEFAULT_MODEL_SERVER_GIVEUP_COOLDOWN_MS = 60000;
 const DURABLE_WRITE_UNAVAILABLE_CODES = new Set(['ENOSPC', 'EDQUOT', 'EROFS']);
 const durableWriteWarnings = new Set();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. LOGGING AND VALIDATION HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function defaultLog(message) {
   process.stderr.write(`[model-server-supervision] ${message}\n`);
@@ -75,6 +87,10 @@ function cleanupTmpFile(tmpPath, fsApi = fs) {
     }
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. PROCESS TREE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseProcessRows(input) {
   if (Array.isArray(input)) {
@@ -156,6 +172,10 @@ function sampleProcessTreeRssMb(childPid, runner = defaultProcessRowsRunner) {
   const rssKb = rows.reduce((sum, row) => sum + Math.max(0, row.rss), 0);
   return rssKb / 1024;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. WATCHDOG AND CRASH-LOOP CONFIG HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function normalizeWatchdogGraceMs(rawGraceMs, warn = defaultLog, envName = 'SPECKIT_LAUNCHER_RSS_GRACE_MS') {
   const parsed = parsePositiveInteger(rawGraceMs, DEFAULT_WATCHDOG_GRACE_MS);
@@ -247,6 +267,10 @@ function getCrashLoopConfig(env = process.env) {
 function getModelServerGiveUpCooldownMs(env = process.env) {
   return parsePositiveInteger(env.SPECKIT_HF_MODEL_SERVER_GIVEUP_COOLDOWN_MS, DEFAULT_MODEL_SERVER_GIVEUP_COOLDOWN_MS);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. CHILD PROCESS LIFECYCLE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function superviseChildExit(event, actions) {
   if (event.intentional) {
@@ -411,6 +435,10 @@ function startRssWatchdog(childPid, options = {}) {
   return timer;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. SOCKET AND PATH HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function canonicalizePath(pathValue) {
   const resolvedPath = path.resolve(pathValue);
   try {
@@ -516,6 +544,10 @@ function modelServerGiveUpPath(socketPath = resolveModelServerSocketPath(), opti
   return path.join(giveUpDirPath, HF_MODEL_SERVER_GIVEUP_FILE_NAME);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. GIVE-UP COOLDOWN STATE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function writeModelServerGiveUpUntil(socketPath, giveUpUntilMs, options = {}) {
   const logger = options.log || defaultLog;
   const rel = options.rel || ((p) => p);
@@ -598,6 +630,10 @@ function readModelServerGiveUpUntil(socketPath, options = {}) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. MAINTENANCE MARKER HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 // ── Maintenance-active marker ────────────────────────────────────────────────
 // A background index scan can legitimately keep the daemon's event loop busy for
 // stretches, so a competing launcher's deep liveness probe sees an unresponsive
@@ -638,6 +674,10 @@ function shouldAdoptDespiteProbe(options = {}) {
   if (childLiveness !== 'alive') return false;
   return true;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. RESPAWN LOCK HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function isRespawnLockStale(raw, options = {}) {
   const liveness = options.liveness || processLiveness;
@@ -756,6 +796,10 @@ function releaseRespawnLockFile(lock) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 11. LEASE AND DEMAND RESPONSE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function buildLeaseObject(childPid = null, startedAt = null, modelServerPid = null, socketPath = null) {
   const payload = {
     pid: process.pid,
@@ -795,6 +839,10 @@ function unlinkModelServerSocket(socketPath) {
     if (error.code !== 'ENOENT') throw error;
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. MODEL SERVER SUPERVISOR FACTORY
+// ─────────────────────────────────────────────────────────────────────────────
 
 function createModelServerSupervisor(options = {}) {
   const state = {
@@ -961,6 +1009,10 @@ function createModelServerSupervisor(options = {}) {
     reapProcessTree,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 13. MODEL SERVER CONTROL FACTORY
+// ─────────────────────────────────────────────────────────────────────────────
 
 function createModelServerControl(deps = {}) {
   const logger = deps.log || defaultLog;
@@ -1405,6 +1457,10 @@ function createModelServerControl(deps = {}) {
     resolveSocketPath,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 14. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   SHUTDOWN_DEADLINE_MS,

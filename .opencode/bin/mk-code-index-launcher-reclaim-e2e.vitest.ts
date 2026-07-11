@@ -1,9 +1,21 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: mk-code-index Launcher Reclaim E2E Tests
+// ───────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { readFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ─────────────────────────────────────────────────────────────────────────────
 
 type OwnerLease = {
   ownerPid: number;
@@ -42,12 +54,20 @@ type ClassifyLiveOwnerReclaim = (
   leaseResult: LeaseResult,
 ) => Promise<LiveOwnerReclaimResult | null>;
 
-const envKeys = [
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const ENV_KEYS = [
   'SPECKIT_LAUNCHER_RECLAIM_DEAD_SOCKET',
   'SPECKIT_LAUNCHER_STARTUP_GRACE_MS',
   'SPECKIT_LAUNCHER_MAX_INIT_MS',
   'SPECKIT_PROBE_TIMEOUT_MS',
 ] as const;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. TEST SUBJECT (SOURCE LOAD)
+// ─────────────────────────────────────────────────────────────────────────────
 
 const testDir = dirname(fileURLToPath(import.meta.url));
 const launcherPath = join(testDir, 'mk-code-index-launcher.cjs');
@@ -81,6 +101,10 @@ function loadClassifyLiveOwnerReclaim(): ClassifyLiveOwnerReclaim {
 
 const classifyLiveOwnerReclaim = loadClassifyLiveOwnerReclaim();
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. HELPER FUNCTIONS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function isoMsAgo(ageMs: number): string {
   return new Date(Date.now() - ageMs).toISOString();
 }
@@ -111,11 +135,15 @@ function leaseResultFor(socketPath: string): LeaseResult {
   };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. TEST SUITE
+// ─────────────────────────────────────────────────────────────────────────────
+
 describe('classifyLiveOwnerReclaim dead-socket path', () => {
   const originalEnv: Record<string, string | undefined> = {};
 
   beforeEach(() => {
-    for (const key of envKeys) {
+    for (const key of ENV_KEYS) {
       originalEnv[key] = process.env[key];
     }
 
@@ -126,7 +154,7 @@ describe('classifyLiveOwnerReclaim dead-socket path', () => {
   });
 
   afterEach(() => {
-    for (const key of envKeys) {
+    for (const key of ENV_KEYS) {
       if (originalEnv[key] === undefined) {
         delete process.env[key];
       } else {

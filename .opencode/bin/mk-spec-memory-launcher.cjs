@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: mk-spec-memory Launcher                                      ║
+// ║ COMPONENT: mk-spec-memory Launcher                                       ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Prepares memory state and launches the MCP server child.        ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const http = require('http');
@@ -43,6 +47,10 @@ const {
   waitForPidExit,
 } = mss;
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. PATH CONSTANTS & ENV HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
 
@@ -77,6 +85,10 @@ function isStrictModeDisabled(value) {
   const v = String(value).trim().toLowerCase();
   return v === '0' || v === 'false' || v === 'no' || v === 'off' || v === '';
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. MODULE STATE & CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
@@ -123,6 +135,10 @@ const durableWriteWarnings = new Set();
 const EXIT_DB_LOCK_HELD = 86;
 const DB_LOCK_HELD_MAX_RETRIES = 3;
 let dbLockHeldRetries = 0;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. LOGGING HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function log(message) {
   process.stderr.write(`[mk-spec-memory-launcher] ${message}\n`);
@@ -194,6 +210,10 @@ function persistLauncherLogLine(line) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. DAEMON RE-ELECTION HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Daemon re-election (on by default; set SPECKIT_DAEMON_REELECTION=0 or off to restore kill-on-disposal).
 // When enabled the owner spawns the daemon detached and, on its own shutdown, RELEASES the daemon
 // (leaves it running for a live secondary to bridge to) instead of killing it, so a session ending does
@@ -214,6 +234,10 @@ function contextServerSpawnIo(reelectionEnabled) {
 function shouldReleaseDaemonForReelection({ enabled, hasLiveDaemon } = {}) {
   return Boolean(enabled) && Boolean(hasLiveDaemon);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. BOOTSTRAP UTILITY HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function cleanupTmpFile(tmpPath) {
   try {
@@ -258,6 +282,10 @@ function parsePositiveInteger(value, fallback) {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. IPC BRIDGE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function loadBridgeModule() {
   try {
     return require('./lib/launcher-ipc-bridge.cjs');
@@ -297,6 +325,10 @@ function bridgeStdioThroughSessionProxy(socketPath, options = {}) {
   });
   return sessionProxy.start();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. PATH & STATE FILE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
@@ -344,6 +376,10 @@ function legacyLeasePaths() {
     path.join(opencodeDir, 'skill', 'system-spec-kit', 'mcp_server', 'database', PID_FILE_NAME),
   ].map(canonicalizePath);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. LEASE & OWNERSHIP HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function readLeaseFile(filePath = leasePath()) {
   try {
@@ -656,6 +692,10 @@ function leaseResultForOwnerLease(ownerLease) {
   };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. RESPAWN LOCK HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function respawnLockPath() {
   return path.join(resolvedDbDir(), '.mk-spec-memory-respawn.lock');
 }
@@ -675,6 +715,10 @@ function acquireRespawnLockFile() {
 function acquireModelServerRespawnLockFile(socketPath = resolveModelServerSocketPath()) {
   return mss.acquireModelServerRespawnLockFile(socketPath, { dbDir: resolvedDbDir, log, rel });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 11. UNCLEAN SHUTDOWN & REAP HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
 
@@ -788,6 +832,10 @@ async function reapOwnerBeforeRespawn(ownerPid) {
   }
   return { allowed: true, reason: 'owner-reaped' };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. DEAD-SOCKET RESPAWN HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function respawnAfterDeadSocket(leaseResult, decision) {
   if (process.env.SPECKIT_BRIDGE_RESPAWN_DISABLED === '1') {
@@ -914,6 +962,10 @@ async function bridgeOrReportLeaseHeldAndExit(leaseResult) {
   return decision;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 13. LEASE WRITE & MODEL SERVER PID HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function resolveModelServerSocketPath(env = process.env, options = {}) {
   return mss.resolveModelServerSocketPath(env, {
     ...options,
@@ -998,6 +1050,10 @@ const hfControl = mss.createModelServerControl({
   writeLease: () => writeLeaseFile(),
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 14. LEASE CLEANUP & CODE-GRAPH DB HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function clearLeaseFile() {
   try {
     const lease = readLeaseFile();
@@ -1037,6 +1093,10 @@ function enforceStandaloneCodeGraphDb(actions) {
     );
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 15. BUILD & LAYOUT HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -1134,6 +1194,10 @@ function getContextServerNodeArgs() {
   log(`applying context-server V8 old-space cap: ${parsedOldSpaceMb} MB`);
   return nodeArgs;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 16. PROCESS SUPERVISION HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function waitForChildExit(child, timeoutMs) {
   if (!isChildRunning(child)) return Promise.resolve(true);
@@ -1267,6 +1331,10 @@ function createModelServerSupervisor(options = {}) {
   });
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 17. MODEL SERVER LAUNCH HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function launchModelServer(options = null) {
   if (options && typeof options === 'object') {
     return createModelServerSupervisor(options).launch();
@@ -1281,6 +1349,10 @@ function startModelServerDemandListener(options = {}) {
 function stopModelServerDemandListener() {
   return hfControl.stopDemandListener();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 18. BOOTSTRAP LOCK HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const BOOTSTRAP_LOCK_OWNER_FILE = 'owner.pid';
 
@@ -1366,6 +1438,10 @@ async function acquireBootstrapLock(options = {}) {
     }
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 19. SERVER LAUNCH & EXIT HANDLING
+// ─────────────────────────────────────────────────────────────────────────────
 
 function launchServer() {
   if (ownerLeaseRequired && !ownsOwnerLeaseFile(process.pid)) {
@@ -1511,6 +1587,10 @@ async function handleDbLockHeldChildExit() {
   process.exit(0);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 20. SIGNAL & SHUTDOWN HANDLING
+// ─────────────────────────────────────────────────────────────────────────────
+
 async function shutdownLauncherForSignal(signal) {
   if (launcherShutdownInProgress) return;
   launcherShutdownInProgress = true;
@@ -1599,6 +1679,10 @@ function installSignalHandlers() {
     throw err;
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 21. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   loadProjectEnvFiles();

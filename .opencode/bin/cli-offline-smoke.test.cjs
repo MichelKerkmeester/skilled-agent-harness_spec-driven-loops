@@ -1,12 +1,24 @@
 #!/usr/bin/env node
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const assert = require('assert');
 const path = require('path');
 const { spawnSync } = require('child_process');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. PATH SETUP
+// ─────────────────────────────────────────────────────────────────────────────
+
 const repoRoot = path.resolve(__dirname, '..', '..');
 const smokeScript = path.join(__dirname, 'cli-offline-smoke.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. SMOKE SCRIPT EXECUTION
+// ─────────────────────────────────────────────────────────────────────────────
 
 const result = spawnSync(process.execPath, [smokeScript, '--format', 'json'], {
   cwd: repoRoot,
@@ -23,6 +35,10 @@ assert.strictEqual(payload.daemonRequired, false);
 assert.strictEqual(payload.buildRequired, false);
 assert.strictEqual(payload.scanRequired, false);
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. TRANSPORT RESULT ASSERTIONS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const expected = new Map([
   ['spec-memory', 37],
   ['code-index', 8],
@@ -35,6 +51,10 @@ for (const row of payload.results) {
   assert.strictEqual(row.freshness, 'fresh', `${row.name} freshness mismatch`);
   assert.strictEqual(row.daemonFree, true, `${row.name} used a daemon socket`);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. BRIDGE CLASSIFY ASSERTIONS
+// ─────────────────────────────────────────────────────────────────────────────
 
 (async () => {
   const memoryBridge = await import('../skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs');

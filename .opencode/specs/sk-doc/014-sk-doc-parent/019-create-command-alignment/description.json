@@ -1,0 +1,27 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/014-sk-doc-parent/019-create-command-alignment",
+  "description": "Two gaps in the sk-doc `/create:` command surface: (1) three packets (`create-command`, `create-benchmark`, `create-flowchart`) had no bound command —",
+  "keywords": [
+    "two",
+    "gaps",
+    "sk-doc",
+    "command",
+    "surface",
+    "three",
+    "packets",
+    "create-command",
+    "create-benchmark",
+    "create-flowchart",
+    "bound"
+  ],
+  "lastUpdated": "2026-07-09T10:02:44.832Z",
+  "specId": "019",
+  "folderSlug": "create-command-alignment",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

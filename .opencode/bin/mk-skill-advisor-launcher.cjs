@@ -1,19 +1,31 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: mk-skill-advisor Launcher                                   ║
+// ║ COMPONENT: mk-skill-advisor Launcher                                     ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Prepares advisor state and launches the MCP server child.      ║
+// ║ PURPOSE: Prepares advisor state and launches the MCP server child.       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const mss = loadModelServerSupervisionModule();
 
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. ENV BOOTSTRAP HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function loadModelServerSupervisionModule() {
   try {
@@ -62,6 +74,10 @@ for (const fname of ['.env.local', '.env']) {
     if (n > 0) process.stderr.write(`[mk-skill-advisor-launcher] loaded ${n} env(s) from ${fname}\n`);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MODULE STATE
+// ─────────────────────────────────────────────────────────────────────────────
 
 let skillsDir = path.join(opencodeDir, 'skills');
 let kitDir = path.join(skillsDir, 'system-skill-advisor');
@@ -139,6 +155,10 @@ let ownerLeaseHeartbeatTimer = null;
 let ownerLeaseRequired = true;
 let launcherShutdownInProgress = false;
 let pendingBootstrapReapPid = null;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. LOGGING & IPC BRIDGE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function log(message) {
   process.stderr.write(`[mk-skill-advisor-launcher] ${message}\n`);
@@ -239,6 +259,10 @@ function debug(message) {
     process.stderr.write(`[mk-skill-advisor-launcher] [debug] ${message}\n`);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. PATH & LEASE FILE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function createChildEnv(sourceEnv = process.env) {
   const filtered = Object.fromEntries(
@@ -401,6 +425,10 @@ function buildOwnerLease(ownerPid = process.pid) {
   };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. PROCESS LIVENESS & REAP HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function processLiveness(pid) {
   if (!Number.isInteger(pid) || pid <= 0) return 'dead';
   try {
@@ -504,6 +532,10 @@ function readParentPid(pid) {
   const parsed = Number.parseInt(result.stdout.trim(), 10);
   return Number.isInteger(parsed) ? parsed : null;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. OWNER LEASE LIFECYCLE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function classifyOwnerLease(lease) {
   const liveness = processLiveness(lease.ownerPid);
@@ -643,6 +675,10 @@ function clearOwnerLeaseFileIfOwner(ownerPid) {
     // Idempotent cleanup.
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. LEASE REPORTING & RESPAWN HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function reportLeaseHeld(leaseResult) {
   const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
@@ -849,6 +885,10 @@ function resolveSessionProxySocketPath() {
   return getIpcSocketPath('mk-skill-advisor', { dbDir: resolvedAdvisorDbDir() });
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. LAUNCHER LEASE FILE WRITE & CLEAR HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function writeLeaseFile(childPid = childProcess?.pid ?? null) {
   const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(leasePath())), path.basename(leasePath()));
   const tmp = `${currentLeasePath}.tmp.${process.pid}`;
@@ -879,6 +919,10 @@ function clearAllLeaseFiles() {
   clearLeaseFile();
   clearOwnerLeaseFile();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 11. MODEL SERVER CONTROL
+// ─────────────────────────────────────────────────────────────────────────────
 
 function isModelServerEnabled() {
   return process.env.SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED === '1';
@@ -1030,6 +1074,10 @@ async function shutdownModelServerForLauncherExit() {
   await shutdownModelServerRoot('launcher exiting');
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. BUILD HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
     cwd: options.cwd || root,
@@ -1125,6 +1173,10 @@ function buildIfNeeded(actions) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 13. BOOTSTRAP LOCK HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const BOOTSTRAP_LOCK_OWNER_FILE = 'owner.pid';
 
 // Returns the pid recorded inside the lock dir, or null when no readable pid
@@ -1203,6 +1255,10 @@ async function acquireBootstrapLock(options = {}) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 14. SERVER LAUNCH & SIGNAL HANDLING
+// ─────────────────────────────────────────────────────────────────────────────
+
 function launchServer() {
   if (ownerLeaseRequired && !ownsOwnerLeaseFile(process.pid)) {
     log('launchServer skipped: skill-advisor owner lease is absent or owned by another launcher');
@@ -1277,6 +1333,10 @@ function installSignalHandlers() {
     throw err;
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 15. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   const started = now();
@@ -1372,6 +1432,10 @@ async function main() {
     }
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 16. TEST SUPPORT & EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function configureLauncherPathsForTesting(nextPaths) {
   if (nextPaths.skillsDir) skillsDir = nextPaths.skillsDir;

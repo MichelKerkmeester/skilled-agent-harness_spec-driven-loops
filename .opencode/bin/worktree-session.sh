@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-#
-# worktree-session.sh — launch an AI coding session in its own isolated git worktree.
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Worktree Session
+# ───────────────────────────────────────────────────────────────
+# Launch an AI coding session in its own isolated git worktree.
 #
 # A top-level (human-launched) session gets its own worktree + branch + isolated MCP
 # databases, so concurrent sessions on different runtimes never share a working tree or
@@ -31,6 +33,10 @@
 
 set -euo pipefail
 
+# ───────────────────────────────────────────────────────────────
+# 1. ARGUMENT PARSING
+# ───────────────────────────────────────────────────────────────
+
 DRY_RUN=0
 if [ "${1:-}" = "--dry-run" ]; then DRY_RUN=1; shift || true; fi
 
@@ -40,6 +46,10 @@ if [ -z "$RUNTIME" ]; then
   exit 2
 fi
 shift || true
+
+# ───────────────────────────────────────────────────────────────
+# 2. HELPER FUNCTIONS
+# ───────────────────────────────────────────────────────────────
 
 log() { echo "[worktree-session] $*" >&2; }
 
@@ -60,12 +70,22 @@ PATHS
 exec_in_place() {
   local reason="$1"
   log "child/already-isolated session ($reason) — exec'ing in place, no new worktree"
+  # A dispatched child has no user turn to answer the spec-gate's Gate-3
+  # question, so an enforce env inherited from the parent shell must never
+  # reach it -- neutralize it here as a belt-and-suspenders backstop even
+  # though the core's own evaluateMutation() already narrows deny to
+  # non-child sessions via AI_SESSION_CHILD.
+  export MK_SPEC_GATE_ENFORCE=0
   if [ "$DRY_RUN" = "1" ]; then
-    echo "DRY_RUN: would exec in place: $RUNTIME $*"
+    echo "DRY_RUN: would exec in place: $RUNTIME $* (MK_SPEC_GATE_ENFORCE=0)"
     exit 0
   fi
   exec "$RUNTIME" "$@"
 }
+
+# ───────────────────────────────────────────────────────────────
+# 3. CHILD DETECTION
+# ───────────────────────────────────────────────────────────────
 
 # --- Child detection -------------------------------------------------------
 if [ "${AI_SESSION_CHILD:-}" = "1" ]; then
@@ -82,6 +102,10 @@ if [ -n "$GIT_DIR" ] && [ -n "$GIT_COMMON_DIR" ]; then
     exec_in_place "already inside a linked worktree" "$@"
   fi
 fi
+
+# ───────────────────────────────────────────────────────────────
+# 4. WORKTREE ALLOCATION
+# ───────────────────────────────────────────────────────────────
 
 # --- Top-level session: allocate an isolated worktree ----------------------
 MAIN_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
@@ -110,6 +134,10 @@ WT_CG_DB_DIR="$WT_ABS/.opencode/skills/system-code-graph/mcp_server/database"
 # platform sun_path limit. The reaper cleans these alongside merged worktrees.
 SOCK_DIR="$HOME/.spk-wt-sock/${RUNTIME}-${SLUG}"
 
+# ───────────────────────────────────────────────────────────────
+# 5. DRY-RUN PREVIEW
+# ───────────────────────────────────────────────────────────────
+
 if [ "$DRY_RUN" = "1" ]; then
   echo "DRY_RUN PLAN"
   echo "  main_root      = $MAIN_ROOT"
@@ -126,6 +154,10 @@ if [ "$DRY_RUN" = "1" ]; then
   echo "  then: cd worktree; exec $RUNTIME $*"
   exit 0
 fi
+
+# ───────────────────────────────────────────────────────────────
+# 6. WORKTREE CREATION
+# ───────────────────────────────────────────────────────────────
 
 log "allocating worktree $WT_REL on branch $BRANCH"
 git -C "$MAIN_ROOT" worktree add -b "$BRANCH" "$WT_ABS" HEAD >&2
@@ -144,6 +176,10 @@ while IFS= read -r rel; do
   ln -s "$src" "$dst"
   log "linked $rel -> main"
 done <<< "$SHARED_RAW"
+
+# ───────────────────────────────────────────────────────────────
+# 7. SESSION LAUNCH
+# ───────────────────────────────────────────────────────────────
 
 # Per-worktree isolated MCP databases, with a short socket dir to dodge the sun_path limit.
 mkdir -p "$WT_DB_DIR" "$WT_CG_DB_DIR" "$SOCK_DIR"

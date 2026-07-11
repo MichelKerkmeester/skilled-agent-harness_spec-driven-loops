@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: HF Model Server                                                ║
+// ║ COMPONENT: HF Model Server                                               ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Local HTTP/UDS embedding server for HuggingFace transformers      ║
+// ║ PURPOSE: Local HTTP/UDS embedding server for HuggingFace transformers    ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
@@ -250,7 +250,7 @@ async function probeSocketResident(target, options = {}) {
       try {
         socket?.destroy();
       } catch {
-        // best-effort teardown
+        // Best-effort teardown
       }
       resolve(isResident);
     };

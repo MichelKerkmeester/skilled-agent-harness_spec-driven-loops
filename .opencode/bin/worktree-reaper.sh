@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-#
-# worktree-reaper.sh — prune finished per-session AI worktrees, report orphan daemons.
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Worktree Reaper
+# ───────────────────────────────────────────────────────────────
+# Prune finished per-session AI worktrees, report orphan daemons.
 #
 # Companion to worktree-session.sh. Keeps .worktrees/ and the MCP daemon population
 # bounded without ever touching a sibling's LIVE worktree.
@@ -22,6 +24,10 @@
 
 set -euo pipefail
 
+# ───────────────────────────────────────────────────────────────
+# 1. ARGUMENT PARSING
+# ───────────────────────────────────────────────────────────────
+
 DRY_RUN=0
 REAP_DAEMONS=0
 for arg in "$@"; do
@@ -32,10 +38,18 @@ for arg in "$@"; do
   esac
 done
 
+# ───────────────────────────────────────────────────────────────
+# 2. HELPER FUNCTIONS
+# ───────────────────────────────────────────────────────────────
+
 log() { echo "[worktree-reaper] $*" >&2; }
 # Run a command as an argv array (never as a re-parsed shell string) so values
 # carrying quotes/metacharacters cannot inject. Dry-run prints %q-escaped tokens.
 act() { if [ "$DRY_RUN" = "1" ]; then printf 'DRY_RUN would:'; printf ' %q' "$@"; printf '\n'; else "$@"; fi; }
+
+# ───────────────────────────────────────────────────────────────
+# 3. PATH RESOLUTION
+# ───────────────────────────────────────────────────────────────
 
 MAIN_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 if [ -z "$MAIN_ROOT" ]; then log "not in a git repo"; exit 1; fi
@@ -44,6 +58,10 @@ COMMON="$(git rev-parse --git-common-dir 2>/dev/null || true)"
 MAIN_TOPLEVEL="$(cd "$(dirname "$COMMON")" && pwd -P)"
 
 WT_BASE="$MAIN_TOPLEVEL/.worktrees"
+
+# ───────────────────────────────────────────────────────────────
+# 4. WORKTREE PRUNING
+# ───────────────────────────────────────────────────────────────
 
 log "pruning stale worktree admin entries"
 act git -C "$MAIN_TOPLEVEL" worktree prune
@@ -75,6 +93,10 @@ else
   done < <(git -C "$MAIN_TOPLEVEL" worktree list --porcelain | grep '^worktree ')
 fi
 
+# ───────────────────────────────────────────────────────────────
+# 5. ORPHAN DAEMON REPORTING
+# ───────────────────────────────────────────────────────────────
+
 # --- orphan daemon reporting (kill only with --reap-daemons) ---------------
 # A worktree daemon writes its lease under <worktree-db-dir>/.mk-spec-memory-launcher.json.
 # If that lease names a live childPid but the worktree DB dir is gone, it is orphaned.
@@ -96,6 +118,10 @@ while IFS= read -r pid; do
     log "orphan daemon (report only; use --reap-daemons to kill) pid=$pid :: $cmdline"
   fi
 done < <(pgrep -f '\.worktrees/.*context-server\.js' 2>/dev/null || true)
+
+# ───────────────────────────────────────────────────────────────
+# 6. SOCKET DIRECTORY CLEANUP
+# ───────────────────────────────────────────────────────────────
 
 # Prune short per-session socket dirs (~/.spk-wt-sock/<runtime>-<slug>) whose worktree is gone.
 SOCK_BASE="$HOME/.spk-wt-sock"

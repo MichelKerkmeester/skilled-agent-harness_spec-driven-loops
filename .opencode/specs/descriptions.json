@@ -4371,7 +4371,7 @@
       "lastUpdated": "2026-07-09T10:02:44.665Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent",
+      "specFolder": "sk-doc/014-sk-doc-parent",
       "description": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management,",
       "keywords": [
         "sk-doc",
@@ -4387,7 +4387,7 @@
       "lastUpdated": "2026-07-09T10:01:48.819Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/001-research-and-canon",
+      "specFolder": "sk-doc/014-sk-doc-parent/001-research-and-canon",
       "description": "Phase 001 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4399,7 +4399,7 @@
       "lastUpdated": "2026-07-09T10:02:44.674Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/002-architecture-decision",
+      "specFolder": "sk-doc/014-sk-doc-parent/002-architecture-decision",
       "description": "Phase 002 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4411,7 +4411,7 @@
       "lastUpdated": "2026-07-09T10:02:44.681Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/003-hub-scaffold",
+      "specFolder": "sk-doc/014-sk-doc-parent/003-hub-scaffold",
       "description": "Phase 003 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4423,7 +4423,7 @@
       "lastUpdated": "2026-07-09T10:02:44.686Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/004-shared-backbone",
+      "specFolder": "sk-doc/014-sk-doc-parent/004-shared-backbone",
       "description": "Phase 004 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4435,7 +4435,7 @@
       "lastUpdated": "2026-07-09T10:02:44.691Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/005-create-skill",
+      "specFolder": "sk-doc/014-sk-doc-parent/005-create-skill",
       "description": "Phase 005 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4447,7 +4447,7 @@
       "lastUpdated": "2026-07-09T10:02:44.696Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/006-create-readme",
+      "specFolder": "sk-doc/014-sk-doc-parent/006-create-readme",
       "description": "Phase 006 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4459,7 +4459,7 @@
       "lastUpdated": "2026-07-09T10:02:44.700Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/007-create-agent",
+      "specFolder": "sk-doc/014-sk-doc-parent/007-create-agent",
       "description": "Phase 007 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4471,7 +4471,7 @@
       "lastUpdated": "2026-07-09T10:02:44.706Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/008-create-feature-catalog",
+      "specFolder": "sk-doc/014-sk-doc-parent/008-create-feature-catalog",
       "description": "Phase 008 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4483,7 +4483,7 @@
       "lastUpdated": "2026-07-09T10:02:44.712Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/009-create-manual-testing-playbook",
+      "specFolder": "sk-doc/014-sk-doc-parent/009-create-manual-testing-playbook",
       "description": "Phase 009 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4495,7 +4495,7 @@
       "lastUpdated": "2026-07-09T10:02:44.716Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/010-create-benchmark",
+      "specFolder": "sk-doc/014-sk-doc-parent/010-create-benchmark",
       "description": "Phase 010 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4507,7 +4507,7 @@
       "lastUpdated": "2026-07-09T10:02:44.722Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/010-subskill-doc-review",
+      "specFolder": "sk-doc/014-sk-doc-parent/010-subskill-doc-review",
       "description": "The `creation.md` reference dissection split each sk-doc packet's authoring doctrine into its own creation-guideline reference (`skillcreation.md`,",
       "keywords": [
         "creation",
@@ -4525,7 +4525,7 @@
       "lastUpdated": "2026-07-09T10:02:44.728Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/011-create-changelog",
+      "specFolder": "sk-doc/014-sk-doc-parent/011-create-changelog",
       "description": "Phase 011 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4537,7 +4537,7 @@
       "lastUpdated": "2026-07-09T10:02:44.734Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/011-smart-router-alignment",
+      "specFolder": "sk-doc/014-sk-doc-parent/011-smart-router-alignment",
       "description": "Roughly 24 skills across the repo carry router pseudocode or keyed routing logic inside their `SKILL.md`, but only the handful of full parent hubs",
       "keywords": [
         "roughly",
@@ -4561,7 +4561,7 @@
       "lastUpdated": "2026-07-09T10:02:44.741Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/012-doc-quality",
+      "specFolder": "sk-doc/014-sk-doc-parent/012-doc-quality",
       "description": "Phase 012 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4573,7 +4573,7 @@
       "lastUpdated": "2026-07-09T10:02:44.749Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/012-quality-control-rename",
+      "specFolder": "sk-doc/014-sk-doc-parent/012-quality-control-rename",
       "description": "The sk-doc `doc-quality` workflow packet (built in the original phase map's `012-doc-quality/`) is named as if it were a mode or feature flag rather",
       "keywords": [
         "sk-doc",
@@ -4593,7 +4593,7 @@
       "lastUpdated": "2026-07-09T10:02:44.761Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/013-command-rebinding",
+      "specFolder": "sk-doc/014-sk-doc-parent/013-command-rebinding",
       "description": "Phase 013 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4605,7 +4605,7 @@
       "lastUpdated": "2026-07-09T10:02:44.768Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/013-shared-refs-reorg",
+      "specFolder": "sk-doc/014-sk-doc-parent/013-shared-refs-reorg",
       "description": "`.opencode/skills/sk-doc/shared/references/global/` adds a nesting level that carries no meaning beyond \"these are the generic, cross-packet",
       "keywords": [
         "opencode",
@@ -4625,7 +4625,7 @@
       "lastUpdated": "2026-07-09T10:02:44.776Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/014-advisor-and-skill-graph",
+      "specFolder": "sk-doc/014-sk-doc-parent/014-advisor-and-skill-graph",
       "description": "Phase 014 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4637,7 +4637,7 @@
       "lastUpdated": "2026-07-09T10:02:44.782Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/014-markdown-agent-sync",
+      "specFolder": "sk-doc/014-sk-doc-parent/014-markdown-agent-sync",
       "description": "`.opencode/agents/markdown.md` and `.claude/agents/markdown.md` are the two runtime mirrors of the markdown-authoring agent, and both cite `sk-doc`",
       "keywords": [
         "opencode",
@@ -4655,7 +4655,7 @@
       "lastUpdated": "2026-07-09T10:02:44.788Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/015-commands-refresh",
+      "specFolder": "sk-doc/014-sk-doc-parent/015-commands-refresh",
       "description": "The `.opencode/commands/` surface (the `/create:` and `/doc:` command files plus their `assets/` presentation and resource YAMLs) cited the",
       "keywords": [
         "opencode",
@@ -4674,7 +4674,7 @@
       "lastUpdated": "2026-07-09T10:02:44.795Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/015-external-refs-and-facades",
+      "specFolder": "sk-doc/014-sk-doc-parent/015-external-refs-and-facades",
       "description": "Phase 015 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4686,7 +4686,7 @@
       "lastUpdated": "2026-07-09T10:02:44.803Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/016-routing-benchmark",
+      "specFolder": "sk-doc/014-sk-doc-parent/016-routing-benchmark",
       "description": "Phase 016 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4698,7 +4698,7 @@
       "lastUpdated": "2026-07-09T10:02:44.808Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/017-cutover-and-closeout",
+      "specFolder": "sk-doc/014-sk-doc-parent/017-cutover-and-closeout",
       "description": "Phase 017 of the sk-doc monolith to parent-hub conversion",
       "keywords": [
         "phase",
@@ -4710,7 +4710,7 @@
       "lastUpdated": "2026-07-09T10:02:44.815Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/018-swimlane-revert",
+      "specFolder": "sk-doc/014-sk-doc-parent/018-swimlane-revert",
       "description": "The `systemarchitectureswimlane.md` flowchart example was box-widened wholesale (~40 borders) to satisfy the old box-width validator, which counted",
       "keywords": [
         "systemarchitectureswimlane",
@@ -4728,7 +4728,7 @@
       "lastUpdated": "2026-07-09T10:02:44.824Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/019-create-command-alignment",
+      "specFolder": "sk-doc/014-sk-doc-parent/019-create-command-alignment",
       "description": "Two gaps in the sk-doc `/create:` command surface: (1) three packets (`create-command`, `create-benchmark`, `create-flowchart`) had no bound command —",
       "keywords": [
         "two",
@@ -4746,7 +4746,7 @@
       "lastUpdated": "2026-07-09T10:02:44.832Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/020-command-agent-template-conformance",
+      "specFolder": "sk-doc/014-sk-doc-parent/020-command-agent-template-conformance",
       "description": "The sk-doc `/create` command routers and the `markdown` agents all fail `validatedocument.py`",
       "keywords": [
         "sk-doc",
@@ -4760,7 +4760,7 @@
       "lastUpdated": "2026-07-09T10:02:44.840Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/021-flatten-asset-subfolders",
+      "specFolder": "sk-doc/014-sk-doc-parent/021-flatten-asset-subfolders",
       "description": "Six sk-doc packets wrap their templates in a redundant single subfolder whose name just repeats the packet domain — e.g",
       "keywords": [
         "six",
@@ -4781,7 +4781,7 @@
       "lastUpdated": "2026-07-08T05:23:49.313Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/022-parent-skill-logic-review",
+      "specFolder": "sk-doc/014-sk-doc-parent/022-parent-skill-logic-review",
       "description": "The parent-hub (parent-skill) pattern — one advisor identity, a `mode-registry.json`, a `hub-router.json`, one `graph-metadata.json`, and nested",
       "keywords": [
         "parent-hub",
@@ -4799,7 +4799,7 @@
       "lastUpdated": "2026-07-08T05:23:49.318Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/022-parent-skill-logic-review",
+      "specFolder": "sk-doc/014-sk-doc-parent/022-parent-skill-logic-review",
       "description": "The parent-hub (parent-skill) pattern — one advisor identity, a `mode-registry.json`, a `hub-router.json`, one `graph-metadata.json`, and nested",
       "keywords": [
         "parent-hub",
@@ -4817,7 +4817,7 @@
       "lastUpdated": "2026-07-10T12:08:58.812Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/023-parent-hub-remediation",
+      "specFolder": "sk-doc/014-sk-doc-parent/023-parent-hub-remediation",
       "description": "The 022 deep review found 18 defects in the parent-hub pattern: one P0 (sk-design fails the canon checker on an un-canonized `transport` axis), seven",
       "keywords": [
         "deep",
@@ -4839,7 +4839,7 @@
       "lastUpdated": "2026-07-09T10:02:44.853Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/023-parent-hub-remediation",
+      "specFolder": "sk-doc/014-sk-doc-parent/023-parent-hub-remediation",
       "description": "The 022 deep review found 18 defects in the parent-hub pattern: one P0 (sk-design fails the canon checker on an un-canonized `transport` axis), seven",
       "keywords": [
         "deep",
@@ -4861,7 +4861,7 @@
       "lastUpdated": "2026-07-10T12:08:58.817Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/024-canon-self-enforcement",
+      "specFolder": "sk-doc/014-sk-doc-parent/024-canon-self-enforcement",
       "description": "Canon is declared once in each hub's `mode-registry.json` and then hand-copied into ~12 consumer dialects that must agree but are only kept in sync by",
       "keywords": [
         "canon",
@@ -4881,7 +4881,7 @@
       "lastUpdated": "2026-07-10T12:50:26.048Z"
     },
     {
-      "specFolder": "sk-doc/999-sk-doc-parent/024-canon-self-enforcement",
+      "specFolder": "sk-doc/014-sk-doc-parent/024-canon-self-enforcement",
       "description": "Canon is declared once in each hub's `mode-registry.json` and then hand-copied into ~12 consumer dialects that must agree but are only kept in sync by",
       "keywords": [
         "canon",

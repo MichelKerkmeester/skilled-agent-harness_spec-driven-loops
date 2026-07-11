@@ -1,5 +1,17 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Code Index Launcher Identity Guards Tests
+// ───────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 import { describe, expect, it, vi } from 'vitest';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ─────────────────────────────────────────────────────────────────────────────
 
 type OwnerUidMatchesInput = {
   leasePath: string;
@@ -19,6 +31,10 @@ type VerifyPidIdentityInput = {
   };
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. TEST SUBJECT (CJS REQUIRE)
+// ─────────────────────────────────────────────────────────────────────────────
+
 const require = createRequire(import.meta.url);
 const {
   ownerUidMatches,
@@ -27,6 +43,10 @@ const {
   ownerUidMatches: (input: OwnerUidMatchesInput) => boolean;
   verifyPidIdentity: (input: VerifyPidIdentityInput) => { ok: boolean; reason: string };
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. TEST SUITE
+// ─────────────────────────────────────────────────────────────────────────────
 
 describe('ownerUidMatches', () => {
   it('returns true when recordedUid matches currentUid', () => {

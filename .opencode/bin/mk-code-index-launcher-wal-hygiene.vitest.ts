@@ -1,3 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Code Index Launcher WAL Hygiene Tests
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { existsSync, mkdtempSync, rmSync, statSync } from 'node:fs';
 import { spawn, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
@@ -5,6 +13,10 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type CheckpointResult = {
   checkpointed: boolean;
@@ -26,12 +38,20 @@ type BetterSqliteDatabase = {
 
 type BetterSqliteConstructor = new (filename: string) => BetterSqliteDatabase;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. MODULE UNDER TEST
+// ───────────────────────────────────────────────────────────────────
+
 const testDir = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 const codeGraphRequire = createRequire(join(testDir, '..', 'skills', 'system-code-graph', 'package.json'));
 const { checkpointStaleWalIfNeeded } = require('./mk-code-index-launcher.cjs') as {
   checkpointStaleWalIfNeeded: (dbPath: string, options?: { reapedOrphan?: boolean }) => CheckpointResult;
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 4. SQLITE BACKEND DETECTION
+// ───────────────────────────────────────────────────────────────────
 
 function loadBetterSqlite(): BetterSqliteConstructor | null {
   try {
@@ -50,6 +70,10 @@ const sqlite3CliAvailable = spawnSync('sqlite3', ['-version'], {
   stdio: ['ignore', 'pipe', 'ignore'],
 }).status === 0;
 const maybeIt = BetterSqlite || sqlite3CliAvailable ? it : it.skip;
+
+// ───────────────────────────────────────────────────────────────────
+// 5. WAL FIXTURE HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function walSize(dbPath: string): number {
   const walPath = `${dbPath}-wal`;
@@ -169,6 +193,10 @@ function integrityCheck(dbPath: string): string {
     db.close();
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. TESTS
+// ───────────────────────────────────────────────────────────────────
 
 describe('checkpointStaleWalIfNeeded', () => {
   const originalThreshold = process.env.SPECKIT_LAUNCHER_WAL_TRUNCATE_BYTES;

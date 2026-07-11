@@ -1,9 +1,22 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Skill Advisor CLI Shim                                        ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Runs the built daemon-backed mk-skill-advisor CLI.              ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const opencodeDir = path.resolve(__dirname, '..');
 const mcpServerDir = path.join(opencodeDir, 'skills', 'system-skill-advisor', 'mcp_server');
@@ -15,6 +28,10 @@ const allowStale = process.env.MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1'
   || process.env.SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE === '1';
 const EXIT_PROTOCOL = 69;
 const EXIT_RETRYABLE = 75;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. ARGUMENT PARSING HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function requestedFormat(argv) {
   for (let index = 0; index < argv.length; index += 1) {
@@ -29,6 +46,10 @@ function requestedFormat(argv) {
 function requestedWarmOnly(argv) {
   return argv.some((token) => token === '--warm-only' || token === '--warm-only=true' || token === '--warm-only=1');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. PREFLIGHT HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function fail(message, exitCode = EXIT_PROTOCOL, fields = {}) {
   const format = requestedFormat(process.argv.slice(2));
@@ -73,6 +94,10 @@ function ensureSocketDir() {
     fail(`skill-advisor socket path exceeds the Darwin sun_path limit: ${socketPath}. Set SPECKIT_IPC_SOCKET_DIR to a shorter directory or a tcp:// endpoint.`);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 ensureSocketDir();
 ensureFreshDist();

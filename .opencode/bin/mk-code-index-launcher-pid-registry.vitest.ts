@@ -1,7 +1,19 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Code Index Launcher PID Registry Tests
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type DaemonPidRegistry = {
   daemonPid: number;
@@ -11,6 +23,10 @@ type DaemonPidRegistry = {
   canonicalDbDir: string;
   registryPath?: string;
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TEST SUBJECT (CJS REQUIRE)
+// ───────────────────────────────────────────────────────────────────
 
 const require = createRequire(import.meta.url);
 const fs = require('node:fs') as typeof import('node:fs');
@@ -30,10 +46,18 @@ const {
   writeDaemonPidRegistry: (registry: DaemonPidRegistry) => void;
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 4. TEST STATE
+// ───────────────────────────────────────────────────────────────────
+
 const testDir = dirname(fileURLToPath(import.meta.url));
 
 let tempRoot: string;
 let originalDbDir: string | undefined;
+
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPER FUNCTIONS
+// ───────────────────────────────────────────────────────────────────
 
 function registryFor(overrides: Partial<DaemonPidRegistry> = {}): DaemonPidRegistry {
   return {
@@ -45,6 +69,10 @@ function registryFor(overrides: Partial<DaemonPidRegistry> = {}): DaemonPidRegis
     ...overrides,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. TEST SUITE
+// ───────────────────────────────────────────────────────────────────
 
 describe('code-index daemon PID registry', () => {
   beforeEach(() => {

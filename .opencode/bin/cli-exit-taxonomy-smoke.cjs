@@ -1,17 +1,30 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: CLI Exit-Taxonomy Smoke                                       ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Daemon-free exit-code and envelope taxonomy smoke for the       ║
+// ║ three CLI shims (warm-only=75, usage/trust refusal=64).                  ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
-// Daemon-free exit-code and envelope taxonomy smoke for the three CLI
-// shims. The sibling cli-offline-smoke.cjs proves list-tools counts; this
+// The sibling cli-offline-smoke.cjs proves list-tools counts; this
 // script proves the FAILURE contract: warm-only refusals exit 75, usage
 // and trust refusals exit 64, and failure envelopes stay parseable JSON
 // (or usage text) rather than stack traces. Every case runs in a sandbox
 // socket dir so no daemon is ever spawned or contacted.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { spawnSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const repoRoot = path.resolve(__dirname, '..', '..');
 
@@ -20,6 +33,10 @@ const SHIMS = {
   'code-index': path.join(__dirname, 'code-index.cjs'),
   'skill-advisor': path.join(__dirname, 'skill-advisor.cjs'),
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. TAXONOMY CASES
+// ─────────────────────────────────────────────────────────────────────────────
 
 const CASES = [
   // Warm-only reads with no daemon must refuse retryably (75), never spawn.
@@ -38,6 +55,10 @@ const CASES = [
   { name: 'code-index bare apply guarded exits 64', shim: 'code-index', args: ['code_graph_apply', '--format', 'json'], expectExit: 64 },
 ];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ARGUMENT PARSING
+// ─────────────────────────────────────────────────────────────────────────────
+
 function parseArgs(argv) {
   const options = { format: 'text', timeoutMs: 20_000 };
   for (let index = 0; index < argv.length; index += 1) {
@@ -55,6 +76,10 @@ function parseArgs(argv) {
   }
   return options;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. CASE EXECUTION
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseJson(text) {
   if (!text || !text.trim()) return null;
@@ -102,6 +127,10 @@ function runCase(testCase, timeoutMs) {
     fs.rmSync(sandbox, { recursive: true, force: true });
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 function main() {
   const options = parseArgs(process.argv.slice(2));

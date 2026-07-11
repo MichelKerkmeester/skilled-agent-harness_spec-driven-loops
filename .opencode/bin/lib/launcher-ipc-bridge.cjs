@@ -1,14 +1,22 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Launcher IPC Bridge                                         ║
+// ║ COMPONENT: Launcher IPC Bridge                                           ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Provides daemon IPC paths, probes, and JSON-RPC helpers.       ║
+// ║ PURPOSE: Provides daemon IPC paths, probes, and JSON-RPC helpers.        ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const net = require('net');
 const path = require('path');
 const { StringDecoder } = require('string_decoder');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const DEFAULT_PROBE_TIMEOUT_MS = 5000;
@@ -17,6 +25,10 @@ const DEFAULT_MODEL_SERVER_LOADING_MAX_MS = 150000;
 const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
 const MODEL_SERVER_HEALTH_PATH = '/api/health';
 let nextProbeId = 1;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. TIMEOUT AND RETRY HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parsePositiveInteger(value, fallback) {
   if (value === undefined || value === null || String(value).trim() === '') return fallback;
@@ -58,6 +70,10 @@ function resolveLeaseProbeRetryTimeoutMs(env = process.env) {
 function resolveLeaseProbeRetryBackoffMs(env = process.env) {
   return parsePositiveInteger(env.SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS, 250);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. PATH AND TRANSPORT HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function repoRoot() {
   return path.resolve(__dirname, '..', '..', '..');
@@ -103,6 +119,10 @@ function toConnectionOptions(socketPath) {
   };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. STDIO BRIDGE
+// ─────────────────────────────────────────────────────────────────────────────
+
 function bridgeStdioToSocket(socketPath, options = {}) {
   const input = options.stdin ?? process.stdin;
   const output = options.stdout ?? process.stdout;
@@ -146,6 +166,10 @@ function bridgeStdioToSocket(socketPath, options = {}) {
 
   return socket;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. LIVENESS PROBES
+// ─────────────────────────────────────────────────────────────────────────────
 
 function probeDaemon(socketPath, options = {}) {
   const timeoutMs = resolveProbeTimeoutMs(options);
@@ -351,6 +375,10 @@ function probeModelServer(socketPath, options = {}) {
   });
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. LEASE PROBE AND BRIDGE ORCHESTRATION
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Run the deep liveness probe up to `attempts` times; any 'alive' short-circuits to a bridge, and
 // only an all-failures run returns the final (dead) result so the caller respawns. The probe fn and
 // sleep are injectable so the retry decision is unit-testable without real sockets or timers.
@@ -457,6 +485,10 @@ async function maybeBridgeLeaseHolder(options) {
   }));
   return { action: 'bridge', socketPath };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   DEFAULT_MODEL_SERVER_LOADING_MAX_MS,

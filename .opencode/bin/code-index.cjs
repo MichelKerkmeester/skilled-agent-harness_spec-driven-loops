@@ -1,14 +1,22 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Code Index CLI Shim                                         ║
+// ║ COMPONENT: Code Index CLI Shim                                           ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Runs the built daemon-backed mk-code-index CLI.                ║
+// ║ PURPOSE: Runs the built daemon-backed mk-code-index CLI.                 ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const opencodeDir = path.resolve(__dirname, '..');
 const skillDir = path.join(opencodeDir, 'skills', 'system-code-graph');
@@ -19,6 +27,10 @@ const socketFileName = 'daemon-ipc.sock';
 const allowStale = process.env.SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE === '1';
 const EXIT_PROTOCOL = 69;
 const EXIT_RETRYABLE = 75;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. ARGUMENT PARSING
+// ─────────────────────────────────────────────────────────────────────────────
 
 function requestedFormat(argv) {
   for (let index = 0; index < argv.length; index += 1) {
@@ -33,6 +45,10 @@ function requestedFormat(argv) {
 function requestedWarmOnly(argv) {
   return argv.some((token) => token === '--warm-only' || token === '--warm-only=true' || token === '--warm-only=1');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. ERROR HANDLING
+// ─────────────────────────────────────────────────────────────────────────────
 
 function fail(message, exitCode = EXIT_PROTOCOL, fields = {}) {
   const format = requestedFormat(process.argv.slice(2));
@@ -49,6 +65,10 @@ function fail(message, exitCode = EXIT_PROTOCOL, fields = {}) {
   }
   process.exit(exitCode);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. PRE-FLIGHT GUARDS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function ensureFreshDist() {
   const result = checkPackageFreshness('system-code-graph/mcp_server', {
@@ -77,6 +97,10 @@ function ensureSocketDir() {
     fail(`code-index socket path exceeds the Darwin sun_path limit: ${socketPath}. Set SPECKIT_IPC_SOCKET_DIR to a shorter directory or a tcp:// endpoint.`);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 ensureSocketDir();
 ensureFreshDist();

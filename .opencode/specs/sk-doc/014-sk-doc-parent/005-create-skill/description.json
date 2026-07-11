@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/014-sk-doc-parent/005-create-skill",
+  "description": "Phase 005 of the sk-doc monolith to parent-hub conversion",
+  "keywords": [
+    "phase",
+    "sk-doc",
+    "monolith",
+    "parent-hub",
+    "conversion"
+  ],
+  "lastUpdated": "2026-07-09T10:02:44.696Z",
+  "specId": "005",
+  "folderSlug": "create-skill",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

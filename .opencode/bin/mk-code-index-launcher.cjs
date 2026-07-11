@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: mk-code-index Launcher                                      ║
+// ║ COMPONENT: mk-code-index Launcher                                        ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Prepares code-graph state and launches the MCP server child.   ║
+// ║ PURPOSE: Prepares code-graph state and launches the MCP server child.    ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');
@@ -13,6 +17,10 @@ const { createHash } = require('crypto');
 const { createRequire } = require('module');
 const { createSessionProxy, createClassifyFrame } = require('./lib/launcher-session-proxy.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const root = path.resolve(__dirname, '..', '..');
 const opencodeDir = path.join(root, '.opencode');
 const BLOCKED_CHILD_ENV_RE = /^(NODE_|npm_|NPM_)/;
@@ -20,6 +28,10 @@ const DOTENV_ALLOW_RE = /^(SPECKIT_CODE_GRAPH_|SPECKIT_LAUNCHER_(IDLE_TIMEOUT_MI
 const DEFAULT_WAL_TRUNCATE_BYTES = 8_388_608;
 const DAEMON_PID_REGISTRY_FILE_NAME = '.code-graph-daemon-pid.json';
 const INVALIDATION_MARKER_FILE_NAME = '.code-graph-invalidation.json';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. ENV BOOTSTRAP HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
@@ -131,6 +143,10 @@ function bootstrapLauncherEnv() {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MODULE STATE
+// ─────────────────────────────────────────────────────────────────────────────
+
 let skillsDir = path.join(opencodeDir, 'skills');
 let legacySkillDir = path.join(opencodeDir, 'skill');
 let kitDir = path.join(skillsDir, 'system-code-graph');
@@ -158,6 +174,10 @@ const LEASE_METRIC_TRANSITION_CLASS = Object.freeze({
   staleReclaimed: 'stale-reclaimed',
   respawned: 'respawned',
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. LOGGING & LEASE METRIC HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function log(message) {
   process.stderr.write(`[mk-code-index-launcher] ${message}\n`);
@@ -195,6 +215,10 @@ function emitLeaseMetric(leaseClass, details = {}) {
 function configureLeaseMetricSinkForTesting(sink) {
   leaseMetricSink = typeof sink === 'function' ? sink : null;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. IPC BRIDGE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function loadBridgeModule() {
   try {
@@ -250,6 +274,10 @@ function bridgeStdioThroughSessionProxy(socketPath, options = {}) {
   });
   return sessionProxy.start();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. PATH & LEASE FILE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
@@ -458,6 +486,10 @@ function writeDaemonPidRegistry(registry) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. DAEMON REGISTRY & OWNER LEASE LIFECYCLE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function discoverDaemonFromRegistry(registryDbDir = resolvedDbDir()) {
   try {
     const canonicalRegistryDbDir = canonicalizePath(registryDbDir);
@@ -551,6 +583,10 @@ function buildOwnerLease(ownerPid = process.pid) {
     socketPath: ownerSocketPath(),
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. PROCESS LIVENESS & IDENTITY HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function processLiveness(pid) {
   if (!Number.isInteger(pid) || pid <= 0) return 'dead';
@@ -675,6 +711,10 @@ function readParentPid(pid) {
   return Number.isInteger(parsed) ? parsed : null;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. OWNER LEASE CLASSIFICATION & ACQUISITION HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function classifyOwnerLease(lease) {
   const liveness = processLiveness(lease.ownerPid);
   if (liveness === 'dead') return 'stale-pid';
@@ -796,6 +836,10 @@ function clearOwnerLeaseFileIfOwner(ownerPid) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 11. PID LEASE HELD HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function pidLiveAt(filePath, pidField) {
   try {
     const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -861,6 +905,10 @@ function writeLeaseHeldDiagnostic(leaseResult, suffix = '') {
   const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
   process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. DEAD-SOCKET RECLAIM & RESPAWN HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function resolveLeaseSocketPath(leaseResult) {
   if (typeof leaseResult?.socketPath === 'string' && leaseResult.socketPath.length > 0) {
@@ -1197,6 +1245,10 @@ async function bridgeOrReportLeaseHeld(leaseResult, options = {}) {
   return decision;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 13. LEASE FILE WRITE/CLEAR HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function writeLeaseFile() {
   const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(leasePath())), PID_FILE_NAME);
   const tmp = currentLeasePath + '.tmp.' + process.pid;
@@ -1218,6 +1270,10 @@ function clearAllLeaseFiles() {
   clearLeaseFile();
   clearOwnerLeaseFile();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 14. BUILD & LAYOUT HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -1341,6 +1397,10 @@ function dbAppearsHeldByLiveProcess(dbPath) {
   return findDbFileHolderPids(dbPath).some((pid) => processLiveness(pid) !== 'dead');
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 15. DB INVALIDATION & WAL CHECKPOINT HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function consumeCodeGraphInvalidation(targetDbDir = resolvedDbDir(), options = {}) {
   const canonicalDbDir = canonicalizePath(targetDbDir);
   assertPathWithinRoot(canonicalDbDir, 'code graph invalidation DB directory', true);
@@ -1443,6 +1503,10 @@ function checkpointStaleWalIfNeeded(dbPath, options = {}) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 16. BOOTSTRAP LOCK HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const BOOTSTRAP_LOCK_STALE_MS = 5 * 60 * 1000; // 5 minutes — fallback for unstamped (legacy) lock dirs
 const BOOTSTRAP_LOCK_TIMEOUT_MS = 120000;
 const BOOTSTRAP_LOCK_OWNER_FILE = 'owner.pid';
@@ -1528,6 +1592,10 @@ async function acquireBootstrapLock(options = {}) {
     }
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 17. SERVER LAUNCH & SIGNAL HANDLING
+// ─────────────────────────────────────────────────────────────────────────────
 
 function launchServer() {
   if (launchStarted) {
@@ -1624,6 +1692,10 @@ function installSignalHandlers() {
     throw err;
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 18. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function launcherMain() {
   const started = now();
@@ -1818,6 +1890,10 @@ if (require.main === module) {
   bootstrapLauncherEnv();
   void launcherMain();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 19. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function configureLauncherPathsForTesting(nextPaths) {
   if (nextPaths.skillsDir) skillsDir = nextPaths.skillsDir;

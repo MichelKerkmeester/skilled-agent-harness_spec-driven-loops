@@ -1,3 +1,8 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Sidecar Env Allowlist                                         ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Frozen env-key allowlist gating vars passed to the sidecar.     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 const SIDECAR_ENV_ALLOWLIST = Object.freeze({

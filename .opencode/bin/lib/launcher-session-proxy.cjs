@@ -1,9 +1,13 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Launcher Session Proxy                                      ║
+// ║ COMPONENT: Launcher Session Proxy                                        ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Bridges MCP stdio sessions to daemon IPC with safe reconnects. ║
+// ║ PURPOSE: Bridges MCP stdio sessions to daemon IPC with safe reconnects . ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const net = require('net');
 const { StringDecoder } = require('string_decoder');
@@ -11,6 +15,10 @@ const {
   probeDaemon,
   toConnectionOptions,
 } = require('./launcher-ipc-bridge.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const PROBE_BACKOFF_MS = [100, 250, 500, 1000, 1500];
 const DEFAULT_MAX_REATTACH_ATTEMPTS = 40;
@@ -64,6 +72,10 @@ const REPLAYABLE_PROTOCOL_METHODS = new Set([
   'initialize',
   'ping',
 ]);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. FRAME HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -157,6 +169,10 @@ function createClassifyFrame(options = {}) {
 // lives behind the daemon IPC and is out of scope for this proxy-layer frame classifier.
 const classifyFrame = createClassifyFrame();
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. PENDING REQUEST TRACKING
+// ─────────────────────────────────────────────────────────────────────────────
+
 function createPendingRequestsTracker(classify = classifyFrame) {
   const pendingRequests = new Map();
   let cachedInitialize = null;
@@ -207,6 +223,10 @@ function createPendingRequestsTracker(classify = classifyFrame) {
     },
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. DAEMON CONNECTION HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function resolveColdStartAttempts() {
   const fromEnv = Number.parseInt(process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS ?? '', 10);
@@ -346,6 +366,10 @@ function internalHandshake(socket, initializeFrame) {
     writeFrame(socket, initializeFrame);
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. SESSION PROXY FACTORY
+// ─────────────────────────────────────────────────────────────────────────────
 
 function createSessionProxy(options) {
   const socketPath = options?.socketPath;
@@ -601,9 +625,9 @@ function createSessionProxy(options) {
   function handleClientFrame(frame) {
     const parsedClient = parseFrame(frame);
     if (parsedClient
-        && parsedClient.method !== undefined
-        && typeof parsedClient.id === 'string'
-        && parsedClient.id.startsWith(PROXY_PRIVATE_ID_PREFIX)) {
+      && parsedClient.method !== undefined
+      && typeof parsedClient.id === 'string'
+      && parsedClient.id.startsWith(PROXY_PRIVATE_ID_PREFIX)) {
       // This id prefix is reserved for the proxy's private keepalive pings. A
       // client request carrying a colliding id would have its backend response
       // silently swallowed by the keepalive interceptor in handleBackendFrame,
@@ -635,9 +659,9 @@ function createSessionProxy(options) {
     }
     const cachedInitializeId = tracker.getCachedInitializeId();
     if (!tracker.hasObservedProtocolVersion()
-        && cachedInitializeId !== null
-        && isResponseFrame(parsed)
-        && parsed.id === cachedInitializeId) {
+      && cachedInitializeId !== null
+      && isResponseFrame(parsed)
+      && parsed.id === cachedInitializeId) {
       // Record the protocol version negotiated on the first initialize so an internal
       // re-handshake to a swapped backend can fail closed on a version change rather
       // than silently serve the client a protocol it never negotiated.
@@ -678,8 +702,8 @@ function createSessionProxy(options) {
     }
     const expectedProtocolVersion = tracker.getNegotiatedProtocolVersion();
     if (handshake.handshakeObserved
-        && expectedProtocolVersion !== null
-        && (handshake.protocolVersion ?? null) !== expectedProtocolVersion) {
+      && expectedProtocolVersion !== null
+      && (handshake.protocolVersion ?? null) !== expectedProtocolVersion) {
       // A backend build swap can re-handshake with a different negotiated protocol
       // version. Serving it would silently break the client's protocol contract, so
       // end the session with a non-retryable error instead of attaching the socket.
@@ -710,9 +734,9 @@ function createSessionProxy(options) {
     // pending so replaySnapshot does not send a duplicate initialize to the backend.
     const cachedInitializeId = tracker.getCachedInitializeId();
     if (handshake.handshakeObserved
-        && handshake.initializeResponse
-        && cachedInitializeId !== null
-        && tracker.pendingRequests.has(cachedInitializeId)) {
+      && handshake.initializeResponse
+      && cachedInitializeId !== null
+      && tracker.pendingRequests.has(cachedInitializeId)) {
       tracker.pendingRequests.delete(cachedInitializeId);
       enqueueOutputFrame(handshake.initializeResponse);
     }
@@ -842,6 +866,10 @@ function createSessionProxy(options) {
 
   return { start, stop };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   createClassifyFrame,
