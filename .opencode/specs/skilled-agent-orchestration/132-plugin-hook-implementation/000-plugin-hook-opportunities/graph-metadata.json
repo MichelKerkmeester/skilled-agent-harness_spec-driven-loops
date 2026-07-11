@@ -47,6 +47,12 @@
       "research/lineages/glm52/deep-research-state.jsonl",
       "plan.md",
       ".claude/settings.json",
+      "research/lineages/glm52/research.md",
+      "research/lineages/glm52/iterations/iteration-001.md",
+      "research/lineages/glm52/logs/fanout-lineage.out",
+      "research/lineages/gptsol/research.md",
+      "research/lineages/gptsol/iterations/iteration-001.md",
+      "research/lineages/gptsol/logs/fanout-lineage.out",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -85,6 +91,18 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/glm52/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-lineage.out",
+        "kind": "file",
+        "path": "research/lineages/glm52/logs/fanout-lineage.out",
         "source": "derived"
       },
       {
@@ -182,23 +200,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repo ships seven OpenCode plugins with paired Claude hooks, but a much larger body of skills (`sk-code`, `sk-design`, `sk-doc`, `sk-git`, `sk-prompt`, `system-deep-loop`, `system-spec-kit`, `system-skill-advisor`, `system-code-graph`, cli-external hubs, mcp-tooling hubs) exposes capability that is only reachable interactively",
     "created_at": "2026-07-11T04:08:27.701Z",
-    "last_save_at": "2026-07-11T09:03:32.133Z",
+    "last_save_at": "2026-07-11T15:11:57.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +214,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d066d37ff840570b35a8316bb56e773d545e21695da3058ad42cee07c8d67e70",
+    "source_fingerprint": "sha256:35b12be85ff135b3c64a67545864fdeb8f56e1f526f5157ceb2106abf215a74b",
     "source_doc_hashes": {
-      "spec.md": "f4bdfff129521eff4a7e7e5ecfc61e73d85ae6762857e0882bff18f2035b7940",
-      "plan.md": "ee55ef1408a0f0fa90d992a2ab0d34e220aadda3d0b6989a223e96c918f4af6b",
-      "tasks.md": "bd699805ed73d4fad0a7fbbc41881a3b3ef40e7680dc73fe2c9667179fa93be6",
-      "implementation-summary.md": "d1f2250cc41a355766512aabb9126115d2f63664857866fd08d6913c2a5b6c27",
-      "research/research.md": "5762fcc731ce1efd9f4f5c2f682bd619f48f5e9d1c79a1ff3db8460745c8c7e4"
+      "spec.md": "81cef59de5f24e4add98defcb7ffc9bc39c3d076e0f4fc57a5550573f887b8c9",
+      "plan.md": "eb177d52d69c7afb5bdc07f00ca1c6e9a5004980f4a3a381c2700e0e721fa162",
+      "tasks.md": "e8f1d83ecc2800a1101f32ccb17719fcd2e37886d0c009cb437c9b522584fe37",
+      "implementation-summary.md": "38f4398c6a2821a878ec8bfeb07f63ea7b9c39146c3ca1823d133082fda5af4a",
+      "research/research.md": "fa61a7287677dfb235447d4c5c44699f4454adabcc0fe8f28307f47021d07ac0"
     },
     "last_active_child_id": null,
     "last_active_at": null
